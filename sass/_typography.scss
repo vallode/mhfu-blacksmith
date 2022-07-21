@@ -1,17 +1,14 @@
 @font-face {
   font-family: "Roboto Condensed";
-  src: url(/fonts/RobotoCondensed-Regular.ttf) format("ttf");
+  src: url("/fonts/RobotoCondensed-Regular.ttf") format("truetype");
 }
 
 html {
   font-size: 62.5%;
-  font-family: "Roboto Condensed", sans-serif;
+  line-height: 1.5;
 }
 
 body {
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 1.6rem;
 }
-
-html { line-height: 1.5; }
-h1, h2, h3, h4, h5, h6 { line-height: 1.25; }
-caption, figcaption, label, legend { line-height: 1.375; }
