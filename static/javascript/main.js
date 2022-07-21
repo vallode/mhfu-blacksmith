@@ -46,7 +46,7 @@ function loadWeaponData(data) {
   imgContainer.classList.add("weaponImageContainer")
   const img = document.createElement("img")
   imgContainer.appendChild(img)
-  img.src = "/assets/images/weapons/white-serpentblade.png"
+  img.src = "/images/weapons/white-serpentblade.png"
   weaponCrafting.innerHTML = ""
   weaponCrafting.append(imgContainer)
   console.groupEnd()
@@ -83,11 +83,11 @@ weaponMap.forEach(element => {
     }
 
     if (value.includes("(hh)")) {
-      clone.querySelector('.icon img').src = "/assets/images/hh.png"
+      clone.querySelector('.icon img').src = "/images/hh.png"
       clone.querySelector('.row').classList.add("row--external")
       clone.querySelector('.row').href = "/blacksmith/hunting-horn/"
     } else if (value.includes("(hm)")) {
-      clone.querySelector('.icon img').src = "/assets/images/hm.png"
+      clone.querySelector('.icon img').src = "/images/hm.png"
       clone.querySelector('.row').classList.add("row--external")
       clone.querySelector('.row').href = "/blacksmith/hammer/"
     } else {
