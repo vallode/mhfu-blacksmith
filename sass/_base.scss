@@ -131,13 +131,19 @@ div {
 
 #weaponCrafting {
   overflow: hidden;
+  padding: .8rem;
 }
 
 #weaponCrafting img {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  width: 100%;
   position: relative;
+}
+
+#weaponCrafting p {
+  padding: 1.6rem 1.2rem;
 }
 
 .weaponDetails span {
@@ -369,4 +375,9 @@ hr.border {
 
 .weapon-tree {
   flex-direction: row;
+}
+
+.weaponImageContainer {
+  height: 100%;
+  overflow: hidden;
 }
