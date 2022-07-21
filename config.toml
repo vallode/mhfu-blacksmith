@@ -7,8 +7,9 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
-# Avoid copying all images to public static directory
-hard_link_static = true
+# Avoid copying all images to public static directory.
+# https://github.com/getzola/zola/issues/1217
+# hard_link_static = true
 
 [markdown]
 # Whether to do syntax highlighting
