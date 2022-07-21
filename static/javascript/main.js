@@ -69,7 +69,6 @@ weaponMap.forEach(element => {
       const weaponId = data.name.toLowerCase().replace(" ", "-")
       clone.querySelector('.row').id = weaponId
       clone.querySelector('.row').addEventListener("click", event => {
-        console.log("clicked!")
         loadWeaponData(data)
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?weapon=${weaponId}`;
         window.history.replaceState({path:newurl}, '', newurl);
