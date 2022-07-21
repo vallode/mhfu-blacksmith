@@ -9,7 +9,7 @@ html {
 body {
   align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   font-size: 1.6rem;
   margin: 0;
@@ -28,6 +28,7 @@ a {
   font-size: 2.6rem;
   text-decoration: none;
   flex: 1 1 0%;
+  white-space: pre;
 
   border-image-slice: 20 22 17 22 fill;
   border-image-width: 20px 22px 17px 22px;
@@ -186,7 +187,7 @@ div {
 .icon {
   flex: 0 0 0;
   height: 26px;
-  margin-right: 13px;
+  margin-right: 9px;
   position: relative;
   width: 26px;
 }
@@ -208,6 +209,20 @@ div {
   height: 52px;
 }
 
+img {
+  color: transparent;
+}
+
+img:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("/images/ukwn.png");
+  background-repeat: no-repeat;
+}
+
 .icon.icon--hammer::before,
 .icon.icon--hunting-horn::before,
 .icon.icon--great-sword::before {
@@ -225,15 +240,15 @@ div {
 }
 
 .icon.icon--hammer::before {
-  mask-image: url("/assets/images/hm.png");
+  mask-image: url("/images/hm.png");
 }
 
 .icon.icon--hunting-horn::before {
-  mask-image: url("/assets/images/hh.png");
+  mask-image: url("/images/hh.png");
 }
 
 .icon.icon--great-sword::before {
-  mask-image: url("/assets/images/gs.png");
+  mask-image: url("/images/gs.png");
 }
 
 .icon.icon--large::before {
@@ -285,36 +300,73 @@ div {
 }
 
 .icon.icon--fire::after {
-  background-image: url("/assets/images/fire.png");
+  background-image: url("/images/fire.png");
 }
 
 .icon.icon--thunder::after {
-  background-image: url("/assets/images/thunder.png");
+  background-image: url("/images/thunder.png");
 }
 
 .icon.icon--poison::after {
-  background-image: url("/assets/images/poison.png");
+  background-image: url("/images/poison.png");
 }
 
 .icon.icon--water::after {
-  background-image: url("/assets/images/water.png");
+  background-image: url("/images/water.png");
 }
 
 .icon.icon--ice::after {
-  background-image: url("/assets/images/ice.png");
+  background-image: url("/images/ice.png");
 }
 
 .icon.icon--sleep::after {
-  background-image: url("/assets/images/sleep.png");
+  background-image: url("/images/sleep.png");
 }
 
 .icon.icon--dragon::after {
-  background-image: url("/assets/images/dragon.png");
+  background-image: url("/images/dragon.png");
 }
 
 .icon.icon--paralysis::after {
-  background-image: url("/assets/images/paralysis.png");
+  background-image: url("/images/paralysis.png");
 }
 
-.table div:nth-child(2n) {
+hr {
+  border: 3px solid #6E905F;
+  width: 100%;
+  margin: 1.3rem 0;
+}
+
+hr.border {
+  height: 8px;
+  border: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
+  background-repeat: repeat-x;
+
+  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 13px;
+  max-width: 484px;
+  width: 484px;
+}
+
+.blacksmith__title {
+  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+.blacksmith__table {
+  flex: inherit;
+  margin: auto 0;
+  height: auto;
+}
+
+.weapon-tree {
+  flex-direction: row;
 }
