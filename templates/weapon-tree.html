@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 
-{% block body__attr %}{% filter spaceless %}
-  data-weapon-name="{{ page.slug }}"
-{% endfilter %}{% endblock body__attr %}
+{% block body__attr %}
+  class="weapon-tree" data-weapon-name="{{ page.slug }}"
+  {% endblock body__attr %}
+  
+{% block scripts %}
+  <script src="{{ page.slug }}.js"></script>  
+  <script src="/javascript/main.js" defer></script>
+{% endblock scripts %}
 
 {% block content %}
-  <script src="/javascript/hm.js"></script>
-
   <div class="card card--list">
     <div class="table">
       <template id="table__entry">
         <a class="row">
-          <div class="icon"><img src="/images/hm.png" alt="?"></div>
-          <pre class="name"></pre>
+          <div class="icon"><img src="/images/{{ page.slug }}.png" alt="?"></div>
+          <p class="name"></p>
         </a>
       </template>
     </div>
@@ -20,7 +23,7 @@
   <div>
     <template id="weaponDetailsTemplate">
       <div class="row">
-        <div class="icon icon--hammer icon--large"><img src="/images/hm.png" alt="?"></div>
+        <div class="icon icon--hammer icon--large"><img src="/images/{{ page.slug }}.png" alt="?"></div>
         <p id="weaponName"></p>
         <p id="weaponCraftingCost"></p>
       </div>
@@ -36,12 +39,10 @@
       </div>
     </template>
     <div class="card" id="weaponDetails">
-      <pre>1 NO WEAPON SELECTED</pre>
+      <p>1 NO WEAPON SELECTED</p>
     </div>
     <div class="card" id="weaponCrafting">
-      <pre>2 NO WEAPON SELECTED</pre>
+      <p>2 NO WEAPON SELECTED</p>
     </div>
   </div>
-
-  <script src="/javascript/main.js" defer></script>
 {% endblock content %}

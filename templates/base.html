@@ -5,7 +5,8 @@
 
   <link rel="stylesheet" href="/style.css">
 </head>
-<body {% block body__attr %}{% endblock %}>
-  {% block content %} {% endblock %}
+<body {% block body__attr %}{% endblock body__attr %}>
+  {% block content %}{% endblock content %}
+  {% block scripts %}{% endblock scripts %}
 </body>
 </html>

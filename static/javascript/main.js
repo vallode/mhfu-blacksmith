@@ -11,6 +11,13 @@ const rarityColors = {
   10: '',
 }
 
+const weaponSlugs = {
+  hh: "hunting-horn",
+  hm: "hammer",
+  gs: "great-sword",
+  ls: "long-sword",
+}
+
 function loadWeaponData(data) {
   console.groupCollapsed("Loading weapon data for: ", data.name)
   console.table(data)
@@ -53,6 +60,8 @@ function loadWeaponData(data) {
 }
 
 const elementRegex = /([A-Z])\w+/g
+const weaponAbbrRegex = /\(([A-Za-z]{2})\)/
+
 const table = document.querySelector('.table')
 const table__entry = document.querySelector('#table__entry')
 
@@ -82,16 +91,12 @@ weaponMap.forEach(element => {
       })
     }
 
-    if (value.includes("(hh)")) {
-      clone.querySelector('.icon img').src = "/images/hh.png"
+    if (value.match(weaponAbbrRegex)) {
+      const weaponSlug = weaponSlugs[value.match(weaponAbbrRegex)[1]]
+
+      clone.querySelector('.icon img').src = `/images/${weaponSlug}.png`
       clone.querySelector('.row').classList.add("row--external")
-      clone.querySelector('.row').href = "/blacksmith/hunting-horn/"
-    } else if (value.includes("(hm)")) {
-      clone.querySelector('.icon img').src = "/images/hm.png"
-      clone.querySelector('.row').classList.add("row--external")
-      clone.querySelector('.row').href = "/blacksmith/hammer/"
-    } else {
-      clone.querySelector('.icon').classList.add(`icon--${document.body.dataset.weaponName}`)
+      clone.querySelector('.row').href = `/blacksmith/${weaponSlug}/`
     }
 
     table.appendChild(clone)
