@@ -1,0 +1,320 @@
+html {
+  background: center / cover no-repeat url("/images/bg.png");
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 1.3rem 3.4rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 2.6rem;
+  text-decoration: none;
+  flex: 1 1 0%;
+
+  border-image-slice: 20 22 17 22 fill;
+  border-image-width: 20px 22px 17px 22px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: repeat repeat;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAAA7CAYAAABR75kEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI8SURBVHgB7d1PTsJAFMfxV8NKdoSdMe64iAfAk7j0ECw9iR7Ai7AzhJ1xh9saSMDS9Ec77ZvaKd/PRvmTmUl4eW/6Cm1mZrl1l9W8HnOOWGOnuGbXOW4MEAgOSJPig/eXR2tqufqwNmLOEWvsFNfsMQeZAxLBAWmiXqhKYRfSk8fuu07MOWKNPbg1h3yuZA5IBAekiTkI2Q0PYdyYYw9lzW2PbIrIHJBk5giJ0ue39dowNIuqJ0M+VzIHJIID0v7MXudj8YfFPWVlYD7Xm4V1ROaARHBAKn9h5FRiptPp4e/8bkbJGKGv7feh7Ox2u+LTZ/FA5oBEcEC69D3EQ4k5lpc9SkzaxBGMjAGXcysh8jy/Pf6fZdmP/RPWUY+yAqk2cxR3s3ObGdJV3CKUjlIqRSsrxXQZ8p4mqTUkFbOO9igrkMqZgybYiJ19lls7NsGK59bOjlyilZViemuSUqvSoUcqDlmHSsljWkcIygokggNSL00wjx10k7RcNw/rCFMOjtOG5LRR2f59F5HNadpG2z4P2YzF7A2MdR1V2HNAon1+RUbVPk+xV1J+/9DWEYKyAon2+RVJqn3u0VL2XEfMVD2UdYSgrEAiOCANpn3eR5rso62d0jrq8FvZkeK3soiK4IDU+xWM0T+uYAx3BAcklysYvz4tOu+M4Wu52ojnuYIxHLg0wcZ+e4rUb6nRFpkDEsEByeUKxmbcADBg3NhjX5yDKxjDBcEByeWsrFFWQsaNPbbbHGQOSAQHpF/GNWF+amgBTgAAAABJRU5ErkJggg==");
+  border-style: solid;
+
+  width: 100%;
+  height: 100%;
+  padding: 2.6rem 2rem;
+  overflow: hidden;
+
+  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+
+  z-index: 1;
+}
+
+.card::after {
+  display: block;
+  visibility: hidden;
+  content: '';
+  height: calc(100% - 16px);
+  width: calc(100% - 20px);
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  z-index: 1;
+  background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+}
+
+.card.card--list {
+  padding: .8rem 2rem;
+}
+
+.card:focus::after,
+.card[href]:hover::after {
+  visibility: visible;
+}
+
+.card pre,
+.card p {
+  color: inherit;
+  text-decoration: none;
+  z-index: 10;
+  position: relative;
+  margin: 0;
+  line-height: 1;
+}
+
+div {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.table {
+  height: 100%;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 38px;
+  flex: 0 0 38px;
+  color: white;
+  text-decoration: none;
+}
+
+.row.row--external {
+  color: #c0c0c0;
+}
+
+.weaponDetails {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  margin: 26px 0;
+  color: #EAEA4B;
+}
+
+.weaponDetails .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.weaponDetails #requirements {
+  color: white;
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+  gap: 13px;
+}
+
+#weaponCrafting {
+  overflow: hidden;
+}
+
+#weaponCrafting img {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  position: relative;
+}
+
+.weaponDetails span {
+  color: white;
+}
+
+#weaponName {
+  margin-right: auto;
+}
+
+#weaponSlots {
+  font-family: monospace;
+}
+
+.row.rarity-4 #weaponName {
+  color: #52F152;
+}
+
+.row.rarity-5 #weaponName {
+  color: #FD9DC8;
+}
+
+.row.rarity-6 #weaponName {
+  color: #54F1F1;
+}
+
+.row.rarity-7 #weaponName {
+  color: #F7A460;
+}
+
+.row.rarity-8 #weaponName {
+  color: #F9455C;
+}
+
+.row.rarity-9 #weaponName {
+  color: #F7C502;
+}
+
+.row.rarity-10 #weaponName {
+  color: #BB84FB;
+}
+
+.table .row:hover {
+  background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+}
+
+.icon {
+  flex: 0 0 0;
+  height: 26px;
+  margin-right: 13px;
+  position: relative;
+  width: 26px;
+}
+
+.icon.icon--large {
+  width: 52px;
+  height: 52px;
+}
+
+.icon img {
+  position: relative;
+  height: 26px;
+  width: 26px;
+  top: 1px;
+}
+
+.icon.icon--large img {
+  width: 52px;
+  height: 52px;
+}
+
+.icon.icon--hammer::before,
+.icon.icon--hunting-horn::before,
+.icon.icon--great-sword::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  mask-mode: alpha;
+  mask-position-y: 1px;
+  z-index: 100;
+  background-blend-mode: lighten;
+  mix-blend-mode: darken;
+  background-position: 0 1px;
+}
+
+.icon.icon--hammer::before {
+  mask-image: url("/assets/images/hm.png");
+}
+
+.icon.icon--hunting-horn::before {
+  mask-image: url("/assets/images/hh.png");
+}
+
+.icon.icon--great-sword::before {
+  mask-image: url("/assets/images/gs.png");
+}
+
+.icon.icon--large::before {
+  mask-size: 52px 52px;
+}
+
+.row.rarity-4 .icon::before,
+.icon.icon--rarity-4::before {
+  background: #52F152;
+}
+
+.row.rarity-5 .icon::before,
+.icon.icon--rarity-5::before {
+  background: #FD9DC8;
+}
+
+.row.rarity-6 .icon::before,
+.icon.icon--rarity-6::before {
+  background: #54F1F1;
+}
+
+.row.rarity-7 .icon::before,
+.icon.icon--rarity-7::before {
+  background: #F7A460;
+}
+
+.row.rarity-8 .icon::before,
+.icon.icon--rarity-8::before {
+  background: #F9455C;
+}
+
+.row.rarity-9 .icon::before,
+.icon.icon--rarity-9::before {
+  background: #F7C502;
+}
+
+.row.rarity-10 .icon::before,
+.icon.icon--rarity-10::before {
+  background: #BB84FB;
+}
+
+.icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: bottom -2px right -2px;
+  background-repeat: no-repeat;
+}
+
+.icon.icon--fire::after {
+  background-image: url("/assets/images/fire.png");
+}
+
+.icon.icon--thunder::after {
+  background-image: url("/assets/images/thunder.png");
+}
+
+.icon.icon--poison::after {
+  background-image: url("/assets/images/poison.png");
+}
+
+.icon.icon--water::after {
+  background-image: url("/assets/images/water.png");
+}
+
+.icon.icon--ice::after {
+  background-image: url("/assets/images/ice.png");
+}
+
+.icon.icon--sleep::after {
+  background-image: url("/assets/images/sleep.png");
+}
+
+.icon.icon--dragon::after {
+  background-image: url("/assets/images/dragon.png");
+}
+
+.icon.icon--paralysis::after {
+  background-image: url("/assets/images/paralysis.png");
+}
+
+.table div:nth-child(2n) {
+}
