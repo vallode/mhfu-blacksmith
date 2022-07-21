@@ -3,7 +3,11 @@
 {% block content %}
   {% set data = load_data(path="content/blacksmith/weapon-trees.json") %}
 
-  <div class="card table">
+  <img class="blacksmith__title" src="/images/blacksmith.png" height="48" alt="Blacksmith">
+
+  <hr class="border">
+
+  <div class="card table blacksmith__table">
     {% for weapon in data["weaponTrees"] %}
       <a class="row" href="/blacksmith/{{ weapon.slug }}/">
         <div class="icon"><img src="/images/{{ weapon.icon }}" alt=""></div>
