@@ -1,0 +1,6 @@
+# zola build directory
+public
+
+# vim temporary files
+**/.*.sw*
+.swp
