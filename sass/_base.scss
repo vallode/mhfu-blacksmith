@@ -245,16 +245,43 @@ img:before {
   background-position: 0 1px;
 }
 
+.icon.icon--great-sword::before {
+  mask-image: url("/images/great-sword.png");
+}
+
+.icon.icon--long-sword::before {
+  mask-image: url("/images/long-sword.png");
+}
+.icon.icon--sword-and-shield::before {
+  mask-image: url("/images/sword-and-shield.png");
+}
+
+.icon.icon--dual-blades::before {
+  mask-image: url("/images/dual-blades.png");
+}
+
 .icon.icon--hammer::before {
-  mask-image: url("/images/hm.png");
+  mask-image: url("/images/hammer.png");
 }
 
 .icon.icon--hunting-horn::before {
-  mask-image: url("/images/hh.png");
+  mask-image: url("/images/hunting-horn.png");
 }
 
-.icon.icon--great-sword::before {
-  mask-image: url("/images/gs.png");
+.icon.icon--lance::before {
+  mask-image: url("/images/lance.png");
+}
+
+.icon.icon--light-bowgun::before {
+  mask-image: url("/images/light-bowgun.png");
+}
+
+.icon.icon--heavy-bowgun::before {
+  mask-image: url("/images/heavy-bowgun.png");
+}
+
+.icon.icon--bow::before {
+  mask-image: url("/images/bow.png");
 }
 
 .icon.icon--large::before {
@@ -301,6 +328,7 @@ img:before {
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 1000;
   background-position: bottom -2px right -2px;
   background-repeat: no-repeat;
 }
