@@ -3,6 +3,7 @@ require 'find'
 require 'erb'
 
 FILE_TEMPLATE = %{+++
+  title = <%= name.to_json %>
   template = "weapon.html"
   slug = "<%= slug %>"
   [extra]
