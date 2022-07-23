@@ -66,16 +66,14 @@
     </div>
   </turbo-frame>
 
-  <div>
-    {% block weapon__details -%}
-      <turbo-frame id="weapon_details" data-turbo-action="replace">
-        <div class="card" id="weaponDetails">
-          <p>1 NO WEAPON SELECTED</p>
-        </div>
-        <div class="card" id="weaponCrafting">
-          <p>2 NO WEAPON SELECTED</p>
-        </div>
-      </turbo-frame>
-    {% endblock weapon__details -%}
-  </div>
+  {% block weapon__details -%}
+    <turbo-frame id="weapon_details" data-turbo-action="replace">
+      <div class="card" id="weaponDetails">
+        <p>1 NO WEAPON SELECTED</p>
+      </div>
+      <div class="card" id="weaponCrafting">
+        <p>2 NO WEAPON SELECTED</p>
+      </div>
+    </turbo-frame>
+  {% endblock weapon__details -%}
 {% endblock content -%}
