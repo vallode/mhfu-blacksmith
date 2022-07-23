@@ -1,5 +1,6 @@
 html {
   background: center / cover no-repeat url("/images/bg.png");
+  background-attachment: fixed;
   color: white;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 62.5%;
@@ -28,7 +29,6 @@ a {
   font-size: 2.6rem;
   text-decoration: none;
   flex: 1 1 0%;
-  white-space: pre;
 
   border-image-slice: 20 22 17 22 fill;
   border-image-width: 20px 22px 17px 22px;
@@ -105,6 +105,13 @@ div {
 
 .row.row--external {
   color: #c0c0c0;
+}
+
+#weapon_details {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  height: 100%;
 }
 
 .weaponDetails {
