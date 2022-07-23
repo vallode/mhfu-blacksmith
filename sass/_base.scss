@@ -136,6 +136,11 @@ div {
   gap: 13px;
 }
 
+#weaponCrafting,
+#weaponDetails {
+  flex: 1 1 50%;
+}
+
 #weaponCrafting {
   overflow: hidden;
   padding: .8rem;
@@ -208,6 +213,11 @@ div {
 .icon.icon--large {
   width: 52px;
   height: 52px;
+}
+
+#weapon_tree {
+  height: 100%;
+  flex: 1 1 0%;
 }
 
 .icon img {
