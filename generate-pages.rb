@@ -1,5 +1,39 @@
 require 'json'
 require 'find'
+require 'erb'
+
+FILE_TEMPLATE = %{
+  +++
+  template = "weapon.html"
+  slug = "<%= slug %>"
+  [extra]
+  name = "<%= name %>"
+  type = "<%= type %>"
+  image = "<%= image %>"
+  rarity = <%= rarity %>
+  attack = <%= attack %>
+  affinity = "<%= affinity %>"
+  sharpness = "<%= sharpness %>"
+  element = <%= elements %>
+  slots = "<%= slots %>"
+  <% if create_cost %>
+    create-cost = "<%= create_cost %>"
+    create-mats = <%= create_mats %>
+  <% end %>
+  <% if upgrade_cost %>
+  upgrade-cost = "<%= upgrade_cost %>"
+  upgrade-mats = <%= upgrade_mats %>
+  <% end %>
+  <% if upgrade_from and upgrade_from.kind_of?(Array) %>
+  upgrade-from = <%= upgrade_from %>
+  <% else %>
+  upgrade-from = "<%= upgrade_from %>"
+  <% end %>
+  <% if upgrade_to %>
+  upgrade-to = "<%= upgrade_to %>"
+  <% end %>
+  +++
+}.gsub(/^  /, '')
 
 WEAPON_ABBR = {
   "great-sword": "gs",
@@ -29,6 +63,11 @@ WEAPON_IMAGE = {
   "rock-eater": "hbg",
   "defect-swordfish-bow": "bw"
 }
+
+def slugify(value)
+  value = value.downcase.strip.gsub(/[\s'\.]{1}/, '-').gsub('+', '-plus')
+  value = value.gsub('ä','a').gsub('ö','o').gsub('ü','u')
+end
 
 def parseElements(elements)
   parsedElements = %{}
@@ -65,52 +104,39 @@ crafting_files.each do |path|
     json_data = JSON.load(file)
 
     for value in json_data["weapons"] do
-      slug = value["name"].downcase.strip.gsub(' ', '-').gsub('\'', '-').gsub('.', '-').gsub('+', '-plus')
-      element = parseElements(value["element"])
-      content = %{+++
-template = "weapon.html"
-slug = "#{slug}"
-[extra]
-name = "#{value["name"]}"
-type = "#{WEAPON_ABBR.key(value["type"])}"
-image = "#{WEAPON_IMAGE.key(value["type"])}"
-rarity = #{value["rarity"]}
-attack = #{value["attack"]}
-affinity = "#{value["affinity"]}"
-sharpness = "#{value["sharpness"]}"
-element = #{parseElements(value["element"])}
-slots = "#{value["slots"]}"}
+      output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
 
-      if value["upgrade-from"].kind_of?(Array)
-        content.concat(%{
-upgrade-from = #{value["upgrade-from"]}})
-      elsif value != "N/A"
-        content.concat(%{
-upgrade-from = "#{value["upgrade-from"]}"})
+      slug = slugify(value["name"])
+      name = value["name"]
+      type = WEAPON_ABBR.key(value["type"])
+      image = WEAPON_IMAGE.key(value["type"])
+      rarity = value["rarity"]
+      attack = value["attack"]
+      affinity = value["affinity"]
+      sharpness = value["sharpness"]
+      elements = parseElements(value["element"])
+      slots = value["slots"]
+
+      if value["upgrade-cost"] != "N/A"
+        upgrade_cost = value["upgrade-cost"]
+        upgrade_mats = value["upgrade-mats"]
+      end
+
+      if value["upgrade-from"] != "N/A"
+        upgrade_from = value["upgrade-from"]
       end
 
       if value["upgrade-to"] != "N/A"
-        content.concat(%{
-upgrade-to = #{value["upgrade-to"]}})
-      end
-
-      if value["upgrade-cost"] != "N/A"
-        content.concat(%{
-upgrade-cost = "#{value["upgrade-cost"]}"
-upgrade-mats = #{value["upgrade-mats"]}})
+        upgrade_to = value["upgrade-to"]
       end
 
       if value["create-cost"] != "N/A"
-        content.concat(%{
-create-cost = "#{value["create-cost"]}"
-create-mats = #{value["create-mats"]}})
+        create_cost = value["create-cost"]
+        create_mats = value["create-mats"]
       end
 
-      content.concat(%{
-+++})
-  
       puts slug
-      File.write("#{File.dirname(path)}/details/" + slug + ".md", content)
+      File.write("#{File.dirname(path)}/details/" + slug + ".md", output.result(binding))
     end
   end
 end
