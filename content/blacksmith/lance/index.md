@@ -1,7 +1,7 @@
 +++
-title = "Hammer"
+title = "Lance"
 template = "weapon-tree.html"
-weight = 4
+weight = 6
 [extra]
-type = "hammer"
+type = "lance"
 +++
