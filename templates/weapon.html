@@ -9,48 +9,48 @@
     </turbo-frame>
   {% endfilter -%}
 
-    {% block weapon__details -%}
-      <turbo-frame id="weapon_details" data-turbo-action="replace">
-        <div class="card" id="weaponDetails">
-          <div class="row rarity-{{ page.extra['rarity'] }}">
-            <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
-            <p id="weaponName">{{ page.extra["name"] }}</p>
-            <p id="weaponCraftingCost">{{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}</p>
-          </div>
-          <div class="weaponDetails">
-            <div class="stats">
-              <p>Attack: <span id="weaponAttack">{{ page.extra["attack"] }}</span></p>
-              {% if page.extra["element"] -%}
-                <p>
-                  Element:
-                  {% for element in page.extra["element"] %}
-                    <span class="{{ element['name'] | lower }}">{{ element["name"] }} {{ element["attack"] }}</span>
-                  {% endfor %}
-                </p>
-              {% endif -%}
-              <p>Affinity: <span id="weaponAffinity">{{ page.extra["affinity"] }}</span></p>
-              <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
-            </div>
-            <div id="requirements">
-              {%- if page.extra["create-mats"] %}
-                {% for material in page.extra["create-mats"] -%}
-                  <p>{{ material }}</p>
-                {% endfor -%}
-              {% else %}
-                {%- for material in page.extra["upgrade-mats"] -%}
-                  <p>{{ material }}</p>
+  {% block weapon__details -%}
+    <turbo-frame id="weapon_details" data-turbo-action="replace">
+      <div class="card" id="weaponDetails">
+        <div class="row rarity-{{ page.extra['rarity'] }}">
+          <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
+          <p id="weaponName">{{ page.extra["name"] }}</p>
+          <p id="weaponCraftingCost">{{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}</p>
+        </div>
+        <div class="weaponDetails">
+          <div class="stats">
+            <p>Attack: <span id="weaponAttack">{{ page.extra["attack"] }}</span></p>
+            {% if page.extra["element"] -%}
+              <p>
+                Element:
+                {% for element in page.extra["element"] %}
+                  <span class="{{ element['name'] | lower }}">{{ element["name"] }} {{ element["attack"] }}</span>
                 {% endfor %}
-              {% endif %}
-            </div>
+              </p>
+            {% endif -%}
+            <p>Affinity: <span id="weaponAffinity">{{ page.extra["affinity"] }}</span></p>
+            <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+          </div>
+          <div id="requirements">
+            {%- if page.extra["create-mats"] %}
+              {% for material in page.extra["create-mats"] -%}
+                <p>{{ material }}</p>
+              {% endfor -%}
+            {% else %}
+              {%- for material in page.extra["upgrade-mats"] -%}
+                <p>{{ material }}</p>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
-        <div class="card" id="weaponCrafting">
-          <div class="weaponImageContainer">
+      </div>
+      <div class="card" id="weaponCrafting">
+        <div class="weaponImageContainer">
           <img draggable="false" src="/images/weapons/{{ page.extra['image'] }}.png" alt="">
-          </div>
         </div>
-      </turbo-frame>
-    {% endblock weapon__details -%}
+      </div>
+    </turbo-frame>
+  {% endblock weapon__details -%}
 {% endblock content -%}
 
 {%- block scripts -%}
@@ -67,6 +67,43 @@
       block: "center",
       inline: "center"
     })
+  })
+
+  // TODO: Fix this hacky repositioning logic.
+  const weapon_image_container = document.querySelector("#weaponCrafting")
+  const weapon_image = document.querySelector("#weaponCrafting img")
+
+  let pos1, pos2, pos3, pos4 = 0
+
+  weapon_image.addEventListener("mousedown", event => {
+    weapon_image.classList.toggle("dragging")
+    pos3 = event.clientX
+    pos4 = event.clientY
+  });
+
+  document.addEventListener("mousemove", event => {
+    pos1 = pos3 - event.clientX;
+    pos2 = pos4 - event.clientY;
+    pos3 = event.clientX;
+    pos4 = event.clientY;
+    
+    if (weapon_image.classList.contains("dragging")) {     
+      weapon_image.style.left = `${weapon_image.offsetLeft - 8 - pos1}px`
+      weapon_image.style.top = `${weapon_image.offsetTop - 8 - pos2}px`
+    }
+  });
+
+  document.addEventListener("mouseup", event => {
+    weapon_image.classList.remove("dragging")
+  });
+
+  // TODO: Improve this hacky zoom.
+  weapon_image_container.addEventListener("wheel", event => {
+    if (event.deltaY < 0) {
+      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth + 25, 220), 950)}px`
+    } else if (event.deltaY > 0) {
+      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth - 25, 220), 950)}px`
+    }
   })
 </script>
 {%- endblock scripts %}
