@@ -9,5 +9,9 @@
 <body {% block body__attr %}{% endblock body__attr %}>
   {% block content %}{% endblock content %}
   {% block scripts %}{% endblock scripts %}
+
+  {% if get_env(name="TERA_DEBUG", default="") != "" %}
+    {{ __tera_context }}
+  {% endif %}
 </body>
 </html>

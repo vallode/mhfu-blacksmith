@@ -4,5 +4,8 @@
 serve:
 	zola serve
 
+debug:
+	TERA_DEBUG=true zola serve
+
 build:
 	zola build
