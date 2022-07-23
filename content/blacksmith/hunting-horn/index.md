@@ -1,4 +1,5 @@
 +++
 template = "weapon-tree.html"
-weapon = "hunting-horn"
+[extra]
+type = "hunting-horn"
 +++

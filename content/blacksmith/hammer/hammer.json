@@ -1,0 +1,5294 @@
+{
+  "siblingWeapon": "hunting-horn",
+  "map": [
+    [
+      "War Hammer",
+      "War Hammer+",
+      "War Mace",
+      "Iron Striker",
+      "Iron Striker+",
+      "Anvil Hammer",
+      "Onslaught Hammer",
+      "Blacksmith",
+      "Juggernaut",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Lava Alphorn (hh)",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "War Stamp",
+      "War Basher",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Bronze Bell (hh)",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Sakura Recorder (hh)",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Iron Devil",
+      "Great Demon Hammer",
+      "Devil Masher",
+      "Devil Masher+",
+      "Iron Devil's Soul",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Iron Impact",
+      "Iron Repellant",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Icy Impact",
+      "Axion",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Fist of Fury",
+      "Ancient Blow",
+      "Foolhardy Stone Fist",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Gunhammer Prototype",
+      "Dead Revolver",
+      "Sanctioned Gunhammer",
+      "Regulation GunHammer",
+      "ImperialGunHmmrSpark",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Anchor Hammer",
+      "Anchor Hammer+",
+      "Anchor Crusher",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Black Cauldron",
+      "True Black Cauldron",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "One Star Silver Pot",
+      "Two Star Silver Pot",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Bone Axe",
+      "Bone Broadaxe",
+      "Bone Great Axe",
+      "Ceanataur Head Axe",
+      "Big Blue Chopper",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Carmine Axe",
+      "The Great Divider",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Metal Bagpipe (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Spiked Hammer",
+      "Spiked Hammer+",
+      "Crystal Hammer",
+      "Crystal Nova",
+      "Great Nova",
+      "Super Nova",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Gigaton Hammer",
+      "Titan Hammer",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Shell Hammer",
+      "Graviton Hammer",
+      "Torment Hammer",
+      "Torment (Purgatory)",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Crater Maker",
+      "VenomousCraterMaker",
+      "Glasya-Labolas",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Basarios Rock (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Bone Club",
+      "Large Bone Club",
+      "Enormous Ham",
+      "Ham of Hams",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Cyclo-Hammer",
+      "Atlas Hammer",
+      "Kut-Ku Jaw",
+      "Kut-Ku Pick",
+      "Hard Bone Hammer",
+      "Hard Bone Hammer+",
+      "Diablos Hammer",
+      "Diablos Chaos Broker",
+      "Chaotic Order",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Lobster Hammer",
+      "King Lobster Hammer",
+      "Royal Lobster Hammer",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Feather Whistle (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Raven Torrent",
+      "Wolf Torrent",
+      "Crow Torrent",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Wolf Shamisen (hh)",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Dynamic Hammer",
+      "Violence Hammer",
+      "Mysterious Jaw",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Venom Monster",
+      "Death Venom Hammer",
+      "Purple Mace",
+      "Pitohui Bird Mace",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Jail Hammer",
+      "Binder Mace",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "+",
+      "Khezu Horn (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Skullcrusher",
+      "Skullcrusher+",
+      "Diablos Maul",
+      "Finishing Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Dragonhead Hammer",
+      "Ancient Relic",
+      "Shell Castanet (hh)",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "+",
+      "Basarios Blow",
+      "Basarios Bash",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "+",
+      "Sonic Glass (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Conehead Hammer",
+      "Conehead Hammer+",
+      "Great Cone",
+      "Desert Cone",
+      "Magnitude",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Bone Horn (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Bull Hammer",
+      "Bull Head Hammer",
+      "Bull Tusk Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Giaprey Balloon (hh)",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Rusted Hammer",
+      "Tarnished Hammer",
+      "Breath Core Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Jadite Mace",
+      "Jade Mace",
+      "Lunastra's Crown",
+      "Luna's Skirt",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Worn Hammer",
+      "Weathered Hammer",
+      "Pulsating Core",
+      "Pulse Crusher Core",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Steel Ice Hammer",
+      "Daora's Colossus",
+      "Daora's Hyperborea",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Black Belt Hammer",
+      "Expert Hammer",
+      "Warrior's Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Black Hammer",
+      "Fatalis Buster",
+      "Fatalis Demolisher",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "AncientFatalisBuster",
+      "AncientFatalisRuiner",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Cactus Creamer",
+      "Green Monster",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Dragon Destroyer",
+      "Dragonbreaker",
+      "Dragon Demolisher",
+      "Claw of Doom",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Striped Striker",
+      "Tigrex Hammer",
+      "Tigrex Hammer+",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Hidden Breaker",
+      "Deep Darkhammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "White Cat Stamp",
+      "White Cat Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Black Cat Stamp",
+      "Black Cat Hammer",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "+",
+      "Gold Cat Hammer",
+      "Gold Cat Crusher",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "+",
+      "Teddybear",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Khezu Horn+ (hh)",
+      "Purse Bop",
+      "Purse Bop+",
+      "Khezu Thunder",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  "weapons": [
+    {
+      "name": "War Hammer",
+      "attack": "312",
+      "element": "N/A",
+      "sharpness": "MredToraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "500z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Iron Ore(3)",
+        "Disk Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "War Hammer+"
+      ]
+    },
+    {
+      "name": "War Hammer+",
+      "attack": "364",
+      "element": "N/A",
+      "sharpness": "MredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "650z",
+      "upgrade-from": [
+        "War Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Iron Ore (5)",
+        "Disk Stone (1)"
+      ],
+      "upgrade-to": [
+        "War Mace",
+        "Spiked Hammer"
+      ]
+    },
+    {
+      "name": "War Mace",
+      "attack": "468",
+      "element": "N/A",
+      "sharpness": "SredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,100z",
+      "upgrade-from": [
+        "War Hammer+"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Iron Ore (10)",
+        "Disk Stone (5)"
+      ],
+      "upgrade-to": [
+        "Iron Striker",
+        "Anchor Hammer",
+        "Black Cauldron",
+        "Bone Axe",
+        "Metal Bagpipe"
+      ]
+    },
+    {
+      "name": "Iron Striker",
+      "attack": "624",
+      "element": "N/A",
+      "sharpness": "MredToraByelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,150z",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": [
+        "War Mace"
+      ],
+      "create-mats": [
+        "Earth Crystal (10)",
+        "Iron Ore (20)",
+        "Disk Stone (20)"
+      ],
+      "upgrade-mats": [
+        "Iron Ore (12)",
+        "Machalite Ore (5)",
+        "Earth Crystal (3)"
+      ],
+      "upgrade-to": [
+        "Iron Striker+",
+        "Gunhammer Prototype"
+      ]
+    },
+    {
+      "name": "Iron Striker+",
+      "attack": "832",
+      "element": "N/A",
+      "sharpness": "SredToraSyelByelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": [
+        "Iron Striker"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore (5)",
+        "Machalite Ore (8)",
+        "Earth Crystal (15)"
+      ],
+      "upgrade-to": [
+        "Anvil Hammer"
+      ]
+    },
+    {
+      "name": "Anvil Hammer",
+      "attack": "884",
+      "element": "N/A",
+      "sharpness": "SredToraToraByelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "6,350z",
+      "upgrade-from": [
+        "Iron Striker+"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Shell (2)",
+        "Dragonite Ore (10)",
+        "Iron Ore (30)"
+      ],
+      "upgrade-to": [
+        "Onslaught Hammer",
+        "War Stamp",
+        "Bronze Bell",
+        "Sakura Recorder",
+        "Iron Devil"
+      ]
+    },
+    {
+      "name": "Onslaught Hammer",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "SredToraToraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (5)",
+        "Dragonite Ore (20)",
+        "Iron Ore (99)"
+      ],
+      "upgrade-to": [
+        "Blacksmith"
+      ]
+    },
+    {
+      "name": "Blacksmith",
+      "attack": "1196",
+      "element": "N/A",
+      "sharpness": "SredToraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "75,000z",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": [
+        "Onslaught Hammer"
+      ],
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Union Ore (10)",
+        "Piercing Claw (4)",
+        "RobustWyvernBone (5)"
+      ],
+      "upgrade-mats": [
+        "Eltalite Ore (5)",
+        "Carbalite Ore (20)",
+        "Emperor Cricket (7)"
+      ],
+      "upgrade-to": [
+        "Juggernaut",
+        "Lava Alphorn"
+      ]
+    },
+    {
+      "name": "Juggernaut",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "SredTredSoraMyelBgreSbluTbluSwhiSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": [
+        "Blacksmith"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Mellanje Ore (5)",
+        "RobustWyvernBone (8)",
+        "PhantomButterfly (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "War Stamp",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "SredToraByelSyelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore (15)",
+        "Carbalite Ore (15)",
+        "Disk Stone (50)"
+      ],
+      "upgrade-to": [
+        "War Basher"
+      ]
+    },
+    {
+      "name": "War Basher",
+      "attack": "1144",
+      "element": "N/A",
+      "sharpness": "SredToraByelSyelBgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "War Stamp",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Carbalite Ore (30)",
+        "Machalite Ore (40)",
+        "Black Blos Cpc (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Iron Devil",
+      "attack": "988",
+      "element": "N/A",
+      "sharpness": "MredToraByelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "25,000z",
+      "upgrade-cost": "25,000z",
+      "upgrade-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": [
+        "Carbalite Ore (5)",
+        "Iron Ore (50)",
+        "Disk Stone (30)"
+      ],
+      "upgrade-mats": [
+        "Carbalite Ore (3)",
+        "Iron Ore (30)",
+        "Dragonite Ore (5)"
+      ],
+      "upgrade-to": [
+        "Great Demon Hammer",
+        "Fist of Fury"
+      ]
+    },
+    {
+      "name": "Great Demon Hammer",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "SredTredSoraMyelMgre",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": [
+        "Iron Devil"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (10)",
+        "Velocidrome Head (3)",
+        "Remobra Skull (3)"
+      ],
+      "upgrade-to": [
+        "Devil Masher",
+        "Iron Impact"
+      ]
+    },
+    {
+      "name": "Devil Masher",
+      "attack": "1040",
+      "element": "Paralysis 140",
+      "sharpness": "SredTredSoraMyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": [
+        "Great Demon Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gendrome Skull (3)",
+        "Vespoid Abdomen (3)",
+        "Gold Rathian Cpc (3)"
+      ],
+      "upgrade-to": [
+        "Devil Masher+"
+      ]
+    },
+    {
+      "name": "Devil Masher+",
+      "attack": "1144",
+      "element": "Paralysis 150",
+      "sharpness": "SredTredSoraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": [
+        "Devil Masher"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Eltalite Ore (5)",
+        "Thunderbug Jelly (5)",
+        "Gld Rathian Scl+ (8)"
+      ],
+      "upgrade-to": [
+        "Iron Devil's Soul"
+      ]
+    },
+    {
+      "name": "Iron Devil's Soul",
+      "attack": "1300",
+      "element": "Paralysis 170",
+      "sharpness": "SredTredSoraMyelBgreSbluSwhiSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "105,000z",
+      "upgrade-from": "Devil Masher+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Eltalite Ore (10)",
+        "HvyGldRathianShl (5)",
+        "YamaTsukamiFluid (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Iron Impact",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "SredTredSoraMyelBgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": [
+        "Great Demon Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (25)",
+        "Iron Ore (50)",
+        "Novacrystal (5)"
+      ],
+      "upgrade-to": [
+        "Iron Repellant",
+        "Icy Impact"
+      ]
+    },
+    {
+      "name": "Iron Repellant",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "SredTredSoraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": [
+        "Iron Impact"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Mellanje Ore (10)",
+        "Iron Ore (90)",
+        "HvyLavasiothShl (5)",
+        "Rainbow Ore (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Icy Impact",
+      "attack": "1196",
+      "element": "Ice 240",
+      "sharpness": "SredTredSoraByelTyelMgreTgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "75,000z",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": [
+        "Iron Impact"
+      ],
+      "create-mats": [
+        "Eltalite Ore (12)",
+        "Ice Crystal (20)",
+        "Blangonga Pelt+ (20)",
+        "Monster Essence (5)"
+      ],
+      "upgrade-mats": [
+        "Ice Crystal (10)",
+        "Eltalite Ore (8)",
+        "Emperor Cricket (10)",
+        "DaoraDragonScal+ (5)"
+      ],
+      "upgrade-to": [
+        "Axion"
+      ]
+    },
+    {
+      "name": "Axion",
+      "attack": "1352",
+      "element": "Ice 280",
+      "sharpness": "SredTredSoraByelTyelMgreTgreTbluTbluSwhiSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": [
+        "Icy Impact"
+      ],
+      "create-mats": [],
+      "upgrade-mats": [
+        "Ice Crystal (20)",
+        "Purecrystal (2)",
+        "HrdBlangongaPlt+ (10)",
+        "HvyBasariosShell (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Fist of Fury",
+      "attack": "1144",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelTyelTgre",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": [
+        "Iron Devil"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Carbalite Ore (15)",
+        "Dragonite Ore (10)",
+        "Gaoren Shell (5)"
+      ],
+      "upgrade-to": [
+        "Ancient Blow"
+      ]
+    },
+    {
+      "name": "Ancient Blow",
+      "attack": "1248",
+      "element": "N/A",
+      "sharpness": "BredSredSoraSyelSgre",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "-20%",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": [
+        "Fist of Fury"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (10)",
+        "Dragonite Ore (25)",
+        "Gaoren Carapace (5)"
+      ],
+      "upgrade-to": [
+        "Foolhardy Stone Fist"
+      ]
+    },
+    {
+      "name": "Foolhardy Stone Fist",
+      "attack": "1664",
+      "element": "N/A",
+      "sharpness": "MredMoraSyelSyelMgre",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "-20%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": [
+        "Fist of Fury"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Mellanje Ore (10)",
+        "Gaoren Carapace (10)",
+        "Lao-Shan's HvyScl (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gunhammer Prototype",
+      "attack": "572",
+      "element": "Fire 300",
+      "sharpness": "MredToraTyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "3,100z",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Iron Striker",
+      "create-mats": [
+        "FireWyvern Fluid (4)",
+        "Machalite Ore (20)",
+        "Flame Sac (1)",
+        "Gunpowder (20)"
+      ],
+      "upgrade-mats": [
+        "FireWyvern Fluid (2)",
+        "Machalite Ore (15)",
+        "Gunpowder (10)"
+      ],
+      "upgrade-to": [
+        "Dead Revolver"
+      ]
+    },
+    {
+      "name": "Dead Revolver",
+      "attack": "728",
+      "element": "Fire 400",
+      "sharpness": "MredToraTyelBgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "6,350z",
+      "upgrade-from": "Gunhammer Prototype",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore (15)",
+        "FireWyvrn Marrow (2)",
+        "Firestone (4)"
+      ],
+      "upgrade-to": [
+        "Sanctioned Gunhammer"
+      ]
+    },
+    {
+      "name": "Sanctioned Gunhammer",
+      "attack": "832",
+      "element": "Fire 500",
+      "sharpness": "TredToraTyelMgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Dead Revolver",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Firecell Stone (4)",
+        "Carbalite Ore (20)",
+        "Monster Broth (2)",
+        "FireWyvrn BrnStm (1)"
+      ],
+      "upgrade-to": [
+        "Regulation GunHammer"
+      ]
+    },
+    {
+      "name": "Regulation GunHammer",
+      "attack": "1092",
+      "element": "Fire 520",
+      "sharpness": "SredSoraSyelMgreTbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "95,000z",
+      "upgrade-cost": "95,000z",
+      "upgrade-from": "Sanctioned Gunhammer",
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Blazing Fire Sac (6)",
+        "Firecell Stone (10)",
+        "FireWyvrn BrnStm (2)"
+      ],
+      "upgrade-mats": [
+        "Eltalite Ore (5)",
+        "Blazing Fire Sac (4)",
+        "Monster Essence (2)"
+      ],
+      "upgrade-to": [
+        "ImperialGunHmmrSpark"
+      ]
+    },
+    {
+      "name": "ImperialGunHmmrSpark",
+      "attack": "1248",
+      "element": "Fire 540",
+      "sharpness": "SredToraTyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Regulation GunHammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Eltalite Ore (20)",
+        "Naruga Thck Scl (5)",
+        "BlkGraviosHvyShl (5)",
+        "Wyvern Stone (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Anchor Hammer",
+      "attack": "572",
+      "element": "Water 100",
+      "sharpness": "MredToraByelTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "War Mace",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Speartuna (1)",
+        "Cephalos Fin (2)",
+        "Disk Stone (20)"
+      ],
+      "upgrade-to": [
+        "Anchor Hammer+"
+      ]
+    },
+    {
+      "name": "Anchor Hammer+",
+      "attack": "728",
+      "element": "Water 290",
+      "sharpness": "MredToraByelSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Anchor Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Glutton Tuna (5)",
+        "Plesioth Fin (5)",
+        "Dragonite Ore (20)"
+      ],
+      "upgrade-to": [
+        "Anchor Crusher"
+      ]
+    },
+    {
+      "name": "Anchor Crusher",
+      "attack": "884",
+      "element": "Water 380",
+      "sharpness": "MredToraByelSgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "65,000z",
+      "upgrade-from": "Anchor Hammer+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ancient Fish (5)",
+        "Plesioth Fin+ (5)",
+        "Union Ore (20)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Cauldron",
+      "attack": "468",
+      "element": "N/A",
+      "sharpness": "BredSoraTyel",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,400z",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "War Mace",
+      "create-mats": [
+        "FlynMealPassPlus (1)",
+        "Iron Ore (10)",
+        "Disk Stone (7)"
+      ],
+      "upgrade-mats": [
+        "FlynMealPassReg (2)",
+        "Iron Ore (10)",
+        "Carpenterbug (10)"
+      ],
+      "upgrade-to": [
+        "True Black Cauldron",
+        "One Star Silver Pot"
+      ]
+    },
+    {
+      "name": "True Black Cauldron",
+      "attack": "780",
+      "element": "N/A",
+      "sharpness": "BredMoraSyelBgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": "Black Cauldron",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassReg (7)",
+        "Carbalite Ore (10)",
+        "Black Blos Shell (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "One Star Silver Pot",
+      "attack": "520",
+      "element": "N/A",
+      "sharpness": "BredToraSyelMgreTblu",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "Black Cauldron",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassPlus (2)",
+        "Rainbow Ore (10)",
+        "DaoraDragonScale (5)"
+      ],
+      "upgrade-to": [
+        "Two Star Silver Pot"
+      ]
+    },
+    {
+      "name": "Two Star Silver Pot",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "BredToraSyelMgreSbluSwhi",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "One Star Silver Pot",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassPlus (8)",
+        "Union Ore (10)",
+        "Slvr Rthlos Scl+ (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Axe",
+      "attack": "624",
+      "element": "N/A",
+      "sharpness": "MredSoraSyel",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "War Mace",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Med Monster Bone (3)",
+        "Sm Monster Bone (3)",
+        "Monster Fluid (1)"
+      ],
+      "upgrade-to": [
+        "Bone Broadaxe"
+      ]
+    },
+    {
+      "name": "Bone Broadaxe",
+      "attack": "936",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelTgre",
+      "affinity": "5%",
+      "slots": "OO-",
+      "bonus": "5%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Bone Axe",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Monster Bone+ (2)",
+        "Lg Monster Bone (4)",
+        "Tigrex Shell (4)"
+      ],
+      "upgrade-to": [
+        "Bone Great Axe"
+      ]
+    },
+    {
+      "name": "Bone Great Axe",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "BredToraSyelSgre",
+      "affinity": "5%",
+      "slots": "OO-",
+      "bonus": "5%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Bone Broadaxe",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hrd Monster Bone (2)",
+        "Monster Bone+ (4)",
+        "Monster Broth (1)",
+        "King Scarab (5)"
+      ],
+      "upgrade-to": [
+        "Ceanataur Head Axe"
+      ]
+    },
+    {
+      "name": "Ceanataur Head Axe",
+      "attack": "1144",
+      "element": "N/A",
+      "sharpness": "SredSoraSyelBgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "60,000z",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Bone Great Axe",
+      "create-mats": [
+        "Ceanataur Carpce (6)",
+        "Ceanataur Claw+ (4)",
+        "Ceanataur Leg (2)",
+        "Carbalite Ore (10)"
+      ],
+      "upgrade-mats": [
+        "Ceanataur Carpce (4)",
+        "Ceanataur Pincer (2)",
+        "Carbalite Ore (6)",
+        "King Scarab (4)"
+      ],
+      "upgrade-to": [
+        "Big Blue Chopper",
+        "Carmine Axe"
+      ]
+    },
+    {
+      "name": "Big Blue Chopper",
+      "attack": "1300",
+      "element": "N/A",
+      "sharpness": "TredSredSoraMyelMgreSgreSbluTbluMwhiSwhiMpur",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": "Ceanataur Head Axe",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Heavy Ceanataur Shell (4)",
+        "Hard Ceanataur Claw (2)",
+        "Heavy Ceanataur Leg (3)",
+        "Eltalite Ore (4)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Carmine Axe",
+      "attack": "1196",
+      "element": "Water 280",
+      "sharpness": "BredSoraSyelMgreSbluBwhi",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "85000z",
+      "upgrade-cost": "85000z",
+      "upgrade-from": "Ceanataur Head Axe",
+      "create-mats": [
+        "Terra Ceanataur Shell x6",
+        "Terra Ceanataur Claw x4",
+        "Ceanataur Pincer x10",
+        "Eltalite Ore x10"
+      ],
+      "upgrade-mats": [
+        "Terra Ceanataur Shell x4",
+        "Terra Ceanataur Claw x2",
+        "Heavy Ceanataur Leg x2"
+      ],
+      "upgrade-to": [
+        "The Great Divider"
+      ]
+    },
+    {
+      "name": "The Great Divider",
+      "attack": "1248",
+      "element": "Water 300",
+      "sharpness": "TredToraByelMgreSbluMwhiSwhiSpur",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "115000z",
+      "upgrade-from": "Carmine Axe",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Terra Ceanataur Shell x2",
+        "Heavy Black Gravios Shell x1",
+        "Hard Gaoren Claw x2",
+        "Giant Black Pearl x2"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Spiked Hammer",
+      "attack": "520",
+      "element": "N/A",
+      "sharpness": "MredMoraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": [
+        "War Hammer+"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Iron Ore (10)",
+        "Needleberry (10)",
+        "Carpenterbug (5)"
+      ],
+      "upgrade-to": [
+        "Spiked Hammer+"
+      ]
+    },
+    {
+      "name": "Spiked Hammer+",
+      "attack": "572",
+      "element": "N/A",
+      "sharpness": "BredMoraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": [
+        "Spiked Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Iron Ore (20)",
+        "Needleberry (15)",
+        "Killer Beetle (2)"
+      ],
+      "upgrade-to": [
+        "Crystal Hammer",
+        "Shell Hammer",
+        "Basarios Rock"
+      ]
+    },
+    {
+      "name": "Crystal Hammer",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "upgrade-cost": "2,600z",
+      "upgrade-from": [
+        "Spiked Hammer+"
+      ],
+      "create-mats": [
+        "Lightcrystal (2)",
+        "Iron Ore (25)",
+        "Ice Crystal (7)",
+        "Carpenterbug (10)"
+      ],
+      "upgrade-mats": [
+        "Lightcrystal (1)",
+        "Machalite Ore (8)",
+        "Killer Beetle (6)"
+      ],
+      "upgrade-to": [
+        "Crystal Nova"
+      ]
+    },
+    {
+      "name": "Crystal Nova",
+      "attack": "780",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,650z",
+      "upgrade-from": "Crystal Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lightcrystal (3)",
+        "Rainbow Ore (2)",
+        "Ice Crystal (10)"
+      ],
+      "upgrade-to": [
+        "Great Nova",
+        "Gigaton Hammer"
+      ]
+    },
+    {
+      "name": "Great Nova",
+      "attack": "936",
+      "element": "Thunder 300",
+      "sharpness": "MredMoraMyelBgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Crystal Nova",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Novacrystal (3)",
+        "Basarios Carpace (8)",
+        "Thunder Sac (5)"
+      ],
+      "upgrade-to": [
+        "Super Nova"
+      ]
+    },
+    {
+      "name": "Super Nova",
+      "attack": "1352",
+      "element": "Thunder 450",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Great Nova",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Purecrystal (3)",
+        "Lightning Sac (5)",
+        "LthrKirinThndrTl (2)",
+        "StrBasariosWing (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gigaton Hammer",
+      "attack": "832",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelTgre",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Crystal Nova",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Skl Shl (1)",
+        "Basarios Shell (4)",
+        "Machalite Ore (10)"
+      ],
+      "upgrade-to": [
+        "Titan Hammer"
+      ]
+    },
+    {
+      "name": "Titan Hammer",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "MredMoraSyelTgre",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": "-15%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "8,000z",
+      "upgrade-from": "Gigaton Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Shell (10)",
+        "Gaoren Shell (4)",
+        "Machalite Ore (15)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Shell Hammer",
+      "attack": "728",
+      "element": "Poison 120",
+      "sharpness": "BredSoraMyelTgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "4,250z",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Spiked Hammer+",
+      "create-mats": [
+        "Basarios Shell (8)",
+        "Machalite Ore (5)",
+        "Ioprey Fang (18)",
+        "Hercudrome (3)"
+      ],
+      "upgrade-mats": [
+        "Basarios Shell (8)",
+        "Wyvern Fang (15)",
+        "Poison Sac (5)"
+      ],
+      "upgrade-to": [
+        "Graviton Hammer"
+      ]
+    },
+    {
+      "name": "Graviton Hammer",
+      "attack": "780",
+      "element": "Poison 180",
+      "sharpness": "BredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Shell Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Shell (10)",
+        "Machalite Ore (10)",
+        "Chameleos Claw (1)"
+      ],
+      "upgrade-to": [
+        "Torment Hammer",
+        "Crater Maker"
+      ]
+    },
+    {
+      "name": "Crater Maker",
+      "attack": "988",
+      "element": "Poison 200",
+      "sharpness": "BredSoraSyelMgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": "Graviton Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Carapace (12)",
+        "Wyvern Stone (3)",
+        "Toxin Sac (8)"
+      ],
+      "upgrade-to": [
+        "VenomousCraterMaker"
+      ]
+    },
+    {
+      "name": "VenomousCraterMaker",
+      "attack": "1300",
+      "element": "Poison 220",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Crater Maker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HvyBlkGraviosShl (5)",
+        "HvyGraviosShell (2)",
+        "LethrGarugaTail (4)",
+        "DeadlyPoisonSac (5)"
+      ],
+      "upgrade-to": [
+        "Glasya-Labolas"
+      ]
+    },
+    {
+      "name": "Glasya-Labolas",
+      "attack": "1404",
+      "element": "Poison 240",
+      "sharpness": "BredSoraSyelMgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "VenomousCraterMaker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HvyBlkGraviosShl (10)",
+        "SpecChameleHide+ (3)",
+        "StrBasariosWing (2)",
+        "HvnlyBlkGraviShl (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Torment Hammer",
+      "attack": "884",
+      "element": "Fire 250",
+      "sharpness": "MredMoraMyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Graviton Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blk Gravios Shl (8)",
+        "Carbalite Ore (20)",
+        "Inferno Sac (4)"
+      ],
+      "upgrade-to": [
+        "Torment (Purgatory)"
+      ]
+    },
+    {
+      "name": "Torment (Purgatory)",
+      "attack": "988",
+      "element": "Fire 310",
+      "sharpness": "MredMoraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": "Torment Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Black Gravios Carapace (12)",
+        "Black Gravios Skl Shl (2)",
+        "Gravios Brainstem (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Club",
+      "attack": "364",
+      "element": "N/A",
+      "sharpness": "SredTredSoraTora",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "400z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Mystery Bone (3)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Large Bone Club",
+        "Cyclo-Hammer",
+        "Bull Hammer",
+        "Giaprey Balloon"
+      ]
+    },
+    {
+      "name": "Large Bone Club",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "MredSoraSyel",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,600z",
+      "upgrade-from": "Bone Club",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Giant Bone (1)",
+        "Mystery Bone (5)"
+      ],
+      "upgrade-to": [
+        "Enormous Ham"
+      ]
+    },
+    {
+      "name": "Enormous Ham",
+      "attack": "728",
+      "element": "N/A",
+      "sharpness": "MredToraTyelTgre",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "7,500z",
+      "upgrade-from": "Large Bone Club",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Giant Bone (3)",
+        "Well Done Steak (10)",
+        "FelyneMealPassReg (3)"
+      ],
+      "upgrade-to": [
+        "Ham of Hams"
+      ]
+    },
+    {
+      "name": "Ham of Hams",
+      "attack": "1196",
+      "element": "N/A",
+      "sharpness": "MredToraTyelTgre",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Enormous Ham",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hrd Monster Bone (3)",
+        "Gourmet Steak (10)",
+        "FelyneMealPassPlus (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Cyclo-Hammer",
+      "attack": "468",
+      "element": "N/A",
+      "sharpness": "SredSredSoraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": [
+        "Bone Club"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Brute Bone (3)",
+        "Sm Monster Bone (3)"
+      ],
+      "upgrade-to": [
+        "Atlas Hammer",
+        "Skullcrusher",
+        "Conehead Hammer",
+        "Bone Horn"
+      ]
+    },
+    {
+      "name": "Atlas Hammer",
+      "attack": "572",
+      "element": "N/A",
+      "sharpness": "SredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": [
+        "Cyclo-Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Giant Bone (2)",
+        "Sm Monster Bone (10)"
+      ],
+      "upgrade-to": [
+        "Kut-Ku Jaw",
+        "Jail Hammer",
+        "Khezu Horn"
+      ]
+    },
+    {
+      "name": "Kut-Ku Jaw",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "SredToraMyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "upgrade-cost": "2,600z",
+      "upgrade-from": "Atlas Hammer",
+      "create-mats": [
+        "Giant Beak (1)",
+        "Piscine Fang (5)",
+        "Kut-Ku Scale (5)",
+        "Mega Demondrug (1)"
+      ],
+      "upgrade-mats": [
+        "Giant Beak (1)",
+        "Sharp Claw (5)",
+        "Monster Fluid (2)"
+      ],
+      "upgrade-to": [
+        "Kut-Ku Pick",
+        "Raven Torrent",
+        "Dynamic Hammer",
+        "Venom Monster"
+      ]
+    },
+    {
+      "name": "Kut-Ku Pick",
+      "attack": "884",
+      "element": "N/A",
+      "sharpness": "MredToraSyelSgreTgre",
+      "affinity": "10%",
+      "slots": "OOO",
+      "bonus": "10%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": [
+        "Kut-Ku Jaw"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Kut-Ku Ear (4)",
+        "Vibrant Pelt (2)",
+        "Monster Bone+ (4)"
+      ],
+      "upgrade-to": [
+        "Hard Bone Hammer",
+        "Feather Whistle"
+      ]
+    },
+    {
+      "name": "Hard Bone Hammer",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "SredSoraByelTyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "25,000z",
+      "upgrade-cost": "25,000z",
+      "upgrade-from": [
+        "Kut-Ku Pick"
+      ],
+      "create-mats": [
+        "Stout Bone (5)",
+        "Giant Bone (20)",
+        "Sm Monster Bone (60)",
+        "Iron Ore (15)"
+      ],
+      "upgrade-mats": [
+        "Stout Bone (2)",
+        "Elder Dragon Bone (5)",
+        "Brute Bone (60)"
+      ],
+      "upgrade-to": [
+        "Hard Bone Hammer+",
+        "Lobster Hammer"
+      ]
+    },
+    {
+      "name": "Hard Bone Hammer+",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "SredSoraByelTyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": [
+        "Hard Bone Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Stout Bone(8)",
+        "Dragonite Ore(10)",
+        "Rare Scarab(10)"
+      ],
+      "upgrade-to": [
+        "Diablos Hammer"
+      ]
+    },
+    {
+      "name": "Diablos Hammer",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "MredToraSyelBgreSgre",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": [
+        "Hard Bone Hammer+"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blood Red Horn (1)",
+        "TwstBlkBlosHrn (1)",
+        "Black Blos Cpc (6)"
+      ],
+      "upgrade-to": [
+        "Diablos Chaos Broker"
+      ]
+    },
+    {
+      "name": "Diablos Chaos Broker",
+      "attack": "1196",
+      "element": "N/A",
+      "sharpness": "MredTyelBgreSblu",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Diablos Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Majestic Horn (2)",
+        "Blk Blos Thracic (6)",
+        "Diablos Thoracic (6)"
+      ],
+      "upgrade-to": [
+        "Chaotic Order"
+      ]
+    },
+    {
+      "name": "Chaotic Order",
+      "attack": "1508",
+      "element": "N/A",
+      "sharpness": "MredToraTyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Diablos Chaos Broker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "StoutBlkTwstdHrn (2)",
+        "Top-GrdRedHorn (2)",
+        "HvyBlkBlosSpine (6)",
+        "MonoblosThoracic (6)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Lobster Hammer",
+      "attack": "936",
+      "element": "Water 200",
+      "sharpness": "SredTredSoraMyelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": [
+        "Hard Bone Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Sm Lobstershell (4)",
+        "Iodrome Hide (10)",
+        "Carbalite Ore (10)"
+      ],
+      "upgrade-to": [
+        "King Lobster Hammer"
+      ]
+    },
+    {
+      "name": "King Lobster Hammer",
+      "attack": "988",
+      "element": "Water 230",
+      "sharpness": "SredTredSoraByelTyelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": [
+        "Lobster Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lg Lobstershell (2)",
+        "Ioprey Hide+ (5)",
+        "Ancient Fish (5)"
+      ],
+      "upgrade-to": [
+        "Royal Lobster Hammer"
+      ]
+    },
+    {
+      "name": "Royal Lobster Hammer",
+      "attack": "1144",
+      "element": "Water 350",
+      "sharpness": "SredTredSoraByelTyelBgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": [
+        "King Lobster Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gt Lobstershell (2)",
+        "HvyPiscineFang (6)",
+        "Eltalite Ore (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Raven Torrent",
+      "attack": "728",
+      "element": "N/A",
+      "sharpness": "MredTredToraSyelSgre",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": "20%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "10,000z",
+      "upgrade-cost": "10,000z",
+      "upgrade-from": "Kut-Ku Jaw",
+      "create-mats": [
+        "Sharpened Beak (2)",
+        "Garuga Mane (4)",
+        "Garuga Scale (8)"
+      ],
+      "upgrade-mats": [
+        "Sharpened Beak (1)",
+        "Garuga Ear (2)",
+        "Garuga Mane (3)"
+      ],
+      "upgrade-to": [
+        "Wolf Torrent"
+      ]
+    },
+    {
+      "name": "Wolf Torrent",
+      "attack": "936",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelTyelMgreSblu",
+      "affinity": "30%",
+      "slots": "O--",
+      "bonus": "30%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "65,000z",
+      "upgrade-from": [
+        "Raven Torrent"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Rejuvenated Beak (1)",
+        "Garuga Mane (10)",
+        "Long Garuga Ear (2)"
+      ],
+      "upgrade-to": [
+        "Crow Torrent",
+        "Wolf Shamisen"
+      ]
+    },
+    {
+      "name": "Crow Torrent",
+      "attack": "1352",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelTyelMgreSbluMwhi",
+      "affinity": "40%",
+      "slots": "OO-",
+      "bonus": "40%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "105,000z",
+      "upgrade-from": [
+        "Wolf Torrent"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Rejuvenated Beak (2)",
+        "SilverGarugaPelt (5)",
+        "ThickGarugaScale (5)",
+        "Hvy Monster Bone (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dynamic Hammer",
+      "attack": "728",
+      "element": "N/A",
+      "sharpness": "BredToraSyelSgre",
+      "affinity": "5%",
+      "slots": "---",
+      "bonus": "5%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Kut-Ku Jaw",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blue Kut-Ku Shell (6)",
+        "Blue Kut-Ku Scale (8)",
+        "Carpenterbug (5)"
+      ],
+      "upgrade-to": [
+        "Violence Hammer"
+      ]
+    },
+    {
+      "name": "Violence Hammer",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelMyelMgre",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "20%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Dynamic Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blue Kut-Ku Cpc(4)",
+        "Blue Kut-Ku Scl+(6)",
+        "Long Kut-Ku Ear(2)"
+      ],
+      "upgrade-to": [
+        "Mysterious Jaw"
+      ]
+    },
+    {
+      "name": "Mysterious Jaw",
+      "attack": "1144",
+      "element": "N/A",
+      "sharpness": "BredSredToraSyelTyelMgreSbluMwhi",
+      "affinity": "30%",
+      "slots": "OO-",
+      "bonus": "30%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Violence Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Splendid Beak(2)",
+        "ThkBlueKut-KuScl(4)",
+        "HvyBlueKut-KuShl(6)",
+        "Lucky Kut-Ku Ear(2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Venom Monster",
+      "attack": "572",
+      "element": "Poison 260",
+      "sharpness": "MredSoraSyelSgre",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Kut-Ku Jaw",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Rubbery Hide (10)",
+        "Poison Sac (5)",
+        "Gypceros Head (1)"
+      ],
+      "upgrade-to": [
+        "Death Venom Hammer"
+      ]
+    },
+    {
+      "name": "Death Venom Hammer",
+      "attack": "936",
+      "element": "Poison 350",
+      "sharpness": "BredMredToraSyelTyelMgreTblu",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Venom Monster",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Rubbery Hide+ (10)",
+        "Toxin Sac (5)",
+        "Splendid Beak (5)"
+      ],
+      "upgrade-to": [
+        "Purple Mace"
+      ]
+    },
+    {
+      "name": "Purple Mace",
+      "attack": "1092",
+      "element": "Poison 380",
+      "sharpness": "BredMredToraSyelTyelMgreSbluMwhi",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": [
+        "Death Venom Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HrdPuGypcerosWng (5)",
+        "DeadlyPoisonSac (5)",
+        "Pur Gypceros Wng (7)"
+      ],
+      "upgrade-to": [
+        "Pitohui Bird Mace"
+      ]
+    },
+    {
+      "name": "Pitohui Bird Mace",
+      "attack": "1248",
+      "element": "Poison 400",
+      "sharpness": "MredToraByelMgreSbluSwhi",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": "Purple Mace",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HrdPuGypcerosWng (5)",
+        "HardGypcerosHead (1)",
+        "LethrGarugaTail (2)",
+        "Rejuvenated Beak (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Jail Hammer",
+      "attack": "624",
+      "element": "Paralysis 190",
+      "sharpness": "BredSoraSyelTyelTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Atlas Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Machalite Ore(6)",
+        "Thunderbug(12)",
+        "Rubbery Hide(3)"
+      ],
+      "upgrade-to": [
+        "Binder Mace"
+      ]
+    },
+    {
+      "name": "Binder Mace",
+      "attack": "780",
+      "element": "Paralysis 280",
+      "sharpness": "BredSredToraSyelSgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Jail Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore(12)",
+        "Thunderbug Juice(8)",
+        "Electro Sac(8)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Purse Bop",
+      "attack": "1040",
+      "element": "Thunder 200",
+      "sharpness": "SredSoraByelMgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "50,000z",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Khezu Horn+",
+      "create-mats": [
+        "Khezu Hide - Tan (8)",
+        "Carbalite Ore (10)",
+        "Thunder Sac (5)",
+        "Pale Bone (2)"
+      ],
+      "upgrade-mats": [
+        "Khezu Hide - Tan (5)",
+        "Dragonite Ore (10)",
+        "Thunder Sac (3)",
+        "Thunderbug (20)"
+      ],
+      "upgrade-to": [
+        "Purse Bop+"
+      ]
+    },
+    {
+      "name": "Purse Bop+",
+      "attack": "1144",
+      "element": "Thunder 220",
+      "sharpness": "SredSoraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": "Purse Bop",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Khezu Hide - Cream (3)",
+        "Lightning Sac (5)",
+        "PaleKhezuSteak (2)"
+      ],
+      "upgrade-to": [
+        "Khezu Thunder"
+      ]
+    },
+    {
+      "name": "Khezu Thunder",
+      "attack": "1456",
+      "element": "Thunder 250",
+      "sharpness": "MredToraByelMgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Purse Bop+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Khezu Hide - Cream (8)",
+        "Thunderbug Jelly (5)",
+        "KhezuSpecialCut (1)",
+        "YamaTsukami Fluid (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Skullcrusher",
+      "attack": "520",
+      "element": "N/A",
+      "sharpness": "SredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "Cyclo-Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Med Monster Bone (2)",
+        "Sharp Claw (8)",
+        "Monster Fluid (1)"
+      ],
+      "upgrade-to": [
+        "Skullcrusher+"
+      ]
+    },
+    {
+      "name": "Skullcrusher+",
+      "attack": "624",
+      "element": "N/A",
+      "sharpness": "SredToraByel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": [
+        "Skullcrusher"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Med Monster Bone (6)",
+        "Piscine Fang (10)",
+        "Congalala Claw (3)"
+      ],
+      "upgrade-to": [
+        "Diablos Maul",
+        "Dragonhead Hammer",
+        "Sonic Glass"
+      ]
+    },
+    {
+      "name": "Diablos Maul",
+      "attack": "832",
+      "element": "N/A",
+      "sharpness": "SredTredSoraMyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "4,250z",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": [
+        "Skullcrusher+"
+      ],
+      "create-mats": [
+        "Diablos Tail (1)",
+        "Monoblos Shell (4)",
+        "Eldr Dragon Bone (2)",
+        "Earth Crystal (20)"
+      ],
+      "upgrade-mats": [
+        "Monoblos Shell (6)",
+        "Lg Monster Bone (5)",
+        "Machalite Ore (8)"
+      ],
+      "upgrade-to": [
+        "Finishing Hammer"
+      ]
+    },
+    {
+      "name": "Finishing Hammer",
+      "attack": "988",
+      "element": "N/A",
+      "sharpness": "MredMoraSyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": [
+        "Diablos Maul"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Diablos Tail (3)",
+        "Diablos Shell (12)",
+        "Hercudrome (8)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dragonhead Hammer",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "BredToraSyelSgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "upgrade-cost": "2,600z",
+      "upgrade-from": "Skullcrusher+",
+      "create-mats": [
+        "Wyvern Skull Shell (2)",
+        "Lg Monster Bone (3)",
+        "Unknown Skull (5)"
+      ],
+      "upgrade-mats": [
+        "Wyvern Skull Shell (1)",
+        "Giant Bone (3)",
+        "Unknown Skull (3)"
+      ],
+      "upgrade-to": [
+        "Ancient Relic",
+        "Basarios Blow"
+      ]
+    },
+    {
+      "name": "Ancient Relic",
+      "attack": "988",
+      "element": "N/A",
+      "sharpness": "BredToraMyelBgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "7,150z",
+      "upgrade-from": [
+        "Dragonhead Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Wyvern Skull Shell (5)",
+        "Elder Dragon Bone (10)",
+        "Gaoren Shell (5)"
+      ],
+      "upgrade-to": [
+        "Shell Castanet"
+      ]
+    },
+    {
+      "name": "Basarios Blow",
+      "attack": "780",
+      "element": "N/A",
+      "sharpness": "TredToraByelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Dragonhead Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Basarios Wing (1)",
+        "Basarios Shell (6)",
+        "Elder Dragon Bone (3)"
+      ],
+      "upgrade-to": [
+        "Basarios Bash"
+      ]
+    },
+    {
+      "name": "Basarios Bash",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "TredToraBgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Basarios Blow",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Basarios Carapace (12)",
+        "Carbalite Ore (12)",
+        "Wyvern Stone (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Conehead Hammer",
+      "attack": "416",
+      "element": "Ice 180",
+      "sharpness": "TredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "Cyclo-Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blango Pelt (6)",
+        "Iron Ore (6)",
+        "Unknown Skull (1)"
+      ],
+      "upgrade-to": [
+        "Conehead Hammer+"
+      ]
+    },
+    {
+      "name": "Conehead Hammer+",
+      "attack": "676",
+      "element": "Ice 320",
+      "sharpness": "TredToraByelSyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Conehead Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blangonga Fang (2)",
+        "Blangonga Whiskr (4)",
+        "Blangonga Pelt (8)"
+      ],
+      "upgrade-to": [
+        "Great Cone"
+      ]
+    },
+    {
+      "name": "Great Cone",
+      "attack": "884",
+      "element": "Ice 400",
+      "sharpness": "TredToraByelSyelMgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Conehead Hammer+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blangonga Fang+ (5)",
+        "Blangonga Pelt+ (10)",
+        "Master's Skull (1)"
+      ],
+      "upgrade-to": [
+        "Desert Cone"
+      ]
+    },
+    {
+      "name": "Desert Cone",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "TredToraByelSyelMgreSbluSwhi",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "95000z",
+      "upgrade-cost": "115000z",
+      "upgrade-from": "Great Cone",
+      "create-mats": [
+        "BlangongaPelt+ x10",
+        "BlangoFang x4",
+        "BlangoTail x1",
+        "Massive Bone x1"
+      ],
+      "upgrade-mats": [
+        "Copper Blangonga Fur+ x5",
+        "Leather Pelagus Fur x3",
+        "Massive Bone x4"
+      ],
+      "upgrade-to": [
+        "Magnitude"
+      ]
+    },
+    {
+      "name": "Magnitude",
+      "attack": "1612",
+      "element": "N/A",
+      "sharpness": "SredToraSyelBgreSbluSwhi",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": "-15%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "115000z",
+      "upgrade-from": "Desert Cone",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "BlangoFang x2",
+        "Brwn BlngngaTail x2",
+        "Black Rajang Pelt+ x4",
+        "PhantomButterfly x10"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bull Hammer",
+      "attack": "520",
+      "element": "N/A",
+      "sharpness": "SredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1400",
+      "upgrade-cost": "1750",
+      "upgrade-from": "Bone Club",
+      "create-mats": [
+        "Bullfango Pelt (4)",
+        "Bullfango Head (1)",
+        "Brute Bone (5)",
+        "Carpenterbug (2)"
+      ],
+      "upgrade-mats": [
+        "Bullfango Pelt (2)",
+        "Anteka Antlers (2)",
+        "Brute Bone (3)"
+      ],
+      "upgrade-to": [
+        "Bull Head Hammer"
+      ]
+    },
+    {
+      "name": "Bull Head Hammer",
+      "attack": "624",
+      "element": "N/A",
+      "sharpness": "SredSoraMyel",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2150",
+      "upgrade-from": "Bull Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Bulldrome Hide (2)",
+        "Bulldrome Tusk (2)",
+        "Giant Bone (1)"
+      ],
+      "upgrade-to": [
+        "Bull Tusk Hammer"
+      ]
+    },
+    {
+      "name": "Bull Tusk Hammer",
+      "attack": "936",
+      "element": "N/A",
+      "sharpness": "SredSoraSyelTgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "5600",
+      "upgrade-from": "Bull Head Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Bulldrome Hide (5)",
+        "Bulldrome Tusk (6)",
+        "Monster Bone+ (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Rusted Hammer",
+      "attack": "468",
+      "element": "N/A",
+      "sharpness": "Bred",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Large Ruststone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Tarnished Hammer"
+      ]
+    },
+    {
+      "name": "Tarnished Hammer",
+      "attack": "572",
+      "element": "N/A",
+      "sharpness": "BredSoraTyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,500z",
+      "upgrade-from": [
+        "Rusted Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (20)"
+      ],
+      "upgrade-to": [
+        "Breath Core Hammer",
+        "Jadite Mace"
+      ]
+    },
+    {
+      "name": "Breath Core Hammer",
+      "attack": "936",
+      "element": "N/A",
+      "sharpness": "BredSredTredToraSyelSgre",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": [
+        "Tarnished Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Jadite Mace",
+      "attack": "780",
+      "element": "Fire 260",
+      "sharpness": "MredMoraMyelTyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": [
+        "Tarnished Hammer"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lunastra Horn (3)",
+        "Lunastra Shell (3)",
+        "Firestone (7)"
+      ],
+      "upgrade-to": [
+        "Jade Mace"
+      ]
+    },
+    {
+      "name": "Jade Mace",
+      "attack": "832",
+      "element": "Fire 300",
+      "sharpness": "MredSoraSyelSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": [
+        "Jadite Mace"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Fire Drgn Webbing (4)",
+        "Teostra Shell (5)",
+        "ElderDragonBlood (2)"
+      ],
+      "upgrade-to": [
+        "Lunastra's Crown"
+      ]
+    },
+    {
+      "name": "Lunastra's Crown",
+      "attack": "936",
+      "element": "Fire 370",
+      "sharpness": "MredToraByelMgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Jade Mace",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lunastra Horn (6)",
+        "Fire Drgn Scl+ (6)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "upgrade-to": [
+        "Luna's Skirt"
+      ]
+    },
+    {
+      "name": "Luna's Skirt",
+      "attack": "1300",
+      "element": "Fire 400",
+      "sharpness": "MredToraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "130,000z",
+      "upgrade-from": "Lunastra's Crown",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lunastra Spike (3)",
+        "ThckFireDrgnScl (6)",
+        "BigEDragonJewel (1)",
+        "Commendation (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Worn Hammer",
+      "attack": "676",
+      "element": "N/A",
+      "sharpness": "BredSredTora",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Lg Ancient Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Weathered Hammer"
+      ]
+    },
+    {
+      "name": "Weathered Hammer",
+      "attack": "780",
+      "element": "N/A",
+      "sharpness": "BredSredToraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "12,500z",
+      "upgrade-from": "Worn Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (20)"
+      ],
+      "upgrade-to": [
+        "Pulsating Core",
+        "Steel Ice Hammer"
+      ]
+    },
+    {
+      "name": "Pulsating Core",
+      "attack": "1040",
+      "element": "N/A",
+      "sharpness": "BredToraTyelTgreTblu",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Weathered Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (5)"
+      ],
+      "upgrade-to": [
+        "Pulse Crusher Core"
+      ]
+    },
+    {
+      "name": "Pulse Crusher Core",
+      "attack": "1352",
+      "element": "N/A",
+      "sharpness": "BredSredTredToraSyelSgreSbluMwhi",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Pulsating Core",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Purecrystal (8)",
+        "ElderDragonBlood (10)",
+        "Commendation G (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Steel Ice Hammer",
+      "attack": "832",
+      "element": "Ice 290",
+      "sharpness": "SredTredSoraMyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Weathered Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Daora Carapace (6)",
+        "Daora Tail (1)",
+        "Rare Scarab (4)"
+      ],
+      "upgrade-to": [
+        "Daora's Colossus"
+      ]
+    },
+    {
+      "name": "Daora's Colossus",
+      "attack": "988",
+      "element": "Ice 330",
+      "sharpness": "SredTredSoraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Steel Ice Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "DaoraDragonScal+ (10)",
+        "Daora Sharp Claw (2)",
+        "Daora Jewel (1)"
+      ],
+      "upgrade-to": [
+        "Daora's Hyperborea"
+      ]
+    },
+    {
+      "name": "Daora's Hyperborea",
+      "attack": "1300",
+      "element": "Ice 450",
+      "sharpness": "SredToraMyelBgreMbluMwhi",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "130,000z",
+      "upgrade-from": "Daora's Colossus",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hvy Daora Shell (6)",
+        "Hard Daora Horn (2)",
+        "Str Daora Wing (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Belt Hammer",
+      "attack": "780",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelSgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "6,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Blackbelt Ticket (8)",
+        "Gravios Coin (5)",
+        "Diablos Coin (8)",
+        "Daimyo Coin (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Expert Hammer"
+      ]
+    },
+    {
+      "name": "Expert Hammer",
+      "attack": "1092",
+      "element": "N/A",
+      "sharpness": "TredToraByelMgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "20,000z",
+      "upgrade-from": "Black Belt Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Expert Ticket (15)",
+        "Tigrex Coin (8)",
+        "Gld Rathian Cpc (3)"
+      ],
+      "upgrade-to": [
+        "Warrior's Hammer"
+      ]
+    },
+    {
+      "name": "Warrior's Hammer",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "TredToraByelBgreTbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Expert Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HvyGldRathianShl (3)",
+        "Warrior Coin G (4)",
+        "Expert Coin G (6)",
+        "Commendation G (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Hammer",
+      "attack": "728",
+      "element": "Dragon 100",
+      "sharpness": "TredToraByelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "15,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "Pokke Ticket (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Fatalis Buster",
+        "AncientFatalisBuster"
+      ]
+    },
+    {
+      "name": "Fatalis Buster",
+      "attack": "1040",
+      "element": "Dragon 240",
+      "sharpness": "SredToraMyelSgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Black Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Fatalis Horn (3)",
+        "Fatalis Eye (2)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "upgrade-to": [
+        "Fatalis Demolisher"
+      ]
+    },
+    {
+      "name": "Fatalis Demolisher",
+      "attack": "1404",
+      "element": "Dragon 260",
+      "sharpness": "SredSoraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "150,000z",
+      "upgrade-from": "Fatalis Buster",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hard Fatalis Horn (3)",
+        "Fatalis Evil Eye (1)",
+        "Hvy Fatalis Shl (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "AncientFatalisBuster",
+      "attack": "988",
+      "element": "Dragon 350",
+      "sharpness": "TredToraByelMgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Black Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Wht Fatalis Horn (5)",
+        "Wht Fatalis Shl (3)",
+        "Lao-Shan's Ruby (3)"
+      ],
+      "upgrade-to": [
+        "AncientFatalisRuiner"
+      ]
+    },
+    {
+      "name": "AncientFatalisRuiner",
+      "attack": "1300",
+      "element": "Dragon 380",
+      "sharpness": "SredToraMyelMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "150,000z",
+      "upgrade-from": "AncientFatalisBuster",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HrdWhtFatlisHorn (5)",
+        "HvyWhtFatalisShl (2)",
+        "Fatalis Evil Eye (2)",
+        "BigEDragonJewel (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Cactus Creamer",
+      "attack": "260",
+      "element": "Poison 300",
+      "sharpness": "SredToraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "7,500z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Cactus Flower x2",
+        "Bone x1",
+        "Dobiscus x3"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Green Monster"
+      ]
+    },
+    {
+      "name": "Green Monster",
+      "attack": "468",
+      "element": "Poison 300",
+      "sharpness": "SredToraMyelBgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": "Cactus Creamer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Cactus Flower x10",
+        "Stout Bone x2",
+        "Pokke Ticket x1"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dragon Destroyer",
+      "attack": "832",
+      "element": "Dragon 170",
+      "sharpness": "Unknown",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "notes": "Unknown",
+      "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
+      "type": "hm",
+      "create-cost": "40.000z",
+      "upgrade-cost": "40.000z",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "s Claw (2)",
+        "s Shell (5)",
+        "Monster Bone+ (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Dragonbreaker"
+      ]
+    },
+    {
+      "name": "Dragonbreaker",
+      "attack": "884",
+      "element": "Dragon 330",
+      "sharpness": "TredTredSoraSyelSyelMgreTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Dragon Destroyer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lao-Shan's Claw (2)",
+        "Gaoren Spine(3)",
+        "ElderDragonBlood (2)"
+      ],
+      "upgrade-to": [
+        "Dragon Demolisher"
+      ]
+    },
+    {
+      "name": "Dragon Demolisher",
+      "attack": "936",
+      "element": "Dragon 410",
+      "sharpness": "TredToraByelBgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "95,000z",
+      "upgrade-from": "Dragonbreaker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ash Lao-Shan Shell (5)",
+        "Lao-Shan Ruby (1)",
+        "Nova Crystal (3)"
+      ],
+      "upgrade-to": [
+        "Claw of Doom"
+      ]
+    },
+    {
+      "name": "Claw of Doom",
+      "attack": "1248",
+      "element": "Dragon 450",
+      "sharpness": "SredToraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "140,000z",
+      "upgrade-from": "Dragon Demolisher",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Azure LaoS Claw (2)",
+        "Lao-Shan'sHvyShl(5)",
+        "Lao-ShanHvnlyScl (1)",
+        "Purecrystal(3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Striped Striker",
+      "attack": "884",
+      "element": "N/A",
+      "sharpness": "BredToraSyelSgreTblu",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "35,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Tigrex Claw (3)",
+        "Tigrex Scale (5)",
+        "Tigrex Shell (5)",
+        "Pokke Ticket (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Tigrex Hammer",
+        "Hidden Breaker"
+      ]
+    },
+    {
+      "name": "Tigrex Hammer",
+      "attack": "1144",
+      "element": "N/A",
+      "sharpness": "BredSredToraSyelMgreSbluSwhi",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Striped Striker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Tigrex Claw + (3)",
+        "Tigrex Scale + (5)",
+        "Tigrex Skull Shl (3)"
+      ],
+      "upgrade-to": [
+        "Tigrex Hammer+"
+      ]
+    },
+    {
+      "name": "Tigrex Hammer+",
+      "attack": "1508",
+      "element": "N/A",
+      "sharpness": "BredSredToraSyelMgreSbluMwhiSpur",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "125,000z",
+      "upgrade-from": "Tigrex Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hard Tigrex Claw (3)",
+        "ThickTigrexScale (5)",
+        "Hvy Tigrex Shell (5)",
+        "HvnlyTigrexScale (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hidden Breaker",
+      "attack": "988",
+      "element": "N/A",
+      "sharpness": "SredToraByelSyelMgreTgreSbluSwhi",
+      "affinity": "50%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "80,000z",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Striped Striker",
+      "create-mats": [
+        "Black NargaPelt (10)",
+        "Narga Scale+ (4)",
+        "Narga Brain Stem (1)",
+        "Hard Monster Bone (6)"
+      ],
+      "upgrade-mats": [
+        "Black Narga Pelt (6)",
+        "Narga Scale+ (3)",
+        "Hrd Monster Bone (4)"
+      ],
+      "upgrade-to": [
+        "Deep Darkhammer"
+      ]
+    },
+    {
+      "name": "Deep Darkhammer",
+      "attack": "1248",
+      "element": "N/A",
+      "sharpness": "SredToraByelTyelBgreSbluSwhiSpur",
+      "affinity": "50%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "120,000z",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Hidden Breaker",
+      "create-mats": [
+        "Black Nargacuga Pelt+ (10)",
+        "Heavy Nargacuga Fang (4)",
+        "Heavy Nargacuga Tail Spike (6)",
+        "Heavenly Nargacuga Scale (1)"
+      ],
+      "upgrade-mats": [
+        "BlackNargaPelt+ (7)",
+        "ThickNargaScale (3)",
+        "HvyNargacugaFang (2)",
+        "Narga Brain Stem (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "White Cat Stamp",
+      "attack": "520",
+      "element": "Paralysis 200",
+      "sharpness": "MredToraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,150z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Pawprint Stamp (1)",
+        "FlynMealPassReg (1)",
+        "Paralysis Sac (2)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "White Cat Hammer",
+        "Black Cat Stamp",
+        "Teddybear"
+      ]
+    },
+    {
+      "name": "White Cat Hammer",
+      "attack": "728",
+      "element": "Paralysis 180",
+      "sharpness": "SredSoraSyelBgreTblu",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "20,000z",
+      "upgrade-from": "White Cat Stamp",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassReg (10)",
+        "Carbalite Ore (5)",
+        "Blango Pelt+ (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Cat Stamp",
+      "attack": "624",
+      "element": "Paralysis 240",
+      "sharpness": "MredToraTyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,650z",
+      "upgrade-from": "White Cat Stamp",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassReg (2)",
+        "Dragonite Ore (5)",
+        "Barrel Lid (1)"
+      ],
+      "upgrade-to": [
+        "Black Cat Hammer",
+        "Gold Cat Hammer"
+      ]
+    },
+    {
+      "name": "Black Cat Hammer",
+      "attack": "676",
+      "element": "Paralysis 380",
+      "sharpness": "TredToraByelTyelBgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "25,000z",
+      "upgrade-from": "Black Cat Stamp",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassPlus (6)",
+        "Black Blos Spine (5)",
+        "Felyne Fur Ruby (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gold Cat Hammer",
+      "attack": "832",
+      "element": "Paralysis 280",
+      "sharpness": "SredToraByelMgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "45,000z",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Black Cat Stamp",
+      "create-mats": [
+        "Felyne Fur Ruby (3)",
+        "FlynMealPassReg(15)",
+        "FlynMealPassPlus(5)",
+        "Gold Rathian Scl+(5)"
+      ],
+      "upgrade-mats": [
+        "FlynMealPassPlus (10)",
+        "Gold Rathian Scl+ (3)",
+        "Gold Rajang Pelt (3)"
+      ],
+      "upgrade-to": [
+        "Gold Cat Crusher"
+      ]
+    },
+    {
+      "name": "Gold Cat Crusher",
+      "attack": "988",
+      "element": "Paralysis 380",
+      "sharpness": "TredToraByelTyelMgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Gold Cat Hammer",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "FlynMealPassPlus (10)",
+        "Felyne Fur Ruby (3)",
+        "GoldRajangPelt+ (3)",
+        "Thunderbug Jelly (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Teddybear",
+      "attack": "260",
+      "element": "Sleep 200",
+      "sharpness": "MredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "5,000z",
+      "upgrade-cost": "5,000z",
+      "upgrade-from": "White Cat Stamp",
+      "create-mats": [
+        "Commendation (1)",
+        "Lightcrystal (2)",
+        "Black Pearl (2)"
+      ],
+      "upgrade-mats": [
+        "Lightcrystal (1)",
+        "Antiseptic Stone (3)",
+        "Pokke Ticket (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Ukanlos Trampler",
+      "attack": "1820",
+      "element": "Ice 120",
+      "sharpness": "BredToraSyelBgreTblu",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "150,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "UkanlosDiggngClw (3)",
+        "HvyUkanlosShell (4)",
+        "Lightning Sac (10)",
+        "Ukanlos Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Club G",
+      "attack": "1560",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelMgre",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Mystery Bone x50",
+        "Stout Bone x15",
+        "Massive Bone x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "War Hammer G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "MredToraByelSgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Iron Ore x30",
+        "Disk Stone x30",
+        "Eltalite Ore x12"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Tarnished Hammer G",
+      "attack": "1664",
+      "element": "N/A",
+      "sharpness": "BredToraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Large Ruststone x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Spiked Hammer G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "MredToraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Needleberry x50",
+        "Eltalite Ore x8",
+        "Emperor Cricket x8"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Iron Striker G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "TredToraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Iron Ore x30",
+        "Machalite Ore x15",
+        "Mellanje Ore x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Atlas Hammer G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "SredSoraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Sm Monster Bone x40",
+        "Giant Bone x30",
+        "Massive Bone x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Axe G",
+      "attack": "1508",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSblu",
+      "affinity": "10%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Hrd Monster Bone (15)",
+        "Monster Essence (5)",
+        "Hvy Tigrex Shell (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Skullcrusher G",
+      "attack": "1508",
+      "element": "N/A",
+      "sharpness": "TredToraByelBgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "HvyPiscineFang x6",
+        "Piercing Claw x8",
+        "Monster Essence x3"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bull Tusk Hammer G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Bullfango Head x5",
+        "Bulldrome Tusk x10",
+        "ThkBullfangoPelt x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Crystal Nova G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Lightcrystal x15",
+        "Novacrystal x10",
+        "Purecrystal x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Binder Mace G",
+      "attack": "1144",
+      "element": "Paralysis 280",
+      "sharpness": "BredSoraSyelMgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Thunderbug (30)",
+        "SpecRubberyHide+ (5)",
+        "Mellanje Ore (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Kut-Ku Jaw G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "MredSoraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Giant Beak x6",
+        "Hvy Kut-Ku Shell x10",
+        "Monster Essence x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Venom Monster G",
+      "attack": "1248",
+      "element": "Poison 350",
+      "sharpness": "MredSoraByelBgreSbluSwhi",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "SpecRubberyHide+ x8",
+        "Toxin Sac x12",
+        "Gypceros Head x3"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dead Revolver G",
+      "attack": "1248",
+      "element": "Fire 400",
+      "sharpness": "MredToraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Eltalite Ore x10",
+        "Firestone x15",
+        "FireWyvrn Marrow x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Anchor Crusher G",
+      "attack": "1300",
+      "element": "Water 380",
+      "sharpness": "MredToraByelSgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Ancient Fish x10",
+        "SpecPlesiothFin+ x5",
+        "Eltalite Ore x8"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Kut-Ku Pick G",
+      "attack": "1352",
+      "element": "N/A",
+      "sharpness": "MredToraByelSgreSbluSwhi",
+      "affinity": "20%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Splendid Beak x4",
+        "Thick Kut-Ku Scl x10",
+        "Lucky Kut-Ku Ear x4"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dragonhead Hammer G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "BredToraSyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Wyvern Skull Shl x10",
+        "Unknown Skull x10",
+        "BigEDragonBone x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Basarios Bash G",
+      "attack": "1352",
+      "element": "N/A",
+      "sharpness": "SredToraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "HvyBasariosShell x10",
+        "Basarios Tears x5",
+        "Wyvern Stone x3"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Titan Hammer G",
+      "attack": "1560",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelMgreTblu",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation x1",
+        "HvyBasariosShell x6",
+        "Gravios Carapace x10",
+        "Machalite Ore x20"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Finishing Hammer G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "MredToraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "LthrDiablosTail (3)",
+        "BigEDragonBone (5)",
+        "Monoblos Carapace (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "TrueBlackCauldron G",
+      "attack": "1300",
+      "element": "N/A",
+      "sharpness": "MredToraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "FlynMealPassReg x10",
+        "Carbalite Ore x15",
+        "HvyBlkBlosShell x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Enormous Ham G",
+      "attack": "1612",
+      "element": "N/A",
+      "sharpness": "MredToraSyelBgre",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Gourmet Steak x10",
+        "FlynMealPassReg x10",
+        "Hvy Monster Bone x8"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Teddybear G",
+      "attack": "936",
+      "element": "Sleep 200",
+      "sharpness": "SredSoraByelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Antiseptic Stone x10",
+        "Purecrystal x4",
+        "Sleep Sac x20"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Cactus Creamer G",
+      "attack": "884",
+      "element": "Poison 300",
+      "sharpness": "BredToraSyelMgreSbluMwhiSpur",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Cactus Flower x10",
+        "Massive Bone x10",
+        "Dosbiscus x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "White Cat Hammer G",
+      "attack": "1040",
+      "element": "Paralysis 180",
+      "sharpness": "MredMoraMyelBgreTblu",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Pawprint Stamp x10",
+        "Paralysis Sac x15",
+        "HrdBlangongaPlt+ x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Cat Hammer G",
+      "attack": "936",
+      "element": "Paralysis 380",
+      "sharpness": "SredToraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "FlynMealPassPlus x10",
+        "Felyne Fur Ruby x5",
+        "BlackNargaPelt+ x10"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Belt Hammer G",
+      "attack": "1352",
+      "element": "N/A",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Expert Ticket x10",
+        "Fire Coin x7",
+        "Legend Coin x1"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Breath Core Hammer G",
+      "attack": "1508",
+      "element": "N/A",
+      "sharpness": "BredToraSyelMgreSbluSwhi",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "Lg Ancient Stone x3",
+        "ElderDragonBlood x10",
+        "Big Wyvern Stone x1"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Great Demon Hammer G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelBgreSbluSwhi",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Eltalite Ore x8",
+        "Carbalite Ore x25",
+        "Velocidrome Head x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hard Bone Hammer G",
+      "attack": "1456",
+      "element": "N/A",
+      "sharpness": "SredSoraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "Hvy Monster Bone x5",
+        "BigEDragonBone x3",
+        "Dragonite Ore x15"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "TwoStarSilverPot G",
+      "attack": "1196",
+      "element": "N/A",
+      "sharpness": "TredToraByelBgreSbluMwhiSpur",
+      "affinity": "20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "FlynMealPassPlus x10",
+        "Rainbow Ore x20",
+        "HvySlvrRthlsShl x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Great Cone G",
+      "attack": "1248",
+      "element": "Ice 400",
+      "sharpness": "TredToraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G x1",
+        "HvyBlangongaFang x3",
+        "HrdBlangongaPlt+ x10",
+        "Blango Pelt+ x20"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Onslaught Hammer G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "Dragonite Ore x20",
+        "HvyGraviosShell x5",
+        "Union Ore x15"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "War Basher G",
+      "attack": "1404",
+      "element": "N/A",
+      "sharpness": "TredToraByelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "Carbalite Ore x20",
+        "Disk Stone x50",
+        "HvyBlkBlosShell x8"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "SanctionedGunHammr G",
+      "attack": "1196",
+      "element": "Fire 500",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Firecell Stone (10)",
+        "Monster Essence (8)",
+        "Mellanje Ore (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Crater Maker G",
+      "attack": "1300",
+      "element": "Poison 200",
+      "sharpness": "BredSoraSyelSgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "HvyGraviosShell x6",
+        "DeadlyPoisonSac x3",
+        "Wyvern Stone x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Torment(Purgatory) G",
+      "attack": "1352",
+      "element": "Fire 310",
+      "sharpness": "MredMoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S x1",
+        "HvyBlkGraviosShl x6",
+        "Blazing Fire Sac x3",
+        "Wyvern Stone x5"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dragonbreaker G",
+      "attack": "1300",
+      "element": "Dragon 330",
+      "sharpness": "SredToraSyelSyelMgreTgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Lao-Shan's Claw (3)",
+        "Lao-Shan'sHvyShl (5)",
+        "Lao-ShanScale+ (15)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    }
+  ]
+}
