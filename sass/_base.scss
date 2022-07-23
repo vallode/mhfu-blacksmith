@@ -149,10 +149,11 @@ div {
 }
 
 #weaponCrafting img {
-  width: 65%;
-  top: 0;
-  left: 0;
+  left: 50%;
   position: relative;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
 }
 
 #weaponCrafting p {
@@ -161,6 +162,14 @@ div {
 
 .weaponDetails span {
   color: white;
+}
+
+.weaponDetails span.negative {
+  color: #F9455C;
+}
+
+.weaponDetails span.positive {
+  color: #52F152;
 }
 
 #weaponName {
