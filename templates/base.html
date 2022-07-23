@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MHFU</title>
+  {%- if page %}
+    <title>MHFU - {{ page.title }}</title>
+  {%- elif section %}
+    <title>MHFU - {{ section.title }}</title>
+  {%- endif %}
 
   <link rel="stylesheet" href="/style.css">
   <script src="/vendor/javascript/turbo.es2017-esm.js" type="module"></script>
