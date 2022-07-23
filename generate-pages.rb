@@ -17,8 +17,8 @@ FILE_TEMPLATE = %{
   element = <%= elements %>
   slots = "<%= slots %>"
   <% if create_cost %>
-    create-cost = "<%= create_cost %>"
-    create-mats = <%= create_mats %>
+  create-cost = "<%= create_cost %>"
+  create-mats = <%= create_mats %>
   <% end %>
   <% if upgrade_cost %>
   upgrade-cost = "<%= upgrade_cost %>"
@@ -30,7 +30,7 @@ FILE_TEMPLATE = %{
   upgrade-from = "<%= upgrade_from %>"
   <% end %>
   <% if upgrade_to %>
-  upgrade-to = "<%= upgrade_to %>"
+  upgrade-to = <%= upgrade_to %>
   <% end %>
   +++
 }.gsub(/^  /, '')
