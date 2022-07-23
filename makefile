@@ -11,7 +11,7 @@ debug: generate-pages
 	TERA_DEBUG=true zola serve
 
 clean:
-	rm -r content/blacksmith/**/details/*.md
+	find content/blacksmith/**/details/*.md ! -name '_index.md' -exec rm {} +
 
 build: generate-pages
 	zola build
