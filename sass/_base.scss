@@ -288,6 +288,10 @@ img:before {
   mask-image: url("/images/lance.png");
 }
 
+.icon.icon--gunlance::before {
+  mask-image: url("/images/gunlance.png");
+}
+
 .icon.icon--light-bowgun::before {
   mask-image: url("/images/light-bowgun.png");
 }
