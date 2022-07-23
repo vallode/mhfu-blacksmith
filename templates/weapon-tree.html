@@ -5,7 +5,7 @@
 {% block content -%}
   {% set data = load_data(path="blacksmith/" ~ page.extra["type"] ~ "/" ~ page.extra["type"] ~ ".json") -%}
 
-  <turbo-frame id="weapon_tree">
+  <turbo-frame id="weapon_tree" data-turbo-action="replace">
     <div class="card card--list">
       <div class="table">
         {%- for row in data["map"] %}
