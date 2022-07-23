@@ -1,0 +1,4246 @@
+{
+  "weapons": [
+    {
+      "name": "Iron Lance",
+      "attack": "138",
+      "element": "N/A",
+      "sharpness": "SredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "650z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Iron Ore (4)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Iron Lance+",
+        "Iron Gunlance",
+        "Snow Gunlance"
+      ]
+    },
+    {
+      "name": "Iron Lance+",
+      "attack": "161",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "650z",
+      "upgrade-from": [
+        "Iron Lance"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Iron Ore (4)"
+      ],
+      "upgrade-to": [
+        "Steel Lance",
+        "Bone Javelin"
+      ]
+    },
+    {
+      "name": "Steel Lance",
+      "attack": "207",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": [
+        "Iron Lance+"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Irone Ore (4)",
+        "Disk Stone (4)"
+      ],
+      "upgrade-to": [
+        "Paladin Lance",
+        "Estoc"
+      ]
+    },
+    {
+      "name": "Paladin Lance",
+      "attack": "253",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "1,750z",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": "Steel Lance",
+      "create-mats": [
+        "Earth Crystal (15)",
+        "Machalite Ore (6)",
+        "Iron Ore (15)"
+      ],
+      "upgrade-mats": [
+        "Iron Ore (10)",
+        "Machalite Ore (4)",
+        "Earth Crystal (5)"
+      ],
+      "upgrade-to": [
+        "Rampart"
+      ]
+    },
+    {
+      "name": "Rampart",
+      "attack": "299",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Paladin Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lightcrystal (2)",
+        "Machalite Ore (8)",
+        "Earth Crystal (15)"
+      ],
+      "upgrade-to": [
+        "Growling Wyvern",
+        "Gatling Lance",
+        "Naag Serpentblade"
+      ]
+    },
+    {
+      "name": "Growling Wyvern",
+      "attack": "345",
+      "element": "Dragon 100",
+      "sharpness": "SredSoraTyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Rampart",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore (5)",
+        "Machalite Ore (15)",
+        "Blk Gravios Shl (10)"
+      ],
+      "upgrade-to": [
+        "Roaring Wyvern",
+        "Knight Lance"
+      ]
+    },
+    {
+      "name": "Roaring Wyvern",
+      "attack": "460",
+      "element": "Dragon 100",
+      "sharpness": "TredSoraTyelBgreTblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Growling Wyvern",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Carbalite Ore (20)",
+        "Union Ore (10)"
+      ],
+      "upgrade-to": [
+        "Sanctioned Drill Lance"
+      ]
+    },
+    {
+      "name": "Sanctioned Drill Lance",
+      "attack": "529",
+      "element": "N/A",
+      "sharpness": "MredSoraSoraTyelBgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "80,000z",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Roaring Wyvern",
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Union Ore (10)",
+        "Thunder Sac (8)",
+        "Monster Broth+ (5)"
+      ],
+      "upgrade-mats": [
+        "Eltalite Ore (5)",
+        "Carbalite Ore (15)",
+        "DaoraDragonScal+ (5)",
+        "Piercing Claw (6)"
+      ],
+      "upgrade-to": [
+        "Gravedigger"
+      ]
+    },
+    {
+      "name": "Gravedigger",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "TredToraSyelBgreTbluMwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "105,000z",
+      "upgrade-from": "Sanctioned Drill Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Mellanje Ore (10)",
+        "Eltalite Ore (20)",
+        "Lightning Sac (5)",
+        "StrngBasariosWng (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Knight Lance",
+      "attack": "437",
+      "element": "N/A",
+      "sharpness": "SredTredMoraToraSyelTyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "25,000z",
+      "upgrade-cost": "25,000z",
+      "upgrade-from": "Growling Wyvern",
+      "create-mats": [
+        "Carbalite Ore (5)",
+        "Iron Ore (50)",
+        "Velociprey Hide (15)",
+        "Velocidrome Hide (10)"
+      ],
+      "upgrade-mats": [
+        "Carbalite Ore (3)",
+        "Dragonite Ore (5)",
+        "Velociprey Scale (20)"
+      ],
+      "upgrade-to": [
+        "Knight Spear",
+        "Aqua Spear",
+        "Grayburg Javelin",
+        "Cold Icicle",
+        "Feather Gunlance"
+      ]
+    },
+    {
+      "name": "Knight Spear",
+      "attack": "460",
+      "element": "N/A",
+      "sharpness": "TredMoraSyelMgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": "Knight Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (5)",
+        "Earth Crystal (15)",
+        "Velociprey Hide+ (10)"
+      ],
+      "upgrade-to": [
+        "Babel Spear"
+      ]
+    },
+    {
+      "name": "Babel Spear",
+      "attack": "529",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelTyelBgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": "Knight Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gld Rathian Scl+ (8)",
+        "Machalite ore (30)",
+        "Genprey Scale+ (20)"
+      ],
+      "upgrade-to": [
+        "Sadalsuud",
+        "Lost Babel",
+        "Ancient Destroyer",
+        "Spark Plug"
+      ]
+    },
+    {
+      "name": "Lost Babel",
+      "attack": "667",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": "Babel Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "ThckGldRathnScl (5)",
+        "Eltalite Ore (10)",
+        "GoldRajangPelt+ (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Sadalsuud",
+      "attack": "506",
+      "element": "Water 220",
+      "sharpness": "MredSoraMyelMgreTgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "75,000z",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Babel Spear",
+      "create-mats": [
+        "Eltalite Ore (15)",
+        "Purecrystal (3)",
+        "Rathian Scale+ (15)",
+        "Earth Crystal (40)"
+      ],
+      "upgrade-mats": [
+        "Eltalite Ore (10)",
+        "Purecrystal (1)",
+        "HvyHermitaurShl (3)"
+      ],
+      "upgrade-to": [
+        "Sadalmelek"
+      ]
+    },
+    {
+      "name": "Sadalmelek",
+      "attack": "575",
+      "element": "Water 250",
+      "sharpness": "SredSoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "95,000z",
+      "upgrade-from": "Sadalsuud",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hvy Basarios Shl (3)",
+        "Hvy Ceanataur Shl (3)",
+        "Mellanje Ore (5)"
+      ],
+      "upgrade-to": [
+        "Aquarius"
+      ]
+    },
+    {
+      "name": "Aquarius",
+      "attack": "621",
+      "element": "Water 270",
+      "sharpness": "SredSoraSyelMgreTgreMbluMwhiMwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Sadalmelek",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Purecrystal (3)",
+        "HvygaorenShell (3)",
+        "HvyBlkGraviosShl (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Spark Plug",
+      "attack": "506",
+      "element": "Thunder 250",
+      "sharpness": "BredMoraSyelMgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "90,000z",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Babel Spear",
+      "create-mats": [
+        "Eltalite Ore (15)",
+        "HrdPuGypcerosWng (8)",
+        "Thunderbug Juice (10)",
+        "Thunderbug (20)"
+      ],
+      "upgrade-mats": [
+        "Thunderbug Jelly (5)",
+        "Eltalite Ore (10)",
+        "HrdPuGypcerosWng (5)"
+      ],
+      "upgrade-to": [
+        "ThunderbugShockLance"
+      ]
+    },
+    {
+      "name": "ThunderbugShockLance",
+      "attack": "598",
+      "element": "Thunder 270",
+      "sharpness": "BredSoraSyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": "Spark Plug",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Eltalite Ore (10)",
+        "LthrKirinThndrTl (2)",
+        "Hard Rajang Horn (1)",
+        "Thunderbug Jelly (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Aqua Spear",
+      "attack": "368",
+      "element": "Water 350",
+      "sharpness": "SredSoraToraSyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "40,000z",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Knight Lance",
+      "create-mats": [
+        "Cephalos Fin+ (3)",
+        "Plesioth Fin (12)",
+        "Plesioth Scale (15)",
+        "Carbalite Ore (5)"
+      ],
+      "upgrade-mats": [
+        "Plesioth Fin (10)",
+        "Cephalos Scale+ (4)",
+        "Dragonite Ore (10)"
+      ],
+      "upgrade-to": [
+        "Aqua Spear+"
+      ]
+    },
+    {
+      "name": "Aqua Spear+",
+      "attack": "391",
+      "element": "Water 400",
+      "sharpness": "SredSoraToraSyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Aqua Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Plesioth Fin+ (4)",
+        "Plesioth Scale+ (8)",
+        "Cephalos Fin+ (6)"
+      ],
+      "upgrade-to": [
+        "Emerald Spear"
+      ]
+    },
+    {
+      "name": "Emerald Spear",
+      "attack": "414",
+      "element": "Water 450",
+      "sharpness": "SredSoraToraSyelBgreTblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": "Aqua Spear+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Grn Plsioth Fin+ (6)",
+        "Grn Plsioth Scl+ (12)",
+        "Wyvern Stone (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Grayburg Javelin",
+      "attack": "437",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Knight Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Carbalite Ore (8)",
+        "DaoraDragonScale (8)",
+        "Firestone (8)"
+      ],
+      "upgrade-to": [
+        "Dragon Rider Spear"
+      ]
+    },
+    {
+      "name": "Dragon Rider Spear",
+      "attack": "506",
+      "element": "N/A",
+      "sharpness": "SredSoraSyelBgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Grayburg Javelin",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Union Ore (10)",
+        "Daora Claw (3)",
+        "Daora Carapace (5)"
+      ],
+      "upgrade-to": [
+        "Dragoon's G\u00e1e Bulg"
+      ]
+    },
+    {
+      "name": "Dragoon's G\u00e1e Bulg",
+      "attack": "690",
+      "element": "N/A",
+      "sharpness": "SredSoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Dragon Rider Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Mellanje Ore (10)",
+        "Daora Sharp Claw (5)",
+        "Heavy Daora Shell (5)",
+        "Phantom Butterfly (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Cold Icicle",
+      "attack": "414",
+      "element": "Ice 120",
+      "sharpness": "SredSoraToraSyelBgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "40,000z",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Knight Lance",
+      "create-mats": [
+        "Blangonga Fang+ (3)",
+        "Carbalite Ore (10)",
+        "Ice Crystal (15)",
+        "Rubbery Hide+ (5)"
+      ],
+      "upgrade-mats": [
+        "Carbalite Ore (5)",
+        "Ice Crystal (10)",
+        "Rubbery Hide (8)",
+        "Blangonga Pelt+ (10)"
+      ],
+      "upgrade-to": [
+        "Frost Icicle"
+      ]
+    },
+    {
+      "name": "Frost Icicle",
+      "attack": "483",
+      "element": "Ice 150",
+      "sharpness": "SredSoraToraSyelBgreSgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "65,000z",
+      "upgrade-from": "Cold Icicle",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ice Crystal (20)",
+        "Machalite Ore (20)",
+        "Daora Sharp Claw (5)",
+        "Blangonga Fang+ (5)"
+      ],
+      "upgrade-to": [
+        "Icicle Blizzard"
+      ]
+    },
+    {
+      "name": "Icicle Blizzard",
+      "attack": "575",
+      "element": "Ice 180",
+      "sharpness": "Unknown",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Frost Icicle",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ice Crystal (20)",
+        "Eltalite Ore (10)",
+        "HvyBlangongaFang (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gatling Lance",
+      "attack": "322",
+      "element": "Fire 120",
+      "sharpness": "SredSoraTyelSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "4,250z",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Rampart",
+      "create-mats": [
+        "Firestone (4)",
+        "Machalite Ore (12)",
+        "Flame Sac (2)",
+        "Hercudrome (5)"
+      ],
+      "upgrade-mats": [
+        "Firestone (2)",
+        "Dragonite Ore (5)",
+        "Gunpowder (10)"
+      ],
+      "upgrade-to": [
+        "Gatling Lance+"
+      ]
+    },
+    {
+      "name": "Gatling Lance+",
+      "attack": "391",
+      "element": "Fire 160",
+      "sharpness": "TredSoraTyelBgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "7,150z",
+      "upgrade-from": "Gatling Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Fire Stone (6)",
+        "Dragonite Ore (15)",
+        "FireWyvrn Marrow (2)"
+      ],
+      "upgrade-to": [
+        "Sanctioned Gunlance"
+      ]
+    },
+    {
+      "name": "Sanctioned Gunlance",
+      "attack": "414",
+      "element": "Fire 250",
+      "sharpness": "TredSoraTyelBgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "65,000z",
+      "upgrade-from": "Gatling Lance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Firecell Stone (6)",
+        "Carbalite Ore (25)",
+        "Inferno Sac (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Naag Serpentblade",
+      "attack": "322",
+      "element": "Poison 380",
+      "sharpness": "TredToraByelTyelSgre",
+      "affinity": "5%",
+      "slots": "---",
+      "bonus": "5%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "5,600z",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Rampart",
+      "create-mats": [
+        "Remobra Skull (2)",
+        "Remobra Skin (8)",
+        "Poison Sac (10)",
+        "Machalite Ore (15)"
+      ],
+      "upgrade-mats": [
+        "Remobra Skin (5)",
+        "Remobra Skull (2)",
+        "Iron Ore (20)"
+      ],
+      "upgrade-to": [
+        "Devta Serpentblade"
+      ]
+    },
+    {
+      "name": "Devta Serpentblade",
+      "attack": "368",
+      "element": "Poison 450",
+      "sharpness": "MredMredSoraSyelSgreTblu",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Naag Serpentblade",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Remobra Skin+ (5)",
+        "Remobra Skull (4)",
+        "Toxic Sac (10)"
+      ],
+      "upgrade-to": [
+        "Ouroboros Serpentblade"
+      ]
+    },
+    {
+      "name": "Ouroboros Serpentblade",
+      "attack": "506",
+      "element": "Poison 470",
+      "sharpness": "BredSoraTyelSgreTbluSwhi",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "20%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Devta Serpentblade",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "SpecRemobraSkin+ (3)",
+        "DeadlyPoisonSac (5)",
+        "Eltalite Ore (10)",
+        "Novacrystal (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Estoc",
+      "attack": "230",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelMgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": [
+        "Steel Lance"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Black Pearl (3)",
+        "Machalite Ore (4)",
+        "Ice Crystal (6)"
+      ],
+      "upgrade-to": [
+        "Valhalla"
+      ]
+    },
+    {
+      "name": "Valhalla",
+      "attack": "345",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Estoc",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Light Crystal (5)",
+        "Dragonite Ore (7)",
+        "Ice Crystal (15)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Javelin",
+      "attack": "230",
+      "element": "N/A",
+      "sharpness": "TredSoraTyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "Iron Lance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Sm Monster Bone (4)",
+        "Brute Bone (4)",
+        "Iron Ore (4)"
+      ],
+      "upgrade-to": [
+        "Spiked Spear"
+      ]
+    },
+    {
+      "name": "Spiked Spear",
+      "attack": "276",
+      "element": "N/A",
+      "sharpness": "TredSoraTyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "Bone Javelin",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Med Monster Bone (3)",
+        "Machalite Ore (3)",
+        "Killer Beetle (2)"
+      ],
+      "upgrade-to": [
+        "Lullaby Spear",
+        "Paralysisr"
+      ]
+    },
+    {
+      "name": "Lullaby Spear",
+      "attack": "184",
+      "element": "Sleep 160",
+      "sharpness": "TredSoraTyelBgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "1,750z",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": "Spiked Spear",
+      "create-mats": [
+        "Plesioth Fin (4)",
+        "Cephalos Fin (4)",
+        "Sleepyfish (10)",
+        "Springnight Carp (5)"
+      ],
+      "upgrade-mats": [
+        "Plesioth Scale (4)",
+        "Cephalos Scale (4)",
+        "Sleep Herb (10)"
+      ],
+      "upgrade-to": [
+        "Requiem Spear"
+      ]
+    },
+    {
+      "name": "Requiem Spear",
+      "attack": "276",
+      "element": "Sleep 260",
+      "sharpness": "TredSoraSyelBgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Lullaby Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Plesioth Fin (6)",
+        "Sleep Sac (3)",
+        "Mega Demondrug (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Paralysisr",
+      "attack": "276",
+      "element": "Paralysis 240",
+      "sharpness": "BredMoraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Spiked Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Machalite Ore (10)",
+        "Thunderbug (10)",
+        "Rubbery Hide (5)"
+      ],
+      "upgrade-to": [
+        "Trident",
+        "Venom Lance",
+        "Thunderspear"
+      ]
+    },
+    {
+      "name": "Trident",
+      "attack": "299",
+      "element": "Paralysis 300",
+      "sharpness": "BredSoraSyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Paralysisr",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dragonite Ore (4)",
+        "Electro Sac (5)",
+        "Rubbery Hide (7)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Venom Lance",
+      "attack": "299",
+      "element": "Poison 150",
+      "sharpness": "SredMoraSyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "3,100z",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Paralysisr",
+      "create-mats": [
+        "Basarios Wing (1)",
+        "Basarios Shell (4)",
+        "Iron Ore (20)",
+        "Toadstool (10)"
+      ],
+      "upgrade-mats": [
+        "Basarios Shell (7)",
+        "Machalite Ore (12)",
+        "Poison Sac (2)"
+      ],
+      "upgrade-to": [
+        "Basarios Venom Spear"
+      ]
+    },
+    {
+      "name": "Basarios Venom Spear",
+      "attack": "322",
+      "element": "Poison 200",
+      "sharpness": "SredSoraByelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Venom Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Basarios Wing (1)",
+        "Basarios Shell (8)",
+        "Poison Sac (5)"
+      ],
+      "upgrade-to": [
+        "Gravios Spear",
+        "Black Gravios Spear"
+      ]
+    },
+    {
+      "name": "Gravios Spear",
+      "attack": "345",
+      "element": "Poison 250",
+      "sharpness": "MredSoraMyelSgreTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": "Basarios Venom Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Skl Shl (1)",
+        "Gravios Shell (8)",
+        "Poison Sac (10)"
+      ],
+      "upgrade-to": [
+        "Gravios Venom Spear"
+      ]
+    },
+    {
+      "name": "Gravios Venom Spear",
+      "attack": "437",
+      "element": "Poison 270",
+      "sharpness": "SredSoraMyelBgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": "Gravios Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gravios Carapace (8)",
+        "Chameleos Tail (5)",
+        "Toxin Sac (10)"
+      ],
+      "upgrade-to": [
+        "Gravios Lance"
+      ]
+    },
+    {
+      "name": "Gravios Lance",
+      "attack": "552",
+      "element": "Fire 380",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "95,000z",
+      "upgrade-from": [
+        "Gravios Venom Spear",
+        "Void Gravios Spear"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HvyGraviosShell (3)",
+        "HvyBlkGraviosShl (6)",
+        "Gravios Skl Shl (5)",
+        "Tigrex Scale+ (3)"
+      ],
+      "upgrade-to": [
+        "Gravios Fire Lance"
+      ]
+    },
+    {
+      "name": "Gravios Fire Lance",
+      "attack": "598",
+      "element": "Fire 400",
+      "sharpness": "SredSoraMyelBgreTgreTbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "110,000z",
+      "upgrade-from": "Gravios Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HvnlyGraviosShl (1)",
+        "HvnlyBlkGraviShl (1)",
+        "Blazing Fire Sac (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Gravios Spear",
+      "attack": "368",
+      "element": "Fire 200",
+      "sharpness": "MredSoraMyelSgreTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": "Basarios Venom Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blk Gravios Skl (1)",
+        "Blk Gravios Shl (8)",
+        "Firestone (6)"
+      ],
+      "upgrade-to": [
+        "Void Gravios Spear"
+      ]
+    },
+    {
+      "name": "Void Gravios Spear",
+      "attack": "414",
+      "element": "Fire 360",
+      "sharpness": "Unknown",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": "Black Gravios Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Blk Gravios Cpc (8)",
+        "Gravios BrainStm (1)",
+        "Firecell Stone (6)"
+      ],
+      "upgrade-to": [
+        "Gravios Lance"
+      ]
+    },
+    {
+      "name": "Thunderspear",
+      "attack": "322",
+      "element": "Thunder 300",
+      "sharpness": "TredMoraSyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "20,000z",
+      "upgrade-cost": "20,000z",
+      "upgrade-from": "Paralysisr",
+      "create-mats": [
+        "Kirin Horn (3)",
+        "Kirin Hide (8)",
+        "Rubbery Hide (5)",
+        "Thunderbug (16)"
+      ],
+      "upgrade-mats": [
+        "Kirin Horn (1)",
+        "Kirin Mane (2)",
+        "Thunderbug (8)"
+      ],
+      "upgrade-to": [
+        "Thunderlance"
+      ]
+    },
+    {
+      "name": "Thunderlance",
+      "attack": "391",
+      "element": "Thunder 500",
+      "sharpness": "TredMoraTyelBgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Thunderspear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Kirin Azure Horn (3)",
+        "Kirin Hide+ (5)",
+        "Thunderbug Juice (4)"
+      ],
+      "upgrade-to": [
+        "Naar Thunderlance"
+      ]
+    },
+    {
+      "name": "Naar Thunderlance",
+      "attack": "575",
+      "element": "Thunder 520",
+      "sharpness": "TredMoraTyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Thunderlance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Kirin Slvr Mane (3)",
+        "Platinum Mane (5)",
+        "Thunderbug Jelly (8)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Shell Claw Lance",
+      "attack": "529",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreTgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "85,000z",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": [
+        "Ceanataur Piercer",
+        "Scissor Cannon"
+      ],
+      "create-mats": [
+        "Plum Daimyo Hermitaur Shell (8)",
+        "Plum Daimyo Hermiatur Claw (2)",
+        "Giant Blk Pearl (3)",
+        "Monster Broth (10)"
+      ],
+      "upgrade-mats": [
+        "Plum Daimyo Hermitaur Shell (5)",
+        "Plum Daimyo Hermitaur Claw (1)",
+        "Piercing Claw (5)"
+      ],
+      "upgrade-to": [
+        "Giant Hermitaur Lance"
+      ]
+    },
+    {
+      "name": "Giant Hermitaur Lance",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Shell Claw Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HermitrClw (2)",
+        "HermitrShl (8)",
+        "HvyCeanataurLeg (3)",
+        "Giant Blk Pearl (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Longhorn",
+      "attack": "161",
+      "element": "N/A",
+      "sharpness": "MredSoraTyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "650z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Sm Monster Bone (2)",
+        "Brute Bone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Longhorn+",
+        "Wild Bone Lance"
+      ]
+    },
+    {
+      "name": "Longhorn+",
+      "attack": "207",
+      "element": "N/A",
+      "sharpness": "SredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "1,100z",
+      "upgrade-from": "Longhorn",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Brute Bone (2)",
+        "Bone (3)"
+      ],
+      "upgrade-to": [
+        "Long Tusk",
+        "Dark Lance",
+        "Great Bone Gunlance"
+      ]
+    },
+    {
+      "name": "Long Tusk",
+      "attack": "253",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "1,750z",
+      "upgrade-cost": "1,750z",
+      "upgrade-from": "Longhorn+",
+      "create-mats": [
+        "Hard Ticket (1)",
+        "Bone (1)"
+      ],
+      "upgrade-mats": [
+        "Brute Bone (4)",
+        "Giant Bone (1)",
+        "Med Monster Bone (1)"
+      ],
+      "upgrade-to": [
+        "Barbaroi Tusk",
+        "Crimson Lance",
+        "Bone Claw Lance",
+        "Blade Stinger"
+      ]
+    },
+    {
+      "name": "Barbaroi Tusk",
+      "attack": "322",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "3,100z",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Long Tusk",
+      "create-mats": [
+        "Iodrome Skull (1)",
+        "Ioprey Hide (10)",
+        "Lg Monster Bone (7)",
+        "Demondrug (5)"
+      ],
+      "upgrade-mats": [
+        "Lg Monster Bone (5)",
+        "Iodrome Hide (5)",
+        "Monster Fluid (5)"
+      ],
+      "upgrade-to": [
+        "Ogre Tusk",
+        "Incessant Raven"
+      ]
+    },
+    {
+      "name": "Ogre Tusk",
+      "attack": "414",
+      "element": "N/A",
+      "sharpness": "MredSoraByelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "5,600z",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Barbaroi Tusk",
+      "create-mats": [
+        "Hard Ticket (1)",
+        "Alluring Hide (1)",
+        "Monster bone+ (1)"
+      ],
+      "upgrade-mats": [
+        "Monster Bone+ (5)",
+        "Ioprey Hide (20)",
+        "Mega Demondrug (2)"
+      ],
+      "upgrade-to": [
+        "Great Ogre Tusk",
+        "Hard Bone Lance"
+      ]
+    },
+    {
+      "name": "Great Ogre Tusk",
+      "attack": "483",
+      "element": "N/A",
+      "sharpness": "MredSoraByelSgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Ogre Tusk",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hrd Monster Bone (5)",
+        "Ioprey Hide+ (10)",
+        "Hercudrome (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hard Bone Lance",
+      "attack": "460",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "25,000z",
+      "upgrade-from": "Ogre Tusk",
+      "create-mats": [
+        "Stout Bone (5)",
+        "Giant Bone (15)",
+        "Iron Ore (30)"
+      ],
+      "upgrade-mats": [
+        "Stout Bone (2)",
+        "Monster Bone+ (5)",
+        "Machalite Ore (10)"
+      ],
+      "upgrade-to": [
+        "Hard Bone Lance+"
+      ]
+    },
+    {
+      "name": "Hard Bone Lance+",
+      "attack": "483",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelSgreTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": "Hard Bone Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Master's Skull (5)",
+        "Rare Scarab (10)",
+        "Hrd Monster Bone (8)"
+      ],
+      "upgrade-to": [
+        "Barbarian Tusk",
+        "Demon Lance",
+        "Full Voltage"
+      ]
+    },
+    {
+      "name": "Barbarian Tusk",
+      "attack": "506",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreTblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": "Hard Bone Lance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Diablos Carapace (3)",
+        "Stout Bone (6)",
+        "Killer Beetle (30)"
+      ],
+      "upgrade-to": [
+        "Giant Tusk",
+        "Heavy Bone Gunlance"
+      ]
+    },
+    {
+      "name": "Giant Tusk",
+      "attack": "552",
+      "element": "N/A",
+      "sharpness": "MredSoraToraSyelSgreTgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Barbarian Tusk",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hvy Monster Bone (2)",
+        "Massive Bone (2)",
+        "Monster Essence (5)"
+      ],
+      "upgrade-to": [
+        "Brutal Tusk"
+      ]
+    },
+    {
+      "name": "Brutal Tusk",
+      "attack": "598",
+      "element": "N/A",
+      "sharpness": "MredSoraToraSyelSgreTgreSbluSwhi",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "20%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Giant Tusk",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "BigEDragonBone (3)",
+        "Hvy Monster Bone (5)",
+        "Massive Bone (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Demon Lance",
+      "attack": "414",
+      "element": "Thunder 160",
+      "sharpness": "MredSoraMyelMgre",
+      "affinity": "20%",
+      "slots": "---",
+      "bonus": "20%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "80,000z",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Hard Bone Lance+",
+      "create-mats": [
+        "Rajang Horn (2)",
+        "Rajang Fang (4)",
+        "Blk Rajang Pelt (6)",
+        "Commendation (4)"
+      ],
+      "upgrade-mats": [
+        "Rajang Horn (2)",
+        "Rajang Tail (2)",
+        "Blk Rajang Pelt (3)"
+      ],
+      "upgrade-to": [
+        "Great Demon Lance"
+      ]
+    },
+    {
+      "name": "Great Demon Lance",
+      "attack": "437",
+      "element": "Thunder 210",
+      "sharpness": "MredSoraMyelMgreTblu",
+      "affinity": "25%",
+      "slots": "---",
+      "bonus": "25%",
+      "rarity": "8",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Demon Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Gold Rajang Pelt (1)",
+        "Rajang Claw (4)",
+        "Gld Rathian Scl+ (4)"
+      ],
+      "upgrade-to": [
+        "Demonlance Rajang"
+      ]
+    },
+    {
+      "name": "Demonlance Rajang",
+      "attack": "621",
+      "element": "Thunder 230",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "30%",
+      "slots": "---",
+      "bonus": "30%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "130,000z",
+      "upgrade-from": "Great Demon Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hard Rajang Horn (2)",
+        "Blk Rajang Pelt+ (3)",
+        "Hard Rajang Claw (4)",
+        "GoldRajangPelt+ (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Incessant Raven",
+      "attack": "368",
+      "element": "Poison 80",
+      "sharpness": "BredSoraByelMgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "10,000z",
+      "upgrade-cost": "10,000z",
+      "upgrade-from": "Barbaroi Tusk",
+      "create-mats": [
+        "Garuga Tail (3)",
+        "Sharpened Beak (1)",
+        "Garuga Ear (2)",
+        "Machalite Ore (10)"
+      ],
+      "upgrade-mats": [
+        "Garuga Tail (1)",
+        "Garuga Wing (2)",
+        "Garuga Scale (5)"
+      ],
+      "upgrade-to": [
+        "Incessant Wolf"
+      ]
+    },
+    {
+      "name": "Incessant Wolf",
+      "attack": "460",
+      "element": "Poison 140",
+      "sharpness": "TredToraByelMgreSblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "65,000z",
+      "upgrade-from": "Incessant Raven",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Garuga Scale+ (4)",
+        "Long Garuga Ear (2)",
+        "Toxin Sac (5)"
+      ],
+      "upgrade-to": [
+        "Incessant Crow"
+      ]
+    },
+    {
+      "name": "Incessant Crow",
+      "attack": "621",
+      "element": "Poison 160",
+      "sharpness": "TredToraByelSgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "105,000z",
+      "upgrade-from": "Incessant Wolf",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Garuga Tail+ (2)",
+        "Str Garuga Wing (2)",
+        "ThickGarugaScale (5)",
+        "DeadlyPoisonSac (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Crimson Lance",
+      "attack": "276",
+      "element": "Fire 190",
+      "sharpness": "BredMoraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "3,100z",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Long Tusk",
+      "create-mats": [
+        "Monoblos Spine (2)",
+        "Blood Red Horn (1)",
+        "Machalite Ore (8)",
+        "Monster Fluid (5)"
+      ],
+      "upgrade-mats": [
+        "Blood Red Horn (1)",
+        "Flame Sac (2)",
+        "Machalite Ore (4)"
+      ],
+      "upgrade-to": [
+        "Crimson War Pike",
+        "Ceramic Blos Lance",
+        "Diablo Horn"
+      ]
+    },
+    {
+      "name": "Crimson War Pike",
+      "attack": "368",
+      "element": "Fire 280",
+      "sharpness": "BredMoraSyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "6,350z",
+      "upgrade-from": "Crimson Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Monoblos Heart (1)",
+        "Blood Red Horn (2)",
+        "Monoblos Shell (6)"
+      ],
+      "upgrade-to": [
+        "Crimson War Pike+"
+      ]
+    },
+    {
+      "name": "Crimson War Pike+",
+      "attack": "437",
+      "element": "Fire 300",
+      "sharpness": "BredMoraSyelMgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Crimson War Pike",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Top-GrdRedHorn (1)",
+        "MonoblosCarapace (5)",
+        "Inferno Sac (5)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Ceramic Blos Lance",
+      "attack": "322",
+      "element": "Water 150",
+      "sharpness": "SredSoraByelSyelTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Crimson Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Wht Monoblos Hrn (1)",
+        "Wht Monoblos Spn (2)",
+        "Wht Monoblos Shl (4)"
+      ],
+      "upgrade-to": [
+        "Ceramic Blos Lance+"
+      ]
+    },
+    {
+      "name": "Ceramic Blos Lance+",
+      "attack": "345",
+      "element": "Water 200",
+      "sharpness": "SredSoraByelSyelSgreTgre",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "8,350z",
+      "upgrade-from": "Ceramic Blos Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Wht Monoblos Hrn (3)",
+        "Grn Plesioth Scl (5)",
+        "Diablos Spine (4)"
+      ],
+      "upgrade-to": [
+        "White Disaster"
+      ]
+    },
+    {
+      "name": "White Disaster",
+      "attack": "437",
+      "element": "Water 220",
+      "sharpness": "SredSoraByelSyelMgreSblu",
+      "affinity": "15%",
+      "slots": "OO-",
+      "bonus": "15%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Ceramic Blos Lance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Top-GrdPlatHorn (1)",
+        "WhtMonoblosThora (4)",
+        "Diablos Thoracic (6)"
+      ],
+      "upgrade-to": [
+        "White Catastrophe"
+      ]
+    },
+    {
+      "name": "White Catastrophe",
+      "attack": "460",
+      "element": "Water 240",
+      "sharpness": "SredMoraSyelSgreBgreSbluTblu",
+      "affinity": "15%",
+      "slots": "OO-",
+      "bonus": "15%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": "White Disaster",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Top-GrdPlatHorn (2)",
+        "Wht Monoblos Cpc(5)",
+        "Monoblos Heart (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Diablo Horn",
+      "attack": "391",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelSgre",
+      "affinity": "-5%",
+      "slots": "---",
+      "bonus": "-5%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Crimson Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Twisted Horn (1)",
+        "Diablos Shell (4)",
+        "Dragonite Ore (4)"
+      ],
+      "upgrade-to": [
+        "Diablo Spear"
+      ]
+    },
+    {
+      "name": "Diablo Spear",
+      "attack": "460",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelSgreTgre",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "30,000z",
+      "upgrade-from": "Diablo Horn",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Majestic Horn (1)",
+        "Blos Fang (10)",
+        "Diablos Spine (5)"
+      ],
+      "upgrade-to": [
+        "Black Tempest"
+      ]
+    },
+    {
+      "name": "Black Tempest",
+      "attack": "552",
+      "element": "N/A",
+      "sharpness": "MredSyelByelTyelSgreTgreTblu",
+      "affinity": "-30%",
+      "slots": "O--",
+      "bonus": "-30%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Diablo Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "TwstBlkBlosHrn (4)",
+        "Blk Blos Thracic (4)",
+        "Black Blos Cpc (8)"
+      ],
+      "upgrade-to": [
+        "Rising Tempest"
+      ]
+    },
+    {
+      "name": "Rising Tempest",
+      "attack": "736",
+      "element": "N/A",
+      "sharpness": "MredTredMoraSyelMgreSbluSwhi",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": "-20%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Black Tempest",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "StoutBlkTwstdHrn (2)",
+        "HvyBlkBlosSpine (4)",
+        "HvyBlkBlosShell (8)",
+        "Big Wyvern Stone (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Claw Lance",
+      "attack": "299",
+      "element": "N/A",
+      "sharpness": "SredSoraByel",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "3,100z",
+      "upgrade-cost": "3,100z",
+      "upgrade-from": "Long Tusk",
+      "create-mats": [
+        "Hermitaur Claw (2)",
+        "Hermitaur Shell (5)",
+        "Sm Hermitaur Shell (7)",
+        "Monster Fluid (3)"
+      ],
+      "upgrade-mats": [
+        "Hermitaur Shell (4)",
+        "Sm Hermitaur Shell (5)",
+        "Sharp Claw (3)"
+      ],
+      "upgrade-to": [
+        "Bone Claw Lance+"
+      ]
+    },
+    {
+      "name": "Bone Claw Lance+",
+      "attack": "368",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelSgreTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Bone Claw Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hermitaur Claw (3)",
+        "Hermitaur Shell (8)",
+        "Monster Bone+ (2)"
+      ],
+      "upgrade-to": [
+        "Scissor Gunlance",
+        "Ceanataur Piercer"
+      ]
+    },
+    {
+      "name": "Ceanataur Piercer",
+      "attack": "460",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSgreSblu",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": [
+        "Bone Claw Lance+",
+        "Ceanataur Stinger"
+      ],
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ceanataur Claw+ (3)",
+        "Ceanataur Carpce (5)",
+        "Ceanataur Leg (8)"
+      ],
+      "upgrade-to": [
+        "Carmine Stinger",
+        "Shell Claw Lance"
+      ]
+    },
+    {
+      "name": "Carmine Stinger",
+      "attack": "575",
+      "element": "N/A",
+      "sharpness": "BredSredSoraSyelMgreSbluBwhiSpur",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "85,000z",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": "Ceanataur Piercer",
+      "create-mats": [
+        "Terra Ceanataur Claw (4)",
+        "Terra Ceanataur Shell (8)",
+        "Ceanataur Leg (15)",
+        "Emperor Cricket (5)"
+      ],
+      "upgrade-mats": [
+        "Terra Ceanataur Claw (2)",
+        "Terra Ceanataur Shell (5)",
+        "Hard Hermitaur Claw (5)"
+      ],
+      "upgrade-to": [
+        "Shish Kabob Stick"
+      ]
+    },
+    {
+      "name": "Shish Kabob Stick",
+      "attack": "598",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSbluMwhiSpurSpur",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "115,000z",
+      "upgrade-from": "Carmine Stinger",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Terra Ceanataur Claw (3)",
+        "Heavy Ceanataur Leg (5)",
+        "Giant Black Pearl (2)",
+        "Heavy Gaoren Shell (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Blade Stinger",
+      "attack": "345",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelMgreSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "link": "https://monsterhunter.fandom.com/wiki/Blade_Stinger",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,560z",
+      "upgrade-from": "Long Tusk",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ceanataur Pincer (2)",
+        "Sm Ceanataur Shell (10)",
+        "Black Pearl (3)"
+      ],
+      "upgrade-to": [
+        "Ceanataur Stinger"
+      ]
+    },
+    {
+      "name": "Ceanataur Stinger",
+      "attack": "391",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "link": "https://monsterhunter.fandom.com/wiki/Ceanataur_Stinger",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "5,600z",
+      "upgrade-from": "Blade Stinger",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Ceanataur Claw (8)",
+        "Ceanataur Shell (10)",
+        "Monster Bone+ (3)"
+      ],
+      "upgrade-to": [
+        "Ceanataur Piercer"
+      ]
+    },
+    {
+      "name": "Dark Lance",
+      "attack": "230",
+      "element": "Paralysis 180",
+      "sharpness": "SredSoraToraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "Longhorn+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hornetaur Shell (10)",
+        "Vespoid Abdomen (1)",
+        "Paralysis Sac (2)"
+      ],
+      "upgrade-to": [
+        "Dark Spear"
+      ]
+    },
+    {
+      "name": "Dark Spear",
+      "attack": "299",
+      "element": "Paralysis 200",
+      "sharpness": "TredTredSoraTyelTyelBgreTgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,250z",
+      "upgrade-from": "Dark Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hornetaur Head (3)",
+        "Hercudrome (3)",
+        "Gendrome Skull (2)"
+      ],
+      "upgrade-to": [
+        "Dark"
+      ]
+    },
+    {
+      "name": "Dark",
+      "attack": "322",
+      "element": "Paralysis 230",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "55,000z",
+      "upgrade-from": "Dark Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hornetaur InnerWing (5)",
+        "Hornetaur Carapace (8)",
+        "Gendrome Tail (5)"
+      ],
+      "upgrade-to": [
+        "Darkness"
+      ]
+    },
+    {
+      "name": "Darkness",
+      "attack": "506",
+      "element": "Paralysis 250",
+      "sharpness": "SredSoraByelMyelMgreSbluMwhiMpur",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Dark",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Hornet RazorWing (5)",
+        "Vespoid RazorWing (5)",
+        "Hornetaur Crapce (10)",
+        "Monster Essence (3)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Wild Bone Lance",
+      "attack": "230",
+      "element": "N/A",
+      "sharpness": "SredMoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "1,400z",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "Longhorn",
+      "create-mats": [
+        "Bullfango pelt (5)",
+        "Brute Bone (3)",
+        "Anteka Antlers (2)",
+        "Carpenterbug (5)"
+      ],
+      "upgrade-mats": [
+        "Bullfango Pelt (3)",
+        "Brute Bone (3)",
+        "Iron Ore (2)"
+      ],
+      "upgrade-to": [
+        "Wild Bone Lance+",
+        "Fragrance"
+      ]
+    },
+    {
+      "name": "Wild Bone Lance+",
+      "attack": "276",
+      "element": "N/A",
+      "sharpness": "MredSoraMyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,150z",
+      "upgrade-from": "Wild Bone Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Bulldrome Tusk (2)",
+        "Bullfango Head (1)",
+        "Bulldrome Hide (3)"
+      ],
+      "upgrade-to": [
+        "Bulldrome Spear",
+        "Red Tail"
+      ]
+    },
+    {
+      "name": "Bulldrome Spear",
+      "attack": "483",
+      "element": "N/A",
+      "sharpness": "TredToraByelSyelSgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Wild Bone Lance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Bulldrome Tusk (6)",
+        "Bulldrome Hide+ (4)",
+        "Stout Bone (4)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Red Tail",
+      "attack": "253",
+      "element": "Fire 250",
+      "sharpness": "SredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "2,600z",
+      "upgrade-cost": "2,600z",
+      "upgrade-from": "Wild Bone Lance+",
+      "create-mats": [
+        "Rathalos Scale (3)",
+        "Rathalos Shell (2)",
+        "FireWyvern Fluid (4)",
+        "Flame Sac (2)"
+      ],
+      "upgrade-mats": [
+        "FireWyvern Fluid (3)",
+        "Wyvern Claw (6)",
+        "Flame Sac (2)"
+      ],
+      "upgrade-to": [
+        "Spear of Prominence",
+        "Blue Tail"
+      ]
+    },
+    {
+      "name": "Spear of Prominence",
+      "attack": "345",
+      "element": "Fire 460",
+      "sharpness": "SredSoraMyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": "Red Tail",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Rathalos Tail (5)",
+        "Rathalos Shell (7)",
+        "Rathalos Plate (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Blue Tail",
+      "attack": "322",
+      "element": "Fire 300",
+      "sharpness": "MredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "4,900z",
+      "upgrade-from": "Red Tail",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Azur Rthlos Tail (3)",
+        "Azure Rthlos Shl (5)",
+        "FireWyvrn Marrow (1)"
+      ],
+      "upgrade-to": [
+        "Blue Prominence"
+      ]
+    },
+    {
+      "name": "Blue Prominence",
+      "attack": "391",
+      "element": "Fire 420",
+      "sharpness": "MredSoraSyelSyelMgreTblu",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "70,000z",
+      "upgrade-from": "Blue Tail",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Azur Rthlos Tail (10)",
+        "Azure Rthlos Cpc (6)",
+        "Rathalos Ruby (1)"
+      ],
+      "upgrade-to": [
+        "Prominence Soul"
+      ]
+    },
+    {
+      "name": "Prominence Soul",
+      "attack": "575",
+      "element": "Fire 480",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Blue Prominence",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "LthrAzrRthlosTail (2)",
+        "HvyAzurRthlosShl (5)",
+        "HvnlyRathalosScl (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Fragrance",
+      "attack": "207",
+      "element": "N/A",
+      "sharpness": "TredSoraToraTyelMgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "1,400z",
+      "upgrade-cost": "1,400z",
+      "upgrade-from": "Wild Bone Lance",
+      "create-mats": [
+        "Dosbiscus (4)",
+        "Iron Ore (3)",
+        "Sap Plant (5)",
+        "Godbug (1)"
+      ],
+      "upgrade-mats": [
+        "Dosbiscus (2)",
+        "Carpenterbug (3)",
+        "Sunset Herb (3)"
+      ],
+      "upgrade-to": [
+        "Fragrance+"
+      ]
+    },
+    {
+      "name": "Fragrance+",
+      "attack": "276",
+      "element": "N/A",
+      "sharpness": "TredSoraToraTyelBgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "3,650z",
+      "upgrade-from": "Fragrance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dosbiscus (6)",
+        "Alluring Hide (3)",
+        "Black Pearl (5)"
+      ],
+      "upgrade-to": [
+        "Noble Fragrance"
+      ]
+    },
+    {
+      "name": "Noble Fragrance",
+      "attack": "345",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSgreSblu",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Fragrance+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Dosbiscus (10)",
+        "Carbalite Ore (5)",
+        "Conga Pelt+ (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Rusted Lance",
+      "attack": "207",
+      "element": "N/A",
+      "sharpness": "Bred",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "1",
+      "type": "ln",
+      "create-cost": "1,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Ruststone Rod (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Tarnished Lance"
+      ]
+    },
+    {
+      "name": "Tarnished Lance",
+      "attack": "253",
+      "element": "N/A",
+      "sharpness": "BredSora",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "1",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "2,500z",
+      "upgrade-from": "Rusted Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (20)"
+      ],
+      "upgrade-to": [
+        "Undertaker",
+        "Steel Ice Spear"
+      ]
+    },
+    {
+      "name": "Undertaker",
+      "attack": "414",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelSgre",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "40,000z",
+      "upgrade-from": "Tarnished Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Steel Ice Spear",
+      "attack": "322",
+      "element": "Ice 200",
+      "sharpness": "BredMoraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "35,000z",
+      "upgrade-from": "Tarnished Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Daora Tail (1)",
+        "Daora Shell (3)",
+        "DaoraDragonScale (4)"
+      ],
+      "upgrade-to": [
+        "Steel Ice Spear+"
+      ]
+    },
+    {
+      "name": "Steel Ice Spear+",
+      "attack": "345",
+      "element": "Ice 240",
+      "sharpness": "MredMoraSyelSgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "50,000z",
+      "upgrade-from": "Steel Ice Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Daora Claw (4)",
+        "Daora Shell (5)",
+        "ElderDragonBlood (2)"
+      ],
+      "upgrade-to": [
+        "Daora's Fang"
+      ]
+    },
+    {
+      "name": "Daora's Fang",
+      "attack": "437",
+      "element": "Ice 300",
+      "sharpness": "BredMoraSyelSgreSblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Steel Ice Spear+",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Daora Sharp Claw (2)",
+        "Daora Carapace (6)",
+        "Daora Jewel (1)"
+      ],
+      "upgrade-to": [
+        "Daora's Regulus"
+      ]
+    },
+    {
+      "name": "Daora's Regulus",
+      "attack": "621",
+      "element": "Ice 320",
+      "sharpness": "BredMoraSyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "135,000z",
+      "upgrade-from": "Daora's Fang",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "LthrDaoraTail (1)",
+        "Hvy Daora Shell (7)",
+        "Hard Daora Horn (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Worn Spear",
+      "attack": "299",
+      "element": "N/A",
+      "sharpness": "BredSora",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "6",
+      "type": "ln",
+      "create-cost": "1,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Weathered Spear"
+      ]
+    },
+    {
+      "name": "Weathered Spear",
+      "attack": "345",
+      "element": "N/A",
+      "sharpness": "BredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "6",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "12,500z",
+      "upgrade-from": "Worn Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (20)"
+      ],
+      "upgrade-to": [
+        "Matenro",
+        "Teostra's Howl"
+      ]
+    },
+    {
+      "name": "Matenro",
+      "attack": "483",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreTblu",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "7",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "60,000z",
+      "upgrade-from": "Weathered Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (5)"
+      ],
+      "upgrade-to": [
+        "Sky Scraper"
+      ]
+    },
+    {
+      "name": "Sky Scraper",
+      "attack": "598",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreSbluSwhi",
+      "affinity": "-15%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Matenro",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Purecrystal (8)",
+        "ElderDragonBlood (10)",
+        "Commendation G (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Teostra's Howl",
+      "attack": "414",
+      "element": "Fire 180",
+      "sharpness": "BredMoraSyelSgreTgre",
+      "affinity": "5%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "7",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Weathered Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Teostra Tail (4)",
+        "Teostra Shell (8)",
+        "Fire Dragon Pwdr (2)"
+      ],
+      "upgrade-to": [
+        "Teostra's Roar"
+      ]
+    },
+    {
+      "name": "Teostra's Roar",
+      "attack": "460",
+      "element": "Fire 200",
+      "sharpness": "MredMoraSyelMgreTblu",
+      "affinity": "10%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "90,000z",
+      "upgrade-from": "Teostra's Howl",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Teostra Horn+ (2)",
+        "Teostra Carapace (8)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "upgrade-to": [
+        "Teostra's Fire"
+      ]
+    },
+    {
+      "name": "Teostra's Fire",
+      "attack": "621",
+      "element": "Fire 220",
+      "sharpness": "MredMoraSyelMgreSbluSwhi",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "130,000z",
+      "upgrade-from": "Teostra's Roar",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HardTeostraHorn (2)",
+        "LthrTeostraTail (4)",
+        "BigEDragonJewel (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Belt Lance",
+      "attack": "345",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelSgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "4",
+      "type": "ln",
+      "create-cost": "6,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Blackbelt Ticket (8)",
+        "Congalala Coin (10)",
+        "Plesioth Coin (10)",
+        "Kut-Ku Coin (15)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Expert Lance"
+      ]
+    },
+    {
+      "name": "Expert Lance",
+      "attack": "460",
+      "element": "Poison 80",
+      "sharpness": "SredSoraMyelMgre",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "20,000z",
+      "upgrade-from": "Black Belt Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Expert Ticket (15)",
+        "Kirin Coin (5)",
+        "Silver Rathalos Tail (2)"
+      ],
+      "upgrade-to": [
+        "Warrior's Lance"
+      ]
+    },
+    {
+      "name": "Warrior's Lance",
+      "attack": "598",
+      "element": "Poison 80",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "75,000z",
+      "upgrade-from": "Expert Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Silver Rathalos Hard Tail (2)",
+        "Fighter Coin G (4)",
+        "Expert Coin G (5)",
+        "Commendation G (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Lance",
+      "attack": "322",
+      "element": "Dragon 290",
+      "sharpness": "SredSoraToraSyelTgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "15,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "Pokke Ticket (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Black Dragon Spear",
+        "Black Ruiner Lance"
+      ]
+    },
+    {
+      "name": "Black Dragon Spear",
+      "attack": "483",
+      "element": "Dragon 320",
+      "sharpness": "BredMoraTyelTyelSgre",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Black Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Fatalis Horn (4)",
+        "Fatalis Eye (2)",
+        "Lao Shan's Ruby (1)"
+      ],
+      "upgrade-to": [
+        "True Blk Dragon Spr"
+      ]
+    },
+    {
+      "name": "True Blk Dragon Spr",
+      "attack": "644",
+      "element": "Dragon 360",
+      "sharpness": "BredMoraSyelMgreSblu",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "150,000z",
+      "upgrade-from": "Black Dragon Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HardFatalisHorn (4)",
+        "Fatalis Evil Eye (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Ruiner Lance",
+      "attack": "460",
+      "element": "Dragon 380",
+      "sharpness": "BredMoraSyelMgreTblu",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "100,000z",
+      "upgrade-from": "Black Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Fatalis CrmsnHrn (3)",
+        "Chameleos Jewel (2)"
+      ],
+      "upgrade-to": [
+        "True Blk Dragon Spr+"
+      ]
+    },
+    {
+      "name": "True Blk Dragon Spr+",
+      "attack": "598",
+      "element": "Dragon 400",
+      "sharpness": "BredMoraSyelMgreSbluSwhi",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "150,000z",
+      "upgrade-from": "Black Ruiner Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "HrdFatlisCrmHorn (3)",
+        "HvyFatalisCrmShl (5)",
+        "BigEDragonJewel (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Native Spear",
+      "attack": "184",
+      "element": "Poison 430",
+      "sharpness": "SredSoraToraSyelTgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "3",
+      "type": "ln",
+      "create-cost": "7,500z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Unknown Skull (1)",
+        "Wyvern Claw (1)",
+        "Bone (1)",
+        "Iodrome Skull (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Primal Spear"
+      ]
+    },
+    {
+      "name": "Primal Spear",
+      "attack": "230",
+      "element": "Poison 450",
+      "sharpness": "SredSoraMyelBgreTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "6",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Native Spear",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Master's Skull (1)",
+        "Toxin Sac (5)",
+        "FlynMealPassReg (10)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Tiger Stinger",
+      "attack": "391",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreTblu",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "35,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Tigrex Scale (6)",
+        "Tigrex Tail (1)",
+        "Tigrex Claw (5)",
+        "Pokke Ticket (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Tigrex Lance",
+        "Hidden Stinger"
+      ]
+    },
+    {
+      "name": "Tigrex Lance",
+      "attack": "506",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "7",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Tiger Stinger",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Tigrex Scale+ (6)",
+        "Tigrex Tail (3)",
+        "Tigrex Claw+ (5)"
+      ],
+      "upgrade-to": [
+        "Great Tigrex Lance"
+      ]
+    },
+    {
+      "name": "Great Tigrex Lance",
+      "attack": "667",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhiSpur",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "125,000z",
+      "upgrade-from": "Tigrex Lance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "LeathrTigrexTail (1)",
+        "ThickTigrexScale (6)",
+        "HardTigrexClaw (5)",
+        "HvnlyTigrexScale (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hidden Stinger",
+      "attack": "437",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelBgreSbluSwhi",
+      "affinity": "50%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "7",
+      "type": "ln",
+      "create-cost": "80,000z",
+      "upgrade-cost": "80,000z",
+      "upgrade-from": "Tiger Stinger",
+      "create-mats": [
+        "Naruga Tail (3)",
+        "Naruga Wing (5)",
+        "Naruga Fang+ (1)",
+        "Naruga Marrow (1)"
+      ],
+      "upgrade-mats": [
+        "Naruga Tail (1)",
+        "Naruga Wing (3)",
+        "Naruga Fang+ (6)"
+      ],
+      "upgrade-to": [
+        "Black Rain Darklance"
+      ]
+    },
+    {
+      "name": "Black Rain Darklance",
+      "attack": "552",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSbluSwhiSpur",
+      "affinity": "50%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "120,000z",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Hidden Stinger",
+      "create-mats": [
+        "LeatherNargaTail(3)",
+        "StrNargaCttngWing(7)",
+        "ThickNargaScale(10)",
+        "HvnlyNargaScale (1)"
+      ],
+      "upgrade-mats": [
+        "LeatherNargaTail(1)",
+        "StrNargaCttngWing(5)",
+        "HvyNargacugaFang(6)",
+        "Narga Brain stem (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Vacuum Striker",
+      "attack": "184",
+      "element": "Water 270",
+      "sharpness": "SredSoraMyelTgre",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "3",
+      "type": "ln",
+      "create-cost": "7,500z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Pale Bone (2)",
+        "Rubbery Hide (1)",
+        "FlynMealPassReg (2)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Hyper Vacuum"
+      ]
+    },
+    {
+      "name": "Hyper Vacuum",
+      "attack": "253",
+      "element": "Water 340",
+      "sharpness": "SredMoraSyelBgreSbluTblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "6",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "45,000z",
+      "upgrade-from": "Vacuum Striker",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Pale Khezu Steak (2)",
+        "Dragonwood (2)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Vermillion Rim",
+      "attack": "368",
+      "element": "Dragon 150",
+      "sharpness": "SredSoraMyelMgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "5",
+      "type": "ln",
+      "create-cost": "40,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Lao-Shan Horn (2)",
+        "Lao-Shan Shell (3)",
+        "Gaoren Shell (4)",
+        "Commendation (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": [
+        "Dragonic Rim"
+      ]
+    },
+    {
+      "name": "Dragonic Rim",
+      "attack": "414",
+      "element": "Dragon 200",
+      "sharpness": "SredSoraMyelBgre",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "7",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "85,000z",
+      "upgrade-from": "Vermillion Rim",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lao-Shan Carapace (3)",
+        "Lao Shan Scale+ (6)",
+        "Gaoren Spine (6)"
+      ],
+      "upgrade-to": [
+        "Sealed Dragonlance"
+      ]
+    },
+    {
+      "name": "Sealed Dragonlance",
+      "attack": "437",
+      "element": "Dragon 300",
+      "sharpness": "SredSoraMyelBgreSblu",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "8",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "95,000z",
+      "upgrade-from": "Dragonic Rim",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lao-Shan Ruby (1)",
+        "Gaoren Thoracic (4)",
+        "Gaoren Claw (8)"
+      ],
+      "upgrade-to": [
+        "DragonSealer \"Virtue\""
+      ]
+    },
+    {
+      "name": "DragonSealer \"Virtue\"",
+      "attack": "529",
+      "element": "Dragon 320",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "120,000z",
+      "upgrade-from": "Sealed Dragonlance",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "Lao Shan Heavy Carapace (3)",
+        "Lao Shan Thick Scale (6)",
+        "Gaoren Thoracic (4)"
+      ],
+      "upgrade-to": [
+        "DragonSealer \"Null\""
+      ]
+    },
+    {
+      "name": "DragonSealer \"Null\"",
+      "attack": "575",
+      "element": "Dragon 340",
+      "sharpness": "TredMoraSyelBgreMbluSwhi",
+      "affinity": "25%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "N/A",
+      "upgrade-cost": "140,000z",
+      "upgrade-from": "DragonSealer \"Virtue\"",
+      "create-mats": "N/A",
+      "upgrade-mats": [
+        "LaoShanHvnlyScl (1)",
+        "Azure LaoS Claw (4)",
+        "Hard Gaoren Claw (4)",
+        "Commendation S (1)"
+      ],
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Ukanlos Calamity",
+      "attack": "805",
+      "element": "Ice 120",
+      "sharpness": "BredSoraSyelMgreTblu",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "150,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "UkanlosUnderscl (8)",
+        "HvyUkanlosShell (4)",
+        "Hvy Ukanlos Tail (2)",
+        "Ukanlos Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Iron Lance G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Iron Ore (40)",
+        "Disk Stone (25)",
+        "Eltalite Ore (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Long Tusk G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Lg Monster Bone (20)",
+        "Bone (50)",
+        "Hvy Monster Bone (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Tarnished Lance G",
+      "attack": "736",
+      "element": "N/A",
+      "sharpness": "BredSoraSyel",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Ruststone Rod (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Spiked Spear G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Eltalite Ore (10)",
+        "Hvy Monster Bone (10)",
+        "Killer Beetle (20)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Rampart G",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Lightcrystal (10)",
+        "Machalite Ore (20)",
+        "Mellanje Ore (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Valhalla G",
+      "attack": "598",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Purecrystal (5)",
+        "Dragonite Ore (20)",
+        "Ice Crystal (20)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Fragrance G",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSbluTblu",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Dobiscus (10)",
+        "Giant Corn (5)",
+        "Ancient Dragonmoss (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Requiem Spear G",
+      "attack": "529",
+      "element": "Sleep 260",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Sleep Sac (15)",
+        "SpecPlesiothFin+ (8)",
+        "Sleepyfish (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Dark Spear G",
+      "attack": "529",
+      "element": "Paralysis 200",
+      "sharpness": "SredSoraMyelBgreSbluMwhiMpur",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "HorneturRazrWng (5)",
+        "Hornetaur Head (5)",
+        "QueenVespoidShl (2)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bulldrome Spear G",
+      "attack": "690",
+      "element": "N/A",
+      "sharpness": "SredSoraByelMgreSblu",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Bullfango Head (5)",
+        "Bulldrome Hide+ (8)",
+        "Bullfango Pelt+ (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Bone Claw Lance G",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreTgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "HrdHermitaurClaw (3)",
+        "Hermitaur Claw+ (6)",
+        "Razor Claw (8)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Trident G",
+      "attack": "506",
+      "element": "Paralysis 300",
+      "sharpness": "BredSoraSyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Thunder Sac (10)",
+        "SpecRubberyHide+ (7)",
+        "Thunderbug (20)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gatling Lance G",
+      "attack": "598",
+      "element": "Fire 160",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Eltalite Ore (15)",
+        "Gunpowder (20)",
+        "FireWyvrn BrainStm (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Venom Lance G",
+      "attack": "598",
+      "element": "Poison 200",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Basarios Tears (5)",
+        "HvyBasariosShell (8)",
+        "DeadlyPoisonSac (8)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Crimson War Pike G",
+      "attack": "575",
+      "element": "Fire 300",
+      "sharpness": "BredMoraSyelMgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Top-GrdRedHorn (3)",
+        "Monoblos Thrcic (5)",
+        "Eltalite Ore (15)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Diablo Spear G",
+      "attack": "667",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "StoutWarpedHorn (2)",
+        "HvyDiablosSpine (4)",
+        "Big Wyvern Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Native Spear G",
+      "attack": "391",
+      "element": "Poison 450",
+      "sharpness": "BredSoraSyelMgreSbluMwhiSpur",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Master's Skull (3)",
+        "Iodrome Skull (5)",
+        "DeadlyPoisonSac (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Belt Lance G",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Expert Ticket (10)",
+        "Kirin Coin (6)",
+        "Legend Coin G (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Undertaker G",
+      "attack": "667",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreSbluSwhi",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Ancientstone Rod (3)",
+        "ElderDragonBlood (10)",
+        "Big Wyvern Stone (1)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Knight Spear G",
+      "attack": "621",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Carbalite Ore (15)",
+        "Eltalite Ore (7)",
+        "Velociprey Hide+ (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hard Bone Lance G",
+      "attack": "667",
+      "element": "N/A",
+      "sharpness": "MredSoraMyelMgreTblu",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Massive Bone (7)",
+        "Mellanje Ore (7)",
+        "Giant Bone (20)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Roaring Wyvern G",
+      "attack": "598",
+      "element": "Dragon 100",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Dragonite Ore (15)",
+        "Union Ore (10)",
+        "HvyBlkGraviosShl(10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Great Ogre Tusk G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "MredSoraByelSgreSbluMwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Hvy Monster Bone (8)",
+        "Monster Bone+ (15)",
+        "Ioprey Hide+ (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Barbarian Tusk G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "BredSoraSyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Stout Bone (10)",
+        "HvyDiablosSpine (3)",
+        "Phantom Butterfly (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Noble Fragrance G",
+      "attack": "598",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "Dobiscus (10)",
+        "Eltalite Ore (8)",
+        "HrdCongalalaPlt+ (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Hyper Vacuum G",
+      "attack": "368",
+      "element": "Water 340",
+      "sharpness": "MredSoraMyelMgreSbluMwhiSpur",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "KhezuSpecialCut (2)",
+        "Ancient Dragonwood (2)",
+        "FlynMealPassPlus (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Aqua Spear G",
+      "attack": "552",
+      "element": "Water 400",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "SpecPlesiothFin+ (6)",
+        "Plesioth Scale+ (10)",
+        "Plesioth Fin (15)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Emerald Spear G",
+      "attack": "529",
+      "element": "Water 450",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "OOO",
+      "rarity": "9",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "SpecGrnPlesioFn+ (4)",
+        "Grn Plsioth Scl+ (10)",
+        "Grn Plesioth Fin+(15)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Grayburg Javelin G",
+      "attack": "644",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreMbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "ThckDaoraDrgnScl (5)",
+        "Carbalite Ore (15)",
+        "Fire Stone (10)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Sanctioned Gunlance G",
+      "attack": "575",
+      "element": "Fire 250",
+      "sharpness": "SredMoraSyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Firecell Stone (10)",
+        "FireWyvern Marrow (10)",
+        "Blazing Fire Sac (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Ceanataur Piercer G",
+      "attack": "575",
+      "element": "N/A",
+      "sharpness": "SredMoraSyelBgreSbluMwhiSpur",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation G (1)",
+        "HrdCeanataurClaw (3)",
+        "Ceanataur Claw+ (6)",
+        "Ceanataur Leg (8)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Ceramic Blos Lance G",
+      "attack": "575",
+      "element": "Water 240",
+      "sharpness": "SredMoraSyelBgreSbluMwhiSpur",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Top-GrdPlatHorn (3)",
+        "WhtMonoblosThora (5)",
+        "HvyDiablosSpine (3)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Gravios Spear G",
+      "attack": "575",
+      "element": "Poison 270",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "HvyGraviosCpc (8)",
+        "Poison Sac (20)",
+        "Gravios BrainStm (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Black Gravios Spear G",
+      "attack": "552",
+      "element": "Fire 360",
+      "sharpness": "MredSoraMyelMgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "O--",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "HvyBlkGraviosShl (8)",
+        "Firecell Stone (15)",
+        "Gravios BrainStm (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Spear of Prominence G",
+      "attack": "529",
+      "element": "Fire 460",
+      "sharpness": "SredSoraByelBgreSbluSwhi",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "OO-",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "LthrRathalos Tail (3)",
+        "Rathalos Hvy Cpc (5)",
+        "Rathalos Plate (5)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    },
+    {
+      "name": "Sealed Dragonlance G",
+      "attack": "552",
+      "element": "Dragon 300",
+      "sharpness": "SredSoraMyelBgreSbluSwhi",
+      "affinity": "20%",
+      "slots": "---",
+      "bonus": "---",
+      "rarity": "10",
+      "type": "ln",
+      "create-cost": "100,000z",
+      "upgrade-cost": "N/A",
+      "upgrade-from": "N/A",
+      "create-mats": [
+        "Commendation S (1)",
+        "Lao-Shan's Shell (7)",
+        "Lao-Shan'sHvyShl (3)",
+        "HvyGaorenShl (3)"
+      ],
+      "upgrade-mats": "N/A",
+      "upgrade-to": "N/A"
+    }
+  ]
+}
