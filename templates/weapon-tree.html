@@ -37,10 +37,10 @@
             class="row"
             style="padding-left: {{ 26 * (loop.index - 1) }}px;"
             {% if is_external %}
-              href="/blacksmith/{{ data['siblingWeapon'] }}"
+              href="/blacksmith/{{ data['siblingWeapon'] }}/details/{{ weaponSlug }}/"
               data-turbo-frame="_top"
             {% else %}
-              href="/blacksmith/hunting-horn/details/{{ weaponSlug }}/"
+              href="/blacksmith/{{ page.extra['type'] }}/details/{{ weaponSlug }}/"
               data-turbo-frame="weapon_details"
             {% endif %}
           >
