@@ -140,7 +140,6 @@ crafting_files.each do |path|
         create_mats = value["create-mats"]
       end
 
-      puts slug
       File.write("#{File.dirname(path)}/details/" + slug + ".md", output.result(binding))
     end
   end
