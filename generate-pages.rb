@@ -65,7 +65,7 @@ WEAPON_IMAGE = {
 }
 
 def slugify(value)
-  value = value.downcase.strip.gsub(/[\s'\.]{1}/, '-').gsub('+', '-plus')
+  value = value.downcase.strip.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-").gsub(/[\s\,\.]{1}/, '-').gsub(/[\'\(\)]/, "").gsub('+', '-plus')
   value = value.gsub('ä','a').gsub('ö','o').gsub('ü','u')
 end
 
