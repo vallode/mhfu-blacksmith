@@ -28,7 +28,23 @@
                 {% endfor %}
               </p>
             {% endif -%}
-            <p>Affinity: <span id="weaponAffinity">{{ page.extra["affinity"] }}</span></p>
+            {%- set affinity = page.extra["affinity"] %}
+            <p>
+              Affinity:
+              <span
+                id="weaponAffinity"
+                class="
+                {% if affinity is starting_with('-') %}
+                  negative
+                {% elif affinity is starting_with('0')%}
+                {% else %}
+                  positive
+                {% endif %}
+                "
+              >
+                {{ page.extra["affinity"] }}
+              </span>
+            </p>
             <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
           </div>
           <div id="requirements">
@@ -59,14 +75,18 @@
     document.title = `MHFU - ${event.srcElement.querySelector("#weaponName").innerText}`
   })
 
+  // TODO: Fix for properly avoiding subsequent turbo frame loads.
   window.addEventListener("turbo:frame-load", (event) => {
     const components = window.location.pathname.split("/")
     const weaponId = components.pop() || components.pop()
-    event.srcElement.querySelector(`#${weaponId}`).scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-      inline: "center"
-    })
+
+    if (event.srcElement.querySelector(`#${weaponId}`)) {
+      event.srcElement.querySelector(`#${weaponId}`).scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center"
+      })
+    }
   })
 
   // TODO: Fix this hacky repositioning logic.
@@ -100,9 +120,9 @@
   // TODO: Improve this hacky zoom.
   weapon_image_container.addEventListener("wheel", event => {
     if (event.deltaY < 0) {
-      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth + 25, 220), 950)}px`
+      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth + 35, 220), 950)}px`
     } else if (event.deltaY > 0) {
-      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth - 25, 220), 950)}px`
+      weapon_image.style.width = `${Math.min(Math.max(weapon_image.offsetWidth - 35, 220), 950)}px`
     }
   })
 </script>
