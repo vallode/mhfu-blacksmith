@@ -112,6 +112,7 @@ div {
   flex-direction: column;
   flex: 1 1 0%;
   height: 100%;
+  overflow: hidden;
 }
 
 .weaponDetails {
@@ -143,14 +144,14 @@ div {
 
 #weaponCrafting {
   overflow: hidden;
+  position: relative;
   padding: .8rem;
 }
 
 #weaponCrafting img {
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
   width: 65%;
+  top: 0;
+  left: 0;
   position: relative;
 }
 

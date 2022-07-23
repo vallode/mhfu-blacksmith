@@ -9,7 +9,6 @@
     </turbo-frame>
   {% endfilter -%}
 
-  <div>
     {% block weapon__details -%}
       <turbo-frame id="weapon_details" data-turbo-action="replace">
         <div class="card" id="weaponDetails">
@@ -47,12 +46,11 @@
         </div>
         <div class="card" id="weaponCrafting">
           <div class="weaponImageContainer">
-            <img src="/images/weapons/{{ page.extra['image'] }}.png" alt="">
+          <img draggable="false" src="/images/weapons/{{ page.extra['image'] }}.png" alt="">
           </div>
         </div>
       </turbo-frame>
     {% endblock weapon__details -%}
-  </div>
 {% endblock content -%}
 
 {%- block scripts -%}
