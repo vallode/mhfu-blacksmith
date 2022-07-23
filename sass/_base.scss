@@ -236,9 +236,17 @@ img:before {
   background-repeat: no-repeat;
 }
 
+.icon.icon--great-sword::before,
+.icon.icon--long-sword::before, 
+.icon.icon--sword-and-shield::before, 
+.icon.icon--dual-blades::before, 
 .icon.icon--hammer::before,
 .icon.icon--hunting-horn::before,
-.icon.icon--great-sword::before {
+.icon.icon--lance::before, 
+.icon.icon--gunlance::before, 
+.icon.icon--light-bowgun::before, 
+.icon.icon--heavy-bowgun::before, 
+.icon.icon--bow::before { 
   content: '';
   display: block;
   width: 100%;
@@ -259,6 +267,7 @@ img:before {
 .icon.icon--long-sword::before {
   mask-image: url("/images/long-sword.png");
 }
+
 .icon.icon--sword-and-shield::before {
   mask-image: url("/images/sword-and-shield.png");
 }
