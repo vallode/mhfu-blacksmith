@@ -1,7 +1,7 @@
 {% extends "weapon-tree.html" %}
 
 {% block weapon__details %}
-<turbo-frame id="weapon_details" data-turbo-action="advance">
+<turbo-frame id="weapon_details" data-turbo-action="replace">
   <div class="card" id="weaponDetails">
     <div class="row rarity-{{ page.extra['rarity'] }}">
       <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
