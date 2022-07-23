@@ -3235,12 +3235,12 @@
       "notes": "Unknown",
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
       "type": "hm",
-      "create-cost": "40.000z",
-      "upgrade-cost": "40.000z",
+      "create-cost": "5,600z",
+      "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "s Claw (2)",
-        "s Shell (5)",
+        "Lao-Shan's Claw (2)",
+        "Lao-Shan's Shell (5)",
         "Monster Bone+ (5)"
       ],
       "upgrade-mats": "N/A",
@@ -3265,7 +3265,7 @@
       "create-mats": "N/A",
       "upgrade-mats": [
         "Lao-Shan's Claw (2)",
-        "Gaoren Spine(3)",
+        "Gaoren Spine (3)",
         "ElderDragonBlood (2)"
       ],
       "upgrade-to": [
