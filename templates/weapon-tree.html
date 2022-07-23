@@ -17,7 +17,7 @@
       </template>
       {% for row in data["map"] %}
         {% for weapon in row %}
-          {% set weaponSlug = weapon | replace(from='+', to='-plus') | slugify %}
+          {% set weaponSlug = weapon | replace(from='+', to='-plus') | split(pat="(") | first | slugify %}
           {% set is_external = weapon is matching("\(([A-Za-z]{2,})\)") %}
 
           {% if weapon == "" or weapon == "+" %}
