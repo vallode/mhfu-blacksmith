@@ -1,45 +1,56 @@
-{% extends "weapon-tree.html" %}
+{% extends "base.html" %}
 
-{% block weapon__details %}
-<turbo-frame id="weapon_details" data-turbo-action="replace">
-  <div class="card" id="weaponDetails">
-    <div class="row rarity-{{ page.extra['rarity'] }}">
-      <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
-      <p id="weaponName">{{ page.extra["name"] }}</p>
-      <p id="weaponCraftingCost">{{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}</p>
-    </div>
-    <div class="weaponDetails">
-      <div class="stats">
-        <p>Attack: <span id="weaponAttack">{{ page.extra["attack"] }}</span></p>
-        {% if page.extra["element"] %}
-          <p>
-            Element:
-            {% for element in page.extra["element"] %}
-              <span class="{{ element['name'] | lower }}">{{ element["name"] }} {{ element["attack"] }}</span>
-            {% endfor %}
-          </p>
-        {% endif %}
-        <p>Affinity: <span id="weaponAffinity">{{ page.extra["affinity"] }}</span></p>
-        <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
-      </div>
-      <div id="requirements">
-        {% if page.extra["create-mats"] %}
-          {% for material in page.extra["create-mats"] %}
-            <p>{{ material }}</p>
-          {% endfor %}
-        {% else %}
-          {% for material in page.extra["upgrade-mats"] %}
-            <p>{{ material }}</p>
-          {% endfor %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="card" id="weaponCrafting">
-    <div class="weaponImageContainer">
-      <img src="/images/weapons/{{ page.extra['image'] }}.png" alt="">
-    </div>
-  </div>
-</turbo-frame>
+{% block body__attr %}class="weapon-tree"{% endblock body__attr %}
+  
+{% block content -%}
+  {% filter spaceless -%}
+    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}">
+      <div class="card card--list"></div>
+    </turbo-frame>
+  {% endfilter -%}
 
-{% endblock weapon__details %}
+  <div>
+    {% block weapon__details -%}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card" id="weaponDetails">
+          <div class="row rarity-{{ page.extra['rarity'] }}">
+            <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
+            <p id="weaponName">{{ page.extra["name"] }}</p>
+            <p id="weaponCraftingCost">{{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}</p>
+          </div>
+          <div class="weaponDetails">
+            <div class="stats">
+              <p>Attack: <span id="weaponAttack">{{ page.extra["attack"] }}</span></p>
+              {% if page.extra["element"] -%}
+                <p>
+                  Element:
+                  {% for element in page.extra["element"] %}
+                    <span class="{{ element['name'] | lower }}">{{ element["name"] }} {{ element["attack"] }}</span>
+                  {% endfor %}
+                </p>
+              {% endif -%}
+              <p>Affinity: <span id="weaponAffinity">{{ page.extra["affinity"] }}</span></p>
+              <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+            </div>
+            <div id="requirements">
+              {%- if page.extra["create-mats"] %}
+                {% for material in page.extra["create-mats"] -%}
+                  <p>{{ material }}</p>
+                {% endfor -%}
+              {% else %}
+                {%- for material in page.extra["upgrade-mats"] -%}
+                  <p>{{ material }}</p>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="card" id="weaponCrafting">
+          <div class="weaponImageContainer">
+            <img src="/images/weapons/{{ page.extra['image'] }}.png" alt="">
+          </div>
+        </div>
+      </turbo-frame>
+    {% endblock weapon__details -%}
+  </div>
+{% endblock content -%}
