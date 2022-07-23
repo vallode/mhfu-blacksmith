@@ -4,7 +4,7 @@
   
 {% block content -%}
   {% filter spaceless -%}
-    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}">
+    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
       <div class="card card--list"></div>
     </turbo-frame>
   {% endfilter -%}
@@ -54,3 +54,21 @@
     {% endblock weapon__details -%}
   </div>
 {% endblock content -%}
+
+{%- block scripts -%}
+<script>
+  window.addEventListener("turbo:render", (event) => {
+    document.title = `MHFU - ${event.srcElement.querySelector("#weaponName").innerText}`
+  })
+
+  window.addEventListener("turbo:frame-load", (event) => {
+    const components = window.location.pathname.split("/")
+    const weaponId = components.pop() || components.pop()
+    event.srcElement.querySelector(`#${weaponId}`).scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center"
+    })
+  })
+</script>
+{%- endblock scripts %}
