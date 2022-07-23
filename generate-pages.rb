@@ -2,12 +2,11 @@ require 'json'
 require 'find'
 require 'erb'
 
-FILE_TEMPLATE = %{
-  +++
+FILE_TEMPLATE = %{+++
   template = "weapon.html"
   slug = "<%= slug %>"
   [extra]
-  name = "<%= name %>"
+  name = <%= name.to_json %>
   type = "<%= type %>"
   image = "<%= image %>"
   rarity = <%= rarity %>
@@ -26,8 +25,8 @@ FILE_TEMPLATE = %{
   <% end %>
   <% if upgrade_from and upgrade_from.kind_of?(Array) %>
   upgrade-from = <%= upgrade_from %>
-  <% else %>
-  upgrade-from = "<%= upgrade_from %>"
+  <% elsif upgrade_from %>
+  upgrade-from = <%= upgrade_from.to_json %>
   <% end %>
   <% if upgrade_to %>
   upgrade-to = <%= upgrade_to %>
@@ -68,9 +67,10 @@ def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
   value = value.gsub(/\s\&\s/, " ")
-  value = value.gsub(/[\'\(\)]/, "")
+  value = value.gsub(/[\'\"\(\)]/, "")
+  value = value.gsub(/\.\s/, "-")
   value = value.gsub(/[\s\,\.]{1}/, '-')
-  value = value.gsub("ä", "a").gsub("ö", "o").gsub("ü", "u")
+  value = value.gsub("ä", "a").gsub("ö", "o").gsub("ü", "u").gsub("á", "a")
   value = value.gsub("+", "-plus")
 end
 
@@ -128,7 +128,7 @@ crafting_files.each do |path|
       end
 
       if value["upgrade-from"] != "N/A"
-        upgrade_from = value["upgrade-from"]
+        upgrade_from = value['upgrade-from']
       end
 
       if value["upgrade-to"] != "N/A"
