@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
+{% block body__attr %}
+  class="blacksmith-page"
+{% endblock body__attr %}
+
 {% block content -%}
   <img class="blacksmith__title" src="/images/blacksmith.png" height="48" alt="Blacksmith">
 
   <hr class="border">
 
-  <div class="card table blacksmith__table">
+  <div class="card blacksmith-page__table">
     {%- for page in section.pages %}
       <a class="row" href="/blacksmith/{{ page.extra['type'] }}/">
         <div class="icon"><img src="/images/{{ page.extra['type'] }}.png" alt=""></div>

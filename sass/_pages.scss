@@ -1,0 +1,54 @@
+.landing-page {
+
+  &__menu {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    max-width: 39rem;
+    height: 100%;
+    width: 39rem;
+  }
+}
+
+.blacksmith-page {
+  .card {
+    width: 100%;
+  }
+
+  .blacksmith-page__table {
+    flex-direction: column;
+
+    a {
+      align-items: center;
+      display: flex;
+      flex: 0 0 38px;
+      height: 38px;
+
+      &:hover {
+        background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+      }
+    }
+  }
+}
+
+.weapon-tree-page,
+.weapon-details-page {
+  flex-direction: row;
+
+  #weapon_tree {
+    overflow: hidden;
+    flex: 1 1 0%;
+    height: 100%;
+  }
+}
+
+.weapon-details-page {
+  #weapon_details {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
