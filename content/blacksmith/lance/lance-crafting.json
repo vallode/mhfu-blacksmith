@@ -2784,7 +2784,9 @@
       "create-cost": "1,000z",
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
-      "create-mats": [],
+      "create-mats": [
+        "Ancient StoneRod (1)"
+      ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
         "Weathered Spear"
