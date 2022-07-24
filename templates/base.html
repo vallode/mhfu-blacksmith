@@ -17,10 +17,80 @@
   {%- block head__extra -%}{%- endblock head__extra -%}
 
   <link rel="stylesheet" href="/style.css">
-  <script src="/vendor/javascript/turbo.es2017-esm.js" type="module"></script>
+  <script src="/vendor/javascript/turbo.js" type="module"></script>
 </head>
 <body {% block body__attr -%}{% endblock body__attr -%}>
   {% block content -%}{% endblock content -%}
+
+  <script type="module">
+    import { Application, Controller } from "/vendor/javascript/stimulus.js"
+    window.Stimulus = Application.start()
+
+    // TODO: Improve this hacky zoom.
+    Stimulus.register("image-zoom", class extends Controller {
+      zoom(event) {
+        if (event.deltaY < 0) {
+          this.element.style.width = `${Math.min(Math.max(this.element.offsetWidth + 35, 220), 950)}px`
+        } else if (event.deltaY > 0) {
+          this.element.style.width = `${Math.min(Math.max(this.element.offsetWidth - 35, 220), 950)}px`
+        }
+      }
+    })
+    
+    // TODO: Fix this hacky repositioning logic.
+    Stimulus.register("image-position", class extends Controller {
+      static targets = ["image"]
+
+      initialize() {
+        this.boundHandleMouseDown = this.handleMouseDown.bind(this)
+        this.boundHandleMouseMove = this.handleMouseMove.bind(this)
+        this.boundHandleMouseUp = this.handleMouseUp.bind(this)
+
+        this.pos1, this.pos2, this.pos3, this.pos4 = 0
+      }
+
+      connect() {
+        this.imageTarget.addEventListener("mousedown", this.boundHandleMouseDown)
+        document.addEventListener("mouseup", this.boundHandleMouseUp)
+        document.addEventListener("mousemove", this.boundHandleMouseMove)
+      }
+
+      disconnect() {
+        this.imageTarget.removeEventListener("mousedown", this.boundHandleMouseDown)
+        document.removeEventListener("mouseup", this.boundHandleMouseUp)
+        document.removeEventListener("mousemove", this.boundHandleMouseMove)
+      }
+
+      handleMouseDown() {
+        this.imageTarget.classList.add("dragging")
+      }
+
+      handleMouseMove(event) {
+        this.pos1 = this.pos3 - event.clientX;
+        this.pos2 = this.pos4 - event.clientY;
+        this.pos3 = event.clientX;
+        this.pos4 = event.clientY;
+        
+        if (this.imageTarget.classList.contains("dragging")) {     
+          this.imageTarget.style.left = `${this.imageTarget.offsetLeft - 8 - this.pos1}px`
+          this.imageTarget.style.top = `${this.imageTarget.offsetTop - 8 - this.pos2}px`
+        }
+      }
+
+      handleMouseUp() {
+        this.imageTarget.classList.remove("dragging")
+      }
+    })
+
+    Stimulus.register("weapon-page", class extends Controller {
+      connect() {}
+
+      toggle() {
+        this.element.classList.toggle("create-mats")
+        this.element.classList.toggle("upgrade-mats")
+      }
+    })
+  </script>
   {% block scripts -%}{% endblock scripts -%}
 
   {% if get_env(name="TERA_DEBUG", default="") != "" -%}
