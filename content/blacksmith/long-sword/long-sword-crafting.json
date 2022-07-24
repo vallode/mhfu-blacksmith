@@ -2605,7 +2605,12 @@
       "create-cost": "100,000z",
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
-      "create-mats": [],
+      "create-mats": [
+        "Commendation G (1)",
+        "Blango Pelt+ (10)",
+        "Sharp Claw (20)",
+        "Piercing Claw (8)"
+      ],
       "upgrade-mats": [],
       "upgrade-to": []
     },
