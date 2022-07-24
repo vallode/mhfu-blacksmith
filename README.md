@@ -11,28 +11,28 @@ Going onto any weapon tree page on hunstermonter (i.e https://hunstermonter.net/
 
 ```javascript
 arrWeapons.flatMap((weapon) => {
-	newWeapon = {}
-	Object.assign(newWeapon, {
-		"name": weapon["Info"][1],
-		"attack": weapon["Info"][2],
-		"max-attack": weapon["Info"][3],
-		"rapid-fire": weapon["Info"][10] === '-' ? "N/A" : weapon["Info"][10],
-		"affinity": weapon["Info"][8],
-		"slots": weapon["Info"][9],
-		"defense": weapon["Info"][4] === '-' ? "N/A" : weapon["Info"][4],
-		"rarity": weapon["Info"][7],
-		"type": "lbg",
-		"reload": weapon["Info"][5],
-		"recoil": weapon["Info"][6],
-		"ammo": weapon["Info"][11].split("|"),
-		"status-ammo": weapon["Info"][12].split("|"),
-		"element-ammo": weapon["Info"][13].split("|"),
-		"misc-ammo": weapon["Info"][14].split("|"),
-		"create-cost": weapon["Info"][15],
-	})
-	newWeapon["improve-mats"] = weapon["Improve"] || "N/A"
-	newWeapon["create-mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
-	return newWeapon
+  newWeapon = {}
+  Object.assign(newWeapon, {
+    "name": weapon["Info"][1],
+    "attack": weapon["Info"][2],
+    "max-attack": weapon["Info"][3],
+    "rapid-fire": weapon["Info"][10] === '-' ? "N/A" : weapon["Info"][10],
+    "affinity": weapon["Info"][8],
+    "slots": weapon["Info"][9],
+    "defense": weapon["Info"][4] === '-' ? "N/A" : weapon["Info"][4],
+    "rarity": weapon["Info"][7],
+    "type": "lbg",
+    "reload": weapon["Info"][5],
+    "recoil": weapon["Info"][6],
+    "ammo": weapon["Info"][11].split("|"),
+    "status-ammo": weapon["Info"][12].split("|"),
+    "element-ammo": weapon["Info"][13].split("|"),
+    "misc-ammo": weapon["Info"][14].split("|"),
+    "create-cost": weapon["Info"][15],
+  })
+  newWeapon["improve-mats"] = weapon["Improve"] || "N/A"
+  newWeapon["create-mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
+  return newWeapon
 })
 ```
 
