@@ -21,7 +21,7 @@
             {{ page.extra["name"] }}
           </p>
 
-          <p id="weapon_cafting_cost">
+          <p id="weapon_cost">
             {{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
           </p>
         </div>
@@ -53,15 +53,27 @@
               {% endfor %}
             {% endif -%}
           </div>
-          <div class="requirements">
+          <div class="requirements create-mats">
             {%- if page.extra["create-mats"] %}
-              {% for material in page.extra["create-mats"] -%}
-                <p>{{ material }}</p>
-              {% endfor -%}
-            {% else %}
-              {%- for material in page.extra["upgrade-mats"] -%}
-                <p>{{ material }}</p>
-              {% endfor %}
+              <span class="create-mats">
+                {% for material in page.extra["create-mats"] -%}
+                  <p>{{ material }}</p>
+                {% endfor -%}
+              </span>
+            {% endif %}
+
+            {% if page.extra["upgrade-mats"] %}
+              <span class="upgrade-mats">
+                {%- for material in page.extra["upgrade-mats"] -%}
+                  <p>{{ material }}</p>
+                {% endfor %}
+              </span>
+            {% endif %}
+
+            {% if page.extra["create-mats"] and page.extra["upgrade-mats"] %}
+              <div class="weapon-card__navigation">
+                <img src="/images/arrow.png" class="next">
+              </div>
             {% endif %}
           </div>
         </div>
@@ -77,12 +89,19 @@
 
 {%- block scripts -%}
 <script>
+  console.log(document.querySelector(".weapon-card__navigation .next"))
+  document.querySelector(".weapon-card__navigation .next").addEventListener("click", (event) => {
+    console.log("clicked")
+    document.querySelector(".weapon-card .requirements").classList.toggle("create-mats")
+    document.querySelector(".weapon-card .requirements").classList.toggle("upgrade-mats")
+  })
+
   /**
    * Every time turbo loads a weapon we want to change the title to the weapon's
    * name, this reflects in the user browsing history.
    */
   window.addEventListener("turbo:render", (event) => {
-    document.title = `MHFU - ${event.srcElement.querySelector("#weaponName").innerText}`
+    document.title = `MHFU - ${event.srcElement.querySelector("#weapon_name").innerText}`
   })
 
   // TODO: Fix for properly avoiding subsequent turbo frame loads.

@@ -217,8 +217,9 @@ $element-types: (
     display: flex;
     flex-direction: row;
     gap: 1.3rem;
-    margin: 2.6rem 0;
+    height: 100%;
     justify-content: space-between;
+    margin: 2rem 0 0;
 
     .stats,
     .requirements {
@@ -238,6 +239,26 @@ $element-types: (
     .requirements {
       text-align: right;
       color: white;
+
+      &.upgrade-mats .upgrade-mats,
+      &.create-mats .create-mats {
+        display: block;
+      }
+      
+      &.upgrade-mats .create-mats,
+      &.create-mats .upgrade-mats {
+        display: none;
+      }
+
+      &.upgrade-mats .weapon-card__navigation::before {
+        content: 'Improve';
+        display: block;
+      }
+
+      &.create-mats .weapon-card__navigation::before {
+        content: 'Create';
+        display: block;
+      }
     }
 
     #weaponSlots {
@@ -250,6 +271,18 @@ $element-types: (
 
     span.positive {
       color: #52F152;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 9px;
+    margin-top: auto;
+
+    .next {
+      transform: scaleX(-1);
     }
   }
 }
