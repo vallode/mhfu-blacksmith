@@ -1,5 +1,5 @@
 html {
-  background: center / cover no-repeat url("/images/bg.png");
+  background: center / cover no-repeat url("/images/bg-opti.png");
   background-attachment: fixed;
   color: white;
   font-family: "Roboto Condensed", sans-serif;
@@ -14,7 +14,7 @@ body {
   height: 100%;
   font-size: 1.6rem;
   margin: 0;
-  padding: 1.3rem 3.4rem;
+  padding: 1.4rem 1.4rem 2.5rem;
 }
 
 a {
@@ -363,6 +363,10 @@ img:before {
   background: #BB84FB;
 }
 
+#weaponDetails .element {
+  color: #56FBFA;
+}
+
 .icon::after {
   content: '';
   position: absolute;
@@ -407,37 +411,38 @@ img:before {
 
 hr {
   border: 3px solid #6E905F;
+  margin: 1.3rem 0 2.2rem 0;
   width: 100%;
-  margin: 1.3rem 0;
 }
 
 hr.border {
-  height: 8px;
-  border: 0;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
   background-repeat: repeat-x;
-
+  background-size: 32px 16px;
+  border: 0;
+  height: 16px;
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
+  width: calc(100% + 2.8rem);
 }
 
 .landing {
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
   gap: 13px;
-  max-width: 484px;
-  width: 484px;
+  max-width: 390px;
+  width: 390px;
 }
 
 .blacksmith__title {
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
+  flex: 0 0 64px;
 }
 
 .blacksmith__table {
   flex: inherit;
-  margin: auto 0;
   height: auto;
 }
 

@@ -3,31 +3,29 @@
 {% block body__attr %}class="weapon-tree"{% endblock body__attr %}
   
 {% block content -%}
-  {% filter spaceless -%}
-    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
-      <div class="card card--list"></div>
-    </turbo-frame>
-  {% endfilter -%}
+  <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
+    <div class="card card--list"></div>
+  </turbo-frame>
 
   {% block weapon__details -%}
     <turbo-frame id="weapon_details" data-turbo-action="replace">
       <div class="card" id="weaponDetails">
         <div class="row rarity-{{ page.extra['rarity'] }}">
-          <div class="icon icon--{{ page.extra['type'] }} icon--large"><img src="/images/{{ page.components[1] }}.png" alt="?"></div>
-          <p id="weaponName">{{ page.extra["name"] }}</p>
-          <p id="weaponCraftingCost">{{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}</p>
+          <div class="icon icon--{{ page.extra['type'] }} icon--large">
+            <img src="/images/{{ page.components[1] }}.png" alt="?">
+          </div>
+
+          <p id="weaponName">
+            {{ page.extra["name"] }}
+          </p>
+
+          <p id="weaponCraftingCost">
+            {{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
+          </p>
         </div>
         <div class="weaponDetails">
           <div class="stats">
             <p>Attack: <span id="weaponAttack">{{ page.extra["attack"] }}</span></p>
-            {% if page.extra["element"] -%}
-              <p>
-                Element:
-                {% for element in page.extra["element"] %}
-                  <span class="{{ element['name'] | lower }}">{{ element["name"] }} {{ element["attack"] }}</span>
-                {% endfor %}
-              </p>
-            {% endif -%}
             {%- set affinity = page.extra["affinity"] %}
             <p>
               Affinity:
@@ -46,6 +44,13 @@
               </span>
             </p>
             <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+            {% if page.extra["element"] -%}
+              {% for element in page.extra["element"] %}
+                <p class="element">
+                  {{ element["name"] }} Attrib: {{ element["attack"] }}
+                </p>
+              {% endfor %}
+            {% endif -%}
           </div>
           <div id="requirements">
             {%- if page.extra["create-mats"] %}
@@ -71,6 +76,10 @@
 
 {%- block scripts -%}
 <script>
+  /**
+   * Every time turbo loads a weapon we want to change the title to the weapon's
+   * name, this reflects in the user browsing history.
+   */
   window.addEventListener("turbo:render", (event) => {
     document.title = `MHFU - ${event.srcElement.querySelector("#weaponName").innerText}`
   })
