@@ -15,3 +15,6 @@ clean:
 
 build: clean generate-pages
 	zola build
+
+deploy: build
+	netlify deploy --site mhfu-blacksmith --prod --message "`git log --oneline --format=%s -n 1`" --dir public
