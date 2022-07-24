@@ -14,7 +14,8 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Iron Ore x3"
+        "Iron Ore (1)",
+        "Disc Stone (3)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
@@ -38,8 +39,8 @@
       "upgrade-from": "Buster Sword",
       "create-mats": [],
       "upgrade-mats": [
-        "Iron Ore x3",
-        "Disk Stone x2"
+        "Iron Ore (4)",
+        "Disk Stone (2)"
       ],
       "upgrade-to": [
         "Buster Blade",
@@ -62,9 +63,9 @@
       "upgrade-from": "Buster Sword+",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Iron Ore x6",
-        "Machalite Ore x1",
-        "Earth Crystal x5"
+        "Iron Ore (6)",
+        "Machalite Ore (1)",
+        "Earth Crystal (5)"
       ],
       "upgrade-to": [
         "Ravager Blade",
@@ -647,9 +648,9 @@
       "upgrade-from": "Buster Blade",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Pawprint Stamp x1",
-        "Paralysis Sac x4",
-        "FlynMealPassReg x2"
+        "Pawprint Stamp (1)",
+        "Paralysis Sac (4)",
+        "FlynMealPassReg (2)"
       ],
       "upgrade-to": [
         "Cat's Curse"
@@ -931,17 +932,19 @@
       "upgrade-cost": "1100z",
       "upgrade-from": "Buster Sword",
       "create-mats": [
-        "Giaprey Hide x6",
-        "Sharp Claw x4",
-        "Iron Ore x5",
-        "Brute Bone x3",
-        "orPlus Class Ticket x1",
-        "Giaprey Scale x1"
+        "Giaprey Hide (6)",
+        "Sharp Claw (4)",
+        "Iron Ore (5)",
+        "Brute Bone (3)"
+      ],
+      "shortcut-mats": [
+        "Plus Class Ticket (1)",
+        "Giaprey Scale (1)"
       ],
       "upgrade-mats": [
-        "Giaprey Scale x5",
-        "Sm Monster Bone x3",
-        "Carpenterbug x2"
+        "Giaprey Scale (5)",
+        "Sm Monster Bone (3)",
+        "Carpenterbug (2)"
       ],
       "upgrade-to": [
         "Silver Serpentblade"
@@ -1083,7 +1086,7 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Sm Monster Bone x3"
+        "Sm Monster Bone (3)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
@@ -2884,7 +2887,7 @@
       "create-mats": "N/A",
       "upgrade-mats": [
         "Hvy Tigrex Fang (5)",
-        "ThickTigrexScale(8)",
+        "ThickTigrexScale (8)",
         "HvnlyTigrexScale (1)"
       ],
       "upgrade-to": "N/A"
@@ -3914,7 +3917,7 @@
         "Commendation G (1)",
         "s Skull (5)",
         "Eltalite Ore (10)",
-        "Blazing Fire Sac(5)"
+        "Blazing Fire Sac (5)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
@@ -3957,8 +3960,8 @@
       "create-mats": [
         "Commendation S (1)",
         "SpecPlesiothFin+ (5)",
-        "ThckPlesiothScl(7)",
-        "Mega Demondrug(5)"
+        "ThckPlesiothScl (7)",
+        "Mega Demondrug (5)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
@@ -3980,7 +3983,7 @@
         "Commendation S (1)",
         "SpecGrnPlesioFn+ (5)",
         "ThckGrnPlesioScl (7)",
-        "Mega Demondrug(5)"
+        "Mega Demondrug (5)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
@@ -4045,7 +4048,7 @@
       "create-mats": [
         "Commendation S (1)",
         "AncientFlatstone (3)",
-        "ElderDragonBlood(10)",
+        "ElderDragonBlood (10)",
         "Big Wyvern Stone (1)"
       ],
       "upgrade-mats": "N/A",
@@ -4354,7 +4357,7 @@
         "Commendation S (1)",
         "Lao-Shan's Ruby (1)",
         "Rathalos Ruby (3)",
-        "Rathian Ruby(3)"
+        "Rathian Ruby (3)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
