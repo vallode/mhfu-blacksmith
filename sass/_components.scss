@@ -1,0 +1,255 @@
+.mfhu-card {}
+
+.card {
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: repeat repeat;
+  border-image-slice: 20 22 17 22 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAAA7CAYAAABR75kEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI8SURBVHgB7d1PTsJAFMfxV8NKdoSdMe64iAfAk7j0ECw9iR7Ai7AzhJ1xh9saSMDS9Ec77ZvaKd/PRvmTmUl4eW/6Cm1mZrl1l9W8HnOOWGOnuGbXOW4MEAgOSJPig/eXR2tqufqwNmLOEWvsFNfsMQeZAxLBAWmiXqhKYRfSk8fuu07MOWKNPbg1h3yuZA5IBAekiTkI2Q0PYdyYYw9lzW2PbIrIHJBk5giJ0ue39dowNIuqJ0M+VzIHJIID0v7MXudj8YfFPWVlYD7Xm4V1ROaARHBAKn9h5FRiptPp4e/8bkbJGKGv7feh7Ox2u+LTZ/FA5oBEcEC69D3EQ4k5lpc9SkzaxBGMjAGXcysh8jy/Pf6fZdmP/RPWUY+yAqk2cxR3s3ObGdJV3CKUjlIqRSsrxXQZ8p4mqTUkFbOO9igrkMqZgybYiJ19lls7NsGK59bOjlyilZViemuSUqvSoUcqDlmHSsljWkcIygokggNSL00wjx10k7RcNw/rCFMOjtOG5LRR2f59F5HNadpG2z4P2YzF7A2MdR1V2HNAon1+RUbVPk+xV1J+/9DWEYKyAon2+RVJqn3u0VL2XEfMVD2UdYSgrEAiOCANpn3eR5rso62d0jrq8FvZkeK3soiK4IDU+xWM0T+uYAx3BAcklysYvz4tOu+M4Wu52ojnuYIxHLg0wcZ+e4rUb6nRFpkDEsEByeUKxmbcADBg3NhjX5yDKxjDBcEByeWsrFFWQsaNPbbbHGQOSAQHpF/GNWF+amgBTgAAAABJRU5ErkJggg==");
+  border-image-width: 20px 22px 17px 22px;
+  border-style: solid;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  font-size: 2.6rem;
+  overflow: hidden;
+  padding: 2.6rem 2rem;
+  position: relative;
+  z-index: 1;
+
+  &[href]::after {
+    display: block;
+    visibility: hidden;
+    content: '';
+    height: calc(100% - 16px);
+    width: calc(100% - 20px);
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    z-index: 1;
+    background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+  }
+
+  &[href]:focus::after,
+  &[href]:hover::after {
+    visibility: visible;
+  }
+
+  &--weapon-tree {
+    height: 100%;
+    padding: 0.8rem 2rem;
+  }
+
+  p {
+    color: inherit;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.weapon-tree {
+  height: 100%;
+  overflow: auto;
+
+  &__row {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 38px;
+    height: 38px;
+    position: relative;
+    text-decoration: none;
+
+    &:hover {
+      background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+    }
+
+    &--external {
+      color: #c0c0c0;
+    }
+  }
+}
+
+$weapon-types: (
+  "great-sword",
+  "long-sword",
+  "sword-and-shield",
+  "dual-blades",
+  "hammer",
+  "hunting-horn",
+  "lance",
+  "gulance",
+  "light-bowgun",
+  "heavy-bowgun",
+  "bow",
+);
+
+$rarity-colors: (
+  4: #52F152,
+  5: #FD9DC8,
+  6: #54F1F1,
+  7: #F7A460,
+  8: #F9455C,
+  9: #F7C502,
+  10: #BB84FB,
+);
+
+$element-types: (
+  "fire",
+  "thunder",
+  "poison",
+  "water",
+  "ice",
+  "sleep",
+  "dragon",
+  "paralysis",
+);
+
+.icon {
+  display: flex;
+  flex: 0 0 2.6rem;
+  height: 26px;
+  margin-right: 9px;
+  position: relative;
+  width: 26px;
+
+  img {
+    position: relative;
+    height: 26px;
+    width: 26px;
+    top: 1px;
+  }
+
+  &--large,
+  &--large img {
+    width: 52px;
+    height: 52px;
+  }
+
+  &--large::before {
+    mask-size: 52px;
+  }
+
+  @each $value, $color in $rarity-colors {
+    &--rarity-#{$value}::before {
+      background: $color;
+    }
+  }
+
+  @each $weapon-name in $weapon-types {
+    &--#{$weapon-name}::before {
+      background-blend-mode: lighten;
+      background-position: 0 1px;
+      content: '';
+      display: block;
+      height: 100%;
+      mask-mode: alpha;
+      mask-position-y: 1px;
+      mix-blend-mode: darken;
+      position: absolute;
+      width: 100%;
+      z-index: 100;
+    }
+
+    &--#{$weapon-name}::before {
+      mask-image: url("/images/#{$weapon-name}.png");
+    }
+  }
+
+  @each $element-name in $element-types {
+    &--#{$element-name}::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background-position: bottom -2px right -2px;
+      background-repeat: no-repeat;
+    }
+
+    &--#{$element-name}::after {
+      background-image: url("/images/#{$element-name}.png");
+    }
+  }
+}
+
+.weapon-card {
+  flex: 1 1 50%;
+
+  &__preview {
+    flex: 1 1 50%;
+    padding: 8px;
+
+    &__container {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      left: 50%;
+      position: relative;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 65%;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    height: 38px;
+    flex: 0 0 38px;
+    color: white;
+    text-decoration: none;
+
+    & :last-child {
+      margin-left: auto;
+    }
+  }
+
+  &__details {
+    color: #EAEA4B;
+    display: flex;
+    flex-direction: row;
+    gap: 1.3rem;
+    margin: 2.6rem 0;
+    justify-content: space-between;
+
+    .stats,
+    .requirements {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .stats span {
+      color: white;
+    }
+
+    .stats .element {
+      color: #56FBFA;
+    }
+
+    .requirements {
+      text-align: right;
+      color: white;
+    }
+
+    #weaponSlots {
+      font-family: monospace;
+    }
+
+    span.negative {
+      color: #F9455C;
+    }
+
+    span.positive {
+      color: #52F152;
+    }
+  }
+}

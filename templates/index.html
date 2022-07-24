@@ -1,20 +1,24 @@
 {% extends "base.html" %}
 
+{% block body__attr %}
+  class="landing-page"
+{% endblock body__attr %}
+
 {% block content %}
-<img class="blacksmith__title" src="/images/blacksmith.png" height="48" alt="Blacksmith">
+  <img class="blacksmith__title" src="/images/blacksmith.png" height="48" alt="Blacksmith">
 
-<hr class="border">
+  <hr class="border">
 
-<div class="landing">
-  <a class="card" href="/blacksmith/" tabindex="0">
-    <p>1 Blacksmith</p>
-    <p>WEAPON TREES</p>
-  </a>
-  <a class="card">
-    <p>2 NO DATA</p>
-  </a>
-  <a class="card">
-    <p>3 NO DATA</p>
-  </a>
-</div>
+  <div class="landing-page__menu">
+    <a class="card" href="/blacksmith/" tabindex="0">
+      <p>1 Blacksmith</p>
+      <p>WEAPON TREES</p>
+    </a>
+    <a class="card">
+      <p>2 NO DATA</p>
+    </a>
+    <a class="card">
+      <p>3 NO DATA</p>
+    </a>
+  </div>
 {% endblock content %}
