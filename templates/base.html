@@ -14,15 +14,6 @@
 
   {% set favicon_name = page.extra["type"] | default(value="felyne") %}
 
-  {% if page and page.extra["image"] %}
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ current_url }}" />
-    <meta
-      property="og:image"
-      content="/images/weapons/{{ page.extra['image'] }}.png"
-    />
-  {% endif %}
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/images/favicons/{{ favicon_name }}-favicon.png">
   <meta name="theme-color" content="#22281c">
