@@ -3,13 +3,25 @@
 <head>
   {%- if page and page.title %}
     <title>MHFU - {{ page.title }}</title>
+    <meta property="og:title" content="MHFU - {{ page.title }}" />
   {%- elif section and section.title %}
     <title>MHFU - {{ section.title }}</title>
+    <meta property="og:title" content="MHFU - {{ page.title }}" />
   {% else %}
     <title>MHFU</title>
+    <meta property="og:title" content="MHFU" />
   {%- endif %}
 
   {% set favicon_name = page.extra["type"] | default(value="felyne") %}
+
+  {% if page and page.title %}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ current_url }}" />
+    <meta
+      property="og:image"
+      content="/images/weapons/{{ page.extra['image'] }}.png"
+    />
+  {% endif %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/images/favicons/{{ favicon_name }}-favicon.png">
@@ -71,8 +83,9 @@
         this.pos2 = this.pos4 - event.clientY;
         this.pos3 = event.clientX;
         this.pos4 = event.clientY;
-        
+
         if (this.imageTarget.classList.contains("dragging")) {     
+          console.log(this.pos1, this.pos2)
           this.imageTarget.style.left = `${this.imageTarget.offsetLeft - 8 - this.pos1}px`
           this.imageTarget.style.top = `${this.imageTarget.offsetTop - 8 - this.pos2}px`
         }
