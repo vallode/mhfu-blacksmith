@@ -40,6 +40,7 @@
     overflow: hidden;
     flex: 1 1 0%;
     height: 100%;
+    width: 100%;
   }
 
   #weapon_details {
@@ -48,5 +49,21 @@
     flex: 1 1 0%;
     height: 100%;
     overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .weapon-tree-page,
+  .weapon-details-page {
+    flex-direction: column;
+    height: auto;
+
+    #weapon_tree {
+      overflow: hidden;
+      flex: 1 1 0%;
+      max-height: 100vh;
+      height: auto;
+      width: 100%;
+    }
   }
 }
