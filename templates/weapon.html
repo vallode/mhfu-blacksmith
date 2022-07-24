@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 
+{% block head__extra %}
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ current_url }}" />
+  <meta
+    property="og:image"
+    content="/images/weapons/{{ page.extra['image'] }}.png"
+  />
+  {% if page.extra["create-mats"] %}
+    <meta name="description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
+  {% elif page.extra["upgrade-mats"] %}
+    <meta name="description" content="{% for material in page.extra['upgrade-mats'] %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra['upgrade-mats'] %}{{ material }} {% endfor %}">
+  {% endif %}
+{% endblock %}
+
 {% block body__attr %}
   class="weapon-details-page"
 {% endblock body__attr %}
