@@ -6,7 +6,7 @@
     <meta property="og:title" content="MHFU - {{ page.title }}" />
   {%- elif section and section.title %}
     <title>MHFU - {{ section.title }}</title>
-    <meta property="og:title" content="MHFU - {{ page.title }}" />
+    <meta property="og:title" content="MHFU - {{ section.title }}" />
   {% else %}
     <title>MHFU</title>
     <meta property="og:title" content="MHFU" />
@@ -14,7 +14,7 @@
 
   {% set favicon_name = page.extra["type"] | default(value="felyne") %}
 
-  {% if page and page.title %}
+  {% if page and page.extra["image"] %}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ current_url }}" />
     <meta
