@@ -109,7 +109,7 @@ crafting_files.each do |path|
   File.open(path) do |file|
     json_data = JSON.load(file)
 
-    for value in json_data["weapons"] do
+    json_data["weapons"].each do |value|
       output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
 
       slug = slugify(value["name"])
