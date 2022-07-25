@@ -28,7 +28,9 @@
 
   <script type="module">
     import { Application, Controller } from "/vendor/javascript/stimulus.js"
-    window.Stimulus = Application.start()
+    if (!window.Stimulus) {
+      window.Stimulus = Application.start()
+    }
 
     // TODO: Improve this hacky zoom.
     Stimulus.register("image-zoom", class extends Controller {
@@ -100,6 +102,12 @@
 
   {% if get_env(name="TERA_DEBUG", default="") != "" -%}
     {{ __tera_context }}
+
+    <script>
+      if (window.Stimulus) {
+        Stimulus.debug = true
+      }
+    </script>
   {% endif -%}
 </body>
 </html>
