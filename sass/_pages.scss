@@ -48,6 +48,7 @@
     flex-direction: column;
     flex: 1 1 0%;
     height: 100%;
+    width: 100%;
     overflow: hidden;
   }
 }
@@ -59,11 +60,11 @@
     height: auto;
 
     #weapon_tree {
-      overflow: hidden;
-      flex: 1 1 0%;
-      max-height: 100vh;
-      height: auto;
-      width: 100%;
+      flex: 1 1 50vh;
+    }
+
+    #weapon_details {
+      flex: 1 1 100vh;
     }
   }
 }
