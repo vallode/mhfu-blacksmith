@@ -35,6 +35,9 @@
     // TODO: Improve this hacky zoom.
     Stimulus.register("image-zoom", class extends Controller {
       zoom(event) {
+        // Prevent the browser from scrolling if there is overflow.
+        event.preventDefault()
+
         if (event.deltaY < 0) {
           this.element.style.width = `${Math.min(Math.max(this.element.offsetWidth + 35, 220), 950)}px`
         } else if (event.deltaY > 0) {
@@ -57,14 +60,20 @@
 
       connect() {
         this.imageTarget.addEventListener("mousedown", this.boundHandleMouseDown)
+        this.imageTarget.addEventListener("touchstart", this.boundHandleMouseDown)
         document.addEventListener("mouseup", this.boundHandleMouseUp)
+        document.addEventListener("touchend", this.boundHandleMouseUp)
         document.addEventListener("mousemove", this.boundHandleMouseMove)
+        document.addEventListener("touchmove", this.boundHandleMouseMove)
       }
 
       disconnect() {
         this.imageTarget.removeEventListener("mousedown", this.boundHandleMouseDown)
+        this.imageTarget.removeEventListener("touchstart", this.boundHandleMouseDown)
         document.removeEventListener("mouseup", this.boundHandleMouseUp)
+        document.removeEventListener("touchend", this.boundHandleMouseUp)
         document.removeEventListener("mousemove", this.boundHandleMouseMove)
+        document.removeEventListener("touchmove", this.boundHandleMouseMove)
       }
 
       handleMouseDown() {
