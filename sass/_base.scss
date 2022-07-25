@@ -1,6 +1,4 @@
 html {
-  background: center / cover no-repeat url("/images/bg-opti.png");
-  background-attachment: fixed;
   color: white;
   font-family: "Roboto Condensed", sans-serif;
   height: 100%;
@@ -13,6 +11,19 @@ body {
   height: 100%;
   margin: 0;
   padding: 1.4rem 1.4rem 2.5rem;
+
+  &::before {
+    background-attachment: fixed;
+    background: center / cover no-repeat url("/images/bg-opti.png");
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 a {
@@ -68,6 +79,11 @@ hr.border {
 .blacksmith__title {
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
-  flex: 0 0 64px;
+  flex: 0 0 auto;
   width: auto;
+  max-width: 100%;
+  max-height: 6.4rem;
+}
+
+@media screen and (max-width: 600px) {
 }
