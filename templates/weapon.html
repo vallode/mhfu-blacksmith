@@ -118,7 +118,9 @@
    * name, this reflects in the user browsing history.
    */
   window.addEventListener("turbo:render", (event) => {
-    document.title = `MHFU - ${event.srcElement.querySelector("#weapon_name").innerText}`
+    if (event.srcElement.querySelector("#weapon_name")) {
+      document.title = `MHFU - ${event.srcElement.querySelector("#weapon_name").innerText}`
+    }
   })
 
   // TODO: Fix for properly avoiding subsequent turbo frame loads.
