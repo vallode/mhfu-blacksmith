@@ -38,10 +38,28 @@ arrWeapons.flatMap((weapon) => {
 
 ## In-game image conversion
 
-After taking a screenshot from within the game, you can convert a "chroma key" green colour (#00b147) into a transparent background fairly easily using imagemagick:
+TODO: Clear this section up.
 
 ```bash
-convert $1 -transparent 'rgb(0,153,51)' -trim -gravity Center -background none -extent 512x384 `sed -e 's/.png/-convert.png/g' <<< $1`
+convert '*-white.png' -crop 608x406+40+305 +repage -trim -gravity Center -background White -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
+```
+
+```bash
+convert '*-black.png' -crop 608x406+40+305 +repage -trim -gravity Center -background Black -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
+```
+
+```
+for weapon in $(find *.png | sed -E -e 's/-black.png|-white.png//g' | uniq)
+do
+  echo $weapon
+  convert ${weapon}-black.png -gravity Center -background Black -extent 800x600 weapon_black.png
+  convert ${weapon}-white.png -gravity Center -background White -extent 800x600 weapon_white.png
+  convert weapon_black.png weapon_white.png -alpha off \
+    \( -clone 0,1 -compose difference -composite -negate \) \
+    \( -clone 0,2 +swap -compose divide -composite \) \
+    -delete 0,1 +swap -compose Copy_Opacity -composite \
+    output/${weapon}.png
+done
 ```
 
 The command above outputs a 512x384 (4:3) png image of the weapon.
