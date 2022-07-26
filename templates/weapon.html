@@ -5,7 +5,7 @@
   <meta property="og:url" content="{{ current_url }}" />
   <meta
     property="og:image"
-    content="/images/weapons/{{ page.extra['image'] }}.png"
+    content="/images/weapons/{{ page.slug }}.png"
   />
   {% if page.extra["create-mats"] %}
     <meta name="description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
@@ -99,7 +99,7 @@
         <div class="weapon-card__preview__container">
           <img
             draggable="false"
-            src="/images/weapons/{{ page.extra['image'] }}.png"
+            src="/images/weapons/{{ page.slug }}.png"
             alt=""
             data-controller="image-zoom"
             data-image-position-target="image"
