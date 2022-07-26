@@ -11,6 +11,7 @@
     <div class="card card--weapon-tree">
       <div class="weapon-tree">
         {%- for row in data["map"] %}
+          <ul>
           {%- for weapon in row %}
             {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
 
@@ -32,37 +33,43 @@
               {%- endif %}
             {% endif -%}
 
-            <a
-              id="{{ weaponSlug }}"
-              class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif %}"
-              style="padding-left: {{ 26 * (loop.index - 1) }}px;"
-              {% if is_external -%}
-              href="/blacksmith/{{ data['siblingWeapon'] }}/details/{{ weaponSlug }}/"
-              data-turbo-frame="_top"
-              {% else -%}
-              href="/blacksmith/{{ page.extra['type'] }}/details/{{ weaponSlug }}/"
-              data-turbo-frame="weapon_details"
-              {%- endif %}
-            >
-              <div
-                class="
-                  icon
-                  {% if not is_external -%}
-                  icon--{{ page.extra['type'] }}
-                  icon--rarity-{{ weaponData.extra['rarity'] }}
-                    {%- if weaponData.extra['element'] -%}
-                      {%- for element in weaponData.extra['element'] %}
-                        icon--{{ element['name'] | lower }}
-                      {%- endfor -%}
-                    {%- endif -%}
-                  {%- endif %}"
+            
+            <li>
+              <a
+                id="{{ weaponSlug }}"
+                class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif %}"
+                {% if is_external -%}
+                href="/blacksmith/{{ data['siblingWeapon'] }}/details/{{ weaponSlug }}/"
+                data-turbo-frame="_top"
+                {% else -%}
+                href="/blacksmith/{{ page.extra['type'] }}/details/{{ weaponSlug }}/"
+                data-turbo-frame="weapon_details"
+                {%- endif %}
               >
-                <img src="/images/{% if not is_external %}{{ page.extra['type'] }}{% else %}{{ data['siblingWeapon'] }}{% endif %}.png" alt="?">
-              </div>
-              <p class="name">{{ weapon }}</p>
-            </a>
+                {% for i in range(end=loop.index - 1) %}
+                  <span class=""></span>
+                {% endfor %}
+                <div
+                  class="
+                    icon
+                    {% if not is_external -%}
+                    icon--{{ page.extra['type'] }}
+                    icon--rarity-{{ weaponData.extra['rarity'] }}
+                      {%- if weaponData.extra['element'] -%}
+                        {%- for element in weaponData.extra['element'] %}
+                          icon--{{ element['name'] | lower }}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endif %}"
+                >
+                  <img src="/images/{% if not is_external %}{{ page.extra['type'] }}{% else %}{{ data['siblingWeapon'] }}{% endif %}.png" alt="?">
+                </div>
+                <p class="name">{{ weapon }}</p>
+              </a>
+            </li>
             {%- set_global weaponData = false -%}
           {%- endfor %}
+          </ul>
         {%- endfor %}
       </div>
     </div>

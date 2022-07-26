@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: row;
     flex: 0 0 38px;
+    padding: 0 0 0 13px;
     height: 38px;
     position: relative;
     white-space: nowrap;
@@ -71,6 +72,16 @@
     &--external {
       color: #c0c0c0;
     }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a span {
+    width: 26px;
   }
 }
 
@@ -223,7 +234,8 @@ $element-types: (
     margin: 2rem 0 0;
 
     .stats,
-    .requirements {
+    .upgrade-mats,
+    .create-mats {
       display: flex;
       flex-direction: column;
       gap: 13px;
@@ -243,7 +255,7 @@ $element-types: (
 
       &.upgrade-mats .upgrade-mats,
       &.create-mats .create-mats {
-        display: block;
+        display: flex;
       }
       
       &.upgrade-mats .create-mats,
