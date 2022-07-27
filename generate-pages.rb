@@ -4,12 +4,10 @@ require 'erb'
 
 FILE_TEMPLATE = %{+++
   title = <%= name.to_json %>
-  template = "weapon.html"
   slug = "<%= slug %>"
   [extra]
   name = <%= name.to_json %>
   type = "<%= type %>"
-  image = "<%= image %>"
   rarity = <%= rarity %>
   attack = <%= attack %>
   affinity = "<%= affinity %>"
@@ -49,21 +47,6 @@ WEAPON_ABBR = {
   "bow": "bw"
 }
 
-# Temporary solution, we'll have images for every single weapon at some point.
-WEAPON_IMAGE = {
-  "white-serpentblade": "gs",
-  "tigrex-tooth": "ls",
-  "shaka-poison-bite": "sns",
-  "snow-venom": "db",
-  "war-hammer": "hm",
-  "giaprey-balloon": "hh",
-  "gatling-lance": "ln",
-  "dragonwood-gunlance":  "gl",
-  "kut-ku-anger": "lbg",
-  "rock-eater": "hbg",
-  "defect-swordfish-bow": "bw"
-}
-
 def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
@@ -97,7 +80,6 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       slug = slugify(value["name"])
       name = value["name"]
       type = WEAPON_ABBR.key(value["type"])
-      image = WEAPON_IMAGE.key(value["type"])
       rarity = value["rarity"]
       attack = value["attack"]
       affinity = value["affinity"]
@@ -123,7 +105,7 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
         create_mats = value["create-mats"]
       end
 
-      File.write("#{File.dirname(path)}/details/" + slug + ".md", output.result(binding))
+      File.write("#{File.dirname(path)}/" + slug + ".md", output.result(binding))
     end
   end
 end
