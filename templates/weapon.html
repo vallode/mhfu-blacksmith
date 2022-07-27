@@ -44,6 +44,12 @@
 
         <div class="weapon-card__details">
           <div class="stats">
+            <div class="sharpness">
+              {% for sharp in page.extra["sharpness"] %}
+                <span class="{{ sharp }}"></span>
+              {% endfor %}
+            </div>
+
             <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
             {%- set affinity = page.extra["affinity"] %}
             <p>

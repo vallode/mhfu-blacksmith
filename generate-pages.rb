@@ -13,7 +13,7 @@ FILE_TEMPLATE = %{+++
   rarity = <%= rarity %>
   attack = <%= attack %>
   affinity = "<%= affinity %>"
-  sharpness = "<%= sharpness %>"
+  sharpness = <%= sharpness %>
   element = <%= elements %>
   slots = "<%= slots %>"
   <% if create_cost %>
@@ -119,7 +119,7 @@ crafting_files.each do |path|
       rarity = value["rarity"]
       attack = value["attack"]
       affinity = value["affinity"]
-      sharpness = value["sharpness"]
+      sharpness = value["sharpness"].scan(/.{4}/)
       elements = parseElements(value["element"])
       slots = value["slots"]
 
