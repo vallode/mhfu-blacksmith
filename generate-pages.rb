@@ -87,25 +87,7 @@ def parseElements(elements)
   return "[#{parsedElements}]"
 end
 
-crafting_files = []
-
-Find.find("content/blacksmith/") do |path|
-  if FileTest.directory?(path)
-    next
-  end
-
-  if File.basename(path).start_with?(".")
-    next
-  end
-
-  if not File.basename(path).end_with?("-crafting.json")
-    next
-  end
-
-  crafting_files.push(path)
-end
-
-crafting_files.each do |path|
+Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
   File.open(path) do |file|
     json_data = JSON.load(file)
 
