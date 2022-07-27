@@ -5,4 +5,5 @@ weight = 10
 [extra]
 type = "bow"
 sibling_weapon = ""
+map = []
 +++
