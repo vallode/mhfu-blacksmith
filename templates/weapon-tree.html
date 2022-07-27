@@ -1,88 +1,96 @@
 {% extends "base.html" %}
-
-{% block body__attr %}
-  class="weapon-tree-page"
-{% endblock body__attr %}
   
 {% block content -%}
   {% set data = load_data(path="blacksmith/" ~ page.extra["type"] ~ "/" ~ page.extra["type"] ~ ".json") -%}
 
-  <turbo-frame id="weapon_tree" data-turbo-action="replace">
-    <div class="card card--weapon-tree">
-      <div class="weapon-tree">
-        {%- for row in data["map"] %}
-          <ul>
-          {%- for weapon in row %}
-            {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
+  <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+    {%- for weapon_type in config.extra.weapon_types %}
+      <a class="row" href="/blacksmith/{{ weapon_type }}/">
+        <div class="icon icon--{{ weapon_type }} icon--large {% if weapon_type == page.extra['type'] %}icon--rarity-6{% endif %}"><img src="/images/{{ weapon_type }}.png" alt=""></div>
+      </a>
+    {%- endfor %}
+  </div>
 
-            {%- if is_external -%}
-              {%- set weaponSlug = weapon | replace(from='+', to='-plus') | split(pat="(") | first | slugify -%}
-            {%- else -%}
-              {%- set weaponSlug = weapon | replace(from='+', to='-plus') | slugify -%}
-            {%- endif -%}
+  <hr class="border">
 
-            {%- if weapon == "" or weapon == "+" %}
-              {%- continue %}
-            {%- endif %}
-
-            {%- if not is_external %}
-              {%- set_global weaponData = get_page(path="blacksmith/" ~ page.extra["type"] ~ "/details/" ~ weaponSlug ~ ".md") -%}
-
-              {%- if not weaponData %}
-                {{ throw(message="Could not find any weapon data for: " ~ weapon) }}
+  <div class="weapon-tree-page">
+    <turbo-frame id="weapon_tree" data-turbo-action="replace">
+      <div class="card card--weapon-tree">
+        <div class="weapon-tree">
+          {%- for row in data["map"] %}
+            <ul>
+            {%- for weapon in row %}
+              {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
+  
+              {%- if is_external -%}
+                {%- set weaponSlug = weapon | replace(from='+', to='-plus') | split(pat="(") | first | slugify -%}
+              {%- else -%}
+                {%- set weaponSlug = weapon | replace(from='+', to='-plus') | slugify -%}
+              {%- endif -%}
+  
+              {%- if weapon == "" or weapon == "+" %}
+                {%- continue %}
               {%- endif %}
-            {% endif -%}
-
-            
-            <li>
-              <a
-                id="{{ weaponSlug }}"
-                class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif %}"
-                {% if is_external -%}
-                href="/blacksmith/{{ data['siblingWeapon'] }}/details/{{ weaponSlug }}/"
-                data-turbo-frame="_top"
-                {% else -%}
-                href="/blacksmith/{{ page.extra['type'] }}/details/{{ weaponSlug }}/"
-                data-turbo-frame="weapon_details"
+  
+              {%- if not is_external %}
+                {%- set_global weaponData = get_page(path="blacksmith/" ~ page.extra["type"] ~ "/details/" ~ weaponSlug ~ ".md") -%}
+  
+                {%- if not weaponData %}
+                  {{ throw(message="Could not find any weapon data for: " ~ weapon) }}
                 {%- endif %}
-              >
-                {% for i in range(end=loop.index - 1) %}
-                  <span class=""></span>
-                {% endfor %}
-                <div
-                  class="
-                    icon
-                    {% if not is_external -%}
-                    icon--{{ page.extra['type'] }}
-                    icon--rarity-{{ weaponData.extra['rarity'] }}
-                      {%- if weaponData.extra['element'] -%}
-                        {%- for element in weaponData.extra['element'] %}
-                          icon--{{ element['name'] | lower }}
-                        {%- endfor -%}
-                      {%- endif -%}
-                    {%- endif %}"
+              {% endif -%}
+  
+              
+              <li>
+                <a
+                  id="{{ weaponSlug }}"
+                  class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif %}"
+                  {% if is_external -%}
+                  href="/blacksmith/{{ page.extra.sibling_weapon }}/details/{{ weaponSlug }}/"
+                  data-turbo-frame="_top"
+                  {% else -%}
+                  href="/blacksmith/{{ page.extra.type }}/details/{{ weaponSlug }}/"
+                  data-turbo-frame="weapon_details"
+                  {%- endif %}
                 >
-                  <img src="/images/{% if not is_external %}{{ page.extra['type'] }}{% else %}{{ data['siblingWeapon'] }}{% endif %}.png" alt="?">
-                </div>
-                <p class="name">{{ weapon }}</p>
-              </a>
-            </li>
-            {%- set_global weaponData = false -%}
+                  {% for i in range(end=loop.index - 1) %}
+                    <span class=""></span>
+                  {% endfor %}
+                  <div
+                    class="
+                      icon
+                      {% if not is_external -%}
+                      icon--{{ page.extra['type'] }}
+                      icon--rarity-{{ weaponData.extra['rarity'] }}
+                        {%- if weaponData.extra['element'] -%}
+                          {%- for element in weaponData.extra['element'] %}
+                            icon--{{ element['name'] | lower }}
+                          {%- endfor -%}
+                        {%- endif -%}
+                      {%- endif %}"
+                  >
+                    <img src="/images/{% if not is_external %}{{ page.extra['type'] }}{% else %}{{ page.extra.sibling_weapon }}{% endif %}.png" alt="?">
+                  </div>
+                  <p class="name">{{ weapon }}</p>
+                </a>
+              </li>
+              {%- set_global weaponData = false -%}
+            {%- endfor %}
+            </ul>
           {%- endfor %}
-          </ul>
-        {%- endfor %}
-      </div>
-    </div>
-  </turbo-frame>
-
-  {% block weapon__details -%}
-    <turbo-frame id="weapon_details" data-turbo-action="replace">
-      <div class="card weapon-card" id="weaponDetails">
-        <p>1 NO WEAPON SELECTED</p>
-      </div>
-      <div class="card weapon-card__preview" id="weaponCrafting">
-        <p>2 NO WEAPON SELECTED</p>
+        </div>
       </div>
     </turbo-frame>
-  {% endblock weapon__details -%}
+  
+    {% block weapon__details -%}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card" id="weaponDetails">
+          <p>1 NO WEAPON SELECTED</p>
+        </div>
+        <div class="card weapon-card__preview" id="weaponCrafting">
+          <p>2 NO WEAPON SELECTED</p>
+        </div>
+      </turbo-frame>
+    {% endblock weapon__details -%}
+  </div>
 {% endblock content -%}

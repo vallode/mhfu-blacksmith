@@ -4,4 +4,5 @@ template = "weapon-tree.html"
 weight = 2
 [extra]
 type = "sword-and-shield"
+sibling_weapon = "dual-blades"
 +++

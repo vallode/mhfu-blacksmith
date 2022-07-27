@@ -16,105 +16,113 @@
   {% endif %}
 {% endblock %}
 
-{% block body__attr %}
-  class="weapon-details-page"
-{% endblock body__attr %}
-  
 {% block content -%}
-  <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
-    <div class="card card--weapon-tree"></div>
-  </turbo-frame>
+  <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+    {%- for weapon_type in config.extra.weapon_types %}
+      <a class="row" href="/blacksmith/{{ weapon_type }}/">
+        <div class="icon icon--{{ weapon_type }} icon--large {% if weapon_type == page.extra['type'] %}icon--rarity-6{% endif %}"><img src="/images/{{ weapon_type }}.png" alt=""></div>
+      </a>
+    {%- endfor %}
+  </div>
 
-  {% block weapon__details -%}
-    <turbo-frame id="weapon_details" data-turbo-action="replace">
-      <div class="card weapon-card">
-        <div class="weapon-card__header">
-          <div class="icon icon--{{ page.extra['type'] }} icon--rarity-{{ page.extra['rarity'] }} icon--large">
-            <img src="/images/{{ page.components[1] }}.png" alt="?">
-          </div>
+  <hr class="border">
 
-          <p id="weapon_name">
-            {{ page.extra["name"] }}
-          </p>
-
-          <p id="weapon_cost">
-            {{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
-          </p>
-        </div>
-
-        <div class="weapon-card__details">
-          <div class="stats">
-            <div class="sharpness">
-              {% for sharp in page.extra["sharpness"] %}
-                <span class="{{ sharp }}"></span>
-              {% endfor %}
-            </div>
-
-            <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
-            {%- set affinity = page.extra["affinity"] %}
-            <p>
-              Affinity:
-              <span
-                class="
-                {% if affinity is starting_with('-') %}
-                  negative
-                {% elif affinity is not starting_with('0')%}
-                  positive
-                {% endif %}
-                "
-              >
-                {{ page.extra["affinity"] }}
-              </span>
-            </p>
-            <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
-            {% if page.extra["element"] -%}
-              {% for element in page.extra["element"] %}
-                <p class="element">
-                  {{ element["name"] }} Attrib: {{ element["attack"] }}
-                </p>
-              {% endfor %}
-            {% endif -%}
-          </div>
-
-          <div data-controller="weapon-page" class="requirements {% if page.extra['create-mats'] %}create-mats{% else %}upgrade-mats{% endif %}">
-            {%- if page.extra["create-mats"] %}
-              <span class="create-mats">
-                {% for material in page.extra["create-mats"] -%}
-                  <p>{{ material }}</p>
-                {% endfor -%}
-              </span>
-            {% endif %}
-
-            {% if page.extra["upgrade-mats"] %}
-              <span class="upgrade-mats">
-                {%- for material in page.extra["upgrade-mats"] -%}
-                  <p>{{ material }}</p>
-                {% endfor %}
-              </span>
-            {% endif %}
-
-            {% if page.extra["create-mats"] and page.extra["upgrade-mats"] %}
-              <div class="weapon-card__navigation">
-                <img src="/images/arrow.png" class="next" data-action="click->weapon-page#toggle">
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
-        <div class="weapon-card__preview__container">
-          <img
-            draggable="false"
-            src="/images/weapons/{{ page.slug }}.png"
-            alt=""
-            data-controller="image-zoom"
-            data-image-position-target="image"
-            data-action="wheel->image-zoom#zoom"
-          >
-        </div>
-      </div>
+  <div class="weapon-details-page">
+    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
+      <div class="card card--weapon-tree"></div>
     </turbo-frame>
-  {% endblock weapon__details -%}
+  
+    {% block weapon__details -%}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card">
+          <div class="weapon-card__header">
+            <div class="icon icon--{{ page.extra['type'] }} icon--rarity-{{ page.extra['rarity'] }} icon--large">
+              <img src="/images/{{ page.components[1] }}.png" alt="?">
+            </div>
+  
+            <p id="weapon_name">
+              {{ page.extra["name"] }}
+            </p>
+  
+            <p id="weapon_cost">
+              {{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
+            </p>
+          </div>
+  
+          <div class="weapon-card__details">
+            <div class="stats">
+              <div class="sharpness">
+                {% for sharp in page.extra["sharpness"] %}
+                  <span class="{{ sharp }}"></span>
+                {% endfor %}
+              </div>
+  
+              <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
+              {%- set affinity = page.extra["affinity"] %}
+              <p>
+                Affinity:
+                <span
+                  class="
+                  {% if affinity is starting_with('-') %}
+                    negative
+                  {% elif affinity is not starting_with('0')%}
+                    positive
+                  {% endif %}
+                  "
+                >
+                  {{ page.extra["affinity"] }}
+                </span>
+              </p>
+              <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+              {% if page.extra["element"] -%}
+                {% for element in page.extra["element"] %}
+                  <p class="element">
+                    {{ element["name"] }} Attrib: {{ element["attack"] }}
+                  </p>
+                {% endfor %}
+              {% endif -%}
+            </div>
+  
+            <div data-controller="weapon-page" class="requirements {% if page.extra['create-mats'] %}create-mats{% else %}upgrade-mats{% endif %}">
+              {%- if page.extra["create-mats"] %}
+                <span class="create-mats">
+                  {% for material in page.extra["create-mats"] -%}
+                    <p>{{ material }}</p>
+                  {% endfor -%}
+                </span>
+              {% endif %}
+  
+              {% if page.extra["upgrade-mats"] %}
+                <span class="upgrade-mats">
+                  {%- for material in page.extra["upgrade-mats"] -%}
+                    <p>{{ material }}</p>
+                  {% endfor %}
+                </span>
+              {% endif %}
+  
+              {% if page.extra["create-mats"] and page.extra["upgrade-mats"] %}
+                <div class="weapon-card__navigation">
+                  <img src="/images/arrow.png" class="next" data-action="click->weapon-page#toggle">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
+          <div class="weapon-card__preview__container">
+            <img
+              draggable="false"
+              src="/images/weapons/{{ page.slug }}.png"
+              alt=""
+              data-controller="image-zoom"
+              data-image-position-target="image"
+              data-action="wheel->image-zoom#zoom"
+            >
+          </div>
+        </div> -->
+      </turbo-frame>
+    {% endblock weapon__details -%}
+  </div>
 {% endblock content -%}
 
 {%- block scripts -%}
