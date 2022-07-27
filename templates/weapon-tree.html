@@ -1,8 +1,6 @@
 {% extends "base.html" %}
   
 {% block content -%}
-  {% set data = load_data(path="blacksmith/" ~ page.extra["type"] ~ "/" ~ page.extra["type"] ~ ".json") -%}
-
   <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
     {%- for weapon_type in config.extra.weapon_types %}
       <a class="row" href="/blacksmith/{{ weapon_type }}/">
@@ -17,7 +15,7 @@
     <turbo-frame id="weapon_tree" data-turbo-action="replace">
       <div class="card card--weapon-tree">
         <div class="weapon-tree">
-          {%- for row in data["map"] %}
+          {%- for row in page.extra.map %}
             <ul>
             {%- for weapon in row %}
               {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
@@ -33,18 +31,17 @@
               {%- endif %}
   
               {%- if not is_external %}
-                {%- set_global weaponData = get_page(path="blacksmith/" ~ page.extra["type"] ~ "/details/" ~ weaponSlug ~ ".md") -%}
+                {%- set_global weaponData = get_page(path="blacksmith/" ~ page.extra.type ~ "/details/" ~ weaponSlug ~ ".md") -%}
   
                 {%- if not weaponData %}
                   {{ throw(message="Could not find any weapon data for: " ~ weapon) }}
                 {%- endif %}
               {% endif -%}
-  
               
               <li>
                 <a
                   id="{{ weaponSlug }}"
-                  class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif %}"
+                  class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif -%}"
                   {% if is_external -%}
                   href="/blacksmith/{{ page.extra.sibling_weapon }}/details/{{ weaponSlug }}/"
                   data-turbo-frame="_top"
