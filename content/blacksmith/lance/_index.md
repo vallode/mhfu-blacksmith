@@ -1,6 +1,7 @@
 +++
 title = "Lance"
 template = "weapon-tree.html"
+page_template = "weapon.html"
 weight = 6
 [extra]
 type = "lance"

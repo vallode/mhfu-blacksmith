@@ -1,13 +1,15 @@
 {% extends "base.html" %}
   
 {% block content -%}
-  <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+  <nav class="weapon-navigation">
     {%- for weapon_type in config.extra.weapon_types %}
       <a class="row" href="/blacksmith/{{ weapon_type }}/">
-        <div class="icon icon--{{ weapon_type }} icon--large {% if weapon_type == page.extra['type'] %}icon--rarity-6{% endif %}"><img src="/images/{{ weapon_type }}.png" alt=""></div>
+        <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == section.extra['type'] %}icon--rarity-4{% endif %}">
+          <img src="/images/{{ weapon_type }}.png" alt="">
+        </div>
       </a>
     {%- endfor %}
-  </div>
+    </nav>
 
   <hr class="border">
 
@@ -15,63 +17,63 @@
     <turbo-frame id="weapon_tree" data-turbo-action="replace">
       <div class="card card--weapon-tree">
         <div class="weapon-tree">
-          {%- for row in page.extra.map %}
+          {%- for row in section.extra.map %}
             <ul>
             {%- for weapon in row %}
-              {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
-  
-              {%- if is_external -%}
-                {%- set weaponSlug = weapon | replace(from='+', to='-plus') | split(pat="(") | first | slugify -%}
-              {%- else -%}
-                {%- set weaponSlug = weapon | replace(from='+', to='-plus') | slugify -%}
-              {%- endif -%}
-  
               {%- if weapon == "" or weapon == "+" %}
                 {%- continue %}
               {%- endif %}
+
+              {%- set is_external = weapon is matching("\(([A-Za-z]{2,3})\)") -%}
   
+              {%- if is_external -%}
+                {%- set weapon_slug = weapon | replace(from='+', to='-plus') | split(pat="(") | first | slugify -%}
+              {%- else -%}
+                {%- set weapon_slug = weapon | replace(from='+', to='-plus') | slugify -%}
+              {%- endif -%}
+
               {%- if not is_external %}
-                {%- set_global weaponData = get_page(path="blacksmith/" ~ page.extra.type ~ "/details/" ~ weaponSlug ~ ".md") -%}
+                {%- set_global weapon_data = get_page(path="blacksmith/" ~ section.extra.type ~ "/" ~ weapon_slug ~ ".md") -%}
   
-                {%- if not weaponData %}
+                {%- if not weapon_data %}
                   {{ throw(message="Could not find any weapon data for: " ~ weapon) }}
                 {%- endif %}
               {% endif -%}
               
               <li>
                 <a
-                  id="{{ weaponSlug }}"
+                  id="{{ weapon_slug }}"
                   class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif -%}"
                   {% if is_external -%}
-                  href="/blacksmith/{{ page.extra.sibling_weapon }}/details/{{ weaponSlug }}/"
+                  href="/blacksmith/{{ section.extra.sibling_weapon }}/{{ weapon_slug }}/"
                   data-turbo-frame="_top"
                   {% else -%}
-                  href="/blacksmith/{{ page.extra.type }}/details/{{ weaponSlug }}/"
+                  href="/blacksmith/{{ section.extra.type }}/{{ weapon_slug }}/"
                   data-turbo-frame="weapon_details"
                   {%- endif %}
                 >
-                  {% for i in range(end=loop.index - 1) %}
+                  {% for i in range(end=loop.index - 1) -%}
                     <span class=""></span>
                   {% endfor %}
                   <div
                     class="
                       icon
                       {% if not is_external -%}
-                      icon--{{ page.extra['type'] }}
-                      icon--rarity-{{ weaponData.extra['rarity'] }}
-                        {%- if weaponData.extra['element'] -%}
-                          {%- for element in weaponData.extra['element'] %}
+                      icon--{{ section.extra['type'] }}
+                      icon--rarity-{{ weapon_data.extra['rarity'] }}
+                        {%- if weapon_data.extra['element'] -%}
+                          {%- for element in weapon_data.extra['element'] %}
                             icon--{{ element['name'] | lower }}
                           {%- endfor -%}
                         {%- endif -%}
                       {%- endif %}"
                   >
-                    <img src="/images/{% if not is_external %}{{ page.extra['type'] }}{% else %}{{ page.extra.sibling_weapon }}{% endif %}.png" alt="?">
+                    <img src="/images/{% if not is_external %}{{ section.extra['type'] }}{% else %}{{ section.extra.sibling_weapon }}{% endif %}.png" alt="?">
                   </div>
                   <p class="name">{{ weapon }}</p>
                 </a>
               </li>
-              {%- set_global weaponData = false -%}
+              {%- set_global weapon_data = false -%}
             {%- endfor %}
             </ul>
           {%- endfor %}

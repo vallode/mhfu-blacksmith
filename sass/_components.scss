@@ -130,7 +130,6 @@ $element-types: (
     position: relative;
     height: 26px;
     width: 26px;
-    top: 1px;
   }
 
   &--large,
@@ -152,7 +151,7 @@ $element-types: (
   @each $weapon-name in $weapon-types {
     &--#{$weapon-name}::before {
       background-blend-mode: lighten;
-      background-position: 0 1px;
+      background-position: 0;
       content: '';
       display: block;
       height: 100%;
@@ -358,4 +357,11 @@ $sharpness-colors: (
       background-color: $color;
     }
   }
+}
+
+.weapon-navigation {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }

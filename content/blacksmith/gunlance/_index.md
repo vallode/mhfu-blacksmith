@@ -1,6 +1,7 @@
 +++
 title = "Gunlance"
 template = "weapon-tree.html"
+page_template = "weapon.html"
 weight = 7
 [extra]
 type = "gunlance"

@@ -17,13 +17,13 @@
 {% endblock %}
 
 {% block content -%}
-  <div style="display: flex; align-items: center; justify-content: flex-start; width: 100%;">
+  <nav class="weapon-navigation">
     {%- for weapon_type in config.extra.weapon_types %}
       <a class="row" href="/blacksmith/{{ weapon_type }}/">
         <div class="icon icon--{{ weapon_type }} icon--large {% if weapon_type == page.extra['type'] %}icon--rarity-6{% endif %}"><img src="/images/{{ weapon_type }}.png" alt=""></div>
       </a>
     {%- endfor %}
-  </div>
+  </nav>
 
   <hr class="border">
 
@@ -41,11 +41,11 @@
             </div>
   
             <p id="weapon_name">
-              {{ page.extra["name"] }}
+              {{ page.extra.name }}
             </p>
   
             <p id="weapon_cost">
-              {{  page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
+              {{ page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
             </p>
           </div>
   
@@ -107,6 +107,8 @@
               {% endif %}
             </div>
           </div>
+
+          <hr>
         </div>
         <!-- <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
           <div class="weapon-card__preview__container">
