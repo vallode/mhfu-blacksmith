@@ -34,7 +34,11 @@
 
 .weapon-tree-page,
 .weapon-details-page {
-  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 
   #weapon_tree {
     overflow: hidden;

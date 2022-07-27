@@ -18,3 +18,16 @@ highlight_code = false
 
 [extra]
 # Put all your custom variables here
+weapon_types = [
+  "great-sword",
+  "long-sword",
+  "sword-and-shield",
+  "dual-blades",
+  "hammer",
+  "hunting-horn",
+  "lance",
+  "gunlance",
+  "light-bowgun",
+  "heavy-bowgun",
+  "bow"
+]
