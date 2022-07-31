@@ -216,8 +216,30 @@ $element-types: (
     color: white;
     text-decoration: none;
 
-    & :last-child {
+    & > :last-child {
       margin-left: auto;
+    }
+
+    .sharpness {
+      height: 2.4rem;
+      position: relative;
+      padding: 4px 8px;
+      display: flex;
+      width: 19.6rem;
+    }
+    
+    .sharpness::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("/images/gauge.png");
+      background-size: cover;
+      image-rendering: optimizeSpeed;
+      image-rendering: pixelated;
+      z-index: 10;
     }
   }
 
@@ -244,28 +266,6 @@ $element-types: (
 
     .stats .element {
       color: #56FBFA;
-    }
-
-    .stats .sharpness {
-      height: 2.4rem;
-      position: relative;
-      padding: 4px 8px;
-      display: flex;
-      width: 19.6rem;
-    }
-    
-    .sharpness::after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: url("/images/gauge.png");
-      background-size: cover;
-      image-rendering: optimizeSpeed;
-      image-rendering: pixelated;
-      z-index: 10;
     }
 
     .requirements {

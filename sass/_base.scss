@@ -77,12 +77,12 @@ hr.border {
 }
 
 .blacksmith__title {
+  flex: 0 0 5.2rem;
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
-  flex: 0 0 auto;
-  width: auto;
+  max-height: 5.2rem;
   max-width: 100%;
-  max-height: 6.4rem;
+  width: auto;
 }
 
 @media screen and (max-width: 600px) {

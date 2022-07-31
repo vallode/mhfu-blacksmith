@@ -39,24 +39,20 @@
             <div class="icon icon--{{ page.extra['type'] }} icon--rarity-{{ page.extra['rarity'] }} icon--large">
               <img src="/images/{{ page.components[1] }}.png" alt="?">
             </div>
-  
+
             <p id="weapon_name">
               {{ page.extra.name }}
             </p>
-  
-            <p id="weapon_cost">
-              {{ page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
-            </p>
+
+            <div class="sharpness">
+              {% for sharp in page.extra["sharpness"] %}
+                <span class="{{ sharp }}"></span>
+              {% endfor %}
+            </div>
           </div>
-  
+
           <div class="weapon-card__details">
             <div class="stats">
-              <div class="sharpness">
-                {% for sharp in page.extra["sharpness"] %}
-                  <span class="{{ sharp }}"></span>
-                {% endfor %}
-              </div>
-  
               <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
               {%- set affinity = page.extra["affinity"] %}
               <p>
@@ -83,7 +79,14 @@
               {% endif -%}
             </div>
   
-            <div data-controller="weapon-page" class="requirements {% if page.extra['create-mats'] %}create-mats{% else %}upgrade-mats{% endif %}">
+            <div
+              data-controller="weapon-page"
+              class="requirements {% if page.extra['create-mats'] %}create-mats{% else %}upgrade-mats{% endif %}"
+            >
+              <p id="weapon_cost">
+                {{ page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
+              </p>
+
               {%- if page.extra["create-mats"] %}
                 <span class="create-mats">
                   {% for material in page.extra["create-mats"] -%}
@@ -107,9 +110,8 @@
               {% endif %}
             </div>
           </div>
-
-          <hr>
         </div>
+
         <!-- <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
           <div class="weapon-card__preview__container">
             <img
