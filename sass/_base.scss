@@ -24,6 +24,11 @@ body {
     width: 100%;
     z-index: -1;
   }
+
+  @media screen and (max-width: 600px) {
+    min-height: 100%;
+    height: auto;
+  }
 }
 
 a {
@@ -77,12 +82,12 @@ hr.border {
 }
 
 .blacksmith__title {
-  flex: 0 0 5.2rem;
+  flex: 0 0 0%;
   image-rendering: optimizeSpeed;
   image-rendering: pixelated;
-  max-height: 5.2rem;
-  max-width: 100%;
-  width: auto;
+  width: 100%;
+  max-width: 51rem;
+  height: auto;
 }
 
 @media screen and (max-width: 600px) {

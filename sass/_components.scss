@@ -44,6 +44,11 @@
     margin: 0;
     position: relative;
     z-index: 10;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 2rem;
   }
 }
 
@@ -60,8 +65,7 @@
     padding: 0 0 0 13px;
     height: 38px;
     position: relative;
-    white-space: nowrap;
-    text-decoration: none;
+    width: fit-content;
 
     &:hover {
       background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
@@ -241,6 +245,11 @@ $element-types: (
       image-rendering: pixelated;
       z-index: 10;
     }
+
+    @media screen and (max-width: 600px) {
+      flex-wrap: wrap;
+      height: auto;
+    }
   }
 
   &__details {
@@ -304,6 +313,10 @@ $element-types: (
     span.positive {
       color: #52F152;
     }
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 
   &__navigation {
@@ -364,4 +377,9 @@ $sharpness-colors: (
   display: flex;
   justify-content: flex-start;
   width: 100%;
+
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
