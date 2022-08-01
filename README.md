@@ -39,6 +39,11 @@ arrWeapons.flatMap((weapon) => {
 ## In-game image conversion
 
 TODO: Clear this section up.
+TODO: Figure out what to do about weapons larger than the blacksmith screen (splice images?)
+
+In order to capture lossless images of weapons in the game (as they appear in the blacksmith menu), I created two texture replacements, one with the UI entirely black and the other entirely white. I capture two screenshots of each weapon as it appears (sometimes camera adjustment is necessary).
+
+I then go in and rename each image following a pattern of `weapon_name-black.png/weapon_name-white.png`.
 
 ```bash
 convert '*-white.png' -crop 608x406+40+305 +repage -trim -gravity Center -background White -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
@@ -47,6 +52,8 @@ convert '*-white.png' -crop 608x406+40+305 +repage -trim -gravity Center -backgr
 ```bash
 convert '*-black.png' -crop 608x406+40+305 +repage -trim -gravity Center -background Black -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
 ```
+
+The script below then iterates over the pairs of images and converts them into one, completely losslessly transparent, image for use on the site in a 4:3 ratio.
 
 ```
 for weapon in $(find *.png | sed -E -e 's/-black.png|-white.png//g' | uniq)
@@ -61,8 +68,6 @@ do
     output/${weapon}.png
 done
 ```
-
-The command above outputs a 512x384 (4:3) png image of the weapon.
 
 ## Development
 
