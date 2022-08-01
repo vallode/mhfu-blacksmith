@@ -5,9 +5,14 @@
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-    max-width: 39rem;
+    max-width: 100%;
+    flex: 1 1 0%;
     height: 100%;
     width: 39rem;
+
+    .card {
+      flex: 1 0 0;
+    }
   }
 }
 
@@ -61,14 +66,13 @@
   .weapon-tree-page,
   .weapon-details-page {
     flex-direction: column;
-    height: auto;
 
     #weapon_tree {
-      flex: 1 1 50vh;
+      flex: 1 1 60vh;
     }
 
     #weapon_details {
-      flex: 1 1 100vh;
+      flex: 1 1 80vh;
     }
   }
 }

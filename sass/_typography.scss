@@ -12,3 +12,9 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1.6rem;
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+}
