@@ -105,7 +105,7 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
         create_mats = value["create-mats"]
       end
 
-      File.write("#{File.dirname(path)}/" + slug + ".md", output.result(binding))
+      File.write("#{File.dirname(path)}/#{slug}.md", output.result(binding))
     end
   end
 end

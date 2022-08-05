@@ -55,18 +55,27 @@
 .weapon-tree {
   height: 100%;
   overflow: auto;
+  padding: 0 0 0 13px;
 
   &__row {
     align-items: center;
     color: white;
     display: flex;
     flex-direction: row;
-    padding: 0 0 0 13px;
     height: 38px;
     position: relative;
     width: 100%;
 
-    &:hover {
+    &:hover::before {
+      content: '';
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: calc(100% - 66.9rem + 23px);
+      width: calc(66.9rem - 23px);
+      height: 100%;
+      z-index: 0;
       background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
     }
 
@@ -79,6 +88,42 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+  }
+
+  li ul {
+    padding-left: 26px;
+
+    & > li {
+      position: relative;
+    }
+
+    &:first-of-type > li::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -13px;
+      top: 0px;
+      background-color: #2a3423;
+      height: 19px;
+      width: 3px;
+      z-index: -1;
+    }
+
+    &:first-of-type > li::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -13px;
+      top: 19px;
+      background-color: #2a3423;
+      height: 3px;
+      width: 13px;
+      z-index: -1;
+    }
+
+    &.multiple-children > li:not(:last-child)::before {
+      height: 100%;
+    } 
   }
 
   a span {
