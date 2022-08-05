@@ -11,11 +11,17 @@ FILE_TEMPLATE = %{+++
   rarity = <%= rarity %>
   attack = <%= attack %>
   affinity = "<%= affinity %>"
+  <% if sharpness %>
   sharpness = <%= sharpness %>
+  <% end %>
+  <% if elements %>
   element = <%= elements %>
+  <% end %>
   slots = "<%= slots %>"
   <% if create_cost %>
   create-cost = "<%= create_cost %>"
+  <% end %>
+  <% if create_mats %>
   create-mats = <%= create_mats %>
   <% end %>
   <% if upgrade_cost %>
@@ -83,9 +89,15 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       rarity = value["rarity"]
       attack = value["attack"]
       affinity = value["affinity"]
-      sharpness = value["sharpness"].scan(/.{4}/)
-      elements = parseElements(value["element"])
       slots = value["slots"]
+      
+      if value.key?("sharpness")
+        sharpness = value["sharpness"].scan(/.{4}/)
+      end
+      
+      if value.key?("elements")
+        elements = parseElements(value["element"])
+      end
 
       if value["improve-cost"] != "N/A"
         upgrade_cost = value["improve-cost"]
@@ -102,7 +114,10 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
 
       if value["create-cost"] != "N/A"
         create_cost = value["create-cost"]
-        create_mats = value["create-mats"]
+
+        if value["create-mats"] != "N/A"
+          create_mats = value["create-mats"]
+        end
       end
 
       File.write("#{File.dirname(path)}/#{slug}.md", output.result(binding))
