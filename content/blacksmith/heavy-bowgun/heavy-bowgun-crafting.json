@@ -1,0 +1,4839 @@
+{
+  "weapons": [
+    {
+      "name": "Bone Shooter",
+      "attack": "156",
+      "max-attack": "216",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "1",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/3/0",
+        " 4/4/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "700z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Iron Ore: 8",
+        "Sm Monster Bone: 3"
+      ]
+    },
+    {
+      "name": "Injection Cannon",
+      "attack": "168",
+      "max-attack": "228",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "2",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/4/4",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "900z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Vespoid Wing: 6",
+        "Hornetaur Shell: 4",
+        "Disk Stone: 3",
+        "Brute Bone: 2"
+      ]
+    },
+    {
+      "name": "Rapidcaster",
+      "attack": "180",
+      "max-attack": "240",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "2",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0 "
+      ],
+      "create-cost": "1000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Brute Bone: 4",
+        "Bulldrome Hide: 4",
+        "Kelbi Hide: 4",
+        "Kelbi Horn: 2"
+      ]
+    },
+    {
+      "name": "Tankmage",
+      "attack": "180",
+      "max-attack": "240",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "3",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 4/4/4",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "1400z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Rubbery Hide: 4",
+        "Earth Crystal: 10"
+      ]
+    },
+    {
+      "name": "Bastionmage",
+      "attack": "192",
+      "max-attack": "252",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "3",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 6/6/6",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "1675z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Pur Rubbery Hide: 8",
+        "Machalite Ore: 4",
+        "Carpenterbug: 6"
+      ]
+    },
+    {
+      "name": "Sand Driver",
+      "attack": "192",
+      "max-attack": "252",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "3",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 3/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 4",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "1250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Cephalos Fin: 2",
+        "Cephalos Scale: 6",
+        "Iron Ore: 10",
+        "Machalite Ore: 3"
+      ]
+    },
+    {
+      "name": "Yian Kut-Ku Cannon",
+      "attack": "216",
+      "max-attack": "276",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "6",
+      "rarity": "3",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "2675z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Kut-Ku Shell: 8",
+        "Kut-Ku Scale: 8",
+        "Flabby Hide: 5",
+        "Lg Monster Bone: 10"
+      ]
+    },
+    {
+      "name": "Crab Buster",
+      "attack": "216",
+      "max-attack": "276",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "6",
+      "rarity": "3",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 0/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S:0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "2750z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hermitaur Claw: 3",
+        "Hermitaur Shell: 8",
+        "Sm Hermitaur Shl: 10",
+        "Piscine Fang: 4"
+      ]
+    },
+    {
+      "name": "Rock Eater",
+      "attack": "216",
+      "max-attack": "276",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "10",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/0/0",
+        " 2/2/2",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 0/3",
+        " 3/1",
+        " 0/1",
+        " 0/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "3250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Basarios Shell: 10",
+        "Machalite Ore: 15",
+        "Poison Sac: 4",
+        "Basarios Wing: 1"
+      ]
+    },
+    {
+      "name": "Meteor Cannon",
+      "attack": "216",
+      "max-attack": "276",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "3000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "FireStone: 1",
+        "Dragonite Ore: 15",
+        "Machalite Ore: 20",
+        "Iron Ore: 40"
+      ]
+    },
+    {
+      "name": "Flechette Gun",
+      "attack": "228",
+      "max-attack": "288",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/2/0",
+        " 2/2/0",
+        " 1/1/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "3375z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hercudrome: 2",
+        "Vespoid Abdomen: 1",
+        "Hornetaur Shell: 15",
+        "Monster Bone+: 3"
+      ]
+    },
+    {
+      "name": "Monodevilcaster",
+      "attack": "240",
+      "max-attack": "300",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "3050z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Wht Monoblos Spn: 5",
+        "Wht Monoblos Shl: 5",
+        "Dragonite Ore: 2",
+        "Wht Monoblos Hrn: 2"
+      ]
+    },
+    {
+      "name": "Piercing Crab",
+      "attack": "240",
+      "max-attack": "300",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 4/4/4",
+        " 2/0/0",
+        " 1/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0 "
+      ],
+      "create-cost": "3750z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Ceanataur Leg: 3",
+        "Ceanataur Shell: 6",
+        "Ceanataur Claw: 3",
+        "Lg Monster Bone: 8"
+      ]
+    },
+    {
+      "name": "Blue Kut-Ku Cannon",
+      "attack": "252",
+      "max-attack": "312",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "6",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Giant Beak: 1",
+        "Blue Kut-Ku Shl: 5",
+        "Alluring Hide: 5",
+        "Machalite Ore: 10"
+      ]
+    },
+    {
+      "name": "Duelcaster",
+      "attack": "288",
+      "max-attack": "348",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4800z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Diablos Spine: 5",
+        "Diablos Shell: 5",
+        "Dragonite Ore: 15",
+        "Majestic Horn: 1"
+      ]
+    },
+    {
+      "name": "Tigrex Howl",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "-30%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "4",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 2/2/2",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S:  0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4800z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Tigrex Skull Shl: 2",
+        "Tigrex Shell: 8",
+        "Dragonite Ore: 6",
+        "Monster Bone+: 8"
+      ]
+    },
+    {
+      "name": "Seven Nova",
+      "attack": "204",
+      "max-attack": "264",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "20",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "2000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Great Ladybug: 2",
+        "Killer Beetle: 2",
+        "Giant Bone: 3",
+        "Congalala Fang: 4"
+      ]
+    },
+    {
+      "name": "Quickcaster",
+      "attack": "252",
+      "max-attack": "312",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "4300z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Kirin Mane: 8",
+        "Kirin Hide: 2",
+        "Dragonite Ore: 10",
+        "Twisted Horn: 2"
+      ]
+    },
+    {
+      "name": "Black Cannon",
+      "attack": "252",
+      "max-attack": "312",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Dark Stone: 1",
+        "Dark Piece: 4",
+        "ElderDragonBlood: 1",
+        "Dragonite Ore: 3"
+      ]
+    },
+    {
+      "name": "Raven Heirloom",
+      "attack": "264",
+      "max-attack": "324",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4800z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Garuga Ear: 2",
+        "Garuga Shell: 8",
+        "Blangonga Whiskr: 4",
+        "Ceanataur Claw: 3"
+      ]
+    },
+    {
+      "name": "Daora's Delphinidae",
+      "attack": "264",
+      "max-attack": "324",
+      "rapid-fire": "N/A",
+      "affinity": "30%",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5400z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Daora Shell: 5",
+        "DaoraDragonScale: 8",
+        "ElderDragonBlood: 1",
+        "Dragonite Ore: 4"
+      ]
+    },
+    {
+      "name": "Lunastra's Cannon",
+      "attack": "264",
+      "max-attack": "324",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "15",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "5250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Lunstra Shell: 4",
+        "Fire Dragon Scl: 6",
+        "Lunstra Mane: 2",
+        "FireStone: 1"
+      ]
+    },
+    {
+      "name": "Teostra's Artillery",
+      "attack": "276",
+      "max-attack": "336",
+      "rapid-fire": "N/A",
+      "affinity": "15%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        "0/3/3",
+        " 0/0/4",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Teostra Shell: 4",
+        "Fire Dragon Scl: 2",
+        "Teostra Mane: 2",
+        "FireStone: 2"
+      ]
+    },
+    {
+      "name": "Bronze Fire",
+      "attack": "276",
+      "max-attack": "336",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "10",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "VeryWeak",
+      "ammo": [
+        " 6/6/9",
+        " 4/0/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 2"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "5500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Gaoren Pincer: 2",
+        "Gaoren Shell: 5",
+        "FireStone: 1",
+        "Pokke Ticket: 2"
+      ]
+    },
+    {
+      "name": "Lao-Shan Lung Cannon",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "10",
+      "rarity": "5",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 0/6/9",
+        " 0/0/3",
+        " 0/0/4",
+        " 0/0/1",
+        " 0/0/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/1 ",
+        "0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "6000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Lao-Shan's Shell: 4",
+        "Lao-Shan's Scale: 6",
+        "Rathalos Plate: 1",
+        "Dragonite Ore: 10"
+      ]
+    },
+    {
+      "name": "Great Arbalest",
+      "attack": "288",
+      "max-attack": "348",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Stout Bone: 4",
+        "FlynMealPassPlus: 2",
+        "Bulldrome Hide+: 3",
+        "King Scarab: 6"
+      ]
+    },
+    {
+      "name": "Tankmage+",
+      "attack": "288",
+      "max-attack": "348",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/3/0",
+        " 4/4/4",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "3075z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Rubbery Hide+: 4",
+        "Carbalite Ore: 10"
+      ]
+    },
+    {
+      "name": "Desert Diver",
+      "attack": "288",
+      "max-attack": "348",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 3/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 4",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Cephalos Fin+: 5",
+        "Cephalos Scale+: 6",
+        "Coral Cphalos Scl: 3",
+        "Hrd Monster Bone: 3"
+      ]
+    },
+    {
+      "name": "Meteor Buster",
+      "attack": "288",
+      "max-attack": "348",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4400z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Firecell Stone: 1",
+        "Carbalite Ore: 5",
+        "Dragonite Ore: 10",
+        "King Scarab: 6"
+      ]
+    },
+    {
+      "name": "Honeycomber",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/2/0",
+        " 2/2/0",
+        " 1/1/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4950z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Vespoid Carapace: 10",
+        "Vespoid Abdomen: 1",
+        "HorNetaur Crapce: 10",
+        "King Scarab: 6"
+      ]
+    },
+    {
+      "name": "Earth Eater",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "15",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/0/0",
+        " 2/2/2",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 0/3",
+        " 3/1",
+        " 0/1",
+        " 0/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "4725z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Basarios Carpace: 10",
+        "Basarios Tears: 2",
+        "Carbalite Ore: 20",
+        "King Scarab: 8"
+      ]
+    },
+    {
+      "name": "Heavy Buster Crab",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "10",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 0/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "6050z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hermitaur Carpce: 8",
+        "Hermitaur Shell: 10",
+        "Cephalos Scale+: 6",
+        "Stout Bone: 4"
+      ]
+    },
+    {
+      "name": "Gravios Howl",
+      "attack": "312",
+      "max-attack": "372",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "20",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 0/3/3",
+        " 0/3/3",
+        " 0/1/1",
+        " 0/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "6600z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Gravios Carapace: 8",
+        "Gravios Skl Shl: 1",
+        "Basarios Tears: 1",
+        "Rare Scarab: 2"
+      ]
+    },
+    {
+      "name": "Heavy Piercing Crab",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 4/4/4",
+        " 2/0/0",
+        " 1/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "6500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Ceanataur Carpca: 6",
+        "Ceanataur Pincer: 3",
+        "Coral Cphalos Scl: 4",
+        "Monster Bone+: 10"
+      ]
+    },
+    {
+      "name": "Duelcaster+",
+      "attack": "348",
+      "max-attack": "408",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 00"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7025z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Diablos Thoracic: 3",
+        "Diablos Carapace: 6",
+        "Union Ore: 5",
+        "Majestic Horn: 2"
+      ]
+    },
+    {
+      "name": "Tigrex Skull",
+      "attack": "360",
+      "max-attack": "420",
+      "rapid-fire": "N/A",
+      "affinity": "-30%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "6",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 2/2/2",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7025z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Tigrex Carapace: 6",
+        "Tigrex Skull Shl: 3",
+        "FireWyvernBrnStm: 1",
+        "WyvernStone: 2"
+      ]
+    },
+    {
+      "name": "Hidden Sniper",
+      "attack": "276",
+      "max-attack": "336",
+      "rapid-fire": "N/A",
+      "affinity": "40%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "7",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/9",
+        " 6/6/6",
+        " 0/0/3",
+        " 1/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/0",
+        " 0/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Narga Scale+: 10",
+        "Black Narga Pelt: 5 ",
+        "Narga Brain Stem: 1",
+        "Hrd Monster Bone: 6"
+      ]
+    },
+    {
+      "name": "Bastion Cannon",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "7",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 6/6/6",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "3675z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Pur Gypceros Wng: 8",
+        "Carbalite Ore: 6",
+        "Congalala Pelt+: 3",
+        "Hercudrome: 4"
+      ]
+    },
+    {
+      "name": "Gravios Roar",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "15",
+      "rarity": "7",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 0/4/4",
+        " 0/4/4",
+        " 0/1/1",
+        " 0/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7900z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Blk Gravios Cpc: 8",
+        "Blk Gravios Skl: 1",
+        "Gravios BrainStm: 1",
+        "Hrd Monster Bone: 2"
+      ]
+    },
+    {
+      "name": "Mega Kut-Ku Cannon",
+      "attack": "336",
+      "max-attack": "396",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "10",
+      "rarity": "7",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7050z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Blue Kut-Ku Cpc: 8",
+        "Long Kut-Ku Ear: 2",
+        "Pale Khezu Steak: 2",
+        "Union Ore: 8"
+      ]
+    },
+    {
+      "name": "Monodevilcaster+",
+      "attack": "336",
+      "max-attack": "396",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "7",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "4500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Wht Monoblos Cpc: 5",
+        "WhtMonoblosThrcic: 5",
+        "Hrd Monster Bone: 6",
+        "Monoblos Heart: 1"
+      ]
+    },
+    {
+      "name": "Seven Stars",
+      "attack": "300",
+      "max-attack": "360",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "30",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "4400z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Rare Scarab: 3",
+        "Great Ladybug: 4",
+        "Hrd Monster Bone: 1",
+        "Monster Broth: 4"
+      ]
+    },
+    {
+      "name": "Quickcaster+",
+      "attack": "312",
+      "max-attack": "372",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "6250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Kirin Hide+: 3",
+        "Kirin Thndr Tail: 3",
+        "Carbalite Ore: 10",
+        "Majestic Horn: 2"
+      ]
+    },
+    {
+      "name": "Grande Daora",
+      "attack": "312",
+      "max-attack": "372",
+      "rapid-fire": "N/A",
+      "affinity": "30%",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/00"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7700z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Daora Jewel: 1",
+        "Daora Carapace: 5",
+        "ElderDragonBlood: 4",
+        "Hrd Monster Bone: 4"
+      ]
+    },
+    {
+      "name": "Vor Cannon",
+      "attack": "312",
+      "max-attack": "372",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "15",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7350z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Fatalis Shell: 2",
+        "Fatalis Horn: 2",
+        "Fatalis Scale: 2",
+        "Union Ore: 6"
+      ]
+    },
+    {
+      "name": "Lunastra's Flames",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "15",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "7525z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Lunstra Carpace: 4",
+        "Fire Drgn Jwl: 1",
+        "Lunastra Mane: 1",
+        "Firecell Stone: 2"
+      ]
+    },
+    {
+      "name": "Teostra's Flames",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "15%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/3",
+        " 0/0/4",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8025z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Fire Drgn Jwl: 1",
+        "Teostra Carapace: 5",
+        "ElderDragonBlood: 4",
+        "Hrd Monster Bone: 4"
+      ]
+    },
+    {
+      "name": "Destiny's Hands",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "-15%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 6/6/6",
+        " 0/0/0",
+        " 2/2/2",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 4",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8825z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Fatalis CrmsnShl: 2",
+        "Fatalis CrmsnHrn: 2",
+        "Fatalis CrmsnScl: 2",
+        "Firecell Stone: 4"
+      ]
+    },
+    {
+      "name": "Wolf Heirloom",
+      "attack": "336",
+      "max-attack": "396",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8450z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Long Garuga Ear: 3",
+        "Garuga carapce: 5",
+        "Garuga Wing: 3",
+        "Black Blos Cpc: 3"
+      ]
+    },
+    {
+      "name": "Gaoren's Fire",
+      "attack": "348",
+      "max-attack": "408",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "12",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "VeryWeak",
+      "ammo": [
+        " 6/6/9",
+        " 4/0/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 2"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "8025z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Gaoren Thoracic: 3",
+        "Gaoren Carapace: 5",
+        "Firecell Stone: 2",
+        "Pokke Ticket: 4"
+      ]
+    },
+    {
+      "name": "Suprm Lao-Shan Cannon",
+      "attack": "360",
+      "max-attack": "420",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "20",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 0/6/9",
+        " 0/0/3",
+        " 0/0/4",
+        " 0/0/1",
+        " 0/0/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8800z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Lao-Shan's Ruby: 1",
+        "Lao-ShanCarapace: 3",
+        "Lao-Shan Scale+: 5",
+        "Hrd Monster Bone: 8"
+      ]
+    },
+    {
+      "name": "Empr Lao-Shan Cannon",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "-10%",
+      "slots": "---",
+      "defense": "14",
+      "rarity": "8",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 0/6/9",
+        " 0/0/3",
+        " 0/0/4",
+        " 0/0/1",
+        " 0/0/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Azure LaoS Shell: 5",
+        "Lao-Shan's Ruby: 1",
+        "Lao-ShanCarapace: 3",
+        "WyvernStone: 4"
+      ]
+    },
+    {
+      "name": "Great Arbalest+",
+      "attack": "324",
+      "max-attack": "384",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/3/0",
+        " 4/4/0",
+        " 1/1/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "5500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Eltalite Ore: 20",
+        "Hrd Monster Bone: 6",
+        "Hvy Monster Bone: 1",
+        "Commendation G: 1"
+      ]
+    },
+    {
+      "name": "Tanksorcerer",
+      "attack": "336",
+      "max-attack": "396",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/3/0",
+        " 4/4/4",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "6000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "SpecRubberyHide+: 6",
+        "Gypceros Head: 1",
+        "KhezuHide-Cream: 3",
+        "Purecrystal: 1"
+      ]
+    },
+    {
+      "name": "Bastionwitch",
+      "attack": "336",
+      "max-attack": "396",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 6/6/6",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "6500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HrdPuGypcerosWng: 6",
+        "HardGypcerosHead: 1",
+        "Alluring Wing: 3",
+        "Eltalite Ore: 10"
+      ]
+    },
+    {
+      "name": "Power Stinger",
+      "attack": "348",
+      "max-attack": "408",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/4",
+        " 3/3/0",
+        " 0/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "7500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HrdCongalalaPlt+: 8",
+        "CongalalaStrngFng: 4",
+        "Vibrant Pelt: 3",
+        "Hvy Monster Bone: 1"
+      ]
+    },
+    {
+      "name": "Pressurized Plesioth",
+      "attack": "360",
+      "max-attack": "420",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/2/2",
+        " 2/2/2",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 6",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "8000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "ThckPlesiothScl: 8",
+        "SpecPlesiothFin+: 4",
+        "ThckGrnPlesioScl: 4",
+        "Emperor Cricket: 6"
+      ]
+    },
+    {
+      "name": "Violet Punisher",
+      "attack": "360",
+      "max-attack": "420",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "16",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 4/0/0",
+        " 0/0/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 4",
+        "Thundr S: 0",
+        "Freeze S: 4",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "9250z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "PlumD.HermitrShl: 8",
+        "HrdHermitaurClaw: 3",
+        "GrnPlesiothThkScl: 3",
+        "Massive Bone: 2"
+      ]
+    },
+    {
+      "name": "Super Kut-Ku Cannon",
+      "attack": "372",
+      "max-attack": "432",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "14",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Kut-Ku Cpc: 6",
+        "Str Kut-Ku Wing: 6",
+        "Hypno Bezoar: 2",
+        "Eltalite Ore: 10"
+      ]
+    },
+    {
+      "name": "Ultra Kut-Ku Cannon",
+      "attack": "372",
+      "max-attack": "432",
+      "rapid-fire": "N/A",
+      "affinity": "10%",
+      "slots": "---",
+      "defense": "14",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "9000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyBlueKut-KuShl: 6",
+        "Lucky Kut-Ku Ear: 3",
+        "Hypno Claw+: 5",
+        "Hvy Monster Bone: 2"
+      ]
+    },
+    {
+      "name": "Meteor Shower",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "7500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Mellanje Ore: 10",
+        "ThckLavasiothScl: 4",
+        "Eltalite Ore: 20",
+        "Big WyvernStone: 1"
+      ]
+    },
+    {
+      "name": "Gaia Eater",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "20",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/0/0",
+        " 2/2/2",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 0/3",
+        " 3/1",
+        " 0/1",
+        " 0/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "7500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyBasariosShell: 10",
+        "StrBasariosWing: 2",
+        "Eltalite Ore: 20",
+        "Emperor Cricket: 6"
+      ]
+    },
+    {
+      "name": "Icethrower",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 3/2/2",
+        " 4/2/2",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 4",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "8500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HrdBlangongaPlt+: 8",
+        "HvyBlangongaFang: 4",
+        "Lthr Pelagus Plt: 2",
+        "CongalalaStrngFng: 2"
+      ]
+    },
+    {
+      "name": "Ceanataur Blaster",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 4/4/4",
+        " 2/0/0",
+        " 1/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyCeanataurShl: 6",
+        "HrdCeanataurClaw: 4",
+        "Hvy Monster Bone: 4",
+        "Big WyvernStone: 2"
+      ]
+    },
+    {
+      "name": "Gravios gigahowl",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "30",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 0/3/3",
+        " 0/3/3",
+        " 0/1/1",
+        " 0/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "11000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyGraviosShell: 8",
+        "Gravios Skl Shl: 2",
+        "StrBasariosWing: 1",
+        "HvnlyGraviosShl: 1"
+      ]
+    },
+    {
+      "name": "Jolly Roger Cannon",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/3",
+        " 0/0/4",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 12",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "230z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "dummy: 4",
+        "ThckFireDrgnScl: 10",
+        "FireDrgnStrngClaw: 3",
+        "Elder Dragon Jewel: 1"
+      ]
+    },
+    {
+      "name": "Queen Needle",
+      "attack": "348",
+      "max-attack": "408",
+      "rapid-fire": "N/A",
+      "affinity": "20%",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/2/2",
+        " 3/3/0",
+        " 2/2/0",
+        " 2/2/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 6",
+        "Freeze S: 0",
+        "Dragon S: 3"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "8500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "VespoidQn'sCrown: 3",
+        "Vespoid Abdomen: 3",
+        "Lightning Sac: 2",
+        "HorNetaurRazrWng: 4"
+      ]
+    },
+    {
+      "name": "Evil Wind Darkcannon",
+      "attack": "360",
+      "max-attack": "420",
+      "rapid-fire": "N/A",
+      "affinity": "40%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/9",
+        " 6/6/6",
+        " 0/0/3",
+        " 1/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/0",
+        " 0/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "11000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "ThickNargaScale: 10",
+        "BlackNargaPelt+: 5",
+        "NarugeDvinePlate: 1",
+        "Hvy Monster Bone: 6"
+      ]
+    },
+    {
+      "name": "GreatLadybugCannon+",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "40",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "6500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "PhantomButterfly: 8",
+        "HvyRathalosShl: 2",
+        "Great Ladybug: 10",
+        "Monster Essence: 4"
+      ]
+    },
+    {
+      "name": "Quick Quiver",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10750z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "SpecialKirinHide: 3",
+        "Platinum Mane: 3",
+        "Mellanje Ore: 4",
+        "StoutWarpedHorn: 2"
+      ]
+    },
+    {
+      "name": "Crow Heirloom",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "SilverGarugaPelt: 4",
+        "Hvy Garuga Shell: 5",
+        "Str Garuga Wing: 4",
+        "Hvy Monster Bone: 6"
+      ]
+    },
+    {
+      "name": "Terra C Blaster",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "10%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 4/4/4",
+        " 2/0/0",
+        " 2/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "TerraCeanatrShl: 6",
+        "TerraCeanatrClaw: 4",
+        "HvyBasariosShell: 4",
+        "ThckLavasiothScl: 4"
+      ]
+    },
+    {
+      "name": "Daora's Ceti",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "30%",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S:1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "11750z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hvy Daora Shell: 5",
+        "Daora Webing G: 4",
+        "BigEDragonJewel: 1",
+        "Commendation S: 1"
+      ]
+    },
+    {
+      "name": "Destiny's Arm",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "-15%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 6/6/6",
+        " 0/0/0",
+        " 2/2/2",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 4",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "20000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyFatalisCrmShl: 2",
+        "HrdFatlisCrmHorn: 2",
+        "ThckFatlisCrmScl: 2",
+        "BigEDragonJewel: 2"
+      ]
+    },
+    {
+      "name": "Gravios Gigaroar",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "20",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 0/4/4",
+        " 0/4/4",
+        " 0/1/1",
+        " 0/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "11500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyBlkGraviosShl: 8",
+        "Gravios BrainStm: 1",
+        "Firecell Stone: 6",
+        "HvnlyBlkGraviShl: 1"
+      ]
+    },
+    {
+      "name": "Teostra Flamethrower",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "15%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 0/3/3",
+        " 0/0/4",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "12000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyTeostraShell: 5",
+        "FireDragonStrngClw: 2",
+        "BigEDragonJewel: 1",
+        "Commendation S: 1"
+      ]
+    },
+    {
+      "name": "Dark Duelcaster",
+      "attack": "432",
+      "max-attack": "492",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/3/4",
+        " 0/0/0",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "11500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyBlkBlosSpine: 3",
+        "HvyDiablosShell: 6",
+        "Mellanje Ore: 5",
+        "StoutBlkTwstdHrn: 2"
+      ]
+    },
+    {
+      "name": "Vor Buster",
+      "attack": "432",
+      "max-attack": "492",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "20",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "15000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hvy Fatalis Shl: 2",
+        "HardFatalisHorn: 2",
+        "ThckFatalisScale: 2",
+        "BigEDragonJewel: 1"
+      ]
+    },
+    {
+      "name": "Tigrex Skull+",
+      "attack": "444",
+      "max-attack": "504",
+      "rapid-fire": "N/A",
+      "affinity": "-30%",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 2/2/2",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S:  0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hvy Tigrex Shell: 6",
+        "Tigrex Skull Shl: 3",
+        "Hvy Tigrex Fang: 3",
+        "HvnlyTigrexScale: 1"
+      ]
+    },
+    {
+      "name": "Gaoren Orb",
+      "attack": "444",
+      "max-attack": "504",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "14",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "VeryWeak",
+      "ammo": [
+        " 6/6/9",
+        " 4/0/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 2"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "12500z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Hvy Gaoren Spine: 4",
+        "HvyGaorenShell: 6",
+        "Firecell Stone: 20",
+        "HvnlyGaorenShell: 1"
+      ]
+    },
+    {
+      "name": "AncientDrgnwoodCan",
+      "attack": "444",
+      "max-attack": "504",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Light",
+      "ammo": [
+        " 6/6/9",
+        " 0/0/0",
+        " 6/6/6",
+        " 3/3/3",
+        " 3/3/3"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 4/2",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "13000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "AncientDrgnwood: 4",
+        "YamaTsukamiFluid: 8",
+        "Thunderbug Jelly: 6",
+        "Mellanje Ore: 10"
+      ]
+    },
+    {
+      "name": "UltimateLao-ShaoCan",
+      "attack": "480",
+      "max-attack": "540",
+      "rapid-fire": "N/A",
+      "affinity": "-10%",
+      "slots": "O--",
+      "defense": "18",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 0/6/9",
+        " 0/0/3",
+        " 0/0/4",
+        " 0/0/1",
+        " 0/0/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S:0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "15000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Laso-Shan Hvy Cpc: 4",
+        "Azure LaoS Claw: 3",
+        "Lao-ShanHvnlyScl: 1",
+        "Big WyvernStone: 4"
+      ]
+    },
+    {
+      "name": "Ukanlos Cannon",
+      "attack": "504",
+      "max-attack": "564",
+      "rapid-fire": "N/A",
+      "affinity": "-40%",
+      "slots": "---",
+      "defense": "10",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 5/5/12",
+        " 2/2/6",
+        " 2/2/6",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 6",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "20000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "HvyUkanlosShell: 6",
+        "StrongUkanlosFin: 4",
+        "UkanlosUnderscl: 3",
+        "Ukanlos Stone: 1"
+      ]
+    },
+
+    {
+      "name": "Arbalest G",
+      "attack": "312",
+      "max-attack": "372",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation G: 1",
+        "ThkBullfangoPelt: 15",
+        "RobustWyvernBone: 20",
+        "Lg Monster Bone: 30"
+      ]
+    },
+    {
+      "name": "Rapidcaster G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation G: 1",
+        "Kelbi Hide: 20",
+        "Majestic Horn: 10",
+        "Carpenterbug: 99"
+      ]
+    },
+    {
+      "name": "Injector Cannon G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 4/4/4",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation G: 1",
+        "Monster Essence: 30",
+        "Monster Broth: 30",
+        "Monster Fluid: 30"
+      ]
+    },
+    {
+      "name": "Honeycomber G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/2/0",
+        " 2/2/0",
+        " 1/1/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 1"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation G: 1",
+        "YamaTsukamiFluid: 4",
+        "Verspoid Abdomen: 10",
+        "Hornetaur Head: 10"
+      ]
+    },
+    {
+      "name": "Tanksorcerer G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/3/0",
+        " 4/4/4",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation G: 1",
+        "DeadlyPoisonSac: 10",
+        "Toxin Sac: 10",
+        "Purecrystal: 5"
+      ]
+    },
+    {
+      "name": "Bastionwitch G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 3/0/0",
+        " 6/6/6",
+        " 1/0/0",
+        " 1/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "HardGypcerosHead: 3",
+        "Lightcrystal: 20",
+        "Novacrystal: 10"
+      ]
+    },
+    {
+      "name": "Desert Diver G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/0/0",
+        " 3/0/0",
+        " 1/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 4",
+        "Thundr S: 4",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "HvyPiscineFang: 10",
+        "Coral Cphlos Fin: 6",
+        "Union Ore: 30"
+      ]
+    },
+    {
+      "name": "Power Stinger G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/4",
+        " 3/3/0",
+        " 0/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Vibrant Comb: 2",
+        "HrdCongalalaClw+: 4",
+        "GrnConglalaClaw: 6"
+      ]
+    },
+    {
+      "name": "Crab Buster G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "16",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 0/0/0",
+        " 1/0/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 3",
+        "Thundr S: 0",
+        "Freeze S: 3",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Hermitaur Claw+: 8",
+        "HvyHermitaurShl: 8",
+        "Black Pearl: 20"
+      ]
+    },
+    {
+      "name": "Meteor Cannon G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OOO",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 4/4/4",
+        " 0/0/0",
+        " 1/1/1",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "FireStone: 40",
+        "Mellanje Ore: 30",
+        "Basarios Tears: 5"
+      ]
+    },
+    {
+      "name": "PressurizedPlesiothG",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/0",
+        " 2/2/2",
+        " 2/2/2",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 3/1",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 6",
+        "Thundr S: 3",
+        "Freeze S: 3",
+        "Dragon S: 0 "
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "ThckPlesiothScl: 10",
+        "Ancient Fish: 10",
+        "Hrd Monster Bone: 20"
+      ]
+    },
+    {
+      "name": "Violet Punisher G",
+      "attack": "396",
+      "max-attack": "456",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "16",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 4/0/0",
+        " 0/0/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 3/1",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 4",
+        "Thundr S: 0",
+        "Freeze S: 4",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "PlumD.HermitrClw: 6",
+        "PlumD.HermitrShl: 8",
+        "WyvernSkull Shl: 3"
+      ]
+    },
+    {
+      "name": "SuperKut-KuCannon G",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "14",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Thick Kut-Ku Scl: 10",
+        "Lucky Kut-Ku Ear: 5",
+        "Pale Khezu Steak: 3"
+      ]
+    },
+    {
+      "name": "UltraKut-KuCannon G",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "10%",
+      "slots": "---",
+      "defense": "14",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/3/0",
+        " 0/4/0",
+        " 0/1/0",
+        " 0/1/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 4",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "ThkBlueKut-KuScl: 10",
+        "Long Kut-Ku Ear: 10",
+        "KhezuSpecialCut: 1"
+      ]
+    },
+    {
+      "name": "Monodevilcaster G",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Wht Monoblos Cpc: 8",
+        "StoutBlkTwstdHrn: 4",
+        "Monoblos Heart: 2"
+      ]
+    },
+    {
+      "name": "Duelcaster G",
+      "attack": "432",
+      "max-attack": "492",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "N/A",
+      "rarity": "9",
+      "type": "hbg",
+      "reload": "VeryFast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/6",
+        " 2/2/2",
+        " 0/0/0",
+        " 0/0/0",
+        " 0/0/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/0",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "HvyDiablosShell: 8",
+        "Top-GrdPlatHorn: 6",
+        "WyvernStone: 10"
+      ]
+    },
+    {
+      "name": "Queen Needle G",
+      "attack": "384",
+      "max-attack": "444",
+      "rapid-fire": "N/A",
+      "affinity": "20%",
+      "slots": "OO-",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Slow",
+      "recoil": "Moderate",
+      "ammo": [
+        " 9/9/12",
+        " 0/2/2",
+        " 3/3/0",
+        " 2/2/0",
+        " 2/2/0"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 3/1",
+        " 3/1",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 0",
+        "Water S: 0",
+        "Thundr S: 6",
+        "Freeze S: 0",
+        "Dragon S: 3"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 1 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "VespoidQn'sCrown: 5",
+        "Thunderbug Jelly: 20",
+        "Killer Beetle: 99"
+      ]
+    },
+    {
+      "name": "Black Cannon G",
+      "attack": "408",
+      "max-attack": "468",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "O--",
+      "defense": "N/A",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Fast",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/3",
+        " 0/0/0",
+        " 1/1/1",
+        " 1/1/1"
+      ],
+      "status-ammo": [
+        " 3/0",
+        " 3/0",
+        " 3/0",
+        " 3/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Dark Stone: 10",
+        "BigEDragonJewel: 1",
+        "Giant Blk Pearl: 5"
+      ]
+    },
+    {
+      "name": "Lunastra's Flames G",
+      "attack": "420",
+      "max-attack": "480",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "---",
+      "defense": "25",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "Normal",
+      "recoil": "Moderate",
+      "ammo": [
+        " 6/6/9",
+        " 3/3/0",
+        " 4/0/0",
+        " 3/3/3",
+        " 2/2/2"
+      ],
+      "status-ammo": [
+        " 3/3",
+        " 0/0",
+        " 0/0",
+        " 3/1"
+      ],
+      "element-ammo": [
+        "Flame S: 6",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 1"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "ThckFireDrgnScl: 4",
+        "LunastraCarapace: 8",
+        "Fire Drgn Jwl: 3"
+      ]
+    },
+    {
+      "name": "Lao-ShanLungCannon G",
+      "attack": "456",
+      "max-attack": "516",
+      "rapid-fire": "N/A",
+      "affinity": "0",
+      "slots": "OO-",
+      "defense": "30",
+      "rarity": "10",
+      "type": "hbg",
+      "reload": "VerySlow",
+      "recoil": "Weak",
+      "ammo": [
+        " 0/6/9",
+        " 0/0/3",
+        " 0/0/4",
+        " 0/0/1",
+        " 0/0/1"
+      ],
+      "status-ammo": [
+        " 0/0",
+        " 0/1",
+        " 0/0",
+        " 0/0"
+      ],
+      "element-ammo": [
+        "Flame S: 3",
+        "Water S: 3",
+        "Thundr S: 3",
+        "Freeze S: 0",
+        "Dragon S: 0"
+      ],
+      "misc-ammo": [
+        "Tranq S: 2",
+        "Paint S: 2",
+        "Demon S: 0 ",
+        "Armor S: 0"
+      ],
+      "create-cost": "10000z",
+      "improve-mats": "N/A",
+      "create-mats": [
+        "Commendation S: 1",
+        "Lao-ShanHvnlyScl: 1",
+        "Lao-Shan's Ruby: 2",
+        "ElderDragonBlood: 10"
+      ]
+    }
+  ]
+}

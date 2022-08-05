@@ -44,11 +44,13 @@
               {{ page.extra.name }}
             </p>
 
+            {% if page.extra.sharpness %}
             <div class="sharpness">
               {% for sharp in page.extra["sharpness"] %}
                 <span class="{{ sharp }}"></span>
               {% endfor %}
             </div>
+            {% endif %}
           </div>
 
           <div class="weapon-card__details">

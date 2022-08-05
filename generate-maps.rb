@@ -40,11 +40,11 @@ def push_weapon(weapon, array, weapons_data)
     children: []
     })
     
-  if not weapon["element"] == "N/A"
-    array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9]+)/).captures[0].downcase
+  if weapon.key?("element") and not weapon["element"] == "N/A"
+    array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
   end
 
-  if not weapon["improve-to"] == "N/A"
+  if weapon.key?("improve-to") and not weapon["improve-to"] == "N/A"
     for child_weapon_name in weapon["improve-to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
 

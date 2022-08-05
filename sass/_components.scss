@@ -264,16 +264,13 @@ $element-types: (
     color: white;
     text-decoration: none;
 
-    & > :last-child {
-      margin-left: auto;
-    }
-
     .sharpness {
       height: 2.4rem;
       position: relative;
       padding: 4px 8px;
       display: flex;
       width: 19.6rem;
+      margin-left: auto;
     }
     
     .sharpness::after {
