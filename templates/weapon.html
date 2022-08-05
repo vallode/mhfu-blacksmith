@@ -78,36 +78,36 @@
                 {% endfor %}
               {% endif -%}
             </div>
-  
+
+            <hr>
+
             <div
               data-controller="weapon-page"
-              class="requirements {% if page.extra['create-mats'] %}create-mats{% else %}upgrade-mats{% endif %}"
+              class="requirements"
             >
-              <p id="weapon_cost">
-                {{ page.extra["create-cost"] | default(value=page.extra["upgrade-cost"]) }}
-              </p>
-
-              {%- if page.extra["create-mats"] %}
-                <span class="create-mats">
+              <div class="create-mats">
+                {%- if page.extra["create-mats"] %}
+                  <p id="weapon_cost">
+                    <span>Create cost: </span>{{ page.extra["create-cost"] }}
+                  </p>
+  
                   {% for material in page.extra["create-mats"] -%}
                     <p>{{ material }}</p>
                   {% endfor -%}
-                </span>
-              {% endif %}
-  
-              {% if page.extra["upgrade-mats"] %}
-                <span class="upgrade-mats">
+                {% endif %}
+              </div>
+
+              <div class="upgrade-mats">
+                {% if page.extra["upgrade-mats"] %}
+                  <p id="weapon_cost">
+                    <span>Improve cost: </span>{{ page.extra["upgrade-cost"] }}
+                  </p>
+
                   {%- for material in page.extra["upgrade-mats"] -%}
                     <p>{{ material }}</p>
                   {% endfor %}
-                </span>
-              {% endif %}
-  
-              {% if page.extra["create-mats"] and page.extra["upgrade-mats"] %}
-                <div class="weapon-card__navigation">
-                  <img src="/images/arrow.png" class="next" data-action="click->weapon-page#toggle">
-                </div>
-              {% endif %}
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>

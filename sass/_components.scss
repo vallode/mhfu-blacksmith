@@ -258,10 +258,9 @@ $element-types: (
   &__details {
     color: #EAEA4B;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1.3rem;
     height: 100%;
-    justify-content: space-between;
     margin: 2rem 0 0;
 
     .stats,
@@ -281,12 +280,19 @@ $element-types: (
     }
 
     .requirements {
-      text-align: right;
+      display: flex;
+      flex-flow: row wrap;
+      gap: 32px;
       color: white;
 
-      &.upgrade-mats .upgrade-mats,
-      &.create-mats .create-mats {
+      .upgrade-mats,
+      .create-mats {
         display: flex;
+        flex: 1 1 0%;
+      }
+
+      span {
+        color: #EAEA4B;
       }
       
       &.upgrade-mats .create-mats,
