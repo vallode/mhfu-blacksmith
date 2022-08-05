@@ -61,11 +61,10 @@
     color: white;
     display: flex;
     flex-direction: row;
-    flex: 0 0 38px;
     padding: 0 0 0 13px;
     height: 38px;
     position: relative;
-    width: fit-content;
+    width: 100%;
 
     &:hover {
       background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
@@ -84,6 +83,7 @@
 
   a span {
     width: 26px;
+    flex: 0 0 26px;
   }
 }
 
@@ -239,11 +239,15 @@ $element-types: (
       position: absolute;
       top: 0;
       left: 0;
-      background-image: url("/images/gauge.png");
+      background-image: url("/images/sharpness.png");
       background-size: cover;
       image-rendering: optimizeSpeed;
       image-rendering: pixelated;
       z-index: 10;
+    }
+
+    .sharpness:hover::after {
+      background-image: url("/images/sharpness-plus.png");
     }
 
     @media screen and (max-width: 600px) {
