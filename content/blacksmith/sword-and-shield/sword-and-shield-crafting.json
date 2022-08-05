@@ -14,8 +14,8 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Iron Ore x1",
-        "Disk Stone x1"
+        "Iron Ore (1)",
+        "Disk Stone (1)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
@@ -39,7 +39,7 @@
       "upgrade-from": "Hunter's Dagger",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Iron Ore x3"
+        "Iron Ore (3)"
       ],
       "upgrade-to": [
         "Assassin's Dagger",
@@ -62,9 +62,9 @@
       "upgrade-from": "Hunter's Dagger+",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Machalite Ore x1",
-        "Iron Ore x3",
-        "Earth Crystal x3"
+        "Machalite Ore (1)",
+        "Iron Ore (3)",
+        "Earth Crystal (3)"
       ],
       "upgrade-to": [
         "Velocidrome Bite",
@@ -87,15 +87,15 @@
       "upgrade-cost": "1290z",
       "upgrade-from": "Assassin's Dagger",
       "create-mats": [
-        "Velocidrome Claw x6",
-        "Velocidrome Head x1",
-        "Med Monster Bone x4",
-        "Conga Pelt x6"
+        "Velocidrome Claw (6)",
+        "Velocidrome Head (1)",
+        "Med Monster Bone (4)",
+        "Conga Pelt (6)"
       ],
       "upgrade-mats": [
-        "Velocidrome Claw x4",
-        "Velocidrome Hide x2",
-        "Machalite Ore x3"
+        "Velocidrome Claw (4)",
+        "Velocidrome Hide (2)",
+        "Machalite Ore (3)"
       ],
       "upgrade-to": [
         "Velocidrome Bite+",
@@ -1341,16 +1341,16 @@
       "upgrade-cost": "50000z",
       "upgrade-from": "Osteon Pick",
       "create-mats": [
-        "Hypnock Feather x5",
-        "Hypnock Claw+ x6",
-        "Sleep Sac x4",
-        "Novacrystal x1"
+        "Hypnock Feather (5)",
+        "Hypnock Claw+ (6)",
+        "Sleep Sac (4)",
+        "Novacrystal (1)"
       ],
       "upgrade-mats": [
-        "OrangeHypnoPelt x3",
-        "Carbalite Ore x4",
-        "Velocidrome Clw+ x5",
-        "Sleep Sac x2"
+        "OrangeHypnoPelt (3)",
+        "Carbalite Ore (4)",
+        "Velocidrome Clw+ (5)",
+        "Sleep Sac (2)"
       ],
       "upgrade-to": [
         "Feather Sword"
@@ -1370,16 +1370,16 @@
       "upgrade-cost": "80000z",
       "upgrade-from": "Feather Knife",
       "create-mats": [
-        "OrangeHypnoPelt+ x5",
-        "Eltalite Ore x10",
-        "Hypno Bezoar+ x1",
-        "Lg Pelagus Fang x2"
+        "OrangeHypnoPelt+ (5)",
+        "Eltalite Ore (10)",
+        "Hypno Bezoar+ (1)",
+        "Lg Pelagus Fang (2)"
       ],
       "upgrade-mats": [
-        "OrangeHypnoPelt+ x3",
-        "Hypno Claw+ x2",
-        "Hypno Bezoar x1",
-        "HrdCongalalaPlt+ x3"
+        "OrangeHypnoPelt+ (3)",
+        "Hypno Claw+ (2)",
+        "Hypno Bezoar (1)",
+        "HrdCongalalaPlt+ (3)"
       ],
       "upgrade-to": [
         "Hi Feather Sword"
@@ -1400,10 +1400,10 @@
       "upgrade-from": "Feather Sword",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Hypno Claw+ x5",
-        "Hypno Bezoar+ x1",
-        "Coma Sac x3",
-        "Purecrystal x2"
+        "Hypno Claw+ (5)",
+        "Hypno Bezoar+ (1)",
+        "Coma Sac (3)",
+        "Purecrystal (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -1689,9 +1689,9 @@
       "upgrade-from": "Chief Kris",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Plesioth Fin x2",
-        "Cephalos Fin x2",
-        "Sleep Herb x10"
+        "Plesioth Fin (2)",
+        "Cephalos Fin (2)",
+        "Sleep Herb (10)"
       ],
       "upgrade-to": [
         "Sandman Finsword"
@@ -1712,9 +1712,9 @@
       "upgrade-from": "Weary Finsword",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Plesioth Fin x5",
-        "Dragonite Ore x5",
-        "Sleepyfishx10"
+        "Plesioth Fin (5)",
+        "Dragonite Ore (5)",
+        "Sleepyfish (10)"
       ],
       "upgrade-to": [
         "Sandman Spike"
@@ -1735,9 +1735,9 @@
       "upgrade-from": "Sandman Finsword",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Grn Plesioth Fin x5",
-        "Plesioth Fin x5",
-        "Sleep Sac x5"
+        "Grn Plesioth Fin (5)",
+        "Plesioth Fin (5)",
+        "Sleep Sac (5)"
       ],
       "upgrade-to": [
         "High Sandman Spike"
@@ -1758,9 +1758,9 @@
       "upgrade-from": "Sandman Spike",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Green Plesioth Fin+ x4",
-        "Plesioth Fin+ x4",
-        "Coral Cephalos Fin x3"
+        "Green Plesioth Fin+ (4)",
+        "Plesioth Fin+ (4)",
+        "Coral Cephalos Fin (3)"
       ],
       "upgrade-to": "N/A"
     },
@@ -2088,10 +2088,10 @@
       "upgrade-from": "Dual Carapace+",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Terra Ceanataur Claw x2",
-        "Plum Daimyo Hermitaur Claw x2",
-        "Terra Ceanataur Shell x4",
-        "Plum Daimyo Hermitaur Shell x4"
+        "Terra Ceanataur Claw (2)",
+        "Plum Daimyo Hermitaur Claw (2)",
+        "Terra Ceanataur Shell (4)",
+        "Plum Daimyo Hermitaur Shell (4)"
       ],
       "upgrade-to": [
         "Twin Shears"
@@ -2112,10 +2112,10 @@
       "upgrade-from": "Twin Shells",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Terra Ceanataur Claw x4",
-        "Plum Daimyo Hermitaur Claw x4",
-        "Giant Black Pearl x3",
-        "Heavenly Gaoren Shell x1"
+        "Terra Ceanataur Claw (4)",
+        "Plum Daimyo Hermitaur Claw (4)",
+        "Giant Black Pearl (3)",
+        "Heavenly Gaoren Shell (1)"
       ],
       "upgrade-to": "N/A"
     },

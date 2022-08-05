@@ -15,15 +15,15 @@
       "upgrade-cost": "100000z",
       "upgrade-from": "Blacksmith",
       "create-mats": [
-        "ThckLavasiothScl x8",
-        "HvyLavasiothShl x6",
-        "Hvy Monster Bon x8",
-        "Screamer x8"
+        "ThckLavasiothScl (8)",
+        "HvyLavasiothShl (6)",
+        "Hvy Monster Bon (8)",
+        "Screamer (8)"
       ],
       "upgrade-mats": [
-        "ThckLavasiothScl x4",
-        "SpecLavasioFin+ x2",
-        "Screamer x4"
+        "ThckLavasiothScl (4)",
+        "SpecLavasioFin+ (2)",
+        "Screamer (4)"
       ],
       "upgrade-to": [
         "Volcano Alphorn"
@@ -45,10 +45,10 @@
       "upgrade-from": "Lava Alphorn",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Eltalite Ore x5",
-        "SpecLavasioFin+ x4",
-        "PhantomButterfly x3",
-        "HvyGraviosShell x2"
+        "Eltalite Ore (5)",
+        "SpecLavasioFin+ (4)",
+        "PhantomButterfly (3)",
+        "HvyGraviosShell (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -514,15 +514,15 @@
       "upgrade-cost": "50000z",
       "upgrade-from": "Kut-Ku Pick",
       "create-mats": [
-        "Top-GrdHypnoClaw x10",
-        "OrangeHypnoPelt x8",
-        "Earth Crystal x20",
-        "Carbalite Ore x10"
+        "Top-GrdHypnoClaw (10)",
+        "OrangeHypnoPelt (8)",
+        "Earth Crystal (20)",
+        "Carbalite Ore (10)"
       ],
       "upgrade-mats": [
-        "Top-GrdHypnoClaw x5",
-        "OrangeHypnoPelt x3",
-        "Dragonite Ore x8"
+        "Top-GrdHypnoClaw (5)",
+        "OrangeHypnoPelt (3)",
+        "Dragonite Ore (8)"
       ],
       "upgrade-to": [
         "Hypno Whistle"
@@ -543,16 +543,16 @@
       "upgrade-cost": "80000z",
       "upgrade-from": "Feather Whistle",
       "create-mats": [
-        "OrangeHypnoPelt+ x8",
-        "Hypno Claw+ x16",
-        "Eltalite Ore x15",
-        "Hypno Bezoar+ x1"
+        "OrangeHypnoPelt+ (8)",
+        "Hypno Claw+ (16)",
+        "Eltalite Ore (15)",
+        "Hypno Bezoar+ (1)"
       ],
       "upgrade-mats": [
-        "Top-GrdHypnoClaw x12",
-        "OrangeHypnoPelt+ x5",
-        "Eltalite Ore x10",
-        "Hypno Bezoar x1"
+        "Top-GrdHypnoClaw (12)",
+        "OrangeHypnoPelt+ (5)",
+        "Eltalite Ore (10)",
+        "Hypno Bezoar (1)"
       ],
       "upgrade-to": [
         "Hypno Slide Whistle"
@@ -895,9 +895,9 @@
       "upgrade-from": "Shell Castanet",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HermtrShl x4",
-        "TerraCeanatrShl x2",
-        "HermitrClw x1"
+        "HermtrShl (4)",
+        "TerraCeanatrShl (2)",
+        "HermitrClw (1)"
       ],
       "upgrade-to": [
         "Klick-Klack"
@@ -919,10 +919,10 @@
       "upgrade-from": "Crabby Castanet",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HermitrShl x6",
-        "TerraCeanatrShl x4",
-        "Hard Gaoren Claw x2",
-        "HvnlyGaorenShell x1"
+        "HermitrShl (6)",
+        "TerraCeanatrShl (4)",
+        "Hard Gaoren Claw (2)",
+        "HvnlyGaorenShell (1)"
       ],
       "upgrade-to": "N/A"
     },
@@ -1598,15 +1598,15 @@
       "upgrade-cost": "85000z",
       "upgrade-from": "War Conga",
       "create-mats": [
-        "Congalala Pelt+ x8",
-        "Vibrant Comb x1",
-        "Massive Bone x4",
-        "Emperor Cricket x5"
+        "Congalala Pelt+ (8)",
+        "Vibrant Comb (1)",
+        "Massive Bone (4)",
+        "Emperor Cricket (5)"
       ],
       "upgrade-mats": [
-        "Congalala Pelt+ x8",
-        "Lg Pelagus Fang x2",
-        "Rare Scarab x5"
+        "Congalala Pelt+ (8)",
+        "Lg Pelagus Fang (2)",
+        "Rare Scarab (5)"
       ],
       "upgrade-to": [
         "Jungle Conga"
@@ -1628,10 +1628,10 @@
       "upgrade-from": "Jungle Bongo",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HrdBlangongaPlt+ x4",
-        "CongalalaPelt+ x8",
-        "CongaClaw x4",
-        "Vibrant Comb x2"
+        "HrdBlangongaPlt+ (4)",
+        "CongalalaPelt+ (8)",
+        "CongaClaw (4)",
+        "Vibrant Comb (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -1748,10 +1748,10 @@
       "upgrade-from": "Ancient Fatalis Lied",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HrdWhtFatlisHorn x2",
-        "StrWhtFatalisWng x1",
-        "ThckWhtFatlisScl x2",
-        "BigEDragonJewel x3"
+        "HrdWhtFatlisHorn (2)",
+        "StrWhtFatalisWng (1)",
+        "ThckWhtFatlisScl (2)",
+        "BigEDragonJewel (3)"
       ],
       "upgrade-to": "N/A"
     },

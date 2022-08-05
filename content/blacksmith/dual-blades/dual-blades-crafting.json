@@ -110,16 +110,16 @@
       "upgrade-cost": "95000z",
       "upgrade-from": "Tornado Tomahawks",
       "create-mats": [
-        "SpecLavasioFin+ x3",
-        "SpecPlesiothFin+ x3",
-        "Hvy Monster Bone x8",
-        "HvyPiscineFang x6"
+        "SpecLavasioFin+ (3)",
+        "SpecPlesiothFin+ (3)",
+        "Hvy Monster Bone (8)",
+        "HvyPiscineFang (6)"
       ],
       "upgrade-mats": [
-        "SpecLavasioFin+ x1",
-        "SpecPlesiothFin+ x1",
-        "ThckLavasiothScl x3",
-        "ThckPlesiothScl x3"
+        "SpecLavasioFin+ (1)",
+        "SpecPlesiothFin+ (1)",
+        "ThckLavasiothScl (3)",
+        "ThckPlesiothScl (3)"
       ],
       "upgrade-to": [
         "Volcanic Storm"
@@ -140,10 +140,10 @@
       "upgrade-from": "Firestorm",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "SpecLavasioFin+ x4",
-        "SpecPlesiothFin+ x4",
-        "YamaTsukamiFluid x3",
-        "Big Wyvern Stone x2"
+        "SpecLavasioFin+ (4)",
+        "SpecPlesiothFin+ (4)",
+        "YamaTsukamiFluid (3)",
+        "Big Wyvern Stone (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -335,9 +335,9 @@
       "upgrade-from": "Dual Battleaxe+",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "SpecRubberyHide+ x6",
-        "HardGypcerosHead x1",
-        "GoldRathianThorn x1"
+        "SpecRubberyHide+ (6)",
+        "HardGypcerosHead (1)",
+        "GoldRathianThorn (1)"
       ],
       "upgrade-to": "N/A"
     },
@@ -1580,15 +1580,15 @@
       "upgrade-cost": "85000z",
       "upgrade-from": "Limb Cutter",
       "create-mats": [
-        "Terra Ceanataur Claw x2",
-        "Terra Ceanataur Shell x4",
-        "Piercing Claw x8",
-        "Emperor Cricketx10"
+        "Terra Ceanataur Claw (2)",
+        "Terra Ceanataur Shell (4)",
+        "Piercing Claw (8)",
+        "Emperor Cricket (10)"
       ],
       "upgrade-mats": [
-        "Terra Ceanataur Claw x2",
-        "Terra Ceanataur Shell x4",
-        "Heavy Ceanataur Leg x3"
+        "Terra Ceanataur Claw (2)",
+        "Terra Ceanataur Shell (4)",
+        "Heavy Ceanataur Leg (3)"
       ],
       "upgrade-to": [
         "Red Rippers"
@@ -1609,10 +1609,10 @@
       "upgrade-from": "Carmine Edge",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Terra Ceanataur Claw x4",
-        "Hard Gaoren Claw x2",
-        "Hard Ceanataur Claw x4",
-        "Giant Black Pearl x2"
+        "Terra Ceanataur Claw (4)",
+        "Hard Gaoren Claw (2)",
+        "Hard Ceanataur Claw (4)",
+        "Giant Black Pearl (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -1890,15 +1890,15 @@
       "upgrade-cost": "85000z",
       "upgrade-from": "Funky Maracas",
       "create-mats": [
-        "CongalalaPelt+ x8",
-        "Lg Pelagus Fang x5",
-        "Vibrant Comb x1",
-        "Massive Bone x2"
+        "CongalalaPelt+ (8)",
+        "Lg Pelagus Fang (5)",
+        "Vibrant Comb (1)",
+        "Massive Bone (2)"
       ],
       "upgrade-mats": [
-        "CongalalaPelt+ x6",
-        "CongaClaw x2",
-        "Piercing Claw x6"
+        "CongalalaPelt+ (6)",
+        "CongaClaw (2)",
+        "Piercing Claw (6)"
       ],
       "upgrade-to": [
         "Evergreen"
@@ -1919,10 +1919,10 @@
       "upgrade-from": "Jungle Maracas",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "CongalalaPelt+ x8",
-        "Lg Pelagus Fang x4",
-        "Vibrant Comb x2",
-        "LeathrBlangoTail x2"
+        "CongalalaPelt+ (8)",
+        "Lg Pelagus Fang (4)",
+        "Vibrant Comb (2)",
+        "LeathrBlangoTail (2)"
       ],
       "upgrade-to": "N/A"
     },
@@ -2032,9 +2032,9 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Dark Stone x1",
-        "Dark Piece x4",
-        "Pokke Ticket x1"
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "Pokke Ticket (1)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
@@ -2057,9 +2057,9 @@
       "upgrade-from": "Black Twin Daggers",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Fatalis Horn x2",
-        "Fatalis Shell x4",
-        "Daora Jewel x1"
+        "Fatalis Horn (2)",
+        "Fatalis Shell (4)",
+        "Daora Jewel (1)"
       ],
       "upgrade-to": [
         "Fatalis Dual Sky"
@@ -2080,9 +2080,9 @@
       "upgrade-from": "Fatalis Dual Blades",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HrdFatalisHorn x2",
-        "HvyFatalisShell x4",
-        "BigEDragonJewel x1"
+        "HrdFatalisHorn (2)",
+        "HvyFatalisShell (4)",
+        "BigEDragonJewel (1)"
       ],
       "upgrade-to": "N/A"
     },
@@ -2101,10 +2101,10 @@
       "upgrade-from": "Black Twin Daggers",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Fatalis Horn x2",
-        "White Fatalis Horn x2",
-        "Fatalis Devil Eye x2",
-        "Chameleos Jewel x3"
+        "Fatalis Horn (2)",
+        "White Fatalis Horn (2)",
+        "Fatalis Devil Eye (2)",
+        "Chameleos Jewel (3)"
       ],
       "upgrade-to": [
         "Ultimus Apocalypse"
@@ -2125,10 +2125,10 @@
       "upgrade-from": "Ultimus Celestials",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "HardFatalisHorn x2",
-        "HrdWhtFatlisHorn x2",
-        "Fatalis Evil Eye x2",
-        "BigEDragonJewel x3"
+        "HardFatalisHorn (2)",
+        "HrdWhtFatlisHorn (2)",
+        "Fatalis Evil Eye (2)",
+        "BigEDragonJewel (3)"
       ],
       "upgrade-to": "N/A"
     },

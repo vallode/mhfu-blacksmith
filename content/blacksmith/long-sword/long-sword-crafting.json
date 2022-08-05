@@ -186,16 +186,16 @@
       "upgrade-cost": "90000",
       "upgrade-from": "Imperial Sword",
       "create-mats": [
-        "Pure Crystal x5",
-        "Union Ore x20",
-        "Basarios Tears x3",
-        "Eltalite Ore x12"
+        "Pure Crystal (5)",
+        "Union Ore (20)",
+        "Basarios Tears (3)",
+        "Eltalite Ore (12)"
       ],
       "upgrade-mats": [
-        "Pure Crystal x2",
-        "Nova Crystal x15",
-        "Eltalite Ore x10",
-        "HvyPiscineFang x3"
+        "Pure Crystal (2)",
+        "Nova Crystal (15)",
+        "Eltalite Ore (10)",
+        "HvyPiscineFang (3)"
       ],
       "upgrade-to": [
         "Atlantica",
@@ -788,15 +788,15 @@
       "upgrade-cost": "1400z",
       "upgrade-from": "Buster Sword+",
       "create-mats": [
-        "x3",
-        "x8",
-        "x8",
-        "x8"
+        " (3)",
+        " (8)",
+        " (8)",
+        " (8)"
       ],
       "upgrade-mats": [
-        "x5",
-        "x1",
-        "x5"
+        " (5)",
+        " (1)",
+        " (5)"
       ],
       "upgrade-to": [
         "Iron Katana 'Grace'"
@@ -2249,9 +2249,9 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Elder Thank You x1",
-        "Gaoren Pincer x1",
-        "Lao-Shan's Shell x1"
+        "Elder Thank You (1)",
+        "Gaoren Pincer (1)",
+        "Lao-Shan's Shell (1)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": [
@@ -2273,9 +2273,9 @@
       "upgrade-from": "Centenarian Dagger",
       "create-mats": "N/A",
       "upgrade-mats": [
-        "Elder Thank You+ x1",
-        "Elder Thank You x1",
-        "Fire Dragon Claw x10"
+        "Elder Thank You+ (1)",
+        "Elder Thank You (1)",
+        "Fire Dragon Claw (10)"
       ],
       "upgrade-to": "N/A"
     },
@@ -2694,10 +2694,10 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Commendation G x1",
-        "Purecrystal x3",
-        "Union Ore x15",
-        "StrBasariosWing x3"
+        "Commendation G (1)",
+        "Purecrystal (3)",
+        "Union Ore (15)",
+        "StrBasariosWing (3)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
@@ -2716,10 +2716,10 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Commendation G x1",
-        "Hermitaur Claw x15",
-        "Hermitaur Claw+ x6",
-        "HrdHermitaurClaw x2"
+        "Commendation G (1)",
+        "Hermitaur Claw (15)",
+        "Hermitaur Claw+ (6)",
+        "HrdHermitaurClaw (2)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
@@ -2848,10 +2848,10 @@
       "upgrade-cost": "N/A",
       "upgrade-from": "N/A",
       "create-mats": [
-        "Commendation S x1",
-        "Hard Gaoren Claw x3",
-        "Azure LaoS Claw x3",
-        "HrdFireDrgnClaw x3"
+        "Commendation S (1)",
+        "Hard Gaoren Claw (3)",
+        "Azure LaoS Claw (3)",
+        "HrdFireDrgnClaw (3)"
       ],
       "upgrade-mats": "N/A",
       "upgrade-to": "N/A"
