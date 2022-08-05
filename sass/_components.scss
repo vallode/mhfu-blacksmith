@@ -273,7 +273,7 @@ $element-types: (
 
     .stats {
       flex-flow: column wrap;
-      height: 30%;
+      height: 11rem;
     }
 
     .stats span {
@@ -289,6 +289,7 @@ $element-types: (
       flex-flow: row wrap;
       gap: 32px;
       color: white;
+      flex: 1 1 0%;
 
       .improve-mats,
       .create-mats {
@@ -314,6 +315,10 @@ $element-types: (
         content: 'Create';
         display: block;
       }
+    }
+    
+    hr {
+      margin: 0;
     }
 
     #weaponSlots {
