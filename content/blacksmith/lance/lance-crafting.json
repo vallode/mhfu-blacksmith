@@ -12,13 +12,13 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "650z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Iron Ore (4)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Iron Lance+",
         "Iron Gunlance",
         "Snow Gunlance"
@@ -36,15 +36,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "650z",
-      "upgrade-from": [
+      "improve-cost": "650z",
+      "improve-from": [
         "Iron Lance"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Steel Lance",
         "Bone Javelin"
       ]
@@ -61,16 +61,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": [
+      "improve-cost": "1,400z",
+      "improve-from": [
         "Iron Lance+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Irone Ore (4)",
         "Disk Stone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Paladin Lance",
         "Estoc"
       ]
@@ -87,19 +87,19 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "1,750z",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": "Steel Lance",
+      "improve-cost": "1,750z",
+      "improve-from": "Steel Lance",
       "create-mats": [
         "Earth Crystal (15)",
         "Machalite Ore (6)",
         "Iron Ore (15)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (10)",
         "Machalite Ore (4)",
         "Earth Crystal (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Rampart"
       ]
     },
@@ -115,15 +115,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Paladin Lance",
+      "improve-cost": "3,100z",
+      "improve-from": "Paladin Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (2)",
         "Machalite Ore (8)",
         "Earth Crystal (15)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Growling Wyvern",
         "Gatling Lance",
         "Naag Serpentblade"
@@ -141,15 +141,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Rampart",
+      "improve-cost": "4,900z",
+      "improve-from": "Rampart",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (5)",
         "Machalite Ore (15)",
         "Blk Gravios Shl (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Roaring Wyvern",
         "Knight Lance"
       ]
@@ -166,14 +166,14 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Growling Wyvern",
+      "improve-cost": "60,000z",
+      "improve-from": "Growling Wyvern",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (20)",
         "Union Ore (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sanctioned Drill Lance"
       ]
     },
@@ -189,21 +189,21 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Roaring Wyvern",
+      "improve-cost": "80,000z",
+      "improve-from": "Roaring Wyvern",
       "create-mats": [
         "Eltalite Ore (10)",
         "Union Ore (10)",
         "Thunder Sac (8)",
         "Monster Broth+ (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "Carbalite Ore (15)",
         "DaoraDragonScal+ (5)",
         "Piercing Claw (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravedigger"
       ]
     },
@@ -219,16 +219,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Sanctioned Drill Lance",
+      "improve-cost": "105,000z",
+      "improve-from": "Sanctioned Drill Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (10)",
         "Eltalite Ore (20)",
         "Lightning Sac (5)",
         "StrngBasariosWng (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Knight Lance",
@@ -242,20 +242,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "25,000z",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": "Growling Wyvern",
+      "improve-cost": "25,000z",
+      "improve-from": "Growling Wyvern",
       "create-mats": [
         "Carbalite Ore (5)",
         "Iron Ore (50)",
         "Velociprey Hide (15)",
         "Velocidrome Hide (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (3)",
         "Dragonite Ore (5)",
         "Velociprey Scale (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Knight Spear",
         "Aqua Spear",
         "Grayburg Javelin",
@@ -275,15 +275,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Knight Lance",
+      "improve-cost": "35,000z",
+      "improve-from": "Knight Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (5)",
         "Earth Crystal (15)",
         "Velociprey Hide+ (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Babel Spear"
       ]
     },
@@ -299,15 +299,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Knight Spear",
+      "improve-cost": "55,000z",
+      "improve-from": "Knight Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gld Rathian Scl+ (8)",
         "Machalite ore (30)",
         "Genprey Scale+ (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sadalsuud",
         "Lost Babel",
         "Ancient Destroyer",
@@ -326,15 +326,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Babel Spear",
+      "improve-cost": "110,000z",
+      "improve-from": "Babel Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckGldRathnScl (5)",
         "Eltalite Ore (10)",
         "GoldRajangPelt+ (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Sadalsuud",
@@ -348,20 +348,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "75,000z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Babel Spear",
+      "improve-cost": "75,000z",
+      "improve-from": "Babel Spear",
       "create-mats": [
         "Eltalite Ore (15)",
         "Purecrystal (3)",
         "Rathian Scale+ (15)",
         "Earth Crystal (40)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (10)",
         "Purecrystal (1)",
         "HvyHermitaurShl (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sadalmelek"
       ]
     },
@@ -377,15 +377,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Sadalsuud",
+      "improve-cost": "95,000z",
+      "improve-from": "Sadalsuud",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hvy Basarios Shl (3)",
         "Hvy Ceanataur Shl (3)",
         "Mellanje Ore (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Aquarius"
       ]
     },
@@ -401,15 +401,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Sadalmelek",
+      "improve-cost": "115,000z",
+      "improve-from": "Sadalmelek",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (3)",
         "HvygaorenShell (3)",
         "HvyBlkGraviosShl (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Spark Plug",
@@ -423,20 +423,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "90,000z",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Babel Spear",
+      "improve-cost": "90,000z",
+      "improve-from": "Babel Spear",
       "create-mats": [
         "Eltalite Ore (15)",
         "HrdPuGypcerosWng (8)",
         "Thunderbug Juice (10)",
         "Thunderbug (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Thunderbug Jelly (5)",
         "Eltalite Ore (10)",
         "HrdPuGypcerosWng (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "ThunderbugShockLance"
       ]
     },
@@ -452,16 +452,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Spark Plug",
+      "improve-cost": "110,000z",
+      "improve-from": "Spark Plug",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (10)",
         "LthrKirinThndrTl (2)",
         "Hard Rajang Horn (1)",
         "Thunderbug Jelly (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Aqua Spear",
@@ -475,20 +475,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "40,000z",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Knight Lance",
+      "improve-cost": "40,000z",
+      "improve-from": "Knight Lance",
       "create-mats": [
         "Cephalos Fin+ (3)",
         "Plesioth Fin (12)",
         "Plesioth Scale (15)",
         "Carbalite Ore (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Fin (10)",
         "Cephalos Scale+ (4)",
         "Dragonite Ore (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Aqua Spear+"
       ]
     },
@@ -504,15 +504,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Aqua Spear",
+      "improve-cost": "50,000z",
+      "improve-from": "Aqua Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Fin+ (4)",
         "Plesioth Scale+ (8)",
         "Cephalos Fin+ (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Emerald Spear"
       ]
     },
@@ -528,15 +528,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Aqua Spear+",
+      "improve-cost": "55,000z",
+      "improve-from": "Aqua Spear+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Grn Plsioth Fin+ (6)",
         "Grn Plsioth Scl+ (12)",
         "Wyvern Stone (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Grayburg Javelin",
@@ -550,15 +550,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Knight Lance",
+      "improve-cost": "60,000z",
+      "improve-from": "Knight Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (8)",
         "DaoraDragonScale (8)",
         "Firestone (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dragon Rider Spear"
       ]
     },
@@ -574,15 +574,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Grayburg Javelin",
+      "improve-cost": "75,000z",
+      "improve-from": "Grayburg Javelin",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (10)",
         "Daora Claw (3)",
         "Daora Carapace (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dragoon's G\u00e1e Bulg"
       ]
     },
@@ -598,16 +598,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Dragon Rider Spear",
+      "improve-cost": "115,000z",
+      "improve-from": "Dragon Rider Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (10)",
         "Daora Sharp Claw (5)",
         "Heavy Daora Shell (5)",
         "Phantom Butterfly (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Cold Icicle",
@@ -621,21 +621,21 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "40,000z",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Knight Lance",
+      "improve-cost": "40,000z",
+      "improve-from": "Knight Lance",
       "create-mats": [
         "Blangonga Fang+ (3)",
         "Carbalite Ore (10)",
         "Ice Crystal (15)",
         "Rubbery Hide+ (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (5)",
         "Ice Crystal (10)",
         "Rubbery Hide (8)",
         "Blangonga Pelt+ (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Frost Icicle"
       ]
     },
@@ -651,16 +651,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Cold Icicle",
+      "improve-cost": "65,000z",
+      "improve-from": "Cold Icicle",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (20)",
         "Machalite Ore (20)",
         "Daora Sharp Claw (5)",
         "Blangonga Fang+ (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Icicle Blizzard"
       ]
     },
@@ -676,15 +676,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Frost Icicle",
+      "improve-cost": "100,000z",
+      "improve-from": "Frost Icicle",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (20)",
         "Eltalite Ore (10)",
         "HvyBlangongaFang (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Gatling Lance",
@@ -698,20 +698,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "4,250z",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Rampart",
+      "improve-cost": "4,250z",
+      "improve-from": "Rampart",
       "create-mats": [
         "Firestone (4)",
         "Machalite Ore (12)",
         "Flame Sac (2)",
         "Hercudrome (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Firestone (2)",
         "Dragonite Ore (5)",
         "Gunpowder (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gatling Lance+"
       ]
     },
@@ -727,15 +727,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "7,150z",
-      "upgrade-from": "Gatling Lance",
+      "improve-cost": "7,150z",
+      "improve-from": "Gatling Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fire Stone (6)",
         "Dragonite Ore (15)",
         "FireWyvrn Marrow (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sanctioned Gunlance"
       ]
     },
@@ -751,15 +751,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Gatling Lance+",
+      "improve-cost": "65,000z",
+      "improve-from": "Gatling Lance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Firecell Stone (6)",
         "Carbalite Ore (25)",
         "Inferno Sac (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Naag Serpentblade",
@@ -773,20 +773,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "5,600z",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Rampart",
+      "improve-cost": "5,600z",
+      "improve-from": "Rampart",
       "create-mats": [
         "Remobra Skull (2)",
         "Remobra Skin (8)",
         "Poison Sac (10)",
         "Machalite Ore (15)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Remobra Skin (5)",
         "Remobra Skull (2)",
         "Iron Ore (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Devta Serpentblade"
       ]
     },
@@ -802,15 +802,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Naag Serpentblade",
+      "improve-cost": "50,000z",
+      "improve-from": "Naag Serpentblade",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Remobra Skin+ (5)",
         "Remobra Skull (4)",
         "Toxic Sac (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ouroboros Serpentblade"
       ]
     },
@@ -826,16 +826,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Devta Serpentblade",
+      "improve-cost": "90,000z",
+      "improve-from": "Devta Serpentblade",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecRemobraSkin+ (3)",
         "DeadlyPoisonSac (5)",
         "Eltalite Ore (10)",
         "Novacrystal (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Estoc",
@@ -849,17 +849,17 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": [
+      "improve-cost": "2,150z",
+      "improve-from": [
         "Steel Lance"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Black Pearl (3)",
         "Machalite Ore (4)",
         "Ice Crystal (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Valhalla"
       ]
     },
@@ -875,15 +875,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Estoc",
+      "improve-cost": "5,600z",
+      "improve-from": "Estoc",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Light Crystal (5)",
         "Dragonite Ore (7)",
         "Ice Crystal (15)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Javelin",
@@ -897,15 +897,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Iron Lance+",
+      "improve-cost": "1,400z",
+      "improve-from": "Iron Lance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Sm Monster Bone (4)",
         "Brute Bone (4)",
         "Iron Ore (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Spiked Spear"
       ]
     },
@@ -921,15 +921,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Bone Javelin",
+      "improve-cost": "2,150z",
+      "improve-from": "Bone Javelin",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Med Monster Bone (3)",
         "Machalite Ore (3)",
         "Killer Beetle (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Lullaby Spear",
         "Paralysisr"
       ]
@@ -946,20 +946,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "1,750z",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": "Spiked Spear",
+      "improve-cost": "1,750z",
+      "improve-from": "Spiked Spear",
       "create-mats": [
         "Plesioth Fin (4)",
         "Cephalos Fin (4)",
         "Sleepyfish (10)",
         "Springnight Carp (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Scale (4)",
         "Cephalos Scale (4)",
         "Sleep Herb (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Requiem Spear"
       ]
     },
@@ -975,15 +975,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Lullaby Spear",
+      "improve-cost": "4,900z",
+      "improve-from": "Lullaby Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Fin (6)",
         "Sleep Sac (3)",
         "Mega Demondrug (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Paralysisr",
@@ -997,15 +997,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Spiked Spear",
+      "improve-cost": "3,100z",
+      "improve-from": "Spiked Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (10)",
         "Thunderbug (10)",
         "Rubbery Hide (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Trident",
         "Venom Lance",
         "Thunderspear"
@@ -1023,15 +1023,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Paralysisr",
+      "improve-cost": "4,250z",
+      "improve-from": "Paralysisr",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (4)",
         "Electro Sac (5)",
         "Rubbery Hide (7)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Venom Lance",
@@ -1045,20 +1045,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "3,100z",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Paralysisr",
+      "improve-cost": "3,100z",
+      "improve-from": "Paralysisr",
       "create-mats": [
         "Basarios Wing (1)",
         "Basarios Shell (4)",
         "Iron Ore (20)",
         "Toadstool (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Shell (7)",
         "Machalite Ore (12)",
         "Poison Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Basarios Venom Spear"
       ]
     },
@@ -1074,15 +1074,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Venom Lance",
+      "improve-cost": "4,250z",
+      "improve-from": "Venom Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Wing (1)",
         "Basarios Shell (8)",
         "Poison Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravios Spear",
         "Black Gravios Spear"
       ]
@@ -1099,15 +1099,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Basarios Venom Spear",
+      "improve-cost": "30,000z",
+      "improve-from": "Basarios Venom Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Skl Shl (1)",
         "Gravios Shell (8)",
         "Poison Sac (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravios Venom Spear"
       ]
     },
@@ -1123,15 +1123,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Gravios Spear",
+      "improve-cost": "70,000z",
+      "improve-from": "Gravios Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Carapace (8)",
         "Chameleos Tail (5)",
         "Toxin Sac (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravios Lance"
       ]
     },
@@ -1147,19 +1147,19 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": [
+      "improve-cost": "95,000z",
+      "improve-from": [
         "Gravios Venom Spear",
         "Void Gravios Spear"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyGraviosShell (3)",
         "HvyBlkGraviosShl (6)",
         "Gravios Skl Shl (5)",
         "Tigrex Scale+ (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravios Fire Lance"
       ]
     },
@@ -1175,15 +1175,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Gravios Lance",
+      "improve-cost": "110,000z",
+      "improve-from": "Gravios Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvnlyGraviosShl (1)",
         "HvnlyBlkGraviShl (1)",
         "Blazing Fire Sac (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Gravios Spear",
@@ -1197,15 +1197,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Basarios Venom Spear",
+      "improve-cost": "30,000z",
+      "improve-from": "Basarios Venom Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blk Gravios Skl (1)",
         "Blk Gravios Shl (8)",
         "Firestone (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Void Gravios Spear"
       ]
     },
@@ -1221,15 +1221,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Black Gravios Spear",
+      "improve-cost": "70,000z",
+      "improve-from": "Black Gravios Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blk Gravios Cpc (8)",
         "Gravios BrainStm (1)",
         "Firecell Stone (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gravios Lance"
       ]
     },
@@ -1245,20 +1245,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "20,000z",
-      "upgrade-cost": "20,000z",
-      "upgrade-from": "Paralysisr",
+      "improve-cost": "20,000z",
+      "improve-from": "Paralysisr",
       "create-mats": [
         "Kirin Horn (3)",
         "Kirin Hide (8)",
         "Rubbery Hide (5)",
         "Thunderbug (16)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Horn (1)",
         "Kirin Mane (2)",
         "Thunderbug (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Thunderlance"
       ]
     },
@@ -1274,15 +1274,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Thunderspear",
+      "improve-cost": "60,000z",
+      "improve-from": "Thunderspear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Azure Horn (3)",
         "Kirin Hide+ (5)",
         "Thunderbug Juice (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Naar Thunderlance"
       ]
     },
@@ -1298,15 +1298,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Thunderlance",
+      "improve-cost": "100,000z",
+      "improve-from": "Thunderlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Slvr Mane (3)",
         "Platinum Mane (5)",
         "Thunderbug Jelly (8)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Shell Claw Lance",
@@ -1320,8 +1320,8 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "85,000z",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": [
+      "improve-cost": "85,000z",
+      "improve-from": [
         "Ceanataur Piercer",
         "Scissor Cannon"
       ],
@@ -1331,12 +1331,12 @@
         "Giant Blk Pearl (3)",
         "Monster Broth (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Plum Daimyo Hermitaur Shell (5)",
         "Plum Daimyo Hermitaur Claw (1)",
         "Piercing Claw (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Giant Hermitaur Lance"
       ]
     },
@@ -1352,16 +1352,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Shell Claw Lance",
+      "improve-cost": "115,000z",
+      "improve-from": "Shell Claw Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HermitrClw (2)",
         "HermitrShl (8)",
         "HvyCeanataurLeg (3)",
         "Giant Blk Pearl (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Longhorn",
@@ -1375,14 +1375,14 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "650z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Sm Monster Bone (2)",
         "Brute Bone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Longhorn+",
         "Wild Bone Lance"
       ]
@@ -1399,14 +1399,14 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "1,100z",
-      "upgrade-from": "Longhorn",
+      "improve-cost": "1,100z",
+      "improve-from": "Longhorn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Brute Bone (2)",
         "Bone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Long Tusk",
         "Dark Lance",
         "Great Bone Gunlance"
@@ -1424,18 +1424,18 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "1,750z",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": "Longhorn+",
+      "improve-cost": "1,750z",
+      "improve-from": "Longhorn+",
       "create-mats": [
         "Hard Ticket (1)",
         "Bone (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Brute Bone (4)",
         "Giant Bone (1)",
         "Med Monster Bone (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Barbaroi Tusk",
         "Crimson Lance",
         "Bone Claw Lance",
@@ -1454,20 +1454,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "3,100z",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Long Tusk",
+      "improve-cost": "3,100z",
+      "improve-from": "Long Tusk",
       "create-mats": [
         "Iodrome Skull (1)",
         "Ioprey Hide (10)",
         "Lg Monster Bone (7)",
         "Demondrug (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Lg Monster Bone (5)",
         "Iodrome Hide (5)",
         "Monster Fluid (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ogre Tusk",
         "Incessant Raven"
       ]
@@ -1484,19 +1484,19 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "5,600z",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Barbaroi Tusk",
+      "improve-cost": "5,600z",
+      "improve-from": "Barbaroi Tusk",
       "create-mats": [
         "Hard Ticket (1)",
         "Alluring Hide (1)",
         "Monster bone+ (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Monster Bone+ (5)",
         "Ioprey Hide (20)",
         "Mega Demondrug (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Ogre Tusk",
         "Hard Bone Lance"
       ]
@@ -1513,15 +1513,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Ogre Tusk",
+      "improve-cost": "40,000z",
+      "improve-from": "Ogre Tusk",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hrd Monster Bone (5)",
         "Ioprey Hide+ (10)",
         "Hercudrome (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hard Bone Lance",
@@ -1535,19 +1535,19 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": "Ogre Tusk",
+      "improve-cost": "25,000z",
+      "improve-from": "Ogre Tusk",
       "create-mats": [
         "Stout Bone (5)",
         "Giant Bone (15)",
         "Iron Ore (30)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Stout Bone (2)",
         "Monster Bone+ (5)",
         "Machalite Ore (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hard Bone Lance+"
       ]
     },
@@ -1563,15 +1563,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Hard Bone Lance",
+      "improve-cost": "35,000z",
+      "improve-from": "Hard Bone Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Master's Skull (5)",
         "Rare Scarab (10)",
         "Hrd Monster Bone (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Barbarian Tusk",
         "Demon Lance",
         "Full Voltage"
@@ -1589,15 +1589,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Hard Bone Lance+",
+      "improve-cost": "55,000z",
+      "improve-from": "Hard Bone Lance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Diablos Carapace (3)",
         "Stout Bone (6)",
         "Killer Beetle (30)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Giant Tusk",
         "Heavy Bone Gunlance"
       ]
@@ -1614,15 +1614,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Barbarian Tusk",
+      "improve-cost": "75,000z",
+      "improve-from": "Barbarian Tusk",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hvy Monster Bone (2)",
         "Massive Bone (2)",
         "Monster Essence (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Brutal Tusk"
       ]
     },
@@ -1638,15 +1638,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Giant Tusk",
+      "improve-cost": "100,000z",
+      "improve-from": "Giant Tusk",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "BigEDragonBone (3)",
         "Hvy Monster Bone (5)",
         "Massive Bone (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Demon Lance",
@@ -1660,20 +1660,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Hard Bone Lance+",
+      "improve-cost": "80,000z",
+      "improve-from": "Hard Bone Lance+",
       "create-mats": [
         "Rajang Horn (2)",
         "Rajang Fang (4)",
         "Blk Rajang Pelt (6)",
         "Commendation (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Rajang Horn (2)",
         "Rajang Tail (2)",
         "Blk Rajang Pelt (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Demon Lance"
       ]
     },
@@ -1689,15 +1689,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Demon Lance",
+      "improve-cost": "90,000z",
+      "improve-from": "Demon Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gold Rajang Pelt (1)",
         "Rajang Claw (4)",
         "Gld Rathian Scl+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Demonlance Rajang"
       ]
     },
@@ -1713,16 +1713,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Great Demon Lance",
+      "improve-cost": "130,000z",
+      "improve-from": "Great Demon Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hard Rajang Horn (2)",
         "Blk Rajang Pelt+ (3)",
         "Hard Rajang Claw (4)",
         "GoldRajangPelt+ (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Incessant Raven",
@@ -1736,20 +1736,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "10,000z",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Barbaroi Tusk",
+      "improve-cost": "10,000z",
+      "improve-from": "Barbaroi Tusk",
       "create-mats": [
         "Garuga Tail (3)",
         "Sharpened Beak (1)",
         "Garuga Ear (2)",
         "Machalite Ore (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Tail (1)",
         "Garuga Wing (2)",
         "Garuga Scale (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Incessant Wolf"
       ]
     },
@@ -1765,15 +1765,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Incessant Raven",
+      "improve-cost": "65,000z",
+      "improve-from": "Incessant Raven",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Scale+ (4)",
         "Long Garuga Ear (2)",
         "Toxin Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Incessant Crow"
       ]
     },
@@ -1789,16 +1789,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Incessant Wolf",
+      "improve-cost": "105,000z",
+      "improve-from": "Incessant Wolf",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Tail+ (2)",
         "Str Garuga Wing (2)",
         "ThickGarugaScale (5)",
         "DeadlyPoisonSac (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Crimson Lance",
@@ -1812,20 +1812,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "3,100z",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Long Tusk",
+      "improve-cost": "3,100z",
+      "improve-from": "Long Tusk",
       "create-mats": [
         "Monoblos Spine (2)",
         "Blood Red Horn (1)",
         "Machalite Ore (8)",
         "Monster Fluid (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Blood Red Horn (1)",
         "Flame Sac (2)",
         "Machalite Ore (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crimson War Pike",
         "Ceramic Blos Lance",
         "Diablo Horn"
@@ -1843,15 +1843,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "6,350z",
-      "upgrade-from": "Crimson Lance",
+      "improve-cost": "6,350z",
+      "improve-from": "Crimson Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Monoblos Heart (1)",
         "Blood Red Horn (2)",
         "Monoblos Shell (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crimson War Pike+"
       ]
     },
@@ -1867,15 +1867,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Crimson War Pike",
+      "improve-cost": "75,000z",
+      "improve-from": "Crimson War Pike",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Top-GrdRedHorn (1)",
         "MonoblosCarapace (5)",
         "Inferno Sac (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ceramic Blos Lance",
@@ -1889,15 +1889,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Crimson Lance",
+      "improve-cost": "4,250z",
+      "improve-from": "Crimson Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wht Monoblos Hrn (1)",
         "Wht Monoblos Spn (2)",
         "Wht Monoblos Shl (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ceramic Blos Lance+"
       ]
     },
@@ -1913,15 +1913,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "8,350z",
-      "upgrade-from": "Ceramic Blos Lance",
+      "improve-cost": "8,350z",
+      "improve-from": "Ceramic Blos Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wht Monoblos Hrn (3)",
         "Grn Plesioth Scl (5)",
         "Diablos Spine (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "White Disaster"
       ]
     },
@@ -1937,15 +1937,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Ceramic Blos Lance+",
+      "improve-cost": "75,000z",
+      "improve-from": "Ceramic Blos Lance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Top-GrdPlatHorn (1)",
         "WhtMonoblosThora (4)",
         "Diablos Thoracic (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "White Catastrophe"
       ]
     },
@@ -1961,15 +1961,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "White Disaster",
+      "improve-cost": "85,000z",
+      "improve-from": "White Disaster",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Top-GrdPlatHorn (2)",
         "Wht Monoblos Cpc(5)",
         "Monoblos Heart (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Diablo Horn",
@@ -1983,15 +1983,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Crimson Lance",
+      "improve-cost": "4,900z",
+      "improve-from": "Crimson Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Twisted Horn (1)",
         "Diablos Shell (4)",
         "Dragonite Ore (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Diablo Spear"
       ]
     },
@@ -2007,15 +2007,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Diablo Horn",
+      "improve-cost": "30,000z",
+      "improve-from": "Diablo Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Majestic Horn (1)",
         "Blos Fang (10)",
         "Diablos Spine (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Tempest"
       ]
     },
@@ -2031,15 +2031,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Diablo Spear",
+      "improve-cost": "75,000z",
+      "improve-from": "Diablo Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "TwstBlkBlosHrn (4)",
         "Blk Blos Thracic (4)",
         "Black Blos Cpc (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Rising Tempest"
       ]
     },
@@ -2055,16 +2055,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Black Tempest",
+      "improve-cost": "115,000z",
+      "improve-from": "Black Tempest",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "StoutBlkTwstdHrn (2)",
         "HvyBlkBlosSpine (4)",
         "HvyBlkBlosShell (8)",
         "Big Wyvern Stone (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Claw Lance",
@@ -2078,20 +2078,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "3,100z",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Long Tusk",
+      "improve-cost": "3,100z",
+      "improve-from": "Long Tusk",
       "create-mats": [
         "Hermitaur Claw (2)",
         "Hermitaur Shell (5)",
         "Sm Hermitaur Shell (7)",
         "Monster Fluid (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Hermitaur Shell (4)",
         "Sm Hermitaur Shell (5)",
         "Sharp Claw (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bone Claw Lance+"
       ]
     },
@@ -2107,15 +2107,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Bone Claw Lance",
+      "improve-cost": "5,600z",
+      "improve-from": "Bone Claw Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hermitaur Claw (3)",
         "Hermitaur Shell (8)",
         "Monster Bone+ (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Scissor Gunlance",
         "Ceanataur Piercer"
       ]
@@ -2132,18 +2132,18 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": [
+      "improve-cost": "50,000z",
+      "improve-from": [
         "Bone Claw Lance+",
         "Ceanataur Stinger"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Claw+ (3)",
         "Ceanataur Carpce (5)",
         "Ceanataur Leg (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Carmine Stinger",
         "Shell Claw Lance"
       ]
@@ -2160,20 +2160,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "85,000z",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Ceanataur Piercer",
+      "improve-cost": "85,000z",
+      "improve-from": "Ceanataur Piercer",
       "create-mats": [
         "Terra Ceanataur Claw (4)",
         "Terra Ceanataur Shell (8)",
         "Ceanataur Leg (15)",
         "Emperor Cricket (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Claw (2)",
         "Terra Ceanataur Shell (5)",
         "Hard Hermitaur Claw (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Shish Kabob Stick"
       ]
     },
@@ -2189,16 +2189,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Carmine Stinger",
+      "improve-cost": "115,000z",
+      "improve-from": "Carmine Stinger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Claw (3)",
         "Heavy Ceanataur Leg (5)",
         "Giant Black Pearl (2)",
         "Heavy Gaoren Shell (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Blade Stinger",
@@ -2212,15 +2212,15 @@
       "link": "https://monsterhunter.fandom.com/wiki/Blade_Stinger",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "3,560z",
-      "upgrade-from": "Long Tusk",
+      "improve-cost": "3,560z",
+      "improve-from": "Long Tusk",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Pincer (2)",
         "Sm Ceanataur Shell (10)",
         "Black Pearl (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ceanataur Stinger"
       ]
     },
@@ -2236,15 +2236,15 @@
       "link": "https://monsterhunter.fandom.com/wiki/Ceanataur_Stinger",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Blade Stinger",
+      "improve-cost": "5,600z",
+      "improve-from": "Blade Stinger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Claw (8)",
         "Ceanataur Shell (10)",
         "Monster Bone+ (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ceanataur Piercer"
       ]
     },
@@ -2260,15 +2260,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Longhorn+",
+      "improve-cost": "2,150z",
+      "improve-from": "Longhorn+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornetaur Shell (10)",
         "Vespoid Abdomen (1)",
         "Paralysis Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dark Spear"
       ]
     },
@@ -2284,15 +2284,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Dark Lance",
+      "improve-cost": "4,250z",
+      "improve-from": "Dark Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornetaur Head (3)",
         "Hercudrome (3)",
         "Gendrome Skull (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dark"
       ]
     },
@@ -2308,15 +2308,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Dark Spear",
+      "improve-cost": "55,000z",
+      "improve-from": "Dark Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornetaur InnerWing (5)",
         "Hornetaur Carapace (8)",
         "Gendrome Tail (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Darkness"
       ]
     },
@@ -2332,16 +2332,16 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Dark",
+      "improve-cost": "100,000z",
+      "improve-from": "Dark",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornet RazorWing (5)",
         "Vespoid RazorWing (5)",
         "Hornetaur Crapce (10)",
         "Monster Essence (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Wild Bone Lance",
@@ -2355,20 +2355,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "1,400z",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Longhorn",
+      "improve-cost": "1,400z",
+      "improve-from": "Longhorn",
       "create-mats": [
         "Bullfango pelt (5)",
         "Brute Bone (3)",
         "Anteka Antlers (2)",
         "Carpenterbug (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Bullfango Pelt (3)",
         "Brute Bone (3)",
         "Iron Ore (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Wild Bone Lance+",
         "Fragrance"
       ]
@@ -2385,15 +2385,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Wild Bone Lance",
+      "improve-cost": "2,150z",
+      "improve-from": "Wild Bone Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Bulldrome Tusk (2)",
         "Bullfango Head (1)",
         "Bulldrome Hide (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bulldrome Spear",
         "Red Tail"
       ]
@@ -2410,15 +2410,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Wild Bone Lance+",
+      "improve-cost": "40,000z",
+      "improve-from": "Wild Bone Lance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Bulldrome Tusk (6)",
         "Bulldrome Hide+ (4)",
         "Stout Bone (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Red Tail",
@@ -2432,20 +2432,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "2,600z",
-      "upgrade-cost": "2,600z",
-      "upgrade-from": "Wild Bone Lance+",
+      "improve-cost": "2,600z",
+      "improve-from": "Wild Bone Lance+",
       "create-mats": [
         "Rathalos Scale (3)",
         "Rathalos Shell (2)",
         "FireWyvern Fluid (4)",
         "Flame Sac (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "FireWyvern Fluid (3)",
         "Wyvern Claw (6)",
         "Flame Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Spear of Prominence",
         "Blue Tail"
       ]
@@ -2462,15 +2462,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Red Tail",
+      "improve-cost": "35,000z",
+      "improve-from": "Red Tail",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rathalos Tail (5)",
         "Rathalos Shell (7)",
         "Rathalos Plate (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Blue Tail",
@@ -2484,15 +2484,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Red Tail",
+      "improve-cost": "4,900z",
+      "improve-from": "Red Tail",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azur Rthlos Tail (3)",
         "Azure Rthlos Shl (5)",
         "FireWyvrn Marrow (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blue Prominence"
       ]
     },
@@ -2508,15 +2508,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Blue Tail",
+      "improve-cost": "70,000z",
+      "improve-from": "Blue Tail",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azur Rthlos Tail (10)",
         "Azure Rthlos Cpc (6)",
         "Rathalos Ruby (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Prominence Soul"
       ]
     },
@@ -2532,15 +2532,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Blue Prominence",
+      "improve-cost": "120,000z",
+      "improve-from": "Blue Prominence",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LthrAzrRthlosTail (2)",
         "HvyAzurRthlosShl (5)",
         "HvnlyRathalosScl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Fragrance",
@@ -2554,20 +2554,20 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "1,400z",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Wild Bone Lance",
+      "improve-cost": "1,400z",
+      "improve-from": "Wild Bone Lance",
       "create-mats": [
         "Dosbiscus (4)",
         "Iron Ore (3)",
         "Sap Plant (5)",
         "Godbug (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Dosbiscus (2)",
         "Carpenterbug (3)",
         "Sunset Herb (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Fragrance+"
       ]
     },
@@ -2583,15 +2583,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "3,650z",
-      "upgrade-from": "Fragrance",
+      "improve-cost": "3,650z",
+      "improve-from": "Fragrance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dosbiscus (6)",
         "Alluring Hide (3)",
         "Black Pearl (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Noble Fragrance"
       ]
     },
@@ -2607,15 +2607,15 @@
       "shelling": "",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Fragrance+",
+      "improve-cost": "45,000z",
+      "improve-from": "Fragrance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dosbiscus (10)",
         "Carbalite Ore (5)",
         "Conga Pelt+ (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Rusted Lance",
@@ -2624,17 +2624,17 @@
       "sharpness": "Bred",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "1",
       "type": "ln",
       "create-cost": "1,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Ruststone Rod (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tarnished Lance"
       ]
     },
@@ -2645,17 +2645,17 @@
       "sharpness": "BredSora",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "1",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "2,500z",
-      "upgrade-from": "Rusted Lance",
+      "improve-cost": "2,500z",
+      "improve-from": "Rusted Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Undertaker",
         "Steel Ice Spear"
       ]
@@ -2667,18 +2667,18 @@
       "sharpness": "BredSoraSyelSgre",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Tarnished Lance",
+      "improve-cost": "40,000z",
+      "improve-from": "Tarnished Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Steel Ice Spear",
@@ -2687,19 +2687,19 @@
       "sharpness": "BredMoraSyelTgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Tarnished Lance",
+      "improve-cost": "35,000z",
+      "improve-from": "Tarnished Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Tail (1)",
         "Daora Shell (3)",
         "DaoraDragonScale (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Steel Ice Spear+"
       ]
     },
@@ -2710,19 +2710,19 @@
       "sharpness": "MredMoraSyelSgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Steel Ice Spear",
+      "improve-cost": "50,000z",
+      "improve-from": "Steel Ice Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Claw (4)",
         "Daora Shell (5)",
         "ElderDragonBlood (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Daora's Fang"
       ]
     },
@@ -2733,19 +2733,19 @@
       "sharpness": "BredMoraSyelSgreSblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Steel Ice Spear+",
+      "improve-cost": "90,000z",
+      "improve-from": "Steel Ice Spear+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Sharp Claw (2)",
         "Daora Carapace (6)",
         "Daora Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Daora's Regulus"
       ]
     },
@@ -2756,20 +2756,20 @@
       "sharpness": "BredMoraSyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "135,000z",
-      "upgrade-from": "Daora's Fang",
+      "improve-cost": "135,000z",
+      "improve-from": "Daora's Fang",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LthrDaoraTail (1)",
         "Hvy Daora Shell (7)",
         "Hard Daora Horn (2)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Worn Spear",
@@ -2778,17 +2778,17 @@
       "sharpness": "BredSora",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "6",
       "type": "ln",
       "create-cost": "1,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Ancient StoneRod (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Weathered Spear"
       ]
     },
@@ -2799,17 +2799,17 @@
       "sharpness": "BredSoraSyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "6",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "12,500z",
-      "upgrade-from": "Worn Spear",
+      "improve-cost": "12,500z",
+      "improve-from": "Worn Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Matenro",
         "Teostra's Howl"
       ]
@@ -2821,18 +2821,18 @@
       "sharpness": "BredSoraSyelMgreTblu",
       "affinity": "-20%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "7",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Weathered Spear",
+      "improve-cost": "60,000z",
+      "improve-from": "Weathered Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sky Scraper"
       ]
     },
@@ -2843,19 +2843,19 @@
       "sharpness": "BredSoraSyelMgreSbluSwhi",
       "affinity": "-15%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Matenro",
+      "improve-cost": "100,000z",
+      "improve-from": "Matenro",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (8)",
         "ElderDragonBlood (10)",
         "Commendation G (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Teostra's Howl",
@@ -2864,19 +2864,19 @@
       "sharpness": "BredMoraSyelSgreTgre",
       "affinity": "5%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "7",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Weathered Spear",
+      "improve-cost": "80,000z",
+      "improve-from": "Weathered Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Teostra Tail (4)",
         "Teostra Shell (8)",
         "Fire Dragon Pwdr (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Teostra's Roar"
       ]
     },
@@ -2887,19 +2887,19 @@
       "sharpness": "MredMoraSyelMgreTblu",
       "affinity": "10%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Teostra's Howl",
+      "improve-cost": "90,000z",
+      "improve-from": "Teostra's Howl",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Teostra Horn+ (2)",
         "Teostra Carapace (8)",
         "Fire Drgn Jwl (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Teostra's Fire"
       ]
     },
@@ -2910,19 +2910,19 @@
       "sharpness": "MredMoraSyelMgreSbluSwhi",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Teostra's Roar",
+      "improve-cost": "130,000z",
+      "improve-from": "Teostra's Roar",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HardTeostraHorn (2)",
         "LthrTeostraTail (4)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Belt Lance",
@@ -2931,20 +2931,20 @@
       "sharpness": "SredSoraMyelSgre",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "4",
       "type": "ln",
       "create-cost": "6,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Blackbelt Ticket (8)",
         "Congalala Coin (10)",
         "Plesioth Coin (10)",
         "Kut-Ku Coin (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Expert Lance"
       ]
     },
@@ -2955,19 +2955,19 @@
       "sharpness": "SredSoraMyelMgre",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "20,000z",
-      "upgrade-from": "Black Belt Lance",
+      "improve-cost": "20,000z",
+      "improve-from": "Black Belt Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Expert Ticket (15)",
         "Kirin Coin (5)",
         "Silver Rathalos Tail (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Warrior's Lance"
       ]
     },
@@ -2978,20 +2978,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Expert Lance",
+      "improve-cost": "75,000z",
+      "improve-from": "Expert Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Silver Rathalos Hard Tail (2)",
         "Fighter Coin G (4)",
         "Expert Coin G (5)",
         "Commendation G (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Lance",
@@ -3000,19 +3000,19 @@
       "sharpness": "SredSoraToraSyelTgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "15,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Black Dragon Spear",
         "Black Ruiner Lance"
       ]
@@ -3024,19 +3024,19 @@
       "sharpness": "BredMoraTyelTyelSgre",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Lance",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Horn (4)",
         "Fatalis Eye (2)",
         "Lao Shan's Ruby (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "True Blk Dragon Spr"
       ]
     },
@@ -3047,19 +3047,19 @@
       "sharpness": "BredMoraSyelMgreSblu",
       "affinity": "-10%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Black Dragon Spear",
+      "improve-cost": "150,000z",
+      "improve-from": "Black Dragon Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HardFatalisHorn (4)",
         "Fatalis Evil Eye (2)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Ruiner Lance",
@@ -3068,18 +3068,18 @@
       "sharpness": "BredMoraSyelMgreTblu",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Lance",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis CrmsnHrn (3)",
         "Chameleos Jewel (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "True Blk Dragon Spr+"
       ]
     },
@@ -3090,19 +3090,19 @@
       "sharpness": "BredMoraSyelMgreSbluSwhi",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Black Ruiner Lance",
+      "improve-cost": "150,000z",
+      "improve-from": "Black Ruiner Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdFatlisCrmHorn (3)",
         "HvyFatalisCrmShl (5)",
         "BigEDragonJewel (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Native Spear",
@@ -3111,20 +3111,20 @@
       "sharpness": "SredSoraToraSyelTgre",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "3",
       "type": "ln",
       "create-cost": "7,500z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Unknown Skull (1)",
         "Wyvern Claw (1)",
         "Bone (1)",
         "Iodrome Skull (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Primal Spear"
       ]
     },
@@ -3135,19 +3135,19 @@
       "sharpness": "SredSoraMyelBgreTblu",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "6",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Native Spear",
+      "improve-cost": "45,000z",
+      "improve-from": "Native Spear",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Master's Skull (1)",
         "Toxin Sac (5)",
         "FlynMealPassReg (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Tiger Stinger",
@@ -3156,20 +3156,20 @@
       "sharpness": "BredSoraSyelMgreTblu",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "35,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tigrex Scale (6)",
         "Tigrex Tail (1)",
         "Tigrex Claw (5)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tigrex Lance",
         "Hidden Stinger"
       ]
@@ -3181,19 +3181,19 @@
       "sharpness": "MredSoraMyelMgreSbluSwhi",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "7",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Tiger Stinger",
+      "improve-cost": "80,000z",
+      "improve-from": "Tiger Stinger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Scale+ (6)",
         "Tigrex Tail (3)",
         "Tigrex Claw+ (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Tigrex Lance"
       ]
     },
@@ -3204,20 +3204,20 @@
       "sharpness": "MredSoraMyelMgreSbluSwhiSpur",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Tigrex Lance",
+      "improve-cost": "125,000z",
+      "improve-from": "Tigrex Lance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LeathrTigrexTail (1)",
         "ThickTigrexScale (6)",
         "HardTigrexClaw (5)",
         "HvnlyTigrexScale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hidden Stinger",
@@ -3226,24 +3226,24 @@
       "sharpness": "MredSoraMyelBgreSbluSwhi",
       "affinity": "50%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "7",
       "type": "ln",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Tiger Stinger",
+      "improve-cost": "80,000z",
+      "improve-from": "Tiger Stinger",
       "create-mats": [
         "Naruga Tail (3)",
         "Naruga Wing (5)",
         "Naruga Fang+ (1)",
         "Naruga Marrow (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Naruga Tail (1)",
         "Naruga Wing (3)",
         "Naruga Fang+ (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Rain Darklance"
       ]
     },
@@ -3254,25 +3254,25 @@
       "sharpness": "SredSoraMyelBgreSbluSwhiSpur",
       "affinity": "50%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Hidden Stinger",
+      "improve-cost": "120,000z",
+      "improve-from": "Hidden Stinger",
       "create-mats": [
         "LeatherNargaTail(3)",
         "StrNargaCttngWing(7)",
         "ThickNargaScale(10)",
         "HvnlyNargaScale (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "LeatherNargaTail(1)",
         "StrNargaCttngWing(5)",
         "HvyNargacugaFang(6)",
         "Narga Brain stem (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Vacuum Striker",
@@ -3281,19 +3281,19 @@
       "sharpness": "SredSoraMyelTgre",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "3",
       "type": "ln",
       "create-cost": "7,500z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Pale Bone (2)",
         "Rubbery Hide (1)",
         "FlynMealPassReg (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Hyper Vacuum"
       ]
     },
@@ -3304,18 +3304,18 @@
       "sharpness": "SredMoraSyelBgreSbluTblu",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "6",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Vacuum Striker",
+      "improve-cost": "45,000z",
+      "improve-from": "Vacuum Striker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Pale Khezu Steak (2)",
         "Dragonwood (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Vermillion Rim",
@@ -3324,20 +3324,20 @@
       "sharpness": "SredSoraMyelMgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "type": "ln",
       "create-cost": "40,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Lao-Shan Horn (2)",
         "Lao-Shan Shell (3)",
         "Gaoren Shell (4)",
         "Commendation (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Dragonic Rim"
       ]
     },
@@ -3348,19 +3348,19 @@
       "sharpness": "SredSoraMyelBgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "7",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Vermillion Rim",
+      "improve-cost": "85,000z",
+      "improve-from": "Vermillion Rim",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan Carapace (3)",
         "Lao Shan Scale+ (6)",
         "Gaoren Spine (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sealed Dragonlance"
       ]
     },
@@ -3371,19 +3371,19 @@
       "sharpness": "SredSoraMyelBgreSblu",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Dragonic Rim",
+      "improve-cost": "95,000z",
+      "improve-from": "Dragonic Rim",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan Ruby (1)",
         "Gaoren Thoracic (4)",
         "Gaoren Claw (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "DragonSealer \"Virtue\""
       ]
     },
@@ -3394,19 +3394,19 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Sealed Dragonlance",
+      "improve-cost": "120,000z",
+      "improve-from": "Sealed Dragonlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao Shan Heavy Carapace (3)",
         "Lao Shan Thick Scale (6)",
         "Gaoren Thoracic (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "DragonSealer \"Null\""
       ]
     },
@@ -3417,20 +3417,20 @@
       "sharpness": "TredMoraSyelBgreMbluSwhi",
       "affinity": "25%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "N/A",
-      "upgrade-cost": "140,000z",
-      "upgrade-from": "DragonSealer \"Virtue\"",
+      "improve-cost": "140,000z",
+      "improve-from": "DragonSealer \"Virtue\"",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LaoShanHvnlyScl (1)",
         "Azure LaoS Claw (4)",
         "Hard Gaoren Claw (4)",
         "Commendation S (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ukanlos Calamity",
@@ -3439,20 +3439,20 @@
       "sharpness": "BredSoraSyelMgreTblu",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "150,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "UkanlosUnderscl (8)",
         "HvyUkanlosShell (4)",
         "Hvy Ukanlos Tail (2)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Lance G",
@@ -3461,20 +3461,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Iron Ore (40)",
         "Disk Stone (25)",
         "Eltalite Ore (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Long Tusk G",
@@ -3483,20 +3483,20 @@
       "sharpness": "MredSoraMyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lg Monster Bone (20)",
         "Bone (50)",
         "Hvy Monster Bone (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Tarnished Lance G",
@@ -3505,18 +3505,18 @@
       "sharpness": "BredSoraSyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Ruststone Rod (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Spiked Spear G",
@@ -3525,20 +3525,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Eltalite Ore (10)",
         "Hvy Monster Bone (10)",
         "Killer Beetle (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Rampart G",
@@ -3547,20 +3547,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lightcrystal (10)",
         "Machalite Ore (20)",
         "Mellanje Ore (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Valhalla G",
@@ -3569,20 +3569,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Purecrystal (5)",
         "Dragonite Ore (20)",
         "Ice Crystal (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Fragrance G",
@@ -3591,20 +3591,20 @@
       "sharpness": "SredMoraSyelBgreSbluTblu",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Dobiscus (10)",
         "Giant Corn (5)",
         "Ancient Dragonmoss (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Requiem Spear G",
@@ -3613,20 +3613,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Sleep Sac (15)",
         "SpecPlesiothFin+ (8)",
         "Sleepyfish (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dark Spear G",
@@ -3635,20 +3635,20 @@
       "sharpness": "SredSoraMyelBgreSbluMwhiMpur",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HorneturRazrWng (5)",
         "Hornetaur Head (5)",
         "QueenVespoidShl (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bulldrome Spear G",
@@ -3657,20 +3657,20 @@
       "sharpness": "SredSoraByelMgreSblu",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Bullfango Head (5)",
         "Bulldrome Hide+ (8)",
         "Bullfango Pelt+ (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Claw Lance G",
@@ -3679,20 +3679,20 @@
       "sharpness": "MredSoraMyelMgreTgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HrdHermitaurClaw (3)",
         "Hermitaur Claw+ (6)",
         "Razor Claw (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Trident G",
@@ -3701,20 +3701,20 @@
       "sharpness": "BredSoraSyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Thunder Sac (10)",
         "SpecRubberyHide+ (7)",
         "Thunderbug (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Gatling Lance G",
@@ -3723,20 +3723,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Eltalite Ore (15)",
         "Gunpowder (20)",
         "FireWyvrn BrainStm (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Venom Lance G",
@@ -3745,20 +3745,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Basarios Tears (5)",
         "HvyBasariosShell (8)",
         "DeadlyPoisonSac (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Crimson War Pike G",
@@ -3767,20 +3767,20 @@
       "sharpness": "BredMoraSyelMgreSbluMwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Top-GrdRedHorn (3)",
         "Monoblos Thrcic (5)",
         "Eltalite Ore (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Diablo Spear G",
@@ -3789,20 +3789,20 @@
       "sharpness": "MredSoraMyelMgreSbluSwhi",
       "affinity": "-10%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "StoutWarpedHorn (2)",
         "HvyDiablosSpine (4)",
         "Big Wyvern Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Native Spear G",
@@ -3811,20 +3811,20 @@
       "sharpness": "BredSoraSyelMgreSbluMwhiSpur",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Master's Skull (3)",
         "Iodrome Skull (5)",
         "DeadlyPoisonSac (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Black Belt Lance G",
@@ -3833,20 +3833,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Expert Ticket (10)",
         "Kirin Coin (6)",
         "Legend Coin G (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Undertaker G",
@@ -3855,20 +3855,20 @@
       "sharpness": "BredSoraSyelMgreSbluSwhi",
       "affinity": "-20%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Ancientstone Rod (3)",
         "ElderDragonBlood (10)",
         "Big Wyvern Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Knight Spear G",
@@ -3877,20 +3877,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Carbalite Ore (15)",
         "Eltalite Ore (7)",
         "Velociprey Hide+ (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Hard Bone Lance G",
@@ -3899,20 +3899,20 @@
       "sharpness": "MredSoraMyelMgreTblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Massive Bone (7)",
         "Mellanje Ore (7)",
         "Giant Bone (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Roaring Wyvern G",
@@ -3921,20 +3921,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Dragonite Ore (15)",
         "Union Ore (10)",
         "HvyBlkGraviosShl(10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Great Ogre Tusk G",
@@ -3943,20 +3943,20 @@
       "sharpness": "MredSoraByelSgreSbluMwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Hvy Monster Bone (8)",
         "Monster Bone+ (15)",
         "Ioprey Hide+ (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Barbarian Tusk G",
@@ -3965,20 +3965,20 @@
       "sharpness": "BredSoraSyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Stout Bone (10)",
         "HvyDiablosSpine (3)",
         "Phantom Butterfly (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Noble Fragrance G",
@@ -3987,20 +3987,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Dobiscus (10)",
         "Eltalite Ore (8)",
         "HrdCongalalaPlt+ (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Hyper Vacuum G",
@@ -4009,20 +4009,20 @@
       "sharpness": "MredSoraMyelMgreSbluMwhiSpur",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "KhezuSpecialCut (2)",
         "Ancient Dragonwood (2)",
         "FlynMealPassPlus (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Aqua Spear G",
@@ -4031,20 +4031,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "SpecPlesiothFin+ (6)",
         "Plesioth Scale+ (10)",
         "Plesioth Fin (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Emerald Spear G",
@@ -4053,20 +4053,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "SpecGrnPlesioFn+ (4)",
         "Grn Plsioth Scl+ (10)",
         "Grn Plesioth Fin+(15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Grayburg Javelin G",
@@ -4075,20 +4075,20 @@
       "sharpness": "SredMoraSyelBgreMbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "ThckDaoraDrgnScl (5)",
         "Carbalite Ore (15)",
         "Fire Stone (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Sanctioned Gunlance G",
@@ -4097,20 +4097,20 @@
       "sharpness": "SredMoraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Firecell Stone (10)",
         "FireWyvern Marrow (10)",
         "Blazing Fire Sac (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Ceanataur Piercer G",
@@ -4119,20 +4119,20 @@
       "sharpness": "SredMoraSyelBgreSbluMwhiSpur",
       "affinity": "15%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HrdCeanataurClaw (3)",
         "Ceanataur Claw+ (6)",
         "Ceanataur Leg (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Ceramic Blos Lance G",
@@ -4141,20 +4141,20 @@
       "sharpness": "SredMoraSyelBgreSbluMwhiSpur",
       "affinity": "20%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Top-GrdPlatHorn (3)",
         "WhtMonoblosThora (5)",
         "HvyDiablosSpine (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Gravios Spear G",
@@ -4163,20 +4163,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyGraviosCpc (8)",
         "Poison Sac (20)",
         "Gravios BrainStm (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Black Gravios Spear G",
@@ -4185,20 +4185,20 @@
       "sharpness": "MredSoraMyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyBlkGraviosShl (8)",
         "Firecell Stone (15)",
         "Gravios BrainStm (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Spear of Prominence G",
@@ -4207,20 +4207,20 @@
       "sharpness": "SredSoraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "LthrRathalos Tail (3)",
         "Rathalos Hvy Cpc (5)",
         "Rathalos Plate (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Sealed Dragonlance G",
@@ -4229,20 +4229,20 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "type": "ln",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Lao-Shan's Shell (7)",
         "Lao-Shan'sHvyShl (3)",
         "HvyGaorenShl (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     }
   ]
 }

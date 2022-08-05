@@ -12,20 +12,20 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "100000z",
-      "upgrade-cost": "100000z",
-      "upgrade-from": "Blacksmith",
+      "improve-cost": "100000z",
+      "improve-from": "Blacksmith",
       "create-mats": [
         "ThckLavasiothScl (8)",
         "HvyLavasiothShl (6)",
         "Hvy Monster Bon (8)",
         "Screamer (8)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckLavasiothScl (4)",
         "SpecLavasioFin+ (2)",
         "Screamer (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Volcano Alphorn"
       ]
     },
@@ -41,16 +41,16 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "120000z",
-      "upgrade-from": "Lava Alphorn",
+      "improve-cost": "120000z",
+      "improve-from": "Lava Alphorn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "SpecLavasioFin+ (4)",
         "PhantomButterfly (3)",
         "HvyGraviosShell (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bronze Bell",
@@ -64,20 +64,20 @@
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "35,000z",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Anvil Hammer",
+      "improve-cost": "35,000z",
+      "improve-from": "Anvil Hammer",
       "create-mats": [
         "Gaoren Pincer (2)",
         "Gaoren Shell (6)",
         "Gaoren Spine (2)",
         "Iron Ore (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Gaoren Pincer (1)",
         "Gaoren Shell (4)",
         "Gaoren Claw (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gaoren Bell"
       ]
     },
@@ -93,15 +93,15 @@
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Bronze Bell",
+      "improve-cost": "85,000z",
+      "improve-from": "Bronze Bell",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gaoren Claw (4)",
         "Gaoren Thoracic (4)",
         "Gaoren Carapace (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gaoren Zhong"
       ]
     },
@@ -117,16 +117,16 @@
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Gaoren Bell",
+      "improve-cost": "130,000z",
+      "improve-from": "Gaoren Bell",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hrd Gaoren Claw (2)",
         "Hvy Gaoren Spine (4)",
         "HvyGaorenShell (6)",
         "HvnlyGaorenShell (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Sakura Recorder",
@@ -140,20 +140,20 @@
       "notes": "Note.whiteNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "25,000z",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": "Anvil Hammer",
+      "improve-cost": "25,000z",
+      "improve-from": "Anvil Hammer",
       "create-mats": [
         "Pink Rathian Scl (6)",
         "Pink Rathian Shl (4)",
         "Dosbiscus (10)",
         "Killer Beetle (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Pink Rathian Scl (5)",
         "Pink Rathian Shl (2)",
         "Dragonite Ore (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sakura Recorder+"
       ]
     },
@@ -169,15 +169,15 @@
       "notes": "Note.whiteNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Sakura Recorder",
+      "improve-cost": "70,000z",
+      "improve-from": "Sakura Recorder",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Pnk Rathian Scl+ (7)",
         "Pnk Rathian Cpc (5)",
         "Rathian Plate (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gold Recorder"
       ]
     },
@@ -193,15 +193,15 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Sakura Recorder+",
+      "improve-cost": "75,000z",
+      "improve-from": "Sakura Recorder+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gld Rathian Scl+ (6)",
         "Gld Rathian Cpc (4)",
         "Small Goldenfish (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gold Recorder+"
       ]
     },
@@ -217,16 +217,16 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Gold Recorder",
+      "improve-cost": "100,000z",
+      "improve-from": "Gold Recorder",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyPinkRathianShl (6)",
         "Hvy Rathian Shl (4)",
         "Gld Rathian Carapace (6)",
         "Rathian Thorn (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Lunar Recorder"
       ]
     },
@@ -242,15 +242,15 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Gold Recorder+",
+      "improve-cost": "125,000z",
+      "improve-from": "Gold Recorder+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckGldRathnScl (7)",
         "HvyGldRathianShl (5)",
         "HvnlyRathinScl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Metal Bagpipe",
@@ -264,20 +264,20 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "2340z",
-      "upgrade-cost": "2340z",
-      "upgrade-from": "War Mace",
+      "improve-cost": "2340z",
+      "improve-from": "War Mace",
       "create-mats": [
         "Black Pearl (2)",
         "Machalite Ore (12)",
         "Screamer (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Black Pearl (5)",
         "Machalite Ore (17)",
         "Iron Ore (5)",
         "Velocidrome Head (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Bagpipe"
       ]
     },
@@ -293,15 +293,15 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "4410z",
-      "upgrade-from": "Metal Bagpipe",
+      "improve-cost": "4410z",
+      "improve-from": "Metal Bagpipe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (5)",
         "Machalite Ore (20)",
         "Screamer (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Heavy Bagpipe"
       ]
     },
@@ -317,15 +317,15 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Great Bagpipe",
+      "improve-cost": "40,000z",
+      "improve-from": "Great Bagpipe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (10)",
         "Dragonite Ore (15)",
         "Basarios Shell (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Heavy Bagpipe+"
       ]
     },
@@ -341,15 +341,15 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Heavy Bagpipe",
+      "improve-cost": "60,000z",
+      "improve-from": "Heavy Bagpipe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (10)",
         "Basarios Tear (1)",
         "Blk Gravios Cpc (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Master Bagpipe"
       ]
     },
@@ -365,15 +365,15 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Heavy Bagpipe+",
+      "improve-cost": "85,000z",
+      "improve-from": "Heavy Bagpipe+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "HvyBasariosShell (6)",
         "Narga Brain Stem (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sforzando"
       ]
     },
@@ -389,15 +389,15 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Master Bagpipe",
+      "improve-cost": "110,000z",
+      "improve-from": "Master Bagpipe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (10)",
         "StrBasariosWing (1)",
         "HvyGraviosShell (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Basarios Rock",
@@ -411,20 +411,20 @@
       "notes": "Note.whiteNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": "3825z",
-      "upgrade-cost": "3825z",
-      "upgrade-from": "Spiked Hammer+",
+      "improve-cost": "3825z",
+      "improve-from": "Spiked Hammer+",
       "create-mats": [
         "Basarios Shell (8)",
         "Machalite Ore (25)",
         "FireWyvern Fluid (10)",
         "Hercudrome (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Shell (5)",
         "Machalite Ore (15)",
         "Flame Sac (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Basarios Rock Mk.II"
       ]
     },
@@ -440,15 +440,15 @@
       "notes": "Note.whiteNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "5715z",
-      "upgrade-from": "Basarios Rock",
+      "improve-cost": "5715z",
+      "improve-from": "Basarios Rock",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Shell (5)",
         "Machalite Ore (20)",
         "Basarios Wing (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Volcanic Rock"
       ]
     },
@@ -464,15 +464,15 @@
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Basarios Rock Mk.II",
+      "improve-cost": "40,000z",
+      "improve-from": "Basarios Rock Mk.II",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Tears (3)",
         "Machalite Ore (50)",
         "Kirin Mane (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Volcanic Gig"
       ]
     },
@@ -488,16 +488,16 @@
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Volcanic Rock",
+      "improve-cost": "95,000z",
+      "improve-from": "Volcanic Rock",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyBasariosShell (5)",
         "StrBasariosWing (1)",
         "Blazing Fire Sac (8)",
         "Machalite Ore (50)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Feather Whistle",
@@ -511,20 +511,20 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "50000z",
-      "upgrade-cost": "50000z",
-      "upgrade-from": "Kut-Ku Pick",
+      "improve-cost": "50000z",
+      "improve-from": "Kut-Ku Pick",
       "create-mats": [
         "Top-GrdHypnoClaw (10)",
         "OrangeHypnoPelt (8)",
         "Earth Crystal (20)",
         "Carbalite Ore (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Top-GrdHypnoClaw (5)",
         "OrangeHypnoPelt (3)",
         "Dragonite Ore (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hypno Whistle"
       ]
     },
@@ -540,21 +540,21 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "80000z",
-      "upgrade-cost": "80000z",
-      "upgrade-from": "Feather Whistle",
+      "improve-cost": "80000z",
+      "improve-from": "Feather Whistle",
       "create-mats": [
         "OrangeHypnoPelt+ (8)",
         "Hypno Claw+ (16)",
         "Eltalite Ore (15)",
         "Hypno Bezoar+ (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Top-GrdHypnoClaw (12)",
         "OrangeHypnoPelt+ (5)",
         "Eltalite Ore (10)",
         "Hypno Bezoar (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hypno Slide Whistle"
       ]
     },
@@ -570,11 +570,11 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "105000z",
-      "upgrade-from": "Hypno Whistle",
+      "improve-cost": "105000z",
+      "improve-from": "Hypno Whistle",
       "create-mats": "N/A",
-      "upgrade-mats": [],
-      "upgrade-to": "N/A"
+      "improve-mats": [],
+      "improve-to": "N/A"
     },
     {
       "name": "Wolf Shamisen",
@@ -588,21 +588,21 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "65,000z",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Wolf Torrent",
+      "improve-cost": "65,000z",
+      "improve-from": "Wolf Torrent",
       "create-mats": [
         "Garuga Scale+ (8)",
         "Garuga Carapace (3)",
         "Garuga Tail (2)",
         "Garuga Wing (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Scale+ (4)",
         "Garuga Tail (1)",
         "Garuga Wing (2)",
         "Garuga Mane (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crow Shamisen"
       ]
     },
@@ -618,16 +618,16 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Wolf Shamisen",
+      "improve-cost": "105,000z",
+      "improve-from": "Wolf Shamisen",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LethrGarugaTail (2)",
         "Str Garuga Wing (2)",
         "SilverGarugaPelt (2)",
         "ThickGarugaScale (8)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Khezu Horn",
@@ -641,20 +641,20 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "2790z",
-      "upgrade-cost": "2790z",
-      "upgrade-from": "Atlas Hammer",
+      "improve-cost": "2790z",
+      "improve-from": "Atlas Hammer",
       "create-mats": [
         "Flabby Hide (5)",
         "Electro Sac (4)",
         "Machalite Ore (6)",
         "Lg Monster Bone (6)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Flabby Hide (3)",
         "Pale Extract (4)",
         "Electro Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Khezu Horn+"
       ]
     },
@@ -670,15 +670,15 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "5040z",
-      "upgrade-from": "Khezu Horn",
+      "improve-cost": "5040z",
+      "improve-from": "Khezu Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Flabby Hide (8)",
         "Pale Bone (1)",
         "Monster Bone+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Khezu Flute",
         "Blood Horn",
         "Purse Bop"
@@ -696,15 +696,15 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Khezu Horn+",
+      "improve-cost": "30,000z",
+      "improve-from": "Khezu Horn+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Khezu Hide - Tan (6)",
         "Pale Khezu Steak (1)",
         "Thunder Sac (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Blood Horn",
@@ -718,15 +718,15 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Khezu Horn+",
+      "improve-cost": "40,000z",
+      "improve-from": "Khezu Horn+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Alluring Webbing (2)",
         "Alluring Hide (8)",
         "Electro Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blood Flute"
       ]
     },
@@ -742,15 +742,15 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Blood Horn",
+      "improve-cost": "50,000z",
+      "improve-from": "Blood Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Alluring Webbing (6)",
         "Wyvern Stone (2)",
         "Thunder Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blood Flute+"
       ]
     },
@@ -766,16 +766,16 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Blood Flute",
+      "improve-cost": "90,000z",
+      "improve-from": "Blood Flute",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "StrAlluringWing (2)",
         "Alluring Webbing (4)",
         "Lighting Sac (5)",
         "Pale Khezu Steak (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Brute Flute"
       ]
     },
@@ -791,15 +791,15 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "115000",
-      "upgrade-from": "Blood Flute+",
+      "improve-cost": "115000",
+      "improve-from": "Blood Flute+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "StrAlluringWing (6)",
         "KhezuSpecialCut (1)",
         "BigEDragonBone (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Shell Castanet",
@@ -813,20 +813,20 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Ancient Relic",
+      "improve-cost": "50,000z",
+      "improve-from": "Ancient Relic",
       "create-mats": [
         "Hermitaur Carpce (6)",
         "Ceanataur Carpce (3)",
         "Hermitaur Claw+ (2)",
         "Rubbery Hide+ (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Hermitaur Carpce (4)",
         "Ceanataur Carpce (2)",
         "Hermitaur Claw+ (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Shell Castanet+",
         "Crabby Castanet"
       ]
@@ -843,16 +843,16 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Shell Castanet",
+      "improve-cost": "85,000z",
+      "improve-from": "Shell Castanet",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyHermitaurShl (4)",
         "Ceanataur Claw+ (1)",
         "HrdHermitaurClaw (2)",
         "SpecRubberyHide+ (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bi-Colored Castanet"
       ]
     },
@@ -868,16 +868,16 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Shell Castanet+",
+      "improve-cost": "115,000z",
+      "improve-from": "Shell Castanet+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyHermitaurShl (2)",
         "HvyCeanataurShl (4)",
         "HrdCeanataurClaw (2)",
         "Giant Blk Pearl (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Crabby Castanet",
@@ -891,15 +891,15 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "90000z",
-      "upgrade-from": "Shell Castanet",
+      "improve-cost": "90000z",
+      "improve-from": "Shell Castanet",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HermtrShl (4)",
         "TerraCeanatrShl (2)",
         "HermitrClw (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Klick-Klack"
       ]
     },
@@ -915,16 +915,16 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "120000z",
-      "upgrade-from": "Crabby Castanet",
+      "improve-cost": "120000z",
+      "improve-from": "Crabby Castanet",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HermitrShl (6)",
         "TerraCeanatrShl (4)",
         "Hard Gaoren Claw (2)",
         "HvnlyGaorenShell (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Sonic Glass",
@@ -938,20 +938,20 @@
       "notes": "Note.whiteNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "2340z",
-      "upgrade-cost": "2340z",
-      "upgrade-from": "Skullcrusher+",
+      "improve-cost": "2340z",
+      "improve-from": "Skullcrusher+",
       "create-mats": [
         "Lightcrystal (2)",
         "Vespoid Wing (6)",
         "Hornetaur Wing (6)",
         "Killer Beetle (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Vespoid Abdomen (1)",
         "Vespoid Shell (4)",
         "Hornetaur Shell (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sonic Glass+"
       ]
     },
@@ -967,15 +967,15 @@
       "notes": "Note.whiteNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "3285z",
-      "upgrade-from": "Sonic Glass",
+      "improve-cost": "3285z",
+      "improve-from": "Sonic Glass",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hercudrome (3)",
         "Vespoid Wing (20)",
         "Hornetaur Wing (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Glass Queen"
       ]
     },
@@ -991,15 +991,15 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Sonic Glass+",
+      "improve-cost": "55,000z",
+      "improve-from": "Sonic Glass+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Novacrystal(2)",
         "Vespoid InnrWng (15)",
         "Hornetaur InnrWng (15)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Glass Royale"
       ]
     },
@@ -1015,20 +1015,20 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Glass Queen",
+      "improve-cost": "80,000z",
+      "improve-from": "Glass Queen",
       "create-mats": [
         "Purecrystal (2)",
         "Vspoid Razorwing (15)",
         "Hornet Razorwing (15)",
         "VespoidQn'sCrown (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (1)",
         "Vspoid Razorwing (8)",
         "Hornet Razorwing (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Queen's Flute"
       ]
     },
@@ -1044,16 +1044,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Glass Royale",
+      "improve-cost": "105,000z",
+      "improve-from": "Glass Royale",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Vspoid Razorwing (5)",
         "Hornet Razorwing (5)",
         "Monster Essence (10)",
         "PhantomButterfly (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Giaprey Balloon",
@@ -1067,20 +1067,20 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "990z",
-      "upgrade-cost": "990z",
-      "upgrade-from": "Bone Club",
+      "improve-cost": "990z",
+      "improve-from": "Bone Club",
       "create-mats": [
         "Giaprey Hide (4)",
         "Brute Bone (3)",
         "Anteka Antlers (1)",
         "Iron Ore (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Giaprey Hide (2)",
         "Giaprey Scale (2)",
         "Ice Crystal (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Giaprey Balloon+"
       ]
     },
@@ -1096,15 +1096,15 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "1935z",
-      "upgrade-from": "Giaprey Balloon",
+      "improve-cost": "1935z",
+      "improve-from": "Giaprey Balloon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giadrome Hide (5)",
         "Giadrome Skull (1)",
         "Screamer (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Giadrome Balloon",
         "Velociprey Balloon"
       ]
@@ -1121,15 +1121,15 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Giaprey Balloon+",
+      "improve-cost": "40,000z",
+      "improve-from": "Giaprey Balloon+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giaprey Hide+ (5)",
         "Giadrome Claw+ (6)",
         "Giaprey Scale+ (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Velociprey Balloon",
@@ -1143,16 +1143,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Giaprey Balloon+",
+      "improve-cost": "30,000z",
+      "improve-from": "Giaprey Balloon+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velociprey Scle+ (5)",
         "Velociprey Hide (10)",
         "Velociprey Fang (15)",
         "Screamer (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Velociprey Balloon+"
       ]
     },
@@ -1168,16 +1168,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Velociprey Balloon",
+      "improve-cost": "50,000z",
+      "improve-from": "Velociprey Balloon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velociprey Scale+ (10)",
         "Velociprey Hide+ (8)",
         "Rare Scarab (5)",
         "Remobra Skin+ (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Velocidrome Balloon"
       ]
     },
@@ -1193,16 +1193,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Velociprey Balloon+",
+      "improve-cost": "80,000z",
+      "improve-from": "Velociprey Balloon+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velocidrome Head (3)",
         "Velocidrome Clw+ (6)",
         "RobustWyvernBone (10)",
         "Emperor Cricket (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Velocidrome Balloon+"
       ]
     },
@@ -1218,16 +1218,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Velocidrome Balloon",
+      "improve-cost": "105,000z",
+      "improve-from": "Velocidrome Balloon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velocidrome Hide (10)",
         "RobustWyvernBone (15)",
         "PhantomButterfly (5)",
         "BigEDragonBone (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ivory Horn",
@@ -1241,14 +1241,14 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "585z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Brute Bone (2)",
         "Blue Mushroom (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Bone Horn",
         "War Drum"
       ]
@@ -1265,17 +1265,17 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "1575z",
-      "upgrade-from": [
+      "improve-cost": "1575z",
+      "improve-from": [
         "Ivory Horn",
         "Cyclo-Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blue Mushroom (3)",
         "Giant Bone (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bone Horn+",
         "Blessed Ocarina"
       ]
@@ -1292,15 +1292,15 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "5040z",
-      "upgrade-from": "Bone Horn",
+      "improve-cost": "5040z",
+      "improve-from": "Bone Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragon Toadstool (3)",
         "Monster Bone+ (3)",
         "Monster Fluid (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hunter's Horn"
       ]
     },
@@ -1316,15 +1316,15 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Bone Horn+",
+      "improve-cost": "35,000z",
+      "improve-from": "Bone Horn+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragon Toadstool (5)",
         "Hrd Monster Bone (3)",
         "Monster Broth (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hunter's Horn+"
       ]
     },
@@ -1340,16 +1340,16 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Hunter's Horn",
+      "improve-cost": "75,000z",
+      "improve-from": "Hunter's Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragon Toadstool (8)",
         "Hvy Monster Bone (3)",
         "RobustWyvernBone (5)",
         "Monster Essence (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Native's Horn"
       ]
     },
@@ -1365,16 +1365,16 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Hunter's Horn+",
+      "improve-cost": "100,000z",
+      "improve-from": "Hunter's Horn+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragon Toadstool (10)",
         "BigEDragonBone (3)",
         "Massive Bone (5)",
         "Commendation G (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Blessed Ocarina",
@@ -1388,20 +1388,20 @@
       "notes": "Note.whiteNote.greenNote.blue",
       "type": "hh",
       "create-cost": "10,000z",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Bone Horn",
+      "improve-cost": "10,000z",
+      "improve-from": "Bone Horn",
       "create-mats": [
         "Chameleos Tail (2)",
         "Chameleos Hide (4)",
         "Chameleos Webbing (2)",
         "Dragonite Ore (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Tail (1)",
         "Chameleos Hide (3)",
         "Chameleos Horn (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Cursed Ocarina"
       ]
     },
@@ -1417,16 +1417,16 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Blessed Ocarina",
+      "improve-cost": "90,000z",
+      "improve-from": "Blessed Ocarina",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Hide+ (6)",
         "Chameleos Webbing (10)",
         "Chameleos Spike (2)",
         "Chameleos Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Genie's Ocarina"
       ]
     },
@@ -1442,16 +1442,16 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Cursed Ocarina",
+      "improve-cost": "130,000z",
+      "improve-from": "Cursed Ocarina",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecChameleHide+ (6)",
         "StrChameleosWing (5)",
         "HrdChameleosHorn (2)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "War Drum",
@@ -1465,19 +1465,19 @@
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
       "create-cost": "1935z",
-      "upgrade-cost": "1935z",
-      "upgrade-from": "Ivory Horn",
+      "improve-cost": "1935z",
+      "improve-from": "Ivory Horn",
       "create-mats": [
         "Congalala Pelt (4)",
         "Med Monster Bone (2)",
         "Fire Herb (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Conga Pelt (8)",
         "Brute Bone (3)",
         "Fire Herb (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "War Drum+"
       ]
     },
@@ -1493,15 +1493,15 @@
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "5040z",
-      "upgrade-from": "War Drum",
+      "improve-cost": "5040z",
+      "improve-from": "War Drum",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Vibrant Pelt (1)",
         "Congalala Pelt (8)",
         "Striped Skin (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "War Bongo"
       ]
     },
@@ -1517,20 +1517,20 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "War Drum+",
+      "improve-cost": "50,000z",
+      "improve-from": "War Drum+",
       "create-mats": [
         "Congalala Pelt+ (4)",
         "Vibrant Pelt (6)",
         "Conga Pelt+ (8)",
         "Hrd Monster Bone (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Congalala Pelt+ (3)",
         "Conga Pelt+ (6)",
         "Stout Bone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "War Conga"
       ]
     },
@@ -1546,16 +1546,16 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "War Bongo",
+      "improve-cost": "60,000z",
+      "improve-from": "War Bongo",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blangonga Pelt+ (4)",
         "Congalala Pelt+ (8)",
         "Conga Pelt (20)",
         "Vibrant Pelt (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Conga Conga",
         "Jungle Bongo"
       ]
@@ -1572,16 +1572,16 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "War Conga",
+      "improve-cost": "95,000z",
+      "improve-from": "War Conga",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdCongalalaPlt+ (6)",
         "Lg Pelagus Fang (2)",
         "Congalala Claw+ (8)",
         "Massive Bone (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Jungle Bongo",
@@ -1595,20 +1595,20 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "85000z",
-      "upgrade-cost": "85000z",
-      "upgrade-from": "War Conga",
+      "improve-cost": "85000z",
+      "improve-from": "War Conga",
       "create-mats": [
         "Congalala Pelt+ (8)",
         "Vibrant Comb (1)",
         "Massive Bone (4)",
         "Emperor Cricket (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Congalala Pelt+ (8)",
         "Lg Pelagus Fang (2)",
         "Rare Scarab (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Jungle Conga"
       ]
     },
@@ -1624,16 +1624,16 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Jungle Bongo",
+      "improve-cost": "115000z",
+      "improve-from": "Jungle Bongo",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdBlangongaPlt+ (4)",
         "CongalalaPelt+ (8)",
         "CongaClaw (4)",
         "Vibrant Comb (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Lute",
@@ -1647,15 +1647,15 @@
       "notes": "Note.whiteNote.aquaNote.red",
       "type": "hh",
       "create-cost": "15,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Fatalis Menace",
         "Ancient Fatalis Lied"
       ]
@@ -1672,16 +1672,16 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Lute",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Lute",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Horn (2)",
         "Fatalis Webbing (1)",
         "Fatalis Scale (2)",
         "Chameleos Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Fatalis Menace Lute"
       ]
     },
@@ -1697,15 +1697,15 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Fatalis Menace",
+      "improve-cost": "150,000z",
+      "improve-from": "Fatalis Menace",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HardFatalisHorn (2)",
         "ThckFatalisScale (4)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ancient Fatalis Lied",
@@ -1719,16 +1719,16 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Lute",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Lute",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wht Fatalis Horn (2)",
         "Wht Fatalis Wbng (1)",
         "Wht Fatalis Scl (2)",
         "Daora Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ancient Fatalis Lute"
       ]
     },
@@ -1744,16 +1744,16 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Ancient Fatalis Lied",
+      "improve-cost": "150,000z",
+      "improve-from": "Ancient Fatalis Lied",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdWhtFatlisHorn (2)",
         "StrWhtFatalisWng (1)",
         "ThckWhtFatlisScl (2)",
         "BigEDragonJewel (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dragonwood Horn",
@@ -1767,16 +1767,16 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "20,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dragonwood (2)",
         "Dragon Moss (3)",
         "Monster Fluid (10)",
         "Thunderbug (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Spirit Dragonwd Horn"
       ]
     },
@@ -1792,15 +1792,15 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Dragonwood Horn",
+      "improve-cost": "75,000z",
+      "improve-from": "Dragonwood Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonwood+ (2)",
         "Dragonmoss+ (4)",
         "Pokke Ticket+ (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "AncientDrgnwoodFlute"
       ]
     },
@@ -1816,20 +1816,20 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Spirit Dragonwd Horn",
+      "improve-cost": "120,000z",
+      "improve-from": "Spirit Dragonwd Horn",
       "create-mats": [
         "AncientDrgnmoss (6)",
         "AncientDrgnwood (2)",
         "YamaTsukaFillet (2)",
         "Thunderbug Jelly (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "AncientDrgnwood (3)",
         "AncientDrgnmoss (1)",
         "YamaTsukamiHide (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "DivineAncDrgnwdFlute"
       ]
     },
@@ -1845,16 +1845,16 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "145,000z",
-      "upgrade-from": "AncientDrgnwoodFlute",
+      "improve-cost": "145,000z",
+      "improve-from": "AncientDrgnwoodFlute",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "AncientDrgnwood (6)",
         "YamaTsukamiFluid (5)",
         "Thunderbug Jelly (8)",
         "Commendation S (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Handmade Frog",
@@ -1868,15 +1868,15 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "40,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tailed Frog (2)",
         "Dragonwood+ (2)",
         "Frog (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Handcrafted Frog"
       ]
     },
@@ -1892,16 +1892,16 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Handmade Frog",
+      "improve-cost": "75,000z",
+      "improve-from": "Handmade Frog",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tailed Frog (5)",
         "Frog (10)",
         "Giant Blk Pearl (3)",
         "Gt Lobstershell (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Striped Dragonga",
@@ -1915,16 +1915,16 @@
       "notes": "Note.whiteNote.aquaNote.red",
       "type": "hh",
       "create-cost": "35,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tigrex Shell (5)",
         "Tigrex Fang (7)",
         "Dragonite Ore (10)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tigrex Horn",
         "Hidden Tone"
       ]
@@ -1941,15 +1941,15 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Striped Dragonga",
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Dragonga",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Carapace (5)",
         "Tigrex Fang+ (7)",
         "Tigrex Skull Shl (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Tigrex Horn+"
       ]
     },
@@ -1965,16 +1965,16 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Tigrex Horn",
+      "improve-cost": "125,000z",
+      "improve-from": "Tigrex Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hvy Tigrex Shell (5)",
         "Hvy Tigrex Fang (7)",
         "Eltalite Ore (10)",
         "HvnlyTigrexScale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hidden Tone",
@@ -1988,20 +1988,20 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Striped Dragonga",
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Dragonga",
       "create-mats": [
         "Black Narga Pelt (6)",
         "NargaCuttingWing (6)",
         "Narga Brain Stem (1)",
         "Hrd Monster Bone (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Black Narga Pelt (4)",
         "NargaCuttingWing (4)",
         "Narga Tail Spike (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Demon's Darkflute"
       ]
     },
@@ -2017,21 +2017,21 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Hidden Tone",
+      "improve-cost": "120,000z",
+      "improve-from": "Hidden Tone",
       "create-mats": [
         "BlackNargaPelt (10)",
         "StrNargaCttngWng (6)",
         "ThickNargaScale (6)",
         "HvnlyNargaScale (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "BlackNargaPelt+ (6)",
         "StrNargaCttngWng (4)",
         "HvyNargaTailSpik (2)",
         "Narga Brain Stem (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Akantor Horn",
@@ -2045,16 +2045,16 @@
       "notes": "Note.purpleNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Akantor Tail (1)",
         "Akantor Fang (2)",
         "Akantor Scale (8)",
         "Firecell Stone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Akantor Dark Melody"
       ]
     },
@@ -2070,16 +2070,16 @@
       "notes": "Note.purpleNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "N/A",
-      "upgrade-cost": "145,000z",
-      "upgrade-from": "Akantor Horn",
+      "improve-cost": "145,000z",
+      "improve-from": "Akantor Horn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ukanlos Stone(1)",
         "Big Wyvern Stone(3)",
         "Akantor Tail (2)",
         "Akantor Fang (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ukanlos Horned Flute",
@@ -2093,16 +2093,16 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": "150,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "UkanlosShoveljaw (3)",
         "Hvy Ukanlos Tail (2)",
         "Ukanlosunderscl (5)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Horn G",
@@ -2116,16 +2116,16 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Blue Mushroom (10)",
         "Massive Bone (8)",
         "Monster Fluid (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "War Drum G",
@@ -2139,16 +2139,16 @@
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Conga Pelt (30)",
         "Conga Pelt + (20)",
         "Hvy Monster Bone (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Great Bagpipe G",
@@ -2162,16 +2162,16 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "SpecRemobraSkin+ (8)",
         "Giant Blk Pearl (5)",
         "Screamer (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Khezu Flute G",
@@ -2185,16 +2185,16 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "KhezuHide-Cream (5)",
         "Thunder Sac (10)",
         "Pale Bone (7)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Basarios Rock G",
@@ -2208,16 +2208,16 @@
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyBasariosShell (8)",
         "StrBasariosWing (2)",
         "Flame Sac (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Glass Queen G",
@@ -2231,16 +2231,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Vespoid Abdomen (8)",
         "Vspoid Razorwing (10)",
         "Monster Essence (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Heavy Bagpipe G",
@@ -2254,16 +2254,16 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Eltalite Ore (5)",
         "HvyBlkGraviosShl (5)",
         "Narga Brain Stem (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Velociprey Balloon G",
@@ -2277,16 +2277,16 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Velociprey Scle+ (10)",
         "RobustWyvernBone (10)",
         "Velociprey Hide (50)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Giadrome Balloon G",
@@ -2300,16 +2300,16 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Giadrome Skull (5)",
         "RobustWyvernBone (10)",
         "Giadrome Claw+ (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Sakura Recorder G",
@@ -2323,16 +2323,16 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "ThckPnkRathnScl (7)",
         "HvyPnkRathianShl (5)",
         "Pnk Rathian Cpc (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Spirit Dragonwd Horn G",
@@ -2346,16 +2346,16 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Dragonwood+ (8)",
         "Dragonmoss+ (8)",
         "Thunderbug Jelly (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     }
   ]
 }

@@ -264,11 +264,16 @@ $element-types: (
     margin: 2rem 0 0;
 
     .stats,
-    .upgrade-mats,
+    .improve-mats,
     .create-mats {
       display: flex;
       flex-direction: column;
       gap: 13px;
+    }
+
+    .stats {
+      flex-flow: column wrap;
+      height: 30%;
     }
 
     .stats span {
@@ -285,7 +290,7 @@ $element-types: (
       gap: 32px;
       color: white;
 
-      .upgrade-mats,
+      .improve-mats,
       .create-mats {
         display: flex;
         flex: 1 1 0%;
@@ -295,12 +300,12 @@ $element-types: (
         color: #EAEA4B;
       }
       
-      &.upgrade-mats .create-mats,
-      &.create-mats .upgrade-mats {
+      &.improve-mats .create-mats,
+      &.create-mats .improve-mats {
         display: none;
       }
 
-      &.upgrade-mats .weapon-card__navigation::before {
+      &.improve-mats .weapon-card__navigation::before {
         content: 'Improve';
         display: block;
       }

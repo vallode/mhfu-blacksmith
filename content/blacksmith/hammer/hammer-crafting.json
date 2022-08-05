@@ -12,14 +12,14 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "500z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Iron Ore(3)",
         "Disk Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "War Hammer+"
       ]
     },
@@ -35,16 +35,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "650z",
-      "upgrade-from": [
+      "improve-cost": "650z",
+      "improve-from": [
         "War Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (5)",
         "Disk Stone (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "War Mace",
         "Spiked Hammer"
       ]
@@ -61,16 +61,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,100z",
-      "upgrade-from": [
+      "improve-cost": "1,100z",
+      "improve-from": [
         "War Hammer+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (10)",
         "Disk Stone (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Iron Striker",
         "Anchor Hammer",
         "Black Cauldron",
@@ -90,8 +90,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "2,150z",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": [
+      "improve-cost": "2,150z",
+      "improve-from": [
         "War Mace"
       ],
       "create-mats": [
@@ -99,12 +99,12 @@
         "Iron Ore (20)",
         "Disk Stone (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (12)",
         "Machalite Ore (5)",
         "Earth Crystal (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Iron Striker+",
         "Gunhammer Prototype"
       ]
@@ -121,17 +121,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": [
+      "improve-cost": "4,250z",
+      "improve-from": [
         "Iron Striker"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (5)",
         "Machalite Ore (8)",
         "Earth Crystal (15)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Anvil Hammer"
       ]
     },
@@ -147,17 +147,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "6,350z",
-      "upgrade-from": [
+      "improve-cost": "6,350z",
+      "improve-from": [
         "Iron Striker+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Shell (2)",
         "Dragonite Ore (10)",
         "Iron Ore (30)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Onslaught Hammer",
         "War Stamp",
         "Bronze Bell",
@@ -177,17 +177,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": [
+      "improve-cost": "60,000z",
+      "improve-from": [
         "Anvil Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (5)",
         "Dragonite Ore (20)",
         "Iron Ore (99)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blacksmith"
       ]
     },
@@ -203,8 +203,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "75,000z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": [
+      "improve-cost": "75,000z",
+      "improve-from": [
         "Onslaught Hammer"
       ],
       "create-mats": [
@@ -213,12 +213,12 @@
         "Piercing Claw (4)",
         "RobustWyvernBone (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "Carbalite Ore (20)",
         "Emperor Cricket (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Juggernaut",
         "Lava Alphorn"
       ]
@@ -235,17 +235,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": [
+      "improve-cost": "100,000z",
+      "improve-from": [
         "Blacksmith"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (5)",
         "RobustWyvernBone (8)",
         "PhantomButterfly (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "War Stamp",
@@ -259,17 +259,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": [
+      "improve-cost": "30,000z",
+      "improve-from": [
         "Anvil Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (15)",
         "Carbalite Ore (15)",
         "Disk Stone (50)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "War Basher"
       ]
     },
@@ -285,15 +285,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "War Stamp",
+      "improve-cost": "75,000z",
+      "improve-from": "War Stamp",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (30)",
         "Machalite Ore (40)",
         "Black Blos Cpc (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Devil",
@@ -307,8 +307,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "25,000z",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": [
+      "improve-cost": "25,000z",
+      "improve-from": [
         "Anvil Hammer"
       ],
       "create-mats": [
@@ -316,12 +316,12 @@
         "Iron Ore (50)",
         "Disk Stone (30)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (3)",
         "Iron Ore (30)",
         "Dragonite Ore (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Demon Hammer",
         "Fist of Fury"
       ]
@@ -338,17 +338,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": [
+      "improve-cost": "35,000z",
+      "improve-from": [
         "Iron Devil"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (10)",
         "Velocidrome Head (3)",
         "Remobra Skull (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Devil Masher",
         "Iron Impact"
       ]
@@ -365,17 +365,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": [
+      "improve-cost": "55,000z",
+      "improve-from": [
         "Great Demon Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gendrome Skull (3)",
         "Vespoid Abdomen (3)",
         "Gold Rathian Cpc (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Devil Masher+"
       ]
     },
@@ -391,17 +391,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": [
+      "improve-cost": "80,000z",
+      "improve-from": [
         "Devil Masher"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "Thunderbug Jelly (5)",
         "Gld Rathian Scl+ (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Iron Devil's Soul"
       ]
     },
@@ -417,15 +417,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Devil Masher+",
+      "improve-cost": "105,000z",
+      "improve-from": "Devil Masher+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (10)",
         "HvyGldRathianShl (5)",
         "YamaTsukamiFluid (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Impact",
@@ -439,17 +439,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": [
+      "improve-cost": "55,000z",
+      "improve-from": [
         "Great Demon Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (25)",
         "Iron Ore (50)",
         "Novacrystal (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Iron Repellant",
         "Icy Impact"
       ]
@@ -466,18 +466,18 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": [
+      "improve-cost": "85,000z",
+      "improve-from": [
         "Iron Impact"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (10)",
         "Iron Ore (90)",
         "HvyLavasiothShl (5)",
         "Rainbow Ore (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Icy Impact",
@@ -491,8 +491,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "75,000z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": [
+      "improve-cost": "75,000z",
+      "improve-from": [
         "Iron Impact"
       ],
       "create-mats": [
@@ -501,13 +501,13 @@
         "Blangonga Pelt+ (20)",
         "Monster Essence (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (10)",
         "Eltalite Ore (8)",
         "Emperor Cricket (10)",
         "DaoraDragonScal+ (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Axion"
       ]
     },
@@ -523,18 +523,18 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": [
+      "improve-cost": "100,000z",
+      "improve-from": [
         "Icy Impact"
       ],
       "create-mats": [],
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (20)",
         "Purecrystal (2)",
         "HrdBlangongaPlt+ (10)",
         "HvyBasariosShell (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Fist of Fury",
@@ -548,17 +548,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": [
+      "improve-cost": "35,000z",
+      "improve-from": [
         "Iron Devil"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (15)",
         "Dragonite Ore (10)",
         "Gaoren Shell (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ancient Blow"
       ]
     },
@@ -574,17 +574,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": [
+      "improve-cost": "70,000z",
+      "improve-from": [
         "Fist of Fury"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (10)",
         "Dragonite Ore (25)",
         "Gaoren Carapace (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Foolhardy Stone Fist"
       ]
     },
@@ -600,17 +600,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": [
+      "improve-cost": "110,000z",
+      "improve-from": [
         "Fist of Fury"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (10)",
         "Gaoren Carapace (10)",
         "Lao-Shan's HvyScl (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Gunhammer Prototype",
@@ -624,20 +624,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "3,100z",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Iron Striker",
+      "improve-cost": "3,100z",
+      "improve-from": "Iron Striker",
       "create-mats": [
         "FireWyvern Fluid (4)",
         "Machalite Ore (20)",
         "Flame Sac (1)",
         "Gunpowder (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "FireWyvern Fluid (2)",
         "Machalite Ore (15)",
         "Gunpowder (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dead Revolver"
       ]
     },
@@ -653,15 +653,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "6,350z",
-      "upgrade-from": "Gunhammer Prototype",
+      "improve-cost": "6,350z",
+      "improve-from": "Gunhammer Prototype",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (15)",
         "FireWyvrn Marrow (2)",
         "Firestone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sanctioned Gunhammer"
       ]
     },
@@ -677,16 +677,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Dead Revolver",
+      "improve-cost": "60,000z",
+      "improve-from": "Dead Revolver",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Firecell Stone (4)",
         "Carbalite Ore (20)",
         "Monster Broth (2)",
         "FireWyvrn BrnStm (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Regulation GunHammer"
       ]
     },
@@ -702,20 +702,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "95,000z",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Sanctioned Gunhammer",
+      "improve-cost": "95,000z",
+      "improve-from": "Sanctioned Gunhammer",
       "create-mats": [
         "Eltalite Ore (10)",
         "Blazing Fire Sac (6)",
         "Firecell Stone (10)",
         "FireWyvrn BrnStm (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "Blazing Fire Sac (4)",
         "Monster Essence (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "ImperialGunHmmrSpark"
       ]
     },
@@ -731,16 +731,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Regulation GunHammer",
+      "improve-cost": "120,000z",
+      "improve-from": "Regulation GunHammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (20)",
         "Naruga Thck Scl (5)",
         "BlkGraviosHvyShl (5)",
         "Wyvern Stone (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Anchor Hammer",
@@ -754,15 +754,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "War Mace",
+      "improve-cost": "2,150z",
+      "improve-from": "War Mace",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Speartuna (1)",
         "Cephalos Fin (2)",
         "Disk Stone (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Anchor Hammer+"
       ]
     },
@@ -778,15 +778,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Anchor Hammer",
+      "improve-cost": "4,900z",
+      "improve-from": "Anchor Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Glutton Tuna (5)",
         "Plesioth Fin (5)",
         "Dragonite Ore (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Anchor Crusher"
       ]
     },
@@ -802,15 +802,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Anchor Hammer+",
+      "improve-cost": "65,000z",
+      "improve-from": "Anchor Hammer+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ancient Fish (5)",
         "Plesioth Fin+ (5)",
         "Union Ore (20)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Cauldron",
@@ -824,19 +824,19 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "1,400z",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "War Mace",
+      "improve-cost": "1,400z",
+      "improve-from": "War Mace",
       "create-mats": [
         "FlynMealPassPlus (1)",
         "Iron Ore (10)",
         "Disk Stone (7)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassReg (2)",
         "Iron Ore (10)",
         "Carpenterbug (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "True Black Cauldron",
         "One Star Silver Pot"
       ]
@@ -853,15 +853,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Black Cauldron",
+      "improve-cost": "35,000z",
+      "improve-from": "Black Cauldron",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassReg (7)",
         "Carbalite Ore (10)",
         "Black Blos Shell (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "One Star Silver Pot",
@@ -875,15 +875,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Black Cauldron",
+      "improve-cost": "2,150z",
+      "improve-from": "Black Cauldron",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassPlus (2)",
         "Rainbow Ore (10)",
         "DaoraDragonScale (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Two Star Silver Pot"
       ]
     },
@@ -899,15 +899,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "One Star Silver Pot",
+      "improve-cost": "50,000z",
+      "improve-from": "One Star Silver Pot",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassPlus (8)",
         "Union Ore (10)",
         "Slvr Rthlos Scl+ (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Axe",
@@ -921,15 +921,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "War Mace",
+      "improve-cost": "2,150z",
+      "improve-from": "War Mace",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Med Monster Bone (3)",
         "Sm Monster Bone (3)",
         "Monster Fluid (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bone Broadaxe"
       ]
     },
@@ -945,15 +945,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Bone Axe",
+      "improve-cost": "5,600z",
+      "improve-from": "Bone Axe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Monster Bone+ (2)",
         "Lg Monster Bone (4)",
         "Tigrex Shell (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bone Great Axe"
       ]
     },
@@ -969,16 +969,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Bone Broadaxe",
+      "improve-cost": "40,000z",
+      "improve-from": "Bone Broadaxe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hrd Monster Bone (2)",
         "Monster Bone+ (4)",
         "Monster Broth (1)",
         "King Scarab (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ceanataur Head Axe"
       ]
     },
@@ -994,21 +994,21 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "60,000z",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Bone Great Axe",
+      "improve-cost": "60,000z",
+      "improve-from": "Bone Great Axe",
       "create-mats": [
         "Ceanataur Carpce (6)",
         "Ceanataur Claw+ (4)",
         "Ceanataur Leg (2)",
         "Carbalite Ore (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Carpce (4)",
         "Ceanataur Pincer (2)",
         "Carbalite Ore (6)",
         "King Scarab (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Big Blue Chopper",
         "Carmine Axe"
       ]
@@ -1025,16 +1025,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Ceanataur Head Axe",
+      "improve-cost": "110,000z",
+      "improve-from": "Ceanataur Head Axe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Heavy Ceanataur Shell (4)",
         "Hard Ceanataur Claw (2)",
         "Heavy Ceanataur Leg (3)",
         "Eltalite Ore (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Carmine Axe",
@@ -1048,20 +1048,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "85000z",
-      "upgrade-cost": "85000z",
-      "upgrade-from": "Ceanataur Head Axe",
+      "improve-cost": "85000z",
+      "improve-from": "Ceanataur Head Axe",
       "create-mats": [
         "Terra Ceanataur Shell (6)",
         "Terra Ceanataur Claw (4)",
         "Ceanataur Pincer (10)",
         "Eltalite Ore (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Shell (4)",
         "Terra Ceanataur Claw (2)",
         "Heavy Ceanataur Leg (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "The Great Divider"
       ]
     },
@@ -1077,16 +1077,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Carmine Axe",
+      "improve-cost": "115000z",
+      "improve-from": "Carmine Axe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Shell (2)",
         "Heavy Black Gravios Shell (1)",
         "Hard Gaoren Claw (2)",
         "Giant Black Pearl (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Spiked Hammer",
@@ -1100,17 +1100,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": [
+      "improve-cost": "1,400z",
+      "improve-from": [
         "War Hammer+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (10)",
         "Needleberry (10)",
         "Carpenterbug (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Spiked Hammer+"
       ]
     },
@@ -1126,17 +1126,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": [
+      "improve-cost": "1,750z",
+      "improve-from": [
         "Spiked Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (20)",
         "Needleberry (15)",
         "Killer Beetle (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crystal Hammer",
         "Shell Hammer",
         "Basarios Rock"
@@ -1154,8 +1154,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "2,600z",
-      "upgrade-cost": "2,600z",
-      "upgrade-from": [
+      "improve-cost": "2,600z",
+      "improve-from": [
         "Spiked Hammer+"
       ],
       "create-mats": [
@@ -1164,12 +1164,12 @@
         "Ice Crystal (7)",
         "Carpenterbug (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (1)",
         "Machalite Ore (8)",
         "Killer Beetle (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crystal Nova"
       ]
     },
@@ -1185,15 +1185,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "3,650z",
-      "upgrade-from": "Crystal Hammer",
+      "improve-cost": "3,650z",
+      "improve-from": "Crystal Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (3)",
         "Rainbow Ore (2)",
         "Ice Crystal (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Nova",
         "Gigaton Hammer"
       ]
@@ -1210,15 +1210,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Crystal Nova",
+      "improve-cost": "50,000z",
+      "improve-from": "Crystal Nova",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Novacrystal (3)",
         "Basarios Carpace (8)",
         "Thunder Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Super Nova"
       ]
     },
@@ -1234,16 +1234,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Great Nova",
+      "improve-cost": "100,000z",
+      "improve-from": "Great Nova",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (3)",
         "Lightning Sac (5)",
         "LthrKirinThndrTl (2)",
         "StrBasariosWing (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Gigaton Hammer",
@@ -1257,15 +1257,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Crystal Nova",
+      "improve-cost": "4,250z",
+      "improve-from": "Crystal Nova",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Skl Shl (1)",
         "Basarios Shell (4)",
         "Machalite Ore (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Titan Hammer"
       ]
     },
@@ -1281,15 +1281,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "8,000z",
-      "upgrade-from": "Gigaton Hammer",
+      "improve-cost": "8,000z",
+      "improve-from": "Gigaton Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Shell (10)",
         "Gaoren Shell (4)",
         "Machalite Ore (15)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Shell Hammer",
@@ -1303,20 +1303,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "4,250z",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Spiked Hammer+",
+      "improve-cost": "4,250z",
+      "improve-from": "Spiked Hammer+",
       "create-mats": [
         "Basarios Shell (8)",
         "Machalite Ore (5)",
         "Ioprey Fang (18)",
         "Hercudrome (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Shell (8)",
         "Wyvern Fang (15)",
         "Poison Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Graviton Hammer"
       ]
     },
@@ -1332,15 +1332,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Shell Hammer",
+      "improve-cost": "4,900z",
+      "improve-from": "Shell Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Shell (10)",
         "Machalite Ore (10)",
         "Chameleos Claw (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Torment Hammer",
         "Crater Maker"
       ]
@@ -1357,15 +1357,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Graviton Hammer",
+      "improve-cost": "70,000z",
+      "improve-from": "Graviton Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Carapace (12)",
         "Wyvern Stone (3)",
         "Toxin Sac (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "VenomousCraterMaker"
       ]
     },
@@ -1381,16 +1381,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Crater Maker",
+      "improve-cost": "90,000z",
+      "improve-from": "Crater Maker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyBlkGraviosShl (5)",
         "HvyGraviosShell (2)",
         "LethrGarugaTail (4)",
         "DeadlyPoisonSac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Glasya-Labolas"
       ]
     },
@@ -1406,16 +1406,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "VenomousCraterMaker",
+      "improve-cost": "115,000z",
+      "improve-from": "VenomousCraterMaker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyBlkGraviosShl (10)",
         "SpecChameleHide+ (3)",
         "StrBasariosWing (2)",
         "HvnlyBlkGraviShl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Torment Hammer",
@@ -1429,15 +1429,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Graviton Hammer",
+      "improve-cost": "45,000z",
+      "improve-from": "Graviton Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blk Gravios Shl (8)",
         "Carbalite Ore (20)",
         "Inferno Sac (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Torment (Purgatory)"
       ]
     },
@@ -1453,15 +1453,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Torment Hammer",
+      "improve-cost": "70,000z",
+      "improve-from": "Torment Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Black Gravios Carapace (12)",
         "Black Gravios Skl Shl (2)",
         "Gravios Brainstem (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Club",
@@ -1475,13 +1475,13 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "400z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Mystery Bone (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Large Bone Club",
         "Cyclo-Hammer",
         "Bull Hammer",
@@ -1500,14 +1500,14 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,600z",
-      "upgrade-from": "Bone Club",
+      "improve-cost": "2,600z",
+      "improve-from": "Bone Club",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Bone (1)",
         "Mystery Bone (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Enormous Ham"
       ]
     },
@@ -1523,15 +1523,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "7,500z",
-      "upgrade-from": "Large Bone Club",
+      "improve-cost": "7,500z",
+      "improve-from": "Large Bone Club",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Bone (3)",
         "Well Done Steak (10)",
         "FelyneMealPassReg (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ham of Hams"
       ]
     },
@@ -1547,15 +1547,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Enormous Ham",
+      "improve-cost": "50,000z",
+      "improve-from": "Enormous Ham",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hrd Monster Bone (3)",
         "Gourmet Steak (10)",
         "FelyneMealPassPlus (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Cyclo-Hammer",
@@ -1569,16 +1569,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": [
+      "improve-cost": "1,750z",
+      "improve-from": [
         "Bone Club"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Brute Bone (3)",
         "Sm Monster Bone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Atlas Hammer",
         "Skullcrusher",
         "Conehead Hammer",
@@ -1597,16 +1597,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": [
+      "improve-cost": "1,750z",
+      "improve-from": [
         "Cyclo-Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Bone (2)",
         "Sm Monster Bone (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Kut-Ku Jaw",
         "Jail Hammer",
         "Khezu Horn"
@@ -1624,20 +1624,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "2,600z",
-      "upgrade-cost": "2,600z",
-      "upgrade-from": "Atlas Hammer",
+      "improve-cost": "2,600z",
+      "improve-from": "Atlas Hammer",
       "create-mats": [
         "Giant Beak (1)",
         "Piscine Fang (5)",
         "Kut-Ku Scale (5)",
         "Mega Demondrug (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Beak (1)",
         "Sharp Claw (5)",
         "Monster Fluid (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Kut-Ku Pick",
         "Raven Torrent",
         "Dynamic Hammer",
@@ -1656,17 +1656,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": [
+      "improve-cost": "5,600z",
+      "improve-from": [
         "Kut-Ku Jaw"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kut-Ku Ear (4)",
         "Vibrant Pelt (2)",
         "Monster Bone+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hard Bone Hammer",
         "Feather Whistle"
       ]
@@ -1683,8 +1683,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "25,000z",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": [
+      "improve-cost": "25,000z",
+      "improve-from": [
         "Kut-Ku Pick"
       ],
       "create-mats": [
@@ -1693,12 +1693,12 @@
         "Sm Monster Bone (60)",
         "Iron Ore (15)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Stout Bone (2)",
         "Elder Dragon Bone (5)",
         "Brute Bone (60)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hard Bone Hammer+",
         "Lobster Hammer"
       ]
@@ -1715,17 +1715,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": [
+      "improve-cost": "35,000z",
+      "improve-from": [
         "Hard Bone Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Stout Bone(8)",
         "Dragonite Ore(10)",
         "Rare Scarab(10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Diablos Hammer"
       ]
     },
@@ -1741,17 +1741,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": [
+      "improve-cost": "45,000z",
+      "improve-from": [
         "Hard Bone Hammer+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blood Red Horn (1)",
         "TwstBlkBlosHrn (1)",
         "Black Blos Cpc (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Diablos Chaos Broker"
       ]
     },
@@ -1767,15 +1767,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Diablos Hammer",
+      "improve-cost": "75,000z",
+      "improve-from": "Diablos Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Majestic Horn (2)",
         "Blk Blos Thracic (6)",
         "Diablos Thoracic (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Chaotic Order"
       ]
     },
@@ -1791,16 +1791,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Diablos Chaos Broker",
+      "improve-cost": "115,000z",
+      "improve-from": "Diablos Chaos Broker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "StoutBlkTwstdHrn (2)",
         "Top-GrdRedHorn (2)",
         "HvyBlkBlosSpine (6)",
         "MonoblosThoracic (6)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Lobster Hammer",
@@ -1814,17 +1814,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": [
+      "improve-cost": "30,000z",
+      "improve-from": [
         "Hard Bone Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Sm Lobstershell (4)",
         "Iodrome Hide (10)",
         "Carbalite Ore (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "King Lobster Hammer"
       ]
     },
@@ -1840,17 +1840,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": [
+      "improve-cost": "55,000z",
+      "improve-from": [
         "Lobster Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lg Lobstershell (2)",
         "Ioprey Hide+ (5)",
         "Ancient Fish (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Royal Lobster Hammer"
       ]
     },
@@ -1866,17 +1866,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": [
+      "improve-cost": "90,000z",
+      "improve-from": [
         "King Lobster Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gt Lobstershell (2)",
         "HvyPiscineFang (6)",
         "Eltalite Ore (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Raven Torrent",
@@ -1890,19 +1890,19 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "10,000z",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Kut-Ku Jaw",
+      "improve-cost": "10,000z",
+      "improve-from": "Kut-Ku Jaw",
       "create-mats": [
         "Sharpened Beak (2)",
         "Garuga Mane (4)",
         "Garuga Scale (8)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Sharpened Beak (1)",
         "Garuga Ear (2)",
         "Garuga Mane (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Wolf Torrent"
       ]
     },
@@ -1918,17 +1918,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": [
+      "improve-cost": "65,000z",
+      "improve-from": [
         "Raven Torrent"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rejuvenated Beak (1)",
         "Garuga Mane (10)",
         "Long Garuga Ear (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crow Torrent",
         "Wolf Shamisen"
       ]
@@ -1945,18 +1945,18 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": [
+      "improve-cost": "105,000z",
+      "improve-from": [
         "Wolf Torrent"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rejuvenated Beak (2)",
         "SilverGarugaPelt (5)",
         "ThickGarugaScale (5)",
         "Hvy Monster Bone (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dynamic Hammer",
@@ -1970,15 +1970,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Kut-Ku Jaw",
+      "improve-cost": "3,100z",
+      "improve-from": "Kut-Ku Jaw",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blue Kut-Ku Shell (6)",
         "Blue Kut-Ku Scale (8)",
         "Carpenterbug (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Violence Hammer"
       ]
     },
@@ -1994,15 +1994,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Dynamic Hammer",
+      "improve-cost": "45,000z",
+      "improve-from": "Dynamic Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blue Kut-Ku Cpc(4)",
         "Blue Kut-Ku Scl+(6)",
         "Long Kut-Ku Ear(2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Mysterious Jaw"
       ]
     },
@@ -2018,16 +2018,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Violence Hammer",
+      "improve-cost": "80,000z",
+      "improve-from": "Violence Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Splendid Beak(2)",
         "ThkBlueKut-KuScl(4)",
         "HvyBlueKut-KuShl(6)",
         "Lucky Kut-Ku Ear(2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Venom Monster",
@@ -2041,15 +2041,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Kut-Ku Jaw",
+      "improve-cost": "3,100z",
+      "improve-from": "Kut-Ku Jaw",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rubbery Hide (10)",
         "Poison Sac (5)",
         "Gypceros Head (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Death Venom Hammer"
       ]
     },
@@ -2065,15 +2065,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Venom Monster",
+      "improve-cost": "60,000z",
+      "improve-from": "Venom Monster",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rubbery Hide+ (10)",
         "Toxin Sac (5)",
         "Splendid Beak (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Purple Mace"
       ]
     },
@@ -2089,17 +2089,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": [
+      "improve-cost": "85,000z",
+      "improve-from": [
         "Death Venom Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdPuGypcerosWng (5)",
         "DeadlyPoisonSac (5)",
         "Pur Gypceros Wng (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Pitohui Bird Mace"
       ]
     },
@@ -2115,16 +2115,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Purple Mace",
+      "improve-cost": "110,000z",
+      "improve-from": "Purple Mace",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdPuGypcerosWng (5)",
         "HardGypcerosHead (1)",
         "LethrGarugaTail (2)",
         "Rejuvenated Beak (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Jail Hammer",
@@ -2138,15 +2138,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Atlas Hammer",
+      "improve-cost": "3,100z",
+      "improve-from": "Atlas Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore(6)",
         "Thunderbug(12)",
         "Rubbery Hide(3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Binder Mace"
       ]
     },
@@ -2162,15 +2162,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": "Jail Hammer",
+      "improve-cost": "5,600z",
+      "improve-from": "Jail Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore(12)",
         "Thunderbug Juice(8)",
         "Electro Sac(8)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Purse Bop",
@@ -2184,21 +2184,21 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Khezu Horn+",
+      "improve-cost": "50,000z",
+      "improve-from": "Khezu Horn+",
       "create-mats": [
         "Khezu Hide - Tan (8)",
         "Carbalite Ore (10)",
         "Thunder Sac (5)",
         "Pale Bone (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Khezu Hide - Tan (5)",
         "Dragonite Ore (10)",
         "Thunder Sac (3)",
         "Thunderbug (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Purse Bop+"
       ]
     },
@@ -2214,15 +2214,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Purse Bop",
+      "improve-cost": "85,000z",
+      "improve-from": "Purse Bop",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Khezu Hide - Cream (3)",
         "Lightning Sac (5)",
         "PaleKhezuSteak (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Khezu Thunder"
       ]
     },
@@ -2238,16 +2238,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Purse Bop+",
+      "improve-cost": "120,000z",
+      "improve-from": "Purse Bop+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Khezu Hide - Cream (8)",
         "Thunderbug Jelly (5)",
         "KhezuSpecialCut (1)",
         "YamaTsukami Fluid (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Skullcrusher",
@@ -2261,15 +2261,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Cyclo-Hammer",
+      "improve-cost": "1,400z",
+      "improve-from": "Cyclo-Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Med Monster Bone (2)",
         "Sharp Claw (8)",
         "Monster Fluid (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Skullcrusher+"
       ]
     },
@@ -2285,17 +2285,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": [
+      "improve-cost": "2,150z",
+      "improve-from": [
         "Skullcrusher"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Med Monster Bone (6)",
         "Piscine Fang (10)",
         "Congalala Claw (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Diablos Maul",
         "Dragonhead Hammer",
         "Sonic Glass"
@@ -2313,8 +2313,8 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "4,250z",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": [
+      "improve-cost": "4,250z",
+      "improve-from": [
         "Skullcrusher+"
       ],
       "create-mats": [
@@ -2323,12 +2323,12 @@
         "Eldr Dragon Bone (2)",
         "Earth Crystal (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Monoblos Shell (6)",
         "Lg Monster Bone (5)",
         "Machalite Ore (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Finishing Hammer"
       ]
     },
@@ -2344,17 +2344,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": [
+      "improve-cost": "30,000z",
+      "improve-from": [
         "Diablos Maul"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Diablos Tail (3)",
         "Diablos Shell (12)",
         "Hercudrome (8)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dragonhead Hammer",
@@ -2368,19 +2368,19 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "2,600z",
-      "upgrade-cost": "2,600z",
-      "upgrade-from": "Skullcrusher+",
+      "improve-cost": "2,600z",
+      "improve-from": "Skullcrusher+",
       "create-mats": [
         "Wyvern Skull Shell (2)",
         "Lg Monster Bone (3)",
         "Unknown Skull (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Wyvern Skull Shell (1)",
         "Giant Bone (3)",
         "Unknown Skull (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ancient Relic",
         "Basarios Blow"
       ]
@@ -2397,17 +2397,17 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "7,150z",
-      "upgrade-from": [
+      "improve-cost": "7,150z",
+      "improve-from": [
         "Dragonhead Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wyvern Skull Shell (5)",
         "Elder Dragon Bone (10)",
         "Gaoren Shell (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Shell Castanet"
       ]
     },
@@ -2423,15 +2423,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Dragonhead Hammer",
+      "improve-cost": "4,900z",
+      "improve-from": "Dragonhead Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Wing (1)",
         "Basarios Shell (6)",
         "Elder Dragon Bone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Basarios Bash"
       ]
     },
@@ -2447,15 +2447,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Basarios Blow",
+      "improve-cost": "50,000z",
+      "improve-from": "Basarios Blow",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Basarios Carapace (12)",
         "Carbalite Ore (12)",
         "Wyvern Stone (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Conehead Hammer",
@@ -2469,15 +2469,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Cyclo-Hammer",
+      "improve-cost": "1,400z",
+      "improve-from": "Cyclo-Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blango Pelt (6)",
         "Iron Ore (6)",
         "Unknown Skull (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Conehead Hammer+"
       ]
     },
@@ -2493,15 +2493,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "4,250z",
-      "upgrade-from": "Conehead Hammer",
+      "improve-cost": "4,250z",
+      "improve-from": "Conehead Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blangonga Fang (2)",
         "Blangonga Whiskr (4)",
         "Blangonga Pelt (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Great Cone"
       ]
     },
@@ -2517,15 +2517,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Conehead Hammer+",
+      "improve-cost": "50,000z",
+      "improve-from": "Conehead Hammer+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blangonga Fang+ (5)",
         "Blangonga Pelt+ (10)",
         "Master's Skull (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Desert Cone"
       ]
     },
@@ -2541,20 +2541,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "95000z",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Great Cone",
+      "improve-cost": "115000z",
+      "improve-from": "Great Cone",
       "create-mats": [
         "BlangongaPelt+ (10)",
         "BlangoFang (4)",
         "BlangoTail (1)",
         "Massive Bone (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Copper Blangonga Fur+ (5)",
         "Leather Pelagus Fur (3)",
         "Massive Bone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Magnitude"
       ]
     },
@@ -2570,16 +2570,16 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Desert Cone",
+      "improve-cost": "115000z",
+      "improve-from": "Desert Cone",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "BlangoFang (2)",
         "Brwn BlngngaTail (2)",
         "Black Rajang Pelt+ (4)",
         "PhantomButterfly (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bull Hammer",
@@ -2593,20 +2593,20 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "1400",
-      "upgrade-cost": "1750",
-      "upgrade-from": "Bone Club",
+      "improve-cost": "1750",
+      "improve-from": "Bone Club",
       "create-mats": [
         "Bullfango Pelt (4)",
         "Bullfango Head (1)",
         "Brute Bone (5)",
         "Carpenterbug (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Bullfango Pelt (2)",
         "Anteka Antlers (2)",
         "Brute Bone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bull Head Hammer"
       ]
     },
@@ -2622,15 +2622,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2150",
-      "upgrade-from": "Bull Hammer",
+      "improve-cost": "2150",
+      "improve-from": "Bull Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Bulldrome Hide (2)",
         "Bulldrome Tusk (2)",
         "Giant Bone (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bull Tusk Hammer"
       ]
     },
@@ -2646,15 +2646,15 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "5600",
-      "upgrade-from": "Bull Head Hammer",
+      "improve-cost": "5600",
+      "improve-from": "Bull Head Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Bulldrome Hide (5)",
         "Bulldrome Tusk (6)",
         "Monster Bone+ (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Rusted Hammer",
@@ -2663,18 +2663,18 @@
       "sharpness": "Bred",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "1",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "1,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Large Ruststone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tarnished Hammer"
       ]
     },
@@ -2685,20 +2685,20 @@
       "sharpness": "BredSoraTyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "1",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "2,500z",
-      "upgrade-from": [
+      "improve-cost": "2,500z",
+      "improve-from": [
         "Rusted Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Breath Core Hammer",
         "Jadite Mace"
       ]
@@ -2710,21 +2710,21 @@
       "sharpness": "BredSredTredToraSyelSgre",
       "affinity": "-20%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": [
+      "improve-cost": "40,000z",
+      "improve-from": [
         "Tarnished Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Jadite Mace",
@@ -2733,22 +2733,22 @@
       "sharpness": "MredMoraMyelTyelSgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": [
+      "improve-cost": "35,000z",
+      "improve-from": [
         "Tarnished Hammer"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lunastra Horn (3)",
         "Lunastra Shell (3)",
         "Firestone (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Jade Mace"
       ]
     },
@@ -2759,22 +2759,22 @@
       "sharpness": "MredSoraSyelSgre",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": [
+      "improve-cost": "50,000z",
+      "improve-from": [
         "Jadite Mace"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fire Drgn Webbing (4)",
         "Teostra Shell (5)",
         "ElderDragonBlood (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Lunastra's Crown"
       ]
     },
@@ -2785,20 +2785,20 @@
       "sharpness": "MredToraByelMgreSblu",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Jade Mace",
+      "improve-cost": "90,000z",
+      "improve-from": "Jade Mace",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lunastra Horn (6)",
         "Fire Drgn Scl+ (6)",
         "Fire Drgn Jwl (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Luna's Skirt"
       ]
     },
@@ -2809,21 +2809,21 @@
       "sharpness": "MredToraByelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Lunastra's Crown",
+      "improve-cost": "130,000z",
+      "improve-from": "Lunastra's Crown",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lunastra Spike (3)",
         "ThckFireDrgnScl (6)",
         "BigEDragonJewel (1)",
         "Commendation (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Worn Hammer",
@@ -2832,18 +2832,18 @@
       "sharpness": "BredSredTora",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "1,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Lg Ancient Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Weathered Hammer"
       ]
     },
@@ -2854,18 +2854,18 @@
       "sharpness": "BredSredToraSyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "12,500z",
-      "upgrade-from": "Worn Hammer",
+      "improve-cost": "12,500z",
+      "improve-from": "Worn Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Pulsating Core",
         "Steel Ice Hammer"
       ]
@@ -2877,19 +2877,19 @@
       "sharpness": "BredToraTyelTgreTblu",
       "affinity": "-20%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Weathered Hammer",
+      "improve-cost": "60,000z",
+      "improve-from": "Weathered Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Pulse Crusher Core"
       ]
     },
@@ -2900,20 +2900,20 @@
       "sharpness": "BredSredTredToraSyelSgreSbluMwhi",
       "affinity": "-20%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Pulsating Core",
+      "improve-cost": "100,000z",
+      "improve-from": "Pulsating Core",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (8)",
         "ElderDragonBlood (10)",
         "Commendation G (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Steel Ice Hammer",
@@ -2922,20 +2922,20 @@
       "sharpness": "SredTredSoraMyelBgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Weathered Hammer",
+      "improve-cost": "80,000z",
+      "improve-from": "Weathered Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Carapace (6)",
         "Daora Tail (1)",
         "Rare Scarab (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Daora's Colossus"
       ]
     },
@@ -2946,20 +2946,20 @@
       "sharpness": "SredTredSoraMyelBgreSblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Steel Ice Hammer",
+      "improve-cost": "90,000z",
+      "improve-from": "Steel Ice Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "DaoraDragonScal+ (10)",
         "Daora Sharp Claw (2)",
         "Daora Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Daora's Hyperborea"
       ]
     },
@@ -2970,21 +2970,21 @@
       "sharpness": "SredToraMyelBgreMbluMwhi",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Daora's Colossus",
+      "improve-cost": "130,000z",
+      "improve-from": "Daora's Colossus",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hvy Daora Shell (6)",
         "Hard Daora Horn (2)",
         "Str Daora Wing (2)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Belt Hammer",
@@ -2993,21 +2993,21 @@
       "sharpness": "MredMoraMyelSgre",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "6,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Blackbelt Ticket (8)",
         "Gravios Coin (5)",
         "Diablos Coin (8)",
         "Daimyo Coin (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Expert Hammer"
       ]
     },
@@ -3018,20 +3018,20 @@
       "sharpness": "TredToraByelMgre",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "20,000z",
-      "upgrade-from": "Black Belt Hammer",
+      "improve-cost": "20,000z",
+      "improve-from": "Black Belt Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Expert Ticket (15)",
         "Tigrex Coin (8)",
         "Gld Rathian Cpc (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Warrior's Hammer"
       ]
     },
@@ -3042,21 +3042,21 @@
       "sharpness": "TredToraByelBgreTbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Expert Hammer",
+      "improve-cost": "75,000z",
+      "improve-from": "Expert Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyGldRathianShl (3)",
         "Warrior Coin G (4)",
         "Expert Coin G (6)",
         "Commendation G (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Hammer",
@@ -3065,20 +3065,20 @@
       "sharpness": "TredToraByelSgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "15,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Fatalis Buster",
         "AncientFatalisBuster"
       ]
@@ -3090,20 +3090,20 @@
       "sharpness": "SredToraMyelSgreSblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Hammer",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Horn (3)",
         "Fatalis Eye (2)",
         "Fire Drgn Jwl (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Fatalis Demolisher"
       ]
     },
@@ -3114,21 +3114,21 @@
       "sharpness": "SredSoraMyelBgreSblu",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Fatalis Buster",
+      "improve-cost": "150,000z",
+      "improve-from": "Fatalis Buster",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hard Fatalis Horn (3)",
         "Fatalis Evil Eye (1)",
         "Hvy Fatalis Shl (2)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "AncientFatalisBuster",
@@ -3137,20 +3137,20 @@
       "sharpness": "TredToraByelMgreTblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Hammer",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wht Fatalis Horn (5)",
         "Wht Fatalis Shl (3)",
         "Lao-Shan's Ruby (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "AncientFatalisRuiner"
       ]
     },
@@ -3161,21 +3161,21 @@
       "sharpness": "SredToraMyelMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "AncientFatalisBuster",
+      "improve-cost": "150,000z",
+      "improve-from": "AncientFatalisBuster",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdWhtFatlisHorn (5)",
         "HvyWhtFatalisShl (2)",
         "Fatalis Evil Eye (2)",
         "BigEDragonJewel (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Cactus Creamer",
@@ -3184,20 +3184,20 @@
       "sharpness": "SredToraMyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "7,500z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Cactus Flower (2)",
         "Bone (1)",
         "Dobiscus (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Green Monster"
       ]
     },
@@ -3208,20 +3208,20 @@
       "sharpness": "SredToraMyelBgreSblu",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Cactus Creamer",
+      "improve-cost": "30,000z",
+      "improve-from": "Cactus Creamer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Cactus Flower (10)",
         "Stout Bone (2)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dragon Destroyer",
@@ -3230,21 +3230,21 @@
       "sharpness": "Unknown",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
       "type": "hm",
       "create-cost": "5,600z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Lao-Shan's Claw (2)",
         "Lao-Shan's Shell (5)",
         "Monster Bone+ (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Dragonbreaker"
       ]
     },
@@ -3255,20 +3255,20 @@
       "sharpness": "TredTredSoraSyelSyelMgreTgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Dragon Destroyer",
+      "improve-cost": "40,000z",
+      "improve-from": "Dragon Destroyer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan's Claw (2)",
         "Gaoren Spine (3)",
         "ElderDragonBlood (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dragon Demolisher"
       ]
     },
@@ -3279,20 +3279,20 @@
       "sharpness": "TredToraByelBgreTblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Dragonbreaker",
+      "improve-cost": "95,000z",
+      "improve-from": "Dragonbreaker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ash Lao-Shan Shell (5)",
         "Lao-Shan Ruby (1)",
         "Nova Crystal (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Claw of Doom"
       ]
     },
@@ -3303,21 +3303,21 @@
       "sharpness": "SredToraByelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "140,000z",
-      "upgrade-from": "Dragon Demolisher",
+      "improve-cost": "140,000z",
+      "improve-from": "Dragon Demolisher",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azure LaoS Claw (2)",
         "Lao-Shan'sHvyShl(5)",
         "Lao-ShanHvnlyScl (1)",
         "Purecrystal(3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Striped Striker",
@@ -3326,21 +3326,21 @@
       "sharpness": "BredToraSyelSgreTblu",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "35,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tigrex Claw (3)",
         "Tigrex Scale (5)",
         "Tigrex Shell (5)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tigrex Hammer",
         "Hidden Breaker"
       ]
@@ -3352,20 +3352,20 @@
       "sharpness": "BredSredToraSyelMgreSbluSwhi",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Striped Striker",
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Striker",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Claw + (3)",
         "Tigrex Scale + (5)",
         "Tigrex Skull Shl (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Tigrex Hammer+"
       ]
     },
@@ -3376,21 +3376,21 @@
       "sharpness": "BredSredToraSyelMgreSbluMwhiSpur",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Tigrex Hammer",
+      "improve-cost": "125,000z",
+      "improve-from": "Tigrex Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hard Tigrex Claw (3)",
         "ThickTigrexScale (5)",
         "Hvy Tigrex Shell (5)",
         "HvnlyTigrexScale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hidden Breaker",
@@ -3399,25 +3399,25 @@
       "sharpness": "SredToraByelSyelMgreTgreSbluSwhi",
       "affinity": "50%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Striped Striker",
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Striker",
       "create-mats": [
         "Black NargaPelt (10)",
         "Narga Scale+ (4)",
         "Narga Brain Stem (1)",
         "Hard Monster Bone (6)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Black Narga Pelt (6)",
         "Narga Scale+ (3)",
         "Hrd Monster Bone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Deep Darkhammer"
       ]
     },
@@ -3428,26 +3428,26 @@
       "sharpness": "SredToraByelTyelBgreSbluSwhiSpur",
       "affinity": "50%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Hidden Breaker",
+      "improve-cost": "120,000z",
+      "improve-from": "Hidden Breaker",
       "create-mats": [
         "Black Nargacuga Pelt+ (10)",
         "Heavy Nargacuga Fang (4)",
         "Heavy Nargacuga Tail Spike (6)",
         "Heavenly Nargacuga Scale (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "BlackNargaPelt+ (7)",
         "ThickNargaScale (3)",
         "HvyNargacugaFang (2)",
         "Narga Brain Stem (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "White Cat Stamp",
@@ -3456,20 +3456,20 @@
       "sharpness": "MredToraSyelTgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "2",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "2,150z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Pawprint Stamp (1)",
         "FlynMealPassReg (1)",
         "Paralysis Sac (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "White Cat Hammer",
         "Black Cat Stamp",
         "Teddybear"
@@ -3482,20 +3482,20 @@
       "sharpness": "SredSoraSyelBgreTblu",
       "affinity": "15%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "20,000z",
-      "upgrade-from": "White Cat Stamp",
+      "improve-cost": "20,000z",
+      "improve-from": "White Cat Stamp",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassReg (10)",
         "Carbalite Ore (5)",
         "Blango Pelt+ (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Cat Stamp",
@@ -3504,20 +3504,20 @@
       "sharpness": "MredToraTyelBgre",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "3,650z",
-      "upgrade-from": "White Cat Stamp",
+      "improve-cost": "3,650z",
+      "improve-from": "White Cat Stamp",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassReg (2)",
         "Dragonite Ore (5)",
         "Barrel Lid (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Cat Hammer",
         "Gold Cat Hammer"
       ]
@@ -3529,20 +3529,20 @@
       "sharpness": "TredToraByelTyelBgreTblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": "Black Cat Stamp",
+      "improve-cost": "25,000z",
+      "improve-from": "Black Cat Stamp",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassPlus (6)",
         "Black Blos Spine (5)",
         "Felyne Fur Ruby (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Gold Cat Hammer",
@@ -3551,25 +3551,25 @@
       "sharpness": "SredToraByelMgre",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "45,000z",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Black Cat Stamp",
+      "improve-cost": "45,000z",
+      "improve-from": "Black Cat Stamp",
       "create-mats": [
         "Felyne Fur Ruby (3)",
         "FlynMealPassReg(15)",
         "FlynMealPassPlus(5)",
         "Gold Rathian Scl+(5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassPlus (10)",
         "Gold Rathian Scl+ (3)",
         "Gold Rajang Pelt (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gold Cat Crusher"
       ]
     },
@@ -3580,21 +3580,21 @@
       "sharpness": "TredToraByelTyelMgre",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Gold Cat Hammer",
+      "improve-cost": "90,000z",
+      "improve-from": "Gold Cat Hammer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "FlynMealPassPlus (10)",
         "Felyne Fur Ruby (3)",
         "GoldRajangPelt+ (3)",
         "Thunderbug Jelly (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Teddybear",
@@ -3603,24 +3603,24 @@
       "sharpness": "MredSoraSyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "5,000z",
-      "upgrade-cost": "5,000z",
-      "upgrade-from": "White Cat Stamp",
+      "improve-cost": "5,000z",
+      "improve-from": "White Cat Stamp",
       "create-mats": [
         "Commendation (1)",
         "Lightcrystal (2)",
         "Black Pearl (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (1)",
         "Antiseptic Stone (3)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ukanlos Trampler",
@@ -3629,21 +3629,21 @@
       "sharpness": "BredToraSyelBgreTblu",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "150,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "UkanlosDiggngClw (3)",
         "HvyUkanlosShell (4)",
         "Lightning Sac (10)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Club G",
@@ -3652,21 +3652,21 @@
       "sharpness": "MredMoraMyelMgre",
       "affinity": "-10%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Mystery Bone (50)",
         "Stout Bone (15)",
         "Massive Bone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "War Hammer G",
@@ -3675,21 +3675,21 @@
       "sharpness": "MredToraByelSgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Iron Ore (30)",
         "Disk Stone (30)",
         "Eltalite Ore (12)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Tarnished Hammer G",
@@ -3698,19 +3698,19 @@
       "sharpness": "BredToraSyel",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Large Ruststone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Spiked Hammer G",
@@ -3719,21 +3719,21 @@
       "sharpness": "MredToraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Needleberry (50)",
         "Eltalite Ore (8)",
         "Emperor Cricket (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Striker G",
@@ -3742,21 +3742,21 @@
       "sharpness": "TredToraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Iron Ore (30)",
         "Machalite Ore (15)",
         "Mellanje Ore (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Atlas Hammer G",
@@ -3765,21 +3765,21 @@
       "sharpness": "SredSoraByelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Sm Monster Bone (40)",
         "Giant Bone (30)",
         "Massive Bone (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Axe G",
@@ -3788,21 +3788,21 @@
       "sharpness": "SredSoraMyelBgreSblu",
       "affinity": "10%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Hrd Monster Bone (15)",
         "Monster Essence (5)",
         "Hvy Tigrex Shell (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Skullcrusher G",
@@ -3811,21 +3811,21 @@
       "sharpness": "TredToraByelBgreTblu",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HvyPiscineFang (6)",
         "Piercing Claw (8)",
         "Monster Essence (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bull Tusk Hammer G",
@@ -3834,21 +3834,21 @@
       "sharpness": "MredMoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Bullfango Head (5)",
         "Bulldrome Tusk (10)",
         "ThkBullfangoPelt (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Crystal Nova G",
@@ -3857,21 +3857,21 @@
       "sharpness": "MredMoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lightcrystal (15)",
         "Novacrystal (10)",
         "Purecrystal (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Binder Mace G",
@@ -3880,21 +3880,21 @@
       "sharpness": "BredSoraSyelMgreSbluMwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Thunderbug (30)",
         "SpecRubberyHide+ (5)",
         "Mellanje Ore (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Kut-Ku Jaw G",
@@ -3903,21 +3903,21 @@
       "sharpness": "MredSoraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Giant Beak (6)",
         "Hvy Kut-Ku Shell (10)",
         "Monster Essence (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Venom Monster G",
@@ -3926,21 +3926,21 @@
       "sharpness": "MredSoraByelBgreSbluSwhi",
       "affinity": "15%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "SpecRubberyHide+ (8)",
         "Toxin Sac (12)",
         "Gypceros Head (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dead Revolver G",
@@ -3949,21 +3949,21 @@
       "sharpness": "MredToraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Eltalite Ore (10)",
         "Firestone (15)",
         "FireWyvrn Marrow (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Anchor Crusher G",
@@ -3972,21 +3972,21 @@
       "sharpness": "MredToraByelSgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Ancient Fish (10)",
         "SpecPlesiothFin+ (5)",
         "Eltalite Ore (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Kut-Ku Pick G",
@@ -3995,21 +3995,21 @@
       "sharpness": "MredToraByelSgreSbluSwhi",
       "affinity": "20%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Splendid Beak (4)",
         "Thick Kut-Ku Scl (10)",
         "Lucky Kut-Ku Ear (4)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dragonhead Hammer G",
@@ -4018,21 +4018,21 @@
       "sharpness": "BredToraSyelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Wyvern Skull Shl (10)",
         "Unknown Skull (10)",
         "BigEDragonBone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Basarios Bash G",
@@ -4041,21 +4041,21 @@
       "sharpness": "SredToraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyBasariosShell (10)",
         "Basarios Tears (5)",
         "Wyvern Stone (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Titan Hammer G",
@@ -4064,21 +4064,21 @@
       "sharpness": "MredMoraMyelMgreTblu",
       "affinity": "-15%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation (1)",
         "HvyBasariosShell (6)",
         "Gravios Carapace (10)",
         "Machalite Ore (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Finishing Hammer G",
@@ -4087,21 +4087,21 @@
       "sharpness": "MredToraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "LthrDiablosTail (3)",
         "BigEDragonBone (5)",
         "Monoblos Carapace (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "TrueBlackCauldron G",
@@ -4110,21 +4110,21 @@
       "sharpness": "MredToraSyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassReg (10)",
         "Carbalite Ore (15)",
         "HvyBlkBlosShell (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Enormous Ham G",
@@ -4133,21 +4133,21 @@
       "sharpness": "MredToraSyelBgre",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Gourmet Steak (10)",
         "FlynMealPassReg (10)",
         "Hvy Monster Bone (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Teddybear G",
@@ -4156,21 +4156,21 @@
       "sharpness": "SredSoraByelMgre",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Antiseptic Stone (10)",
         "Purecrystal (4)",
         "Sleep Sac (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Cactus Creamer G",
@@ -4179,21 +4179,21 @@
       "sharpness": "BredToraSyelMgreSbluMwhiSpur",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Cactus Flower (10)",
         "Massive Bone (10)",
         "Dosbiscus (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "White Cat Hammer G",
@@ -4202,21 +4202,21 @@
       "sharpness": "MredMoraMyelBgreTblu",
       "affinity": "15%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Pawprint Stamp (10)",
         "Paralysis Sac (15)",
         "HrdBlangongaPlt+ (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Black Cat Hammer G",
@@ -4225,21 +4225,21 @@
       "sharpness": "SredToraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassPlus (10)",
         "Felyne Fur Ruby (5)",
         "BlackNargaPelt+ (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Black Belt Hammer G",
@@ -4248,21 +4248,21 @@
       "sharpness": "MredMoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "OOO",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Expert Ticket (10)",
         "Fire Coin (7)",
         "Legend Coin (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Breath Core Hammer G",
@@ -4271,21 +4271,21 @@
       "sharpness": "BredToraSyelMgreSbluSwhi",
       "affinity": "-20%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Lg Ancient Stone (3)",
         "ElderDragonBlood (10)",
         "Big Wyvern Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Great Demon Hammer G",
@@ -4294,21 +4294,21 @@
       "sharpness": "MredSoraMyelBgreSbluSwhi",
       "affinity": "20%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Eltalite Ore (8)",
         "Carbalite Ore (25)",
         "Velocidrome Head (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Hard Bone Hammer G",
@@ -4317,21 +4317,21 @@
       "sharpness": "SredSoraByelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Hvy Monster Bone (5)",
         "BigEDragonBone (3)",
         "Dragonite Ore (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "TwoStarSilverPot G",
@@ -4340,21 +4340,21 @@
       "sharpness": "TredToraByelBgreSbluMwhiSpur",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassPlus (10)",
         "Rainbow Ore (20)",
         "HvySlvrRthlsShl (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Great Cone G",
@@ -4363,21 +4363,21 @@
       "sharpness": "TredToraByelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HvyBlangongaFang (3)",
         "HrdBlangongaPlt+ (10)",
         "Blango Pelt+ (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Onslaught Hammer G",
@@ -4386,21 +4386,21 @@
       "sharpness": "SredSoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Dragonite Ore (20)",
         "HvyGraviosShell (5)",
         "Union Ore (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "War Basher G",
@@ -4409,21 +4409,21 @@
       "sharpness": "TredToraByelMgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Carbalite Ore (20)",
         "Disk Stone (50)",
         "HvyBlkBlosShell (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "SanctionedGunHammr G",
@@ -4432,21 +4432,21 @@
       "sharpness": "MredMoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Firecell Stone (10)",
         "Monster Essence (8)",
         "Mellanje Ore (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Crater Maker G",
@@ -4455,21 +4455,21 @@
       "sharpness": "BredSoraSyelSgreSbluMwhi",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "OO-",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyGraviosShell (6)",
         "DeadlyPoisonSac (3)",
         "Wyvern Stone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Torment(Purgatory) G",
@@ -4478,21 +4478,21 @@
       "sharpness": "MredMoraMyelBgreSbluSwhi",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "O--",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "HvyBlkGraviosShl (6)",
         "Blazing Fire Sac (3)",
         "Wyvern Stone (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dragonbreaker G",
@@ -4501,21 +4501,21 @@
       "sharpness": "SredToraSyelSyelMgreTgreSbluMwhi",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "---",
+      "bonus": "N/A",
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Lao-Shan's Claw (3)",
         "Lao-Shan'sHvyShl (5)",
         "Lao-ShanScale+ (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     }
   ]
 }

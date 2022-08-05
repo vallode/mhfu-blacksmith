@@ -19,13 +19,13 @@ FILE_TEMPLATE = %{+++
   create-mats = <%= create_mats %>
   <% end %>
   <% if upgrade_cost %>
-  upgrade-cost = "<%= upgrade_cost %>"
-  upgrade-mats = <%= upgrade_mats %>
+  improve-cost = "<%= upgrade_cost %>"
+  improve-mats = <%= upgrade_mats %>
   <% end %>
   <% if upgrade_from and upgrade_from.kind_of?(Array) %>
-  upgrade-from = <%= upgrade_from %>
+  improve-from = <%= upgrade_from %>
   <% elsif upgrade_from %>
-  upgrade-from = <%= upgrade_from.to_json %>
+  improve-from = <%= upgrade_from.to_json %>
   <% end %>
   <% if upgrade_to %>
   upgrade-to = <%= upgrade_to %>
@@ -87,13 +87,13 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       elements = parseElements(value["element"])
       slots = value["slots"]
 
-      if value["upgrade-cost"] != "N/A"
-        upgrade_cost = value["upgrade-cost"]
-        upgrade_mats = value["upgrade-mats"]
+      if value["improve-cost"] != "N/A"
+        upgrade_cost = value["improve-cost"]
+        upgrade_mats = value["improve-mats"]
       end
 
-      if value["upgrade-from"] != "N/A"
-        upgrade_from = value['upgrade-from']
+      if value["improve-from"] != "N/A"
+        upgrade_from = value['improve-from']
       end
 
       if value["upgrade-to"] != "N/A"
