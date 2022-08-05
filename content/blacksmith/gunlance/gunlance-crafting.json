@@ -12,20 +12,20 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Babel Spear",
+      "improve-cost": "80,000z",
+      "improve-from": "Babel Spear",
       "create-mats": [
         "Eltalite Ore (10)",
         "Iron Ore (80)",
         "Blazing Fire Sac (5)",
         "Lightning Sac (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (8)",
         "Blazing Fire Sac (3)",
         "Lightning Sac (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Genesis"
       ]
     },
@@ -41,16 +41,16 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Ancient Destroyer",
+      "improve-cost": "115,000z",
+      "improve-from": "Ancient Destroyer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (10)",
         "Iron Ore(30)",
         "LthrRathalosTail(5)",
         "Thunderbug Jelly(10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Feather Gunlance",
@@ -64,20 +64,20 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Knight Lance",
+      "improve-cost": "50,000z",
+      "improve-from": "Knight Lance",
       "create-mats": [
         "Top-GrdHypnoClaw(5)",
         "OrangeHypnoPelt(6)",
         "Killer Beetle(20)",
         "Sleep Sac(3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Hypno Beak(1)",
         "OrangeHypnoPelt(4)",
         "Sleep Sac(2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Feather Gunlance+"
       ]
     },
@@ -93,21 +93,21 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Feather Gunlance",
+      "improve-cost": "80,000z",
+      "improve-from": "Feather Gunlance",
       "create-mats": [
         "Hypno Fang (3)",
         "OrangeHypnoPelt+ (8)",
         "HvyPiscineFang (5)",
         "Hypno Bezoar+ (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Hypno Fang (1)",
         "Top-GrdHpnoClaw (3)",
         "OrangeHypnoPelt+ (5)",
         "Blazing Fire Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hypno Cannon"
       ]
     },
@@ -123,15 +123,15 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Feather Gunlance+",
+      "improve-cost": "105,000z",
+      "improve-from": "Feather Gunlance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hypno Claw + (5)",
         "Hypno Bezoar+ (1)",
         "Coma Sac (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Snow Gunlance",
@@ -145,20 +145,20 @@
       "shelling": "Normal Lv. 1",
       "type": "gl",
       "create-cost": "1,400z",
-      "upgrade-cost": "1,400z",
-      "upgrade-from": "Iron Lance",
+      "improve-cost": "1,400z",
+      "improve-from": "Iron Lance",
       "create-mats": [
         "Giaprey Hide (3)",
         "Giaprey Scale (6)",
         "Machalite Ore (2)",
         "Carpenterbug (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Giaprey Hide (2)",
         "Giaprey Scale (3)",
         "Iron Ore (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Snow Gunlance Mk. II"
       ]
     },
@@ -174,15 +174,15 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Snow Gunlance",
+      "improve-cost": "2,150z",
+      "improve-from": "Snow Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giadrome Hide (3)",
         "Giadrome Skull (1)",
         "Earth Crystal (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blizzard Gunlance",
         "Marine Fisher",
         "Scissor Gunlance"
@@ -200,15 +200,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Snow Gunlance Mk. II",
+      "improve-cost": "40,000z",
+      "improve-from": "Snow Gunlance Mk. II",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giadrome Claw+ (4)",
         "Giaprey Hide+ (4)",
         "Inferno Sac (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Marine Fisher",
@@ -222,20 +222,20 @@
       "shelling": "Long Lv. 1",
       "type": "gl",
       "create-cost": "3100z",
-      "upgrade-cost": "3100z",
-      "upgrade-from": "Snow Gunlance Mk. II",
+      "improve-cost": "3100z",
+      "improve-from": "Snow Gunlance Mk. II",
       "create-mats": [
         "Plesioth Fin (4)",
         "Plesioth Scale (6)",
         "Iron Ore (20)",
         "Burst Arrowana (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Scale (5)",
         "Cephalos Scale (3)",
         "Machalite Ore (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Deep Fisher"
       ]
     },
@@ -251,15 +251,15 @@
       "shelling": "Long Lv. 1",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "5600z",
-      "upgrade-from": "Marine Fisher",
+      "improve-cost": "5600z",
+      "improve-from": "Marine Fisher",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Fin (7)",
         "Monster Bone+ (4)",
         "Dragonite Ore (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Deep Ocean"
       ]
     },
@@ -275,15 +275,15 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Deep Fisher",
+      "improve-cost": "40,000z",
+      "improve-from": "Deep Fisher",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Grn Plesioth Fin+ (3)",
         "Grn Plesioth Scl (10)",
         "Carbalite Ore (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sea King Gunlance"
       ]
     },
@@ -299,15 +299,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Deep Ocean",
+      "improve-cost": "55,000z",
+      "improve-from": "Deep Ocean",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wyvern Stone (2)",
         "Green Plesioth Scale+ (10)",
         "Union Ore (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sea God Leviathan",
         "Volcano Gunlance"
       ]
@@ -324,15 +324,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Sea King Gunlance",
+      "improve-cost": "90,000z",
+      "improve-from": "Sea King Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecGrnPlesioFn+ (3)",
         "ThckGrnPlesioScl (4)",
         "HvyPiscineFang (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sea Abyss"
       ]
     },
@@ -348,16 +348,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Sea God Leviathan",
+      "improve-cost": "110,000z",
+      "improve-from": "Sea God Leviathan",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckGrnPlesioScl (5)",
         "ThckPlesiothScale (5)",
         "LeatherNargaTail (2)",
         "Big Wyvern Stone (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Volcano Gunlance",
@@ -371,20 +371,20 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "100000z",
-      "upgrade-cost": "100000z",
-      "upgrade-from": "Sea King Gunlance",
+      "improve-cost": "100000z",
+      "improve-from": "Sea King Gunlance",
       "create-mats": [
         "ThckLavasiothScl (8)",
         "HvyLavasiothShl (6)",
         "HvyLavasiothFang (3)",
         "Wyvern Stone (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckLavasiothScl (3)",
         "HvyLavasiothShl (4)",
         "Firecell Stone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Lavasioth Gunlance"
       ]
     },
@@ -400,16 +400,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "120000z",
-      "upgrade-from": "Volcano Gunlance",
+      "improve-cost": "120000z",
+      "improve-from": "Volcano Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyLavasiothFang (5)",
         "SpecLavasioFin+ (3)",
         "Firecell Stone (10)",
         "HvnlyBlkGraviShl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Scissor Gunlance",
@@ -423,8 +423,8 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "40,000z",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": [
+      "improve-cost": "40,000z",
+      "improve-from": [
         "Bone Claw Lance+",
         "Snow Gunlance Mk. II"
       ],
@@ -434,12 +434,12 @@
         "Flame Sac (10)",
         "Black Pearl (20)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Hermitaur Claw+ (2)",
         "Hermitaur Shell (15)",
         "Inferno Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Scissor Cannon"
       ]
     },
@@ -455,15 +455,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Scissor Gunlance",
+      "improve-cost": "50,000z",
+      "improve-from": "Scissor Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hermitaur Claw+ (5)",
         "Hermitaur Carpce (10)",
         "FireWyvrn BrnStm (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Violet Cannon",
         "Shell Claw Lance"
       ]
@@ -480,20 +480,20 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "85,000z",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Scissor Cannon",
+      "improve-cost": "85,000z",
+      "improve-from": "Scissor Cannon",
       "create-mats": [
         "HermitrClw (4)",
         "HermitrShl (8)",
         "Giant Blk Pearl (3)",
         "Fire Wyvern BrnStm (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "HermitrClw (2)",
         "HermitrShl (5)",
         "Blazing Fire Sac (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Violet Buster"
       ]
     },
@@ -509,15 +509,15 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Violet Cannon",
+      "improve-cost": "115,000z",
+      "improve-from": "Violet Cannon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HermitrClw (5)",
         "HermitrShl (10)",
         "HvyLavasiothFang (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Gunlance",
@@ -531,8 +531,8 @@
       "shelling": "Normal Lv. 1",
       "type": "gl",
       "create-cost": "1,100z",
-      "upgrade-cost": "1,100z",
-      "upgrade-from": [
+      "improve-cost": "1,100z",
+      "improve-from": [
         "Iron Lance"
       ],
       "create-mats": [
@@ -541,12 +541,12 @@
         "Gunpowder (5)",
         "Flame Sac (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Iron Ore (8)",
         "Disk Stone (5)",
         "Carpenterbug (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Iron Gunlance+"
       ]
     },
@@ -562,15 +562,15 @@
       "shelling": "Normal Lv. 1",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "1,750z",
-      "upgrade-from": "Iron Gunlance",
+      "improve-cost": "1,750z",
+      "improve-from": "Iron Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (3)",
         "Earth Crystal (8)",
         "Gunpowder (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Steel Gunlance"
       ]
     },
@@ -586,15 +586,15 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "2,150z",
-      "upgrade-from": "Iron Gunlance+",
+      "improve-cost": "2,150z",
+      "improve-from": "Iron Gunlance+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (7)",
         "Disk Stone (10)",
         "Flame Sac (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Special Ops Gunlance",
         "Luna's Howl",
         "White Gunlance"
@@ -612,15 +612,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "3,100z",
-      "upgrade-from": "Steel Gunlance",
+      "improve-cost": "3,100z",
+      "improve-from": "Steel Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (15)",
         "Firestone (3)",
         "Lightcrystal (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Imperial Gunlance"
       ]
     },
@@ -636,15 +636,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "6,500z",
-      "upgrade-from": "Special Ops Gunlance",
+      "improve-cost": "6,500z",
+      "improve-from": "Special Ops Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Monster Bone+ (3)",
         "Firestone (6)",
         "Dragonite Ore (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Silver Rook"
       ]
     },
@@ -660,15 +660,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Imperial Gunlance",
+      "improve-cost": "65,000z",
+      "improve-from": "Imperial Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Slvr Rthlos Tail (1)",
         "Slvr Rthlos Cpc (3)",
         "Slvr Rthlos Scl+ (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gun Chariot"
       ]
     },
@@ -684,16 +684,16 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Silver Rook",
+      "improve-cost": "75,000z",
+      "improve-from": "Silver Rook",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Silver Rathalos Tail (3)",
         "Silver Rathalos Wing (1)",
         "Rathalos Ruby (1)",
         "FireWyvrn Marrow (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gun Chariot+"
       ]
     },
@@ -709,15 +709,15 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Gun Chariot",
+      "improve-cost": "100,000z",
+      "improve-from": "Gun Chariot",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Silver Rathalos Carapace (5)",
         "Strong Rathalos Wing (3)",
         "Blazing Fire Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "World's End"
       ]
     },
@@ -733,16 +733,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Gun Chariot+",
+      "improve-cost": "125,000z",
+      "improve-from": "Gun Chariot+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvySlvrRthlsShl (5)",
         "LthrSlvrRthlsTal (3)",
         "HvnlyRathalosScl (1)",
         "HvnlyGraviosShl (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Luna's Howl",
@@ -756,8 +756,8 @@
       "shelling": "Spread Lv. 1",
       "type": "gl",
       "create-cost": "5,600z",
-      "upgrade-cost": "5,600z",
-      "upgrade-from": [
+      "improve-cost": "5,600z",
+      "improve-from": [
         "Steel Gunlance"
       ],
       "create-mats": [
@@ -766,12 +766,12 @@
         "Lunastra Mane (2)",
         "Dragonite Ore (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Lunastra Tail (1)",
         "Fire Drgn Webbng (2)",
         "Fire Dragon Scl (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Luna's Roar"
       ]
     },
@@ -787,17 +787,17 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": [
+      "improve-cost": "35,000z",
+      "improve-from": [
         "Luna's Howl"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Teostra Tail (2)",
         "Lunastra Shell (7)",
         "ElderDragonBlood (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Luna's Flare"
       ]
     },
@@ -813,15 +813,15 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Luna's Roar",
+      "improve-cost": "90,000z",
+      "improve-from": "Luna's Roar",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lunastra Spike (2)",
         "Fire Drgn Scl+ (8)",
         "Fire Drgn Jwl (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Luna's Sun"
       ]
     },
@@ -837,16 +837,16 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Luna's Flare",
+      "improve-cost": "130,000z",
+      "improve-from": "Luna's Flare",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LunastraCarapace (5)",
         "LthrTeostraTail (2)",
         "ThckFireDrgnScl (8)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "White Gunlance",
@@ -860,15 +860,15 @@
       "shelling": "Long Lv. 1",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "4,900z",
-      "upgrade-from": "Steel Gunlance",
+      "improve-cost": "4,900z",
+      "improve-from": "Steel Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Skl Shl(1)",
         "Machalite Ore(15)",
         "Flame Sac(6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "White Cannon"
       ]
     },
@@ -884,15 +884,15 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "White Gunlance",
+      "improve-cost": "30,000z",
+      "improve-from": "White Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Shell (10)",
         "Gravios Skl Shl (1)",
         "Firestone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Gunlance"
       ]
     },
@@ -908,15 +908,15 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "White Cannon",
+      "improve-cost": "60,000z",
+      "improve-from": "White Cannon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Wyvern Stone (2)",
         "Blk Gravios Shl (15)",
         "Firecell Stone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Gore Cannon"
       ]
     },
@@ -932,15 +932,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Black Gunlance",
+      "improve-cost": "75,000z",
+      "improve-from": "Black Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blk Gravios Cpc (8)",
         "Blk Gravios Skl (2)",
         "Gravios BrainStm (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Black Gore Buster"
       ]
     },
@@ -956,15 +956,15 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Black Gore Cannon",
+      "improve-cost": "115,000z",
+      "improve-from": "Black Gore Cannon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyBlkGraviosShl (5)",
         "HvnlyBlkGraviShl (1)",
         "Big Wyvern Stone (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Heavy Bone Gunlance",
@@ -978,8 +978,8 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "75,000z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": [
+      "improve-cost": "75,000z",
+      "improve-from": [
         "Barbarian Tusk"
       ],
       "create-mats": [
@@ -988,13 +988,13 @@
         "Eltalite Ore (5)",
         "Rajang Horn (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Massive Bone (3)",
         "RobustWyvernBone (4)",
         "Firecell Stone(4)",
         "Rajang Horn (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hard Bone Cannon"
       ]
     },
@@ -1010,17 +1010,17 @@
       "shelling": "Normal Lv. 5",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": [
+      "improve-cost": "100,000z",
+      "improve-from": [
         "Heavy Bone Gunlance"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "BigEDragonBone (3)",
         "Blazing Fire Sac (5)",
         "Emperor Cricket (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Full Voltage",
@@ -1034,8 +1034,8 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": [
+      "improve-cost": "50,000z",
+      "improve-from": [
         "Hard Bone Lance+"
       ],
       "create-mats": [
@@ -1044,12 +1044,12 @@
         "Carbalite Ore (10)",
         "Rubbery Hide+ (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Khezu Hide-Tan (5)",
         "Thunder Sac (3)",
         "Rubbery Hide+(3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Full Generator"
       ]
     },
@@ -1065,15 +1065,15 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Full Voltage",
+      "improve-cost": "85,000z",
+      "improve-from": "Full Voltage",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "KhezuHide-Cream(5)",
         "Lightning Sac(3)",
         "Pale Khezu Steak(1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "High Volt Gunlance"
       ]
     },
@@ -1089,16 +1089,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Full Generator",
+      "improve-cost": "120,000z",
+      "improve-from": "Full Generator",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "KhezuHide-Cream(5)",
         "KhezuSpecialCut(1)",
         "SpecRubberyHide+(5)",
         "LthrKirinThndrTl(2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Gunlance",
@@ -1112,14 +1112,14 @@
       "shelling": "Normal Lv. 1",
       "type": "gl",
       "create-cost": "650z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Brute Bone (2)",
         "Rumblefish (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Great Bone Gunlance"
       ]
     },
@@ -1135,14 +1135,14 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "1400z",
-      "upgrade-from": "Bone Gunlance",
+      "improve-cost": "1400z",
+      "improve-from": "Bone Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Brute Bone (5)",
         "Fire Herb (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Wyvern Bone Gunlance",
         "Average Hitter"
       ]
@@ -1159,15 +1159,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "2150z",
-      "upgrade-from": "Great Bone Gunlance",
+      "improve-cost": "2150z",
+      "improve-from": "Great Bone Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Bone (3)",
         "Lg Monster Bone (3)",
         "Burst Arrowana (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hellsting"
       ]
     },
@@ -1183,20 +1183,20 @@
       "shelling": "Spread Lv. 1",
       "type": "gl",
       "create-cost": "4250z",
-      "upgrade-cost": "4250z",
-      "upgrade-from": "Wyvern Bone Gunlance",
+      "improve-cost": "4250z",
+      "improve-from": "Wyvern Bone Gunlance",
       "create-mats": [
         "Blangonga Fang (2)",
         "Blango Pelt (20)",
         "Giant Bone (2)",
         "Sharp Claw (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Blango Pelt (15)",
         "Blangonga Pelt (5)",
         "Ice Crystal (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hellsting+"
       ]
     },
@@ -1212,15 +1212,15 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "6350z",
-      "upgrade-from": "Hellsting",
+      "improve-cost": "6350z",
+      "improve-from": "Hellsting",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blangonga Fang (2)",
         "Blangonga Tail (5)",
         "Tigrex Fang (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hellstinger"
       ]
     },
@@ -1236,15 +1236,15 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "50000z",
-      "upgrade-from": "Hellsting+",
+      "improve-cost": "50000z",
+      "improve-from": "Hellsting+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Blangonga Fang+ (4)",
         "Blangonga Whiskr (4)",
         "Blango Pelt+ (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Demonic Blizzard",
         "Desert Slingshot"
       ]
@@ -1261,11 +1261,11 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Hellstinger",
+      "improve-cost": "90,000z",
+      "improve-from": "Hellstinger",
       "create-mats": "N/A",
-      "upgrade-mats": [],
-      "upgrade-to": "N/A"
+      "improve-mats": [],
+      "improve-to": "N/A"
     },
     {
       "name": "Desert Slingshot",
@@ -1279,15 +1279,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Hellstinger",
+      "improve-cost": "95,000z",
+      "improve-from": "Hellstinger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "BlangoFang (2)",
         "BlangongaPelt+ (4)",
         "HvyNargacugaFang (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Desert Slingshoter"
       ]
     },
@@ -1303,16 +1303,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Desert Slingshot",
+      "improve-cost": "115,000z",
+      "improve-from": "Desert Slingshot",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Brwn Blngnga Tail (2)",
         "Blngnga Hrd Whskr (5)",
         "Brwn Blngnga Pelt (10)",
         "Rajang Strng Claw (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Average Hitter",
@@ -1326,20 +1326,20 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "3100z",
-      "upgrade-cost": "3100z",
-      "upgrade-from": "Great Bone Gunlance",
+      "improve-cost": "3100z",
+      "improve-from": "Great Bone Gunlance",
       "create-mats": [
         "Pur Rubbery Hide (4)",
         "Gypceros Head (1)",
         "Poison Sac (10)",
         "Firestone (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Pur Rubbery Hide (4)",
         "Lightcrystal (2)",
         "Poison Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Grand Slam"
       ]
     },
@@ -1355,15 +1355,15 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "5600z",
-      "upgrade-from": "Average Hitter",
+      "improve-cost": "5600z",
+      "improve-from": "Average Hitter",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Pur Rubbery Hide (10)",
         "Gypceros Head (1)",
         "Remobra Skull (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hard Hitter"
       ]
     },
@@ -1379,15 +1379,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Grand Slam",
+      "improve-cost": "35,000z",
+      "improve-from": "Grand Slam",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rubbery Hide+ (4)",
         "Toxin Sac (7)",
         "Novacrystal (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Big Slugger"
       ]
     },
@@ -1403,15 +1403,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Hard Hitter",
+      "improve-cost": "50,000z",
+      "improve-from": "Hard Hitter",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rubbery Hide+ (8)",
         "Gypceros Head (3)",
         "Inferno Sac (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Triple Crown",
         "Venomous Cologne"
       ]
@@ -1428,16 +1428,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Big Slugger",
+      "improve-cost": "105,000z",
+      "improve-from": "Big Slugger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecRubberyHide+ (5)",
         "HrdGypcerosHead (1)",
         "DeadlyPoisonSac (5)",
         "Purecrystal (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Venomous Cologne",
@@ -1451,20 +1451,20 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": "90,000z",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Big Slugger",
+      "improve-cost": "90,000z",
+      "improve-from": "Big Slugger",
       "create-mats": [
         "Chameleos Hide+ (5)",
         "Novacrystal (5)",
         "Chameleos Spike(2)",
         "Firecell Stone (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Hide+ (3)",
         "Novacrystal (3)",
         "Inferno Sac (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Venomous Attar"
       ]
     },
@@ -1480,16 +1480,16 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Venomous Cologne",
+      "improve-cost": "110,000z",
+      "improve-from": "Venomous Cologne",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Hide+ (5)",
         "Purecrystal (2)",
         "DeadlyPoisonSac (5)",
         "LethrGarugaTail (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Venomous Perfume"
       ]
     },
@@ -1505,16 +1505,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Venomous Attar",
+      "improve-cost": "130,000z",
+      "improve-from": "Venomous Attar",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecChameleHide+ (5)",
         "StrChameleosWing (2)",
         "Purecrystal (3)",
         "Chameleos Jewel (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Smoke Gunlance",
@@ -1528,15 +1528,15 @@
       "shelling": "Spread Lv. 1",
       "type": "gl",
       "create-cost": "15000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "BlackDragonGunlance"
       ]
     },
@@ -1552,16 +1552,16 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "100000z",
-      "upgrade-from": "Black Smoke Gunlance",
+      "improve-cost": "100000z",
+      "improve-from": "Black Smoke Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Eye (1)",
         "Fatalis Horn (2)",
         "Fatalis Shell (4)",
         "Daora Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "TrueBlkDrgnGunlance"
       ]
     },
@@ -1577,16 +1577,16 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "150000z",
-      "upgrade-from": "BlackDragonGunlance",
+      "improve-cost": "150000z",
+      "improve-from": "BlackDragonGunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Evil Eye (1)",
         "HardFatalisHorn (2)",
         "Hvy Fatalis Shl (4)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dragonwood Gunlance",
@@ -1600,16 +1600,16 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "20,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dragonwood (4)",
         "Sinister Cloth (1)",
         "Thunderbug Juice (5)",
         "FireWyvern Fluid (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Gld Dragonwd GLance"
       ]
     },
@@ -1625,15 +1625,15 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Dragonwood Gunlance",
+      "improve-cost": "75,000z",
+      "improve-from": "Dragonwood Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonwood+ (4)",
         "Dragonmoss+ (2)",
         "Pokke Ticket+ (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "AncientDrgnwoodLance"
       ]
     },
@@ -1649,20 +1649,20 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Gld Dragonwd GLance",
+      "improve-cost": "120,000z",
+      "improve-from": "Gld Dragonwd GLance",
       "create-mats": [
         "AncientDrgnwood (5)",
         "YamaTsukaFillet (2)",
         "Thunderbug Jelly (10)",
         "Fire Dragon Pwdr (3)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "AncientDrgnwood (3)",
         "AncientDrgnmoss (3)",
         "Fire Dragon Pwdr (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "AncientDrgnwoodLanc+"
       ]
     },
@@ -1678,16 +1678,16 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "145,000z",
-      "upgrade-from": "AncientDrgnwoodLance",
+      "improve-cost": "145,000z",
+      "improve-from": "AncientDrgnwoodLance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "YamaTsukamiHide (5)",
         "YamaTsukamiFluid (5)",
         "ThckFireDrgnScl (3)",
         "Commendation S (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Pop Corn",
@@ -1701,16 +1701,16 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "40,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Giant Corn (2)",
         "Inferno Sac (5)",
         "Ivy (10)",
         "Commendation G (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Large Pop Corn"
       ]
     },
@@ -1726,16 +1726,16 @@
       "shelling": "Spread Lv. 5",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Pop Corn",
+      "improve-cost": "75,000z",
+      "improve-from": "Pop Corn",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giant Corn (5)",
         "Blazing Fire Sac (3)",
         "Ancient Dragonwood (1)",
         "Eltalite Ore (10)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Rex Blast",
@@ -1749,16 +1749,16 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": "35,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tigrex Fang (4)",
         "Tigrex Claw (5)",
         "Tigrex Shell (2)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tigrex Gunlance",
         "Hidden Gunlance"
       ]
@@ -1775,15 +1775,15 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "80000z",
-      "upgrade-from": "Rex Blast",
+      "improve-cost": "80000z",
+      "improve-from": "Rex Blast",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Fang+ (4)",
         "Tigrex Claw+ (5)",
         "Tigrex Carapace (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "GreatTigrexGunlance"
       ]
     },
@@ -1799,15 +1799,15 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "125000z",
-      "upgrade-from": "Tigrex Gunlance",
+      "improve-cost": "125000z",
+      "improve-from": "Tigrex Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HeavyTigrexFang (4)",
         "HardTigrexClaw (5)",
         "HvnlyTigrexScale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hidden Gunlance",
@@ -1821,20 +1821,20 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "80000z",
-      "upgrade-cost": "80000z",
-      "upgrade-from": "Rex Blast",
+      "improve-cost": "80000z",
+      "improve-from": "Rex Blast",
       "create-mats": [
         "NargaCuttingWing(4)",
         "Nargacuga Tail(3)",
         "Narga Brain Stem(1)",
         "Hrd Monster Bone(5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "NargaCuttingWing(2)",
         "Nargacuga Tail(1)",
         "Narga Scale+ (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Wanning Moon Darklance"
       ]
     },
@@ -1850,21 +1850,21 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "120000z",
-      "upgrade-cost": "120000z",
-      "upgrade-from": "Hidden Gunlance",
+      "improve-cost": "120000z",
+      "improve-from": "Hidden Gunlance",
       "create-mats": [
         "LeatherNargaTail (4)",
         "ThickNargaScale (10)",
         "HvnlyNargaScale (1)",
         "LeatherTigrexTail (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "StrNargaCttngWng (4)",
         "LeatherNargaTail (2)",
         "Narga Brain Stem (2)",
         "Hvy Monster Bone (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Akantor Gunlance",
@@ -1878,16 +1878,16 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Akantor Fang (4)",
         "Akantor Claw (3)",
         "Akantor Shell (5)",
         "Firecell Stone (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "AkantorNoirGunlance"
       ]
     },
@@ -1903,16 +1903,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "N/A",
-      "upgrade-cost": "145,000z",
-      "upgrade-from": "Akantor Gunlance",
+      "improve-cost": "145,000z",
+      "improve-from": "Akantor Gunlance",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ukanlos Stone (1)",
         "Big Wyvern Stone (3)",
         "Akantor Fang (4)",
         "Akantor Shell (7)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "UkanlosBlazeGunlance",
@@ -1926,16 +1926,16 @@
       "shelling": "Long Lv. 5",
       "type": "gl",
       "create-cost": "150000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "UkanlosShovelJaw (2)",
         "StrongUkanlosFin (4)",
         "HvyUkanlosShell (5)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Iron Gunlance G",
@@ -1949,16 +1949,16 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Gunpowder (20)",
         "Eltalite Ore (10)",
         "Blazing Fire Sac (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "WyvernBone Gunlance G",
@@ -1972,16 +1972,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Hard Monster Bone (8)",
         "Massive Bone (5)",
         "Burst Arrowana (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Blizzard Gunlance G",
@@ -1995,16 +1995,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Giadrome Claw+ (10)",
         "Giaprey Hide+ (10)",
         "Blazing Fire Sac (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Imperial Gunlance G",
@@ -2018,16 +2018,16 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Firestone (20)",
         "Mellanje Ore (5)",
         "Purecrystal (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Scissor Cannon G",
@@ -2041,16 +2041,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HrdHermitaurClaw (2)",
         "HvyHermitaurShl (4)",
         "Inferno Sac (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Grand Slam G",
@@ -2064,16 +2064,16 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Gypceros Head (3)",
         "HrdPuGypcerosWng (4)",
         "Deadly Poison Sac (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Marine Fisher G",
@@ -2087,16 +2087,16 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "SpecPlesiothFin+ (4)",
         "ThckPlesiothScl (5)",
         "Cephalos Fin+ (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "White Cannon G",
@@ -2110,16 +2110,16 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation S (1)",
         "Gravios Skl Shl (3)",
         "HvyGraviosShell (5)",
         "Flame Sac (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Gld Dragonwd GLance G",
@@ -2133,16 +2133,16 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Dragonwood+ (10)",
         "Sinister Cloth (10)",
         "ThckFireDrgnScl (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     }
   ]
 }

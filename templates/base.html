@@ -103,7 +103,7 @@
 
       toggle() {
         this.element.classList.toggle("create-mats")
-        this.element.classList.toggle("upgrade-mats")
+        this.element.classList.toggle("improve-mats")
       }
     })
   </script>
@@ -118,5 +118,23 @@
       }
     </script>
   {% endif -%}
+
+  <script>
+    console.log(
+			"%cIf you're looking for the weapon data, you can find everything here: https://github.com/vallode/mhfu-blacksmith",
+			`
+        border-image-outset: 0px 0px 0px 0px;
+        border-image-repeat: repeat repeat;
+        border-image-slice: 20 22 17 22 fill;
+        border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAAA7CAYAAABR75kEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAI8SURBVHgB7d1PTsJAFMfxV8NKdoSdMe64iAfAk7j0ECw9iR7Ai7AzhJ1xh9saSMDS9Ec77ZvaKd/PRvmTmUl4eW/6Cm1mZrl1l9W8HnOOWGOnuGbXOW4MEAgOSJPig/eXR2tqufqwNmLOEWvsFNfsMQeZAxLBAWmiXqhKYRfSk8fuu07MOWKNPbg1h3yuZA5IBAekiTkI2Q0PYdyYYw9lzW2PbIrIHJBk5giJ0ue39dowNIuqJ0M+VzIHJIID0v7MXudj8YfFPWVlYD7Xm4V1ROaARHBAKn9h5FRiptPp4e/8bkbJGKGv7feh7Ox2u+LTZ/FA5oBEcEC69D3EQ4k5lpc9SkzaxBGMjAGXcysh8jy/Pf6fZdmP/RPWUY+yAqk2cxR3s3ObGdJV3CKUjlIqRSsrxXQZ8p4mqTUkFbOO9igrkMqZgybYiJ19lls7NsGK59bOjlyilZViemuSUqvSoUcqDlmHSsljWkcIygokggNSL00wjx10k7RcNw/rCFMOjtOG5LRR2f59F5HNadpG2z4P2YzF7A2MdR1V2HNAon1+RUbVPk+xV1J+/9DWEYKyAon2+RVJqn3u0VL2XEfMVD2UdYSgrEAiOCANpn3eR5rso62d0jrq8FvZkeK3soiK4IDU+xWM0T+uYAx3BAcklysYvz4tOu+M4Wu52ojnuYIxHLg0wcZ+e4rUb6nRFpkDEsEByeUKxmbcADBg3NhjX5yDKxjDBcEByeWsrFFWQsaNPbbbHGQOSAQHpF/GNWF+amgBTgAAAABJRU5ErkJggg==");
+        border-image-width: 20px 22px 17px 22px;
+        border-radius: 7px;
+        border-style: solid;
+        color: white;
+        display: inline-block;
+        padding: 2.6rem 2rem;
+      `
+		);
+  </script>
 </body>
 </html>

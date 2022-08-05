@@ -10,9 +10,9 @@
   {% if page.extra["create-mats"] %}
     <meta name="description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
     <meta name="og:description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
-  {% elif page.extra["upgrade-mats"] %}
-    <meta name="description" content="{% for material in page.extra['upgrade-mats'] %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra['upgrade-mats'] %}{{ material }} {% endfor %}">
+  {% elif page.extra["improve-mats"] %}
+    <meta name="description" content="{% for material in page.extra['improve-mats'] %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra['improve-mats'] %}{{ material }} {% endfor %}">
   {% endif %}
 {% endblock %}
 
@@ -54,7 +54,8 @@
           <div class="weapon-card__details">
             <div class="stats">
               <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
-              {%- set affinity = page.extra["affinity"] %}
+
+              {%- set affinity = page.extra.affinity %}
               <p>
                 Affinity:
                 <span
@@ -66,10 +67,12 @@
                   {% endif %}
                   "
                 >
-                  {{ page.extra["affinity"] }}
+                  {{ affinity }}
                 </span>
               </p>
+
               <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+
               {% if page.extra["element"] -%}
                 {% for element in page.extra["element"] %}
                   <p class="element">
@@ -85,8 +88,20 @@
               data-controller="weapon-page"
               class="requirements"
             >
-              <div class="create-mats">
-                {%- if page.extra["create-mats"] %}
+              {% if page.extra["improve-mats"] %}
+                <div class="improve-mats">
+                  <p id="weapon_cost">
+                    <span>Improve cost: </span>{{ page.extra["improve-cost"] }}
+                  </p>
+
+                  {%- for material in page.extra["improve-mats"] -%}
+                    <p>{{ material }}</p>
+                    {% endfor %}
+                </div>
+              {% endif %}
+
+              {%- if page.extra["create-mats"] %}
+                <div class="create-mats">
                   <p id="weapon_cost">
                     <span>Create cost: </span>{{ page.extra["create-cost"] }}
                   </p>
@@ -94,20 +109,8 @@
                   {% for material in page.extra["create-mats"] -%}
                     <p>{{ material }}</p>
                   {% endfor -%}
-                {% endif %}
-              </div>
-
-              <div class="upgrade-mats">
-                {% if page.extra["upgrade-mats"] %}
-                  <p id="weapon_cost">
-                    <span>Improve cost: </span>{{ page.extra["upgrade-cost"] }}
-                  </p>
-
-                  {%- for material in page.extra["upgrade-mats"] -%}
-                    <p>{{ material }}</p>
-                  {% endfor %}
-                {% endif %}
-              </div>
+                </div>
+              {% endif %}
             </div>
           </div>
         </div>

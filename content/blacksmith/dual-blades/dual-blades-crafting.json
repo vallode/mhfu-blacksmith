@@ -11,15 +11,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Odyssey",
+      "improve-cost": "30,000z",
+      "improve-from": "Odyssey",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (5)",
         "Disk Stone (50)",
         "Earth Crystal (30)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Cyclone"
       ]
     },
@@ -34,15 +34,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Hurricane",
+      "improve-cost": "50,000z",
+      "improve-from": "Hurricane",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Union Ore (5)",
         "Iron Ore (50)",
         "Machalite Ore (30)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Tornado Tomahawks"
       ]
     },
@@ -57,20 +57,20 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "75,00z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Cyclone",
+      "improve-cost": "75,000z",
+      "improve-from": "Cyclone",
       "create-mats": [
         "Eltalite Ore (8)",
         "Carbalite Ore (15)",
         "Antiseptic Stone (20)",
         "Monster Essence (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Eltalite Ore (5)",
         "Union Ore (10)",
         "RobustWyvernBone (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Typhoon",
         "Firestorm"
       ]
@@ -86,15 +86,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Tornado Tomahawks",
+      "improve-cost": "100,000z",
+      "improve-from": "Tornado Tomahawks",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (5)",
         "Eltalite Ore (10)",
         "Purecrystal (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Firestorm",
@@ -107,21 +107,21 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "95000z",
-      "upgrade-cost": "95000z",
-      "upgrade-from": "Tornado Tomahawks",
+      "improve-cost": "95000z",
+      "improve-from": "Tornado Tomahawks",
       "create-mats": [
         "SpecLavasioFin+ (3)",
         "SpecPlesiothFin+ (3)",
         "Hvy Monster Bone (8)",
         "HvyPiscineFang (6)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecLavasioFin+ (1)",
         "SpecPlesiothFin+ (1)",
         "ThckLavasiothScl (3)",
         "ThckPlesiothScl (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Volcanic Storm"
       ]
     },
@@ -136,16 +136,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Firestorm",
+      "improve-cost": "115000z",
+      "improve-from": "Firestorm",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecLavasioFin+ (4)",
         "SpecPlesiothFin+ (4)",
         "YamaTsukamiFluid (3)",
         "Big Wyvern Stone (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Prototype Saw-Slicer",
@@ -158,20 +158,20 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "35,000z",
-      "upgrade-cost": "35,000z",
-      "upgrade-from": "Odyssey",
+      "improve-cost": "35,000z",
+      "improve-from": "Odyssey",
       "create-mats": [
         "Carbalite Ore (25)",
         "Kirin Horn (4)",
         "Kirin Hide (5)",
         "Electro Sac (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (15)",
         "Kirin Horn (2)",
         "Rubbery Hide (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Sanctioned Blades"
       ]
     },
@@ -186,15 +186,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Prototype Saw-Slicer",
+      "improve-cost": "50,000z",
+      "improve-from": "Prototype Saw-Slicer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Horn (6)",
         "Thunder Sac (5)",
         "Rubbery Hide+ (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Improved Power Saws"
       ]
     },
@@ -209,15 +209,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Sanctioned Blades",
+      "improve-cost": "60,000z",
+      "improve-from": "Sanctioned Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Azure Horn (4)",
         "Thunder Sac (10)",
         "Rajang Claw (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Divine Power Saws"
       ]
     },
@@ -232,16 +232,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Improved Power Saws",
+      "improve-cost": "100,000z",
+      "improve-from": "Improved Power Saws",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (8)",
         "Lightning Sac (5)",
         "SpecRubberyHide+ (6)",
         "HvyBasariosShell (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Velociprey Claws",
@@ -254,18 +254,18 @@
       "rarity": "3",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "2480z",
-      "upgrade-from": [
+      "improve-cost": "2480z",
+      "improve-from": [
         "Giaprey Claws+",
         "Velocidrome Bite"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velocidrome Claws (6)",
         "Velocidrome Head (1)",
         "Pale Extract (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Velociprey Claws+"
       ]
     },
@@ -280,20 +280,20 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "70,000z",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Upper Battleaxe",
+      "improve-cost": "70,000z",
+      "improve-from": "Upper Battleaxe",
       "create-mats": [
         "Rubbery Hide+ (8)",
         "Hrd Monster Bone (6)",
         "Toxin Sac (6)",
         "Gypceros Head (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Rubbery Hide+ (4)",
         "Toxin Sac (4)",
         "Monster Bone+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Battleaxe+"
       ]
     },
@@ -308,15 +308,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Dual Battleaxe",
+      "improve-cost": "90,000z",
+      "improve-from": "Dual Battleaxe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecRubberyHide+ (4)",
         "DeadlyPoisonSac (4)",
         "Hvy Monster Bone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Last Battleaxes"
       ]
     },
@@ -331,15 +331,15 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "110000z",
-      "upgrade-from": "Dual Battleaxe+",
+      "improve-cost": "110000z",
+      "improve-from": "Dual Battleaxe+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "SpecRubberyHide+ (6)",
         "HardGypcerosHead (1)",
         "GoldRathianThorn (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Freezing Daggers",
@@ -352,20 +352,20 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "3400z",
-      "upgrade-cost": "3400z",
-      "upgrade-from": "Frost Edge+",
+      "improve-cost": "3400z",
+      "improve-from": "Frost Edge+",
       "create-mats": [
         "DaoraDragonScale (2)",
         "Ice Crystal (20)",
         "Iron Ore (10)",
         "Earth Crystal (5)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (10)",
         "Blangonga Whiskr (2)",
         "Machalite Ore (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Icicle Daggers"
       ]
     },
@@ -380,15 +380,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Freezing Daggers",
+      "improve-cost": "55,000z",
+      "improve-from": "Freezing Daggers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ice Crystal (20)",
         "Carbalite Ore (4)",
         "Stout Bone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Frozen Death"
       ]
     },
@@ -403,16 +403,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Icicle Daggers",
+      "improve-cost": "90,000z",
+      "improve-from": "Icicle Daggers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Mellanje Ore (5)",
         "LeathrBlangoTail (2)",
         "HrdBlangongaPlt+ (6)",
         "DaoraDragonScal+ (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Twin Dagger",
@@ -425,18 +425,18 @@
       "rarity": "1",
       "type": "db",
       "create-cost": "680z",
-      "upgrade-cost": "680z",
-      "upgrade-from": "Hunter's Dagger+",
+      "improve-cost": "680z",
+      "improve-from": "Hunter's Dagger+",
       "create-mats": [
         "Machalite Ore (2)",
         "Iron Ore (5)",
         "Earth Crystal (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (1)",
         "Disk Stone (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Twin Dagger+"
       ]
     },
@@ -451,15 +451,15 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "1120z",
-      "upgrade-from": "Twin Dagger",
+      "improve-cost": "1120z",
+      "improve-from": "Twin Dagger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (2)",
         "Iron Ore (6)",
         "Earth Crystal (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Glutton's Set",
         "Insector",
         "Dual Tomahawk"
@@ -476,15 +476,15 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "1720z",
-      "upgrade-from": "Twin Dagger+",
+      "improve-cost": "1720z",
+      "improve-from": "Twin Dagger+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Machalite Ore (8)",
         "Disk Stone (8)",
         "Antiseptic Stone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Order Rapier",
         "Dual Tomahawk+"
       ]
@@ -500,15 +500,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3400z",
-      "upgrade-from": "Dual Tomahawk",
+      "improve-cost": "3400z",
+      "improve-from": "Dual Tomahawk",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Dragonite Ore (8)",
         "Machalite Ore (12)",
         "Disk Stone (20)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Order Rapier",
@@ -521,20 +521,20 @@
       "rarity": "3",
       "type": "db",
       "create-cost": "2480z",
-      "upgrade-cost": "2480z",
-      "upgrade-from": "Dual Tomahawk",
+      "improve-cost": "2480z",
+      "improve-from": "Dual Tomahawk",
       "create-mats": [
         "Lightcrystal (4)",
         "Black Pearl (5)",
         "Machalite Ore (8)",
         "Small Golden Fish (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (2)",
         "Earth Crystal (8)",
         "Killer Beetle (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Holy Saber"
       ]
     },
@@ -549,15 +549,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3400z",
-      "upgrade-from": "Order Rapier",
+      "improve-cost": "3400z",
+      "improve-from": "Order Rapier",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lightcrystal (8)",
         "Dragonite Ore (10)",
         "Hercudrome (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Guild Knight Sabers",
         "Ninja Sword"
       ]
@@ -573,15 +573,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Holy Saber",
+      "improve-cost": "70,000z",
+      "improve-from": "Holy Saber",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Novacrystal (5)",
         "Union Ore (10)",
         "Rare Scarab (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Master Sabers"
       ]
     },
@@ -596,15 +596,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Guild Knight Sabers",
+      "improve-cost": "95,000z",
+      "improve-from": "Guild Knight Sabers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (2)",
         "Eltalite Ore (10)",
         "Emperor Cricket (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Holy Guild Knight"
       ]
     },
@@ -619,16 +619,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "110,000z",
-      "upgrade-from": "Master Sabers",
+      "improve-cost": "110,000z",
+      "improve-from": "Master Sabers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (5)",
         "Mellanje Ore (10)",
         "HrdCeanataurClaw (2)",
         "Giant Blk Pearl (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Insector",
@@ -641,15 +641,15 @@
       "rarity": "3",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "2480z",
-      "upgrade-from": "Twin Dagger+",
+      "improve-cost": "2480z",
+      "improve-from": "Twin Dagger+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Vespoid wing (10)",
         "Hornetaur Shell (10)",
         "Monster Fluid (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Insector+"
       ]
     },
@@ -664,15 +664,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "2920z",
-      "upgrade-from": "Insector",
+      "improve-cost": "2920z",
+      "improve-from": "Insector",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Vespoid Shell (15)",
         "Hornetaur Head (3)",
         "Hercudrome (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Insect Slicer"
       ]
     },
@@ -687,15 +687,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Insector+",
+      "improve-cost": "55,000z",
+      "improve-from": "Insector+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Vespoid InnerWing (8)",
         "Hornetaur InnerWing (8)",
         "King Scarab (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Alated Insect"
       ]
     },
@@ -710,15 +710,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Insect Slicer",
+      "improve-cost": "80,000z",
+      "improve-from": "Insect Slicer",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornet Razorwing (5)",
         "Vespoid Razorwing (5)",
         "Emperor Cricket (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Insect Lord"
       ]
     },
@@ -733,16 +733,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Alated Insect",
+      "improve-cost": "105,000z",
+      "improve-from": "Alated Insect",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hornet RazorWing (8)",
         "Vespoid RazorWing (8)",
         "PhantomButterfly (12)",
         "VespoidQn'sCrown (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Glutton's Set",
@@ -755,19 +755,19 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "1400z",
-      "upgrade-cost": "1400z",
-      "upgrade-from": "Twin Dagger+",
+      "improve-cost": "1400z",
+      "improve-from": "Twin Dagger+",
       "create-mats": [
         "Felyne Meal Pass Regular (2)",
         "Iron Ore (10)",
         "Brute Bone (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Felyne Meal Pass Plus (1)",
         "Machalite Ore (2)",
         "Sm Monster Bone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Spatula Set",
         "Chereau's Tool"
       ]
@@ -783,15 +783,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Glutton's Set",
+      "improve-cost": "50,000z",
+      "improve-from": "Glutton's Set",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Felyne Meal Pass Plus (10)",
         "Union Ore (10)",
         "Basarios Tears (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Spatula Set",
@@ -804,15 +804,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "25,000z",
-      "upgrade-from": "Glutton's Set",
+      "improve-cost": "25,000z",
+      "improve-from": "Glutton's Set",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Felyne Meal Pass Regular (10)",
         "Dragonite Ore (10)",
         "Basarios Wing (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Giaprey Claws",
@@ -825,18 +825,18 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "880z",
-      "upgrade-cost": "880z",
-      "upgrade-from": "Hunter's Dagger",
+      "improve-cost": "880z",
+      "improve-from": "Hunter's Dagger",
       "create-mats": [
         "Giaprey Scale (3)",
         "Giaprey Hide (3)",
         "Sm Monster Bone (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Giaprey Scale (2)",
         "Giaprey Hide (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Giaprey Claws+"
       ]
     },
@@ -851,15 +851,15 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "1720z",
-      "upgrade-from": "Giaprey Claws",
+      "improve-cost": "1720z",
+      "improve-from": "Giaprey Claws",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giadrome Claw (6)",
         "Giadrome Hide (4)",
         "Ice Crystal (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "White Death",
         "Velociprey Claws",
         "Snow Venom"
@@ -876,15 +876,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Giaprey Claws+",
+      "improve-cost": "40,000z",
+      "improve-from": "Giaprey Claws+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giadrome Claw+ (6)",
         "Giadrome Skull (2)",
         "Blangonga Fang+ (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Velociprey Claws+",
@@ -897,15 +897,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "4480z",
-      "upgrade-from": "Velociprey Claws",
+      "improve-cost": "4480z",
+      "improve-from": "Velociprey Claws",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Claw (4)",
         "Velocidrome Hide (6)",
         "Pale Bone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hi Velociprey Claws"
       ]
     },
@@ -920,15 +920,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "40,000z",
-      "upgrade-from": "Velociprey Claws+",
+      "improve-cost": "40,000z",
+      "improve-from": "Velociprey Claws+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Velocidrome Claw+ (6)",
         "Velociprey Scle+ (8)",
         "Velocidrome Head (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Snow Venom",
@@ -941,20 +941,20 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "5080z",
-      "upgrade-cost": "5080z",
-      "upgrade-from": "Giaprey Claws+",
+      "improve-cost": "5080z",
+      "improve-from": "Giaprey Claws+",
       "create-mats": [
         "Iodrome Hide(4)",
         "Giadrome Hide (4)",
         "Giadrome Claw(6)",
         "Poison Sac(4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Iodrome Hide(2)",
         "Ioprey Fang(8)",
         "Giaprey Hide(4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Snow Venom+"
       ]
     },
@@ -969,16 +969,16 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Snow Venom",
+      "improve-cost": "45,000z",
+      "improve-from": "Snow Venom",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Giaprey Hide+ (8)",
         "Ioprey Hide+ (8)",
         "Giadrome Skull (1)",
         "Iodrome Skull (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Glacial Medusa"
       ]
     },
@@ -993,16 +993,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Snow Venom+",
+      "improve-cost": "85,000z",
+      "improve-from": "Snow Venom+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Robust Wyvern Bone (6)",
         "Giadrome Claw+ (4)",
         "Ioprey Scale+ (3)",
         "Toxin Sac (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Rouge Flames",
@@ -1015,15 +1015,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Deadly Poison",
+      "improve-cost": "10,000z",
+      "improve-from": "Deadly Poison",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Claw (4)",
         "Chameleos Tail (2)",
         "Chameleos Hide (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Chameleos"
       ]
     },
@@ -1038,15 +1038,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Rouge Flames",
+      "improve-cost": "90,000z",
+      "improve-from": "Rouge Flames",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Chameleos Spike (2)",
         "Chameleos Hide+ (6)",
         "Chameleos Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "ChameleosDualBlades"
       ]
     },
@@ -1061,16 +1061,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Dual Chameleos",
+      "improve-cost": "130,000z",
+      "improve-from": "Dual Chameleos",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LthrChameleoTail (2)",
         "HrdChameleosHorn (2)",
         "SpecChameleoHide+ (4)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Dual Diablo",
@@ -1083,15 +1083,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "30,000z",
-      "upgrade-from": "Studded Club",
+      "improve-cost": "30,000z",
+      "improve-from": "Studded Club",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Twisted Horn (2)",
         "Monoblos Spine (6)",
         "Diablos Spine (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Diablo+"
       ]
     },
@@ -1106,15 +1106,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Dual Diablo",
+      "improve-cost": "70,000z",
+      "improve-from": "Dual Diablo",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Majestic Horn (2)",
         "Monoblos Heart (1)",
         "Diablos Thoracic (7)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Blos Doppelganger"
       ]
     },
@@ -1129,15 +1129,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "70,000z",
-      "upgrade-from": "Dual Diablo+",
+      "improve-cost": "70,000z",
+      "improve-from": "Dual Diablo+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "LthBlkBlosTail (2)",
         "WhtMonoblosThora (4)",
         "HvyBlkBlosSpine (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Grand Blos"
       ]
     },
@@ -1152,16 +1152,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Blos Doppelganger",
+      "improve-cost": "115,000z",
+      "improve-from": "Blos Doppelganger",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "StoutBlkTwistedHorn (2)",
         "TopGrdPlatHorn (2)",
         "HvyBlkBlosShell (4)",
         "Big Wyvern Stone (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Melting Wail",
@@ -1174,15 +1174,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Osteon Pick+",
+      "improve-cost": "45,000z",
+      "improve-from": "Osteon Pick+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Skull Shell (4)",
         "Black Gravios Skull (4)",
         "Toxin Sac (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Melting Wail+"
       ]
     },
@@ -1197,15 +1197,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Melting Wail",
+      "improve-cost": "60,000z",
+      "improve-from": "Melting Wail",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Gravios Carapace (6)",
         "Black Gravios Carapace (6)",
         "Wyvern Stone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Melting Blazer"
       ]
     },
@@ -1220,16 +1220,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "115,000z",
-      "upgrade-from": "Melting Wail+",
+      "improve-cost": "115,000z",
+      "improve-from": "Melting Wail+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HvyGraviosShell (4)",
         "HvyBlkGraviosShl (4)",
         "HvnlyGraviosShl (1)",
         "HvnlyBlkGraviShl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Kirin Bolts",
@@ -1242,15 +1242,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "5080z",
-      "upgrade-from": "Kirin Bolt+",
+      "improve-cost": "5080z",
+      "improve-from": "Kirin Bolt+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Horn (4)",
         "Kirin Thunder Tail (2)",
         "Kirin Hide (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Festive Fall Typhoon"
       ]
     },
@@ -1265,20 +1265,20 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "75,000z",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Kirin Bolts",
+      "improve-cost": "75,000z",
+      "improve-from": "Kirin Bolts",
       "create-mats": [
         "Kirin Azure Horn (3)",
         "Dragon Wood+ (5)",
         "Carbalite Ore (10)",
         "Commendation G (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Kirin Azure Horn (1)",
         "Dragon Wood+ (3)",
         "Dragonmoss+ (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "FestiveRustlingRain"
       ]
     },
@@ -1293,16 +1293,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "135,000z",
-      "upgrade-from": "Festive Fall Typhoon",
+      "improve-cost": "135,000z",
+      "improve-from": "Festive Fall Typhoon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "AncientDrgnwood (3)",
         "YamaTsukamiHide (2)",
         "LthrKirinThndrTl (2)",
         "Platinum Mane (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Twin Flames",
@@ -1315,15 +1315,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3920z",
-      "upgrade-from": "Red Saber",
+      "improve-cost": "3920z",
+      "improve-from": "Red Saber",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rathalos Scale (6)",
         "Rathian Scale (6)",
         "FireWyvrn Marrow (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Hi Twin Flames"
       ]
     },
@@ -1338,15 +1338,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "5720z",
-      "upgrade-from": "Twin Flames",
+      "improve-cost": "5720z",
+      "improve-from": "Twin Flames",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rathalos Wing (3)",
         "Rathian Spike (3)",
         "Rathalos Tail (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Gradios Ultimus"
       ]
     },
@@ -1361,15 +1361,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "75,000z",
-      "upgrade-from": "Hi Twin Flames",
+      "improve-cost": "75,000z",
+      "improve-from": "Hi Twin Flames",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Rathalos Scale+ (8)",
         "Rathian Scale+ (8)",
         "FireWyvrn BrnStm (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Corpse Blades"
       ]
     },
@@ -1384,15 +1384,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "85,000z",
-      "upgrade-from": "Gradios Ultimus",
+      "improve-cost": "85,000z",
+      "improve-from": "Gradios Ultimus",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Slvr Rthlos Scl+ (6)",
         "Gld Rthian Scl+ (6)",
         "Rathalos Ruby (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Punishment Blades"
       ]
     },
@@ -1407,16 +1407,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Corpse Blades",
+      "improve-cost": "125,000z",
+      "improve-from": "Corpse Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "ThckSlvrRthlsScl (5)",
         "ThckGldRathnScl (5)",
         "HvnlyRathalosScl (1)",
         "HvnlyRathianScl (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Scythe+",
@@ -1429,17 +1429,17 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "880z",
-      "upgrade-from": [
+      "improve-cost": "880z",
+      "improve-from": [
         "Bone Scythe",
         "Bone Kris+"
       ],
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Sharp Claw (2)",
         "Sm Monster Bone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Chief Scythe"
       ]
     },
@@ -1454,15 +1454,15 @@
       "rarity": "1",
       "type": "db",
       "create-cost": "520z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Brute Bone (1)",
         "Bone (1)",
         "Sharp Claw (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Bone Scythe+"
       ]
     },
@@ -1477,15 +1477,15 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "1400z",
-      "upgrade-from": "Bone Scythe+",
+      "improve-cost": "1400z",
+      "improve-from": "Bone Scythe+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Med Monster Bone (2)",
         "Sm Bone Husk (8)",
         "Velocidrome Claw (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bladed Edge",
         "Cutlass",
         "Twin Kut-Ku"
@@ -1502,20 +1502,20 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "3400z",
-      "upgrade-cost": "3400z",
-      "upgrade-from": "Chief Scythe",
+      "improve-cost": "3400z",
+      "improve-from": "Chief Scythe",
       "create-mats": [
         "Ceanataur Claw (2)",
         "Ceanataur Shell (4)",
         "Sm Ceanataur Shell (6)",
         "Carpenterbug (8)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Shell (4)",
         "Sharp Claw (4)",
         "Giant Bone (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Bladed Edge+"
       ]
     },
@@ -1530,15 +1530,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3920z",
-      "upgrade-from": "Bladed Edge",
+      "improve-cost": "3920z",
+      "improve-from": "Bladed Edge",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Pincer (4)",
         "Ceanataur Claw (4)",
         "Monster Bone+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Limb Cutter",
         "Dual Carapace"
       ]
@@ -1554,15 +1554,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Bladed Edge+",
+      "improve-cost": "50,000z",
+      "improve-from": "Bladed Edge+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ceanataur Claw+ (2)",
         "Ceanataur Carpce (4)",
         "Ceanataur Leg (8)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Carmine Edge"
       ]
     },
@@ -1577,20 +1577,20 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "85000z",
-      "upgrade-cost": "85000z",
-      "upgrade-from": "Limb Cutter",
+      "improve-cost": "85000z",
+      "improve-from": "Limb Cutter",
       "create-mats": [
         "Terra Ceanataur Claw (2)",
         "Terra Ceanataur Shell (4)",
         "Piercing Claw (8)",
         "Emperor Cricket (10)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Claw (2)",
         "Terra Ceanataur Shell (4)",
         "Heavy Ceanataur Leg (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Red Rippers"
       ]
     },
@@ -1605,16 +1605,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Carmine Edge",
+      "improve-cost": "115000z",
+      "improve-from": "Carmine Edge",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Terra Ceanataur Claw (4)",
         "Hard Gaoren Claw (2)",
         "Hard Ceanataur Claw (4)",
         "Giant Black Pearl (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Cutlass",
@@ -1627,15 +1627,15 @@
       "rarity": "3",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "2920z",
-      "upgrade-from": "Chief Scythe",
+      "improve-cost": "2920z",
+      "improve-from": "Chief Scythe",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Scale (4)",
         "Cephalos Fin (2)",
         "Knife Mackarel (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Cutlass+"
       ]
     },
@@ -1650,15 +1650,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "5080z",
-      "upgrade-from": "Cutlass",
+      "improve-cost": "5080z",
+      "improve-from": "Cutlass",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Plesioth Fin (6)",
         "Cephalos Scale (10)",
         "Monster Bone+ (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Twin Kut-Ku",
@@ -1671,20 +1671,20 @@
       "rarity": "2",
       "type": "db",
       "create-cost": "1720z",
-      "upgrade-cost": "1720z",
-      "upgrade-from": "Chief Scythe",
+      "improve-cost": "1720z",
+      "improve-from": "Chief Scythe",
       "create-mats": [
         "Kut-Ku Ear (2)",
         "Unknown Skull (2)",
         "Brute Bone (6)",
         "Giant Beak (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Unknown Skull (2)",
         "Kut-Ku Scale (4)",
         "Hot Drink (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Pink Maracas",
         "Twin Kut-Ku+",
         "Raven Tessen"
@@ -1701,15 +1701,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3920z",
-      "upgrade-from": "Twin Kut-Ku",
+      "improve-cost": "3920z",
+      "improve-from": "Twin Kut-Ku",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Kut-Ku Ear (4)",
         "Blue Kut-Ku Shell (4)",
         "Monster Bone+ (2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Kut-Ku"
       ]
     },
@@ -1724,15 +1724,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "45,000z",
-      "upgrade-from": "Twin Kut-Ku+",
+      "improve-cost": "45,000z",
+      "improve-from": "Twin Kut-Ku+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Long Kut-Ku Ear (6)",
         "Conga Pelt+ (10)",
         "Inferno Sac (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Raven Tessen",
@@ -1745,20 +1745,20 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "10,000z",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Twin Kut-Ku",
+      "improve-cost": "10,000z",
+      "improve-from": "Twin Kut-Ku",
       "create-mats": [
         "Garuga Mane (2)",
         "Garuga Ear (2)",
         "Garuga Scale (10)",
         "Med Monster Bone (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Scale (6)",
         "Garuga Tail (1)",
         "Garuga Mane (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Wolf Tessen"
       ]
     },
@@ -1773,15 +1773,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "65,000z",
-      "upgrade-from": "Raven Tessen",
+      "improve-cost": "65,000z",
+      "improve-from": "Raven Tessen",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Garuga Wing (4)",
         "Garuga Scale+ (4)",
         "Stout Bone (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Crow Tessen"
       ]
     },
@@ -1796,16 +1796,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "105,000z",
-      "upgrade-from": "Wolf Tessen",
+      "improve-cost": "105,000z",
+      "improve-from": "Wolf Tessen",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Thick Garuga Scale (4)",
         "Silver Garuga Pelt (3)",
         "Long Garuga Ear (2)",
         "Heavy Monster Bone (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Pink Maracas",
@@ -1818,15 +1818,15 @@
       "rarity": "3",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "2080z",
-      "upgrade-from": "Twin Kut-Ku",
+      "improve-cost": "2080z",
+      "improve-from": "Twin Kut-Ku",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Conga Pelt (10)",
         "Congalala Claw (2)",
         "Congalala Fang (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Pink Maracas+"
       ]
     },
@@ -1841,15 +1841,15 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "3920z",
-      "upgrade-from": "Pink Maracas",
+      "improve-cost": "3920z",
+      "improve-from": "Pink Maracas",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Congalala Pelt (10)",
         "Vibrant Pelt (4)",
         "Blangonga Whisker (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Funky Maracas"
       ]
     },
@@ -1864,15 +1864,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Pink Maracas+",
+      "improve-cost": "50,000z",
+      "improve-from": "Pink Maracas+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Congalala Pelt+ (10)",
         "Congalala Claw+ (2)",
         "Blangonga Fang+(2)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Jungle Maracas"
       ]
     },
@@ -1887,20 +1887,20 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "85000z",
-      "upgrade-cost": "85000z",
-      "upgrade-from": "Funky Maracas",
+      "improve-cost": "85000z",
+      "improve-from": "Funky Maracas",
       "create-mats": [
         "CongalalaPelt+ (8)",
         "Lg Pelagus Fang (5)",
         "Vibrant Comb (1)",
         "Massive Bone (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "CongalalaPelt+ (6)",
         "CongaClaw (2)",
         "Piercing Claw (6)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Evergreen"
       ]
     },
@@ -1915,16 +1915,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "115000z",
-      "upgrade-from": "Jungle Maracas",
+      "improve-cost": "115000z",
+      "improve-from": "Jungle Maracas",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "CongalalaPelt+ (8)",
         "Lg Pelagus Fang (4)",
         "Vibrant Comb (2)",
         "LeathrBlangoTail (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Double Dragon",
@@ -1937,15 +1937,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "20,000z",
-      "upgrade-from": "Black Sword",
+      "improve-cost": "20,000z",
+      "improve-from": "Black Sword",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan's Scale (2)",
         "Lao-Shan's Shell (2)",
         "Dark Piece (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Dragon Ultimus"
       ]
     },
@@ -1960,15 +1960,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Double Dragon",
+      "improve-cost": "90,000z",
+      "improve-from": "Double Dragon",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan Carapace (5)",
         "Lao-Shan's Scale+ (7)",
         "Dark Stone (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ultimus Heaven & Earth"
       ]
     },
@@ -1983,15 +1983,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Dual Dragon Ultimus",
+      "improve-cost": "100,000z",
+      "improve-from": "Dual Dragon Ultimus",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azure LaoS Horn (2)",
         "Fatalis CrmsnHrn (2)",
         "Fatalis DevilEye (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Dual Dragon Ultimus+",
         "Azure Ogre Sword"
       ]
@@ -2007,16 +2007,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Ultimus Heaven & Earth",
+      "improve-cost": "150,000z",
+      "improve-from": "Ultimus Heaven & Earth",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan'sHvyShl (4)",
         "HrdFatlisCrmHorn (2)",
         "Lao-ShanHvnlyScl (1)",
         "Fatalis Evil Eye (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Black Twin Daggers",
@@ -2029,15 +2029,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "15,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Fatalis Dual Blades",
         "Ultimus Celestials"
       ]
@@ -2053,15 +2053,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Twin Daggers",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Twin Daggers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Horn (2)",
         "Fatalis Shell (4)",
         "Daora Jewel (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Fatalis Dual Sky"
       ]
     },
@@ -2076,15 +2076,15 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Fatalis Dual Blades",
+      "improve-cost": "150,000z",
+      "improve-from": "Fatalis Dual Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdFatalisHorn (2)",
         "HvyFatalisShell (4)",
         "BigEDragonJewel (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Ultimus Celestials",
@@ -2097,16 +2097,16 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "100,000z",
-      "upgrade-from": "Black Twin Daggers",
+      "improve-cost": "100,000z",
+      "improve-from": "Black Twin Daggers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Fatalis Horn (2)",
         "White Fatalis Horn (2)",
         "Fatalis Devil Eye (2)",
         "Chameleos Jewel (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ultimus Apocalypse"
       ]
     },
@@ -2121,16 +2121,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "150,000z",
-      "upgrade-from": "Ultimus Celestials",
+      "improve-cost": "150,000z",
+      "improve-from": "Ultimus Celestials",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HardFatalisHorn (2)",
         "HrdWhtFatlisHorn (2)",
         "Fatalis Evil Eye (2)",
         "BigEDragonJewel (3)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Flaming Pair",
@@ -2143,16 +2143,16 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "40,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Lao-Shan's Horn (2)",
         "Lao-Shan's Scale (2)",
         "Lao-Shan's Claw (2)",
         "Firestone (4)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Crimson Lotus Blades",
         "Blue Ogre Sword"
       ]
@@ -2168,15 +2168,15 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "95,000z",
-      "upgrade-from": "Flaming Pair",
+      "improve-cost": "95,000z",
+      "improve-from": "Flaming Pair",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Lao-Shan's Horn (4)",
         "Fire Dragon Powder (2)",
         "Lao-Shan's Ruby (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Demonic Flaming Pair"
       ]
     },
@@ -2191,15 +2191,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Crimson Lotus Blades",
+      "improve-cost": "120,000z",
+      "improve-from": "Crimson Lotus Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azure Lao-Shan's Horn (2)",
         "Azure Lao-Shan's Shell (6)",
         "Lao-Shan's Thick Scale (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Azure Dual Swords"
       ]
     },
@@ -2214,16 +2214,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "140,000z",
-      "upgrade-from": "Demonic Flaming Pair",
+      "improve-cost": "140,000z",
+      "improve-from": "Demonic Flaming Pair",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Azure Lao-Shan's Horn (4)",
         "Azure Lao-Shan's Claw (2)",
         "Heavy Gaoren Spine (4)",
         "Lao-Shan Heavenly Scale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Legendary Replica",
@@ -2236,15 +2236,15 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "10,000z",
-      "upgrade-from": "Hero's Blade Replica",
+      "improve-cost": "10,000z",
+      "improve-from": "Hero's Blade Replica",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Pokke Ticket (1)",
         "ElderDragonBlood (1)",
         "Commendation (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Twin Nails",
@@ -2257,20 +2257,20 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "50,000z",
-      "upgrade-cost": "50,000z",
-      "upgrade-from": "Steel Ice Dagger+",
+      "improve-cost": "50,000z",
+      "improve-from": "Steel Ice Dagger+",
       "create-mats": [
         "Daora Claw (2)",
         "Fire Dragon Claw (2)",
         "Teostra Mane (3)",
         "Commendation G (2)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "Fire Dragon Claw (1)",
         "Daora Webbing (3)",
         "Fire Drgn Webbng (3)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Twin Nails+"
       ]
     },
@@ -2285,16 +2285,16 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "90,000z",
-      "upgrade-from": "Twin Nails",
+      "improve-cost": "90,000z",
+      "improve-from": "Twin Nails",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Sharp Claw (2)",
         "Fire Dragon Claw (3)",
         "Daora Jewel (1)",
         "Fire Drgn Jwl (1)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Fire and Ice"
       ]
     },
@@ -2309,16 +2309,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "130,000z",
-      "upgrade-from": "Twin Nails+",
+      "improve-cost": "130,000z",
+      "improve-from": "Twin Nails+",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "HrdFireDrgnClaw (2)",
         "Daora Sharp Claw (3)",
         "ThckDaoraDrgnScl (5)",
         "BigEDragonJewel (2)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Worn Blades",
@@ -2331,13 +2331,13 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "1000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Sm Ancient Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Weathered Blades"
       ]
     },
@@ -2352,13 +2352,13 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "12,500z",
-      "upgrade-from": "Worn Blades",
+      "improve-cost": "12,500z",
+      "improve-from": "Worn Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (20)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Eternal Schism",
         "Hi Twin Daggers"
       ]
@@ -2374,15 +2374,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "60,000z",
-      "upgrade-from": "Weathered Blades",
+      "improve-cost": "60,000z",
+      "improve-from": "Weathered Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Earth Crystal (40)",
         "Elder Dragon Blood (5)",
         "Wyvern Stone (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Eternal Sacrifice"
       ]
     },
@@ -2397,16 +2397,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "140,000z",
-      "upgrade-from": "Eternal Schism",
+      "improve-cost": "140,000z",
+      "improve-from": "Eternal Schism",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Purecrystal (15)",
         "ElderDragonBlood (10)",
         "Commendation G (1)",
         "Big Wyvern Stone (5)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hi Twin Daggers",
@@ -2419,15 +2419,15 @@
       "rarity": "6",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "55,000z",
-      "upgrade-from": "Weathered Blades",
+      "improve-cost": "55,000z",
+      "improve-from": "Weathered Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Carbalite Ore (15)",
         "Daora Webbing (8)",
         "Elder Dragon Blood (5)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Silhouette Sabers"
       ]
     },
@@ -2442,15 +2442,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Hi Twin Daggers",
+      "improve-cost": "80,000z",
+      "improve-from": "Hi Twin Daggers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Daora Dragon Scale+ (10)",
         "Union Ore (10)",
         "Machalite Ore (20)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Rex Slicers",
@@ -2463,16 +2463,16 @@
       "rarity": "5",
       "type": "db",
       "create-cost": "35000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Tigrex Claw (6)",
         "Tigrex Fang (2)",
         "Tigrex Scale (2)",
         "Pokke Ticket (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Tigrex Claws",
         "Hidden Ones"
       ]
@@ -2488,15 +2488,15 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Rex Slicers",
+      "improve-cost": "80,000z",
+      "improve-from": "Rex Slicers",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Tigrex Claw+ (6)",
         "Tigrex Fang+ (2)",
         "Tigrex Scale (10)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Tigrex Claws+"
       ]
     },
@@ -2511,16 +2511,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "125,000z",
-      "upgrade-from": "Tigrex Claws",
+      "improve-cost": "125,000z",
+      "improve-from": "Tigrex Claws",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Hard Tigrex Claw (6)",
         "Heavy Tigrex Fang (2)",
         "ThickTigrexScale (4)",
         "HvnlyTigrexScale (1)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Hidden Ones",
@@ -2533,20 +2533,20 @@
       "rarity": "7",
       "type": "db",
       "create-cost": "80,000z",
-      "upgrade-cost": "80,000z",
-      "upgrade-from": "Rex Slicers",
+      "improve-cost": "80,000z",
+      "improve-from": "Rex Slicers",
       "create-mats": [
         "NargaCuttingWing (8)",
         "Narga Scale+ (4)",
         "Narga Brain Stem (1)",
         "Hrd Monster Bone (4)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "NargaCuttingWing (4)",
         "Narga Scale+ (2)",
         "Nargacuga Fang+ (4)"
       ],
-      "upgrade-to": [
+      "improve-to": [
         "Ebony Wings"
       ]
     },
@@ -2561,21 +2561,21 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "120,000z",
-      "upgrade-cost": "120,000z",
-      "upgrade-from": "Hidden Ones",
+      "improve-cost": "120,000z",
+      "improve-from": "Hidden Ones",
       "create-mats": [
         "StrNargaCttngWng (10)",
         "ThickNargaScale (6)",
         "HvyNargacugaFang (4)",
         "HvnlyNargaScale (1)"
       ],
-      "upgrade-mats": [
+      "improve-mats": [
         "StrNargaCttngWng (8)",
         "ThickNargaScale (4)",
         "Narga Brain Stem (2)",
         "Hvy Monster bone (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Akantor Blades",
@@ -2588,16 +2588,16 @@
       "rarity": "8",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Akantor Shell (7)",
         "Akantor Claw (7)",
         "Akantor Scale (2)",
         "Hrd Monster Bone (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Akantor Shadow Claws"
       ]
     },
@@ -2612,16 +2612,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "145,000z",
-      "upgrade-from": "Akantor Blades",
+      "improve-cost": "145,000z",
+      "improve-from": "Akantor Blades",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Ukanlos Stone (1)",
         "Lg WyvernStone (3)",
         "Akantor Claw (5)",
         "Akantor Scale (7)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "Felyne and Melynx",
@@ -2634,16 +2634,16 @@
       "rarity": "4",
       "type": "db",
       "create-cost": "6300z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Puppet Ticket (5)",
         "Pokke Ticket (2)",
         "FlynMealPassReg (2)",
         "Dragonwood (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": [
+      "improve-mats": "N/A",
+      "improve-to": [
         "Felyne and Melynx+"
       ]
     },
@@ -2658,16 +2658,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "N/A",
-      "upgrade-cost": "6300z",
-      "upgrade-from": "Felyne and Melynx",
+      "improve-cost": "6300z",
+      "improve-from": "Felyne and Melynx",
       "create-mats": "N/A",
-      "upgrade-mats": [
+      "improve-mats": [
         "Commendation G (2)",
         "Felyne Fur Ruby (5)",
         "Thunderbug Jelly (5)",
         "AncientDrgnwood (4)"
       ],
-      "upgrade-to": "N/A"
+      "improve-to": "N/A"
     },
     {
       "name": "UkanlosRuinerBlades",
@@ -2680,16 +2680,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "150,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "StrongUkanlosFin (4)",
         "UkanlosUnderscl (6)",
         "UkanlosShovelJaw (2)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Bone Scythe G",
@@ -2702,15 +2702,15 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Brute Bone (30)",
         "Piercing Claw (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Worn Blades G",
@@ -2723,14 +2723,14 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Sm Ancient Stone (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Velociprey Claws G",
@@ -2743,16 +2743,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Velocidrome Claw+ (10)",
         "HrdFireWyvernClw (3)",
         "Velocidrome Head (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "White Death G",
@@ -2765,16 +2765,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Giadrome Claw+ (10)",
         "HvyBlangongaFang (3)",
         "Giadrome Skull (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dual Tomahawk G",
@@ -2787,16 +2787,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Antiseptic Stone (10)",
         "Dragonite Ore (15)",
         "Eltalite Ore (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Insector G",
@@ -2809,16 +2809,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Vespoid Razorwing (8)",
         "Vespoid Carapace (15)",
         "HornetaurInnrWng (20)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Glutton's Set G",
@@ -2831,16 +2831,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassReg (10)",
         "Mellanje Ore (8)",
         "StrBasariosWing (2)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Spatula Set G",
@@ -2853,16 +2853,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassPlus (10)",
         "Eltalite Ore (10)",
         "HvyBasariosShell (6)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Holy Saber G",
@@ -2875,16 +2875,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Purecrystal (4)",
         "Carbalite Ore (15)",
         "Killer Beetle (25)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Cyclone G",
@@ -2897,16 +2897,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Earth Crystal (35)",
         "Carbalite Ore (20)",
         "Mellanje Ore (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dual Kut-Ku G",
@@ -2919,16 +2919,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lucky Kut-Ku Ear (4)",
         "Ku-Ku Scale+ (10)",
         "Blazing Fire Sac (4)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Funky Maracas G",
@@ -2941,16 +2941,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HrdCongalalaPlt+ (8)",
         "Lg Pelagus Fang (4)",
         "Conga Pelt+ (16)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "PrototypeSaw-Slicer G",
@@ -2963,16 +2963,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Kirin Azure Horn (5)",
         "Rubbery Hide+ (20)",
         "Lightning Sac (8)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Cutlass G",
@@ -2985,16 +2985,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "ThckPlesiothScl (7)",
         "Plesioth Fin+ (10)",
         "Cephalos Scale+ (15)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Limb Cutter G",
@@ -3007,16 +3007,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "HrdCeanataurClaw (4)",
         "HvyCeanataurLeg (2)",
         "Ceanataur Carpce (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Dual Diablo G",
@@ -3029,16 +3029,16 @@
       "rarity": "9",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Majestic Horn (4)",
         "MonoblosCarapace (8)",
         "LthrDiablosTail (3)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Silhouette Sabers G",
@@ -3051,16 +3051,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "ThckDaoraDrgnScl (5)",
         "Eltalite Ore (10)",
         "ElderDragonBlood (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Gradios Ultimus G",
@@ -3073,16 +3073,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "StrRathalosWing (3)",
         "Rathian Thorn (3)",
         "FireWyvrn BrnStm (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Kirin Bolts G",
@@ -3095,16 +3095,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Kirin Azure Horn (3)",
         "Kirin Horn (3)",
         "LthrKirinThndrTl (5)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "CrimsonLotusBlades G",
@@ -3117,16 +3117,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lao-Shan's Horn (2)",
         "Lao-Shan'sHvyShl (6)",
         "ThckFireDrgnScl (6)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "DualDragonUltimus G",
@@ -3139,16 +3139,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Lao-Shan'sThkScl (5)",
         "ThckFatalisScale (5)",
         "Dark Stone (10)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     },
     {
       "name": "Legendary Blades G",
@@ -3161,16 +3161,16 @@
       "rarity": "10",
       "type": "db",
       "create-cost": "100,000z",
-      "upgrade-cost": "N/A",
-      "upgrade-from": "N/A",
+      "improve-cost": "N/A",
+      "improve-from": "N/A",
       "create-mats": [
         "Commendation G (1)",
         "Commendation S (5)",
         "ElderDragonBlood (10)",
         "Ukanlos Stone (1)"
       ],
-      "upgrade-mats": "N/A",
-      "upgrade-to": "N/A"
+      "improve-mats": "N/A",
+      "improve-to": "N/A"
     }
   ]
 }
