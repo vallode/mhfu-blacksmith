@@ -10,7 +10,7 @@
       "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "500z",
+      "create-cost": "500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -35,7 +35,7 @@
       "rarity": "1",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "850z",
+      "improve-cost": "850",
       "improve-from": "Buster Sword",
       "create-mats": [],
       "improve-mats": [
@@ -59,7 +59,7 @@
       "rarity": "1",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "1400z",
+      "improve-cost": "1400",
       "improve-from": "Buster Sword+",
       "create-mats": null,
       "improve-mats": [
@@ -82,8 +82,8 @@
       "bonus": "+1",
       "rarity": "2",
       "type": "gs",
-      "create-cost": "2150z",
-      "improve-cost": "2150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "Buster Blade"
       ],
@@ -112,8 +112,8 @@
       "bonus": "+2",
       "rarity": "3",
       "type": "gs",
-      "create-cost": "4250z",
-      "improve-cost": "4250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": [
         "Ravager Blade"
       ],
@@ -142,7 +142,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "25000z",
+      "improve-cost": "25000",
       "improve-from": [
         "Ravager Blade+"
       ],
@@ -167,7 +167,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Tactical Blade"
       ],
@@ -190,7 +190,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "7150z",
+      "improve-cost": "7150",
       "improve-from": [
         "Ravager Blade+"
       ],
@@ -216,7 +216,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "7150z",
+      "improve-cost": "7150",
       "improve-from": [
         "Chrome Razor"
       ],
@@ -238,8 +238,8 @@
       "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "25000z",
-      "improve-cost": "25000z",
+      "create-cost": "25000",
+      "improve-cost": "25000",
       "improve-from": [
         "Chrome Razor"
       ],
@@ -272,7 +272,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "35000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Carbalite Sword"
       ],
@@ -299,7 +299,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "55000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Carbalite Sword+"
       ],
@@ -324,7 +324,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "95000z",
+      "improve-cost": "95000",
       "improve-from": [
         "Lacerator Blade"
       ],
@@ -347,8 +347,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "75000z",
-      "improve-cost": "75000z",
+      "create-cost": "75000",
+      "improve-cost": "75000",
       "improve-from": [
         "Carbalite Sword+"
       ],
@@ -381,7 +381,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": [
         "Decider"
       ],
@@ -404,8 +404,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
-      "improve-cost": "100000z",
+      "create-cost": "100000",
+      "improve-cost": "100000",
       "improve-from": [
         "Decider"
       ],
@@ -436,7 +436,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "120000z",
+      "improve-cost": "120000",
       "improve-from": [
         "Igneous Blade"
       ],
@@ -459,8 +459,8 @@
       "bonus": "+20",
       "rarity": "5",
       "type": "gs",
-      "create-cost": "35000z",
-      "improve-cost": "35000z",
+      "create-cost": "35000",
+      "improve-cost": "35000",
       "improve-from": [
         "Carbalite Sword"
       ],
@@ -490,7 +490,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "85000z",
+      "improve-cost": "85000",
       "improve-from": [
         "Bronze Coin"
       ],
@@ -515,7 +515,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "130000z",
+      "improve-cost": "130000",
       "improve-from": [
         "Gaoren Coin"
       ],
@@ -538,8 +538,8 @@
       "bonus": null,
       "rarity": "3",
       "type": "gs",
-      "create-cost": "3100z",
-      "improve-cost": "3100z",
+      "create-cost": "3100",
+      "improve-cost": "3100",
       "improve-from": [
         "Ravager Blade"
       ],
@@ -569,7 +569,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "50000z",
+      "improve-cost": "50000",
       "improve-from": [
         "Khezu Shock Sword"
       ],
@@ -594,7 +594,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "85000z",
+      "improve-cost": "85000",
       "improve-from": [
         "Khezu Shock Blade"
       ],
@@ -620,7 +620,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "120000z",
+      "improve-cost": "120000",
       "improve-from": [
         "Khezu Shock Full"
       ],
@@ -644,7 +644,7 @@
       "rarity": "3",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": "Buster Blade",
       "create-mats": null,
       "improve-mats": [
@@ -667,7 +667,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "4250z",
+      "improve-cost": "4250",
       "improve-from": [
         "Cat's Soul"
       ],
@@ -692,7 +692,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "45000z",
+      "improve-cost": "45000",
       "improve-from": [
         "Cat's Curse"
       ],
@@ -716,8 +716,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "75000z",
-      "improve-cost": "75000z",
+      "create-cost": "75000",
+      "improve-cost": "75000",
       "improve-from": [
         "Cat's King"
       ],
@@ -748,7 +748,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "95000z",
+      "improve-cost": "95000",
       "improve-from": [
         "Cat of Venus"
       ],
@@ -772,7 +772,7 @@
       "rarity": "2",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "1400z",
+      "improve-cost": "1400",
       "improve-from": [
         "Buster Sword+"
       ],
@@ -797,7 +797,7 @@
       "rarity": "2",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2600z",
+      "improve-cost": "2600",
       "improve-from": [
         "Defender"
       ],
@@ -822,8 +822,8 @@
       "bonus": "+12",
       "rarity": "3",
       "type": "gs",
-      "create-cost": "2150z",
-      "improve-cost": "2150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "Sentinel"
       ],
@@ -853,7 +853,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": [
         "Barbaroi Blade"
       ],
@@ -875,8 +875,8 @@
       "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "4250z",
-      "improve-cost": "4250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": [
         "Sentinel"
       ],
@@ -906,7 +906,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Halberd"
       ],
@@ -928,8 +928,8 @@
       "bonus": null,
       "rarity": "2",
       "type": "gs",
-      "create-cost": "1100z",
-      "improve-cost": "1100z",
+      "create-cost": "1100",
+      "improve-cost": "1100",
       "improve-from": "Buster Sword",
       "create-mats": [
         "Giaprey Hide (6)",
@@ -961,7 +961,7 @@
       "rarity": "2",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": [
         "White Serpentblade"
       ],
@@ -987,7 +987,7 @@
       "rarity": "2",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": [
         "Silver Serpentblade"
       ],
@@ -1012,7 +1012,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "4900z",
+      "improve-cost": "4900",
       "improve-from": [
         "Vile Serpentblade"
       ],
@@ -1037,7 +1037,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Deadly Serpentblade"
       ],
@@ -1060,7 +1060,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Silver Serpentblade"
       ],
@@ -1082,7 +1082,7 @@
       "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "500z",
+      "create-cost": "500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1104,7 +1104,7 @@
       "rarity": "1",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "850z",
+      "improve-cost": "850",
       "improve-from": [
         "Bone Blade"
       ],
@@ -1128,8 +1128,8 @@
       "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "1100z",
-      "improve-cost": "1100z",
+      "create-cost": "1100",
+      "improve-cost": "1100",
       "improve-from": [
         "Bone Blade+"
       ],
@@ -1159,8 +1159,8 @@
       "bonus": "+2",
       "rarity": "2",
       "type": "gs",
-      "create-cost": "1750z",
-      "improve-cost": "1750z",
+      "create-cost": "1750",
+      "improve-cost": "1750",
       "improve-from": [
         "Bone Slasher"
       ],
@@ -1190,7 +1190,7 @@
       "rarity": "3",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2600z",
+      "improve-cost": "2600",
       "improve-from": [
         "Golem Blade"
       ],
@@ -1215,8 +1215,8 @@
       "bonus": "+6",
       "rarity": "3",
       "type": "gs",
-      "create-cost": "3100z",
-      "improve-cost": "3100z",
+      "create-cost": "3100",
+      "improve-cost": "3100",
       "improve-from": [
         "Golem Blade+"
       ],
@@ -1248,7 +1248,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "8000z",
+      "improve-cost": "8000",
       "improve-from": [
         "Valkyrie Blade"
       ],
@@ -1271,7 +1271,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "7150z",
+      "improve-cost": "7150",
       "improve-from": [
         "Valkyrie Blade"
       ],
@@ -1296,7 +1296,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "70000z",
+      "improve-cost": "70000",
       "improve-from": [
         "Titernia"
       ],
@@ -1321,7 +1321,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "105000z",
+      "improve-cost": "105000",
       "improve-from": [
         "Blushing Dame",
         "Pael Keizah"
@@ -1348,7 +1348,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "125000z",
+      "improve-cost": "125000",
       "improve-from": [
         "Alveblade"
       ],
@@ -1372,7 +1372,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": [
         "Valkyrie Blade"
       ],
@@ -1398,7 +1398,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "75000z",
+      "improve-cost": "75000",
       "improve-from": [
         "Spartacus Blade"
       ],
@@ -1421,7 +1421,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "50000z",
+      "improve-cost": "50000",
       "improve-from": [
         "Spartacus Blade"
       ],
@@ -1446,7 +1446,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "70000z",
+      "improve-cost": "70000",
       "improve-from": [
         "Obelion"
       ],
@@ -1470,8 +1470,8 @@
       "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "4250z",
-      "improve-cost": "4250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": [
         "Golem Blade+"
       ],
@@ -1503,7 +1503,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "5600z",
+      "improve-cost": "5600",
       "improve-from": [
         "Executioner"
       ],
@@ -1528,7 +1528,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "60000z",
+      "improve-cost": "60000",
       "improve-from": [
         "Executioner+"
       ],
@@ -1550,8 +1550,8 @@
       "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "25000z",
-      "improve-cost": "25000z",
+      "create-cost": "25000",
+      "improve-cost": "25000",
       "improve-from": [
         "Executioner"
       ],
@@ -1583,7 +1583,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "35000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Agito"
       ],
@@ -1609,7 +1609,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "55000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Wyvern Agito"
       ],
@@ -1631,8 +1631,8 @@
       "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "80000z",
-      "improve-cost": "80000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": [
         "Wyvern Agito"
       ],
@@ -1662,7 +1662,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": [
         "Demon Rod"
       ],
@@ -1687,7 +1687,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "130000z",
+      "improve-cost": "130000",
       "improve-from": [
         "Great Demon Rod"
       ],
@@ -1710,8 +1710,8 @@
       "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "20000z",
-      "improve-cost": "20000z",
+      "create-cost": "20000",
+      "improve-cost": "20000",
       "improve-from": [
         "Executioner"
       ],
@@ -1741,7 +1741,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "60000z",
+      "improve-cost": "60000",
       "improve-from": [
         "Kirin Thundersword"
       ],
@@ -1766,7 +1766,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "100000z",
+      "improve-cost": "100000",
       "improve-from": [
         "King Thundersword"
       ],
@@ -1790,7 +1790,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "5600z",
+      "improve-cost": "5600",
       "improve-from": [
         "Executioner"
       ],
@@ -1815,7 +1815,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "75000z",
+      "improve-cost": "75000",
       "improve-from": [
         "Sword of the Diablos"
       ],
@@ -1840,7 +1840,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": [
         "Diablo Destroyer"
       ],
@@ -1863,8 +1863,8 @@
       "bonus": null,
       "rarity": "2",
       "type": "gs",
-      "create-cost": "2150z",
-      "improve-cost": "2150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "Bone Slasher"
       ],
@@ -1894,7 +1894,7 @@
       "rarity": "3",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "3650z",
+      "improve-cost": "3650",
       "improve-from": [
         "Finblade"
       ],
@@ -1919,7 +1919,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": [
         "Plesioth Watersword"
       ],
@@ -1944,7 +1944,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "55000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Plesioth Crystasword"
       ],
@@ -1969,7 +1969,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": [
         "Plesioth Azureblade"
       ],
@@ -1995,7 +1995,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "110000z",
+      "improve-cost": "110000",
       "improve-from": [
         "Plesioth Wave Sword"
       ],
@@ -2019,7 +2019,7 @@
       "rarity": "2",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": [
         "Bone Slasher"
       ],
@@ -2045,7 +2045,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "4900z",
+      "improve-cost": "4900",
       "improve-from": [
         "Chick Decapitator"
       ],
@@ -2070,7 +2070,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "45000z",
+      "improve-cost": "45000",
       "improve-from": [
         "Chicken Decapitator"
       ],
@@ -2095,8 +2095,8 @@
       "bonus": "+8",
       "rarity": "6",
       "type": "gs",
-      "create-cost": "50000z",
-      "improve-cost": "50000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": [
         "Rooster Decapitator"
       ],
@@ -2126,8 +2126,8 @@
       "bonus": "+14",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "80000z",
-      "improve-cost": "80000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": [
         "Pickaxe Blade"
       ],
@@ -2158,7 +2158,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "105000z",
+      "improve-cost": "105000",
       "improve-from": [
         "Pickaxe Blade+"
       ],
@@ -2181,8 +2181,8 @@
       "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "65000z",
-      "improve-cost": "65000z",
+      "create-cost": "65000",
+      "improve-cost": "65000",
       "improve-from": [
         "Rooster Decapitator"
       ],
@@ -2212,7 +2212,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": [
         "Slaughter"
       ],
@@ -2238,7 +2238,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": [
         "Slaughter+"
       ],
@@ -2261,8 +2261,8 @@
       "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "10000z",
-      "improve-cost": "10000z",
+      "create-cost": "10000",
+      "improve-cost": "10000",
       "improve-from": [
         "Chick Decapitator"
       ],
@@ -2292,7 +2292,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "65000z",
+      "improve-cost": "65000",
       "improve-from": [
         "Sentoryu Raven"
       ],
@@ -2318,7 +2318,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "105000z",
+      "improve-cost": "105000",
       "improve-from": [
         "Sentoryu Wolf"
       ],
@@ -2341,8 +2341,8 @@
       "bonus": null,
       "rarity": "3",
       "type": "gs",
-      "create-cost": "2150z",
-      "improve-cost": "2150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "Bone Slasher"
       ],
@@ -2373,7 +2373,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "8000z",
+      "improve-cost": "8000",
       "improve-from": [
         "Red Wing"
       ],
@@ -2396,7 +2396,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": [
         "Red Wing"
       ],
@@ -2421,7 +2421,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "70000z",
+      "improve-cost": "70000",
       "improve-from": [
         "Blue Wing"
       ],
@@ -2443,8 +2443,8 @@
       "bonus": "+4",
       "rarity": "2",
       "type": "gs",
-      "create-cost": "2150z",
-      "improve-cost": "2150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "Bone Blade+"
       ],
@@ -2475,7 +2475,7 @@
       "rarity": "3",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "3100z",
+      "improve-cost": "3100",
       "improve-from": [
         "Red Stripe"
       ],
@@ -2500,7 +2500,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "5600z",
+      "improve-cost": "5600",
       "improve-from": [
         "Red Pincer"
       ],
@@ -2525,8 +2525,8 @@
       "bonus": "+40",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "85000z",
-      "improve-cost": "85000z",
+      "create-cost": "85000",
+      "improve-cost": "85000",
       "improve-from": [
         "Daimyo Cutter",
         "Killer's Scythe"
@@ -2557,7 +2557,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": [
         "Violet Pincer"
       ],
@@ -2581,7 +2581,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "50000z",
+      "improve-cost": "50000",
       "improve-from": [
         "Great Pincer",
         "Blue Claw Blade"
@@ -2608,8 +2608,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "85000z",
-      "improve-cost": "85000z",
+      "create-cost": "85000",
+      "improve-cost": "85000",
       "improve-from": [
         "Killer's Scythe"
       ],
@@ -2639,7 +2639,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": [
         "Carmine Blade"
       ],
@@ -2662,7 +2662,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "3650z",
+      "improve-cost": "3650",
       "improve-from": [
         "Red Stripe"
       ],
@@ -2687,7 +2687,7 @@
       "rarity": "4",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "4900z",
+      "improve-cost": "4900",
       "improve-from": [
         "Ceanataur Blade"
       ],
@@ -2711,7 +2711,7 @@
       "bonus": null,
       "rarity": "3",
       "type": "gs",
-      "create-cost": "7500z",
+      "create-cost": "7500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2734,7 +2734,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "45000z",
+      "improve-cost": "45000",
       "improve-from": [
         "Frozen Tuna"
       ],
@@ -2756,7 +2756,7 @@
       "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "6000z",
+      "create-cost": "6000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2781,7 +2781,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "20000z",
+      "improve-cost": "20000",
       "improve-from": [
         "Black Belt Blade"
       ],
@@ -2806,7 +2806,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "75000z",
+      "improve-cost": "75000",
       "improve-from": [
         "Expert Blade"
       ],
@@ -2829,7 +2829,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "35000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2855,7 +2855,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "80000z",
+      "improve-cost": "80000",
       "improve-from": [
         "Tiger Agito"
       ],
@@ -2880,7 +2880,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "125000z",
+      "improve-cost": "125000",
       "improve-from": [
         "Tigrex Great Sword"
       ],
@@ -2902,8 +2902,8 @@
       "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "80000z",
-      "improve-cost": "80000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": [
         "Tiger Agito"
       ],
@@ -2932,8 +2932,8 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "120000z",
-      "improve-cost": "120000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": [
         "Hidden Blaze"
       ],
@@ -2961,7 +2961,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "5600z",
+      "create-cost": "5600",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2986,7 +2986,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Dragonslayer"
       ],
@@ -3011,7 +3011,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "65000z",
+      "improve-cost": "65000",
       "improve-from": [
         "Eternal Annihilator"
       ],
@@ -3036,7 +3036,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "105000z",
+      "improve-cost": "105000",
       "improve-from": [
         "Eternal Eradicator"
       ],
@@ -3059,7 +3059,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "15000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3084,7 +3084,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "100000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Black Blade"
       ],
@@ -3109,7 +3109,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "150000z",
+      "improve-cost": "150000",
       "improve-from": [
         "Fatalis Blade"
       ],
@@ -3132,7 +3132,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "100000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Black Blade"
       ],
@@ -3157,7 +3157,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "150000z",
+      "improve-cost": "150000",
       "improve-from": [
         "Fatalis Ancestor"
       ],
@@ -3180,7 +3180,7 @@
       "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3205,7 +3205,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "145000z",
+      "improve-cost": "145000",
       "improve-from": [
         "Akantor Broadsword"
       ],
@@ -3228,7 +3228,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3250,7 +3250,7 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "150000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3272,7 +3272,7 @@
       "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "1000z",
+      "create-cost": "1000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3294,7 +3294,7 @@
       "rarity": "1",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "2500z",
+      "improve-cost": "2500",
       "improve-from": [
         "Rusted Great Sword"
       ],
@@ -3318,7 +3318,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "40000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Tarnished Great Swd"
       ],
@@ -3340,7 +3340,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "35000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Tarnished Great Swd"
       ],
@@ -3365,7 +3365,7 @@
       "rarity": "5",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "50000z",
+      "improve-cost": "50000",
       "improve-from": [
         "Steel Ice Blade"
       ],
@@ -3391,7 +3391,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": [
         "Steel Ice Blade+"
       ],
@@ -3416,7 +3416,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "130000z",
+      "improve-cost": "130000",
       "improve-from": [
         "Daora's Decimator"
       ],
@@ -3439,7 +3439,7 @@
       "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "1000z",
+      "create-cost": "1000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3461,7 +3461,7 @@
       "rarity": "6",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "12500z",
+      "improve-cost": "12500",
       "improve-from": [
         "Worn Great Sword"
       ],
@@ -3485,7 +3485,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "60000z",
+      "improve-cost": "60000",
       "improve-from": [
         "Weathered Grt Sword"
       ],
@@ -3509,7 +3509,7 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "100000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Epitaph Blade"
       ],
@@ -3532,7 +3532,7 @@
       "rarity": "7",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "80000z",
+      "improve-cost": "80000",
       "improve-from": [
         "Weathered Grt Sword"
       ],
@@ -3557,7 +3557,7 @@
       "rarity": "8",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": [
         "Teostra Blade"
       ],
@@ -3582,7 +3582,7 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": null,
-      "improve-cost": "130000z",
+      "improve-cost": "130000",
       "improve-from": [
         "King Teostra Blade"
       ],
@@ -3604,7 +3604,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3626,7 +3626,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3648,7 +3648,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3668,7 +3668,7 @@
       "bonus": "+2",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3690,7 +3690,7 @@
       "bonus": "+4",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3712,7 +3712,7 @@
       "bonus": "+20",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3734,7 +3734,7 @@
       "bonus": "+4",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3756,7 +3756,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3778,7 +3778,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3822,7 +3822,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3844,7 +3844,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3866,7 +3866,7 @@
       "bonus": "+20",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3888,7 +3888,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3910,7 +3910,7 @@
       "bonus": "+16",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "2150z",
+      "create-cost": "2150",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3932,7 +3932,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3954,7 +3954,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3976,7 +3976,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3998,7 +3998,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4020,7 +4020,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4042,7 +4042,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4064,7 +4064,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4086,7 +4086,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4108,7 +4108,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4130,7 +4130,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4152,7 +4152,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4174,7 +4174,7 @@
       "bonus": "+8",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4196,7 +4196,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4218,7 +4218,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4240,7 +4240,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4262,7 +4262,7 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4284,7 +4284,7 @@
       "bonus": "+6",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4306,7 +4306,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4328,7 +4328,7 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4350,7 +4350,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "100000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [

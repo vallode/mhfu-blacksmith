@@ -11,7 +11,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": "80,00",
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Carbalite Sword+",
       "create-mats": [
         "Rajang Fang (3)",
@@ -39,7 +39,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Demon Halberd",
       "create-mats": null,
       "improve-mats": [
@@ -62,7 +62,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Great Demon Halberd",
       "create-mats": null,
       "improve-mats": [
@@ -83,8 +83,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
-      "improve-cost": "100,000z",
+      "create-cost": "100000",
+      "improve-cost": "100000",
       "improve-from": [
         "Igneous Blade",
         "Decider"
@@ -115,7 +115,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "120,000z",
+      "improve-cost": "120000",
       "improve-from": "Liquid Fire Blade",
       "create-mats": null,
       "improve-mats": [
@@ -137,7 +137,7 @@
       "rarity": "6",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "30000z",
+      "improve-cost": "30000",
       "improve-from": "Carbalite Sword",
       "create-mats": null,
       "improve-mats": [
@@ -160,7 +160,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "60000z",
+      "improve-cost": "60000",
       "improve-from": "Guardian Sword",
       "create-mats": null,
       "improve-mats": [
@@ -235,7 +235,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Aqua Guardian",
       "create-mats": null,
       "improve-mats": [
@@ -259,7 +259,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Edelweiss Ice Blade",
       "create-mats": null,
       "improve-mats": [
@@ -279,8 +279,8 @@
       "bonus": null,
       "rarity": "2",
       "type": "ls",
-      "create-cost": "1,100z",
-      "improve-cost": "1,100z",
+      "create-cost": "1100",
+      "improve-cost": "1100",
       "improve-from": "Buster Sword",
       "create-mats": [
         "Blango Pelt (8)",
@@ -308,7 +308,7 @@
       "rarity": "3",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "Blango Destroyer",
       "create-mats": null,
       "improve-mats": [
@@ -331,7 +331,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "4,900z",
+      "improve-cost": "4900",
       "improve-from": "Blango Destroyer+",
       "create-mats": null,
       "improve-mats": [
@@ -354,7 +354,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Blango Decimator",
       "create-mats": null,
       "improve-mats": [
@@ -377,7 +377,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "85000z",
+      "improve-cost": "85000",
       "improve-from": "Blango Destructor",
       "create-mats": null,
       "improve-mats": [
@@ -400,7 +400,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "C.Blango Decimator",
       "create-mats": null,
       "improve-mats": [
@@ -422,7 +422,7 @@
       "rarity": "6",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": "Agito",
       "create-mats": null,
       "improve-mats": [
@@ -445,7 +445,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "Rusty Claymore",
       "create-mats": null,
       "improve-mats": [
@@ -468,7 +468,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Grind Claymore",
       "create-mats": null,
       "improve-mats": [
@@ -491,7 +491,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "135,000z",
+      "improve-cost": "135000",
       "improve-from": "Gaelic Flame",
       "create-mats": null,
       "improve-mats": [
@@ -513,7 +513,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "65,000z",
+      "improve-cost": "65000",
       "improve-from": "Sentoryu Wolf",
       "create-mats": null,
       "improve-mats": [
@@ -536,7 +536,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Daito Wolf",
       "create-mats": null,
       "improve-mats": [
@@ -557,8 +557,8 @@
       "bonus": "+28",
       "rarity": "6",
       "type": "ls",
-      "create-cost": "40,000z",
-      "improve-cost": "40,000z",
+      "create-cost": "40000",
+      "improve-cost": "40000",
       "improve-from": [
         "Tormentor",
         "Great Pincer"
@@ -589,7 +589,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Crab Cutter",
       "create-mats": null,
       "improve-mats": [
@@ -614,7 +614,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Daimyo Cutter",
       "create-mats": null,
       "improve-mats": [
@@ -637,7 +637,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Hermitaur Slicer",
       "create-mats": null,
       "improve-mats": [
@@ -659,7 +659,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "85000z",
+      "improve-cost": "85000",
       "improve-from": [
         "Daimyo Cutter",
         "Killer's Scythe"
@@ -685,7 +685,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": "Shogun Cutter",
       "create-mats": null,
       "improve-mats": [
@@ -706,8 +706,8 @@
       "bonus": null,
       "rarity": "1",
       "type": "ls",
-      "create-cost": "1750z",
-      "improve-cost": "1750z",
+      "create-cost": "1750",
+      "improve-cost": "1750",
       "improve-from": "Large Bone",
       "create-mats": [
         "Velocidrome Hide (2)",
@@ -734,8 +734,8 @@
       "bonus": null,
       "rarity": "8",
       "type": "ls",
-      "create-cost": "90,000z",
-      "improve-cost": "90,000z",
+      "create-cost": "90000",
+      "improve-cost": "90000",
       "improve-from": "Steel Ice Blade+",
       "create-mats": [
         "Daora Sharp Claw (5)",
@@ -763,7 +763,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Icesteel Blade",
       "create-mats": null,
       "improve-mats": [
@@ -784,8 +784,8 @@
       "bonus": null,
       "rarity": "1",
       "type": "ls",
-      "create-cost": "1400z",
-      "improve-cost": "1400z",
+      "create-cost": "1400",
+      "improve-cost": "1400",
       "improve-from": "Buster Sword+",
       "create-mats": [
         " (3)",
@@ -813,7 +813,7 @@
       "rarity": "2",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "1,750z",
+      "improve-cost": "1750",
       "improve-from": "Iron Katana",
       "create-mats": null,
       "improve-mats": [
@@ -837,7 +837,7 @@
       "rarity": "2",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "Iron Katana \"Grace\"",
       "create-mats": null,
       "improve-mats": [
@@ -862,7 +862,7 @@
       "rarity": "3",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "3650z",
+      "improve-cost": "3650",
       "improve-from": "Iron Katana \"Gospel\"",
       "create-mats": null,
       "improve-mats": [
@@ -885,7 +885,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": "Eager Cleaver",
       "create-mats": null,
       "improve-mats": [
@@ -909,7 +909,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": "Devil Slicer",
       "create-mats": null,
       "improve-mats": [
@@ -933,7 +933,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "True Devil Slicer",
       "create-mats": null,
       "improve-mats": [
@@ -957,7 +957,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "120,000z",
+      "improve-cost": "120000",
       "improve-from": "Wailing Cleaver",
       "create-mats": null,
       "improve-mats": [
@@ -978,8 +978,8 @@
       "bonus": null,
       "rarity": "5",
       "type": "ls",
-      "create-cost": "5600z",
-      "improve-cost": "5600z",
+      "create-cost": "5600",
+      "improve-cost": "5600",
       "improve-from": "Iron Katana \"Gospel\"",
       "create-mats": [
         "Lunastra Mane (1)",
@@ -1007,7 +1007,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Saber",
       "create-mats": null,
       "improve-mats": [
@@ -1030,7 +1030,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Lion Dance Saber",
       "create-mats": null,
       "improve-mats": [
@@ -1053,7 +1053,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Lion King Saber",
       "create-mats": null,
       "improve-mats": [
@@ -1074,8 +1074,8 @@
       "bonus": "+8",
       "rarity": "5",
       "type": "ls",
-      "create-cost": "35,000z",
-      "improve-cost": "35,000z",
+      "create-cost": "35000",
+      "improve-cost": "35000",
       "improve-from": "Iron Katana \"Gospel\"",
       "create-mats": [
         "Chameleos Horn (2)",
@@ -1103,7 +1103,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Mirage Finsword",
       "create-mats": null,
       "improve-mats": [
@@ -1126,7 +1126,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Mirage Finsword+",
       "create-mats": null,
       "improve-mats": [
@@ -1147,8 +1147,8 @@
       "bonus": null,
       "rarity": "3",
       "type": "ls",
-      "create-cost": "2,150z",
-      "improve-cost": "2,150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": "Iron Katana \"Grace\"",
       "create-mats": [
         "Lg Monster Bone (6)",
@@ -1177,7 +1177,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "5,600z",
+      "improve-cost": "5600",
       "improve-from": "Dark Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -1201,7 +1201,7 @@
       "rarity": "6",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "65,000z",
+      "improve-cost": "65000",
       "improve-from": "Tormentor",
       "create-mats": null,
       "improve-mats": [
@@ -1224,7 +1224,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Scythe of Menace",
       "create-mats": null,
       "improve-mats": [
@@ -1246,7 +1246,7 @@
       "rarity": "3",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "3100z",
+      "improve-cost": "3100",
       "improve-from": "Dark Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -1270,7 +1270,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": "Crimson Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -1293,7 +1293,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Monoblos Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -1314,7 +1314,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "3100z",
+      "improve-cost": "3100",
       "improve-from": "Crimson Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -1337,7 +1337,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": "White Mantis",
       "create-mats": null,
       "improve-mats": [
@@ -1360,7 +1360,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Frost Ripper",
       "create-mats": null,
       "improve-mats": [
@@ -1380,7 +1380,7 @@
       "bonus": null,
       "rarity": "1",
       "type": "ls",
-      "create-cost": "500z",
+      "create-cost": "500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1402,7 +1402,7 @@
       "rarity": "1",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "850z",
+      "improve-cost": "850",
       "improve-from": "Bone",
       "create-mats": null,
       "improve-mats": [
@@ -1425,7 +1425,7 @@
       "rarity": "2",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": "Bone Katana \"Wolf\"",
       "create-mats": null,
       "improve-mats": [
@@ -1450,7 +1450,7 @@
       "rarity": "2",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "3100z",
+      "improve-cost": "3100",
       "improve-from": "Bone Katana \"Shark\"",
       "create-mats": null,
       "improve-mats": [
@@ -1474,7 +1474,7 @@
       "rarity": "5",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Bone Katana \"Dragon\"",
       "create-mats": null,
       "improve-mats": [
@@ -1497,7 +1497,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Supremacy Blade",
       "create-mats": null,
       "improve-mats": [
@@ -1520,7 +1520,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Divine Slasher",
       "create-mats": null,
       "improve-mats": [
@@ -1541,8 +1541,8 @@
       "bonus": null,
       "rarity": "5",
       "type": "ls",
-      "create-cost": "6350z",
-      "improve-cost": "6350z",
+      "create-cost": "6350",
+      "improve-cost": "6350",
       "improve-from": "Bone Katana \"Dragon\"",
       "create-mats": [
         "Lao-Shan's Horn (1)",
@@ -1570,7 +1570,7 @@
       "rarity": "5",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Fire Dragonsword",
       "create-mats": null,
       "improve-mats": [
@@ -1593,7 +1593,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Red Dragonsword",
       "create-mats": null,
       "improve-mats": [
@@ -1616,7 +1616,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "140,000z",
+      "improve-cost": "140000",
       "improve-from": "Smolder Dragonsword",
       "create-mats": null,
       "improve-mats": [
@@ -1637,8 +1637,8 @@
       "bonus": null,
       "rarity": "3",
       "type": "ls",
-      "create-cost": "2600z",
-      "improve-cost": "2600z",
+      "create-cost": "2600",
+      "improve-cost": "2600",
       "improve-from": "Bone Katana \"Shark\"",
       "create-mats": [
         "Rathalos Scale (3)",
@@ -1666,7 +1666,7 @@
       "rarity": "5",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "7150z",
+      "improve-cost": "7150",
       "improve-from": "Wyvern Blade \"Fall\"",
       "create-mats": null,
       "improve-mats": [
@@ -1689,7 +1689,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Wyvern Blade \"Blood\"",
       "create-mats": null,
       "improve-mats": [
@@ -1711,8 +1711,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "105,000z",
-      "improve-cost": "105,000z",
+      "create-cost": "105000",
+      "improve-cost": "105000",
       "improve-from": [
         "Wyvern Blade \"Maple\"",
         "Wyvern Blade \"Holly\""
@@ -1744,7 +1744,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "WyvernBlade\"Silver\"",
       "create-mats": null,
       "improve-mats": [
@@ -1765,8 +1765,8 @@
       "bonus": null,
       "rarity": "3",
       "type": "ls",
-      "create-cost": "2600z",
-      "improve-cost": "2600z",
+      "create-cost": "2600",
+      "improve-cost": "2600",
       "improve-from": "Bone Katana \"Shark\"",
       "create-mats": [
         "Rathian Scale2",
@@ -1793,7 +1793,7 @@
       "rarity": "5",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "7150z",
+      "improve-cost": "7150",
       "improve-from": "Wyvern Blade \"Leaf\"",
       "create-mats": null,
       "improve-mats": [
@@ -1816,7 +1816,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "70000z",
+      "improve-cost": "70000",
       "improve-from": "Wyvern Blade \"Verde\"",
       "create-mats": null,
       "improve-mats": [
@@ -1839,7 +1839,7 @@
       "rarity": "3",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "2600z",
+      "improve-cost": "2600",
       "improve-from": "Large Bone",
       "create-mats": null,
       "improve-mats": [
@@ -1862,7 +1862,7 @@
       "rarity": "4",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "3650z",
+      "improve-cost": "3650",
       "improve-from": "Black Katana Mk.I",
       "create-mats": null,
       "improve-mats": [
@@ -1907,8 +1907,8 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "ls",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Black Katana Mk.III",
       "create-mats": [
         "Hornet Razorwing (10)",
@@ -1936,7 +1936,7 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Lost Black Katana",
       "create-mats": null,
       "improve-mats": [
@@ -1957,7 +1957,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "ls",
-      "create-cost": "35,000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1983,7 +1983,7 @@
       "rarity": "7",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Tigrex Tooth",
       "create-mats": null,
       "improve-mats": [
@@ -2006,7 +2006,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Tigrex Katana",
       "create-mats": null,
       "improve-mats": [
@@ -2026,8 +2026,8 @@
       "bonus": null,
       "rarity": "7",
       "type": "ls",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Tigrex Tooth",
       "create-mats": [
         "NargaCuttingWing (5)",
@@ -2054,8 +2054,8 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Hidden Saber",
       "create-mats": [
         "StrNargaCuttngWng (5)",
@@ -2106,7 +2106,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Dragonwood L.Sword",
       "create-mats": null,
       "improve-mats": [
@@ -2128,8 +2128,8 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Fanatic Dragonwd LS",
       "create-mats": [
         "Dragonwood G (5)",
@@ -2157,7 +2157,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "AncientDragonwoodLS",
       "create-mats": null,
       "improve-mats": [
@@ -2178,7 +2178,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "ls",
-      "create-cost": "15,000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2202,7 +2202,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Black Scythe",
       "create-mats": null,
       "improve-mats": [
@@ -2225,7 +2225,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Fatalis Sickle",
       "create-mats": null,
       "improve-mats": [
@@ -2245,7 +2245,7 @@
       "bonus": null,
       "rarity": "5",
       "type": "ls",
-      "create-cost": "25,000z",
+      "create-cost": "25000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2269,7 +2269,7 @@
       "rarity": "8",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Centenarian Dagger",
       "create-mats": null,
       "improve-mats": [
@@ -2289,7 +2289,7 @@
       "bonus": "+20",
       "rarity": "6",
       "type": "ls",
-      "create-cost": "40,000z",
+      "create-cost": "40000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2335,7 +2335,7 @@
       "bonus": null,
       "rarity": "6",
       "type": "ls",
-      "create-cost": "35,000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2381,7 +2381,7 @@
       "bonus": null,
       "rarity": "8",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2406,7 +2406,7 @@
       "rarity": "10",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "Akantor Katana",
       "create-mats": null,
       "improve-mats": [
@@ -2427,7 +2427,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "25,000z",
+      "create-cost": "25000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2448,7 +2448,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "230z",
+      "create-cost": "230",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2470,7 +2470,7 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "ls",
-      "create-cost": "150000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2492,7 +2492,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2514,7 +2514,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2536,7 +2536,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2558,7 +2558,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "10,000z",
+      "create-cost": "10000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2580,7 +2580,7 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2602,7 +2602,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2624,7 +2624,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2646,7 +2646,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2668,7 +2668,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2690,7 +2690,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2712,7 +2712,7 @@
       "bonus": "+36",
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2734,7 +2734,7 @@
       "bonus": null,
       "rarity": "9",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2756,7 +2756,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2778,7 +2778,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2800,7 +2800,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2822,7 +2822,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2844,7 +2844,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2866,7 +2866,7 @@
       "bonus": null,
       "rarity": "10",
       "type": "ls",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
