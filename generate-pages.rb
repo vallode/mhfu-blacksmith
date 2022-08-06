@@ -103,7 +103,7 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
         end
       end
       
-      if value.key?("elements")
+      if value["element"]
         elements = parseElements(value["element"])
       end
 
