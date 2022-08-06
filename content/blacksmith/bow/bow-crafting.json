@@ -3,10 +3,10 @@
     {
       "name": "Hunter's Bow I",
       "attack": "96",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "1",
       "coatings": [
         "close range",
@@ -23,14 +23,14 @@
       ],
       "type": "bw",
       "create-cost": "550z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Brute Bone (2)",
         "Iron Ore (5)",
         "Anteka Pelt (5)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Hunter's Bow II"
       ]
@@ -38,10 +38,10 @@
     {
       "name": "Hunter's Bow II",
       "attack": "120",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "2",
       "coatings": [
         "close range",
@@ -57,10 +57,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "1,100z",
       "improve-from": "Hunter's Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Giant Bone (2)",
         "Disk Stone (10)",
@@ -73,10 +73,10 @@
     {
       "name": "Hunter's Bow III",
       "attack": "144",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "close range",
@@ -115,10 +115,10 @@
     {
       "name": "Hunter's Bow IV",
       "attack": "168",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "close range",
@@ -134,10 +134,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2,750z",
       "improve-from": "Hunter's Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rubbery Hide (5)",
         "Machalite Ore (4)",
@@ -150,9 +150,9 @@
     {
       "name": "Hunter's Power Bow I",
       "attack": "192",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+10",
       "rarity": "4",
       "coatings": [
@@ -189,9 +189,9 @@
     {
       "name": "Hunter's Power Bow II",
       "attack": "204",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+20",
       "rarity": "4",
       "coatings": [
@@ -207,10 +207,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "5,500z",
       "improve-from": "Hunter's Power Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Gravios Shell (5)",
         "Blos Fang (3)",
@@ -223,9 +223,9 @@
     {
       "name": "Hunter's Power Bow III",
       "attack": "216",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+20",
       "rarity": "6",
       "coatings": [
@@ -241,10 +241,10 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "7,900z",
       "improve-from": "Hunter's Power Bow II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Bulldrome Hide+ (4)",
         "Giadrome Claw+ (5)",
@@ -258,9 +258,9 @@
     {
       "name": "Hunter's Power Bow IV",
       "attack": "324",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+30",
       "rarity": "9",
       "coatings": [
@@ -276,25 +276,25 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "49,500z",
       "improve-from": "Hunter's Power Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "StrBasariosWing (1)",
         "HvyBasariosShell (6)",
         "Eltalite Ore (10)",
         "Hvy Monster Bone (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Icicle Bow I",
       "attack": "228",
       "element": "Ice 200",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -334,8 +334,8 @@
       "attack": "264",
       "element": "Ice 230",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -351,25 +351,25 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "55,450z",
       "improve-from": "Icicle Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyBlangongaFang (2)",
         "PureCrystal (3)",
         "Piercing Claw (10)",
         "Hvy Monster Bone (6)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Wild Bow I",
       "attack": "168",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "coatings": [
         "close range",
@@ -385,8 +385,8 @@
       ],
       "type": "bw",
       "create-cost": "2,200z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Congalala Pelt (4)",
         "Sharp Claw (3)",
@@ -394,7 +394,7 @@
         "or Plus Class Ticket (1)",
         "Sharp Claw (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Wild Bow II"
       ]
@@ -402,10 +402,10 @@
     {
       "name": "Wild Bow II",
       "attack": "192",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "close range",
@@ -420,10 +420,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "3,500z",
       "improve-from": "Wild Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Congalala Pelt (2)",
         "Conga Pelt (12)",
@@ -436,10 +436,10 @@
     {
       "name": "Wild Bow III",
       "attack": "216",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "close range",
@@ -475,10 +475,10 @@
     {
       "name": "Wild Bow IV",
       "attack": "228",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "close range",
@@ -493,10 +493,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6,150z",
       "improve-from": "Wild Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Vibrant Pelt (1)",
         "Tigrex Claw (2)",
@@ -509,10 +509,10 @@
     {
       "name": "Wild Power Bow I",
       "attack": "240",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -548,10 +548,10 @@
     {
       "name": "Wild Power Bow II",
       "attack": "252",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -566,10 +566,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "10,550z",
       "improve-from": "Wild Power Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Congalala Claw+ (2)",
         "Pur Gypceros Wng (2)",
@@ -582,10 +582,10 @@
     {
       "name": "Jungle Bow I",
       "attack": "324",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -622,10 +622,10 @@
     {
       "name": "Jungle Bow II",
       "attack": "360",
-      "element": "N/A",
+      "element": null,
       "affinity": "15%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -640,17 +640,17 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "74,250z",
       "improve-from": "Jungle Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Vibrant Comb (1)",
         "BlangongaPelt+ (6)",
         "Massive Bone (3)",
         "Phantom Butterfly (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Blango Fur Bow I",
@@ -658,7 +658,7 @@
       "element": "Ice 60",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "coatings": [
         "paralysis",
@@ -674,14 +674,14 @@
       ],
       "type": "bw",
       "create-cost": "770z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Blango Pelt (4)",
         "Giaprey Scale (5)",
         "Ice Crystal (10)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Blango Fur Bow II"
       ]
@@ -692,7 +692,7 @@
       "element": "Ice 80",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "paralysis",
@@ -707,10 +707,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "1500",
       "improve-from": "Blango Fur Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Brute Bone (4)",
         "Giadrome Hide (5)",
@@ -726,7 +726,7 @@
       "element": "Ice 100",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "paralysis",
@@ -764,7 +764,7 @@
       "element": "Ice 120",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "paralysis",
@@ -779,10 +779,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4,600z",
       "improve-from": "Blango Fur Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "DaoraDragonScale (4)",
         "Blangonga Pelt (4)",
@@ -798,7 +798,7 @@
       "element": "Ice 140",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "paralysis",
@@ -813,10 +813,10 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "7350",
       "improve-from": "Blango Fur Bow IV",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Blangonga Fang+ (1)",
         "Daora Claw (2)",
@@ -832,7 +832,7 @@
       "element": "Ice 140",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -847,17 +847,17 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "69,300z",
       "improve-from": "Abominable Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HrdBlangongaPlt+ (4)",
         "Massive Bone (4)",
         "Lthr Pelagus Plt (3)",
         "PhantomButterfly (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Kut-Ku Stave I",
@@ -865,7 +865,7 @@
       "element": "Fire 80",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "coatings": [
         "paralysis",
@@ -881,15 +881,15 @@
       ],
       "type": "bw",
       "create-cost": "1,500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Kut-Ku Shell (5)",
         "Kut-Ku Scale (5)",
         "Flame Sac (2)",
         "Carpenter Bug (4)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Kut-Ku Stave II"
       ]
@@ -900,7 +900,7 @@
       "element": "Fire 100",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "paralysis",
@@ -915,10 +915,10 @@
         "Scatter 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2,300z",
       "improve-from": "Kut-Ku Stave I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Flame Sac (4)",
         "FireWyvern Fluid (2)",
@@ -934,7 +934,7 @@
       "element": "Fire 120",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "paralysis",
@@ -949,10 +949,10 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4,600z",
       "improve-from": "Kut-Ku Stave II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kut-Ku Ear (3)",
         "Blk Gravios Shl (3)",
@@ -968,7 +968,7 @@
       "element": "Fire 140",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "coatings": [
         "close range",
@@ -1009,7 +1009,7 @@
       "element": "Fire 180",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -1025,10 +1025,10 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "41,600z",
       "improve-from": "Blue Kut-Ku Stave I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyBlueKut-KuShl (4)",
         "Lucky Kut-Ku Ear (3)",
@@ -1045,7 +1045,7 @@
       "element": "Fire 200",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1061,25 +1061,25 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "62,400z",
       "improve-from": "Blue Kut-Ku Stave II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyAzurRthlsShl (3)",
         "ThkBlueKut-KuScl (6)",
         "Emperor Cricket (6)",
         "Mellanje Ore (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Wolf Bow",
       "attack": "348",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1115,10 +1115,10 @@
     {
       "name": "Crow Bow",
       "attack": "360",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -1132,17 +1132,17 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "103,950z",
       "improve-from": "Wolf Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "LethrGarugaTail (1)",
         "SilverGarugaPelt (3)",
         "PhantomButterfly (3)",
         "SpecChameleHide+ (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Wing Bow I",
@@ -1150,7 +1150,7 @@
       "element": "Sleep Add",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -1165,15 +1165,15 @@
       ],
       "type": "bw",
       "create-cost": "11,100z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "OrangeHypnoPelt (4)",
         "Hypno Beak (2)",
         "Carbalite Ore (3)",
         "Hrd Monster Bone (4)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Wing Bow II"
       ]
@@ -1184,7 +1184,7 @@
       "element": "Sleep Add",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -1198,10 +1198,10 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "13,450z",
       "improve-from": "Wing Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Top-GrdHypnoClaw (6)",
         "Basarios Carpace (6)",
@@ -1217,7 +1217,7 @@
       "element": "Sleep Add",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1256,7 +1256,7 @@
       "element": "Sleep Add",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1270,17 +1270,17 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "77,200z",
       "improve-from": "Wing Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hypno Bezoar+ (1)",
         "Hypno Claw+ (6)",
         "HvyGraviosShell (4)",
         "Coma Sac (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Defect Swordfish Bow",
@@ -1288,7 +1288,7 @@
       "element": "Paralysis Add",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "coatings": [
         "close range",
@@ -1304,15 +1304,15 @@
       ],
       "type": "bw",
       "create-cost": "1,250z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Speartuna (1)",
         "Black Pearl (2)",
         "Antiseptic Stone (2)",
         "FlynMealPassReg (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Whole Swordfish Bow"
       ]
@@ -1323,7 +1323,7 @@
       "element": "Paralysis Add",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -1338,10 +1338,10 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "5,950z",
       "improve-from": "Defect Swordfish Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Speartuna (1)",
         "Novacrystal (1)",
@@ -1358,7 +1358,7 @@
       "element": "Paralysis Add",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -1373,17 +1373,17 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "35,650z",
       "improve-from": "Whole Swordfish Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Speartuna (1)",
         "Ancient Fish (5)",
         "Paralysis Sac (10)",
         "Hvy Monster Bone (8)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Daimyo's Warbow I",
@@ -1391,7 +1391,7 @@
       "element": "Water 80",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "paralysis",
@@ -1407,15 +1407,15 @@
       ],
       "type": "bw",
       "create-cost": "2,300z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Hermitaur Shell (4)",
         "Plesioth Scale (4)",
         "Sm Hermitaur Shl (10)",
         "Earth Crystal (8)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Daimyo's Warbow II"
       ]
@@ -1426,7 +1426,7 @@
       "element": "Water 100",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "paralysis",
@@ -1441,10 +1441,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "3,850z",
       "improve-from": "Daimyo's Warbow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ceanataur Claw (2)",
         "Grn Plesioth Scl (3)",
@@ -1460,7 +1460,7 @@
       "element": "Water 120",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "paralysis",
@@ -1475,10 +1475,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4,600z",
       "improve-from": "Daimyo's Warbow II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Black Pearl (6)",
         "Twisted Horn (2)",
@@ -1494,7 +1494,7 @@
       "element": "Water 140",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "paralysis",
@@ -1533,7 +1533,7 @@
       "element": "Water 190",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -1572,7 +1572,7 @@
       "element": "Water 210",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -1587,25 +1587,25 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "81,700z",
       "improve-from": "Great Purple Emperor I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hermitrclw (3)",
         "Giant Blk Pearl (2)",
         "SpecGrnPlesioFn+ (3)",
         "HvyGaorenShell (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Blue Blade Bow I",
       "attack": "204",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "close range",
@@ -1621,15 +1621,15 @@
       ],
       "type": "bw",
       "create-cost": "7,700z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Ceanataur Shell (4)",
         "Ceanataur Pincer (1)",
         "Hercudrome (2)",
         "Sharp Claw (7)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Blue Blade Bow II"
       ]
@@ -1637,10 +1637,10 @@
     {
       "name": "Blue Blade Bow II",
       "attack": "264",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -1655,10 +1655,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "23,100z",
       "improve-from": "Blue Blade Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ceanataur Carpce (5)",
         "Ceanataur Claw+ (3)",
@@ -1671,10 +1671,10 @@
     {
       "name": "Blue Blade Bow III",
       "attack": "360",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1711,10 +1711,10 @@
     {
       "name": "Showroom Model",
       "attack": "372",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1729,24 +1729,24 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "103,950z",
       "improve-from": "Blue Blade Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HrdCeanataurClaw (2)",
         "Giant Blk Pearl (2)",
         "HvyGraviosShell (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Carmine Bow",
       "attack": "312",
       "element": "Water 120",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1760,10 +1760,10 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "89,100z",
       "improve-from": "Blue Blade Bow III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "TerraCeanatrShl (4)",
         "HvyCeanataurLeg (3)",
@@ -1778,8 +1778,8 @@
       "attack": "324",
       "element": "Water 140",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -1793,16 +1793,16 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "103,950z",
       "improve-from": "Carmine Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "TerraCeanatrClaw (2)",
         "Giant Black Pearl (2)",
         "HvyBlkGraviosShl (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Sonic Bow I",
@@ -1810,7 +1810,7 @@
       "element": "Thunder 100",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "coatings": [
         "close range",
@@ -1825,15 +1825,15 @@
       ],
       "type": "bw",
       "create-cost": "2,300z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Electro Sac (2)",
         "Vespoid Shell (10)",
         "Hornetaur Wing (5)",
         "Killer Beetle (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Sonic Bow II"
       ]
@@ -1844,7 +1844,7 @@
       "element": "Thunder 120",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "close range",
@@ -1858,10 +1858,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4,600z",
       "improve-from": "Sonic Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Thunderbug Juice (4)",
         "Alluring Hide (4)",
@@ -1877,7 +1877,7 @@
       "element": "Thunder 140",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "close range",
@@ -1915,7 +1915,7 @@
       "element": "Thunder 210",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1931,15 +1931,15 @@
       ],
       "type": "bw",
       "create-cost": "52,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "KhezuHide-Cream (4)",
         "Lightning Sac (3)",
         "SpecRubberyHide+ (3)",
         "Eltalite Ore (5)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Khezu Bow II"
       ]
@@ -1950,7 +1950,7 @@
       "element": "Thunder 240",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -1965,17 +1965,17 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "74,250",
       "improve-from": "Khezu Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "StrAlluringWing (4)",
         "KhezuSpecialCut (1)",
         "HrdPuGypcerosWng (3)",
         "SilverGarugaPelt (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Queen Blaster I",
@@ -1983,7 +1983,7 @@
       "element": "Poison Add",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -1997,15 +1997,15 @@
       ],
       "type": "bw",
       "create-cost": "5,500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Rathian Shell (3)",
         "Monster Bone+ (1)",
         "Rathian Scale (5)",
         "Machalite Ore (8)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Queen Blaster II"
       ]
@@ -2016,7 +2016,7 @@
       "element": "Poison Add",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -2029,10 +2029,10 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6,600z",
       "improve-from": "Queen Blaster I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathian Shell (4)",
         "Fire Wyvern Claw (3)",
@@ -2049,7 +2049,7 @@
       "element": "Poison Add",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "poison",
@@ -2086,7 +2086,7 @@
       "element": "Poison Add",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "poison",
@@ -2099,10 +2099,10 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "54,450z",
       "improve-from": "Queen Blaster III",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckRathianScl (5)",
         "Rathian Ruby (1)",
@@ -2119,7 +2119,7 @@
       "element": "Poison Add",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "poison",
@@ -2132,24 +2132,24 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "69,300z",
       "improve-from": "Queen Blaster IV",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyRathianShell (4)",
         "HvnlyRathianScl (1)",
         "ThckGldRathnScl (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Heartshot Bow I",
       "attack": "240",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "7",
       "coatings": [
         "paralysis",
@@ -2183,10 +2183,10 @@
     {
       "name": "Heartshot Bow II",
       "attack": "264",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "paralysis",
@@ -2199,10 +2199,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "19,800z",
       "improve-from": "Heartshot Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathian Spike+ (1)",
         "Pnk Rathian Scl+ (5)",
@@ -2215,10 +2215,10 @@
     {
       "name": "Heartshot Bow III",
       "attack": "336",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paralysis",
@@ -2231,16 +2231,16 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "83,150z",
       "improve-from": "Heartshot Bow II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathian Thorn (1)",
         "ThckPnkRathnScl (5)",
         "Mellanje Ore (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Prominence Bow I",
@@ -2248,7 +2248,7 @@
       "element": "Fire 80",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -2262,15 +2262,15 @@
       ],
       "type": "bw",
       "create-cost": "6,850z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Rathalos Shell (3)",
         "Dragonite Ore (2)",
         "Rathalos Scale (5)",
         "Blood Red Horn (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Prominence Bow II"
       ]
@@ -2281,7 +2281,7 @@
       "element": "Fire 100",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -2294,10 +2294,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "8,250z",
       "improve-from": "Prominence Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Shell (6)",
         "FireWyvrn Marrow (1)",
@@ -2313,7 +2313,7 @@
       "element": "Fire 120",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "poison",
@@ -2326,10 +2326,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "16,500z",
       "improve-from": "Prominence Bow II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Carpace (3)",
         "FireWyvrn BrnStm (1)",
@@ -2345,7 +2345,7 @@
       "element": "Fire 160",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "poison",
@@ -2382,7 +2382,7 @@
       "element": "Fire 180",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "poison",
@@ -2395,16 +2395,16 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "74,250z",
       "improve-from": "Prominence Bow IV",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hrd Rathalos Scl (6)",
         "HvnlyRathalosScl (1)",
         "HvySivrRthlsShl (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Courageous Hope",
@@ -2412,7 +2412,7 @@
       "element": "Fire 60",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -2427,15 +2427,15 @@
       ],
       "type": "bw",
       "create-cost": "16,800z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Teostra Carapace (3)",
         "Teostra Mane (2)",
         "Lunastra Mane (2)",
         "Firecell Stone (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Courageous Wish"
       ]
@@ -2446,7 +2446,7 @@
       "element": "Fire 80",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -2460,10 +2460,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "39,600z",
       "improve-from": "Courageous Hope",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Fire Dragon Pwdr (2)",
         "Gravios BrainStm (1)",
@@ -2479,7 +2479,7 @@
       "element": "Fire 110",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -2493,22 +2493,22 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "111,350z",
       "improve-from": "Courageous Wish",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HrdFireDrgnClaw (2)",
         "ThckFireDrgnScl (4)",
         "LunastraCarapace (4)",
         "Commendation S (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Diablos Horn Bow I",
       "attack": "216",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
       "slots": "O",
       "bonus": "+10",
@@ -2524,15 +2524,15 @@
       ],
       "type": "bw",
       "create-cost": "10,250z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Diablos Carapace (4)",
         "Majestic Horn (2)",
         "Wyvern Stone (2)",
         "Black Blos Spine (3)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Diablos Horn Bow II"
       ]
@@ -2540,7 +2540,7 @@
     {
       "name": "Diablos Horn Bow II",
       "attack": "276",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
       "slots": "O",
       "bonus": "+20",
@@ -2555,10 +2555,10 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "25,700z",
       "improve-from": "Diablos Horn Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Diablos Thoracic (4)",
         "Black Blos Cpc (6)",
@@ -2571,9 +2571,9 @@
     {
       "name": "Gale Horn Bow",
       "attack": "336",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+30",
       "rarity": "9",
       "coatings": [
@@ -2607,9 +2607,9 @@
     {
       "name": "DiablosKingHornBow",
       "attack": "372",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
-      "slots": "N/A",
+      "slots": "---",
       "bonus": "+30",
       "rarity": "10",
       "coatings": [
@@ -2622,25 +2622,25 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "117,800z",
       "improve-from": "Gale Horn Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Big Wyvern Stone (4)",
         "HvyBlkBlosSpine (3)",
         "StoutBlkTwstdHrn (2)",
         "StoutWarpedHorn (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Tiger Arrow I",
       "attack": "264",
-      "element": "N/A",
+      "element": null,
       "affinity": "-30%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -2654,15 +2654,15 @@
       ],
       "type": "bw",
       "create-cost": "8,550z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Tigrex Scale (6)",
         "Tigrex Fang (3)",
         "Tigrex Claw (2)",
         "Monster Bone+ (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Tiger Arrow II"
       ]
@@ -2670,10 +2670,10 @@
     {
       "name": "Tiger Arrow II",
       "attack": "276",
-      "element": "N/A",
+      "element": null,
       "affinity": "-30%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "4",
       "coatings": [
         "poison",
@@ -2686,10 +2686,10 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "10,000z",
       "improve-from": "Tiger Arrow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Tigrex Fang (3)",
         "TwstBlkBlosHrn (2)",
@@ -2703,10 +2703,10 @@
     {
       "name": "Tigrex Whisker",
       "attack": "312",
-      "element": "N/A",
+      "element": null,
       "affinity": "-30%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "6",
       "coatings": [
         "poison",
@@ -2740,10 +2740,10 @@
     {
       "name": "Tigrex Whisker+",
       "attack": "384",
-      "element": "N/A",
+      "element": null,
       "affinity": "-30%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "poison",
@@ -2756,25 +2756,25 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90,100z",
       "improve-from": "Tigrex Whisker",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hvy Tigrex Shell (4)",
         "ThickTigrexScale (8)",
         "HvnlyTigrexScale (1)",
         "PhantomButterfly (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Hidden Bow",
       "attack": "252",
-      "element": "N/A",
+      "element": null,
       "affinity": "50%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "coatings": [
         "close range",
@@ -2811,10 +2811,10 @@
     {
       "name": "Midnight Bow",
       "attack": "324",
-      "element": "N/A",
+      "element": null,
       "affinity": "50%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -2845,7 +2845,7 @@
         "HvyNargacugaFang (6)",
         "Narga Brain Stem (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Dragonhead Harp I",
@@ -2867,15 +2867,15 @@
       ],
       "type": "bw",
       "create-cost": "50,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Wyverian Harp (1)",
         "Plesioth Scale+ (4)",
         "Grn Plesioth Scl+ (4)",
         "Novacrystal (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Dragonhead Harp II"
       ]
@@ -2899,10 +2899,10 @@
         "Rapid 1"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "50,000z",
       "improve-from": "Dragonhead Harp I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckPlesiothScl (4)",
         "ThckGrnPlesioScl (4)",
@@ -2931,17 +2931,17 @@
         "Rapid 1"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "125,000z",
       "improve-from": "Dragonhead Harp II",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Commendation G (1)",
         "SpecPlesiothFin+ (3)",
         "SpecGrnPlesioFn+ (3)",
         "HvyLavasiothFang (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Dragon Bow Halo",
@@ -2949,7 +2949,7 @@
       "element": "Thunder 140",
       "affinity": "10%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "coatings": [
         "paralysis",
@@ -2965,15 +2965,15 @@
       ],
       "type": "bw",
       "create-cost": "7,900z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Dragonwood (2)",
         "Dragonmoss (4)",
         "Kirin Thndr Tail (2)",
         "ElderDragonBlood (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Dragon Bow Solar"
       ]
@@ -2984,7 +2984,7 @@
       "element": "Thunder 160",
       "affinity": "10%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "paralysis",
@@ -2999,10 +2999,10 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "23,750z",
       "improve-from": "Dragon Bow Halo",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Pokke Ticket+ (2)",
         "Dragonmoss+ (4)",
@@ -3017,8 +3017,8 @@
       "attack": "300",
       "element": "Thunder 180 / Paralysis Add",
       "affinity": "20%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paralysis",
@@ -3048,15 +3048,15 @@
         "AncientDrgnwood (4)",
         "AncientDrgnmoss (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Dragon Bow Earth",
       "attack": "192",
       "element": "Dragon 120",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "5",
       "coatings": [
         "close range",
@@ -3073,15 +3073,15 @@
       ],
       "type": "bw",
       "create-cost": "7,900z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Lao-Shan's Horn (2)",
         "Lao-Shan's Scale (6)",
         "Lao-Shan's Shell (4)",
         "Rathian Plate (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Dragon Bow Mountain"
       ]
@@ -3091,8 +3091,8 @@
       "attack": "288",
       "element": "Dragon 180",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -3108,10 +3108,10 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "47,500z",
       "improve-from": "Dragon Bow Earth",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Lao-Shan's Ruby (1)",
         "Chameleos Hide+ (4)",
@@ -3126,8 +3126,8 @@
       "attack": "360",
       "element": "Dragon 220",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -3143,25 +3143,25 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "124,750z",
       "improve-from": "Dragon Bow Mountain",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Lao-ShanHvnlyScl (1)",
         "Lao-Shan'sHvyShl (6)",
         "Lao-Shan'sThkScl (4)",
         "Big Wyvern Stone (8)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Beast Thunderbow",
       "attack": "300",
       "element": "Thunder 110",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -3175,15 +3175,15 @@
       ],
       "type": "bw",
       "create-cost": "95,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Blk Rajang Pelt+ (4)",
         "Hvy Rajang Fang(5)",
         "Hard Rajang Claw (3)",
         "Gold Rajang Pelt (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "BeastKingThunderbow"
       ]
@@ -3193,8 +3193,8 @@
       "attack": "336",
       "element": "Thunder 130",
       "affinity": "10%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -3207,17 +3207,17 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "118,800z",
       "improve-from": "Beast Thunderbow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Gold Rajang Pelt+ (2)",
         "Blk Rajang Pelt+ (3)",
         "BlangoFang (3)",
         "Vibrant Comb (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Icy Steel Bow",
@@ -3225,7 +3225,7 @@
       "element": "Ice 160",
       "affinity": "20%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paralysis",
@@ -3240,15 +3240,15 @@
       ],
       "type": "bw",
       "create-cost": "84,150z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Hvy Daora Shell (5)",
         "ThckDaoraDrgnScl (8)",
         "BigEDragonBone (4)",
         "Daora Jewel (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Daora's Sagittarii"
       ]
@@ -3259,7 +3259,7 @@
       "element": "Ice 180",
       "affinity": "30%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paralysis",
@@ -3273,17 +3273,17 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "117,800z",
       "improve-from": "Icy Steel Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hard Daora Horn (4)",
         "Str Daora Wing (3)",
         "BigEDragonJewel (1)",
         "Commendation S (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Akantor Bow",
@@ -3291,7 +3291,7 @@
       "element": "Dragon 160",
       "affinity": "40%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "poison",
@@ -3304,15 +3304,15 @@
       ],
       "type": "bw",
       "create-cost": "80,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Akantor Fang (2)",
         "Akantor Spike (1)",
         "Akantor Scale (6)",
         "Gaoren Pincer (2)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Akantor Chaos Bow"
       ]
@@ -3323,7 +3323,7 @@
       "element": "Dragon 200",
       "affinity": "40%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "poison",
@@ -3335,17 +3335,17 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "145,000z",
       "improve-from": "Akantor Bow",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Akantor Fang (8)",
         "Big Wyvern stone (4)",
         "BigEDragonJewel (1)",
         "Ukanlos Stone (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Black Bow I",
@@ -3353,7 +3353,7 @@
       "element": "Dragon 100",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "coatings": [
         "close range",
@@ -3367,14 +3367,14 @@
       ],
       "type": "bw",
       "create-cost": "7,500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Black Bow II"
       ]
@@ -3385,7 +3385,7 @@
       "element": "Dragon 120",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "close range",
@@ -3399,9 +3399,9 @@
       ],
       "type": "bw",
       "create-cost": "15,000z",
-      "improve-cost": "N/A",
+      "improve-cost": null,
       "improve-from": "Black Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Dark Stone (2)",
         "ElderDragonBlood (4)",
@@ -3415,7 +3415,7 @@
     {
       "name": "Exterminator Bow I",
       "attack": "312",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
       "slots": "O",
       "bonus": "+15",
@@ -3450,7 +3450,7 @@
     {
       "name": "Exterminator Bow II",
       "attack": "384",
-      "element": "N/A",
+      "element": null,
       "affinity": "20%",
       "slots": "O",
       "bonus": "+20",
@@ -3465,25 +3465,25 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "150,000z",
       "improve-from": "Exterminator Bow I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HardFatalisHorn (4)",
         "ThckFatalisScale (2)",
         "Hvy Fatalis Shl (1)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Glorious Victory I",
       "attack": "276",
       "element": "Dragon 240",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "8",
       "coatings": [
         "paint"
@@ -3516,8 +3516,8 @@
       "attack": "336",
       "element": "Dragon 270",
       "affinity": "0%",
-      "slots": "N/A",
-      "bonus": "N/A",
+      "slots": "---",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paint"
@@ -3528,17 +3528,17 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "150,000z",
       "improve-from": "Glorious Victory I",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HrdWhtFatlisHorn (4)",
         "ThckWhtFatlisScl (2)",
         "HvyWhtFatlisShl (1)",
         "BigEDragonJewel(3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Ukanlos Bow",
@@ -3561,24 +3561,24 @@
       ],
       "type": "bw",
       "create-cost": "150,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "UkanlosShovelJaw (3)",
         "StrongUkanlosFin (4)",
         "UkanlosUnderscl (6)",
         "Ukanlos Stone (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Hunter's Bow G",
       "attack": "276",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -3595,24 +3595,24 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Hvy Monster Bone (3)",
         "RobustWyvernBone (10)",
         "Rare Scarab (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Wild Bow G",
       "attack": "336",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -3628,24 +3628,24 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HrdCongalalaPelt+ (6)",
         "Lg Pelagus Fang (4)",
         "Stout Bone (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Wild Power Bow G",
       "attack": "360",
-      "element": "N/A",
+      "element": null,
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -3661,16 +3661,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Vibrant Pelt (3)",
         "HrdCongalalaClw+ (4)",
         "PhantomButterfly (4)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Blango Fur Bow G",
@@ -3678,7 +3678,7 @@
       "element": "Ice 180",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -3694,16 +3694,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HrdBlangongaPlt+ (4)",
         "Top-GrdPlatHorn (3)",
         "HvyBlangongaFang (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Kut-Ku Stave G",
@@ -3711,7 +3711,7 @@
       "element": "fire 220",
       "affinity": "0%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -3727,16 +3727,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Thick Kut-Ku Scl (8)",
         "Hvy Kut-Ku Shell (6)",
         "Top-GrdRedHorn (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Daimyo's War Bow G",
@@ -3744,7 +3744,7 @@
       "element": "Water 180",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "paralysis",
@@ -3760,16 +3760,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "HvyHermitaurShl (6)",
         "Wyvern Skull Shl (4)",
         "MonoblosCarapace (6)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Sonic Bow G",
@@ -3777,7 +3777,7 @@
       "element": "Thunder 200",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "coatings": [
         "close range",
@@ -3792,21 +3792,21 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "VespoidQn'sCrown (5)",
         "Lightning Sac (4)",
         "Hornet Razorwing (6)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Diablos Horn Bow G",
       "attack": "372",
-      "element": "N/A",
+      "element": null,
       "affinity": "10%",
       "slots": "O",
       "bonus": "+20",
@@ -3822,16 +3822,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "StoutWarpedHorn (2)",
         "HvyDiablosShell (8)",
         "Big Wyvern Stone (6)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Dragon Bow Solar G",
@@ -3839,7 +3839,7 @@
       "element": "Thunder 210",
       "affinity": "10%",
       "slots": "O",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "paralysis",
@@ -3855,16 +3855,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "Dragonwood+ (20)",
         "Dragonwood (20)",
         "YamaTsukamiFluid (8)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Black Bow G",
@@ -3872,7 +3872,7 @@
       "element": "Dragon 160",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "coatings": [
         "close range",
@@ -3886,16 +3886,16 @@
       ],
       "type": "bw",
       "create-cost": "75,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "Big Wyvern Stone (10)",
         "Dark Piece (20)",
         "Pokke Ticket (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Sonic Bow IV",
@@ -3903,7 +3903,7 @@
       "element": "Thunder 180",
       "affinity": "0%",
       "slots": "OO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "shots": [
         "Rapid Lvl 3",
@@ -3926,9 +3926,9 @@
         "Thunder Sac (6)",
         "Vespoid Razorwing (6)"
       ],
-      "improve-to": "N/A",
-      "create-cost": "N/A",
-      "create-mats": "N/A"
+      "improve-to": null,
+      "create-cost": null,
+      "create-mats": null
     }
   ]
 }

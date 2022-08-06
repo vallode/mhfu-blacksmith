@@ -40,11 +40,11 @@ def push_weapon(weapon, array, weapons_data)
     children: []
     })
     
-  if weapon.key?("element") and not weapon["element"] == "N/A"
+  if weapon.key?("element") and weapon["element"]
     array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
   end
 
-  if weapon.key?("improve-to") and not weapon["improve-to"] == "N/A"
+  if weapon.key?("improve-to") and weapon["improve-to"]
     for child_weapon_name in weapon["improve-to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
 
@@ -63,7 +63,7 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
     json_data = JSON.load(file)
     weapons = json_data["weapons"]
 
-    root_weapons = weapons.select {|element| element["improve-from"] == "N/A" or not element.key?("improve-from")}
+    root_weapons = weapons.select {|element| !element["improve-from"] or not element.key?("improve-from")}
 
     root_weapons.each_with_index do |weapon, index|
       push_weapon(weapon, weapon_map, weapons)

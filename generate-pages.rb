@@ -70,7 +70,7 @@ end
 def parseElements(elements)
   parsedElements = %{}
 
-  if elements != "N/A"
+  if elements
     elements.scan(/([A-Za-z]+)\s([0-9]+)/) do |element, attack|
       parsedElements.concat("{\"name\" = \"#{element}\", \"attack\" = #{attack}},")
     end
@@ -107,23 +107,23 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
         elements = parseElements(value["element"])
       end
 
-      if value["improve-cost"] != "N/A"
+      if value["improve-cost"]
         upgrade_cost = value["improve-cost"]
         upgrade_mats = value["improve-mats"]
       end
 
-      if value["improve-from"] != "N/A"
+      if value["improve-from"]
         upgrade_from = value['improve-from']
       end
 
-      if value["upgrade-to"] != "N/A"
+      if value["upgrade-to"]
         upgrade_to = value["upgrade-to"]
       end
 
-      if value["create-cost"] != "N/A"
+      if value["create-cost"]
         create_cost = value["create-cost"]
 
-        if value["create-mats"] != "N/A"
+        if value["create-mats"]
           create_mats = value["create-mats"]
         end
       end

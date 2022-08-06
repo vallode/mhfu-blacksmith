@@ -1,1 +1,2148 @@
-{"weapons":[{"name":"Ancient Destroyer","attack":"552","element":"N/A","sharpness":"7.4.7.9.2 7.4.7.9.4.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Spread Lv. 3","type":"gl","create-cost":"80,000z","improve-cost":"80,000z","improve-from":"Babel Spear","create-mats":["Eltalite Ore (10)","Iron Ore (80)","Blazing Fire Sac (5)","Lightning Sac (5)"],"improve-mats":["Eltalite Ore (8)","Blazing Fire Sac (3)","Lightning Sac (3)"],"improve-to":["Genesis"]},{"name":"Genesis","attack":"621","element":"N/A","sharpness":"18.4.3.10.3.2 18.4.3.10.3.5.2","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"10","shelling":"Spread Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"115,000z","improve-from":"Ancient Destroyer","create-mats":"N/A","improve-mats":["Mellanje Ore (10)","Iron Ore(30)","LthrRathalosTail(5)","Thunderbug Jelly(10)"],"improve-to":"N/A"},{"name":"Feather Gunlance","attack":"368","element":"Sleep 100","sharpness":"7.4.8.6 7.4.8.9.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","shelling":"Spread Lv. 2","type":"gl","create-cost":"50,000z","improve-cost":"50,000z","improve-from":"Knight Lance","create-mats":["Top-GrdHypnoClaw(5)","OrangeHypnoPelt(6)","Killer Beetle(20)","Sleep Sac(3)"],"improve-mats":["Hypno Beak(1)","OrangeHypnoPelt(4)","Sleep Sac(2)"],"improve-to":["Feather Gunlance+"]},{"name":"Feather Gunlance+","attack":"460","element":"Sleep 120","sharpness":"6.4.8.10.2 6.4.8.10.4.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Spread Lv. 3","type":"gl","create-cost":"80,000z","improve-cost":"80,000z","improve-from":"Feather Gunlance","create-mats":["Hypno Fang (3)","OrangeHypnoPelt+ (8)","HvyPiscineFang (5)","Hypno Bezoar+ (1)"],"improve-mats":["Hypno Fang (1)","Top-GrdHpnoClaw (3)","OrangeHypnoPelt+ (5)","Blazing Fire Sac (2)"],"improve-to":["Hypno Cannon"]},{"name":"Hypno Cannon","attack":"506","element":"Sleep 140","sharpness":"9.5.9.10.5.2 9.5.9.10.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Spread Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"105,000z","improve-from":"Feather Gunlance+","create-mats":"N/A","improve-mats":["Hypno Claw + (5)","Hypno Bezoar+ (1)","Coma Sac (3)"],"improve-to":"N/A"},{"name":"Snow Gunlance","attack":"207","element":"Ice 100","sharpness":"7.3.3 7.3.9","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","shelling":"Normal Lv. 1","type":"gl","create-cost":"1,400z","improve-cost":"1,400z","improve-from":"Iron Lance","create-mats":["Giaprey Hide (3)","Giaprey Scale (6)","Machalite Ore (2)","Carpenterbug (5)"],"improve-mats":["Giaprey Hide (2)","Giaprey Scale (3)","Iron Ore (8)"],"improve-to":["Snow Gunlance Mk. II"]},{"name":"Snow Gunlance Mk. II","attack":"253","element":"Ice 120","sharpness":"5.5.8.1 5.5.8.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"3","shelling":"Normal Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"2,150z","improve-from":"Snow Gunlance","create-mats":"N/A","improve-mats":["Giadrome Hide (3)","Giadrome Skull (1)","Earth Crystal (8)"],"improve-to":["Blizzard Gunlance","Marine Fisher","Scissor Gunlance"]},{"name":"Blizzard Gunlance","attack":"437","element":"Ice 150","sharpness":"5.5.9.12.3 5.5.9.12.4.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"40,000z","improve-from":"Snow Gunlance Mk. II","create-mats":"N/A","improve-mats":["Giadrome Claw+ (4)","Giaprey Hide+ (4)","Inferno Sac (2)"],"improve-to":"N/A"},{"name":"Marine Fisher","attack":"299","element":"Water 100","sharpness":"5.5.8.6 5.5.8.11","affinity":"0%","slots":"---","bonus":"0%","rarity":"3","shelling":"Long Lv. 1","type":"gl","create-cost":"3100z","improve-cost":"3100z","improve-from":"Snow Gunlance Mk. II","create-mats":["Plesioth Fin (4)","Plesioth Scale (6)","Iron Ore (20)","Burst Arrowana (10)"],"improve-mats":["Plesioth Scale (5)","Cephalos Scale (3)","Machalite Ore (7)"],"improve-to":["Deep Fisher"]},{"name":"Deep Fisher","attack":"368","element":"Water 200","sharpness":"5.5.8.11 5.5.8.13.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"4","shelling":"Long Lv. 1","type":"gl","create-cost":"N/A","improve-cost":"5600z","improve-from":"Marine Fisher","create-mats":"N/A","improve-mats":["Plesioth Fin (7)","Monster Bone+ (4)","Dragonite Ore (7)"],"improve-to":["Deep Ocean"]},{"name":"Deep Ocean","attack":"391","element":"Water 300","sharpness":"5.7.5.13 5.7.5.13.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","shelling":"Long Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"40,000z","improve-from":"Deep Fisher","create-mats":"N/A","improve-mats":["Grn Plesioth Fin+ (3)","Grn Plesioth Scl (10)","Carbalite Ore (7)"],"improve-to":["Sea King Gunlance"]},{"name":"Sea King Gunlance","attack":"437","element":"Water 350","sharpness":"5.5.9.13.3 5.5.9.13.4.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"7","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"55,000z","improve-from":"Deep Ocean","create-mats":"N/A","improve-mats":["Wyvern Stone (2)","Green Plesioth Scale+ (10)","Union Ore (7)"],"improve-to":["Sea God Leviathan","Volcano Gunlance"]},{"name":"Sea God Leviathan","attack":"506","element":"Water 370","sharpness":"9.5.9.10.4.2 9.5.9.10.4.6.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"9","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Sea King Gunlance","create-mats":"N/A","improve-mats":["SpecGrnPlesioFn+ (3)","ThckGrnPlesioScl (4)","HvyPiscineFang (5)"],"improve-to":["Sea Abyss"]},{"name":"Sea Abyss","attack":"575","element":"Water 400","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"110,000z","improve-from":"Sea God Leviathan","create-mats":"N/A","improve-mats":["ThckGrnPlesioScl (5)","ThckPlesiothScale (5)","LeatherNargaTail (2)","Big Wyvern Stone (3)"],"improve-to":"N/A"},{"name":"Volcano Gunlance","attack":"598","element":"Fire 200","sharpness":"5.5.9.13.3 5.5.9.13.5.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Long Lv. 3","type":"gl","create-cost":"100000z","improve-cost":"100000z","improve-from":"Sea King Gunlance","create-mats":["ThckLavasiothScl (8)","HvyLavasiothShl (6)","HvyLavasiothFang (3)","Wyvern Stone (2)"],"improve-mats":["ThckLavasiothScl (3)","HvyLavasiothShl (4)","Firecell Stone (3)"],"improve-to":["Lavasioth Gunlance"]},{"name":"Lavasioth Gunlance","attack":"644","element":"Fire 240","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"120000z","improve-from":"Volcano Gunlance","create-mats":"N/A","improve-mats":["HvyLavasiothFang (5)","SpecLavasioFin+ (3)","Firecell Stone (10)","HvnlyBlkGraviShl (1)"],"improve-to":"N/A"},{"name":"Scissor Gunlance","attack":"437","element":"N/A","sharpness":"5.7.5.12 5.7.5.16.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"6","shelling":"Normal Lv. 3","type":"gl","create-cost":"40,000z","improve-cost":"40,000z","improve-from":["Bone Claw Lance+","Snow Gunlance Mk. II"],"create-mats":["Hermitaur Claw+ (3)","Hermitaur Carpce (5)","Flame Sac (10)","Black Pearl (20)"],"improve-mats":["Hermitaur Claw+ (2)","Hermitaur Shell (15)","Inferno Sac (2)"],"improve-to":["Scissor Cannon"]},{"name":"Scissor Cannon","attack":"460","element":"N/A","sharpness":"5.7.5.15.2 5.7.5.15.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Scissor Gunlance","create-mats":"N/A","improve-mats":["Hermitaur Claw+ (5)","Hermitaur Carpce (10)","FireWyvrn BrnStm (1)"],"improve-to":["Violet Cannon","Shell Claw Lance"]},{"name":"Violet Cannon","attack":"529","element":"N/A","sharpness":"3.7.4.16.5 3.7.4.15.7.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Normal Lv. 3","type":"gl","create-cost":"85,000z","improve-cost":"85,000z","improve-from":"Scissor Cannon","create-mats":["HermitrClw (4)","HermitrShl (8)","Giant Blk Pearl (3)","Fire Wyvern BrnStm (2)"],"improve-mats":["HermitrClw (2)","HermitrShl (5)","Blazing Fire Sac (2)"],"improve-to":["Violet Buster"]},{"name":"Violet Buster","attack":"621","element":"N/A","sharpness":"5.7.5.16.5.2 5.7.5.16.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"115,000z","improve-from":"Violet Cannon","create-mats":"N/A","improve-mats":["HermitrClw (5)","HermitrShl (10)","HvyLavasiothFang (4)"],"improve-to":"N/A"},{"name":"Iron Gunlance","attack":"207","element":"N/A","sharpness":"3.7.4.1 3.7.4.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","shelling":"Normal Lv. 1","type":"gl","create-cost":"1,100z","improve-cost":"1,100z","improve-from":["Iron Lance"],"create-mats":["Machalite Ore (5)","Iron Ore (10)","Gunpowder (5)","Flame Sac (1)"],"improve-mats":["Iron Ore (8)","Disk Stone (5)","Carpenterbug (5)"],"improve-to":["Iron Gunlance+"]},{"name":"Iron Gunlance+","attack":"253","element":"N/A","sharpness":"3.7.4.1 3.7.4.6","affinity":"0%","slots":"O--","bonus":"0%","rarity":"2","shelling":"Normal Lv. 1","type":"gl","create-cost":"N/A","improve-cost":"1,750z","improve-from":"Iron Gunlance","create-mats":"N/A","improve-mats":["Machalite Ore (3)","Earth Crystal (8)","Gunpowder (5)"],"improve-to":["Steel Gunlance"]},{"name":"Steel Gunlance","attack":"276","element":"N/A","sharpness":"5.7.5.3 5.7.5.8","affinity":"0%","slots":"O--","bonus":"0%","rarity":"2","shelling":"Normal Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"2,150z","improve-from":"Iron Gunlance+","create-mats":"N/A","improve-mats":["Machalite Ore (7)","Disk Stone (10)","Flame Sac (3)"],"improve-to":["Special Ops Gunlance","Luna's Howl","White Gunlance"]},{"name":"Special Ops Gunlance","attack":"322","element":"N/A","sharpness":"5.7.5.8 5.7.5.13","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"3","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"3,100z","improve-from":"Steel Gunlance","create-mats":"N/A","improve-mats":["Machalite Ore (15)","Firestone (3)","Lightcrystal (2)"],"improve-to":["Imperial Gunlance"]},{"name":"Imperial Gunlance","attack":"391","element":"N/A","sharpness":"3.7.4.16 3.7.4.16.5","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"4","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"6,500z","improve-from":"Special Ops Gunlance","create-mats":"N/A","improve-mats":["Monster Bone+ (3)","Firestone (6)","Dragonite Ore (5)"],"improve-to":["Silver Rook"]},{"name":"Silver Rook","attack":"414","element":"Dragon 250","sharpness":"5.7.5.13 5.7.5.16.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"65,000z","improve-from":"Imperial Gunlance","create-mats":"N/A","improve-mats":["Slvr Rthlos Tail (1)","Slvr Rthlos Cpc (3)","Slvr Rthlos Scl+ (5)"],"improve-to":["Gun Chariot"]},{"name":"Gun Chariot","attack":"437","element":"Dragon 320","sharpness":"5.7.5.16.2 5.7.5.16.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"8","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Silver Rook","create-mats":"N/A","improve-mats":["Silver Rathalos Tail (3)","Silver Rathalos Wing (1)","Rathalos Ruby (1)","FireWyvrn Marrow (10)"],"improve-to":["Gun Chariot+"]},{"name":"Gun Chariot+","attack":"529","element":"Dragon 350","sharpness":"9.5.9.10.5.2 9.5.9.10.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"100,000z","improve-from":"Gun Chariot","create-mats":"N/A","improve-mats":["Silver Rathalos Carapace (5)","Strong Rathalos Wing (3)","Blazing Fire Sac (5)"],"improve-to":["World's End"]},{"name":"World's End","attack":"575","element":"Dragon 370","sharpness":"5.7.5.16.5.2 5.7.5.16.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"125,000z","improve-from":"Gun Chariot+","create-mats":"N/A","improve-mats":["HvySlvrRthlsShl (5)","LthrSlvrRthlsTal (3)","HvnlyRathalosScl (1)","HvnlyGraviosShl (2)"],"improve-to":"N/A"},{"name":"Luna's Howl","attack":"345","element":"Fire 350","sharpness":"8.3.8.6 8.3.8.9.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"5","shelling":"Spread Lv. 1","type":"gl","create-cost":"5,600z","improve-cost":"5,600z","improve-from":["Steel Gunlance"],"create-mats":["Lunastra Tail (2)","Lunastra Shell (5)","Lunastra Mane (2)","Dragonite Ore (5)"],"improve-mats":["Lunastra Tail (1)","Fire Drgn Webbng (2)","Fire Dragon Scl (6)"],"improve-to":["Luna's Roar"]},{"name":"Luna's Roar","attack":"368","element":"Fire 400","sharpness":"9.5.9.10.2 9.5.9.10.5.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"5","shelling":"Spread Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"35,000z","improve-from":["Luna's Howl"],"create-mats":"N/A","improve-mats":["Teostra Tail (2)","Lunastra Shell (7)","ElderDragonBlood (1)"],"improve-to":["Luna's Flare"]},{"name":"Luna's Flare","attack":"414","element":"Fire 480","sharpness":"2.4.16.7.4 2.4.16.7.5.4","affinity":"0%","slots":"---","bonus":"0%","rarity":"8","shelling":"Spread Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Luna's Roar","create-mats":"N/A","improve-mats":["Lunastra Spike (2)","Fire Drgn Scl+ (8)","Fire Drgn Jwl (1)"],"improve-to":["Luna's Sun"]},{"name":"Luna's Sun","attack":"575","element":"Fire 500","sharpness":"2.4.16.7.5.4 2.4.16.7.5.6.5","affinity":"0%","slots":"---","bonus":"0%","rarity":"10","shelling":"Spread Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"130,000z","improve-from":"Luna's Flare","create-mats":"N/A","improve-mats":["LunastraCarapace (5)","LthrTeostraTail (2)","ThckFireDrgnScl (8)","BigEDragonJewel (1)"],"improve-to":"N/A"},{"name":"White Gunlance","attack":"368","element":"N/A","sharpness":"5.5.9.6 5.5.9.11","affinity":"0%","slots":"---","bonus":"0%","rarity":"4","shelling":"Long Lv. 1","type":"gl","create-cost":"N/A","improve-cost":"4,900z","improve-from":"Steel Gunlance","create-mats":"N/A","improve-mats":["Gravios Skl Shl(1)","Machalite Ore(15)","Flame Sac(6)"],"improve-to":["White Cannon"]},{"name":"White Cannon","attack":"414","element":"N/A","sharpness":"5.5.8.11 5.5.8.12.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"5","shelling":"Long Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"30,000z","improve-from":"White Gunlance","create-mats":"N/A","improve-mats":["Gravios Shell (10)","Gravios Skl Shl (1)","Firestone (4)"],"improve-to":["Black Gunlance"]},{"name":"Black Gunlance","attack":"483","element":"N/A","sharpness":"9.5.8.7 9.5.8.8.2","affinity":"-5%","slots":"O--","bonus":"-5%","rarity":"6","shelling":"Long Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"60,000z","improve-from":"White Cannon","create-mats":"N/A","improve-mats":["Wyvern Stone (2)","Blk Gravios Shl (15)","Firecell Stone (4)"],"improve-to":["Black Gore Cannon"]},{"name":"Black Gore Cannon","attack":"529","element":"N/A","sharpness":"9.5.9.10.2 9.5.9.10.5.2","affinity":"-10%","slots":"O--","bonus":"-10%","rarity":"7","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Black Gunlance","create-mats":"N/A","improve-mats":["Blk Gravios Cpc (8)","Blk Gravios Skl (2)","Gravios BrainStm (1)"],"improve-to":["Black Gore Buster"]},{"name":"Black Gore Buster","attack":"690","element":"N/A","sharpness":"9.5.9.10.4.2 9.5.9.10.4.6.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"115,000z","improve-from":"Black Gore Cannon","create-mats":"N/A","improve-mats":["HvyBlkGraviosShl (5)","HvnlyBlkGraviShl (1)","Big Wyvern Stone (3)"],"improve-to":"N/A"},{"name":"Heavy Bone Gunlance","attack":"506","element":"N/A","sharpness":"11.9.4.9.3 11.9.4.9.4.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"75,000z","improve-cost":"75,000z","improve-from":["Barbarian Tusk"],"create-mats":["Hvy Monster Bone (5)","Blazing Fire Sac (2)","Eltalite Ore (5)","Rajang Horn (1)"],"improve-mats":["Massive Bone (3)","RobustWyvernBone (4)","Firecell Stone(4)","Rajang Horn (1)"],"improve-to":["Hard Bone Cannon"]},{"name":"Hard Bone Cannon","attack":"598","element":"N/A","sharpness":"11.9.4.9.4.3 11.9.4.9.4.4.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Normal Lv. 5","type":"gl","create-cost":"N/A","improve-cost":"100,000z","improve-from":["Heavy Bone Gunlance"],"create-mats":"N/A","improve-mats":["BigEDragonBone (3)","Blazing Fire Sac (5)","Emperor Cricket (10)"],"improve-to":"N/A"},{"name":"Full Voltage","attack":"460","element":"Thunder 180","sharpness":"11.9.4.6 11.9.4.9.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"7","shelling":"Long Lv. 2","type":"gl","create-cost":"50,000z","improve-cost":"50,000z","improve-from":["Hard Bone Lance+"],"create-mats":["Khezu Hide-Tan (8)","Thunder Sac (5)","Carbalite Ore (10)","Rubbery Hide+ (5)"],"improve-mats":["Khezu Hide-Tan (5)","Thunder Sac (3)","Rubbery Hide+(3)"],"improve-to":["Full Generator"]},{"name":"Full Generator","attack":"529","element":"Thunder 220","sharpness":"11.9.4.9.2 11.9.4.9.4.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"85,000z","improve-from":"Full Voltage","create-mats":"N/A","improve-mats":["KhezuHide-Cream(5)","Lightning Sac(3)","Pale Khezu Steak(1)"],"improve-to":["High Volt Gunlance"]},{"name":"High Volt Gunlance","attack":"644","element":"Thunder 260","sharpness":"11.9.4.9.4.2 11.9.4.9.4.4.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"120,000z","improve-from":"Full Generator","create-mats":"N/A","improve-mats":["KhezuHide-Cream(5)","KhezuSpecialCut(1)","SpecRubberyHide+(5)","LthrKirinThndrTl(2)"],"improve-to":"N/A"},{"name":"Bone Gunlance","attack":"161","element":"N/A","sharpness":"2.4.7 2.4.10","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","shelling":"Normal Lv. 1","type":"gl","create-cost":"650z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Brute Bone (2)","Rumblefish (1)"],"improve-mats":"N/A","improve-to":["Great Bone Gunlance"]},{"name":"Great Bone Gunlance","attack":"230","element":"N/A","sharpness":"2.4.12 2.4.16.1","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","shelling":"Normal Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"1400z","improve-from":"Bone Gunlance","create-mats":"N/A","improve-mats":["Brute Bone (5)","Fire Herb (5)"],"improve-to":["Wyvern Bone Gunlance","Average Hitter"]},{"name":"Wyvern Bone Gunlance","attack":"299","element":"N/A","sharpness":"2.4.16.1 2.4.16.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"2150z","improve-from":"Great Bone Gunlance","create-mats":"N/A","improve-mats":["Giant Bone (3)","Lg Monster Bone (3)","Burst Arrowana (3)"],"improve-to":["Hellsting"]},{"name":"Hellsting","attack":"322","element":"Ice 250","sharpness":"15.4.3.5 15.4.3.9.1","affinity":"10%","slots":"O--","bonus":"10%","rarity":"4","shelling":"Spread Lv. 1","type":"gl","create-cost":"4250z","improve-cost":"4250z","improve-from":"Wyvern Bone Gunlance","create-mats":["Blangonga Fang (2)","Blango Pelt (20)","Giant Bone (2)","Sharp Claw (4)"],"improve-mats":["Blango Pelt (15)","Blangonga Pelt (5)","Ice Crystal (10)"],"improve-to":["Hellsting+"]},{"name":"Hellsting+","attack":"345","element":"Ice 270","sharpness":"2.4.16.5 2.4.16.7.3","affinity":"10%","slots":"OO-","bonus":"10%","rarity":"5","shelling":"Spread Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"6350z","improve-from":"Hellsting","create-mats":"N/A","improve-mats":["Blangonga Fang (2)","Blangonga Tail (5)","Tigrex Fang (5)"],"improve-to":["Hellstinger"]},{"name":"Hellstinger","attack":"414","element":"Ice 320","sharpness":"2.4.16.7.5 2.4.16.7.5.5","affinity":"20%","slots":"OO-","bonus":"20%","rarity":"7","shelling":"Spread Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"50000z","improve-from":"Hellsting+","create-mats":"N/A","improve-mats":["Blangonga Fang+ (4)","Blangonga Whiskr (4)","Blango Pelt+ (10)"],"improve-to":["Demonic Blizzard","Desert Slingshot"]},{"name":"Demonic Blizzard","attack":"575","element":"Ice 340","sharpness":"2.4.16.7.5.5 2.4.16.7.5.6.5","affinity":"25%","slots":"OO-","bonus":"25%","rarity":"10","shelling":"Spread Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Hellstinger","create-mats":"N/A","improve-mats":[],"improve-to":"N/A"},{"name":"Desert Slingshot","attack":"644","element":"N/A","sharpness":"16.5.4.9.4.2 16.5.4.9.4.5.2","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"9","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"95,000z","improve-from":"Hellstinger","create-mats":"N/A","improve-mats":["BlangoFang (2)","BlangongaPelt+ (4)","HvyNargacugaFang (4)"],"improve-to":["Desert Slingshoter"]},{"name":"Desert Slingshoter","attack":"736","element":"N/A","sharpness":"11.8.5.8.5.3 11.8.5.8.5.4.4","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"10","shelling":"Normal Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"115,000z","improve-from":"Desert Slingshot","create-mats":"N/A","improve-mats":["Brwn Blngnga Tail (2)","Blngnga Hrd Whskr (5)","Brwn Blngnga Pelt (10)","Rajang Strng Claw (3)"],"improve-to":"N/A"},{"name":"Average Hitter","attack":"299","element":"Poison 180","sharpness":"7.4.8 7.4.13","affinity":"0%","slots":"O--","bonus":"0%","rarity":"3","shelling":"Normal Lv. 2","type":"gl","create-cost":"3100z","improve-cost":"3100z","improve-from":"Great Bone Gunlance","create-mats":["Pur Rubbery Hide (4)","Gypceros Head (1)","Poison Sac (10)","Firestone (3)"],"improve-mats":["Pur Rubbery Hide (4)","Lightcrystal (2)","Poison Sac (5)"],"improve-to":["Grand Slam"]},{"name":"Grand Slam","attack":"391","element":"Poison 240","sharpness":"7.4.8.2 7.4.8.6","affinity":"0%","slots":"O--","bonus":"0%","rarity":"4","shelling":"Normal Lv. 2","type":"gl","create-cost":"N/A","improve-cost":"5600z","improve-from":"Average Hitter","create-mats":"N/A","improve-mats":["Pur Rubbery Hide (10)","Gypceros Head (1)","Remobra Skull (2)"],"improve-to":["Hard Hitter"]},{"name":"Hard Hitter","attack":"437","element":"Poison 290","sharpness":"6.3.15.3 6.3.15.5.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"6","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"35,000z","improve-from":"Grand Slam","create-mats":"N/A","improve-mats":["Rubbery Hide+ (4)","Toxin Sac (7)","Novacrystal (2)"],"improve-to":["Big Slugger"]},{"name":"Big Slugger","attack":"460","element":"Poison 320","sharpness":"4.4.9.11 4.4.9.12.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Hard Hitter","create-mats":"N/A","improve-mats":["Rubbery Hide+ (8)","Gypceros Head (3)","Inferno Sac (8)"],"improve-to":["Triple Crown","Venomous Cologne"]},{"name":"Triple Crown","attack":"506","element":"Poison 400","sharpness":"4.4.9.12.3 4.4.9.12.4.2","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"105,000z","improve-from":"Big Slugger","create-mats":"N/A","improve-mats":["SpecRubberyHide+ (5)","HrdGypcerosHead (1)","DeadlyPoisonSac (5)","Purecrystal (1)"],"improve-to":"N/A"},{"name":"Venomous Cologne","attack":"483","element":"Poison 160","sharpness":"8.4.7.10.2 8.4.7.10.3.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"8","shelling":"Long Lv. 2","type":"gl","create-cost":"90,000z","improve-cost":"90,000z","improve-from":"Big Slugger","create-mats":["Chameleos Hide+ (5)","Novacrystal (5)","Chameleos Spike(2)","Firecell Stone (5)"],"improve-mats":["Chameleos Hide+ (3)","Novacrystal (3)","Inferno Sac (5)"],"improve-to":["Venomous Attar"]},{"name":"Venomous Attar","attack":"575","element":"Poison 200","sharpness":"18.5.3.9.3.2 18.5.3.9.3.5.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Long Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"110,000z","improve-from":"Venomous Cologne","create-mats":"N/A","improve-mats":["Chameleos Hide+ (5)","Purecrystal (2)","DeadlyPoisonSac (5)","LethrGarugaTail (2)"],"improve-to":["Venomous Perfume"]},{"name":"Venomous Perfume","attack":"644","element":"Poison 240","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","shelling":"Long Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"130,000z","improve-from":"Venomous Attar","create-mats":"N/A","improve-mats":["SpecChameleHide+ (5)","StrChameleosWing (2)","Purecrystal (3)","Chameleos Jewel (3)"],"improve-to":"N/A"},{"name":"Black Smoke Gunlance","attack":"345","element":"Dragon 250","sharpness":"5.5.9.7 5.5.9.10","affinity":"0%","slots":"---","bonus":"0%","rarity":"5","shelling":"Spread Lv. 1","type":"gl","create-cost":"15000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Dark Stone (1)","Dark Piece (4)","Pokke Ticket (1)"],"improve-mats":"N/A","improve-to":["BlackDragonGunlance"]},{"name":"BlackDragonGunlance","attack":"460","element":"Dragon 310","sharpness":"11.7.4.7.3 11.7.4.7.5.2","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"8","shelling":"Spread Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"100000z","improve-from":"Black Smoke Gunlance","create-mats":"N/A","improve-mats":["Fatalis Eye (1)","Fatalis Horn (2)","Fatalis Shell (4)","Daora Jewel (1)"],"improve-to":["TrueBlkDrgnGunlance"]},{"name":"TrueBlkDrgnGunlance","attack":"621","element":"Dragon 380","sharpness":"18.5.3.9.3.2 18.5.3.9.3.5.2","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"10","shelling":"Spread Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"150000z","improve-from":"BlackDragonGunlance","create-mats":"N/A","improve-mats":["Fatalis Evil Eye (1)","HardFatalisHorn (2)","Hvy Fatalis Shl (4)","BigEDragonJewel (1)"],"improve-to":"N/A"},{"name":"Dragonwood Gunlance","attack":"299","element":"Paralysis 180","sharpness":"6.3.13.5 6.3.13.6.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"5","shelling":"Normal Lv. 2","type":"gl","create-cost":"20,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Dragonwood (4)","Sinister Cloth (1)","Thunderbug Juice (5)","FireWyvern Fluid (10)"],"improve-mats":"N/A","improve-to":["Gld Dragonwd GLance"]},{"name":"Gld Dragonwd GLance","attack":"368","element":"Paralysis 230","sharpness":"6.3.13.5.3 6.3.13.5.3.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"8","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Dragonwood Gunlance","create-mats":"N/A","improve-mats":["Dragonwood+ (4)","Dragonmoss+ (2)","Pokke Ticket+ (1)"],"improve-to":["AncientDrgnwoodLance"]},{"name":"AncientDrgnwoodLance","attack":"460","element":"Paralysis 250","sharpness":"15.5.4.9.3.2 15.5.4.9.3.6.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Normal Lv. 3","type":"gl","create-cost":"120,000z","improve-cost":"120,000z","improve-from":"Gld Dragonwd GLance","create-mats":["AncientDrgnwood (5)","YamaTsukaFillet (2)","Thunderbug Jelly (10)","Fire Dragon Pwdr (3)"],"improve-mats":["AncientDrgnwood (3)","AncientDrgnmoss (3)","Fire Dragon Pwdr (1)"],"improve-to":["AncientDrgnwoodLanc+"]},{"name":"AncientDrgnwoodLanc+","attack":"529","element":"Paralysis 270","sharpness":"9.5.9.10.5.2 9.5.9.10.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","shelling":"Normal Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"145,000z","improve-from":"AncientDrgnwoodLance","create-mats":"N/A","improve-mats":["YamaTsukamiHide (5)","YamaTsukamiFluid (5)","ThckFireDrgnScl (3)","Commendation S (1)"],"improve-to":"N/A"},{"name":"Pop Corn","attack":"414","element":"N/A","sharpness":"3.7.4.16 3.7.4.16.5","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"6","shelling":"Spread Lv. 3","type":"gl","create-cost":"40,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Giant Corn (2)","Inferno Sac (5)","Ivy (10)","Commendation G (1)"],"improve-mats":"N/A","improve-to":["Large Pop Corn"]},{"name":"Large Pop Corn","attack":"598","element":"N/A","sharpness":"3.7.4.16.5 3.7.4.16.7.3","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"9","shelling":"Spread Lv. 5","type":"gl","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Pop Corn","create-mats":"N/A","improve-mats":["Giant Corn (5)","Blazing Fire Sac (3)","Ancient Dragonwood (1)","Eltalite Ore (10)"],"improve-to":"N/A"},{"name":"Rex Blast","attack":"391","element":"N/A","sharpness":"13.4.3.9.1 13.4.3.9.3.2","affinity":"-30%","slots":"---","bonus":"-30%","rarity":"5","shelling":"Spread Lv. 2","type":"gl","create-cost":"35,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Tigrex Fang (4)","Tigrex Claw (5)","Tigrex Shell (2)","Pokke Ticket (1)"],"improve-mats":"N/A","improve-to":["Tigrex Gunlance","Hidden Gunlance"]},{"name":"Tigrex Gunlance","attack":"506","element":"N/A","sharpness":"9.5.9.10.4.2 9.5.9.10.4.6.2","affinity":"-30%","slots":"---","bonus":"-30%","rarity":"7","shelling":"Spread Lv. 3","type":"gl","create-cost":"N/A","improve-cost":"80000z","improve-from":"Rex Blast","create-mats":"N/A","improve-mats":["Tigrex Fang+ (4)","Tigrex Claw+ (5)","Tigrex Carapace (4)"],"improve-to":["GreatTigrexGunlance"]},{"name":"GreatTigrexGunlance","attack":"667","element":"N/A","sharpness":"9.5.9.10.4.6.2 9.5.9.10.4.6.2","affinity":"-30%","slots":"---","bonus":"-30%","rarity":"10","shelling":"Spread Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"125000z","improve-from":"Tigrex Gunlance","create-mats":"N/A","improve-mats":["HeavyTigrexFang (4)","HardTigrexClaw (5)","HvnlyTigrexScale (1)"],"improve-to":"N/A"},{"name":"Hidden Gunlance","attack":"437","element":"N/A","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"50%","slots":"O--","bonus":"50%","rarity":"7","shelling":"Normal Lv. 3","type":"gl","create-cost":"80000z","improve-cost":"80000z","improve-from":"Rex Blast","create-mats":["NargaCuttingWing(4)","Nargacuga Tail(3)","Narga Brain Stem(1)","Hrd Monster Bone(5)"],"improve-mats":["NargaCuttingWing(2)","Nargacuga Tail(1)","Narga Scale+ (10)"],"improve-to":["WanningMoonDarklance"]},{"name":"WanningMoonDarklance","attack":"552","element":"N/A","sharpness":"5.5.9.13.5.5.3 5.5.9.13.5.5.3","affinity":"50%","slots":"OO-","bonus":"50%","rarity":"10","shelling":"Normal Lv. 4","type":"gl","create-cost":"120000z","improve-cost":"120000z","improve-from":"Hidden Gunlance","create-mats":["LeatherNargaTail (4)","ThickNargaScale (10)","HvnlyNargaScale (1)","LeatherTigrexTail (2)"],"improve-mats":["StrNargaCttngWng (4)","LeatherNargaTail (2)","Narga Brain Stem (2)","Hvy Monster Bone (5)"],"improve-to":"N/A"},{"name":"Akantor Gunlance","attack":"575","element":"N/A","sharpness":"4.7.4.2 4.7.4.7","affinity":"40%","slots":"---","bonus":"40%","rarity":"8","shelling":"Normal Lv. 2","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Akantor Fang (4)","Akantor Claw (3)","Akantor Shell (5)","Firecell Stone (8)"],"improve-mats":"N/A","improve-to":["AkantorNoirGunlance"]},{"name":"AkantorNoirGunlance","attack":"759","element":"N/A","sharpness":"4.7.4.8 4.7.4.14","affinity":"40%","slots":"O--","bonus":"40%","rarity":"10","shelling":"Normal Lv. 4","type":"gl","create-cost":"N/A","improve-cost":"145,000z","improve-from":"Akantor Gunlance","create-mats":"N/A","improve-mats":["Ukanlos Stone (1)","Big Wyvern Stone (3)","Akantor Fang (4)","Akantor Shell (7)"],"improve-to":"N/A"},{"name":"UkanlosBlazeGunlance","attack":"805","element":"Ice 120","sharpness":"16.5.4.9.1 16.5.4.9.4.2","affinity":"-30%","slots":"---","bonus":"-30%","rarity":"10","shelling":"Long Lv. 5","type":"gl","create-cost":"150000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["UkanlosShovelJaw (2)","StrongUkanlosFin (4)","HvyUkanlosShell (5)","Ukanlos Stone (1)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Iron Gunlance G","attack":"644","element":"N/A","sharpness":"5.7.5.16.5.2 5.7.5.16.5.5.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Normal Lv. 3","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Gunpowder (20)","Eltalite Ore (10)","Blazing Fire Sac (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"WyvernBone Gunlance G","attack":"644","element":"N/A","sharpness":"3.4.17.7.5.4 3.4.17.7.5.5.4","affinity":"0%","slots":"---","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Hard Monster Bone (8)","Massive Bone (5)","Burst Arrowana (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Blizzard Gunlance G","attack":"598","element":"Ice 150","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Giadrome Claw+ (10)","Giaprey Hide+ (10)","Blazing Fire Sac (8)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Imperial Gunlance G","attack":"621","element":"N/A","sharpness":"3.7.4.16.7.3 3.7.4.16.7.5.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","shelling":"Long Lv. 4","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Firestone (20)","Mellanje Ore (5)","Purecrystal (2)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Scissor Cannon G","attack":"598","element":"N/A","sharpness":"5.7.5.16.5.2 5.7.5.16.5.5.2","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","HrdHermitaurClaw (2)","HvyHermitaurShl (4)","Inferno Sac (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Grand Slam G","attack":"621","element":"Poison 240","sharpness":"7.4.15.6.3 7.4.15.6.4.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","shelling":"Normal Lv. 4","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Gypceros Head (3)","HrdPuGypcerosWng (4)","Deadly Poison Sac (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Marine Fisher G","attack":"598","element":"Water 200","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"9","shelling":"Long Lv. 3","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","SpecPlesiothFin+ (4)","ThckPlesiothScl (5)","Cephalos Fin+ (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"White Cannon G","attack":"621","element":"N/A","sharpness":"5.5.9.13.5.3 5.5.9.13.5.5.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","shelling":"Long Lv. 3","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Gravios Skl Shl (3)","HvyGraviosShell (5)","Flame Sac (20)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Gld Dragonwd GLance G","attack":"506","element":"Paralysis 230","sharpness":"7.4.15.6.4.4 7.4.15.6.4.6.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","shelling":"Normal Lv. 3","type":"gl","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Dragonwood+ (10)","Sinister Cloth (10)","ThckFireDrgnScl (2)"],"improve-mats":"N/A","improve-to":"N/A"}]}
+{
+  "weapons": [
+    {
+      "name": "Ancient Destroyer",
+      "attack": "552",
+      "element": null,
+      "sharpness": "7.4.7.9.2 7.4.7.9.4.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": "80,000z",
+      "improve-cost": "80,000z",
+      "improve-from": "Babel Spear",
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Iron Ore (80)",
+        "Blazing Fire Sac (5)",
+        "Lightning Sac (5)"
+      ],
+      "improve-mats": [
+        "Eltalite Ore (8)",
+        "Blazing Fire Sac (3)",
+        "Lightning Sac (3)"
+      ],
+      "improve-to": [
+        "Genesis"
+      ]
+    },
+    {
+      "name": "Genesis",
+      "attack": "621",
+      "element": null,
+      "sharpness": "18.4.3.10.3.2 18.4.3.10.3.5.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Spread Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "Ancient Destroyer",
+      "create-mats": null,
+      "improve-mats": [
+        "Mellanje Ore (10)",
+        "Iron Ore(30)",
+        "LthrRathalosTail(5)",
+        "Thunderbug Jelly(10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Feather Gunlance",
+      "attack": "368",
+      "element": "Sleep 100",
+      "sharpness": "7.4.8.6 7.4.8.9.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Spread Lv. 2",
+      "type": "gl",
+      "create-cost": "50,000z",
+      "improve-cost": "50,000z",
+      "improve-from": "Knight Lance",
+      "create-mats": [
+        "Top-GrdHypnoClaw(5)",
+        "OrangeHypnoPelt(6)",
+        "Killer Beetle(20)",
+        "Sleep Sac(3)"
+      ],
+      "improve-mats": [
+        "Hypno Beak(1)",
+        "OrangeHypnoPelt(4)",
+        "Sleep Sac(2)"
+      ],
+      "improve-to": [
+        "Feather Gunlance+"
+      ]
+    },
+    {
+      "name": "Feather Gunlance+",
+      "attack": "460",
+      "element": "Sleep 120",
+      "sharpness": "6.4.8.10.2 6.4.8.10.4.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": "80,000z",
+      "improve-cost": "80,000z",
+      "improve-from": "Feather Gunlance",
+      "create-mats": [
+        "Hypno Fang (3)",
+        "OrangeHypnoPelt+ (8)",
+        "HvyPiscineFang (5)",
+        "Hypno Bezoar+ (1)"
+      ],
+      "improve-mats": [
+        "Hypno Fang (1)",
+        "Top-GrdHpnoClaw (3)",
+        "OrangeHypnoPelt+ (5)",
+        "Blazing Fire Sac (2)"
+      ],
+      "improve-to": [
+        "Hypno Cannon"
+      ]
+    },
+    {
+      "name": "Hypno Cannon",
+      "attack": "506",
+      "element": "Sleep 140",
+      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "105,000z",
+      "improve-from": "Feather Gunlance+",
+      "create-mats": null,
+      "improve-mats": [
+        "Hypno Claw + (5)",
+        "Hypno Bezoar+ (1)",
+        "Coma Sac (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Snow Gunlance",
+      "attack": "207",
+      "element": "Ice 100",
+      "sharpness": "7.3.3 7.3.9",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "Normal Lv. 1",
+      "type": "gl",
+      "create-cost": "1,400z",
+      "improve-cost": "1,400z",
+      "improve-from": "Iron Lance",
+      "create-mats": [
+        "Giaprey Hide (3)",
+        "Giaprey Scale (6)",
+        "Machalite Ore (2)",
+        "Carpenterbug (5)"
+      ],
+      "improve-mats": [
+        "Giaprey Hide (2)",
+        "Giaprey Scale (3)",
+        "Iron Ore (8)"
+      ],
+      "improve-to": [
+        "Snow Gunlance Mk. II"
+      ]
+    },
+    {
+      "name": "Snow Gunlance Mk. II",
+      "attack": "253",
+      "element": "Ice 120",
+      "sharpness": "5.5.8.1 5.5.8.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": "Snow Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Giadrome Hide (3)",
+        "Giadrome Skull (1)",
+        "Earth Crystal (8)"
+      ],
+      "improve-to": [
+        "Blizzard Gunlance",
+        "Marine Fisher",
+        "Scissor Gunlance"
+      ]
+    },
+    {
+      "name": "Blizzard Gunlance",
+      "attack": "437",
+      "element": "Ice 150",
+      "sharpness": "5.5.9.12.3 5.5.9.12.4.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "40,000z",
+      "improve-from": "Snow Gunlance Mk. II",
+      "create-mats": null,
+      "improve-mats": [
+        "Giadrome Claw+ (4)",
+        "Giaprey Hide+ (4)",
+        "Inferno Sac (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Marine Fisher",
+      "attack": "299",
+      "element": "Water 100",
+      "sharpness": "5.5.8.6 5.5.8.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "Long Lv. 1",
+      "type": "gl",
+      "create-cost": "3100z",
+      "improve-cost": "3100z",
+      "improve-from": "Snow Gunlance Mk. II",
+      "create-mats": [
+        "Plesioth Fin (4)",
+        "Plesioth Scale (6)",
+        "Iron Ore (20)",
+        "Burst Arrowana (10)"
+      ],
+      "improve-mats": [
+        "Plesioth Scale (5)",
+        "Cephalos Scale (3)",
+        "Machalite Ore (7)"
+      ],
+      "improve-to": [
+        "Deep Fisher"
+      ]
+    },
+    {
+      "name": "Deep Fisher",
+      "attack": "368",
+      "element": "Water 200",
+      "sharpness": "5.5.8.11 5.5.8.13.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "Long Lv. 1",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "5600z",
+      "improve-from": "Marine Fisher",
+      "create-mats": null,
+      "improve-mats": [
+        "Plesioth Fin (7)",
+        "Monster Bone+ (4)",
+        "Dragonite Ore (7)"
+      ],
+      "improve-to": [
+        "Deep Ocean"
+      ]
+    },
+    {
+      "name": "Deep Ocean",
+      "attack": "391",
+      "element": "Water 300",
+      "sharpness": "5.7.5.13 5.7.5.13.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Long Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "40,000z",
+      "improve-from": "Deep Fisher",
+      "create-mats": null,
+      "improve-mats": [
+        "Grn Plesioth Fin+ (3)",
+        "Grn Plesioth Scl (10)",
+        "Carbalite Ore (7)"
+      ],
+      "improve-to": [
+        "Sea King Gunlance"
+      ]
+    },
+    {
+      "name": "Sea King Gunlance",
+      "attack": "437",
+      "element": "Water 350",
+      "sharpness": "5.5.9.13.3 5.5.9.13.4.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "55,000z",
+      "improve-from": "Deep Ocean",
+      "create-mats": null,
+      "improve-mats": [
+        "Wyvern Stone (2)",
+        "Green Plesioth Scale+ (10)",
+        "Union Ore (7)"
+      ],
+      "improve-to": [
+        "Sea God Leviathan",
+        "Volcano Gunlance"
+      ]
+    },
+    {
+      "name": "Sea God Leviathan",
+      "attack": "506",
+      "element": "Water 370",
+      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Sea King Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "SpecGrnPlesioFn+ (3)",
+        "ThckGrnPlesioScl (4)",
+        "HvyPiscineFang (5)"
+      ],
+      "improve-to": [
+        "Sea Abyss"
+      ]
+    },
+    {
+      "name": "Sea Abyss",
+      "attack": "575",
+      "element": "Water 400",
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "110,000z",
+      "improve-from": "Sea God Leviathan",
+      "create-mats": null,
+      "improve-mats": [
+        "ThckGrnPlesioScl (5)",
+        "ThckPlesiothScale (5)",
+        "LeatherNargaTail (2)",
+        "Big Wyvern Stone (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Volcano Gunlance",
+      "attack": "598",
+      "element": "Fire 200",
+      "sharpness": "5.5.9.13.3 5.5.9.13.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": "100000z",
+      "improve-cost": "100000z",
+      "improve-from": "Sea King Gunlance",
+      "create-mats": [
+        "ThckLavasiothScl (8)",
+        "HvyLavasiothShl (6)",
+        "HvyLavasiothFang (3)",
+        "Wyvern Stone (2)"
+      ],
+      "improve-mats": [
+        "ThckLavasiothScl (3)",
+        "HvyLavasiothShl (4)",
+        "Firecell Stone (3)"
+      ],
+      "improve-to": [
+        "Lavasioth Gunlance"
+      ]
+    },
+    {
+      "name": "Lavasioth Gunlance",
+      "attack": "644",
+      "element": "Fire 240",
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "120000z",
+      "improve-from": "Volcano Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "HvyLavasiothFang (5)",
+        "SpecLavasioFin+ (3)",
+        "Firecell Stone (10)",
+        "HvnlyBlkGraviShl (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Scissor Gunlance",
+      "attack": "437",
+      "element": null,
+      "sharpness": "5.7.5.12 5.7.5.16.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "40,000z",
+      "improve-cost": "40,000z",
+      "improve-from": [
+        "Bone Claw Lance+",
+        "Snow Gunlance Mk. II"
+      ],
+      "create-mats": [
+        "Hermitaur Claw+ (3)",
+        "Hermitaur Carpce (5)",
+        "Flame Sac (10)",
+        "Black Pearl (20)"
+      ],
+      "improve-mats": [
+        "Hermitaur Claw+ (2)",
+        "Hermitaur Shell (15)",
+        "Inferno Sac (2)"
+      ],
+      "improve-to": [
+        "Scissor Cannon"
+      ]
+    },
+    {
+      "name": "Scissor Cannon",
+      "attack": "460",
+      "element": null,
+      "sharpness": "5.7.5.15.2 5.7.5.15.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Scissor Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Hermitaur Claw+ (5)",
+        "Hermitaur Carpce (10)",
+        "FireWyvrn BrnStm (1)"
+      ],
+      "improve-to": [
+        "Violet Cannon",
+        "Shell Claw Lance"
+      ]
+    },
+    {
+      "name": "Violet Cannon",
+      "attack": "529",
+      "element": null,
+      "sharpness": "3.7.4.16.5 3.7.4.15.7.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "85,000z",
+      "improve-cost": "85,000z",
+      "improve-from": "Scissor Cannon",
+      "create-mats": [
+        "HermitrClw (4)",
+        "HermitrShl (8)",
+        "Giant Blk Pearl (3)",
+        "Fire Wyvern BrnStm (2)"
+      ],
+      "improve-mats": [
+        "HermitrClw (2)",
+        "HermitrShl (5)",
+        "Blazing Fire Sac (2)"
+      ],
+      "improve-to": [
+        "Violet Buster"
+      ]
+    },
+    {
+      "name": "Violet Buster",
+      "attack": "621",
+      "element": null,
+      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "Violet Cannon",
+      "create-mats": null,
+      "improve-mats": [
+        "HermitrClw (5)",
+        "HermitrShl (10)",
+        "HvyLavasiothFang (4)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Iron Gunlance",
+      "attack": "207",
+      "element": null,
+      "sharpness": "3.7.4.1 3.7.4.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "Normal Lv. 1",
+      "type": "gl",
+      "create-cost": "1,100z",
+      "improve-cost": "1,100z",
+      "improve-from": [
+        "Iron Lance"
+      ],
+      "create-mats": [
+        "Machalite Ore (5)",
+        "Iron Ore (10)",
+        "Gunpowder (5)",
+        "Flame Sac (1)"
+      ],
+      "improve-mats": [
+        "Iron Ore (8)",
+        "Disk Stone (5)",
+        "Carpenterbug (5)"
+      ],
+      "improve-to": [
+        "Iron Gunlance+"
+      ]
+    },
+    {
+      "name": "Iron Gunlance+",
+      "attack": "253",
+      "element": null,
+      "sharpness": "3.7.4.1 3.7.4.6",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "Normal Lv. 1",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "1,750z",
+      "improve-from": "Iron Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Machalite Ore (3)",
+        "Earth Crystal (8)",
+        "Gunpowder (5)"
+      ],
+      "improve-to": [
+        "Steel Gunlance"
+      ]
+    },
+    {
+      "name": "Steel Gunlance",
+      "attack": "276",
+      "element": null,
+      "sharpness": "5.7.5.3 5.7.5.8",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": "Iron Gunlance+",
+      "create-mats": null,
+      "improve-mats": [
+        "Machalite Ore (7)",
+        "Disk Stone (10)",
+        "Flame Sac (3)"
+      ],
+      "improve-to": [
+        "Special Ops Gunlance",
+        "Luna's Howl",
+        "White Gunlance"
+      ]
+    },
+    {
+      "name": "Special Ops Gunlance",
+      "attack": "322",
+      "element": null,
+      "sharpness": "5.7.5.8 5.7.5.13",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "3,100z",
+      "improve-from": "Steel Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Machalite Ore (15)",
+        "Firestone (3)",
+        "Lightcrystal (2)"
+      ],
+      "improve-to": [
+        "Imperial Gunlance"
+      ]
+    },
+    {
+      "name": "Imperial Gunlance",
+      "attack": "391",
+      "element": null,
+      "sharpness": "3.7.4.16 3.7.4.16.5",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "6,500z",
+      "improve-from": "Special Ops Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Monster Bone+ (3)",
+        "Firestone (6)",
+        "Dragonite Ore (5)"
+      ],
+      "improve-to": [
+        "Silver Rook"
+      ]
+    },
+    {
+      "name": "Silver Rook",
+      "attack": "414",
+      "element": "Dragon 250",
+      "sharpness": "5.7.5.13 5.7.5.16.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "65,000z",
+      "improve-from": "Imperial Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Slvr Rthlos Tail (1)",
+        "Slvr Rthlos Cpc (3)",
+        "Slvr Rthlos Scl+ (5)"
+      ],
+      "improve-to": [
+        "Gun Chariot"
+      ]
+    },
+    {
+      "name": "Gun Chariot",
+      "attack": "437",
+      "element": "Dragon 320",
+      "sharpness": "5.7.5.16.2 5.7.5.16.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Silver Rook",
+      "create-mats": null,
+      "improve-mats": [
+        "Silver Rathalos Tail (3)",
+        "Silver Rathalos Wing (1)",
+        "Rathalos Ruby (1)",
+        "FireWyvrn Marrow (10)"
+      ],
+      "improve-to": [
+        "Gun Chariot+"
+      ]
+    },
+    {
+      "name": "Gun Chariot+",
+      "attack": "529",
+      "element": "Dragon 350",
+      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": "Gun Chariot",
+      "create-mats": null,
+      "improve-mats": [
+        "Silver Rathalos Carapace (5)",
+        "Strong Rathalos Wing (3)",
+        "Blazing Fire Sac (5)"
+      ],
+      "improve-to": [
+        "World's End"
+      ]
+    },
+    {
+      "name": "World's End",
+      "attack": "575",
+      "element": "Dragon 370",
+      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "125,000z",
+      "improve-from": "Gun Chariot+",
+      "create-mats": null,
+      "improve-mats": [
+        "HvySlvrRthlsShl (5)",
+        "LthrSlvrRthlsTal (3)",
+        "HvnlyRathalosScl (1)",
+        "HvnlyGraviosShl (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Luna's Howl",
+      "attack": "345",
+      "element": "Fire 350",
+      "sharpness": "8.3.8.6 8.3.8.9.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "Spread Lv. 1",
+      "type": "gl",
+      "create-cost": "5,600z",
+      "improve-cost": "5,600z",
+      "improve-from": [
+        "Steel Gunlance"
+      ],
+      "create-mats": [
+        "Lunastra Tail (2)",
+        "Lunastra Shell (5)",
+        "Lunastra Mane (2)",
+        "Dragonite Ore (5)"
+      ],
+      "improve-mats": [
+        "Lunastra Tail (1)",
+        "Fire Drgn Webbng (2)",
+        "Fire Dragon Scl (6)"
+      ],
+      "improve-to": [
+        "Luna's Roar"
+      ]
+    },
+    {
+      "name": "Luna's Roar",
+      "attack": "368",
+      "element": "Fire 400",
+      "sharpness": "9.5.9.10.2 9.5.9.10.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "Spread Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": [
+        "Luna's Howl"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Teostra Tail (2)",
+        "Lunastra Shell (7)",
+        "ElderDragonBlood (1)"
+      ],
+      "improve-to": [
+        "Luna's Flare"
+      ]
+    },
+    {
+      "name": "Luna's Flare",
+      "attack": "414",
+      "element": "Fire 480",
+      "sharpness": "2.4.16.7.4 2.4.16.7.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Luna's Roar",
+      "create-mats": null,
+      "improve-mats": [
+        "Lunastra Spike (2)",
+        "Fire Drgn Scl+ (8)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "improve-to": [
+        "Luna's Sun"
+      ]
+    },
+    {
+      "name": "Luna's Sun",
+      "attack": "575",
+      "element": "Fire 500",
+      "sharpness": "2.4.16.7.5.4 2.4.16.7.5.6.5",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Spread Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "130,000z",
+      "improve-from": "Luna's Flare",
+      "create-mats": null,
+      "improve-mats": [
+        "LunastraCarapace (5)",
+        "LthrTeostraTail (2)",
+        "ThckFireDrgnScl (8)",
+        "BigEDragonJewel (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "White Gunlance",
+      "attack": "368",
+      "element": null,
+      "sharpness": "5.5.9.6 5.5.9.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "Long Lv. 1",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "4,900z",
+      "improve-from": "Steel Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Skl Shl(1)",
+        "Machalite Ore(15)",
+        "Flame Sac(6)"
+      ],
+      "improve-to": [
+        "White Cannon"
+      ]
+    },
+    {
+      "name": "White Cannon",
+      "attack": "414",
+      "element": null,
+      "sharpness": "5.5.8.11 5.5.8.12.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "Long Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "30,000z",
+      "improve-from": "White Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Shell (10)",
+        "Gravios Skl Shl (1)",
+        "Firestone (4)"
+      ],
+      "improve-to": [
+        "Black Gunlance"
+      ]
+    },
+    {
+      "name": "Black Gunlance",
+      "attack": "483",
+      "element": null,
+      "sharpness": "9.5.8.7 9.5.8.8.2",
+      "affinity": "-5%",
+      "slots": "O--",
+      "bonus": "-5%",
+      "rarity": "6",
+      "shelling": "Long Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "60,000z",
+      "improve-from": "White Cannon",
+      "create-mats": null,
+      "improve-mats": [
+        "Wyvern Stone (2)",
+        "Blk Gravios Shl (15)",
+        "Firecell Stone (4)"
+      ],
+      "improve-to": [
+        "Black Gore Cannon"
+      ]
+    },
+    {
+      "name": "Black Gore Cannon",
+      "attack": "529",
+      "element": null,
+      "sharpness": "9.5.9.10.2 9.5.9.10.5.2",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "7",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Black Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Blk Gravios Cpc (8)",
+        "Blk Gravios Skl (2)",
+        "Gravios BrainStm (1)"
+      ],
+      "improve-to": [
+        "Black Gore Buster"
+      ]
+    },
+    {
+      "name": "Black Gore Buster",
+      "attack": "690",
+      "element": null,
+      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "Black Gore Cannon",
+      "create-mats": null,
+      "improve-mats": [
+        "HvyBlkGraviosShl (5)",
+        "HvnlyBlkGraviShl (1)",
+        "Big Wyvern Stone (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Heavy Bone Gunlance",
+      "attack": "506",
+      "element": null,
+      "sharpness": "11.9.4.9.3 11.9.4.9.4.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "75,000z",
+      "improve-cost": "75,000z",
+      "improve-from": [
+        "Barbarian Tusk"
+      ],
+      "create-mats": [
+        "Hvy Monster Bone (5)",
+        "Blazing Fire Sac (2)",
+        "Eltalite Ore (5)",
+        "Rajang Horn (1)"
+      ],
+      "improve-mats": [
+        "Massive Bone (3)",
+        "RobustWyvernBone (4)",
+        "Firecell Stone(4)",
+        "Rajang Horn (1)"
+      ],
+      "improve-to": [
+        "Hard Bone Cannon"
+      ]
+    },
+    {
+      "name": "Hard Bone Cannon",
+      "attack": "598",
+      "element": null,
+      "sharpness": "11.9.4.9.4.3 11.9.4.9.4.4.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 5",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": [
+        "Heavy Bone Gunlance"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "BigEDragonBone (3)",
+        "Blazing Fire Sac (5)",
+        "Emperor Cricket (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Full Voltage",
+      "attack": "460",
+      "element": "Thunder 180",
+      "sharpness": "11.9.4.6 11.9.4.9.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "Long Lv. 2",
+      "type": "gl",
+      "create-cost": "50,000z",
+      "improve-cost": "50,000z",
+      "improve-from": [
+        "Hard Bone Lance+"
+      ],
+      "create-mats": [
+        "Khezu Hide-Tan (8)",
+        "Thunder Sac (5)",
+        "Carbalite Ore (10)",
+        "Rubbery Hide+ (5)"
+      ],
+      "improve-mats": [
+        "Khezu Hide-Tan (5)",
+        "Thunder Sac (3)",
+        "Rubbery Hide+(3)"
+      ],
+      "improve-to": [
+        "Full Generator"
+      ]
+    },
+    {
+      "name": "Full Generator",
+      "attack": "529",
+      "element": "Thunder 220",
+      "sharpness": "11.9.4.9.2 11.9.4.9.4.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "85,000z",
+      "improve-from": "Full Voltage",
+      "create-mats": null,
+      "improve-mats": [
+        "KhezuHide-Cream(5)",
+        "Lightning Sac(3)",
+        "Pale Khezu Steak(1)"
+      ],
+      "improve-to": [
+        "High Volt Gunlance"
+      ]
+    },
+    {
+      "name": "High Volt Gunlance",
+      "attack": "644",
+      "element": "Thunder 260",
+      "sharpness": "11.9.4.9.4.2 11.9.4.9.4.4.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "120,000z",
+      "improve-from": "Full Generator",
+      "create-mats": null,
+      "improve-mats": [
+        "KhezuHide-Cream(5)",
+        "KhezuSpecialCut(1)",
+        "SpecRubberyHide+(5)",
+        "LthrKirinThndrTl(2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Bone Gunlance",
+      "attack": "161",
+      "element": null,
+      "sharpness": "2.4.7 2.4.10",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "Normal Lv. 1",
+      "type": "gl",
+      "create-cost": "650z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Brute Bone (2)",
+        "Rumblefish (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Great Bone Gunlance"
+      ]
+    },
+    {
+      "name": "Great Bone Gunlance",
+      "attack": "230",
+      "element": null,
+      "sharpness": "2.4.12 2.4.16.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "1400z",
+      "improve-from": "Bone Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Brute Bone (5)",
+        "Fire Herb (5)"
+      ],
+      "improve-to": [
+        "Wyvern Bone Gunlance",
+        "Average Hitter"
+      ]
+    },
+    {
+      "name": "Wyvern Bone Gunlance",
+      "attack": "299",
+      "element": null,
+      "sharpness": "2.4.16.1 2.4.16.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "2150z",
+      "improve-from": "Great Bone Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Giant Bone (3)",
+        "Lg Monster Bone (3)",
+        "Burst Arrowana (3)"
+      ],
+      "improve-to": [
+        "Hellsting"
+      ]
+    },
+    {
+      "name": "Hellsting",
+      "attack": "322",
+      "element": "Ice 250",
+      "sharpness": "15.4.3.5 15.4.3.9.1",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "4",
+      "shelling": "Spread Lv. 1",
+      "type": "gl",
+      "create-cost": "4250z",
+      "improve-cost": "4250z",
+      "improve-from": "Wyvern Bone Gunlance",
+      "create-mats": [
+        "Blangonga Fang (2)",
+        "Blango Pelt (20)",
+        "Giant Bone (2)",
+        "Sharp Claw (4)"
+      ],
+      "improve-mats": [
+        "Blango Pelt (15)",
+        "Blangonga Pelt (5)",
+        "Ice Crystal (10)"
+      ],
+      "improve-to": [
+        "Hellsting+"
+      ]
+    },
+    {
+      "name": "Hellsting+",
+      "attack": "345",
+      "element": "Ice 270",
+      "sharpness": "2.4.16.5 2.4.16.7.3",
+      "affinity": "10%",
+      "slots": "OO-",
+      "bonus": "10%",
+      "rarity": "5",
+      "shelling": "Spread Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "6350z",
+      "improve-from": "Hellsting",
+      "create-mats": null,
+      "improve-mats": [
+        "Blangonga Fang (2)",
+        "Blangonga Tail (5)",
+        "Tigrex Fang (5)"
+      ],
+      "improve-to": [
+        "Hellstinger"
+      ]
+    },
+    {
+      "name": "Hellstinger",
+      "attack": "414",
+      "element": "Ice 320",
+      "sharpness": "2.4.16.7.5 2.4.16.7.5.5",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "20%",
+      "rarity": "7",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "50000z",
+      "improve-from": "Hellsting+",
+      "create-mats": null,
+      "improve-mats": [
+        "Blangonga Fang+ (4)",
+        "Blangonga Whiskr (4)",
+        "Blango Pelt+ (10)"
+      ],
+      "improve-to": [
+        "Demonic Blizzard",
+        "Desert Slingshot"
+      ]
+    },
+    {
+      "name": "Demonic Blizzard",
+      "attack": "575",
+      "element": "Ice 340",
+      "sharpness": "2.4.16.7.5.5 2.4.16.7.5.6.5",
+      "affinity": "25%",
+      "slots": "OO-",
+      "bonus": "25%",
+      "rarity": "10",
+      "shelling": "Spread Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Hellstinger",
+      "create-mats": null,
+      "improve-mats": [],
+      "improve-to": null
+    },
+    {
+      "name": "Desert Slingshot",
+      "attack": "644",
+      "element": null,
+      "sharpness": "16.5.4.9.4.2 16.5.4.9.4.5.2",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "95,000z",
+      "improve-from": "Hellstinger",
+      "create-mats": null,
+      "improve-mats": [
+        "BlangoFang (2)",
+        "BlangongaPelt+ (4)",
+        "HvyNargacugaFang (4)"
+      ],
+      "improve-to": [
+        "Desert Slingshoter"
+      ]
+    },
+    {
+      "name": "Desert Slingshoter",
+      "attack": "736",
+      "element": null,
+      "sharpness": "11.8.5.8.5.3 11.8.5.8.5.4.4",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "10",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "Desert Slingshot",
+      "create-mats": null,
+      "improve-mats": [
+        "Brwn Blngnga Tail (2)",
+        "Blngnga Hrd Whskr (5)",
+        "Brwn Blngnga Pelt (10)",
+        "Rajang Strng Claw (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Average Hitter",
+      "attack": "299",
+      "element": "Poison 180",
+      "sharpness": "7.4.8 7.4.13",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": "3100z",
+      "improve-cost": "3100z",
+      "improve-from": "Great Bone Gunlance",
+      "create-mats": [
+        "Pur Rubbery Hide (4)",
+        "Gypceros Head (1)",
+        "Poison Sac (10)",
+        "Firestone (3)"
+      ],
+      "improve-mats": [
+        "Pur Rubbery Hide (4)",
+        "Lightcrystal (2)",
+        "Poison Sac (5)"
+      ],
+      "improve-to": [
+        "Grand Slam"
+      ]
+    },
+    {
+      "name": "Grand Slam",
+      "attack": "391",
+      "element": "Poison 240",
+      "sharpness": "7.4.8.2 7.4.8.6",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "5600z",
+      "improve-from": "Average Hitter",
+      "create-mats": null,
+      "improve-mats": [
+        "Pur Rubbery Hide (10)",
+        "Gypceros Head (1)",
+        "Remobra Skull (2)"
+      ],
+      "improve-to": [
+        "Hard Hitter"
+      ]
+    },
+    {
+      "name": "Hard Hitter",
+      "attack": "437",
+      "element": "Poison 290",
+      "sharpness": "6.3.15.3 6.3.15.5.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": "Grand Slam",
+      "create-mats": null,
+      "improve-mats": [
+        "Rubbery Hide+ (4)",
+        "Toxin Sac (7)",
+        "Novacrystal (2)"
+      ],
+      "improve-to": [
+        "Big Slugger"
+      ]
+    },
+    {
+      "name": "Big Slugger",
+      "attack": "460",
+      "element": "Poison 320",
+      "sharpness": "4.4.9.11 4.4.9.12.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Hard Hitter",
+      "create-mats": null,
+      "improve-mats": [
+        "Rubbery Hide+ (8)",
+        "Gypceros Head (3)",
+        "Inferno Sac (8)"
+      ],
+      "improve-to": [
+        "Triple Crown",
+        "Venomous Cologne"
+      ]
+    },
+    {
+      "name": "Triple Crown",
+      "attack": "506",
+      "element": "Poison 400",
+      "sharpness": "4.4.9.12.3 4.4.9.12.4.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "105,000z",
+      "improve-from": "Big Slugger",
+      "create-mats": null,
+      "improve-mats": [
+        "SpecRubberyHide+ (5)",
+        "HrdGypcerosHead (1)",
+        "DeadlyPoisonSac (5)",
+        "Purecrystal (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Venomous Cologne",
+      "attack": "483",
+      "element": "Poison 160",
+      "sharpness": "8.4.7.10.2 8.4.7.10.3.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "Long Lv. 2",
+      "type": "gl",
+      "create-cost": "90,000z",
+      "improve-cost": "90,000z",
+      "improve-from": "Big Slugger",
+      "create-mats": [
+        "Chameleos Hide+ (5)",
+        "Novacrystal (5)",
+        "Chameleos Spike(2)",
+        "Firecell Stone (5)"
+      ],
+      "improve-mats": [
+        "Chameleos Hide+ (3)",
+        "Novacrystal (3)",
+        "Inferno Sac (5)"
+      ],
+      "improve-to": [
+        "Venomous Attar"
+      ]
+    },
+    {
+      "name": "Venomous Attar",
+      "attack": "575",
+      "element": "Poison 200",
+      "sharpness": "18.5.3.9.3.2 18.5.3.9.3.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "110,000z",
+      "improve-from": "Venomous Cologne",
+      "create-mats": null,
+      "improve-mats": [
+        "Chameleos Hide+ (5)",
+        "Purecrystal (2)",
+        "DeadlyPoisonSac (5)",
+        "LethrGarugaTail (2)"
+      ],
+      "improve-to": [
+        "Venomous Perfume"
+      ]
+    },
+    {
+      "name": "Venomous Perfume",
+      "attack": "644",
+      "element": "Poison 240",
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "130,000z",
+      "improve-from": "Venomous Attar",
+      "create-mats": null,
+      "improve-mats": [
+        "SpecChameleHide+ (5)",
+        "StrChameleosWing (2)",
+        "Purecrystal (3)",
+        "Chameleos Jewel (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Black Smoke Gunlance",
+      "attack": "345",
+      "element": "Dragon 250",
+      "sharpness": "5.5.9.7 5.5.9.10",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "Spread Lv. 1",
+      "type": "gl",
+      "create-cost": "15000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "BlackDragonGunlance"
+      ]
+    },
+    {
+      "name": "BlackDragonGunlance",
+      "attack": "460",
+      "element": "Dragon 310",
+      "sharpness": "11.7.4.7.3 11.7.4.7.5.2",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "8",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "100000z",
+      "improve-from": "Black Smoke Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Fatalis Eye (1)",
+        "Fatalis Horn (2)",
+        "Fatalis Shell (4)",
+        "Daora Jewel (1)"
+      ],
+      "improve-to": [
+        "TrueBlkDrgnGunlance"
+      ]
+    },
+    {
+      "name": "TrueBlkDrgnGunlance",
+      "attack": "621",
+      "element": "Dragon 380",
+      "sharpness": "18.5.3.9.3.2 18.5.3.9.3.5.2",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "10",
+      "shelling": "Spread Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "150000z",
+      "improve-from": "BlackDragonGunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Fatalis Evil Eye (1)",
+        "HardFatalisHorn (2)",
+        "Hvy Fatalis Shl (4)",
+        "BigEDragonJewel (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Dragonwood Gunlance",
+      "attack": "299",
+      "element": "Paralysis 180",
+      "sharpness": "6.3.13.5 6.3.13.6.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": "20,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Dragonwood (4)",
+        "Sinister Cloth (1)",
+        "Thunderbug Juice (5)",
+        "FireWyvern Fluid (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Gld Dragonwd GLance"
+      ]
+    },
+    {
+      "name": "Gld Dragonwd GLance",
+      "attack": "368",
+      "element": "Paralysis 230",
+      "sharpness": "6.3.13.5.3 6.3.13.5.3.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "8",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Dragonwood Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Dragonwood+ (4)",
+        "Dragonmoss+ (2)",
+        "Pokke Ticket+ (1)"
+      ],
+      "improve-to": [
+        "AncientDrgnwoodLance"
+      ]
+    },
+    {
+      "name": "AncientDrgnwoodLance",
+      "attack": "460",
+      "element": "Paralysis 250",
+      "sharpness": "15.5.4.9.3.2 15.5.4.9.3.6.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "120,000z",
+      "improve-cost": "120,000z",
+      "improve-from": "Gld Dragonwd GLance",
+      "create-mats": [
+        "AncientDrgnwood (5)",
+        "YamaTsukaFillet (2)",
+        "Thunderbug Jelly (10)",
+        "Fire Dragon Pwdr (3)"
+      ],
+      "improve-mats": [
+        "AncientDrgnwood (3)",
+        "AncientDrgnmoss (3)",
+        "Fire Dragon Pwdr (1)"
+      ],
+      "improve-to": [
+        "AncientDrgnwoodLanc+"
+      ]
+    },
+    {
+      "name": "AncientDrgnwoodLanc+",
+      "attack": "529",
+      "element": "Paralysis 270",
+      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "145,000z",
+      "improve-from": "AncientDrgnwoodLance",
+      "create-mats": null,
+      "improve-mats": [
+        "YamaTsukamiHide (5)",
+        "YamaTsukamiFluid (5)",
+        "ThckFireDrgnScl (3)",
+        "Commendation S (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Pop Corn",
+      "attack": "414",
+      "element": null,
+      "sharpness": "3.7.4.16 3.7.4.16.5",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "6",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": "40,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Giant Corn (2)",
+        "Inferno Sac (5)",
+        "Ivy (10)",
+        "Commendation G (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Large Pop Corn"
+      ]
+    },
+    {
+      "name": "Large Pop Corn",
+      "attack": "598",
+      "element": null,
+      "sharpness": "3.7.4.16.5 3.7.4.16.7.3",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Spread Lv. 5",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Pop Corn",
+      "create-mats": null,
+      "improve-mats": [
+        "Giant Corn (5)",
+        "Blazing Fire Sac (3)",
+        "Ancient Dragonwood (1)",
+        "Eltalite Ore (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Rex Blast",
+      "attack": "391",
+      "element": null,
+      "sharpness": "13.4.3.9.1 13.4.3.9.3.2",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "-30%",
+      "rarity": "5",
+      "shelling": "Spread Lv. 2",
+      "type": "gl",
+      "create-cost": "35,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Tigrex Fang (4)",
+        "Tigrex Claw (5)",
+        "Tigrex Shell (2)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Tigrex Gunlance",
+        "Hidden Gunlance"
+      ]
+    },
+    {
+      "name": "Tigrex Gunlance",
+      "attack": "506",
+      "element": null,
+      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "-30%",
+      "rarity": "7",
+      "shelling": "Spread Lv. 3",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "80000z",
+      "improve-from": "Rex Blast",
+      "create-mats": null,
+      "improve-mats": [
+        "Tigrex Fang+ (4)",
+        "Tigrex Claw+ (5)",
+        "Tigrex Carapace (4)"
+      ],
+      "improve-to": [
+        "GreatTigrexGunlance"
+      ]
+    },
+    {
+      "name": "GreatTigrexGunlance",
+      "attack": "667",
+      "element": null,
+      "sharpness": "9.5.9.10.4.6.2 9.5.9.10.4.6.2",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "-30%",
+      "rarity": "10",
+      "shelling": "Spread Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "125000z",
+      "improve-from": "Tigrex Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "HeavyTigrexFang (4)",
+        "HardTigrexClaw (5)",
+        "HvnlyTigrexScale (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Hidden Gunlance",
+      "attack": "437",
+      "element": null,
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "50%",
+      "slots": "O--",
+      "bonus": "50%",
+      "rarity": "7",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "80000z",
+      "improve-cost": "80000z",
+      "improve-from": "Rex Blast",
+      "create-mats": [
+        "NargaCuttingWing(4)",
+        "Nargacuga Tail(3)",
+        "Narga Brain Stem(1)",
+        "Hrd Monster Bone(5)"
+      ],
+      "improve-mats": [
+        "NargaCuttingWing(2)",
+        "Nargacuga Tail(1)",
+        "Narga Scale+ (10)"
+      ],
+      "improve-to": [
+        "WanningMoonDarklance"
+      ]
+    },
+    {
+      "name": "WanningMoonDarklance",
+      "attack": "552",
+      "element": null,
+      "sharpness": "5.5.9.13.5.5.3 5.5.9.13.5.5.3",
+      "affinity": "50%",
+      "slots": "OO-",
+      "bonus": "50%",
+      "rarity": "10",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "120000z",
+      "improve-cost": "120000z",
+      "improve-from": "Hidden Gunlance",
+      "create-mats": [
+        "LeatherNargaTail (4)",
+        "ThickNargaScale (10)",
+        "HvnlyNargaScale (1)",
+        "LeatherTigrexTail (2)"
+      ],
+      "improve-mats": [
+        "StrNargaCttngWng (4)",
+        "LeatherNargaTail (2)",
+        "Narga Brain Stem (2)",
+        "Hvy Monster Bone (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Akantor Gunlance",
+      "attack": "575",
+      "element": null,
+      "sharpness": "4.7.4.2 4.7.4.7",
+      "affinity": "40%",
+      "slots": "---",
+      "bonus": "40%",
+      "rarity": "8",
+      "shelling": "Normal Lv. 2",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Akantor Fang (4)",
+        "Akantor Claw (3)",
+        "Akantor Shell (5)",
+        "Firecell Stone (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "AkantorNoirGunlance"
+      ]
+    },
+    {
+      "name": "AkantorNoirGunlance",
+      "attack": "759",
+      "element": null,
+      "sharpness": "4.7.4.8 4.7.4.14",
+      "affinity": "40%",
+      "slots": "O--",
+      "bonus": "40%",
+      "rarity": "10",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": null,
+      "improve-cost": "145,000z",
+      "improve-from": "Akantor Gunlance",
+      "create-mats": null,
+      "improve-mats": [
+        "Ukanlos Stone (1)",
+        "Big Wyvern Stone (3)",
+        "Akantor Fang (4)",
+        "Akantor Shell (7)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "UkanlosBlazeGunlance",
+      "attack": "805",
+      "element": "Ice 120",
+      "sharpness": "16.5.4.9.1 16.5.4.9.4.2",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": "-30%",
+      "rarity": "10",
+      "shelling": "Long Lv. 5",
+      "type": "gl",
+      "create-cost": "150000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "UkanlosShovelJaw (2)",
+        "StrongUkanlosFin (4)",
+        "HvyUkanlosShell (5)",
+        "Ukanlos Stone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Iron Gunlance G",
+      "attack": "644",
+      "element": null,
+      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Gunpowder (20)",
+        "Eltalite Ore (10)",
+        "Blazing Fire Sac (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "WyvernBone Gunlance G",
+      "attack": "644",
+      "element": null,
+      "sharpness": "3.4.17.7.5.4 3.4.17.7.5.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Hard Monster Bone (8)",
+        "Massive Bone (5)",
+        "Burst Arrowana (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Blizzard Gunlance G",
+      "attack": "598",
+      "element": "Ice 150",
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Giadrome Claw+ (10)",
+        "Giaprey Hide+ (10)",
+        "Blazing Fire Sac (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Imperial Gunlance G",
+      "attack": "621",
+      "element": null,
+      "sharpness": "3.7.4.16.7.3 3.7.4.16.7.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 4",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Firestone (20)",
+        "Mellanje Ore (5)",
+        "Purecrystal (2)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Scissor Cannon G",
+      "attack": "598",
+      "element": null,
+      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "HrdHermitaurClaw (2)",
+        "HvyHermitaurShl (4)",
+        "Inferno Sac (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Grand Slam G",
+      "attack": "621",
+      "element": "Poison 240",
+      "sharpness": "7.4.15.6.3 7.4.15.6.4.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Normal Lv. 4",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Gypceros Head (3)",
+        "HrdPuGypcerosWng (4)",
+        "Deadly Poison Sac (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Marine Fisher G",
+      "attack": "598",
+      "element": "Water 200",
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "SpecPlesiothFin+ (4)",
+        "ThckPlesiothScl (5)",
+        "Cephalos Fin+ (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "White Cannon G",
+      "attack": "621",
+      "element": null,
+      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Long Lv. 3",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Gravios Skl Shl (3)",
+        "HvyGraviosShell (5)",
+        "Flame Sac (20)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Gld Dragonwd GLance G",
+      "attack": "506",
+      "element": "Paralysis 230",
+      "sharpness": "7.4.15.6.4.4 7.4.15.6.4.6.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "shelling": "Normal Lv. 3",
+      "type": "gl",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Dragonwood+ (10)",
+        "Sinister Cloth (10)",
+        "ThckFireDrgnScl (2)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    }
+  ]
+}
