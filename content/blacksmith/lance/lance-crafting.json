@@ -174,11 +174,11 @@
         "Union Ore (10)"
       ],
       "improve-to": [
-        "Sanctioned Drill Lance"
+        "SanctionedDrillLance"
       ]
     },
     {
-      "name": "Sanctioned Drill Lance",
+      "name": "SanctionedDrillLance",
       "attack": "529",
       "element": "N/A",
       "sharpness": "MredSoraSoraTyelBgreSblu",
@@ -220,7 +220,7 @@
       "type": "ln",
       "create-cost": "N/A",
       "improve-cost": "105,000z",
-      "improve-from": "Sanctioned Drill Lance",
+      "improve-from": "SanctionedDrillLance",
       "create-mats": "N/A",
       "improve-mats": [
         "Mellanje Ore (10)",
@@ -811,11 +811,11 @@
         "Toxic Sac (10)"
       ],
       "improve-to": [
-        "Ouroboros Serpentblade"
+        "OuroborosSerpntblade"
       ]
     },
     {
-      "name": "Ouroboros Serpentblade",
+      "name": "OuroborosSerpntblade",
       "attack": "506",
       "element": "Poison 470",
       "sharpness": "BredSoraTyelSgreTbluSwhi",
@@ -1237,7 +1237,7 @@
       "name": "Thunderspear",
       "attack": "322",
       "element": "Thunder 300",
-      "sharpness": "TredMoraSyelBgre",
+      "sharpness": "6.14.8.32",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1337,11 +1337,11 @@
         "Piercing Claw (5)"
       ],
       "improve-to": [
-        "Giant Hermitaur Lance"
+        "GiantHermitaurLance"
       ]
     },
     {
-      "name": "Giant Hermitaur Lance",
+      "name": "GiantHermitaurLance",
       "attack": "621",
       "element": "N/A",
       "sharpness": "MredSoraMyelMgreSbluSwhi",
@@ -3384,11 +3384,11 @@
         "Gaoren Claw (8)"
       ],
       "improve-to": [
-        "DragonSealer \"Virtue\""
+        "DragonSealer\"Virtue\""
       ]
     },
     {
-      "name": "DragonSealer \"Virtue\"",
+      "name": "DragonSealer\"Virtue\"",
       "attack": "529",
       "element": "Dragon 320",
       "sharpness": "SredSoraMyelBgreSbluSwhi",
@@ -3407,11 +3407,11 @@
         "Gaoren Thoracic (4)"
       ],
       "improve-to": [
-        "DragonSealer \"Null\""
+        "DragonSealer\"Null\""
       ]
     },
     {
-      "name": "DragonSealer \"Null\"",
+      "name": "DragonSealer\"Null\"",
       "attack": "575",
       "element": "Dragon 340",
       "sharpness": "TredMoraSyelBgreMbluSwhi",
@@ -3422,7 +3422,7 @@
       "type": "ln",
       "create-cost": "N/A",
       "improve-cost": "140,000z",
-      "improve-from": "DragonSealer \"Virtue\"",
+      "improve-from": "DragonSealer\"Virtue\"",
       "create-mats": "N/A",
       "improve-mats": [
         "LaoShanHvnlyScl (1)",
@@ -4179,7 +4179,7 @@
       "improve-to": "N/A"
     },
     {
-      "name": "Black Gravios Spear G",
+      "name": "BlackGraviousSpear G",
       "attack": "552",
       "element": "Fire 360",
       "sharpness": "MredSoraMyelMgreSbluSwhi",
