@@ -38,7 +38,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "700z",
+      "create-cost": "700",
       "improve-mats": null,
       "create-mats": [
         "Iron Ore: 8",
@@ -83,7 +83,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "900z",
+      "create-cost": "900",
       "improve-mats": null,
       "create-mats": [
         "Vespoid Wing: 6",
@@ -130,7 +130,7 @@
         "Demon S: 0 ",
         "Armor S: 0 "
       ],
-      "create-cost": "1000z",
+      "create-cost": "1000",
       "improve-mats": null,
       "create-mats": [
         "Brute Bone: 4",
@@ -177,7 +177,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "1400z",
+      "create-cost": "1400",
       "improve-mats": null,
       "create-mats": [
         "Rubbery Hide: 4",
@@ -222,7 +222,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "1675z",
+      "create-cost": "1675",
       "improve-mats": null,
       "create-mats": [
         "Pur Rubbery Hide: 8",
@@ -268,7 +268,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "1250z",
+      "create-cost": "1250",
       "improve-mats": null,
       "create-mats": [
         "Cephalos Fin: 2",
@@ -315,7 +315,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "2675z",
+      "create-cost": "2675",
       "improve-mats": null,
       "create-mats": [
         "Kut-Ku Shell: 8",
@@ -362,7 +362,7 @@
         "Demon S:0 ",
         "Armor S: 1"
       ],
-      "create-cost": "2750z",
+      "create-cost": "2750",
       "improve-mats": null,
       "create-mats": [
         "Hermitaur Claw: 3",
@@ -409,7 +409,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "3250z",
+      "create-cost": "3250",
       "improve-mats": null,
       "create-mats": [
         "Basarios Shell: 10",
@@ -456,7 +456,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "3000z",
+      "create-cost": "3000",
       "improve-mats": null,
       "create-mats": [
         "FireStone: 1",
@@ -503,7 +503,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "3375z",
+      "create-cost": "3375",
       "improve-mats": null,
       "create-mats": [
         "Hercudrome: 2",
@@ -550,7 +550,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "3050z",
+      "create-cost": "3050",
       "improve-mats": null,
       "create-mats": [
         "Wht Monoblos Spn: 5",
@@ -597,7 +597,7 @@
         "Demon S: 1 ",
         "Armor S: 0 "
       ],
-      "create-cost": "3750z",
+      "create-cost": "3750",
       "improve-mats": null,
       "create-mats": [
         "Ceanataur Leg: 3",
@@ -644,7 +644,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4000z",
+      "create-cost": "4000",
       "improve-mats": null,
       "create-mats": [
         "Giant Beak: 1",
@@ -691,7 +691,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4800z",
+      "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
         "Diablos Spine: 5",
@@ -738,7 +738,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4800z",
+      "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
         "Tigrex Skull Shl: 2",
@@ -785,7 +785,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "2000z",
+      "create-cost": "2000",
       "improve-mats": null,
       "create-mats": [
         "Great Ladybug: 2",
@@ -832,7 +832,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "4300z",
+      "create-cost": "4300",
       "improve-mats": null,
       "create-mats": [
         "Kirin Mane: 8",
@@ -879,7 +879,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "5000z",
+      "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
         "Dark Stone: 1",
@@ -926,7 +926,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4800z",
+      "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
         "Garuga Ear: 2",
@@ -973,7 +973,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "5400z",
+      "create-cost": "5400",
       "improve-mats": null,
       "create-mats": [
         "Daora Shell: 5",
@@ -1020,7 +1020,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "5250z",
+      "create-cost": "5250",
       "improve-mats": null,
       "create-mats": [
         "Lunstra Shell: 4",
@@ -1067,7 +1067,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "5500z",
+      "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
         "Teostra Shell: 4",
@@ -1114,7 +1114,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "5500z",
+      "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
         "Gaoren Pincer: 2",
@@ -1161,7 +1161,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "6000z",
+      "create-cost": "6000",
       "improve-mats": null,
       "create-mats": [
         "Lao-Shan's Shell: 4",
@@ -1208,7 +1208,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "5000z",
+      "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
         "Stout Bone: 4",
@@ -1255,7 +1255,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "3075z",
+      "create-cost": "3075",
       "improve-mats": null,
       "create-mats": [
         "Rubbery Hide+: 4",
@@ -1300,7 +1300,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "5500z",
+      "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
         "Cephalos Fin+: 5",
@@ -1347,7 +1347,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4400z",
+      "create-cost": "4400",
       "improve-mats": null,
       "create-mats": [
         "Firecell Stone: 1",
@@ -1394,7 +1394,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "4950z",
+      "create-cost": "4950",
       "improve-mats": null,
       "create-mats": [
         "Vespoid Carapace: 10",
@@ -1441,7 +1441,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "4725z",
+      "create-cost": "4725",
       "improve-mats": null,
       "create-mats": [
         "Basarios Carpace: 10",
@@ -1488,7 +1488,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "6050z",
+      "create-cost": "6050",
       "improve-mats": null,
       "create-mats": [
         "Hermitaur Carpce: 8",
@@ -1535,7 +1535,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "6600z",
+      "create-cost": "6600",
       "improve-mats": null,
       "create-mats": [
         "Gravios Carapace: 8",
@@ -1582,7 +1582,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "6500z",
+      "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
         "Ceanataur Carpca: 6",
@@ -1629,7 +1629,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7025z",
+      "create-cost": "7025",
       "improve-mats": null,
       "create-mats": [
         "Diablos Thoracic: 3",
@@ -1676,7 +1676,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7025z",
+      "create-cost": "7025",
       "improve-mats": null,
       "create-mats": [
         "Tigrex Carapace: 6",
@@ -1723,7 +1723,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7250z",
+      "create-cost": "7250",
       "improve-mats": null,
       "create-mats": [
         "Narga Scale+: 10",
@@ -1770,7 +1770,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "3675z",
+      "create-cost": "3675",
       "improve-mats": null,
       "create-mats": [
         "Pur Gypceros Wng: 8",
@@ -1817,7 +1817,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7900z",
+      "create-cost": "7900",
       "improve-mats": null,
       "create-mats": [
         "Blk Gravios Cpc: 8",
@@ -1864,7 +1864,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7050z",
+      "create-cost": "7050",
       "improve-mats": null,
       "create-mats": [
         "Blue Kut-Ku Cpc: 8",
@@ -1911,7 +1911,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "4500z",
+      "create-cost": "4500",
       "improve-mats": null,
       "create-mats": [
         "Wht Monoblos Cpc: 5",
@@ -1958,7 +1958,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "4400z",
+      "create-cost": "4400",
       "improve-mats": null,
       "create-mats": [
         "Rare Scarab: 3",
@@ -2005,7 +2005,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "6250z",
+      "create-cost": "6250",
       "improve-mats": null,
       "create-mats": [
         "Kirin Hide+: 3",
@@ -2052,7 +2052,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "7700z",
+      "create-cost": "7700",
       "improve-mats": null,
       "create-mats": [
         "Daora Jewel: 1",
@@ -2099,7 +2099,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7350z",
+      "create-cost": "7350",
       "improve-mats": null,
       "create-mats": [
         "Fatalis Shell: 2",
@@ -2146,7 +2146,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "7525z",
+      "create-cost": "7525",
       "improve-mats": null,
       "create-mats": [
         "Lunstra Carpace: 4",
@@ -2193,7 +2193,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "8025z",
+      "create-cost": "8025",
       "improve-mats": null,
       "create-mats": [
         "Fire Drgn Jwl: 1",
@@ -2240,7 +2240,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "8825z",
+      "create-cost": "8825",
       "improve-mats": null,
       "create-mats": [
         "Fatalis CrmsnShl: 2",
@@ -2287,7 +2287,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "8450z",
+      "create-cost": "8450",
       "improve-mats": null,
       "create-mats": [
         "Long Garuga Ear: 3",
@@ -2334,7 +2334,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "8025z",
+      "create-cost": "8025",
       "improve-mats": null,
       "create-mats": [
         "Gaoren Thoracic: 3",
@@ -2381,7 +2381,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "8800z",
+      "create-cost": "8800",
       "improve-mats": null,
       "create-mats": [
         "Lao-Shan's Ruby: 1",
@@ -2428,7 +2428,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Azure LaoS Shell: 5",
@@ -2475,7 +2475,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "5500z",
+      "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
         "Eltalite Ore: 20",
@@ -2522,7 +2522,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "6000z",
+      "create-cost": "6000",
       "improve-mats": null,
       "create-mats": [
         "SpecRubberyHide+: 6",
@@ -2569,7 +2569,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "6500z",
+      "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
         "HrdPuGypcerosWng: 6",
@@ -2616,7 +2616,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "7500z",
+      "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
         "HrdCongalalaPlt+: 8",
@@ -2663,7 +2663,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "8000z",
+      "create-cost": "8000",
       "improve-mats": null,
       "create-mats": [
         "ThckPlesiothScl: 8",
@@ -2710,7 +2710,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "9250z",
+      "create-cost": "9250",
       "improve-mats": null,
       "create-mats": [
         "PlumD.HermitrShl: 8",
@@ -2757,7 +2757,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "8500z",
+      "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
         "Kut-Ku Cpc: 6",
@@ -2804,7 +2804,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "9000z",
+      "create-cost": "9000",
       "improve-mats": null,
       "create-mats": [
         "HvyBlueKut-KuShl: 6",
@@ -2851,7 +2851,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "7500z",
+      "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
         "Mellanje Ore: 10",
@@ -2898,7 +2898,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "7500z",
+      "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
         "HvyBasariosShell: 10",
@@ -2945,7 +2945,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "8500z",
+      "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
         "HrdBlangongaPlt+: 8",
@@ -2992,7 +2992,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "HvyCeanataurShl: 6",
@@ -3039,7 +3039,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "11000z",
+      "create-cost": "11000",
       "improve-mats": null,
       "create-mats": [
         "HvyGraviosShell: 8",
@@ -3086,7 +3086,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "230z",
+      "create-cost": "230",
       "improve-mats": null,
       "create-mats": [
         "dummy: 4",
@@ -3133,7 +3133,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "8500z",
+      "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
         "VespoidQn'sCrown: 3",
@@ -3180,7 +3180,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "11000z",
+      "create-cost": "11000",
       "improve-mats": null,
       "create-mats": [
         "ThickNargaScale: 10",
@@ -3227,7 +3227,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "6500z",
+      "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
         "PhantomButterfly: 8",
@@ -3274,7 +3274,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "10750z",
+      "create-cost": "10750",
       "improve-mats": null,
       "create-mats": [
         "SpecialKirinHide: 3",
@@ -3321,7 +3321,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "SilverGarugaPelt: 4",
@@ -3368,7 +3368,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "10500z",
+      "create-cost": "10500",
       "improve-mats": null,
       "create-mats": [
         "TerraCeanatrShl: 6",
@@ -3415,7 +3415,7 @@
         "Demon S:1 ",
         "Armor S: 0"
       ],
-      "create-cost": "11750z",
+      "create-cost": "11750",
       "improve-mats": null,
       "create-mats": [
         "Hvy Daora Shell: 5",
@@ -3462,7 +3462,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "20000z",
+      "create-cost": "20000",
       "improve-mats": null,
       "create-mats": [
         "HvyFatalisCrmShl: 2",
@@ -3509,7 +3509,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "11500z",
+      "create-cost": "11500",
       "improve-mats": null,
       "create-mats": [
         "HvyBlkGraviosShl: 8",
@@ -3556,7 +3556,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "12000z",
+      "create-cost": "12000",
       "improve-mats": null,
       "create-mats": [
         "HvyTeostraShell: 5",
@@ -3603,7 +3603,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "11500z",
+      "create-cost": "11500",
       "improve-mats": null,
       "create-mats": [
         "HvyBlkBlosSpine: 3",
@@ -3650,7 +3650,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "15000z",
+      "create-cost": "15000",
       "improve-mats": null,
       "create-mats": [
         "Hvy Fatalis Shl: 2",
@@ -3697,7 +3697,7 @@
         "Demon S:  0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10500z",
+      "create-cost": "10500",
       "improve-mats": null,
       "create-mats": [
         "Hvy Tigrex Shell: 6",
@@ -3744,7 +3744,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "12500z",
+      "create-cost": "12500",
       "improve-mats": null,
       "create-mats": [
         "Hvy Gaoren Spine: 4",
@@ -3791,7 +3791,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "13000z",
+      "create-cost": "13000",
       "improve-mats": null,
       "create-mats": [
         "AncientDrgnwood: 4",
@@ -3838,7 +3838,7 @@
         "Demon S:0 ",
         "Armor S: 0"
       ],
-      "create-cost": "15000z",
+      "create-cost": "15000",
       "improve-mats": null,
       "create-mats": [
         "Laso-Shan Hvy Cpc: 4",
@@ -3885,7 +3885,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "20000z",
+      "create-cost": "20000",
       "improve-mats": null,
       "create-mats": [
         "HvyUkanlosShell: 6",
@@ -3932,7 +3932,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation G: 1",
@@ -3979,7 +3979,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation G: 1",
@@ -4026,7 +4026,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation G: 1",
@@ -4073,7 +4073,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation G: 1",
@@ -4120,7 +4120,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation G: 1",
@@ -4167,7 +4167,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4214,7 +4214,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4261,7 +4261,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4308,7 +4308,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4355,7 +4355,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4402,7 +4402,7 @@
         "Demon S: 1 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4449,7 +4449,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4496,7 +4496,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4543,7 +4543,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4590,7 +4590,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4637,7 +4637,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4684,7 +4684,7 @@
         "Demon S: 1 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4731,7 +4731,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4778,7 +4778,7 @@
         "Demon S: 0 ",
         "Armor S: 1"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",
@@ -4825,7 +4825,7 @@
         "Demon S: 0 ",
         "Armor S: 0"
       ],
-      "create-cost": "10000z",
+      "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "Commendation S: 1",

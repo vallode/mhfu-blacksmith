@@ -22,7 +22,7 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "550z",
+      "create-cost": "550",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -58,7 +58,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "1,100z",
+      "improve-cost": "1100",
       "improve-from": "Hunter's Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -92,8 +92,8 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "1,650z",
-      "improve-cost": "1,650z",
+      "create-cost": "1650",
+      "improve-cost": "1650",
       "improve-from": "Hunter's Bow II",
       "create-mats": [
         "Piscine Fang (4)",
@@ -135,7 +135,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "2,750z",
+      "improve-cost": "2750",
       "improve-from": "Hunter's Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -168,8 +168,8 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "4,400z",
-      "improve-cost": "4,400z",
+      "create-cost": "4400",
+      "improve-cost": "4400",
       "improve-from": "Hunter's Bow IV",
       "create-mats": [
         "Basarios Wing (1)",
@@ -208,7 +208,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "5,500z",
+      "improve-cost": "5500",
       "improve-from": "Hunter's Power Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -242,7 +242,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "7,900z",
+      "improve-cost": "7900",
       "improve-from": "Hunter's Power Bow II",
       "create-mats": null,
       "improve-mats": [
@@ -277,7 +277,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "49,500z",
+      "improve-cost": "49500",
       "improve-from": "Hunter's Power Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -310,8 +310,8 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "34,650z",
-      "improve-cost": "34,650z",
+      "create-cost": "34650",
+      "improve-cost": "34650",
       "improve-from": "Hunter's Power Bow III",
       "create-mats": [
         "Purecrystal (1)",
@@ -352,7 +352,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "55,450z",
+      "improve-cost": "55450",
       "improve-from": "Icicle Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -384,7 +384,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "2,200z",
+      "create-cost": "2200",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -421,7 +421,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "3,500z",
+      "improve-cost": "3500",
       "improve-from": "Wild Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -454,8 +454,8 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "5,250z",
-      "improve-cost": "5,250z",
+      "create-cost": "5250",
+      "improve-cost": "5250",
       "improve-from": "Wild Bow II",
       "create-mats": [
         "Monoblos Spine (2)",
@@ -494,7 +494,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "6,150z",
+      "improve-cost": "6150",
       "improve-from": "Wild Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -527,8 +527,8 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "8,950z",
-      "improve-cost": "8,950z",
+      "create-cost": "8950",
+      "improve-cost": "8950",
       "improve-from": "Wild Bow IV",
       "create-mats": [
         "Congalala Pelt+ (6)",
@@ -567,7 +567,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "10,550z",
+      "improve-cost": "10550",
       "improve-from": "Wild Power Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -600,8 +600,8 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "49,500z",
-      "improve-cost": "49,500z",
+      "create-cost": "49500",
+      "improve-cost": "49500",
       "improve-from": "Wild Power Bow II",
       "create-mats": [
         "CongalalaPelt+ (6)",
@@ -641,7 +641,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "74,250z",
+      "improve-cost": "74250",
       "improve-from": "Jungle Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -673,7 +673,7 @@
         "Rapid 2"
       ],
       "type": "bw",
-      "create-cost": "770z",
+      "create-cost": "770",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -741,8 +741,8 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "3,850z",
-      "improve-cost": "3,850z",
+      "create-cost": "3850",
+      "improve-cost": "3850",
       "improve-from": "Blango Fur Bow II",
       "create-mats": [
         "Blangonga pelt (4)",
@@ -780,7 +780,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "4,600z",
+      "improve-cost": "4600",
       "improve-from": "Blango Fur Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -848,7 +848,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "69,300z",
+      "improve-cost": "69300",
       "improve-from": "Abominable Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -880,7 +880,7 @@
         "Scatter 3"
       ],
       "type": "bw",
-      "create-cost": "1,500z",
+      "create-cost": "1500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -916,7 +916,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "2,300z",
+      "improve-cost": "2300",
       "improve-from": "Kut-Ku Stave I",
       "create-mats": null,
       "improve-mats": [
@@ -950,7 +950,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "4,600z",
+      "improve-cost": "4600",
       "improve-from": "Kut-Ku Stave II",
       "create-mats": null,
       "improve-mats": [
@@ -984,8 +984,8 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "7,350z",
-      "improve-cost": "7,350z",
+      "create-cost": "7350",
+      "improve-cost": "7350",
       "improve-from": "Kut-Ku Stave III",
       "create-mats": [
         "Blue Kut-Ku Cpc (4)",
@@ -1026,7 +1026,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "41,600z",
+      "improve-cost": "41600",
       "improve-from": "Blue Kut-Ku Stave I",
       "create-mats": null,
       "improve-mats": [
@@ -1062,7 +1062,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "62,400z",
+      "improve-cost": "62400",
       "improve-from": "Blue Kut-Ku Stave II",
       "create-mats": null,
       "improve-mats": [
@@ -1093,8 +1093,8 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "83,150z",
-      "improve-cost": "83,150z",
+      "create-cost": "83150",
+      "improve-cost": "83150",
       "improve-from": "Blue Kut-Ku Stave I",
       "create-mats": [
         "Hvy Garuga Shell (5)",
@@ -1133,7 +1133,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "103,950z",
+      "improve-cost": "103950",
       "improve-from": "Wolf Bow",
       "create-mats": null,
       "improve-mats": [
@@ -1164,7 +1164,7 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "11,100z",
+      "create-cost": "11100",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1199,7 +1199,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "13,450z",
+      "improve-cost": "13450",
       "improve-from": "Wing Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -1231,8 +1231,8 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "53,450z",
-      "improve-cost": "53,450z",
+      "create-cost": "53450",
+      "improve-cost": "53450",
       "improve-from": "Wing Bow II",
       "create-mats": [
         "OrangeHypnoPelt+ (8)",
@@ -1271,7 +1271,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "77,200z",
+      "improve-cost": "77200",
       "improve-from": "Wing Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -1303,7 +1303,7 @@
         "Scatter 3"
       ],
       "type": "bw",
-      "create-cost": "1,250z",
+      "create-cost": "1250",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1339,7 +1339,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "5,950z",
+      "improve-cost": "5950",
       "improve-from": "Defect Swordfish Bow",
       "create-mats": null,
       "improve-mats": [
@@ -1374,7 +1374,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "35,650z",
+      "improve-cost": "35650",
       "improve-from": "Whole Swordfish Bow",
       "create-mats": null,
       "improve-mats": [
@@ -1406,7 +1406,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "2,300z",
+      "create-cost": "2300",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1442,7 +1442,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "3,850z",
+      "improve-cost": "3850",
       "improve-from": "Daimyo's Warbow I",
       "create-mats": null,
       "improve-mats": [
@@ -1476,7 +1476,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "4,600z",
+      "improve-cost": "4600",
       "improve-from": "Daimyo's Warbow II",
       "create-mats": null,
       "improve-mats": [
@@ -1509,8 +1509,8 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "7,350z",
-      "improve-cost": "7,350z",
+      "create-cost": "7350",
+      "improve-cost": "7350",
       "improve-from": "Daimyo's Warbow III",
       "create-mats": [
         "Hermitaur Carpce (6)",
@@ -1548,8 +1548,8 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "52,000z",
-      "improve-cost": "52,000z",
+      "create-cost": "52000",
+      "improve-cost": "52000",
       "improve-from": "Daimyo's Warbow IV",
       "create-mats": [
         "HermitrShl (8)",
@@ -1588,7 +1588,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "81,700z",
+      "improve-cost": "81700",
       "improve-from": "Great Purple Emperor I",
       "create-mats": null,
       "improve-mats": [
@@ -1620,7 +1620,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "7,700z",
+      "create-cost": "7700",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1656,7 +1656,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "23,100z",
+      "improve-cost": "23100",
       "improve-from": "Blue Blade Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -1689,8 +1689,8 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "90,100z",
-      "improve-cost": "90,100z",
+      "create-cost": "90100",
+      "improve-cost": "90100",
       "improve-from": "Blue Blade Bow II",
       "create-mats": [
         "HvyCeanataurShl (5)",
@@ -1730,7 +1730,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "103,950z",
+      "improve-cost": "103950",
       "improve-from": "Blue Blade Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -1761,7 +1761,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "89,100z",
+      "improve-cost": "89100",
       "improve-from": "Blue Blade Bow III",
       "create-mats": null,
       "improve-mats": [
@@ -1794,7 +1794,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "103,950z",
+      "improve-cost": "103950",
       "improve-from": "Carmine Bow",
       "create-mats": null,
       "improve-mats": [
@@ -1824,7 +1824,7 @@
         "Rapid 2"
       ],
       "type": "bw",
-      "create-cost": "2,300z",
+      "create-cost": "2300",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1859,7 +1859,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "4,600z",
+      "improve-cost": "4600",
       "improve-from": "Sonic Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -1891,8 +1891,8 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "7,350z",
-      "improve-cost": "7,350z",
+      "create-cost": "7350",
+      "improve-cost": "7350",
       "improve-from": "Sonic Bow II",
       "create-mats": [
         "Thunder Sac (4)",
@@ -1930,7 +1930,7 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "52,000z",
+      "create-cost": "52000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1996,7 +1996,7 @@
         "Scatter 3"
       ],
       "type": "bw",
-      "create-cost": "5,500z",
+      "create-cost": "5500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2030,7 +2030,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "6,600z",
+      "improve-cost": "6600",
       "improve-from": "Queen Blaster I",
       "create-mats": null,
       "improve-mats": [
@@ -2062,8 +2062,8 @@
         "Scatter 4"
       ],
       "type": "bw",
-      "create-cost": "16,500z",
-      "improve-cost": "16,500z",
+      "create-cost": "16500",
+      "improve-cost": "16500",
       "improve-from": "Queen Blaster II",
       "create-mats": [
         "Rathian Carapace (3)",
@@ -2100,7 +2100,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "54,450z",
+      "improve-cost": "54450",
       "improve-from": "Queen Blaster III",
       "create-mats": null,
       "improve-mats": [
@@ -2133,7 +2133,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "69,300z",
+      "improve-cost": "69300",
       "improve-from": "Queen Blaster IV",
       "create-mats": null,
       "improve-mats": [
@@ -2162,8 +2162,8 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "13,450z",
-      "improve-cost": "13,450z",
+      "create-cost": "13450",
+      "improve-cost": "13450",
       "improve-from": "Queen Blaster II",
       "create-mats": [
         "Pnk Rathian Cpc (3)",
@@ -2200,7 +2200,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "19,800z",
+      "improve-cost": "19800",
       "improve-from": "Heartshot Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -2232,7 +2232,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "83,150z",
+      "improve-cost": "83150",
       "improve-from": "Heartshot Bow II",
       "create-mats": null,
       "improve-mats": [
@@ -2261,7 +2261,7 @@
         "Pierce 2"
       ],
       "type": "bw",
-      "create-cost": "6,850z",
+      "create-cost": "6850",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2295,7 +2295,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "8,250z",
+      "improve-cost": "8250",
       "improve-from": "Prominence Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -2327,7 +2327,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "16,500z",
+      "improve-cost": "16500",
       "improve-from": "Prominence Bow II",
       "create-mats": null,
       "improve-mats": [
@@ -2358,8 +2358,8 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "61,900z",
-      "improve-cost": "61,900z",
+      "create-cost": "61900",
+      "improve-cost": "61900",
       "improve-from": "Prominence Bow III",
       "create-mats": [
         "HvyRathalosShl (6)",
@@ -2396,7 +2396,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "74,250z",
+      "improve-cost": "74250",
       "improve-from": "Prominence Bow IV",
       "create-mats": null,
       "improve-mats": [
@@ -2426,7 +2426,7 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "16,800z",
+      "create-cost": "16800",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2461,7 +2461,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "39,600z",
+      "improve-cost": "39600",
       "improve-from": "Courageous Hope",
       "create-mats": null,
       "improve-mats": [
@@ -2494,7 +2494,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "111,350z",
+      "improve-cost": "111350",
       "improve-from": "Courageous Wish",
       "create-mats": null,
       "improve-mats": [
@@ -2523,7 +2523,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "10,250z",
+      "create-cost": "10250",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2556,7 +2556,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "25,700z",
+      "improve-cost": "25700",
       "improve-from": "Diablos Horn Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -2586,8 +2586,8 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "90,100z",
-      "improve-cost": "90,100z",
+      "create-cost": "90100",
+      "improve-cost": "90100",
       "improve-from": "Diablos Horn Bow II",
       "create-mats": [
         "HvyBlkBlosShell (8)",
@@ -2623,7 +2623,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "117,800z",
+      "improve-cost": "117800",
       "improve-from": "Gale Horn Bow",
       "create-mats": null,
       "improve-mats": [
@@ -2653,7 +2653,7 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "8,550z",
+      "create-cost": "8550",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2687,7 +2687,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "10,000z",
+      "improve-cost": "10000",
       "improve-from": "Tiger Arrow I",
       "create-mats": null,
       "improve-mats": [
@@ -2719,8 +2719,8 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "25,700z",
-      "improve-cost": "25,700z",
+      "create-cost": "25700",
+      "improve-cost": "25700",
       "improve-from": "Tiger Arrow II",
       "create-mats": [
         "Tigrex Carapace (4)",
@@ -2757,7 +2757,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "90,100z",
+      "improve-cost": "90100",
       "improve-from": "Tigrex Whisker",
       "create-mats": null,
       "improve-mats": [
@@ -2790,8 +2790,8 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "27,750z",
-      "improve-cost": "27,750z",
+      "create-cost": "27750",
+      "improve-cost": "27750",
       "improve-from": "Tiger Arrow II",
       "create-mats": [
         "Black Narga Pelt (6)",
@@ -2830,8 +2830,8 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "103,950z",
-      "improve-cost": "103,950z",
+      "create-cost": "103950",
+      "improve-cost": "103950",
       "improve-from": "Hidden Bow",
       "create-mats": [
         "ThickNargaScale (10)",
@@ -2866,7 +2866,7 @@
         "Rapid 1"
       ],
       "type": "bw",
-      "create-cost": "50,000z",
+      "create-cost": "50000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2900,7 +2900,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Dragonhead Harp I",
       "create-mats": null,
       "improve-mats": [
@@ -2932,7 +2932,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Dragonhead Harp II",
       "create-mats": null,
       "improve-mats": [
@@ -2964,7 +2964,7 @@
         "Pierce 2"
       ],
       "type": "bw",
-      "create-cost": "7,900z",
+      "create-cost": "7900",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3000,7 +3000,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "23,750z",
+      "improve-cost": "23750",
       "improve-from": "Dragon Bow Halo",
       "create-mats": null,
       "improve-mats": [
@@ -3033,8 +3033,8 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "115,800z",
-      "improve-cost": "115,800z",
+      "create-cost": "115800",
+      "improve-cost": "115800",
       "improve-from": "Dragon Bow Solar",
       "create-mats": [
         "YamaTsukamiHide (6)",
@@ -3072,7 +3072,7 @@
         "Scatter 3"
       ],
       "type": "bw",
-      "create-cost": "7,900z",
+      "create-cost": "7900",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3109,7 +3109,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "47,500z",
+      "improve-cost": "47500",
       "improve-from": "Dragon Bow Earth",
       "create-mats": null,
       "improve-mats": [
@@ -3144,7 +3144,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "124,750z",
+      "improve-cost": "124750",
       "improve-from": "Dragon Bow Mountain",
       "create-mats": null,
       "improve-mats": [
@@ -3174,7 +3174,7 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "95,000z",
+      "create-cost": "95000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3208,7 +3208,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "118,800z",
+      "improve-cost": "118800",
       "improve-from": "Beast Thunderbow",
       "create-mats": null,
       "improve-mats": [
@@ -3239,7 +3239,7 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "84,150z",
+      "create-cost": "84150",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3274,7 +3274,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "117,800z",
+      "improve-cost": "117800",
       "improve-from": "Icy Steel Bow",
       "create-mats": null,
       "improve-mats": [
@@ -3303,7 +3303,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "80,000z",
+      "create-cost": "80000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3336,7 +3336,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "Akantor Bow",
       "create-mats": null,
       "improve-mats": [
@@ -3366,7 +3366,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "7,500z",
+      "create-cost": "7500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3398,7 +3398,7 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "15,000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": "Black Bow I",
       "create-mats": null,
@@ -3430,8 +3430,8 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Black Bow II",
       "create-mats": [
         "Fatalis Horn (4)",
@@ -3466,7 +3466,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Exterminator Bow I",
       "create-mats": null,
       "improve-mats": [
@@ -3494,8 +3494,8 @@
         "Rapid 3"
       ],
       "type": "bw",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Black Bow II",
       "create-mats": [
         "Wht Fatalis Horn (4)",
@@ -3529,7 +3529,7 @@
       ],
       "type": "bw",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Glorious Victory I",
       "create-mats": null,
       "improve-mats": [
@@ -3560,7 +3560,7 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "150,000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3594,7 +3594,7 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3627,7 +3627,7 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3660,7 +3660,7 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3693,7 +3693,7 @@
         "Rapid 4"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3726,7 +3726,7 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3759,7 +3759,7 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3791,7 +3791,7 @@
         "Rapid 5"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3821,7 +3821,7 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3854,7 +3854,7 @@
         "Pierce 3"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3885,7 +3885,7 @@
         "Pierce 5"
       ],
       "type": "bw",
-      "create-cost": "75,000z",
+      "create-cost": "75000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [

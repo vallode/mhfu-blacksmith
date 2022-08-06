@@ -11,8 +11,8 @@
       "rarity": "9",
       "shelling": "Spread Lv. 3",
       "type": "gl",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Babel Spear",
       "create-mats": [
         "Eltalite Ore (10)",
@@ -41,7 +41,7 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Ancient Destroyer",
       "create-mats": null,
       "improve-mats": [
@@ -63,8 +63,8 @@
       "rarity": "6",
       "shelling": "Spread Lv. 2",
       "type": "gl",
-      "create-cost": "50,000z",
-      "improve-cost": "50,000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": "Knight Lance",
       "create-mats": [
         "Top-GrdHypnoClaw(5)",
@@ -92,8 +92,8 @@
       "rarity": "9",
       "shelling": "Spread Lv. 3",
       "type": "gl",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Feather Gunlance",
       "create-mats": [
         "Hypno Fang (3)",
@@ -123,7 +123,7 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Feather Gunlance+",
       "create-mats": null,
       "improve-mats": [
@@ -144,8 +144,8 @@
       "rarity": "2",
       "shelling": "Normal Lv. 1",
       "type": "gl",
-      "create-cost": "1,400z",
-      "improve-cost": "1,400z",
+      "create-cost": "1400",
+      "improve-cost": "1400",
       "improve-from": "Iron Lance",
       "create-mats": [
         "Giaprey Hide (3)",
@@ -174,7 +174,7 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "Snow Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -200,7 +200,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Snow Gunlance Mk. II",
       "create-mats": null,
       "improve-mats": [
@@ -221,8 +221,8 @@
       "rarity": "3",
       "shelling": "Long Lv. 1",
       "type": "gl",
-      "create-cost": "3100z",
-      "improve-cost": "3100z",
+      "create-cost": "3100",
+      "improve-cost": "3100",
       "improve-from": "Snow Gunlance Mk. II",
       "create-mats": [
         "Plesioth Fin (4)",
@@ -251,7 +251,7 @@
       "shelling": "Long Lv. 1",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "5600z",
+      "improve-cost": "5600",
       "improve-from": "Marine Fisher",
       "create-mats": null,
       "improve-mats": [
@@ -275,7 +275,7 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Deep Fisher",
       "create-mats": null,
       "improve-mats": [
@@ -299,7 +299,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "55,000z",
+      "improve-cost": "55000",
       "improve-from": "Deep Ocean",
       "create-mats": null,
       "improve-mats": [
@@ -324,7 +324,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Sea King Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -348,7 +348,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": "Sea God Leviathan",
       "create-mats": null,
       "improve-mats": [
@@ -370,8 +370,8 @@
       "rarity": "9",
       "shelling": "Long Lv. 3",
       "type": "gl",
-      "create-cost": "100000z",
-      "improve-cost": "100000z",
+      "create-cost": "100000",
+      "improve-cost": "100000",
       "improve-from": "Sea King Gunlance",
       "create-mats": [
         "ThckLavasiothScl (8)",
@@ -400,7 +400,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "120000z",
+      "improve-cost": "120000",
       "improve-from": "Volcano Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -422,8 +422,8 @@
       "rarity": "6",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "40,000z",
-      "improve-cost": "40,000z",
+      "create-cost": "40000",
+      "improve-cost": "40000",
       "improve-from": [
         "Bone Claw Lance+",
         "Snow Gunlance Mk. II"
@@ -455,7 +455,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Scissor Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -479,8 +479,8 @@
       "rarity": "9",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "85,000z",
-      "improve-cost": "85,000z",
+      "create-cost": "85000",
+      "improve-cost": "85000",
       "improve-from": "Scissor Cannon",
       "create-mats": [
         "HermitrClw (4)",
@@ -509,7 +509,7 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Violet Cannon",
       "create-mats": null,
       "improve-mats": [
@@ -530,8 +530,8 @@
       "rarity": "1",
       "shelling": "Normal Lv. 1",
       "type": "gl",
-      "create-cost": "1,100z",
-      "improve-cost": "1,100z",
+      "create-cost": "1100",
+      "improve-cost": "1100",
       "improve-from": [
         "Iron Lance"
       ],
@@ -562,7 +562,7 @@
       "shelling": "Normal Lv. 1",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "1,750z",
+      "improve-cost": "1750",
       "improve-from": "Iron Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -586,7 +586,7 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "Iron Gunlance+",
       "create-mats": null,
       "improve-mats": [
@@ -612,7 +612,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "3,100z",
+      "improve-cost": "3100",
       "improve-from": "Steel Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -636,7 +636,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "6,500z",
+      "improve-cost": "6500",
       "improve-from": "Special Ops Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -660,7 +660,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "65,000z",
+      "improve-cost": "65000",
       "improve-from": "Imperial Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -684,7 +684,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Silver Rook",
       "create-mats": null,
       "improve-mats": [
@@ -709,7 +709,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Gun Chariot",
       "create-mats": null,
       "improve-mats": [
@@ -733,7 +733,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Gun Chariot+",
       "create-mats": null,
       "improve-mats": [
@@ -755,8 +755,8 @@
       "rarity": "5",
       "shelling": "Spread Lv. 1",
       "type": "gl",
-      "create-cost": "5,600z",
-      "improve-cost": "5,600z",
+      "create-cost": "5600",
+      "improve-cost": "5600",
       "improve-from": [
         "Steel Gunlance"
       ],
@@ -787,7 +787,7 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Luna's Howl"
       ],
@@ -813,7 +813,7 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Luna's Roar",
       "create-mats": null,
       "improve-mats": [
@@ -837,7 +837,7 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Luna's Flare",
       "create-mats": null,
       "improve-mats": [
@@ -860,7 +860,7 @@
       "shelling": "Long Lv. 1",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "4,900z",
+      "improve-cost": "4900",
       "improve-from": "Steel Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -884,7 +884,7 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": "White Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -908,7 +908,7 @@
       "shelling": "Long Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "White Cannon",
       "create-mats": null,
       "improve-mats": [
@@ -932,7 +932,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Black Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -956,7 +956,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Black Gore Cannon",
       "create-mats": null,
       "improve-mats": [
@@ -977,8 +977,8 @@
       "rarity": "9",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "75,000z",
-      "improve-cost": "75,000z",
+      "create-cost": "75000",
+      "improve-cost": "75000",
       "improve-from": [
         "Barbarian Tusk"
       ],
@@ -1010,7 +1010,7 @@
       "shelling": "Normal Lv. 5",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Heavy Bone Gunlance"
       ],
@@ -1033,8 +1033,8 @@
       "rarity": "7",
       "shelling": "Long Lv. 2",
       "type": "gl",
-      "create-cost": "50,000z",
-      "improve-cost": "50,000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": [
         "Hard Bone Lance+"
       ],
@@ -1065,7 +1065,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Full Voltage",
       "create-mats": null,
       "improve-mats": [
@@ -1089,7 +1089,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "120,000z",
+      "improve-cost": "120000",
       "improve-from": "Full Generator",
       "create-mats": null,
       "improve-mats": [
@@ -1111,7 +1111,7 @@
       "rarity": "1",
       "shelling": "Normal Lv. 1",
       "type": "gl",
-      "create-cost": "650z",
+      "create-cost": "650",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1135,7 +1135,7 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "1400z",
+      "improve-cost": "1400",
       "improve-from": "Bone Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1159,7 +1159,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "2150z",
+      "improve-cost": "2150",
       "improve-from": "Great Bone Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1182,8 +1182,8 @@
       "rarity": "4",
       "shelling": "Spread Lv. 1",
       "type": "gl",
-      "create-cost": "4250z",
-      "improve-cost": "4250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": "Wyvern Bone Gunlance",
       "create-mats": [
         "Blangonga Fang (2)",
@@ -1212,7 +1212,7 @@
       "shelling": "Spread Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "6350z",
+      "improve-cost": "6350",
       "improve-from": "Hellsting",
       "create-mats": null,
       "improve-mats": [
@@ -1236,7 +1236,7 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "50000z",
+      "improve-cost": "50000",
       "improve-from": "Hellsting+",
       "create-mats": null,
       "improve-mats": [
@@ -1261,7 +1261,7 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Hellstinger",
       "create-mats": null,
       "improve-mats": [],
@@ -1279,7 +1279,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Hellstinger",
       "create-mats": null,
       "improve-mats": [
@@ -1303,7 +1303,7 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Desert Slingshot",
       "create-mats": null,
       "improve-mats": [
@@ -1325,8 +1325,8 @@
       "rarity": "3",
       "shelling": "Normal Lv. 2",
       "type": "gl",
-      "create-cost": "3100z",
-      "improve-cost": "3100z",
+      "create-cost": "3100",
+      "improve-cost": "3100",
       "improve-from": "Great Bone Gunlance",
       "create-mats": [
         "Pur Rubbery Hide (4)",
@@ -1355,7 +1355,7 @@
       "shelling": "Normal Lv. 2",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "5600z",
+      "improve-cost": "5600",
       "improve-from": "Average Hitter",
       "create-mats": null,
       "improve-mats": [
@@ -1379,7 +1379,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": "Grand Slam",
       "create-mats": null,
       "improve-mats": [
@@ -1403,7 +1403,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Hard Hitter",
       "create-mats": null,
       "improve-mats": [
@@ -1428,7 +1428,7 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Big Slugger",
       "create-mats": null,
       "improve-mats": [
@@ -1450,8 +1450,8 @@
       "rarity": "8",
       "shelling": "Long Lv. 2",
       "type": "gl",
-      "create-cost": "90,000z",
-      "improve-cost": "90,000z",
+      "create-cost": "90000",
+      "improve-cost": "90000",
       "improve-from": "Big Slugger",
       "create-mats": [
         "Chameleos Hide+ (5)",
@@ -1480,7 +1480,7 @@
       "shelling": "Long Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": "Venomous Cologne",
       "create-mats": null,
       "improve-mats": [
@@ -1505,7 +1505,7 @@
       "shelling": "Long Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Venomous Attar",
       "create-mats": null,
       "improve-mats": [
@@ -1527,7 +1527,7 @@
       "rarity": "5",
       "shelling": "Spread Lv. 1",
       "type": "gl",
-      "create-cost": "15000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1552,7 +1552,7 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "100000z",
+      "improve-cost": "100000",
       "improve-from": "Black Smoke Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1577,7 +1577,7 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "150000z",
+      "improve-cost": "150000",
       "improve-from": "BlackDragonGunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1599,7 +1599,7 @@
       "rarity": "5",
       "shelling": "Normal Lv. 2",
       "type": "gl",
-      "create-cost": "20,000z",
+      "create-cost": "20000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1625,7 +1625,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Dragonwood Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1648,8 +1648,8 @@
       "rarity": "9",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Gld Dragonwd GLance",
       "create-mats": [
         "AncientDrgnwood (5)",
@@ -1678,7 +1678,7 @@
       "shelling": "Normal Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "AncientDrgnwoodLance",
       "create-mats": null,
       "improve-mats": [
@@ -1700,7 +1700,7 @@
       "rarity": "6",
       "shelling": "Spread Lv. 3",
       "type": "gl",
-      "create-cost": "40,000z",
+      "create-cost": "40000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1726,7 +1726,7 @@
       "shelling": "Spread Lv. 5",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Pop Corn",
       "create-mats": null,
       "improve-mats": [
@@ -1748,7 +1748,7 @@
       "rarity": "5",
       "shelling": "Spread Lv. 2",
       "type": "gl",
-      "create-cost": "35,000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1775,7 +1775,7 @@
       "shelling": "Spread Lv. 3",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "80000z",
+      "improve-cost": "80000",
       "improve-from": "Rex Blast",
       "create-mats": null,
       "improve-mats": [
@@ -1799,7 +1799,7 @@
       "shelling": "Spread Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "125000z",
+      "improve-cost": "125000",
       "improve-from": "Tigrex Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1820,8 +1820,8 @@
       "rarity": "7",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "80000z",
-      "improve-cost": "80000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Rex Blast",
       "create-mats": [
         "NargaCuttingWing(4)",
@@ -1849,8 +1849,8 @@
       "rarity": "10",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "120000z",
-      "improve-cost": "120000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Hidden Gunlance",
       "create-mats": [
         "LeatherNargaTail (4)",
@@ -1877,7 +1877,7 @@
       "rarity": "8",
       "shelling": "Normal Lv. 2",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1903,7 +1903,7 @@
       "shelling": "Normal Lv. 4",
       "type": "gl",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "Akantor Gunlance",
       "create-mats": null,
       "improve-mats": [
@@ -1925,7 +1925,7 @@
       "rarity": "10",
       "shelling": "Long Lv. 5",
       "type": "gl",
-      "create-cost": "150000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1948,7 +1948,7 @@
       "rarity": "9",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1971,7 +1971,7 @@
       "rarity": "9",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1994,7 +1994,7 @@
       "rarity": "9",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2017,7 +2017,7 @@
       "rarity": "9",
       "shelling": "Long Lv. 4",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2040,7 +2040,7 @@
       "rarity": "9",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2063,7 +2063,7 @@
       "rarity": "9",
       "shelling": "Normal Lv. 4",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2086,7 +2086,7 @@
       "rarity": "9",
       "shelling": "Long Lv. 3",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2109,7 +2109,7 @@
       "rarity": "10",
       "shelling": "Long Lv. 3",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2132,7 +2132,7 @@
       "rarity": "10",
       "shelling": "Normal Lv. 3",
       "type": "gl",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [

@@ -11,7 +11,7 @@
       "rarity": "1",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "500z",
+      "create-cost": "500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -35,7 +35,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "650z",
+      "improve-cost": "650",
       "improve-from": [
         "War Hammer"
       ],
@@ -61,7 +61,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,100z",
+      "improve-cost": "1100",
       "improve-from": [
         "War Hammer+"
       ],
@@ -89,8 +89,8 @@
       "rarity": "2",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "2,150z",
-      "improve-cost": "2,150z",
+      "create-cost": "2150",
+      "improve-cost": "2150",
       "improve-from": [
         "War Mace"
       ],
@@ -121,7 +121,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,250z",
+      "improve-cost": "4250",
       "improve-from": [
         "Iron Striker"
       ],
@@ -147,7 +147,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "6,350z",
+      "improve-cost": "6350",
       "improve-from": [
         "Iron Striker+"
       ],
@@ -177,7 +177,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": [
         "Anvil Hammer"
       ],
@@ -202,8 +202,8 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "75,000z",
-      "improve-cost": "75,000z",
+      "create-cost": "75000",
+      "improve-cost": "75000",
       "improve-from": [
         "Onslaught Hammer"
       ],
@@ -235,7 +235,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Blacksmith"
       ],
@@ -259,7 +259,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": [
         "Anvil Hammer"
       ],
@@ -285,7 +285,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "War Stamp",
       "create-mats": null,
       "improve-mats": [
@@ -306,8 +306,8 @@
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "25,000z",
-      "improve-cost": "25,000z",
+      "create-cost": "25000",
+      "improve-cost": "25000",
       "improve-from": [
         "Anvil Hammer"
       ],
@@ -338,7 +338,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Iron Devil"
       ],
@@ -365,7 +365,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "55,000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Great Demon Hammer"
       ],
@@ -391,7 +391,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": [
         "Devil Masher"
       ],
@@ -417,7 +417,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Devil Masher+",
       "create-mats": null,
       "improve-mats": [
@@ -439,7 +439,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "55,000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Great Demon Hammer"
       ],
@@ -466,7 +466,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": [
         "Iron Impact"
       ],
@@ -490,8 +490,8 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "75,000z",
-      "improve-cost": "75,000z",
+      "create-cost": "75000",
+      "improve-cost": "75000",
       "improve-from": [
         "Iron Impact"
       ],
@@ -523,7 +523,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": [
         "Icy Impact"
       ],
@@ -548,7 +548,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Iron Devil"
       ],
@@ -574,7 +574,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": [
         "Fist of Fury"
       ],
@@ -600,7 +600,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": [
         "Fist of Fury"
       ],
@@ -623,8 +623,8 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "3,100z",
-      "improve-cost": "3,100z",
+      "create-cost": "3100",
+      "improve-cost": "3100",
       "improve-from": "Iron Striker",
       "create-mats": [
         "FireWyvern Fluid (4)",
@@ -653,7 +653,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "6,350z",
+      "improve-cost": "6350",
       "improve-from": "Gunhammer Prototype",
       "create-mats": null,
       "improve-mats": [
@@ -677,7 +677,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "Dead Revolver",
       "create-mats": null,
       "improve-mats": [
@@ -701,8 +701,8 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "95,000z",
-      "improve-cost": "95,000z",
+      "create-cost": "95000",
+      "improve-cost": "95000",
       "improve-from": "Sanctioned Gunhammer",
       "create-mats": [
         "Eltalite Ore (10)",
@@ -731,7 +731,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "120,000z",
+      "improve-cost": "120000",
       "improve-from": "Regulation GunHammer",
       "create-mats": null,
       "improve-mats": [
@@ -754,7 +754,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "War Mace",
       "create-mats": null,
       "improve-mats": [
@@ -778,7 +778,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,900z",
+      "improve-cost": "4900",
       "improve-from": "Anchor Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -802,7 +802,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "65,000z",
+      "improve-cost": "65000",
       "improve-from": "Anchor Hammer+",
       "create-mats": null,
       "improve-mats": [
@@ -823,8 +823,8 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "1,400z",
-      "improve-cost": "1,400z",
+      "create-cost": "1400",
+      "improve-cost": "1400",
       "improve-from": "War Mace",
       "create-mats": [
         "FlynMealPassPlus (1)",
@@ -853,7 +853,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": "Black Cauldron",
       "create-mats": null,
       "improve-mats": [
@@ -875,7 +875,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "Black Cauldron",
       "create-mats": null,
       "improve-mats": [
@@ -899,7 +899,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "One Star Silver Pot",
       "create-mats": null,
       "improve-mats": [
@@ -921,7 +921,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": "War Mace",
       "create-mats": null,
       "improve-mats": [
@@ -945,7 +945,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "5,600z",
+      "improve-cost": "5600",
       "improve-from": "Bone Axe",
       "create-mats": null,
       "improve-mats": [
@@ -969,7 +969,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Bone Broadaxe",
       "create-mats": null,
       "improve-mats": [
@@ -993,8 +993,8 @@
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "60,000z",
-      "improve-cost": "60,000z",
+      "create-cost": "60000",
+      "improve-cost": "60000",
       "improve-from": "Bone Great Axe",
       "create-mats": [
         "Ceanataur Carpce (6)",
@@ -1025,7 +1025,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": "Ceanataur Head Axe",
       "create-mats": null,
       "improve-mats": [
@@ -1047,8 +1047,8 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "85000z",
-      "improve-cost": "85000z",
+      "create-cost": "85000",
+      "improve-cost": "85000",
       "improve-from": "Ceanataur Head Axe",
       "create-mats": [
         "Terra Ceanataur Shell (6)",
@@ -1077,7 +1077,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": "Carmine Axe",
       "create-mats": null,
       "improve-mats": [
@@ -1100,7 +1100,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,400z",
+      "improve-cost": "1400",
       "improve-from": [
         "War Hammer+"
       ],
@@ -1126,7 +1126,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,750z",
+      "improve-cost": "1750",
       "improve-from": [
         "Spiked Hammer"
       ],
@@ -1153,8 +1153,8 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "2,600z",
-      "improve-cost": "2,600z",
+      "create-cost": "2600",
+      "improve-cost": "2600",
       "improve-from": [
         "Spiked Hammer+"
       ],
@@ -1185,7 +1185,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "3,650z",
+      "improve-cost": "3650",
       "improve-from": "Crystal Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1210,7 +1210,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Crystal Nova",
       "create-mats": null,
       "improve-mats": [
@@ -1234,7 +1234,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Great Nova",
       "create-mats": null,
       "improve-mats": [
@@ -1257,7 +1257,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,250z",
+      "improve-cost": "4250",
       "improve-from": "Crystal Nova",
       "create-mats": null,
       "improve-mats": [
@@ -1281,7 +1281,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "8,000z",
+      "improve-cost": "8000",
       "improve-from": "Gigaton Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1302,8 +1302,8 @@
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "4,250z",
-      "improve-cost": "4,250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": "Spiked Hammer+",
       "create-mats": [
         "Basarios Shell (8)",
@@ -1332,7 +1332,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,900z",
+      "improve-cost": "4900",
       "improve-from": "Shell Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1357,7 +1357,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": "Graviton Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1381,7 +1381,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Crater Maker",
       "create-mats": null,
       "improve-mats": [
@@ -1406,7 +1406,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "VenomousCraterMaker",
       "create-mats": null,
       "improve-mats": [
@@ -1429,7 +1429,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "45,000z",
+      "improve-cost": "45000",
       "improve-from": "Graviton Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1453,7 +1453,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": "Torment Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1474,7 +1474,7 @@
       "rarity": "1",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "400z",
+      "create-cost": "400",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1500,7 +1500,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,600z",
+      "improve-cost": "2600",
       "improve-from": "Bone Club",
       "create-mats": null,
       "improve-mats": [
@@ -1523,7 +1523,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "7,500z",
+      "improve-cost": "7500",
       "improve-from": "Large Bone Club",
       "create-mats": null,
       "improve-mats": [
@@ -1547,7 +1547,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Enormous Ham",
       "create-mats": null,
       "improve-mats": [
@@ -1569,7 +1569,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,750z",
+      "improve-cost": "1750",
       "improve-from": [
         "Bone Club"
       ],
@@ -1597,7 +1597,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,750z",
+      "improve-cost": "1750",
       "improve-from": [
         "Cyclo-Hammer"
       ],
@@ -1623,8 +1623,8 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "2,600z",
-      "improve-cost": "2,600z",
+      "create-cost": "2600",
+      "improve-cost": "2600",
       "improve-from": "Atlas Hammer",
       "create-mats": [
         "Giant Beak (1)",
@@ -1656,7 +1656,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "5,600z",
+      "improve-cost": "5600",
       "improve-from": [
         "Kut-Ku Jaw"
       ],
@@ -1682,8 +1682,8 @@
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "25,000z",
-      "improve-cost": "25,000z",
+      "create-cost": "25000",
+      "improve-cost": "25000",
       "improve-from": [
         "Kut-Ku Pick"
       ],
@@ -1715,7 +1715,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Hard Bone Hammer"
       ],
@@ -1741,7 +1741,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "45,000z",
+      "improve-cost": "45000",
       "improve-from": [
         "Hard Bone Hammer+"
       ],
@@ -1767,7 +1767,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Diablos Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -1791,7 +1791,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Diablo Chaos Broker",
       "create-mats": null,
       "improve-mats": [
@@ -1814,7 +1814,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": [
         "Hard Bone Hammer"
       ],
@@ -1840,7 +1840,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "55,000z",
+      "improve-cost": "55000",
       "improve-from": [
         "Lobster Hammer"
       ],
@@ -1866,7 +1866,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": [
         "King Lobster Hammer"
       ],
@@ -1889,8 +1889,8 @@
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "10,000z",
-      "improve-cost": "10,000z",
+      "create-cost": "10000",
+      "improve-cost": "10000",
       "improve-from": "Kut-Ku Jaw",
       "create-mats": [
         "Sharpened Beak (2)",
@@ -1918,7 +1918,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "65,000z",
+      "improve-cost": "65000",
       "improve-from": [
         "Raven Torrent"
       ],
@@ -1945,7 +1945,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": [
         "Wolf Torrent"
       ],
@@ -1970,7 +1970,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "3,100z",
+      "improve-cost": "3100",
       "improve-from": "Kut-Ku Jaw",
       "create-mats": null,
       "improve-mats": [
@@ -1994,7 +1994,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "45,000z",
+      "improve-cost": "45000",
       "improve-from": "Dynamic Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2018,7 +2018,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Violence Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2041,7 +2041,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "3,100z",
+      "improve-cost": "3100",
       "improve-from": "Kut-Ku Jaw",
       "create-mats": null,
       "improve-mats": [
@@ -2065,7 +2065,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "Venom Monster",
       "create-mats": null,
       "improve-mats": [
@@ -2089,7 +2089,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": [
         "Death Venom Hammer"
       ],
@@ -2115,7 +2115,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": "Purple Mace",
       "create-mats": null,
       "improve-mats": [
@@ -2138,7 +2138,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "3,100z",
+      "improve-cost": "3100",
       "improve-from": "Atlas Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2162,7 +2162,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "5,600z",
+      "improve-cost": "5600",
       "improve-from": "Jail Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2183,8 +2183,8 @@
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "50,000z",
-      "improve-cost": "50,000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": "Khezu Horn+",
       "create-mats": [
         "Khezu Hide - Tan (8)",
@@ -2214,7 +2214,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Purse Bop",
       "create-mats": null,
       "improve-mats": [
@@ -2238,7 +2238,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "120,000z",
+      "improve-cost": "120000",
       "improve-from": "Purse Bop+",
       "create-mats": null,
       "improve-mats": [
@@ -2261,7 +2261,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,400z",
+      "improve-cost": "1400",
       "improve-from": "Cyclo-Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2285,7 +2285,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,150z",
+      "improve-cost": "2150",
       "improve-from": [
         "Skullcrusher"
       ],
@@ -2312,8 +2312,8 @@
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "4,250z",
-      "improve-cost": "4,250z",
+      "create-cost": "4250",
+      "improve-cost": "4250",
       "improve-from": [
         "Skullcrusher+"
       ],
@@ -2344,7 +2344,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": [
         "Diablos Maul"
       ],
@@ -2367,8 +2367,8 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "2,600z",
-      "improve-cost": "2,600z",
+      "create-cost": "2600",
+      "improve-cost": "2600",
       "improve-from": "Skullcrusher+",
       "create-mats": [
         "Wyvern Skull Shell (2)",
@@ -2397,7 +2397,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "7,150z",
+      "improve-cost": "7150",
       "improve-from": [
         "Dragonhead Hammer"
       ],
@@ -2423,7 +2423,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,900z",
+      "improve-cost": "4900",
       "improve-from": "Dragonhead Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2447,7 +2447,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Basarios Blow",
       "create-mats": null,
       "improve-mats": [
@@ -2469,7 +2469,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "1,400z",
+      "improve-cost": "1400",
       "improve-from": "Cyclo-Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2493,7 +2493,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "4,250z",
+      "improve-cost": "4250",
       "improve-from": "Conehead Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2517,7 +2517,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Conehead Hammer+",
       "create-mats": null,
       "improve-mats": [
@@ -2540,8 +2540,8 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "95000z",
-      "improve-cost": "115000z",
+      "create-cost": "95000",
+      "improve-cost": "115000",
       "improve-from": "Great Cone",
       "create-mats": [
         "BlangongaPelt+ (10)",
@@ -2570,7 +2570,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": "Desert Cone",
       "create-mats": null,
       "improve-mats": [
@@ -2667,7 +2667,7 @@
       "rarity": "1",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "1,000z",
+      "create-cost": "1000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2690,7 +2690,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "2,500z",
+      "improve-cost": "2500",
       "improve-from": [
         "Rusted Hammer"
       ],
@@ -2715,7 +2715,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": [
         "Tarnished Hammer"
       ],
@@ -2738,7 +2738,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": [
         "Tarnished Hammer"
       ],
@@ -2764,7 +2764,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": [
         "Jadite Mace"
       ],
@@ -2790,7 +2790,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Jade Mace",
       "create-mats": null,
       "improve-mats": [
@@ -2814,7 +2814,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Lunastra's Crown",
       "create-mats": null,
       "improve-mats": [
@@ -2836,7 +2836,7 @@
       "rarity": "6",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "1,000z",
+      "create-cost": "1000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2859,7 +2859,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "12,500z",
+      "improve-cost": "12500",
       "improve-from": "Worn Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2882,7 +2882,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "Weathered Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2905,7 +2905,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Pulsating Core",
       "create-mats": null,
       "improve-mats": [
@@ -2927,7 +2927,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Weathered Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2951,7 +2951,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Steel Ice Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -2975,7 +2975,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Daora's Colossus",
       "create-mats": null,
       "improve-mats": [
@@ -2997,7 +2997,7 @@
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "6,000z",
+      "create-cost": "6000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3023,7 +3023,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "20,000z",
+      "improve-cost": "20000",
       "improve-from": "Black Belt Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3047,7 +3047,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Expert Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3069,7 +3069,7 @@
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "15,000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3095,7 +3095,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Black Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3119,7 +3119,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Fatalis Buster",
       "create-mats": null,
       "improve-mats": [
@@ -3142,7 +3142,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Black Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3166,7 +3166,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "AncientFatalisBuster",
       "create-mats": null,
       "improve-mats": [
@@ -3188,7 +3188,7 @@
       "rarity": "3",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "7,500z",
+      "create-cost": "7500",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3213,7 +3213,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": "Cactus Creamer",
       "create-mats": null,
       "improve-mats": [
@@ -3235,7 +3235,7 @@
       "notes": "Unknown",
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
       "type": "hm",
-      "create-cost": "5,600z",
+      "create-cost": "5600",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3260,7 +3260,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Dragon Destroyer",
       "create-mats": null,
       "improve-mats": [
@@ -3284,7 +3284,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Dragonbreaker",
       "create-mats": null,
       "improve-mats": [
@@ -3308,7 +3308,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "140,000z",
+      "improve-cost": "140000",
       "improve-from": "Dragon Demolisher",
       "create-mats": null,
       "improve-mats": [
@@ -3330,7 +3330,7 @@
       "rarity": "5",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "35,000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3357,7 +3357,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Striped Striker",
       "create-mats": null,
       "improve-mats": [
@@ -3381,7 +3381,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Tigrex Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3403,8 +3403,8 @@
       "rarity": "7",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Striped Striker",
       "create-mats": [
         "Black NargaPelt (10)",
@@ -3432,8 +3432,8 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Hidden Breaker",
       "create-mats": [
         "Black Nargacuga Pelt+ (10)",
@@ -3460,7 +3460,7 @@
       "rarity": "2",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "2,150z",
+      "create-cost": "2150",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3487,7 +3487,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "20,000z",
+      "improve-cost": "20000",
       "improve-from": "White Cat Stamp",
       "create-mats": null,
       "improve-mats": [
@@ -3509,7 +3509,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "3,650z",
+      "improve-cost": "3650",
       "improve-from": "White Cat Stamp",
       "create-mats": null,
       "improve-mats": [
@@ -3534,7 +3534,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "25,000z",
+      "improve-cost": "25000",
       "improve-from": "Black Cat Stamp",
       "create-mats": null,
       "improve-mats": [
@@ -3555,8 +3555,8 @@
       "rarity": "8",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "45,000z",
-      "improve-cost": "45,000z",
+      "create-cost": "45000",
+      "improve-cost": "45000",
       "improve-from": "Black Cat Stamp",
       "create-mats": [
         "Felyne Fur Ruby (3)",
@@ -3585,7 +3585,7 @@
       "notes": "Unknown",
       "type": "hm",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Gold Cat Hammer",
       "create-mats": null,
       "improve-mats": [
@@ -3607,8 +3607,8 @@
       "rarity": "4",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "5,000z",
-      "improve-cost": "5,000z",
+      "create-cost": "5000",
+      "improve-cost": "5000",
       "improve-from": "White Cat Stamp",
       "create-mats": [
         "Commendation (1)",
@@ -3633,7 +3633,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "150,000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3656,7 +3656,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3679,7 +3679,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3702,7 +3702,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3723,7 +3723,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3746,7 +3746,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3769,7 +3769,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3792,7 +3792,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3815,7 +3815,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3838,7 +3838,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3861,7 +3861,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3884,7 +3884,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3907,7 +3907,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3930,7 +3930,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3953,7 +3953,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3976,7 +3976,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -3999,7 +3999,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4022,7 +4022,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4045,7 +4045,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4068,7 +4068,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4091,7 +4091,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4114,7 +4114,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4137,7 +4137,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4160,7 +4160,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4183,7 +4183,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4206,7 +4206,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4229,7 +4229,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4252,7 +4252,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4275,7 +4275,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4298,7 +4298,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4321,7 +4321,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4344,7 +4344,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4367,7 +4367,7 @@
       "rarity": "9",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4390,7 +4390,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4413,7 +4413,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4436,7 +4436,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4459,7 +4459,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4482,7 +4482,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -4505,7 +4505,7 @@
       "rarity": "10",
       "notes": "Unknown",
       "type": "hm",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [

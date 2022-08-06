@@ -11,8 +11,8 @@
       "rarity": "9",
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
-      "create-cost": "100000z",
-      "improve-cost": "100000z",
+      "create-cost": "100000",
+      "improve-cost": "100000",
       "improve-from": "Blacksmith",
       "create-mats": [
         "ThckLavasiothScl (8)",
@@ -41,7 +41,7 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "120000z",
+      "improve-cost": "120000",
       "improve-from": "Lava Alphorn",
       "create-mats": null,
       "improve-mats": [
@@ -63,8 +63,8 @@
       "rarity": "5",
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
-      "create-cost": "35,000z",
-      "improve-cost": "35,000z",
+      "create-cost": "35000",
+      "improve-cost": "35000",
       "improve-from": "Anvil Hammer",
       "create-mats": [
         "Gaoren Pincer (2)",
@@ -93,7 +93,7 @@
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Bronze Bell",
       "create-mats": null,
       "improve-mats": [
@@ -117,7 +117,7 @@
       "notes": "Note.purpleNote.blueNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Gaoren Bell",
       "create-mats": null,
       "improve-mats": [
@@ -139,8 +139,8 @@
       "rarity": "5",
       "notes": "Note.whiteNote.aquaNote.blue",
       "type": "hh",
-      "create-cost": "25,000z",
-      "improve-cost": "25,000z",
+      "create-cost": "25000",
+      "improve-cost": "25000",
       "improve-from": "Anvil Hammer",
       "create-mats": [
         "Pink Rathian Scl (6)",
@@ -169,7 +169,7 @@
       "notes": "Note.whiteNote.aquaNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "70,000z",
+      "improve-cost": "70000",
       "improve-from": "Sakura Recorder",
       "create-mats": null,
       "improve-mats": [
@@ -193,7 +193,7 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Sakura Recorder+",
       "create-mats": null,
       "improve-mats": [
@@ -217,7 +217,7 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Gold Recorder",
       "create-mats": null,
       "improve-mats": [
@@ -242,7 +242,7 @@
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Gold Recorder+",
       "create-mats": null,
       "improve-mats": [
@@ -263,8 +263,8 @@
       "rarity": "2",
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
-      "create-cost": "2340z",
-      "improve-cost": "2340z",
+      "create-cost": "2340",
+      "improve-cost": "2340",
       "improve-from": "War Mace",
       "create-mats": [
         "Black Pearl (2)",
@@ -293,7 +293,7 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "4410z",
+      "improve-cost": "4410",
       "improve-from": "Metal Bagpipe",
       "create-mats": null,
       "improve-mats": [
@@ -317,7 +317,7 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Great Bagpipe",
       "create-mats": null,
       "improve-mats": [
@@ -341,7 +341,7 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "Heavy Bagpipe",
       "create-mats": null,
       "improve-mats": [
@@ -365,7 +365,7 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Heavy Bagpipe+",
       "create-mats": null,
       "improve-mats": [
@@ -389,7 +389,7 @@
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "110,000z",
+      "improve-cost": "110000",
       "improve-from": "Master Bagpipe",
       "create-mats": null,
       "improve-mats": [
@@ -410,8 +410,8 @@
       "rarity": "4",
       "notes": "Note.whiteNote.yellowNote.aqua",
       "type": "hh",
-      "create-cost": "3825z",
-      "improve-cost": "3825z",
+      "create-cost": "3825",
+      "improve-cost": "3825",
       "improve-from": "Spiked Hammer+",
       "create-mats": [
         "Basarios Shell (8)",
@@ -440,7 +440,7 @@
       "notes": "Note.whiteNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "5715z",
+      "improve-cost": "5715",
       "improve-from": "Basarios Rock",
       "create-mats": null,
       "improve-mats": [
@@ -464,7 +464,7 @@
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Basarios Rock Mk.II",
       "create-mats": null,
       "improve-mats": [
@@ -488,7 +488,7 @@
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "Volcanic Rock",
       "create-mats": null,
       "improve-mats": [
@@ -510,8 +510,8 @@
       "rarity": "6",
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
-      "create-cost": "50000z",
-      "improve-cost": "50000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": "Kut-Ku Pick",
       "create-mats": [
         "Top-GrdHypnoClaw (10)",
@@ -539,8 +539,8 @@
       "rarity": "9",
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
-      "create-cost": "80000z",
-      "improve-cost": "80000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Feather Whistle",
       "create-mats": [
         "OrangeHypnoPelt+ (8)",
@@ -570,7 +570,7 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "105000z",
+      "improve-cost": "105000",
       "improve-from": "Hypno Whistle",
       "create-mats": null,
       "improve-mats": [],
@@ -587,8 +587,8 @@
       "rarity": "7",
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
-      "create-cost": "65,000z",
-      "improve-cost": "65,000z",
+      "create-cost": "65000",
+      "improve-cost": "65000",
       "improve-from": "Wolf Torrent",
       "create-mats": [
         "Garuga Scale+ (8)",
@@ -618,7 +618,7 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Wolf Shamisen",
       "create-mats": null,
       "improve-mats": [
@@ -640,8 +640,8 @@
       "rarity": "3",
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
-      "create-cost": "2790z",
-      "improve-cost": "2790z",
+      "create-cost": "2790",
+      "improve-cost": "2790",
       "improve-from": "Atlas Hammer",
       "create-mats": [
         "Flabby Hide (5)",
@@ -670,7 +670,7 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "5040z",
+      "improve-cost": "5040",
       "improve-from": "Khezu Horn",
       "create-mats": null,
       "improve-mats": [
@@ -696,7 +696,7 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": "Khezu Horn+",
       "create-mats": null,
       "improve-mats": [
@@ -718,7 +718,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Khezu Horn+",
       "create-mats": null,
       "improve-mats": [
@@ -742,7 +742,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Blood Horn",
       "create-mats": null,
       "improve-mats": [
@@ -766,7 +766,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Blood Flute",
       "create-mats": null,
       "improve-mats": [
@@ -812,8 +812,8 @@
       "rarity": "7",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "50,000z",
-      "improve-cost": "50,000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": "Ancient Relic",
       "create-mats": [
         "Hermitaur Carpce (6)",
@@ -843,7 +843,7 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "85,000z",
+      "improve-cost": "85000",
       "improve-from": "Shell Castanet",
       "create-mats": null,
       "improve-mats": [
@@ -868,7 +868,7 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "115,000z",
+      "improve-cost": "115000",
       "improve-from": "Shell Castanet+",
       "create-mats": null,
       "improve-mats": [
@@ -891,7 +891,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "90000z",
+      "improve-cost": "90000",
       "improve-from": "Shell Castanet",
       "create-mats": null,
       "improve-mats": [
@@ -915,7 +915,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "120000z",
+      "improve-cost": "120000",
       "improve-from": "Crabby Castanet",
       "create-mats": null,
       "improve-mats": [
@@ -937,8 +937,8 @@
       "rarity": "3",
       "notes": "Note.whiteNote.greenNote.yellow",
       "type": "hh",
-      "create-cost": "2340z",
-      "improve-cost": "2340z",
+      "create-cost": "2340",
+      "improve-cost": "2340",
       "improve-from": "Skullcrusher+",
       "create-mats": [
         "Lightcrystal (2)",
@@ -967,7 +967,7 @@
       "notes": "Note.whiteNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "3285z",
+      "improve-cost": "3285",
       "improve-from": "Sonic Glass",
       "create-mats": null,
       "improve-mats": [
@@ -991,7 +991,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "55,000z",
+      "improve-cost": "55000",
       "improve-from": "Sonic Glass+",
       "create-mats": null,
       "improve-mats": [
@@ -1014,8 +1014,8 @@
       "rarity": "9",
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Glass Queen",
       "create-mats": [
         "Purecrystal (2)",
@@ -1044,7 +1044,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Glass Royale",
       "create-mats": null,
       "improve-mats": [
@@ -1066,8 +1066,8 @@
       "rarity": "2",
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
-      "create-cost": "990z",
-      "improve-cost": "990z",
+      "create-cost": "990",
+      "improve-cost": "990",
       "improve-from": "Bone Club",
       "create-mats": [
         "Giaprey Hide (4)",
@@ -1096,7 +1096,7 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "1935z",
+      "improve-cost": "1935",
       "improve-from": "Giaprey Balloon",
       "create-mats": null,
       "improve-mats": [
@@ -1121,7 +1121,7 @@
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "40,000z",
+      "improve-cost": "40000",
       "improve-from": "Giaprey Balloon+",
       "create-mats": null,
       "improve-mats": [
@@ -1143,7 +1143,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "30,000z",
+      "improve-cost": "30000",
       "improve-from": "Giaprey Balloon+",
       "create-mats": null,
       "improve-mats": [
@@ -1168,7 +1168,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "50,000z",
+      "improve-cost": "50000",
       "improve-from": "Velociprey Balloon",
       "create-mats": null,
       "improve-mats": [
@@ -1193,7 +1193,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Velociprey Balloon+",
       "create-mats": null,
       "improve-mats": [
@@ -1218,7 +1218,7 @@
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "105,000z",
+      "improve-cost": "105000",
       "improve-from": "Velocidrome Balloon",
       "create-mats": null,
       "improve-mats": [
@@ -1240,7 +1240,7 @@
       "rarity": "1",
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
-      "create-cost": "585z",
+      "create-cost": "585",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1265,7 +1265,7 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "1575z",
+      "improve-cost": "1575",
       "improve-from": [
         "Ivory Horn",
         "Cyclo-Hammer"
@@ -1292,7 +1292,7 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "5040z",
+      "improve-cost": "5040",
       "improve-from": "Bone Horn",
       "create-mats": null,
       "improve-mats": [
@@ -1316,7 +1316,7 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "35,000z",
+      "improve-cost": "35000",
       "improve-from": "Bone Horn+",
       "create-mats": null,
       "improve-mats": [
@@ -1340,7 +1340,7 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Hunter's Horn",
       "create-mats": null,
       "improve-mats": [
@@ -1365,7 +1365,7 @@
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Hunter's Horn+",
       "create-mats": null,
       "improve-mats": [
@@ -1387,8 +1387,8 @@
       "rarity": "5",
       "notes": "Note.whiteNote.greenNote.blue",
       "type": "hh",
-      "create-cost": "10,000z",
-      "improve-cost": "10,000z",
+      "create-cost": "10000",
+      "improve-cost": "10000",
       "improve-from": "Bone Horn",
       "create-mats": [
         "Chameleos Tail (2)",
@@ -1417,7 +1417,7 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "90,000z",
+      "improve-cost": "90000",
       "improve-from": "Blessed Ocarina",
       "create-mats": null,
       "improve-mats": [
@@ -1442,7 +1442,7 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "130,000z",
+      "improve-cost": "130000",
       "improve-from": "Cursed Ocarina",
       "create-mats": null,
       "improve-mats": [
@@ -1464,8 +1464,8 @@
       "rarity": "3",
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
-      "create-cost": "1935z",
-      "improve-cost": "1935z",
+      "create-cost": "1935",
+      "improve-cost": "1935",
       "improve-from": "Ivory Horn",
       "create-mats": [
         "Congalala Pelt (4)",
@@ -1493,7 +1493,7 @@
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "5040z",
+      "improve-cost": "5040",
       "improve-from": "War Drum",
       "create-mats": null,
       "improve-mats": [
@@ -1516,8 +1516,8 @@
       "rarity": "6",
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
-      "create-cost": "50,000z",
-      "improve-cost": "50,000z",
+      "create-cost": "50000",
+      "improve-cost": "50000",
       "improve-from": "War Drum+",
       "create-mats": [
         "Congalala Pelt+ (4)",
@@ -1546,7 +1546,7 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "60,000z",
+      "improve-cost": "60000",
       "improve-from": "War Bongo",
       "create-mats": null,
       "improve-mats": [
@@ -1572,7 +1572,7 @@
       "notes": "Note.purpleNote.yellowNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "95,000z",
+      "improve-cost": "95000",
       "improve-from": "War Conga",
       "create-mats": null,
       "improve-mats": [
@@ -1594,8 +1594,8 @@
       "rarity": "9",
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
-      "create-cost": "85000z",
-      "improve-cost": "85000z",
+      "create-cost": "85000",
+      "improve-cost": "85000",
       "improve-from": "War Conga",
       "create-mats": [
         "Congalala Pelt+ (8)",
@@ -1624,7 +1624,7 @@
       "notes": "Note.purpleNote.greenNote.blue",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "115000z",
+      "improve-cost": "115000",
       "improve-from": "Jungle Bongo",
       "create-mats": null,
       "improve-mats": [
@@ -1646,7 +1646,7 @@
       "rarity": "5",
       "notes": "Note.whiteNote.aquaNote.red",
       "type": "hh",
-      "create-cost": "15,000z",
+      "create-cost": "15000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1672,7 +1672,7 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Black Lute",
       "create-mats": null,
       "improve-mats": [
@@ -1697,7 +1697,7 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Fatalis Menace",
       "create-mats": null,
       "improve-mats": [
@@ -1719,7 +1719,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "100,000z",
+      "improve-cost": "100000",
       "improve-from": "Black Lute",
       "create-mats": null,
       "improve-mats": [
@@ -1744,7 +1744,7 @@
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "150,000z",
+      "improve-cost": "150000",
       "improve-from": "Ancient Fatalis Lied",
       "create-mats": null,
       "improve-mats": [
@@ -1766,7 +1766,7 @@
       "rarity": "5",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "20,000z",
+      "create-cost": "20000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1792,7 +1792,7 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Dragonwood Horn",
       "create-mats": null,
       "improve-mats": [
@@ -1815,8 +1815,8 @@
       "rarity": "9",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Spirit Dragonwd Horn",
       "create-mats": [
         "AncientDrgnmoss (6)",
@@ -1845,7 +1845,7 @@
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "AncientDrgnwoodFlute",
       "create-mats": null,
       "improve-mats": [
@@ -1867,7 +1867,7 @@
       "rarity": "6",
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
-      "create-cost": "40,000z",
+      "create-cost": "40000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1892,7 +1892,7 @@
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "75,000z",
+      "improve-cost": "75000",
       "improve-from": "Handmade Frog",
       "create-mats": null,
       "improve-mats": [
@@ -1914,7 +1914,7 @@
       "rarity": "5",
       "notes": "Note.whiteNote.aquaNote.red",
       "type": "hh",
-      "create-cost": "35,000z",
+      "create-cost": "35000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -1941,7 +1941,7 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "80,000z",
+      "improve-cost": "80000",
       "improve-from": "Striped Dragonga",
       "create-mats": null,
       "improve-mats": [
@@ -1965,7 +1965,7 @@
       "notes": "Note.purpleNote.aquaNote.red",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "125,000z",
+      "improve-cost": "125000",
       "improve-from": "Tigrex Horn",
       "create-mats": null,
       "improve-mats": [
@@ -1987,8 +1987,8 @@
       "rarity": "7",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "80,000z",
-      "improve-cost": "80,000z",
+      "create-cost": "80000",
+      "improve-cost": "80000",
       "improve-from": "Striped Dragonga",
       "create-mats": [
         "Black Narga Pelt (6)",
@@ -2016,8 +2016,8 @@
       "rarity": "10",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "120,000z",
-      "improve-cost": "120,000z",
+      "create-cost": "120000",
+      "improve-cost": "120000",
       "improve-from": "Hidden Tone",
       "create-mats": [
         "BlackNargaPelt (10)",
@@ -2044,7 +2044,7 @@
       "rarity": "8",
       "notes": "Note.purpleNote.greenNote.aqua",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2070,7 +2070,7 @@
       "notes": "Note.purpleNote.greenNote.aqua",
       "type": "hh",
       "create-cost": null,
-      "improve-cost": "145,000z",
+      "improve-cost": "145000",
       "improve-from": "Akantor Horn",
       "create-mats": null,
       "improve-mats": [
@@ -2092,7 +2092,7 @@
       "rarity": "10",
       "notes": "Note.purpleNote.greenNote.red",
       "type": "hh",
-      "create-cost": "150,000z",
+      "create-cost": "150000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2115,7 +2115,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.blueNote.red",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2138,7 +2138,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.yellowNote.red",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2161,7 +2161,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2184,7 +2184,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.blueNote.yellow",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2207,7 +2207,7 @@
       "rarity": "9",
       "notes": "Note.purpleNote.yellowNote.aqua",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2230,7 +2230,7 @@
       "rarity": "9",
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2253,7 +2253,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.greenNote.red",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2276,7 +2276,7 @@
       "rarity": "9",
       "notes": "Note.purpleNote.greenNote.yellow",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2299,7 +2299,7 @@
       "rarity": "9",
       "notes": "Note.whiteNote.greenNote.aqua",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2322,7 +2322,7 @@
       "rarity": "10",
       "notes": "Note.purpleNote.aquaNote.blue",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
@@ -2345,7 +2345,7 @@
       "rarity": "10",
       "notes": "Note.purpleNote.blueNote.red",
       "type": "hh",
-      "create-cost": "100,000z",
+      "create-cost": "100000",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
