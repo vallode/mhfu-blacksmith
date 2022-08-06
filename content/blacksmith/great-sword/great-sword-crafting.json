@@ -3,21 +3,21 @@
     {
       "name": "Buster Sword",
       "attack": "288",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.7 5.3.9.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
       "create-cost": "500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Iron Ore (1)",
         "Disc Stone (3)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Buster Sword+",
         "White Serpentblade",
@@ -27,14 +27,14 @@
     {
       "name": "Buster Sword+",
       "attack": "384",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.8 8.3.11.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "850z",
       "improve-from": "Buster Sword",
       "create-mats": [],
@@ -51,17 +51,17 @@
     {
       "name": "Buster Blade",
       "attack": "480",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.2.9.3 5.2.9.8",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "1400z",
       "improve-from": "Buster Sword+",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Iron Ore (6)",
         "Machalite Ore (1)",
@@ -75,7 +75,7 @@
     {
       "name": "Ravager Blade",
       "attack": "576",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.3 8.3.11.8",
       "affinity": "0%",
       "slots": "---",
@@ -105,7 +105,7 @@
     {
       "name": "Ravager Blade+",
       "attack": "768",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "0%",
       "slots": "---",
@@ -134,19 +134,19 @@
     {
       "name": "Tactical Blade",
       "attack": "960",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "25000z",
       "improve-from": [
         "Ravager Blade+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Webbing (3)",
         "Fire Wyvern Claw (5)",
@@ -159,25 +159,25 @@
     {
       "name": "Strategic Blade",
       "attack": "1008",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+8",
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Tactical Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Carpace (8)",
         "Tigrex Claw (10)",
         "Rathian Spike (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Chrome Razor",
@@ -186,15 +186,15 @@
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "7150z",
       "improve-from": [
         "Ravager Blade+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Chameleos Horn (2)",
         "Teostra Horn (2)",
@@ -212,30 +212,30 @@
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "7150z",
       "improve-from": [
         "Chrome Razor"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Azure LaoS Horn (1)",
         "Daora Jewel (1)",
         "Chameleos Jewel (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Carbalite Sword",
       "attack": "912",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.3 8.3.11.8",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
       "create-cost": "25000z",
@@ -264,19 +264,19 @@
     {
       "name": "Carbalite Sword+",
       "attack": "960",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "35000z",
       "improve-from": [
         "Carbalite Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Union Ore (5)",
         "Carbalite Ore (10)",
@@ -291,19 +291,19 @@
     {
       "name": "Lacerator Blade",
       "attack": "1104",
-      "element": "N/A",
+      "element": null,
       "sharpness": "16.3.2.9 16.3.2.9.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+4",
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "55000z",
       "improve-from": [
         "Carbalite Sword+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Azure Rthlos Cpc (2)",
         "Tigrex Claw+ (5)",
@@ -316,35 +316,35 @@
     {
       "name": "Master Blaze",
       "attack": "1440",
-      "element": "N/A",
+      "element": null,
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "95000z",
       "improve-from": [
         "Lacerator Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyRathalosShl (7)",
         "HrdFireWyvernClw (5)",
         "Eltalite Ore (10)",
         "ThickNargaScale (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Decider",
       "attack": "1104",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "75000z",
@@ -373,26 +373,26 @@
     {
       "name": "Punisher",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "115000z",
       "improve-from": [
         "Decider"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Mellanje Ore (5)",
         "Eltalite Ore (10)",
         "PhantomButterfly (5)",
         "Massive Bone (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Igneous Blade",
@@ -401,7 +401,7 @@
       "sharpness": "18.2.7.7.1 18.2.7.7.4.2",
       "affinity": "10%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
@@ -432,27 +432,27 @@
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "20%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "120000z",
       "improve-from": [
         "Igneous Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyLavasiothFang (5)",
         "HvyLavasiothShl (6)",
         "FireWyvrn BrnStm (3)",
         "HvnlyBlkGraviShl (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Bronze Coin",
       "attack": "864",
-      "element": "N/A",
+      "element": null,
       "sharpness": "12.11.5.4.3 12.11.5.2.8",
       "affinity": "0%",
       "slots": "---",
@@ -482,19 +482,19 @@
     {
       "name": "Gaoren Coin",
       "attack": "1008",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.3 8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+30",
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "85000z",
       "improve-from": [
         "Bronze Coin"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Gaoren Thoracic (3)",
         "Gaoren Carapace (5)",
@@ -507,26 +507,26 @@
     {
       "name": "Gaoren Cleaver",
       "attack": "1440",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+30",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "130000z",
       "improve-from": [
         "Gaoren Coin"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hvy Gaoren Spine (3)",
         "Lao-Shan'sHvyShl (5)",
         "Giant Blk Pearl (3)",
         "HvnlyGaorenShell (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Khezu Shock Sword",
@@ -535,7 +535,7 @@
       "sharpness": "13.1.6.5 13.1.6.10",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "type": "gs",
       "create-cost": "3100z",
@@ -565,15 +565,15 @@
       "sharpness": "8.3.11.10.3 8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "50000z",
       "improve-from": [
         "Khezu Shock Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Khezu Hide - Tan (8)",
         "Thunder Sac (3)",
@@ -590,15 +590,15 @@
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "85000z",
       "improve-from": [
         "Khezu Shock Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "KhezuHide-Cream (5)",
         "Lightning Sac (3)",
@@ -616,22 +616,22 @@
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "120000z",
       "improve-from": [
         "Khezu Shock Full"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "SpecRubberyHide+ (5)",
         "Thunderbug Jelly (3)",
         "HvyBasariosShl (3)",
         "KhezuSpecialCut (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Cat's Soul",
@@ -640,13 +640,13 @@
       "sharpness": "13.1.6.5 13.1.6.10",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2150z",
       "improve-from": "Buster Blade",
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Pawprint Stamp (1)",
         "Paralysis Sac (4)",
@@ -663,15 +663,15 @@
       "sharpness": "18.2.7.3 18.2.7.7.1",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4250z",
       "improve-from": [
         "Cat's Soul"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rainbow Insect (2)",
         "FlynMealPassReg (4)",
@@ -688,15 +688,15 @@
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "45000z",
       "improve-from": [
         "Cat's Curse"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Carbalite Ore (5)",
         "Felyne Fur Ruby (1)",
@@ -713,7 +713,7 @@
       "sharpness": "12.11.5.4.3 12.11.5.4.8",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "75000z",
@@ -744,39 +744,39 @@
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "95000z",
       "improve-from": [
         "Cat of Venus"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "PhantomButterfly (8)",
         "Felyne Fur Ruby (3)",
         "FlynMealPassPlus (5)",
         "ShakalakaTreasr+ (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Defender",
       "attack": "432",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.5 3.7.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
       "rarity": "2",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "1400z",
       "improve-from": [
         "Buster Sword+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Iron Ore (10)",
         "Disk Stone (10)",
@@ -789,19 +789,19 @@
     {
       "name": "Sentinel",
       "attack": "576",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.10 3.7.15",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+20",
       "rarity": "2",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2600z",
       "improve-from": [
         "Defender"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Iron Ore (20)",
         "Earth Crystal (15)",
@@ -852,27 +852,27 @@
       "bonus": "+16",
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6350z",
       "improve-from": [
         "Barbaroi Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Machalite Ore (12)",
         "Gravios Shell (4)",
         "Firestone (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Halberd",
       "attack": "864",
-      "element": "N/A",
+      "element": null,
       "sharpness": "12.11.2 12.11.5.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
       "create-cost": "4250z",
@@ -898,25 +898,25 @@
     {
       "name": "Judgment",
       "attack": "1056",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.3 5.3.9.8",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Halberd"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Carbalite Ore (5)",
         "Machalite Ore (20)",
         "King Scarab (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "White Serpentblade",
@@ -925,7 +925,7 @@
       "sharpness": "13.1.6 13.1.6.5",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "type": "gs",
       "create-cost": "1100z",
@@ -957,15 +957,15 @@
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2150z",
       "improve-from": [
         "White Serpentblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Giadrome Claw (4)",
         "Giadrome Hide (4)",
@@ -979,19 +979,19 @@
     {
       "name": "Vile Serpentblade",
       "attack": "528",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2150z",
       "improve-from": [
         "Silver Serpentblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Velocidrome Claw (4)",
         "Velocidrome Hide (5)",
@@ -1008,15 +1008,15 @@
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4900z",
       "improve-from": [
         "Vile Serpentblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Remobra Skin (5)",
         "Ioprey Fang (20)",
@@ -1033,21 +1033,21 @@
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Deadly Serpentblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Remobra Skin+ (5)",
         "Remobra Skull (1)",
         "Novacrystal (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Golden Serpentblade",
@@ -1056,39 +1056,39 @@
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Silver Serpentblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Giadrome Claw+ (4)",
         "Giaprey Hide+ (10)",
         "Giadrome Skull (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Bone Blade",
       "attack": "336",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.2 9.4.7",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
       "create-cost": "500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Sm Monster Bone (3)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Bone Blade+"
       ]
@@ -1096,19 +1096,19 @@
     {
       "name": "Bone Blade+",
       "attack": "384",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.7 9.4.11.1",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "850z",
       "improve-from": [
         "Bone Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Sm Monster Bone (3)"
       ],
@@ -1121,11 +1121,11 @@
     {
       "name": "Bone Slasher",
       "attack": "432",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.1 9.4.11.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
       "create-cost": "1100z",
@@ -1152,7 +1152,7 @@
     {
       "name": "Golem Blade",
       "attack": "528",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.15 3.7.18.2",
       "affinity": "0%",
       "slots": "OO-",
@@ -1182,19 +1182,19 @@
     {
       "name": "Golem Blade+",
       "attack": "576",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.3. 5.3.9.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+4",
       "rarity": "3",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2600z",
       "improve-from": [
         "Golem Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Lg Monster Bone (3)",
         "Piscine Fang (3)",
@@ -1208,7 +1208,7 @@
     {
       "name": "Valkyrie Blade",
       "attack": "624",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.3 8.3.11.8",
       "affinity": "0%",
       "slots": "OO-",
@@ -1240,25 +1240,25 @@
     {
       "name": "Sieglinde",
       "attack": "912",
-      "element": "N/A",
+      "element": null,
       "sharpness": "16.3.2.9 16.3.2.9.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+6",
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "8000z",
       "improve-from": [
         "Valkyrie Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathian Shell (3)",
         "Rathian Scale (6)",
         "Rathian Spike (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Titernia",
@@ -1270,12 +1270,12 @@
       "bonus": "+8",
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "7150z",
       "improve-from": [
         "Valkyrie Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Pnk Rathian Shl (4)",
         "Pnk Rathian Scl (5)",
@@ -1295,12 +1295,12 @@
       "bonus": "+10",
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "70000z",
       "improve-from": [
         "Titernia"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Pnk Rathian Cpc (4)",
         "Pnk Rathian Scl+ (5)",
@@ -1320,13 +1320,13 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "105000z",
       "improve-from": [
         "Blushing Dame",
         "Pael Keizah"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckAzurRthlsScl (5)",
         "ThckPnkRathnScl (5)",
@@ -1347,36 +1347,36 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "125000z",
       "improve-from": [
         "Alveblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HvyAzurRthlsShl (5)",
         "HvyPnkRathianShl (5)",
         "LthrAzrRthlsTail (2)",
         "GoldRathianThorn (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Spartacus Blade",
       "attack": "816",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "10%",
       "slots": "O--",
       "bonus": "+4",
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6350z",
       "improve-from": [
         "Valkyrie Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Shell (4)",
         "Rathalos Tail (3)",
@@ -1390,25 +1390,25 @@
     {
       "name": "Siegmund",
       "attack": "1056",
-      "element": "N/A",
+      "element": null,
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "15%",
       "slots": "O--",
       "bonus": "+10",
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "75000z",
       "improve-from": [
         "Spartacus Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Carpace (6)",
         "Rathalos Ruby (1)",
         "Monoblos Heart (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Obelion",
@@ -1417,15 +1417,15 @@
       "sharpness": "13.1.6.10 13.1.6.13.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "50000z",
       "improve-from": [
         "Spartacus Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Scale+ (6)",
         "Azure Rthlos Shl (4)",
@@ -1442,15 +1442,15 @@
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "70000z",
       "improve-from": [
         "Obelion"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Azure Rthlos Cpc (10)",
         "Azur Rthlos Wing (2)",
@@ -1463,11 +1463,11 @@
     {
       "name": "Executioner",
       "attack": "816",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.5 18.2.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
       "create-cost": "4250z",
@@ -1495,19 +1495,19 @@
     {
       "name": "Executioner+",
       "attack": "864",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.7.3 18.2.7.7.1",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "5600z",
       "improve-from": [
         "Executioner"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Lg Monster Bone (12)",
         "Diablos Spine (2)",
@@ -1520,34 +1520,34 @@
     {
       "name": "Enforcer's Axe",
       "attack": "1104",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "-5%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "60000z",
       "improve-from": [
         "Executioner+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathian Carapace (5)",
         "Diablos Shell (8)",
         "Wht Monoblos Spn (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Agito",
       "attack": "960",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.1 9.4.11.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
       "create-cost": "25000z",
@@ -1575,19 +1575,19 @@
     {
       "name": "Wyvern Agito",
       "attack": "1008",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "35000z",
       "improve-from": [
         "Agito"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Cephalos Scale+ (5)",
         "Hrd Monster Bone (3)",
@@ -1601,25 +1601,25 @@
     {
       "name": "True Dragon's Jaw",
       "attack": "1056",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "55000z",
       "improve-from": [
         "Wyvern Agito"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Pnk Rathian Cpc (3)",
         "Coral Cphlos Fin (3)",
         "Congalala Claw (10)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Demon Rod",
@@ -1628,7 +1628,7 @@
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
       "create-cost": "80000z",
@@ -1658,15 +1658,15 @@
       "sharpness": "18.2.7.7.1 18.2.7.7.4.2",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90000z",
       "improve-from": [
         "Demon Rod"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rajang Horn (3)",
         "Rajang Claw (5)",
@@ -1683,22 +1683,22 @@
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "25%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "130000z",
       "improve-from": [
         "Great Demon Rod"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hard Rajang Horn (3)",
         "Blk Rajang Pelt+ (4)",
         "Hvy Rajang Fang (4)",
         "GoldRajangPelt+ (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Kirin Thundersword",
@@ -1707,7 +1707,7 @@
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
       "create-cost": "20000z",
@@ -1737,15 +1737,15 @@
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "60000z",
       "improve-from": [
         "Kirin Thundersword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kirin Azure Horn (4)",
         "Kirin Thundr Tail (4)",
@@ -1762,39 +1762,39 @@
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "100000z",
       "improve-from": [
         "King Thundersword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kirin Azure Horn (5)",
         "Platinum Mane (4)",
         "LthrKirinThndrTl (2)",
         "Purecrystal (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Sword of the Diablos",
       "attack": "912",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "-10%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "5600z",
       "improve-from": [
         "Executioner"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "TwstBlkBlosHrn (2)",
         "Diablos Tail (3)",
@@ -1807,19 +1807,19 @@
     {
       "name": "Diablo Destroyer",
       "attack": "1152",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "75000z",
       "improve-from": [
         "Sword of the Diablos"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Majestic Horn (4)",
         "Diablos Thoracic (5)",
@@ -1832,26 +1832,26 @@
     {
       "name": "King Atillart Sword",
       "attack": "1488",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "-15%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "115000z",
       "improve-from": [
         "Diablo Destroyer"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "StoutWarpedHorn (2)",
         "StoutBlkTwstdHrn (2)",
         "HvyDiablosSpine (5)",
         "HvyBlkBlosSpine (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Finblade",
@@ -1860,7 +1860,7 @@
       "sharpness": "8.3.4 8.3.9",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "type": "gs",
       "create-cost": "2150z",
@@ -1890,15 +1890,15 @@
       "sharpness": "13.1.6.5 13.1.6.10",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "3650z",
       "improve-from": [
         "Finblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Plesioth Fin (3)",
         "Plesioth Scale (4)",
@@ -1915,15 +1915,15 @@
       "sharpness": "13.1.6.10 13.1.6.13.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6350z",
       "improve-from": [
         "Plesioth Watersword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Grn Plesioth Fin (4)",
         "Grn Plesioth Scl (5)",
@@ -1940,15 +1940,15 @@
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "55000z",
       "improve-from": [
         "Plesioth Crystasword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Grn Plsioth Fin+ (4)",
         "Grn Plsioth Scl+ (5)",
@@ -1965,15 +1965,15 @@
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90000z",
       "improve-from": [
         "Plesioth Azureblade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckPlesiothScl (5)",
         "ThckGrnPlesioScl (5)",
@@ -1991,39 +1991,39 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "110000z",
       "improve-from": [
         "Plesioth Wave Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "SpecPlesiothFin+ (3)",
         "SpecGrnPlesioFn+ (3)",
         "SpecLavasioFin+ (3)",
         "Coral Cphlos Fin (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Chick Decapitator",
       "attack": "528",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.3 5.3.9.8",
       "affinity": "10%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "2",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2150z",
       "improve-from": [
         "Bone Slasher"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kut-Ku Shell (2)",
         "Kut-Ku Scale (4)",
@@ -2037,19 +2037,19 @@
     {
       "name": "Chicken Decapitator",
       "attack": "768",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4900z",
       "improve-from": [
         "Chick Decapitator"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kut-Ku Ear (3)",
         "Kut-Ku Webbing (6)",
@@ -2062,19 +2062,19 @@
     {
       "name": "Rooster Decapitator",
       "attack": "912",
-      "element": "N/A",
+      "element": null,
       "sharpness": "13.1.6.10 13.1.6.13.2",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "45000z",
       "improve-from": [
         "Chicken Decapitator"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Kut-Ku Carapace (6)",
         "Long Kut-Ku Ear (2)",
@@ -2157,19 +2157,19 @@
       "bonus": "+18",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "105000z",
       "improve-from": [
         "Pickaxe Blade+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hypno Claw+ (5)",
         "RainbowTailFeath (5)",
         "HypnoBezoar+ (1)",
         "Coma Sac (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Slaughter",
@@ -2178,7 +2178,7 @@
       "sharpness": "18.2.7.7.1 18.2.7.7.4.2",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
       "create-cost": "65000z",
@@ -2208,15 +2208,15 @@
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "15%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90000z",
       "improve-from": [
         "Slaughter"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "SpecRubberyHide+ (3)",
         "HrdPuGypcerosWng (3)",
@@ -2234,31 +2234,31 @@
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "115000z",
       "improve-from": [
         "Slaughter+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HardGypcerosHead (1)",
         "RobustWyvernBone (5)",
         "Purecrystal (2)",
         "SpecChameleHide+ (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Sentoryu Raven",
       "attack": "672",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.6 9.4.11.7.4",
       "affinity": "20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
       "create-cost": "10000z",
@@ -2284,19 +2284,19 @@
     {
       "name": "Sentoryu Wolf",
       "attack": "864",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "35%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "65000z",
       "improve-from": [
         "Sentoryu Raven"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Garuga Carapace (4)",
         "Daora Webbing (4)",
@@ -2310,26 +2310,26 @@
     {
       "name": "Sentoryu Crow",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "40%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "105000z",
       "improve-from": [
         "Sentoryu Wolf"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Str Garuga Wing (2)",
         "Hvy Garuga Shell (5)",
         "LethrGarugaTail (1)",
         "Hvy Monster Bone (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Red Wing",
@@ -2338,7 +2338,7 @@
       "sharpness": "8.3.11.3 8.3.11.8",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "type": "gs",
       "create-cost": "2150z",
@@ -2369,21 +2369,21 @@
       "sharpness": "7.2.10.7 7.2.10.7.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "8000z",
       "improve-from": [
         "Red Wing"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Rathalos Wing (2)",
         "FireWyvrn Marrow (3)",
         "Fire Wyvern Claw (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Blue Wing",
@@ -2392,15 +2392,15 @@
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "10%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "6350z",
       "improve-from": [
         "Red Wing"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Azure Rthlos Shl (3)",
         "Rathalos Webbing (3)",
@@ -2417,26 +2417,26 @@
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "70000z",
       "improve-from": [
         "Blue Wing"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Azure Rthlos Cpc (6)",
         "Azur Rthlos Wing (3)",
         "Rathalos Ruby (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Red Stripe",
       "attack": "624",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.5 3.7.10",
       "affinity": "0%",
       "slots": "---",
@@ -2467,19 +2467,19 @@
     {
       "name": "Red Pincer",
       "attack": "720",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.15 3.7.18.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
       "rarity": "3",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "3100z",
       "improve-from": [
         "Red Stripe"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hermitaur Claw (2)",
         "Hermitaur Shell (5)",
@@ -2492,19 +2492,19 @@
     {
       "name": "Great Pincer",
       "attack": "768",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.18.2 3.7.18.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+20",
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "5600z",
       "improve-from": [
         "Red Pincer"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hermitaur Claw (4)",
         "Wyvern Skull Shl (4)",
@@ -2518,7 +2518,7 @@
     {
       "name": "Violet Pincer",
       "attack": "1104",
-      "element": "N/A",
+      "element": null,
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "O--",
@@ -2549,44 +2549,44 @@
     {
       "name": "Grand Pincer",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+40",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "115000z",
       "improve-from": [
         "Violet Pincer"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HermitrClw (3)",
         "HvyHermitaurShl (4)",
         "TerraCeanatrShl (4)",
         "HvyCeanataurLeg (2)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Killer's Scythe",
       "attack": "1008",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "50000z",
       "improve-from": [
         "Great Pincer",
         "Blue Claw Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ceanataur Pincer (3)",
         "Ceanataur Claw+ (2)",
@@ -2601,11 +2601,11 @@
     {
       "name": "Carmine Blade",
       "attack": "1200",
-      "element": "N/A",
+      "element": null,
       "sharpness": "12.11.5.4.8.3.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "85000z",
@@ -2631,42 +2631,42 @@
     {
       "name": "Killer's Carver",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "115000z",
       "improve-from": [
         "Carmine Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "TerraCeanatrClaw (3)",
         "HrdCeanataurClaw (3)",
         "HvyBlkGraviosShl (4)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Ceanataur Blade",
       "attack": "720",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "3650z",
       "improve-from": [
         "Red Stripe"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ceanataur Leg (2)",
         "Ceanataur Shell (5)",
@@ -2679,19 +2679,19 @@
     {
       "name": "Blue Claw Blade",
       "attack": "816",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "4900z",
       "improve-from": [
         "Ceanataur Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ceanataur Pincer (1)",
         "Ceanataur Claw (3)",
@@ -2708,17 +2708,17 @@
       "sharpness": "3.7.10 3.7.15",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "3",
       "type": "gs",
       "create-cost": "7500z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Speartuna (1)",
         "Cool Drink (3)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Crystallized Tuna"
       ]
@@ -2730,42 +2730,42 @@
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "45000z",
       "improve-from": [
         "Frozen Tuna"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ancient Fish (5)",
         "Speartuna (8)",
         "FlynMealPassPlus (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Black Belt Blade",
       "attack": "720",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "4",
       "type": "gs",
       "create-cost": "6000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Blackbelt Ticket (8)",
         "Blangonga Coin (10)",
         "Shogun Coin (8)",
         "Daimyo Coin (10)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Expert Blade"
       ]
@@ -2773,19 +2773,19 @@
     {
       "name": "Expert Blade",
       "attack": "1008",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "20000z",
       "improve-from": [
         "Black Belt Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Expert Ticket (15)",
         "Rajang Coin (3)",
@@ -2798,47 +2798,47 @@
     {
       "name": "Warrior's Blade",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "75000z",
       "improve-from": [
         "Expert Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckGldRathnScl (3)",
         "Expert Coin G (6)",
         "BlackBeltCoinG (8)",
         "Commendation G (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Tiger Agito",
       "attack": "816",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.7.7.1 18.2.7.7.4.2",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
       "create-cost": "35000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Tigrex Fang (5)",
         "Tigrex Scale (4)",
         "Tigrex Skull Shl (1)",
         "Pokke Ticket (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Tigrex Great Sword",
         "Hidden Blaze"
@@ -2847,19 +2847,19 @@
     {
       "name": "Tigrex Great Sword",
       "attack": "1056",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "80000z",
       "improve-from": [
         "Tiger Agito"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Tigrex Fang+ (5)",
         "Tigrex Scale+ (8)",
@@ -2872,34 +2872,34 @@
     {
       "name": "Tigrex Supreme Sword",
       "attack": "1392",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.7.7.4.4.3",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "125000z",
       "improve-from": [
         "Tigrex Great Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hvy Tigrex Fang (5)",
         "ThickTigrexScale (8)",
         "HvnlyTigrexScale (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Hidden Blaze",
       "attack": "912",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "50%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
       "create-cost": "80000z",
@@ -2925,11 +2925,11 @@
     {
       "name": "Darkness Darkblade",
       "attack": "1152",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.5.2",
       "affinity": "50%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "120000z",
@@ -2949,7 +2949,7 @@
         "Narga Brain Stem (2)",
         "Eltalite Ore (10)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Dragonslayer",
@@ -2958,19 +2958,19 @@
       "sharpness": "5.3.9.8 5.3.9.13",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
       "create-cost": "5600z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Lao-Shan's Scale (8)",
         "DaoraDragonScale (8)",
         "Fire Dragon Scl (8)",
         "Tigrex Scale (8)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Eternal Annihilator"
       ]
@@ -2982,15 +2982,15 @@
       "sharpness": "13.1.6.10 13.1.6.13.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Dragonslayer"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Fire Dragon Claw (10)",
         "Rathalos Plate (5)",
@@ -3007,15 +3007,15 @@
       "sharpness": "13.1.6.13.2 13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "65000z",
       "improve-from": [
         "Eternal Annihilator"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Fatalis Scale (10)",
         "Fatalis CrmsnScl (10)",
@@ -3032,22 +3032,22 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "105000z",
       "improve-from": [
         "Eternal Eradicator"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckFatalisScale (5)",
         "ThckFatlisCrmScl (5)",
         "ThckWhtFatlisScl (5)",
         "Fatalis Evil Eye (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Black Blade",
@@ -3056,18 +3056,18 @@
       "sharpness": "16.3.2.4 16.3.2.9",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
       "create-cost": "15000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Dark Stone (1)",
         "Dark Piece (4)",
         "Pokke Ticket (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Fatalis Blade",
         "Fatalis Ancestor"
@@ -3080,15 +3080,15 @@
       "sharpness": "16.3.2.9 16.3.2.9.5",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "100000z",
       "improve-from": [
         "Black Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Fatalis Shell (8)",
         "Fatalis Horn (2)",
@@ -3105,21 +3105,21 @@
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "150000z",
       "improve-from": [
         "Fatalis Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Hvy Fatalis Shl (5)",
         "HardFatalisHorn (2)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Fatalis Ancestor",
@@ -3128,15 +3128,15 @@
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "100000z",
       "improve-from": [
         "Black Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Wht Fatalis Scl (6)",
         "Wht Fatalis Horn (3)",
@@ -3153,43 +3153,43 @@
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "150000z",
       "improve-from": [
         "Fatalis Ancestor"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "ThckWhtFatlisScl (6)",
         "HrdWhtFatlisHorn (3)",
         "Fatalis Evil Eye (2)",
         "BigEDragonJewel (3)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Akantor Broadsword",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.9 8.3.11.3",
       "affinity": "50%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Akantor Shell (5)",
         "Akantor Tail (3)",
         "Akantor Claw (4)",
         "Firecell Stone (8)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Akantor Broadsword+"
       ]
@@ -3197,48 +3197,48 @@
     {
       "name": "Akantor Broadsword+",
       "attack": "1584",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.3 8.3.11.8",
       "affinity": "50%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "145000z",
       "improve-from": [
         "Akantor Broadsword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Ukanlos Stone (1)",
         "Big Wyvern Stone (3)",
         "Akantor Shell (3)",
         "Akantor Tail (5)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "G Blade",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.4 9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Great Stone (5)",
         "Machalite Ore (35)",
         "Hvy Monster Bone (5)",
         "Big Wyvern Stone (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Ukanlos Destructor",
@@ -3251,34 +3251,34 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": "150000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "UkanlosShovelJaw (1)",
         "UkanlosUnderscl (5)",
         "HvyUkanlosShell (3)",
         "Ukanlos Stone (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Rusted Great Sword",
       "attack": "432",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2 18.2.5",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
       "create-cost": "1000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Flat Ruststone (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Tarnished Great Swd"
       ]
@@ -3286,19 +3286,19 @@
     {
       "name": "Tarnished Great Swd",
       "attack": "528",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.5 18.2.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "2500z",
       "improve-from": [
         "Rusted Great Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Earth Crystal (20)"
       ],
@@ -3314,20 +3314,20 @@
       "sharpness": "16.3.2.9 16.3.2.9.5",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "40000z",
       "improve-from": [
         "Tarnished Great Swd"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Steel Ice Blade",
@@ -3336,15 +3336,15 @@
       "sharpness": "16.3.2.4 16.3.2.9",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "35000z",
       "improve-from": [
         "Tarnished Great Swd"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Daora Webbing (3)",
         "Eldr Dragon Bone (5)",
@@ -3361,15 +3361,15 @@
       "sharpness": "16.3.2.9 16.3.2.9.5",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "5",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "50000z",
       "improve-from": [
         "Steel Ice Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Daora Webbing (5)",
         "Daora Shell (3)",
@@ -3387,15 +3387,15 @@
       "sharpness": "16.3.2.9.5 16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90000z",
       "improve-from": [
         "Steel Ice Blade+"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "DaoraDragonScal+ (10)",
         "Daora Carapace (4)",
@@ -3412,40 +3412,40 @@
       "sharpness": "16.3.2.9.7.3 16.3.2.9.7.6.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "130000z",
       "improve-from": [
         "Daora's Decimator"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Str Daora Wing (2)",
         "ThckDaoraDrgnScl (10)",
         "Hvy Daora Shell (3)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Worn Great Sword",
       "attack": "624",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2 18.2.5",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
       "create-cost": "1000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "AncientFlatstone (1)"
       ],
-      "improve-mats": "N/A",
+      "improve-mats": null,
       "improve-to": [
         "Weathered Grt Sword"
       ]
@@ -3453,19 +3453,19 @@
     {
       "name": "Weathered Grt Sword",
       "attack": "720",
-      "element": "N/A",
+      "element": null,
       "sharpness": "12.11.2 12.11.5.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "6",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "12500z",
       "improve-from": [
         "Worn Great Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Earth Crystal (20)"
       ],
@@ -3481,15 +3481,15 @@
       "sharpness": "3.7.18.4.3 3.7.18.4.4.4",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "60000z",
       "improve-from": [
         "Weathered Grt Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Earth Crystal (40)",
         "ElderDragonBlood (5)"
@@ -3505,21 +3505,21 @@
       "sharpness": "18.2.7.7.4.2 18.2.7.7.4.4.3",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "100000z",
       "improve-from": [
         "Epitaph Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Purecrystal (8)",
         "ElderDragonBlood (10)",
         "Commendation G (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Teostra Blade",
@@ -3528,15 +3528,15 @@
       "sharpness": "5.3.9.13 5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "7",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "80000z",
       "improve-from": [
         "Weathered Grt Sword"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Teostra Horn+ (1)",
         "Teostra Shell (6)",
@@ -3553,15 +3553,15 @@
       "sharpness": "5.3.9.14.4 5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "8",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "90000z",
       "improve-from": [
         "Teostra Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "Teostra Horn+ (3)",
         "Teostra Carapace (5)",
@@ -3578,90 +3578,90 @@
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
-      "create-cost": "N/A",
+      "create-cost": null,
       "improve-cost": "130000z",
       "improve-from": [
         "King Teostra Blade"
       ],
-      "create-mats": "N/A",
+      "create-mats": null,
       "improve-mats": [
         "HardTeostraHorn (3)",
         "HvyTeostraShell (5)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": "N/A"
+      "improve-to": null
     },
     {
       "name": "Buster Blade G",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Iron Ore (40)",
         "Dragonite Ore (20)",
         "Eltalite Ore (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Bone Blade G",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Sm Monster Bone (30)",
         "Hvy Monster Bone (10)",
         "Carpenterbug (30)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "TarnishdGreatSwd G",
       "attack": "1536",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.5 18.2.7.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Flat Ruststone (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Ravager Blade G",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "---",
@@ -3669,21 +3669,21 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Earth Crystal (40)",
         "Machalite Ore (30)",
         "Mellanje Ore (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Golem Blade G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "OO-",
@@ -3691,21 +3691,21 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Piscine Fang (15)",
         "Piercing Claw (5)",
         "Monster Essence (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Sentinel G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.18.4.4.4 3.7.18.4.4.4.5",
       "affinity": "0%",
       "slots": "---",
@@ -3713,21 +3713,21 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100,000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Disk Stone (30)",
         "Carbalite Ore (10)",
         "Hvy Gaoren Spine (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Red Stripe G",
       "attack": "1392",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.18.4.3 3.7.18.4.4.4",
       "affinity": "0%",
       "slots": "---",
@@ -3735,16 +3735,16 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Sm Hermitaur Shl (20)",
         "Piercing Claw (8)",
         "Giant Blk Pearl (2)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "GoldnSerpentblade G",
@@ -3753,42 +3753,42 @@
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Giadrome Claw+ (8)",
         "Giaprey Hide+ (10)",
         "RobustWyvernBone (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Great Serpentblade G",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Velocidrome Clw+ (8)",
         "Velocidrome Claw (12)",
         "RobustWyvernBone (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Cat's Soul G",
@@ -3797,20 +3797,20 @@
       "sharpness": "8.3.11.8 8.3.11.10.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100.000",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "FlynMealPassPlus (10)",
         "Pawprint Stamp (10)",
         "Eltalite Ore (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "PoisnSerpentblade G",
@@ -3819,47 +3819,47 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Remobra Skin+ (10)",
         "SpecRemobraSkin+ (5)",
         "Remobra Skull (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Decapitator G",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "30%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Str Kut-Ku Wing (5)",
         "Kut-Ku Carapace (8)",
         "Thick Kut-Ku Scl (8)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Great Pincer G",
       "attack": "1248",
-      "element": "N/A",
+      "element": null,
       "sharpness": "3.7.18.4.4.4 3.7.18.4.4.4.5",
       "affinity": "0%",
       "slots": "OO-",
@@ -3867,38 +3867,38 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HrdHermitaurClaw (2)",
         "HvyHermitaurShl (3)",
         "Black Pearl (10)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Executioner G",
       "attack": "1392",
-      "element": "N/A",
+      "element": null,
       "sharpness": "18.2.7.7.1 18.2.7.7.4.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Lg Monster Bone (15)",
         "HvyDiablosSpine (5)",
         "Hercudrome (20)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Barbaroi Blade G",
@@ -3911,16 +3911,16 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "2150z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "s Skull (5)",
         "Eltalite Ore (10)",
         "Blazing Fire Sac (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Chrome Razor G",
@@ -3929,20 +3929,20 @@
       "sharpness": "16.3.2.9.7.3 16.3.2.9.7.6.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "Rathian Plate (2)",
         "Rathalos Plate (2)",
         "HardTeostraHorn (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Plesioth Waterswd G",
@@ -3951,20 +3951,20 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "SpecPlesiothFin+ (5)",
         "ThckPlesiothScl (7)",
         "Mega Demondrug (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Plesioth Crystaswd G",
@@ -3973,64 +3973,64 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "SpecGrnPlesioFn+ (5)",
         "ThckGrnPlesioScl (7)",
         "Mega Demondrug (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Killer's Scythe G",
       "attack": "1200",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.5.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HrdCeanataurClaw (2)",
         "HvyCeanataurShl (6)",
         "Sm Ceanataur Shl (20)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Black Belt Blade G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.3.0 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Blackbelt Ticket (10)",
         "Rajang Coin (5)",
         "Legend Coin G (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Ancient P G",
@@ -4039,64 +4039,64 @@
       "sharpness": "16.3.2.9.7.3 16.3.2.9.7.6.2",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "AncientFlatstone (3)",
         "ElderDragonBlood (10)",
         "Big Wyvern Stone (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Carbalite Sword G",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Carbalite Ore (30)",
         "Mellanje Ore (10)",
         "Iron Ore (50)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Wyvern Agito G",
       "attack": "1344",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HvyPiscineFang (8)",
         "Cephalos Scale+ (10)",
         "Hvy Monster Bone (8)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Crystallized Tuna G",
@@ -4105,69 +4105,69 @@
       "sharpness": "18.2.7.7.4.4.3 18.2.7.7.4.4.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "Speartuna (10)",
         "Ancient Fish (10)",
         "FlynMealPassPlus (20)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Judgment G",
       "attack": "1440",
-      "element": "N/A",
+      "element": null,
       "sharpness": "12.11.5.4.3 12.11.5.4.8",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "BigEDragonBone (5)",
         "King Scarab (10)",
         "Dragonite Ore (20)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "True Dragon's Jaw G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "HvyPnkRathianShl (5)",
         "HrdCongalalaClw+ (5)",
         "Coral Cphlos Fin (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Tactical Blade G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "5.3.9.14.6.3 5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "OO-",
@@ -4175,16 +4175,16 @@
       "rarity": "9",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "HvyRathalosShl (10)",
         "HrdFireWyvernClw (10)",
         "Fire Wyvern Claw (25)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Rathalos Firesword G",
@@ -4193,20 +4193,20 @@
       "sharpness": "8.3.11.10.6.2 8.3.11.10.6.5.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "StrRathalosWing (2)",
         "HrdFireWyvernClw (5)",
         "FireWyvrn BrnStm (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "ShinyRathalosSwd G",
@@ -4215,47 +4215,47 @@
       "sharpness": "9.4.11.7.6.3 9.4.11.7.6.4.4",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "HvyAzurRthlsShl (3)",
         "Azur Rthlos Wing (8)",
         "Rathalos Ruby (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Enforcer's Axe G",
       "attack": "1440",
-      "element": "N/A",
+      "element": null,
       "sharpness": "8.3.11.10.3 8.3.11.10.6.2",
       "affinity": "-5%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation G (1)",
         "HvyRathianShell (5)",
         "HvyDiablosShell (3)",
         "WhtMonoblosThora (5)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Siegmund G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "20%",
       "slots": "O--",
@@ -4263,21 +4263,21 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "Hrd Rathalos Scl (5)",
         "HvnlyRathalosScl (1)",
         "Top-GrdRedHorn (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Sieglinde G",
       "attack": "1296",
-      "element": "N/A",
+      "element": null,
       "sharpness": "16.3.2.9.7.3 16.3.2.9.7.6.2",
       "affinity": "0%",
       "slots": "OO-",
@@ -4285,16 +4285,16 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "ThckRathianScl (5)",
         "HvnlyRathianScl (1)",
         "Top-GrdPlatHorn (1)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Pael Keizah G",
@@ -4303,20 +4303,20 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "ThckAzurRthlsScl (3)",
         "Azur Rthlos Tail (12)",
         "Rathalos Ruby (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "Blushing Dame G",
@@ -4329,16 +4329,16 @@
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "ThckPnkRathnScl (3)",
         "Rathian Spike (8)",
         "Rathian Ruby (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     },
     {
       "name": "EternlAnnihilator G",
@@ -4347,20 +4347,20 @@
       "sharpness": "13.1.6.13.4.3 13.1.6.13.4.6.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "N/A",
+      "bonus": null,
       "rarity": "10",
       "type": "gs",
       "create-cost": "100000z",
-      "improve-cost": "N/A",
-      "improve-from": "N/A",
+      "improve-cost": null,
+      "improve-from": null,
       "create-mats": [
         "Commendation S (1)",
         "Lao-Shan's Ruby (1)",
         "Rathalos Ruby (3)",
         "Rathian Ruby (3)"
       ],
-      "improve-mats": "N/A",
-      "improve-to": "N/A"
+      "improve-mats": null,
+      "improve-to": null
     }
   ]
 }

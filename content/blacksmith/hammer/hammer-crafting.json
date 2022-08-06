@@ -1,1 +1,4521 @@
-{"weapons":[{"name":"War Hammer","attack":"312","element":"N/A","sharpness":"9.2.4 9.2.9","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"500z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Iron Ore(3)","Disk Stone (1)"],"improve-mats":"N/A","improve-to":["War Hammer+"]},{"name":"War Hammer+","attack":"364","element":"N/A","sharpness":"9.2.9 9.2.13.1","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"650z","improve-from":["War Hammer"],"create-mats":"N/A","improve-mats":["Iron Ore (5)","Disk Stone (1)"],"improve-to":["War Mace","Spiked Hammer"]},{"name":"War Mace","attack":"468","element":"N/A","sharpness":"3.2.10 3.2.15","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,100z","improve-from":["War Hammer+"],"create-mats":"N/A","improve-mats":["Iron Ore (10)","Disk Stone (5)"],"improve-to":["Iron Striker","Anchor Hammer","Black Cauldron","Bone Axe","Metal Bagpipe"]},{"name":"Iron Striker","attack":"624","element":"N/A","sharpness":"9.2.13.1 9.2.13.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"2,150z","improve-cost":"2,150z","improve-from":["War Mace"],"create-mats":["Earth Crystal (10)","Iron Ore (20)","Disk Stone (20)"],"improve-mats":["Iron Ore (12)","Machalite Ore (5)","Earth Crystal (3)"],"improve-to":["Iron Striker+","Gunhammer Prototype"]},{"name":"Iron Striker+","attack":"832","element":"N/A","sharpness":"3.2.17.3 3.2.17.8","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,250z","improve-from":["Iron Striker"],"create-mats":"N/A","improve-mats":["Dragonite Ore (5)","Machalite Ore (8)","Earth Crystal (15)"],"improve-to":["Anvil Hammer"]},{"name":"Anvil Hammer","attack":"884","element":"N/A","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"O--","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"6,350z","improve-from":["Iron Striker+"],"create-mats":"N/A","improve-mats":["Gravios Shell (2)","Dragonite Ore (10)","Iron Ore (30)"],"improve-to":["Onslaught Hammer","War Stamp","Bronze Bell","Sakura Recorder","Iron Devil"]},{"name":"Onslaught Hammer","attack":"1092","element":"N/A","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"60,000z","improve-from":["Anvil Hammer"],"create-mats":"N/A","improve-mats":["Union Ore (5)","Dragonite Ore (20)","Iron Ore (99)"],"improve-to":["Blacksmith"]},{"name":"Blacksmith","attack":"1196","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"75,000z","improve-cost":"75,000z","improve-from":["Onslaught Hammer"],"create-mats":["Eltalite Ore (10)","Union Ore (10)","Piercing Claw (4)","RobustWyvernBone (5)"],"improve-mats":["Eltalite Ore (5)","Carbalite Ore (20)","Emperor Cricket (7)"],"improve-to":["Juggernaut","Lava Alphorn"]},{"name":"Juggernaut","attack":"1404","element":"N/A","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":["Blacksmith"],"create-mats":"N/A","improve-mats":["Mellanje Ore (5)","RobustWyvernBone (8)","PhantomButterfly (5)"],"improve-to":"N/A"},{"name":"War Stamp","attack":"1040","element":"N/A","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"O--","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"30,000z","improve-from":["Anvil Hammer"],"create-mats":"N/A","improve-mats":["Dragonite Ore (15)","Carbalite Ore (15)","Disk Stone (50)"],"improve-to":["War Basher"]},{"name":"War Basher","attack":"1144","element":"N/A","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"75,000z","improve-from":"War Stamp","create-mats":"N/A","improve-mats":["Carbalite Ore (30)","Machalite Ore (40)","Black Blos Cpc (10)"],"improve-to":"N/A"},{"name":"Iron Devil","attack":"988","element":"N/A","sharpness":"9.2.13.1 9.2.13.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"25,000z","improve-cost":"25,000z","improve-from":["Anvil Hammer"],"create-mats":["Carbalite Ore (5)","Iron Ore (50)","Disk Stone (30)"],"improve-mats":["Carbalite Ore (3)","Iron Ore (30)","Dragonite Ore (5)"],"improve-to":["Great Demon Hammer","Fist of Fury"]},{"name":"Great Demon Hammer","attack":"1040","element":"N/A","sharpness":"6.4.8.7 6.4.8.12","affinity":"10%","slots":"O--","bonus":"10%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"35,000z","improve-from":["Iron Devil"],"create-mats":"N/A","improve-mats":["Union Ore (10)","Velocidrome Head (3)","Remobra Skull (3)"],"improve-to":["Devil Masher","Iron Impact"]},{"name":"Devil Masher","attack":"1040","element":"Paralysis 140","sharpness":"6.4.8.12 6.4.8.12.5","affinity":"0%","slots":"O--","bonus":"0%","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"55,000z","improve-from":["Great Demon Hammer"],"create-mats":"N/A","improve-mats":["Gendrome Skull (3)","Vespoid Abdomen (3)","Gold Rathian Cpc (3)"],"improve-to":["Devil Masher+"]},{"name":"Devil Masher+","attack":"1144","element":"Paralysis 150","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"80,000z","improve-from":["Devil Masher"],"create-mats":"N/A","improve-mats":["Eltalite Ore (5)","Thunderbug Jelly (5)","Gld Rathian Scl+ (8)"],"improve-to":["Iron Devil's Soul"]},{"name":"Iron Devil's Soul","attack":"1300","element":"Paralysis 170","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"105,000z","improve-from":"Devil Masher+","create-mats":"N/A","improve-mats":["Eltalite Ore (10)","HvyGldRathianShl (5)","YamaTsukamiFluid (2)"],"improve-to":"N/A"},{"name":"Iron Impact","attack":"1092","element":"N/A","sharpness":"6.4.8.12 6.4.8.12.5","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"55,000z","improve-from":["Great Demon Hammer"],"create-mats":"N/A","improve-mats":["Union Ore (25)","Iron Ore (50)","Novacrystal (5)"],"improve-to":["Iron Repellant","Icy Impact"]},{"name":"Iron Repellant","attack":"1456","element":"N/A","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"85,000z","improve-from":["Iron Impact"],"create-mats":"N/A","improve-mats":["Mellanje Ore (10)","Iron Ore (90)","HvyLavasiothShl (5)","Rainbow Ore (10)"],"improve-to":"N/A"},{"name":"Icy Impact","attack":"1196","element":"Ice 240","sharpness":"5.4.14.10.2 5.4.14.10.4.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"75,000z","improve-cost":"75,000z","improve-from":["Iron Impact"],"create-mats":["Eltalite Ore (12)","Ice Crystal (20)","Blangonga Pelt+ (20)","Monster Essence (5)"],"improve-mats":["Ice Crystal (10)","Eltalite Ore (8)","Emperor Cricket (10)","DaoraDragonScal+ (5)"],"improve-to":["Axion"]},{"name":"Axion","attack":"1352","element":"Ice 280","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":["Icy Impact"],"create-mats":[],"improve-mats":["Ice Crystal (20)","Purecrystal (2)","HrdBlangongaPlt+ (10)","HvyBasariosShell (3)"],"improve-to":"N/A"},{"name":"Fist of Fury","attack":"1144","element":"N/A","sharpness":"14.4.6.1 14.4.6.6","affinity":"-10%","slots":"O--","bonus":"-10%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"35,000z","improve-from":["Iron Devil"],"create-mats":"N/A","improve-mats":["Carbalite Ore (15)","Dragonite Ore (10)","Gaoren Shell (5)"],"improve-to":["Ancient Blow"]},{"name":"Ancient Blow","attack":"1248","element":"N/A","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"-20%","slots":"OO-","bonus":"-20%","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"70,000z","improve-from":["Fist of Fury"],"create-mats":"N/A","improve-mats":["Union Ore (10)","Dragonite Ore (25)","Gaoren Carapace (5)"],"improve-to":["Foolhardy Stone Fist"]},{"name":"Foolhardy Stone Fist","attack":"1664","element":"N/A","sharpness":"8.7.7.8 8.7.7.11.2","affinity":"-20%","slots":"OO-","bonus":"-20%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"110,000z","improve-from":["Fist of Fury"],"create-mats":"N/A","improve-mats":["Mellanje Ore (10)","Gaoren Carapace (10)","Lao-Shan's HvyScl (5)"],"improve-to":"N/A"},{"name":"Gunhammer Prototype","attack":"572","element":"Fire 300","sharpness":"10.1.3.6 10.1.3.11","affinity":"0%","slots":"---","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"3,100z","improve-cost":"3,100z","improve-from":"Iron Striker","create-mats":["FireWyvern Fluid (4)","Machalite Ore (20)","Flame Sac (1)","Gunpowder (20)"],"improve-mats":["FireWyvern Fluid (2)","Machalite Ore (15)","Gunpowder (10)"],"improve-to":["Dead Revolver"]},{"name":"Dead Revolver","attack":"728","element":"Fire 400","sharpness":"10.1.3.16 10.1.3.17.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"6,350z","improve-from":"Gunhammer Prototype","create-mats":"N/A","improve-mats":["Dragonite Ore (15)","FireWyvrn Marrow (2)","Firestone (4)"],"improve-to":["Sanctioned Gunhammer"]},{"name":"Sanctioned Gunhammer","attack":"832","element":"Fire 500","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"60,000z","improve-from":"Dead Revolver","create-mats":"N/A","improve-mats":["Firecell Stone (4)","Carbalite Ore (20)","Monster Broth (2)","FireWyvrn BrnStm (1)"],"improve-to":["Regulation GunHammer"]},{"name":"Regulation GunHammer","attack":"1092","element":"Fire 520","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"95,000z","improve-cost":"95,000z","improve-from":"Sanctioned Gunhammer","create-mats":["Eltalite Ore (10)","Blazing Fire Sac (6)","Firecell Stone (10)","FireWyvrn BrnStm (2)"],"improve-mats":["Eltalite Ore (5)","Blazing Fire Sac (4)","Monster Essence (2)"],"improve-to":["ImperialGunHmmrSpark"]},{"name":"ImperialGunHmmrSpark","attack":"1248","element":"Fire 540","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"120,000z","improve-from":"Regulation GunHammer","create-mats":"N/A","improve-mats":["Eltalite Ore (20)","Naruga Thck Scl (5)","BlkGraviosHvyShl (5)","Wyvern Stone (3)"],"improve-to":"N/A"},{"name":"Anchor Hammer","attack":"572","element":"Water 100","sharpness":"9.2.13.1 9.2.13.6","affinity":"0%","slots":"O--","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,150z","improve-from":"War Mace","create-mats":"N/A","improve-mats":["Speartuna (1)","Cephalos Fin (2)","Disk Stone (20)"],"improve-to":["Anchor Hammer+"]},{"name":"Anchor Hammer+","attack":"728","element":"Water 290","sharpness":"9.2.13.6 9.2.13.7.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,900z","improve-from":"Anchor Hammer","create-mats":"N/A","improve-mats":["Glutton Tuna (5)","Plesioth Fin (5)","Dragonite Ore (20)"],"improve-to":["Anchor Crusher"]},{"name":"Anchor Crusher","attack":"884","element":"Water 380","sharpness":"9.2.13.7.4 9.2.13.7.5.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"65,000z","improve-from":"Anchor Hammer+","create-mats":"N/A","improve-mats":["Ancient Fish (5)","Plesioth Fin+ (5)","Union Ore (20)"],"improve-to":"N/A"},{"name":"Black Cauldron","attack":"468","element":"N/A","sharpness":"14.4.2 14.4.6.1","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"1,400z","improve-cost":"1,400z","improve-from":"War Mace","create-mats":["FlynMealPassPlus (1)","Iron Ore (10)","Disk Stone (7)"],"improve-mats":["FlynMealPassReg (2)","Iron Ore (10)","Carpenterbug (10)"],"improve-to":["True Black Cauldron","One Star Silver Pot"]},{"name":"True Black Cauldron","attack":"780","element":"N/A","sharpness":"10.1.3.11 10.1.3.16","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"35,000z","improve-from":"Black Cauldron","create-mats":"N/A","improve-mats":["FlynMealPassReg (7)","Carbalite Ore (10)","Black Blos Shell (5)"],"improve-to":"N/A"},{"name":"One Star Silver Pot","attack":"520","element":"N/A","sharpness":"19.2.5.7.2 19.2.5.7.4.3","affinity":"15%","slots":"---","bonus":"15%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,150z","improve-from":"Black Cauldron","create-mats":"N/A","improve-mats":["FlynMealPassPlus (2)","Rainbow Ore (10)","DaoraDragonScale (5)"],"improve-to":["Two Star Silver Pot"]},{"name":"Two Star Silver Pot","attack":"676","element":"N/A","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"15%","slots":"---","bonus":"15%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":"One Star Silver Pot","create-mats":"N/A","improve-mats":["FlynMealPassPlus (8)","Union Ore (10)","Slvr Rthlos Scl+ (5)"],"improve-to":"N/A"},{"name":"Bone Axe","attack":"624","element":"N/A","sharpness":"6.4.5 6.4.8.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,150z","improve-from":"War Mace","create-mats":"N/A","improve-mats":["Med Monster Bone (3)","Sm Monster Bone (3)","Monster Fluid (1)"],"improve-to":["Bone Broadaxe"]},{"name":"Bone Broadaxe","attack":"936","element":"N/A","sharpness":"14.4.6.1 14.4.6.6","affinity":"5%","slots":"OO-","bonus":"5%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"5,600z","improve-from":"Bone Axe","create-mats":"N/A","improve-mats":["Monster Bone+ (2)","Lg Monster Bone (4)","Tigrex Shell (4)"],"improve-to":["Bone Great Axe"]},{"name":"Bone Great Axe","attack":"1092","element":"N/A","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"5%","slots":"OO-","bonus":"5%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"40,000z","improve-from":"Bone Broadaxe","create-mats":"N/A","improve-mats":["Hrd Monster Bone (2)","Monster Bone+ (4)","Monster Broth (1)","King Scarab (5)"],"improve-to":["Ceanataur Head Axe"]},{"name":"Ceanataur Head Axe","attack":"1144","element":"N/A","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"---","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"60,000z","improve-cost":"60,000z","improve-from":"Bone Great Axe","create-mats":["Ceanataur Carpce (6)","Ceanataur Claw+ (4)","Ceanataur Leg (2)","Carbalite Ore (10)"],"improve-mats":["Ceanataur Carpce (4)","Ceanataur Pincer (2)","Carbalite Ore (6)","King Scarab (4)"],"improve-to":["Big Blue Chopper","Carmine Axe"]},{"name":"Big Blue Chopper","attack":"1300","element":"N/A","sharpness":"6.4.8.12.6.5.4 6.4.8.12.6.5.4","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"110,000z","improve-from":"Ceanataur Head Axe","create-mats":"N/A","improve-mats":["Heavy Ceanataur Shell (4)","Hard Ceanataur Claw (2)","Heavy Ceanataur Leg (3)","Eltalite Ore (4)"],"improve-to":"N/A"},{"name":"Carmine Axe","attack":"1196","element":"Water 280","sharpness":"14.4.6.7.4.5 14.4.6.7.4.6.4","affinity":"15%","slots":"---","bonus":"15%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"85000z","improve-cost":"85000z","improve-from":"Ceanataur Head Axe","create-mats":["Terra Ceanataur Shell (6)","Terra Ceanataur Claw (4)","Ceanataur Pincer (10)","Eltalite Ore (10)"],"improve-mats":["Terra Ceanataur Shell (4)","Terra Ceanataur Claw (2)","Heavy Ceanataur Leg (2)"],"improve-to":["The Great Divider"]},{"name":"The Great Divider","attack":"1248","element":"Water 300","sharpness":"3.2.17.12.4.5.2 3.2.17.12.4.5.2","affinity":"15%","slots":"---","bonus":"15%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"115000z","improve-from":"Carmine Axe","create-mats":"N/A","improve-mats":["Terra Ceanataur Shell (2)","Heavy Black Gravios Shell (1)","Hard Gaoren Claw (2)","Giant Black Pearl (2)"],"improve-to":"N/A"},{"name":"Spiked Hammer","attack":"520","element":"N/A","sharpness":"10.1.3.1 10.1.3.6","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,400z","improve-from":["War Hammer+"],"create-mats":"N/A","improve-mats":["Iron Ore (10)","Needleberry (10)","Carpenterbug (5)"],"improve-to":["Spiked Hammer+"]},{"name":"Spiked Hammer+","attack":"572","element":"N/A","sharpness":"10.1.3.6 10.1.3.11","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,750z","improve-from":["Spiked Hammer"],"create-mats":"N/A","improve-mats":["Iron Ore (20)","Needleberry (15)","Killer Beetle (2)"],"improve-to":["Crystal Hammer","Shell Hammer","Basarios Rock"]},{"name":"Crystal Hammer","attack":"676","element":"N/A","sharpness":"8.7.7.3 8.7.7.8","affinity":"0%","slots":"O--","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"2,600z","improve-cost":"2,600z","improve-from":["Spiked Hammer+"],"create-mats":["Lightcrystal (2)","Iron Ore (25)","Ice Crystal (7)","Carpenterbug (10)"],"improve-mats":["Lightcrystal (1)","Machalite Ore (8)","Killer Beetle (6)"],"improve-to":["Crystal Nova"]},{"name":"Crystal Nova","attack":"780","element":"N/A","sharpness":"8.7.7.8 8.7.7.11.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"3,650z","improve-from":"Crystal Hammer","create-mats":"N/A","improve-mats":["Lightcrystal (3)","Rainbow Ore (2)","Ice Crystal (10)"],"improve-to":["Great Nova","Gigaton Hammer"]},{"name":"Great Nova","attack":"936","element":"Thunder 300","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Crystal Nova","create-mats":"N/A","improve-mats":["Novacrystal (3)","Basarios Carpace (8)","Thunder Sac (5)"],"improve-to":["Super Nova"]},{"name":"Super Nova","attack":"1352","element":"Thunder 450","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":"Great Nova","create-mats":"N/A","improve-mats":["Purecrystal (3)","Lightning Sac (5)","LthrKirinThndrTl (2)","StrBasariosWing (2)"],"improve-to":"N/A"},{"name":"Gigaton Hammer","attack":"832","element":"N/A","sharpness":"6.4.8.2 6.4.8.7","affinity":"-10%","slots":"O--","bonus":"-10%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,250z","improve-from":"Crystal Nova","create-mats":"N/A","improve-mats":["Gravios Skl Shl (1)","Basarios Shell (4)","Machalite Ore (10)"],"improve-to":["Titan Hammer"]},{"name":"Titan Hammer","attack":"1040","element":"N/A","sharpness":"8.7.7.3 8.7.7.8","affinity":"-15%","slots":"O--","bonus":"-15%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"8,000z","improve-from":"Gigaton Hammer","create-mats":"N/A","improve-mats":["Gravios Shell (10)","Gaoren Shell (4)","Machalite Ore (15)"],"improve-to":"N/A"},{"name":"Shell Hammer","attack":"728","element":"Poison 120","sharpness":"14.4.6.1 14.4.6.6","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"4,250z","improve-cost":"4,250z","improve-from":"Spiked Hammer+","create-mats":["Basarios Shell (8)","Machalite Ore (5)","Ioprey Fang (18)","Hercudrome (3)"],"improve-mats":["Basarios Shell (8)","Wyvern Fang (15)","Poison Sac (5)"],"improve-to":["Graviton Hammer"]},{"name":"Graviton Hammer","attack":"780","element":"Poison 180","sharpness":"14.4.6.6 14.4.6.7.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,900z","improve-from":"Shell Hammer","create-mats":"N/A","improve-mats":["Gravios Shell (10)","Machalite Ore (10)","Chameleos Claw (1)"],"improve-to":["Torment Hammer","Crater Maker"]},{"name":"Crater Maker","attack":"988","element":"Poison 200","sharpness":"14.4.6.7.4 14.4.6.7.4.5","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"70,000z","improve-from":"Graviton Hammer","create-mats":"N/A","improve-mats":["Gravios Carapace (12)","Wyvern Stone (3)","Toxin Sac (8)"],"improve-to":["VenomousCraterMaker"]},{"name":"VenomousCraterMaker","attack":"1300","element":"Poison 220","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Crater Maker","create-mats":"N/A","improve-mats":["HvyBlkGraviosShl (5)","HvyGraviosShell (2)","LethrGarugaTail (4)","DeadlyPoisonSac (5)"],"improve-to":["Glasya-Labolas"]},{"name":"Glasya-Labolas","attack":"1404","element":"Poison 240","sharpness":"14.4.6.7.4.5 14.4.6.7.4.6.4","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"115,000z","improve-from":"VenomousCraterMaker","create-mats":"N/A","improve-mats":["HvyBlkGraviosShl (10)","SpecChameleHide+ (3)","StrBasariosWing (2)","HvnlyBlkGraviShl (1)"],"improve-to":"N/A"},{"name":"Torment Hammer","attack":"884","element":"Fire 250","sharpness":"8.7.7.8 8.7.7.11.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"45,000z","improve-from":"Graviton Hammer","create-mats":"N/A","improve-mats":["Blk Gravios Shl (8)","Carbalite Ore (20)","Inferno Sac (4)"],"improve-to":["Torment (Purgatory)"]},{"name":"Torment (Purgatory)","attack":"988","element":"Fire 310","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"70,000z","improve-from":"Torment Hammer","create-mats":"N/A","improve-mats":["Black Gravios Carapace (12)","Black Gravios Skl Shl (2)","Gravios Brainstem (3)"],"improve-to":"N/A"},{"name":"Bone Club","attack":"364","element":"N/A","sharpness":"8.7 8.7.5","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"400z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Mystery Bone (3)"],"improve-mats":"N/A","improve-to":["Large Bone Club","Cyclo-Hammer","Bull Hammer","Giaprey Balloon"]},{"name":"Large Bone Club","attack":"676","element":"N/A","sharpness":"8.7.5 8.7.7.3","affinity":"-10%","slots":"---","bonus":"-10%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,600z","improve-from":"Bone Club","create-mats":"N/A","improve-mats":["Giant Bone (1)","Mystery Bone (5)"],"improve-to":["Enormous Ham"]},{"name":"Enormous Ham","attack":"728","element":"N/A","sharpness":"10.1.3.1 10.1.3.6","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"7,500z","improve-from":"Large Bone Club","create-mats":"N/A","improve-mats":["Giant Bone (3)","Well Done Steak (10)","FelyneMealPassReg (3)"],"improve-to":["Ham of Hams"]},{"name":"Ham of Hams","attack":"1196","element":"N/A","sharpness":"10.1.3.1 10.1.3.6","affinity":"-20%","slots":"---","bonus":"-20%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Enormous Ham","create-mats":"N/A","improve-mats":["Hrd Monster Bone (3)","Gourmet Steak (10)","FelyneMealPassPlus (3)"],"improve-to":"N/A"},{"name":"Cyclo-Hammer","attack":"468","element":"N/A","sharpness":"5.4.6 5.4.11","affinity":"0%","slots":"---","bonus":"0%","rarity":"1","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,750z","improve-from":["Bone Club"],"create-mats":"N/A","improve-mats":["Brute Bone (3)","Sm Monster Bone (3)"],"improve-to":["Atlas Hammer","Skullcrusher","Conehead Hammer","Bone Horn"]},{"name":"Atlas Hammer","attack":"572","element":"N/A","sharpness":"5.4.11 5.4.14.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,750z","improve-from":["Cyclo-Hammer"],"create-mats":"N/A","improve-mats":["Giant Bone (2)","Sm Monster Bone (10)"],"improve-to":["Kut-Ku Jaw","Jail Hammer","Khezu Horn"]},{"name":"Kut-Ku Jaw","attack":"676","element":"N/A","sharpness":"5.4.14.2 5.4.14.7","affinity":"0%","slots":"---","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"2,600z","improve-cost":"2,600z","improve-from":"Atlas Hammer","create-mats":["Giant Beak (1)","Piscine Fang (5)","Kut-Ku Scale (5)","Mega Demondrug (1)"],"improve-mats":["Giant Beak (1)","Sharp Claw (5)","Monster Fluid (2)"],"improve-to":["Kut-Ku Pick","Raven Torrent","Dynamic Hammer","Venom Monster"]},{"name":"Kut-Ku Pick","attack":"884","element":"N/A","sharpness":"9.2.13.6 9.2.13.7.4","affinity":"10%","slots":"OOO","bonus":"10%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"5,600z","improve-from":["Kut-Ku Jaw"],"create-mats":"N/A","improve-mats":["Kut-Ku Ear (4)","Vibrant Pelt (2)","Monster Bone+ (4)"],"improve-to":["Hard Bone Hammer","Feather Whistle"]},{"name":"Hard Bone Hammer","attack":"1040","element":"N/A","sharpness":"5.4.14.2 5.4.14.7","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"25,000z","improve-cost":"25,000z","improve-from":["Kut-Ku Pick"],"create-mats":["Stout Bone (5)","Giant Bone (20)","Sm Monster Bone (60)","Iron Ore (15)"],"improve-mats":["Stout Bone (2)","Elder Dragon Bone (5)","Brute Bone (60)"],"improve-to":["Hard Bone Hammer+","Lobster Hammer"]},{"name":"Hard Bone Hammer+","attack":"1092","element":"N/A","sharpness":"5.4.14.7 5.4.14.10.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"35,000z","improve-from":["Hard Bone Hammer"],"create-mats":"N/A","improve-mats":["Stout Bone(8)","Dragonite Ore(10)","Rare Scarab(10)"],"improve-to":["Diablos Hammer"]},{"name":"Diablos Hammer","attack":"1092","element":"N/A","sharpness":"10.1.3.16 10.1.3.17.4","affinity":"-10%","slots":"---","bonus":"-10%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"45,000z","improve-from":["Hard Bone Hammer+"],"create-mats":"N/A","improve-mats":["Blood Red Horn (1)","TwstBlkBlosHrn (1)","Black Blos Cpc (6)"],"improve-to":["Diablo Chaos Broker"]},{"name":"Diablo Chaos Broker","attack":"1196","element":"N/A","sharpness":"10.1.3.17.4 10.1.3.17.6.3","affinity":"-10%","slots":"---","bonus":"-10%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Diablos Hammer","create-mats":"N/A","improve-mats":["Majestic Horn (2)","Blk Blos Thracic (6)","Diablos Thoracic (6)"],"improve-to":["Chaotic Order"]},{"name":"Chaotic Order","attack":"1508","element":"N/A","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"115,000z","improve-from":"Diablo Chaos Broker","create-mats":"N/A","improve-mats":["StoutBlkTwstdHrn (2)","Top-GrdRedHorn (2)","HvyBlkBlosSpine (6)","MonoblosThoracic (6)"],"improve-to":"N/A"},{"name":"Lobster Hammer","attack":"936","element":"Water 200","sharpness":"6.4.8.7 6.4.8.12","affinity":"0%","slots":"O--","bonus":"0%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"30,000z","improve-from":["Hard Bone Hammer"],"create-mats":"N/A","improve-mats":["Sm Lobstershell (4)","Iodrome Hide (10)","Carbalite Ore (10)"],"improve-to":["King Lobster Hammer"]},{"name":"King Lobster Hammer","attack":"988","element":"Water 230","sharpness":"5.4.14.7 5.4.14.10.2","affinity":"0%","slots":"O--","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"55,000z","improve-from":["Lobster Hammer"],"create-mats":"N/A","improve-mats":["Lg Lobstershell (2)","Ioprey Hide+ (5)","Ancient Fish (5)"],"improve-to":["Royal Lobster Hammer"]},{"name":"Royal Lobster Hammer","attack":"1144","element":"Water 350","sharpness":"5.4.14.10.2 5.4.14.10.4.3","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"90,000z","improve-from":["King Lobster Hammer"],"create-mats":"N/A","improve-mats":["Gt Lobstershell (2)","HvyPiscineFang (6)","Eltalite Ore (5)"],"improve-to":"N/A"},{"name":"Raven Torrent","attack":"728","element":"N/A","sharpness":"14.4.6.6 14.4.6.7.4","affinity":"20%","slots":"O--","bonus":"20%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"10,000z","improve-cost":"10,000z","improve-from":"Kut-Ku Jaw","create-mats":["Sharpened Beak (2)","Garuga Mane (4)","Garuga Scale (8)"],"improve-mats":["Sharpened Beak (1)","Garuga Ear (2)","Garuga Mane (3)"],"improve-to":["Wolf Torrent"]},{"name":"Wolf Torrent","attack":"936","element":"N/A","sharpness":"14.4.6.7.4 14.4.6.7.4.5","affinity":"30%","slots":"O--","bonus":"30%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"65,000z","improve-from":["Raven Torrent"],"create-mats":"N/A","improve-mats":["Rejuvenated Beak (1)","Garuga Mane (10)","Long Garuga Ear (2)"],"improve-to":["Crow Torrent","Wolf Shamisen"]},{"name":"Crow Torrent","attack":"1352","element":"N/A","sharpness":"14.4.6.7.4.5 14.4.6.7.4.6.4","affinity":"40%","slots":"OO-","bonus":"40%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"105,000z","improve-from":["Wolf Torrent"],"create-mats":"N/A","improve-mats":["Rejuvenated Beak (2)","SilverGarugaPelt (5)","ThickGarugaScale (5)","Hvy Monster Bone (2)"],"improve-to":"N/A"},{"name":"Dynamic Hammer","attack":"728","element":"N/A","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"5%","slots":"---","bonus":"5%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"3,100z","improve-from":"Kut-Ku Jaw","create-mats":"N/A","improve-mats":["Blue Kut-Ku Shell (6)","Blue Kut-Ku Scale (8)","Carpenterbug (5)"],"improve-to":["Violence Hammer"]},{"name":"Violence Hammer","attack":"1040","element":"N/A","sharpness":"5.4.14.7 5.4.14.10.2","affinity":"20%","slots":"OO-","bonus":"20%","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"45,000z","improve-from":"Dynamic Hammer","create-mats":"N/A","improve-mats":["Blue Kut-Ku Cpc(4)","Blue Kut-Ku Scl+(6)","Long Kut-Ku Ear(2)"],"improve-to":["Mysterious Jaw"]},{"name":"Mysterious Jaw","attack":"1144","element":"N/A","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"30%","slots":"OO-","bonus":"30%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"80,000z","improve-from":"Violence Hammer","create-mats":"N/A","improve-mats":["Splendid Beak(2)","ThkBlueKut-KuScl(4)","HvyBlueKut-KuShl(6)","Lucky Kut-Ku Ear(2)"],"improve-to":"N/A"},{"name":"Venom Monster","attack":"572","element":"Poison 260","sharpness":"14.4.6.6 14.4.6.7.4","affinity":"10%","slots":"O--","bonus":"10%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"3,100z","improve-from":"Kut-Ku Jaw","create-mats":"N/A","improve-mats":["Rubbery Hide (10)","Poison Sac (5)","Gypceros Head (1)"],"improve-to":["Death Venom Hammer"]},{"name":"Death Venom Hammer","attack":"936","element":"Poison 350","sharpness":"19.2.5.7.2 19.2.5.7.4.3","affinity":"10%","slots":"O--","bonus":"10%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"60,000z","improve-from":"Venom Monster","create-mats":"N/A","improve-mats":["Rubbery Hide+ (10)","Toxin Sac (5)","Splendid Beak (5)"],"improve-to":["Purple Mace"]},{"name":"Purple Mace","attack":"1092","element":"Poison 380","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"15%","slots":"O--","bonus":"15%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"85,000z","improve-from":["Death Venom Hammer"],"create-mats":"N/A","improve-mats":["HrdPuGypcerosWng (5)","DeadlyPoisonSac (5)","Pur Gypceros Wng (7)"],"improve-to":["Pitohui Bird Mace"]},{"name":"Pitohui Bird Mace","attack":"1248","element":"Poison 400","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"15%","slots":"O--","bonus":"15%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"110,000z","improve-from":"Purple Mace","create-mats":"N/A","improve-mats":["HrdPuGypcerosWng (5)","HardGypcerosHead (1)","LethrGarugaTail (2)","Rejuvenated Beak (3)"],"improve-to":"N/A"},{"name":"Jail Hammer","attack":"624","element":"Paralysis 190","sharpness":"14.4.6.1 14.4.6.6","affinity":"0%","slots":"O--","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"3,100z","improve-from":"Atlas Hammer","create-mats":"N/A","improve-mats":["Machalite Ore(6)","Thunderbug(12)","Rubbery Hide(3)"],"improve-to":["Binder Mace"]},{"name":"Binder Mace","attack":"780","element":"Paralysis 280","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"0%","slots":"OOO","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"5,600z","improve-from":"Jail Hammer","create-mats":"N/A","improve-mats":["Dragonite Ore(12)","Thunderbug Juice(8)","Electro Sac(8)"],"improve-to":"N/A"},{"name":"Purse Bop","attack":"1040","element":"Thunder 200","sharpness":"5.4.14.10.2 5.4.14.10.4.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"50,000z","improve-cost":"50,000z","improve-from":"Khezu Horn+","create-mats":["Khezu Hide - Tan (8)","Carbalite Ore (10)","Thunder Sac (5)","Pale Bone (2)"],"improve-mats":["Khezu Hide - Tan (5)","Dragonite Ore (10)","Thunder Sac (3)","Thunderbug (20)"],"improve-to":["Purse Bop+"]},{"name":"Purse Bop+","attack":"1144","element":"Thunder 220","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"85,000z","improve-from":"Purse Bop","create-mats":"N/A","improve-mats":["Khezu Hide - Cream (3)","Lightning Sac (5)","PaleKhezuSteak (2)"],"improve-to":["Khezu Thunder"]},{"name":"Khezu Thunder","attack":"1456","element":"Thunder 250","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"120,000z","improve-from":"Purse Bop+","create-mats":"N/A","improve-mats":["Khezu Hide - Cream (8)","Thunderbug Jelly (5)","KhezuSpecialCut (1)","YamaTsukami Fluid (2)"],"improve-to":"N/A"},{"name":"Skullcrusher","attack":"520","element":"N/A","sharpness":"3.2.10 3.2.15","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,400z","improve-from":"Cyclo-Hammer","create-mats":"N/A","improve-mats":["Med Monster Bone (2)","Sharp Claw (8)","Monster Fluid (1)"],"improve-to":["Skullcrusher+"]},{"name":"Skullcrusher+","attack":"624","element":"N/A","sharpness":"3.2.15 3.2.17.3","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,150z","improve-from":["Skullcrusher"],"create-mats":"N/A","improve-mats":["Med Monster Bone (6)","Piscine Fang (10)","Congalala Claw (3)"],"improve-to":["Diablos Maul","Dragonhead Hammer","Sonic Glass"]},{"name":"Diablos Maul","attack":"832","element":"N/A","sharpness":"6.4.8.7 6.4.8.12","affinity":"0%","slots":"---","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"4,250z","improve-cost":"4,250z","improve-from":["Skullcrusher+"],"create-mats":["Diablos Tail (1)","Monoblos Shell (4)","Eldr Dragon Bone (2)","Earth Crystal (20)"],"improve-mats":["Monoblos Shell (6)","Lg Monster Bone (5)","Machalite Ore (8)"],"improve-to":["Finishing Hammer"]},{"name":"Finishing Hammer","attack":"988","element":"N/A","sharpness":"10.1.3.16 10.1.3.17.4","affinity":"0%","slots":"---","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"30,000z","improve-from":["Diablos Maul"],"create-mats":"N/A","improve-mats":["Diablos Tail (3)","Diablos Shell (12)","Hercudrome (8)"],"improve-to":"N/A"},{"name":"Dragonhead Hammer","attack":"676","element":"N/A","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"2,600z","improve-cost":"2,600z","improve-from":"Skullcrusher+","create-mats":["Wyvern Skull Shell (2)","Lg Monster Bone (3)","Unknown Skull (5)"],"improve-mats":["Wyvern Skull Shell (1)","Giant Bone (3)","Unknown Skull (3)"],"improve-to":["Ancient Relic","Basarios Blow"]},{"name":"Ancient Relic","attack":"988","element":"N/A","sharpness":"5.4.14.7 5.4.14.10.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"7,150z","improve-from":["Dragonhead Hammer"],"create-mats":"N/A","improve-mats":["Wyvern Skull Shell (5)","Elder Dragon Bone (10)","Gaoren Shell (5)"],"improve-to":["Shell Castanet"]},{"name":"Basarios Blow","attack":"780","element":"N/A","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"---","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,900z","improve-from":"Dragonhead Hammer","create-mats":"N/A","improve-mats":["Basarios Wing (1)","Basarios Shell (6)","Elder Dragon Bone (3)"],"improve-to":["Basarios Bash"]},{"name":"Basarios Bash","attack":"1040","element":"N/A","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Basarios Blow","create-mats":"N/A","improve-mats":["Basarios Carapace (12)","Carbalite Ore (12)","Wyvern Stone (1)"],"improve-to":"N/A"},{"name":"Conehead Hammer","attack":"416","element":"Ice 180","sharpness":"3.2.10 3.2.15","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"1,400z","improve-from":"Cyclo-Hammer","create-mats":"N/A","improve-mats":["Blango Pelt (6)","Iron Ore (6)","Unknown Skull (1)"],"improve-to":["Conehead Hammer+"]},{"name":"Conehead Hammer+","attack":"676","element":"Ice 320","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"---","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"4,250z","improve-from":"Conehead Hammer","create-mats":"N/A","improve-mats":["Blangonga Fang (2)","Blangonga Whiskr (4)","Blangonga Pelt (8)"],"improve-to":["Great Cone"]},{"name":"Great Cone","attack":"884","element":"Ice 400","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":"Conehead Hammer+","create-mats":"N/A","improve-mats":["Blangonga Fang+ (5)","Blangonga Pelt+ (10)","Master's Skull (1)"],"improve-to":["Desert Cone"]},{"name":"Desert Cone","attack":"1456","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"-10%","slots":"O--","bonus":"-10%","rarity":"9","notes":"Unknown","type":"hm","create-cost":"95000z","improve-cost":"115000z","improve-from":"Great Cone","create-mats":["BlangongaPelt+ (10)","BlangoFang (4)","BlangoTail (1)","Massive Bone (1)"],"improve-mats":["Copper Blangonga Fur+ (5)","Leather Pelagus Fur (3)","Massive Bone (4)"],"improve-to":["Magnitude"]},{"name":"Magnitude","attack":"1612","element":"N/A","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"-15%","slots":"O--","bonus":"-15%","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"115000z","improve-from":"Desert Cone","create-mats":"N/A","improve-mats":["BlangoFang (2)","Brwn BlngngaTail (2)","Black Rajang Pelt+ (4)","PhantomButterfly (10)"],"improve-to":"N/A"},{"name":"Bull Hammer","attack":"520","element":"N/A","sharpness":"6.4.5 6.4.8.2","affinity":"0%","slots":"---","bonus":"0%","rarity":"2","notes":"Unknown","type":"hm","create-cost":"1400","improve-cost":"1750","improve-from":"Bone Club","create-mats":["Bullfango Pelt (4)","Bullfango Head (1)","Brute Bone (5)","Carpenterbug (2)"],"improve-mats":["Bullfango Pelt (2)","Anteka Antlers (2)","Brute Bone (3)"],"improve-to":["Bull Head Hammer"]},{"name":"Bull Head Hammer","attack":"624","element":"N/A","sharpness":"8.7.5 8.7.7.3","affinity":"0%","slots":"O--","bonus":"0%","rarity":"3","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2150","improve-from":"Bull Hammer","create-mats":"N/A","improve-mats":["Bulldrome Hide (2)","Bulldrome Tusk (2)","Giant Bone (1)"],"improve-to":["Bull Tusk Hammer"]},{"name":"Bull Tusk Hammer","attack":"936","element":"N/A","sharpness":"8.7.7.3 8.7.7.8","affinity":"0%","slots":"OO-","bonus":"0%","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"5600","improve-from":"Bull Head Hammer","create-mats":"N/A","improve-mats":["Bulldrome Hide (5)","Bulldrome Tusk (6)","Monster Bone+ (5)"],"improve-to":"N/A"},{"name":"Rusted Hammer","attack":"468","element":"N/A","sharpness":"15 19.1","affinity":"0%","slots":"---","bonus":"N/A","rarity":"1","notes":"Unknown","type":"hm","create-cost":"1,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Large Ruststone (1)"],"improve-mats":"N/A","improve-to":["Tarnished Hammer"]},{"name":"Tarnished Hammer","attack":"572","element":"N/A","sharpness":"14.4.2 14.4.6.1","affinity":"0%","slots":"---","bonus":"N/A","rarity":"1","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"2,500z","improve-from":["Rusted Hammer"],"create-mats":"N/A","improve-mats":["Earth Crystal (20)"],"improve-to":["Breath Core Hammer","Jadite Mace"]},{"name":"Breath Core Hammer","attack":"936","element":"N/A","sharpness":"19.2.5.4 19.2.5.7.2","affinity":"-20%","slots":"O--","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"40,000z","improve-from":["Tarnished Hammer"],"create-mats":"N/A","improve-mats":["Earth Crystal (40)","ElderDragonBlood (1)"],"improve-to":"N/A"},{"name":"Jadite Mace","attack":"780","element":"Fire 260","sharpness":"8.7.7.3 8.7.7.8","affinity":"0%","slots":"---","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"35,000z","improve-from":["Tarnished Hammer"],"create-mats":"N/A","improve-mats":["Lunastra Horn (3)","Lunastra Shell (3)","Firestone (7)"],"improve-to":["Jade Mace"]},{"name":"Jade Mace","attack":"832","element":"Fire 300","sharpness":"9.2.13.6 9.2.13.7.4","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"50,000z","improve-from":["Jadite Mace"],"create-mats":"N/A","improve-mats":["Fire Drgn Webbing (4)","Teostra Shell (5)","ElderDragonBlood (2)"],"improve-to":["Lunastra's Crown"]},{"name":"Lunastra's Crown","attack":"936","element":"Fire 370","sharpness":"9.2.13.7.4 9.2.13.7.5.4","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Jade Mace","create-mats":"N/A","improve-mats":["Lunastra Horn (6)","Fire Drgn Scl+ (6)","Fire Drgn Jwl (1)"],"improve-to":["Luna's Skirt"]},{"name":"Luna's Skirt","attack":"1300","element":"Fire 400","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"130,000z","improve-from":"Lunastra's Crown","create-mats":"N/A","improve-mats":["Lunastra Spike (3)","ThckFireDrgnScl (6)","BigEDragonJewel (1)","Commendation (1)"],"improve-to":"N/A"},{"name":"Worn Hammer","attack":"676","element":"N/A","sharpness":"19.1 19.2.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"6","notes":"Unknown","type":"hm","create-cost":"1,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Lg Ancient Stone (1)"],"improve-mats":"N/A","improve-to":["Weathered Hammer"]},{"name":"Weathered Hammer","attack":"780","element":"N/A","sharpness":"19.2.4 19.2.5.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"12,500z","improve-from":"Worn Hammer","create-mats":"N/A","improve-mats":["Earth Crystal (20)"],"improve-to":["Pulsating Core","Steel Ice Hammer"]},{"name":"Pulsating Core","attack":"1040","element":"N/A","sharpness":"19.2.5.7.2 19.2.5.7.4.3","affinity":"-20%","slots":"OO-","bonus":"N/A","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"60,000z","improve-from":"Weathered Hammer","create-mats":"N/A","improve-mats":["Earth Crystal (40)","ElderDragonBlood (5)"],"improve-to":["Pulse Crusher Core"]},{"name":"Pulse Crusher Core","attack":"1352","element":"N/A","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"-20%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":"Pulsating Core","create-mats":"N/A","improve-mats":["Purecrystal (8)","ElderDragonBlood (10)","Commendation G (1)"],"improve-to":"N/A"},{"name":"Steel Ice Hammer","attack":"832","element":"Ice 290","sharpness":"6.4.8.12 6.4.8.12.5","affinity":"0%","slots":"---","bonus":"N/A","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"80,000z","improve-from":"Weathered Hammer","create-mats":"N/A","improve-mats":["Daora Carapace (6)","Daora Tail (1)","Rare Scarab (4)"],"improve-to":["Daora's Colossus"]},{"name":"Daora's Colossus","attack":"988","element":"Ice 330","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Steel Ice Hammer","create-mats":"N/A","improve-mats":["DaoraDragonScal+ (10)","Daora Sharp Claw (2)","Daora Jewel (1)"],"improve-to":["Daora's Hyperborea"]},{"name":"Daora's Hyperborea","attack":"1300","element":"Ice 450","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"15%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"130,000z","improve-from":"Daora's Colossus","create-mats":"N/A","improve-mats":["Hvy Daora Shell (6)","Hard Daora Horn (2)","Str Daora Wing (2)","BigEDragonJewel (1)"],"improve-to":"N/A"},{"name":"Black Belt Hammer","attack":"780","element":"N/A","sharpness":"8.7.7.3 8.7.7.8","affinity":"0%","slots":"OOO","bonus":"N/A","rarity":"4","notes":"Unknown","type":"hm","create-cost":"6,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Blackbelt Ticket (8)","Gravios Coin (5)","Diablos Coin (8)","Daimyo Coin (10)"],"improve-mats":"N/A","improve-to":["Expert Hammer"]},{"name":"Expert Hammer","attack":"1092","element":"N/A","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"OOO","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"20,000z","improve-from":"Black Belt Hammer","create-mats":"N/A","improve-mats":["Expert Ticket (15)","Tigrex Coin (8)","Gld Rathian Cpc (3)"],"improve-to":["Warrior's Hammer"]},{"name":"Warrior's Hammer","attack":"1404","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"OOO","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"75,000z","improve-from":"Expert Hammer","create-mats":"N/A","improve-mats":["HvyGldRathianShl (3)","Warrior Coin G (4)","Expert Coin G (6)","Commendation G (1)"],"improve-to":"N/A"},{"name":"Black Hammer","attack":"728","element":"Dragon 100","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"---","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"15,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Dark Stone (1)","Dark Piece (4)","Pokke Ticket (1)"],"improve-mats":"N/A","improve-to":["Fatalis Buster","AncientFatalisBuster"]},{"name":"Fatalis Buster","attack":"1040","element":"Dragon 240","sharpness":"9.2.13.7.4 9.2.13.7.5.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":"Black Hammer","create-mats":"N/A","improve-mats":["Fatalis Horn (3)","Fatalis Eye (2)","Fire Drgn Jwl (1)"],"improve-to":["Fatalis Demolisher"]},{"name":"Fatalis Demolisher","attack":"1404","element":"Dragon 260","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"150,000z","improve-from":"Fatalis Buster","create-mats":"N/A","improve-mats":["Hard Fatalis Horn (3)","Fatalis Evil Eye (1)","Hvy Fatalis Shl (2)","BigEDragonJewel (1)"],"improve-to":"N/A"},{"name":"AncientFatalisBuster","attack":"988","element":"Dragon 350","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"100,000z","improve-from":"Black Hammer","create-mats":"N/A","improve-mats":["Wht Fatalis Horn (5)","Wht Fatalis Shl (3)","Lao-Shan's Ruby (3)"],"improve-to":["AncientFatalisRuiner"]},{"name":"AncientFatalisRuiner","attack":"1300","element":"Dragon 380","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"150,000z","improve-from":"AncientFatalisBuster","create-mats":"N/A","improve-mats":["HrdWhtFatlisHorn (5)","HvyWhtFatalisShl (2)","Fatalis Evil Eye (2)","BigEDragonJewel (3)"],"improve-to":"N/A"},{"name":"Cactus Creamer","attack":"260","element":"Poison 300","sharpness":"3.2.10 3.2.15","affinity":"0%","slots":"---","bonus":"N/A","rarity":"3","notes":"Unknown","type":"hm","create-cost":"7,500z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Cactus Flower (2)","Bone (1)","Dobiscus (3)"],"improve-mats":"N/A","improve-to":["Green Monster"]},{"name":"Green Monster","attack":"468","element":"Poison 300","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"30,000z","improve-from":"Cactus Creamer","create-mats":"N/A","improve-mats":["Cactus Flower (10)","Stout Bone (2)","Pokke Ticket (1)"],"improve-to":"N/A"},{"name":"Dragon Destroyer","attack":"832","element":"Dragon 170","sharpness":"6.4.8.7 6.4.8.12","affinity":"0%","slots":"---","bonus":"N/A","rarity":"5","notes":"Unknown","link":"https://monsterhunter.fandom.com/wiki/Dragon_Destroyer","type":"hm","create-cost":"5,600z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Lao-Shan's Claw (2)","Lao-Shan's Shell (5)","Monster Bone+ (5)"],"improve-mats":"N/A","improve-to":["Dragonbreaker"]},{"name":"Dragonbreaker","attack":"884","element":"Dragon 330","sharpness":"6.4.8.12 6.4.8.12.5","affinity":"0%","slots":"---","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"40,000z","improve-from":"Dragon Destroyer","create-mats":"N/A","improve-mats":["Lao-Shan's Claw (2)","Gaoren Spine (3)","ElderDragonBlood (2)"],"improve-to":["Dragon Demolisher"]},{"name":"Dragon Demolisher","attack":"936","element":"Dragon 410","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"95,000z","improve-from":"Dragonbreaker","create-mats":"N/A","improve-mats":["Ash Lao-Shan Shell (5)","Lao-Shan Ruby (1)","Nova Crystal (3)"],"improve-to":["Claw of Doom"]},{"name":"Claw of Doom","attack":"1248","element":"Dragon 450","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"140,000z","improve-from":"Dragon Demolisher","create-mats":"N/A","improve-mats":["Azure LaoS Claw (2)","Lao-Shan'sHvyShl(5)","Lao-ShanHvnlyScl (1)","Purecrystal(3)"],"improve-to":"N/A"},{"name":"Striped Striker","attack":"884","element":"N/A","sharpness":"19.2.5.7.2 19.2.5.7.4.3","affinity":"-30%","slots":"---","bonus":"N/A","rarity":"5","notes":"Unknown","type":"hm","create-cost":"35,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Tigrex Claw (3)","Tigrex Scale (5)","Tigrex Shell (5)","Pokke Ticket (1)"],"improve-mats":"N/A","improve-to":["Tigrex Hammer","Hidden Breaker"]},{"name":"Tigrex Hammer","attack":"1144","element":"N/A","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"-30%","slots":"---","bonus":"N/A","rarity":"7","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"80,000z","improve-from":"Striped Striker","create-mats":"N/A","improve-mats":["Tigrex Claw + (3)","Tigrex Scale + (5)","Tigrex Skull Shl (3)"],"improve-to":["Tigrex Hammer+"]},{"name":"Tigrex Hammer+","attack":"1508","element":"N/A","sharpness":"19.2.5.7.4.5.3 19.2.5.7.4.5.3","affinity":"-30%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"125,000z","improve-from":"Tigrex Hammer","create-mats":"N/A","improve-mats":["Hard Tigrex Claw (3)","ThickTigrexScale (5)","Hvy Tigrex Shell (5)","HvnlyTigrexScale (1)"],"improve-to":"N/A"},{"name":"Hidden Breaker","attack":"988","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"50%","slots":"O--","bonus":"N/A","rarity":"7","notes":"Unknown","type":"hm","create-cost":"80,000z","improve-cost":"80,000z","improve-from":"Striped Striker","create-mats":["Black NargaPelt (10)","Narga Scale+ (4)","Narga Brain Stem (1)","Hard Monster Bone (6)"],"improve-mats":["Black Narga Pelt (6)","Narga Scale+ (3)","Hrd Monster Bone (4)"],"improve-to":["Deep Darkhammer"]},{"name":"Deep Darkhammer","attack":"1248","element":"N/A","sharpness":"3.2.17.12.4.5.2 3.2.17.12.4.5.2","affinity":"50%","slots":"OO-","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"120,000z","improve-cost":"120,000z","improve-from":"Hidden Breaker","create-mats":["Black Nargacuga Pelt+ (10)","Heavy Nargacuga Fang (4)","Heavy Nargacuga Tail Spike (6)","Heavenly Nargacuga Scale (1)"],"improve-mats":["BlackNargaPelt+ (7)","ThickNargaScale (3)","HvyNargacugaFang (2)","Narga Brain Stem (2)"],"improve-to":"N/A"},{"name":"White Cat Stamp","attack":"520","element":"Paralysis 200","sharpness":"10.1.3.1 10.1.3.6","affinity":"0%","slots":"---","bonus":"N/A","rarity":"2","notes":"Unknown","type":"hm","create-cost":"2,150z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Pawprint Stamp (1)","FlynMealPassReg (1)","Paralysis Sac (2)"],"improve-mats":"N/A","improve-to":["White Cat Hammer","Black Cat Stamp","Teddybear"]},{"name":"White Cat Hammer","attack":"728","element":"Paralysis 180","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"15%","slots":"O--","bonus":"N/A","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"20,000z","improve-from":"White Cat Stamp","create-mats":"N/A","improve-mats":["FlynMealPassReg (10)","Carbalite Ore (5)","Blango Pelt+ (5)"],"improve-to":"N/A"},{"name":"Black Cat Stamp","attack":"624","element":"Paralysis 240","sharpness":"10.1.3.16 10.1.3.17.4","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"4","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"3,650z","improve-from":"White Cat Stamp","create-mats":"N/A","improve-mats":["FlynMealPassReg (2)","Dragonite Ore (5)","Barrel Lid (1)"],"improve-to":["Black Cat Hammer","Gold Cat Hammer"]},{"name":"Black Cat Hammer","attack":"676","element":"Paralysis 380","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"6","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"25,000z","improve-from":"Black Cat Stamp","create-mats":"N/A","improve-mats":["FlynMealPassPlus (6)","Black Blos Spine (5)","Felyne Fur Ruby (1)"],"improve-to":"N/A"},{"name":"Gold Cat Hammer","attack":"832","element":"Paralysis 280","sharpness":"3.2.17.3 3.2.17.8","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"8","notes":"Unknown","type":"hm","create-cost":"45,000z","improve-cost":"45,000z","improve-from":"Black Cat Stamp","create-mats":["Felyne Fur Ruby (3)","FlynMealPassReg(15)","FlynMealPassPlus(5)","Gold Rathian Scl+(5)"],"improve-mats":["FlynMealPassPlus (10)","Gold Rathian Scl+ (3)","Gold Rajang Pelt (3)"],"improve-to":["Gold Cat Crusher"]},{"name":"Gold Cat Crusher","attack":"988","element":"Paralysis 380","sharpness":"3.2.17.8 3.2.17.12.1","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"N/A","improve-cost":"90,000z","improve-from":"Gold Cat Hammer","create-mats":"N/A","improve-mats":["FlynMealPassPlus (10)","Felyne Fur Ruby (3)","GoldRajangPelt+ (3)","Thunderbug Jelly (10)"],"improve-to":"N/A"},{"name":"Teddybear","attack":"260","element":"Sleep 200","sharpness":"5.4.6 5.4.11","affinity":"0%","slots":"---","bonus":"N/A","rarity":"4","notes":"Unknown","type":"hm","create-cost":"5,000z","improve-cost":"5,000z","improve-from":"White Cat Stamp","create-mats":["Commendation (1)","Lightcrystal (2)","Black Pearl (2)"],"improve-mats":["Lightcrystal (1)","Antiseptic Stone (3)","Pokke Ticket (1)"],"improve-to":"N/A"},{"name":"Ukanlos Trampler","attack":"1820","element":"Ice 120","sharpness":"17.2.4.7.2 17.2.4.7.4.3","affinity":"-30%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"150,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["UkanlosDiggngClw (3)","HvyUkanlosShell (4)","Lightning Sac (10)","Ukanlos Stone (1)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Bone Club G","attack":"1560","element":"N/A","sharpness":"8.7.7.8 8.7.7.11.2","affinity":"-10%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Mystery Bone (50)","Stout Bone (15)","Massive Bone (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"War Hammer G","attack":"1456","element":"N/A","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Iron Ore (30)","Disk Stone (30)","Eltalite Ore (12)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Tarnished Hammer G","attack":"1664","element":"N/A","sharpness":"19.2.4 19.2.5.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Large Ruststone (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Spiked Hammer G","attack":"1456","element":"N/A","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Needleberry (50)","Eltalite Ore (8)","Emperor Cricket (8)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Iron Striker G","attack":"1456","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Iron Ore (30)","Machalite Ore (15)","Mellanje Ore (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Atlas Hammer G","attack":"1456","element":"N/A","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Sm Monster Bone (40)","Giant Bone (30)","Massive Bone (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Bone Axe G","attack":"1508","element":"N/A","sharpness":"6.4.8.12.5 6.4.8.12.6.4","affinity":"10%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Hrd Monster Bone (15)","Monster Essence (5)","Hvy Tigrex Shell (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Skullcrusher G","attack":"1508","element":"N/A","sharpness":"3.2.17.12.1 3.2.17.12.4.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","HvyPiscineFang (6)","Piercing Claw (8)","Monster Essence (3)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Bull Tusk Hammer G","attack":"1404","element":"N/A","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Bullfango Head (5)","Bulldrome Tusk (10)","ThkBullfangoPelt (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Crystal Nova G","attack":"1456","element":"N/A","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Lightcrystal (15)","Novacrystal (10)","Purecrystal (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Binder Mace G","attack":"1144","element":"Paralysis 280","sharpness":"14.4.6.7.4.5 14.4.6.7.4.6.4","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Thunderbug (30)","SpecRubberyHide+ (5)","Mellanje Ore (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Kut-Ku Jaw G","attack":"1456","element":"N/A","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Giant Beak (6)","Hvy Kut-Ku Shell (10)","Monster Essence (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Venom Monster G","attack":"1248","element":"Poison 350","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"15%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","SpecRubberyHide+ (8)","Toxin Sac (12)","Gypceros Head (3)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Dead Revolver G","attack":"1248","element":"Fire 400","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Eltalite Ore (10)","Firestone (15)","FireWyvrn Marrow (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Anchor Crusher G","attack":"1300","element":"Water 380","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Ancient Fish (10)","SpecPlesiothFin+ (5)","Eltalite Ore (8)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Kut-Ku Pick G","attack":"1352","element":"N/A","sharpness":"9.2.13.7.5.4 9.2.13.7.5.6.3","affinity":"20%","slots":"OOO","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Splendid Beak (4)","Thick Kut-Ku Scl (10)","Lucky Kut-Ku Ear (4)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Dragonhead Hammer G","attack":"1404","element":"N/A","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Wyvern Skull Shl (10)","Unknown Skull (10)","BigEDragonBone (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Basarios Bash G","attack":"1352","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","HvyBasariosShell (10)","Basarios Tears (5)","Wyvern Stone (3)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Titan Hammer G","attack":"1560","element":"N/A","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"-15%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation (1)","HvyBasariosShell (6)","Gravios Carapace (10)","Machalite Ore (20)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Finishing Hammer G","attack":"1404","element":"N/A","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","LthrDiablosTail (3)","BigEDragonBone (5)","Monoblos Carapace (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"TrueBlackCauldron G","attack":"1300","element":"N/A","sharpness":"10.1.3.17.6.3 10.1.3.17.6.5.3","affinity":"0%","slots":"OOO","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","FlynMealPassReg (10)","Carbalite Ore (15)","HvyBlkBlosShell (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Enormous Ham G","attack":"1612","element":"N/A","sharpness":"10.1.3.16 10.1.3.17.4","affinity":"-20%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Gourmet Steak (10)","FlynMealPassReg (10)","Hvy Monster Bone (8)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Teddybear G","attack":"936","element":"Sleep 200","sharpness":"5.4.14.7 5.4.14.10.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Antiseptic Stone (10)","Purecrystal (4)","Sleep Sac (20)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Cactus Creamer G","attack":"884","element":"Poison 300","sharpness":"19.2.5.7.4.5.3 19.2.5.7.4.5.3","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Cactus Flower (10)","Massive Bone (10)","Dosbiscus (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"White Cat Hammer G","attack":"1040","element":"Paralysis 180","sharpness":"8.7.7.11.2 8.7.7.11.5.2","affinity":"15%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Pawprint Stamp (10)","Paralysis Sac (15)","HrdBlangongaPlt+ (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Black Cat Hammer G","attack":"936","element":"Paralysis 380","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","FlynMealPassPlus (10)","Felyne Fur Ruby (5)","BlackNargaPelt+ (10)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Black Belt Hammer G","attack":"1352","element":"N/A","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OOO","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Expert Ticket (10)","Fire Coin (7)","Legend Coin (1)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Breath Core Hammer G","attack":"1508","element":"N/A","sharpness":"19.2.5.7.4.3 19.2.5.7.4.5.3","affinity":"-20%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Lg Ancient Stone (3)","ElderDragonBlood (10)","Big Wyvern Stone (1)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Great Demon Hammer G","attack":"1404","element":"N/A","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"20%","slots":"O--","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Eltalite Ore (8)","Carbalite Ore (25)","Velocidrome Head (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Hard Bone Hammer G","attack":"1456","element":"N/A","sharpness":"5.4.14.10.4.3 5.4.14.10.4.6.2","affinity":"0%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","Hvy Monster Bone (5)","BigEDragonBone (3)","Dragonite Ore (15)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"TwoStarSilverPot G","attack":"1196","element":"N/A","sharpness":"3.2.17.12.4.5.2 3.2.17.12.4.5.2","affinity":"20%","slots":"---","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","FlynMealPassPlus (10)","Rainbow Ore (20)","HvySlvrRthlsShl (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Great Cone G","attack":"1248","element":"Ice 400","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"9","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation G (1)","HvyBlangongaFang (3)","HrdBlangongaPlt+ (10)","Blango Pelt+ (20)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Onslaught Hammer G","attack":"1404","element":"N/A","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Dragonite Ore (20)","HvyGraviosShell (5)","Union Ore (15)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"War Basher G","attack":"1404","element":"N/A","sharpness":"3.2.17.12.4.2 3.2.17.12.4.5.2","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Carbalite Ore (20)","Disk Stone (50)","HvyBlkBlosShell (8)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"SanctionedGunHammr G","attack":"1196","element":"Fire 500","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Firecell Stone (10)","Monster Essence (8)","Mellanje Ore (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Crater Maker G","attack":"1300","element":"Poison 200","sharpness":"14.4.6.7.4.5 14.4.6.7.4.6.4","affinity":"0%","slots":"OO-","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","HvyGraviosShell (6)","DeadlyPoisonSac (3)","Wyvern Stone (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Torment(Purgatory) G","attack":"1352","element":"Fire 310","sharpness":"8.7.7.11.5.2 8.7.7.11.5.5.2","affinity":"0%","slots":"O--","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","HvyBlkGraviosShl (6)","Blazing Fire Sac (3)","Wyvern Stone (5)"],"improve-mats":"N/A","improve-to":"N/A"},{"name":"Dragonbreaker G","attack":"1300","element":"Dragon 330","sharpness":"6.4.8.12.6.4 6.4.8.12.6.5.4","affinity":"0%","slots":"---","bonus":"N/A","rarity":"10","notes":"Unknown","type":"hm","create-cost":"100,000z","improve-cost":"N/A","improve-from":"N/A","create-mats":["Commendation S (1)","Lao-Shan's Claw (3)","Lao-Shan'sHvyShl (5)","Lao-ShanScale+ (15)"],"improve-mats":"N/A","improve-to":"N/A"}]}
+{
+  "weapons": [
+    {
+      "name": "War Hammer",
+      "attack": "312",
+      "element": null,
+      "sharpness": "9.2.4 9.2.9",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "500z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Iron Ore(3)",
+        "Disk Stone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "War Hammer+"
+      ]
+    },
+    {
+      "name": "War Hammer+",
+      "attack": "364",
+      "element": null,
+      "sharpness": "9.2.9 9.2.13.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "650z",
+      "improve-from": [
+        "War Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Iron Ore (5)",
+        "Disk Stone (1)"
+      ],
+      "improve-to": [
+        "War Mace",
+        "Spiked Hammer"
+      ]
+    },
+    {
+      "name": "War Mace",
+      "attack": "468",
+      "element": null,
+      "sharpness": "3.2.10 3.2.15",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,100z",
+      "improve-from": [
+        "War Hammer+"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Iron Ore (10)",
+        "Disk Stone (5)"
+      ],
+      "improve-to": [
+        "Iron Striker",
+        "Anchor Hammer",
+        "Black Cauldron",
+        "Bone Axe",
+        "Metal Bagpipe"
+      ]
+    },
+    {
+      "name": "Iron Striker",
+      "attack": "624",
+      "element": null,
+      "sharpness": "9.2.13.1 9.2.13.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,150z",
+      "improve-cost": "2,150z",
+      "improve-from": [
+        "War Mace"
+      ],
+      "create-mats": [
+        "Earth Crystal (10)",
+        "Iron Ore (20)",
+        "Disk Stone (20)"
+      ],
+      "improve-mats": [
+        "Iron Ore (12)",
+        "Machalite Ore (5)",
+        "Earth Crystal (3)"
+      ],
+      "improve-to": [
+        "Iron Striker+",
+        "Gunhammer Prototype"
+      ]
+    },
+    {
+      "name": "Iron Striker+",
+      "attack": "832",
+      "element": null,
+      "sharpness": "3.2.17.3 3.2.17.8",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,250z",
+      "improve-from": [
+        "Iron Striker"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Dragonite Ore (5)",
+        "Machalite Ore (8)",
+        "Earth Crystal (15)"
+      ],
+      "improve-to": [
+        "Anvil Hammer"
+      ]
+    },
+    {
+      "name": "Anvil Hammer",
+      "attack": "884",
+      "element": null,
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "6,350z",
+      "improve-from": [
+        "Iron Striker+"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Shell (2)",
+        "Dragonite Ore (10)",
+        "Iron Ore (30)"
+      ],
+      "improve-to": [
+        "Onslaught Hammer",
+        "War Stamp",
+        "Bronze Bell",
+        "Sakura Recorder",
+        "Iron Devil"
+      ]
+    },
+    {
+      "name": "Onslaught Hammer",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "60,000z",
+      "improve-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Union Ore (5)",
+        "Dragonite Ore (20)",
+        "Iron Ore (99)"
+      ],
+      "improve-to": [
+        "Blacksmith"
+      ]
+    },
+    {
+      "name": "Blacksmith",
+      "attack": "1196",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "75,000z",
+      "improve-cost": "75,000z",
+      "improve-from": [
+        "Onslaught Hammer"
+      ],
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Union Ore (10)",
+        "Piercing Claw (4)",
+        "RobustWyvernBone (5)"
+      ],
+      "improve-mats": [
+        "Eltalite Ore (5)",
+        "Carbalite Ore (20)",
+        "Emperor Cricket (7)"
+      ],
+      "improve-to": [
+        "Juggernaut",
+        "Lava Alphorn"
+      ]
+    },
+    {
+      "name": "Juggernaut",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": [
+        "Blacksmith"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Mellanje Ore (5)",
+        "RobustWyvernBone (8)",
+        "PhantomButterfly (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "War Stamp",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "30,000z",
+      "improve-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Dragonite Ore (15)",
+        "Carbalite Ore (15)",
+        "Disk Stone (50)"
+      ],
+      "improve-to": [
+        "War Basher"
+      ]
+    },
+    {
+      "name": "War Basher",
+      "attack": "1144",
+      "element": null,
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "War Stamp",
+      "create-mats": null,
+      "improve-mats": [
+        "Carbalite Ore (30)",
+        "Machalite Ore (40)",
+        "Black Blos Cpc (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Iron Devil",
+      "attack": "988",
+      "element": null,
+      "sharpness": "9.2.13.1 9.2.13.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "25,000z",
+      "improve-cost": "25,000z",
+      "improve-from": [
+        "Anvil Hammer"
+      ],
+      "create-mats": [
+        "Carbalite Ore (5)",
+        "Iron Ore (50)",
+        "Disk Stone (30)"
+      ],
+      "improve-mats": [
+        "Carbalite Ore (3)",
+        "Iron Ore (30)",
+        "Dragonite Ore (5)"
+      ],
+      "improve-to": [
+        "Great Demon Hammer",
+        "Fist of Fury"
+      ]
+    },
+    {
+      "name": "Great Demon Hammer",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "6.4.8.7 6.4.8.12",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": [
+        "Iron Devil"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Union Ore (10)",
+        "Velocidrome Head (3)",
+        "Remobra Skull (3)"
+      ],
+      "improve-to": [
+        "Devil Masher",
+        "Iron Impact"
+      ]
+    },
+    {
+      "name": "Devil Masher",
+      "attack": "1040",
+      "element": "Paralysis 140",
+      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "55,000z",
+      "improve-from": [
+        "Great Demon Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Gendrome Skull (3)",
+        "Vespoid Abdomen (3)",
+        "Gold Rathian Cpc (3)"
+      ],
+      "improve-to": [
+        "Devil Masher+"
+      ]
+    },
+    {
+      "name": "Devil Masher+",
+      "attack": "1144",
+      "element": "Paralysis 150",
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "80,000z",
+      "improve-from": [
+        "Devil Masher"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Eltalite Ore (5)",
+        "Thunderbug Jelly (5)",
+        "Gld Rathian Scl+ (8)"
+      ],
+      "improve-to": [
+        "Iron Devil's Soul"
+      ]
+    },
+    {
+      "name": "Iron Devil's Soul",
+      "attack": "1300",
+      "element": "Paralysis 170",
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "105,000z",
+      "improve-from": "Devil Masher+",
+      "create-mats": null,
+      "improve-mats": [
+        "Eltalite Ore (10)",
+        "HvyGldRathianShl (5)",
+        "YamaTsukamiFluid (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Iron Impact",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "55,000z",
+      "improve-from": [
+        "Great Demon Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Union Ore (25)",
+        "Iron Ore (50)",
+        "Novacrystal (5)"
+      ],
+      "improve-to": [
+        "Iron Repellant",
+        "Icy Impact"
+      ]
+    },
+    {
+      "name": "Iron Repellant",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "85,000z",
+      "improve-from": [
+        "Iron Impact"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Mellanje Ore (10)",
+        "Iron Ore (90)",
+        "HvyLavasiothShl (5)",
+        "Rainbow Ore (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Icy Impact",
+      "attack": "1196",
+      "element": "Ice 240",
+      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "75,000z",
+      "improve-cost": "75,000z",
+      "improve-from": [
+        "Iron Impact"
+      ],
+      "create-mats": [
+        "Eltalite Ore (12)",
+        "Ice Crystal (20)",
+        "Blangonga Pelt+ (20)",
+        "Monster Essence (5)"
+      ],
+      "improve-mats": [
+        "Ice Crystal (10)",
+        "Eltalite Ore (8)",
+        "Emperor Cricket (10)",
+        "DaoraDragonScal+ (5)"
+      ],
+      "improve-to": [
+        "Axion"
+      ]
+    },
+    {
+      "name": "Axion",
+      "attack": "1352",
+      "element": "Ice 280",
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": [
+        "Icy Impact"
+      ],
+      "create-mats": [],
+      "improve-mats": [
+        "Ice Crystal (20)",
+        "Purecrystal (2)",
+        "HrdBlangongaPlt+ (10)",
+        "HvyBasariosShell (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Fist of Fury",
+      "attack": "1144",
+      "element": null,
+      "sharpness": "14.4.6.1 14.4.6.6",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": [
+        "Iron Devil"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Carbalite Ore (15)",
+        "Dragonite Ore (10)",
+        "Gaoren Shell (5)"
+      ],
+      "improve-to": [
+        "Ancient Blow"
+      ]
+    },
+    {
+      "name": "Ancient Blow",
+      "attack": "1248",
+      "element": null,
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "-20%",
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "70,000z",
+      "improve-from": [
+        "Fist of Fury"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Union Ore (10)",
+        "Dragonite Ore (25)",
+        "Gaoren Carapace (5)"
+      ],
+      "improve-to": [
+        "Foolhardy Stone Fist"
+      ]
+    },
+    {
+      "name": "Foolhardy Stone Fist",
+      "attack": "1664",
+      "element": null,
+      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": "-20%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "110,000z",
+      "improve-from": [
+        "Fist of Fury"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Mellanje Ore (10)",
+        "Gaoren Carapace (10)",
+        "Lao-Shan's HvyScl (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Gunhammer Prototype",
+      "attack": "572",
+      "element": "Fire 300",
+      "sharpness": "10.1.3.6 10.1.3.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "3,100z",
+      "improve-cost": "3,100z",
+      "improve-from": "Iron Striker",
+      "create-mats": [
+        "FireWyvern Fluid (4)",
+        "Machalite Ore (20)",
+        "Flame Sac (1)",
+        "Gunpowder (20)"
+      ],
+      "improve-mats": [
+        "FireWyvern Fluid (2)",
+        "Machalite Ore (15)",
+        "Gunpowder (10)"
+      ],
+      "improve-to": [
+        "Dead Revolver"
+      ]
+    },
+    {
+      "name": "Dead Revolver",
+      "attack": "728",
+      "element": "Fire 400",
+      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "6,350z",
+      "improve-from": "Gunhammer Prototype",
+      "create-mats": null,
+      "improve-mats": [
+        "Dragonite Ore (15)",
+        "FireWyvrn Marrow (2)",
+        "Firestone (4)"
+      ],
+      "improve-to": [
+        "Sanctioned Gunhammer"
+      ]
+    },
+    {
+      "name": "Sanctioned Gunhammer",
+      "attack": "832",
+      "element": "Fire 500",
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "60,000z",
+      "improve-from": "Dead Revolver",
+      "create-mats": null,
+      "improve-mats": [
+        "Firecell Stone (4)",
+        "Carbalite Ore (20)",
+        "Monster Broth (2)",
+        "FireWyvrn BrnStm (1)"
+      ],
+      "improve-to": [
+        "Regulation GunHammer"
+      ]
+    },
+    {
+      "name": "Regulation GunHammer",
+      "attack": "1092",
+      "element": "Fire 520",
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "95,000z",
+      "improve-cost": "95,000z",
+      "improve-from": "Sanctioned Gunhammer",
+      "create-mats": [
+        "Eltalite Ore (10)",
+        "Blazing Fire Sac (6)",
+        "Firecell Stone (10)",
+        "FireWyvrn BrnStm (2)"
+      ],
+      "improve-mats": [
+        "Eltalite Ore (5)",
+        "Blazing Fire Sac (4)",
+        "Monster Essence (2)"
+      ],
+      "improve-to": [
+        "ImperialGunHmmrSpark"
+      ]
+    },
+    {
+      "name": "ImperialGunHmmrSpark",
+      "attack": "1248",
+      "element": "Fire 540",
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "120,000z",
+      "improve-from": "Regulation GunHammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Eltalite Ore (20)",
+        "Naruga Thck Scl (5)",
+        "BlkGraviosHvyShl (5)",
+        "Wyvern Stone (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Anchor Hammer",
+      "attack": "572",
+      "element": "Water 100",
+      "sharpness": "9.2.13.1 9.2.13.6",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": "War Mace",
+      "create-mats": null,
+      "improve-mats": [
+        "Speartuna (1)",
+        "Cephalos Fin (2)",
+        "Disk Stone (20)"
+      ],
+      "improve-to": [
+        "Anchor Hammer+"
+      ]
+    },
+    {
+      "name": "Anchor Hammer+",
+      "attack": "728",
+      "element": "Water 290",
+      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,900z",
+      "improve-from": "Anchor Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Glutton Tuna (5)",
+        "Plesioth Fin (5)",
+        "Dragonite Ore (20)"
+      ],
+      "improve-to": [
+        "Anchor Crusher"
+      ]
+    },
+    {
+      "name": "Anchor Crusher",
+      "attack": "884",
+      "element": "Water 380",
+      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "65,000z",
+      "improve-from": "Anchor Hammer+",
+      "create-mats": null,
+      "improve-mats": [
+        "Ancient Fish (5)",
+        "Plesioth Fin+ (5)",
+        "Union Ore (20)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Black Cauldron",
+      "attack": "468",
+      "element": null,
+      "sharpness": "14.4.2 14.4.6.1",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,400z",
+      "improve-cost": "1,400z",
+      "improve-from": "War Mace",
+      "create-mats": [
+        "FlynMealPassPlus (1)",
+        "Iron Ore (10)",
+        "Disk Stone (7)"
+      ],
+      "improve-mats": [
+        "FlynMealPassReg (2)",
+        "Iron Ore (10)",
+        "Carpenterbug (10)"
+      ],
+      "improve-to": [
+        "True Black Cauldron",
+        "One Star Silver Pot"
+      ]
+    },
+    {
+      "name": "True Black Cauldron",
+      "attack": "780",
+      "element": null,
+      "sharpness": "10.1.3.11 10.1.3.16",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": "Black Cauldron",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassReg (7)",
+        "Carbalite Ore (10)",
+        "Black Blos Shell (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "One Star Silver Pot",
+      "attack": "520",
+      "element": null,
+      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": "Black Cauldron",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassPlus (2)",
+        "Rainbow Ore (10)",
+        "DaoraDragonScale (5)"
+      ],
+      "improve-to": [
+        "Two Star Silver Pot"
+      ]
+    },
+    {
+      "name": "Two Star Silver Pot",
+      "attack": "676",
+      "element": null,
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "One Star Silver Pot",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassPlus (8)",
+        "Union Ore (10)",
+        "Slvr Rthlos Scl+ (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Bone Axe",
+      "attack": "624",
+      "element": null,
+      "sharpness": "6.4.5 6.4.8.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": "War Mace",
+      "create-mats": null,
+      "improve-mats": [
+        "Med Monster Bone (3)",
+        "Sm Monster Bone (3)",
+        "Monster Fluid (1)"
+      ],
+      "improve-to": [
+        "Bone Broadaxe"
+      ]
+    },
+    {
+      "name": "Bone Broadaxe",
+      "attack": "936",
+      "element": null,
+      "sharpness": "14.4.6.1 14.4.6.6",
+      "affinity": "5%",
+      "slots": "OO-",
+      "bonus": "5%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "5,600z",
+      "improve-from": "Bone Axe",
+      "create-mats": null,
+      "improve-mats": [
+        "Monster Bone+ (2)",
+        "Lg Monster Bone (4)",
+        "Tigrex Shell (4)"
+      ],
+      "improve-to": [
+        "Bone Great Axe"
+      ]
+    },
+    {
+      "name": "Bone Great Axe",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "5%",
+      "slots": "OO-",
+      "bonus": "5%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "40,000z",
+      "improve-from": "Bone Broadaxe",
+      "create-mats": null,
+      "improve-mats": [
+        "Hrd Monster Bone (2)",
+        "Monster Bone+ (4)",
+        "Monster Broth (1)",
+        "King Scarab (5)"
+      ],
+      "improve-to": [
+        "Ceanataur Head Axe"
+      ]
+    },
+    {
+      "name": "Ceanataur Head Axe",
+      "attack": "1144",
+      "element": null,
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "60,000z",
+      "improve-cost": "60,000z",
+      "improve-from": "Bone Great Axe",
+      "create-mats": [
+        "Ceanataur Carpce (6)",
+        "Ceanataur Claw+ (4)",
+        "Ceanataur Leg (2)",
+        "Carbalite Ore (10)"
+      ],
+      "improve-mats": [
+        "Ceanataur Carpce (4)",
+        "Ceanataur Pincer (2)",
+        "Carbalite Ore (6)",
+        "King Scarab (4)"
+      ],
+      "improve-to": [
+        "Big Blue Chopper",
+        "Carmine Axe"
+      ]
+    },
+    {
+      "name": "Big Blue Chopper",
+      "attack": "1300",
+      "element": null,
+      "sharpness": "6.4.8.12.6.5.4 6.4.8.12.6.5.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "110,000z",
+      "improve-from": "Ceanataur Head Axe",
+      "create-mats": null,
+      "improve-mats": [
+        "Heavy Ceanataur Shell (4)",
+        "Hard Ceanataur Claw (2)",
+        "Heavy Ceanataur Leg (3)",
+        "Eltalite Ore (4)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Carmine Axe",
+      "attack": "1196",
+      "element": "Water 280",
+      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "85000z",
+      "improve-cost": "85000z",
+      "improve-from": "Ceanataur Head Axe",
+      "create-mats": [
+        "Terra Ceanataur Shell (6)",
+        "Terra Ceanataur Claw (4)",
+        "Ceanataur Pincer (10)",
+        "Eltalite Ore (10)"
+      ],
+      "improve-mats": [
+        "Terra Ceanataur Shell (4)",
+        "Terra Ceanataur Claw (2)",
+        "Heavy Ceanataur Leg (2)"
+      ],
+      "improve-to": [
+        "The Great Divider"
+      ]
+    },
+    {
+      "name": "The Great Divider",
+      "attack": "1248",
+      "element": "Water 300",
+      "sharpness": "3.2.17.12.4.5.2 3.2.17.12.4.5.2",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": "15%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "115000z",
+      "improve-from": "Carmine Axe",
+      "create-mats": null,
+      "improve-mats": [
+        "Terra Ceanataur Shell (2)",
+        "Heavy Black Gravios Shell (1)",
+        "Hard Gaoren Claw (2)",
+        "Giant Black Pearl (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Spiked Hammer",
+      "attack": "520",
+      "element": null,
+      "sharpness": "10.1.3.1 10.1.3.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,400z",
+      "improve-from": [
+        "War Hammer+"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Iron Ore (10)",
+        "Needleberry (10)",
+        "Carpenterbug (5)"
+      ],
+      "improve-to": [
+        "Spiked Hammer+"
+      ]
+    },
+    {
+      "name": "Spiked Hammer+",
+      "attack": "572",
+      "element": null,
+      "sharpness": "10.1.3.6 10.1.3.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,750z",
+      "improve-from": [
+        "Spiked Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Iron Ore (20)",
+        "Needleberry (15)",
+        "Killer Beetle (2)"
+      ],
+      "improve-to": [
+        "Crystal Hammer",
+        "Shell Hammer",
+        "Basarios Rock"
+      ]
+    },
+    {
+      "name": "Crystal Hammer",
+      "attack": "676",
+      "element": null,
+      "sharpness": "8.7.7.3 8.7.7.8",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "improve-cost": "2,600z",
+      "improve-from": [
+        "Spiked Hammer+"
+      ],
+      "create-mats": [
+        "Lightcrystal (2)",
+        "Iron Ore (25)",
+        "Ice Crystal (7)",
+        "Carpenterbug (10)"
+      ],
+      "improve-mats": [
+        "Lightcrystal (1)",
+        "Machalite Ore (8)",
+        "Killer Beetle (6)"
+      ],
+      "improve-to": [
+        "Crystal Nova"
+      ]
+    },
+    {
+      "name": "Crystal Nova",
+      "attack": "780",
+      "element": null,
+      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "3,650z",
+      "improve-from": "Crystal Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Lightcrystal (3)",
+        "Rainbow Ore (2)",
+        "Ice Crystal (10)"
+      ],
+      "improve-to": [
+        "Great Nova",
+        "Gigaton Hammer"
+      ]
+    },
+    {
+      "name": "Great Nova",
+      "attack": "936",
+      "element": "Thunder 300",
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Crystal Nova",
+      "create-mats": null,
+      "improve-mats": [
+        "Novacrystal (3)",
+        "Basarios Carpace (8)",
+        "Thunder Sac (5)"
+      ],
+      "improve-to": [
+        "Super Nova"
+      ]
+    },
+    {
+      "name": "Super Nova",
+      "attack": "1352",
+      "element": "Thunder 450",
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": "Great Nova",
+      "create-mats": null,
+      "improve-mats": [
+        "Purecrystal (3)",
+        "Lightning Sac (5)",
+        "LthrKirinThndrTl (2)",
+        "StrBasariosWing (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Gigaton Hammer",
+      "attack": "832",
+      "element": null,
+      "sharpness": "6.4.8.2 6.4.8.7",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,250z",
+      "improve-from": "Crystal Nova",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Skl Shl (1)",
+        "Basarios Shell (4)",
+        "Machalite Ore (10)"
+      ],
+      "improve-to": [
+        "Titan Hammer"
+      ]
+    },
+    {
+      "name": "Titan Hammer",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "8.7.7.3 8.7.7.8",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": "-15%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "8,000z",
+      "improve-from": "Gigaton Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Shell (10)",
+        "Gaoren Shell (4)",
+        "Machalite Ore (15)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Shell Hammer",
+      "attack": "728",
+      "element": "Poison 120",
+      "sharpness": "14.4.6.1 14.4.6.6",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "4,250z",
+      "improve-cost": "4,250z",
+      "improve-from": "Spiked Hammer+",
+      "create-mats": [
+        "Basarios Shell (8)",
+        "Machalite Ore (5)",
+        "Ioprey Fang (18)",
+        "Hercudrome (3)"
+      ],
+      "improve-mats": [
+        "Basarios Shell (8)",
+        "Wyvern Fang (15)",
+        "Poison Sac (5)"
+      ],
+      "improve-to": [
+        "Graviton Hammer"
+      ]
+    },
+    {
+      "name": "Graviton Hammer",
+      "attack": "780",
+      "element": "Poison 180",
+      "sharpness": "14.4.6.6 14.4.6.7.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,900z",
+      "improve-from": "Shell Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Shell (10)",
+        "Machalite Ore (10)",
+        "Chameleos Claw (1)"
+      ],
+      "improve-to": [
+        "Torment Hammer",
+        "Crater Maker"
+      ]
+    },
+    {
+      "name": "Crater Maker",
+      "attack": "988",
+      "element": "Poison 200",
+      "sharpness": "14.4.6.7.4 14.4.6.7.4.5",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "70,000z",
+      "improve-from": "Graviton Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Gravios Carapace (12)",
+        "Wyvern Stone (3)",
+        "Toxin Sac (8)"
+      ],
+      "improve-to": [
+        "VenomousCraterMaker"
+      ]
+    },
+    {
+      "name": "VenomousCraterMaker",
+      "attack": "1300",
+      "element": "Poison 220",
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Crater Maker",
+      "create-mats": null,
+      "improve-mats": [
+        "HvyBlkGraviosShl (5)",
+        "HvyGraviosShell (2)",
+        "LethrGarugaTail (4)",
+        "DeadlyPoisonSac (5)"
+      ],
+      "improve-to": [
+        "Glasya-Labolas"
+      ]
+    },
+    {
+      "name": "Glasya-Labolas",
+      "attack": "1404",
+      "element": "Poison 240",
+      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "VenomousCraterMaker",
+      "create-mats": null,
+      "improve-mats": [
+        "HvyBlkGraviosShl (10)",
+        "SpecChameleHide+ (3)",
+        "StrBasariosWing (2)",
+        "HvnlyBlkGraviShl (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Torment Hammer",
+      "attack": "884",
+      "element": "Fire 250",
+      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "45,000z",
+      "improve-from": "Graviton Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Blk Gravios Shl (8)",
+        "Carbalite Ore (20)",
+        "Inferno Sac (4)"
+      ],
+      "improve-to": [
+        "Torment (Purgatory)"
+      ]
+    },
+    {
+      "name": "Torment (Purgatory)",
+      "attack": "988",
+      "element": "Fire 310",
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "70,000z",
+      "improve-from": "Torment Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Black Gravios Carapace (12)",
+        "Black Gravios Skl Shl (2)",
+        "Gravios Brainstem (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Bone Club",
+      "attack": "364",
+      "element": null,
+      "sharpness": "8.7 8.7.5",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "400z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Mystery Bone (3)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Large Bone Club",
+        "Cyclo-Hammer",
+        "Bull Hammer",
+        "Giaprey Balloon"
+      ]
+    },
+    {
+      "name": "Large Bone Club",
+      "attack": "676",
+      "element": null,
+      "sharpness": "8.7.5 8.7.7.3",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,600z",
+      "improve-from": "Bone Club",
+      "create-mats": null,
+      "improve-mats": [
+        "Giant Bone (1)",
+        "Mystery Bone (5)"
+      ],
+      "improve-to": [
+        "Enormous Ham"
+      ]
+    },
+    {
+      "name": "Enormous Ham",
+      "attack": "728",
+      "element": null,
+      "sharpness": "10.1.3.1 10.1.3.6",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "7,500z",
+      "improve-from": "Large Bone Club",
+      "create-mats": null,
+      "improve-mats": [
+        "Giant Bone (3)",
+        "Well Done Steak (10)",
+        "FelyneMealPassReg (3)"
+      ],
+      "improve-to": [
+        "Ham of Hams"
+      ]
+    },
+    {
+      "name": "Ham of Hams",
+      "attack": "1196",
+      "element": null,
+      "sharpness": "10.1.3.1 10.1.3.6",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": "-20%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Enormous Ham",
+      "create-mats": null,
+      "improve-mats": [
+        "Hrd Monster Bone (3)",
+        "Gourmet Steak (10)",
+        "FelyneMealPassPlus (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Cyclo-Hammer",
+      "attack": "468",
+      "element": null,
+      "sharpness": "5.4.6 5.4.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,750z",
+      "improve-from": [
+        "Bone Club"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Brute Bone (3)",
+        "Sm Monster Bone (3)"
+      ],
+      "improve-to": [
+        "Atlas Hammer",
+        "Skullcrusher",
+        "Conehead Hammer",
+        "Bone Horn"
+      ]
+    },
+    {
+      "name": "Atlas Hammer",
+      "attack": "572",
+      "element": null,
+      "sharpness": "5.4.11 5.4.14.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,750z",
+      "improve-from": [
+        "Cyclo-Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Giant Bone (2)",
+        "Sm Monster Bone (10)"
+      ],
+      "improve-to": [
+        "Kut-Ku Jaw",
+        "Jail Hammer",
+        "Khezu Horn"
+      ]
+    },
+    {
+      "name": "Kut-Ku Jaw",
+      "attack": "676",
+      "element": null,
+      "sharpness": "5.4.14.2 5.4.14.7",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "improve-cost": "2,600z",
+      "improve-from": "Atlas Hammer",
+      "create-mats": [
+        "Giant Beak (1)",
+        "Piscine Fang (5)",
+        "Kut-Ku Scale (5)",
+        "Mega Demondrug (1)"
+      ],
+      "improve-mats": [
+        "Giant Beak (1)",
+        "Sharp Claw (5)",
+        "Monster Fluid (2)"
+      ],
+      "improve-to": [
+        "Kut-Ku Pick",
+        "Raven Torrent",
+        "Dynamic Hammer",
+        "Venom Monster"
+      ]
+    },
+    {
+      "name": "Kut-Ku Pick",
+      "attack": "884",
+      "element": null,
+      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "affinity": "10%",
+      "slots": "OOO",
+      "bonus": "10%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "5,600z",
+      "improve-from": [
+        "Kut-Ku Jaw"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Kut-Ku Ear (4)",
+        "Vibrant Pelt (2)",
+        "Monster Bone+ (4)"
+      ],
+      "improve-to": [
+        "Hard Bone Hammer",
+        "Feather Whistle"
+      ]
+    },
+    {
+      "name": "Hard Bone Hammer",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "5.4.14.2 5.4.14.7",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "25,000z",
+      "improve-cost": "25,000z",
+      "improve-from": [
+        "Kut-Ku Pick"
+      ],
+      "create-mats": [
+        "Stout Bone (5)",
+        "Giant Bone (20)",
+        "Sm Monster Bone (60)",
+        "Iron Ore (15)"
+      ],
+      "improve-mats": [
+        "Stout Bone (2)",
+        "Elder Dragon Bone (5)",
+        "Brute Bone (60)"
+      ],
+      "improve-to": [
+        "Hard Bone Hammer+",
+        "Lobster Hammer"
+      ]
+    },
+    {
+      "name": "Hard Bone Hammer+",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": [
+        "Hard Bone Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Stout Bone(8)",
+        "Dragonite Ore(10)",
+        "Rare Scarab(10)"
+      ],
+      "improve-to": [
+        "Diablos Hammer"
+      ]
+    },
+    {
+      "name": "Diablos Hammer",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "45,000z",
+      "improve-from": [
+        "Hard Bone Hammer+"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Blood Red Horn (1)",
+        "TwstBlkBlosHrn (1)",
+        "Black Blos Cpc (6)"
+      ],
+      "improve-to": [
+        "Diablo Chaos Broker"
+      ]
+    },
+    {
+      "name": "Diablo Chaos Broker",
+      "attack": "1196",
+      "element": null,
+      "sharpness": "10.1.3.17.4 10.1.3.17.6.3",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": "-10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Diablos Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Majestic Horn (2)",
+        "Blk Blos Thracic (6)",
+        "Diablos Thoracic (6)"
+      ],
+      "improve-to": [
+        "Chaotic Order"
+      ]
+    },
+    {
+      "name": "Chaotic Order",
+      "attack": "1508",
+      "element": null,
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "115,000z",
+      "improve-from": "Diablo Chaos Broker",
+      "create-mats": null,
+      "improve-mats": [
+        "StoutBlkTwstdHrn (2)",
+        "Top-GrdRedHorn (2)",
+        "HvyBlkBlosSpine (6)",
+        "MonoblosThoracic (6)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Lobster Hammer",
+      "attack": "936",
+      "element": "Water 200",
+      "sharpness": "6.4.8.7 6.4.8.12",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "30,000z",
+      "improve-from": [
+        "Hard Bone Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Sm Lobstershell (4)",
+        "Iodrome Hide (10)",
+        "Carbalite Ore (10)"
+      ],
+      "improve-to": [
+        "King Lobster Hammer"
+      ]
+    },
+    {
+      "name": "King Lobster Hammer",
+      "attack": "988",
+      "element": "Water 230",
+      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "55,000z",
+      "improve-from": [
+        "Lobster Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Lg Lobstershell (2)",
+        "Ioprey Hide+ (5)",
+        "Ancient Fish (5)"
+      ],
+      "improve-to": [
+        "Royal Lobster Hammer"
+      ]
+    },
+    {
+      "name": "Royal Lobster Hammer",
+      "attack": "1144",
+      "element": "Water 350",
+      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": [
+        "King Lobster Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Gt Lobstershell (2)",
+        "HvyPiscineFang (6)",
+        "Eltalite Ore (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Raven Torrent",
+      "attack": "728",
+      "element": null,
+      "sharpness": "14.4.6.6 14.4.6.7.4",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": "20%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "10,000z",
+      "improve-cost": "10,000z",
+      "improve-from": "Kut-Ku Jaw",
+      "create-mats": [
+        "Sharpened Beak (2)",
+        "Garuga Mane (4)",
+        "Garuga Scale (8)"
+      ],
+      "improve-mats": [
+        "Sharpened Beak (1)",
+        "Garuga Ear (2)",
+        "Garuga Mane (3)"
+      ],
+      "improve-to": [
+        "Wolf Torrent"
+      ]
+    },
+    {
+      "name": "Wolf Torrent",
+      "attack": "936",
+      "element": null,
+      "sharpness": "14.4.6.7.4 14.4.6.7.4.5",
+      "affinity": "30%",
+      "slots": "O--",
+      "bonus": "30%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "65,000z",
+      "improve-from": [
+        "Raven Torrent"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Rejuvenated Beak (1)",
+        "Garuga Mane (10)",
+        "Long Garuga Ear (2)"
+      ],
+      "improve-to": [
+        "Crow Torrent",
+        "Wolf Shamisen"
+      ]
+    },
+    {
+      "name": "Crow Torrent",
+      "attack": "1352",
+      "element": null,
+      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "affinity": "40%",
+      "slots": "OO-",
+      "bonus": "40%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "105,000z",
+      "improve-from": [
+        "Wolf Torrent"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Rejuvenated Beak (2)",
+        "SilverGarugaPelt (5)",
+        "ThickGarugaScale (5)",
+        "Hvy Monster Bone (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Dynamic Hammer",
+      "attack": "728",
+      "element": null,
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "5%",
+      "slots": "---",
+      "bonus": "5%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "3,100z",
+      "improve-from": "Kut-Ku Jaw",
+      "create-mats": null,
+      "improve-mats": [
+        "Blue Kut-Ku Shell (6)",
+        "Blue Kut-Ku Scale (8)",
+        "Carpenterbug (5)"
+      ],
+      "improve-to": [
+        "Violence Hammer"
+      ]
+    },
+    {
+      "name": "Violence Hammer",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "affinity": "20%",
+      "slots": "OO-",
+      "bonus": "20%",
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "45,000z",
+      "improve-from": "Dynamic Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Blue Kut-Ku Cpc(4)",
+        "Blue Kut-Ku Scl+(6)",
+        "Long Kut-Ku Ear(2)"
+      ],
+      "improve-to": [
+        "Mysterious Jaw"
+      ]
+    },
+    {
+      "name": "Mysterious Jaw",
+      "attack": "1144",
+      "element": null,
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "30%",
+      "slots": "OO-",
+      "bonus": "30%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "80,000z",
+      "improve-from": "Violence Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Splendid Beak(2)",
+        "ThkBlueKut-KuScl(4)",
+        "HvyBlueKut-KuShl(6)",
+        "Lucky Kut-Ku Ear(2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Venom Monster",
+      "attack": "572",
+      "element": "Poison 260",
+      "sharpness": "14.4.6.6 14.4.6.7.4",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "3,100z",
+      "improve-from": "Kut-Ku Jaw",
+      "create-mats": null,
+      "improve-mats": [
+        "Rubbery Hide (10)",
+        "Poison Sac (5)",
+        "Gypceros Head (1)"
+      ],
+      "improve-to": [
+        "Death Venom Hammer"
+      ]
+    },
+    {
+      "name": "Death Venom Hammer",
+      "attack": "936",
+      "element": "Poison 350",
+      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "60,000z",
+      "improve-from": "Venom Monster",
+      "create-mats": null,
+      "improve-mats": [
+        "Rubbery Hide+ (10)",
+        "Toxin Sac (5)",
+        "Splendid Beak (5)"
+      ],
+      "improve-to": [
+        "Purple Mace"
+      ]
+    },
+    {
+      "name": "Purple Mace",
+      "attack": "1092",
+      "element": "Poison 380",
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "85,000z",
+      "improve-from": [
+        "Death Venom Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "HrdPuGypcerosWng (5)",
+        "DeadlyPoisonSac (5)",
+        "Pur Gypceros Wng (7)"
+      ],
+      "improve-to": [
+        "Pitohui Bird Mace"
+      ]
+    },
+    {
+      "name": "Pitohui Bird Mace",
+      "attack": "1248",
+      "element": "Poison 400",
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": "15%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "110,000z",
+      "improve-from": "Purple Mace",
+      "create-mats": null,
+      "improve-mats": [
+        "HrdPuGypcerosWng (5)",
+        "HardGypcerosHead (1)",
+        "LethrGarugaTail (2)",
+        "Rejuvenated Beak (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Jail Hammer",
+      "attack": "624",
+      "element": "Paralysis 190",
+      "sharpness": "14.4.6.1 14.4.6.6",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "3,100z",
+      "improve-from": "Atlas Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Machalite Ore(6)",
+        "Thunderbug(12)",
+        "Rubbery Hide(3)"
+      ],
+      "improve-to": [
+        "Binder Mace"
+      ]
+    },
+    {
+      "name": "Binder Mace",
+      "attack": "780",
+      "element": "Paralysis 280",
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "5,600z",
+      "improve-from": "Jail Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Dragonite Ore(12)",
+        "Thunderbug Juice(8)",
+        "Electro Sac(8)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Purse Bop",
+      "attack": "1040",
+      "element": "Thunder 200",
+      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "50,000z",
+      "improve-cost": "50,000z",
+      "improve-from": "Khezu Horn+",
+      "create-mats": [
+        "Khezu Hide - Tan (8)",
+        "Carbalite Ore (10)",
+        "Thunder Sac (5)",
+        "Pale Bone (2)"
+      ],
+      "improve-mats": [
+        "Khezu Hide - Tan (5)",
+        "Dragonite Ore (10)",
+        "Thunder Sac (3)",
+        "Thunderbug (20)"
+      ],
+      "improve-to": [
+        "Purse Bop+"
+      ]
+    },
+    {
+      "name": "Purse Bop+",
+      "attack": "1144",
+      "element": "Thunder 220",
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "85,000z",
+      "improve-from": "Purse Bop",
+      "create-mats": null,
+      "improve-mats": [
+        "Khezu Hide - Cream (3)",
+        "Lightning Sac (5)",
+        "PaleKhezuSteak (2)"
+      ],
+      "improve-to": [
+        "Khezu Thunder"
+      ]
+    },
+    {
+      "name": "Khezu Thunder",
+      "attack": "1456",
+      "element": "Thunder 250",
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "120,000z",
+      "improve-from": "Purse Bop+",
+      "create-mats": null,
+      "improve-mats": [
+        "Khezu Hide - Cream (8)",
+        "Thunderbug Jelly (5)",
+        "KhezuSpecialCut (1)",
+        "YamaTsukami Fluid (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Skullcrusher",
+      "attack": "520",
+      "element": null,
+      "sharpness": "3.2.10 3.2.15",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,400z",
+      "improve-from": "Cyclo-Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Med Monster Bone (2)",
+        "Sharp Claw (8)",
+        "Monster Fluid (1)"
+      ],
+      "improve-to": [
+        "Skullcrusher+"
+      ]
+    },
+    {
+      "name": "Skullcrusher+",
+      "attack": "624",
+      "element": null,
+      "sharpness": "3.2.15 3.2.17.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,150z",
+      "improve-from": [
+        "Skullcrusher"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Med Monster Bone (6)",
+        "Piscine Fang (10)",
+        "Congalala Claw (3)"
+      ],
+      "improve-to": [
+        "Diablos Maul",
+        "Dragonhead Hammer",
+        "Sonic Glass"
+      ]
+    },
+    {
+      "name": "Diablos Maul",
+      "attack": "832",
+      "element": null,
+      "sharpness": "6.4.8.7 6.4.8.12",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "4,250z",
+      "improve-cost": "4,250z",
+      "improve-from": [
+        "Skullcrusher+"
+      ],
+      "create-mats": [
+        "Diablos Tail (1)",
+        "Monoblos Shell (4)",
+        "Eldr Dragon Bone (2)",
+        "Earth Crystal (20)"
+      ],
+      "improve-mats": [
+        "Monoblos Shell (6)",
+        "Lg Monster Bone (5)",
+        "Machalite Ore (8)"
+      ],
+      "improve-to": [
+        "Finishing Hammer"
+      ]
+    },
+    {
+      "name": "Finishing Hammer",
+      "attack": "988",
+      "element": null,
+      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "30,000z",
+      "improve-from": [
+        "Diablos Maul"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Diablos Tail (3)",
+        "Diablos Shell (12)",
+        "Hercudrome (8)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Dragonhead Hammer",
+      "attack": "676",
+      "element": null,
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,600z",
+      "improve-cost": "2,600z",
+      "improve-from": "Skullcrusher+",
+      "create-mats": [
+        "Wyvern Skull Shell (2)",
+        "Lg Monster Bone (3)",
+        "Unknown Skull (5)"
+      ],
+      "improve-mats": [
+        "Wyvern Skull Shell (1)",
+        "Giant Bone (3)",
+        "Unknown Skull (3)"
+      ],
+      "improve-to": [
+        "Ancient Relic",
+        "Basarios Blow"
+      ]
+    },
+    {
+      "name": "Ancient Relic",
+      "attack": "988",
+      "element": null,
+      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "7,150z",
+      "improve-from": [
+        "Dragonhead Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Wyvern Skull Shell (5)",
+        "Elder Dragon Bone (10)",
+        "Gaoren Shell (5)"
+      ],
+      "improve-to": [
+        "Shell Castanet"
+      ]
+    },
+    {
+      "name": "Basarios Blow",
+      "attack": "780",
+      "element": null,
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,900z",
+      "improve-from": "Dragonhead Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Basarios Wing (1)",
+        "Basarios Shell (6)",
+        "Elder Dragon Bone (3)"
+      ],
+      "improve-to": [
+        "Basarios Bash"
+      ]
+    },
+    {
+      "name": "Basarios Bash",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Basarios Blow",
+      "create-mats": null,
+      "improve-mats": [
+        "Basarios Carapace (12)",
+        "Carbalite Ore (12)",
+        "Wyvern Stone (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Conehead Hammer",
+      "attack": "416",
+      "element": "Ice 180",
+      "sharpness": "3.2.10 3.2.15",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "1,400z",
+      "improve-from": "Cyclo-Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Blango Pelt (6)",
+        "Iron Ore (6)",
+        "Unknown Skull (1)"
+      ],
+      "improve-to": [
+        "Conehead Hammer+"
+      ]
+    },
+    {
+      "name": "Conehead Hammer+",
+      "attack": "676",
+      "element": "Ice 320",
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "4,250z",
+      "improve-from": "Conehead Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Blangonga Fang (2)",
+        "Blangonga Whiskr (4)",
+        "Blangonga Pelt (8)"
+      ],
+      "improve-to": [
+        "Great Cone"
+      ]
+    },
+    {
+      "name": "Great Cone",
+      "attack": "884",
+      "element": "Ice 400",
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": "Conehead Hammer+",
+      "create-mats": null,
+      "improve-mats": [
+        "Blangonga Fang+ (5)",
+        "Blangonga Pelt+ (10)",
+        "Master's Skull (1)"
+      ],
+      "improve-to": [
+        "Desert Cone"
+      ]
+    },
+    {
+      "name": "Desert Cone",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "-10%",
+      "slots": "O--",
+      "bonus": "-10%",
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "95000z",
+      "improve-cost": "115000z",
+      "improve-from": "Great Cone",
+      "create-mats": [
+        "BlangongaPelt+ (10)",
+        "BlangoFang (4)",
+        "BlangoTail (1)",
+        "Massive Bone (1)"
+      ],
+      "improve-mats": [
+        "Copper Blangonga Fur+ (5)",
+        "Leather Pelagus Fur (3)",
+        "Massive Bone (4)"
+      ],
+      "improve-to": [
+        "Magnitude"
+      ]
+    },
+    {
+      "name": "Magnitude",
+      "attack": "1612",
+      "element": null,
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": "-15%",
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "115000z",
+      "improve-from": "Desert Cone",
+      "create-mats": null,
+      "improve-mats": [
+        "BlangoFang (2)",
+        "Brwn BlngngaTail (2)",
+        "Black Rajang Pelt+ (4)",
+        "PhantomButterfly (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Bull Hammer",
+      "attack": "520",
+      "element": null,
+      "sharpness": "6.4.5 6.4.8.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": "0%",
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1400",
+      "improve-cost": "1750",
+      "improve-from": "Bone Club",
+      "create-mats": [
+        "Bullfango Pelt (4)",
+        "Bullfango Head (1)",
+        "Brute Bone (5)",
+        "Carpenterbug (2)"
+      ],
+      "improve-mats": [
+        "Bullfango Pelt (2)",
+        "Anteka Antlers (2)",
+        "Brute Bone (3)"
+      ],
+      "improve-to": [
+        "Bull Head Hammer"
+      ]
+    },
+    {
+      "name": "Bull Head Hammer",
+      "attack": "624",
+      "element": null,
+      "sharpness": "8.7.5 8.7.7.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "0%",
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2150",
+      "improve-from": "Bull Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Bulldrome Hide (2)",
+        "Bulldrome Tusk (2)",
+        "Giant Bone (1)"
+      ],
+      "improve-to": [
+        "Bull Tusk Hammer"
+      ]
+    },
+    {
+      "name": "Bull Tusk Hammer",
+      "attack": "936",
+      "element": null,
+      "sharpness": "8.7.7.3 8.7.7.8",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": "0%",
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "5600",
+      "improve-from": "Bull Head Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Bulldrome Hide (5)",
+        "Bulldrome Tusk (6)",
+        "Monster Bone+ (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Rusted Hammer",
+      "attack": "468",
+      "element": null,
+      "sharpness": "15 19.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Large Ruststone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Tarnished Hammer"
+      ]
+    },
+    {
+      "name": "Tarnished Hammer",
+      "attack": "572",
+      "element": null,
+      "sharpness": "14.4.2 14.4.6.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "1",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "2,500z",
+      "improve-from": [
+        "Rusted Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Earth Crystal (20)"
+      ],
+      "improve-to": [
+        "Breath Core Hammer",
+        "Jadite Mace"
+      ]
+    },
+    {
+      "name": "Breath Core Hammer",
+      "attack": "936",
+      "element": null,
+      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "40,000z",
+      "improve-from": [
+        "Tarnished Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Jadite Mace",
+      "attack": "780",
+      "element": "Fire 260",
+      "sharpness": "8.7.7.3 8.7.7.8",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "35,000z",
+      "improve-from": [
+        "Tarnished Hammer"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Lunastra Horn (3)",
+        "Lunastra Shell (3)",
+        "Firestone (7)"
+      ],
+      "improve-to": [
+        "Jade Mace"
+      ]
+    },
+    {
+      "name": "Jade Mace",
+      "attack": "832",
+      "element": "Fire 300",
+      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "50,000z",
+      "improve-from": [
+        "Jadite Mace"
+      ],
+      "create-mats": null,
+      "improve-mats": [
+        "Fire Drgn Webbing (4)",
+        "Teostra Shell (5)",
+        "ElderDragonBlood (2)"
+      ],
+      "improve-to": [
+        "Lunastra's Crown"
+      ]
+    },
+    {
+      "name": "Lunastra's Crown",
+      "attack": "936",
+      "element": "Fire 370",
+      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Jade Mace",
+      "create-mats": null,
+      "improve-mats": [
+        "Lunastra Horn (6)",
+        "Fire Drgn Scl+ (6)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "improve-to": [
+        "Luna's Skirt"
+      ]
+    },
+    {
+      "name": "Luna's Skirt",
+      "attack": "1300",
+      "element": "Fire 400",
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "130,000z",
+      "improve-from": "Lunastra's Crown",
+      "create-mats": null,
+      "improve-mats": [
+        "Lunastra Spike (3)",
+        "ThckFireDrgnScl (6)",
+        "BigEDragonJewel (1)",
+        "Commendation (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Worn Hammer",
+      "attack": "676",
+      "element": null,
+      "sharpness": "19.1 19.2.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "1,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Lg Ancient Stone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Weathered Hammer"
+      ]
+    },
+    {
+      "name": "Weathered Hammer",
+      "attack": "780",
+      "element": null,
+      "sharpness": "19.2.4 19.2.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "12,500z",
+      "improve-from": "Worn Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Earth Crystal (20)"
+      ],
+      "improve-to": [
+        "Pulsating Core",
+        "Steel Ice Hammer"
+      ]
+    },
+    {
+      "name": "Pulsating Core",
+      "attack": "1040",
+      "element": null,
+      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "60,000z",
+      "improve-from": "Weathered Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Earth Crystal (40)",
+        "ElderDragonBlood (5)"
+      ],
+      "improve-to": [
+        "Pulse Crusher Core"
+      ]
+    },
+    {
+      "name": "Pulse Crusher Core",
+      "attack": "1352",
+      "element": null,
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "-20%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": "Pulsating Core",
+      "create-mats": null,
+      "improve-mats": [
+        "Purecrystal (8)",
+        "ElderDragonBlood (10)",
+        "Commendation G (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Steel Ice Hammer",
+      "attack": "832",
+      "element": "Ice 290",
+      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "80,000z",
+      "improve-from": "Weathered Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Daora Carapace (6)",
+        "Daora Tail (1)",
+        "Rare Scarab (4)"
+      ],
+      "improve-to": [
+        "Daora's Colossus"
+      ]
+    },
+    {
+      "name": "Daora's Colossus",
+      "attack": "988",
+      "element": "Ice 330",
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Steel Ice Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "DaoraDragonScal+ (10)",
+        "Daora Sharp Claw (2)",
+        "Daora Jewel (1)"
+      ],
+      "improve-to": [
+        "Daora's Hyperborea"
+      ]
+    },
+    {
+      "name": "Daora's Hyperborea",
+      "attack": "1300",
+      "element": "Ice 450",
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "15%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "130,000z",
+      "improve-from": "Daora's Colossus",
+      "create-mats": null,
+      "improve-mats": [
+        "Hvy Daora Shell (6)",
+        "Hard Daora Horn (2)",
+        "Str Daora Wing (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Black Belt Hammer",
+      "attack": "780",
+      "element": null,
+      "sharpness": "8.7.7.3 8.7.7.8",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "6,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Blackbelt Ticket (8)",
+        "Gravios Coin (5)",
+        "Diablos Coin (8)",
+        "Daimyo Coin (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Expert Hammer"
+      ]
+    },
+    {
+      "name": "Expert Hammer",
+      "attack": "1092",
+      "element": null,
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "20,000z",
+      "improve-from": "Black Belt Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Expert Ticket (15)",
+        "Tigrex Coin (8)",
+        "Gld Rathian Cpc (3)"
+      ],
+      "improve-to": [
+        "Warrior's Hammer"
+      ]
+    },
+    {
+      "name": "Warrior's Hammer",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "75,000z",
+      "improve-from": "Expert Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "HvyGldRathianShl (3)",
+        "Warrior Coin G (4)",
+        "Expert Coin G (6)",
+        "Commendation G (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Black Hammer",
+      "attack": "728",
+      "element": "Dragon 100",
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "15,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Fatalis Buster",
+        "AncientFatalisBuster"
+      ]
+    },
+    {
+      "name": "Fatalis Buster",
+      "attack": "1040",
+      "element": "Dragon 240",
+      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": "Black Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Fatalis Horn (3)",
+        "Fatalis Eye (2)",
+        "Fire Drgn Jwl (1)"
+      ],
+      "improve-to": [
+        "Fatalis Demolisher"
+      ]
+    },
+    {
+      "name": "Fatalis Demolisher",
+      "attack": "1404",
+      "element": "Dragon 260",
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "150,000z",
+      "improve-from": "Fatalis Buster",
+      "create-mats": null,
+      "improve-mats": [
+        "Hard Fatalis Horn (3)",
+        "Fatalis Evil Eye (1)",
+        "Hvy Fatalis Shl (2)",
+        "BigEDragonJewel (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "AncientFatalisBuster",
+      "attack": "988",
+      "element": "Dragon 350",
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "100,000z",
+      "improve-from": "Black Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Wht Fatalis Horn (5)",
+        "Wht Fatalis Shl (3)",
+        "Lao-Shan's Ruby (3)"
+      ],
+      "improve-to": [
+        "AncientFatalisRuiner"
+      ]
+    },
+    {
+      "name": "AncientFatalisRuiner",
+      "attack": "1300",
+      "element": "Dragon 380",
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "150,000z",
+      "improve-from": "AncientFatalisBuster",
+      "create-mats": null,
+      "improve-mats": [
+        "HrdWhtFatlisHorn (5)",
+        "HvyWhtFatalisShl (2)",
+        "Fatalis Evil Eye (2)",
+        "BigEDragonJewel (3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Cactus Creamer",
+      "attack": "260",
+      "element": "Poison 300",
+      "sharpness": "3.2.10 3.2.15",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "3",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "7,500z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Cactus Flower (2)",
+        "Bone (1)",
+        "Dobiscus (3)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Green Monster"
+      ]
+    },
+    {
+      "name": "Green Monster",
+      "attack": "468",
+      "element": "Poison 300",
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "30,000z",
+      "improve-from": "Cactus Creamer",
+      "create-mats": null,
+      "improve-mats": [
+        "Cactus Flower (10)",
+        "Stout Bone (2)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Dragon Destroyer",
+      "attack": "832",
+      "element": "Dragon 170",
+      "sharpness": "6.4.8.7 6.4.8.12",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
+      "type": "hm",
+      "create-cost": "5,600z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Lao-Shan's Claw (2)",
+        "Lao-Shan's Shell (5)",
+        "Monster Bone+ (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Dragonbreaker"
+      ]
+    },
+    {
+      "name": "Dragonbreaker",
+      "attack": "884",
+      "element": "Dragon 330",
+      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "40,000z",
+      "improve-from": "Dragon Destroyer",
+      "create-mats": null,
+      "improve-mats": [
+        "Lao-Shan's Claw (2)",
+        "Gaoren Spine (3)",
+        "ElderDragonBlood (2)"
+      ],
+      "improve-to": [
+        "Dragon Demolisher"
+      ]
+    },
+    {
+      "name": "Dragon Demolisher",
+      "attack": "936",
+      "element": "Dragon 410",
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "95,000z",
+      "improve-from": "Dragonbreaker",
+      "create-mats": null,
+      "improve-mats": [
+        "Ash Lao-Shan Shell (5)",
+        "Lao-Shan Ruby (1)",
+        "Nova Crystal (3)"
+      ],
+      "improve-to": [
+        "Claw of Doom"
+      ]
+    },
+    {
+      "name": "Claw of Doom",
+      "attack": "1248",
+      "element": "Dragon 450",
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "140,000z",
+      "improve-from": "Dragon Demolisher",
+      "create-mats": null,
+      "improve-mats": [
+        "Azure LaoS Claw (2)",
+        "Lao-Shan'sHvyShl(5)",
+        "Lao-ShanHvnlyScl (1)",
+        "Purecrystal(3)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Striped Striker",
+      "attack": "884",
+      "element": null,
+      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "5",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "35,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Tigrex Claw (3)",
+        "Tigrex Scale (5)",
+        "Tigrex Shell (5)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "Tigrex Hammer",
+        "Hidden Breaker"
+      ]
+    },
+    {
+      "name": "Tigrex Hammer",
+      "attack": "1144",
+      "element": null,
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Striker",
+      "create-mats": null,
+      "improve-mats": [
+        "Tigrex Claw + (3)",
+        "Tigrex Scale + (5)",
+        "Tigrex Skull Shl (3)"
+      ],
+      "improve-to": [
+        "Tigrex Hammer+"
+      ]
+    },
+    {
+      "name": "Tigrex Hammer+",
+      "attack": "1508",
+      "element": null,
+      "sharpness": "19.2.5.7.4.5.3 19.2.5.7.4.5.3",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "125,000z",
+      "improve-from": "Tigrex Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "Hard Tigrex Claw (3)",
+        "ThickTigrexScale (5)",
+        "Hvy Tigrex Shell (5)",
+        "HvnlyTigrexScale (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Hidden Breaker",
+      "attack": "988",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "50%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "7",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "80,000z",
+      "improve-cost": "80,000z",
+      "improve-from": "Striped Striker",
+      "create-mats": [
+        "Black NargaPelt (10)",
+        "Narga Scale+ (4)",
+        "Narga Brain Stem (1)",
+        "Hard Monster Bone (6)"
+      ],
+      "improve-mats": [
+        "Black Narga Pelt (6)",
+        "Narga Scale+ (3)",
+        "Hrd Monster Bone (4)"
+      ],
+      "improve-to": [
+        "Deep Darkhammer"
+      ]
+    },
+    {
+      "name": "Deep Darkhammer",
+      "attack": "1248",
+      "element": null,
+      "sharpness": "3.2.17.12.4.5.2 3.2.17.12.4.5.2",
+      "affinity": "50%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "120,000z",
+      "improve-cost": "120,000z",
+      "improve-from": "Hidden Breaker",
+      "create-mats": [
+        "Black Nargacuga Pelt+ (10)",
+        "Heavy Nargacuga Fang (4)",
+        "Heavy Nargacuga Tail Spike (6)",
+        "Heavenly Nargacuga Scale (1)"
+      ],
+      "improve-mats": [
+        "BlackNargaPelt+ (7)",
+        "ThickNargaScale (3)",
+        "HvyNargacugaFang (2)",
+        "Narga Brain Stem (2)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "White Cat Stamp",
+      "attack": "520",
+      "element": "Paralysis 200",
+      "sharpness": "10.1.3.1 10.1.3.6",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "2",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "2,150z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Pawprint Stamp (1)",
+        "FlynMealPassReg (1)",
+        "Paralysis Sac (2)"
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "White Cat Hammer",
+        "Black Cat Stamp",
+        "Teddybear"
+      ]
+    },
+    {
+      "name": "White Cat Hammer",
+      "attack": "728",
+      "element": "Paralysis 180",
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "20,000z",
+      "improve-from": "White Cat Stamp",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassReg (10)",
+        "Carbalite Ore (5)",
+        "Blango Pelt+ (5)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Black Cat Stamp",
+      "attack": "624",
+      "element": "Paralysis 240",
+      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "3,650z",
+      "improve-from": "White Cat Stamp",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassReg (2)",
+        "Dragonite Ore (5)",
+        "Barrel Lid (1)"
+      ],
+      "improve-to": [
+        "Black Cat Hammer",
+        "Gold Cat Hammer"
+      ]
+    },
+    {
+      "name": "Black Cat Hammer",
+      "attack": "676",
+      "element": "Paralysis 380",
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "6",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "25,000z",
+      "improve-from": "Black Cat Stamp",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassPlus (6)",
+        "Black Blos Spine (5)",
+        "Felyne Fur Ruby (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Gold Cat Hammer",
+      "attack": "832",
+      "element": "Paralysis 280",
+      "sharpness": "3.2.17.3 3.2.17.8",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "8",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "45,000z",
+      "improve-cost": "45,000z",
+      "improve-from": "Black Cat Stamp",
+      "create-mats": [
+        "Felyne Fur Ruby (3)",
+        "FlynMealPassReg(15)",
+        "FlynMealPassPlus(5)",
+        "Gold Rathian Scl+(5)"
+      ],
+      "improve-mats": [
+        "FlynMealPassPlus (10)",
+        "Gold Rathian Scl+ (3)",
+        "Gold Rajang Pelt (3)"
+      ],
+      "improve-to": [
+        "Gold Cat Crusher"
+      ]
+    },
+    {
+      "name": "Gold Cat Crusher",
+      "attack": "988",
+      "element": "Paralysis 380",
+      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "90,000z",
+      "improve-from": "Gold Cat Hammer",
+      "create-mats": null,
+      "improve-mats": [
+        "FlynMealPassPlus (10)",
+        "Felyne Fur Ruby (3)",
+        "GoldRajangPelt+ (3)",
+        "Thunderbug Jelly (10)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Teddybear",
+      "attack": "260",
+      "element": "Sleep 200",
+      "sharpness": "5.4.6 5.4.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "4",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "5,000z",
+      "improve-cost": "5,000z",
+      "improve-from": "White Cat Stamp",
+      "create-mats": [
+        "Commendation (1)",
+        "Lightcrystal (2)",
+        "Black Pearl (2)"
+      ],
+      "improve-mats": [
+        "Lightcrystal (1)",
+        "Antiseptic Stone (3)",
+        "Pokke Ticket (1)"
+      ],
+      "improve-to": null
+    },
+    {
+      "name": "Ukanlos Trampler",
+      "attack": "1820",
+      "element": "Ice 120",
+      "sharpness": "17.2.4.7.2 17.2.4.7.4.3",
+      "affinity": "-30%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "150,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "UkanlosDiggngClw (3)",
+        "HvyUkanlosShell (4)",
+        "Lightning Sac (10)",
+        "Ukanlos Stone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Bone Club G",
+      "attack": "1560",
+      "element": null,
+      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "affinity": "-10%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Mystery Bone (50)",
+        "Stout Bone (15)",
+        "Massive Bone (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "War Hammer G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Iron Ore (30)",
+        "Disk Stone (30)",
+        "Eltalite Ore (12)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Tarnished Hammer G",
+      "attack": "1664",
+      "element": null,
+      "sharpness": "19.2.4 19.2.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Large Ruststone (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Spiked Hammer G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Needleberry (50)",
+        "Eltalite Ore (8)",
+        "Emperor Cricket (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Iron Striker G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Iron Ore (30)",
+        "Machalite Ore (15)",
+        "Mellanje Ore (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Atlas Hammer G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Sm Monster Bone (40)",
+        "Giant Bone (30)",
+        "Massive Bone (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Bone Axe G",
+      "attack": "1508",
+      "element": null,
+      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "affinity": "10%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Hrd Monster Bone (15)",
+        "Monster Essence (5)",
+        "Hvy Tigrex Shell (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Skullcrusher G",
+      "attack": "1508",
+      "element": null,
+      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "HvyPiscineFang (6)",
+        "Piercing Claw (8)",
+        "Monster Essence (3)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Bull Tusk Hammer G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Bullfango Head (5)",
+        "Bulldrome Tusk (10)",
+        "ThkBullfangoPelt (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Crystal Nova G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Lightcrystal (15)",
+        "Novacrystal (10)",
+        "Purecrystal (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Binder Mace G",
+      "attack": "1144",
+      "element": "Paralysis 280",
+      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Thunderbug (30)",
+        "SpecRubberyHide+ (5)",
+        "Mellanje Ore (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Kut-Ku Jaw G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Giant Beak (6)",
+        "Hvy Kut-Ku Shell (10)",
+        "Monster Essence (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Venom Monster G",
+      "attack": "1248",
+      "element": "Poison 350",
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "SpecRubberyHide+ (8)",
+        "Toxin Sac (12)",
+        "Gypceros Head (3)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Dead Revolver G",
+      "attack": "1248",
+      "element": "Fire 400",
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Eltalite Ore (10)",
+        "Firestone (15)",
+        "FireWyvrn Marrow (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Anchor Crusher G",
+      "attack": "1300",
+      "element": "Water 380",
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Ancient Fish (10)",
+        "SpecPlesiothFin+ (5)",
+        "Eltalite Ore (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Kut-Ku Pick G",
+      "attack": "1352",
+      "element": null,
+      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "affinity": "20%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Splendid Beak (4)",
+        "Thick Kut-Ku Scl (10)",
+        "Lucky Kut-Ku Ear (4)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Dragonhead Hammer G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Wyvern Skull Shl (10)",
+        "Unknown Skull (10)",
+        "BigEDragonBone (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Basarios Bash G",
+      "attack": "1352",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "HvyBasariosShell (10)",
+        "Basarios Tears (5)",
+        "Wyvern Stone (3)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Titan Hammer G",
+      "attack": "1560",
+      "element": null,
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "-15%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation (1)",
+        "HvyBasariosShell (6)",
+        "Gravios Carapace (10)",
+        "Machalite Ore (20)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Finishing Hammer G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "LthrDiablosTail (3)",
+        "BigEDragonBone (5)",
+        "Monoblos Carapace (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "TrueBlackCauldron G",
+      "attack": "1300",
+      "element": null,
+      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "FlynMealPassReg (10)",
+        "Carbalite Ore (15)",
+        "HvyBlkBlosShell (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Enormous Ham G",
+      "attack": "1612",
+      "element": null,
+      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "affinity": "-20%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Gourmet Steak (10)",
+        "FlynMealPassReg (10)",
+        "Hvy Monster Bone (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Teddybear G",
+      "attack": "936",
+      "element": "Sleep 200",
+      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Antiseptic Stone (10)",
+        "Purecrystal (4)",
+        "Sleep Sac (20)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Cactus Creamer G",
+      "attack": "884",
+      "element": "Poison 300",
+      "sharpness": "19.2.5.7.4.5.3 19.2.5.7.4.5.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Cactus Flower (10)",
+        "Massive Bone (10)",
+        "Dosbiscus (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "White Cat Hammer G",
+      "attack": "1040",
+      "element": "Paralysis 180",
+      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "affinity": "15%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Pawprint Stamp (10)",
+        "Paralysis Sac (15)",
+        "HrdBlangongaPlt+ (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Black Cat Hammer G",
+      "attack": "936",
+      "element": "Paralysis 380",
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "FlynMealPassPlus (10)",
+        "Felyne Fur Ruby (5)",
+        "BlackNargaPelt+ (10)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Black Belt Hammer G",
+      "attack": "1352",
+      "element": null,
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Expert Ticket (10)",
+        "Fire Coin (7)",
+        "Legend Coin (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Breath Core Hammer G",
+      "attack": "1508",
+      "element": null,
+      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "affinity": "-20%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Lg Ancient Stone (3)",
+        "ElderDragonBlood (10)",
+        "Big Wyvern Stone (1)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Great Demon Hammer G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Eltalite Ore (8)",
+        "Carbalite Ore (25)",
+        "Velocidrome Head (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Hard Bone Hammer G",
+      "attack": "1456",
+      "element": null,
+      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "Hvy Monster Bone (5)",
+        "BigEDragonBone (3)",
+        "Dragonite Ore (15)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "TwoStarSilverPot G",
+      "attack": "1196",
+      "element": null,
+      "sharpness": "3.2.17.12.4.5.2 3.2.17.12.4.5.2",
+      "affinity": "20%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "FlynMealPassPlus (10)",
+        "Rainbow Ore (20)",
+        "HvySlvrRthlsShl (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Great Cone G",
+      "attack": "1248",
+      "element": "Ice 400",
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation G (1)",
+        "HvyBlangongaFang (3)",
+        "HrdBlangongaPlt+ (10)",
+        "Blango Pelt+ (20)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Onslaught Hammer G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Dragonite Ore (20)",
+        "HvyGraviosShell (5)",
+        "Union Ore (15)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "War Basher G",
+      "attack": "1404",
+      "element": null,
+      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Carbalite Ore (20)",
+        "Disk Stone (50)",
+        "HvyBlkBlosShell (8)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "SanctionedGunHammr G",
+      "attack": "1196",
+      "element": "Fire 500",
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Firecell Stone (10)",
+        "Monster Essence (8)",
+        "Mellanje Ore (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Crater Maker G",
+      "attack": "1300",
+      "element": "Poison 200",
+      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "HvyGraviosShell (6)",
+        "DeadlyPoisonSac (3)",
+        "Wyvern Stone (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Torment(Purgatory) G",
+      "attack": "1352",
+      "element": "Fire 310",
+      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "HvyBlkGraviosShl (6)",
+        "Blazing Fire Sac (3)",
+        "Wyvern Stone (5)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
+      "name": "Dragonbreaker G",
+      "attack": "1300",
+      "element": "Dragon 330",
+      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "10",
+      "notes": "Unknown",
+      "type": "hm",
+      "create-cost": "100,000z",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        "Commendation S (1)",
+        "Lao-Shan's Claw (3)",
+        "Lao-Shan'sHvyShl (5)",
+        "Lao-ShanScale+ (15)"
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    }
+  ]
+}
