@@ -394,13 +394,13 @@ $element-types: (
 }
 
 $sharpness-colors: (
-  "red": red,
-  "ora": orange,
-  "yel": yellow,
-  "gre": green,
-  "blu": blue,
-  "whi": white,
-  "pur": purple, 
+  1: #C3333C,
+  2: #EF5A26,
+  3: #FFC03C,
+  4: #84C11C,
+  5: #5A8AED,
+  6: #F7F7F7,
+  7: #DF78F6, 
 );
 
 .sharpness {
@@ -410,24 +410,8 @@ $sharpness-colors: (
     z-index: 1;
   }
 
-  [class^=T] {
-    width: 5px;
-  }
-
-  [class^=S] {
-    width: 10px;
-  }
-
-  [class^=M] {
-    width: 15px;
-  }
-
-  [class^=B] {
-    width: 20px;
-  }
-
   @each $value, $color in $sharpness-colors {
-    [class*=#{$value}] {
+    [class*=sharp-#{$value}] {
       background-color: $color;
     }
   }

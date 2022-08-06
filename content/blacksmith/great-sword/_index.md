@@ -598,7 +598,7 @@ map = [
   [
     "",
     "+",
-    "Bone Katana 'Wolf' (ls)",
+    "Bone Katana \"Wolf\" (ls)",
     "",
     "",
     "",
