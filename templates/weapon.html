@@ -44,10 +44,11 @@
               {{ page.extra.name }}
             </p>
 
+            
             {% if page.extra.sharpness %}
             <div class="sharpness">
-              {% for sharp in page.extra["sharpness"] %}
-                <span class="{{ sharp }}"></span>
+              {% for sharp in page.extra.sharpness | split(pat=".") %}
+                <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
               {% endfor %}
             </div>
             {% endif %}

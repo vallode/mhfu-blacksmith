@@ -12,7 +12,10 @@ FILE_TEMPLATE = %{+++
   attack = <%= attack %>
   affinity = "<%= affinity %>"
   <% if sharpness %>
-  sharpness = <%= sharpness %>
+  sharpness = "<%= sharpness %>"
+  <% end %>
+  <% if sharpness_plus %>
+  sharpness_plus = "<%= sharpness_plus %>"
   <% end %>
   <% if elements %>
   element = <%= elements %>
@@ -92,7 +95,12 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       slots = value["slots"]
       
       if value.key?("sharpness")
-        sharpness = value["sharpness"].scan(/.{4}/)
+        sharpness_array = value["sharpness"].split(" ")
+        sharpness = sharpness_array[0]
+
+        if sharpness_array[1]
+          sharpness_plus = sharpness_array[1]
+        end
       end
       
       if value.key?("elements")
