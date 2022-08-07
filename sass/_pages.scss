@@ -1,17 +1,37 @@
 .landing-page {
 
+  &__menu-wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-flow: row wrap;
+  }
+
   &__menu {
     align-self: flex-start;
     display: flex;
     flex-direction: column;
-    gap: 1.3rem;
-    max-width: 100%;
     flex: 1 1 0%;
+    gap: 1.3rem;
     height: 100%;
-    width: 39rem;
+    max-width: 41rem;
+    width: 41rem;
 
     .card {
-      flex: 1 0 0;
+      flex: 1 1 33%;
+      height: 33%;
+    }
+  }
+
+  &__footnotes {
+    height: min-content;
+    flex: 1 1 min-content;
+    width: 100%;
+    min-width: 50%;
+    margin-top: auto;
+
+    p {
+      white-space: break-spaces;
     }
   }
 }
