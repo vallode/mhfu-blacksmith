@@ -10,6 +10,9 @@ FILE_TEMPLATE = %{+++
   type = "<%= type %>"
   rarity = <%= rarity %>
   attack = <%= attack %>
+  <% if max_attack %>
+  max_attack = <%= max_attack %>
+  <% end %>
   affinity = "<%= affinity %>"
   <% if sharpness %>
   sharpness = "<%= sharpness %>"
@@ -93,8 +96,12 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       attack = value["attack"]
       affinity = value["affinity"]
       slots = value["slots"]
+
+      if value["max-attack"]
+        max_attack = value["max-attack"]
+      end
       
-      if value.key?("sharpness")
+      if value.key?("sharpness") and value["sharpness"]
         sharpness_array = value["sharpness"].split(" ")
         sharpness = sharpness_array[0]
 

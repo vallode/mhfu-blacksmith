@@ -64,6 +64,10 @@
             <div class="stats">
               <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
 
+              {% if page.extra.max_attack %}
+                <p>Max attack: <span>{{ page.extra.max_attack }}</span></p>
+              {% endif %}
+
               {%- set affinity = page.extra.affinity %}
               <p>
                 Affinity:
