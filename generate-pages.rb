@@ -9,7 +9,9 @@ FILE_TEMPLATE = %{+++
   name = <%= name.to_json %>
   type = "<%= type %>"
   rarity = <%= rarity %>
+  <% if attack %>
   attack = <%= attack %>
+  <% end %>
   <% if max_attack %>
   max_attack = <%= max_attack %>
   <% end %>
@@ -22,6 +24,9 @@ FILE_TEMPLATE = %{+++
   <% end %>
   <% if elements %>
   element = <%= elements %>
+  <% end %>
+  <% if skills %>
+  skills = <%= skills %>
   <% end %>
   slots = "<%= slots %>"
   <% if create_cost %>
@@ -56,7 +61,8 @@ WEAPON_ABBR = {
   "gunlance":  "gl",
   "light-bowgun": "lbg",
   "heavy-bowgun": "hbg",
-  "bow": "bw"
+  "bow": "bw",
+  "decoration": "dec"
 }
 
 def slugify(value)
@@ -112,6 +118,10 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       
       if value["element"]
         elements = parseElements(value["element"])
+      end
+
+      if value["skills"]
+        skills = value["skills"]
       end
 
       if value["improve-cost"]

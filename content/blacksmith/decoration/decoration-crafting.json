@@ -1,0 +1,2144 @@
+{
+  "weapons": [
+    {
+      "name": "Attack Jewel",
+      "skills": [
+        "Attack +1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Power Seed (1)",
+        "Kut-Ku Scale (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fierce Jewel",
+      "skills": [
+        "Attack +3",
+        "Defense -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Fire Wyvern Claw (1)",
+        "Demondrug (2)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Strongest Jewel",
+      "skills": [
+        "Attack +5",
+        "Defense -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "HrdFireWyvernClw (4)",
+        "Mega Demondrug (3)",
+        "Lthr Pelagus Plt (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Fencer Jewel",
+      "skills": [
+        "Fencing +1",
+        "Recovery -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Rathalos Plate (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fencer Jewel",
+      "skills": [
+        "Fencing +1",
+        "Recovery -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Azure LaoS Shell (2)",
+        "Slver Rthalos Tail (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Swordsman Jewel",
+      "skills": [
+        "Fencing +4",
+        "Recovery -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Slver Rthalos Wing (1)",
+        "Fatalis Eye (1)",
+        "Majestic Horn (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Razor Jewel",
+      "skills": [
+        "Sharpness +1",
+        "Defense -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Ceanataur Pincer (1)",
+        "Sharpened Beak (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Cutter Jewel",
+      "skills": [
+        "Sharpness +4",
+        "Defense -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Gravios BrainStm (1)",
+        "Black Blos Tail (2)",
+        "Garuga Wing (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Expert Jewel",
+      "skills": [
+        "Expert +1",
+        "Health -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Blue Kut-Ku Shl (1)",
+        "Anteka Antlers (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Celebrity Jewel",
+      "skills": [
+        "Expert +3",
+        "Health -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Teostra Shell (1)",
+        "Twisted Horn (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Celebrity Jewel",
+      "skills": [
+        "Expert +3",
+        "Health -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Teostra Horn+ (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Hermit Jewel",
+      "skills": [
+        "Expert +5",
+        "Health -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Fire Dragon Pwdr (2)",
+        "Splendid Beak (1)",
+        "Giadrome Skull (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Grinder Jewel",
+      "skills": [
+        "SwrShrpner +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Earth Crystal (1)",
+        "Giadrome Claw (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Sword Draw Jewel",
+      "skills": [
+        "Sword Draw +1",
+        "Expert -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Monoblos Carapace (2)",
+        "Rathalos Wing (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "SpecialAtk Jewel",
+      "skills": [
+        "Spc Attack +1",
+        "Rec Speed -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Chameleos Horn (1)",
+        "Chaos Mushroom (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Element Jewel",
+      "skills": [
+        "ElementAtk +1",
+        "Rec Speed -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Kirin Horn (1)",
+        "Firestone (1)",
+        "Ice Crystal (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Element Jewel+",
+      "skills": [
+        "ElementAtk +4",
+        "Rec Speed -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "LthrKirinThndrTl (2)",
+        "HvyBlangongaFang (4)",
+        "Big Wyvern Stone (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Bombardier Jewel",
+      "skills": [
+        "BombStrUp +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Flame Sac (1)",
+        "FlynMealPassReg (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ShortChargeJewel",
+      "skills": [
+        "ShortCharg +1",
+        "Constitutn -1"
+      ],
+      "create-mats": [
+        "BattelfieldJewel (1)",
+        "Daora Horn (1)",
+        "ElderDragonBlood (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ShortChargeJewel",
+      "skills": [
+        "ShortCharg +1",
+        "Constitutn -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Rajang Horn (1)",
+        "DaoraDragonScal+ (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Defense Jewel",
+      "skills": [
+        "Defense +1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Sm Hermitaur Shl (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Turtle Jewel",
+      "skills": [
+        "Defense +3",
+        "All Resist -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Blk Gravios Shl (1)",
+        "Hermitaur Claw (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Turtle Jewel",
+      "skills": [
+        "Defense +3",
+        "All Resist -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "HrdHermitaurClaw (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Inferno Jewel",
+      "skills": [
+        "Fire Res +1",
+        "Water Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Fire Herb (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Crimson Jewel",
+      "skills": [
+        "Fire Res +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Flame Sac (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Stream Jewel",
+      "skills": [
+        "Water Res +1",
+        "ThunderRes -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Knife Mackerel (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Torrent Jewel",
+      "skills": [
+        "Water Res +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Plesioth Scale (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Freeze Jewel",
+      "skills": [
+        "Ice Res +1",
+        "Fire Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Ice Crystal (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Glacier Jewel",
+      "skills": [
+        "Ice Skill +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Giadrome Hide (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Lightning Jewel",
+      "skills": [
+        "ThunderRes +1",
+        "Ice Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Thunderbug (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Thunder Jewel",
+      "skills": [
+        "ThunderRes +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Electro Sac (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Slayer Jewel",
+      "skills": [
+        "Dragon Res +1",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Hornetaur Head (1)",
+        "Dragon Seed (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Extinction Jewel",
+      "skills": [
+        "Dragon Res +3",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "HornetaurInnrWng (1)",
+        "ElderDragonBlood (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Impervious Jewel",
+      "skills": [
+        "All Resist +1",
+        "Everlasting -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Kirin Mane (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Omnipotent Jewel",
+      "skills": [
+        "All Resist +3",
+        "Everlasting -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Kirin Azure Horn (1)",
+        "Dragonmoss (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "TrueResistJewel",
+      "skills": [
+        "All Resist +5",
+        "Everlasting -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "SpecialKirinHide (2)",
+        "AncientDrgmoss (1)",
+        "BlackBeltCoinG (3)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Stone Wall Jewel",
+      "skills": [
+        "Guard +1",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Basarios Shell (1)",
+        "Hermitaur Shell (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "IronCurtainJewel",
+      "skills": [
+        "Guard +3",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Gravios Carapace (1)",
+        "Gaoren Spine (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Hard Wall Jewel",
+      "skills": [
+        "Guard Up +1",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Blk Gravios Shl (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "StrongWall Jewel",
+      "skills": [
+        "Guard Up +4",
+        "Stamina -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Blk Gravios Cpc (1)",
+        "Hermitaur Claw+ (4)",
+        "Lunastra Shell (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Wall Jewel",
+      "skills": [
+        "Guard Up +3",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "PlumD.HermitrClw (2)",
+        "HvyGraviosShell (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "HvnlyShieldJewel",
+      "skills": [
+        "Auto-Guard +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Bullfango Pelt (1)",
+        "Sm Hermitaur Shl (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Strength Jewel",
+      "skills": [
+        "Health +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Bulldrome Hide (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Feel Good Jewel",
+      "skills": [
+        "Rec Speed +1",
+        "Faint -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Pale Extract (1)",
+        "Killer Beetle (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "SpeedyRecvrJewel",
+      "skills": [
+        "Rec Speed +3",
+        "Faint -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Pale Khezu Steak (1)",
+        "Lifepowder (2)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "SpeedyRecvrJewel",
+      "skills": [
+        "Rec Speed+3",
+        "Faint -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Pale Bone (1)",
+        "Lao-Shan's Shell (3)",
+        "Lifecrystals (10)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Curing Jewel",
+      "skills": [
+        "Recovery +1",
+        "Health -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Flabby Hide (1)",
+        "Kelbi Horn (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Cure All Jewel",
+      "skills": [
+        "Recovery +2",
+        "Health -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel(1)",
+        "Khezu Hide Tan (1)",
+        "Ancient Potion (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Friendship Jewel",
+      "skills": [
+        "Wide Area +1",
+        "Sneak -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Alluring Hide (1)",
+        "Cactus Flower (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Beloved Jewel",
+      "skills": [
+        "Wide Area +3",
+        "Sneak -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Alurring Webbing (1)",
+        "Lifepowder (1)",
+        "Dobiscus (4)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Tenderness Jewel",
+      "skills": [
+        "Wide Area +5",
+        "Sneak -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "StrAlluringWing (3)",
+        "ThckPnkRathnScl (4)",
+        "Wyvern Stone (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Protection Jewel",
+      "skills": [
+        "Protection +1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Commendation (1)",
+        "Black Pearl (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "DivineProtectJwl",
+      "skills": [
+        "Protection +2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "UkanlosUnderscl (1)",
+        "Commendation S (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "PickyEater Jewel",
+      "skills": [
+        "Hunger +1",
+        "Cooking -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Cephalos Scale (1)",
+        "Well-Done Steak (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fasting Jewel",
+      "skills": [
+        "Hunger +3",
+        "Cooking -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Grn Plesioth Fin (1)",
+        "Cephalos Scale (1)",
+        "Gourmet Steak (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "No Food Jewel",
+      "skills": [
+        "Hunger +2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "ThckGrnPlesioScl (1)",
+        "Coral Cphlos Fin (1)",
+        "Power Juice (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fatso Jewel",
+      "skills": [
+        "Gluttony +2"
+      ],
+      "create-mats": [
+        "Akito jewel (1)",
+        "Congalala Fang (1)",
+        "Glutton Tuna (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "QuickEaterJewel",
+      "skills": [
+        "Cooking +1",
+        "Recovery -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Tigrex Fang (1)",
+        "Mosswine Hide (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fast Food Jewel",
+      "skills": [
+        "Cooking +2",
+        "Recovery -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Tigrex Fang+ (1)",
+        "Conga Pelt+ (2)",
+        "Iodrome Skull (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Marathon Jewel",
+      "skills": [
+        "Stamina +1",
+        "Hunger -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Firestone (1)",
+        "Mega Juice (1)",
+        "Gourmet Steak (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Sprinter Jewel",
+      "skills": [
+        "Stamina +4",
+        "Hunger -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Firecell Stone (3)",
+        "Plesioth Fin (1)",
+        "Gypceros Head (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Hardball Jewel",
+      "skills": [
+        "Throw +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Blango Pelt (2)",
+        "Conga Pelt (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Early Bird Jewel",
+      "skills": [
+        "Load +1",
+        "Hunger -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Sm Ceanataur Shl (1)",
+        "Kelbi Hide (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "High Speed Jewel",
+      "skills": [
+        "Load +3",
+        "Hunger -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Azure LaoS Horn (1)",
+        "Black Blos Thracic (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Speed Fire Jewel",
+      "skills": [
+        "Speed Fire +1",
+        "Protection -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Rathian Plate (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Barrage Jewel",
+      "skills": [
+        "Speed Fire +4",
+        "Protection -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Akantor Spike (1)",
+        "FireWvyrn BrnStm (1)",
+        "Gendrome Skull (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Recoilless Jewel",
+      "skills": [
+        "Recoil +1",
+        "Load -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Gaoren Shell (1)",
+        "Blk Gravios Skl (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Shockless Jewel",
+      "skills": [
+        "Recoil +4",
+        "Load -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Gaoren Thoracic (2)",
+        "Wyvern Stone (1)",
+        "Lao-Shan's Claw (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "StrongShot Jewel",
+      "skills": [
+        "NormalS Up+1",
+        "Load-1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Congalala Claw (1)",
+        "Rumblefish (5)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "StrongShot Jewel+",
+      "skills": [
+        "NormalS up +4",
+        "",
+        "Reload -2"
+      ],
+      "create-mats": [
+        "-LapisLazuli Jewel(1)-HvyC.BlangoFang(3)",
+        "-Blk Rajang Pelt+(4)",
+        "-Fire Drgn Jwl(1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Pierce Jewel",
+      "skills": [
+        "PierceS Up+1",
+        "Load -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Ceanataur Claw (1)",
+        "Pin Tuna (3)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Pierce Jewel +",
+      "skills": [
+        "PierceS up +4",
+        "",
+        "Reload -2"
+      ],
+      "create-mats": [
+        "-LapisLazuli Jewel(1)-TerraCeanataurClaw(3)",
+        "-LtherSlvrRthlsTal(2)",
+        "-Daora Jewel(1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Pellet Jewel",
+      "skills": [
+        "PelletS Up+1",
+        "Load -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Piscine Fang (3)",
+        "Wyvern Fang (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Shot Bonus Jewel",
+      "skills": [
+        "NormalSAdd +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Lao Shan's Scale (1)",
+        "Normal S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "PierceBonusJewel",
+      "skills": [
+        "PierceSAdd +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Garuga Scale (1)",
+        "Pierce S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "PelletBonusJewel",
+      "skills": [
+        "PelletSAdd +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Cephalos Fin (1)",
+        "Pellet S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Bomb Bonus Jewel",
+      "skills": [
+        "BmbShotAdd +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Basarios Shell (1)",
+        "Crag S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ScattrBonusJewel",
+      "skills": [
+        "ClustSAdd +2"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Gravios Shell (1)",
+        "Clust S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Ammo Box Jewel",
+      "skills": [
+        "Capacity +1",
+        "Reload -1"
+      ],
+      "create-mats": [
+        "Battlefield Jewel (1)",
+        "Rathian Spike (1)",
+        "Remobra Skull (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Magazine Jewel",
+      "skills": [
+        "Capacity +4",
+        "Reload -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Fatalis Horn (1)",
+        "Rathian Spike+ (1)",
+        "Thunderbug Juice (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Sniper Jewel",
+      "skills": [
+        "Precision +1",
+        "Speed Fire -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Anteka Antlers (1)",
+        "Sharp Claw (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "SharpshootrJewel",
+      "skills": [
+        "Precision +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Kelbi Horn (1)",
+        "Killer Beetle (1)",
+        "Pin Tuna (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Armory Jewel",
+      "skills": [
+        "Shot Mix +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Normal S Lv3 (3)",
+        "Pellet S Lv3 (2)",
+        "Clust S Lv3 (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Artisan Jewel",
+      "skills": [
+        "Artisan +1",
+        "Potential -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Monoblos Heart (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Artisan Jewel",
+      "skills": [
+        "Artisan +1",
+        "Potential -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Ceanataur Claw + (1)",
+        "Lao-ShanCarapace (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Master Jewel",
+      "skills": [
+        "Artisan +4",
+        "Potential -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Akantor Claw (1)",
+        "Daora Sharp Claw (2)",
+        "Basarios Wing (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Tip Toe Jewel",
+      "skills": [
+        "Sneak +1",
+        "Map -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Sharp Claw (1)",
+        "Ivy (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Ninja Jewel",
+      "skills": [
+        "Sneak +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Chameleos Hide (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Evade Jewel",
+      "skills": [
+        "Evade +1",
+        "Cold Res -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Sm Lobstershell (1)",
+        "Hercudrome (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Evade Jewel",
+      "skills": [
+        "Evade +1",
+        "Cold Res -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel(1)",
+        "Narga Scale+ (1)",
+        "Great Hornfly (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Dodge Jewel",
+      "skills": [
+        "Evade +3",
+        "Cold Res -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel(1)",
+        "Lg Lobstershell (1)",
+        "Gendrome Tail(1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Danger Jewel",
+      "skills": [
+        "Potential +1",
+        "Protection -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel(1)",
+        "Monoblos Spine (1)",
+        "Wyvern Skull Shl (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Crisis Jewel",
+      "skills": [
+        "Potential +4",
+        "Protection -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel(1)",
+        "Gold Rajang Pelt (1)",
+        "Blood Red Horn (1)",
+        "Wht Monoblos Hrn (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "BBQ Jewel",
+      "skills": [
+        "BBQ +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "FlynMealPassReg (1)",
+        "B urnt Meat (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Psychic Jewel",
+      "skills": [
+        "PsychicVis +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Kut-Ku Ear (1)",
+        "Psychoserum (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "StayingPwr Jewel",
+      "skills": [
+        "Everlasting +1",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Grn Plesioth Scl (1)",
+        "Vespoid Shell (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Permanence Jewel",
+      "skills": [
+        "Everlasting +2",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Grn Plesioth Scl+ (1)",
+        "Vespoid Wing (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Eternal Jewel",
+      "skills": [
+        "Everlasting +3",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "SpecGrnPlesioFn+ (1)",
+        "Vespoid Razorwing (1)",
+        "Catalyst (3)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Professor Jewel",
+      "skills": [
+        "MixSucRate +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Book of Combos 1 (1)",
+        "Springnight Carp (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "SecretArts Jewel",
+      "skills": [
+        "Alchemy +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Health Flute (1)",
+        "Ancient Potion (1)",
+        "Antiseptic Stone (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Small Arms Jewel",
+      "skills": [
+        "Gunnery +1",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Machalite Ore (1)",
+        "Gunpowder (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Howitzer Jewel",
+      "skills": [
+        "Gunnery +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Dragonite Ore (2)",
+        "Firestone (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fife Jewel",
+      "skills": [
+        "Horn +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Congalala Pelt (2)",
+        "Flute (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Steadfast Jewel",
+      "skills": [
+        "Faint +1",
+        "Paralysis -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Velociprey Fang (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Anti-Faint Jewel",
+      "skills": [
+        "Faint +3",
+        "Paralysis -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Velocidrome Claw (2)",
+        "Pur Rubbery Hide (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Steadfast Jewel+",
+      "skills": [
+        "Faint +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "LthrC.BlangoTail (1)",
+        "ThkBullfangoPelt (2)",
+        "||1 ||4 ||200z ||"
+      ],
+      "slots": "---",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Paralysis Jewel",
+      "skills": [
+        "Paralysis +1",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Genprey Fang (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "AntiParalyzJewel",
+      "skills": [
+        "Paralysis +3",
+        "Poison -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Paralysis Sac (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Pep Jewel",
+      "skills": [
+        "Sleep +1",
+        "Water Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Sleep Herb (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Jolt Jewel",
+      "skills": [
+        "Sleep +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Sleep Sac (1)",
+        "Sleepy Fish (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Antidote Jewel",
+      "skills": [
+        "Poison +1",
+        "Faint -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Ioprey Fang (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Antivenin Jewel",
+      "skills": [
+        "Poison +3",
+        "Faint -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Poison Sac (2)",
+        "Herbal Medicine (2)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Antidote Jewel+",
+      "skills": [
+        "Poison +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "DeadlyPoisonSac (1)",
+        "SpecRemobraSkin+ (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Snowblower Jewel",
+      "skills": [
+        "Snow Res +1",
+        "Terrain -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Giaprey Scale (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Snowplow Jewel",
+      "skills": [
+        "Snow Res +3",
+        "Terrain -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Blangonga Fang (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Anchor Jewel",
+      "skills": [
+        "Quake Res +1",
+        "Sleep -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Blangonga Pelt (1)",
+        "Power Pill (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Tectonic Jewel",
+      "skills": [
+        "Quake Res +3",
+        "Sleep -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Gaoren Pincer (1)",
+        "Blangonga Tail (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Earplug Jewel",
+      "skills": [
+        "HearProtect +1",
+        "Protection -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Garuga Ear (1)",
+        "Hornetaur Head (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Earplug Jewel",
+      "skills": [
+        "HearProtect +1",
+        "Protection -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Long Garuga Ear (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Silencer Jewel",
+      "skills": [
+        "HearProtect +4",
+        "Protection -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Azure Rthlos Cpc (1)",
+        "Tigrex Skull Shl (1)",
+        "Monster Broth (2)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "PaperweightJewel",
+      "skills": [
+        "WindPress +1",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Diablos Shell (1)",
+        "Lightcrystal (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "HeavyMetal Jewel",
+      "skills": [
+        "WindPress +3",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Chameleos Hide+ (1)",
+        "Diablos Carapace (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Melt-Proof Jewel",
+      "skills": [
+        "Terrain +1",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Basarios Shell (1)",
+        "Armor Pill (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Anti-Thaw Jewel",
+      "skills": [
+        "Terrain +3",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Fire Dragon Scl (2)",
+        "Teostra Tail (1)",
+        "Gourmet Fish+ (3)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Alarm Jewel",
+      "skills": [
+        "Anti-Theft +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Felvine (2)",
+        "Unknown Skull (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Retroviral Jewel",
+      "skills": [
+        "Antiseptic +1",
+        "Sneak -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Conga Pelt (2)",
+        "Bitterbug (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Antiviral Jewel",
+      "skills": [
+        "Antiseptic +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Congalala Pelt (2)",
+        "Antiseptic Jewel (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Tireless Jewel",
+      "skills": [
+        "Fatigue +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Fire Drgn Webbing (1)",
+        "Sunset Herb (3)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Backpacker Jewel",
+      "skills": [
+        "Backpacking +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Power Extract (1)",
+        "Giant Bone (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Grab'n'DashJewel",
+      "skills": [
+        "HiSpdGathr +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Great Hornfly (1)",
+        "Power Extract (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Good Luck Jewel",
+      "skills": [
+        "Whim +1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Exciteshroom (2)",
+        "Boomerang (1)",
+        "Flute (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Blessing Jewel",
+      "skills": [
+        "Whim +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Pnk Rathian Shl (1)",
+        "Mega Pickaxe (1)",
+        "Mega Bugnet (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "HideCutter Jewel",
+      "skills": [
+        "Carving +1",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Daora Claw (1)",
+        "ShakalakaTreasre (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Fate Jewel",
+      "skills": [
+        "Fate +1",
+        "Whim -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Steel Egg (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Destiny Jewel",
+      "skills": [
+        "Fate +3",
+        "Whim -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Gold Egg (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Fisher Jewel",
+      "skills": [
+        "Fishing +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Cricket (1)",
+        "Yambug (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    }
+  ]
+}
