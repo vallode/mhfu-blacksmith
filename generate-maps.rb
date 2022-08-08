@@ -63,7 +63,7 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
     json_data = JSON.load(file)
     weapons = json_data["weapons"]
 
-    root_weapons = weapons.select {|element| !element["improve-from"] or not element.key?("improve-from")}
+    root_weapons = weapons.select {|element| not element["improve-from"]}
 
     root_weapons.each_with_index do |weapon, index|
       push_weapon(weapon, weapon_map, weapons)

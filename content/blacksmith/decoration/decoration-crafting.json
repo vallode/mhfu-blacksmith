@@ -1,6 +1,15 @@
 {
   "weapons": [
     {
+      "name": "Attack up",
+      "improve-to": [
+        "Attack Jewel",
+        "Fierce Jewel",
+        "Strongest Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Attack Jewel",
       "skills": [
         "Attack +1"
@@ -9,6 +18,9 @@
         "Suiko Jewel (1)",
         "Power Seed (1)",
         "Kut-Ku Scale (1)"
+      ],
+      "improve-from": [
+        "Attack up"
       ],
       "slots": "O--",
       "rarity": 4,
@@ -25,6 +37,9 @@
         "Akito Jewel (1)",
         "Fire Wyvern Claw (1)",
         "Demondrug (2)"
+      ],
+      "improve-from": [
+        "Attack up"
       ],
       "slots": "OO-",
       "rarity": 5,
@@ -43,10 +58,21 @@
         "Mega Demondrug (3)",
         "Lthr Pelagus Plt (2)"
       ],
+      "improve-from": [
+        "Attack up"
+      ],
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "ESP",
+      "improve-to": [
+        "Fencer Jewel",
+        "Swordsman Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Fencer Jewel",
@@ -57,6 +83,9 @@
       "create-mats": [
         "BattlefieldJewel (1)",
         "Rathalos Plate (1)"
+      ],
+      "improve-from": [
+        "ESP"
       ],
       "slots": "O--",
       "rarity": 4,
@@ -97,6 +126,14 @@
       "type": "dec"
     },
     {
+      "name": "Sharp Sword",
+      "improve-to": [
+        "Razor Jewel",
+        "Cutter Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Razor Jewel",
       "skills": [
         "Sharpness +1",
@@ -106,6 +143,9 @@
         "BattlefieldJewel (1)",
         "Ceanataur Pincer (1)",
         "Sharpened Beak (1)"
+      ],
+      "improve-from": [
+        "Sharp Sword"
       ],
       "slots": "O--",
       "rarity": 4,
@@ -124,10 +164,22 @@
         "Black Blos Tail (2)",
         "Garuga Wing (2)"
       ],
+      "improve-from": [
+        "Sharp Sword"
+      ],
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "Reckless Abandon",
+      "improve-to": [
+        "Expert Jewel",
+        "Celebrity Jewel",
+        "Hermit Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Expert Jewel",
