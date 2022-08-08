@@ -7,6 +7,9 @@ serve: clean generate-pages
 generate-pages: clean
 	ruby generate-pages.rb
 
+generate-maps:
+	ruby generate-maps.rb
+
 debug: generate-pages
 	TERA_DEBUG=true zola serve
 

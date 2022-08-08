@@ -93,6 +93,10 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
     json_data = JSON.load(file)
 
     json_data["weapons"].each do |value|
+      if value.key?("donotrender")
+        next
+      end
+
       output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
 
       slug = slugify(value["name"])

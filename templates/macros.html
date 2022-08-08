@@ -3,20 +3,28 @@
   <a
     id="{{ weapon.slug }}"
     class="weapon-tree__row"
+    {% if weapon.rarity %}
     href="/blacksmith/{{ section.extra.type }}/{{ weapon.slug }}/"
+    {% endif %}
     data-turbo-frame="weapon_details"
   >
-    <div class="
-      icon
-      icon--{{ section.extra['type'] }}
-      icon--rarity-{{ weapon.rarity }}
-      {% if weapon.element -%}
-        icon--{{ weapon.element }}
-      {%- endif -%}
-      "
-    >
-      <img src="/images/{{ section.extra['type'] }}.png" alt="?">
-    </div>
+    {% if weapon.rarity %}
+      <div class="
+        icon
+        icon--{{ section.extra.type }}
+        icon--rarity-{{ weapon.rarity }}
+        {% if weapon.element -%}
+          icon--{{ weapon.element }}
+        {%- endif -%}
+        "
+      >
+        <img src="/images/{{ section.extra.type }}.png" alt="?">
+      </div>
+    {% else %}
+      <div class="icon icon--ukwn">
+        <img src="/images/ukwn.png" alt="?">
+      </div>
+    {% endif %}
     <p class="name">{{ weapon.name }}</p>
   </a>
   
@@ -28,45 +36,4 @@
   </ul>
   {% endif %}
 </li>
-{% endmacro input %}
-
-{% macro weapon_tree_row_test(weapon) %}
-  <li>
-    <a
-      id="{{ weapon.slug }}"
-      class="weapon-tree__row {% if is_external %}weapon-tree__row--external{% endif -%}"
-      {% if is_external -%}
-      href="/blacksmith/{{ section.extra.sibling_weapon }}/{{ weapon.slug }}/"
-      data-turbo-frame="_top"
-      {% else -%}
-      href="/blacksmith/{{ section.extra.type }}/{{ weapon.slug }}/"
-      data-turbo-frame="weapon_details"
-      {%- endif %}
-    >
-      <div
-        class="
-          icon
-          {% if not is_external -%}
-          icon--{{ section.extra['type'] }}
-          icon--rarity-{{ weapon.rarity }}
-            {%- if weapon_data.extra['element'] -%}
-              {%- for element in weapon_data.extra['element'] %}
-                icon--{{ element['name'] | lower }}
-              {%- endfor -%}
-            {%- endif -%}
-          {%- endif %}"
-      >
-        <img src="/images/{{ section.extra['type'] }}.png" alt="?">
-      </div>
-      <p class="name">{{ weapon.name }}</p>
-
-      {% if weapon.children %}
-      <ul>
-        {% for child_weapon in weapon.children %}
-          {{ self::weapon_tree_row(weapon=child_weapon) }}
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </a>
-  </li>
 {% endmacro input %}
