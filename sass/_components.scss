@@ -408,6 +408,18 @@ $sharpness-colors: (
     display: inline-block;
     height: 100%;
     z-index: 1;
+
+    &.sharp--plus {
+      display: none;
+    }
+  }
+
+  &:hover span {
+    display: none;
+  }
+
+  &:hover span.sharp--plus {
+    display: block;
   }
 
   @each $value, $color in $sharpness-colors {
