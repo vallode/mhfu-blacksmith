@@ -43,7 +43,6 @@
             <p id="weapon_name">
               {{ page.extra.name }}
             </p>
-
             
             {% if page.extra.sharpness %}
             <div class="sharpness">
@@ -62,27 +61,30 @@
 
           <div class="weapon-card__details">
             <div class="stats">
-              <p>Attack: <span>{{ page.extra["attack"] }}</span></p>
+              {% if page.extra.attack %}
+                <p>Attack: <span>{{ page.extra.attack }}</span></p>
+              {% endif %}
 
               {% if page.extra.max_attack %}
                 <p>Max attack: <span>{{ page.extra.max_attack }}</span></p>
               {% endif %}
 
-              {%- set affinity = page.extra.affinity %}
-              <p>
-                Affinity:
-                <span
-                  class="
-                  {% if affinity is starting_with('-') %}
-                    negative
-                  {% elif affinity is not starting_with('0')%}
-                    positive
-                  {% endif %}
-                  "
-                >
-                  {{ affinity }}
-                </span>
-              </p>
+              {% if page.extra.affinity %}
+                <p>
+                  Affinity:
+                  <span
+                    class="
+                    {% if page.extra.affinity is starting_with('-') %}
+                      negative
+                    {% elif page.extra.affinity is not starting_with('0')%}
+                      positive
+                    {% endif %}
+                    "
+                  >
+                    {{ page.extra.affinity }}
+                  </span>
+                </p>
+              {% endif %}
 
               <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
 
@@ -93,6 +95,14 @@
                   </p>
                 {% endfor %}
               {% endif -%}
+
+              {% if page.extra.skills %}
+                {% for skill in page.extra.skills %}
+                  <p class="element">
+                    {{ skill }}
+                  </p>
+                {% endfor %}
+              {% endif %}
             </div>
 
             <hr>

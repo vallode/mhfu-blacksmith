@@ -144,6 +144,7 @@ $weapon-types: (
   "light-bowgun",
   "heavy-bowgun",
   "bow",
+  "decoration",
 );
 
 $rarity-colors: (
@@ -204,7 +205,10 @@ $element-types: (
       content: '';
       display: block;
       height: 100%;
+      image-rendering: optimizeSpeed;
+      image-rendering: pixelated;
       mask-mode: alpha;
+      mask-size: 100% 100%;
       mix-blend-mode: darken;
       position: absolute;
       width: 100%;
