@@ -200,8 +200,6 @@ $element-types: (
 
   @each $weapon-name in $weapon-types {
     &--#{$weapon-name}::before {
-      background-blend-mode: lighten;
-      background-position: 0;
       content: '';
       display: block;
       height: 100%;
@@ -209,14 +207,14 @@ $element-types: (
       image-rendering: pixelated;
       mask-mode: alpha;
       mask-size: 100% 100%;
-      mix-blend-mode: darken;
+      mix-blend-mode: multiply;
       position: absolute;
       width: 100%;
       z-index: 100;
     }
 
     &--#{$weapon-name}::before {
-      mask-image: image(url("/images/#{$weapon-name}.png"));
+      mask-image: url("/images/#{$weapon-name}.png");
     }
   }
 
