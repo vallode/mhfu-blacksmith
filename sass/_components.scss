@@ -216,7 +216,7 @@ $element-types: (
     }
 
     &--#{$weapon-name}::before {
-      mask-image: url("/images/#{$weapon-name}.png");
+      mask-image: image(url("/images/#{$weapon-name}.png"));
     }
   }
 
