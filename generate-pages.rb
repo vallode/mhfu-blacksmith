@@ -3,49 +3,18 @@ require 'find'
 require 'erb'
 
 FILE_TEMPLATE = %{+++
-  title = <%= name.to_json %>
+  title = <%= value["name"].to_json %>
   slug = "<%= slug %>"
   [extra]
-  name = <%= name.to_json %>
-  type = "<%= type %>"
-  rarity = <%= rarity %>
-  <% if attack %>
-  attack = <%= attack %>
+  <% value.each_pair do |key, val| %>
+  <%= key.sub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
   <% end %>
-  <% if max_attack %>
-  max_attack = <%= max_attack %>
+  <% if element %>
+  <% element.each do |el| %>
+  [[extra.element]]
+  name = "<%= el[:name] %>"
+  attack = <%= el[:attack] %>
   <% end %>
-  affinity = "<%= affinity %>"
-  <% if sharpness %>
-  sharpness = "<%= sharpness %>"
-  <% end %>
-  <% if sharpness_plus %>
-  sharpness_plus = "<%= sharpness_plus %>"
-  <% end %>
-  <% if elements %>
-  element = <%= elements %>
-  <% end %>
-  <% if skills %>
-  skills = <%= skills %>
-  <% end %>
-  slots = "<%= slots %>"
-  <% if create_cost %>
-  create-cost = "<%= create_cost %>"
-  <% end %>
-  <% if create_mats %>
-  create-mats = <%= create_mats %>
-  <% end %>
-  <% if upgrade_cost %>
-  improve-cost = "<%= upgrade_cost %>"
-  improve-mats = <%= upgrade_mats %>
-  <% end %>
-  <% if upgrade_from and upgrade_from.kind_of?(Array) %>
-  improve-from = <%= upgrade_from %>
-  <% elsif upgrade_from %>
-  improve-from = <%= upgrade_from.to_json %>
-  <% end %>
-  <% if upgrade_to %>
-  upgrade-to = <%= upgrade_to %>
   <% end %>
   +++
 }.gsub(/^  /, '')
@@ -77,15 +46,15 @@ def slugify(value)
 end
 
 def parseElements(elements)
-  parsedElements = %{}
+  parsedElements = []
 
   if elements
     elements.scan(/([A-Za-z]+)\s([0-9]+)/) do |element, attack|
-      parsedElements.concat("{\"name\" = \"#{element}\", \"attack\" = #{attack}},")
+      parsedElements.push({name: element, attack: attack})
     end
   end
 
-  return "[#{parsedElements}]"
+  return parsedElements
 end
 
 Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
@@ -98,58 +67,19 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       end
 
       output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
+      output_binding = binding
 
       slug = slugify(value["name"])
-      name = value["name"]
-      type = WEAPON_ABBR.key(value["type"])
-      rarity = value["rarity"]
-      attack = value["attack"]
-      affinity = value["affinity"]
-      slots = value["slots"]
-
-      if value["max-attack"]
-        max_attack = value["max-attack"]
-      end
-      
-      if value.key?("sharpness") and value["sharpness"]
-        sharpness_array = value["sharpness"].split(" ")
-        sharpness = sharpness_array[0]
-
-        if sharpness_array[1]
-          sharpness_plus = sharpness_array[1]
-        end
-      end
+      value["type"] = WEAPON_ABBR.key(value["type"])
       
       if value["element"]
-        elements = parseElements(value["element"])
+        element = parseElements(value["element"])
+        value["element"] = nil
       end
 
-      if value["skills"]
-        skills = value["skills"]
-      end
+      value = value.select {|key, value| value != nil }
 
-      if value["improve-cost"]
-        upgrade_cost = value["improve-cost"]
-        upgrade_mats = value["improve-mats"]
-      end
-
-      if value["improve-from"]
-        upgrade_from = value['improve-from']
-      end
-
-      if value["upgrade-to"]
-        upgrade_to = value["upgrade-to"]
-      end
-
-      if value["create-cost"]
-        create_cost = value["create-cost"]
-
-        if value["create-mats"]
-          create_mats = value["create-mats"]
-        end
-      end
-
-      File.write("#{File.dirname(path)}/#{slug}.md", output.result(binding))
+      File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
     end
   end
 end
