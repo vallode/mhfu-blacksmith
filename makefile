@@ -17,7 +17,8 @@ clean:
 	find content/blacksmith/**/*.md ! -name '_index.md' -exec rm {} +
 
 build: clean generate-pages
-	zola build
+	TERA_PRODUCTION=true zola build
 
 deploy: build
-	netlify deploy --site mhfu-blacksmith --prod --message "`git log --oneline --format=%s -n 1`" --dir public
+	MHFU_PRODUCTION=true netlify deploy --site mhfu-blacksmith --prod --message \
+		"`git log --oneline --format=%s -n 1`" --dir public
