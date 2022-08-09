@@ -105,17 +105,7 @@
         this.imageTarget.classList.remove("dragging")
       }
     })
-
-    Stimulus.register("weapon-page", class extends Controller {
-      connect() {}
-
-      toggle() {
-        this.element.classList.toggle("create-mats")
-        this.element.classList.toggle("improve-mats")
-      }
-    })
   </script>
-  {% block scripts -%}{% endblock scripts -%}
 
   {% if get_env(name="TERA_DEBUG", default="") != "" -%}
     {{ __tera_context }}
@@ -127,7 +117,7 @@
     </script>
   {% endif -%}
 
-  <script>
+  <script id="console-info" data-turbo-permanent="">
     console.log(
 			"%cIf you're looking for the weapon data, you can find everything here: https://github.com/vallode/mhfu-blacksmith",
 			`
@@ -144,5 +134,7 @@
       `
 		);
   </script>
+
+  {% block scripts -%}{% endblock scripts -%}
 </body>
 </html>
