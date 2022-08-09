@@ -36,15 +36,16 @@ def push_weapon(weapon, array, weapons_data)
   array.push({
     slug: slugify(weapon["name"]),
     name: weapon["name"],
-    rarity: weapon["rarity"],
-    children: []
-    })
+    rarity: weapon["rarity"]
+  })
     
   if weapon.key?("element") and weapon["element"]
     array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
   end
 
   if weapon.key?("improve-to") and weapon["improve-to"]
+    array.last[:children] = []
+
     for child_weapon_name in weapon["improve-to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
 
