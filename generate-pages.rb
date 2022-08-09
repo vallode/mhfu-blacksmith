@@ -7,7 +7,7 @@ FILE_TEMPLATE = %{+++
   slug = "<%= slug %>"
   [extra]
   <% value.each_pair do |key, val| %>
-  <%= key.sub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
+  <%= key.gsub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
   <% end %>
   <% if element %>
   <% element.each do |el| %>

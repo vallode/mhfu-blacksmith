@@ -19,9 +19,6 @@
         "Power Seed (1)",
         "Kut-Ku Scale (1)"
       ],
-      "improve-from": [
-        "Attack up"
-      ],
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -37,9 +34,6 @@
         "Akito Jewel (1)",
         "Fire Wyvern Claw (1)",
         "Demondrug (2)"
-      ],
-      "improve-from": [
-        "Attack up"
       ],
       "slots": "OO-",
       "rarity": 5,
@@ -57,9 +51,6 @@
         "HrdFireWyvernClw (4)",
         "Mega Demondrug (3)",
         "Lthr Pelagus Plt (2)"
-      ],
-      "improve-from": [
-        "Attack up"
       ],
       "slots": "OOO",
       "rarity": 5,
@@ -84,21 +75,7 @@
         "BattlefieldJewel (1)",
         "Rathalos Plate (1)"
       ],
-      "improve-from": [
-        "ESP"
-      ],
-      "slots": "O--",
-      "rarity": 4,
-      "create-cost": 200,
-      "type": "dec"
-    },
-    {
-      "name": "Fencer Jewel",
-      "skills": [
-        "Fencing +1",
-        "Recovery -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Azure LaoS Shell (2)",
         "Slver Rthalos Tail (1)"
@@ -144,9 +121,6 @@
         "Ceanataur Pincer (1)",
         "Sharpened Beak (1)"
       ],
-      "improve-from": [
-        "Sharp Sword"
-      ],
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -163,9 +137,6 @@
         "Gravios BrainStm (1)",
         "Black Blos Tail (2)",
         "Garuga Wing (2)"
-      ],
-      "improve-from": [
-        "Sharp Sword"
       ],
       "slots": "OOO",
       "rarity": 5,
@@ -208,18 +179,7 @@
         "Teostra Shell (1)",
         "Twisted Horn (1)"
       ],
-      "slots": "OO-",
-      "rarity": 5,
-      "create-cost": 375,
-      "type": "dec"
-    },
-    {
-      "name": "Celebrity Jewel",
-      "skills": [
-        "Expert +3",
-        "Health -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Teostra Horn+ (1)"
       ],
@@ -395,18 +355,7 @@
         "Daora Horn (1)",
         "ElderDragonBlood (1)"
       ],
-      "slots": "O--",
-      "rarity": 4,
-      "create-cost": 200,
-      "type": "dec"
-    },
-    {
-      "name": "ShortChargeJewel",
-      "skills": [
-        "ShortCharg +1",
-        "Constitutn -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Rajang Horn (1)",
         "DaoraDragonScal+ (1)"
@@ -415,6 +364,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Defense up",
+      "improve-to": [
+        "Defense Jewel",
+        "Turtle Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Defense Jewel",
@@ -441,18 +398,7 @@
         "Blk Gravios Shl (1)",
         "Hermitaur Claw (1)"
       ],
-      "slots": "OO-",
-      "rarity": 5,
-      "create-cost": 375,
-      "type": "dec"
-    },
-    {
-      "name": "Turtle Jewel",
-      "skills": [
-        "Defense +3",
-        "All Resist -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "BattlefieldJewel (1)",
         "HrdHermitaurClaw (1)"
       ],
@@ -460,6 +406,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Fire Res up",
+      "improve-to": [
+        "Inferno Jewel",
+        "Crimson Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Inferno Jewel",
@@ -491,6 +445,14 @@
       "type": "dec"
     },
     {
+      "name": "Water Res up",
+      "improve-to": [
+        "Stream Jewel",
+        "Torrent Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Stream Jewel",
       "skills": [
         "Water Res +1",
@@ -518,6 +480,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Ice Res up",
+      "improve-to": [
+        "Freeze Jewel",
+        "Glacier Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Freeze Jewel",
@@ -549,6 +519,14 @@
       "type": "dec"
     },
     {
+      "name": "Thunder Res up",
+      "improve-to": [
+        "Lightning Jewel",
+        "Thunder Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Lightning Jewel",
       "skills": [
         "ThunderRes +1",
@@ -576,6 +554,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Dragon Res up",
+      "improve-to": [
+        "Slayer Jewel",
+        "Extinction Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Slayer Jewel",
@@ -608,6 +594,15 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "All Res up",
+      "improve-to": [
+        "Impervious Jewel",
+        "Omnipotent Jewel",
+        "TrueResistJewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Impervious Jewel",
@@ -658,6 +653,14 @@
       "type": "dec"
     },
     {
+      "name": "Guard up",
+      "improve-to": [
+        "Stone Wall Jewel",
+        "IronCurtainJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Stone Wall Jewel",
       "skills": [
         "Guard +1",
@@ -688,6 +691,15 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Guard inc",
+      "improve-to": [
+        "Hard Wall Jewel",
+        "StrongWall Jewel",
+        "Wall Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Hard Wall Jewel",
@@ -738,6 +750,13 @@
       "type": "dec"
     },
     {
+      "name": "Auto-Guard",
+      "improve-to": [
+        "HvnlyShieldJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "HvnlyShieldJewel",
       "skills": [
         "Auto-Guard +2"
@@ -753,6 +772,13 @@
       "type": "dec"
     },
     {
+      "name": "Health up",
+      "improve-to": [
+        "Strength Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Strength Jewel",
       "skills": [
         "Health +2"
@@ -765,6 +791,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Damage Rec Spd up",
+      "improve-to": [
+        "Feel Good Jewel",
+        "SpeedyRecvrJewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Feel Good Jewel",
@@ -793,18 +827,7 @@
         "Pale Khezu Steak (1)",
         "Lifepowder (2)"
       ],
-      "slots": "OO-",
-      "rarity": 5,
-      "create-cost": 375,
-      "type": "dec"
-    },
-    {
-      "name": "SpeedyRecvrJewel",
-      "skills": [
-        "Rec Speed+3",
-        "Faint -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "Battlefield Jewel (1)",
         "Pale Bone (1)",
         "Lao-Shan's Shell (3)",
@@ -814,6 +837,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "HealthRecItemsImprvd",
+      "improve-to": [
+        "Curing Jewel",
+        "Cure All Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Curing Jewel",
@@ -846,6 +877,15 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Wide Area",
+      "improve-to": [
+        "Friendship Jewel",
+        "Beloved Jewel",
+        "Tenderness Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Friendship Jewel",
@@ -898,6 +938,14 @@
       "type": "dec"
     },
     {
+      "name": "Divine Protection",
+      "improve-to": [
+        "Protection Jewel",
+        "DivineProtectJwl"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Protection Jewel",
       "skills": [
         "Protection +1"
@@ -926,6 +974,15 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Hunger Halved/Negate",
+      "improve-to": [
+        "PickyEater Jewel",
+        "Fasting Jewel",
+        "No Food Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "PickyEater Jewel",
@@ -977,6 +1034,13 @@
       "type": "dec"
     },
     {
+      "name": "Filled Up/Scavenger",
+      "improve-to": [
+        "Fatso Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Fatso Jewel",
       "skills": [
         "Gluttony +2"
@@ -990,6 +1054,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Quick Eating",
+      "improve-to": [
+        "QuickEaterJewel",
+        "Fast Food Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "QuickEaterJewel",
@@ -1023,6 +1095,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Runner",
+      "improve-to": [
+        "Marathon Jewel",
+        "Sprinter Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Marathon Jewel",
@@ -1059,6 +1139,13 @@
       "type": "dec"
     },
     {
+      "name": "Throwing Sk Up",
+      "improve-to": [
+        "Hardball Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Hardball Jewel",
       "skills": [
         "Throw +2"
@@ -1072,6 +1159,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Reload Speed up",
+      "improve-to": [
+        "Early Bird Jewel",
+        "High Speed Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Early Bird Jewel",
@@ -1106,6 +1201,14 @@
       "type": "dec"
     },
     {
+      "name": "???",
+      "improve-to": [
+        "Speed Fire Jewel",
+        "Barrage Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Speed Fire Jewel",
       "skills": [
         "Speed Fire +1",
@@ -1136,6 +1239,14 @@
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "Recoil Reduct",
+      "improve-to": [
+        "Recoilless Jewel",
+        "Shockless Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Recoilless Jewel",
@@ -1171,6 +1282,14 @@
       "type": "dec"
     },
     {
+      "name": "NormS/RapidBow Up",
+      "improve-to": [
+        "StrongShot Jewel",
+        "StrongShot Jewel+"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "StrongShot Jewel",
       "skills": [
         "NormalS Up+1",
@@ -1194,14 +1313,23 @@
         "Reload -2"
       ],
       "create-mats": [
-        "-LapisLazuli Jewel(1)-HvyC.BlangoFang(3)",
-        "-Blk Rajang Pelt+(4)",
-        "-Fire Drgn Jwl(1)"
+        "LapisLazuli Jewel (1)",
+        "HvyC.BlangoFang (3)",
+        "Blk Rajang Pelt+ (4)",
+        "Fire Drgn Jwl (1)"
       ],
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "PrceS/PrceBow Up",
+      "improve-to": [
+        "Pierce Jewel",
+        "Pierce Jewel+"
+      ],
+      "donotrender": true
     },
     {
       "name": "Pierce Jewel",
@@ -1220,7 +1348,7 @@
       "type": "dec"
     },
     {
-      "name": "Pierce Jewel +",
+      "name": "Pierce Jewel+",
       "skills": [
         "PierceS up +4",
         "",
@@ -1235,6 +1363,13 @@
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "PellS/ScattBow Up",
+      "improve-to": [
+        "Pellet Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Pellet Jewel",
@@ -1253,6 +1388,13 @@
       "type": "dec"
     },
     {
+      "name": "NormS All Add",
+      "improve-to": [
+        "Shot Bonus Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Shot Bonus Jewel",
       "skills": [
         "NormalSAdd +2"
@@ -1266,6 +1408,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "PierceS LV Add",
+      "improve-to": [
+        "PierceBonusJewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "PierceBonusJewel",
@@ -1283,6 +1432,13 @@
       "type": "dec"
     },
     {
+      "name": "PelletS LV Add",
+      "improve-to": [
+        "PelletBonusJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "PelletBonusJewel",
       "skills": [
         "PelletSAdd +2"
@@ -1296,6 +1452,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "CragS LV Add",
+      "improve-to": [
+        "Bomb Bonus Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Bomb Bonus Jewel",
@@ -1313,6 +1476,13 @@
       "type": "dec"
     },
     {
+      "name": "ClustS LV Add",
+      "improve-to": [
+        "ScattrBonusJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "ScattrBonusJewel",
       "skills": [
         "ClustSAdd +2"
@@ -1326,6 +1496,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Load Up",
+      "improve-to": [
+        "Ammo Box Jewel",
+        "Magazine Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Ammo Box Jewel",
@@ -1361,6 +1539,14 @@
       "type": "dec"
     },
     {
+      "name": "Target Range Down",
+      "improve-to": [
+        "Sniper Jewel",
+        "SharpshootrJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Sniper Jewel",
       "skills": [
         "Precision +1",
@@ -1393,6 +1579,13 @@
       "type": "dec"
     },
     {
+      "name": "Bullet Limit",
+      "improve-to": [
+        "Armory Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Armory Jewel",
       "skills": [
         "Shot Mix +2"
@@ -1409,6 +1602,14 @@
       "type": "dec"
     },
     {
+      "name": "Sharpness Plus",
+      "improve-to": [
+        "Artisan Jewel",
+        "Master Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Artisan Jewel",
       "skills": [
         "Artisan +1",
@@ -1418,18 +1619,7 @@
         "BattlefieldJewel (1)",
         "Monoblos Heart (1)"
       ],
-      "slots": "O--",
-      "rarity": 4,
-      "create-cost": 200,
-      "type": "dec"
-    },
-    {
-      "name": "Artisan Jewel",
-      "skills": [
-        "Artisan +1",
-        "Potential -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Ceanataur Claw + (1)",
         "Lao-ShanCarapace (1)"
@@ -1455,6 +1645,14 @@
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "Stealth",
+      "improve-to": [
+        "Tip Toe Jewel",
+        "Ninja Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Tip Toe Jewel",
@@ -1487,6 +1685,14 @@
       "type": "dec"
     },
     {
+      "name": "Evade up",
+      "improve-to": [
+        "Evade Jewel",
+        "Dodge Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Evade Jewel",
       "skills": [
         "Evade +1",
@@ -1497,18 +1703,7 @@
         "Sm Lobstershell (1)",
         "Hercudrome (1)"
       ],
-      "slots": "O--",
-      "rarity": 4,
-      "create-cost": 200,
-      "type": "dec"
-    },
-    {
-      "name": "Evade Jewel",
-      "skills": [
-        "Evade +1",
-        "Cold Res -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "BattlefieldJewel(1)",
         "Narga Scale+ (1)",
         "Great Hornfly (1)"
@@ -1533,6 +1728,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Adrenaline up",
+      "improve-to": [
+        "Danger Jewel",
+        "Crisis Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Danger Jewel",
@@ -1568,6 +1771,13 @@
       "type": "dec"
     },
     {
+      "name": "BBQ Celebrity",
+      "improve-to": [
+        "BBQ Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "BBQ Jewel",
       "skills": [
         "BBQ +2"
@@ -1583,6 +1793,13 @@
       "type": "dec"
     },
     {
+      "name": "Detect/Autotracker",
+      "improve-to": [
+        "Psychic Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Psychic Jewel",
       "skills": [
         "PsychicVis +2"
@@ -1596,6 +1813,15 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Item Usage Improved",
+      "improve-to": [
+        "StayingPwr Jewel",
+        "Permanence Jewel",
+        "Eternal Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "StayingPwr Jewel",
@@ -1647,6 +1873,13 @@
       "type": "dec"
     },
     {
+      "name": "Comb Suc up",
+      "improve-to": [
+        "Professor Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Professor Jewel",
       "skills": [
         "MixSucRate +2"
@@ -1660,6 +1893,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Alchemy",
+      "improve-to": [
+        "SecretArts Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "SecretArts Jewel",
@@ -1676,6 +1916,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Gunnery Master/King",
+      "improve-to": [
+        "Small Arms Jewel",
+        "Howitzer Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Small Arms Jewel",
@@ -1709,6 +1957,13 @@
       "type": "dec"
     },
     {
+      "name": "Flute Expert",
+      "improve-to": [
+        "Fife Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Fife Jewel",
       "skills": [
         "Horn +2"
@@ -1722,6 +1977,15 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Faint duration down/negated",
+      "improve-to": [
+        "Steadfast Jewel",
+        "Anti-Faint Jewel",
+        "Steadfast Jewel+"
+      ],
+      "donotrender": true
     },
     {
       "name": "Steadfast Jewel",
@@ -1771,6 +2035,14 @@
       "type": "dec"
     },
     {
+      "name": "Paralysis duration down/negated",
+      "improve-to": [
+        "Paralysis Jewel",
+        "AntiParalyzJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Paralysis Jewel",
       "skills": [
         "Paralysis +1",
@@ -1801,6 +2073,14 @@
       "type": "dec"
     },
     {
+      "name": "Sleep duration down/negated",
+      "improve-to": [
+        "Pep Jewel",
+        "Jolt Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Pep Jewel",
       "skills": [
         "Sleep +1",
@@ -1829,6 +2109,15 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Poison duration down/negated",
+      "improve-to": [
+        "Antidote Jewel",
+        "Antivenin Jewel",
+        "Antidote Jewel+"
+      ],
+      "donotrender": true
     },
     {
       "name": "Antidote Jewel",
@@ -1877,6 +2166,14 @@
       "type": "dec"
     },
     {
+      "name": "Immunity to Snowman",
+      "improve-to": [
+        "Snowblower Jewel",
+        "Snowplow Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Snowblower Jewel",
       "skills": [
         "Snow Res +1",
@@ -1905,6 +2202,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Immunity to Quake",
+      "improve-to": [
+        "Anchor Jewel",
+        "Tectonic Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Anchor Jewel",
@@ -1939,6 +2244,14 @@
       "type": "dec"
     },
     {
+      "name": "Earplug/High Grade Earplug",
+      "improve-to": [
+        "Earplug Jewel",
+        "Silencer Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Earplug Jewel",
       "skills": [
         "HearProtect +1",
@@ -1949,18 +2262,7 @@
         "Garuga Ear (1)",
         "Hornetaur Head (1)"
       ],
-      "slots": "O--",
-      "rarity": 4,
-      "create-cost": 200,
-      "type": "dec"
-    },
-    {
-      "name": "Earplug Jewel",
-      "skills": [
-        "HearProtect +1",
-        "Protection -1"
-      ],
-      "create-mats": [
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Long Garuga Ear (1)"
       ],
@@ -1985,6 +2287,14 @@
       "rarity": 5,
       "create-cost": 450,
       "type": "dec"
+    },
+    {
+      "name": "Low/High Wind Pres/Drg Wind Breaker",
+      "improve-to": [
+        "PaperweightJewel",
+        "HeavyMetal Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "PaperweightJewel",
@@ -2017,6 +2327,14 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Terrain damage reduced/negated",
+      "improve-to": [
+        "Melt-Proof Jewel",
+        "Anti-Thaw Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Melt-Proof Jewel",
@@ -2052,6 +2370,13 @@
       "type": "dec"
     },
     {
+      "name": "Steal No Effect",
+      "improve-to": [
+        "Alarm Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Alarm Jewel",
       "skills": [
         "Anti-Theft +2"
@@ -2065,6 +2390,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Immunity to territorial dung",
+      "improve-to": [
+        "Retroviral Jewel",
+        "Antiviral Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Retroviral Jewel",
@@ -2098,6 +2431,14 @@
       "type": "dec"
     },
     {
+      "name": "Fatigue duration halved/negated",
+      "improve-to": [
+        "Tireless Jewel",
+        "Antiviral Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Tireless Jewel",
       "skills": [
         "Fatigue +2"
@@ -2111,6 +2452,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Backpacking Expert",
+      "improve-to": [
+        "Backpacker Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Backpacker Jewel",
@@ -2128,6 +2476,13 @@
       "type": "dec"
     },
     {
+      "name": "HighSpdGather",
+      "improve-to": [
+        "Grab'n'DashJewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Grab'n'DashJewel",
       "skills": [
         "HiSpdGathr +2"
@@ -2141,6 +2496,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Spirit's/Divine Whim",
+      "improve-to": [
+        "Good Luck Jewel",
+        "Blessing Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Good Luck Jewel",
@@ -2175,6 +2538,14 @@
       "type": "dec"
     },
     {
+      "name": "Carving Iron Man/Celebrity",
+      "improve-to": [
+        "HideCutter Jewel",
+        "Blessing Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "HideCutter Jewel",
       "skills": [
         "Carving +1",
@@ -2189,6 +2560,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Good Luck/Luck Boost",
+      "improve-to": [
+        "Fate Jewel",
+        "Destiny Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Fate Jewel",
@@ -2219,6 +2598,13 @@
       "rarity": 5,
       "create-cost": 375,
       "type": "dec"
+    },
+    {
+      "name": "Fishing Expert",
+      "improve-to": [
+        "Fisher Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Fisher Jewel",

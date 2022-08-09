@@ -134,6 +134,18 @@
                   {% endfor -%}
                 </div>
               {% endif %}
+
+              {%- if page.extra.alternative_create_mats %}
+                <div class="create-mats">
+                  <p id="weapon_cost">
+                    <span>Create cost: </span>{{ page.extra.create_cost }}z
+                  </p>
+  
+                  {% for material in page.extra.alternative_create_mats -%}
+                    <p>{{ material }}</p>
+                  {% endfor -%}
+                </div>
+              {% endif %}
             </div>
           </div>
         </div>
