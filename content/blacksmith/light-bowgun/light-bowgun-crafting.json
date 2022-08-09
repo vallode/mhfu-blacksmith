@@ -41,7 +41,7 @@
       "create-cost": "450",
       "improve-mats": null,
       "create-mats": [
-        " Iron Ore: 4",
+        "Iron Ore: 4",
         "Brute Bone: 2"
       ]
     },
@@ -86,7 +86,7 @@
       "create-cost": "600",
       "improve-mats": null,
       "create-mats": [
-        " Disk Stone: 5",
+        "Disk Stone: 5",
         "Iron Ore: 10"
       ]
     },
@@ -2661,7 +2661,7 @@
         "Demon S: 1",
         "Armor S: 1"
       ],
-      "create-cost": " 1000z",
+      "create-cost": "1000",
       "improve-mats": null,
       "create-mats": [
         "Ancient Stone: 1"
@@ -6092,7 +6092,7 @@
       "create-cost": "5000z ",
       "improve-mats": null,
       "create-mats": [
-        " Commendation G: 1",
+        "Commendation G: 1",
         "Felyne Fur Ruby: 5",
         "BlackNargaPelt+: 4",
         "Sinister Cloth: 10"

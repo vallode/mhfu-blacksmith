@@ -820,15 +820,15 @@
       "improve-cost": "1400",
       "improve-from": "Buster Sword+",
       "create-mats": [
-        " (3)",
-        " (8)",
-        " (8)",
-        " (8)"
+        "Machalite Ore: 3",
+        "Iron Ore: 8",
+        "Carpenterbug: 8",
+        "Ice Crystal: 8"
       ],
       "improve-mats": [
-        " (5)",
-        " (1)",
-        " (5)"
+        "Iron Ore: 5",
+        "Machalite Ore: 1",
+        "Disk stone: 5"
       ],
       "improve-to": [
         "Iron Katana \"Grace\""
@@ -850,9 +850,9 @@
       "improve-from": "Iron Katana",
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (10)",
-        "Machalite Ore (5)",
-        "Earth Crystal (10)"
+        "Iron Ore: 10",
+        "Machalite Ore: 5",
+        "Earth Crystal: 10"
       ],
       "improve-to": [
         "Iron Katana \"Gospel\"",
@@ -875,9 +875,9 @@
       "improve-from": "Iron Katana \"Grace\"",
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (15)",
-        "Machalite Ore (12)",
-        "Earth Crystal (15)"
+        "Iron Ore: 15",
+        "Machalite Ore: 12",
+        "Earth Crystal: 15"
       ],
       "improve-to": [
         "Eager Cleaver",
