@@ -246,6 +246,13 @@
       "type": "dec"
     },
     {
+      "name": "Sharping Skl Inc",
+      "improve-to": [
+        "Grinder Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Grinder Jewel",
       "skills": [
         "SwrShrpner +2"
@@ -259,6 +266,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Art of Unsheathing",
+      "improve-to": [
+        "Sword Draw Jewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "Sword Draw Jewel",
@@ -277,6 +291,13 @@
       "type": "dec"
     },
     {
+      "name": "Spc Atk Up",
+      "improve-to": [
+        "SpecialAtk Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "SpecialAtk Jewel",
       "skills": [
         "Spc Attack +1",
@@ -291,6 +312,14 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Elem Atk Up",
+      "improve-to": [
+        "Element Jewel",
+        "Element Jewel+"
+      ],
+      "donotrender": true
     },
     {
       "name": "Element Jewel",
@@ -327,6 +356,13 @@
       "type": "dec"
     },
     {
+      "name": "Bomber",
+      "improve-to": [
+        "Bombardier Jewel"
+      ],
+      "donotrender": true
+    },
+    {
       "name": "Bombardier Jewel",
       "skills": [
         "BombStrUp +2"
@@ -340,6 +376,13 @@
       "rarity": 4,
       "create-cost": 200,
       "type": "dec"
+    },
+    {
+      "name": "Focus",
+      "improve-to": [
+        "ShortChargeJewel"
+      ],
+      "donotrender": true
     },
     {
       "name": "ShortChargeJewel",
