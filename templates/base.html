@@ -12,9 +12,9 @@
     <meta property="og:title" content="MHFU" />
   {%- endif %}
 
-  {% set favicon_name = page.extra["type"] | default(value="felyne") %}
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% set favicon_name = page.extra["type"] | default(value="felyne") %}
   <link rel="icon" type="image/png" href="/images/favicons/{{ favicon_name }}-favicon.png">
   <meta name="theme-color" content="#22281c">
 
@@ -22,6 +22,14 @@
 
   <link rel="stylesheet" href="/style.css">
   <script src="/vendor/javascript/turbo.js" type="module"></script>
+
+  {% if get_env(name="TERA_PRODUCTION", default=false) %}
+    <script
+      data-goatcounter="https://mhfu-blacksmith.goatcounter.com/count"
+      src="//gc.zgo.at/count.js"
+      async
+    ></script>
+  {% endif %}
 </head>
 <body {% block body__attr -%}{% endblock body__attr -%}>
   {% block content -%}{% endblock content -%}
@@ -109,7 +117,7 @@
   </script>
   {% block scripts -%}{% endblock scripts -%}
 
-  {% if get_env(name="TERA_DEBUG", default="") != "" -%}
+  {% if get_env(name="TERA_DEBUG", default=false) -%}
     {{ __tera_context }}
 
     <script>
