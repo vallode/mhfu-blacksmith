@@ -4,7 +4,7 @@
       "name": "Ancient Destroyer",
       "attack": "552",
       "element": null,
-      "sharpness": "7.4.7.9.2 7.4.7.9.4.2",
+      "sharpness": "7.4.7.9.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -27,13 +27,14 @@
       ],
       "improve-to": [
         "Genesis"
-      ]
+      ],
+      "sharpness_plus": "7.4.7.9.4.2"
     },
     {
       "name": "Genesis",
       "attack": "621",
       "element": null,
-      "sharpness": "18.4.3.10.3.2 18.4.3.10.3.5.2",
+      "sharpness": "18.4.3.10.3.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -50,13 +51,14 @@
         "LthrRathalosTail(5)",
         "Thunderbug Jelly(10)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "18.4.3.10.3.5.2"
     },
     {
       "name": "Feather Gunlance",
       "attack": "368",
       "element": "Sleep 100",
-      "sharpness": "7.4.8.6 7.4.8.9.2",
+      "sharpness": "7.4.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -79,13 +81,14 @@
       ],
       "improve-to": [
         "Feather Gunlance+"
-      ]
+      ],
+      "sharpness_plus": "7.4.8.9.2"
     },
     {
       "name": "Feather Gunlance+",
       "attack": "460",
       "element": "Sleep 120",
-      "sharpness": "6.4.8.10.2 6.4.8.10.4.2",
+      "sharpness": "6.4.8.10.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -109,13 +112,14 @@
       ],
       "improve-to": [
         "Hypno Cannon"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.10.4.2"
     },
     {
       "name": "Hypno Cannon",
       "attack": "506",
       "element": "Sleep 140",
-      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -131,13 +135,14 @@
         "Hypno Bezoar+ (1)",
         "Coma Sac (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.5.9.10.5.5.2"
     },
     {
       "name": "Snow Gunlance",
       "attack": "207",
       "element": "Ice 100",
-      "sharpness": "7.3.3 7.3.9",
+      "sharpness": "7.3.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -160,13 +165,14 @@
       ],
       "improve-to": [
         "Snow Gunlance Mk. II"
-      ]
+      ],
+      "sharpness_plus": "7.3.9"
     },
     {
       "name": "Snow Gunlance Mk. II",
       "attack": "253",
       "element": "Ice 120",
-      "sharpness": "5.5.8.1 5.5.8.6",
+      "sharpness": "5.5.8.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -186,13 +192,14 @@
         "Blizzard Gunlance",
         "Marine Fisher",
         "Scissor Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.5.8.6"
     },
     {
       "name": "Blizzard Gunlance",
       "attack": "437",
       "element": "Ice 150",
-      "sharpness": "5.5.9.12.3 5.5.9.12.4.3",
+      "sharpness": "5.5.9.12.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -208,13 +215,14 @@
         "Giaprey Hide+ (4)",
         "Inferno Sac (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.12.4.3"
     },
     {
       "name": "Marine Fisher",
       "attack": "299",
       "element": "Water 100",
-      "sharpness": "5.5.8.6 5.5.8.11",
+      "sharpness": "5.5.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -237,13 +245,14 @@
       ],
       "improve-to": [
         "Deep Fisher"
-      ]
+      ],
+      "sharpness_plus": "5.5.8.11"
     },
     {
       "name": "Deep Fisher",
       "attack": "368",
       "element": "Water 200",
-      "sharpness": "5.5.8.11 5.5.8.13.3",
+      "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -261,13 +270,14 @@
       ],
       "improve-to": [
         "Deep Ocean"
-      ]
+      ],
+      "sharpness_plus": "5.5.8.13.3"
     },
     {
       "name": "Deep Ocean",
       "attack": "391",
       "element": "Water 300",
-      "sharpness": "5.7.5.13 5.7.5.13.2",
+      "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -285,13 +295,14 @@
       ],
       "improve-to": [
         "Sea King Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.13.2"
     },
     {
       "name": "Sea King Gunlance",
       "attack": "437",
       "element": "Water 350",
-      "sharpness": "5.5.9.13.3 5.5.9.13.4.3",
+      "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -310,13 +321,14 @@
       "improve-to": [
         "Sea God Leviathan",
         "Volcano Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.5.9.13.4.3"
     },
     {
       "name": "Sea God Leviathan",
       "attack": "506",
       "element": "Water 370",
-      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -334,13 +346,14 @@
       ],
       "improve-to": [
         "Sea Abyss"
-      ]
+      ],
+      "sharpness_plus": "9.5.9.10.4.6.2"
     },
     {
       "name": "Sea Abyss",
       "attack": "575",
       "element": "Water 400",
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -357,13 +370,14 @@
         "LeatherNargaTail (2)",
         "Big Wyvern Stone (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Volcano Gunlance",
       "attack": "598",
       "element": "Fire 200",
-      "sharpness": "5.5.9.13.3 5.5.9.13.5.3",
+      "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -386,13 +400,14 @@
       ],
       "improve-to": [
         "Lavasioth Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.5.9.13.5.3"
     },
     {
       "name": "Lavasioth Gunlance",
       "attack": "644",
       "element": "Fire 240",
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -409,13 +424,14 @@
         "Firecell Stone (10)",
         "HvnlyBlkGraviShl (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Scissor Gunlance",
       "attack": "437",
       "element": null,
-      "sharpness": "5.7.5.12 5.7.5.16.2",
+      "sharpness": "5.7.5.12",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -441,13 +457,14 @@
       ],
       "improve-to": [
         "Scissor Cannon"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.16.2"
     },
     {
       "name": "Scissor Cannon",
       "attack": "460",
       "element": null,
-      "sharpness": "5.7.5.15.2 5.7.5.15.5.2",
+      "sharpness": "5.7.5.15.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -466,13 +483,14 @@
       "improve-to": [
         "Violet Cannon",
         "Shell Claw Lance"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.15.5.2"
     },
     {
       "name": "Violet Cannon",
       "attack": "529",
       "element": null,
-      "sharpness": "3.7.4.16.5 3.7.4.15.7.3",
+      "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -495,13 +513,14 @@
       ],
       "improve-to": [
         "Violet Buster"
-      ]
+      ],
+      "sharpness_plus": "3.7.4.15.7.3"
     },
     {
       "name": "Violet Buster",
       "attack": "621",
       "element": null,
-      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -517,13 +536,14 @@
         "HermitrShl (10)",
         "HvyLavasiothFang (4)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.7.5.16.5.5.2"
     },
     {
       "name": "Iron Gunlance",
       "attack": "207",
       "element": null,
-      "sharpness": "3.7.4.1 3.7.4.6",
+      "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -548,13 +568,14 @@
       ],
       "improve-to": [
         "Iron Gunlance+"
-      ]
+      ],
+      "sharpness_plus": "3.7.4.6"
     },
     {
       "name": "Iron Gunlance+",
       "attack": "253",
       "element": null,
-      "sharpness": "3.7.4.1 3.7.4.6",
+      "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -572,13 +593,14 @@
       ],
       "improve-to": [
         "Steel Gunlance"
-      ]
+      ],
+      "sharpness_plus": "3.7.4.6"
     },
     {
       "name": "Steel Gunlance",
       "attack": "276",
       "element": null,
-      "sharpness": "5.7.5.3 5.7.5.8",
+      "sharpness": "5.7.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -598,13 +620,14 @@
         "Special Ops Gunlance",
         "Luna's Howl",
         "White Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.8"
     },
     {
       "name": "Special Ops Gunlance",
       "attack": "322",
       "element": null,
-      "sharpness": "5.7.5.8 5.7.5.13",
+      "sharpness": "5.7.5.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -622,13 +645,14 @@
       ],
       "improve-to": [
         "Imperial Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.13"
     },
     {
       "name": "Imperial Gunlance",
       "attack": "391",
       "element": null,
-      "sharpness": "3.7.4.16 3.7.4.16.5",
+      "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -646,13 +670,14 @@
       ],
       "improve-to": [
         "Silver Rook"
-      ]
+      ],
+      "sharpness_plus": "3.7.4.16.5"
     },
     {
       "name": "Silver Rook",
       "attack": "414",
       "element": "Dragon 250",
-      "sharpness": "5.7.5.13 5.7.5.16.2",
+      "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -670,13 +695,14 @@
       ],
       "improve-to": [
         "Gun Chariot"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.16.2"
     },
     {
       "name": "Gun Chariot",
       "attack": "437",
       "element": "Dragon 320",
-      "sharpness": "5.7.5.16.2 5.7.5.16.5.2",
+      "sharpness": "5.7.5.16.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -695,13 +721,14 @@
       ],
       "improve-to": [
         "Gun Chariot+"
-      ]
+      ],
+      "sharpness_plus": "5.7.5.16.5.2"
     },
     {
       "name": "Gun Chariot+",
       "attack": "529",
       "element": "Dragon 350",
-      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -719,13 +746,14 @@
       ],
       "improve-to": [
         "World's End"
-      ]
+      ],
+      "sharpness_plus": "9.5.9.10.5.5.2"
     },
     {
       "name": "World's End",
       "attack": "575",
       "element": "Dragon 370",
-      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -742,13 +770,14 @@
         "HvnlyRathalosScl (1)",
         "HvnlyGraviosShl (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.7.5.16.5.5.2"
     },
     {
       "name": "Luna's Howl",
       "attack": "345",
       "element": "Fire 350",
-      "sharpness": "8.3.8.6 8.3.8.9.2",
+      "sharpness": "8.3.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -773,13 +802,14 @@
       ],
       "improve-to": [
         "Luna's Roar"
-      ]
+      ],
+      "sharpness_plus": "8.3.8.9.2"
     },
     {
       "name": "Luna's Roar",
       "attack": "368",
       "element": "Fire 400",
-      "sharpness": "9.5.9.10.2 9.5.9.10.5.2",
+      "sharpness": "9.5.9.10.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -799,13 +829,14 @@
       ],
       "improve-to": [
         "Luna's Flare"
-      ]
+      ],
+      "sharpness_plus": "9.5.9.10.5.2"
     },
     {
       "name": "Luna's Flare",
       "attack": "414",
       "element": "Fire 480",
-      "sharpness": "2.4.16.7.4 2.4.16.7.5.4",
+      "sharpness": "2.4.16.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -823,13 +854,14 @@
       ],
       "improve-to": [
         "Luna's Sun"
-      ]
+      ],
+      "sharpness_plus": "2.4.16.7.5.4"
     },
     {
       "name": "Luna's Sun",
       "attack": "575",
       "element": "Fire 500",
-      "sharpness": "2.4.16.7.5.4 2.4.16.7.5.6.5",
+      "sharpness": "2.4.16.7.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -846,13 +878,14 @@
         "ThckFireDrgnScl (8)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "2.4.16.7.5.6.5"
     },
     {
       "name": "White Gunlance",
       "attack": "368",
       "element": null,
-      "sharpness": "5.5.9.6 5.5.9.11",
+      "sharpness": "5.5.9.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -870,13 +903,14 @@
       ],
       "improve-to": [
         "White Cannon"
-      ]
+      ],
+      "sharpness_plus": "5.5.9.11"
     },
     {
       "name": "White Cannon",
       "attack": "414",
       "element": null,
-      "sharpness": "5.5.8.11 5.5.8.12.2",
+      "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -894,13 +928,14 @@
       ],
       "improve-to": [
         "Black Gunlance"
-      ]
+      ],
+      "sharpness_plus": "5.5.8.12.2"
     },
     {
       "name": "Black Gunlance",
       "attack": "483",
       "element": null,
-      "sharpness": "9.5.8.7 9.5.8.8.2",
+      "sharpness": "9.5.8.7",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -918,13 +953,14 @@
       ],
       "improve-to": [
         "Black Gore Cannon"
-      ]
+      ],
+      "sharpness_plus": "9.5.8.8.2"
     },
     {
       "name": "Black Gore Cannon",
       "attack": "529",
       "element": null,
-      "sharpness": "9.5.9.10.2 9.5.9.10.5.2",
+      "sharpness": "9.5.9.10.2",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "-10%",
@@ -942,13 +978,14 @@
       ],
       "improve-to": [
         "Black Gore Buster"
-      ]
+      ],
+      "sharpness_plus": "9.5.9.10.5.2"
     },
     {
       "name": "Black Gore Buster",
       "attack": "690",
       "element": null,
-      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -964,13 +1001,14 @@
         "HvnlyBlkGraviShl (1)",
         "Big Wyvern Stone (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.5.9.10.4.6.2"
     },
     {
       "name": "Heavy Bone Gunlance",
       "attack": "506",
       "element": null,
-      "sharpness": "11.9.4.9.3 11.9.4.9.4.3",
+      "sharpness": "11.9.4.9.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -996,13 +1034,14 @@
       ],
       "improve-to": [
         "Hard Bone Cannon"
-      ]
+      ],
+      "sharpness_plus": "11.9.4.9.4.3"
     },
     {
       "name": "Hard Bone Cannon",
       "attack": "598",
       "element": null,
-      "sharpness": "11.9.4.9.4.3 11.9.4.9.4.4.4",
+      "sharpness": "11.9.4.9.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1020,13 +1059,14 @@
         "Blazing Fire Sac (5)",
         "Emperor Cricket (10)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "11.9.4.9.4.4.4"
     },
     {
       "name": "Full Voltage",
       "attack": "460",
       "element": "Thunder 180",
-      "sharpness": "11.9.4.6 11.9.4.9.2",
+      "sharpness": "11.9.4.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1051,13 +1091,14 @@
       ],
       "improve-to": [
         "Full Generator"
-      ]
+      ],
+      "sharpness_plus": "11.9.4.9.2"
     },
     {
       "name": "Full Generator",
       "attack": "529",
       "element": "Thunder 220",
-      "sharpness": "11.9.4.9.2 11.9.4.9.4.3",
+      "sharpness": "11.9.4.9.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1075,13 +1116,14 @@
       ],
       "improve-to": [
         "High Volt Gunlance"
-      ]
+      ],
+      "sharpness_plus": "11.9.4.9.4.3"
     },
     {
       "name": "High Volt Gunlance",
       "attack": "644",
       "element": "Thunder 260",
-      "sharpness": "11.9.4.9.4.2 11.9.4.9.4.4.4",
+      "sharpness": "11.9.4.9.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1098,13 +1140,14 @@
         "SpecRubberyHide+(5)",
         "LthrKirinThndrTl(2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "11.9.4.9.4.4.4"
     },
     {
       "name": "Bone Gunlance",
       "attack": "161",
       "element": null,
-      "sharpness": "2.4.7 2.4.10",
+      "sharpness": "2.4.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1121,13 +1164,14 @@
       "improve-mats": null,
       "improve-to": [
         "Great Bone Gunlance"
-      ]
+      ],
+      "sharpness_plus": "2.4.10"
     },
     {
       "name": "Great Bone Gunlance",
       "attack": "230",
       "element": null,
-      "sharpness": "2.4.12 2.4.16.1",
+      "sharpness": "2.4.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1145,13 +1189,14 @@
       "improve-to": [
         "Wyvern Bone Gunlance",
         "Average Hitter"
-      ]
+      ],
+      "sharpness_plus": "2.4.16.1"
     },
     {
       "name": "Wyvern Bone Gunlance",
       "attack": "299",
       "element": null,
-      "sharpness": "2.4.16.1 2.4.16.6",
+      "sharpness": "2.4.16.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1169,13 +1214,14 @@
       ],
       "improve-to": [
         "Hellsting"
-      ]
+      ],
+      "sharpness_plus": "2.4.16.6"
     },
     {
       "name": "Hellsting",
       "attack": "322",
       "element": "Ice 250",
-      "sharpness": "15.4.3.5 15.4.3.9.1",
+      "sharpness": "15.4.3.5",
       "affinity": "10%",
       "slots": "O--",
       "bonus": "10%",
@@ -1198,13 +1244,14 @@
       ],
       "improve-to": [
         "Hellsting+"
-      ]
+      ],
+      "sharpness_plus": "15.4.3.9.1"
     },
     {
       "name": "Hellsting+",
       "attack": "345",
       "element": "Ice 270",
-      "sharpness": "2.4.16.5 2.4.16.7.3",
+      "sharpness": "2.4.16.5",
       "affinity": "10%",
       "slots": "OO-",
       "bonus": "10%",
@@ -1222,13 +1269,14 @@
       ],
       "improve-to": [
         "Hellstinger"
-      ]
+      ],
+      "sharpness_plus": "2.4.16.7.3"
     },
     {
       "name": "Hellstinger",
       "attack": "414",
       "element": "Ice 320",
-      "sharpness": "2.4.16.7.5 2.4.16.7.5.5",
+      "sharpness": "2.4.16.7.5",
       "affinity": "20%",
       "slots": "OO-",
       "bonus": "20%",
@@ -1247,13 +1295,14 @@
       "improve-to": [
         "Demonic Blizzard",
         "Desert Slingshot"
-      ]
+      ],
+      "sharpness_plus": "2.4.16.7.5.5"
     },
     {
       "name": "Demonic Blizzard",
       "attack": "575",
       "element": "Ice 340",
-      "sharpness": "2.4.16.7.5.5 2.4.16.7.5.6.5",
+      "sharpness": "2.4.16.7.5.5",
       "affinity": "25%",
       "slots": "OO-",
       "bonus": "25%",
@@ -1264,14 +1313,15 @@
       "improve-cost": "90000",
       "improve-from": "Hellstinger",
       "create-mats": null,
-      "improve-mats": [],
-      "improve-to": null
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "2.4.16.7.5.6.5"
     },
     {
       "name": "Desert Slingshot",
       "attack": "644",
       "element": null,
-      "sharpness": "16.5.4.9.4.2 16.5.4.9.4.5.2",
+      "sharpness": "16.5.4.9.4.2",
       "affinity": "-20%",
       "slots": "---",
       "bonus": "-20%",
@@ -1289,13 +1339,14 @@
       ],
       "improve-to": [
         "Desert Slingshoter"
-      ]
+      ],
+      "sharpness_plus": "16.5.4.9.4.5.2"
     },
     {
       "name": "Desert Slingshoter",
       "attack": "736",
       "element": null,
-      "sharpness": "11.8.5.8.5.3 11.8.5.8.5.4.4",
+      "sharpness": "11.8.5.8.5.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": "-20%",
@@ -1312,13 +1363,14 @@
         "Brwn Blngnga Pelt (10)",
         "Rajang Strng Claw (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "11.8.5.8.5.4.4"
     },
     {
       "name": "Average Hitter",
       "attack": "299",
       "element": "Poison 180",
-      "sharpness": "7.4.8 7.4.13",
+      "sharpness": "7.4.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1341,13 +1393,14 @@
       ],
       "improve-to": [
         "Grand Slam"
-      ]
+      ],
+      "sharpness_plus": "7.4.13"
     },
     {
       "name": "Grand Slam",
       "attack": "391",
       "element": "Poison 240",
-      "sharpness": "7.4.8.2 7.4.8.6",
+      "sharpness": "7.4.8.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1365,13 +1418,14 @@
       ],
       "improve-to": [
         "Hard Hitter"
-      ]
+      ],
+      "sharpness_plus": "7.4.8.6"
     },
     {
       "name": "Hard Hitter",
       "attack": "437",
       "element": "Poison 290",
-      "sharpness": "6.3.15.3 6.3.15.5.3",
+      "sharpness": "6.3.15.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1389,13 +1443,14 @@
       ],
       "improve-to": [
         "Big Slugger"
-      ]
+      ],
+      "sharpness_plus": "6.3.15.5.3"
     },
     {
       "name": "Big Slugger",
       "attack": "460",
       "element": "Poison 320",
-      "sharpness": "4.4.9.11 4.4.9.12.2",
+      "sharpness": "4.4.9.11",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1414,13 +1469,14 @@
       "improve-to": [
         "Triple Crown",
         "Venomous Cologne"
-      ]
+      ],
+      "sharpness_plus": "4.4.9.12.2"
     },
     {
       "name": "Triple Crown",
       "attack": "506",
       "element": "Poison 400",
-      "sharpness": "4.4.9.12.3 4.4.9.12.4.2",
+      "sharpness": "4.4.9.12.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1437,13 +1493,14 @@
         "DeadlyPoisonSac (5)",
         "Purecrystal (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "4.4.9.12.4.2"
     },
     {
       "name": "Venomous Cologne",
       "attack": "483",
       "element": "Poison 160",
-      "sharpness": "8.4.7.10.2 8.4.7.10.3.2",
+      "sharpness": "8.4.7.10.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1466,13 +1523,14 @@
       ],
       "improve-to": [
         "Venomous Attar"
-      ]
+      ],
+      "sharpness_plus": "8.4.7.10.3.2"
     },
     {
       "name": "Venomous Attar",
       "attack": "575",
       "element": "Poison 200",
-      "sharpness": "18.5.3.9.3.2 18.5.3.9.3.5.2",
+      "sharpness": "18.5.3.9.3.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1491,13 +1549,14 @@
       ],
       "improve-to": [
         "Venomous Perfume"
-      ]
+      ],
+      "sharpness_plus": "18.5.3.9.3.5.2"
     },
     {
       "name": "Venomous Perfume",
       "attack": "644",
       "element": "Poison 240",
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1514,13 +1573,14 @@
         "Purecrystal (3)",
         "Chameleos Jewel (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Black Smoke Gunlance",
       "attack": "345",
       "element": "Dragon 250",
-      "sharpness": "5.5.9.7 5.5.9.10",
+      "sharpness": "5.5.9.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1538,13 +1598,14 @@
       "improve-mats": null,
       "improve-to": [
         "BlackDragonGunlance"
-      ]
+      ],
+      "sharpness_plus": "5.5.9.10"
     },
     {
       "name": "BlackDragonGunlance",
       "attack": "460",
       "element": "Dragon 310",
-      "sharpness": "11.7.4.7.3 11.7.4.7.5.2",
+      "sharpness": "11.7.4.7.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": "-20%",
@@ -1563,13 +1624,14 @@
       ],
       "improve-to": [
         "TrueBlkDrgnGunlance"
-      ]
+      ],
+      "sharpness_plus": "11.7.4.7.5.2"
     },
     {
       "name": "TrueBlkDrgnGunlance",
       "attack": "621",
       "element": "Dragon 380",
-      "sharpness": "18.5.3.9.3.2 18.5.3.9.3.5.2",
+      "sharpness": "18.5.3.9.3.2",
       "affinity": "-20%",
       "slots": "---",
       "bonus": "-20%",
@@ -1586,13 +1648,14 @@
         "Hvy Fatalis Shl (4)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "18.5.3.9.3.5.2"
     },
     {
       "name": "Dragonwood Gunlance",
       "attack": "299",
       "element": "Paralysis 180",
-      "sharpness": "6.3.13.5 6.3.13.6.3",
+      "sharpness": "6.3.13.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1611,13 +1674,14 @@
       "improve-mats": null,
       "improve-to": [
         "Gld Dragonwd GLance"
-      ]
+      ],
+      "sharpness_plus": "6.3.13.6.3"
     },
     {
       "name": "Gld Dragonwd GLance",
       "attack": "368",
       "element": "Paralysis 230",
-      "sharpness": "6.3.13.5.3 6.3.13.5.3.4",
+      "sharpness": "6.3.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1635,13 +1699,14 @@
       ],
       "improve-to": [
         "AncientDrgnwoodLance"
-      ]
+      ],
+      "sharpness_plus": "6.3.13.5.3.4"
     },
     {
       "name": "AncientDrgnwoodLance",
       "attack": "460",
       "element": "Paralysis 250",
-      "sharpness": "15.5.4.9.3.2 15.5.4.9.3.6.3",
+      "sharpness": "15.5.4.9.3.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1664,13 +1729,14 @@
       ],
       "improve-to": [
         "AncientDrgnwoodLanc+"
-      ]
+      ],
+      "sharpness_plus": "15.5.4.9.3.6.3"
     },
     {
       "name": "AncientDrgnwoodLanc+",
       "attack": "529",
       "element": "Paralysis 270",
-      "sharpness": "9.5.9.10.5.2 9.5.9.10.5.5.2",
+      "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1687,13 +1753,14 @@
         "ThckFireDrgnScl (3)",
         "Commendation S (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.5.9.10.5.5.2"
     },
     {
       "name": "Pop Corn",
       "attack": "414",
       "element": null,
-      "sharpness": "3.7.4.16 3.7.4.16.5",
+      "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1712,13 +1779,14 @@
       "improve-mats": null,
       "improve-to": [
         "Large Pop Corn"
-      ]
+      ],
+      "sharpness_plus": "3.7.4.16.5"
     },
     {
       "name": "Large Pop Corn",
       "attack": "598",
       "element": null,
-      "sharpness": "3.7.4.16.5 3.7.4.16.7.3",
+      "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1735,13 +1803,14 @@
         "Ancient Dragonwood (1)",
         "Eltalite Ore (10)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.7.4.16.7.3"
     },
     {
       "name": "Rex Blast",
       "attack": "391",
       "element": null,
-      "sharpness": "13.4.3.9.1 13.4.3.9.3.2",
+      "sharpness": "13.4.3.9.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1761,13 +1830,14 @@
       "improve-to": [
         "Tigrex Gunlance",
         "Hidden Gunlance"
-      ]
+      ],
+      "sharpness_plus": "13.4.3.9.3.2"
     },
     {
       "name": "Tigrex Gunlance",
       "attack": "506",
       "element": null,
-      "sharpness": "9.5.9.10.4.2 9.5.9.10.4.6.2",
+      "sharpness": "9.5.9.10.4.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1785,13 +1855,14 @@
       ],
       "improve-to": [
         "GreatTigrexGunlance"
-      ]
+      ],
+      "sharpness_plus": "9.5.9.10.4.6.2"
     },
     {
       "name": "GreatTigrexGunlance",
       "attack": "667",
       "element": null,
-      "sharpness": "9.5.9.10.4.6.2 9.5.9.10.4.6.2",
+      "sharpness": "9.5.9.10.4.6.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1807,13 +1878,14 @@
         "HardTigrexClaw (5)",
         "HvnlyTigrexScale (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.5.9.10.4.6.2"
     },
     {
       "name": "Hidden Gunlance",
       "attack": "437",
       "element": null,
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "50%",
       "slots": "O--",
       "bonus": "50%",
@@ -1836,13 +1908,14 @@
       ],
       "improve-to": [
         "WanningMoonDarklance"
-      ]
+      ],
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "WanningMoonDarklance",
       "attack": "552",
       "element": null,
-      "sharpness": "5.5.9.13.5.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.5.3",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": "50%",
@@ -1864,13 +1937,14 @@
         "Narga Brain Stem (2)",
         "Hvy Monster Bone (5)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Akantor Gunlance",
       "attack": "575",
       "element": null,
-      "sharpness": "4.7.4.2 4.7.4.7",
+      "sharpness": "4.7.4.2",
       "affinity": "40%",
       "slots": "---",
       "bonus": "40%",
@@ -1889,13 +1963,14 @@
       "improve-mats": null,
       "improve-to": [
         "AkantorNoirGunlance"
-      ]
+      ],
+      "sharpness_plus": "4.7.4.7"
     },
     {
       "name": "AkantorNoirGunlance",
       "attack": "759",
       "element": null,
-      "sharpness": "4.7.4.8 4.7.4.14",
+      "sharpness": "4.7.4.8",
       "affinity": "40%",
       "slots": "O--",
       "bonus": "40%",
@@ -1912,13 +1987,14 @@
         "Akantor Fang (4)",
         "Akantor Shell (7)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "4.7.4.14"
     },
     {
       "name": "UkanlosBlazeGunlance",
       "attack": "805",
       "element": "Ice 120",
-      "sharpness": "16.5.4.9.1 16.5.4.9.4.2",
+      "sharpness": "16.5.4.9.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1935,13 +2011,14 @@
         "Ukanlos Stone (1)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "16.5.4.9.4.2"
     },
     {
       "name": "Iron Gunlance G",
       "attack": "644",
       "element": null,
-      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1958,13 +2035,14 @@
         "Blazing Fire Sac (5)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.7.5.16.5.5.2"
     },
     {
       "name": "WyvernBone Gunlance G",
       "attack": "644",
       "element": null,
-      "sharpness": "3.4.17.7.5.4 3.4.17.7.5.5.4",
+      "sharpness": "3.4.17.7.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1981,13 +2059,14 @@
         "Burst Arrowana (10)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.4.17.7.5.5.4"
     },
     {
       "name": "Blizzard Gunlance G",
       "attack": "598",
       "element": "Ice 150",
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -2004,13 +2083,14 @@
         "Blazing Fire Sac (8)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Imperial Gunlance G",
       "attack": "621",
       "element": null,
-      "sharpness": "3.7.4.16.7.3 3.7.4.16.7.5.3",
+      "sharpness": "3.7.4.16.7.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -2027,13 +2107,14 @@
         "Purecrystal (2)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.7.4.16.7.5.3"
     },
     {
       "name": "Scissor Cannon G",
       "attack": "598",
       "element": null,
-      "sharpness": "5.7.5.16.5.2 5.7.5.16.5.5.2",
+      "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -2050,13 +2131,14 @@
         "Inferno Sac (10)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.7.5.16.5.5.2"
     },
     {
       "name": "Grand Slam G",
       "attack": "621",
       "element": "Poison 240",
-      "sharpness": "7.4.15.6.3 7.4.15.6.4.4",
+      "sharpness": "7.4.15.6.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -2073,13 +2155,14 @@
         "Deadly Poison Sac (5)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "7.4.15.6.4.4"
     },
     {
       "name": "Marine Fisher G",
       "attack": "598",
       "element": "Water 200",
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -2096,13 +2179,14 @@
         "Cephalos Fin+ (5)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "White Cannon G",
       "attack": "621",
       "element": null,
-      "sharpness": "5.5.9.13.5.3 5.5.9.13.5.5.3",
+      "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -2119,13 +2203,14 @@
         "Flame Sac (20)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.5.9.13.5.5.3"
     },
     {
       "name": "Gld Dragonwd GLance G",
       "attack": "506",
       "element": "Paralysis 230",
-      "sharpness": "7.4.15.6.4.4 7.4.15.6.4.6.3",
+      "sharpness": "7.4.15.6.4.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -2142,7 +2227,8 @@
         "ThckFireDrgnScl (2)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "7.4.15.6.4.6.3"
     }
   ]
 }

@@ -4,7 +4,7 @@
       "name": "Lava Alphorn",
       "attack": "1248",
       "element": "Fire 270",
-      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "sharpness": "5.4.14.10.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -27,13 +27,14 @@
       ],
       "improve-to": [
         "Volcano Alphorn"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.4.3"
     },
     {
       "name": "Volcano Alphorn",
       "attack": "1404",
       "element": "Fire 300",
-      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.3",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "-10%",
@@ -50,13 +51,14 @@
         "PhantomButterfly (3)",
         "HvyGraviosShell (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Bronze Bell",
       "attack": "936",
       "element": null,
-      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -79,13 +81,14 @@
       ],
       "improve-to": [
         "Gaoren Bell"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.7.4"
     },
     {
       "name": "Gaoren Bell",
       "attack": "1092",
       "element": null,
-      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -103,13 +106,14 @@
       ],
       "improve-to": [
         "Gaoren Zhong"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.7.5.4"
     },
     {
       "name": "Gaoren Zhong",
       "attack": "1560",
       "element": null,
-      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -126,13 +130,14 @@
         "HvyGaorenShell (6)",
         "HvnlyGaorenShell (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
       "name": "Sakura Recorder",
       "attack": "884",
       "element": "Dragon 290",
-      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -155,13 +160,14 @@
       ],
       "improve-to": [
         "Sakura Recorder+"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.1"
     },
     {
       "name": "Sakura Recorder+",
       "attack": "936",
       "element": "Dragon 340",
-      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -179,13 +185,14 @@
       ],
       "improve-to": [
         "Gold Recorder"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12.5"
     },
     {
       "name": "Gold Recorder",
       "attack": "988",
       "element": "Dragon 380",
-      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -203,13 +210,14 @@
       ],
       "improve-to": [
         "Gold Recorder+"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.4.2"
     },
     {
       "name": "Gold Recorder+",
       "attack": "1196",
       "element": "Dragon 400",
-      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -228,13 +236,14 @@
       ],
       "improve-to": [
         "Lunar Recorder"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12.6.4"
     },
     {
       "name": "Lunar Recorder",
       "attack": "1300",
       "element": "Dragon 420",
-      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -250,13 +259,14 @@
         "HvyGldRathianShl (5)",
         "HvnlyRathinScl (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
       "name": "Metal Bagpipe",
       "attack": "676",
       "element": null,
-      "sharpness": "3.2.15 3.2.17.3",
+      "sharpness": "3.2.15",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -279,13 +289,14 @@
       ],
       "improve-to": [
         "Great Bagpipe"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.3"
     },
     {
       "name": "Great Bagpipe",
       "attack": "832",
       "element": null,
-      "sharpness": "3.2.17.3 3.2.17.8",
+      "sharpness": "3.2.17.3",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -303,13 +314,14 @@
       ],
       "improve-to": [
         "Heavy Bagpipe"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.8"
     },
     {
       "name": "Heavy Bagpipe",
       "attack": "1040",
       "element": null,
-      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "sharpness": "3.2.17.8",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -327,13 +339,14 @@
       ],
       "improve-to": [
         "Heavy Bagpipe+"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.1"
     },
     {
       "name": "Heavy Bagpipe+",
       "attack": "1144",
       "element": null,
-      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "sharpness": "3.2.17.12.1",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -351,13 +364,14 @@
       ],
       "improve-to": [
         "Master Bagpipe"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.4.2"
     },
     {
       "name": "Master Bagpipe",
       "attack": "1404",
       "element": null,
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -375,13 +389,14 @@
       ],
       "improve-to": [
         "Sforzando"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Sforzando",
       "attack": "1508",
       "element": null,
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -397,13 +412,14 @@
         "StrBasariosWing (1)",
         "HvyGraviosShell (4)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Basarios Rock",
       "attack": "676",
       "element": "Fire 250",
-      "sharpness": "6.4.8.7 6.4.8.12",
+      "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -426,13 +442,14 @@
       ],
       "improve-to": [
         "Basarios Rock Mk.II"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12"
     },
     {
       "name": "Basarios Rock Mk.II",
       "attack": "832",
       "element": "Fire 280",
-      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -450,13 +467,14 @@
       ],
       "improve-to": [
         "Volcanic Rock"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12.5"
     },
     {
       "name": "Volcanic Rock",
       "attack": "988",
       "element": "Fire 320",
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -474,13 +492,14 @@
       ],
       "improve-to": [
         "Volcanic Gig"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Volcanic Gig",
       "attack": "1300",
       "element": "Fire 400",
-      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -497,13 +516,14 @@
         "Blazing Fire Sac (8)",
         "Machalite Ore (50)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Feather Whistle",
       "attack": "780",
       "element": "Sleep 120",
-      "sharpness": "3.2.17.8 3.2.17.12.1",
+      "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -526,13 +546,14 @@
       ],
       "improve-to": [
         "Hypno Whistle"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.1"
     },
     {
       "name": "Hypno Whistle",
       "attack": "884",
       "element": "Sleep 150",
-      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -556,13 +577,14 @@
       ],
       "improve-to": [
         "Hypno Slide Whistle"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.4.2"
     },
     {
       "name": "Hypno Slide Whistle",
       "attack": "1040",
       "element": "Sleep 180",
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -573,14 +595,15 @@
       "improve-cost": "105000",
       "improve-from": "Hypno Whistle",
       "create-mats": null,
-      "improve-mats": [],
-      "improve-to": null
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Wolf Shamisen",
       "attack": "1040",
       "element": "Poison 150",
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -604,13 +627,14 @@
       ],
       "improve-to": [
         "Crow Shamisen"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Crow Shamisen",
       "attack": "1404",
       "element": "Poison 180",
-      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -627,13 +651,14 @@
         "SilverGarugaPelt (2)",
         "ThickGarugaScale (8)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Khezu Horn",
       "attack": "624",
       "element": "Thunder 200",
-      "sharpness": "9.2.13.1 9.2.13.6",
+      "sharpness": "9.2.13.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -656,13 +681,14 @@
       ],
       "improve-to": [
         "Khezu Horn+"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.6"
     },
     {
       "name": "Khezu Horn+",
       "attack": "780",
       "element": "Thunder 290",
-      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -682,13 +708,14 @@
         "Khezu Flute",
         "Blood Horn",
         "Purse Bop"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.7.4"
     },
     {
       "name": "Khezu Flute",
       "attack": "884",
       "element": "Thunder 480",
-      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -704,13 +731,14 @@
         "Pale Khezu Steak (1)",
         "Thunder Sac (5)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.4"
     },
     {
       "name": "Blood Horn",
       "attack": "936",
       "element": "Thunder 320",
-      "sharpness": "14.4.6.6 14.4.6.7.4",
+      "sharpness": "14.4.6.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -728,13 +756,14 @@
       ],
       "improve-to": [
         "Blood Flute"
-      ]
+      ],
+      "sharpness_plus": "14.4.6.7.4"
     },
     {
       "name": "Blood Flute",
       "attack": "988",
       "element": "Thunder 380",
-      "sharpness": "14.4.6.7.4 14.4.6.7.4.5",
+      "sharpness": "14.4.6.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -752,13 +781,14 @@
       ],
       "improve-to": [
         "Blood Flute+"
-      ]
+      ],
+      "sharpness_plus": "14.4.6.7.4.5"
     },
     {
       "name": "Blood Flute+",
       "attack": "1092",
       "element": "Thunder 400",
-      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -777,13 +807,14 @@
       ],
       "improve-to": [
         "Brute Flute"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Brute Flute",
       "attack": "1300",
       "element": "Thunder 420",
-      "sharpness": "14.4.6.7.4.5 14.4.6.7.4.6.4",
+      "sharpness": "14.4.6.7.4.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -799,13 +830,14 @@
         "KhezuSpecialCut (1)",
         "BigEDragonBone (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "14.4.6.7.4.6.4"
     },
     {
       "name": "Shell Castanet",
       "attack": "1040",
       "element": "Water 220",
-      "sharpness": "10.1.3.17.4 10.1.3.17.6.3",
+      "sharpness": "10.1.3.17.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -829,13 +861,14 @@
       "improve-to": [
         "Shell Castanet+",
         "Crabby Castanet"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.17.6.3"
     },
     {
       "name": "Shell Castanet+",
       "attack": "1144",
       "element": "Water 240",
-      "sharpness": "10.1.3.17.6.3 10.1.3.17.6.5.3",
+      "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -854,13 +887,14 @@
       ],
       "improve-to": [
         "Bi-Colored Castanet"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
       "name": "Bi-Colored Castanet",
       "attack": "1404",
       "element": "Water 260",
-      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -877,13 +911,14 @@
         "HrdCeanataurClaw (2)",
         "Giant Blk Pearl (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
       "name": "Crabby Castanet",
       "attack": "1300",
       "element": null,
-      "sharpness": "5.4.14.10.4.6.2 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.6.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -901,13 +936,14 @@
       ],
       "improve-to": [
         "Klick-Klack"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Klick-Klack",
       "attack": "1352",
       "element": null,
-      "sharpness": "9.2.13.7.5.6.3 9.2.13.7.5.6.3",
+      "sharpness": "9.2.13.7.5.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -924,13 +960,14 @@
         "Hard Gaoren Claw (2)",
         "HvnlyGaorenShell (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
       "name": "Sonic Glass",
       "attack": "624",
       "element": null,
-      "sharpness": "10.1.3.11 10.1.3.16",
+      "sharpness": "10.1.3.11",
       "affinity": "5%",
       "slots": "---",
       "bonus": "5%",
@@ -953,13 +990,14 @@
       ],
       "improve-to": [
         "Sonic Glass+"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.16"
     },
     {
       "name": "Sonic Glass+",
       "attack": "728",
       "element": null,
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "10%",
       "slots": "---",
       "bonus": "10%",
@@ -977,13 +1015,14 @@
       ],
       "improve-to": [
         "Glass Queen"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Glass Queen",
       "attack": "832",
       "element": null,
-      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": "15%",
@@ -1001,13 +1040,14 @@
       ],
       "improve-to": [
         "Glass Royale"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Glass Royale",
       "attack": "1092",
       "element": "Ice 250",
-      "sharpness": "8.7.7.11.5.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1030,13 +1070,14 @@
       ],
       "improve-to": [
         "Queen's Flute"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Queen's Flute",
       "attack": "1248",
       "element": "Ice 300",
-      "sharpness": "5.4.14.10.4.6.2 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.6.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1053,13 +1094,14 @@
         "Monster Essence (10)",
         "PhantomButterfly (10)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Giaprey Balloon",
       "attack": "416",
       "element": "Ice 100",
-      "sharpness": "3.2.10 3.2.15",
+      "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1082,13 +1124,14 @@
       ],
       "improve-to": [
         "Giaprey Balloon+"
-      ]
+      ],
+      "sharpness_plus": "3.2.15"
     },
     {
       "name": "Giaprey Balloon+",
       "attack": "520",
       "element": "Ice 150",
-      "sharpness": "3.2.15 3.2.17.3",
+      "sharpness": "3.2.15",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1107,13 +1150,14 @@
       "improve-to": [
         "Giadrome Balloon",
         "Velociprey Balloon"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.3"
     },
     {
       "name": "Giadrome Balloon",
       "attack": "1040",
       "element": "Ice 180",
-      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1129,13 +1173,14 @@
         "Giadrome Claw+ (6)",
         "Giaprey Scale+ (5)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.3"
     },
     {
       "name": "Velociprey Balloon",
       "attack": "988",
       "element": null,
-      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1154,13 +1199,14 @@
       ],
       "improve-to": [
         "Velociprey Balloon+"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.2"
     },
     {
       "name": "Velociprey Balloon+",
       "attack": "1092",
       "element": null,
-      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1179,13 +1225,14 @@
       ],
       "improve-to": [
         "Velocidrome Balloon"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.17.4"
     },
     {
       "name": "Velocidrome Balloon",
       "attack": "1144",
       "element": null,
-      "sharpness": "5.4.14.10.2 5.4.14.10.4.3",
+      "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1204,13 +1251,14 @@
       ],
       "improve-to": [
         "Velocidrome Balloon+"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.4.3"
     },
     {
       "name": "Velocidrome Balloon+",
       "attack": "1404",
       "element": null,
-      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -1227,13 +1275,14 @@
         "PhantomButterfly (5)",
         "BigEDragonBone (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Ivory Horn",
       "attack": "364",
       "element": null,
-      "sharpness": "9.2.4 9.2.9",
+      "sharpness": "9.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1251,13 +1300,14 @@
       "improve-to": [
         "Bone Horn",
         "War Drum"
-      ]
+      ],
+      "sharpness_plus": "9.2.9"
     },
     {
       "name": "Bone Horn",
       "attack": "572",
       "element": null,
-      "sharpness": "10.1.3.1 10.1.3.6",
+      "sharpness": "10.1.3.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1278,13 +1328,14 @@
       "improve-to": [
         "Bone Horn+",
         "Blessed Ocarina"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.6"
     },
     {
       "name": "Bone Horn+",
       "attack": "884",
       "element": null,
-      "sharpness": "10.1.3.6 10.1.3.11",
+      "sharpness": "10.1.3.6",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1302,13 +1353,14 @@
       ],
       "improve-to": [
         "Hunter's Horn"
-      ]
+      ],
+      "sharpness_plus": "10.1.3.11"
     },
     {
       "name": "Hunter's Horn",
       "attack": "1040",
       "element": null,
-      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1326,13 +1378,14 @@
       ],
       "improve-to": [
         "Hunter's Horn+"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.2"
     },
     {
       "name": "Hunter's Horn+",
       "attack": "1196",
       "element": null,
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1351,13 +1404,14 @@
       ],
       "improve-to": [
         "Native's Horn"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Native's Horn",
       "attack": "1404",
       "element": null,
-      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1374,13 +1428,14 @@
         "Massive Bone (5)",
         "Commendation G (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Blessed Ocarina",
       "attack": "832",
       "element": "Poison 290",
-      "sharpness": "14.4.6.1 14.4.6.6",
+      "sharpness": "14.4.6.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1403,13 +1458,14 @@
       ],
       "improve-to": [
         "Cursed Ocarina"
-      ]
+      ],
+      "sharpness_plus": "14.4.6.6"
     },
     {
       "name": "Cursed Ocarina",
       "attack": "936",
       "element": "Poison 410",
-      "sharpness": "14.4.6.7.4 14.4.6.7.4.5",
+      "sharpness": "14.4.6.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1428,13 +1484,14 @@
       ],
       "improve-to": [
         "Genie's Ocarina"
-      ]
+      ],
+      "sharpness_plus": "14.4.6.7.4.5"
     },
     {
       "name": "Genie's Ocarina",
       "attack": "1300",
       "element": "Poison 440",
-      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1451,13 +1508,14 @@
         "HrdChameleosHorn (2)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
       "name": "War Drum",
       "attack": "624",
       "element": null,
-      "sharpness": "5.4.11 5.4.14.2",
+      "sharpness": "5.4.11",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1479,13 +1537,14 @@
       ],
       "improve-to": [
         "War Drum+"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.2"
     },
     {
       "name": "War Drum+",
       "attack": "936",
       "element": null,
-      "sharpness": "5.4.14.7 5.4.14.10.2",
+      "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1503,13 +1562,14 @@
       ],
       "improve-to": [
         "War Bongo"
-      ]
+      ],
+      "sharpness_plus": "5.4.14.10.2"
     },
     {
       "name": "War Bongo",
       "attack": "1092",
       "element": null,
-      "sharpness": "8.7.7.8 8.7.7.11.2",
+      "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1532,13 +1592,14 @@
       ],
       "improve-to": [
         "War Conga"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.2"
     },
     {
       "name": "War Conga",
       "attack": "1196",
       "element": null,
-      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1558,13 +1619,14 @@
       "improve-to": [
         "Conga Conga",
         "Jungle Bongo"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12.5"
     },
     {
       "name": "Conga Conga",
       "attack": "1456",
       "element": null,
-      "sharpness": "10.1.3.16 10.1.3.17.4",
+      "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1581,13 +1643,14 @@
         "Congalala Claw+ (8)",
         "Massive Bone (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "10.1.3.17.4"
     },
     {
       "name": "Jungle Bongo",
       "attack": "1248",
       "element": null,
-      "sharpness": "8.7.7.11.2 8.7.7.11.5.2",
+      "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1610,13 +1673,14 @@
       ],
       "improve-to": [
         "Jungle Conga"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.11.5.2"
     },
     {
       "name": "Jungle Conga",
       "attack": "1456",
       "element": null,
-      "sharpness": "8.7.7.11.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1633,13 +1697,14 @@
         "CongaClaw (4)",
         "Vibrant Comb (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Black Lute",
       "attack": "780",
       "element": "Dragon 100",
-      "sharpness": "8.7.7.3 8.7.7.8",
+      "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1658,13 +1723,14 @@
       "improve-to": [
         "Fatalis Menace",
         "Ancient Fatalis Lied"
-      ]
+      ],
+      "sharpness_plus": "8.7.7.8"
     },
     {
       "name": "Fatalis Menace",
       "attack": "1092",
       "element": "Dragon 260",
-      "sharpness": "3.2.17.12.1 3.2.17.12.4.2",
+      "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1683,13 +1749,14 @@
       ],
       "improve-to": [
         "Fatalis Menace Lute"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.4.2"
     },
     {
       "name": "Fatalis Menace Lute",
       "attack": "1456",
       "element": "Dragon 320",
-      "sharpness": "10.1.3.17.4 10.1.3.17.6.3",
+      "sharpness": "10.1.3.17.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -1705,13 +1772,14 @@
         "ThckFatalisScale (4)",
         "BigEDragonJewel (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "10.1.3.17.6.3"
     },
     {
       "name": "Ancient Fatalis Lied",
       "attack": "1040",
       "element": "Dragon 330",
-      "sharpness": "9.2.13.7.4 9.2.13.7.5.4",
+      "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1730,13 +1798,14 @@
       ],
       "improve-to": [
         "Ancient Fatalis Lute"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.7.5.4"
     },
     {
       "name": "Ancient Fatalis Lute",
       "attack": "1352",
       "element": "Dragon 380",
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1753,13 +1822,14 @@
         "ThckWhtFatlisScl (2)",
         "BigEDragonJewel (3)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Dragonwood Horn",
       "attack": "624",
       "element": "Paralysis 140",
-      "sharpness": "19.2.5.4 19.2.5.7.2",
+      "sharpness": "19.2.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -1778,13 +1848,14 @@
       "improve-mats": null,
       "improve-to": [
         "Spirit Dragonwd Horn"
-      ]
+      ],
+      "sharpness_plus": "19.2.5.7.2"
     },
     {
       "name": "Spirit Dragonwd Horn",
       "attack": "780",
       "element": "Paralysis 220",
-      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "sharpness": "19.2.5.7.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1802,13 +1873,14 @@
       ],
       "improve-to": [
         "AncientDrgnwoodFlute"
-      ]
+      ],
+      "sharpness_plus": "19.2.5.7.4.3"
     },
     {
       "name": "AncientDrgnwoodFlute",
       "attack": "936",
       "element": "Paralysis 240",
-      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1831,13 +1903,14 @@
       ],
       "improve-to": [
         "DivineAncDrgnwdFlute"
-      ]
+      ],
+      "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
       "name": "DivineAncDrgnwdFlute",
       "attack": "1092",
       "element": "Paralysis 260",
-      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1854,13 +1927,14 @@
         "Thunderbug Jelly (8)",
         "Commendation S (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
       "name": "Handmade Frog",
       "attack": "884",
       "element": "Water 450",
-      "sharpness": "6.4.8.12 6.4.8.12.5",
+      "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1878,13 +1952,14 @@
       "improve-mats": null,
       "improve-to": [
         "Handcrafted Frog"
-      ]
+      ],
+      "sharpness_plus": "6.4.8.12.5"
     },
     {
       "name": "Handcrafted Frog",
       "attack": "1248",
       "element": "Water 500",
-      "sharpness": "6.4.8.12.5 6.4.8.12.6.4",
+      "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -1901,13 +1976,14 @@
         "Giant Blk Pearl (3)",
         "Gt Lobstershell (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "6.4.8.12.6.4"
     },
     {
       "name": "Striped Dragonga",
       "attack": "936",
       "element": null,
-      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "sharpness": "19.2.5.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1927,13 +2003,14 @@
       "improve-to": [
         "Tigrex Horn",
         "Hidden Tone"
-      ]
+      ],
+      "sharpness_plus": "19.2.5.7.4.3"
     },
     {
       "name": "Tigrex Horn",
       "attack": "1144",
       "element": null,
-      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "sharpness": "19.2.5.7.4.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1951,13 +2028,14 @@
       ],
       "improve-to": [
         "Tigrex Horn+"
-      ]
+      ],
+      "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
       "name": "Tigrex Horn+",
       "attack": "1508",
       "element": null,
-      "sharpness": "19.2.5.7.4.5.3 19.2.5.7.4.5.3",
+      "sharpness": "19.2.5.7.4.5.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -1974,13 +2052,14 @@
         "Eltalite Ore (10)",
         "HvnlyTigrexScale (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
       "name": "Hidden Tone",
       "attack": "988",
       "element": null,
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "50%",
       "slots": "O--",
       "bonus": "50%",
@@ -2003,13 +2082,14 @@
       ],
       "improve-to": [
         "Demon's Darkflute"
-      ]
+      ],
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Demon's Darkflute",
       "attack": "1248",
       "element": null,
-      "sharpness": "3.2.17.12.4.5.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.5.2",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": "50%",
@@ -2031,13 +2111,14 @@
         "HvyNargaTailSpik (2)",
         "Narga Brain Stem (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Akantor Horn",
       "attack": "1300",
       "element": null,
-      "sharpness": "9.2.13.1 9.2.13.6",
+      "sharpness": "9.2.13.1",
       "affinity": "40%",
       "slots": "---",
       "bonus": "40%",
@@ -2056,13 +2137,14 @@
       "improve-mats": null,
       "improve-to": [
         "Akantor Dark Melody"
-      ]
+      ],
+      "sharpness_plus": "9.2.13.6"
     },
     {
       "name": "Akantor Dark Melody",
       "attack": "1716",
       "element": null,
-      "sharpness": "9.2.13.6 9.2.13.7.4",
+      "sharpness": "9.2.13.6",
       "affinity": "40%",
       "slots": "---",
       "bonus": "40%",
@@ -2079,13 +2161,14 @@
         "Akantor Tail (2)",
         "Akantor Fang (4)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.4"
     },
     {
       "name": "Ukanlos Horned Flute",
       "attack": "1820",
       "element": "Ice 120",
-      "sharpness": "19.2.5.7.2 19.2.5.7.4.3",
+      "sharpness": "19.2.5.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "-30%",
@@ -2102,13 +2185,14 @@
         "Ukanlos Stone (1)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "19.2.5.7.4.3"
     },
     {
       "name": "Bone Horn G",
       "attack": "1404",
       "element": null,
-      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -2125,13 +2209,14 @@
         "Monster Fluid (20)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
       "name": "War Drum G",
       "attack": "1456",
       "element": null,
-      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "0%",
@@ -2148,13 +2233,14 @@
         "Hvy Monster Bone (8)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Great Bagpipe G",
       "attack": "1404",
       "element": null,
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "-5%",
@@ -2171,13 +2257,14 @@
         "Screamer (10)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Khezu Flute G",
       "attack": "1196",
       "element": "Thunder 480",
-      "sharpness": "9.2.13.7.5.4 9.2.13.7.5.6.3",
+      "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -2194,13 +2281,14 @@
         "Pale Bone (7)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
       "name": "Basarios Rock G",
       "attack": "1352",
       "element": "Fire 280",
-      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -2217,13 +2305,14 @@
         "Flame Sac (20)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
       "name": "Glass Queen G",
       "attack": "1248",
       "element": null,
-      "sharpness": "8.7.7.11.5.5.2 8.7.7.11.5.5.2",
+      "sharpness": "8.7.7.11.5.5.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": "15%",
@@ -2240,13 +2329,14 @@
         "Monster Essence (5)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
       "name": "Heavy Bagpipe G",
       "attack": "1352",
       "element": null,
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "OO-",
       "bonus": "-5%",
@@ -2263,13 +2353,14 @@
         "Narga Brain Stem (3)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Velociprey Balloon G",
       "attack": "1352",
       "element": null,
-      "sharpness": "5.4.14.10.4.3 5.4.14.10.4.6.2",
+      "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "0%",
@@ -2286,13 +2377,14 @@
         "Velociprey Hide (50)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
       "name": "Giadrome Balloon G",
       "attack": "1404",
       "element": "Ice 180",
-      "sharpness": "3.2.17.12.4.2 3.2.17.12.4.5.2",
+      "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "0%",
@@ -2309,13 +2401,14 @@
         "Giadrome Claw+ (15)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
       "name": "Sakura Recorder G",
       "attack": "1300",
       "element": "Dragon 340",
-      "sharpness": "6.4.8.12.6.4 6.4.8.12.6.5.4",
+      "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -2332,13 +2425,14 @@
         "Pnk Rathian Cpc (10)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
       "name": "Spirit Dragonwd Horn G",
       "attack": "1040",
       "element": "Paralysis 220",
-      "sharpness": "19.2.5.7.4.3 19.2.5.7.4.5.3",
+      "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "0%",
@@ -2355,7 +2449,8 @@
         "Thunderbug Jelly (15)"
       ],
       "improve-mats": null,
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "19.2.5.7.4.5.3"
     }
   ]
 }

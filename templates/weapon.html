@@ -88,10 +88,10 @@
 
               <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
 
-              {% if page.extra["element"] -%}
-                {% for element in page.extra["element"] %}
+              {% if page.extra.element -%}
+                {% for element in page.extra.element %}
                   <p class="element">
-                    {{ element["name"] }} Attrib: {{ element["attack"] }}
+                    {{ element.name }} Attrib: {{ element.attack }}
                   </p>
                 {% endfor %}
               {% endif -%}
@@ -111,25 +111,25 @@
               data-controller="weapon-page"
               class="requirements"
             >
-              {% if page.extra["improve-mats"] %}
+              {% if page.extra.improve_mats %}
                 <div class="improve-mats">
                   <p id="weapon_cost">
-                    <span>Improve cost: </span>{{ page.extra["improve-cost"] }}z
+                    <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                   </p>
 
-                  {%- for material in page.extra["improve-mats"] -%}
+                  {%- for material in page.extra.improve_mats -%}
                     <p>{{ material }}</p>
                     {% endfor %}
                 </div>
               {% endif %}
 
-              {%- if page.extra["create-mats"] %}
+              {%- if page.extra.create_mats %}
                 <div class="create-mats">
                   <p id="weapon_cost">
-                    <span>Create cost: </span>{{ page.extra["create-cost"] }}z
+                    <span>Create cost: </span>{{ page.extra.create_cost }}z
                   </p>
   
-                  {% for material in page.extra["create-mats"] -%}
+                  {% for material in page.extra.create_mats -%}
                     <p>{{ material }}</p>
                   {% endfor -%}
                 </div>
