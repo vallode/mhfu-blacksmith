@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="/style.css">
   <script src="/vendor/javascript/turbo.js" type="module"></script>
 
-  {% if get_env(name="TERA_PRODUCTION", default=false) %}
+  {% if get_env(name="TERA_PRODUCTION", default="") != "" %}
     <script
       data-goatcounter="https://mhfu-blacksmith.goatcounter.com/count"
       src="//gc.zgo.at/count.js"
@@ -117,7 +117,7 @@
   </script>
   {% block scripts -%}{% endblock scripts -%}
 
-  {% if get_env(name="TERA_DEBUG", default=false) -%}
+  {% if get_env(name="TERA_DEBUG", default="") != "" -%}
     {{ __tera_context }}
 
     <script>
