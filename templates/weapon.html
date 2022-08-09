@@ -88,6 +88,10 @@
 
               <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
 
+              {% if page.extra.rapid_fire %}
+                <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
+              {% endif %}
+
               {% if page.extra.element -%}
                 {% for element in page.extra.element %}
                   <p class="element">
