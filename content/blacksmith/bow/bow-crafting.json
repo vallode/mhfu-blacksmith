@@ -3398,8 +3398,8 @@
         "Pierce 4"
       ],
       "type": "bw",
-      "create-cost": "15000",
-      "improve-cost": null,
+      "create-cost": null,
+      "improve-cost": "15000",
       "improve-from": "Black Bow I",
       "create-mats": null,
       "improve-mats": [
