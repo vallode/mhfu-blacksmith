@@ -1,10 +1,10 @@
 .landing-page {
+  height: 100%;
 
   &__menu-wrapper {
     display: flex;
     height: 100%;
     width: 100%;
-    flex-flow: row wrap;
   }
 
   &__menu {
@@ -15,7 +15,7 @@
     gap: 1.3rem;
     height: 100%;
     max-width: 41rem;
-    width: 41rem;
+    width: 100%;
 
     .card {
       flex: 1 1 33%;
@@ -83,6 +83,21 @@
 }
 
 @media screen and (max-width: 600px) {
+  .landing-page {
+    &__menu-wrapper {
+      flex-direction: column;
+    }
+    
+    &__menu {
+      max-width: unset;
+    }
+    
+    &__footnotes {
+      margin-top: 1.3rem;
+      flex-grow: 0;
+    }
+  }
+
   .weapon-tree-page,
   .weapon-details-page {
     flex-direction: column;
