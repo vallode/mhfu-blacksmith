@@ -1,4 +1,6 @@
-# MHFU - Blacksmith 
+# MHFU - Blacksmith
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/92498c7e-45eb-449e-861f-764c6e6cf57c/deploy-status)](https://app.netlify.com/sites/mhfu-blacksmith/deploys)
 
 Weapon trees for Monster Hunter Freedom Unite in the style of the in-game UI.
 
