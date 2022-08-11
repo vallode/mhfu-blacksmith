@@ -1,3 +1,332 @@
 {
-  "map": [{"slug":"bone-gunlance","name":"Bone Gunlance","rarity":"1","children":[{"slug":"great-bone-gunlance","name":"Great Bone Gunlance","rarity":"2","children":[{"slug":"wyvern-bone-gunlance","name":"Wyvern Bone Gunlance","rarity":"1","children":[{"slug":"hellsting","name":"Hellsting","rarity":"4","element":"ice","children":[{"slug":"hellsting-plus","name":"Hellsting+","rarity":"5","element":"ice","children":[{"slug":"hellstinger","name":"Hellstinger","rarity":"7","element":"ice","children":[{"slug":"demonic-blizzard","name":"Demonic Blizzard","rarity":"10","element":"ice"},{"slug":"desert-slingshot","name":"Desert Slingshot","rarity":"9","children":[{"slug":"desert-slingshoter","name":"Desert Slingshoter","rarity":"10"}]}]}]}]}]},{"slug":"average-hitter","name":"Average Hitter","rarity":"3","element":"poison","children":[{"slug":"grand-slam","name":"Grand Slam","rarity":"4","element":"poison","children":[{"slug":"hard-hitter","name":"Hard Hitter","rarity":"6","element":"poison","children":[{"slug":"big-slugger","name":"Big Slugger","rarity":"7","element":"poison","children":[{"slug":"triple-crown","name":"Triple Crown","rarity":"9","element":"poison"},{"slug":"venomous-cologne","name":"Venomous Cologne","rarity":"8","element":"poison","children":[{"slug":"venomous-attar","name":"Venomous Attar","rarity":"9","element":"poison","children":[{"slug":"venomous-perfume","name":"Venomous Perfume","rarity":"10","element":"poison"}]}]}]}]}]}]}]}]},{"slug":"black-smoke-gunlance","name":"Black Smoke Gunlance","rarity":"5","element":"dragon","children":[{"slug":"blackdragongunlance","name":"BlackDragonGunlance","rarity":"8","element":"dragon","children":[{"slug":"trueblkdrgngunlance","name":"TrueBlkDrgnGunlance","rarity":"10","element":"dragon"}]}]},{"slug":"dragonwood-gunlance","name":"Dragonwood Gunlance","rarity":"5","element":"paralysis","children":[{"slug":"gld-dragonwd-glance","name":"Gld Dragonwd GLance","rarity":"8","element":"paralysis","children":[{"slug":"ancientdrgnwoodlance","name":"AncientDrgnwoodLance","rarity":"9","element":"paralysis","children":[{"slug":"ancientdrgnwoodlanc-plus","name":"AncientDrgnwoodLanc+","rarity":"10","element":"paralysis"}]}]}]},{"slug":"pop-corn","name":"Pop Corn","rarity":"6","children":[{"slug":"large-pop-corn","name":"Large Pop Corn","rarity":"9"}]},{"slug":"rex-blast","name":"Rex Blast","rarity":"5","children":[{"slug":"tigrex-gunlance","name":"Tigrex Gunlance","rarity":"7","children":[{"slug":"greattigrexgunlance","name":"GreatTigrexGunlance","rarity":"10"}]},{"slug":"hidden-gunlance","name":"Hidden Gunlance","rarity":"7","children":[{"slug":"wanningmoondarklance","name":"WanningMoonDarklance","rarity":"10"}]}]},{"slug":"akantor-gunlance","name":"Akantor Gunlance","rarity":"8","children":[{"slug":"akantornoirgunlance","name":"AkantorNoirGunlance","rarity":"10"}]},{"slug":"ukanlosblazegunlance","name":"UkanlosBlazeGunlance","rarity":"10","element":"ice"},{"slug":"iron-gunlance-g","name":"Iron Gunlance G","rarity":"9"},{"slug":"wyvernbone-gunlance-g","name":"WyvernBone Gunlance G","rarity":"9"},{"slug":"blizzard-gunlance-g","name":"Blizzard Gunlance G","rarity":"9","element":"ice"},{"slug":"imperial-gunlance-g","name":"Imperial Gunlance G","rarity":"9"},{"slug":"scissor-cannon-g","name":"Scissor Cannon G","rarity":"9"},{"slug":"grand-slam-g","name":"Grand Slam G","rarity":"9","element":"poison"},{"slug":"marine-fisher-g","name":"Marine Fisher G","rarity":"9","element":"water"},{"slug":"white-cannon-g","name":"White Cannon G","rarity":"10"},{"slug":"gld-dragonwd-glance-g","name":"Gld Dragonwd GLance G","rarity":"10","element":"paralysis"}]
+  "map": [
+    {
+      "slug": "bone-gunlance",
+      "type": "gunlance",
+      "name": "Bone Gunlance",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "great-bone-gunlance",
+          "type": "gunlance",
+          "name": "Great Bone Gunlance",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "wyvern-bone-gunlance",
+              "type": "gunlance",
+              "name": "Wyvern Bone Gunlance",
+              "rarity": "1",
+              "children": [
+                {
+                  "slug": "hellsting",
+                  "type": "gunlance",
+                  "name": "Hellsting",
+                  "rarity": "4",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "hellsting-plus",
+                      "type": "gunlance",
+                      "name": "Hellsting+",
+                      "rarity": "5",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "hellstinger",
+                          "type": "gunlance",
+                          "name": "Hellstinger",
+                          "rarity": "7",
+                          "element": "ice",
+                          "children": [
+                            {
+                              "slug": "demonic-blizzard",
+                              "type": "gunlance",
+                              "name": "Demonic Blizzard",
+                              "rarity": "10",
+                              "element": "ice"
+                            },
+                            {
+                              "slug": "desert-slingshot",
+                              "type": "gunlance",
+                              "name": "Desert Slingshot",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "desert-slingshoter",
+                                  "type": "gunlance",
+                                  "name": "Desert Slingshoter",
+                                  "rarity": "10"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "average-hitter",
+              "type": "gunlance",
+              "name": "Average Hitter",
+              "rarity": "3",
+              "element": "poison",
+              "children": [
+                {
+                  "slug": "grand-slam",
+                  "type": "gunlance",
+                  "name": "Grand Slam",
+                  "rarity": "4",
+                  "element": "poison",
+                  "children": [
+                    {
+                      "slug": "hard-hitter",
+                      "type": "gunlance",
+                      "name": "Hard Hitter",
+                      "rarity": "6",
+                      "element": "poison",
+                      "children": [
+                        {
+                          "slug": "big-slugger",
+                          "type": "gunlance",
+                          "name": "Big Slugger",
+                          "rarity": "7",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "triple-crown",
+                              "type": "gunlance",
+                              "name": "Triple Crown",
+                              "rarity": "9",
+                              "element": "poison"
+                            },
+                            {
+                              "slug": "venomous-cologne",
+                              "type": "gunlance",
+                              "name": "Venomous Cologne",
+                              "rarity": "8",
+                              "element": "poison",
+                              "children": [
+                                {
+                                  "slug": "venomous-attar",
+                                  "type": "gunlance",
+                                  "name": "Venomous Attar",
+                                  "rarity": "9",
+                                  "element": "poison",
+                                  "children": [
+                                    {
+                                      "slug": "venomous-perfume",
+                                      "type": "gunlance",
+                                      "name": "Venomous Perfume",
+                                      "rarity": "10",
+                                      "element": "poison"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-smoke-gunlance",
+      "type": "gunlance",
+      "name": "Black Smoke Gunlance",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "blackdragongunlance",
+          "type": "gunlance",
+          "name": "BlackDragonGunlance",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "trueblkdrgngunlance",
+              "type": "gunlance",
+              "name": "TrueBlkDrgnGunlance",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragonwood-gunlance",
+      "type": "gunlance",
+      "name": "Dragonwood Gunlance",
+      "rarity": "5",
+      "element": "paralysis",
+      "children": [
+        {
+          "slug": "gld-dragonwd-glance",
+          "type": "gunlance",
+          "name": "Gld Dragonwd GLance",
+          "rarity": "8",
+          "element": "paralysis",
+          "children": [
+            {
+              "slug": "ancientdrgnwoodlance",
+              "type": "gunlance",
+              "name": "AncientDrgnwoodLance",
+              "rarity": "9",
+              "element": "paralysis",
+              "children": [
+                {
+                  "slug": "ancientdrgnwoodlanc-plus",
+                  "type": "gunlance",
+                  "name": "AncientDrgnwoodLanc+",
+                  "rarity": "10",
+                  "element": "paralysis"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pop-corn",
+      "type": "gunlance",
+      "name": "Pop Corn",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "large-pop-corn",
+          "type": "gunlance",
+          "name": "Large Pop Corn",
+          "rarity": "9"
+        }
+      ]
+    },
+    {
+      "slug": "rex-blast",
+      "type": "gunlance",
+      "name": "Rex Blast",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "tigrex-gunlance",
+          "type": "gunlance",
+          "name": "Tigrex Gunlance",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "greattigrexgunlance",
+              "type": "gunlance",
+              "name": "GreatTigrexGunlance",
+              "rarity": "10"
+            }
+          ]
+        },
+        {
+          "slug": "hidden-gunlance",
+          "type": "gunlance",
+          "name": "Hidden Gunlance",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "wanningmoondarklance",
+              "type": "gunlance",
+              "name": "WanningMoonDarklance",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "akantor-gunlance",
+      "type": "gunlance",
+      "name": "Akantor Gunlance",
+      "rarity": "8",
+      "children": [
+        {
+          "slug": "akantornoirgunlance",
+          "type": "gunlance",
+          "name": "AkantorNoirGunlance",
+          "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "ukanlosblazegunlance",
+      "type": "gunlance",
+      "name": "UkanlosBlazeGunlance",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "iron-gunlance-g",
+      "type": "gunlance",
+      "name": "Iron Gunlance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "wyvernbone-gunlance-g",
+      "type": "gunlance",
+      "name": "WyvernBone Gunlance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "blizzard-gunlance-g",
+      "type": "gunlance",
+      "name": "Blizzard Gunlance G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "imperial-gunlance-g",
+      "type": "gunlance",
+      "name": "Imperial Gunlance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "scissor-cannon-g",
+      "type": "gunlance",
+      "name": "Scissor Cannon G",
+      "rarity": "9"
+    },
+    {
+      "slug": "grand-slam-g",
+      "type": "gunlance",
+      "name": "Grand Slam G",
+      "rarity": "9",
+      "element": "poison"
+    },
+    {
+      "slug": "marine-fisher-g",
+      "type": "gunlance",
+      "name": "Marine Fisher G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "white-cannon-g",
+      "type": "gunlance",
+      "name": "White Cannon G",
+      "rarity": "10"
+    },
+    {
+      "slug": "gld-dragonwd-glance-g",
+      "type": "gunlance",
+      "name": "Gld Dragonwd GLance G",
+      "rarity": "10",
+      "element": "paralysis"
+    }
+  ]
 }

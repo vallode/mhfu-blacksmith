@@ -1,3 +1,346 @@
 {
-  "map": [{"slug":"ivory-horn","name":"Ivory Horn","rarity":"1","children":[{"slug":"bone-horn","name":"Bone Horn","rarity":"2","children":[{"slug":"bone-horn-plus","name":"Bone Horn+","rarity":"4","children":[{"slug":"hunter-s-horn","name":"Hunter's Horn","rarity":"6","children":[{"slug":"hunter-s-horn-plus","name":"Hunter's Horn+","rarity":"9","children":[{"slug":"native-s-horn","name":"Native's Horn","rarity":"9"}]}]}]},{"slug":"blessed-ocarina","name":"Blessed Ocarina","rarity":"5","element":"poison","children":[{"slug":"cursed-ocarina","name":"Cursed Ocarina","rarity":"8","element":"poison","children":[{"slug":"genie-s-ocarina","name":"Genie's Ocarina","rarity":"10","element":"poison"}]}]}]},{"slug":"war-drum","name":"War Drum","rarity":"3","children":[{"slug":"war-drum-plus","name":"War Drum+","rarity":"4","children":[{"slug":"war-bongo","name":"War Bongo","rarity":"6","children":[{"slug":"war-conga","name":"War Conga","rarity":"7","children":[{"slug":"conga-conga","name":"Conga Conga","rarity":"9"},{"slug":"jungle-bongo","name":"Jungle Bongo","rarity":"9","children":[{"slug":"jungle-conga","name":"Jungle Conga","rarity":"9"}]}]}]}]}]}]},{"slug":"black-lute","name":"Black Lute","rarity":"5","element":"dragon","children":[{"slug":"fatalis-menace","name":"Fatalis Menace","rarity":"8","element":"dragon","children":[{"slug":"fatalis-menace-lute","name":"Fatalis Menace Lute","rarity":"10","element":"dragon"}]},{"slug":"ancient-fatalis-lied","name":"Ancient Fatalis Lied","rarity":"8","element":"dragon","children":[{"slug":"ancient-fatalis-lute","name":"Ancient Fatalis Lute","rarity":"10","element":"dragon"}]}]},{"slug":"dragonwood-horn","name":"Dragonwood Horn","rarity":"5","element":"paralysis","children":[{"slug":"spirit-dragonwd-horn","name":"Spirit Dragonwd Horn","rarity":"8","element":"paralysis","children":[{"slug":"ancientdrgnwoodflute","name":"AncientDrgnwoodFlute","rarity":"9","element":"paralysis","children":[{"slug":"divineancdrgnwdflute","name":"DivineAncDrgnwdFlute","rarity":"10","element":"paralysis"}]}]}]},{"slug":"handmade-frog","name":"Handmade Frog","rarity":"6","element":"water","children":[{"slug":"handcrafted-frog","name":"Handcrafted Frog","rarity":"9","element":"water"}]},{"slug":"striped-dragonga","name":"Striped Dragonga","rarity":"5","children":[{"slug":"tigrex-horn","name":"Tigrex Horn","rarity":"7","children":[{"slug":"tigrex-horn-plus","name":"Tigrex Horn+","rarity":"10"}]},{"slug":"hidden-tone","name":"Hidden Tone","rarity":"7","children":[{"slug":"demon-s-darkflute","name":"Demon's Darkflute","rarity":"10"}]}]},{"slug":"akantor-horn","name":"Akantor Horn","rarity":"8","children":[{"slug":"akantor-dark-melody","name":"Akantor Dark Melody","rarity":"10"}]},{"slug":"ukanlos-horned-flute","name":"Ukanlos Horned Flute","rarity":"10","element":"ice"},{"slug":"bone-horn-g","name":"Bone Horn G","rarity":"9"},{"slug":"war-drum-g","name":"War Drum G","rarity":"9"},{"slug":"great-bagpipe-g","name":"Great Bagpipe G","rarity":"9"},{"slug":"khezu-flute-g","name":"Khezu Flute G","rarity":"9","element":"thunder"},{"slug":"basarios-rock-g","name":"Basarios Rock G","rarity":"9","element":"fire"},{"slug":"glass-queen-g","name":"Glass Queen G","rarity":"9"},{"slug":"heavy-bagpipe-g","name":"Heavy Bagpipe G","rarity":"9"},{"slug":"velociprey-balloon-g","name":"Velociprey Balloon G","rarity":"9"},{"slug":"giadrome-balloon-g","name":"Giadrome Balloon G","rarity":"9","element":"ice"},{"slug":"sakura-recorder-g","name":"Sakura Recorder G","rarity":"10","element":"dragon"},{"slug":"spirit-dragonwd-horn-g","name":"Spirit Dragonwd Horn G","rarity":"10","element":"paralysis"}]
+  "map": [
+    {
+      "slug": "ivory-horn",
+      "type": "hunting-horn",
+      "name": "Ivory Horn",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "bone-horn",
+          "type": "hunting-horn",
+          "name": "Bone Horn",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "bone-horn-plus",
+              "type": "hunting-horn",
+              "name": "Bone Horn+",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "hunter-s-horn",
+                  "type": "hunting-horn",
+                  "name": "Hunter's Horn",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "hunter-s-horn-plus",
+                      "type": "hunting-horn",
+                      "name": "Hunter's Horn+",
+                      "rarity": "9",
+                      "children": [
+                        {
+                          "slug": "native-s-horn",
+                          "type": "hunting-horn",
+                          "name": "Native's Horn",
+                          "rarity": "9"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "blessed-ocarina",
+              "type": "hunting-horn",
+              "name": "Blessed Ocarina",
+              "rarity": "5",
+              "element": "poison",
+              "children": [
+                {
+                  "slug": "cursed-ocarina",
+                  "type": "hunting-horn",
+                  "name": "Cursed Ocarina",
+                  "rarity": "8",
+                  "element": "poison",
+                  "children": [
+                    {
+                      "slug": "genie-s-ocarina",
+                      "type": "hunting-horn",
+                      "name": "Genie's Ocarina",
+                      "rarity": "10",
+                      "element": "poison"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "war-drum",
+          "type": "hunting-horn",
+          "name": "War Drum",
+          "rarity": "3",
+          "children": [
+            {
+              "slug": "war-drum-plus",
+              "type": "hunting-horn",
+              "name": "War Drum+",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "war-bongo",
+                  "type": "hunting-horn",
+                  "name": "War Bongo",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "war-conga",
+                      "type": "hunting-horn",
+                      "name": "War Conga",
+                      "rarity": "7",
+                      "children": [
+                        {
+                          "slug": "conga-conga",
+                          "type": "hunting-horn",
+                          "name": "Conga Conga",
+                          "rarity": "9"
+                        },
+                        {
+                          "slug": "jungle-bongo",
+                          "type": "hunting-horn",
+                          "name": "Jungle Bongo",
+                          "rarity": "9",
+                          "children": [
+                            {
+                              "slug": "jungle-conga",
+                              "type": "hunting-horn",
+                              "name": "Jungle Conga",
+                              "rarity": "9"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-lute",
+      "type": "hunting-horn",
+      "name": "Black Lute",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "fatalis-menace",
+          "type": "hunting-horn",
+          "name": "Fatalis Menace",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "fatalis-menace-lute",
+              "type": "hunting-horn",
+              "name": "Fatalis Menace Lute",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        },
+        {
+          "slug": "ancient-fatalis-lied",
+          "type": "hunting-horn",
+          "name": "Ancient Fatalis Lied",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "ancient-fatalis-lute",
+              "type": "hunting-horn",
+              "name": "Ancient Fatalis Lute",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragonwood-horn",
+      "type": "hunting-horn",
+      "name": "Dragonwood Horn",
+      "rarity": "5",
+      "element": "paralysis",
+      "children": [
+        {
+          "slug": "spirit-dragonwd-horn",
+          "type": "hunting-horn",
+          "name": "Spirit Dragonwd Horn",
+          "rarity": "8",
+          "element": "paralysis",
+          "children": [
+            {
+              "slug": "ancientdrgnwoodflute",
+              "type": "hunting-horn",
+              "name": "AncientDrgnwoodFlute",
+              "rarity": "9",
+              "element": "paralysis",
+              "children": [
+                {
+                  "slug": "divineancdrgnwdflute",
+                  "type": "hunting-horn",
+                  "name": "DivineAncDrgnwdFlute",
+                  "rarity": "10",
+                  "element": "paralysis"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "handmade-frog",
+      "type": "hunting-horn",
+      "name": "Handmade Frog",
+      "rarity": "6",
+      "element": "water",
+      "children": [
+        {
+          "slug": "handcrafted-frog",
+          "type": "hunting-horn",
+          "name": "Handcrafted Frog",
+          "rarity": "9",
+          "element": "water"
+        }
+      ]
+    },
+    {
+      "slug": "striped-dragonga",
+      "type": "hunting-horn",
+      "name": "Striped Dragonga",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "tigrex-horn",
+          "type": "hunting-horn",
+          "name": "Tigrex Horn",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "tigrex-horn-plus",
+              "type": "hunting-horn",
+              "name": "Tigrex Horn+",
+              "rarity": "10"
+            }
+          ]
+        },
+        {
+          "slug": "hidden-tone",
+          "type": "hunting-horn",
+          "name": "Hidden Tone",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "demon-s-darkflute",
+              "type": "hunting-horn",
+              "name": "Demon's Darkflute",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "akantor-horn",
+      "type": "hunting-horn",
+      "name": "Akantor Horn",
+      "rarity": "8",
+      "children": [
+        {
+          "slug": "akantor-dark-melody",
+          "type": "hunting-horn",
+          "name": "Akantor Dark Melody",
+          "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "ukanlos-horned-flute",
+      "type": "hunting-horn",
+      "name": "Ukanlos Horned Flute",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "bone-horn-g",
+      "type": "hunting-horn",
+      "name": "Bone Horn G",
+      "rarity": "9"
+    },
+    {
+      "slug": "war-drum-g",
+      "type": "hunting-horn",
+      "name": "War Drum G",
+      "rarity": "9"
+    },
+    {
+      "slug": "great-bagpipe-g",
+      "type": "hunting-horn",
+      "name": "Great Bagpipe G",
+      "rarity": "9"
+    },
+    {
+      "slug": "khezu-flute-g",
+      "type": "hunting-horn",
+      "name": "Khezu Flute G",
+      "rarity": "9",
+      "element": "thunder"
+    },
+    {
+      "slug": "basarios-rock-g",
+      "type": "hunting-horn",
+      "name": "Basarios Rock G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "glass-queen-g",
+      "type": "hunting-horn",
+      "name": "Glass Queen G",
+      "rarity": "9"
+    },
+    {
+      "slug": "heavy-bagpipe-g",
+      "type": "hunting-horn",
+      "name": "Heavy Bagpipe G",
+      "rarity": "9"
+    },
+    {
+      "slug": "velociprey-balloon-g",
+      "type": "hunting-horn",
+      "name": "Velociprey Balloon G",
+      "rarity": "9"
+    },
+    {
+      "slug": "giadrome-balloon-g",
+      "type": "hunting-horn",
+      "name": "Giadrome Balloon G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "sakura-recorder-g",
+      "type": "hunting-horn",
+      "name": "Sakura Recorder G",
+      "rarity": "10",
+      "element": "dragon"
+    },
+    {
+      "slug": "spirit-dragonwd-horn-g",
+      "type": "hunting-horn",
+      "name": "Spirit Dragonwd Horn G",
+      "rarity": "10",
+      "element": "paralysis"
+    }
+  ]
 }
