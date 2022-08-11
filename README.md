@@ -79,4 +79,6 @@ Dependencies:
 * [Ruby](https://www.ruby-lang.org/)
 * [ImageMagick](https://imagemagick.org/) (optional)
 
+The first time you run the site you have to run `make generate-maps`, this is temporary until the maps are hard-coded into the TOML configuration.
+
 The makefile has everything covered: develop locally using `make`, test build output with `make build`, and deploy to netlify with `make deploy`.
