@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 
 {% block head__extra %}
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ current_url }}" />
-  <meta
-    property="og:image"
-    content="/images/weapons/{{ page.slug }}.png"
-  />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ current_url }}">
+  <meta property="og:image" content="/images/weapons/{{ page.slug }}.png">
+  <meta name="twitter:card" content="/images/weapons/{{ page.slug }}.png">
   {% if page.extra["create-mats"] %}
     <meta name="description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
     <meta name="og:description" content="{% for material in page.extra['create-mats'] %}{{ material }} {% endfor %}">
