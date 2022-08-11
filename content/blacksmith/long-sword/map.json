@@ -221,6 +221,561 @@
       ]
     },
     {
+      "slug": "buster-sword",
+      "type": "great-sword",
+      "name": "Buster Sword",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "blango-destroyer",
+          "type": "long-sword",
+          "name": "Blango Destroyer",
+          "rarity": "2",
+          "element": "ice",
+          "children": [
+            {
+              "slug": "blango-destroyer-plus",
+              "type": "long-sword",
+              "name": "Blango Destroyer+",
+              "rarity": "3",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "blango-decimator",
+                  "type": "long-sword",
+                  "name": "Blango Decimator",
+                  "rarity": "4",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "blango-destructor",
+                      "type": "long-sword",
+                      "name": "Blango Destructor",
+                      "rarity": "7",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "c-blango-decimator",
+                          "type": "long-sword",
+                          "name": "C.Blango Decimator",
+                          "rarity": "9",
+                          "children": [
+                            {
+                              "slug": "c-blango-destructor",
+                              "type": "long-sword",
+                              "name": "C.Blango Destructor",
+                              "rarity": "10"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "buster-sword-plus",
+      "type": "great-sword",
+      "name": "Buster Sword+",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "iron-katana",
+          "type": "long-sword",
+          "name": "Iron Katana",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "iron-katana-grace",
+              "type": "long-sword",
+              "name": "Iron Katana \"Grace\"",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "iron-katana-gospel",
+                  "type": "long-sword",
+                  "name": "Iron Katana \"Gospel\"",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "eager-cleaver",
+                      "type": "long-sword",
+                      "name": "Eager Cleaver",
+                      "rarity": "3",
+                      "element": "thunder",
+                      "children": [
+                        {
+                          "slug": "devil-slicer",
+                          "type": "long-sword",
+                          "name": "Devil Slicer",
+                          "rarity": "4",
+                          "element": "thunder",
+                          "children": [
+                            {
+                              "slug": "true-devil-slicer",
+                              "type": "long-sword",
+                              "name": "True Devil Slicer",
+                              "rarity": "7",
+                              "element": "thunder",
+                              "children": [
+                                {
+                                  "slug": "wailing-cleaver",
+                                  "type": "long-sword",
+                                  "name": "Wailing Cleaver",
+                                  "rarity": "9",
+                                  "element": "thunder",
+                                  "children": [
+                                    {
+                                      "slug": "wailing-cleaver-shin",
+                                      "type": "long-sword",
+                                      "name": "Wailing Cleaver Shin",
+                                      "rarity": "10",
+                                      "element": "thunder"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "saber",
+                      "type": "long-sword",
+                      "name": "Saber",
+                      "rarity": "5",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "lion-dance-saber",
+                          "type": "long-sword",
+                          "name": "Lion Dance Saber",
+                          "rarity": "7",
+                          "element": "fire",
+                          "children": [
+                            {
+                              "slug": "lion-king-saber",
+                              "type": "long-sword",
+                              "name": "Lion King Saber",
+                              "rarity": "8",
+                              "element": "fire",
+                              "children": [
+                                {
+                                  "slug": "lion-emperor-saber",
+                                  "type": "long-sword",
+                                  "name": "Lion Emperor Saber",
+                                  "rarity": "8",
+                                  "element": "fire"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "mirage-finsword",
+                      "type": "long-sword",
+                      "name": "Mirage Finsword",
+                      "rarity": "5",
+                      "children": [
+                        {
+                          "slug": "mirage-finsword-plus",
+                          "type": "long-sword",
+                          "name": "Mirage Finsword+",
+                          "rarity": "8",
+                          "children": [
+                            {
+                              "slug": "phantom-mirage",
+                              "type": "long-sword",
+                              "name": "Phantom Mirage",
+                              "rarity": "10"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "dark-scythe",
+                  "type": "long-sword",
+                  "name": "Dark Scythe",
+                  "rarity": "3",
+                  "children": [
+                    {
+                      "slug": "tormentor",
+                      "type": "long-sword",
+                      "name": "Tormentor",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "scythe-of-menace",
+                          "type": "long-sword",
+                          "name": "Scythe of Menace",
+                          "rarity": "6",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "big-menacing-scythe",
+                              "type": "long-sword",
+                              "name": "Big Menacing Scythe",
+                              "rarity": "9",
+                              "element": "poison"
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "crab-cutter",
+                          "type": "long-sword",
+                          "name": "Crab Cutter",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "daimyo-cutter",
+                              "type": "long-sword",
+                              "name": "Daimyo Cutter",
+                              "rarity": "7",
+                              "children": [
+                                {
+                                  "slug": "hermitaur-slicer",
+                                  "type": "long-sword",
+                                  "name": "Hermitaur Slicer",
+                                  "rarity": "9",
+                                  "children": [
+                                    {
+                                      "slug": "hermitaur-slasher",
+                                      "type": "long-sword",
+                                      "name": "Hermitaur Slasher",
+                                      "rarity": "9"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "shogun-cutter",
+                                  "type": "long-sword",
+                                  "name": "Shogun Cutter",
+                                  "rarity": "9",
+                                  "children": [
+                                    {
+                                      "slug": "killer-s-sickle",
+                                      "type": "long-sword",
+                                      "name": "Killer's Sickle",
+                                      "rarity": "10"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "violet-pincer",
+                                  "type": "great-sword",
+                                  "name": "Violet Pincer",
+                                  "rarity": "9",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "crimson-scythe",
+                      "type": "long-sword",
+                      "name": "Crimson Scythe",
+                      "rarity": "3",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "monoblos-scythe",
+                          "type": "long-sword",
+                          "name": "Monoblos Scythe",
+                          "rarity": "4",
+                          "element": "fire",
+                          "children": [
+                            {
+                              "slug": "monoblos-scythe-plus",
+                              "type": "long-sword",
+                              "name": "Monoblos Scythe+",
+                              "rarity": "7",
+                              "element": "fire"
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "white-mantis",
+                          "type": "long-sword",
+                          "name": "White Mantis",
+                          "rarity": "4",
+                          "element": "water",
+                          "children": [
+                            {
+                              "slug": "frost-ripper",
+                              "type": "long-sword",
+                              "name": "Frost Ripper",
+                              "rarity": "7",
+                              "element": "water",
+                              "children": [
+                                {
+                                  "slug": "weiss-crescent",
+                                  "type": "long-sword",
+                                  "name": "Weiss Crescent",
+                                  "rarity": "7",
+                                  "element": "water"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bone-blade-plus",
+      "type": "great-sword",
+      "name": "Bone Blade+",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "bone-katana-wolf",
+          "type": "long-sword",
+          "name": "Bone Katana \"Wolf\"",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "bone-katana-shark",
+              "type": "long-sword",
+              "name": "Bone Katana \"Shark\"",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "bone-katana-dragon",
+                  "type": "long-sword",
+                  "name": "Bone Katana \"Dragon\"",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "supremacy-blade",
+                      "type": "long-sword",
+                      "name": "Supremacy Blade",
+                      "rarity": "5",
+                      "children": [
+                        {
+                          "slug": "divine-slasher",
+                          "type": "long-sword",
+                          "name": "Divine Slasher",
+                          "rarity": "8",
+                          "children": [
+                            {
+                              "slug": "hellish-slasher",
+                              "type": "long-sword",
+                              "name": "Hellish Slasher",
+                              "rarity": "10"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "fire-dragonsword",
+                      "type": "long-sword",
+                      "name": "Fire Dragonsword",
+                      "rarity": "5",
+                      "element": "dragon",
+                      "children": [
+                        {
+                          "slug": "red-dragonsword",
+                          "type": "long-sword",
+                          "name": "Red Dragonsword",
+                          "rarity": "5",
+                          "element": "dragon",
+                          "children": [
+                            {
+                              "slug": "smolder-dragonsword",
+                              "type": "long-sword",
+                              "name": "Smolder Dragonsword",
+                              "rarity": "8",
+                              "element": "dragon",
+                              "children": [
+                                {
+                                  "slug": "knockout-dragonsword",
+                                  "type": "long-sword",
+                                  "name": "Knockout Dragonsword",
+                                  "rarity": "10",
+                                  "element": "dragon"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "wyvern-blade-fall",
+                  "type": "long-sword",
+                  "name": "Wyvern Blade \"Fall\"",
+                  "rarity": "3",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "wyvern-blade-blood",
+                      "type": "long-sword",
+                      "name": "Wyvern Blade \"Blood\"",
+                      "rarity": "5",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "wyvern-blade-maple",
+                          "type": "long-sword",
+                          "name": "Wyvern Blade \"Maple\"",
+                          "rarity": "7",
+                          "element": "fire",
+                          "children": [
+                            {
+                              "slug": "wyvernbladesilver",
+                              "type": "long-sword",
+                              "name": "WyvernBlade\"Silver\"",
+                              "rarity": "9",
+                              "element": "fire",
+                              "children": [
+                                {
+                                  "slug": "wyvrnbladecamellia",
+                                  "type": "long-sword",
+                                  "name": "WyvrnBlade\"Camellia\"",
+                                  "rarity": "10",
+                                  "element": "fire"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "wyvern-blade-leaf",
+                  "type": "long-sword",
+                  "name": "Wyvern Blade \"Leaf\"",
+                  "rarity": "3",
+                  "element": "poison",
+                  "children": [
+                    {
+                      "slug": "wyvern-blade-verde",
+                      "type": "long-sword",
+                      "name": "Wyvern Blade \"Verde\"",
+                      "rarity": "5",
+                      "element": "poison",
+                      "children": [
+                        {
+                          "slug": "wyvern-blade-holly",
+                          "type": "long-sword",
+                          "name": "Wyvern Blade \"Holly\"",
+                          "rarity": "7",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "wyvernbladesilver",
+                              "type": "long-sword",
+                              "name": "WyvernBlade\"Silver\"",
+                              "rarity": "9",
+                              "element": "fire",
+                              "children": [
+                                {
+                                  "slug": "wyvrnbladecamellia",
+                                  "type": "long-sword",
+                                  "name": "WyvrnBlade\"Camellia\"",
+                                  "rarity": "10",
+                                  "element": "fire"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "great-pincer",
+      "type": "great-sword",
+      "name": "Great Pincer",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "crab-cutter",
+          "type": "long-sword",
+          "name": "Crab Cutter",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "daimyo-cutter",
+              "type": "long-sword",
+              "name": "Daimyo Cutter",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "hermitaur-slicer",
+                  "type": "long-sword",
+                  "name": "Hermitaur Slicer",
+                  "rarity": "9",
+                  "children": [
+                    {
+                      "slug": "hermitaur-slasher",
+                      "type": "long-sword",
+                      "name": "Hermitaur Slasher",
+                      "rarity": "9"
+                    }
+                  ]
+                },
+                {
+                  "slug": "shogun-cutter",
+                  "type": "long-sword",
+                  "name": "Shogun Cutter",
+                  "rarity": "9",
+                  "children": [
+                    {
+                      "slug": "killer-s-sickle",
+                      "type": "long-sword",
+                      "name": "Killer's Sickle",
+                      "rarity": "10"
+                    }
+                  ]
+                },
+                {
+                  "slug": "violet-pincer",
+                  "type": "great-sword",
+                  "name": "Violet Pincer",
+                  "rarity": "9",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "tigrex-tooth",
       "type": "long-sword",
       "name": "Tigrex Tooth",
@@ -332,6 +887,31 @@
       ]
     },
     {
+      "slug": "steel-ice-blade-plus",
+      "type": "great-sword",
+      "name": "Steel Ice Blade+",
+      "rarity": "5",
+      "element": "ice",
+      "children": [
+        {
+          "slug": "icesteel-blade",
+          "type": "long-sword",
+          "name": "Icesteel Blade",
+          "rarity": "8",
+          "element": "ice",
+          "children": [
+            {
+              "slug": "daora-s-raid",
+              "type": "long-sword",
+              "name": "Daora's Raid",
+              "rarity": "10",
+              "element": "ice"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "great-hornfly-saber",
       "type": "long-sword",
       "name": "Great Hornfly Saber",
@@ -362,6 +942,179 @@
       ]
     },
     {
+      "slug": "carbalite-sword",
+      "type": "great-sword",
+      "name": "Carbalite Sword",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "guardian-sword",
+          "type": "long-sword",
+          "name": "Guardian Sword",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "imperial-sword",
+              "type": "long-sword",
+              "name": "Imperial Sword",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "aqua-guardian",
+                  "type": "long-sword",
+                  "name": "Aqua Guardian",
+                  "rarity": "9",
+                  "element": "water",
+                  "children": [
+                    {
+                      "slug": "atlantica",
+                      "type": "long-sword",
+                      "name": "Atlantica",
+                      "rarity": "9",
+                      "element": "water"
+                    },
+                    {
+                      "slug": "edelweiss-ice-blade",
+                      "type": "long-sword",
+                      "name": "Edelweiss Ice Blade",
+                      "rarity": "9",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "edelweiss-ice-blade-plus",
+                          "type": "long-sword",
+                          "name": "Edelweiss Ice Blade+",
+                          "rarity": "9",
+                          "element": "ice"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "carbalite-sword-plus",
+      "type": "great-sword",
+      "name": "Carbalite Sword+",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "demon-halberd",
+          "type": "long-sword",
+          "name": "Demon Halberd",
+          "rarity": "7",
+          "element": "thunder",
+          "children": [
+            {
+              "slug": "great-demon-halberd",
+              "type": "long-sword",
+              "name": "Great Demon Halberd",
+              "rarity": "8",
+              "element": "thunder",
+              "children": [
+                {
+                  "slug": "grtdemnhalberdraksha",
+                  "type": "long-sword",
+                  "name": "GrtDemnHalberdRaksha",
+                  "rarity": "10",
+                  "element": "thunder"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "agito",
+      "type": "great-sword",
+      "name": "Agito",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "rusty-claymore",
+          "type": "long-sword",
+          "name": "Rusty Claymore",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "grind-claymore",
+              "type": "long-sword",
+              "name": "Grind Claymore",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "gaelic-flame",
+                  "type": "long-sword",
+                  "name": "Gaelic Flame",
+                  "rarity": "8",
+                  "children": [
+                    {
+                      "slug": "last-gaelic-flame",
+                      "type": "long-sword",
+                      "name": "Last Gaelic Flame",
+                      "rarity": "10"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "killer-s-scythe",
+      "type": "great-sword",
+      "name": "Killer's Scythe",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "shogun-cutter",
+          "type": "long-sword",
+          "name": "Shogun Cutter",
+          "rarity": "9",
+          "children": [
+            {
+              "slug": "killer-s-sickle",
+              "type": "long-sword",
+              "name": "Killer's Sickle",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "sentoryu-wolf",
+      "type": "great-sword",
+      "name": "Sentoryu Wolf",
+      "rarity": "7",
+      "children": [
+        {
+          "slug": "daito-wolf",
+          "type": "long-sword",
+          "name": "Daito Wolf",
+          "rarity": "7",
+          "element": "poison",
+          "children": [
+            {
+              "slug": "daito-crow",
+              "type": "long-sword",
+              "name": "Daito Crow",
+              "rarity": "9",
+              "element": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "akantor-katana",
       "type": "long-sword",
       "name": "Akantor Katana",
@@ -372,6 +1125,55 @@
           "type": "long-sword",
           "name": "Akantor Broadswrd S",
           "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "decider",
+      "type": "great-sword",
+      "name": "Decider",
+      "rarity": "9",
+      "children": [
+        {
+          "slug": "liquid-fire-blade",
+          "type": "long-sword",
+          "name": "Liquid Fire Blade",
+          "rarity": "9",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "divine-fire-blade",
+              "type": "long-sword",
+              "name": "Divine Fire Blade",
+              "rarity": "10",
+              "element": "fire"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "igneous-blade",
+      "type": "great-sword",
+      "name": "Igneous Blade",
+      "rarity": "9",
+      "element": "fire",
+      "children": [
+        {
+          "slug": "liquid-fire-blade",
+          "type": "long-sword",
+          "name": "Liquid Fire Blade",
+          "rarity": "9",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "divine-fire-blade",
+              "type": "long-sword",
+              "name": "Divine Fire Blade",
+              "rarity": "10",
+              "element": "fire"
+            }
+          ]
         }
       ]
     },

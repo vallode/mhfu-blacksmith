@@ -2,23 +2,28 @@
 <li>
   <a
     id="{{ weapon.slug }}"
-    class="weapon-tree__row"
-    {% if weapon.rarity %}
-    href="/blacksmith/{{ section.extra.type }}/{{ weapon.slug }}/"
+    {% if weapon.type != section.extra.type %}
+    class="weapon-tree__row weapon-tree__row--external"
+    data-turbo-frame="_top"
+    {% else %}
+    class="weapon-tree__row" 
     {% endif %}
+    {% if weapon.rarity %}
+    href="/blacksmith/{{ weapon.type }}/{{ weapon.slug }}/"
     data-turbo-frame="weapon_details"
+    {% endif %}
   >
     {% if weapon.rarity %}
       <div class="
         icon
-        icon--{{ section.extra.type }}
+        icon--{{ weapon.type }}
         icon--rarity-{{ weapon.rarity }}
         {% if weapon.element -%}
           icon--{{ weapon.element }}
         {%- endif -%}
         "
       >
-        <img src="/images/{{ section.extra.type }}.png" alt="?">
+        <img src="/images/{{ weapon.type }}.png" alt="?">
       </div>
     {% else %}
       <div class="icon icon--ukwn">

@@ -8,19 +8,19 @@
       "children": [
         {
           "slug": "attack-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Attack Jewel",
           "rarity": 4
         },
         {
           "slug": "fierce-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fierce Jewel",
           "rarity": 5
         },
         {
           "slug": "strongest-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Strongest Jewel",
           "rarity": 5
         }
@@ -34,13 +34,13 @@
       "children": [
         {
           "slug": "fencer-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fencer Jewel",
           "rarity": 4
         },
         {
           "slug": "swordsman-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Swordsman Jewel",
           "rarity": 5
         }
@@ -54,13 +54,13 @@
       "children": [
         {
           "slug": "razor-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Razor Jewel",
           "rarity": 4
         },
         {
           "slug": "cutter-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Cutter Jewel",
           "rarity": 5
         }
@@ -74,19 +74,19 @@
       "children": [
         {
           "slug": "expert-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Expert Jewel",
           "rarity": 4
         },
         {
           "slug": "celebrity-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Celebrity Jewel",
           "rarity": 5
         },
         {
           "slug": "hermit-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Hermit Jewel",
           "rarity": 5
         }
@@ -100,7 +100,7 @@
       "children": [
         {
           "slug": "grinder-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Grinder Jewel",
           "rarity": 4
         }
@@ -114,7 +114,7 @@
       "children": [
         {
           "slug": "sword-draw-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Sword Draw Jewel",
           "rarity": 4
         }
@@ -128,7 +128,7 @@
       "children": [
         {
           "slug": "specialatk-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "SpecialAtk Jewel",
           "rarity": 4
         }
@@ -142,13 +142,13 @@
       "children": [
         {
           "slug": "element-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Element Jewel",
           "rarity": 4
         },
         {
           "slug": "element-jewel-plus",
-          "type": null,
+          "type": "decoration",
           "name": "Element Jewel+",
           "rarity": 5
         }
@@ -162,7 +162,7 @@
       "children": [
         {
           "slug": "bombardier-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Bombardier Jewel",
           "rarity": 4
         }
@@ -176,7 +176,7 @@
       "children": [
         {
           "slug": "shortchargejewel",
-          "type": null,
+          "type": "decoration",
           "name": "ShortChargeJewel",
           "rarity": 4
         }
@@ -190,13 +190,13 @@
       "children": [
         {
           "slug": "defense-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Defense Jewel",
           "rarity": 4
         },
         {
           "slug": "turtle-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Turtle Jewel",
           "rarity": 5
         }
@@ -210,13 +210,13 @@
       "children": [
         {
           "slug": "inferno-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Inferno Jewel",
           "rarity": 4
         },
         {
           "slug": "crimson-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Crimson Jewel",
           "rarity": 4
         }
@@ -230,13 +230,13 @@
       "children": [
         {
           "slug": "stream-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Stream Jewel",
           "rarity": 4
         },
         {
           "slug": "torrent-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Torrent Jewel",
           "rarity": 4
         }
@@ -250,13 +250,13 @@
       "children": [
         {
           "slug": "freeze-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Freeze Jewel",
           "rarity": 4
         },
         {
           "slug": "glacier-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Glacier Jewel",
           "rarity": 4
         }
@@ -270,13 +270,13 @@
       "children": [
         {
           "slug": "lightning-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Lightning Jewel",
           "rarity": 4
         },
         {
           "slug": "thunder-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Thunder Jewel",
           "rarity": 4
         }
@@ -290,13 +290,13 @@
       "children": [
         {
           "slug": "slayer-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Slayer Jewel",
           "rarity": 4
         },
         {
           "slug": "extinction-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Extinction Jewel",
           "rarity": 5
         }
@@ -310,19 +310,19 @@
       "children": [
         {
           "slug": "impervious-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Impervious Jewel",
           "rarity": 4
         },
         {
           "slug": "omnipotent-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Omnipotent Jewel",
           "rarity": 5
         },
         {
           "slug": "trueresistjewel",
-          "type": null,
+          "type": "decoration",
           "name": "TrueResistJewel",
           "rarity": 5
         }
@@ -336,13 +336,13 @@
       "children": [
         {
           "slug": "stone-wall-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Stone Wall Jewel",
           "rarity": 4
         },
         {
           "slug": "ironcurtainjewel",
-          "type": null,
+          "type": "decoration",
           "name": "IronCurtainJewel",
           "rarity": 5
         }
@@ -356,19 +356,19 @@
       "children": [
         {
           "slug": "hard-wall-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Hard Wall Jewel",
           "rarity": 4
         },
         {
           "slug": "strongwall-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "StrongWall Jewel",
           "rarity": 5
         },
         {
           "slug": "wall-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Wall Jewel",
           "rarity": 5
         }
@@ -382,7 +382,7 @@
       "children": [
         {
           "slug": "hvnlyshieldjewel",
-          "type": null,
+          "type": "decoration",
           "name": "HvnlyShieldJewel",
           "rarity": 4
         }
@@ -396,7 +396,7 @@
       "children": [
         {
           "slug": "strength-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Strength Jewel",
           "rarity": 4
         }
@@ -410,13 +410,13 @@
       "children": [
         {
           "slug": "feel-good-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Feel Good Jewel",
           "rarity": 4
         },
         {
           "slug": "speedyrecvrjewel",
-          "type": null,
+          "type": "decoration",
           "name": "SpeedyRecvrJewel",
           "rarity": 5
         }
@@ -430,13 +430,13 @@
       "children": [
         {
           "slug": "curing-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Curing Jewel",
           "rarity": 4
         },
         {
           "slug": "cure-all-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Cure All Jewel",
           "rarity": 5
         }
@@ -450,19 +450,19 @@
       "children": [
         {
           "slug": "friendship-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Friendship Jewel",
           "rarity": 4
         },
         {
           "slug": "beloved-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Beloved Jewel",
           "rarity": 5
         },
         {
           "slug": "tenderness-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Tenderness Jewel",
           "rarity": 5
         }
@@ -476,13 +476,13 @@
       "children": [
         {
           "slug": "protection-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Protection Jewel",
           "rarity": 4
         },
         {
           "slug": "divineprotectjwl",
-          "type": null,
+          "type": "decoration",
           "name": "DivineProtectJwl",
           "rarity": 4
         }
@@ -496,19 +496,19 @@
       "children": [
         {
           "slug": "pickyeater-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "PickyEater Jewel",
           "rarity": 4
         },
         {
           "slug": "fasting-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fasting Jewel",
           "rarity": 5
         },
         {
           "slug": "no-food-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "No Food Jewel",
           "rarity": 4
         }
@@ -522,7 +522,7 @@
       "children": [
         {
           "slug": "fatso-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fatso Jewel",
           "rarity": 4
         }
@@ -536,13 +536,13 @@
       "children": [
         {
           "slug": "quickeaterjewel",
-          "type": null,
+          "type": "decoration",
           "name": "QuickEaterJewel",
           "rarity": 4
         },
         {
           "slug": "fast-food-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fast Food Jewel",
           "rarity": 5
         }
@@ -556,13 +556,13 @@
       "children": [
         {
           "slug": "marathon-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Marathon Jewel",
           "rarity": 4
         },
         {
           "slug": "sprinter-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Sprinter Jewel",
           "rarity": 5
         }
@@ -576,7 +576,7 @@
       "children": [
         {
           "slug": "hardball-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Hardball Jewel",
           "rarity": 4
         }
@@ -590,13 +590,13 @@
       "children": [
         {
           "slug": "early-bird-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Early Bird Jewel",
           "rarity": 4
         },
         {
           "slug": "high-speed-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "High Speed Jewel",
           "rarity": 5
         }
@@ -610,13 +610,13 @@
       "children": [
         {
           "slug": "speed-fire-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Speed Fire Jewel",
           "rarity": 4
         },
         {
           "slug": "barrage-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Barrage Jewel",
           "rarity": 5
         }
@@ -630,13 +630,13 @@
       "children": [
         {
           "slug": "recoilless-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Recoilless Jewel",
           "rarity": 4
         },
         {
           "slug": "shockless-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Shockless Jewel",
           "rarity": 5
         }
@@ -650,13 +650,13 @@
       "children": [
         {
           "slug": "strongshot-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "StrongShot Jewel",
           "rarity": 4
         },
         {
           "slug": "strongshot-jewel-plus",
-          "type": null,
+          "type": "decoration",
           "name": "StrongShot Jewel+",
           "rarity": 5
         }
@@ -670,13 +670,13 @@
       "children": [
         {
           "slug": "pierce-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Pierce Jewel",
           "rarity": 4
         },
         {
           "slug": "pierce-jewel-plus",
-          "type": null,
+          "type": "decoration",
           "name": "Pierce Jewel+",
           "rarity": 5
         }
@@ -690,7 +690,7 @@
       "children": [
         {
           "slug": "pellet-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Pellet Jewel",
           "rarity": 4
         }
@@ -704,7 +704,7 @@
       "children": [
         {
           "slug": "shot-bonus-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Shot Bonus Jewel",
           "rarity": 4
         }
@@ -718,7 +718,7 @@
       "children": [
         {
           "slug": "piercebonusjewel",
-          "type": null,
+          "type": "decoration",
           "name": "PierceBonusJewel",
           "rarity": 4
         }
@@ -732,7 +732,7 @@
       "children": [
         {
           "slug": "pelletbonusjewel",
-          "type": null,
+          "type": "decoration",
           "name": "PelletBonusJewel",
           "rarity": 4
         }
@@ -746,7 +746,7 @@
       "children": [
         {
           "slug": "bomb-bonus-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Bomb Bonus Jewel",
           "rarity": 4
         }
@@ -760,7 +760,7 @@
       "children": [
         {
           "slug": "scattrbonusjewel",
-          "type": null,
+          "type": "decoration",
           "name": "ScattrBonusJewel",
           "rarity": 4
         }
@@ -774,13 +774,13 @@
       "children": [
         {
           "slug": "ammo-box-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Ammo Box Jewel",
           "rarity": 4
         },
         {
           "slug": "magazine-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Magazine Jewel",
           "rarity": 5
         }
@@ -794,13 +794,13 @@
       "children": [
         {
           "slug": "sniper-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Sniper Jewel",
           "rarity": 4
         },
         {
           "slug": "sharpshootrjewel",
-          "type": null,
+          "type": "decoration",
           "name": "SharpshootrJewel",
           "rarity": 4
         }
@@ -814,7 +814,7 @@
       "children": [
         {
           "slug": "armory-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Armory Jewel",
           "rarity": 4
         }
@@ -828,13 +828,13 @@
       "children": [
         {
           "slug": "artisan-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Artisan Jewel",
           "rarity": 4
         },
         {
           "slug": "master-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Master Jewel",
           "rarity": 5
         }
@@ -848,13 +848,13 @@
       "children": [
         {
           "slug": "tip-toe-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Tip Toe Jewel",
           "rarity": 4
         },
         {
           "slug": "ninja-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Ninja Jewel",
           "rarity": 4
         }
@@ -868,13 +868,13 @@
       "children": [
         {
           "slug": "evade-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Evade Jewel",
           "rarity": 4
         },
         {
           "slug": "dodge-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Dodge Jewel",
           "rarity": 5
         }
@@ -888,13 +888,13 @@
       "children": [
         {
           "slug": "danger-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Danger Jewel",
           "rarity": 4
         },
         {
           "slug": "crisis-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Crisis Jewel",
           "rarity": 5
         }
@@ -908,7 +908,7 @@
       "children": [
         {
           "slug": "bbq-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "BBQ Jewel",
           "rarity": 4
         }
@@ -922,7 +922,7 @@
       "children": [
         {
           "slug": "psychic-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Psychic Jewel",
           "rarity": 4
         }
@@ -936,19 +936,19 @@
       "children": [
         {
           "slug": "stayingpwr-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "StayingPwr Jewel",
           "rarity": 4
         },
         {
           "slug": "permanence-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Permanence Jewel",
           "rarity": 5
         },
         {
           "slug": "eternal-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Eternal Jewel",
           "rarity": 5
         }
@@ -962,7 +962,7 @@
       "children": [
         {
           "slug": "professor-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Professor Jewel",
           "rarity": 4
         }
@@ -976,7 +976,7 @@
       "children": [
         {
           "slug": "secretarts-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "SecretArts Jewel",
           "rarity": 4
         }
@@ -990,13 +990,13 @@
       "children": [
         {
           "slug": "small-arms-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Small Arms Jewel",
           "rarity": 4
         },
         {
           "slug": "howitzer-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Howitzer Jewel",
           "rarity": 4
         }
@@ -1010,7 +1010,7 @@
       "children": [
         {
           "slug": "fife-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fife Jewel",
           "rarity": 4
         }
@@ -1024,19 +1024,19 @@
       "children": [
         {
           "slug": "steadfast-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Steadfast Jewel",
           "rarity": 4
         },
         {
           "slug": "anti-faint-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Anti-Faint Jewel",
           "rarity": 5
         },
         {
           "slug": "steadfast-jewel-plus",
-          "type": null,
+          "type": "decoration",
           "name": "Steadfast Jewel+",
           "rarity": 4
         }
@@ -1050,13 +1050,13 @@
       "children": [
         {
           "slug": "paralysis-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Paralysis Jewel",
           "rarity": 4
         },
         {
           "slug": "antiparalyzjewel",
-          "type": null,
+          "type": "decoration",
           "name": "AntiParalyzJewel",
           "rarity": 5
         }
@@ -1070,13 +1070,13 @@
       "children": [
         {
           "slug": "pep-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Pep Jewel",
           "rarity": 4
         },
         {
           "slug": "jolt-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Jolt Jewel",
           "rarity": 4
         }
@@ -1090,19 +1090,19 @@
       "children": [
         {
           "slug": "antidote-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Antidote Jewel",
           "rarity": 4
         },
         {
           "slug": "antivenin-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Antivenin Jewel",
           "rarity": 5
         },
         {
           "slug": "antidote-jewel-plus",
-          "type": null,
+          "type": "decoration",
           "name": "Antidote Jewel+",
           "rarity": 4
         }
@@ -1116,13 +1116,13 @@
       "children": [
         {
           "slug": "snowblower-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Snowblower Jewel",
           "rarity": 4
         },
         {
           "slug": "snowplow-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Snowplow Jewel",
           "rarity": 5
         }
@@ -1136,13 +1136,13 @@
       "children": [
         {
           "slug": "anchor-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Anchor Jewel",
           "rarity": 4
         },
         {
           "slug": "tectonic-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Tectonic Jewel",
           "rarity": 5
         }
@@ -1156,13 +1156,13 @@
       "children": [
         {
           "slug": "earplug-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Earplug Jewel",
           "rarity": 4
         },
         {
           "slug": "silencer-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Silencer Jewel",
           "rarity": 5
         }
@@ -1176,13 +1176,13 @@
       "children": [
         {
           "slug": "paperweightjewel",
-          "type": null,
+          "type": "decoration",
           "name": "PaperweightJewel",
           "rarity": 4
         },
         {
           "slug": "heavymetal-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "HeavyMetal Jewel",
           "rarity": 5
         }
@@ -1196,13 +1196,13 @@
       "children": [
         {
           "slug": "melt-proof-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Melt-Proof Jewel",
           "rarity": 4
         },
         {
           "slug": "anti-thaw-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Anti-Thaw Jewel",
           "rarity": 5
         }
@@ -1216,7 +1216,7 @@
       "children": [
         {
           "slug": "alarm-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Alarm Jewel",
           "rarity": 4
         }
@@ -1230,13 +1230,13 @@
       "children": [
         {
           "slug": "retroviral-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Retroviral Jewel",
           "rarity": 4
         },
         {
           "slug": "antiviral-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Antiviral Jewel",
           "rarity": 4
         }
@@ -1250,13 +1250,13 @@
       "children": [
         {
           "slug": "tireless-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Tireless Jewel",
           "rarity": 4
         },
         {
           "slug": "antiviral-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Antiviral Jewel",
           "rarity": 4
         }
@@ -1270,7 +1270,7 @@
       "children": [
         {
           "slug": "backpacker-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Backpacker Jewel",
           "rarity": 4
         }
@@ -1284,7 +1284,7 @@
       "children": [
         {
           "slug": "grab-n-dashjewel",
-          "type": null,
+          "type": "decoration",
           "name": "Grab'n'DashJewel",
           "rarity": 4
         }
@@ -1298,13 +1298,13 @@
       "children": [
         {
           "slug": "good-luck-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Good Luck Jewel",
           "rarity": 4
         },
         {
           "slug": "blessing-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Blessing Jewel",
           "rarity": 4
         }
@@ -1318,13 +1318,13 @@
       "children": [
         {
           "slug": "hidecutter-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "HideCutter Jewel",
           "rarity": 4
         },
         {
           "slug": "blessing-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Blessing Jewel",
           "rarity": 4
         }
@@ -1338,13 +1338,13 @@
       "children": [
         {
           "slug": "fate-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fate Jewel",
           "rarity": 4
         },
         {
           "slug": "destiny-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Destiny Jewel",
           "rarity": 5
         }
@@ -1358,7 +1358,7 @@
       "children": [
         {
           "slug": "fisher-jewel",
-          "type": null,
+          "type": "decoration",
           "name": "Fisher Jewel",
           "rarity": 4
         }
