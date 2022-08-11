@@ -53,6 +53,14 @@
                                       "type": "hammer",
                                       "name": "Juggernaut",
                                       "rarity": "9"
+                                    },
+                                    {
+                                      "slug": "lava-alphorn",
+                                      "type": "hunting-horn",
+                                      "name": "Lava Alphorn",
+                                      "rarity": "9",
+                                      "element": "fire",
+                                      "children": []
                                     }
                                   ]
                                 }
@@ -71,6 +79,21 @@
                                   "rarity": "7"
                                 }
                               ]
+                            },
+                            {
+                              "slug": "bronze-bell",
+                              "type": "hunting-horn",
+                              "name": "Bronze Bell",
+                              "rarity": "5",
+                              "children": []
+                            },
+                            {
+                              "slug": "sakura-recorder",
+                              "type": "hunting-horn",
+                              "name": "Sakura Recorder",
+                              "rarity": "5",
+                              "element": "dragon",
+                              "children": []
                             },
                             {
                               "slug": "iron-devil",
@@ -320,6 +343,13 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "slug": "metal-bagpipe",
+                  "type": "hunting-horn",
+                  "name": "Metal Bagpipe",
+                  "rarity": "2",
+                  "children": []
                 }
               ]
             },
@@ -439,6 +469,14 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "slug": "basarios-rock",
+                      "type": "hunting-horn",
+                      "name": "Basarios Rock",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": []
                     }
                   ]
                 }
@@ -562,6 +600,14 @@
                               ]
                             }
                           ]
+                        },
+                        {
+                          "slug": "feather-whistle",
+                          "type": "hunting-horn",
+                          "name": "Feather Whistle",
+                          "rarity": "6",
+                          "element": "sleep",
+                          "children": []
                         }
                       ]
                     },
@@ -582,6 +628,14 @@
                               "type": "hammer",
                               "name": "Crow Torrent",
                               "rarity": "9"
+                            },
+                            {
+                              "slug": "wolf-shamisen",
+                              "type": "hunting-horn",
+                              "name": "Wolf Shamisen",
+                              "rarity": "7",
+                              "element": "poison",
+                              "children": []
                             }
                           ]
                         }
@@ -660,6 +714,14 @@
                       "element": "paralysis"
                     }
                   ]
+                },
+                {
+                  "slug": "khezu-horn",
+                  "type": "hunting-horn",
+                  "name": "Khezu Horn",
+                  "rarity": "3",
+                  "element": "thunder",
+                  "children": []
                 }
               ]
             },
@@ -700,7 +762,16 @@
                           "type": "hammer",
                           "name": "Ancient Relic",
                           "rarity": "5",
-                          "children": []
+                          "children": [
+                            {
+                              "slug": "shell-castanet",
+                              "type": "hunting-horn",
+                              "name": "Shell Castanet",
+                              "rarity": "7",
+                              "element": "water",
+                              "children": []
+                            }
+                          ]
                         },
                         {
                           "slug": "basarios-blow",
@@ -717,6 +788,13 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "slug": "sonic-glass",
+                      "type": "hunting-horn",
+                      "name": "Sonic Glass",
+                      "rarity": "3",
+                      "children": []
                     }
                   ]
                 }
@@ -762,6 +840,13 @@
                   ]
                 }
               ]
+            },
+            {
+              "slug": "bone-horn",
+              "type": "hunting-horn",
+              "name": "Bone Horn",
+              "rarity": "2",
+              "children": []
             }
           ]
         },
@@ -786,6 +871,14 @@
               ]
             }
           ]
+        },
+        {
+          "slug": "giaprey-balloon",
+          "type": "hunting-horn",
+          "name": "Giaprey Balloon",
+          "rarity": "2",
+          "element": "ice",
+          "children": []
         }
       ]
     },
@@ -846,57 +939,73 @@
       ]
     },
     {
-      "slug": "worn-hammer",
+      "slug": "white-cat-stamp",
       "type": "hammer",
-      "name": "Worn Hammer",
-      "rarity": "6",
+      "name": "White Cat Stamp",
+      "rarity": "2",
+      "element": "paralysis",
       "children": [
         {
-          "slug": "weathered-hammer",
+          "slug": "white-cat-hammer",
           "type": "hammer",
-          "name": "Weathered Hammer",
+          "name": "White Cat Hammer",
           "rarity": "6",
+          "element": "paralysis"
+        },
+        {
+          "slug": "black-cat-stamp",
+          "type": "hammer",
+          "name": "Black Cat Stamp",
+          "rarity": "4",
+          "element": "paralysis",
           "children": [
             {
-              "slug": "pulsating-core",
+              "slug": "black-cat-hammer",
               "type": "hammer",
-              "name": "Pulsating Core",
-              "rarity": "7",
-              "children": [
-                {
-                  "slug": "pulse-crusher-core",
-                  "type": "hammer",
-                  "name": "Pulse Crusher Core",
-                  "rarity": "9"
-                }
-              ]
+              "name": "Black Cat Hammer",
+              "rarity": "6",
+              "element": "paralysis"
             },
             {
-              "slug": "steel-ice-hammer",
+              "slug": "gold-cat-hammer",
               "type": "hammer",
-              "name": "Steel Ice Hammer",
-              "rarity": "7",
-              "element": "ice",
+              "name": "Gold Cat Hammer",
+              "rarity": "8",
+              "element": "paralysis",
               "children": [
                 {
-                  "slug": "daora-s-colossus",
+                  "slug": "gold-cat-crusher",
                   "type": "hammer",
-                  "name": "Daora's Colossus",
-                  "rarity": "8",
-                  "element": "ice",
-                  "children": [
-                    {
-                      "slug": "daora-s-hyperborea",
-                      "type": "hammer",
-                      "name": "Daora's Hyperborea",
-                      "rarity": "10",
-                      "element": "ice"
-                    }
-                  ]
+                  "name": "Gold Cat Crusher",
+                  "rarity": "9",
+                  "element": "paralysis"
                 }
               ]
             }
           ]
+        },
+        {
+          "slug": "teddybear",
+          "type": "hammer",
+          "name": "Teddybear",
+          "rarity": "4",
+          "element": "sleep"
+        }
+      ]
+    },
+    {
+      "slug": "cactus-creamer",
+      "type": "hammer",
+      "name": "Cactus Creamer",
+      "rarity": "3",
+      "element": "poison",
+      "children": [
+        {
+          "slug": "green-monster",
+          "type": "hammer",
+          "name": "Green Monster",
+          "rarity": "5",
+          "element": "poison"
         }
       ]
     },
@@ -917,6 +1026,40 @@
               "type": "hammer",
               "name": "Warrior's Hammer",
               "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "khezu-horn-plus",
+      "type": "hunting-horn",
+      "name": "Khezu Horn+",
+      "rarity": "4",
+      "element": "thunder",
+      "children": [
+        {
+          "slug": "purse-bop",
+          "type": "hammer",
+          "name": "Purse Bop",
+          "rarity": "7",
+          "element": "thunder",
+          "children": [
+            {
+              "slug": "purse-bop-plus",
+              "type": "hammer",
+              "name": "Purse Bop+",
+              "rarity": "9",
+              "element": "thunder",
+              "children": [
+                {
+                  "slug": "khezu-thunder",
+                  "type": "hammer",
+                  "name": "Khezu Thunder",
+                  "rarity": "10",
+                  "element": "thunder"
+                }
+              ]
             }
           ]
         }
@@ -960,22 +1103,6 @@
               "element": "dragon"
             }
           ]
-        }
-      ]
-    },
-    {
-      "slug": "cactus-creamer",
-      "type": "hammer",
-      "name": "Cactus Creamer",
-      "rarity": "3",
-      "element": "poison",
-      "children": [
-        {
-          "slug": "green-monster",
-          "type": "hammer",
-          "name": "Green Monster",
-          "rarity": "5",
-          "element": "poison"
         }
       ]
     },
@@ -1050,57 +1177,57 @@
       ]
     },
     {
-      "slug": "white-cat-stamp",
+      "slug": "worn-hammer",
       "type": "hammer",
-      "name": "White Cat Stamp",
-      "rarity": "2",
-      "element": "paralysis",
+      "name": "Worn Hammer",
+      "rarity": "6",
       "children": [
         {
-          "slug": "white-cat-hammer",
+          "slug": "weathered-hammer",
           "type": "hammer",
-          "name": "White Cat Hammer",
+          "name": "Weathered Hammer",
           "rarity": "6",
-          "element": "paralysis"
-        },
-        {
-          "slug": "black-cat-stamp",
-          "type": "hammer",
-          "name": "Black Cat Stamp",
-          "rarity": "4",
-          "element": "paralysis",
           "children": [
             {
-              "slug": "black-cat-hammer",
+              "slug": "pulsating-core",
               "type": "hammer",
-              "name": "Black Cat Hammer",
-              "rarity": "6",
-              "element": "paralysis"
-            },
-            {
-              "slug": "gold-cat-hammer",
-              "type": "hammer",
-              "name": "Gold Cat Hammer",
-              "rarity": "8",
-              "element": "paralysis",
+              "name": "Pulsating Core",
+              "rarity": "7",
               "children": [
                 {
-                  "slug": "gold-cat-crusher",
+                  "slug": "pulse-crusher-core",
                   "type": "hammer",
-                  "name": "Gold Cat Crusher",
-                  "rarity": "9",
-                  "element": "paralysis"
+                  "name": "Pulse Crusher Core",
+                  "rarity": "9"
+                }
+              ]
+            },
+            {
+              "slug": "steel-ice-hammer",
+              "type": "hammer",
+              "name": "Steel Ice Hammer",
+              "rarity": "7",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "daora-s-colossus",
+                  "type": "hammer",
+                  "name": "Daora's Colossus",
+                  "rarity": "8",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "daora-s-hyperborea",
+                      "type": "hammer",
+                      "name": "Daora's Hyperborea",
+                      "rarity": "10",
+                      "element": "ice"
+                    }
+                  ]
                 }
               ]
             }
           ]
-        },
-        {
-          "slug": "teddybear",
-          "type": "hammer",
-          "name": "Teddybear",
-          "rarity": "4",
-          "element": "sleep"
         }
       ]
     },

@@ -110,6 +110,13 @@
                                           "rarity": "10"
                                         },
                                         {
+                                          "slug": "ancient-destroyer",
+                                          "type": "gunlance",
+                                          "name": "Ancient Destroyer",
+                                          "rarity": "9",
+                                          "children": []
+                                        },
+                                        {
                                           "slug": "spark-plug",
                                           "type": "lance",
                                           "name": "Spark Plug",
@@ -200,6 +207,14 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "slug": "feather-gunlance",
+                                  "type": "gunlance",
+                                  "name": "Feather Gunlance",
+                                  "rarity": "6",
+                                  "element": "sleep",
+                                  "children": []
                                 }
                               ]
                             }
@@ -435,6 +450,21 @@
               ]
             }
           ]
+        },
+        {
+          "slug": "iron-gunlance",
+          "type": "gunlance",
+          "name": "Iron Gunlance",
+          "rarity": "1",
+          "children": []
+        },
+        {
+          "slug": "snow-gunlance",
+          "type": "gunlance",
+          "name": "Snow Gunlance",
+          "rarity": "2",
+          "element": "ice",
+          "children": []
         }
       ]
     },
@@ -505,6 +535,13 @@
                                           "rarity": "9"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "slug": "heavy-bone-gunlance",
+                                      "type": "gunlance",
+                                      "name": "Heavy Bone Gunlance",
+                                      "rarity": "9",
+                                      "children": []
                                     }
                                   ]
                                 },
@@ -532,6 +569,14 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "slug": "full-voltage",
+                                  "type": "gunlance",
+                                  "name": "Full Voltage",
+                                  "rarity": "7",
+                                  "element": "thunder",
+                                  "children": []
                                 }
                               ]
                             }
@@ -668,6 +713,13 @@
                       "rarity": "4",
                       "children": [
                         {
+                          "slug": "scissor-gunlance",
+                          "type": "gunlance",
+                          "name": "Scissor Gunlance",
+                          "rarity": "6",
+                          "children": []
+                        },
+                        {
                           "slug": "ceanataur-piercer",
                           "type": "lance",
                           "name": "Ceanataur Piercer",
@@ -794,6 +846,13 @@
                   ]
                 }
               ]
+            },
+            {
+              "slug": "great-bone-gunlance",
+              "type": "gunlance",
+              "name": "Great Bone Gunlance",
+              "rarity": "2",
+              "children": []
             }
           ]
         },
@@ -941,57 +1000,34 @@
       ]
     },
     {
-      "slug": "worn-spear",
+      "slug": "native-spear",
       "type": "lance",
-      "name": "Worn Spear",
-      "rarity": "6",
+      "name": "Native Spear",
+      "rarity": "3",
+      "element": "poison",
       "children": [
         {
-          "slug": "weathered-spear",
+          "slug": "primal-spear",
           "type": "lance",
-          "name": "Weathered Spear",
+          "name": "Primal Spear",
           "rarity": "6",
-          "children": [
-            {
-              "slug": "matenro",
-              "type": "lance",
-              "name": "Matenro",
-              "rarity": "7",
-              "children": [
-                {
-                  "slug": "sky-scraper",
-                  "type": "lance",
-                  "name": "Sky Scraper",
-                  "rarity": "9"
-                }
-              ]
-            },
-            {
-              "slug": "teostra-s-howl",
-              "type": "lance",
-              "name": "Teostra's Howl",
-              "rarity": "7",
-              "element": "fire",
-              "children": [
-                {
-                  "slug": "teostra-s-roar",
-                  "type": "lance",
-                  "name": "Teostra's Roar",
-                  "rarity": "8",
-                  "element": "fire",
-                  "children": [
-                    {
-                      "slug": "teostra-s-fire",
-                      "type": "lance",
-                      "name": "Teostra's Fire",
-                      "rarity": "10",
-                      "element": "fire"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "element": "poison"
+        }
+      ]
+    },
+    {
+      "slug": "vacuum-striker",
+      "type": "lance",
+      "name": "Vacuum Striker",
+      "rarity": "3",
+      "element": "water",
+      "children": [
+        {
+          "slug": "hyper-vacuum",
+          "type": "lance",
+          "name": "Hyper Vacuum",
+          "rarity": "6",
+          "element": "water"
         }
       ]
     },
@@ -1061,22 +1097,6 @@
       ]
     },
     {
-      "slug": "native-spear",
-      "type": "lance",
-      "name": "Native Spear",
-      "rarity": "3",
-      "element": "poison",
-      "children": [
-        {
-          "slug": "primal-spear",
-          "type": "lance",
-          "name": "Primal Spear",
-          "rarity": "6",
-          "element": "poison"
-        }
-      ]
-    },
-    {
       "slug": "tiger-stinger",
       "type": "lance",
       "name": "Tiger Stinger",
@@ -1109,22 +1129,6 @@
               "rarity": "10"
             }
           ]
-        }
-      ]
-    },
-    {
-      "slug": "vacuum-striker",
-      "type": "lance",
-      "name": "Vacuum Striker",
-      "rarity": "3",
-      "element": "water",
-      "children": [
-        {
-          "slug": "hyper-vacuum",
-          "type": "lance",
-          "name": "Hyper Vacuum",
-          "rarity": "6",
-          "element": "water"
         }
       ]
     },
@@ -1166,6 +1170,83 @@
                   ]
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "worn-spear",
+      "type": "lance",
+      "name": "Worn Spear",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "weathered-spear",
+          "type": "lance",
+          "name": "Weathered Spear",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "matenro",
+              "type": "lance",
+              "name": "Matenro",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "sky-scraper",
+                  "type": "lance",
+                  "name": "Sky Scraper",
+                  "rarity": "9"
+                }
+              ]
+            },
+            {
+              "slug": "teostra-s-howl",
+              "type": "lance",
+              "name": "Teostra's Howl",
+              "rarity": "7",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "teostra-s-roar",
+                  "type": "lance",
+                  "name": "Teostra's Roar",
+                  "rarity": "8",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "teostra-s-fire",
+                      "type": "lance",
+                      "name": "Teostra's Fire",
+                      "rarity": "10",
+                      "element": "fire"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "scissor-cannon",
+      "type": "gunlance",
+      "name": "Scissor Cannon",
+      "rarity": "7",
+      "children": [
+        {
+          "slug": "shell-claw-lance",
+          "type": "lance",
+          "name": "Shell Claw Lance",
+          "rarity": "9",
+          "children": [
+            {
+              "slug": "gianthermitaurlance",
+              "type": "lance",
+              "name": "GiantHermitaurLance",
+              "rarity": "9"
             }
           ]
         }

@@ -85,6 +85,14 @@
                                       ]
                                     },
                                     {
+                                      "slug": "demon-halberd",
+                                      "type": "long-sword",
+                                      "name": "Demon Halberd",
+                                      "rarity": "7",
+                                      "element": "thunder",
+                                      "children": []
+                                    },
+                                    {
                                       "slug": "decider",
                                       "type": "great-sword",
                                       "name": "Decider",
@@ -109,8 +117,24 @@
                                               "name": "Igneous Sword",
                                               "rarity": "10",
                                               "element": "fire"
+                                            },
+                                            {
+                                              "slug": "liquid-fire-blade",
+                                              "type": "long-sword",
+                                              "name": "Liquid Fire Blade",
+                                              "rarity": "9",
+                                              "element": "fire",
+                                              "children": []
                                             }
                                           ]
+                                        },
+                                        {
+                                          "slug": "liquid-fire-blade",
+                                          "type": "long-sword",
+                                          "name": "Liquid Fire Blade",
+                                          "rarity": "9",
+                                          "element": "fire",
+                                          "children": []
                                         }
                                       ]
                                     }
@@ -137,6 +161,13 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "slug": "guardian-sword",
+                                  "type": "long-sword",
+                                  "name": "Guardian Sword",
+                                  "rarity": "6",
+                                  "children": []
                                 }
                               ]
                             }
@@ -270,6 +301,13 @@
                   ]
                 }
               ]
+            },
+            {
+              "slug": "iron-katana",
+              "type": "long-sword",
+              "name": "Iron Katana",
+              "rarity": "1",
+              "children": []
             }
           ]
         },
@@ -321,6 +359,14 @@
               ]
             }
           ]
+        },
+        {
+          "slug": "blango-destroyer",
+          "type": "long-sword",
+          "name": "Blango Destroyer",
+          "rarity": "2",
+          "element": "ice",
+          "children": []
         }
       ]
     },
@@ -514,6 +560,13 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "slug": "rusty-claymore",
+                                  "type": "long-sword",
+                                  "name": "Rusty Claymore",
+                                  "rarity": "6",
+                                  "children": []
                                 }
                               ]
                             },
@@ -711,6 +764,14 @@
                               "type": "great-sword",
                               "name": "Sentoryu Crow",
                               "rarity": "9"
+                            },
+                            {
+                              "slug": "daito-wolf",
+                              "type": "long-sword",
+                              "name": "Daito Wolf",
+                              "rarity": "7",
+                              "element": "poison",
+                              "children": []
                             }
                           ]
                         }
@@ -771,11 +832,25 @@
                       "rarity": "4",
                       "children": [
                         {
+                          "slug": "crab-cutter",
+                          "type": "long-sword",
+                          "name": "Crab Cutter",
+                          "rarity": "6",
+                          "children": []
+                        },
+                        {
                           "slug": "killer-s-scythe",
                           "type": "great-sword",
                           "name": "Killer's Scythe",
                           "rarity": "6",
                           "children": [
+                            {
+                              "slug": "shogun-cutter",
+                              "type": "long-sword",
+                              "name": "Shogun Cutter",
+                              "rarity": "9",
+                              "children": []
+                            },
                             {
                               "slug": "carmine-blade",
                               "type": "great-sword",
@@ -829,6 +904,13 @@
                           "rarity": "6",
                           "children": [
                             {
+                              "slug": "shogun-cutter",
+                              "type": "long-sword",
+                              "name": "Shogun Cutter",
+                              "rarity": "9",
+                              "children": []
+                            },
+                            {
                               "slug": "carmine-blade",
                               "type": "great-sword",
                               "name": "Carmine Blade",
@@ -859,6 +941,78 @@
                           ]
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "bone-katana-wolf",
+              "type": "long-sword",
+              "name": "Bone Katana \"Wolf\"",
+              "rarity": "1",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "rusted-great-sword",
+      "type": "great-sword",
+      "name": "Rusted Great Sword",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "tarnished-great-swd",
+          "type": "great-sword",
+          "name": "Tarnished Great Swd",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "ancient-blade",
+              "type": "great-sword",
+              "name": "Ancient Blade",
+              "rarity": "5",
+              "element": "dragon"
+            },
+            {
+              "slug": "steel-ice-blade",
+              "type": "great-sword",
+              "name": "Steel Ice Blade",
+              "rarity": "5",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "steel-ice-blade-plus",
+                  "type": "great-sword",
+                  "name": "Steel Ice Blade+",
+                  "rarity": "5",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "daora-s-decimator",
+                      "type": "great-sword",
+                      "name": "Daora's Decimator",
+                      "rarity": "8",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "daora-s-tughril-beg",
+                          "type": "great-sword",
+                          "name": "Daora's Tughril Beg",
+                          "rarity": "10",
+                          "element": "ice"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "icesteel-blade",
+                      "type": "long-sword",
+                      "name": "Icesteel Blade",
+                      "rarity": "8",
+                      "element": "ice",
+                      "children": []
                     }
                   ]
                 }
@@ -1018,90 +1172,6 @@
       ]
     },
     {
-      "slug": "akantor-broadsword",
-      "type": "great-sword",
-      "name": "Akantor Broadsword",
-      "rarity": "8",
-      "children": [
-        {
-          "slug": "akantor-broadsword-plus",
-          "type": "great-sword",
-          "name": "Akantor Broadsword+",
-          "rarity": "10"
-        }
-      ]
-    },
-    {
-      "slug": "g-blade",
-      "type": "great-sword",
-      "name": "G Blade",
-      "rarity": "9"
-    },
-    {
-      "slug": "ukanlos-destructor",
-      "type": "great-sword",
-      "name": "Ukanlos Destructor",
-      "rarity": "10",
-      "element": "ice"
-    },
-    {
-      "slug": "rusted-great-sword",
-      "type": "great-sword",
-      "name": "Rusted Great Sword",
-      "rarity": "1",
-      "children": [
-        {
-          "slug": "tarnished-great-swd",
-          "type": "great-sword",
-          "name": "Tarnished Great Swd",
-          "rarity": "1",
-          "children": [
-            {
-              "slug": "ancient-blade",
-              "type": "great-sword",
-              "name": "Ancient Blade",
-              "rarity": "5",
-              "element": "dragon"
-            },
-            {
-              "slug": "steel-ice-blade",
-              "type": "great-sword",
-              "name": "Steel Ice Blade",
-              "rarity": "5",
-              "element": "ice",
-              "children": [
-                {
-                  "slug": "steel-ice-blade-plus",
-                  "type": "great-sword",
-                  "name": "Steel Ice Blade+",
-                  "rarity": "5",
-                  "element": "ice",
-                  "children": [
-                    {
-                      "slug": "daora-s-decimator",
-                      "type": "great-sword",
-                      "name": "Daora's Decimator",
-                      "rarity": "8",
-                      "element": "ice",
-                      "children": [
-                        {
-                          "slug": "daora-s-tughril-beg",
-                          "type": "great-sword",
-                          "name": "Daora's Tughril Beg",
-                          "rarity": "10",
-                          "element": "ice"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "slug": "worn-great-sword",
       "type": "great-sword",
       "name": "Worn Great Sword",
@@ -1157,6 +1227,55 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "daimyo-cutter",
+      "type": "long-sword",
+      "name": "Daimyo Cutter",
+      "rarity": "7",
+      "children": [
+        {
+          "slug": "violet-pincer",
+          "type": "great-sword",
+          "name": "Violet Pincer",
+          "rarity": "9",
+          "children": [
+            {
+              "slug": "grand-pincer",
+              "type": "great-sword",
+              "name": "Grand Pincer",
+              "rarity": "9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "akantor-broadsword",
+      "type": "great-sword",
+      "name": "Akantor Broadsword",
+      "rarity": "8",
+      "children": [
+        {
+          "slug": "akantor-broadsword-plus",
+          "type": "great-sword",
+          "name": "Akantor Broadsword+",
+          "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "g-blade",
+      "type": "great-sword",
+      "name": "G Blade",
+      "rarity": "9"
+    },
+    {
+      "slug": "ukanlos-destructor",
+      "type": "great-sword",
+      "name": "Ukanlos Destructor",
+      "rarity": "10",
+      "element": "ice"
     },
     {
       "slug": "buster-blade-g",

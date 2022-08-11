@@ -124,6 +124,392 @@
       ]
     },
     {
+      "slug": "war-mace",
+      "type": "hammer",
+      "name": "War Mace",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "metal-bagpipe",
+          "type": "hunting-horn",
+          "name": "Metal Bagpipe",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "great-bagpipe",
+              "type": "hunting-horn",
+              "name": "Great Bagpipe",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "heavy-bagpipe",
+                  "type": "hunting-horn",
+                  "name": "Heavy Bagpipe",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "heavy-bagpipe-plus",
+                      "type": "hunting-horn",
+                      "name": "Heavy Bagpipe+",
+                      "rarity": "7",
+                      "children": [
+                        {
+                          "slug": "master-bagpipe",
+                          "type": "hunting-horn",
+                          "name": "Master Bagpipe",
+                          "rarity": "9",
+                          "children": [
+                            {
+                              "slug": "sforzando",
+                              "type": "hunting-horn",
+                              "name": "Sforzando",
+                              "rarity": "9"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bone-club",
+      "type": "hammer",
+      "name": "Bone Club",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "giaprey-balloon",
+          "type": "hunting-horn",
+          "name": "Giaprey Balloon",
+          "rarity": "2",
+          "element": "ice",
+          "children": [
+            {
+              "slug": "giaprey-balloon-plus",
+              "type": "hunting-horn",
+              "name": "Giaprey Balloon+",
+              "rarity": "3",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "giadrome-balloon",
+                  "type": "hunting-horn",
+                  "name": "Giadrome Balloon",
+                  "rarity": "6",
+                  "element": "ice"
+                },
+                {
+                  "slug": "velociprey-balloon",
+                  "type": "hunting-horn",
+                  "name": "Velociprey Balloon",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "velociprey-balloon-plus",
+                      "type": "hunting-horn",
+                      "name": "Velociprey Balloon+",
+                      "rarity": "7",
+                      "children": [
+                        {
+                          "slug": "velocidrome-balloon",
+                          "type": "hunting-horn",
+                          "name": "Velocidrome Balloon",
+                          "rarity": "9",
+                          "children": [
+                            {
+                              "slug": "velocidrome-balloon-plus",
+                              "type": "hunting-horn",
+                              "name": "Velocidrome Balloon+",
+                              "rarity": "9"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cyclo-hammer",
+      "type": "hammer",
+      "name": "Cyclo-Hammer",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "bone-horn",
+          "type": "hunting-horn",
+          "name": "Bone Horn",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "bone-horn-plus",
+              "type": "hunting-horn",
+              "name": "Bone Horn+",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "hunter-s-horn",
+                  "type": "hunting-horn",
+                  "name": "Hunter's Horn",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "hunter-s-horn-plus",
+                      "type": "hunting-horn",
+                      "name": "Hunter's Horn+",
+                      "rarity": "9",
+                      "children": [
+                        {
+                          "slug": "native-s-horn",
+                          "type": "hunting-horn",
+                          "name": "Native's Horn",
+                          "rarity": "9"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "blessed-ocarina",
+              "type": "hunting-horn",
+              "name": "Blessed Ocarina",
+              "rarity": "5",
+              "element": "poison",
+              "children": [
+                {
+                  "slug": "cursed-ocarina",
+                  "type": "hunting-horn",
+                  "name": "Cursed Ocarina",
+                  "rarity": "8",
+                  "element": "poison",
+                  "children": [
+                    {
+                      "slug": "genie-s-ocarina",
+                      "type": "hunting-horn",
+                      "name": "Genie's Ocarina",
+                      "rarity": "10",
+                      "element": "poison"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "spiked-hammer-plus",
+      "type": "hammer",
+      "name": "Spiked Hammer+",
+      "rarity": "2",
+      "children": [
+        {
+          "slug": "basarios-rock",
+          "type": "hunting-horn",
+          "name": "Basarios Rock",
+          "rarity": "4",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "basarios-rock-mk-ii",
+              "type": "hunting-horn",
+              "name": "Basarios Rock Mk.II",
+              "rarity": "5",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "volcanic-rock",
+                  "type": "hunting-horn",
+                  "name": "Volcanic Rock",
+                  "rarity": "7",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "volcanic-gig",
+                      "type": "hunting-horn",
+                      "name": "Volcanic Gig",
+                      "rarity": "9",
+                      "element": "fire"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "atlas-hammer",
+      "type": "hammer",
+      "name": "Atlas Hammer",
+      "rarity": "2",
+      "children": [
+        {
+          "slug": "khezu-horn",
+          "type": "hunting-horn",
+          "name": "Khezu Horn",
+          "rarity": "3",
+          "element": "thunder",
+          "children": [
+            {
+              "slug": "khezu-horn-plus",
+              "type": "hunting-horn",
+              "name": "Khezu Horn+",
+              "rarity": "4",
+              "element": "thunder",
+              "children": [
+                {
+                  "slug": "khezu-flute",
+                  "type": "hunting-horn",
+                  "name": "Khezu Flute",
+                  "rarity": "6",
+                  "element": "thunder"
+                },
+                {
+                  "slug": "blood-horn",
+                  "type": "hunting-horn",
+                  "name": "Blood Horn",
+                  "rarity": "6",
+                  "element": "thunder",
+                  "children": [
+                    {
+                      "slug": "blood-flute",
+                      "type": "hunting-horn",
+                      "name": "Blood Flute",
+                      "rarity": "7",
+                      "element": "thunder",
+                      "children": [
+                        {
+                          "slug": "blood-flute-plus",
+                          "type": "hunting-horn",
+                          "name": "Blood Flute+",
+                          "rarity": "9",
+                          "element": "thunder",
+                          "children": [
+                            {
+                              "slug": "brute-flute",
+                              "type": "hunting-horn",
+                              "name": "Brute Flute",
+                              "rarity": "9",
+                              "element": "thunder"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "purse-bop",
+                  "type": "hammer",
+                  "name": "Purse Bop",
+                  "rarity": "7",
+                  "element": "thunder",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "skullcrusher-plus",
+      "type": "hammer",
+      "name": "Skullcrusher+",
+      "rarity": "2",
+      "children": [
+        {
+          "slug": "sonic-glass",
+          "type": "hunting-horn",
+          "name": "Sonic Glass",
+          "rarity": "3",
+          "children": [
+            {
+              "slug": "sonic-glass-plus",
+              "type": "hunting-horn",
+              "name": "Sonic Glass+",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "glass-queen",
+                  "type": "hunting-horn",
+                  "name": "Glass Queen",
+                  "rarity": "6",
+                  "children": [
+                    {
+                      "slug": "glass-royale",
+                      "type": "hunting-horn",
+                      "name": "Glass Royale",
+                      "rarity": "9",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "queen-s-flute",
+                          "type": "hunting-horn",
+                          "name": "Queen's Flute",
+                          "rarity": "9",
+                          "element": "ice"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kut-ku-pick",
+      "type": "hammer",
+      "name": "Kut-Ku Pick",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "feather-whistle",
+          "type": "hunting-horn",
+          "name": "Feather Whistle",
+          "rarity": "6",
+          "element": "sleep",
+          "children": [
+            {
+              "slug": "hypno-whistle",
+              "type": "hunting-horn",
+              "name": "Hypno Whistle",
+              "rarity": "9",
+              "element": "sleep",
+              "children": [
+                {
+                  "slug": "hypno-slide-whistle",
+                  "type": "hunting-horn",
+                  "name": "Hypno Slide Whistle",
+                  "rarity": "9",
+                  "element": "sleep"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "black-lute",
       "type": "hunting-horn",
       "name": "Black Lute",
@@ -199,22 +585,6 @@
       ]
     },
     {
-      "slug": "handmade-frog",
-      "type": "hunting-horn",
-      "name": "Handmade Frog",
-      "rarity": "6",
-      "element": "water",
-      "children": [
-        {
-          "slug": "handcrafted-frog",
-          "type": "hunting-horn",
-          "name": "Handcrafted Frog",
-          "rarity": "9",
-          "element": "water"
-        }
-      ]
-    },
-    {
       "slug": "striped-dragonga",
       "type": "hunting-horn",
       "name": "Striped Dragonga",
@@ -251,6 +621,166 @@
       ]
     },
     {
+      "slug": "anvil-hammer",
+      "type": "hammer",
+      "name": "Anvil Hammer",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "bronze-bell",
+          "type": "hunting-horn",
+          "name": "Bronze Bell",
+          "rarity": "5",
+          "children": [
+            {
+              "slug": "gaoren-bell",
+              "type": "hunting-horn",
+              "name": "Gaoren Bell",
+              "rarity": "8",
+              "children": [
+                {
+                  "slug": "gaoren-zhong",
+                  "type": "hunting-horn",
+                  "name": "Gaoren Zhong",
+                  "rarity": "10"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "sakura-recorder",
+          "type": "hunting-horn",
+          "name": "Sakura Recorder",
+          "rarity": "5",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "sakura-recorder-plus",
+              "type": "hunting-horn",
+              "name": "Sakura Recorder+",
+              "rarity": "7",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "gold-recorder",
+                  "type": "hunting-horn",
+                  "name": "Gold Recorder",
+                  "rarity": "8",
+                  "element": "dragon",
+                  "children": [
+                    {
+                      "slug": "gold-recorder-plus",
+                      "type": "hunting-horn",
+                      "name": "Gold Recorder+",
+                      "rarity": "9",
+                      "element": "dragon",
+                      "children": [
+                        {
+                          "slug": "lunar-recorder",
+                          "type": "hunting-horn",
+                          "name": "Lunar Recorder",
+                          "rarity": "10",
+                          "element": "dragon"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ancient-relic",
+      "type": "hammer",
+      "name": "Ancient Relic",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "shell-castanet",
+          "type": "hunting-horn",
+          "name": "Shell Castanet",
+          "rarity": "7",
+          "element": "water",
+          "children": [
+            {
+              "slug": "shell-castanet-plus",
+              "type": "hunting-horn",
+              "name": "Shell Castanet+",
+              "rarity": "9",
+              "element": "water",
+              "children": [
+                {
+                  "slug": "bi-colored-castanet",
+                  "type": "hunting-horn",
+                  "name": "Bi-Colored Castanet",
+                  "rarity": "10",
+                  "element": "water"
+                }
+              ]
+            },
+            {
+              "slug": "crabby-castanet",
+              "type": "hunting-horn",
+              "name": "Crabby Castanet",
+              "rarity": "9",
+              "children": [
+                {
+                  "slug": "klick-klack",
+                  "type": "hunting-horn",
+                  "name": "Klick-Klack",
+                  "rarity": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "handmade-frog",
+      "type": "hunting-horn",
+      "name": "Handmade Frog",
+      "rarity": "6",
+      "element": "water",
+      "children": [
+        {
+          "slug": "handcrafted-frog",
+          "type": "hunting-horn",
+          "name": "Handcrafted Frog",
+          "rarity": "9",
+          "element": "water"
+        }
+      ]
+    },
+    {
+      "slug": "wolf-torrent",
+      "type": "hammer",
+      "name": "Wolf Torrent",
+      "rarity": "7",
+      "children": [
+        {
+          "slug": "wolf-shamisen",
+          "type": "hunting-horn",
+          "name": "Wolf Shamisen",
+          "rarity": "7",
+          "element": "poison",
+          "children": [
+            {
+              "slug": "crow-shamisen",
+              "type": "hunting-horn",
+              "name": "Crow Shamisen",
+              "rarity": "9",
+              "element": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "akantor-horn",
       "type": "hunting-horn",
       "name": "Akantor Horn",
@@ -261,6 +791,30 @@
           "type": "hunting-horn",
           "name": "Akantor Dark Melody",
           "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "blacksmith",
+      "type": "hammer",
+      "name": "Blacksmith",
+      "rarity": "9",
+      "children": [
+        {
+          "slug": "lava-alphorn",
+          "type": "hunting-horn",
+          "name": "Lava Alphorn",
+          "rarity": "9",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "volcano-alphorn",
+              "type": "hunting-horn",
+              "name": "Volcano Alphorn",
+              "rarity": "10",
+              "element": "fire"
+            }
+          ]
         }
       ]
     },

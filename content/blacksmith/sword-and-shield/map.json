@@ -110,6 +110,21 @@
                                   "rarity": "7"
                                 }
                               ]
+                            },
+                            {
+                              "slug": "hurricane",
+                              "type": "dual-blades",
+                              "name": "Hurricane",
+                              "rarity": "6",
+                              "children": []
+                            },
+                            {
+                              "slug": "prototype-saw-slicer",
+                              "type": "dual-blades",
+                              "name": "Prototype Saw-Slicer",
+                              "rarity": "6",
+                              "element": "thunder",
+                              "children": []
                             }
                           ]
                         }
@@ -136,6 +151,13 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "slug": "velociprey-claws",
+                      "type": "dual-blades",
+                      "name": "Velociprey Claws",
+                      "rarity": "3",
+                      "children": []
                     }
                   ]
                 },
@@ -184,6 +206,14 @@
                           "name": "Deadly Battleaxe",
                           "rarity": "6",
                           "element": "poison"
+                        },
+                        {
+                          "slug": "dual-battleaxe",
+                          "type": "dual-blades",
+                          "name": "Dual Battleaxe",
+                          "rarity": "6",
+                          "element": "poison",
+                          "children": []
                         }
                       ]
                     }
@@ -242,10 +272,25 @@
                           "element": "ice"
                         }
                       ]
+                    },
+                    {
+                      "slug": "freezing-daggers",
+                      "type": "dual-blades",
+                      "name": "Freezing Daggers",
+                      "rarity": "4",
+                      "element": "ice",
+                      "children": []
                     }
                   ]
                 }
               ]
+            },
+            {
+              "slug": "twin-dagger",
+              "type": "dual-blades",
+              "name": "Twin Dagger",
+              "rarity": "1",
+              "children": []
             }
           ]
         },
@@ -333,6 +378,14 @@
                               ]
                             }
                           ]
+                        },
+                        {
+                          "slug": "rouge-flames",
+                          "type": "dual-blades",
+                          "name": "Rouge Flames",
+                          "rarity": "5",
+                          "element": "poison",
+                          "children": []
                         }
                       ]
                     }
@@ -341,6 +394,14 @@
               ]
             }
           ]
+        },
+        {
+          "slug": "giaprey-claws",
+          "type": "dual-blades",
+          "name": "Giaprey Claws",
+          "rarity": "2",
+          "element": "ice",
+          "children": []
         }
       ]
     },
@@ -403,6 +464,13 @@
                               ]
                             },
                             {
+                              "slug": "dual-diablo",
+                              "type": "dual-blades",
+                              "name": "Dual Diablo",
+                              "rarity": "5",
+                              "children": []
+                            },
+                            {
                               "slug": "osteon-pick",
                               "type": "sword-and-shield",
                               "name": "Osteon Pick",
@@ -414,6 +482,14 @@
                                   "name": "Osteon Pick+",
                                   "rarity": "6",
                                   "children": [
+                                    {
+                                      "slug": "melting-wail",
+                                      "type": "dual-blades",
+                                      "name": "Melting Wail",
+                                      "rarity": "6",
+                                      "element": "fire",
+                                      "children": []
+                                    },
                                     {
                                       "slug": "rajang-club",
                                       "type": "sword-and-shield",
@@ -521,6 +597,14 @@
                                       "element": "thunder"
                                     }
                                   ]
+                                },
+                                {
+                                  "slug": "kirin-bolts",
+                                  "type": "dual-blades",
+                                  "name": "Kirin Bolts",
+                                  "rarity": "5",
+                                  "element": "thunder",
+                                  "children": []
                                 }
                               ]
                             }
@@ -622,6 +706,14 @@
                       ]
                     },
                     {
+                      "slug": "twin-flames",
+                      "type": "dual-blades",
+                      "name": "Twin Flames",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": []
+                    },
+                    {
                       "slug": "flame-syphos",
                       "type": "sword-and-shield",
                       "name": "Flame Syphos",
@@ -649,47 +741,78 @@
                   ]
                 }
               ]
+            },
+            {
+              "slug": "bone-scythe",
+              "type": "dual-blades",
+              "name": "Bone Scythe",
+              "rarity": "1",
+              "children": []
             }
           ]
         }
       ]
     },
     {
-      "slug": "black-sword",
+      "slug": "rusted-sword",
       "type": "sword-and-shield",
-      "name": "Black Sword",
-      "rarity": "5",
-      "element": "dragon",
+      "name": "Rusted Sword",
+      "rarity": "1",
       "children": [
         {
-          "slug": "black-dragon-sword",
+          "slug": "tarnished-sword",
           "type": "sword-and-shield",
-          "name": "Black Dragon Sword",
-          "rarity": "8",
-          "element": "dragon",
+          "name": "Tarnished Sword",
+          "rarity": "1",
           "children": [
             {
-              "slug": "true-blk-dragon-swd",
+              "slug": "eternal-strife",
               "type": "sword-and-shield",
-              "name": "True Blk Dragon Swd",
-              "rarity": "10",
+              "name": "Eternal Strife",
+              "rarity": "5",
               "element": "dragon"
-            }
-          ]
-        },
-        {
-          "slug": "black-ruiner-sword",
-          "type": "sword-and-shield",
-          "name": "Black Ruiner Sword",
-          "rarity": "8",
-          "element": "dragon",
-          "children": [
+            },
             {
-              "slug": "true-blk-ruiner-swd",
+              "slug": "steel-ice-dagger",
               "type": "sword-and-shield",
-              "name": "True Blk Ruiner Swd",
-              "rarity": "10",
-              "element": "dragon"
+              "name": "Steel Ice Dagger",
+              "rarity": "5",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "steel-ice-dagger-plus",
+                  "type": "sword-and-shield",
+                  "name": "Steel Ice Dagger+",
+                  "rarity": "5",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "daora-s-razor",
+                      "type": "sword-and-shield",
+                      "name": "Daora's Razor",
+                      "rarity": "8",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "daora-s-maelstrom",
+                          "type": "sword-and-shield",
+                          "name": "Daora's Maelstrom",
+                          "rarity": "10",
+                          "element": "ice"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "twin-nails",
+                      "type": "dual-blades",
+                      "name": "Twin Nails",
+                      "rarity": "5",
+                      "element": "ice",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -772,6 +895,12 @@
           "type": "sword-and-shield",
           "name": "Master's Replica",
           "rarity": "5"
+        },
+        {
+          "slug": "legendary-replica",
+          "type": "dual-blades",
+          "name": "Legendary Replica",
+          "rarity": "5"
         }
       ]
     },
@@ -791,57 +920,96 @@
       ]
     },
     {
-      "slug": "rusted-sword",
+      "slug": "black-belt-sword",
       "type": "sword-and-shield",
-      "name": "Rusted Sword",
-      "rarity": "1",
+      "name": "Black Belt Sword",
+      "rarity": "4",
       "children": [
         {
-          "slug": "tarnished-sword",
+          "slug": "expert-sword",
           "type": "sword-and-shield",
-          "name": "Tarnished Sword",
-          "rarity": "1",
+          "name": "Expert Sword",
+          "rarity": "8",
+          "element": "paralysis",
           "children": [
             {
-              "slug": "eternal-strife",
+              "slug": "warrior-s-sword",
               "type": "sword-and-shield",
-              "name": "Eternal Strife",
-              "rarity": "5",
-              "element": "dragon"
-            },
+              "name": "Warrior's Sword",
+              "rarity": "10",
+              "element": "paralysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "holy-saber",
+      "type": "dual-blades",
+      "name": "Holy Saber",
+      "rarity": "4",
+      "element": "water",
+      "children": [
+        {
+          "slug": "ninja-sword",
+          "type": "sword-and-shield",
+          "name": "Ninja Sword",
+          "rarity": "5",
+          "children": [
             {
-              "slug": "steel-ice-dagger",
+              "slug": "hi-ninja-sword",
               "type": "sword-and-shield",
-              "name": "Steel Ice Dagger",
-              "rarity": "5",
-              "element": "ice",
-              "children": [
-                {
-                  "slug": "steel-ice-dagger-plus",
-                  "type": "sword-and-shield",
-                  "name": "Steel Ice Dagger+",
-                  "rarity": "5",
-                  "element": "ice",
-                  "children": [
-                    {
-                      "slug": "daora-s-razor",
-                      "type": "sword-and-shield",
-                      "name": "Daora's Razor",
-                      "rarity": "8",
-                      "element": "ice",
-                      "children": [
-                        {
-                          "slug": "daora-s-maelstrom",
-                          "type": "sword-and-shield",
-                          "name": "Daora's Maelstrom",
-                          "rarity": "10",
-                          "element": "ice"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+              "name": "Hi Ninja Sword",
+              "rarity": "8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-sword",
+      "type": "sword-and-shield",
+      "name": "Black Sword",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "double-dragon",
+          "type": "dual-blades",
+          "name": "Double Dragon",
+          "rarity": "5",
+          "element": "dragon",
+          "children": []
+        },
+        {
+          "slug": "black-dragon-sword",
+          "type": "sword-and-shield",
+          "name": "Black Dragon Sword",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "true-blk-dragon-swd",
+              "type": "sword-and-shield",
+              "name": "True Blk Dragon Swd",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        },
+        {
+          "slug": "black-ruiner-sword",
+          "type": "sword-and-shield",
+          "name": "Black Ruiner Sword",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "true-blk-ruiner-swd",
+              "type": "sword-and-shield",
+              "name": "True Blk Ruiner Swd",
+              "rarity": "10",
+              "element": "dragon"
             }
           ]
         }
@@ -884,24 +1052,106 @@
       ]
     },
     {
-      "slug": "black-belt-sword",
-      "type": "sword-and-shield",
-      "name": "Black Belt Sword",
-      "rarity": "4",
+      "slug": "bladed-edge-plus",
+      "type": "dual-blades",
+      "name": "Bladed Edge+",
+      "rarity": "5",
       "children": [
         {
-          "slug": "expert-sword",
+          "slug": "dual-carapace",
           "type": "sword-and-shield",
-          "name": "Expert Sword",
-          "rarity": "8",
-          "element": "paralysis",
+          "name": "Dual Carapace",
+          "rarity": "7",
+          "element": "water",
           "children": [
             {
-              "slug": "warrior-s-sword",
+              "slug": "dual-carapace-plus",
               "type": "sword-and-shield",
-              "name": "Warrior's Sword",
+              "name": "Dual Carapace+",
+              "rarity": "9",
+              "element": "water",
+              "children": [
+                {
+                  "slug": "dual-scissors",
+                  "type": "sword-and-shield",
+                  "name": "Dual Scissors",
+                  "rarity": "10",
+                  "element": "water"
+                },
+                {
+                  "slug": "twin-shells",
+                  "type": "sword-and-shield",
+                  "name": "Twin Shells",
+                  "rarity": "9",
+                  "children": [
+                    {
+                      "slug": "twin-shears",
+                      "type": "sword-and-shield",
+                      "name": "Twin Shears",
+                      "rarity": "10"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "flaming-pair",
+      "type": "dual-blades",
+      "name": "Flaming Pair",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "blue-ogre-sword",
+          "type": "sword-and-shield",
+          "name": "Blue Ogre Sword",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "azure-ogre-sword",
+              "type": "sword-and-shield",
+              "name": "Azure Ogre Sword",
+              "rarity": "8",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "indigo-ogre-sword",
+                  "type": "sword-and-shield",
+                  "name": "Indigo Ogre Sword",
+                  "rarity": "10",
+                  "element": "dragon"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ultimus-heaven&earth",
+      "type": "dual-blades",
+      "name": "Ultimus Heaven&Earth",
+      "rarity": "8",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "azure-ogre-sword",
+          "type": "sword-and-shield",
+          "name": "Azure Ogre Sword",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "indigo-ogre-sword",
+              "type": "sword-and-shield",
+              "name": "Indigo Ogre Sword",
               "rarity": "10",
-              "element": "paralysis"
+              "element": "dragon"
             }
           ]
         }
