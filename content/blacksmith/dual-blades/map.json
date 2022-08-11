@@ -1,3 +1,505 @@
 {
-  "map": [{"slug":"bone-scythe","name":"Bone Scythe","rarity":"1","children":[{"slug":"bone-scythe-plus","name":"Bone Scythe+","rarity":"2","children":[{"slug":"chief-scythe","name":"Chief Scythe","rarity":"2","children":[{"slug":"bladed-edge","name":"Bladed Edge","rarity":"4","children":[{"slug":"bladed-edge-plus","name":"Bladed Edge+","rarity":"5","children":[{"slug":"limb-cutter","name":"Limb Cutter","rarity":"7","children":[{"slug":"carmine-edge","name":"Carmine Edge","rarity":"9","children":[{"slug":"red-rippers","name":"Red Rippers","rarity":"10"}]}]}]}]},{"slug":"cutlass","name":"Cutlass","rarity":"3","element":"water","children":[{"slug":"cutlass-plus","name":"Cutlass+","rarity":"5","element":"water"}]},{"slug":"twin-kut-ku","name":"Twin Kut-Ku","rarity":"2","element":"fire","children":[{"slug":"pink-maracas","name":"Pink Maracas","rarity":"3","children":[{"slug":"pink-maracas-plus","name":"Pink Maracas+","rarity":"4","children":[{"slug":"funky-maracas","name":"Funky Maracas","rarity":"6","children":[{"slug":"jungle-maracas","name":"Jungle Maracas","rarity":"9","children":[{"slug":"evergreen","name":"Evergreen","rarity":"9"}]}]}]}]},{"slug":"twin-kut-ku-plus","name":"Twin Kut-Ku+","rarity":"4","element":"fire","children":[{"slug":"dual-kut-ku","name":"Dual Kut-Ku","rarity":"6","element":"fire"}]},{"slug":"raven-tessen","name":"Raven Tessen","rarity":"5","children":[{"slug":"wolf-tessen","name":"Wolf Tessen","rarity":"7","children":[{"slug":"crow-tessen","name":"Crow Tessen","rarity":"9"}]}]}]}]}]}]},{"slug":"black-twin-daggers","name":"Black Twin Daggers","rarity":"5","element":"dragon","children":[{"slug":"fatalis-dual-blades","name":"Fatalis Dual Blades","rarity":"8","element":"dragon","children":[{"slug":"fatalis-dual-sky","name":"Fatalis Dual Sky","rarity":"10","element":"dragon"}]},{"slug":"ultimus-celestials","name":"Ultimus Celestials","rarity":"8","element":"dragon","children":[{"slug":"ultimus-apocalypse","name":"Ultimus Apocalypse","rarity":"10","element":"dragon"}]}]},{"slug":"flaming-pair","name":"Flaming Pair","rarity":"5","element":"dragon","children":[{"slug":"crimson-lotus-blades","name":"Crimson Lotus Blades","rarity":"8","element":"dragon","children":[{"slug":"demonic-flaming-pair","name":"Demonic Flaming Pair","rarity":"9","element":"dragon","children":[{"slug":"azure-dual-swords","name":"Azure Dual Swords","rarity":"10","element":"dragon"}]}]}]},{"slug":"worn-blades","name":"Worn Blades","rarity":"6","children":[{"slug":"weathered-blades","name":"Weathered Blades","rarity":"6","children":[{"slug":"eternal-schism","name":"Eternal Schism","rarity":"7","element":"dragon","children":[{"slug":"eternal-sacrifice","name":"Eternal Sacrifice","rarity":"9","element":"dragon"}]},{"slug":"hi-twin-daggers","name":"Hi Twin Daggers","rarity":"6","element":"ice","children":[{"slug":"silhouette-sabers","name":"Silhouette Sabers","rarity":"7","element":"ice"}]}]}]},{"slug":"rex-slicers","name":"Rex Slicers","rarity":"5","children":[{"slug":"tigrex-claws","name":"Tigrex Claws","rarity":"7","children":[{"slug":"tigrex-claws-plus","name":"Tigrex Claws+","rarity":"10"}]},{"slug":"hidden-ones","name":"Hidden Ones","rarity":"7","children":[{"slug":"ebony-wings","name":"Ebony Wings","rarity":"10"}]}]},{"slug":"akantor-blades","name":"Akantor Blades","rarity":"8","children":[{"slug":"akantor-shadow-claws","name":"Akantor Shadow Claws","rarity":"10"}]},{"slug":"felyne-and-melynx","name":"Felyne and Melynx","rarity":"4","element":"paralysis","children":[{"slug":"felyne-and-melynx-plus","name":"Felyne and Melynx+","rarity":"9","element":"paralysis"}]},{"slug":"ukanlosruinerblades","name":"UkanlosRuinerBlades","rarity":"10","element":"ice"},{"slug":"bone-scythe-g","name":"Bone Scythe G","rarity":"9"},{"slug":"worn-blades-g","name":"Worn Blades G","rarity":"9"},{"slug":"velociprey-claws-g","name":"Velociprey Claws G","rarity":"9"},{"slug":"white-death-g","name":"White Death G","rarity":"9","element":"ice"},{"slug":"dual-tomahawk-g","name":"Dual Tomahawk G","rarity":"9"},{"slug":"insector-g","name":"Insector G","rarity":"9"},{"slug":"glutton-s-set-g","name":"Glutton's Set G","rarity":"9"},{"slug":"spatula-set-g","name":"Spatula Set G","rarity":"9"},{"slug":"holy-saber-g","name":"Holy Saber G","rarity":"9","element":"water"},{"slug":"cyclone-g","name":"Cyclone G","rarity":"9"},{"slug":"dual-kut-ku-g","name":"Dual Kut-Ku G","rarity":"9","element":"fire"},{"slug":"funky-maracas-g","name":"Funky Maracas G","rarity":"9"},{"slug":"prototypesaw-slicr-g","name":"PrototypeSaw-Slicr G","rarity":"9","element":"thunder"},{"slug":"cutlass-g","name":"Cutlass G","rarity":"9","element":"water"},{"slug":"limb-cutter-g","name":"Limb Cutter G","rarity":"9"},{"slug":"dual-diablo-g","name":"Dual Diablo G","rarity":"9"},{"slug":"silhouette-sabers-g","name":"Silhouette Sabers G","rarity":"10","element":"ice"},{"slug":"gradios-ultimus-g","name":"Gradios Ultimus G","rarity":"10","element":"fire"},{"slug":"kirin-bolts-g","name":"Kirin Bolts G","rarity":"10","element":"thunder"},{"slug":"crimsonlotusblades-g","name":"CrimsonLotusBlades G","rarity":"10","element":"dragon"},{"slug":"dualdragonultimus-g","name":"DualDragonUltimus G","rarity":"10","element":"dragon"},{"slug":"legendary-blades-g","name":"Legendary Blades G","rarity":"10"}]
+  "map": [
+    {
+      "slug": "bone-scythe",
+      "type": "dual-blades",
+      "name": "Bone Scythe",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "bone-scythe-plus",
+          "type": "dual-blades",
+          "name": "Bone Scythe+",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "chief-scythe",
+              "type": "dual-blades",
+              "name": "Chief Scythe",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "bladed-edge",
+                  "type": "dual-blades",
+                  "name": "Bladed Edge",
+                  "rarity": "4",
+                  "children": [
+                    {
+                      "slug": "bladed-edge-plus",
+                      "type": "dual-blades",
+                      "name": "Bladed Edge+",
+                      "rarity": "5",
+                      "children": [
+                        {
+                          "slug": "limb-cutter",
+                          "type": "dual-blades",
+                          "name": "Limb Cutter",
+                          "rarity": "7",
+                          "children": [
+                            {
+                              "slug": "carmine-edge",
+                              "type": "dual-blades",
+                              "name": "Carmine Edge",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "red-rippers",
+                                  "type": "dual-blades",
+                                  "name": "Red Rippers",
+                                  "rarity": "10"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "cutlass",
+                  "type": "dual-blades",
+                  "name": "Cutlass",
+                  "rarity": "3",
+                  "element": "water",
+                  "children": [
+                    {
+                      "slug": "cutlass-plus",
+                      "type": "dual-blades",
+                      "name": "Cutlass+",
+                      "rarity": "5",
+                      "element": "water"
+                    }
+                  ]
+                },
+                {
+                  "slug": "twin-kut-ku",
+                  "type": "dual-blades",
+                  "name": "Twin Kut-Ku",
+                  "rarity": "2",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "pink-maracas",
+                      "type": "dual-blades",
+                      "name": "Pink Maracas",
+                      "rarity": "3",
+                      "children": [
+                        {
+                          "slug": "pink-maracas-plus",
+                          "type": "dual-blades",
+                          "name": "Pink Maracas+",
+                          "rarity": "4",
+                          "children": [
+                            {
+                              "slug": "funky-maracas",
+                              "type": "dual-blades",
+                              "name": "Funky Maracas",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "jungle-maracas",
+                                  "type": "dual-blades",
+                                  "name": "Jungle Maracas",
+                                  "rarity": "9",
+                                  "children": [
+                                    {
+                                      "slug": "evergreen",
+                                      "type": "dual-blades",
+                                      "name": "Evergreen",
+                                      "rarity": "9"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "twin-kut-ku-plus",
+                      "type": "dual-blades",
+                      "name": "Twin Kut-Ku+",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "dual-kut-ku",
+                          "type": "dual-blades",
+                          "name": "Dual Kut-Ku",
+                          "rarity": "6",
+                          "element": "fire"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "raven-tessen",
+                      "type": "dual-blades",
+                      "name": "Raven Tessen",
+                      "rarity": "5",
+                      "children": [
+                        {
+                          "slug": "wolf-tessen",
+                          "type": "dual-blades",
+                          "name": "Wolf Tessen",
+                          "rarity": "7",
+                          "children": [
+                            {
+                              "slug": "crow-tessen",
+                              "type": "dual-blades",
+                              "name": "Crow Tessen",
+                              "rarity": "9"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-twin-daggers",
+      "type": "dual-blades",
+      "name": "Black Twin Daggers",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "fatalis-dual-blades",
+          "type": "dual-blades",
+          "name": "Fatalis Dual Blades",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "fatalis-dual-sky",
+              "type": "dual-blades",
+              "name": "Fatalis Dual Sky",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        },
+        {
+          "slug": "ultimus-celestials",
+          "type": "dual-blades",
+          "name": "Ultimus Celestials",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "ultimus-apocalypse",
+              "type": "dual-blades",
+              "name": "Ultimus Apocalypse",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "flaming-pair",
+      "type": "dual-blades",
+      "name": "Flaming Pair",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "crimson-lotus-blades",
+          "type": "dual-blades",
+          "name": "Crimson Lotus Blades",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "demonic-flaming-pair",
+              "type": "dual-blades",
+              "name": "Demonic Flaming Pair",
+              "rarity": "9",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "azure-dual-swords",
+                  "type": "dual-blades",
+                  "name": "Azure Dual Swords",
+                  "rarity": "10",
+                  "element": "dragon"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "worn-blades",
+      "type": "dual-blades",
+      "name": "Worn Blades",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "weathered-blades",
+          "type": "dual-blades",
+          "name": "Weathered Blades",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "eternal-schism",
+              "type": "dual-blades",
+              "name": "Eternal Schism",
+              "rarity": "7",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "eternal-sacrifice",
+                  "type": "dual-blades",
+                  "name": "Eternal Sacrifice",
+                  "rarity": "9",
+                  "element": "dragon"
+                }
+              ]
+            },
+            {
+              "slug": "hi-twin-daggers",
+              "type": "dual-blades",
+              "name": "Hi Twin Daggers",
+              "rarity": "6",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "silhouette-sabers",
+                  "type": "dual-blades",
+                  "name": "Silhouette Sabers",
+                  "rarity": "7",
+                  "element": "ice"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "rex-slicers",
+      "type": "dual-blades",
+      "name": "Rex Slicers",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "tigrex-claws",
+          "type": "dual-blades",
+          "name": "Tigrex Claws",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "tigrex-claws-plus",
+              "type": "dual-blades",
+              "name": "Tigrex Claws+",
+              "rarity": "10"
+            }
+          ]
+        },
+        {
+          "slug": "hidden-ones",
+          "type": "dual-blades",
+          "name": "Hidden Ones",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "ebony-wings",
+              "type": "dual-blades",
+              "name": "Ebony Wings",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "akantor-blades",
+      "type": "dual-blades",
+      "name": "Akantor Blades",
+      "rarity": "8",
+      "children": [
+        {
+          "slug": "akantor-shadow-claws",
+          "type": "dual-blades",
+          "name": "Akantor Shadow Claws",
+          "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "felyne-and-melynx",
+      "type": "dual-blades",
+      "name": "Felyne and Melynx",
+      "rarity": "4",
+      "element": "paralysis",
+      "children": [
+        {
+          "slug": "felyne-and-melynx-plus",
+          "type": "dual-blades",
+          "name": "Felyne and Melynx+",
+          "rarity": "9",
+          "element": "paralysis"
+        }
+      ]
+    },
+    {
+      "slug": "ukanlosruinerblades",
+      "type": "dual-blades",
+      "name": "UkanlosRuinerBlades",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "bone-scythe-g",
+      "type": "dual-blades",
+      "name": "Bone Scythe G",
+      "rarity": "9"
+    },
+    {
+      "slug": "worn-blades-g",
+      "type": "dual-blades",
+      "name": "Worn Blades G",
+      "rarity": "9"
+    },
+    {
+      "slug": "velociprey-claws-g",
+      "type": "dual-blades",
+      "name": "Velociprey Claws G",
+      "rarity": "9"
+    },
+    {
+      "slug": "white-death-g",
+      "type": "dual-blades",
+      "name": "White Death G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "dual-tomahawk-g",
+      "type": "dual-blades",
+      "name": "Dual Tomahawk G",
+      "rarity": "9"
+    },
+    {
+      "slug": "insector-g",
+      "type": "dual-blades",
+      "name": "Insector G",
+      "rarity": "9"
+    },
+    {
+      "slug": "glutton-s-set-g",
+      "type": "dual-blades",
+      "name": "Glutton's Set G",
+      "rarity": "9"
+    },
+    {
+      "slug": "spatula-set-g",
+      "type": "dual-blades",
+      "name": "Spatula Set G",
+      "rarity": "9"
+    },
+    {
+      "slug": "holy-saber-g",
+      "type": "dual-blades",
+      "name": "Holy Saber G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "cyclone-g",
+      "type": "dual-blades",
+      "name": "Cyclone G",
+      "rarity": "9"
+    },
+    {
+      "slug": "dual-kut-ku-g",
+      "type": "dual-blades",
+      "name": "Dual Kut-Ku G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "funky-maracas-g",
+      "type": "dual-blades",
+      "name": "Funky Maracas G",
+      "rarity": "9"
+    },
+    {
+      "slug": "prototypesaw-slicr-g",
+      "type": "dual-blades",
+      "name": "PrototypeSaw-Slicr G",
+      "rarity": "9",
+      "element": "thunder"
+    },
+    {
+      "slug": "cutlass-g",
+      "type": "dual-blades",
+      "name": "Cutlass G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "limb-cutter-g",
+      "type": "dual-blades",
+      "name": "Limb Cutter G",
+      "rarity": "9"
+    },
+    {
+      "slug": "dual-diablo-g",
+      "type": "dual-blades",
+      "name": "Dual Diablo G",
+      "rarity": "9"
+    },
+    {
+      "slug": "silhouette-sabers-g",
+      "type": "dual-blades",
+      "name": "Silhouette Sabers G",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "gradios-ultimus-g",
+      "type": "dual-blades",
+      "name": "Gradios Ultimus G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "kirin-bolts-g",
+      "type": "dual-blades",
+      "name": "Kirin Bolts G",
+      "rarity": "10",
+      "element": "thunder"
+    },
+    {
+      "slug": "crimsonlotusblades-g",
+      "type": "dual-blades",
+      "name": "CrimsonLotusBlades G",
+      "rarity": "10",
+      "element": "dragon"
+    },
+    {
+      "slug": "dualdragonultimus-g",
+      "type": "dual-blades",
+      "name": "DualDragonUltimus G",
+      "rarity": "10",
+      "element": "dragon"
+    },
+    {
+      "slug": "legendary-blades-g",
+      "type": "dual-blades",
+      "name": "Legendary Blades G",
+      "rarity": "10"
+    }
+  ]
 }

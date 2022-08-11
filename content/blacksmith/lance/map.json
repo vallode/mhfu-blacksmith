@@ -1,3 +1,1415 @@
 {
-  "map": [{"slug":"iron-lance","name":"Iron Lance","rarity":"1","children":[{"slug":"iron-lance-plus","name":"Iron Lance+","rarity":"1","children":[{"slug":"steel-lance","name":"Steel Lance","rarity":"1","children":[{"slug":"paladin-lance","name":"Paladin Lance","rarity":"2","children":[{"slug":"rampart","name":"Rampart","rarity":"3","children":[{"slug":"growling-wyvern","name":"Growling Wyvern","rarity":"4","element":"dragon","children":[{"slug":"roaring-wyvern","name":"Roaring Wyvern","rarity":"7","element":"dragon","children":[{"slug":"sanctioneddrilllance","name":"SanctionedDrillLance","rarity":"9","children":[{"slug":"gravedigger","name":"Gravedigger","rarity":"9"}]}]},{"slug":"knight-lance","name":"Knight Lance","rarity":"6","children":[{"slug":"knight-spear","name":"Knight Spear","rarity":"6","children":[{"slug":"babel-spear","name":"Babel Spear","rarity":"7","children":[{"slug":"sadalsuud","name":"Sadalsuud","rarity":"9","element":"water","children":[{"slug":"sadalmelek","name":"Sadalmelek","rarity":"9","element":"water","children":[{"slug":"aquarius","name":"Aquarius","rarity":"10","element":"water"}]}]},{"slug":"lost-babel","name":"Lost Babel","rarity":"10"},{"slug":"spark-plug","name":"Spark Plug","rarity":"9","element":"thunder","children":[{"slug":"thunderbugshocklance","name":"ThunderbugShockLance","rarity":"9","element":"thunder"}]}]}]},{"slug":"aqua-spear","name":"Aqua Spear","rarity":"6","element":"water","children":[{"slug":"aqua-spear-plus","name":"Aqua Spear+","rarity":"6","element":"water","children":[{"slug":"emerald-spear","name":"Emerald Spear","rarity":"7","element":"water"}]}]},{"slug":"grayburg-javelin","name":"Grayburg Javelin","rarity":"7","children":[{"slug":"dragon-rider-spear","name":"Dragon Rider Spear","rarity":"8","children":[{"slug":"dragoon-s-gae-bulg","name":"Dragoon's Gáe Bulg","rarity":"10"}]}]},{"slug":"cold-icicle","name":"Cold Icicle","rarity":"6","element":"ice","children":[{"slug":"frost-icicle","name":"Frost Icicle","rarity":"6","element":"ice","children":[{"slug":"icicle-blizzard","name":"Icicle Blizzard","rarity":"9","element":"ice"}]}]}]}]},{"slug":"gatling-lance","name":"Gatling Lance","rarity":"4","element":"fire","children":[{"slug":"gatling-lance-plus","name":"Gatling Lance+","rarity":"5","element":"fire","children":[{"slug":"sanctioned-gunlance","name":"Sanctioned Gunlance","rarity":"6","element":"fire"}]}]},{"slug":"naag-serpentblade","name":"Naag Serpentblade","rarity":"4","element":"poison","children":[{"slug":"devta-serpentblade","name":"Devta Serpentblade","rarity":"6","element":"poison","children":[{"slug":"ouroborosserpntblade","name":"OuroborosSerpntblade","rarity":"9","element":"poison"}]}]}]}]},{"slug":"estoc","name":"Estoc","rarity":"2","children":[{"slug":"valhalla","name":"Valhalla","rarity":"4"}]}]},{"slug":"bone-javelin","name":"Bone Javelin","rarity":"2","children":[{"slug":"spiked-spear","name":"Spiked Spear","rarity":"2","children":[{"slug":"lullaby-spear","name":"Lullaby Spear","rarity":"3","element":"sleep","children":[{"slug":"requiem-spear","name":"Requiem Spear","rarity":"4","element":"sleep"}]},{"slug":"paralysisr","name":"Paralysisr","rarity":"3","element":"paralysis","children":[{"slug":"trident","name":"Trident","rarity":"4","element":"paralysis"},{"slug":"venom-lance","name":"Venom Lance","rarity":"4","element":"poison","children":[{"slug":"basarios-venom-spear","name":"Basarios Venom Spear","rarity":"4","element":"poison","children":[{"slug":"gravios-spear","name":"Gravios Spear","rarity":"5","element":"poison","children":[{"slug":"gravios-venom-spear","name":"Gravios Venom Spear","rarity":"7","element":"poison","children":[{"slug":"gravios-lance","name":"Gravios Lance","rarity":"9","element":"fire","children":[{"slug":"gravios-fire-lance","name":"Gravios Fire Lance","rarity":"10","element":"fire"}]}]}]},{"slug":"black-gravios-spear","name":"Black Gravios Spear","rarity":"5","element":"fire","children":[{"slug":"void-gravios-spear","name":"Void Gravios Spear","rarity":"7","element":"fire","children":[{"slug":"gravios-lance","name":"Gravios Lance","rarity":"9","element":"fire","children":[{"slug":"gravios-fire-lance","name":"Gravios Fire Lance","rarity":"10","element":"fire"}]}]}]}]}]},{"slug":"thunderspear","name":"Thunderspear","rarity":"5","element":"thunder","children":[{"slug":"thunderlance","name":"Thunderlance","rarity":"8","element":"thunder","children":[{"slug":"naar-thunderlance","name":"Naar Thunderlance","rarity":"10","element":"thunder"}]}]}]}]}]}]}]},{"slug":"longhorn","name":"Longhorn","rarity":"1","children":[{"slug":"longhorn-plus","name":"Longhorn+","rarity":"1","children":[{"slug":"long-tusk","name":"Long Tusk","rarity":"1","children":[{"slug":"barbaroi-tusk","name":"Barbaroi Tusk","rarity":"2","children":[{"slug":"ogre-tusk","name":"Ogre Tusk","rarity":"3","children":[{"slug":"great-ogre-tusk","name":"Great Ogre Tusk","rarity":"6"},{"slug":"hard-bone-lance","name":"Hard Bone Lance","rarity":"6","children":[{"slug":"hard-bone-lance-plus","name":"Hard Bone Lance+","rarity":"6","children":[{"slug":"barbarian-tusk","name":"Barbarian Tusk","rarity":"7","children":[{"slug":"giant-tusk","name":"Giant Tusk","rarity":"9","children":[{"slug":"brutal-tusk","name":"Brutal Tusk","rarity":"9"}]}]},{"slug":"demon-lance","name":"Demon Lance","rarity":"7","element":"thunder","children":[{"slug":"great-demon-lance","name":"Great Demon Lance","rarity":"8","element":"thunder","children":[{"slug":"demonlance-rajang","name":"Demonlance Rajang","rarity":"10","element":"thunder"}]}]}]}]}]},{"slug":"incessant-raven","name":"Incessant Raven","rarity":"5","element":"poison","children":[{"slug":"incessant-wolf","name":"Incessant Wolf","rarity":"7","element":"poison","children":[{"slug":"incessant-crow","name":"Incessant Crow","rarity":"9","element":"poison"}]}]}]},{"slug":"crimson-lance","name":"Crimson Lance","rarity":"3","element":"fire","children":[{"slug":"crimson-war-pike","name":"Crimson War Pike","rarity":"4","element":"fire","children":[{"slug":"crimson-war-pike-plus","name":"Crimson War Pike+","rarity":"7","element":"fire"}]},{"slug":"ceramic-blos-lance","name":"Ceramic Blos Lance","rarity":"4","element":"water","children":[{"slug":"ceramic-blos-lance-plus","name":"Ceramic Blos Lance+","rarity":"5","element":"water","children":[{"slug":"white-disaster","name":"White Disaster","rarity":"7","element":"water","children":[{"slug":"white-catastrophe","name":"White Catastrophe","rarity":"7","element":"water"}]}]}]},{"slug":"diablo-horn","name":"Diablo Horn","rarity":"4","children":[{"slug":"diablo-spear","name":"Diablo Spear","rarity":"5","children":[{"slug":"black-tempest","name":"Black Tempest","rarity":"7","children":[{"slug":"rising-tempest","name":"Rising Tempest","rarity":"10"}]}]}]}]},{"slug":"bone-claw-lance","name":"Bone Claw Lance","rarity":"3","children":[{"slug":"bone-claw-lance-plus","name":"Bone Claw Lance+","rarity":"4","children":[{"slug":"ceanataur-piercer","name":"Ceanataur Piercer","rarity":"6","children":[{"slug":"carmine-stinger","name":"Carmine Stinger","rarity":"9","children":[{"slug":"shish-kabob-stick","name":"Shish Kabob Stick","rarity":"10"}]},{"slug":"shell-claw-lance","name":"Shell Claw Lance","rarity":"9","children":[{"slug":"gianthermitaurlance","name":"GiantHermitaurLance","rarity":"9"}]}]}]}]},{"slug":"blade-stinger","name":"Blade Stinger","rarity":"4","children":[{"slug":"ceanataur-stinger","name":"Ceanataur Stinger","rarity":"4","children":[{"slug":"ceanataur-piercer","name":"Ceanataur Piercer","rarity":"6","children":[{"slug":"carmine-stinger","name":"Carmine Stinger","rarity":"9","children":[{"slug":"shish-kabob-stick","name":"Shish Kabob Stick","rarity":"10"}]},{"slug":"shell-claw-lance","name":"Shell Claw Lance","rarity":"9","children":[{"slug":"gianthermitaurlance","name":"GiantHermitaurLance","rarity":"9"}]}]}]}]}]},{"slug":"dark-lance","name":"Dark Lance","rarity":"2","element":"paralysis","children":[{"slug":"dark-spear","name":"Dark Spear","rarity":"4","element":"paralysis","children":[{"slug":"dark","name":"Dark","rarity":"6","element":"paralysis","children":[{"slug":"darkness","name":"Darkness","rarity":"9","element":"paralysis"}]}]}]}]},{"slug":"wild-bone-lance","name":"Wild Bone Lance","rarity":"2","children":[{"slug":"wild-bone-lance-plus","name":"Wild Bone Lance+","rarity":"3","children":[{"slug":"bulldrome-spear","name":"Bulldrome Spear","rarity":"6"},{"slug":"red-tail","name":"Red Tail","rarity":"3","element":"fire","children":[{"slug":"spear-of-prominence","name":"Spear of Prominence","rarity":"5","element":"fire"},{"slug":"blue-tail","name":"Blue Tail","rarity":"4","element":"fire","children":[{"slug":"blue-prominence","name":"Blue Prominence","rarity":"7","element":"fire","children":[{"slug":"prominence-soul","name":"Prominence Soul","rarity":"10","element":"fire"}]}]}]}]},{"slug":"fragrance","name":"Fragrance","rarity":"2","children":[{"slug":"fragrance-plus","name":"Fragrance+","rarity":"4","children":[{"slug":"noble-fragrance","name":"Noble Fragrance","rarity":"6"}]}]}]}]},{"slug":"rusted-lance","name":"Rusted Lance","rarity":"1","children":[{"slug":"tarnished-lance","name":"Tarnished Lance","rarity":"1","children":[{"slug":"undertaker","name":"Undertaker","rarity":"5"},{"slug":"steel-ice-spear","name":"Steel Ice Spear","rarity":"5","element":"ice","children":[{"slug":"steel-ice-spear-plus","name":"Steel Ice Spear+","rarity":"5","element":"ice","children":[{"slug":"daora-s-fang","name":"Daora's Fang","rarity":"8","element":"ice","children":[{"slug":"daora-s-regulus","name":"Daora's Regulus","rarity":"10","element":"ice"}]}]}]}]}]},{"slug":"worn-spear","name":"Worn Spear","rarity":"6","children":[{"slug":"weathered-spear","name":"Weathered Spear","rarity":"6","children":[{"slug":"matenro","name":"Matenro","rarity":"7","children":[{"slug":"sky-scraper","name":"Sky Scraper","rarity":"9"}]},{"slug":"teostra-s-howl","name":"Teostra's Howl","rarity":"7","element":"fire","children":[{"slug":"teostra-s-roar","name":"Teostra's Roar","rarity":"8","element":"fire","children":[{"slug":"teostra-s-fire","name":"Teostra's Fire","rarity":"10","element":"fire"}]}]}]}]},{"slug":"black-belt-lance","name":"Black Belt Lance","rarity":"4","children":[{"slug":"expert-lance","name":"Expert Lance","rarity":"8","element":"poison","children":[{"slug":"warrior-s-lance","name":"Warrior's Lance","rarity":"10","element":"poison"}]}]},{"slug":"black-lance","name":"Black Lance","rarity":"5","element":"dragon","children":[{"slug":"black-dragon-spear","name":"Black Dragon Spear","rarity":"8","element":"dragon","children":[{"slug":"true-blk-dragon-spr","name":"True Blk Dragon Spr","rarity":"10","element":"dragon"}]},{"slug":"black-ruiner-lance","name":"Black Ruiner Lance","rarity":"8","element":"dragon","children":[{"slug":"true-blk-dragon-spr-plus","name":"True Blk Dragon Spr+","rarity":"10","element":"dragon"}]}]},{"slug":"native-spear","name":"Native Spear","rarity":"3","element":"poison","children":[{"slug":"primal-spear","name":"Primal Spear","rarity":"6","element":"poison"}]},{"slug":"tiger-stinger","name":"Tiger Stinger","rarity":"5","children":[{"slug":"tigrex-lance","name":"Tigrex Lance","rarity":"7","children":[{"slug":"great-tigrex-lance","name":"Great Tigrex Lance","rarity":"10"}]},{"slug":"hidden-stinger","name":"Hidden Stinger","rarity":"7","children":[{"slug":"black-rain-darklance","name":"Black Rain Darklance","rarity":"10"}]}]},{"slug":"vacuum-striker","name":"Vacuum Striker","rarity":"3","element":"water","children":[{"slug":"hyper-vacuum","name":"Hyper Vacuum","rarity":"6","element":"water"}]},{"slug":"vermillion-rim","name":"Vermillion Rim","rarity":"5","element":"dragon","children":[{"slug":"dragonic-rim","name":"Dragonic Rim","rarity":"7","element":"dragon","children":[{"slug":"sealed-dragonlance","name":"Sealed Dragonlance","rarity":"8","element":"dragon","children":[{"slug":"dragonsealervirtue","name":"DragonSealer\"Virtue\"","rarity":"9","element":"dragon","children":[{"slug":"dragonsealernull","name":"DragonSealer\"Null\"","rarity":"10","element":"dragon"}]}]}]}]},{"slug":"ukanlos-calamity","name":"Ukanlos Calamity","rarity":"10","element":"ice"},{"slug":"iron-lance-g","name":"Iron Lance G","rarity":"9"},{"slug":"long-tusk-g","name":"Long Tusk G","rarity":"9"},{"slug":"tarnished-lance-g","name":"Tarnished Lance G","rarity":"9"},{"slug":"spiked-spear-g","name":"Spiked Spear G","rarity":"9"},{"slug":"rampart-g","name":"Rampart G","rarity":"9"},{"slug":"valhalla-g","name":"Valhalla G","rarity":"9"},{"slug":"fragrance-g","name":"Fragrance G","rarity":"9"},{"slug":"requiem-spear-g","name":"Requiem Spear G","rarity":"9","element":"sleep"},{"slug":"dark-spear-g","name":"Dark Spear G","rarity":"9","element":"paralysis"},{"slug":"bulldrome-spear-g","name":"Bulldrome Spear G","rarity":"9"},{"slug":"bone-claw-lance-g","name":"Bone Claw Lance G","rarity":"9"},{"slug":"trident-g","name":"Trident G","rarity":"9","element":"paralysis"},{"slug":"gatling-lance-g","name":"Gatling Lance G","rarity":"9","element":"fire"},{"slug":"venom-lance-g","name":"Venom Lance G","rarity":"9","element":"poison"},{"slug":"crimson-war-pike-g","name":"Crimson War Pike G","rarity":"9","element":"fire"},{"slug":"diablo-spear-g","name":"Diablo Spear G","rarity":"9"},{"slug":"native-spear-g","name":"Native Spear G","rarity":"9","element":"poison"},{"slug":"black-belt-lance-g","name":"Black Belt Lance G","rarity":"9"},{"slug":"undertaker-g","name":"Undertaker G","rarity":"9"},{"slug":"knight-spear-g","name":"Knight Spear G","rarity":"9"},{"slug":"hard-bone-lance-g","name":"Hard Bone Lance G","rarity":"9"},{"slug":"roaring-wyvern-g","name":"Roaring Wyvern G","rarity":"9","element":"dragon"},{"slug":"great-ogre-tusk-g","name":"Great Ogre Tusk G","rarity":"9"},{"slug":"barbarian-tusk-g","name":"Barbarian Tusk G","rarity":"9"},{"slug":"noble-fragrance-g","name":"Noble Fragrance G","rarity":"9"},{"slug":"hyper-vacuum-g","name":"Hyper Vacuum G","rarity":"9","element":"water"},{"slug":"aqua-spear-g","name":"Aqua Spear G","rarity":"9","element":"water"},{"slug":"emerald-spear-g","name":"Emerald Spear G","rarity":"9","element":"water"},{"slug":"grayburg-javelin-g","name":"Grayburg Javelin G","rarity":"10"},{"slug":"sanctioned-gunlance-g","name":"Sanctioned Gunlance G","rarity":"10","element":"fire"},{"slug":"ceanataur-piercer-g","name":"Ceanataur Piercer G","rarity":"10"},{"slug":"ceramic-blos-lance-g","name":"Ceramic Blos Lance G","rarity":"10","element":"water"},{"slug":"gravios-spear-g","name":"Gravios Spear G","rarity":"10","element":"poison"},{"slug":"blackgraviousspear-g","name":"BlackGraviousSpear G","rarity":"10","element":"fire"},{"slug":"spear-of-prominence-g","name":"Spear of Prominence G","rarity":"10","element":"fire"},{"slug":"sealed-dragonlance-g","name":"Sealed Dragonlance G","rarity":"10","element":"dragon"}]
+  "map": [
+    {
+      "slug": "iron-lance",
+      "type": "lance",
+      "name": "Iron Lance",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "iron-lance-plus",
+          "type": "lance",
+          "name": "Iron Lance+",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "steel-lance",
+              "type": "lance",
+              "name": "Steel Lance",
+              "rarity": "1",
+              "children": [
+                {
+                  "slug": "paladin-lance",
+                  "type": "lance",
+                  "name": "Paladin Lance",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "rampart",
+                      "type": "lance",
+                      "name": "Rampart",
+                      "rarity": "3",
+                      "children": [
+                        {
+                          "slug": "growling-wyvern",
+                          "type": "lance",
+                          "name": "Growling Wyvern",
+                          "rarity": "4",
+                          "element": "dragon",
+                          "children": [
+                            {
+                              "slug": "roaring-wyvern",
+                              "type": "lance",
+                              "name": "Roaring Wyvern",
+                              "rarity": "7",
+                              "element": "dragon",
+                              "children": [
+                                {
+                                  "slug": "sanctioneddrilllance",
+                                  "type": "lance",
+                                  "name": "SanctionedDrillLance",
+                                  "rarity": "9",
+                                  "children": [
+                                    {
+                                      "slug": "gravedigger",
+                                      "type": "lance",
+                                      "name": "Gravedigger",
+                                      "rarity": "9"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "knight-lance",
+                              "type": "lance",
+                              "name": "Knight Lance",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "knight-spear",
+                                  "type": "lance",
+                                  "name": "Knight Spear",
+                                  "rarity": "6",
+                                  "children": [
+                                    {
+                                      "slug": "babel-spear",
+                                      "type": "lance",
+                                      "name": "Babel Spear",
+                                      "rarity": "7",
+                                      "children": [
+                                        {
+                                          "slug": "sadalsuud",
+                                          "type": "lance",
+                                          "name": "Sadalsuud",
+                                          "rarity": "9",
+                                          "element": "water",
+                                          "children": [
+                                            {
+                                              "slug": "sadalmelek",
+                                              "type": "lance",
+                                              "name": "Sadalmelek",
+                                              "rarity": "9",
+                                              "element": "water",
+                                              "children": [
+                                                {
+                                                  "slug": "aquarius",
+                                                  "type": "lance",
+                                                  "name": "Aquarius",
+                                                  "rarity": "10",
+                                                  "element": "water"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "slug": "lost-babel",
+                                          "type": "lance",
+                                          "name": "Lost Babel",
+                                          "rarity": "10"
+                                        },
+                                        {
+                                          "slug": "spark-plug",
+                                          "type": "lance",
+                                          "name": "Spark Plug",
+                                          "rarity": "9",
+                                          "element": "thunder",
+                                          "children": [
+                                            {
+                                              "slug": "thunderbugshocklance",
+                                              "type": "lance",
+                                              "name": "ThunderbugShockLance",
+                                              "rarity": "9",
+                                              "element": "thunder"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "aqua-spear",
+                                  "type": "lance",
+                                  "name": "Aqua Spear",
+                                  "rarity": "6",
+                                  "element": "water",
+                                  "children": [
+                                    {
+                                      "slug": "aqua-spear-plus",
+                                      "type": "lance",
+                                      "name": "Aqua Spear+",
+                                      "rarity": "6",
+                                      "element": "water",
+                                      "children": [
+                                        {
+                                          "slug": "emerald-spear",
+                                          "type": "lance",
+                                          "name": "Emerald Spear",
+                                          "rarity": "7",
+                                          "element": "water"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "grayburg-javelin",
+                                  "type": "lance",
+                                  "name": "Grayburg Javelin",
+                                  "rarity": "7",
+                                  "children": [
+                                    {
+                                      "slug": "dragon-rider-spear",
+                                      "type": "lance",
+                                      "name": "Dragon Rider Spear",
+                                      "rarity": "8",
+                                      "children": [
+                                        {
+                                          "slug": "dragoon-s-gae-bulg",
+                                          "type": "lance",
+                                          "name": "Dragoon's Gáe Bulg",
+                                          "rarity": "10"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "cold-icicle",
+                                  "type": "lance",
+                                  "name": "Cold Icicle",
+                                  "rarity": "6",
+                                  "element": "ice",
+                                  "children": [
+                                    {
+                                      "slug": "frost-icicle",
+                                      "type": "lance",
+                                      "name": "Frost Icicle",
+                                      "rarity": "6",
+                                      "element": "ice",
+                                      "children": [
+                                        {
+                                          "slug": "icicle-blizzard",
+                                          "type": "lance",
+                                          "name": "Icicle Blizzard",
+                                          "rarity": "9",
+                                          "element": "ice"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "gatling-lance",
+                          "type": "lance",
+                          "name": "Gatling Lance",
+                          "rarity": "4",
+                          "element": "fire",
+                          "children": [
+                            {
+                              "slug": "gatling-lance-plus",
+                              "type": "lance",
+                              "name": "Gatling Lance+",
+                              "rarity": "5",
+                              "element": "fire",
+                              "children": [
+                                {
+                                  "slug": "sanctioned-gunlance",
+                                  "type": "lance",
+                                  "name": "Sanctioned Gunlance",
+                                  "rarity": "6",
+                                  "element": "fire"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "naag-serpentblade",
+                          "type": "lance",
+                          "name": "Naag Serpentblade",
+                          "rarity": "4",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "devta-serpentblade",
+                              "type": "lance",
+                              "name": "Devta Serpentblade",
+                              "rarity": "6",
+                              "element": "poison",
+                              "children": [
+                                {
+                                  "slug": "ouroborosserpntblade",
+                                  "type": "lance",
+                                  "name": "OuroborosSerpntblade",
+                                  "rarity": "9",
+                                  "element": "poison"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "estoc",
+                  "type": "lance",
+                  "name": "Estoc",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "valhalla",
+                      "type": "lance",
+                      "name": "Valhalla",
+                      "rarity": "4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "bone-javelin",
+              "type": "lance",
+              "name": "Bone Javelin",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "spiked-spear",
+                  "type": "lance",
+                  "name": "Spiked Spear",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "lullaby-spear",
+                      "type": "lance",
+                      "name": "Lullaby Spear",
+                      "rarity": "3",
+                      "element": "sleep",
+                      "children": [
+                        {
+                          "slug": "requiem-spear",
+                          "type": "lance",
+                          "name": "Requiem Spear",
+                          "rarity": "4",
+                          "element": "sleep"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "paralysisr",
+                      "type": "lance",
+                      "name": "Paralysisr",
+                      "rarity": "3",
+                      "element": "paralysis",
+                      "children": [
+                        {
+                          "slug": "trident",
+                          "type": "lance",
+                          "name": "Trident",
+                          "rarity": "4",
+                          "element": "paralysis"
+                        },
+                        {
+                          "slug": "venom-lance",
+                          "type": "lance",
+                          "name": "Venom Lance",
+                          "rarity": "4",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "basarios-venom-spear",
+                              "type": "lance",
+                              "name": "Basarios Venom Spear",
+                              "rarity": "4",
+                              "element": "poison",
+                              "children": [
+                                {
+                                  "slug": "gravios-spear",
+                                  "type": "lance",
+                                  "name": "Gravios Spear",
+                                  "rarity": "5",
+                                  "element": "poison",
+                                  "children": [
+                                    {
+                                      "slug": "gravios-venom-spear",
+                                      "type": "lance",
+                                      "name": "Gravios Venom Spear",
+                                      "rarity": "7",
+                                      "element": "poison",
+                                      "children": [
+                                        {
+                                          "slug": "gravios-lance",
+                                          "type": "lance",
+                                          "name": "Gravios Lance",
+                                          "rarity": "9",
+                                          "element": "fire",
+                                          "children": [
+                                            {
+                                              "slug": "gravios-fire-lance",
+                                              "type": "lance",
+                                              "name": "Gravios Fire Lance",
+                                              "rarity": "10",
+                                              "element": "fire"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "black-gravios-spear",
+                                  "type": "lance",
+                                  "name": "Black Gravios Spear",
+                                  "rarity": "5",
+                                  "element": "fire",
+                                  "children": [
+                                    {
+                                      "slug": "void-gravios-spear",
+                                      "type": "lance",
+                                      "name": "Void Gravios Spear",
+                                      "rarity": "7",
+                                      "element": "fire",
+                                      "children": [
+                                        {
+                                          "slug": "gravios-lance",
+                                          "type": "lance",
+                                          "name": "Gravios Lance",
+                                          "rarity": "9",
+                                          "element": "fire",
+                                          "children": [
+                                            {
+                                              "slug": "gravios-fire-lance",
+                                              "type": "lance",
+                                              "name": "Gravios Fire Lance",
+                                              "rarity": "10",
+                                              "element": "fire"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "thunderspear",
+                          "type": "lance",
+                          "name": "Thunderspear",
+                          "rarity": "5",
+                          "element": "thunder",
+                          "children": [
+                            {
+                              "slug": "thunderlance",
+                              "type": "lance",
+                              "name": "Thunderlance",
+                              "rarity": "8",
+                              "element": "thunder",
+                              "children": [
+                                {
+                                  "slug": "naar-thunderlance",
+                                  "type": "lance",
+                                  "name": "Naar Thunderlance",
+                                  "rarity": "10",
+                                  "element": "thunder"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "longhorn",
+      "type": "lance",
+      "name": "Longhorn",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "longhorn-plus",
+          "type": "lance",
+          "name": "Longhorn+",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "long-tusk",
+              "type": "lance",
+              "name": "Long Tusk",
+              "rarity": "1",
+              "children": [
+                {
+                  "slug": "barbaroi-tusk",
+                  "type": "lance",
+                  "name": "Barbaroi Tusk",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "ogre-tusk",
+                      "type": "lance",
+                      "name": "Ogre Tusk",
+                      "rarity": "3",
+                      "children": [
+                        {
+                          "slug": "great-ogre-tusk",
+                          "type": "lance",
+                          "name": "Great Ogre Tusk",
+                          "rarity": "6"
+                        },
+                        {
+                          "slug": "hard-bone-lance",
+                          "type": "lance",
+                          "name": "Hard Bone Lance",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "hard-bone-lance-plus",
+                              "type": "lance",
+                              "name": "Hard Bone Lance+",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "barbarian-tusk",
+                                  "type": "lance",
+                                  "name": "Barbarian Tusk",
+                                  "rarity": "7",
+                                  "children": [
+                                    {
+                                      "slug": "giant-tusk",
+                                      "type": "lance",
+                                      "name": "Giant Tusk",
+                                      "rarity": "9",
+                                      "children": [
+                                        {
+                                          "slug": "brutal-tusk",
+                                          "type": "lance",
+                                          "name": "Brutal Tusk",
+                                          "rarity": "9"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "demon-lance",
+                                  "type": "lance",
+                                  "name": "Demon Lance",
+                                  "rarity": "7",
+                                  "element": "thunder",
+                                  "children": [
+                                    {
+                                      "slug": "great-demon-lance",
+                                      "type": "lance",
+                                      "name": "Great Demon Lance",
+                                      "rarity": "8",
+                                      "element": "thunder",
+                                      "children": [
+                                        {
+                                          "slug": "demonlance-rajang",
+                                          "type": "lance",
+                                          "name": "Demonlance Rajang",
+                                          "rarity": "10",
+                                          "element": "thunder"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "incessant-raven",
+                      "type": "lance",
+                      "name": "Incessant Raven",
+                      "rarity": "5",
+                      "element": "poison",
+                      "children": [
+                        {
+                          "slug": "incessant-wolf",
+                          "type": "lance",
+                          "name": "Incessant Wolf",
+                          "rarity": "7",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "incessant-crow",
+                              "type": "lance",
+                              "name": "Incessant Crow",
+                              "rarity": "9",
+                              "element": "poison"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "crimson-lance",
+                  "type": "lance",
+                  "name": "Crimson Lance",
+                  "rarity": "3",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "crimson-war-pike",
+                      "type": "lance",
+                      "name": "Crimson War Pike",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "crimson-war-pike-plus",
+                          "type": "lance",
+                          "name": "Crimson War Pike+",
+                          "rarity": "7",
+                          "element": "fire"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "ceramic-blos-lance",
+                      "type": "lance",
+                      "name": "Ceramic Blos Lance",
+                      "rarity": "4",
+                      "element": "water",
+                      "children": [
+                        {
+                          "slug": "ceramic-blos-lance-plus",
+                          "type": "lance",
+                          "name": "Ceramic Blos Lance+",
+                          "rarity": "5",
+                          "element": "water",
+                          "children": [
+                            {
+                              "slug": "white-disaster",
+                              "type": "lance",
+                              "name": "White Disaster",
+                              "rarity": "7",
+                              "element": "water",
+                              "children": [
+                                {
+                                  "slug": "white-catastrophe",
+                                  "type": "lance",
+                                  "name": "White Catastrophe",
+                                  "rarity": "7",
+                                  "element": "water"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "diablo-horn",
+                      "type": "lance",
+                      "name": "Diablo Horn",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "diablo-spear",
+                          "type": "lance",
+                          "name": "Diablo Spear",
+                          "rarity": "5",
+                          "children": [
+                            {
+                              "slug": "black-tempest",
+                              "type": "lance",
+                              "name": "Black Tempest",
+                              "rarity": "7",
+                              "children": [
+                                {
+                                  "slug": "rising-tempest",
+                                  "type": "lance",
+                                  "name": "Rising Tempest",
+                                  "rarity": "10"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "bone-claw-lance",
+                  "type": "lance",
+                  "name": "Bone Claw Lance",
+                  "rarity": "3",
+                  "children": [
+                    {
+                      "slug": "bone-claw-lance-plus",
+                      "type": "lance",
+                      "name": "Bone Claw Lance+",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "ceanataur-piercer",
+                          "type": "lance",
+                          "name": "Ceanataur Piercer",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "carmine-stinger",
+                              "type": "lance",
+                              "name": "Carmine Stinger",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "shish-kabob-stick",
+                                  "type": "lance",
+                                  "name": "Shish Kabob Stick",
+                                  "rarity": "10"
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "shell-claw-lance",
+                              "type": "lance",
+                              "name": "Shell Claw Lance",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "gianthermitaurlance",
+                                  "type": "lance",
+                                  "name": "GiantHermitaurLance",
+                                  "rarity": "9"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "blade-stinger",
+                  "type": "lance",
+                  "name": "Blade Stinger",
+                  "rarity": "4",
+                  "children": [
+                    {
+                      "slug": "ceanataur-stinger",
+                      "type": "lance",
+                      "name": "Ceanataur Stinger",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "ceanataur-piercer",
+                          "type": "lance",
+                          "name": "Ceanataur Piercer",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "carmine-stinger",
+                              "type": "lance",
+                              "name": "Carmine Stinger",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "shish-kabob-stick",
+                                  "type": "lance",
+                                  "name": "Shish Kabob Stick",
+                                  "rarity": "10"
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "shell-claw-lance",
+                              "type": "lance",
+                              "name": "Shell Claw Lance",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "gianthermitaurlance",
+                                  "type": "lance",
+                                  "name": "GiantHermitaurLance",
+                                  "rarity": "9"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "dark-lance",
+              "type": "lance",
+              "name": "Dark Lance",
+              "rarity": "2",
+              "element": "paralysis",
+              "children": [
+                {
+                  "slug": "dark-spear",
+                  "type": "lance",
+                  "name": "Dark Spear",
+                  "rarity": "4",
+                  "element": "paralysis",
+                  "children": [
+                    {
+                      "slug": "dark",
+                      "type": "lance",
+                      "name": "Dark",
+                      "rarity": "6",
+                      "element": "paralysis",
+                      "children": [
+                        {
+                          "slug": "darkness",
+                          "type": "lance",
+                          "name": "Darkness",
+                          "rarity": "9",
+                          "element": "paralysis"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wild-bone-lance",
+          "type": "lance",
+          "name": "Wild Bone Lance",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "wild-bone-lance-plus",
+              "type": "lance",
+              "name": "Wild Bone Lance+",
+              "rarity": "3",
+              "children": [
+                {
+                  "slug": "bulldrome-spear",
+                  "type": "lance",
+                  "name": "Bulldrome Spear",
+                  "rarity": "6"
+                },
+                {
+                  "slug": "red-tail",
+                  "type": "lance",
+                  "name": "Red Tail",
+                  "rarity": "3",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "spear-of-prominence",
+                      "type": "lance",
+                      "name": "Spear of Prominence",
+                      "rarity": "5",
+                      "element": "fire"
+                    },
+                    {
+                      "slug": "blue-tail",
+                      "type": "lance",
+                      "name": "Blue Tail",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "blue-prominence",
+                          "type": "lance",
+                          "name": "Blue Prominence",
+                          "rarity": "7",
+                          "element": "fire",
+                          "children": [
+                            {
+                              "slug": "prominence-soul",
+                              "type": "lance",
+                              "name": "Prominence Soul",
+                              "rarity": "10",
+                              "element": "fire"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "fragrance",
+              "type": "lance",
+              "name": "Fragrance",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "fragrance-plus",
+                  "type": "lance",
+                  "name": "Fragrance+",
+                  "rarity": "4",
+                  "children": [
+                    {
+                      "slug": "noble-fragrance",
+                      "type": "lance",
+                      "name": "Noble Fragrance",
+                      "rarity": "6"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "rusted-lance",
+      "type": "lance",
+      "name": "Rusted Lance",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "tarnished-lance",
+          "type": "lance",
+          "name": "Tarnished Lance",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "undertaker",
+              "type": "lance",
+              "name": "Undertaker",
+              "rarity": "5"
+            },
+            {
+              "slug": "steel-ice-spear",
+              "type": "lance",
+              "name": "Steel Ice Spear",
+              "rarity": "5",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "steel-ice-spear-plus",
+                  "type": "lance",
+                  "name": "Steel Ice Spear+",
+                  "rarity": "5",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "daora-s-fang",
+                      "type": "lance",
+                      "name": "Daora's Fang",
+                      "rarity": "8",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "daora-s-regulus",
+                          "type": "lance",
+                          "name": "Daora's Regulus",
+                          "rarity": "10",
+                          "element": "ice"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "worn-spear",
+      "type": "lance",
+      "name": "Worn Spear",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "weathered-spear",
+          "type": "lance",
+          "name": "Weathered Spear",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "matenro",
+              "type": "lance",
+              "name": "Matenro",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "sky-scraper",
+                  "type": "lance",
+                  "name": "Sky Scraper",
+                  "rarity": "9"
+                }
+              ]
+            },
+            {
+              "slug": "teostra-s-howl",
+              "type": "lance",
+              "name": "Teostra's Howl",
+              "rarity": "7",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "teostra-s-roar",
+                  "type": "lance",
+                  "name": "Teostra's Roar",
+                  "rarity": "8",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "teostra-s-fire",
+                      "type": "lance",
+                      "name": "Teostra's Fire",
+                      "rarity": "10",
+                      "element": "fire"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-belt-lance",
+      "type": "lance",
+      "name": "Black Belt Lance",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "expert-lance",
+          "type": "lance",
+          "name": "Expert Lance",
+          "rarity": "8",
+          "element": "poison",
+          "children": [
+            {
+              "slug": "warrior-s-lance",
+              "type": "lance",
+              "name": "Warrior's Lance",
+              "rarity": "10",
+              "element": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-lance",
+      "type": "lance",
+      "name": "Black Lance",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "black-dragon-spear",
+          "type": "lance",
+          "name": "Black Dragon Spear",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "true-blk-dragon-spr",
+              "type": "lance",
+              "name": "True Blk Dragon Spr",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        },
+        {
+          "slug": "black-ruiner-lance",
+          "type": "lance",
+          "name": "Black Ruiner Lance",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "true-blk-dragon-spr-plus",
+              "type": "lance",
+              "name": "True Blk Dragon Spr+",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "native-spear",
+      "type": "lance",
+      "name": "Native Spear",
+      "rarity": "3",
+      "element": "poison",
+      "children": [
+        {
+          "slug": "primal-spear",
+          "type": "lance",
+          "name": "Primal Spear",
+          "rarity": "6",
+          "element": "poison"
+        }
+      ]
+    },
+    {
+      "slug": "tiger-stinger",
+      "type": "lance",
+      "name": "Tiger Stinger",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "tigrex-lance",
+          "type": "lance",
+          "name": "Tigrex Lance",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "great-tigrex-lance",
+              "type": "lance",
+              "name": "Great Tigrex Lance",
+              "rarity": "10"
+            }
+          ]
+        },
+        {
+          "slug": "hidden-stinger",
+          "type": "lance",
+          "name": "Hidden Stinger",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "black-rain-darklance",
+              "type": "lance",
+              "name": "Black Rain Darklance",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vacuum-striker",
+      "type": "lance",
+      "name": "Vacuum Striker",
+      "rarity": "3",
+      "element": "water",
+      "children": [
+        {
+          "slug": "hyper-vacuum",
+          "type": "lance",
+          "name": "Hyper Vacuum",
+          "rarity": "6",
+          "element": "water"
+        }
+      ]
+    },
+    {
+      "slug": "vermillion-rim",
+      "type": "lance",
+      "name": "Vermillion Rim",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "dragonic-rim",
+          "type": "lance",
+          "name": "Dragonic Rim",
+          "rarity": "7",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "sealed-dragonlance",
+              "type": "lance",
+              "name": "Sealed Dragonlance",
+              "rarity": "8",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "dragonsealervirtue",
+                  "type": "lance",
+                  "name": "DragonSealer\"Virtue\"",
+                  "rarity": "9",
+                  "element": "dragon",
+                  "children": [
+                    {
+                      "slug": "dragonsealernull",
+                      "type": "lance",
+                      "name": "DragonSealer\"Null\"",
+                      "rarity": "10",
+                      "element": "dragon"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ukanlos-calamity",
+      "type": "lance",
+      "name": "Ukanlos Calamity",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "iron-lance-g",
+      "type": "lance",
+      "name": "Iron Lance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "long-tusk-g",
+      "type": "lance",
+      "name": "Long Tusk G",
+      "rarity": "9"
+    },
+    {
+      "slug": "tarnished-lance-g",
+      "type": "lance",
+      "name": "Tarnished Lance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "spiked-spear-g",
+      "type": "lance",
+      "name": "Spiked Spear G",
+      "rarity": "9"
+    },
+    {
+      "slug": "rampart-g",
+      "type": "lance",
+      "name": "Rampart G",
+      "rarity": "9"
+    },
+    {
+      "slug": "valhalla-g",
+      "type": "lance",
+      "name": "Valhalla G",
+      "rarity": "9"
+    },
+    {
+      "slug": "fragrance-g",
+      "type": "lance",
+      "name": "Fragrance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "requiem-spear-g",
+      "type": "lance",
+      "name": "Requiem Spear G",
+      "rarity": "9",
+      "element": "sleep"
+    },
+    {
+      "slug": "dark-spear-g",
+      "type": "lance",
+      "name": "Dark Spear G",
+      "rarity": "9",
+      "element": "paralysis"
+    },
+    {
+      "slug": "bulldrome-spear-g",
+      "type": "lance",
+      "name": "Bulldrome Spear G",
+      "rarity": "9"
+    },
+    {
+      "slug": "bone-claw-lance-g",
+      "type": "lance",
+      "name": "Bone Claw Lance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "trident-g",
+      "type": "lance",
+      "name": "Trident G",
+      "rarity": "9",
+      "element": "paralysis"
+    },
+    {
+      "slug": "gatling-lance-g",
+      "type": "lance",
+      "name": "Gatling Lance G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "venom-lance-g",
+      "type": "lance",
+      "name": "Venom Lance G",
+      "rarity": "9",
+      "element": "poison"
+    },
+    {
+      "slug": "crimson-war-pike-g",
+      "type": "lance",
+      "name": "Crimson War Pike G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "diablo-spear-g",
+      "type": "lance",
+      "name": "Diablo Spear G",
+      "rarity": "9"
+    },
+    {
+      "slug": "native-spear-g",
+      "type": "lance",
+      "name": "Native Spear G",
+      "rarity": "9",
+      "element": "poison"
+    },
+    {
+      "slug": "black-belt-lance-g",
+      "type": "lance",
+      "name": "Black Belt Lance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "undertaker-g",
+      "type": "lance",
+      "name": "Undertaker G",
+      "rarity": "9"
+    },
+    {
+      "slug": "knight-spear-g",
+      "type": "lance",
+      "name": "Knight Spear G",
+      "rarity": "9"
+    },
+    {
+      "slug": "hard-bone-lance-g",
+      "type": "lance",
+      "name": "Hard Bone Lance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "roaring-wyvern-g",
+      "type": "lance",
+      "name": "Roaring Wyvern G",
+      "rarity": "9",
+      "element": "dragon"
+    },
+    {
+      "slug": "great-ogre-tusk-g",
+      "type": "lance",
+      "name": "Great Ogre Tusk G",
+      "rarity": "9"
+    },
+    {
+      "slug": "barbarian-tusk-g",
+      "type": "lance",
+      "name": "Barbarian Tusk G",
+      "rarity": "9"
+    },
+    {
+      "slug": "noble-fragrance-g",
+      "type": "lance",
+      "name": "Noble Fragrance G",
+      "rarity": "9"
+    },
+    {
+      "slug": "hyper-vacuum-g",
+      "type": "lance",
+      "name": "Hyper Vacuum G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "aqua-spear-g",
+      "type": "lance",
+      "name": "Aqua Spear G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "emerald-spear-g",
+      "type": "lance",
+      "name": "Emerald Spear G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "grayburg-javelin-g",
+      "type": "lance",
+      "name": "Grayburg Javelin G",
+      "rarity": "10"
+    },
+    {
+      "slug": "sanctioned-gunlance-g",
+      "type": "lance",
+      "name": "Sanctioned Gunlance G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "ceanataur-piercer-g",
+      "type": "lance",
+      "name": "Ceanataur Piercer G",
+      "rarity": "10"
+    },
+    {
+      "slug": "ceramic-blos-lance-g",
+      "type": "lance",
+      "name": "Ceramic Blos Lance G",
+      "rarity": "10",
+      "element": "water"
+    },
+    {
+      "slug": "gravios-spear-g",
+      "type": "lance",
+      "name": "Gravios Spear G",
+      "rarity": "10",
+      "element": "poison"
+    },
+    {
+      "slug": "blackgraviousspear-g",
+      "type": "lance",
+      "name": "BlackGraviousSpear G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "spear-of-prominence-g",
+      "type": "lance",
+      "name": "Spear of Prominence G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "sealed-dragonlance-g",
+      "type": "lance",
+      "name": "Sealed Dragonlance G",
+      "rarity": "10",
+      "element": "dragon"
+    }
+  ]
 }

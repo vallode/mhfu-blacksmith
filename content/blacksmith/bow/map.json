@@ -1,3 +1,920 @@
 {
-  "map": [{"slug":"hunter-s-bow-i","name":"Hunter's Bow I","rarity":"1","children":[{"slug":"hunter-s-bow-ii","name":"Hunter's Bow II","rarity":"2","children":[{"slug":"hunter-s-bow-iii","name":"Hunter's Bow III","rarity":"3","children":[{"slug":"hunter-s-bow-iv","name":"Hunter's Bow IV","rarity":"3","children":[{"slug":"hunter-s-power-bow-i","name":"Hunter's Power Bow I","rarity":"4","children":[{"slug":"hunter-s-power-bow-ii","name":"Hunter's Power Bow II","rarity":"4","children":[{"slug":"hunter-s-power-bow-iii","name":"Hunter's Power Bow III","rarity":"6","children":[{"slug":"hunter-s-power-bow-iv","name":"Hunter's Power Bow IV","rarity":"9"},{"slug":"icicle-bow-i","name":"Icicle Bow I","rarity":"9","element":"ice","children":[{"slug":"icicle-bow-ii","name":"Icicle Bow II","rarity":"9","element":"ice"}]}]}]}]}]}]}]}]},{"slug":"wild-bow-i","name":"Wild Bow I","rarity":"2","children":[{"slug":"wild-bow-ii","name":"Wild Bow II","rarity":"3","children":[{"slug":"wild-bow-iii","name":"Wild Bow III","rarity":"4","children":[{"slug":"wild-bow-iv","name":"Wild Bow IV","rarity":"4","children":[{"slug":"wild-power-bow-i","name":"Wild Power Bow I","rarity":"6","children":[{"slug":"wild-power-bow-ii","name":"Wild Power Bow II","rarity":"6","children":[{"slug":"jungle-bow-i","name":"Jungle Bow I","rarity":"9","children":[{"slug":"jungle-bow-ii","name":"Jungle Bow II","rarity":"9"}]}]}]}]}]}]}]},{"slug":"blango-fur-bow-i","name":"Blango Fur Bow I","rarity":"2","element":"ice","children":[{"slug":"blango-fur-bow-ii","name":"Blango Fur Bow II","rarity":"3","element":"ice","children":[{"slug":"blango-fur-bow-iii","name":"Blango Fur Bow III","rarity":"4","element":"ice","children":[{"slug":"blango-fur-bow-iv","name":"Blango Fur Bow IV","rarity":"4","element":"ice","children":[{"slug":"abominable-bow-i","name":"Abominable Bow I","rarity":"6","element":"ice","children":[{"slug":"abominable-bow-ii","name":"Abominable Bow II","rarity":"9","element":"ice"}]}]}]}]}]},{"slug":"kut-ku-stave-i","name":"Kut-Ku Stave I","rarity":"2","element":"fire","children":[{"slug":"kut-ku-stave-ii","name":"Kut-Ku Stave II","rarity":"3","element":"fire","children":[{"slug":"kut-ku-stave-iii","name":"Kut-Ku Stave III","rarity":"4","element":"fire","children":[{"slug":"blue-kut-ku-stave-i","name":"Blue Kut-Ku Stave I","rarity":"7","element":"fire","children":[{"slug":"blue-kut-ku-stave-ii","name":"Blue Kut-Ku Stave II","rarity":"8","element":"fire","children":[{"slug":"blue-kut-ku-stave-iii","name":"Blue Kut-Ku Stave III","rarity":"9","element":"fire"}]},{"slug":"wolf-bow","name":"Wolf Bow","rarity":"9","children":[{"slug":"crow-bow","name":"Crow Bow","rarity":"10"}]}]}]}]}]},{"slug":"wing-bow-i","name":"Wing Bow I","rarity":"6","element":"sleep","children":[{"slug":"wing-bow-ii","name":"Wing Bow II","rarity":"6","element":"sleep","children":[{"slug":"wing-bow-iii","name":"Wing Bow III","rarity":"9","element":"sleep","children":[{"slug":"wing-bow-iv","name":"Wing Bow IV","rarity":"9","element":"sleep"}]}]}]},{"slug":"defect-swordfish-bow","name":"Defect Swordfish Bow","rarity":"5","element":"paralysis","children":[{"slug":"whole-swordfish-bow","name":"Whole Swordfish Bow","rarity":"8","element":"paralysis","children":[{"slug":"perfect-swordfish-bow","name":"Perfect Swordfish Bow","rarity":"10","element":"paralysis"}]}]},{"slug":"daimyo-s-warbow-i","name":"Daimyo's Warbow I","rarity":"3","element":"water","children":[{"slug":"daimyo-s-warbow-ii","name":"Daimyo's Warbow II","rarity":"4","element":"water","children":[{"slug":"daimyo-s-warbow-iii","name":"Daimyo's Warbow III","rarity":"4","element":"water","children":[{"slug":"daimyo-s-warbow-iv","name":"Daimyo's Warbow IV","rarity":"6","element":"water","children":[{"slug":"great-purple-emperor-i","name":"Great Purple Emperor I","rarity":"9","element":"water","children":[{"slug":"great-purple-emperor-ii","name":"Great Purple Emperor II","rarity":"9","element":"water"}]}]}]}]}]},{"slug":"blue-blade-bow-i","name":"Blue Blade Bow I","rarity":"4","children":[{"slug":"blue-blade-bow-ii","name":"Blue Blade Bow II","rarity":"6","children":[{"slug":"blue-blade-bow-iii","name":"Blue Blade Bow III","rarity":"9","children":[{"slug":"showroom-model","name":"Showroom Model","rarity":"9"},{"slug":"carmine-bow","name":"Carmine Bow","rarity":"9","element":"water","children":[{"slug":"eraser","name":"Eraser","rarity":"10","element":"water"}]}]}]}]},{"slug":"sonic-bow-i","name":"Sonic Bow I","rarity":"3","element":"thunder","children":[{"slug":"sonic-bow-ii","name":"Sonic Bow II","rarity":"4","element":"thunder","children":[{"slug":"sonic-bow-iii","name":"Sonic Bow III","rarity":"6","element":"thunder","children":[{"slug":"sonic-bow-iv","name":"Sonic Bow IV","rarity":"9","element":"thunder"}]}]}]},{"slug":"khezu-bow-i","name":"Khezu Bow I","rarity":"9","element":"thunder","children":[{"slug":"khezu-bow-ii","name":"Khezu Bow II","rarity":"9","element":"thunder"}]},{"slug":"queen-blaster-i","name":"Queen Blaster I","rarity":"4","element":"poison","children":[{"slug":"queen-blaster-ii","name":"Queen Blaster II","rarity":"4","element":"poison","children":[{"slug":"queen-blaster-iii","name":"Queen Blaster III","rarity":"6","element":"poison","children":[{"slug":"queen-blaster-iv","name":"Queen Blaster IV","rarity":"9","element":"poison","children":[{"slug":"queen-blaster-v","name":"Queen Blaster V","rarity":"10","element":"poison"}]}]},{"slug":"heartshot-bow-i","name":"Heartshot Bow I","rarity":"7","children":[{"slug":"heartshot-bow-ii","name":"Heartshot Bow II","rarity":"8","children":[{"slug":"heartshot-bow-iii","name":"Heartshot Bow III","rarity":"10"}]}]}]}]},{"slug":"prominence-bow-i","name":"Prominence Bow I","rarity":"4","element":"fire","children":[{"slug":"prominence-bow-ii","name":"Prominence Bow II","rarity":"4","element":"fire","children":[{"slug":"prominence-bow-iii","name":"Prominence Bow III","rarity":"8","element":"fire","children":[{"slug":"prominence-bow-iv","name":"Prominence Bow IV","rarity":"9","element":"fire","children":[{"slug":"prominence-bow-v","name":"Prominence Bow V","rarity":"10","element":"fire"}]}]}]}]},{"slug":"courageous-hope","name":"Courageous Hope","rarity":"8","element":"fire","children":[{"slug":"courageous-wish","name":"Courageous Wish","rarity":"8","element":"fire","children":[{"slug":"courageous-dream","name":"Courageous Dream","rarity":"10","element":"fire"}]}]},{"slug":"diablos-horn-bow-i","name":"Diablos Horn Bow I","rarity":"6","children":[{"slug":"diablos-horn-bow-ii","name":"Diablos Horn Bow II","rarity":"6","children":[{"slug":"gale-horn-bow","name":"Gale Horn Bow","rarity":"9","children":[{"slug":"diabloskinghornbow","name":"DiablosKingHornBow","rarity":"10"}]}]}]},{"slug":"tiger-arrow-i","name":"Tiger Arrow I","rarity":"4","children":[{"slug":"tiger-arrow-ii","name":"Tiger Arrow II","rarity":"4","children":[{"slug":"tigrex-whisker","name":"Tigrex Whisker","rarity":"6","children":[{"slug":"tigrex-whisker-plus","name":"Tigrex Whisker+","rarity":"10"}]},{"slug":"hidden-bow","name":"Hidden Bow","rarity":"7","children":[{"slug":"midnight-bow","name":"Midnight Bow","rarity":"10"}]}]}]},{"slug":"dragonhead-harp-i","name":"Dragonhead Harp I","rarity":"8","element":"water","children":[{"slug":"dragonhead-harp-ii","name":"Dragonhead Harp II","rarity":"9","element":"water","children":[{"slug":"dragonhead-harp-iii","name":"Dragonhead Harp III","rarity":"10","element":"water"}]}]},{"slug":"dragon-bow-halo","name":"Dragon Bow Halo","rarity":"5","element":"thunder","children":[{"slug":"dragon-bow-solar","name":"Dragon Bow Solar","rarity":"8","element":"thunder","children":[{"slug":"ancient-dragon-wood-bow","name":"Ancient Dragon Wood Bow","rarity":"10","element":"thunder"}]}]},{"slug":"dragon-bow-earth","name":"Dragon Bow Earth","rarity":"5","element":"dragon","children":[{"slug":"dragon-bow-mountain","name":"Dragon Bow Mountain","rarity":"8","element":"dragon","children":[{"slug":"dragon-bow-chaos","name":"Dragon Bow Chaos","rarity":"10","element":"dragon"}]}]},{"slug":"beast-thunderbow","name":"Beast Thunderbow","rarity":"10","element":"thunder","children":[{"slug":"beastkingthunderbow","name":"BeastKingThunderbow","rarity":"10","element":"thunder"}]},{"slug":"icy-steel-bow","name":"Icy Steel Bow","rarity":"10","element":"ice","children":[{"slug":"daora-s-sagittarii","name":"Daora's Sagittarii","rarity":"10","element":"ice"}]},{"slug":"akantor-bow","name":"Akantor Bow","rarity":"8","element":"dragon","children":[{"slug":"akantor-chaos-bow","name":"Akantor Chaos Bow","rarity":"10","element":"dragon"}]},{"slug":"black-bow-i","name":"Black Bow I","rarity":"5","element":"dragon","children":[{"slug":"black-bow-ii","name":"Black Bow II","rarity":"8","element":"dragon","children":[{"slug":"exterminator-bow-i","name":"Exterminator Bow I","rarity":"8","children":[{"slug":"exterminator-bow-ii","name":"Exterminator Bow II","rarity":"10"}]},{"slug":"glorious-victory-i","name":"Glorious Victory I","rarity":"8","element":"dragon","children":[{"slug":"glorious-victory-ii","name":"Glorious Victory II","rarity":"10","element":"dragon"}]}]}]},{"slug":"ukanlos-bow","name":"Ukanlos Bow","rarity":"10","element":"ice"},{"slug":"hunter-s-bow-g","name":"Hunter's Bow G","rarity":"9"},{"slug":"wild-bow-g","name":"Wild Bow G","rarity":"9"},{"slug":"wild-power-bow-g","name":"Wild Power Bow G","rarity":"9"},{"slug":"blango-fur-bow-g","name":"Blango Fur Bow G","rarity":"9","element":"ice"},{"slug":"kut-ku-stave-g","name":"Kut-Ku Stave G","rarity":"9","element":"fire"},{"slug":"daimyo-s-war-bow-g","name":"Daimyo's War Bow G","rarity":"9","element":"water"},{"slug":"sonic-bow-g","name":"Sonic Bow G","rarity":"9","element":"thunder"},{"slug":"diablos-horn-bow-g","name":"Diablos Horn Bow G","rarity":"9"},{"slug":"dragon-bow-solar-g","name":"Dragon Bow Solar G","rarity":"10","element":"thunder"},{"slug":"black-bow-g","name":"Black Bow G","rarity":"10","element":"dragon"}]
+  "map": [
+    {
+      "slug": "hunter-s-bow-i",
+      "type": "bow",
+      "name": "Hunter's Bow I",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "hunter-s-bow-ii",
+          "type": "bow",
+          "name": "Hunter's Bow II",
+          "rarity": "2",
+          "children": [
+            {
+              "slug": "hunter-s-bow-iii",
+              "type": "bow",
+              "name": "Hunter's Bow III",
+              "rarity": "3",
+              "children": [
+                {
+                  "slug": "hunter-s-bow-iv",
+                  "type": "bow",
+                  "name": "Hunter's Bow IV",
+                  "rarity": "3",
+                  "children": [
+                    {
+                      "slug": "hunter-s-power-bow-i",
+                      "type": "bow",
+                      "name": "Hunter's Power Bow I",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "hunter-s-power-bow-ii",
+                          "type": "bow",
+                          "name": "Hunter's Power Bow II",
+                          "rarity": "4",
+                          "children": [
+                            {
+                              "slug": "hunter-s-power-bow-iii",
+                              "type": "bow",
+                              "name": "Hunter's Power Bow III",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "hunter-s-power-bow-iv",
+                                  "type": "bow",
+                                  "name": "Hunter's Power Bow IV",
+                                  "rarity": "9"
+                                },
+                                {
+                                  "slug": "icicle-bow-i",
+                                  "type": "bow",
+                                  "name": "Icicle Bow I",
+                                  "rarity": "9",
+                                  "element": "ice",
+                                  "children": [
+                                    {
+                                      "slug": "icicle-bow-ii",
+                                      "type": "bow",
+                                      "name": "Icicle Bow II",
+                                      "rarity": "9",
+                                      "element": "ice"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "wild-bow-i",
+      "type": "bow",
+      "name": "Wild Bow I",
+      "rarity": "2",
+      "children": [
+        {
+          "slug": "wild-bow-ii",
+          "type": "bow",
+          "name": "Wild Bow II",
+          "rarity": "3",
+          "children": [
+            {
+              "slug": "wild-bow-iii",
+              "type": "bow",
+              "name": "Wild Bow III",
+              "rarity": "4",
+              "children": [
+                {
+                  "slug": "wild-bow-iv",
+                  "type": "bow",
+                  "name": "Wild Bow IV",
+                  "rarity": "4",
+                  "children": [
+                    {
+                      "slug": "wild-power-bow-i",
+                      "type": "bow",
+                      "name": "Wild Power Bow I",
+                      "rarity": "6",
+                      "children": [
+                        {
+                          "slug": "wild-power-bow-ii",
+                          "type": "bow",
+                          "name": "Wild Power Bow II",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "jungle-bow-i",
+                              "type": "bow",
+                              "name": "Jungle Bow I",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "jungle-bow-ii",
+                                  "type": "bow",
+                                  "name": "Jungle Bow II",
+                                  "rarity": "9"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "blango-fur-bow-i",
+      "type": "bow",
+      "name": "Blango Fur Bow I",
+      "rarity": "2",
+      "element": "ice",
+      "children": [
+        {
+          "slug": "blango-fur-bow-ii",
+          "type": "bow",
+          "name": "Blango Fur Bow II",
+          "rarity": "3",
+          "element": "ice",
+          "children": [
+            {
+              "slug": "blango-fur-bow-iii",
+              "type": "bow",
+              "name": "Blango Fur Bow III",
+              "rarity": "4",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "blango-fur-bow-iv",
+                  "type": "bow",
+                  "name": "Blango Fur Bow IV",
+                  "rarity": "4",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "abominable-bow-i",
+                      "type": "bow",
+                      "name": "Abominable Bow I",
+                      "rarity": "6",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "abominable-bow-ii",
+                          "type": "bow",
+                          "name": "Abominable Bow II",
+                          "rarity": "9",
+                          "element": "ice"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kut-ku-stave-i",
+      "type": "bow",
+      "name": "Kut-Ku Stave I",
+      "rarity": "2",
+      "element": "fire",
+      "children": [
+        {
+          "slug": "kut-ku-stave-ii",
+          "type": "bow",
+          "name": "Kut-Ku Stave II",
+          "rarity": "3",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "kut-ku-stave-iii",
+              "type": "bow",
+              "name": "Kut-Ku Stave III",
+              "rarity": "4",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "blue-kut-ku-stave-i",
+                  "type": "bow",
+                  "name": "Blue Kut-Ku Stave I",
+                  "rarity": "7",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "blue-kut-ku-stave-ii",
+                      "type": "bow",
+                      "name": "Blue Kut-Ku Stave II",
+                      "rarity": "8",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "blue-kut-ku-stave-iii",
+                          "type": "bow",
+                          "name": "Blue Kut-Ku Stave III",
+                          "rarity": "9",
+                          "element": "fire"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "wolf-bow",
+                      "type": "bow",
+                      "name": "Wolf Bow",
+                      "rarity": "9",
+                      "children": [
+                        {
+                          "slug": "crow-bow",
+                          "type": "bow",
+                          "name": "Crow Bow",
+                          "rarity": "10"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "wing-bow-i",
+      "type": "bow",
+      "name": "Wing Bow I",
+      "rarity": "6",
+      "element": "sleep",
+      "children": [
+        {
+          "slug": "wing-bow-ii",
+          "type": "bow",
+          "name": "Wing Bow II",
+          "rarity": "6",
+          "element": "sleep",
+          "children": [
+            {
+              "slug": "wing-bow-iii",
+              "type": "bow",
+              "name": "Wing Bow III",
+              "rarity": "9",
+              "element": "sleep",
+              "children": [
+                {
+                  "slug": "wing-bow-iv",
+                  "type": "bow",
+                  "name": "Wing Bow IV",
+                  "rarity": "9",
+                  "element": "sleep"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "defect-swordfish-bow",
+      "type": "bow",
+      "name": "Defect Swordfish Bow",
+      "rarity": "5",
+      "element": "paralysis",
+      "children": [
+        {
+          "slug": "whole-swordfish-bow",
+          "type": "bow",
+          "name": "Whole Swordfish Bow",
+          "rarity": "8",
+          "element": "paralysis",
+          "children": [
+            {
+              "slug": "perfect-swordfish-bow",
+              "type": "bow",
+              "name": "Perfect Swordfish Bow",
+              "rarity": "10",
+              "element": "paralysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "daimyo-s-warbow-i",
+      "type": "bow",
+      "name": "Daimyo's Warbow I",
+      "rarity": "3",
+      "element": "water",
+      "children": [
+        {
+          "slug": "daimyo-s-warbow-ii",
+          "type": "bow",
+          "name": "Daimyo's Warbow II",
+          "rarity": "4",
+          "element": "water",
+          "children": [
+            {
+              "slug": "daimyo-s-warbow-iii",
+              "type": "bow",
+              "name": "Daimyo's Warbow III",
+              "rarity": "4",
+              "element": "water",
+              "children": [
+                {
+                  "slug": "daimyo-s-warbow-iv",
+                  "type": "bow",
+                  "name": "Daimyo's Warbow IV",
+                  "rarity": "6",
+                  "element": "water",
+                  "children": [
+                    {
+                      "slug": "great-purple-emperor-i",
+                      "type": "bow",
+                      "name": "Great Purple Emperor I",
+                      "rarity": "9",
+                      "element": "water",
+                      "children": [
+                        {
+                          "slug": "great-purple-emperor-ii",
+                          "type": "bow",
+                          "name": "Great Purple Emperor II",
+                          "rarity": "9",
+                          "element": "water"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "blue-blade-bow-i",
+      "type": "bow",
+      "name": "Blue Blade Bow I",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "blue-blade-bow-ii",
+          "type": "bow",
+          "name": "Blue Blade Bow II",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "blue-blade-bow-iii",
+              "type": "bow",
+              "name": "Blue Blade Bow III",
+              "rarity": "9",
+              "children": [
+                {
+                  "slug": "showroom-model",
+                  "type": "bow",
+                  "name": "Showroom Model",
+                  "rarity": "9"
+                },
+                {
+                  "slug": "carmine-bow",
+                  "type": "bow",
+                  "name": "Carmine Bow",
+                  "rarity": "9",
+                  "element": "water",
+                  "children": [
+                    {
+                      "slug": "eraser",
+                      "type": "bow",
+                      "name": "Eraser",
+                      "rarity": "10",
+                      "element": "water"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "sonic-bow-i",
+      "type": "bow",
+      "name": "Sonic Bow I",
+      "rarity": "3",
+      "element": "thunder",
+      "children": [
+        {
+          "slug": "sonic-bow-ii",
+          "type": "bow",
+          "name": "Sonic Bow II",
+          "rarity": "4",
+          "element": "thunder",
+          "children": [
+            {
+              "slug": "sonic-bow-iii",
+              "type": "bow",
+              "name": "Sonic Bow III",
+              "rarity": "6",
+              "element": "thunder",
+              "children": [
+                {
+                  "slug": "sonic-bow-iv",
+                  "type": "bow",
+                  "name": "Sonic Bow IV",
+                  "rarity": "9",
+                  "element": "thunder"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "khezu-bow-i",
+      "type": "bow",
+      "name": "Khezu Bow I",
+      "rarity": "9",
+      "element": "thunder",
+      "children": [
+        {
+          "slug": "khezu-bow-ii",
+          "type": "bow",
+          "name": "Khezu Bow II",
+          "rarity": "9",
+          "element": "thunder"
+        }
+      ]
+    },
+    {
+      "slug": "queen-blaster-i",
+      "type": "bow",
+      "name": "Queen Blaster I",
+      "rarity": "4",
+      "element": "poison",
+      "children": [
+        {
+          "slug": "queen-blaster-ii",
+          "type": "bow",
+          "name": "Queen Blaster II",
+          "rarity": "4",
+          "element": "poison",
+          "children": [
+            {
+              "slug": "queen-blaster-iii",
+              "type": "bow",
+              "name": "Queen Blaster III",
+              "rarity": "6",
+              "element": "poison",
+              "children": [
+                {
+                  "slug": "queen-blaster-iv",
+                  "type": "bow",
+                  "name": "Queen Blaster IV",
+                  "rarity": "9",
+                  "element": "poison",
+                  "children": [
+                    {
+                      "slug": "queen-blaster-v",
+                      "type": "bow",
+                      "name": "Queen Blaster V",
+                      "rarity": "10",
+                      "element": "poison"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "heartshot-bow-i",
+              "type": "bow",
+              "name": "Heartshot Bow I",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "heartshot-bow-ii",
+                  "type": "bow",
+                  "name": "Heartshot Bow II",
+                  "rarity": "8",
+                  "children": [
+                    {
+                      "slug": "heartshot-bow-iii",
+                      "type": "bow",
+                      "name": "Heartshot Bow III",
+                      "rarity": "10"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "prominence-bow-i",
+      "type": "bow",
+      "name": "Prominence Bow I",
+      "rarity": "4",
+      "element": "fire",
+      "children": [
+        {
+          "slug": "prominence-bow-ii",
+          "type": "bow",
+          "name": "Prominence Bow II",
+          "rarity": "4",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "prominence-bow-iii",
+              "type": "bow",
+              "name": "Prominence Bow III",
+              "rarity": "8",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "prominence-bow-iv",
+                  "type": "bow",
+                  "name": "Prominence Bow IV",
+                  "rarity": "9",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "prominence-bow-v",
+                      "type": "bow",
+                      "name": "Prominence Bow V",
+                      "rarity": "10",
+                      "element": "fire"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "courageous-hope",
+      "type": "bow",
+      "name": "Courageous Hope",
+      "rarity": "8",
+      "element": "fire",
+      "children": [
+        {
+          "slug": "courageous-wish",
+          "type": "bow",
+          "name": "Courageous Wish",
+          "rarity": "8",
+          "element": "fire",
+          "children": [
+            {
+              "slug": "courageous-dream",
+              "type": "bow",
+              "name": "Courageous Dream",
+              "rarity": "10",
+              "element": "fire"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "diablos-horn-bow-i",
+      "type": "bow",
+      "name": "Diablos Horn Bow I",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "diablos-horn-bow-ii",
+          "type": "bow",
+          "name": "Diablos Horn Bow II",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "gale-horn-bow",
+              "type": "bow",
+              "name": "Gale Horn Bow",
+              "rarity": "9",
+              "children": [
+                {
+                  "slug": "diabloskinghornbow",
+                  "type": "bow",
+                  "name": "DiablosKingHornBow",
+                  "rarity": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "tiger-arrow-i",
+      "type": "bow",
+      "name": "Tiger Arrow I",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "tiger-arrow-ii",
+          "type": "bow",
+          "name": "Tiger Arrow II",
+          "rarity": "4",
+          "children": [
+            {
+              "slug": "tigrex-whisker",
+              "type": "bow",
+              "name": "Tigrex Whisker",
+              "rarity": "6",
+              "children": [
+                {
+                  "slug": "tigrex-whisker-plus",
+                  "type": "bow",
+                  "name": "Tigrex Whisker+",
+                  "rarity": "10"
+                }
+              ]
+            },
+            {
+              "slug": "hidden-bow",
+              "type": "bow",
+              "name": "Hidden Bow",
+              "rarity": "7",
+              "children": [
+                {
+                  "slug": "midnight-bow",
+                  "type": "bow",
+                  "name": "Midnight Bow",
+                  "rarity": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragonhead-harp-i",
+      "type": "bow",
+      "name": "Dragonhead Harp I",
+      "rarity": "8",
+      "element": "water",
+      "children": [
+        {
+          "slug": "dragonhead-harp-ii",
+          "type": "bow",
+          "name": "Dragonhead Harp II",
+          "rarity": "9",
+          "element": "water",
+          "children": [
+            {
+              "slug": "dragonhead-harp-iii",
+              "type": "bow",
+              "name": "Dragonhead Harp III",
+              "rarity": "10",
+              "element": "water"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragon-bow-halo",
+      "type": "bow",
+      "name": "Dragon Bow Halo",
+      "rarity": "5",
+      "element": "thunder",
+      "children": [
+        {
+          "slug": "dragon-bow-solar",
+          "type": "bow",
+          "name": "Dragon Bow Solar",
+          "rarity": "8",
+          "element": "thunder",
+          "children": [
+            {
+              "slug": "ancient-dragon-wood-bow",
+              "type": "bow",
+              "name": "Ancient Dragon Wood Bow",
+              "rarity": "10",
+              "element": "thunder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragon-bow-earth",
+      "type": "bow",
+      "name": "Dragon Bow Earth",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "dragon-bow-mountain",
+          "type": "bow",
+          "name": "Dragon Bow Mountain",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "dragon-bow-chaos",
+              "type": "bow",
+              "name": "Dragon Bow Chaos",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "beast-thunderbow",
+      "type": "bow",
+      "name": "Beast Thunderbow",
+      "rarity": "10",
+      "element": "thunder",
+      "children": [
+        {
+          "slug": "beastkingthunderbow",
+          "type": "bow",
+          "name": "BeastKingThunderbow",
+          "rarity": "10",
+          "element": "thunder"
+        }
+      ]
+    },
+    {
+      "slug": "icy-steel-bow",
+      "type": "bow",
+      "name": "Icy Steel Bow",
+      "rarity": "10",
+      "element": "ice",
+      "children": [
+        {
+          "slug": "daora-s-sagittarii",
+          "type": "bow",
+          "name": "Daora's Sagittarii",
+          "rarity": "10",
+          "element": "ice"
+        }
+      ]
+    },
+    {
+      "slug": "akantor-bow",
+      "type": "bow",
+      "name": "Akantor Bow",
+      "rarity": "8",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "akantor-chaos-bow",
+          "type": "bow",
+          "name": "Akantor Chaos Bow",
+          "rarity": "10",
+          "element": "dragon"
+        }
+      ]
+    },
+    {
+      "slug": "black-bow-i",
+      "type": "bow",
+      "name": "Black Bow I",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "black-bow-ii",
+          "type": "bow",
+          "name": "Black Bow II",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "exterminator-bow-i",
+              "type": "bow",
+              "name": "Exterminator Bow I",
+              "rarity": "8",
+              "children": [
+                {
+                  "slug": "exterminator-bow-ii",
+                  "type": "bow",
+                  "name": "Exterminator Bow II",
+                  "rarity": "10"
+                }
+              ]
+            },
+            {
+              "slug": "glorious-victory-i",
+              "type": "bow",
+              "name": "Glorious Victory I",
+              "rarity": "8",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "glorious-victory-ii",
+                  "type": "bow",
+                  "name": "Glorious Victory II",
+                  "rarity": "10",
+                  "element": "dragon"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ukanlos-bow",
+      "type": "bow",
+      "name": "Ukanlos Bow",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "hunter-s-bow-g",
+      "type": "bow",
+      "name": "Hunter's Bow G",
+      "rarity": "9"
+    },
+    {
+      "slug": "wild-bow-g",
+      "type": "bow",
+      "name": "Wild Bow G",
+      "rarity": "9"
+    },
+    {
+      "slug": "wild-power-bow-g",
+      "type": "bow",
+      "name": "Wild Power Bow G",
+      "rarity": "9"
+    },
+    {
+      "slug": "blango-fur-bow-g",
+      "type": "bow",
+      "name": "Blango Fur Bow G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "kut-ku-stave-g",
+      "type": "bow",
+      "name": "Kut-Ku Stave G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "daimyo-s-war-bow-g",
+      "type": "bow",
+      "name": "Daimyo's War Bow G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "sonic-bow-g",
+      "type": "bow",
+      "name": "Sonic Bow G",
+      "rarity": "9",
+      "element": "thunder"
+    },
+    {
+      "slug": "diablos-horn-bow-g",
+      "type": "bow",
+      "name": "Diablos Horn Bow G",
+      "rarity": "9"
+    },
+    {
+      "slug": "dragon-bow-solar-g",
+      "type": "bow",
+      "name": "Dragon Bow Solar G",
+      "rarity": "10",
+      "element": "thunder"
+    },
+    {
+      "slug": "black-bow-g",
+      "type": "bow",
+      "name": "Black Bow G",
+      "rarity": "10",
+      "element": "dragon"
+    }
+  ]
 }

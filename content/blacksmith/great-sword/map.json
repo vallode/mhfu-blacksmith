@@ -1,3 +1,1386 @@
 {
-  "map": [{"slug":"buster-sword","name":"Buster Sword","rarity":"1","children":[{"slug":"buster-sword-plus","name":"Buster Sword+","rarity":"1","children":[{"slug":"buster-blade","name":"Buster Blade","rarity":"1","children":[{"slug":"ravager-blade","name":"Ravager Blade","rarity":"2","children":[{"slug":"ravager-blade-plus","name":"Ravager Blade+","rarity":"3","children":[{"slug":"tactical-blade","name":"Tactical Blade","rarity":"5","children":[{"slug":"strategic-blade","name":"Strategic Blade","rarity":"7"}]},{"slug":"chrome-razor","name":"Chrome Razor","rarity":"5","element":"poison","children":[{"slug":"chrome-death-razor","name":"Chrome Death Razor","rarity":"8","element":"poison"},{"slug":"carbalite-sword","name":"Carbalite Sword","rarity":"6","children":[{"slug":"carbalite-sword-plus","name":"Carbalite Sword+","rarity":"6","children":[{"slug":"lacerator-blade","name":"Lacerator Blade","rarity":"7","children":[{"slug":"master-blaze","name":"Master Blaze","rarity":"9"}]},{"slug":"decider","name":"Decider","rarity":"9","children":[{"slug":"punisher","name":"Punisher","rarity":"9"},{"slug":"igneous-blade","name":"Igneous Blade","rarity":"9","element":"fire","children":[{"slug":"igneous-sword","name":"Igneous Sword","rarity":"10","element":"fire"}]}]}]},{"slug":"bronze-coin","name":"Bronze Coin","rarity":"5","children":[{"slug":"gaoren-coin","name":"Gaoren Coin","rarity":"8","children":[{"slug":"gaoren-cleaver","name":"Gaoren Cleaver","rarity":"10"}]}]}]}]}]},{"slug":"khezu-shock-sword","name":"Khezu Shock Sword","rarity":"3","element":"thunder","children":[{"slug":"khezu-shock-blade","name":"Khezu Shock Blade","rarity":"7","element":"thunder","children":[{"slug":"khezu-shock-full","name":"Khezu Shock Full","rarity":"9","element":"thunder","children":[{"slug":"khezu-shock-full-plus","name":"Khezu Shock Full+","rarity":"9","element":"thunder"}]}]}]}]},{"slug":"cat-s-soul","name":"Cat's Soul","rarity":"3","element":"paralysis","children":[{"slug":"cat-s-curse","name":"Cat's Curse","rarity":"4","element":"paralysis","children":[{"slug":"cat-s-king","name":"Cat's King","rarity":"6","element":"paralysis","children":[{"slug":"cat-of-venus","name":"Cat of Venus","rarity":"9","element":"paralysis","children":[{"slug":"cat-of-gold","name":"Cat of Gold","rarity":"9","element":"paralysis"}]}]}]}]}]},{"slug":"defender","name":"Defender","rarity":"2","children":[{"slug":"sentinel","name":"Sentinel","rarity":"2","children":[{"slug":"barbaroi-blade","name":"Barbaroi Blade","rarity":"3","element":"fire","children":[{"slug":"crimson-goat","name":"Crimson Goat","rarity":"4","element":"fire"}]},{"slug":"halberd","name":"Halberd","rarity":"4","children":[{"slug":"judgment","name":"Judgment","rarity":"6"}]}]}]}]},{"slug":"white-serpentblade","name":"White Serpentblade","rarity":"2","element":"ice","children":[{"slug":"silver-serpentblade","name":"Silver Serpentblade","rarity":"2","element":"ice","children":[{"slug":"vile-serpentblade","name":"Vile Serpentblade","rarity":"2","children":[{"slug":"deadly-serpentblade","name":"Deadly Serpentblade","rarity":"4","element":"poison","children":[{"slug":"poison-serpentblade","name":"Poison Serpentblade","rarity":"6","element":"poison"}]}]},{"slug":"golden-serpentblade","name":"Golden Serpentblade","rarity":"6","element":"ice"}]}]}]},{"slug":"bone-blade","name":"Bone Blade","rarity":"1","children":[{"slug":"bone-blade-plus","name":"Bone Blade+","rarity":"1","children":[{"slug":"bone-slasher","name":"Bone Slasher","rarity":"1","children":[{"slug":"golem-blade","name":"Golem Blade","rarity":"2","children":[{"slug":"golem-blade-plus","name":"Golem Blade+","rarity":"3","children":[{"slug":"valkyrie-blade","name":"Valkyrie Blade","rarity":"3","children":[{"slug":"sieglinde","name":"Sieglinde","rarity":"5"},{"slug":"titernia","name":"Titernia","rarity":"5","element":"dragon","children":[{"slug":"blushing-dame","name":"Blushing Dame","rarity":"7","element":"dragon","children":[{"slug":"alveblade","name":"Alveblade","rarity":"9","element":"dragon","children":[{"slug":"brunhild","name":"Brünhild","rarity":"10","element":"dragon"}]}]}]},{"slug":"spartacus-blade","name":"Spartacus Blade","rarity":"4","children":[{"slug":"siegmund","name":"Siegmund","rarity":"7"},{"slug":"obelion","name":"Obelion","rarity":"6","element":"dragon","children":[{"slug":"pael-keizah","name":"Pael Keizah","rarity":"7","element":"dragon","children":[{"slug":"alveblade","name":"Alveblade","rarity":"9","element":"dragon","children":[{"slug":"brunhild","name":"Brünhild","rarity":"10","element":"dragon"}]}]}]}]}]},{"slug":"executioner","name":"Executioner","rarity":"4","children":[{"slug":"executioner-plus","name":"Executioner+","rarity":"4","children":[{"slug":"enforcer-s-axe","name":"Enforcer's Axe","rarity":"6"}]},{"slug":"agito","name":"Agito","rarity":"6","children":[{"slug":"wyvern-agito","name":"Wyvern Agito","rarity":"6","children":[{"slug":"true-dragon-s-jaw","name":"True Dragon's Jaw","rarity":"7"},{"slug":"demon-rod","name":"Demon Rod","rarity":"7","element":"thunder","children":[{"slug":"great-demon-rod","name":"Great Demon Rod","rarity":"8","element":"thunder","children":[{"slug":"great-demon-hot-rod","name":"Great Demon Hot Rod","rarity":"10","element":"thunder"}]}]}]}]},{"slug":"kirin-thundersword","name":"Kirin Thundersword","rarity":"5","element":"thunder","children":[{"slug":"king-thundersword","name":"King Thundersword","rarity":"8","element":"thunder","children":[{"slug":"imperialthundersword","name":"ImperialThundersword","rarity":"10","element":"thunder"}]}]},{"slug":"sword-of-the-diablos","name":"Sword of the Diablos","rarity":"5","children":[{"slug":"diablo-destroyer","name":"Diablo Destroyer","rarity":"7","children":[{"slug":"king-atillart-sword","name":"King Atillart Sword","rarity":"10"}]}]}]}]}]},{"slug":"finblade","name":"Finblade","rarity":"2","element":"water","children":[{"slug":"plesioth-watersword","name":"Plesioth Watersword","rarity":"3","element":"water","children":[{"slug":"plesioth-crystasword","name":"Plesioth Crystasword","rarity":"4","element":"water","children":[{"slug":"plesioth-azureblade","name":"Plesioth Azureblade","rarity":"6","element":"water","children":[{"slug":"plesioth-wave-sword","name":"Plesioth Wave Sword","rarity":"9","element":"water","children":[{"slug":"plesioth-wave-blade","name":"Plesioth Wave Blade","rarity":"9","element":"water"}]}]}]}]}]},{"slug":"chick-decapitator","name":"Chick Decapitator","rarity":"2","children":[{"slug":"chicken-decapitator","name":"Chicken Decapitator","rarity":"4","children":[{"slug":"rooster-decapitator","name":"Rooster Decapitator","rarity":"6","children":[{"slug":"pickaxe-blade","name":"Pickaxe Blade","rarity":"6","element":"sleep","children":[{"slug":"pickaxe-blade-plus","name":"Pickaxe Blade+","rarity":"9","element":"sleep","children":[{"slug":"sleep-sword-zantoma","name":"Sleep Sword Zantoma","rarity":"9","element":"sleep"}]}]},{"slug":"slaughter","name":"Slaughter","rarity":"6","element":"poison","children":[{"slug":"slaughter-plus","name":"Slaughter+","rarity":"9","element":"poison","children":[{"slug":"poison-king","name":"Poison King","rarity":"9","element":"poison"}]}]}]}]},{"slug":"sentoryu-raven","name":"Sentoryu Raven","rarity":"5","children":[{"slug":"sentoryu-wolf","name":"Sentoryu Wolf","rarity":"7","children":[{"slug":"sentoryu-crow","name":"Sentoryu Crow","rarity":"9"}]}]}]},{"slug":"red-wing","name":"Red Wing","rarity":"3","element":"fire","children":[{"slug":"rathalos-firesword","name":"Rathalos Firesword","rarity":"5","element":"fire"},{"slug":"blue-wing","name":"Blue Wing","rarity":"4","element":"fire","children":[{"slug":"shiny-rathalos-sword","name":"Shiny Rathalos Sword","rarity":"7","element":"fire"}]}]}]},{"slug":"red-stripe","name":"Red Stripe","rarity":"2","children":[{"slug":"red-pincer","name":"Red Pincer","rarity":"3","children":[{"slug":"great-pincer","name":"Great Pincer","rarity":"4","children":[{"slug":"killer-s-scythe","name":"Killer's Scythe","rarity":"6","children":[{"slug":"carmine-blade","name":"Carmine Blade","rarity":"9","children":[{"slug":"killer-s-carver","name":"Killer's Carver","rarity":"10"}]},{"slug":"violet-pincer","name":"Violet Pincer","rarity":"9","children":[{"slug":"grand-pincer","name":"Grand Pincer","rarity":"9"}]}]}]}]},{"slug":"ceanataur-blade","name":"Ceanataur Blade","rarity":"4","children":[{"slug":"blue-claw-blade","name":"Blue Claw Blade","rarity":"4","children":[{"slug":"killer-s-scythe","name":"Killer's Scythe","rarity":"6","children":[{"slug":"carmine-blade","name":"Carmine Blade","rarity":"9","children":[{"slug":"killer-s-carver","name":"Killer's Carver","rarity":"10"}]},{"slug":"violet-pincer","name":"Violet Pincer","rarity":"9","children":[{"slug":"grand-pincer","name":"Grand Pincer","rarity":"9"}]}]}]}]}]}]}]},{"slug":"frozen-tuna","name":"Frozen Tuna","rarity":"3","element":"ice","children":[{"slug":"crystallized-tuna","name":"Crystallized Tuna","rarity":"6","element":"ice"}]},{"slug":"black-belt-blade","name":"Black Belt Blade","rarity":"4","children":[{"slug":"expert-blade","name":"Expert Blade","rarity":"8","children":[{"slug":"warrior-s-blade","name":"Warrior's Blade","rarity":"10"}]}]},{"slug":"tiger-agito","name":"Tiger Agito","rarity":"5","children":[{"slug":"tigrex-great-sword","name":"Tigrex Great Sword","rarity":"7","children":[{"slug":"tigrex-supreme-sword","name":"Tigrex Supreme Sword","rarity":"10"}]},{"slug":"hidden-blaze","name":"Hidden Blaze","rarity":"7","children":[{"slug":"darkness-darkblade","name":"Darkness Darkblade","rarity":"10"}]}]},{"slug":"dragonslayer","name":"Dragonslayer","rarity":"5","element":"dragon","children":[{"slug":"eternal-annihilator","name":"Eternal Annihilator","rarity":"5","element":"dragon","children":[{"slug":"eternal-eradicator","name":"Eternal Eradicator","rarity":"8","element":"dragon","children":[{"slug":"eternal-destroyer","name":"Eternal Destroyer","rarity":"10","element":"dragon"}]}]}]},{"slug":"black-blade","name":"Black Blade","rarity":"5","element":"dragon","children":[{"slug":"fatalis-blade","name":"Fatalis Blade","rarity":"8","element":"dragon","children":[{"slug":"black-fatalis-blade","name":"Black Fatalis Blade","rarity":"10","element":"dragon"}]},{"slug":"fatalis-ancestor","name":"Fatalis Ancestor","rarity":"8","element":"dragon","children":[{"slug":"fatalis-legacy","name":"Fatalis Legacy","rarity":"10","element":"dragon"}]}]},{"slug":"akantor-broadsword","name":"Akantor Broadsword","rarity":"8","children":[{"slug":"akantor-broadsword-plus","name":"Akantor Broadsword+","rarity":"10"}]},{"slug":"g-blade","name":"G Blade","rarity":"9"},{"slug":"ukanlos-destructor","name":"Ukanlos Destructor","rarity":"10","element":"ice"},{"slug":"rusted-great-sword","name":"Rusted Great Sword","rarity":"1","children":[{"slug":"tarnished-great-swd","name":"Tarnished Great Swd","rarity":"1","children":[{"slug":"ancient-blade","name":"Ancient Blade","rarity":"5","element":"dragon"},{"slug":"steel-ice-blade","name":"Steel Ice Blade","rarity":"5","element":"ice","children":[{"slug":"steel-ice-blade-plus","name":"Steel Ice Blade+","rarity":"5","element":"ice","children":[{"slug":"daora-s-decimator","name":"Daora's Decimator","rarity":"8","element":"ice","children":[{"slug":"daora-s-tughril-beg","name":"Daora's Tughril Beg","rarity":"10","element":"ice"}]}]}]}]}]},{"slug":"worn-great-sword","name":"Worn Great Sword","rarity":"6","children":[{"slug":"weathered-grt-sword","name":"Weathered Grt Sword","rarity":"6","children":[{"slug":"epitaph-blade","name":"Epitaph Blade","rarity":"7","element":"dragon","children":[{"slug":"epitaph-eternal","name":"Epitaph Eternal","rarity":"9","element":"dragon"}]},{"slug":"teostra-blade","name":"Teostra Blade","rarity":"7","element":"fire","children":[{"slug":"king-teostra-blade","name":"King Teostra Blade","rarity":"8","element":"fire","children":[{"slug":"teostra-del-sol","name":"Teostra del Sol","rarity":"10","element":"fire"}]}]}]}]},{"slug":"buster-blade-g","name":"Buster Blade G","rarity":"9"},{"slug":"bone-blade-g","name":"Bone Blade G","rarity":"9"},{"slug":"tarnishdgreatswd-g","name":"TarnishdGreatSwd G","rarity":"9"},{"slug":"ravager-blade-g","name":"Ravager Blade G","rarity":"9"},{"slug":"golem-blade-g","name":"Golem Blade G","rarity":"9"},{"slug":"sentinel-g","name":"Sentinel G","rarity":"9"},{"slug":"red-stripe-g","name":"Red Stripe G","rarity":"9"},{"slug":"goldnserpentblade-g","name":"GoldnSerpentblade G","rarity":"9","element":"ice"},{"slug":"great-serpentblade-g","name":"Great Serpentblade G","rarity":"9"},{"slug":"cat-s-soul-g","name":"Cat's Soul G","rarity":"9","element":"paralysis"},{"slug":"poisnserpentblade-g","name":"PoisnSerpentblade G","rarity":"9","element":"poison"},{"slug":"decapitator-g","name":"Decapitator G","rarity":"9"},{"slug":"great-pincer-g","name":"Great Pincer G","rarity":"9"},{"slug":"executioner-g","name":"Executioner G","rarity":"9"},{"slug":"barbaroi-blade-g","name":"Barbaroi Blade G","rarity":"9","element":"fire"},{"slug":"chrome-razor-g","name":"Chrome Razor G","rarity":"9","element":"poison"},{"slug":"plesioth-waterswd-g","name":"Plesioth Waterswd G","rarity":"9","element":"water"},{"slug":"plesioth-crystaswd-g","name":"Plesioth Crystaswd G","rarity":"9","element":"water"},{"slug":"killer-s-scythe-g","name":"Killer's Scythe G","rarity":"9"},{"slug":"black-belt-blade-g","name":"Black Belt Blade G","rarity":"9"},{"slug":"ancient-p-g","name":"Ancient P G","rarity":"9","element":"dragon"},{"slug":"carbalite-sword-g","name":"Carbalite Sword G","rarity":"9"},{"slug":"wyvern-agito-g","name":"Wyvern Agito G","rarity":"9"},{"slug":"crystallized-tuna-g","name":"Crystallized Tuna G","rarity":"9","element":"ice"},{"slug":"judgment-g","name":"Judgment G","rarity":"9"},{"slug":"true-dragon-s-jaw-g","name":"True Dragon's Jaw G","rarity":"9"},{"slug":"tactical-blade-g","name":"Tactical Blade G","rarity":"9"},{"slug":"rathalos-firesword-g","name":"Rathalos Firesword G","rarity":"10","element":"fire"},{"slug":"shinyrathalosswd-g","name":"ShinyRathalosSwd G","rarity":"10","element":"fire"},{"slug":"enforcer-s-axe-g","name":"Enforcer's Axe G","rarity":"10"},{"slug":"siegmund-g","name":"Siegmund G","rarity":"10"},{"slug":"sieglinde-g","name":"Sieglinde G","rarity":"10"},{"slug":"pael-keizah-g","name":"Pael Keizah G","rarity":"10","element":"dragon"},{"slug":"blushing-dame-g","name":"Blushing Dame G","rarity":"10","element":"dragon"},{"slug":"eternlannihilator-g","name":"EternlAnnihilator G","rarity":"10","element":"dragon"}]
+  "map": [
+    {
+      "slug": "buster-sword",
+      "type": "great-sword",
+      "name": "Buster Sword",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "buster-sword-plus",
+          "type": "great-sword",
+          "name": "Buster Sword+",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "buster-blade",
+              "type": "great-sword",
+              "name": "Buster Blade",
+              "rarity": "1",
+              "children": [
+                {
+                  "slug": "ravager-blade",
+                  "type": "great-sword",
+                  "name": "Ravager Blade",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "ravager-blade-plus",
+                      "type": "great-sword",
+                      "name": "Ravager Blade+",
+                      "rarity": "3",
+                      "children": [
+                        {
+                          "slug": "tactical-blade",
+                          "type": "great-sword",
+                          "name": "Tactical Blade",
+                          "rarity": "5",
+                          "children": [
+                            {
+                              "slug": "strategic-blade",
+                              "type": "great-sword",
+                              "name": "Strategic Blade",
+                              "rarity": "7"
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "chrome-razor",
+                          "type": "great-sword",
+                          "name": "Chrome Razor",
+                          "rarity": "5",
+                          "element": "poison",
+                          "children": [
+                            {
+                              "slug": "chrome-death-razor",
+                              "type": "great-sword",
+                              "name": "Chrome Death Razor",
+                              "rarity": "8",
+                              "element": "poison"
+                            },
+                            {
+                              "slug": "carbalite-sword",
+                              "type": "great-sword",
+                              "name": "Carbalite Sword",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "carbalite-sword-plus",
+                                  "type": "great-sword",
+                                  "name": "Carbalite Sword+",
+                                  "rarity": "6",
+                                  "children": [
+                                    {
+                                      "slug": "lacerator-blade",
+                                      "type": "great-sword",
+                                      "name": "Lacerator Blade",
+                                      "rarity": "7",
+                                      "children": [
+                                        {
+                                          "slug": "master-blaze",
+                                          "type": "great-sword",
+                                          "name": "Master Blaze",
+                                          "rarity": "9"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "slug": "decider",
+                                      "type": "great-sword",
+                                      "name": "Decider",
+                                      "rarity": "9",
+                                      "children": [
+                                        {
+                                          "slug": "punisher",
+                                          "type": "great-sword",
+                                          "name": "Punisher",
+                                          "rarity": "9"
+                                        },
+                                        {
+                                          "slug": "igneous-blade",
+                                          "type": "great-sword",
+                                          "name": "Igneous Blade",
+                                          "rarity": "9",
+                                          "element": "fire",
+                                          "children": [
+                                            {
+                                              "slug": "igneous-sword",
+                                              "type": "great-sword",
+                                              "name": "Igneous Sword",
+                                              "rarity": "10",
+                                              "element": "fire"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "slug": "bronze-coin",
+                                  "type": "great-sword",
+                                  "name": "Bronze Coin",
+                                  "rarity": "5",
+                                  "children": [
+                                    {
+                                      "slug": "gaoren-coin",
+                                      "type": "great-sword",
+                                      "name": "Gaoren Coin",
+                                      "rarity": "8",
+                                      "children": [
+                                        {
+                                          "slug": "gaoren-cleaver",
+                                          "type": "great-sword",
+                                          "name": "Gaoren Cleaver",
+                                          "rarity": "10"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "khezu-shock-sword",
+                      "type": "great-sword",
+                      "name": "Khezu Shock Sword",
+                      "rarity": "3",
+                      "element": "thunder",
+                      "children": [
+                        {
+                          "slug": "khezu-shock-blade",
+                          "type": "great-sword",
+                          "name": "Khezu Shock Blade",
+                          "rarity": "7",
+                          "element": "thunder",
+                          "children": [
+                            {
+                              "slug": "khezu-shock-full",
+                              "type": "great-sword",
+                              "name": "Khezu Shock Full",
+                              "rarity": "9",
+                              "element": "thunder",
+                              "children": [
+                                {
+                                  "slug": "khezu-shock-full-plus",
+                                  "type": "great-sword",
+                                  "name": "Khezu Shock Full+",
+                                  "rarity": "9",
+                                  "element": "thunder"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "cat-s-soul",
+                  "type": "great-sword",
+                  "name": "Cat's Soul",
+                  "rarity": "3",
+                  "element": "paralysis",
+                  "children": [
+                    {
+                      "slug": "cat-s-curse",
+                      "type": "great-sword",
+                      "name": "Cat's Curse",
+                      "rarity": "4",
+                      "element": "paralysis",
+                      "children": [
+                        {
+                          "slug": "cat-s-king",
+                          "type": "great-sword",
+                          "name": "Cat's King",
+                          "rarity": "6",
+                          "element": "paralysis",
+                          "children": [
+                            {
+                              "slug": "cat-of-venus",
+                              "type": "great-sword",
+                              "name": "Cat of Venus",
+                              "rarity": "9",
+                              "element": "paralysis",
+                              "children": [
+                                {
+                                  "slug": "cat-of-gold",
+                                  "type": "great-sword",
+                                  "name": "Cat of Gold",
+                                  "rarity": "9",
+                                  "element": "paralysis"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "defender",
+              "type": "great-sword",
+              "name": "Defender",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "sentinel",
+                  "type": "great-sword",
+                  "name": "Sentinel",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "barbaroi-blade",
+                      "type": "great-sword",
+                      "name": "Barbaroi Blade",
+                      "rarity": "3",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "crimson-goat",
+                          "type": "great-sword",
+                          "name": "Crimson Goat",
+                          "rarity": "4",
+                          "element": "fire"
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "halberd",
+                      "type": "great-sword",
+                      "name": "Halberd",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "judgment",
+                          "type": "great-sword",
+                          "name": "Judgment",
+                          "rarity": "6"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "white-serpentblade",
+          "type": "great-sword",
+          "name": "White Serpentblade",
+          "rarity": "2",
+          "element": "ice",
+          "children": [
+            {
+              "slug": "silver-serpentblade",
+              "type": "great-sword",
+              "name": "Silver Serpentblade",
+              "rarity": "2",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "vile-serpentblade",
+                  "type": "great-sword",
+                  "name": "Vile Serpentblade",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "deadly-serpentblade",
+                      "type": "great-sword",
+                      "name": "Deadly Serpentblade",
+                      "rarity": "4",
+                      "element": "poison",
+                      "children": [
+                        {
+                          "slug": "poison-serpentblade",
+                          "type": "great-sword",
+                          "name": "Poison Serpentblade",
+                          "rarity": "6",
+                          "element": "poison"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "golden-serpentblade",
+                  "type": "great-sword",
+                  "name": "Golden Serpentblade",
+                  "rarity": "6",
+                  "element": "ice"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "bone-blade",
+      "type": "great-sword",
+      "name": "Bone Blade",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "bone-blade-plus",
+          "type": "great-sword",
+          "name": "Bone Blade+",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "bone-slasher",
+              "type": "great-sword",
+              "name": "Bone Slasher",
+              "rarity": "1",
+              "children": [
+                {
+                  "slug": "golem-blade",
+                  "type": "great-sword",
+                  "name": "Golem Blade",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "golem-blade-plus",
+                      "type": "great-sword",
+                      "name": "Golem Blade+",
+                      "rarity": "3",
+                      "children": [
+                        {
+                          "slug": "valkyrie-blade",
+                          "type": "great-sword",
+                          "name": "Valkyrie Blade",
+                          "rarity": "3",
+                          "children": [
+                            {
+                              "slug": "sieglinde",
+                              "type": "great-sword",
+                              "name": "Sieglinde",
+                              "rarity": "5"
+                            },
+                            {
+                              "slug": "titernia",
+                              "type": "great-sword",
+                              "name": "Titernia",
+                              "rarity": "5",
+                              "element": "dragon",
+                              "children": [
+                                {
+                                  "slug": "blushing-dame",
+                                  "type": "great-sword",
+                                  "name": "Blushing Dame",
+                                  "rarity": "7",
+                                  "element": "dragon",
+                                  "children": [
+                                    {
+                                      "slug": "alveblade",
+                                      "type": "great-sword",
+                                      "name": "Alveblade",
+                                      "rarity": "9",
+                                      "element": "dragon",
+                                      "children": [
+                                        {
+                                          "slug": "brunhild",
+                                          "type": "great-sword",
+                                          "name": "Brünhild",
+                                          "rarity": "10",
+                                          "element": "dragon"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "spartacus-blade",
+                              "type": "great-sword",
+                              "name": "Spartacus Blade",
+                              "rarity": "4",
+                              "children": [
+                                {
+                                  "slug": "siegmund",
+                                  "type": "great-sword",
+                                  "name": "Siegmund",
+                                  "rarity": "7"
+                                },
+                                {
+                                  "slug": "obelion",
+                                  "type": "great-sword",
+                                  "name": "Obelion",
+                                  "rarity": "6",
+                                  "element": "dragon",
+                                  "children": [
+                                    {
+                                      "slug": "pael-keizah",
+                                      "type": "great-sword",
+                                      "name": "Pael Keizah",
+                                      "rarity": "7",
+                                      "element": "dragon",
+                                      "children": [
+                                        {
+                                          "slug": "alveblade",
+                                          "type": "great-sword",
+                                          "name": "Alveblade",
+                                          "rarity": "9",
+                                          "element": "dragon",
+                                          "children": [
+                                            {
+                                              "slug": "brunhild",
+                                              "type": "great-sword",
+                                              "name": "Brünhild",
+                                              "rarity": "10",
+                                              "element": "dragon"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "executioner",
+                          "type": "great-sword",
+                          "name": "Executioner",
+                          "rarity": "4",
+                          "children": [
+                            {
+                              "slug": "executioner-plus",
+                              "type": "great-sword",
+                              "name": "Executioner+",
+                              "rarity": "4",
+                              "children": [
+                                {
+                                  "slug": "enforcer-s-axe",
+                                  "type": "great-sword",
+                                  "name": "Enforcer's Axe",
+                                  "rarity": "6"
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "agito",
+                              "type": "great-sword",
+                              "name": "Agito",
+                              "rarity": "6",
+                              "children": [
+                                {
+                                  "slug": "wyvern-agito",
+                                  "type": "great-sword",
+                                  "name": "Wyvern Agito",
+                                  "rarity": "6",
+                                  "children": [
+                                    {
+                                      "slug": "true-dragon-s-jaw",
+                                      "type": "great-sword",
+                                      "name": "True Dragon's Jaw",
+                                      "rarity": "7"
+                                    },
+                                    {
+                                      "slug": "demon-rod",
+                                      "type": "great-sword",
+                                      "name": "Demon Rod",
+                                      "rarity": "7",
+                                      "element": "thunder",
+                                      "children": [
+                                        {
+                                          "slug": "great-demon-rod",
+                                          "type": "great-sword",
+                                          "name": "Great Demon Rod",
+                                          "rarity": "8",
+                                          "element": "thunder",
+                                          "children": [
+                                            {
+                                              "slug": "great-demon-hot-rod",
+                                              "type": "great-sword",
+                                              "name": "Great Demon Hot Rod",
+                                              "rarity": "10",
+                                              "element": "thunder"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "kirin-thundersword",
+                              "type": "great-sword",
+                              "name": "Kirin Thundersword",
+                              "rarity": "5",
+                              "element": "thunder",
+                              "children": [
+                                {
+                                  "slug": "king-thundersword",
+                                  "type": "great-sword",
+                                  "name": "King Thundersword",
+                                  "rarity": "8",
+                                  "element": "thunder",
+                                  "children": [
+                                    {
+                                      "slug": "imperialthundersword",
+                                      "type": "great-sword",
+                                      "name": "ImperialThundersword",
+                                      "rarity": "10",
+                                      "element": "thunder"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "sword-of-the-diablos",
+                              "type": "great-sword",
+                              "name": "Sword of the Diablos",
+                              "rarity": "5",
+                              "children": [
+                                {
+                                  "slug": "diablo-destroyer",
+                                  "type": "great-sword",
+                                  "name": "Diablo Destroyer",
+                                  "rarity": "7",
+                                  "children": [
+                                    {
+                                      "slug": "king-atillart-sword",
+                                      "type": "great-sword",
+                                      "name": "King Atillart Sword",
+                                      "rarity": "10"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "finblade",
+                  "type": "great-sword",
+                  "name": "Finblade",
+                  "rarity": "2",
+                  "element": "water",
+                  "children": [
+                    {
+                      "slug": "plesioth-watersword",
+                      "type": "great-sword",
+                      "name": "Plesioth Watersword",
+                      "rarity": "3",
+                      "element": "water",
+                      "children": [
+                        {
+                          "slug": "plesioth-crystasword",
+                          "type": "great-sword",
+                          "name": "Plesioth Crystasword",
+                          "rarity": "4",
+                          "element": "water",
+                          "children": [
+                            {
+                              "slug": "plesioth-azureblade",
+                              "type": "great-sword",
+                              "name": "Plesioth Azureblade",
+                              "rarity": "6",
+                              "element": "water",
+                              "children": [
+                                {
+                                  "slug": "plesioth-wave-sword",
+                                  "type": "great-sword",
+                                  "name": "Plesioth Wave Sword",
+                                  "rarity": "9",
+                                  "element": "water",
+                                  "children": [
+                                    {
+                                      "slug": "plesioth-wave-blade",
+                                      "type": "great-sword",
+                                      "name": "Plesioth Wave Blade",
+                                      "rarity": "9",
+                                      "element": "water"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "chick-decapitator",
+                  "type": "great-sword",
+                  "name": "Chick Decapitator",
+                  "rarity": "2",
+                  "children": [
+                    {
+                      "slug": "chicken-decapitator",
+                      "type": "great-sword",
+                      "name": "Chicken Decapitator",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "rooster-decapitator",
+                          "type": "great-sword",
+                          "name": "Rooster Decapitator",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "pickaxe-blade",
+                              "type": "great-sword",
+                              "name": "Pickaxe Blade",
+                              "rarity": "6",
+                              "element": "sleep",
+                              "children": [
+                                {
+                                  "slug": "pickaxe-blade-plus",
+                                  "type": "great-sword",
+                                  "name": "Pickaxe Blade+",
+                                  "rarity": "9",
+                                  "element": "sleep",
+                                  "children": [
+                                    {
+                                      "slug": "sleep-sword-zantoma",
+                                      "type": "great-sword",
+                                      "name": "Sleep Sword Zantoma",
+                                      "rarity": "9",
+                                      "element": "sleep"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "slaughter",
+                              "type": "great-sword",
+                              "name": "Slaughter",
+                              "rarity": "6",
+                              "element": "poison",
+                              "children": [
+                                {
+                                  "slug": "slaughter-plus",
+                                  "type": "great-sword",
+                                  "name": "Slaughter+",
+                                  "rarity": "9",
+                                  "element": "poison",
+                                  "children": [
+                                    {
+                                      "slug": "poison-king",
+                                      "type": "great-sword",
+                                      "name": "Poison King",
+                                      "rarity": "9",
+                                      "element": "poison"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "slug": "sentoryu-raven",
+                      "type": "great-sword",
+                      "name": "Sentoryu Raven",
+                      "rarity": "5",
+                      "children": [
+                        {
+                          "slug": "sentoryu-wolf",
+                          "type": "great-sword",
+                          "name": "Sentoryu Wolf",
+                          "rarity": "7",
+                          "children": [
+                            {
+                              "slug": "sentoryu-crow",
+                              "type": "great-sword",
+                              "name": "Sentoryu Crow",
+                              "rarity": "9"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "red-wing",
+                  "type": "great-sword",
+                  "name": "Red Wing",
+                  "rarity": "3",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "rathalos-firesword",
+                      "type": "great-sword",
+                      "name": "Rathalos Firesword",
+                      "rarity": "5",
+                      "element": "fire"
+                    },
+                    {
+                      "slug": "blue-wing",
+                      "type": "great-sword",
+                      "name": "Blue Wing",
+                      "rarity": "4",
+                      "element": "fire",
+                      "children": [
+                        {
+                          "slug": "shiny-rathalos-sword",
+                          "type": "great-sword",
+                          "name": "Shiny Rathalos Sword",
+                          "rarity": "7",
+                          "element": "fire"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "slug": "red-stripe",
+              "type": "great-sword",
+              "name": "Red Stripe",
+              "rarity": "2",
+              "children": [
+                {
+                  "slug": "red-pincer",
+                  "type": "great-sword",
+                  "name": "Red Pincer",
+                  "rarity": "3",
+                  "children": [
+                    {
+                      "slug": "great-pincer",
+                      "type": "great-sword",
+                      "name": "Great Pincer",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "killer-s-scythe",
+                          "type": "great-sword",
+                          "name": "Killer's Scythe",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "carmine-blade",
+                              "type": "great-sword",
+                              "name": "Carmine Blade",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "killer-s-carver",
+                                  "type": "great-sword",
+                                  "name": "Killer's Carver",
+                                  "rarity": "10"
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "violet-pincer",
+                              "type": "great-sword",
+                              "name": "Violet Pincer",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "grand-pincer",
+                                  "type": "great-sword",
+                                  "name": "Grand Pincer",
+                                  "rarity": "9"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "slug": "ceanataur-blade",
+                  "type": "great-sword",
+                  "name": "Ceanataur Blade",
+                  "rarity": "4",
+                  "children": [
+                    {
+                      "slug": "blue-claw-blade",
+                      "type": "great-sword",
+                      "name": "Blue Claw Blade",
+                      "rarity": "4",
+                      "children": [
+                        {
+                          "slug": "killer-s-scythe",
+                          "type": "great-sword",
+                          "name": "Killer's Scythe",
+                          "rarity": "6",
+                          "children": [
+                            {
+                              "slug": "carmine-blade",
+                              "type": "great-sword",
+                              "name": "Carmine Blade",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "killer-s-carver",
+                                  "type": "great-sword",
+                                  "name": "Killer's Carver",
+                                  "rarity": "10"
+                                }
+                              ]
+                            },
+                            {
+                              "slug": "violet-pincer",
+                              "type": "great-sword",
+                              "name": "Violet Pincer",
+                              "rarity": "9",
+                              "children": [
+                                {
+                                  "slug": "grand-pincer",
+                                  "type": "great-sword",
+                                  "name": "Grand Pincer",
+                                  "rarity": "9"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "frozen-tuna",
+      "type": "great-sword",
+      "name": "Frozen Tuna",
+      "rarity": "3",
+      "element": "ice",
+      "children": [
+        {
+          "slug": "crystallized-tuna",
+          "type": "great-sword",
+          "name": "Crystallized Tuna",
+          "rarity": "6",
+          "element": "ice"
+        }
+      ]
+    },
+    {
+      "slug": "black-belt-blade",
+      "type": "great-sword",
+      "name": "Black Belt Blade",
+      "rarity": "4",
+      "children": [
+        {
+          "slug": "expert-blade",
+          "type": "great-sword",
+          "name": "Expert Blade",
+          "rarity": "8",
+          "children": [
+            {
+              "slug": "warrior-s-blade",
+              "type": "great-sword",
+              "name": "Warrior's Blade",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "tiger-agito",
+      "type": "great-sword",
+      "name": "Tiger Agito",
+      "rarity": "5",
+      "children": [
+        {
+          "slug": "tigrex-great-sword",
+          "type": "great-sword",
+          "name": "Tigrex Great Sword",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "tigrex-supreme-sword",
+              "type": "great-sword",
+              "name": "Tigrex Supreme Sword",
+              "rarity": "10"
+            }
+          ]
+        },
+        {
+          "slug": "hidden-blaze",
+          "type": "great-sword",
+          "name": "Hidden Blaze",
+          "rarity": "7",
+          "children": [
+            {
+              "slug": "darkness-darkblade",
+              "type": "great-sword",
+              "name": "Darkness Darkblade",
+              "rarity": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dragonslayer",
+      "type": "great-sword",
+      "name": "Dragonslayer",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "eternal-annihilator",
+          "type": "great-sword",
+          "name": "Eternal Annihilator",
+          "rarity": "5",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "eternal-eradicator",
+              "type": "great-sword",
+              "name": "Eternal Eradicator",
+              "rarity": "8",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "eternal-destroyer",
+                  "type": "great-sword",
+                  "name": "Eternal Destroyer",
+                  "rarity": "10",
+                  "element": "dragon"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "black-blade",
+      "type": "great-sword",
+      "name": "Black Blade",
+      "rarity": "5",
+      "element": "dragon",
+      "children": [
+        {
+          "slug": "fatalis-blade",
+          "type": "great-sword",
+          "name": "Fatalis Blade",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "black-fatalis-blade",
+              "type": "great-sword",
+              "name": "Black Fatalis Blade",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        },
+        {
+          "slug": "fatalis-ancestor",
+          "type": "great-sword",
+          "name": "Fatalis Ancestor",
+          "rarity": "8",
+          "element": "dragon",
+          "children": [
+            {
+              "slug": "fatalis-legacy",
+              "type": "great-sword",
+              "name": "Fatalis Legacy",
+              "rarity": "10",
+              "element": "dragon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "akantor-broadsword",
+      "type": "great-sword",
+      "name": "Akantor Broadsword",
+      "rarity": "8",
+      "children": [
+        {
+          "slug": "akantor-broadsword-plus",
+          "type": "great-sword",
+          "name": "Akantor Broadsword+",
+          "rarity": "10"
+        }
+      ]
+    },
+    {
+      "slug": "g-blade",
+      "type": "great-sword",
+      "name": "G Blade",
+      "rarity": "9"
+    },
+    {
+      "slug": "ukanlos-destructor",
+      "type": "great-sword",
+      "name": "Ukanlos Destructor",
+      "rarity": "10",
+      "element": "ice"
+    },
+    {
+      "slug": "rusted-great-sword",
+      "type": "great-sword",
+      "name": "Rusted Great Sword",
+      "rarity": "1",
+      "children": [
+        {
+          "slug": "tarnished-great-swd",
+          "type": "great-sword",
+          "name": "Tarnished Great Swd",
+          "rarity": "1",
+          "children": [
+            {
+              "slug": "ancient-blade",
+              "type": "great-sword",
+              "name": "Ancient Blade",
+              "rarity": "5",
+              "element": "dragon"
+            },
+            {
+              "slug": "steel-ice-blade",
+              "type": "great-sword",
+              "name": "Steel Ice Blade",
+              "rarity": "5",
+              "element": "ice",
+              "children": [
+                {
+                  "slug": "steel-ice-blade-plus",
+                  "type": "great-sword",
+                  "name": "Steel Ice Blade+",
+                  "rarity": "5",
+                  "element": "ice",
+                  "children": [
+                    {
+                      "slug": "daora-s-decimator",
+                      "type": "great-sword",
+                      "name": "Daora's Decimator",
+                      "rarity": "8",
+                      "element": "ice",
+                      "children": [
+                        {
+                          "slug": "daora-s-tughril-beg",
+                          "type": "great-sword",
+                          "name": "Daora's Tughril Beg",
+                          "rarity": "10",
+                          "element": "ice"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "worn-great-sword",
+      "type": "great-sword",
+      "name": "Worn Great Sword",
+      "rarity": "6",
+      "children": [
+        {
+          "slug": "weathered-grt-sword",
+          "type": "great-sword",
+          "name": "Weathered Grt Sword",
+          "rarity": "6",
+          "children": [
+            {
+              "slug": "epitaph-blade",
+              "type": "great-sword",
+              "name": "Epitaph Blade",
+              "rarity": "7",
+              "element": "dragon",
+              "children": [
+                {
+                  "slug": "epitaph-eternal",
+                  "type": "great-sword",
+                  "name": "Epitaph Eternal",
+                  "rarity": "9",
+                  "element": "dragon"
+                }
+              ]
+            },
+            {
+              "slug": "teostra-blade",
+              "type": "great-sword",
+              "name": "Teostra Blade",
+              "rarity": "7",
+              "element": "fire",
+              "children": [
+                {
+                  "slug": "king-teostra-blade",
+                  "type": "great-sword",
+                  "name": "King Teostra Blade",
+                  "rarity": "8",
+                  "element": "fire",
+                  "children": [
+                    {
+                      "slug": "teostra-del-sol",
+                      "type": "great-sword",
+                      "name": "Teostra del Sol",
+                      "rarity": "10",
+                      "element": "fire"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "buster-blade-g",
+      "type": "great-sword",
+      "name": "Buster Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "bone-blade-g",
+      "type": "great-sword",
+      "name": "Bone Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "tarnishdgreatswd-g",
+      "type": "great-sword",
+      "name": "TarnishdGreatSwd G",
+      "rarity": "9"
+    },
+    {
+      "slug": "ravager-blade-g",
+      "type": "great-sword",
+      "name": "Ravager Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "golem-blade-g",
+      "type": "great-sword",
+      "name": "Golem Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "sentinel-g",
+      "type": "great-sword",
+      "name": "Sentinel G",
+      "rarity": "9"
+    },
+    {
+      "slug": "red-stripe-g",
+      "type": "great-sword",
+      "name": "Red Stripe G",
+      "rarity": "9"
+    },
+    {
+      "slug": "goldnserpentblade-g",
+      "type": "great-sword",
+      "name": "GoldnSerpentblade G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "great-serpentblade-g",
+      "type": "great-sword",
+      "name": "Great Serpentblade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "cat-s-soul-g",
+      "type": "great-sword",
+      "name": "Cat's Soul G",
+      "rarity": "9",
+      "element": "paralysis"
+    },
+    {
+      "slug": "poisnserpentblade-g",
+      "type": "great-sword",
+      "name": "PoisnSerpentblade G",
+      "rarity": "9",
+      "element": "poison"
+    },
+    {
+      "slug": "decapitator-g",
+      "type": "great-sword",
+      "name": "Decapitator G",
+      "rarity": "9"
+    },
+    {
+      "slug": "great-pincer-g",
+      "type": "great-sword",
+      "name": "Great Pincer G",
+      "rarity": "9"
+    },
+    {
+      "slug": "executioner-g",
+      "type": "great-sword",
+      "name": "Executioner G",
+      "rarity": "9"
+    },
+    {
+      "slug": "barbaroi-blade-g",
+      "type": "great-sword",
+      "name": "Barbaroi Blade G",
+      "rarity": "9",
+      "element": "fire"
+    },
+    {
+      "slug": "chrome-razor-g",
+      "type": "great-sword",
+      "name": "Chrome Razor G",
+      "rarity": "9",
+      "element": "poison"
+    },
+    {
+      "slug": "plesioth-waterswd-g",
+      "type": "great-sword",
+      "name": "Plesioth Waterswd G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "plesioth-crystaswd-g",
+      "type": "great-sword",
+      "name": "Plesioth Crystaswd G",
+      "rarity": "9",
+      "element": "water"
+    },
+    {
+      "slug": "killer-s-scythe-g",
+      "type": "great-sword",
+      "name": "Killer's Scythe G",
+      "rarity": "9"
+    },
+    {
+      "slug": "black-belt-blade-g",
+      "type": "great-sword",
+      "name": "Black Belt Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "ancient-p-g",
+      "type": "great-sword",
+      "name": "Ancient P G",
+      "rarity": "9",
+      "element": "dragon"
+    },
+    {
+      "slug": "carbalite-sword-g",
+      "type": "great-sword",
+      "name": "Carbalite Sword G",
+      "rarity": "9"
+    },
+    {
+      "slug": "wyvern-agito-g",
+      "type": "great-sword",
+      "name": "Wyvern Agito G",
+      "rarity": "9"
+    },
+    {
+      "slug": "crystallized-tuna-g",
+      "type": "great-sword",
+      "name": "Crystallized Tuna G",
+      "rarity": "9",
+      "element": "ice"
+    },
+    {
+      "slug": "judgment-g",
+      "type": "great-sword",
+      "name": "Judgment G",
+      "rarity": "9"
+    },
+    {
+      "slug": "true-dragon-s-jaw-g",
+      "type": "great-sword",
+      "name": "True Dragon's Jaw G",
+      "rarity": "9"
+    },
+    {
+      "slug": "tactical-blade-g",
+      "type": "great-sword",
+      "name": "Tactical Blade G",
+      "rarity": "9"
+    },
+    {
+      "slug": "rathalos-firesword-g",
+      "type": "great-sword",
+      "name": "Rathalos Firesword G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "shinyrathalosswd-g",
+      "type": "great-sword",
+      "name": "ShinyRathalosSwd G",
+      "rarity": "10",
+      "element": "fire"
+    },
+    {
+      "slug": "enforcer-s-axe-g",
+      "type": "great-sword",
+      "name": "Enforcer's Axe G",
+      "rarity": "10"
+    },
+    {
+      "slug": "siegmund-g",
+      "type": "great-sword",
+      "name": "Siegmund G",
+      "rarity": "10"
+    },
+    {
+      "slug": "sieglinde-g",
+      "type": "great-sword",
+      "name": "Sieglinde G",
+      "rarity": "10"
+    },
+    {
+      "slug": "pael-keizah-g",
+      "type": "great-sword",
+      "name": "Pael Keizah G",
+      "rarity": "10",
+      "element": "dragon"
+    },
+    {
+      "slug": "blushing-dame-g",
+      "type": "great-sword",
+      "name": "Blushing Dame G",
+      "rarity": "10",
+      "element": "dragon"
+    },
+    {
+      "slug": "eternlannihilator-g",
+      "type": "great-sword",
+      "name": "EternlAnnihilator G",
+      "rarity": "10",
+      "element": "dragon"
+    }
+  ]
 }
