@@ -220,17 +220,22 @@ $element-types: (
     &--#{$weapon-name}::before {
       mask-image: url("/images/#{$weapon-name}.png");
     }
+
+    &--#{$weapon-name}.icon--mini::before {
+      mask-image: url("/images/#{$weapon-name}-mini.png");
+    }
   }
 
   @each $element-name in $element-types {
     &--#{$element-name}::after {
+      background-position: bottom -1px right -1px;
+      background-repeat: no-repeat;
+      bottom: 0;
       content: '';
+      height: 100%;
       position: absolute;
       width: 100%;
-      height: 100%;
       z-index: 1000;
-      background-position: bottom -2px right -2px;
-      background-repeat: no-repeat;
     }
 
     &--#{$element-name}::after {

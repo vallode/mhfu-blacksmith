@@ -16,6 +16,7 @@
     {% if weapon.rarity %}
       <div class="
         icon
+        icon--mini
         icon--{{ weapon.type }}
         icon--rarity-{{ weapon.rarity }}
         {% if weapon.element -%}
@@ -23,7 +24,7 @@
         {%- endif -%}
         "
       >
-        <img src="/images/{{ weapon.type }}.png" alt="?">
+        <img src="/images/{{ weapon.type }}-mini.png" alt="?">
       </div>
     {% else %}
       <div class="icon icon--ukwn">
