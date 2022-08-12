@@ -52,6 +52,7 @@
 
   .blacksmith-page__table {
     flex-direction: column;
+    overflow: auto;
 
     a {
       align-items: center;
