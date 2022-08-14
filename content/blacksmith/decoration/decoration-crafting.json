@@ -1222,15 +1222,15 @@
       "type": "dec"
     },
     {
-      "name": "???",
+      "name": "Autoreload",
       "improve-to": [
-        "Speed Fire Jewel",
+        "Cont. Fire Jewel",
         "Barrage Jewel"
       ],
       "donotrender": true
     },
     {
-      "name": "Speed Fire Jewel",
+      "name": "Cont. Fire Jewel",
       "skills": [
         "Speed Fire +1",
         "Protection -1"
@@ -1238,6 +1238,11 @@
       "create-mats": [
         "Battlefield Jewel (1)",
         "Rathian Plate (1)"
+      ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "Fatalis Scale (1)",
+        "Sinister Cloth (2)"
       ],
       "slots": "O--",
       "rarity": 4,
