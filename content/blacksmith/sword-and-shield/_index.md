@@ -1,5 +1,6 @@
 +++
 title = "Sword and shield"
+description = "Sword and shield weapon tree"
 template = "weapon-tree.html"
 page_template = "weapon.html"
 weight = 2

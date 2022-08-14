@@ -1,5 +1,6 @@
 +++
 title = "Hunting horn"
+description = "Hunting horn weapon tree"
 template = "weapon-tree.html"
 page_template = "weapon.html"
 weight = 5
