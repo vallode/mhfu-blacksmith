@@ -230,7 +230,8 @@
     {
       "name": "Art of Unsheathing",
       "improve-to": [
-        "Sword Draw Jewel"
+        "Sword Draw Jewel",
+        "UnsheathingJewel"
       ],
       "donotrender": true
     },
@@ -245,9 +246,29 @@
         "Monoblos Carapace (2)",
         "Rathalos Wing (1)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "StrRathalosWing (1)"
+      ],
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "UnsheathingJewel",
+      "skills": [
+        "Sword Draw +3",
+        "Expert -1"
+      ],
+      "create-mats": [
+        "LapisLazuli Jewel (1)",
+        "HrdCeanataurClaw (3)",
+        "Rathalos Ruby (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
       "type": "dec"
     },
     {
