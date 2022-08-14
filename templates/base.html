@@ -88,16 +88,24 @@
 
       handleMouseDown() {
         this.imageTarget.classList.add("dragging")
+        this.pos3 = event.clientX;
+        this.pos4 = event.clientY;
       }
 
       handleMouseMove(event) {
-        this.pos1 = this.pos3 - event.clientX;
-        this.pos2 = this.pos4 - event.clientY;
-        this.pos3 = event.clientX;
-        this.pos4 = event.clientY;
+        if (event.touches) {
+          this.pos1 = this.pos3 - event.touches[0].clientX;
+          this.pos2 = this.pos4 - event.touches[0].clientY;
+          this.pos3 = event.touches[0].clientX;
+          this.pos4 = event.touches[0].clientY;
+        } else {
+          this.pos1 = this.pos3 - event.clientX;
+          this.pos2 = this.pos4 - event.clientY;
+          this.pos3 = event.clientX;
+          this.pos4 = event.clientY;
+        }
 
         if (this.imageTarget.classList.contains("dragging")) {     
-          console.log(this.pos1, this.pos2)
           this.imageTarget.style.left = `${this.imageTarget.offsetLeft - 8 - this.pos1}px`
           this.imageTarget.style.top = `${this.imageTarget.offsetTop - 8 - this.pos2}px`
         }
