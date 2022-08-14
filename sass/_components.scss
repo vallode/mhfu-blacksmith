@@ -247,8 +247,9 @@ $element-types: (
   flex: 1 1 50%;
 
   &__preview {
-    flex: 1 1 50%;
+    flex: 1 1 30%;
     padding: 8px;
+    display: none;
 
     &__container {
       height: 100%;
@@ -261,6 +262,10 @@ $element-types: (
       top: 50%;
       transform: translate(-50%, -50%);
       width: auto;
+    }
+
+    @media screen and (min-width: 1800px) {
+      display: block;
     }
   }
 
