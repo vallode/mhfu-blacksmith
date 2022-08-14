@@ -25,6 +25,8 @@
     left: 10px;
     top: 8px;
     z-index: 1;
+    background: -webkit-gradient(linear, left top, right top, from(#ffffff00), color-stop(#037703d7), to(#ffffff00));
+    background: -o-linear-gradient(left, #ffffff00, #037703d7, #ffffff00);
     background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
   }
 
@@ -76,9 +78,16 @@
       width: calc(50vw - 2.3rem);
       z-index: 0;
       background: transparent;
+
+      @media screen and (max-width: 600px) {
+        left: 0;
+        width: 100%;
+      }
     }
 
     &:hover::before {
+      background: -webkit-gradient(linear, left top, right top, from(#ffffff00), color-stop(#037703d7), to(#ffffff00));
+      background: -o-linear-gradient(left, #ffffff00, #037703d7, #ffffff00);
       background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
     }
 
