@@ -156,18 +156,22 @@
           </div>
         </div>
 
-        <!-- <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
-          <div class="weapon-card__preview__container">
-            <img
-              draggable="false"
-              src="/images/weapons/{{ page.slug }}.png"
-              alt=""
-              data-controller="image-zoom"
-              data-image-position-target="image"
-              data-action="wheel->image-zoom#zoom"
-            >
+        
+        {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+        {% if image_metadata %}
+          <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
+            <div class="weapon-card__preview__container">
+              <img
+                draggable="false"
+                src="/images/weapons/{{ page.slug }}.png"
+                alt=""
+                data-controller="image-zoom"
+                data-image-position-target="image"
+                data-action="wheel->image-zoom#zoom"
+              >
+            </div>
           </div>
-        </div> -->
+        {% endif %}
       </turbo-frame>
     {% endblock weapon__details -%}
   </div>
