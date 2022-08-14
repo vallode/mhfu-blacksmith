@@ -7,6 +7,9 @@
   {%- elif section and section.title %}
     <title>MHFU - {{ section.title }}</title>
     <meta property="og:title" content="MHFU - {{ section.title }}" />
+    <meta name="description" content="{{ section.description }}">
+    <meta name="og:description" content="{{ section.description }}">
+    <meta property="og:image" content="/images/favicons/{{ section.extra.type }}-favicon.png">
   {% else %}
     <title>MHFU - Blacksmith</title>
     <meta property="og:title" content="MHFU - Blacksmith" />
