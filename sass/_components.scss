@@ -208,7 +208,6 @@ $element-types: (
       height: 100%;
       image-rendering: optimizeSpeed;
       image-rendering: pixelated;
-      mask-mode: alpha;
       mask-size: 100% 100%;
       mix-blend-mode: multiply;
       position: absolute;
@@ -217,10 +216,12 @@ $element-types: (
     }
 
     &--#{$weapon-name}::before {
+      -webkit-mask-image: url("/images/#{$weapon-name}.png");
       mask-image: url("/images/#{$weapon-name}.png");
     }
 
     &--#{$weapon-name}.icon--mini::before {
+      -webkit-mask-image: url("/images/#{$weapon-name}-mini.png");
       mask-image: url("/images/#{$weapon-name}-mini.png");
     }
   }
