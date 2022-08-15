@@ -10,19 +10,22 @@
           "slug": "attack-jewel",
           "type": "decoration",
           "name": "Attack Jewel",
-          "rarity": 4
+          "rarity": 4,
+          "color": "#fd6960"
         },
         {
           "slug": "fierce-jewel",
           "type": "decoration",
           "name": "Fierce Jewel",
-          "rarity": 5
+          "rarity": 5,
+          "color": "#fd6960"
         },
         {
           "slug": "strongest-jewel",
           "type": "decoration",
           "name": "Strongest Jewel",
-          "rarity": 5
+          "rarity": 5,
+          "color": "#fd6960"
         }
       ]
     },
@@ -117,6 +120,12 @@
           "type": "decoration",
           "name": "Sword Draw Jewel",
           "rarity": 4
+        },
+        {
+          "slug": "unsheathingjewel",
+          "type": "decoration",
+          "name": "UnsheathingJewel",
+          "rarity": 5
         }
       ]
     },
@@ -192,13 +201,15 @@
           "slug": "defense-jewel",
           "type": "decoration",
           "name": "Defense Jewel",
-          "rarity": 4
+          "rarity": 4,
+          "color": "#80c2fc"
         },
         {
           "slug": "turtle-jewel",
           "type": "decoration",
           "name": "Turtle Jewel",
-          "rarity": 5
+          "rarity": 5,
+          "color": "#80c2fc"
         }
       ]
     },
@@ -432,13 +443,22 @@
           "slug": "curing-jewel",
           "type": "decoration",
           "name": "Curing Jewel",
-          "rarity": 4
+          "rarity": 4,
+          "color": "#86bf8d"
         },
         {
           "slug": "cure-all-jewel",
           "type": "decoration",
           "name": "Cure All Jewel",
-          "rarity": 5
+          "rarity": 5,
+          "color": "#86bf8d"
+        },
+        {
+          "slug": "cure-all-jewel-plus",
+          "type": "decoration",
+          "name": "Cure All Jewel+",
+          "rarity": 5,
+          "color": "#86bf8d"
         }
       ]
     },
@@ -603,15 +623,15 @@
       ]
     },
     {
-      "slug": "???",
+      "slug": "autoreload",
       "type": null,
-      "name": "???",
+      "name": "Autoreload",
       "rarity": null,
       "children": [
         {
-          "slug": "speed-fire-jewel",
+          "slug": "cont-fire-jewel",
           "type": "decoration",
-          "name": "Speed Fire Jewel",
+          "name": "Cont. Fire Jewel",
           "rarity": 4
         },
         {
@@ -1012,7 +1032,8 @@
           "slug": "fife-jewel",
           "type": "decoration",
           "name": "Fife Jewel",
-          "rarity": 4
+          "rarity": 4,
+          "color": "#ea9aa4"
         }
       ]
     },
@@ -1361,6 +1382,51 @@
           "type": "decoration",
           "name": "Fisher Jewel",
           "rarity": 4
+        }
+      ]
+    },
+    {
+      "slug": "comrade-guidance/trade",
+      "type": null,
+      "name": "Comrade Guidance/Trade",
+      "rarity": null,
+      "children": [
+        {
+          "slug": "cat-guide-jewel",
+          "type": "decoration",
+          "name": "Cat Guide Jewel",
+          "rarity": 4,
+          "color": "#80c2fc"
+        }
+      ]
+    },
+    {
+      "slug": "comrade-attack-up",
+      "type": null,
+      "name": "Comrade Attack Up",
+      "rarity": null,
+      "children": [
+        {
+          "slug": "cat-attack-jewel",
+          "type": "decoration",
+          "name": "Cat Attack Jewel",
+          "rarity": 4,
+          "color": "#80c2fc"
+        }
+      ]
+    },
+    {
+      "slug": "comrade-defense-up",
+      "type": null,
+      "name": "Comrade Defense Up",
+      "rarity": null,
+      "children": [
+        {
+          "slug": "catdefensejewel",
+          "type": "decoration",
+          "name": "CatDefenseJewel",
+          "rarity": 4,
+          "color": "#80c2fc"
         }
       ]
     }

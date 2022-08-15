@@ -55,6 +55,10 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
     name: weapon["name"],
     rarity: weapon["rarity"]
   })
+
+  if weapon.key?("color") and weapon["color"]
+    array.last[:color] = weapon["color"]
+  end
     
   if weapon.key?("element") and weapon["element"]
     array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase

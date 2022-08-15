@@ -19,6 +19,7 @@
         "Power Seed (1)",
         "Kut-Ku Scale (1)"
       ],
+      "color": "#fd6960",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -35,6 +36,7 @@
         "Fire Wyvern Claw (1)",
         "Demondrug (2)"
       ],
+      "color": "#fd6960",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -52,6 +54,7 @@
         "Mega Demondrug (3)",
         "Lthr Pelagus Plt (2)"
       ],
+      "color": "#fd6960",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 375,
@@ -274,7 +277,8 @@
     {
       "name": "Spc Atk Up",
       "improve-to": [
-        "SpecialAtk Jewel"
+        "SpecialAtk Jewel",
+        "SpecialAtkJewel+"
       ],
       "donotrender": true
     },
@@ -292,6 +296,22 @@
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "SpecialAtkJewel+",
+      "skills": [
+        "Spc Attack +3",
+        "Rec Speed -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Lg Pelagus Fang (3)",
+        "LethrGarugaTail (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
       "type": "dec"
     },
     {
@@ -403,6 +423,7 @@
         "Suiko Jewel (1)",
         "Sm Hermitaur Shl (2)"
       ],
+      "color": "#80c2fc",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -423,6 +444,7 @@
         "BattlefieldJewel (1)",
         "HrdHermitaurClaw (1)"
       ],
+      "color": "#80c2fc",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -863,7 +885,8 @@
       "name": "HealthRecItemsImprvd",
       "improve-to": [
         "Curing Jewel",
-        "Cure All Jewel"
+        "Cure All Jewel",
+        "Cure All Jewel+"
       ],
       "donotrender": true
     },
@@ -878,6 +901,7 @@
         "Flabby Hide (1)",
         "Kelbi Horn (1)"
       ],
+      "color": "#86bf8d",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -890,10 +914,29 @@
         "Health -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel(1)",
+        "LapisLazuliJewel (1)",
         "Khezu Hide Tan (1)",
         "Ancient Potion (1)"
       ],
+      "color": "#86bf8d",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Cure All Jewel+",
+      "skills": [
+        "Recovery +3",
+        "Health -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "KhezuHide-Cream (3)",
+        "LunastraCarapace (2)",
+        "Honey (10)"
+      ],
+      "color": "#86bf8d",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -1339,7 +1382,7 @@
         "Reload -2"
       ],
       "create-mats": [
-        "LapisLazuli Jewel (1)",
+        "LapisLazuliJewel (1)",
         "HvyC.BlangoFang (3)",
         "Blk Rajang Pelt+ (4)",
         "Fire Drgn Jwl (1)"
@@ -1381,9 +1424,10 @@
         "Reload -2"
       ],
       "create-mats": [
-        "-LapisLazuli Jewel(1)-TerraCeanataurClaw(3)",
-        "-LtherSlvrRthlsTal(2)",
-        "-Daora Jewel(1)"
+        "LapisLazuliJewel (1)",
+        "TerraCeanataurClaw (3)",
+        "LtherSlvrRthlsTal (2)",
+        "Daora Jewel (1)"
       ],
       "slots": "OOO",
       "rarity": 5,
@@ -1393,15 +1437,16 @@
     {
       "name": "PellS/ScattBow Up",
       "improve-to": [
-        "Pellet Jewel"
+        "Pellet Jewel",
+        "Pellet Jewel+"
       ],
       "donotrender": true
     },
     {
       "name": "Pellet Jewel",
       "skills": [
-        "PelletS Up+1",
-        "Load -1"
+        "PelletS Up +1",
+        "Reload -1"
       ],
       "create-mats": [
         "Akito Jewel (1)",
@@ -1411,6 +1456,23 @@
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Pellet Jewel+",
+      "skills": [
+        "PelletS Up +4",
+        "Reload -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "HrdE.CongaClaw (3)",
+        "Azure LaoS Claw (3)",
+        "Chameleos Jewel (1)"
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
       "type": "dec"
     },
     {
@@ -1746,13 +1808,59 @@
         "Cold Res -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel(1)",
+        "LapisLazuliJewel (1)",
         "Lg Lobstershell (1)",
         "Gendrome Tail(1)"
       ],
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Evade Distance Up",
+      "improve-to": [
+        "Jumping Jewel",
+        "Flying Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Jumping Jewel",
+      "skills": [
+        "Evade Dist +1",
+        "Attack -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "NargaCuttingWing (1)",
+        "Lunastra Spike (1)"
+      ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "StrNargaCttngWing (1)",
+        "Emperor Cricket (5)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Flying Jewel",
+      "skills": [
+        "Evade Dist +4",
+        "Attack -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Str Fatalis Wng (2)",
+        "Narga Brain Stem (1)",
+        "SilverGarugaPelt (3)",
+      ],
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
       "type": "dec"
     },
     {
@@ -1786,7 +1894,7 @@
         "Protection -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel(1)",
+        "LapisLazuliJewel (1)",
         "Gold Rajang Pelt (1)",
         "Blood Red Horn (1)",
         "Wht Monoblos Hrn (1)"
@@ -1999,6 +2107,7 @@
         "Congalala Pelt (2)",
         "Flute (1)"
       ],
+      "color": "#ea9aa4",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2064,7 +2173,8 @@
       "name": "Paralysis duration down/negated",
       "improve-to": [
         "Paralysis Jewel",
-        "AntiParalyzJewel"
+        "AntiParalyzJewel",
+        "Paralysis Jewel+"
       ],
       "donotrender": true
     },
@@ -2096,6 +2206,21 @@
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Paralysis Jewel+",
+      "skills": [
+        "Paralysis +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "VespoidQn'sCrown (1)",
+        "Thunderbug Jelly (2)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
       "type": "dec"
     },
     {
@@ -2195,7 +2320,8 @@
       "name": "Immunity to Snowman",
       "improve-to": [
         "Snowblower Jewel",
-        "Snowplow Jewel"
+        "Snowplow Jewel",
+        "SnowblowerJewel+"
       ],
       "donotrender": true
     },
@@ -2227,6 +2353,21 @@
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "SnowblowerJewel+",
+      "skills": [
+        "Snow Res +2"
+      ],
+      "create-mats": [
+        "BattelfieldJewel (1)",
+        "LeathrBlangoTail (1)",
+        "Giaprey Scale+ (3)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
       "type": "dec"
     },
     {
@@ -2642,6 +2783,82 @@
         "Cricket (1)",
         "Yambug (1)"
       ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Comrade Guidance/Trade",
+      "improve-to": [
+        "Cat Guide Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Cat Guide Jewel",
+      "skills": [
+        "ComrdGuide +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Comrade Ticket (1)"
+      ],
+      "alternative-create-mats": [
+        "BattlefieldJewel (1)",
+        "Commendation G (1)",
+        "Gastronome Tuna (1)",
+        "Felvine (10)"
+      ],
+      "color": "#80c2fc",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Comrade Attack Up",
+      "improve-to": [
+        "Cat Attack Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Cat Attack Jewel",
+      "skills": [
+        "ComradeAtk +2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Piercing Claw (1)",
+        "Commendation G (1)",
+        "Mega Demondrug (1)"
+      ],
+      "color": "#80c2fc",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Comrade Defense Up",
+      "improve-to": [
+        "CatDefenseJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "CatDefenseJewel",
+      "skills": [
+        "ComradeDef +2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Hvy Kut-Ku Shell (1)",
+        "Commendation G (1)",
+        "Mega Armorskin (1)"
+      ],
+      "color": "#80c2fc",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
