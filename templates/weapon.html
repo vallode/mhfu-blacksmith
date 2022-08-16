@@ -38,7 +38,16 @@
       <turbo-frame id="weapon_details" data-turbo-action="replace">
         <div class="card weapon-card">
           <div class="weapon-card__header">
-            <div class="icon icon--{{ page.extra['type'] }} icon--rarity-{{ page.extra['rarity'] }} icon--large">
+            <div class="
+              icon
+              icon--{{ page.extra.type }}
+              icon--rarity-{{ page.extra.rarity }}
+              {% if page.extra.color %}
+              icon--{{ page.extra.color }}
+              {% endif %}
+              icon--large
+              "
+            >
               <img src="/images/{{ page.components[1] }}.png" alt="?">
             </div>
 

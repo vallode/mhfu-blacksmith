@@ -159,6 +159,19 @@ $weapon-types: (
   "decoration",
 );
 
+$decoration-colors: (
+  "blue": #80C2FC,
+  "cyan": #97E0EF,
+  "gray": #A0A0A0,
+  "green": #86BF8D,
+  "orange": #FF9661,
+  "pink": #EA9AA4,
+  "red": #FD6960,
+  "slate": #AFA0C5,
+  "white": #FFFFFF,
+  "yellow": #FFC762,
+);
+
 $rarity-colors: (
   4: #52F152,
   5: #FD9DC8,
@@ -206,6 +219,12 @@ $element-types: (
 
   @each $value, $color in $rarity-colors {
     &--rarity-#{$value}::before {
+      background: $color;
+    }
+  }
+
+  @each $value, $color in $decoration-colors {
+    &--#{$value}::before {
       background: $color;
     }
   }

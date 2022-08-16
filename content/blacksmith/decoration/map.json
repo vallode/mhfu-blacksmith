@@ -1,1434 +1,1877 @@
 {
   "map": [
-    {
-      "slug": "attack-up",
-      "type": null,
-      "name": "Attack up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "attack-jewel",
-          "type": "decoration",
-          "name": "Attack Jewel",
-          "rarity": 4,
-          "color": "#fd6960"
-        },
-        {
-          "slug": "fierce-jewel",
-          "type": "decoration",
-          "name": "Fierce Jewel",
-          "rarity": 5,
-          "color": "#fd6960"
-        },
-        {
-          "slug": "strongest-jewel",
-          "type": "decoration",
-          "name": "Strongest Jewel",
-          "rarity": 5,
-          "color": "#fd6960"
-        }
-      ]
-    },
-    {
-      "slug": "esp",
-      "type": null,
-      "name": "ESP",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "fencer-jewel",
-          "type": "decoration",
-          "name": "Fencer Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "swordsman-jewel",
-          "type": "decoration",
-          "name": "Swordsman Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "sharp-sword",
-      "type": null,
-      "name": "Sharp Sword",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "razor-jewel",
-          "type": "decoration",
-          "name": "Razor Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "cutter-jewel",
-          "type": "decoration",
-          "name": "Cutter Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "reckless-abandon",
-      "type": null,
-      "name": "Reckless Abandon",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "expert-jewel",
-          "type": "decoration",
-          "name": "Expert Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "celebrity-jewel",
-          "type": "decoration",
-          "name": "Celebrity Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "hermit-jewel",
-          "type": "decoration",
-          "name": "Hermit Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "sharping-skl-inc",
-      "type": null,
-      "name": "Sharping Skl Inc",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "grinder-jewel",
-          "type": "decoration",
-          "name": "Grinder Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "art-of-unsheathing",
-      "type": null,
-      "name": "Art of Unsheathing",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "sword-draw-jewel",
-          "type": "decoration",
-          "name": "Sword Draw Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "unsheathingjewel",
-          "type": "decoration",
-          "name": "UnsheathingJewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "spc-atk-up",
-      "type": null,
-      "name": "Spc Atk Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "specialatk-jewel",
-          "type": "decoration",
-          "name": "SpecialAtk Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "elem-atk-up",
-      "type": null,
-      "name": "Elem Atk Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "element-jewel",
-          "type": "decoration",
-          "name": "Element Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "element-jewel-plus",
-          "type": "decoration",
-          "name": "Element Jewel+",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "bomber",
-      "type": null,
-      "name": "Bomber",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "bombardier-jewel",
-          "type": "decoration",
-          "name": "Bombardier Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "focus",
-      "type": null,
-      "name": "Focus",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "shortchargejewel",
-          "type": "decoration",
-          "name": "ShortChargeJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "defense-up",
-      "type": null,
-      "name": "Defense up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "defense-jewel",
-          "type": "decoration",
-          "name": "Defense Jewel",
-          "rarity": 4,
-          "color": "#80c2fc"
-        },
-        {
-          "slug": "turtle-jewel",
-          "type": "decoration",
-          "name": "Turtle Jewel",
-          "rarity": 5,
-          "color": "#80c2fc"
-        }
-      ]
-    },
-    {
-      "slug": "fire-res-up",
-      "type": null,
-      "name": "Fire Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "inferno-jewel",
-          "type": "decoration",
-          "name": "Inferno Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "crimson-jewel",
-          "type": "decoration",
-          "name": "Crimson Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "water-res-up",
-      "type": null,
-      "name": "Water Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "stream-jewel",
-          "type": "decoration",
-          "name": "Stream Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "torrent-jewel",
-          "type": "decoration",
-          "name": "Torrent Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "ice-res-up",
-      "type": null,
-      "name": "Ice Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "freeze-jewel",
-          "type": "decoration",
-          "name": "Freeze Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "glacier-jewel",
-          "type": "decoration",
-          "name": "Glacier Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "thunder-res-up",
-      "type": null,
-      "name": "Thunder Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "lightning-jewel",
-          "type": "decoration",
-          "name": "Lightning Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "thunder-jewel",
-          "type": "decoration",
-          "name": "Thunder Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "dragon-res-up",
-      "type": null,
-      "name": "Dragon Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "slayer-jewel",
-          "type": "decoration",
-          "name": "Slayer Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "extinction-jewel",
-          "type": "decoration",
-          "name": "Extinction Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "all-res-up",
-      "type": null,
-      "name": "All Res up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "impervious-jewel",
-          "type": "decoration",
-          "name": "Impervious Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "omnipotent-jewel",
-          "type": "decoration",
-          "name": "Omnipotent Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "trueresistjewel",
-          "type": "decoration",
-          "name": "TrueResistJewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "guard-up",
-      "type": null,
-      "name": "Guard up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "stone-wall-jewel",
-          "type": "decoration",
-          "name": "Stone Wall Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "ironcurtainjewel",
-          "type": "decoration",
-          "name": "IronCurtainJewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "guard-inc",
-      "type": null,
-      "name": "Guard inc",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "hard-wall-jewel",
-          "type": "decoration",
-          "name": "Hard Wall Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "strongwall-jewel",
-          "type": "decoration",
-          "name": "StrongWall Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "wall-jewel",
-          "type": "decoration",
-          "name": "Wall Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "auto-guard",
-      "type": null,
-      "name": "Auto-Guard",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "hvnlyshieldjewel",
-          "type": "decoration",
-          "name": "HvnlyShieldJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "health-up",
-      "type": null,
-      "name": "Health up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "strength-jewel",
-          "type": "decoration",
-          "name": "Strength Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "damage-rec-spd-up",
-      "type": null,
-      "name": "Damage Rec Spd up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "feel-good-jewel",
-          "type": "decoration",
-          "name": "Feel Good Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "speedyrecvrjewel",
-          "type": "decoration",
-          "name": "SpeedyRecvrJewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "healthrecitemsimprvd",
-      "type": null,
-      "name": "HealthRecItemsImprvd",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "curing-jewel",
-          "type": "decoration",
-          "name": "Curing Jewel",
-          "rarity": 4,
-          "color": "#86bf8d"
-        },
-        {
-          "slug": "cure-all-jewel",
-          "type": "decoration",
-          "name": "Cure All Jewel",
-          "rarity": 5,
-          "color": "#86bf8d"
-        },
-        {
-          "slug": "cure-all-jewel-plus",
-          "type": "decoration",
-          "name": "Cure All Jewel+",
-          "rarity": 5,
-          "color": "#86bf8d"
-        }
-      ]
-    },
-    {
-      "slug": "wide-area",
-      "type": null,
-      "name": "Wide Area",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "friendship-jewel",
-          "type": "decoration",
-          "name": "Friendship Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "beloved-jewel",
-          "type": "decoration",
-          "name": "Beloved Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "tenderness-jewel",
-          "type": "decoration",
-          "name": "Tenderness Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "divine-protection",
-      "type": null,
-      "name": "Divine Protection",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "protection-jewel",
-          "type": "decoration",
-          "name": "Protection Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "divineprotectjwl",
-          "type": "decoration",
-          "name": "DivineProtectJwl",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "hunger-halved/negate",
-      "type": null,
-      "name": "Hunger Halved/Negate",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "pickyeater-jewel",
-          "type": "decoration",
-          "name": "PickyEater Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "fasting-jewel",
-          "type": "decoration",
-          "name": "Fasting Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "no-food-jewel",
-          "type": "decoration",
-          "name": "No Food Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "filled-up/scavenger",
-      "type": null,
-      "name": "Filled Up/Scavenger",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "fatso-jewel",
-          "type": "decoration",
-          "name": "Fatso Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "quick-eating",
-      "type": null,
-      "name": "Quick Eating",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "quickeaterjewel",
-          "type": "decoration",
-          "name": "QuickEaterJewel",
-          "rarity": 4
-        },
-        {
-          "slug": "fast-food-jewel",
-          "type": "decoration",
-          "name": "Fast Food Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "runner",
-      "type": null,
-      "name": "Runner",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "marathon-jewel",
-          "type": "decoration",
-          "name": "Marathon Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "sprinter-jewel",
-          "type": "decoration",
-          "name": "Sprinter Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "throwing-sk-up",
-      "type": null,
-      "name": "Throwing Sk Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "hardball-jewel",
-          "type": "decoration",
-          "name": "Hardball Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "reload-speed-up",
-      "type": null,
-      "name": "Reload Speed up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "early-bird-jewel",
-          "type": "decoration",
-          "name": "Early Bird Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "high-speed-jewel",
-          "type": "decoration",
-          "name": "High Speed Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "autoreload",
-      "type": null,
-      "name": "Autoreload",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "cont-fire-jewel",
-          "type": "decoration",
-          "name": "Cont. Fire Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "barrage-jewel",
-          "type": "decoration",
-          "name": "Barrage Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "recoil-reduct",
-      "type": null,
-      "name": "Recoil Reduct",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "recoilless-jewel",
-          "type": "decoration",
-          "name": "Recoilless Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "shockless-jewel",
-          "type": "decoration",
-          "name": "Shockless Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "norms/rapidbow-up",
-      "type": null,
-      "name": "NormS/RapidBow Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "strongshot-jewel",
-          "type": "decoration",
-          "name": "StrongShot Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "strongshot-jewel-plus",
-          "type": "decoration",
-          "name": "StrongShot Jewel+",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "prces/prcebow-up",
-      "type": null,
-      "name": "PrceS/PrceBow Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "pierce-jewel",
-          "type": "decoration",
-          "name": "Pierce Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "pierce-jewel-plus",
-          "type": "decoration",
-          "name": "Pierce Jewel+",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "pells/scattbow-up",
-      "type": null,
-      "name": "PellS/ScattBow Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "pellet-jewel",
-          "type": "decoration",
-          "name": "Pellet Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "norms-all-add",
-      "type": null,
-      "name": "NormS All Add",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "shot-bonus-jewel",
-          "type": "decoration",
-          "name": "Shot Bonus Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "pierces-lv-add",
-      "type": null,
-      "name": "PierceS LV Add",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "piercebonusjewel",
-          "type": "decoration",
-          "name": "PierceBonusJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "pellets-lv-add",
-      "type": null,
-      "name": "PelletS LV Add",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "pelletbonusjewel",
-          "type": "decoration",
-          "name": "PelletBonusJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "crags-lv-add",
-      "type": null,
-      "name": "CragS LV Add",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "bomb-bonus-jewel",
-          "type": "decoration",
-          "name": "Bomb Bonus Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "clusts-lv-add",
-      "type": null,
-      "name": "ClustS LV Add",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "scattrbonusjewel",
-          "type": "decoration",
-          "name": "ScattrBonusJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "load-up",
-      "type": null,
-      "name": "Load Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "ammo-box-jewel",
-          "type": "decoration",
-          "name": "Ammo Box Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "magazine-jewel",
-          "type": "decoration",
-          "name": "Magazine Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "target-range-down",
-      "type": null,
-      "name": "Target Range Down",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "sniper-jewel",
-          "type": "decoration",
-          "name": "Sniper Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "sharpshootrjewel",
-          "type": "decoration",
-          "name": "SharpshootrJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "bullet-limit",
-      "type": null,
-      "name": "Bullet Limit",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "armory-jewel",
-          "type": "decoration",
-          "name": "Armory Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "sharpness-plus",
-      "type": null,
-      "name": "Sharpness Plus",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "artisan-jewel",
-          "type": "decoration",
-          "name": "Artisan Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "master-jewel",
-          "type": "decoration",
-          "name": "Master Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "stealth",
-      "type": null,
-      "name": "Stealth",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "tip-toe-jewel",
-          "type": "decoration",
-          "name": "Tip Toe Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "ninja-jewel",
-          "type": "decoration",
-          "name": "Ninja Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "evade-up",
-      "type": null,
-      "name": "Evade up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "evade-jewel",
-          "type": "decoration",
-          "name": "Evade Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "dodge-jewel",
-          "type": "decoration",
-          "name": "Dodge Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "adrenaline-up",
-      "type": null,
-      "name": "Adrenaline up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "danger-jewel",
-          "type": "decoration",
-          "name": "Danger Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "crisis-jewel",
-          "type": "decoration",
-          "name": "Crisis Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "bbq-celebrity",
-      "type": null,
-      "name": "BBQ Celebrity",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "bbq-jewel",
-          "type": "decoration",
-          "name": "BBQ Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "detect/autotracker",
-      "type": null,
-      "name": "Detect/Autotracker",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "psychic-jewel",
-          "type": "decoration",
-          "name": "Psychic Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "item-usage-improved",
-      "type": null,
-      "name": "Item Usage Improved",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "stayingpwr-jewel",
-          "type": "decoration",
-          "name": "StayingPwr Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "permanence-jewel",
-          "type": "decoration",
-          "name": "Permanence Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "eternal-jewel",
-          "type": "decoration",
-          "name": "Eternal Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "comb-suc-up",
-      "type": null,
-      "name": "Comb Suc up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "professor-jewel",
-          "type": "decoration",
-          "name": "Professor Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "alchemy",
-      "type": null,
-      "name": "Alchemy",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "secretarts-jewel",
-          "type": "decoration",
-          "name": "SecretArts Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "gunnery-master/king",
-      "type": null,
-      "name": "Gunnery Master/King",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "small-arms-jewel",
-          "type": "decoration",
-          "name": "Small Arms Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "howitzer-jewel",
-          "type": "decoration",
-          "name": "Howitzer Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "flute-expert",
-      "type": null,
-      "name": "Flute Expert",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "fife-jewel",
-          "type": "decoration",
-          "name": "Fife Jewel",
-          "rarity": 4,
-          "color": "#ea9aa4"
-        }
-      ]
-    },
-    {
-      "slug": "faint-duration-down/negated",
-      "type": null,
-      "name": "Faint duration down/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "steadfast-jewel",
-          "type": "decoration",
-          "name": "Steadfast Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "anti-faint-jewel",
-          "type": "decoration",
-          "name": "Anti-Faint Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "steadfast-jewel-plus",
-          "type": "decoration",
-          "name": "Steadfast Jewel+",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "paralysis-duration-down/negated",
-      "type": null,
-      "name": "Paralysis duration down/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "paralysis-jewel",
-          "type": "decoration",
-          "name": "Paralysis Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "antiparalyzjewel",
-          "type": "decoration",
-          "name": "AntiParalyzJewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "sleep-duration-down/negated",
-      "type": null,
-      "name": "Sleep duration down/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "pep-jewel",
-          "type": "decoration",
-          "name": "Pep Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "jolt-jewel",
-          "type": "decoration",
-          "name": "Jolt Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "poison-duration-down/negated",
-      "type": null,
-      "name": "Poison duration down/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "antidote-jewel",
-          "type": "decoration",
-          "name": "Antidote Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "antivenin-jewel",
-          "type": "decoration",
-          "name": "Antivenin Jewel",
-          "rarity": 5
-        },
-        {
-          "slug": "antidote-jewel-plus",
-          "type": "decoration",
-          "name": "Antidote Jewel+",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "immunity-to-snowman",
-      "type": null,
-      "name": "Immunity to Snowman",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "snowblower-jewel",
-          "type": "decoration",
-          "name": "Snowblower Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "snowplow-jewel",
-          "type": "decoration",
-          "name": "Snowplow Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "immunity-to-quake",
-      "type": null,
-      "name": "Immunity to Quake",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "anchor-jewel",
-          "type": "decoration",
-          "name": "Anchor Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "tectonic-jewel",
-          "type": "decoration",
-          "name": "Tectonic Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "earplug/high-grade-earplug",
-      "type": null,
-      "name": "Earplug/High Grade Earplug",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "earplug-jewel",
-          "type": "decoration",
-          "name": "Earplug Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "silencer-jewel",
-          "type": "decoration",
-          "name": "Silencer Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "low/high-wind-pres/drg-wind-breaker",
-      "type": null,
-      "name": "Low/High Wind Pres/Drg Wind Breaker",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "paperweightjewel",
-          "type": "decoration",
-          "name": "PaperweightJewel",
-          "rarity": 4
-        },
-        {
-          "slug": "heavymetal-jewel",
-          "type": "decoration",
-          "name": "HeavyMetal Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "terrain-damage-reduced/negated",
-      "type": null,
-      "name": "Terrain damage reduced/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "melt-proof-jewel",
-          "type": "decoration",
-          "name": "Melt-Proof Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "anti-thaw-jewel",
-          "type": "decoration",
-          "name": "Anti-Thaw Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "steal-no-effect",
-      "type": null,
-      "name": "Steal No Effect",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "alarm-jewel",
-          "type": "decoration",
-          "name": "Alarm Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "immunity-to-territorial-dung",
-      "type": null,
-      "name": "Immunity to territorial dung",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "retroviral-jewel",
-          "type": "decoration",
-          "name": "Retroviral Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "antiviral-jewel",
-          "type": "decoration",
-          "name": "Antiviral Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "fatigue-duration-halved/negated",
-      "type": null,
-      "name": "Fatigue duration halved/negated",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "tireless-jewel",
-          "type": "decoration",
-          "name": "Tireless Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "antiviral-jewel",
-          "type": "decoration",
-          "name": "Antiviral Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "backpacking-expert",
-      "type": null,
-      "name": "Backpacking Expert",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "backpacker-jewel",
-          "type": "decoration",
-          "name": "Backpacker Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "highspdgather",
-      "type": null,
-      "name": "HighSpdGather",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "grab-n-dashjewel",
-          "type": "decoration",
-          "name": "Grab'n'DashJewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "spirit-s/divine-whim",
-      "type": null,
-      "name": "Spirit's/Divine Whim",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "good-luck-jewel",
-          "type": "decoration",
-          "name": "Good Luck Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "blessing-jewel",
-          "type": "decoration",
-          "name": "Blessing Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "carving-iron-man/celebrity",
-      "type": null,
-      "name": "Carving Iron Man/Celebrity",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "hidecutter-jewel",
-          "type": "decoration",
-          "name": "HideCutter Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "blessing-jewel",
-          "type": "decoration",
-          "name": "Blessing Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "good-luck/luck-boost",
-      "type": null,
-      "name": "Good Luck/Luck Boost",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "fate-jewel",
-          "type": "decoration",
-          "name": "Fate Jewel",
-          "rarity": 4
-        },
-        {
-          "slug": "destiny-jewel",
-          "type": "decoration",
-          "name": "Destiny Jewel",
-          "rarity": 5
-        }
-      ]
-    },
-    {
-      "slug": "fishing-expert",
-      "type": null,
-      "name": "Fishing Expert",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "fisher-jewel",
-          "type": "decoration",
-          "name": "Fisher Jewel",
-          "rarity": 4
-        }
-      ]
-    },
-    {
-      "slug": "comrade-guidance/trade",
-      "type": null,
-      "name": "Comrade Guidance/Trade",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "cat-guide-jewel",
-          "type": "decoration",
-          "name": "Cat Guide Jewel",
-          "rarity": 4,
-          "color": "#80c2fc"
-        }
-      ]
-    },
-    {
-      "slug": "comrade-attack-up",
-      "type": null,
-      "name": "Comrade Attack Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "cat-attack-jewel",
-          "type": "decoration",
-          "name": "Cat Attack Jewel",
-          "rarity": 4,
-          "color": "#80c2fc"
-        }
-      ]
-    },
-    {
-      "slug": "comrade-defense-up",
-      "type": null,
-      "name": "Comrade Defense Up",
-      "rarity": null,
-      "children": [
-        {
-          "slug": "catdefensejewel",
-          "type": "decoration",
-          "name": "CatDefenseJewel",
-          "rarity": 4,
-          "color": "#80c2fc"
-        }
-      ]
-    }
-  ]
+  {
+    "slug": "attack-up",
+    "type": null,
+    "name": "Attack up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "attack-jewel",
+        "type": "decoration",
+        "name": "Attack Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "fierce-jewel",
+        "type": "decoration",
+        "name": "Fierce Jewel",
+        "rarity": 5,
+        "color": "red"
+      },
+      {
+        "slug": "strongest-jewel",
+        "type": "decoration",
+        "name": "Strongest Jewel",
+        "rarity": 5,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "esp",
+    "type": null,
+    "name": "ESP",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "fencer-jewel",
+        "type": "decoration",
+        "name": "Fencer Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "swordsman-jewel",
+        "type": "decoration",
+        "name": "Swordsman Jewel",
+        "rarity": 5,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "sharp-sword",
+    "type": null,
+    "name": "Sharp Sword",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "razor-jewel",
+        "type": "decoration",
+        "name": "Razor Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "cutter-jewel",
+        "type": "decoration",
+        "name": "Cutter Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "reckless-abandon",
+    "type": null,
+    "name": "Reckless Abandon",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "expert-jewel",
+        "type": "decoration",
+        "name": "Expert Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "celebrity-jewel",
+        "type": "decoration",
+        "name": "Celebrity Jewel",
+        "rarity": 5,
+        "color": "blue"
+      },
+      {
+        "slug": "hermit-jewel",
+        "type": "decoration",
+        "name": "Hermit Jewel",
+        "rarity": 5,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "sharping-skl-inc",
+    "type": null,
+    "name": "Sharping Skl Inc",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "grinder-jewel",
+        "type": "decoration",
+        "name": "Grinder Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "art-of-unsheathing",
+    "type": null,
+    "name": "Art of Unsheathing",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "sword-draw-jewel",
+        "type": "decoration",
+        "name": "Sword Draw Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "unsheathingjewel",
+        "type": "decoration",
+        "name": "UnsheathingJewel",
+        "rarity": 5,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "spc-atk-up",
+    "type": null,
+    "name": "Spc Atk Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "specialatk-jewel",
+        "type": "decoration",
+        "name": "SpecialAtk Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "specialatkjewel-plus",
+        "type": "decoration",
+        "name": "SpecialAtkJewel+",
+        "rarity": 5,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "elem-atk-up",
+    "type": null,
+    "name": "Elem Atk Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "element-jewel",
+        "type": "decoration",
+        "name": "Element Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "element-jewel-plus",
+        "type": "decoration",
+        "name": "Element Jewel+",
+        "rarity": 5,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "bomber",
+    "type": null,
+    "name": "Bomber",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "bombardier-jewel",
+        "type": "decoration",
+        "name": "Bombardier Jewel",
+        "rarity": 4,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "focus",
+    "type": null,
+    "name": "Focus",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "shortchargejewel",
+        "type": "decoration",
+        "name": "ShortChargeJewel",
+        "rarity": 4,
+        "color": "orange"
+      },
+      {
+        "slug": "rapidchargejewel",
+        "type": "decoration",
+        "name": "RapidChargeJewel",
+        "rarity": 5,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "guts",
+    "type": null,
+    "name": "Guts",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "guts-jewel",
+        "type": "decoration",
+        "name": "Guts Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "more-guts-jewel",
+        "type": "decoration",
+        "name": "More Guts Jewel",
+        "rarity": 5,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "defense-up",
+    "type": null,
+    "name": "Defense up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "defense-jewel",
+        "type": "decoration",
+        "name": "Defense Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "turtle-jewel",
+        "type": "decoration",
+        "name": "Turtle Jewel",
+        "rarity": 5,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "fire-res-up",
+    "type": null,
+    "name": "Fire Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "inferno-jewel",
+        "type": "decoration",
+        "name": "Inferno Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "crimson-jewel",
+        "type": "decoration",
+        "name": "Crimson Jewel",
+        "rarity": 4,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "water-res-up",
+    "type": null,
+    "name": "Water Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "stream-jewel",
+        "type": "decoration",
+        "name": "Stream Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "torrent-jewel",
+        "type": "decoration",
+        "name": "Torrent Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "ice-res-up",
+    "type": null,
+    "name": "Ice Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "freeze-jewel",
+        "type": "decoration",
+        "name": "Freeze Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "glacier-jewel",
+        "type": "decoration",
+        "name": "Glacier Jewel",
+        "rarity": 4,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "thunder-res-up",
+    "type": null,
+    "name": "Thunder Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "lightning-jewel",
+        "type": "decoration",
+        "name": "Lightning Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      },
+      {
+        "slug": "thunder-jewel",
+        "type": "decoration",
+        "name": "Thunder Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "dragon-res-up",
+    "type": null,
+    "name": "Dragon Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "slayer-jewel",
+        "type": "decoration",
+        "name": "Slayer Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "extinction-jewel",
+        "type": "decoration",
+        "name": "Extinction Jewel",
+        "rarity": 5,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "all-res-up",
+    "type": null,
+    "name": "All Res up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "impervious-jewel",
+        "type": "decoration",
+        "name": "Impervious Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "omnipotent-jewel",
+        "type": "decoration",
+        "name": "Omnipotent Jewel",
+        "rarity": 5,
+        "color": "green"
+      },
+      {
+        "slug": "trueresistjewel",
+        "type": "decoration",
+        "name": "TrueResistJewel",
+        "rarity": 5,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "guard-up",
+    "type": null,
+    "name": "Guard up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "stone-wall-jewel",
+        "type": "decoration",
+        "name": "Stone Wall Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "ironcurtainjewel",
+        "type": "decoration",
+        "name": "IronCurtainJewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "guard-inc",
+    "type": null,
+    "name": "Guard inc",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "hard-wall-jewel",
+        "type": "decoration",
+        "name": "Hard Wall Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "strongwall-jewel",
+        "type": "decoration",
+        "name": "StrongWall Jewel",
+        "rarity": 5,
+        "color": "gray"
+      },
+      {
+        "slug": "wall-jewel",
+        "type": "decoration",
+        "name": "Wall Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "auto-guard",
+    "type": null,
+    "name": "Auto-Guard",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "hvnlyshieldjewel",
+        "type": "decoration",
+        "name": "HvnlyShieldJewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "health-up",
+    "type": null,
+    "name": "Health up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "strength-jewel",
+        "type": "decoration",
+        "name": "Strength Jewel",
+        "rarity": 4,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "damage-rec-spd-up",
+    "type": null,
+    "name": "Damage Rec Spd up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "feel-good-jewel",
+        "type": "decoration",
+        "name": "Feel Good Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "speedyrecvrjewel",
+        "type": "decoration",
+        "name": "SpeedyRecvrJewel",
+        "rarity": 5,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "healthrecitemsimprvd",
+    "type": null,
+    "name": "HealthRecItemsImprvd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "curing-jewel",
+        "type": "decoration",
+        "name": "Curing Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "cure-all-jewel",
+        "type": "decoration",
+        "name": "Cure All Jewel",
+        "rarity": 5,
+        "color": "green"
+      },
+      {
+        "slug": "cure-all-jewel-plus",
+        "type": "decoration",
+        "name": "Cure All Jewel+",
+        "rarity": 5,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "wide-area",
+    "type": null,
+    "name": "Wide Area",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "friendship-jewel",
+        "type": "decoration",
+        "name": "Friendship Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "beloved-jewel",
+        "type": "decoration",
+        "name": "Beloved Jewel",
+        "rarity": 5,
+        "color": "pink"
+      },
+      {
+        "slug": "tenderness-jewel",
+        "type": "decoration",
+        "name": "Tenderness Jewel",
+        "rarity": 5,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "divine-protection",
+    "type": null,
+    "name": "Divine Protection",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "protection-jewel",
+        "type": "decoration",
+        "name": "Protection Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      },
+      {
+        "slug": "divineprotectjwl",
+        "type": "decoration",
+        "name": "DivineProtectJwl",
+        "rarity": 4,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "constitutn",
+    "type": null,
+    "name": "Constitutn",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "constitutn-jewel",
+        "type": "decoration",
+        "name": "Constitutn Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "health-jewel",
+        "type": "decoration",
+        "name": "Health Jewel",
+        "rarity": 5,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "hunger-halved/negate",
+    "type": null,
+    "name": "Hunger Halved/Negate",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "pickyeater-jewel",
+        "type": "decoration",
+        "name": "PickyEater Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "fasting-jewel",
+        "type": "decoration",
+        "name": "Fasting Jewel",
+        "rarity": 5,
+        "color": "white"
+      },
+      {
+        "slug": "no-food-jewel",
+        "type": "decoration",
+        "name": "No Food Jewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "filled-up/scavenger",
+    "type": null,
+    "name": "Filled Up/Scavenger",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "fatso-jewel",
+        "type": "decoration",
+        "name": "Fatso Jewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "quick-eating",
+    "type": null,
+    "name": "Quick Eating",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "quickeaterjewel",
+        "type": "decoration",
+        "name": "QuickEaterJewel",
+        "rarity": 4,
+        "color": "yellow"
+      },
+      {
+        "slug": "fast-food-jewel",
+        "type": "decoration",
+        "name": "Fast Food Jewel",
+        "rarity": 5,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "runner",
+    "type": null,
+    "name": "Runner",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "marathon-jewel",
+        "type": "decoration",
+        "name": "Marathon Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      },
+      {
+        "slug": "sprinter-jewel",
+        "type": "decoration",
+        "name": "Sprinter Jewel",
+        "rarity": 5,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "throwing-sk-up",
+    "type": null,
+    "name": "Throwing Sk Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "hardball-jewel",
+        "type": "decoration",
+        "name": "Hardball Jewel",
+        "rarity": 4,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "reload-speed-up",
+    "type": null,
+    "name": "Reload Speed up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "early-bird-jewel",
+        "type": "decoration",
+        "name": "Early Bird Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "high-speed-jewel",
+        "type": "decoration",
+        "name": "High Speed Jewel",
+        "rarity": 5,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "autoreload",
+    "type": null,
+    "name": "Autoreload",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "cont-fire-jewel",
+        "type": "decoration",
+        "name": "Cont. Fire Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "barrage-jewel",
+        "type": "decoration",
+        "name": "Barrage Jewel",
+        "rarity": 5,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "recoil-reduct",
+    "type": null,
+    "name": "Recoil Reduct",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "recoilless-jewel",
+        "type": "decoration",
+        "name": "Recoilless Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "shockless-jewel",
+        "type": "decoration",
+        "name": "Shockless Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "norms/rapidbow-up",
+    "type": null,
+    "name": "NormS/RapidBow Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "strongshot-jewel",
+        "type": "decoration",
+        "name": "StrongShot Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "strongshot-jewel-plus",
+        "type": "decoration",
+        "name": "StrongShot Jewel+",
+        "rarity": 5,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "prces/prcebow-up",
+    "type": null,
+    "name": "PrceS/PrceBow Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "pierce-jewel",
+        "type": "decoration",
+        "name": "Pierce Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "pierce-jewel-plus",
+        "type": "decoration",
+        "name": "Pierce Jewel+",
+        "rarity": 5,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "pells/scattbow-up",
+    "type": null,
+    "name": "PellS/ScattBow Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "pellet-jewel",
+        "type": "decoration",
+        "name": "Pellet Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "pellet-jewel-plus",
+        "type": "decoration",
+        "name": "Pellet Jewel+",
+        "rarity": 5,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "norms-all-add",
+    "type": null,
+    "name": "NormS All Add",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "shot-bonus-jewel",
+        "type": "decoration",
+        "name": "Shot Bonus Jewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "pierces-lv-add",
+    "type": null,
+    "name": "PierceS LV Add",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "piercebonusjewel",
+        "type": "decoration",
+        "name": "PierceBonusJewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "pellets-lv-add",
+    "type": null,
+    "name": "PelletS LV Add",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "pelletbonusjewel",
+        "type": "decoration",
+        "name": "PelletBonusJewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "crags-lv-add",
+    "type": null,
+    "name": "CragS LV Add",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "crag-bonus-jewel",
+        "type": "decoration",
+        "name": "Crag Bonus Jewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "clusts-lv-add",
+    "type": null,
+    "name": "ClustS LV Add",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "scattrbonusjewel",
+        "type": "decoration",
+        "name": "ScattrBonusJewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "load-up",
+    "type": null,
+    "name": "Load Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "ammo-box-jewel",
+        "type": "decoration",
+        "name": "Ammo Box Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "magazine-jewel",
+        "type": "decoration",
+        "name": "Magazine Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "target-range-down",
+    "type": null,
+    "name": "Target Range Down",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "sniper-jewel",
+        "type": "decoration",
+        "name": "Sniper Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "sharpshootrjewel",
+        "type": "decoration",
+        "name": "SharpshootrJewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "poisoncadd",
+    "type": null,
+    "name": "PoisonCAdd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "poisoncoatjewel",
+        "type": "decoration",
+        "name": "PoisonCoatJewel",
+        "rarity": 4,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "paralycadd",
+    "type": null,
+    "name": "ParalyCAdd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "paralyscoatjewel",
+        "type": "decoration",
+        "name": "ParalysCoatJewel",
+        "rarity": 4
+      },
+      {
+        "slug": "paralysiscaddjwl",
+        "type": "decoration",
+        "name": "ParalysisCAddJwl",
+        "rarity": 5
+      }
+    ]
+  },
+  {
+    "slug": "sleepcadd",
+    "type": null,
+    "name": "SleepCAdd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "sleep-coat-jewel",
+        "type": "decoration",
+        "name": "Sleep Coat Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "clsrngcadd",
+    "type": null,
+    "name": "ClsRngCAdd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "combo-coat-jewel",
+        "type": "decoration",
+        "name": "Combo Coat Jewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "bullet-limit",
+    "type": null,
+    "name": "Bullet Limit",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "armory-jewel",
+        "type": "decoration",
+        "name": "Armory Jewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "sharpness-plus",
+    "type": null,
+    "name": "Sharpness Plus",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "artisan-jewel",
+        "type": "decoration",
+        "name": "Artisan Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "master-jewel",
+        "type": "decoration",
+        "name": "Master Jewel",
+        "rarity": 5,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "stealth",
+    "type": null,
+    "name": "Stealth",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "tip-toe-jewel",
+        "type": "decoration",
+        "name": "Tip Toe Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "ninja-jewel",
+        "type": "decoration",
+        "name": "Ninja Jewel",
+        "rarity": 4,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "evade-up",
+    "type": null,
+    "name": "Evade up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "evade-jewel",
+        "type": "decoration",
+        "name": "Evade Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "dodge-jewel",
+        "type": "decoration",
+        "name": "Dodge Jewel",
+        "rarity": 5,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "evade-distance-up",
+    "type": null,
+    "name": "Evade Distance Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "jumping-jewel",
+        "type": "decoration",
+        "name": "Jumping Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "flying-jewel",
+        "type": "decoration",
+        "name": "Flying Jewel",
+        "rarity": 5,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "adrenaline-up",
+    "type": null,
+    "name": "Adrenaline up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "danger-jewel",
+        "type": "decoration",
+        "name": "Danger Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "crisis-jewel",
+        "type": "decoration",
+        "name": "Crisis Jewel",
+        "rarity": 5,
+        "color": "red"
+      },
+      {
+        "slug": "pinch-jewel",
+        "type": "decoration",
+        "name": "Pinch Jewel",
+        "rarity": 5,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "bbq-celebrity",
+    "type": null,
+    "name": "BBQ Celebrity",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "bbq-jewel",
+        "type": "decoration",
+        "name": "BBQ Jewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "map",
+    "type": null,
+    "name": "Map",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "map-jewel",
+        "type": "decoration",
+        "name": "Map Jewel",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "detect/autotracker",
+    "type": null,
+    "name": "Detect/Autotracker",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "psychic-jewel",
+        "type": "decoration",
+        "name": "Psychic Jewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "tranquilizing-guru",
+    "type": null,
+    "name": "Tranquilizing Guru",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "perceive-jewel",
+        "type": "decoration",
+        "name": "Perceive Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "item-usage-improved",
+    "type": null,
+    "name": "Item Usage Improved",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "stayingpwr-jewel",
+        "type": "decoration",
+        "name": "StayingPwr Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "permanence-jewel",
+        "type": "decoration",
+        "name": "Permanence Jewel",
+        "rarity": 5,
+        "color": "blue"
+      },
+      {
+        "slug": "eternal-jewel",
+        "type": "decoration",
+        "name": "Eternal Jewel",
+        "rarity": 5,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "comb-suc-up",
+    "type": null,
+    "name": "Comb Suc up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "professor-jewel",
+        "type": "decoration",
+        "name": "Professor Jewel",
+        "rarity": 4,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "alchemy",
+    "type": null,
+    "name": "Alchemy",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "secretarts-jewel",
+        "type": "decoration",
+        "name": "SecretArts Jewel",
+        "rarity": 4,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "gunnery-master/king",
+    "type": null,
+    "name": "Gunnery Master/King",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "small-arms-jewel",
+        "type": "decoration",
+        "name": "Small Arms Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "howitzer-jewel",
+        "type": "decoration",
+        "name": "Howitzer Jewel",
+        "rarity": 4,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "flute-expert",
+    "type": null,
+    "name": "Flute Expert",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "fife-jewel",
+        "type": "decoration",
+        "name": "Fife Jewel",
+        "rarity": 4,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "faint-duration-down/negated",
+    "type": null,
+    "name": "Faint duration down/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "steadfast-jewel",
+        "type": "decoration",
+        "name": "Steadfast Jewel",
+        "rarity": 4,
+        "color": "blue"
+      },
+      {
+        "slug": "anti-faint-jewel",
+        "type": "decoration",
+        "name": "Anti-Faint Jewel",
+        "rarity": 5,
+        "color": "blue"
+      },
+      {
+        "slug": "steadfast-jewel-plus",
+        "type": "decoration",
+        "name": "Steadfast Jewel+",
+        "rarity": 4,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "paralysis-duration-down/negated",
+    "type": null,
+    "name": "Paralysis duration down/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "paralysis-jewel",
+        "type": "decoration",
+        "name": "Paralysis Jewel",
+        "rarity": 4,
+        "color": "yellow"
+      },
+      {
+        "slug": "antiparalyzjewel",
+        "type": "decoration",
+        "name": "AntiParalyzJewel",
+        "rarity": 5,
+        "color": "yellow"
+      },
+      {
+        "slug": "paralysis-jewel-plus",
+        "type": "decoration",
+        "name": "Paralysis Jewel+",
+        "rarity": 4,
+        "color": "yellow"
+      }
+    ]
+  },
+  {
+    "slug": "sleep-duration-down/negated",
+    "type": null,
+    "name": "Sleep duration down/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "pep-jewel",
+        "type": "decoration",
+        "name": "Pep Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "jolt-jewel",
+        "type": "decoration",
+        "name": "Jolt Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "poison-duration-down/negated",
+    "type": null,
+    "name": "Poison duration down/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "antidote-jewel",
+        "type": "decoration",
+        "name": "Antidote Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "antivenin-jewel",
+        "type": "decoration",
+        "name": "Antivenin Jewel",
+        "rarity": 5,
+        "color": "slate"
+      },
+      {
+        "slug": "antidote-jewel-plus",
+        "type": "decoration",
+        "name": "Antidote Jewel+",
+        "rarity": 4,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "immunity-to-snowman",
+    "type": null,
+    "name": "Immunity to Snowman",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "snowblower-jewel",
+        "type": "decoration",
+        "name": "Snowblower Jewel",
+        "rarity": 4,
+        "color": "white"
+      },
+      {
+        "slug": "snowplow-jewel",
+        "type": "decoration",
+        "name": "Snowplow Jewel",
+        "rarity": 5,
+        "color": "white"
+      },
+      {
+        "slug": "snowblowerjewel-plus",
+        "type": "decoration",
+        "name": "SnowblowerJewel+",
+        "rarity": 4,
+        "color": "white"
+      }
+    ]
+  },
+  {
+    "slug": "immunity-to-quake",
+    "type": null,
+    "name": "Immunity to Quake",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "anchor-jewel",
+        "type": "decoration",
+        "name": "Anchor Jewel",
+        "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "tectonic-jewel",
+        "type": "decoration",
+        "name": "Tectonic Jewel",
+        "rarity": 5,
+        "color": "slate"
+      }
+    ]
+  },
+  {
+    "slug": "earplug/high-grade-earplug",
+    "type": null,
+    "name": "Earplug/High Grade Earplug",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "earplug-jewel",
+        "type": "decoration",
+        "name": "Earplug Jewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "silencer-jewel",
+        "type": "decoration",
+        "name": "Silencer Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "low/high-wind-pres/drg-wind-breaker",
+    "type": null,
+    "name": "Low/High Wind Pres/Drg Wind Breaker",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "paperweightjewel",
+        "type": "decoration",
+        "name": "PaperweightJewel",
+        "rarity": 4,
+        "color": "gray"
+      },
+      {
+        "slug": "heavymetal-jewel",
+        "type": "decoration",
+        "name": "HeavyMetal Jewel",
+        "rarity": 5,
+        "color": "gray"
+      },
+      {
+        "slug": "solid-rock-jewel",
+        "type": "decoration",
+        "name": "Solid Rock Jewel",
+        "rarity": 5,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "cold-elimination",
+    "type": null,
+    "name": "Cold Elimination",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "warmbreeze-jewel",
+        "type": "decoration",
+        "name": "WarmBreeze Jewel",
+        "rarity": 4,
+        "color": "orange"
+      },
+      {
+        "slug": "hot-wind-jewel",
+        "type": "decoration",
+        "name": "Hot Wind Jewel",
+        "rarity": 5,
+        "color": "orange"
+      },
+      {
+        "slug": "hotbreezejewel",
+        "type": "decoration",
+        "name": "HotBreezeJewel",
+        "rarity": 4,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "heat-cancel",
+    "type": null,
+    "name": "Heat Cancel",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "coldbreeze-jewel",
+        "type": "decoration",
+        "name": "ColdBreeze Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      },
+      {
+        "slug": "cold-wind-jewel",
+        "type": "decoration",
+        "name": "Cold Wind Jewel",
+        "rarity": 5,
+        "color": "cyan"
+      },
+      {
+        "slug": "coldbreezejewel",
+        "type": "decoration",
+        "name": "ColdBreezeJewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "terrain-damage-reduced/negated",
+    "type": null,
+    "name": "Terrain damage reduced/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "melt-proof-jewel",
+        "type": "decoration",
+        "name": "Melt-Proof Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "anti-thaw-jewel",
+        "type": "decoration",
+        "name": "Anti-Thaw Jewel",
+        "rarity": 5,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "steal-no-effect",
+    "type": null,
+    "name": "Steal No Effect",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "alarm-jewel",
+        "type": "decoration",
+        "name": "Alarm Jewel",
+        "rarity": 4,
+        "color": "gray"
+      }
+    ]
+  },
+  {
+    "slug": "immunity-to-territorial-dung",
+    "type": null,
+    "name": "Immunity to territorial dung",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "retroviral-jewel",
+        "type": "decoration",
+        "name": "Retroviral Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "antiviral-jewel",
+        "type": "decoration",
+        "name": "Antiviral Jewel",
+        "rarity": 4,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "fatigue-duration-halved/negated",
+    "type": null,
+    "name": "Fatigue duration halved/negated",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "tireless-jewel",
+        "type": "decoration",
+        "name": "Tireless Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "antiviral-jewel",
+        "type": "decoration",
+        "name": "Antiviral Jewel",
+        "rarity": 4,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "backpacking-expert",
+    "type": null,
+    "name": "Backpacking Expert",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "backpacker-jewel",
+        "type": "decoration",
+        "name": "Backpacker Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "gathering",
+    "type": null,
+    "name": "Gathering",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "gathering-jewel",
+        "type": "decoration",
+        "name": "Gathering Jewel",
+        "rarity": 4,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "highspdgather",
+    "type": null,
+    "name": "HighSpdGather",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "grab-n-dashjewel",
+        "type": "decoration",
+        "name": "Grab'n'DashJewel",
+        "rarity": 4,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "spirit-s/divine-whim",
+    "type": null,
+    "name": "Spirit's/Divine Whim",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "good-luck-jewel",
+        "type": "decoration",
+        "name": "Good Luck Jewel",
+        "rarity": 4,
+        "color": "pink"
+      },
+      {
+        "slug": "blessing-jewel",
+        "type": "decoration",
+        "name": "Blessing Jewel",
+        "rarity": 4,
+        "color": "pink"
+      }
+    ]
+  },
+  {
+    "slug": "carving-iron-man/celebrity",
+    "type": null,
+    "name": "Carving Iron Man/Celebrity",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "hidecutter-jewel",
+        "type": "decoration",
+        "name": "HideCutter Jewel",
+        "rarity": 4,
+        "color": "orange"
+      },
+      {
+        "slug": "carving-jewel",
+        "type": "decoration",
+        "name": "Carving Jewel",
+        "rarity": 5,
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "slug": "good-luck/luck-boost",
+    "type": null,
+    "name": "Good Luck/Luck Boost",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "fate-jewel",
+        "type": "decoration",
+        "name": "Fate Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "destiny-jewel",
+        "type": "decoration",
+        "name": "Destiny Jewel",
+        "rarity": 5,
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "slug": "speedsetup",
+    "type": null,
+    "name": "SpeedSetup",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "trapmasterjewel",
+        "type": "decoration",
+        "name": "TrapMasterJewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "tranquilzr",
+    "type": null,
+    "name": "Tranquilzr",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "tranq-jewel",
+        "type": "decoration",
+        "name": "Tranq Jewel",
+        "rarity": 4,
+        "color": "green"
+      },
+      {
+        "slug": "knockout-jewel",
+        "type": "decoration",
+        "name": "Knockout Jewel",
+        "rarity": 5,
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "slug": "fishing-expert",
+    "type": null,
+    "name": "Fishing Expert",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "fisher-jewel",
+        "type": "decoration",
+        "name": "Fisher Jewel",
+        "rarity": 4,
+        "color": "cyan"
+      }
+    ]
+  },
+  {
+    "slug": "comrade-guidance/trade",
+    "type": null,
+    "name": "Comrade Guidance/Trade",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "cat-guide-jewel",
+        "type": "decoration",
+        "name": "Cat Guide Jewel",
+        "rarity": 4,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "comrade-attack-up",
+    "type": null,
+    "name": "Comrade Attack Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "cat-attack-jewel",
+        "type": "decoration",
+        "name": "Cat Attack Jewel",
+        "rarity": 4,
+        "color": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "comrade-defense-up",
+    "type": null,
+    "name": "Comrade Defense Up",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "catdefensejewel",
+        "type": "decoration",
+        "name": "CatDefenseJewel",
+        "rarity": 4,
+        "color": "blue"
+      }
+    ]
+  }
+]
 }
