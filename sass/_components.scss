@@ -357,6 +357,33 @@ $element-types: (
       gap: 13px;
     }
 
+    .ammo,
+    .status_ammo,
+    .element_ammo,
+    .misc_ammo,
+    .shots {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      gap: 13px;
+    }
+
+    .coatings {
+      align-content: flex-start;
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1 1 0%;
+      gap: 13px;
+
+      & :first-child {
+        width: 100%;
+      }
+
+      p {
+        width: calc(50% - 13px);
+      }
+    }
+
     .stats {
       flex-flow: column wrap;
       height: 11rem;
@@ -401,6 +428,15 @@ $element-types: (
         content: 'Create';
         display: block;
       }
+
+      [id*="page"] {
+        display: none;
+        flex: 1 1 0%;
+      }
+
+      [id*=page].active {
+        display: flex;
+      }
     }
     
     hr {
@@ -425,6 +461,9 @@ $element-types: (
   }
 
   &__navigation {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
     display: flex;
     align-items: center;
     align-self: flex-end;

@@ -119,6 +119,41 @@
         this.imageTarget.classList.remove("dragging")
       }
     })
+
+    Stimulus.register("weapon-page", class extends Controller {
+      static values = {
+        page: Number
+      }
+
+      initialize() {
+        this.pages = []
+      }
+
+      connect() {
+        this.pages = Array.from(this.element.querySelectorAll("[id*=page]"));
+
+        if (this.pages.length == 1) {
+          this.element.querySelector(".weapon-card__navigation").style.display = "none"
+        } else {
+          document.addEventListener("keyup", (event) => {
+            if (event.code == "ArrowRight" || event.code == "KeyD") {
+              this.toggle()
+            }
+          })
+        }
+      }
+
+      toggle() {
+        if (this.pageValue < this.pages.length) {
+          this.pageValue = this.pageValue + 1
+        } else {
+          this.pageValue = 1
+        }
+
+        this.pages.forEach(element => element.classList.remove("active"))
+        this.element.querySelector(`#page-${this.pageValue}`).classList.add("active")
+      }
+    })
   </script>
 
   {% if get_env(name="TERA_DEBUG", default="") != "" -%}

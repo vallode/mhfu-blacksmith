@@ -13,30 +13,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 0/0/0",
-        " 3/0/0",
+        "6/6/0",
+        "3/0/0",
+        "0/0/0",
+        "3/0/0",
         "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/3",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "450",
       "improve-mats": null,
@@ -58,30 +58,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 3/6/0",
-        " 2/0/0",
-        " 2/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "3/6/0",
+        "2/0/0",
+        "2/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/3",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 2",
-        "Water S: 0",
-        "Thundr S: 2",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "2",
+        "0",
+        "2",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "600",
       "improve-mats": null,
@@ -103,30 +103,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/0/0",
-        " 4/4/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "2/0/0",
+        "4/4/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "550",
       "improve-mats": null,
@@ -150,30 +150,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 3/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "3/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/3",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1000",
       "improve-mats": null,
@@ -197,30 +197,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/0/0",
-        " 4/4/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "2/0/0",
+        "4/4/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 4/2",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "4/2",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "750",
       "improve-mats": null,
@@ -244,30 +244,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S:1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1100",
       "improve-mats": null,
@@ -291,30 +291,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/4/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/4/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 2",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "2",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1150",
       "improve-mats": null,
@@ -338,30 +338,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/0/0",
-        " 4/4/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "2/0/0",
+        "4/4/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 4/2",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "4/2",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "900",
       "improve-mats": null,
@@ -385,30 +385,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/0",
-        " 3/2/0",
-        " 4/0/0",
-        " 0/0/0",
-        " 0/0/0"
+        "9/9/0",
+        "3/2/0",
+        "4/0/0",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1150",
       "improve-mats": null,
@@ -432,30 +432,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/3/0",
-        " 3/0/0",
-        " 0/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/3/0",
+        "3/0/0",
+        "0/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "1250",
       "improve-mats": null,
@@ -479,30 +479,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/3/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1375",
       "improve-mats": null,
@@ -526,30 +526,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1150",
       "improve-mats": null,
@@ -572,30 +572,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/4",
-        " 1/1/1",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/4",
+        "1/1/1",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1200",
       "improve-mats": null,
@@ -619,30 +619,30 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1200",
       "improve-mats": null,
@@ -666,30 +666,30 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1425",
       "improve-mats": null,
@@ -713,30 +713,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/2/0",
-        " 2/2/0",
-        " 1/1/0",
-        " 1/1/0"
+        "6/6/0",
+        "2/2/0",
+        "2/2/0",
+        "1/1/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1575",
       "improve-mats": null,
@@ -760,30 +760,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/3/12",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "9/3/12",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 4",
-        "Thundr S: 4",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "4",
+        "4",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1975",
       "improve-mats": null,
@@ -807,30 +807,30 @@
       "reload": "Fast ",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/3/0",
-        " 4/4/4",
-        " 2/2/2",
-        " 0/0/0"
+        "9/9/12",
+        "3/3/0",
+        "4/4/4",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1425",
       "improve-mats": null,
@@ -854,30 +854,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "9/9/12",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1725",
       "improve-mats": null,
@@ -901,30 +901,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "1875",
       "improve-mats": null,
@@ -948,30 +948,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/3",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/3",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "1950",
       "improve-mats": null,
@@ -995,30 +995,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/3/3",
-        " 0/3/3",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/3/3",
+        "0/3/3",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1950",
       "improve-mats": null,
@@ -1042,30 +1042,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/3/3",
-        " 0/3/3",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/3/3",
+        "0/3/3",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "2325",
       "improve-mats": null,
@@ -1089,30 +1089,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 4/4/4",
-        " 0/0/0",
-        " 2/2/2",
-        " 0/1/0"
+        "6/6/9",
+        "4/4/4",
+        "0/0/0",
+        "2/2/2",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 0/0",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "0/0",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1950",
       "improve-mats": null,
@@ -1137,29 +1137,29 @@
       "recoil": "Moderate",
       "ammo": [
         "6/6/9",
-        " 3/0/0 ",
-        "4/0/0 ",
-        "3/3/3 ",
+        "3/0/0",
+        "4/0/0",
+        "3/3/3",
         "3/3/3"
       ],
       "status-ammo": [
-        "0/3 ",
-        "0/1 ",
-        "0/1 ",
+        "0/3",
+        "0/1",
+        "0/1",
         "0/1"
       ],
       "element-ammo": [
-        "Flame S: 3 ",
-        "Water S: 0 ",
-        "Thundr S: 0 ",
-        "Freeze S: 0 ",
-        "Dragon S: 0"
+        "Flame S: 3",
+        "Water S: 0",
+        "Thundr S: 0",
+        "Freeze S: 0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2 ",
-        "Paint S: 2 ",
-        "Demon S: 1 ",
-        "Armor S: 1"
+        "Tranq S: 2",
+        "Paint S: 2",
+        "1",
+        "1"
       ],
       "create-cost": "1000",
       "improve-mats": null,
@@ -1180,30 +1180,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 5",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "5",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1375",
       "improve-mats": null,
@@ -1227,30 +1227,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1375",
       "improve-mats": null,
@@ -1274,30 +1274,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1375",
       "improve-mats": null,
@@ -1320,30 +1320,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/0",
-        " 1/1/1",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/0",
+        "1/1/1",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 1"
+        "3",
+        "3",
+        "3",
+        "3",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2250",
       "improve-mats": null,
@@ -1367,30 +1367,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/0",
-        " 1/1/1",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/0",
+        "1/1/1",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 2",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "2",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1875",
       "improve-mats": null,
@@ -1414,30 +1414,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3000",
       "improve-mats": null,
@@ -1461,30 +1461,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "6/6/9",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 5",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "5",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "1725",
       "improve-mats": null,
@@ -1508,30 +1508,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 4/4/0",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "4/4/0",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "2250",
       "improve-mats": null,
@@ -1555,30 +1555,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 3/4/4",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "3/4/4",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2700",
       "improve-mats": null,
@@ -1602,30 +1602,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/4/4",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/4/4",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "2325",
       "improve-mats": null,
@@ -1649,30 +1649,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 4/4/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "4/4/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1200",
       "improve-mats": null,
@@ -1696,30 +1696,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/4/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/4/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 2",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "2",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2525",
       "improve-mats": null,
@@ -1743,30 +1743,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "4/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1650",
       "improve-mats": null,
@@ -1790,30 +1790,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/2/0",
-        " 2/2/0",
-        " 2/2/0",
-        " 1/1/0"
+        "6/6/0",
+        "2/2/0",
+        "2/2/0",
+        "2/2/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "2300",
       "improve-mats": null,
@@ -1837,30 +1837,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2400",
       "improve-mats": null,
@@ -1884,30 +1884,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 2/2/0"
+        "9/9/12",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "0",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "2450",
       "improve-mats": null,
@@ -1931,30 +1931,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "4/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1975",
       "improve-mats": null,
@@ -1978,30 +1978,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 3",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "3",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2525",
       "improve-mats": null,
@@ -2025,30 +2025,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 3",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "3",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "2750",
       "improve-mats": null,
@@ -2072,30 +2072,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2450",
       "improve-mats": null,
@@ -2119,30 +2119,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/4",
-        " 3/3/0",
-        " 0/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/4",
+        "3/3/0",
+        "0/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "2900",
       "improve-mats": null,
@@ -2166,30 +2166,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/3",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/3",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "2850",
       "improve-mats": null,
@@ -2213,30 +2213,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "9/9/12",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2525",
       "improve-mats": null,
@@ -2260,30 +2260,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/3/3",
-        " 0/3/3",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/3/3",
+        "0/3/3",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "2850",
       "improve-mats": null,
@@ -2307,30 +2307,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 4/4/4",
-        " 0/0/0",
-        " 2/2/2",
-        " 0/1/0"
+        "6/6/9",
+        "4/4/4",
+        "0/0/0",
+        "2/2/2",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 0/0",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "0/0",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "2850",
       "improve-mats": null,
@@ -2354,30 +2354,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/9",
-        " 6/6/6",
-        " 0/0/3",
-        " 1/0/0",
-        " 0/0/0"
+        "9/9/9",
+        "6/6/6",
+        "0/0/3",
+        "1/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/0",
-        " 0/0",
-        " 3/0"
+        "0/0",
+        "3/0",
+        "0/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "3750",
       "improve-mats": null,
@@ -2401,30 +2401,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/0/0",
-        " 3/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "9/9/12",
+        "3/0/0",
+        "3/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 6",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "6",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1 "
+        "2",
+        "2",
+        "1",
+        "Armor S: 1"
       ],
       "create-cost": "2625",
       "improve-mats": null,
@@ -2448,30 +2448,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/3/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3025",
       "improve-mats": null,
@@ -2495,30 +2495,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/3/12",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "9/3/12",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 4",
-        "Thundr S: 4",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "4",
+        "4",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2900",
       "improve-mats": null,
@@ -2542,30 +2542,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/3/0",
-        " 4/4/4",
-        " 2/2/2",
-        " 0/0/0"
+        "9/9/12",
+        "3/3/0",
+        "4/4/4",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3150",
       "improve-mats": null,
@@ -2589,30 +2589,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/4/4",
-        " 0/4/4",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/4/4",
+        "0/4/4",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "3425",
       "improve-mats": null,
@@ -2636,30 +2636,30 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9 ",
-        "3/0/0 ",
-        "4/0/0 ",
-        "3/3/3 ",
+        "6/6/9",
+        "3/0/0",
+        "4/0/0",
+        "3/3/3",
         "3/3/3"
       ],
       "status-ammo": [
-        " 0/3 ",
-        "0/1 ",
-        "0/1 ",
+        "0/3",
+        "0/1",
+        "0/1",
         "0/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
+        "3",
+        "0",
         "Thundr S:",
         "0 Freeze S: 0",
-        "Dragon S: 0"
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "1000",
       "improve-mats": null,
@@ -2680,30 +2680,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3025",
       "improve-mats": null,
@@ -2727,30 +2727,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0 ",
-        "Thundr S: 0",
-        "Freeze S: 0",
+        "6",
+        "Water S: 0",
+        "0",
+        "0",
         "Dragon S:0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3025",
       "improve-mats": null,
@@ -2774,30 +2774,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/3",
-        " 0/0/0",
-        " 3/0/3",
-        " 1/1/1"
+        "6/6/9",
+        "3/0/3",
+        "0/0/0",
+        "3/0/3",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 3/1"
+        "0/0",
+        "3/1",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3025",
       "improve-mats": null,
@@ -2821,30 +2821,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/0/0",
-        " 6/0/0",
-        " 3/0/0",
-        " 3/0/0"
+        "9/9/12",
+        "4/0/0",
+        "6/0/0",
+        "3/0/0",
+        "3/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 2",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "2",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "2750",
       "improve-mats": null,
@@ -2868,30 +2868,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 4/4/0",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "4/4/0",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "3300",
       "improve-mats": null,
@@ -2915,30 +2915,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/3",
-        " 4/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/3",
+        "4/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3300",
       "improve-mats": null,
@@ -2962,30 +2962,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/0",
-        " 1/1/1",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/0",
+        "1/1/1",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 1"
+        "3",
+        "3",
+        "3",
+        "3",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3300",
       "improve-mats": null,
@@ -3009,30 +3009,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/4/4",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/4/4",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3425",
       "improve-mats": null,
@@ -3056,30 +3056,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 3/4/4",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "3/4/4",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3950",
       "improve-mats": null,
@@ -3103,30 +3103,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 4/4/0",
-        " 2/0/0",
-        " 2/2/0",
-        " 2/2/0"
+        "6/6/9",
+        "4/4/0",
+        "2/0/0",
+        "2/2/0",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "3950",
       "improve-mats": null,
@@ -3150,30 +3150,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "6/6/9",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "3800",
       "improve-mats": null,
@@ -3197,30 +3197,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 6/3/6",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "6/3/6",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "4100",
       "improve-mats": null,
@@ -3244,30 +3244,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 6/3/6",
-        " 2/0/0",
-        " 2/2/0",
-        " 2/2/0"
+        "6/6/9",
+        "6/3/6",
+        "2/0/0",
+        "2/2/0",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
@@ -3291,30 +3291,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/1/0",
-        " 1/1/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/1/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4400",
       "improve-mats": null,
@@ -3338,30 +3338,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/3",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "9/9/12",
+        "4/4/3",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "4600",
       "improve-mats": null,
@@ -3385,30 +3385,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/4",
-        " 0/0/0",
-        " 2/2/2",
-        " 1/0/0"
+        "9/9/12",
+        "4/4/4",
+        "0/0/0",
+        "2/2/2",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "0/0",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
@@ -3432,30 +3432,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 3/6/0",
-        " 3/0/0",
-        " 3/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "3/6/0",
+        "3/0/0",
+        "3/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/3",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3000",
       "improve-mats": null,
@@ -3479,30 +3479,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/4/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/4/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 2",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "2",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3500",
       "improve-mats": null,
@@ -3526,30 +3526,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/3/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4000",
       "improve-mats": null,
@@ -3573,30 +3573,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "3750",
       "improve-mats": null,
@@ -3620,30 +3620,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/4",
-        " 3/3/0",
-        " 0/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/4",
+        "3/3/0",
+        "0/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "3750",
       "improve-mats": null,
@@ -3667,30 +3667,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 3/3/4",
-        " 0/0/0",
-        " 1/1/0"
+        "6/6/9",
+        "3/3/0",
+        "3/3/4",
+        "0/0/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1 "
+        "2",
+        "2",
+        "0",
+        "Armor S: 1"
       ],
       "create-cost": "4250",
       "improve-mats": null,
@@ -3714,30 +3714,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/3/0",
-        " 4/0/0",
-        " 2/2/0",
-        " 0/0/0"
+        "9/9/12",
+        "3/3/0",
+        "4/0/0",
+        "2/2/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 2/3",
-        " 0/0",
-        " 3/1",
-        " 3/1"
+        "2/3",
+        "0/0",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 4",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "4",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4000",
       "improve-mats": null,
@@ -3761,30 +3761,30 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "3500",
       "improve-mats": null,
@@ -3808,30 +3808,30 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "4000",
       "improve-mats": null,
@@ -3855,30 +3855,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/0/0",
-        " 4/4/3",
-        " 1/0/0",
-        " 1/0/0"
+        "9/9/12",
+        "3/0/0",
+        "4/4/3",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 2/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "2/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4500",
       "improve-mats": null,
@@ -3902,30 +3902,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 2/2/0",
-        " 2/2/0",
-        " 2/2/0",
-        " 1/1/0"
+        "6/6/0",
+        "2/2/0",
+        "2/2/0",
+        "2/2/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "3500",
       "improve-mats": null,
@@ -3949,30 +3949,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "4000",
       "improve-mats": null,
@@ -3996,30 +3996,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/3",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/3",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "4500",
       "improve-mats": null,
@@ -4043,30 +4043,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "9/9/12",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4000",
       "improve-mats": null,
@@ -4090,30 +4090,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 4/4/0",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "4/4/0",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
@@ -4137,30 +4137,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9 ",
+        "6/6/9",
         "3/4/4",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "5500",
       "improve-mats": null,
@@ -4184,30 +4184,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/4/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/4/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/1",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/1",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "4",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5500",
       "improve-mats": null,
@@ -4231,30 +4231,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/6",
-        " 4/2/2",
-        " 4/2/2",
-        " 2/0/0",
-        " 2/0/0"
+        "9/9/6",
+        "4/2/2",
+        "4/2/2",
+        "2/0/0",
+        "2/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "0/0",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 3",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "3",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
@@ -4278,30 +4278,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/3/3",
-        " 0/3/3",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/3/3",
+        "0/3/3",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5500",
       "improve-mats": null,
@@ -4325,30 +4325,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/3",
-        " 0/0/0",
-        " 3/0/3",
-        " 1/1/1"
+        "6/6/9",
+        "3/0/3",
+        "0/0/0",
+        "3/0/3",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 3/1"
+        "0/0",
+        "3/1",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "4500",
       "improve-mats": null,
@@ -4372,30 +4372,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/9",
-        " 6/6/6",
-        " 0/0/3",
-        " 1/0/0",
-        " 0/0/0"
+        "9/9/9",
+        "6/6/6",
+        "0/0/3",
+        "1/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/0",
-        " 0/0",
-        " 3/0"
+        "0/0",
+        "3/0",
+        "0/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "6000",
       "improve-mats": null,
@@ -4419,30 +4419,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/0/0",
-        " 6/0/0",
-        " 3/0/0",
-        " 3/0/0"
+        "9/9/12",
+        "4/0/0",
+        "6/0/0",
+        "3/0/0",
+        "3/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 2",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "2",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "4250",
       "improve-mats": null,
@@ -4450,7 +4450,7 @@
         "Azure LaoS Claw: 4",
         "Warrior Coin G: 7",
         "BlackBeltCoinG: 12",
-        "Commendation G: 1"
+        "1"
       ]
     },
     {
@@ -4466,30 +4466,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/3",
-        " 4/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/3",
+        "4/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5500",
       "improve-mats": null,
@@ -4513,30 +4513,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/9",
-        " 3/4/4",
-        " 2/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/3/9",
+        "3/4/4",
+        "2/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "6500",
       "improve-mats": null,
@@ -4560,30 +4560,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/4 ",
+        "9/9/12",
+        "4/4/4",
         "0/0/0",
-        " 1/0/0",
-        " 2/2/2"
+        "1/0/0",
+        "2/2/2"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 4",
-        "Thundr S: 4",
-        "Freeze S: 4",
-        "Dragon S: 0"
+        "4",
+        "4",
+        "4",
+        "4",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "8000",
       "improve-mats": null,
@@ -4607,30 +4607,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "6/6/9",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
@@ -4654,30 +4654,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 4/4/0",
-        " 2/0/0",
-        " 2/2/0",
-        " 2/2/0"
+        "6/6/9",
+        "4/4/0",
+        "2/0/0",
+        "2/2/0",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "6000",
       "improve-mats": null,
@@ -4701,30 +4701,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 6/3/6",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "6/6/9",
+        "6/3/6",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "6500",
       "improve-mats": null,
@@ -4748,30 +4748,30 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 6/3/6",
-        " 2/0/0",
-        " 2/2/0",
-        " 2/2/0"
+        "6/6/9",
+        "6/3/6",
+        "2/0/0",
+        "2/2/0",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "7500",
       "improve-mats": null,
@@ -4795,37 +4795,37 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/0",
-        " 1/1/1",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/0",
+        "1/1/1",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 1"
+        "3",
+        "3",
+        "3",
+        "3",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "7000",
       "improve-mats": null,
       "create-mats": [
         "Chamelos Hide G: 3",
         "Chamelos Horn G: 2",
-        "Commendation S: 1",
+        "1",
         "BigEDragonJewel: 1"
       ]
     },
@@ -4842,30 +4842,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 0/4/4",
-        " 0/4/4",
-        " 0/1/1",
-        " 0/1/1"
+        "6/6/0",
+        "0/4/4",
+        "0/4/4",
+        "0/1/1",
+        "0/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "6000",
       "improve-mats": null,
@@ -4889,30 +4889,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/3",
-        " 0/0/0",
-        " 1/1/0",
-        " 0/0/0"
+        "9/9/12",
+        "4/4/3",
+        "0/0/0",
+        "1/1/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "3/1",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
         "Tranq S:2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "7000",
       "improve-mats": null,
@@ -4936,30 +4936,30 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/4",
-        " 0/0/0",
-        " 2/2/2",
-        " 1/0/0"
+        "9/9/12",
+        "4/4/4",
+        "0/0/0",
+        "2/2/2",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 3/1",
-        " 0/0"
+        "3/3",
+        "0/0",
+        "3/1",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "7500",
       "improve-mats": null,
@@ -4967,7 +4967,7 @@
         "GoldRajangPelt+: 1",
         "Blk Rajang Pelt+: 3",
         "Hvy Rajang Fang: 3",
-        "Commedation S: 1"
+        "1"
       ]
     },
     {
@@ -4983,30 +4983,30 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 4/4/3",
-        " 0/0/0",
-        " 1/1/1",
-        " 1/1/1"
+        "9/9/12",
+        "4/4/3",
+        "0/0/0",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/0",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/0",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "10000",
       "improve-mats": null,
@@ -5030,30 +5030,30 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 4/4/4",
-        " 0/0/0",
-        " 2/2/2",
-        " 0/1/0"
+        "6/6/9",
+        "4/4/4",
+        "0/0/0",
+        "2/2/2",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 0/0",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "0/0",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5500",
       "improve-mats": null,
@@ -5077,37 +5077,37 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        " 5/5/12",
-        " 2/2/6",
-        " 2/2/6",
-        " 0/0/0",
-        " 0/0/0"
+        "5/5/12",
+        "2/2/6",
+        "2/2/6",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "0/0",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 4",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "4",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
         "StrongUkanlosFin: 3",
         "Hvy Ukanlos Tail: 2",
-        "UkanlosUnderscl: 4 ",
+        "UkanlosUnderscl: 4",
         "Ukanlos Stone: 1"
       ]
     },
@@ -5124,35 +5124,35 @@
       "reload": "Normal ",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/0",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/0",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Hvy Monster Bone: 2",
         "Hrd Monster Bone: 6",
         "Dragonite Ore: 30"
@@ -5171,35 +5171,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 2/2/0"
+        "9/9/12",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "2/2/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "0",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Monster Essence: 10",
         "Hornetaur Crapce: 30",
         "Rare Scarab: 15"
@@ -5218,35 +5218,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 3/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "3/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/0",
-        " 3/0",
-        " 3/0"
+        "3/3",
+        "3/0",
+        "3/0",
+        "3/0"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Giaprey Scale+: 20",
         "Giadrome Claw+: 8",
         "Giadrome Skull: 5"
@@ -5265,35 +5265,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Velociprey Scle+: 20",
         "Velocidrome Clw+: 8",
         "Velocidrome Head: 5"
@@ -5312,35 +5312,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 0/0",
-        " 4/2",
-        " 3/1"
+        "3/3",
+        "0/0",
+        "4/2",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Genprey Scale+: 20",
         "Thunderbug Juice: 20",
         "Gendrome Skull: 5"
@@ -5359,35 +5359,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 4/2",
-        " 0/0",
-        " 3/1"
+        "3/3",
+        "4/2",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Ioprey Scale+: 20",
         "Gypceros Head: 2",
         "Iodrome Skull: 5"
@@ -5406,35 +5406,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Cephalos Scale+: 10",
         "Hvy Monster Bone: 8",
         "Monster Bone+: 20"
@@ -5453,35 +5453,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/3/12",
-        " 3/0/0",
-        " 4/0/0",
-        " 1/0/0",
-        " 1/0/0"
+        "9/3/12",
+        "3/0/0",
+        "4/0/0",
+        "1/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 4",
-        "Thundr S: 4",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "4",
+        "4",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Coral Cphlos Fin: 8",
         "PlumD.HermitrShl: 8",
         "Hrd Monster Bone: 20"
@@ -5500,35 +5500,35 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/4/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/4/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 2",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "2",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "SpecPlesiothFin+: 6",
         "Plesioth Thck Scl: 8",
         "Black Pearl: 20"
@@ -5547,35 +5547,35 @@
       "reload": "Normal ",
       "recoil": "Moderate",
       "ammo": [
-        " 6/3/0",
-        " 2/2/2",
-        " 2/2/2",
-        " 1/1/1",
-        " 1/1/1"
+        "6/3/0",
+        "2/2/2",
+        "2/2/2",
+        "1/1/1",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "ThckGrnPlesioScl: 8",
         "SpecGrnPlesioFn+: 6",
         "Giant Blk Pearl: 2"
@@ -5594,35 +5594,35 @@
       "reload": "Normal ",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 0",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "0",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Gt Lobstershell: 3",
         "ThckGrnPlesioScl: 8",
         "SpecPlesiothFin+: 6"
@@ -5641,35 +5641,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 4/4/4",
-        " 1/1/1",
-        " 0/0/0"
+        "6/6/9",
+        "3/3/0",
+        "4/4/4",
+        "1/1/1",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Lost Umbrella: 5",
         "KhezuHide-Cream: 10",
         "Pale Khezu Steak: 5"
@@ -5688,35 +5688,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/3/0",
-        " 4/4/4",
-        " 2/2/2",
-        " 0/0/0"
+        "9/9/12",
+        "3/3/0",
+        "4/4/4",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "0",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Lost Umbrella: 5",
         "Alluring Wing: 10",
         "Basarios Tears: 5"
@@ -5735,35 +5735,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/4",
-        " 3/3/0",
-        " 0/0/0",
-        " 1/0/0"
+        "6/6/9",
+        "3/3/4",
+        "3/3/0",
+        "0/0/0",
+        "1/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Vibrant Pelt: 6",
         "HrdCongalalaClw+: 6",
         "Mellanje Ore: 4"
@@ -5782,35 +5782,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/3/0",
-        " 3/3/4",
-        " 0/0/0",
-        " 1/1/0"
+        "6/6/9",
+        "3/3/0",
+        "3/3/4",
+        "0/0/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 3",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "3",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 1"
+        "2",
+        "2",
+        "0",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Vibrant Comb: 4",
         "E.CongalalaPelt+: 8",
         "Purecrystal: 2"
@@ -5829,35 +5829,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 3/3/0",
-        " 4/0/0",
-        " 2/2/0",
-        " 0/0/0"
+        "9/9/12",
+        "3/3/0",
+        "4/0/0",
+        "2/2/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 2/3",
-        " 0/0",
-        " 3/1",
-        " 3/1"
+        "2/3",
+        "0/0",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 0",
-        "Water S: 3",
-        "Thundr S: 4",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "0",
+        "3",
+        "4",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Comendation S: 1",
+        "1",
         "KhezuSpecialCut: 1",
         "Alluring Wing: 6",
         "HrdPuGypcerosWng: 6"
@@ -5876,35 +5876,35 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0",
-        " 1",
-        " 0",
-        " 0"
+        "0",
+        "1",
+        "0",
+        "0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Thick Kut-Ku Scl: 10",
         "RainbowTailFeath: 5",
         "Big WyvernStone: 6"
@@ -5923,35 +5923,35 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        " 9/9/12",
-        " 0/3/0",
-        " 0/4/0",
-        " 0/1/0",
-        " 0/1/0"
+        "9/9/12",
+        "0/3/0",
+        "0/4/0",
+        "0/1/0",
+        "0/1/0"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 0/0"
+        "0/0",
+        "3/1",
+        "0/0",
+        "0/0"
       ],
       "element-ammo": [
-        "Flame S: 4",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "4",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 0 ",
-        "Armor S: 0"
+        "2",
+        "2",
+        "0",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "ThkBlueKut-KuScl: 10",
         "Hypno Claw+: 4",
         "Purecrystal: 4"
@@ -5970,35 +5970,35 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 3/3/3",
-        " 3/3/3"
+        "6/6/9",
+        "3/0/0",
+        "4/0/0",
+        "3/3/3",
+        "3/3/3"
       ],
       "status-ammo": [
-        " 0/3",
-        " 0/1",
-        " 0/1",
-        " 0/1"
+        "0/3",
+        "0/1",
+        "0/1",
+        "0/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "AncientDrgnwood: 4",
         "Ancient Stone: 5",
         "Blazing Fire Sac: 8"
@@ -6017,35 +6017,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Felyne Fur Ruby: 5",
         "FlynMealPassPlus: 20",
         "Blazing Fire Sac: 10"
@@ -6064,35 +6064,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 4/6/9",
-        " 3/0/0",
-        " 4/0/0",
-        " 2/2/2",
-        " 0/0/0"
+        "4/6/9",
+        "3/0/0",
+        "4/0/0",
+        "2/2/2",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 6",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 0"
+        "6",
+        "0",
+        "0",
+        "0",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000z ",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "Felyne Fur Ruby: 5",
         "BlackNargaPelt+: 4",
         "Sinister Cloth: 10"
@@ -6111,35 +6111,35 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/3",
-        " 0/0/0",
-        " 3/0/3",
-        " 1/1/1"
+        "6/6/9",
+        "3/0/3",
+        "0/0/0",
+        "3/0/3",
+        "1/1/1"
       ],
       "status-ammo": [
-        " 0/0",
-        " 3/1",
-        " 0/0",
-        " 3/1"
+        "0/0",
+        "3/1",
+        "0/0",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 0"
+        "2",
+        "2",
+        "1",
+        "0"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation G: 1",
+        "1",
         "ShakalakaTreasr+: 3",
         "ShakalakaTreasure: 20",
         "Old Pickaxe: 1"
@@ -6158,35 +6158,35 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/2/2",
-        " 4/2/2",
-        " 0/0/0",
-        " 0/0/0"
+        "6/6/9",
+        "3/2/2",
+        "4/2/2",
+        "0/0/0",
+        "0/0/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 3",
-        "Thundr S: 3",
-        "Freeze S: 3",
-        "Dragon S: 0"
+        "3",
+        "3",
+        "3",
+        "3",
+        "0"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "dummy: 5",
         "Lg Lobstershell: 10",
         "Big WyvernStone: 4"
@@ -6205,35 +6205,35 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        " 6/6/9",
-        " 3/0/0",
-        " 4/4/4",
-        " 1/1/0",
-        " 1/1/0"
+        "6/6/9",
+        "3/0/0",
+        "4/4/4",
+        "1/1/0",
+        "1/1/0"
       ],
       "status-ammo": [
-        " 3/3",
-        " 3/1",
-        " 3/1",
-        " 3/1"
+        "3/3",
+        "3/1",
+        "3/1",
+        "3/1"
       ],
       "element-ammo": [
-        "Flame S: 3",
-        "Water S: 0",
-        "Thundr S: 0",
-        "Freeze S: 0",
-        "Dragon S: 1"
+        "3",
+        "0",
+        "0",
+        "0",
+        "1"
       ],
       "misc-ammo": [
-        "Tranq S: 2",
-        "Paint S: 2",
-        "Demon S: 1",
-        "Armor S: 1"
+        "2",
+        "2",
+        "1",
+        "1"
       ],
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Commendation S: 1",
+        "1",
         "Str Fatalis Wng: 1",
         "ThckFatalisScale: 5",
         "SpecRemobraSkin+: 20"

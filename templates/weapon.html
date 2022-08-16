@@ -124,43 +124,114 @@
 
             <div
               data-controller="weapon-page"
+              data-weapon-page-page-value="1"
               class="requirements"
             >
-              {% if page.extra.improve_mats %}
-                <div class="improve-mats">
-                  <p id="weapon_cost">
-                    <span>Improve cost: </span>{{ page.extra.improve_cost }}z
-                  </p>
-
-                  {%- for material in page.extra.improve_mats -%}
-                    <p>{{ material }}</p>
-                  {% endfor %}
-                </div>
-              {% endif %}
-
-              {%- if page.extra.create_mats %}
-                <div class="create-mats">
-                  <p id="weapon_cost">
-                    <span>Create cost: </span>{{ page.extra.create_cost }}z
-                  </p>
+              <div id="page-1" class="active">
+                {% if page.extra.improve_mats %}
+                  <div class="improve-mats">
+                    <p id="weapon_cost">
+                      <span>Improve cost: </span>{{ page.extra.improve_cost }}z
+                    </p>
   
-                  {% for material in page.extra.create_mats -%}
-                    <p>{{ material }}</p>
-                  {% endfor -%}
+                    {%- for material in page.extra.improve_mats -%}
+                      <p>{{ material }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+  
+                {%- if page.extra.create_mats %}
+                  <div class="create-mats">
+                    <p id="weapon_cost">
+                      <span>Create cost: </span>{{ page.extra.create_cost }}z
+                    </p>
+    
+                    {% for material in page.extra.create_mats -%}
+                       <p>{{ material }}</p>
+                    {% endfor -%}
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
+                <div id="page-2">
+                  {%- if page.extra.alternative_create_mats %}
+                    <div class="create-mats">
+                      <p id="weapon_cost">
+                        <span>Create cost: </span>{{ page.extra.create_cost }}z
+                      </p>
+      
+                      {% for material in page.extra.alternative_create_mats -%}
+                        <p>{{ material }}</p>
+                      {% endfor -%}
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.ammo %}
+                    <div class="ammo">
+                      <p>Normal: {{ page.extra.ammo[0] }}</p>
+                      <p>Pierce: {{ page.extra.ammo[1] }}</p>
+                      <p>Pellet: {{ page.extra.ammo[2] }}</p>
+                      <p>Crag: {{ page.extra.ammo[3] }}</p>
+                      <p>Cluster: {{ page.extra.ammo[4] }}</p>
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.status_ammo %}
+                    <div class="status_ammo">
+                      <p>RecovS: {{ page.extra.status_ammo[0] }}</p>
+                      <p>PoisonS: {{ page.extra.status_ammo[1] }}</p>
+                      <p>Para S: {{ page.extra.status_ammo[2] }}</p>
+                      <p>Sleep S: {{ page.extra.status_ammo[3] }}</p>
+                    </div>
+                  {% endif %}
+
+                  {% if page.extra.shots %}
+                    <div class="shots">
+                      <p><span>[Charge Attack]</span></p>
+                      {% for shot in page.extra.shots %}
+                        <p>{{ shot }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 </div>
               {% endif %}
 
-              {%- if page.extra.alternative_create_mats %}
-                <div class="create-mats">
-                  <p id="weapon_cost">
-                    <span>Create cost: </span>{{ page.extra.create_cost }}z
-                  </p>
-  
-                  {% for material in page.extra.alternative_create_mats -%}
-                    <p>{{ material }}</p>
-                  {% endfor -%}
+              {% if page.extra.element_ammo or page.extra.coatings %}
+                <div id="page-3">
+                  {% if page.extra.element_ammo %}
+                    <div class="element_ammo">
+                      <p>Flame S: {{ page.extra.element_ammo[0] }}</p>
+                      <p>Water S: {{ page.extra.element_ammo[1] }}</p>
+                      <p>Thundr S: {{ page.extra.element_ammo[2] }}</p>
+                      <p>Freeze S: {{ page.extra.element_ammo[3] }}</p>
+                      <p>Dragon S: {{ page.extra.element_ammo[4] }}</p>
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.misc_ammo %}
+                    <div class="misc_ammo">
+                      <p>Tranq S: {{ page.extra.misc_ammo[0] }}</p>
+                      <p>Paint S: {{ page.extra.misc_ammo[1] }}</p>
+                      <p>Demon S: {{ page.extra.misc_ammo[2] }}</p>
+                      <p>Armor S: {{ page.extra.misc_ammo[3] }}</p>
+                    </div>
+                  {% endif %}
+
+                  {% if page.extra.coatings %}
+                    <div class="coatings">
+                      <p><span>[Usable Coating]</span></p>
+                      {% for coating in page.extra.coatings %}
+                        <p>{{ coating | capitalize }} Coating</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 </div>
               {% endif %}
+
+              <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
+                <img src="/images/arrow.png" class="next">
+              </div>
             </div>
           </div>
         </div>
