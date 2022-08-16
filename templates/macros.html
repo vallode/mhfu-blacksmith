@@ -19,6 +19,9 @@
         icon--mini
         icon--{{ weapon.type }}
         icon--rarity-{{ weapon.rarity }}
+        {% if weapon.color -%}
+          icon--{{ weapon.color }}
+        {%- endif -%}
         {% if weapon.element -%}
           icon--{{ weapon.element }}
         {%- endif -%}

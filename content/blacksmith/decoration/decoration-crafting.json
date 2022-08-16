@@ -19,7 +19,7 @@
         "Power Seed (1)",
         "Kut-Ku Scale (1)"
       ],
-      "color": "#fd6960",
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -36,7 +36,7 @@
         "Fire Wyvern Claw (1)",
         "Demondrug (2)"
       ],
-      "color": "#fd6960",
+      "color": "red",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -54,7 +54,7 @@
         "Mega Demondrug (3)",
         "Lthr Pelagus Plt (2)"
       ],
-      "color": "#fd6960",
+      "color": "red",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 375,
@@ -83,6 +83,7 @@
         "Azure LaoS Shell (2)",
         "Slver Rthalos Tail (1)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -100,6 +101,7 @@
         "Fatalis Eye (1)",
         "Majestic Horn (1)"
       ],
+      "color": "cyan",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -124,6 +126,7 @@
         "Ceanataur Pincer (1)",
         "Sharpened Beak (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -141,6 +144,7 @@
         "Black Blos Tail (2)",
         "Garuga Wing (2)"
       ],
+      "color": "gray",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -166,6 +170,7 @@
         "Blue Kut-Ku Shl (1)",
         "Anteka Antlers (1)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -186,6 +191,7 @@
         "LapisLazuliJewel (1)",
         "Teostra Horn+ (1)"
       ],
+      "color": "blue",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -203,6 +209,7 @@
         "Splendid Beak (1)",
         "Giadrome Skull (1)"
       ],
+      "color": "blue",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -225,6 +232,7 @@
         "Earth Crystal (1)",
         "Giadrome Claw (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -253,6 +261,7 @@
         "LapisLazuliJewel (1)",
         "StrRathalosWing (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -269,6 +278,7 @@
         "HrdCeanataurClaw (3)",
         "Rathalos Ruby (1)"
       ],
+      "color": "red",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -293,6 +303,7 @@
         "Chameleos Horn (1)",
         "Chaos Mushroom (2)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -309,6 +320,7 @@
         "Lg Pelagus Fang (3)",
         "LethrGarugaTail (1)"
       ],
+      "color": "pink",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -334,6 +346,7 @@
         "Firestone (1)",
         "Ice Crystal (1)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -351,6 +364,7 @@
         "HvyBlangongaFang (4)",
         "Big Wyvern Stone (1)"
       ],
+      "color": "pink",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -373,6 +387,7 @@
         "Flame Sac (1)",
         "FlynMealPassReg (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -381,7 +396,8 @@
     {
       "name": "Focus",
       "improve-to": [
-        "ShortChargeJewel"
+        "ShortChargeJewel",
+        "RapidChargeJewel"
       ],
       "donotrender": true
     },
@@ -392,7 +408,7 @@
         "Constitutn -1"
       ],
       "create-mats": [
-        "BattelfieldJewel (1)",
+        "BattlefieldJewel (1)",
         "Daora Horn (1)",
         "ElderDragonBlood (1)"
       ],
@@ -401,9 +417,71 @@
         "Rajang Horn (1)",
         "DaoraDragonScal+ (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "RapidChargeJewel",
+      "skills": [
+        "ShortCharg +4",
+        "Constitutn -2"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "GoldRajangPelt+ (2)",
+        "ThckDaoraDrgnScl (3)",
+        "HvyLavasiothFang (4)"
+      ],
+      "color": "orange",
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Guts",
+      "improve-to": [
+        "Guts Jewel",
+        "More Guts Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Guts Jewel",
+      "skills": [
+        "Guts +1",
+        "MixSucRate -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "PlumD.HermitrShl (1)",
+        "RobustWyvernBone (2)"
+      ],
+      "color": "pink",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "More Guts Jewel",
+      "skills": [
+        "Guts +3",
+        "MixSucRate -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "HvyLavasiothShl (3)",
+        "Hvy Gaoren Spine (1)",
+        "Tailed Frog (2)"
+      ],
+      "color": "pink",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
       "type": "dec"
     },
     {
@@ -423,7 +501,7 @@
         "Suiko Jewel (1)",
         "Sm Hermitaur Shl (2)"
       ],
-      "color": "#80c2fc",
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -444,7 +522,7 @@
         "BattlefieldJewel (1)",
         "HrdHermitaurClaw (1)"
       ],
-      "color": "#80c2fc",
+      "color": "blue",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -468,6 +546,7 @@
         "Suiko Jewel (1)",
         "Fire Herb (2)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -482,6 +561,7 @@
         "Akito Jewel (1)",
         "Flame Sac (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -505,6 +585,7 @@
         "Suiko Jewel (1)",
         "Knife Mackerel (2)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -519,6 +600,7 @@
         "Akito Jewel (1)",
         "Plesioth Scale (1)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -542,6 +624,7 @@
         "Suiko Jewel (1)",
         "Ice Crystal (2)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -556,6 +639,7 @@
         "Akito Jewel (1)",
         "Giadrome Hide (2)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -579,6 +663,7 @@
         "Suiko Jewel (1)",
         "Thunderbug (2)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -593,6 +678,7 @@
         "Akito Jewel (1)",
         "Electro Sac (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -617,6 +703,7 @@
         "Hornetaur Head (1)",
         "Dragon Seed (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -633,6 +720,7 @@
         "HornetaurInnrWng (1)",
         "ElderDragonBlood (1)"
       ],
+      "color": "slate",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -657,6 +745,7 @@
         "BattlefieldJewel (1)",
         "Kirin Mane (1)"
       ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -673,6 +762,7 @@
         "Kirin Azure Horn (1)",
         "Dragonmoss (1)"
       ],
+      "color": "green",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -690,6 +780,7 @@
         "AncientDrgmoss (1)",
         "BlackBeltCoinG (3)"
       ],
+      "color": "green",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -714,6 +805,7 @@
         "Basarios Shell (1)",
         "Hermitaur Shell (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -726,10 +818,16 @@
         "Stamina -1"
       ],
       "create-mats": [
+        "BattlefieldJewel (1)",
+        "Gaoren Spine (1)",
+        "Gravios Skl Shl (1)"
+      ],
+      "alternative-create-mats": [
         "LapisLazuliJewel (1)",
         "Gravios Carapace (1)",
         "Gaoren Spine (1)"
       ],
+      "color": "gray",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -754,6 +852,7 @@
         "BattlefieldJewel (1)",
         "Blk Gravios Shl (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -771,6 +870,7 @@
         "Hermitaur Claw+ (4)",
         "Lunastra Shell (2)"
       ],
+      "color": "gray",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -787,6 +887,7 @@
         "PlumD.HermitrClw (2)",
         "HvyGraviosShell (1)"
       ],
+      "color": "gray",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -809,6 +910,7 @@
         "Bullfango Pelt (1)",
         "Sm Hermitaur Shl (2)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -830,6 +932,7 @@
         "Suiko Jewel (1)",
         "Bulldrome Hide (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -854,6 +957,7 @@
         "Pale Extract (1)",
         "Killer Beetle (1)"
       ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -876,6 +980,7 @@
         "Lao-Shan's Shell (3)",
         "Lifecrystals (10)"
       ],
+      "color": "green",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -901,7 +1006,7 @@
         "Flabby Hide (1)",
         "Kelbi Horn (1)"
       ],
-      "color": "#86bf8d",
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -918,7 +1023,7 @@
         "Khezu Hide Tan (1)",
         "Ancient Potion (1)"
       ],
-      "color": "#86bf8d",
+      "color": "green",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -936,7 +1041,7 @@
         "LunastraCarapace (2)",
         "Honey (10)"
       ],
-      "color": "#86bf8d",
+      "color": "green",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -962,6 +1067,7 @@
         "Alluring Hide (1)",
         "Cactus Flower (2)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -977,8 +1083,9 @@
         "LapisLazuliJewel (1)",
         "Alurring Webbing (1)",
         "Lifepowder (1)",
-        "Dobiscus (4)"
+        "Dosbiscus (4)"
       ],
+      "color": "pink",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -996,6 +1103,7 @@
         "ThckPnkRathnScl (4)",
         "Wyvern Stone (1)"
       ],
+      "color": "pink",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1019,6 +1127,7 @@
         "Commendation (1)",
         "Black Pearl (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1034,9 +1143,58 @@
         "UkanlosUnderscl (1)",
         "Commendation S (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Constitutn",
+      "improve-to": [
+        "Constitutn Jewel",
+        "Health Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Constitutn Jewel",
+      "skills": [
+        "Constitutn +1",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "FlynMealPassPlus (1)",
+        "Sharpened Beak (1)"
+      ],
+      "color": "white",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Health Jewel",
+      "skills": [
+        "Constitutn +3",
+        "Stamina -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Black Narga Pelt (3)",
+        "Hypno Beak (1)",
+        "Pawprint Stamp (1)"
+      ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "BlackNargaPelt+ (1)",
+        "Hypno Fang (1)"
+      ],
+      "color": "white",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
       "type": "dec"
     },
     {
@@ -1059,6 +1217,7 @@
         "Cephalos Scale (1)",
         "Well-Done Steak (2)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1076,6 +1235,7 @@
         "Cephalos Scale (1)",
         "Gourmet Steak (1)"
       ],
+      "color": "white",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -1092,6 +1252,7 @@
         "Coral Cphlos Fin (1)",
         "Power Juice (1)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1114,6 +1275,7 @@
         "Congalala Fang (1)",
         "Glutton Tuna (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1138,6 +1300,7 @@
         "Tigrex Fang (1)",
         "Mosswine Hide (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1155,6 +1318,7 @@
         "Conga Pelt+ (2)",
         "Iodrome Skull (1)"
       ],
+      "color": "yellow",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -1180,6 +1344,7 @@
         "Mega Juice (1)",
         "Gourmet Steak (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1197,6 +1362,7 @@
         "Plesioth Fin (1)",
         "Gypceros Head (1)"
       ],
+      "color": "yellow",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1219,6 +1385,7 @@
         "Blango Pelt (2)",
         "Conga Pelt (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1243,6 +1410,7 @@
         "Sm Ceanataur Shl (1)",
         "Kelbi Hide (2)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1259,6 +1427,7 @@
         "Azure LaoS Horn (1)",
         "Black Blos Thracic (1)"
       ],
+      "color": "cyan",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -1287,6 +1456,7 @@
         "Fatalis Scale (1)",
         "Sinister Cloth (2)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1304,6 +1474,7 @@
         "FireWvyrn BrnStm (1)",
         "Gendrome Skull (1)"
       ],
+      "color": "slate",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1328,6 +1499,12 @@
         "Gaoren Shell (1)",
         "Blk Gravios Skl (1)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "PlumD.HermitrClw (1)",
+        "Gaoren Carapace (1)"
+      ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1345,6 +1522,7 @@
         "Wyvern Stone (1)",
         "Lao-Shan's Claw (2)"
       ],
+      "color": "gray",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1369,6 +1547,7 @@
         "Congalala Claw (1)",
         "Rumblefish (5)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1387,6 +1566,7 @@
         "Blk Rajang Pelt+ (4)",
         "Fire Drgn Jwl (1)"
       ],
+      "color": "white",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1411,6 +1591,7 @@
         "Ceanataur Claw (1)",
         "Pin Tuna (3)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1429,6 +1610,7 @@
         "LtherSlvrRthlsTal (2)",
         "Daora Jewel (1)"
       ],
+      "color": "white",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1453,6 +1635,7 @@
         "Piscine Fang (3)",
         "Wyvern Fang (2)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1470,6 +1653,7 @@
         "Azure LaoS Claw (3)",
         "Chameleos Jewel (1)"
       ],
+      "color": "white",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1492,6 +1676,7 @@
         "Lao Shan's Scale (1)",
         "Normal S Lv3 (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1514,6 +1699,7 @@
         "Garuga Scale (1)",
         "Pierce S Lv3 (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1536,6 +1722,7 @@
         "Cephalos Fin (1)",
         "Pellet S Lv3 (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1544,20 +1731,21 @@
     {
       "name": "CragS LV Add",
       "improve-to": [
-        "Bomb Bonus Jewel"
+        "Crag Bonus Jewel"
       ],
       "donotrender": true
     },
     {
-      "name": "Bomb Bonus Jewel",
+      "name": "Crag Bonus Jewel",
       "skills": [
-        "BmbShotAdd +2"
+        "Crag S Add +2"
       ],
       "create-mats": [
         "Akito Jewel (1)",
         "Basarios Shell (1)",
         "Crag S Lv3 (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1580,6 +1768,7 @@
         "Gravios Shell (1)",
         "Clust S Lv3 (1)"
       ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1604,6 +1793,12 @@
         "Rathian Spike (1)",
         "Remobra Skull (1)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "Akantor Scale (1)",
+        "Dragonwood+ (1)"
+      ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1621,6 +1816,7 @@
         "Rathian Spike+ (1)",
         "Thunderbug Juice (1)"
       ],
+      "color": "gray",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1645,6 +1841,7 @@
         "Anteka Antlers (1)",
         "Sharp Claw (1)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1661,6 +1858,121 @@
         "Killer Beetle (1)",
         "Pin Tuna (2)"
       ],
+      "color": "white",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "PoisonCAdd",
+      "improve-to": [
+        "PoisonCoatJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "PoisonCoatJewel",
+      "skills": [
+        "PoisonCAdd +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Rubbery Hide (1)",
+        "Poison Sac (1)",
+        "Poison Coating (1)"
+      ],
+      "color": "slate",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ParalyCAdd",
+      "improve-to": [
+        "ParalysCoatJewel",
+        "ParalysisCAddJwl"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "ParalysCoatJewel",
+      "skills": [
+        "ParalyCAdd +1",
+        "ShortCharge -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Gendrome Hide (1)",
+        "Vespoid Wing (1)",
+        "ParaylsisCoating (1)"
+      ],
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ParalysisCAddJwl",
+      "skills": [
+        "ParalyCAdd +3",
+        "ShortCharge -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Gendrome Tail (2)",
+        "Vespoid Abdomen (1)",
+        "ParaylsisCoating (1)"
+      ],
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "SleepCAdd",
+      "improve-to": [
+        "Sleep Coat Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Sleep Coat Jewel",
+      "skills": [
+        "SleepCAdd +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Plesioth Fin (1)",
+        "Sleep Sac (1)",
+        "Sleep Coating (1)"
+      ],
+      "color": "cyan",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "ClsRngCAdd",
+      "improve-to": [
+        "Combo Coat Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Combo Coat Jewel",
+      "skills": [
+        "SleepCAdd +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "DaoraDragonScale (1)",
+        "Garuga Mane (1)",
+        "CloseRngCoating (1)"
+      ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1684,6 +1996,7 @@
         "Pellet S Lv3 (2)",
         "Clust S Lv3 (1)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1712,6 +2025,7 @@
         "Ceanataur Claw + (1)",
         "Lao-ShanCarapace (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1729,6 +2043,7 @@
         "Daora Sharp Claw (2)",
         "Basarios Wing (2)"
       ],
+      "color": "slate",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1753,6 +2068,7 @@
         "Sharp Claw (1)",
         "Ivy (2)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1767,6 +2083,7 @@
         "Akito Jewel (1)",
         "Chameleos Hide (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1796,6 +2113,7 @@
         "Narga Scale+ (1)",
         "Great Hornfly (1)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1810,8 +2128,9 @@
       "create-mats": [
         "LapisLazuliJewel (1)",
         "Lg Lobstershell (1)",
-        "Gendrome Tail(1)"
+        "Gendrome Tail (1)"
       ],
+      "color": "cyan",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -1841,6 +2160,7 @@
         "StrNargaCttngWing (1)",
         "Emperor Cricket (5)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1858,6 +2178,7 @@
         "Narga Brain Stem (1)",
         "SilverGarugaPelt (3)"
       ],
+      "color": "blue",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1867,7 +2188,8 @@
       "name": "Adrenaline up",
       "improve-to": [
         "Danger Jewel",
-        "Crisis Jewel"
+        "Crisis Jewel",
+        "Pinch Jewel"
       ],
       "donotrender": true
     },
@@ -1882,6 +2204,7 @@
         "Monoblos Spine (1)",
         "Wyvern Skull Shl (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1899,6 +2222,25 @@
         "Blood Red Horn (1)",
         "Wht Monoblos Hrn (1)"
       ],
+      "color": "red",
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Pinch Jewel",
+      "skills": [
+        "Potential +3",
+        "Protection -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "Akantor Shell (1)",
+        "Top-GrdRedHorn (1)",
+        "Blk Rajang Pelt (3)"
+      ],
+      "color": "red",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -1921,6 +2263,30 @@
         "FlynMealPassReg (1)",
         "B urnt Meat (1)"
       ],
+      "color": "orange",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Map",
+      "improve-to": [
+        "Map Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Map Jewel",
+      "skills": [
+        "Map +2"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Dragonite Ore (1)",
+        "Rainbow Ore (2)"
+      ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1943,6 +2309,30 @@
         "Kut-Ku Ear (1)",
         "Psychoserum (1)"
       ],
+      "color": "orange",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Tranquilizing Guru",
+      "improve-to": [
+        "Perceive Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Perceive Jewel",
+      "skills": [
+        "Perceive +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "RainbowTailFeath (1)",
+        "Binoculars (1)"
+      ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1968,6 +2358,7 @@
         "Grn Plesioth Scl (1)",
         "Vespoid Shell (2)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -1984,6 +2375,7 @@
         "Grn Plesioth Scl+ (1)",
         "Vespoid Wing (1)"
       ],
+      "color": "blue",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2001,6 +2393,7 @@
         "Vespoid Razorwing (1)",
         "Catalyst (3)"
       ],
+      "color": "blue",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2023,6 +2416,7 @@
         "Book of Combos 1 (1)",
         "Springnight Carp (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2046,6 +2440,7 @@
         "Ancient Potion (1)",
         "Antiseptic Stone (2)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2070,6 +2465,7 @@
         "Machalite Ore (1)",
         "Gunpowder (2)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2085,6 +2481,7 @@
         "Dragonite Ore (2)",
         "Firestone (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2107,7 +2504,7 @@
         "Congalala Pelt (2)",
         "Flute (1)"
       ],
-      "color": "#ea9aa4",
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2132,6 +2529,7 @@
         "Suiko Jewel (1)",
         "Velociprey Fang (2)"
       ],
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2148,6 +2546,7 @@
         "Velocidrome Claw (2)",
         "Pur Rubbery Hide (1)"
       ],
+      "color": "blue",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2161,9 +2560,9 @@
       "create-mats": [
         "BattlefieldJewel (1)",
         "LthrC.BlangoTail (1)",
-        "ThkBullfangoPelt (2)",
-        "||1 ||4 ||200z ||"
+        "ThkBullfangoPelt (2)"
       ],
+      "color": "blue",
       "slots": "---",
       "rarity": 4,
       "create-cost": 200,
@@ -2188,6 +2587,7 @@
         "Suiko Jewel (1)",
         "Genprey Fang (1)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2203,6 +2603,7 @@
         "Akito Jewel (1)",
         "Paralysis Sac (1)"
       ],
+      "color": "yellow",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2218,6 +2619,7 @@
         "VespoidQn'sCrown (1)",
         "Thunderbug Jelly (2)"
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2241,6 +2643,7 @@
         "Suiko Jewel (1)",
         "Sleep Herb (2)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2256,6 +2659,7 @@
         "Sleep Sac (1)",
         "Sleepy Fish (2)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2280,6 +2684,7 @@
         "Suiko Jewel (1)",
         "Ioprey Fang (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2296,6 +2701,7 @@
         "Poison Sac (2)",
         "Herbal Medicine (2)"
       ],
+      "color": "slate",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2311,6 +2717,7 @@
         "DeadlyPoisonSac (1)",
         "SpecRemobraSkin+ (2)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2335,6 +2742,7 @@
         "Suiko Jewel (1)",
         "Giaprey Scale (2)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2350,6 +2758,7 @@
         "Akito Jewel (1)",
         "Blangonga Fang (1)"
       ],
+      "color": "white",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2361,10 +2770,11 @@
         "Snow Res +2"
       ],
       "create-mats": [
-        "BattelfieldJewel (1)",
+        "BattlefieldJewel (1)",
         "LeathrBlangoTail (1)",
         "Giaprey Scale+ (3)"
       ],
+      "color": "white",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2389,6 +2799,7 @@
         "Blangonga Pelt (1)",
         "Power Pill (1)"
       ],
+      "color": "slate",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2405,6 +2816,11 @@
         "Gaoren Pincer (1)",
         "Blangonga Tail (1)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "Hard Gaoren Claw (1)"
+      ],
+      "color": "slate",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2433,6 +2849,7 @@
         "LapisLazuliJewel (1)",
         "Long Garuga Ear (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2450,6 +2867,12 @@
         "Tigrex Skull Shl (1)",
         "Monster Broth (2)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "HvyAzurRthlsShl (1)",
+        "LthrChameleoTail (1)"
+      ],
+      "color": "gray",
       "slots": "OOO",
       "rarity": 5,
       "create-cost": 450,
@@ -2459,7 +2882,8 @@
       "name": "Low/High Wind Pres/Drg Wind Breaker",
       "improve-to": [
         "PaperweightJewel",
-        "HeavyMetal Jewel"
+        "HeavyMetal Jewel",
+        "Solid Rock Jewel"
       ],
       "donotrender": true
     },
@@ -2474,6 +2898,7 @@
         "Diablos Shell (1)",
         "Lightcrystal (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2490,9 +2915,144 @@
         "Chameleos Hide+ (1)",
         "Diablos Carapace (1)"
       ],
+      "color": "gray",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "Solid Rock Jewel",
+      "skills": [
+        "WindPress +5",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "SpecChameleHide+ (2)",
+        "HvyDiablosSpine (1)",
+        "Purecrystal (1)"
+      ],
+      "color": "gray",
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
+      "type": "dec"
+    },
+    {
+      "name": "Cold Elimination",
+      "improve-to": [
+        "WarmBreeze Jewel",
+        "Hot Wind Jewel",
+        "HotBreezeJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "WarmBreeze Jewel",
+      "skills": [
+        "Cold Res +1",
+        "Heat Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Cephalos Scale (2)"
+      ],
+      "color": "orange",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Hot Wind Jewel",
+      "skills": [
+        "Cold Res +3",
+        "Heat Res -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Cephalos Fin (1)",
+        "Nitroshroom (4)"
+      ],
+      "color": "orange",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "HotBreezeJewel",
+      "skills": [
+        "Cold Res +2"
+      ],
+      "create-mats": [
+        "LapisLazuli Jewel (1)",
+        "C.BlangongaPelt+ (2)",
+        "Genprey Hide+ (1)"
+      ],
+      "color": "orange",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Heat Cancel",
+      "improve-to": [
+        "ColdBreeze Jewel",
+        "Cold Wind Jewel",
+        "ColdBreezeJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "ColdBreeze Jewel",
+      "skills": [
+        "Heat Res +1",
+        "Cold Res -1"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Blango Pelt (2)"
+      ],
+      "color": "cyan",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Cold Wind Jewel",
+      "skills": [
+        "Heat Res +3",
+        "Cold Res -1"
+      ],
+      "create-mats": [
+        "Akito Jewel (1)",
+        "Blangonga Whiskr (1)",
+        "Ice Crystal (4)"
+      ],
+      "color": "cyan",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "ColdBreezeJewel",
+      "skills": [
+        "Heat Res +2"
+      ],
+      "create-mats": [
+        "LapisLazuli Jewel (1)",
+        "2 HrdBlangongaPlt+ (2)",
+        "Giaprey Hide+ (1)"
+      ],
+      "color": "cyan",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
       "type": "dec"
     },
     {
@@ -2514,6 +3074,7 @@
         "Basarios Shell (1)",
         "Armor Pill (1)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2531,6 +3092,13 @@
         "Teostra Tail (1)",
         "Gourmet Fish+ (3)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "Daora Carapace (2)",
+        "Basarios Carpace (1)",
+        "Immunizer (1)"
+      ],
+      "color": "pink",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2553,6 +3121,7 @@
         "Felvine (2)",
         "Unknown Skull (1)"
       ],
+      "color": "gray",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2577,6 +3146,7 @@
         "Conga Pelt (2)",
         "Bitterbug (1)"
       ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2592,6 +3162,11 @@
         "Congalala Pelt (2)",
         "Antiseptic Jewel (2)"
       ],
+      "alternative-create-mats": [
+        "BattlefieldJewel (1)",
+        "HrdCongalalaPlt+ (1)"
+      ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2615,6 +3190,12 @@
         "Fire Drgn Webbing (1)",
         "Sunset Herb (3)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "ThckFireDrgnScl (2)",
+        "Energy Drink (1)"
+      ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2637,6 +3218,30 @@
         "Power Extract (1)",
         "Giant Bone (1)"
       ],
+      "color": "cyan",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Gathering",
+      "improve-to": [
+        "Gathering Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Gathering Jewel",
+      "skills": [
+        "Gathering +2"
+      ],
+      "create-mats": [
+        "Suiko Jewel (1)",
+        "Dosbiscus (1)",
+        "Bughopper (2)"
+      ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2659,6 +3264,7 @@
         "Great Hornfly (1)",
         "Power Extract (1)"
       ],
+      "color": "green",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2683,6 +3289,7 @@
         "Boomerang (1)",
         "Flute (1)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2699,6 +3306,7 @@
         "Mega Pickaxe (1)",
         "Mega Bugnet (1)"
       ],
+      "color": "pink",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2708,7 +3316,7 @@
       "name": "Carving Iron Man/Celebrity",
       "improve-to": [
         "HideCutter Jewel",
-        "Blessing Jewel"
+        "Carving Jewel"
       ],
       "donotrender": true
     },
@@ -2723,9 +3331,33 @@
         "Daora Claw (1)",
         "ShakalakaTreasre (1)"
       ],
+      "alternative-create-mats": [
+        "LapisLazuliJewel (1)",
+        "Rubbery Hide+ (1)",
+        "ShakaInheritance (1)"
+      ],
+      "color": "orange",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Carving Jewel",
+      "skills": [
+        "Carving +4",
+        "Fate -2"
+      ],
+      "create-mats": [
+        "LapisLazuli Jewel (1)",
+        "UkanlosDiggnClw (3)",
+        "ShakalakaTreasr+ (1)",
+        "Big Wyvern Stone (1)"
+      ],
+      "color": "orange",
+      "slots": "OOO",
+      "rarity": 5,
+      "create-cost": 450,
       "type": "dec"
     },
     {
@@ -2746,6 +3378,7 @@
         "Akito Jewel (1)",
         "Steel Egg (1)"
       ],
+      "color": "red",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2761,6 +3394,74 @@
         "BattlefieldJewel (1)",
         "Gold Egg (1)"
       ],
+      "color": "red",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
+      "name": "SpeedSetup",
+      "improve-to": [
+        "TrapMasterJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "TrapMasterJewel",
+      "skills": [
+        "SpeedSetup +2"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "ShakalakaTreasre (1)",
+        "Shock Trap (1)"
+      ],
+      "color": "cyan",
+      "slots": "OO-",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Tranquilzr",
+      "improve-to": [
+        "Tranq Jewel",
+        "Knockout Jewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Tranq Jewel",
+      "skills": [
+        "Tranquilzr +1",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "OrangeHypnoPelt (1)",
+        "Piscine Fang (1)",
+        "Net (1)"
+      ],
+      "color": "green",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "Knockout Jewel",
+      "skills": [
+        "Tranquilzr +3",
+        "Fate -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "OrangeHypnoPelt+ (3)",
+        "HvyPiscineFang (3)",
+        "Trap Tool (2)"
+      ],
+      "color": "green",
       "slots": "OO-",
       "rarity": 5,
       "create-cost": 375,
@@ -2783,6 +3484,7 @@
         "Cricket (1)",
         "Yambug (1)"
       ],
+      "color": "cyan",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2810,7 +3512,7 @@
         "Gastronome Tuna (1)",
         "Felvine (10)"
       ],
-      "color": "#80c2fc",
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2834,7 +3536,7 @@
         "Commendation G (1)",
         "Mega Demondrug (1)"
       ],
-      "color": "#80c2fc",
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,
@@ -2858,7 +3560,7 @@
         "Commendation G (1)",
         "Mega Armorskin (1)"
       ],
-      "color": "#80c2fc",
+      "color": "blue",
       "slots": "O--",
       "rarity": 4,
       "create-cost": 200,

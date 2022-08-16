@@ -3,7 +3,7 @@ require 'find'
 require 'erb'
 
 FILE_TEMPLATE = %{{
-    "map": <%= weapon_map.to_json %>
+    "map": <%= JSON.pretty_generate(weapon_map) %>
   }
 }.gsub(/^  /, '')
 
@@ -66,7 +66,7 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
 
   if weapon.key?("improve-to") and weapon["improve-to"]
     array.last[:children] = []
-    
+
     for child_weapon_name in weapon["improve-to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
       

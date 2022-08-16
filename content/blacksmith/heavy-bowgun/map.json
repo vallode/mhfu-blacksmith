@@ -1,622 +1,622 @@
 {
   "map": [
-    {
-      "slug": "bone-shooter",
-      "type": "heavy-bowgun",
-      "name": "Bone Shooter",
-      "rarity": "1"
-    },
-    {
-      "slug": "injection-cannon",
-      "type": "heavy-bowgun",
-      "name": "Injection Cannon",
-      "rarity": "2"
-    },
-    {
-      "slug": "rapidcaster",
-      "type": "heavy-bowgun",
-      "name": "Rapidcaster",
-      "rarity": "2"
-    },
-    {
-      "slug": "tankmage",
-      "type": "heavy-bowgun",
-      "name": "Tankmage",
-      "rarity": "3"
-    },
-    {
-      "slug": "bastionmage",
-      "type": "heavy-bowgun",
-      "name": "Bastionmage",
-      "rarity": "3"
-    },
-    {
-      "slug": "sand-driver",
-      "type": "heavy-bowgun",
-      "name": "Sand Driver",
-      "rarity": "3"
-    },
-    {
-      "slug": "yian-kut-ku-cannon",
-      "type": "heavy-bowgun",
-      "name": "Yian Kut-Ku Cannon",
-      "rarity": "3"
-    },
-    {
-      "slug": "crab-buster",
-      "type": "heavy-bowgun",
-      "name": "Crab Buster",
-      "rarity": "3"
-    },
-    {
-      "slug": "rock-eater",
-      "type": "heavy-bowgun",
-      "name": "Rock Eater",
-      "rarity": "4"
-    },
-    {
-      "slug": "meteor-cannon",
-      "type": "heavy-bowgun",
-      "name": "Meteor Cannon",
-      "rarity": "4"
-    },
-    {
-      "slug": "flechette-gun",
-      "type": "heavy-bowgun",
-      "name": "Flechette Gun",
-      "rarity": "4"
-    },
-    {
-      "slug": "monodevilcaster",
-      "type": "heavy-bowgun",
-      "name": "Monodevilcaster",
-      "rarity": "4"
-    },
-    {
-      "slug": "piercing-crab",
-      "type": "heavy-bowgun",
-      "name": "Piercing Crab",
-      "rarity": "4"
-    },
-    {
-      "slug": "blue-kut-ku-cannon",
-      "type": "heavy-bowgun",
-      "name": "Blue Kut-Ku Cannon",
-      "rarity": "4"
-    },
-    {
-      "slug": "duelcaster",
-      "type": "heavy-bowgun",
-      "name": "Duelcaster",
-      "rarity": "4"
-    },
-    {
-      "slug": "tigrex-howl",
-      "type": "heavy-bowgun",
-      "name": "Tigrex Howl",
-      "rarity": "4"
-    },
-    {
-      "slug": "seven-nova",
-      "type": "heavy-bowgun",
-      "name": "Seven Nova",
-      "rarity": "5"
-    },
-    {
-      "slug": "quickcaster",
-      "type": "heavy-bowgun",
-      "name": "Quickcaster",
-      "rarity": "5"
-    },
-    {
-      "slug": "black-cannon",
-      "type": "heavy-bowgun",
-      "name": "Black Cannon",
-      "rarity": "5"
-    },
-    {
-      "slug": "raven-heirloom",
-      "type": "heavy-bowgun",
-      "name": "Raven Heirloom",
-      "rarity": "5"
-    },
-    {
-      "slug": "daora-s-delphinidae",
-      "type": "heavy-bowgun",
-      "name": "Daora's Delphinidae",
-      "rarity": "5"
-    },
-    {
-      "slug": "lunastra-s-cannon",
-      "type": "heavy-bowgun",
-      "name": "Lunastra's Cannon",
-      "rarity": "5"
-    },
-    {
-      "slug": "teostra-s-artillery",
-      "type": "heavy-bowgun",
-      "name": "Teostra's Artillery",
-      "rarity": "5"
-    },
-    {
-      "slug": "bronze-fire",
-      "type": "heavy-bowgun",
-      "name": "Bronze Fire",
-      "rarity": "5"
-    },
-    {
-      "slug": "lao-shan-lung-cannon",
-      "type": "heavy-bowgun",
-      "name": "Lao-Shan Lung Cannon",
-      "rarity": "5"
-    },
-    {
-      "slug": "great-arbalest",
-      "type": "heavy-bowgun",
-      "name": "Great Arbalest",
-      "rarity": "6"
-    },
-    {
-      "slug": "tankmage-plus",
-      "type": "heavy-bowgun",
-      "name": "Tankmage+",
-      "rarity": "6"
-    },
-    {
-      "slug": "desert-diver",
-      "type": "heavy-bowgun",
-      "name": "Desert Diver",
-      "rarity": "6"
-    },
-    {
-      "slug": "meteor-buster",
-      "type": "heavy-bowgun",
-      "name": "Meteor Buster",
-      "rarity": "6"
-    },
-    {
-      "slug": "honeycomber",
-      "type": "heavy-bowgun",
-      "name": "Honeycomber",
-      "rarity": "6"
-    },
-    {
-      "slug": "earth-eater",
-      "type": "heavy-bowgun",
-      "name": "Earth Eater",
-      "rarity": "6"
-    },
-    {
-      "slug": "heavy-buster-crab",
-      "type": "heavy-bowgun",
-      "name": "Heavy Buster Crab",
-      "rarity": "6"
-    },
-    {
-      "slug": "gravios-howl",
-      "type": "heavy-bowgun",
-      "name": "Gravios Howl",
-      "rarity": "6"
-    },
-    {
-      "slug": "heavy-piercing-crab",
-      "type": "heavy-bowgun",
-      "name": "Heavy Piercing Crab",
-      "rarity": "6"
-    },
-    {
-      "slug": "duelcaster-plus",
-      "type": "heavy-bowgun",
-      "name": "Duelcaster+",
-      "rarity": "6"
-    },
-    {
-      "slug": "tigrex-skull",
-      "type": "heavy-bowgun",
-      "name": "Tigrex Skull",
-      "rarity": "6"
-    },
-    {
-      "slug": "hidden-sniper",
-      "type": "heavy-bowgun",
-      "name": "Hidden Sniper",
-      "rarity": "7"
-    },
-    {
-      "slug": "bastion-cannon",
-      "type": "heavy-bowgun",
-      "name": "Bastion Cannon",
-      "rarity": "7"
-    },
-    {
-      "slug": "gravios-roar",
-      "type": "heavy-bowgun",
-      "name": "Gravios Roar",
-      "rarity": "7"
-    },
-    {
-      "slug": "mega-kut-ku-cannon",
-      "type": "heavy-bowgun",
-      "name": "Mega Kut-Ku Cannon",
-      "rarity": "7"
-    },
-    {
-      "slug": "monodevilcaster-plus",
-      "type": "heavy-bowgun",
-      "name": "Monodevilcaster+",
-      "rarity": "7"
-    },
-    {
-      "slug": "seven-stars",
-      "type": "heavy-bowgun",
-      "name": "Seven Stars",
-      "rarity": "8"
-    },
-    {
-      "slug": "quickcaster-plus",
-      "type": "heavy-bowgun",
-      "name": "Quickcaster+",
-      "rarity": "8"
-    },
-    {
-      "slug": "grande-daora",
-      "type": "heavy-bowgun",
-      "name": "Grande Daora",
-      "rarity": "8"
-    },
-    {
-      "slug": "vor-cannon",
-      "type": "heavy-bowgun",
-      "name": "Vor Cannon",
-      "rarity": "8"
-    },
-    {
-      "slug": "lunastra-s-flames",
-      "type": "heavy-bowgun",
-      "name": "Lunastra's Flames",
-      "rarity": "8"
-    },
-    {
-      "slug": "teostra-s-flames",
-      "type": "heavy-bowgun",
-      "name": "Teostra's Flames",
-      "rarity": "8"
-    },
-    {
-      "slug": "destiny-s-hands",
-      "type": "heavy-bowgun",
-      "name": "Destiny's Hands",
-      "rarity": "8"
-    },
-    {
-      "slug": "wolf-heirloom",
-      "type": "heavy-bowgun",
-      "name": "Wolf Heirloom",
-      "rarity": "8"
-    },
-    {
-      "slug": "gaoren-s-fire",
-      "type": "heavy-bowgun",
-      "name": "Gaoren's Fire",
-      "rarity": "8"
-    },
-    {
-      "slug": "suprm-lao-shan-cannon",
-      "type": "heavy-bowgun",
-      "name": "Suprm Lao-Shan Cannon",
-      "rarity": "8"
-    },
-    {
-      "slug": "empr-lao-shan-cannon",
-      "type": "heavy-bowgun",
-      "name": "Empr Lao-Shan Cannon",
-      "rarity": "8"
-    },
-    {
-      "slug": "great-arbalest-plus",
-      "type": "heavy-bowgun",
-      "name": "Great Arbalest+",
-      "rarity": "9"
-    },
-    {
-      "slug": "tanksorcerer",
-      "type": "heavy-bowgun",
-      "name": "Tanksorcerer",
-      "rarity": "9"
-    },
-    {
-      "slug": "bastionwitch",
-      "type": "heavy-bowgun",
-      "name": "Bastionwitch",
-      "rarity": "9"
-    },
-    {
-      "slug": "power-stinger",
-      "type": "heavy-bowgun",
-      "name": "Power Stinger",
-      "rarity": "9"
-    },
-    {
-      "slug": "pressurized-plesioth",
-      "type": "heavy-bowgun",
-      "name": "Pressurized Plesioth",
-      "rarity": "9"
-    },
-    {
-      "slug": "violet-punisher",
-      "type": "heavy-bowgun",
-      "name": "Violet Punisher",
-      "rarity": "9"
-    },
-    {
-      "slug": "super-kut-ku-cannon",
-      "type": "heavy-bowgun",
-      "name": "Super Kut-Ku Cannon",
-      "rarity": "9"
-    },
-    {
-      "slug": "ultra-kut-ku-cannon",
-      "type": "heavy-bowgun",
-      "name": "Ultra Kut-Ku Cannon",
-      "rarity": "9"
-    },
-    {
-      "slug": "meteor-shower",
-      "type": "heavy-bowgun",
-      "name": "Meteor Shower",
-      "rarity": "9"
-    },
-    {
-      "slug": "gaia-eater",
-      "type": "heavy-bowgun",
-      "name": "Gaia Eater",
-      "rarity": "9"
-    },
-    {
-      "slug": "icethrower",
-      "type": "heavy-bowgun",
-      "name": "Icethrower",
-      "rarity": "9"
-    },
-    {
-      "slug": "ceanataur-blaster",
-      "type": "heavy-bowgun",
-      "name": "Ceanataur Blaster",
-      "rarity": "9"
-    },
-    {
-      "slug": "gravios-gigahowl",
-      "type": "heavy-bowgun",
-      "name": "Gravios gigahowl",
-      "rarity": "9"
-    },
-    {
-      "slug": "jolly-roger-cannon",
-      "type": "heavy-bowgun",
-      "name": "Jolly Roger Cannon",
-      "rarity": "9"
-    },
-    {
-      "slug": "queen-needle",
-      "type": "heavy-bowgun",
-      "name": "Queen Needle",
-      "rarity": "10"
-    },
-    {
-      "slug": "evil-wind-darkcannon",
-      "type": "heavy-bowgun",
-      "name": "Evil Wind Darkcannon",
-      "rarity": "10"
-    },
-    {
-      "slug": "greatladybugcannon-plus",
-      "type": "heavy-bowgun",
-      "name": "GreatLadybugCannon+",
-      "rarity": "10"
-    },
-    {
-      "slug": "quick-quiver",
-      "type": "heavy-bowgun",
-      "name": "Quick Quiver",
-      "rarity": "10"
-    },
-    {
-      "slug": "crow-heirloom",
-      "type": "heavy-bowgun",
-      "name": "Crow Heirloom",
-      "rarity": "10"
-    },
-    {
-      "slug": "terra-c-blaster",
-      "type": "heavy-bowgun",
-      "name": "Terra C Blaster",
-      "rarity": "10"
-    },
-    {
-      "slug": "daora-s-ceti",
-      "type": "heavy-bowgun",
-      "name": "Daora's Ceti",
-      "rarity": "10"
-    },
-    {
-      "slug": "destiny-s-arm",
-      "type": "heavy-bowgun",
-      "name": "Destiny's Arm",
-      "rarity": "10"
-    },
-    {
-      "slug": "gravios-gigaroar",
-      "type": "heavy-bowgun",
-      "name": "Gravios Gigaroar",
-      "rarity": "10"
-    },
-    {
-      "slug": "teostra-flamethrower",
-      "type": "heavy-bowgun",
-      "name": "Teostra Flamethrower",
-      "rarity": "10"
-    },
-    {
-      "slug": "dark-duelcaster",
-      "type": "heavy-bowgun",
-      "name": "Dark Duelcaster",
-      "rarity": "10"
-    },
-    {
-      "slug": "vor-buster",
-      "type": "heavy-bowgun",
-      "name": "Vor Buster",
-      "rarity": "10"
-    },
-    {
-      "slug": "tigrex-skull-plus",
-      "type": "heavy-bowgun",
-      "name": "Tigrex Skull+",
-      "rarity": "10"
-    },
-    {
-      "slug": "gaoren-orb",
-      "type": "heavy-bowgun",
-      "name": "Gaoren Orb",
-      "rarity": "10"
-    },
-    {
-      "slug": "ancientdrgnwoodcan",
-      "type": "heavy-bowgun",
-      "name": "AncientDrgnwoodCan",
-      "rarity": "10"
-    },
-    {
-      "slug": "ultimatelao-shaocan",
-      "type": "heavy-bowgun",
-      "name": "UltimateLao-ShaoCan",
-      "rarity": "10"
-    },
-    {
-      "slug": "ukanlos-cannon",
-      "type": "heavy-bowgun",
-      "name": "Ukanlos Cannon",
-      "rarity": "10"
-    },
-    {
-      "slug": "arbalest-g",
-      "type": "heavy-bowgun",
-      "name": "Arbalest G",
-      "rarity": "9"
-    },
-    {
-      "slug": "rapidcaster-g",
-      "type": "heavy-bowgun",
-      "name": "Rapidcaster G",
-      "rarity": "9"
-    },
-    {
-      "slug": "injector-cannon-g",
-      "type": "heavy-bowgun",
-      "name": "Injector Cannon G",
-      "rarity": "9"
-    },
-    {
-      "slug": "honeycomber-g",
-      "type": "heavy-bowgun",
-      "name": "Honeycomber G",
-      "rarity": "9"
-    },
-    {
-      "slug": "tanksorcerer-g",
-      "type": "heavy-bowgun",
-      "name": "Tanksorcerer G",
-      "rarity": "9"
-    },
-    {
-      "slug": "bastionwitch-g",
-      "type": "heavy-bowgun",
-      "name": "Bastionwitch G",
-      "rarity": "9"
-    },
-    {
-      "slug": "desert-diver-g",
-      "type": "heavy-bowgun",
-      "name": "Desert Diver G",
-      "rarity": "9"
-    },
-    {
-      "slug": "power-stinger-g",
-      "type": "heavy-bowgun",
-      "name": "Power Stinger G",
-      "rarity": "9"
-    },
-    {
-      "slug": "crab-buster-g",
-      "type": "heavy-bowgun",
-      "name": "Crab Buster G",
-      "rarity": "9"
-    },
-    {
-      "slug": "meteor-cannon-g",
-      "type": "heavy-bowgun",
-      "name": "Meteor Cannon G",
-      "rarity": "9"
-    },
-    {
-      "slug": "pressurizedplesiothg",
-      "type": "heavy-bowgun",
-      "name": "PressurizedPlesiothG",
-      "rarity": "9"
-    },
-    {
-      "slug": "violet-punisher-g",
-      "type": "heavy-bowgun",
-      "name": "Violet Punisher G",
-      "rarity": "9"
-    },
-    {
-      "slug": "superkut-kucannon-g",
-      "type": "heavy-bowgun",
-      "name": "SuperKut-KuCannon G",
-      "rarity": "9"
-    },
-    {
-      "slug": "ultrakut-kucannon-g",
-      "type": "heavy-bowgun",
-      "name": "UltraKut-KuCannon G",
-      "rarity": "9"
-    },
-    {
-      "slug": "monodevilcaster-g",
-      "type": "heavy-bowgun",
-      "name": "Monodevilcaster G",
-      "rarity": "9"
-    },
-    {
-      "slug": "duelcaster-g",
-      "type": "heavy-bowgun",
-      "name": "Duelcaster G",
-      "rarity": "9"
-    },
-    {
-      "slug": "queen-needle-g",
-      "type": "heavy-bowgun",
-      "name": "Queen Needle G",
-      "rarity": "10"
-    },
-    {
-      "slug": "black-cannon-g",
-      "type": "heavy-bowgun",
-      "name": "Black Cannon G",
-      "rarity": "10"
-    },
-    {
-      "slug": "lunastra-s-flames-g",
-      "type": "heavy-bowgun",
-      "name": "Lunastra's Flames G",
-      "rarity": "10"
-    },
-    {
-      "slug": "lao-shanlungcannon-g",
-      "type": "heavy-bowgun",
-      "name": "Lao-ShanLungCannon G",
-      "rarity": "10"
-    }
-  ]
+  {
+    "slug": "bone-shooter",
+    "type": "heavy-bowgun",
+    "name": "Bone Shooter",
+    "rarity": "1"
+  },
+  {
+    "slug": "injection-cannon",
+    "type": "heavy-bowgun",
+    "name": "Injection Cannon",
+    "rarity": "2"
+  },
+  {
+    "slug": "rapidcaster",
+    "type": "heavy-bowgun",
+    "name": "Rapidcaster",
+    "rarity": "2"
+  },
+  {
+    "slug": "tankmage",
+    "type": "heavy-bowgun",
+    "name": "Tankmage",
+    "rarity": "3"
+  },
+  {
+    "slug": "bastionmage",
+    "type": "heavy-bowgun",
+    "name": "Bastionmage",
+    "rarity": "3"
+  },
+  {
+    "slug": "sand-driver",
+    "type": "heavy-bowgun",
+    "name": "Sand Driver",
+    "rarity": "3"
+  },
+  {
+    "slug": "yian-kut-ku-cannon",
+    "type": "heavy-bowgun",
+    "name": "Yian Kut-Ku Cannon",
+    "rarity": "3"
+  },
+  {
+    "slug": "crab-buster",
+    "type": "heavy-bowgun",
+    "name": "Crab Buster",
+    "rarity": "3"
+  },
+  {
+    "slug": "rock-eater",
+    "type": "heavy-bowgun",
+    "name": "Rock Eater",
+    "rarity": "4"
+  },
+  {
+    "slug": "meteor-cannon",
+    "type": "heavy-bowgun",
+    "name": "Meteor Cannon",
+    "rarity": "4"
+  },
+  {
+    "slug": "flechette-gun",
+    "type": "heavy-bowgun",
+    "name": "Flechette Gun",
+    "rarity": "4"
+  },
+  {
+    "slug": "monodevilcaster",
+    "type": "heavy-bowgun",
+    "name": "Monodevilcaster",
+    "rarity": "4"
+  },
+  {
+    "slug": "piercing-crab",
+    "type": "heavy-bowgun",
+    "name": "Piercing Crab",
+    "rarity": "4"
+  },
+  {
+    "slug": "blue-kut-ku-cannon",
+    "type": "heavy-bowgun",
+    "name": "Blue Kut-Ku Cannon",
+    "rarity": "4"
+  },
+  {
+    "slug": "duelcaster",
+    "type": "heavy-bowgun",
+    "name": "Duelcaster",
+    "rarity": "4"
+  },
+  {
+    "slug": "tigrex-howl",
+    "type": "heavy-bowgun",
+    "name": "Tigrex Howl",
+    "rarity": "4"
+  },
+  {
+    "slug": "seven-nova",
+    "type": "heavy-bowgun",
+    "name": "Seven Nova",
+    "rarity": "5"
+  },
+  {
+    "slug": "quickcaster",
+    "type": "heavy-bowgun",
+    "name": "Quickcaster",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-cannon",
+    "type": "heavy-bowgun",
+    "name": "Black Cannon",
+    "rarity": "5"
+  },
+  {
+    "slug": "raven-heirloom",
+    "type": "heavy-bowgun",
+    "name": "Raven Heirloom",
+    "rarity": "5"
+  },
+  {
+    "slug": "daora-s-delphinidae",
+    "type": "heavy-bowgun",
+    "name": "Daora's Delphinidae",
+    "rarity": "5"
+  },
+  {
+    "slug": "lunastra-s-cannon",
+    "type": "heavy-bowgun",
+    "name": "Lunastra's Cannon",
+    "rarity": "5"
+  },
+  {
+    "slug": "teostra-s-artillery",
+    "type": "heavy-bowgun",
+    "name": "Teostra's Artillery",
+    "rarity": "5"
+  },
+  {
+    "slug": "bronze-fire",
+    "type": "heavy-bowgun",
+    "name": "Bronze Fire",
+    "rarity": "5"
+  },
+  {
+    "slug": "lao-shan-lung-cannon",
+    "type": "heavy-bowgun",
+    "name": "Lao-Shan Lung Cannon",
+    "rarity": "5"
+  },
+  {
+    "slug": "great-arbalest",
+    "type": "heavy-bowgun",
+    "name": "Great Arbalest",
+    "rarity": "6"
+  },
+  {
+    "slug": "tankmage-plus",
+    "type": "heavy-bowgun",
+    "name": "Tankmage+",
+    "rarity": "6"
+  },
+  {
+    "slug": "desert-diver",
+    "type": "heavy-bowgun",
+    "name": "Desert Diver",
+    "rarity": "6"
+  },
+  {
+    "slug": "meteor-buster",
+    "type": "heavy-bowgun",
+    "name": "Meteor Buster",
+    "rarity": "6"
+  },
+  {
+    "slug": "honeycomber",
+    "type": "heavy-bowgun",
+    "name": "Honeycomber",
+    "rarity": "6"
+  },
+  {
+    "slug": "earth-eater",
+    "type": "heavy-bowgun",
+    "name": "Earth Eater",
+    "rarity": "6"
+  },
+  {
+    "slug": "heavy-buster-crab",
+    "type": "heavy-bowgun",
+    "name": "Heavy Buster Crab",
+    "rarity": "6"
+  },
+  {
+    "slug": "gravios-howl",
+    "type": "heavy-bowgun",
+    "name": "Gravios Howl",
+    "rarity": "6"
+  },
+  {
+    "slug": "heavy-piercing-crab",
+    "type": "heavy-bowgun",
+    "name": "Heavy Piercing Crab",
+    "rarity": "6"
+  },
+  {
+    "slug": "duelcaster-plus",
+    "type": "heavy-bowgun",
+    "name": "Duelcaster+",
+    "rarity": "6"
+  },
+  {
+    "slug": "tigrex-skull",
+    "type": "heavy-bowgun",
+    "name": "Tigrex Skull",
+    "rarity": "6"
+  },
+  {
+    "slug": "hidden-sniper",
+    "type": "heavy-bowgun",
+    "name": "Hidden Sniper",
+    "rarity": "7"
+  },
+  {
+    "slug": "bastion-cannon",
+    "type": "heavy-bowgun",
+    "name": "Bastion Cannon",
+    "rarity": "7"
+  },
+  {
+    "slug": "gravios-roar",
+    "type": "heavy-bowgun",
+    "name": "Gravios Roar",
+    "rarity": "7"
+  },
+  {
+    "slug": "mega-kut-ku-cannon",
+    "type": "heavy-bowgun",
+    "name": "Mega Kut-Ku Cannon",
+    "rarity": "7"
+  },
+  {
+    "slug": "monodevilcaster-plus",
+    "type": "heavy-bowgun",
+    "name": "Monodevilcaster+",
+    "rarity": "7"
+  },
+  {
+    "slug": "seven-stars",
+    "type": "heavy-bowgun",
+    "name": "Seven Stars",
+    "rarity": "8"
+  },
+  {
+    "slug": "quickcaster-plus",
+    "type": "heavy-bowgun",
+    "name": "Quickcaster+",
+    "rarity": "8"
+  },
+  {
+    "slug": "grande-daora",
+    "type": "heavy-bowgun",
+    "name": "Grande Daora",
+    "rarity": "8"
+  },
+  {
+    "slug": "vor-cannon",
+    "type": "heavy-bowgun",
+    "name": "Vor Cannon",
+    "rarity": "8"
+  },
+  {
+    "slug": "lunastra-s-flames",
+    "type": "heavy-bowgun",
+    "name": "Lunastra's Flames",
+    "rarity": "8"
+  },
+  {
+    "slug": "teostra-s-flames",
+    "type": "heavy-bowgun",
+    "name": "Teostra's Flames",
+    "rarity": "8"
+  },
+  {
+    "slug": "destiny-s-hands",
+    "type": "heavy-bowgun",
+    "name": "Destiny's Hands",
+    "rarity": "8"
+  },
+  {
+    "slug": "wolf-heirloom",
+    "type": "heavy-bowgun",
+    "name": "Wolf Heirloom",
+    "rarity": "8"
+  },
+  {
+    "slug": "gaoren-s-fire",
+    "type": "heavy-bowgun",
+    "name": "Gaoren's Fire",
+    "rarity": "8"
+  },
+  {
+    "slug": "suprm-lao-shan-cannon",
+    "type": "heavy-bowgun",
+    "name": "Suprm Lao-Shan Cannon",
+    "rarity": "8"
+  },
+  {
+    "slug": "empr-lao-shan-cannon",
+    "type": "heavy-bowgun",
+    "name": "Empr Lao-Shan Cannon",
+    "rarity": "8"
+  },
+  {
+    "slug": "great-arbalest-plus",
+    "type": "heavy-bowgun",
+    "name": "Great Arbalest+",
+    "rarity": "9"
+  },
+  {
+    "slug": "tanksorcerer",
+    "type": "heavy-bowgun",
+    "name": "Tanksorcerer",
+    "rarity": "9"
+  },
+  {
+    "slug": "bastionwitch",
+    "type": "heavy-bowgun",
+    "name": "Bastionwitch",
+    "rarity": "9"
+  },
+  {
+    "slug": "power-stinger",
+    "type": "heavy-bowgun",
+    "name": "Power Stinger",
+    "rarity": "9"
+  },
+  {
+    "slug": "pressurized-plesioth",
+    "type": "heavy-bowgun",
+    "name": "Pressurized Plesioth",
+    "rarity": "9"
+  },
+  {
+    "slug": "violet-punisher",
+    "type": "heavy-bowgun",
+    "name": "Violet Punisher",
+    "rarity": "9"
+  },
+  {
+    "slug": "super-kut-ku-cannon",
+    "type": "heavy-bowgun",
+    "name": "Super Kut-Ku Cannon",
+    "rarity": "9"
+  },
+  {
+    "slug": "ultra-kut-ku-cannon",
+    "type": "heavy-bowgun",
+    "name": "Ultra Kut-Ku Cannon",
+    "rarity": "9"
+  },
+  {
+    "slug": "meteor-shower",
+    "type": "heavy-bowgun",
+    "name": "Meteor Shower",
+    "rarity": "9"
+  },
+  {
+    "slug": "gaia-eater",
+    "type": "heavy-bowgun",
+    "name": "Gaia Eater",
+    "rarity": "9"
+  },
+  {
+    "slug": "icethrower",
+    "type": "heavy-bowgun",
+    "name": "Icethrower",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-blaster",
+    "type": "heavy-bowgun",
+    "name": "Ceanataur Blaster",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-gigahowl",
+    "type": "heavy-bowgun",
+    "name": "Gravios gigahowl",
+    "rarity": "9"
+  },
+  {
+    "slug": "jolly-roger-cannon",
+    "type": "heavy-bowgun",
+    "name": "Jolly Roger Cannon",
+    "rarity": "9"
+  },
+  {
+    "slug": "queen-needle",
+    "type": "heavy-bowgun",
+    "name": "Queen Needle",
+    "rarity": "10"
+  },
+  {
+    "slug": "evil-wind-darkcannon",
+    "type": "heavy-bowgun",
+    "name": "Evil Wind Darkcannon",
+    "rarity": "10"
+  },
+  {
+    "slug": "greatladybugcannon-plus",
+    "type": "heavy-bowgun",
+    "name": "GreatLadybugCannon+",
+    "rarity": "10"
+  },
+  {
+    "slug": "quick-quiver",
+    "type": "heavy-bowgun",
+    "name": "Quick Quiver",
+    "rarity": "10"
+  },
+  {
+    "slug": "crow-heirloom",
+    "type": "heavy-bowgun",
+    "name": "Crow Heirloom",
+    "rarity": "10"
+  },
+  {
+    "slug": "terra-c-blaster",
+    "type": "heavy-bowgun",
+    "name": "Terra C Blaster",
+    "rarity": "10"
+  },
+  {
+    "slug": "daora-s-ceti",
+    "type": "heavy-bowgun",
+    "name": "Daora's Ceti",
+    "rarity": "10"
+  },
+  {
+    "slug": "destiny-s-arm",
+    "type": "heavy-bowgun",
+    "name": "Destiny's Arm",
+    "rarity": "10"
+  },
+  {
+    "slug": "gravios-gigaroar",
+    "type": "heavy-bowgun",
+    "name": "Gravios Gigaroar",
+    "rarity": "10"
+  },
+  {
+    "slug": "teostra-flamethrower",
+    "type": "heavy-bowgun",
+    "name": "Teostra Flamethrower",
+    "rarity": "10"
+  },
+  {
+    "slug": "dark-duelcaster",
+    "type": "heavy-bowgun",
+    "name": "Dark Duelcaster",
+    "rarity": "10"
+  },
+  {
+    "slug": "vor-buster",
+    "type": "heavy-bowgun",
+    "name": "Vor Buster",
+    "rarity": "10"
+  },
+  {
+    "slug": "tigrex-skull-plus",
+    "type": "heavy-bowgun",
+    "name": "Tigrex Skull+",
+    "rarity": "10"
+  },
+  {
+    "slug": "gaoren-orb",
+    "type": "heavy-bowgun",
+    "name": "Gaoren Orb",
+    "rarity": "10"
+  },
+  {
+    "slug": "ancientdrgnwoodcan",
+    "type": "heavy-bowgun",
+    "name": "AncientDrgnwoodCan",
+    "rarity": "10"
+  },
+  {
+    "slug": "ultimatelao-shaocan",
+    "type": "heavy-bowgun",
+    "name": "UltimateLao-ShaoCan",
+    "rarity": "10"
+  },
+  {
+    "slug": "ukanlos-cannon",
+    "type": "heavy-bowgun",
+    "name": "Ukanlos Cannon",
+    "rarity": "10"
+  },
+  {
+    "slug": "arbalest-g",
+    "type": "heavy-bowgun",
+    "name": "Arbalest G",
+    "rarity": "9"
+  },
+  {
+    "slug": "rapidcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Rapidcaster G",
+    "rarity": "9"
+  },
+  {
+    "slug": "injector-cannon-g",
+    "type": "heavy-bowgun",
+    "name": "Injector Cannon G",
+    "rarity": "9"
+  },
+  {
+    "slug": "honeycomber-g",
+    "type": "heavy-bowgun",
+    "name": "Honeycomber G",
+    "rarity": "9"
+  },
+  {
+    "slug": "tanksorcerer-g",
+    "type": "heavy-bowgun",
+    "name": "Tanksorcerer G",
+    "rarity": "9"
+  },
+  {
+    "slug": "bastionwitch-g",
+    "type": "heavy-bowgun",
+    "name": "Bastionwitch G",
+    "rarity": "9"
+  },
+  {
+    "slug": "desert-diver-g",
+    "type": "heavy-bowgun",
+    "name": "Desert Diver G",
+    "rarity": "9"
+  },
+  {
+    "slug": "power-stinger-g",
+    "type": "heavy-bowgun",
+    "name": "Power Stinger G",
+    "rarity": "9"
+  },
+  {
+    "slug": "crab-buster-g",
+    "type": "heavy-bowgun",
+    "name": "Crab Buster G",
+    "rarity": "9"
+  },
+  {
+    "slug": "meteor-cannon-g",
+    "type": "heavy-bowgun",
+    "name": "Meteor Cannon G",
+    "rarity": "9"
+  },
+  {
+    "slug": "pressurizedplesiothg",
+    "type": "heavy-bowgun",
+    "name": "PressurizedPlesiothG",
+    "rarity": "9"
+  },
+  {
+    "slug": "violet-punisher-g",
+    "type": "heavy-bowgun",
+    "name": "Violet Punisher G",
+    "rarity": "9"
+  },
+  {
+    "slug": "superkut-kucannon-g",
+    "type": "heavy-bowgun",
+    "name": "SuperKut-KuCannon G",
+    "rarity": "9"
+  },
+  {
+    "slug": "ultrakut-kucannon-g",
+    "type": "heavy-bowgun",
+    "name": "UltraKut-KuCannon G",
+    "rarity": "9"
+  },
+  {
+    "slug": "monodevilcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Monodevilcaster G",
+    "rarity": "9"
+  },
+  {
+    "slug": "duelcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Duelcaster G",
+    "rarity": "9"
+  },
+  {
+    "slug": "queen-needle-g",
+    "type": "heavy-bowgun",
+    "name": "Queen Needle G",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-cannon-g",
+    "type": "heavy-bowgun",
+    "name": "Black Cannon G",
+    "rarity": "10"
+  },
+  {
+    "slug": "lunastra-s-flames-g",
+    "type": "heavy-bowgun",
+    "name": "Lunastra's Flames G",
+    "rarity": "10"
+  },
+  {
+    "slug": "lao-shanlungcannon-g",
+    "type": "heavy-bowgun",
+    "name": "Lao-ShanLungCannon G",
+    "rarity": "10"
+  }
+]
 }
