@@ -20,7 +20,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% set favicon_name = page.extra["type"] | default(value="felyne") %}
+  {% if page %}
+    {% set favicon_name = page.extra.type | default(value="felyne") %}
+  {% else %}
+    {% set favicon_name = section.extra.type | default(value="felyne") %}
+  {% endif %}
   <link rel="icon" type="image/png" href="/images/favicons/{{ favicon_name }}-favicon.png">
   <meta name="theme-color" content="#22281c">
 
