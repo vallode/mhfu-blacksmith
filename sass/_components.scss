@@ -85,6 +85,7 @@
       }
     }
 
+    &:focus::before,
     &:hover::before {
       background: -webkit-gradient(linear, left top, right top, from(#ffffff00), color-stop(#037703d7), to(#ffffff00));
       background: -o-linear-gradient(left, #ffffff00, #037703d7, #ffffff00);
