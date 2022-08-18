@@ -1,27 +1,29 @@
 {% extends "base.html" %}
-{% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
 {% block head__extra %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ current_url }}">
 
   {% if image_metadata %}
-  <meta property="og:image" content="/images/weapons/{{ page.slug }}.png">
+  <meta property="og:image" content="{{ config.base_url }}images/weapons/{{ page.slug }}.png">
   <meta property="og:image:alt" content="In-game render of {{ page.title }}">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="600">
   {% endif %}
 
   {% if page.extra.create_mats %}
-    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }}{% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }}{% endfor %}">
+    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
   {% elif page.extra.improve_mats %}
-    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }}{% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }}{% endfor %}">
+    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
   {% endif %}
 {% endblock %}
 
 {% block content -%}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+
   <nav class="weapon-navigation">
     {%- for weapon_type in config.extra.weapon_types %}
       {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
