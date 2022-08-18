@@ -149,15 +149,14 @@
         }
       }
 
-      toggle() {
+      toggle(event) {
+        event.preventDefault()
+
         if (this.pageValue < this.pages.length) {
           this.pageValue = this.pageValue + 1
         } else {
           this.pageValue = 1
         }
-
-        this.pages.forEach(element => element.classList.remove("active"))
-        this.element.querySelector(`#page-${this.pageValue}`).classList.add("active")
       }
     })
   </script>

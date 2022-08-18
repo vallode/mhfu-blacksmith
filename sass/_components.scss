@@ -430,12 +430,22 @@ $element-types: (
         display: block;
       }
 
-      [id*="page"] {
+      [id*=page] {
         display: none;
         flex: 1 1 0%;
       }
 
-      [id*=page].active {
+      // [id*=page].active {
+      //   display: flex;
+      // }
+
+      &[data-weapon-page-page-value="1"] #page-1 {
+        display: flex;
+      }
+      &[data-weapon-page-page-value="2"] #page-2 {
+        display: flex;
+      }
+      &[data-weapon-page-page-value="3"] #page-3 {
         display: flex;
       }
     }
@@ -462,14 +472,16 @@ $element-types: (
   }
 
   &__navigation {
-    position: absolute;
-    right: 22px;
-    bottom: 22px;
-    display: flex;
     align-items: center;
     align-self: flex-end;
+    bottom: 4px;
+    display: flex;
     gap: 9px;
     margin-top: auto;
+    padding: 18px;
+    position: absolute;
+    right: 4px;
+    z-index: 20;
 
     .next {
       transform: scaleX(-1);
