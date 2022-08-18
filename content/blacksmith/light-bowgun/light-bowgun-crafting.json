@@ -4450,7 +4450,7 @@
         "Azure LaoS Claw: 4",
         "Warrior Coin G: 7",
         "BlackBeltCoinG: 12",
-        "1"
+        "Commendation G: 1"
       ]
     },
     {
@@ -4825,7 +4825,7 @@
       "create-mats": [
         "Chamelos Hide G: 3",
         "Chamelos Horn G: 2",
-        "1",
+        "Commendation S: 1",
         "BigEDragonJewel: 1"
       ]
     },
@@ -4909,7 +4909,7 @@
         "0"
       ],
       "misc-ammo": [
-        "Tranq S:2",
+        "2",
         "2",
         "1",
         "0"
@@ -4967,7 +4967,7 @@
         "GoldRajangPelt+: 1",
         "Blk Rajang Pelt+: 3",
         "Hvy Rajang Fang: 3",
-        "1"
+        "Commendation S: 1"
       ]
     },
     {
@@ -5152,7 +5152,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Hvy Monster Bone: 2",
         "Hrd Monster Bone: 6",
         "Dragonite Ore: 30"
@@ -5199,7 +5199,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Monster Essence: 10",
         "Hornetaur Crapce: 30",
         "Rare Scarab: 15"
@@ -5246,7 +5246,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Giaprey Scale+: 20",
         "Giadrome Claw+: 8",
         "Giadrome Skull: 5"
@@ -5293,7 +5293,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Velociprey Scle+: 20",
         "Velocidrome Clw+: 8",
         "Velocidrome Head: 5"
@@ -5340,7 +5340,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Genprey Scale+: 20",
         "Thunderbug Juice: 20",
         "Gendrome Skull: 5"
@@ -5387,7 +5387,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Ioprey Scale+: 20",
         "Gypceros Head: 2",
         "Iodrome Skull: 5"
@@ -5434,7 +5434,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Cephalos Scale+: 10",
         "Hvy Monster Bone: 8",
         "Monster Bone+: 20"
@@ -5481,7 +5481,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Coral Cphlos Fin: 8",
         "PlumD.HermitrShl: 8",
         "Hrd Monster Bone: 20"
@@ -5528,7 +5528,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "SpecPlesiothFin+: 6",
         "Plesioth Thck Scl: 8",
         "Black Pearl: 20"
@@ -5575,7 +5575,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "ThckGrnPlesioScl: 8",
         "SpecGrnPlesioFn+: 6",
         "Giant Blk Pearl: 2"
@@ -5622,7 +5622,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Gt Lobstershell: 3",
         "ThckGrnPlesioScl: 8",
         "SpecPlesiothFin+: 6"
@@ -5669,7 +5669,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Lost Umbrella: 5",
         "KhezuHide-Cream: 10",
         "Pale Khezu Steak: 5"
@@ -5716,7 +5716,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Lost Umbrella: 5",
         "Alluring Wing: 10",
         "Basarios Tears: 5"
@@ -5763,7 +5763,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Vibrant Pelt: 6",
         "HrdCongalalaClw+: 6",
         "Mellanje Ore: 4"
@@ -5810,7 +5810,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Vibrant Comb: 4",
         "E.CongalalaPelt+: 8",
         "Purecrystal: 2"
@@ -5857,7 +5857,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "KhezuSpecialCut: 1",
         "Alluring Wing: 6",
         "HrdPuGypcerosWng: 6"
@@ -5904,7 +5904,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Thick Kut-Ku Scl: 10",
         "RainbowTailFeath: 5",
         "Big WyvernStone: 6"
@@ -5951,7 +5951,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "ThkBlueKut-KuScl: 10",
         "Hypno Claw+: 4",
         "Purecrystal: 4"
@@ -5998,7 +5998,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "AncientDrgnwood: 4",
         "Ancient Stone: 5",
         "Blazing Fire Sac: 8"
@@ -6045,7 +6045,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Felyne Fur Ruby: 5",
         "FlynMealPassPlus: 20",
         "Blazing Fire Sac: 10"
@@ -6092,7 +6092,7 @@
       "create-cost": "5000z ",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "Felyne Fur Ruby: 5",
         "BlackNargaPelt+: 4",
         "Sinister Cloth: 10"
@@ -6139,7 +6139,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G: 1",
         "ShakalakaTreasr+: 3",
         "ShakalakaTreasure: 20",
         "Old Pickaxe: 1"
@@ -6186,7 +6186,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "dummy: 5",
         "Lg Lobstershell: 10",
         "Big WyvernStone: 4"
@@ -6233,7 +6233,7 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S: 1",
         "Str Fatalis Wng: 1",
         "ThckFatalisScale: 5",
         "SpecRemobraSkin+: 20"
