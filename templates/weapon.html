@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
 {% block head__extra %}
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ current_url }}">
+
+  {% if image_metadata %}
   <meta property="og:image" content="/images/weapons/{{ page.slug }}.png">
-  <meta property="og:image:alt" content="In-game render of {{ page.name }}">
+  <meta property="og:image:alt" content="In-game render of {{ page.title }}">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="600">
+  {% endif %}
 
   {% if page.extra.create_mats %}
     <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }}{% endfor %}">
@@ -246,8 +250,6 @@
           </div>
         </div>
 
-        
-        {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
         {% if image_metadata %}
           <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
             <div class="weapon-card__preview__container">
