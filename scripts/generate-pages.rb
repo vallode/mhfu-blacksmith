@@ -9,6 +9,11 @@ FILE_TEMPLATE = %{+++
   <% value.each_pair do |key, val| %>
   <%= key.gsub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
   <% end %>
+  <% if shelling %>
+  [extra.shelling]
+  type = "<%= shelling["type"] %>"
+  level = <%= shelling["level"] %>
+  <% end %>
   <% if element %>
   <% element.each do |el| %>
   [[extra.element]]
@@ -75,6 +80,11 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
       if value["element"]
         element = parseElements(value["element"])
         value["element"] = nil
+      end
+
+      if value["shelling"]
+        shelling = value["shelling"]
+        value["shelling"] = nil
       end
 
       value = value.select {|key, value| value != nil }

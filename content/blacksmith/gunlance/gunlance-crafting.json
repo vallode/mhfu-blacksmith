@@ -9,7 +9,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -39,7 +42,10 @@
       "slots": "OOO",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Spread Lv. 4",
+      "shelling": {
+        "type": "Spread",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "115000",
@@ -63,7 +69,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Spread Lv. 2",
+      "shelling": {
+        "type": "Spread",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "50000",
       "improve-cost": "50000",
@@ -93,7 +102,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -124,7 +136,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "105000",
@@ -147,7 +162,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "2",
-      "shelling": "Normal Lv. 1",
+      "shelling": {
+        "type": "Normal",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "1400",
       "improve-cost": "1400",
@@ -177,7 +195,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "3",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "2150",
@@ -204,7 +225,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "40000",
@@ -227,7 +251,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "3",
-      "shelling": "Long Lv. 1",
+      "shelling": {
+        "type": "Long",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "3100",
       "improve-cost": "3100",
@@ -257,7 +284,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "4",
-      "shelling": "Long Lv. 1",
+      "shelling": {
+        "type": "Long",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "5600",
@@ -282,7 +312,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Long Lv. 2",
+      "shelling": {
+        "type": "Long",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "40000",
@@ -307,7 +340,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "7",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "55000",
@@ -333,7 +369,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "90000",
@@ -358,7 +397,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "110000",
@@ -382,7 +424,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": "100000",
@@ -412,7 +457,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "120000",
@@ -436,7 +484,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "40000",
       "improve-cost": "40000",
@@ -469,7 +520,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "7",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "50000",
@@ -495,7 +549,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "85000",
       "improve-cost": "85000",
@@ -525,7 +582,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "115000",
@@ -548,7 +608,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "1",
-      "shelling": "Normal Lv. 1",
+      "shelling": {
+        "type": "Normal",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "1100",
       "improve-cost": "1100",
@@ -580,7 +643,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "2",
-      "shelling": "Normal Lv. 1",
+      "shelling": {
+        "type": "Normal",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "1750",
@@ -605,7 +671,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "2",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "2150",
@@ -632,7 +701,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "3",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "3100",
@@ -657,7 +729,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "4",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "6500",
@@ -682,7 +757,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "7",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "65000",
@@ -707,7 +785,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "8",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "75000",
@@ -733,7 +814,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "100000",
@@ -758,7 +842,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "125000",
@@ -782,7 +869,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "5",
-      "shelling": "Spread Lv. 1",
+      "shelling": {
+        "type": "Spread",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "5600",
       "improve-cost": "5600",
@@ -814,7 +904,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "5",
-      "shelling": "Spread Lv. 2",
+      "shelling": {
+        "type": "Spread",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "35000",
@@ -841,7 +934,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "8",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "90000",
@@ -866,7 +962,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Spread Lv. 4",
+      "shelling": {
+        "type": "Spread",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "130000",
@@ -890,7 +989,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "4",
-      "shelling": "Long Lv. 1",
+      "shelling": {
+        "type": "Long",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "4900",
@@ -915,7 +1017,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "5",
-      "shelling": "Long Lv. 2",
+      "shelling": {
+        "type": "Long",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "30000",
@@ -940,7 +1045,10 @@
       "slots": "O--",
       "bonus": "-5%",
       "rarity": "6",
-      "shelling": "Long Lv. 2",
+      "shelling": {
+        "type": "Long",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "60000",
@@ -965,7 +1073,10 @@
       "slots": "O--",
       "bonus": "-10%",
       "rarity": "7",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "75000",
@@ -990,7 +1101,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "115000",
@@ -1013,7 +1127,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "75000",
       "improve-cost": "75000",
@@ -1046,7 +1163,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 5",
+      "shelling": {
+        "type": "Normal",
+        "level": "5"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "100000",
@@ -1071,7 +1191,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "7",
-      "shelling": "Long Lv. 2",
+      "shelling": {
+        "type": "Long",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "50000",
       "improve-cost": "50000",
@@ -1103,7 +1226,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "85000",
@@ -1128,7 +1254,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "120000",
@@ -1152,7 +1281,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "1",
-      "shelling": "Normal Lv. 1",
+      "shelling": {
+        "type": "Normal",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "650",
       "improve-cost": null,
@@ -1176,7 +1308,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "2",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "1400",
@@ -1201,7 +1336,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "1",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "2150",
@@ -1226,7 +1364,10 @@
       "slots": "O--",
       "bonus": "10%",
       "rarity": "4",
-      "shelling": "Spread Lv. 1",
+      "shelling": {
+        "type": "Spread",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "4250",
       "improve-cost": "4250",
@@ -1256,7 +1397,10 @@
       "slots": "OO-",
       "bonus": "10%",
       "rarity": "5",
-      "shelling": "Spread Lv. 2",
+      "shelling": {
+        "type": "Spread",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "6350",
@@ -1281,7 +1425,10 @@
       "slots": "OO-",
       "bonus": "20%",
       "rarity": "7",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "50000",
@@ -1307,7 +1454,10 @@
       "slots": "OO-",
       "bonus": "25%",
       "rarity": "10",
-      "shelling": "Spread Lv. 4",
+      "shelling": {
+        "type": "Spread",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "90000",
@@ -1326,7 +1476,10 @@
       "slots": "---",
       "bonus": "-20%",
       "rarity": "9",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "95000",
@@ -1351,7 +1504,10 @@
       "slots": "---",
       "bonus": "-20%",
       "rarity": "10",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "115000",
@@ -1375,7 +1531,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "3",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "3100",
       "improve-cost": "3100",
@@ -1405,7 +1564,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "4",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "5600",
@@ -1430,7 +1592,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "35000",
@@ -1455,7 +1620,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "7",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "50000",
@@ -1481,7 +1649,10 @@
       "slots": "OOO",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "105000",
@@ -1505,7 +1676,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "8",
-      "shelling": "Long Lv. 2",
+      "shelling": {
+        "type": "Long",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "90000",
       "improve-cost": "90000",
@@ -1535,7 +1709,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "110000",
@@ -1561,7 +1738,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "130000",
@@ -1585,7 +1765,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "5",
-      "shelling": "Spread Lv. 1",
+      "shelling": {
+        "type": "Spread",
+        "level": "1"
+      },
       "type": "gl",
       "create-cost": "15000",
       "improve-cost": null,
@@ -1610,7 +1793,10 @@
       "slots": "---",
       "bonus": "-20%",
       "rarity": "8",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "100000",
@@ -1636,7 +1822,10 @@
       "slots": "---",
       "bonus": "-20%",
       "rarity": "10",
-      "shelling": "Spread Lv. 4",
+      "shelling": {
+        "type": "Spread",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "150000",
@@ -1660,7 +1849,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "5",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "20000",
       "improve-cost": null,
@@ -1686,7 +1878,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "8",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "75000",
@@ -1711,7 +1906,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "120000",
       "improve-cost": "120000",
@@ -1741,7 +1939,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "145000",
@@ -1765,7 +1966,10 @@
       "slots": "OOO",
       "bonus": "0%",
       "rarity": "6",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "40000",
       "improve-cost": null,
@@ -1791,7 +1995,10 @@
       "slots": "OOO",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Spread Lv. 5",
+      "shelling": {
+        "type": "Spread",
+        "level": "5"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "75000",
@@ -1815,7 +2022,10 @@
       "slots": "---",
       "bonus": "-30%",
       "rarity": "5",
-      "shelling": "Spread Lv. 2",
+      "shelling": {
+        "type": "Spread",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "35000",
       "improve-cost": null,
@@ -1842,7 +2052,10 @@
       "slots": "---",
       "bonus": "-30%",
       "rarity": "7",
-      "shelling": "Spread Lv. 3",
+      "shelling": {
+        "type": "Spread",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "80000",
@@ -1867,7 +2080,10 @@
       "slots": "---",
       "bonus": "-30%",
       "rarity": "10",
-      "shelling": "Spread Lv. 4",
+      "shelling": {
+        "type": "Spread",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "125000",
@@ -1890,7 +2106,10 @@
       "slots": "O--",
       "bonus": "50%",
       "rarity": "7",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -1920,7 +2139,10 @@
       "slots": "OO-",
       "bonus": "50%",
       "rarity": "10",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "120000",
       "improve-cost": "120000",
@@ -1949,7 +2171,10 @@
       "slots": "---",
       "bonus": "40%",
       "rarity": "8",
-      "shelling": "Normal Lv. 2",
+      "shelling": {
+        "type": "Normal",
+        "level": "2"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -1975,7 +2200,10 @@
       "slots": "O--",
       "bonus": "40%",
       "rarity": "10",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": null,
       "improve-cost": "145000",
@@ -1999,7 +2227,10 @@
       "slots": "---",
       "bonus": "-30%",
       "rarity": "10",
-      "shelling": "Long Lv. 5",
+      "shelling": {
+        "type": "Long",
+        "level": "5"
+      },
       "type": "gl",
       "create-cost": "150000",
       "improve-cost": null,
@@ -2023,7 +2254,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2047,7 +2281,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2071,7 +2308,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2095,7 +2335,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 4",
+      "shelling": {
+        "type": "Long",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2119,7 +2362,10 @@
       "slots": "OOO",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2143,7 +2389,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Normal Lv. 4",
+      "shelling": {
+        "type": "Normal",
+        "level": "4"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2167,7 +2416,10 @@
       "slots": "---",
       "bonus": "0%",
       "rarity": "9",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2191,7 +2443,10 @@
       "slots": "O--",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Long Lv. 3",
+      "shelling": {
+        "type": "Long",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2215,7 +2470,10 @@
       "slots": "OO-",
       "bonus": "0%",
       "rarity": "10",
-      "shelling": "Normal Lv. 3",
+      "shelling": {
+        "type": "Normal",
+        "level": "3"
+      },
       "type": "gl",
       "create-cost": "100000",
       "improve-cost": null,
