@@ -3009,11 +3009,11 @@
         "Kirin Azure Horn (3)"
       ],
       "improve-to": [
-        "Ancient Dragon Wood Bow"
+        "Ancient Dragonwood Bow"
       ]
     },
     {
-      "name": "Ancient Dragon Wood Bow",
+      "name": "Ancient Dragonwood Bow",
       "attack": "300",
       "element": "Thunder 180 / Paralysis Add",
       "affinity": "20%",
@@ -3739,7 +3739,7 @@
       "improve-to": null
     },
     {
-      "name": "Daimyo's War Bow G",
+      "name": "Daimyo's Warbow G",
       "attack": "276",
       "element": "Water 180",
       "affinity": "0%",
