@@ -6,11 +6,11 @@
   <meta property="og:image" content="/images/weapons/{{ page.slug }}.png">
   <meta name="twitter:card" content="/images/weapons/{{ page.slug }}.png">
   {% if page.extra.create_mats %}
-    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }}{% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }}\n{% endfor %}">
   {% elif page.extra.improve_mats %}
-    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }}{% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }}\n{% endfor %}">
   {% endif %}
 {% endblock %}
 
