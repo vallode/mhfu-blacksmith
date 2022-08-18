@@ -73,7 +73,10 @@
           <div class="weapon-card__details">
             <div class="stats">
               {% if page.extra.attack %}
-                <p>Attack: <span>{{ page.extra.attack }}</span></p>
+                <p>
+                  Attack: <span>{{ page.extra.attack }}</span>
+                  {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
+                </p>
               {% endif %}
 
               {% if page.extra.max_attack %}
@@ -101,6 +104,10 @@
 
               {% if page.extra.rapid_fire %}
                 <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
+              {% endif %}
+
+              {% if page.extra.shelling %}
+                <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
               {% endif %}
 
               {% if page.extra.element -%}
