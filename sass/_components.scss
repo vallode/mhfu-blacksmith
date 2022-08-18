@@ -369,6 +369,12 @@ $element-types: (
       gap: 13px;
     }
 
+    .shots {
+      .orange {
+        color: #FF9661;
+      }
+    }
+
     .coatings {
       align-content: flex-start;
       display: flex;
