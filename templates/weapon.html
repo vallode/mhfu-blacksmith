@@ -19,19 +19,19 @@
   {% endif %}
 {% endblock %}
 
-{% block content -%}
+{% block content %}
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
   <nav class="weapon-navigation">
-    {%- for weapon_type in config.extra.weapon_types %}
-      {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
+    {% for weapon_type in config.extra.weapon_types %}
+      {%- set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
 
       <a class="row" href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
         <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
           <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
         </div>
       </a>
-    {%- endfor %}
+    {% endfor %}
   </nav>
 
   <hr class="border">
@@ -41,7 +41,7 @@
       <div class="card card--weapon-tree"></div>
     </turbo-frame>
   
-    {% block weapon__details -%}
+    {% block weapon__details %}
       <turbo-frame id="weapon_details" data-turbo-action="replace">
         <div class="card weapon-card">
           <div class="weapon-card__header">
@@ -117,13 +117,13 @@
                 <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
               {% endif %}
 
-              {% if page.extra.element -%}
+              {% if page.extra.element %}
                 {% for element in page.extra.element %}
                   <p class="element">
                     {{ element.name }} Attrib: {{ element.attack }}
                   </p>
                 {% endfor %}
-              {% endif -%}
+              {% endif %}
 
               {% if page.extra.skills %}
                 {% for skill in page.extra.skills %}
@@ -148,7 +148,7 @@
                       <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                     </p>
   
-                    {%- for material in page.extra.improve_mats -%}
+                    {%- for material in page.extra.improve_mats %}
                       <p>{{ material }}</p>
                     {% endfor %}
                   </div>
@@ -160,9 +160,9 @@
                       <span>Create cost: </span>{{ page.extra.create_cost }}z
                     </p>
     
-                    {% for material in page.extra.create_mats -%}
+                    {% for material in page.extra.create_mats %}
                        <p>{{ material }}</p>
-                    {% endfor -%}
+                    {% endfor %}
                   </div>
                 {% endif %}
               </div>
@@ -175,9 +175,9 @@
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
                       </p>
       
-                      {% for material in page.extra.alternative_create_mats -%}
+                      {% for material in page.extra.alternative_create_mats %}
                         <p>{{ material }}</p>
-                      {% endfor -%}
+                      {% endfor %}
                     </div>
                   {% endif %}
     
@@ -204,7 +204,15 @@
                     <div class="shots">
                       <p><span>[Charge Attack]</span></p>
                       {% for shot in page.extra.shots %}
-                        <p>{{ shot }}</p>
+                        {% if loop.index == 1 %}
+                        <p>
+                          <span class="orange">Lvl {{ loop.index }}:</span> {{ shot }}
+                        </p>
+                        {% else %}
+                        <p>
+                          <span class="orange"><span style="visibility: hidden;">Lvl</span> {{ loop.index }}:</span> {{ shot }}
+                        </p>
+                        {% endif %}
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -244,7 +252,7 @@
               {% endif %}
 
               <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
-                <img src="/images/arrow.png" class="next" draggable="false">
+                <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
               </div>
             </div>
           </div>
@@ -256,7 +264,7 @@
               <img
                 draggable="false"
                 src="/images/weapons/{{ page.slug }}.png"
-                alt=""
+                alt="In-game render of weapon"
                 data-controller="image-zoom"
                 data-image-position-target="image"
                 data-action="wheel->image-zoom#zoom"
@@ -265,11 +273,11 @@
           </div>
         {% endif %}
       </turbo-frame>
-    {% endblock weapon__details -%}
+    {% endblock weapon__details %}
   </div>
-{% endblock content -%}
+{% endblock content %}
 
-{%- block scripts -%}
+{%- block scripts %}
 <script>
   /**
    * Every time turbo loads a weapon we want to change the title to the weapon's
