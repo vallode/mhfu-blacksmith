@@ -1955,6 +1955,50 @@
       "type": "dec"
     },
     {
+      "name": "PowerCAdd",
+      "improve-to": [
+        "Power Coat Jewel",
+        "PowerCAddJewel"
+      ],
+      "donotrender": true
+    },
+    {
+      "name": "Power Coat Jewel",
+      "skills": [
+        "PowerCAdd +1",
+        "ShortCharg -1"
+      ],
+      "create-mats": [
+        "BattlefieldJewel (1)",
+        "Congalala Pelt+ (1)",
+        "Dark Piece (1)",
+        "Power Coating (1)"
+      ],
+      "color": "red",
+      "slots": "O--",
+      "rarity": 4,
+      "create-cost": 200,
+      "type": "dec"
+    },
+    {
+      "name": "PowerCAddJewel",
+      "skills": [
+        "PowerCAdd +3",
+        "ShortCharg -1"
+      ],
+      "create-mats": [
+        "LapisLazuliJewel (1)",
+        "E.CongalalaPelt+ (3)",
+        "Dark Stone (2)",
+        "Power Coating (50)"
+      ],
+      "color": "red",
+      "slots": "OO-",
+      "rarity": 5,
+      "create-cost": 375,
+      "type": "dec"
+    },
+    {
       "name": "ClsRngCAdd",
       "improve-to": [
         "Combo Coat Jewel"
