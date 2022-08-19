@@ -7,10 +7,10 @@
     data-turbo-frame="_top"
     {% else %}
     class="weapon-tree__row" 
+    data-turbo-frame="weapon_details"
     {% endif %}
     {% if weapon.rarity %}
     href="/blacksmith/{{ weapon.type }}/{{ weapon.slug }}/"
-    data-turbo-frame="weapon_details"
     {% endif %}
   >
     {% if weapon.rarity %}
