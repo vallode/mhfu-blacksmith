@@ -26,11 +26,13 @@
     {% for weapon_type in config.extra.weapon_types %}
       {%- set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
 
-      <a class="row" href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-        <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
-          <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
-        </div>
-      </a>
+      <div>
+        <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
+          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
+            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
+          </div>
+        </a>
+      </div>
     {% endfor %}
   </nav>
 
@@ -148,7 +150,7 @@
               <div id="page-1" class="active">
                 {% if page.extra.improve_mats %}
                   <div class="improve-mats">
-                    <p id="weapon_cost">
+                    <p>
                       <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                     </p>
   
@@ -160,7 +162,7 @@
   
                 {%- if page.extra.create_mats %}
                   <div class="create-mats">
-                    <p id="weapon_cost">
+                    <p>
                       <span>Create cost: </span>{{ page.extra.create_cost }}z
                     </p>
     
@@ -175,7 +177,7 @@
                 <div id="page-2">
                   {%- if page.extra.alternative_create_mats %}
                     <div class="create-mats">
-                      <p id="weapon_cost">
+                      <p>
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
                       </p>
       
