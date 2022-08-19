@@ -16,9 +16,12 @@ debug: generate-pages
 clean:
 	find content/blacksmith/**/*.md ! -name '_index.md' -exec rm {} +
 
+tidy:
+	tidy -config tidy.config -m public/** /*.html
+
 build: clean generate-pages
 	TERA_PRODUCTION=true zola build
 
-deploy: build
+deploy: build tidy
 	MHFU_PRODUCTION=true netlify deploy --site mhfu-blacksmith --prod --message \
 		"`git log --oneline --format=%s -n 1`" --dir public

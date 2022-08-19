@@ -6,11 +6,13 @@
     {%- for weapon_type in config.extra.weapon_types %}
       {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
 
-      <a class="row" href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-        <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == section.extra.type %}icon--rarity-4{% endif %}">
-          <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
-        </div>
-      </a>
+      <div>
+        <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
+          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == section.extra.type %}icon--rarity-4{% endif %}">
+            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
+          </div>
+        </a>
+      </div>
     {%- endfor %}
   </nav>
 
