@@ -14,10 +14,10 @@ debug: generate-pages
 	TERA_DEBUG=true zola serve
 
 clean:
-	find content/blacksmith/**/*.md ! -name '_index.md' -exec rm {} +
+	find content -name '*.md' ! -name '_index.md' -exec rm {} +
 
 tidy:
-	tidy -config tidy.config -m public/** /*.html
+	find public -name '*.html' -exec tidy -quiet -config tidy.config -m {} +
 
 build: clean generate-pages
 	TERA_PRODUCTION=true zola build
