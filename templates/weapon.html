@@ -132,6 +132,10 @@
                   </p>
                 {% endfor %}
               {% endif %}
+
+              {% if page.extra.bonus %}
+                <p class="element">Defense {{ page.extra.bonus }}</p>
+              {% endif %}
             </div>
 
             <hr>
