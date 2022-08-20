@@ -1013,6 +1013,28 @@
     ]
   },
   {
+    "slug": "powercadd",
+    "type": null,
+    "name": "PowerCAdd",
+    "rarity": null,
+    "children": [
+      {
+        "slug": "power-coat-jewel",
+        "type": "decoration",
+        "name": "Power Coat Jewel",
+        "rarity": 4,
+        "color": "red"
+      },
+      {
+        "slug": "powercaddjewel",
+        "type": "decoration",
+        "name": "PowerCAddJewel",
+        "rarity": 5,
+        "color": "red"
+      }
+    ]
+  },
+  {
     "slug": "clsrngcadd",
     "type": null,
     "name": "ClsRngCAdd",
