@@ -65,7 +65,7 @@
             </p>
             
             {% if page.extra.sharpness %}
-            <div class="sharpness">
+            <div tabindex="0" class="sharpness">
               {% for sharp in page.extra.sharpness | split(pat=".") %}
                 <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
               {% endfor %}
