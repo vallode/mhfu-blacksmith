@@ -7,7 +7,7 @@
       "sharpness": "7.4.7.9.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Spread",
@@ -40,7 +40,7 @@
       "sharpness": "18.4.3.10.3.2",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Spread",
@@ -67,7 +67,7 @@
       "sharpness": "7.4.8.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "6",
       "shelling": {
         "type": "Spread",
@@ -100,7 +100,7 @@
       "sharpness": "6.4.8.10.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": "+10",
       "rarity": "9",
       "shelling": {
         "type": "Spread",
@@ -134,7 +134,7 @@
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": "+10",
       "rarity": "9",
       "shelling": {
         "type": "Spread",
@@ -160,7 +160,7 @@
       "sharpness": "7.3.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "2",
       "shelling": {
         "type": "Normal",
@@ -193,7 +193,7 @@
       "sharpness": "5.5.8.1",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "3",
       "shelling": {
         "type": "Normal",
@@ -223,7 +223,7 @@
       "sharpness": "5.5.9.12.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "6",
       "shelling": {
         "type": "Normal",
@@ -249,7 +249,7 @@
       "sharpness": "5.5.8.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "3",
       "shelling": {
         "type": "Long",
@@ -282,7 +282,7 @@
       "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "4",
       "shelling": {
         "type": "Long",
@@ -310,7 +310,7 @@
       "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "6",
       "shelling": {
         "type": "Long",
@@ -338,7 +338,7 @@
       "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Long",
@@ -367,7 +367,7 @@
       "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -395,7 +395,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -422,7 +422,7 @@
       "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -455,7 +455,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -482,7 +482,7 @@
       "sharpness": "5.7.5.12",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": "+24",
       "rarity": "6",
       "shelling": {
         "type": "Normal",
@@ -518,7 +518,7 @@
       "sharpness": "5.7.5.15.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": "+28",
       "rarity": "7",
       "shelling": {
         "type": "Normal",
@@ -547,7 +547,7 @@
       "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": "+40",
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -580,7 +580,7 @@
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": "+40",
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -606,7 +606,7 @@
       "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "1",
       "shelling": {
         "type": "Normal",
@@ -641,7 +641,7 @@
       "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "2",
       "shelling": {
         "type": "Normal",
@@ -669,7 +669,7 @@
       "sharpness": "5.7.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "2",
       "shelling": {
         "type": "Normal",
@@ -699,7 +699,7 @@
       "sharpness": "5.7.5.8",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "3",
       "shelling": {
         "type": "Normal",
@@ -727,7 +727,7 @@
       "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "4",
       "shelling": {
         "type": "Long",
@@ -755,7 +755,7 @@
       "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Long",
@@ -783,7 +783,7 @@
       "sharpness": "5.7.5.16.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Long",
@@ -812,7 +812,7 @@
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -840,7 +840,7 @@
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -867,7 +867,7 @@
       "sharpness": "8.3.8.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Spread",
@@ -902,7 +902,7 @@
       "sharpness": "9.5.9.10.2",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Spread",
@@ -932,7 +932,7 @@
       "sharpness": "2.4.16.7.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Spread",
@@ -960,7 +960,7 @@
       "sharpness": "2.4.16.7.5.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Spread",
@@ -987,7 +987,7 @@
       "sharpness": "5.5.9.6",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": "+8",
       "rarity": "4",
       "shelling": {
         "type": "Long",
@@ -1015,7 +1015,7 @@
       "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": "+8",
       "rarity": "5",
       "shelling": {
         "type": "Long",
@@ -1043,7 +1043,7 @@
       "sharpness": "9.5.8.7",
       "affinity": "-5%",
       "slots": "O--",
-      "bonus": "-5%",
+      "bonus": "+8",
       "rarity": "6",
       "shelling": {
         "type": "Long",
@@ -1071,7 +1071,7 @@
       "sharpness": "9.5.9.10.2",
       "affinity": "-10%",
       "slots": "O--",
-      "bonus": "-10%",
+      "bonus": "+8",
       "rarity": "7",
       "shelling": {
         "type": "Long",
@@ -1099,7 +1099,7 @@
       "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": "+10",
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -1125,7 +1125,7 @@
       "sharpness": "11.9.4.9.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -1161,7 +1161,7 @@
       "sharpness": "11.9.4.9.4.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -1189,7 +1189,7 @@
       "sharpness": "11.9.4.6",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Long",
@@ -1224,7 +1224,7 @@
       "sharpness": "11.9.4.9.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -1252,7 +1252,7 @@
       "sharpness": "11.9.4.9.4.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -1279,7 +1279,7 @@
       "sharpness": "2.4.7",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "1",
       "shelling": {
         "type": "Normal",
@@ -1306,7 +1306,7 @@
       "sharpness": "2.4.12",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "2",
       "shelling": {
         "type": "Normal",
@@ -1334,7 +1334,7 @@
       "sharpness": "2.4.16.1",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "1",
       "shelling": {
         "type": "Normal",
@@ -1362,7 +1362,7 @@
       "sharpness": "15.4.3.5",
       "affinity": "10%",
       "slots": "O--",
-      "bonus": "10%",
+      "bonus": null,
       "rarity": "4",
       "shelling": {
         "type": "Spread",
@@ -1395,7 +1395,7 @@
       "sharpness": "2.4.16.5",
       "affinity": "10%",
       "slots": "OO-",
-      "bonus": "10%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Spread",
@@ -1423,7 +1423,7 @@
       "sharpness": "2.4.16.7.5",
       "affinity": "20%",
       "slots": "OO-",
-      "bonus": "20%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Spread",
@@ -1452,7 +1452,7 @@
       "sharpness": "2.4.16.7.5.5",
       "affinity": "25%",
       "slots": "OO-",
-      "bonus": "25%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Spread",
@@ -1474,7 +1474,7 @@
       "sharpness": "16.5.4.9.4.2",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "-20%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -1502,7 +1502,7 @@
       "sharpness": "11.8.5.8.5.3",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "-20%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Normal",
@@ -1529,7 +1529,7 @@
       "sharpness": "7.4.8",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "3",
       "shelling": {
         "type": "Normal",
@@ -1562,7 +1562,7 @@
       "sharpness": "7.4.8.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "4",
       "shelling": {
         "type": "Normal",
@@ -1590,7 +1590,7 @@
       "sharpness": "6.3.15.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "6",
       "shelling": {
         "type": "Normal",
@@ -1618,7 +1618,7 @@
       "sharpness": "4.4.9.11",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Normal",
@@ -1647,7 +1647,7 @@
       "sharpness": "4.4.9.12.3",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -1674,7 +1674,7 @@
       "sharpness": "8.4.7.10.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Long",
@@ -1707,7 +1707,7 @@
       "sharpness": "18.5.3.9.3.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -1736,7 +1736,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -1763,7 +1763,7 @@
       "sharpness": "5.5.9.7",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Spread",
@@ -1791,7 +1791,7 @@
       "sharpness": "11.7.4.7.3",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "-20%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Spread",
@@ -1820,7 +1820,7 @@
       "sharpness": "18.5.3.9.3.2",
       "affinity": "-20%",
       "slots": "---",
-      "bonus": "-20%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Spread",
@@ -1847,7 +1847,7 @@
       "sharpness": "6.3.13.5",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Normal",
@@ -1876,7 +1876,7 @@
       "sharpness": "6.3.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Normal",
@@ -1904,7 +1904,7 @@
       "sharpness": "15.5.4.9.3.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -1937,7 +1937,7 @@
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Normal",
@@ -1964,7 +1964,7 @@
       "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "6",
       "shelling": {
         "type": "Spread",
@@ -1993,7 +1993,7 @@
       "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Spread",
@@ -2020,7 +2020,7 @@
       "sharpness": "13.4.3.9.1",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "-30%",
+      "bonus": null,
       "rarity": "5",
       "shelling": {
         "type": "Spread",
@@ -2050,7 +2050,7 @@
       "sharpness": "9.5.9.10.4.2",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "-30%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Spread",
@@ -2078,7 +2078,7 @@
       "sharpness": "9.5.9.10.4.6.2",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "-30%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Spread",
@@ -2104,7 +2104,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "50%",
       "slots": "O--",
-      "bonus": "50%",
+      "bonus": null,
       "rarity": "7",
       "shelling": {
         "type": "Normal",
@@ -2137,7 +2137,7 @@
       "sharpness": "5.5.9.13.5.5.3",
       "affinity": "50%",
       "slots": "OO-",
-      "bonus": "50%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Normal",
@@ -2169,7 +2169,7 @@
       "sharpness": "4.7.4.2",
       "affinity": "40%",
       "slots": "---",
-      "bonus": "40%",
+      "bonus": null,
       "rarity": "8",
       "shelling": {
         "type": "Normal",
@@ -2198,7 +2198,7 @@
       "sharpness": "4.7.4.8",
       "affinity": "40%",
       "slots": "O--",
-      "bonus": "40%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Normal",
@@ -2225,7 +2225,7 @@
       "sharpness": "16.5.4.9.1",
       "affinity": "-30%",
       "slots": "---",
-      "bonus": "-30%",
+      "bonus": "+10",
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -2252,7 +2252,7 @@
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -2279,7 +2279,7 @@
       "sharpness": "3.4.17.7.5.4",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -2306,7 +2306,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -2333,7 +2333,7 @@
       "sharpness": "3.7.4.16.7.3",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -2360,7 +2360,7 @@
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OOO",
-      "bonus": "0%",
+      "bonus": "+28",
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -2387,7 +2387,7 @@
       "sharpness": "7.4.15.6.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Normal",
@@ -2414,7 +2414,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "9",
       "shelling": {
         "type": "Long",
@@ -2441,7 +2441,7 @@
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
-      "bonus": "0%",
+      "bonus": "+8",
       "rarity": "10",
       "shelling": {
         "type": "Long",
@@ -2468,7 +2468,7 @@
       "sharpness": "7.4.15.6.4.4",
       "affinity": "0%",
       "slots": "OO-",
-      "bonus": "0%",
+      "bonus": null,
       "rarity": "10",
       "shelling": {
         "type": "Normal",
