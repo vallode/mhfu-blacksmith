@@ -4,6 +4,8 @@
 
 Weapon trees for Monster Hunter Freedom Unite in the style of the in-game UI.
 
+![Screenshot of the website](/static/images/screenshot.png)
+
 TODO: Create image dump of all weapons in MHFU  
 TODO: Create release file for all JSON crafting information
 
