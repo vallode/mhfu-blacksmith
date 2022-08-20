@@ -2725,7 +2725,8 @@
       ],
       "improve-to": [
         "Killer's Carver"
-      ]
+      ],
+      "sharpness_plus": "12.11.5.4.8.3.2"
     },
     {
       "name": "Killer's Carver",
@@ -2748,7 +2749,8 @@
         "HrdCeanataurClaw (3)",
         "HvyBlkGraviosShl (4)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "5.3.9.14.6.5.3"
     },
     {
       "name": "Ceanataur Blade",
@@ -2998,7 +3000,8 @@
         "ThickTigrexScale (8)",
         "HvnlyTigrexScale (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "18.2.7.7.4.4.3"
     },
     {
       "name": "Hidden Blaze",
@@ -3058,7 +3061,8 @@
         "Narga Brain Stem (2)",
         "Eltalite Ore (10)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.3.11.10.6.5.2"
     },
     {
       "name": "Dragonslayer",

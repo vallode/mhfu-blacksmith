@@ -2097,7 +2097,8 @@
         "Hvy Tigrex Shell (6)",
         "HvnlyTigrexScale (1)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "18.2.7.7.4.4.3"
     },
     {
       "name": "Hidden Saber",
@@ -2153,7 +2154,8 @@
         "HvyNargaTailSpik (5)",
         "NargaBrainStem (2)"
       ],
-      "improve-to": null
+      "improve-to": null,
+      "sharpness_plus": "8.3.11.10.6.5.2"
     },
     {
       "name": "Dragonwood L.Sword",
