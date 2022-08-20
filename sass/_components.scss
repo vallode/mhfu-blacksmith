@@ -215,6 +215,7 @@ $element-types: (
   }
 
   &--large::before {
+    -webkit-mask-size: 52px;
     mask-size: 52px;
   }
 
@@ -237,6 +238,7 @@ $element-types: (
       height: 100%;
       image-rendering: optimizeSpeed;
       image-rendering: pixelated;
+      -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
       mix-blend-mode: multiply;
       position: absolute;
