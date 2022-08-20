@@ -332,6 +332,7 @@ $element-types: (
       z-index: 10;
     }
 
+    .sharpness:focus-within::after,
     .sharpness:hover::after {
       background-image: url("/images/sharpness-plus.png");
     }
@@ -516,10 +517,12 @@ $sharpness-colors: (
     }
   }
 
+  &:focus-within span,
   &:hover span {
     display: none;
   }
 
+  &:focus-within span.sharp--plus,
   &:hover span.sharp--plus {
     display: block;
   }
