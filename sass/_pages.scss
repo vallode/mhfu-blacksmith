@@ -48,6 +48,10 @@
 .blacksmith-page {
   .card {
     width: 100%;
+
+    .row {
+      padding-left: 6px;
+    }
   }
 
   .blacksmith-page__table {
