@@ -19,7 +19,8 @@ WEAPON_PAIRS = [
   ["light-bowgun"],
   ["heavy-bowgun"],
   ["bow"],
-  ["decoration"]
+  ["decoration"],
+  ["head"],
 ]
 
 WEAPON_ABBR = {
@@ -34,7 +35,8 @@ WEAPON_ABBR = {
   "light-bowgun": "lbg",
   "heavy-bowgun": "hbg",
   "bow": "bw",
-  "decoration": "dec"
+  "decoration": "dec",
+  "head": "head"
 }
 
 def slugify(value)
@@ -85,7 +87,7 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/blacksmith/{#{array.join(",")}}/*-crafting.json")
+  weapon_files = Dir.glob("content/{blacksmith,armorsmith}/{#{array.join(",")}}/*-crafting.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 

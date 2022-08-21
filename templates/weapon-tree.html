@@ -24,7 +24,7 @@
         <div class="weapon-tree">
           {% set data = load_data(path=current_path ~ "map.json" ) %}
 
-          {%- for weapon in data["map"] %}
+          {%- for weapon in data.map %}
             <ul>
               {{ macros::weapon_tree_row(weapon=weapon) }}
             </ul>
