@@ -33,7 +33,6 @@ include_content = false
 highlight_code = false
 
 [extra]
-# Put all your custom variables here
 weapon_types = [
   "great-sword",
   "long-sword",
@@ -47,4 +46,12 @@ weapon_types = [
   "heavy-bowgun",
   "bow",
   "decoration"
+]
+
+armor_types = [
+  "head",
+  "body",
+  "arms",
+  "waist",
+  "legs"
 ]
