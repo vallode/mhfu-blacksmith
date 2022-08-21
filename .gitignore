@@ -1,6 +1,8 @@
 # Generated weapon pages (to avoid polluting the repository)
 content/blacksmith/**/*.md
 !content/blacksmith/**/_index.md
+content/armorsmith/**/*.md
+!content/armorsmith/**/_index.md
 
 # zola build directory
 public
