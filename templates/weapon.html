@@ -8,6 +8,8 @@
   {% if image_metadata %}
   <meta property="og:image" content="{{ config.base_url }}images/weapons/{{ page.slug }}.png">
   <meta property="og:image:alt" content="In-game render of {{ page.title }}">
+  {% else %}
+  <meta property="og:image" content="/images/{{ page.extra.type }}.png">
   {% endif %}
 
   {% if page.extra.create_mats %}
