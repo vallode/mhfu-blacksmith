@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body__attr %}
+  class="blacksmith-page"
+{% endblock body__attr %}
+
+{% block content -%}
+  <img class="blacksmith__title" src="/images/blacksmith.png" height="48" alt="Blacksmith">
+
+  <hr class="border">
+
+  <div class="card">
+    <div class="blacksmith-page__table">
+      {%- for section in section.subsections %}
+        {% set section_data = get_section(path=section, metadata_only=true) %}
+  
+        <a class="row" href="/armorsmith/{{ section_data.extra.type }}/">
+          <div class="icon"><img src="/images/{{ section_data.extra.type }}.png" alt=""></div>
+          <p>{{ section_data.title }} weapon tree</p>
+        </a>
+      {%- endfor %}
+    </div>
+  </div>
+{% endblock content -%}
