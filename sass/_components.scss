@@ -87,13 +87,17 @@
 
     &:focus::before,
     &:hover::before {
-      background: -webkit-gradient(linear, left top, right top, from(#ffffff00), color-stop(#037703d7), to(#ffffff00));
-      background: -o-linear-gradient(left, #ffffff00, #037703d7, #ffffff00);
-      background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+      background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,0)), color-stop(#037703d7), to(rgba(0,0,0,0)));
+      background: -o-linear-gradient(left, rgba(0,0,0,0), #037703d7, rgba(0,0,0,0));
+      background: linear-gradient(0.25turn, rgba(0,0,0,0), #037703d7, rgba(0,0,0,0));
     }
 
     &--external {
       color: #c0c0c0;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 
@@ -206,6 +210,7 @@ $element-types: (
     position: relative;
     height: 26px;
     width: 26px;
+    image-rendering: crisp-edges;
   }
 
   &--large,
@@ -236,6 +241,10 @@ $element-types: (
       content: '';
       display: block;
       height: 100%;
+      -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
       image-rendering: optimizeSpeed;
       image-rendering: pixelated;
       -webkit-mask-size: 100% 100%;
@@ -329,6 +338,10 @@ $element-types: (
       left: 0;
       background-image: url("/images/sharpness.png");
       background-size: cover;
+      -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
       image-rendering: optimizeSpeed;
       image-rendering: pixelated;
       z-index: 10;
