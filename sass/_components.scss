@@ -81,6 +81,7 @@
       width: calc(50vw - 2.3rem);
       z-index: 0;
       background: transparent;
+      animation: opacityme 1s ease-in-out 0s infinite alternate;
 
       @media screen and (max-width: 600px) {
         left: 0;
@@ -626,4 +627,9 @@ $sharpness-colors: (
     justify-content: center;
     flex-wrap: wrap;
   }
+}
+
+@keyframes opacityme {
+  from {opacity: 1;}
+  to {opacity: 0.6;}
 }
