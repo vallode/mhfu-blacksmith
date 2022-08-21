@@ -6,6 +6,9 @@
   border-image-width: 20px 22px 20px 22px;
   border-style: solid;
 
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
   display: flex;
   flex-direction: column;
   flex: 1 1 0%;
@@ -200,16 +203,17 @@ $element-types: (
 
 .icon {
   display: flex;
-  flex: 0 0 2.6rem;
-  height: 26px;
-  margin-right: 9px;
+  flex: 0 0 3.2rem;
+  height: 32px;
+  margin-right: 6px;
   position: relative;
-  width: 26px;
+  width: 32px;
 
   img {
     position: relative;
-    height: 26px;
-    width: 26px;
+    height: 32px;
+    width: 32px;
+    image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
 
@@ -241,15 +245,11 @@ $element-types: (
       content: '';
       display: block;
       height: 100%;
-      -ms-interpolation-mode: nearest-neighbor;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: -o-pixelated;
-      image-rendering: optimizeSpeed;
-      image-rendering: pixelated;
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
       mix-blend-mode: multiply;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -276,6 +276,8 @@ $element-types: (
       position: absolute;
       width: 100%;
       z-index: 1000;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
 
     &--#{$element-name}::after {
@@ -338,12 +340,8 @@ $element-types: (
       left: 0;
       background-image: url("/images/sharpness.png");
       background-size: cover;
-      -ms-interpolation-mode: nearest-neighbor;
       image-rendering: -webkit-optimize-contrast;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: -o-pixelated;
-      image-rendering: optimizeSpeed;
-      image-rendering: pixelated;
+      image-rendering: crisp-edges;
       z-index: 10;
     }
 
