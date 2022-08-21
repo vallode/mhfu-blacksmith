@@ -61,9 +61,9 @@
       height: 38px;
 
       &:hover {
-        background: -webkit-gradient(linear, left top, right top, from(#ffffff00), color-stop(#037703d7), to(#ffffff00));
-        background: -o-linear-gradient(left, #ffffff00, #037703d7, #ffffff00);
-        background: linear-gradient(0.25turn, #ffffff00, #037703d7, #ffffff00);
+        background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,0)), color-stop(rgba(3, 119, 3, 0.84)), to(rgba(0,0,0,0)));
+        background: -o-linear-gradient(left, rgba(0,0,0,0), rgba(3, 119, 3, 0.84), rgba(0,0,0,0));
+        background: linear-gradient(0.25turn, rgba(0,0,0,0), rgba(3, 119, 3, 0.84), rgba(0,0,0,0));
       }
     }
   }
