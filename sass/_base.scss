@@ -39,12 +39,8 @@ a {
 // Most of the images on the site are taken from the game, we don't want to
 // blur out the pixels.
 img {
-  -ms-interpolation-mode: nearest-neighbor;
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-pixelated;
-  image-rendering: optimizeSpeed;
-  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 // Replacing broken images with a more fitting MHFU icon.
@@ -52,6 +48,8 @@ img {
   color: transparent;
 
   &:before {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     background-image: url("/images/ukwn.png");
     background-repeat: no-repeat;
     content: ' ';
@@ -76,12 +74,8 @@ hr.border {
   border: 0;
   height: 16px;
   // This applies to the background-image.
-  -ms-interpolation-mode: nearest-neighbor;
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-pixelated;
-  image-rendering: optimizeSpeed;
-  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   width: calc(100% + 2.8rem);
 }
 
@@ -91,12 +85,6 @@ hr.border {
 
 .blacksmith__title {
   flex: 0 0 0%;
-  -ms-interpolation-mode: nearest-neighbor;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-pixelated;
-  image-rendering: optimizeSpeed;
-  image-rendering: pixelated;
   width: 100%;
   max-width: 51rem;
   height: auto;
