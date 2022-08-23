@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% block head__extra %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ current_url }}">
+
+  {% if image_metadata %}
+  <meta property="og:image" content="{{ config.base_url }}images/weapons/{{ page.slug }}.png">
+  <meta property="og:image:alt" content="In-game render of {{ page.title }}">
+  {% else %}
+  <meta property="og:image" content="/images/{{ page.extra.type }}.png">
+  {% endif %}
+
+  {% if page.extra.create_mats %}
+    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+  {% elif page.extra.improve_mats %}
+    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+
+  <nav class="weapon-navigation">
+    {% for weapon_type in config.extra.weapon_types %}
+      {%- set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
+
+      <div>
+        <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
+          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
+            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </nav>
+
+  <hr class="border">
+
+  <div class="weapon-details-page">
+    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
+      <div class="card card--weapon-tree"></div>
+    </turbo-frame>
+  
+    {% block weapon__details %}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card">
+          <div class="weapon-card__header">
+            <div class="
+              icon
+              icon--{{ page.extra.type }}
+              icon--rarity-{{ page.extra.rarity }}
+              {% if page.extra.color %}
+              icon--{{ page.extra.color }}
+              {% endif %}
+              icon--large
+              "
+            >
+              <img src="/images/{{ page.components[1] }}.png" alt="?">
+            </div>
+
+            <p id="weapon_name">
+              {{ page.extra.name }}
+            </p>
+            
+            {% if page.extra.sharpness %}
+            <div tabindex="0" class="sharpness">
+              {% for sharp in page.extra.sharpness | split(pat=".") %}
+                <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
+              {% endfor %}
+
+              {% if page.extra.sharpness_plus %}
+                {% for sharp in page.extra.sharpness_plus | split(pat=".") %}
+                  <span class="sharp-{{ loop.index }} sharp--plus" style="width: {{ sharp | int * 4 }}px;"></span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="weapon-card__details">
+            <div class="stats">
+              {% if page.extra.attack %}
+                <p>
+                  Attack: <span>{{ page.extra.attack }}</span>
+                  {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
+                </p>
+              {% endif %}
+
+              {% if page.extra.max_attack %}
+                <p>Max attack: <span>{{ page.extra.max_attack }}</span></p>
+              {% endif %}
+
+              {% if page.extra.affinity %}
+                <p>
+                  Affinity:
+                  <span
+                    class="
+                    {% if page.extra.affinity is starting_with('-') %}
+                      negative
+                    {% elif page.extra.affinity is not starting_with('0')%}
+                      positive
+                    {% endif %}
+                    "
+                  >
+                    {{ page.extra.affinity }}
+                  </span>
+                </p>
+              {% endif %}
+
+              <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+
+              {% if page.extra.rapid_fire %}
+                <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
+              {% endif %}
+
+              {% if page.extra.shelling %}
+                <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
+              {% endif %}
+
+              {% if page.extra.element %}
+                {% for element in page.extra.element %}
+                  <p class="element">
+                    {{ element.name }} Attrib: {{ element.attack }}
+                  </p>
+                {% endfor %}
+              {% endif %}
+
+              {% if page.extra.skills %}
+                {% for skill in page.extra.skills %}
+                  <p class="element">
+                    {{ skill }}
+                  </p>
+                {% endfor %}
+              {% endif %}
+
+              {% if page.extra.bonus %}
+                <p class="element">Defense {{ page.extra.bonus }}</p>
+              {% endif %}
+            </div>
+
+            <hr>
+
+            <div
+              data-controller="weapon-page"
+              data-weapon-page-page-value="1"
+              class="requirements"
+            >
+              <div id="page-1" class="active">
+                {% if page.extra.improve_mats %}
+                  <div class="improve-mats">
+                    <p>
+                      <span>Improve cost: </span>{{ page.extra.improve_cost }}z
+                    </p>
+  
+                    {%- for material in page.extra.improve_mats %}
+                      <p>{{ material }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+  
+                {%- if page.extra.create_mats %}
+                  <div class="create-mats">
+                    <p>
+                      <span>Create cost: </span>{{ page.extra.create_cost }}z
+                    </p>
+    
+                    {% for material in page.extra.create_mats %}
+                       <p>{{ material }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
+                <div id="page-2">
+                  {%- if page.extra.alternative_create_mats %}
+                    <div class="create-mats">
+                      <p>
+                        <span>Create cost: </span>{{ page.extra.create_cost }}z
+                      </p>
+      
+                      {% for material in page.extra.alternative_create_mats %}
+                        <p>{{ material }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.ammo %}
+                    <div class="ammo">
+                      <p>Normal: {{ page.extra.ammo[0] }}</p>
+                      <p>Pierce: {{ page.extra.ammo[1] }}</p>
+                      <p>Pellet: {{ page.extra.ammo[2] }}</p>
+                      <p>Crag: {{ page.extra.ammo[3] }}</p>
+                      <p>Cluster: {{ page.extra.ammo[4] }}</p>
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.status_ammo %}
+                    <div class="status_ammo">
+                      <p>RecovS: {{ page.extra.status_ammo[0] }}</p>
+                      <p>PoisonS: {{ page.extra.status_ammo[1] }}</p>
+                      <p>Para S: {{ page.extra.status_ammo[2] }}</p>
+                      <p>Sleep S: {{ page.extra.status_ammo[3] }}</p>
+                    </div>
+                  {% endif %}
+
+                  {% if page.extra.shots %}
+                    <div class="shots">
+                      <p><span>[Charge Attack]</span></p>
+                      {% for shot in page.extra.shots %}
+                        {% if loop.index == 1 %}
+                        <p>
+                          <span class="orange">Lvl {{ loop.index }}:</span> {{ shot }}
+                        </p>
+                        {% else %}
+                        <p>
+                          <span class="orange"><span style="visibility: hidden;">Lvl</span> {{ loop.index }}:</span> {{ shot }}
+                        </p>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if page.extra.element_ammo or page.extra.coatings %}
+                <div id="page-3">
+                  {% if page.extra.element_ammo %}
+                    <div class="element_ammo">
+                      <p>Flame S: {{ page.extra.element_ammo[0] }}</p>
+                      <p>Water S: {{ page.extra.element_ammo[1] }}</p>
+                      <p>Thundr S: {{ page.extra.element_ammo[2] }}</p>
+                      <p>Freeze S: {{ page.extra.element_ammo[3] }}</p>
+                      <p>Dragon S: {{ page.extra.element_ammo[4] }}</p>
+                    </div>
+                  {% endif %}
+    
+                  {% if page.extra.misc_ammo %}
+                    <div class="misc_ammo">
+                      <p>Tranq S: {{ page.extra.misc_ammo[0] }}</p>
+                      <p>Paint S: {{ page.extra.misc_ammo[1] }}</p>
+                      <p>Demon S: {{ page.extra.misc_ammo[2] }}</p>
+                      <p>Armor S: {{ page.extra.misc_ammo[3] }}</p>
+                    </div>
+                  {% endif %}
+
+                  {% if page.extra.coatings %}
+                    <div class="coatings">
+                      <p><span>[Usable Coating]</span></p>
+                      {% for coating in page.extra.coatings %}
+                        <p>{{ coating | capitalize }} Coating</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
+                <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if image_metadata %}
+          <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
+            <div class="weapon-card__preview__container">
+              <img
+                draggable="false"
+                src="/images/weapons/{{ page.slug }}.png"
+                alt="In-game render of weapon"
+                data-controller="image-zoom"
+                data-image-position-target="image"
+                data-action="wheel->image-zoom#zoom"
+              >
+            </div>
+          </div>
+        {% endif %}
+      </turbo-frame>
+    {% endblock weapon__details %}
+  </div>
+{% endblock content %}
+
+{%- block scripts %}
+<script>
+  /**
+   * Every time turbo loads a weapon we want to change the title to the weapon's
+   * name, this reflects in the user browsing history.
+   */
+  window.addEventListener("turbo:render", (event) => {
+    if (event.srcElement.querySelector("#weapon_name")) {
+      document.title = `MHFU - ${event.srcElement.querySelector("#weapon_name").innerText}`
+    }
+  })
+
+  // TODO: Fix for properly avoiding subsequent turbo frame loads.
+  window.addEventListener("turbo:frame-load", (event) => {
+    const components = window.location.pathname.split("/")
+    const weaponId = components.pop() || components.pop()
+
+    if (event.srcElement.querySelector(`[id='${weaponId}']`)) {
+      event.srcElement.querySelector(`[id='${weaponId}']`).scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center"
+      })
+    }
+  })
+</script>
+{%- endblock scripts %}
