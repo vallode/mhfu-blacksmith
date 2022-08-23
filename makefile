@@ -22,3 +22,8 @@ build: clean generate-pages
 deploy: build
 	MHFU_PRODUCTION=true netlify deploy --site mhfu-blacksmith --prod --message \
 		"`git log --oneline --format=%s -n 1`" --dir public
+
+release-json:
+	mkdir -p mhfu_weapon_information
+	find content/blacksmith -name '*-crafting.json' -exec cp {} mhfu_weapon_information \;
+	zip mhfu_weapon_information.zip -m -9 -r mhfu_weapon_information
