@@ -50,11 +50,11 @@ In order to capture lossless images of weapons in the game (as they appear in th
 I then go in and rename each image following a pattern of `weapon_name-black.png/weapon_name-white.png`.
 
 ```bash
-convert '*-white.png' -crop 608x406+40+305 +repage -trim -gravity Center -background White -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
+convert '*-white.png' -crop 856x571+55+429 +repage -trim -gravity Center -background White -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
 ```
 
 ```bash
-convert '*-black.png' -crop 608x406+40+305 +repage -trim -gravity Center -background Black -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
+convert '*-black.png' -crop 856x571+55+429 +repage -trim -gravity Center -background Black -extent 800x600 -set filename:fn '%[basename]' '%[filename:fn].png'
 ```
 
 The script below then iterates over the pairs of images and converts them into one, completely losslessly transparent, image for use on the site in a 4:3 ratio.
