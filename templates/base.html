@@ -52,6 +52,30 @@
       window.Stimulus = Application.start()
     }
 
+    /**
+     * Every time turbo loads a weapon we want to change the title to the weapon's
+     * name, this reflects in the user browsing history.
+     */
+    window.addEventListener("turbo:render", (event) => {
+      if (event.srcElement.querySelector("#weapon_name")) {
+        document.title = `MHFU - ${event.srcElement.querySelector("#weapon_name").innerText}`
+      }
+    })
+
+    // TODO: Fix for properly avoiding subsequent turbo frame loads.
+    window.addEventListener("turbo:frame-load", (event) => {
+      const components = window.location.pathname.split("/")
+      const weaponId = components.pop() || components.pop()
+
+      if (event.srcElement.querySelector(`[id='${weaponId}']`)) {
+        event.srcElement.querySelector(`[id='${weaponId}']`).scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center"
+        })
+      }
+    })
+
     // TODO: Improve this hacky zoom.
     Stimulus.register("image-zoom", class extends Controller {
       zoom(event) {
