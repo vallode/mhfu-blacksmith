@@ -121,6 +121,18 @@
                 <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
               {% endif %}
 
+              {% if page.extra.notes %}
+                <div class="notes">
+                  [Note:
+                  {% for note in page.extra.notes %}
+                  <div class="icon icon--note icon--note-{{ note }}">
+                    <img src="/images/note.png">
+                  </div>
+                  {% endfor %}
+                  ]
+                </div>
+              {% endif %}
+
               {% if page.extra.element %}
                 {% for element in page.extra.element %}
                   <p class="element">

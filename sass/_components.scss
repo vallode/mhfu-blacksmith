@@ -165,6 +165,7 @@ $weapon-types: (
   "heavy-bowgun",
   "bow",
   "decoration",
+  "note",
 );
 
 $decoration-colors: (
@@ -188,6 +189,16 @@ $rarity-colors: (
   8: #FD6960,
   9: #FFC762,
   10: #BB84FB,
+);
+
+$note-colors: (
+  "a": #6CC8FE,
+  "b": #7175FD,
+  "g": #7BE61F,
+  "p": #E176EE,
+  "r": #FD3B1F,
+  "w": white,
+  "y": #FFEB2B,
 );
 
 $element-types: (
@@ -236,6 +247,12 @@ $element-types: (
 
   @each $value, $color in $decoration-colors {
     &--#{$value}::before {
+      background: $color;
+    }
+  }
+
+  @each $value, $color in $note-colors {
+    &--note-#{$value}::before {
       background: $color;
     }
   }
@@ -416,6 +433,15 @@ $element-types: (
 
     .stats .element {
       color: #56FBFA;
+    }
+
+    .stats .notes {
+      display: flex;
+      color: white;
+
+      .icon:first-of-type {
+        margin-left: 26px;
+      }
     }
 
     .requirements {

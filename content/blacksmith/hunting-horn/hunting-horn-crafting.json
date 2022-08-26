@@ -9,7 +9,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": "100000",
@@ -39,7 +43,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "120000",
@@ -63,7 +71,11 @@
       "slots": "O--",
       "bonus": "+24",
       "rarity": "5",
-      "notes": "Note.purpleNote.blueNote.yellow",
+      "notes": [
+        "p",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "35000",
       "improve-cost": "35000",
@@ -93,7 +105,11 @@
       "slots": "O--",
       "bonus": "+34",
       "rarity": "8",
-      "notes": "Note.purpleNote.blueNote.yellow",
+      "notes": [
+        "p",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "85000",
@@ -118,7 +134,11 @@
       "slots": "O--",
       "bonus": "+36",
       "rarity": "10",
-      "notes": "Note.purpleNote.blueNote.yellow",
+      "notes": [
+        "p",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "130000",
@@ -142,7 +162,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.whiteNote.aquaNote.blue",
+      "notes": [
+        "w",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "25000",
       "improve-cost": "25000",
@@ -172,7 +196,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.whiteNote.aquaNote.blue",
+      "notes": [
+        "w",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "70000",
@@ -197,7 +225,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "8",
-      "notes": "Note.purpleNote.aquaNote.blue",
+      "notes": [
+        "p",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "75000",
@@ -222,7 +254,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.aquaNote.blue",
+      "notes": [
+        "p",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "100000",
@@ -248,7 +284,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.aquaNote.blue",
+      "notes": [
+        "p",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "125000",
@@ -271,7 +311,11 @@
       "slots": "O--",
       "bonus": "+10",
       "rarity": "2",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "2340",
       "improve-cost": "2340",
@@ -301,7 +345,11 @@
       "slots": "O--",
       "bonus": "+15",
       "rarity": "4",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "4410",
@@ -326,7 +374,11 @@
       "slots": "O--",
       "bonus": "+20",
       "rarity": "6",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "40000",
@@ -351,7 +403,11 @@
       "slots": "O--",
       "bonus": "+20",
       "rarity": "7",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "60000",
@@ -376,7 +432,11 @@
       "slots": "O--",
       "bonus": "+20",
       "rarity": "9",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "85000",
@@ -401,7 +461,11 @@
       "slots": "O--",
       "bonus": "+20",
       "rarity": "9",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "110000",
@@ -424,7 +488,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "4",
-      "notes": "Note.whiteNote.yellowNote.aqua",
+      "notes": [
+        "w",
+        "y",
+        "a"
+      ],
       "type": "hh",
       "create-cost": "3825",
       "improve-cost": "3825",
@@ -454,7 +522,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.whiteNote.yellowNote.aqua",
+      "notes": [
+        "w",
+        "y",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "5715",
@@ -479,7 +551,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.yellowNote.aqua",
+      "notes": [
+        "p",
+        "y",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "40000",
@@ -504,7 +580,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.yellowNote.aqua",
+      "notes": [
+        "p",
+        "y",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "95000",
@@ -528,7 +608,11 @@
       "slots": "O--",
       "bonus": "+5",
       "rarity": "6",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "50000",
       "improve-cost": "50000",
@@ -558,7 +642,11 @@
       "slots": "O--",
       "bonus": "+8",
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -589,7 +677,11 @@
       "slots": "O--",
       "bonus": "+8",
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "105000",
@@ -608,7 +700,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "65000",
       "improve-cost": "65000",
@@ -639,7 +735,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "105000",
@@ -663,7 +763,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "3",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "2790",
       "improve-cost": "2790",
@@ -693,7 +797,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "4",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "5040",
@@ -720,7 +828,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "30000",
@@ -743,7 +855,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "40000",
@@ -768,7 +884,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "50000",
@@ -793,7 +913,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "90000",
@@ -819,7 +943,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "115000",
@@ -842,7 +970,11 @@
       "slots": "---",
       "bonus": "+10",
       "rarity": "7",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "50000",
       "improve-cost": "50000",
@@ -873,7 +1005,11 @@
       "slots": "---",
       "bonus": "+15",
       "rarity": "9",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "85000",
@@ -899,7 +1035,11 @@
       "slots": "---",
       "bonus": "+20",
       "rarity": "10",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "115000",
@@ -923,7 +1063,11 @@
       "slots": "---",
       "bonus": "+28",
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "90000",
@@ -948,7 +1092,11 @@
       "slots": "---",
       "bonus": "+34",
       "rarity": "10",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "120000",
@@ -972,7 +1120,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "3",
-      "notes": "Note.whiteNote.greenNote.yellow",
+      "notes": [
+        "w",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "2340",
       "improve-cost": "2340",
@@ -1002,7 +1154,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "4",
-      "notes": "Note.whiteNote.greenNote.yellow",
+      "notes": [
+        "w",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "3285",
@@ -1027,7 +1183,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "55000",
@@ -1052,7 +1212,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -1082,7 +1246,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "105000",
@@ -1106,7 +1274,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "2",
-      "notes": "Note.whiteNote.greenNote.aqua",
+      "notes": [
+        "w",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": "990",
       "improve-cost": "990",
@@ -1136,7 +1308,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "3",
-      "notes": "Note.whiteNote.greenNote.aqua",
+      "notes": [
+        "w",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "1935",
@@ -1162,7 +1338,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.whiteNote.greenNote.aqua",
+      "notes": [
+        "w",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "40000",
@@ -1185,7 +1365,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "30000",
@@ -1211,7 +1395,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "50000",
@@ -1237,7 +1425,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "80000",
@@ -1263,7 +1455,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "105000",
@@ -1287,7 +1483,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "1",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "585",
       "improve-cost": null,
@@ -1312,7 +1512,11 @@
       "slots": "O--",
       "bonus": "+5",
       "rarity": "2",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "1575",
@@ -1340,7 +1544,11 @@
       "slots": "OO-",
       "bonus": "+10",
       "rarity": "4",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "5040",
@@ -1365,7 +1573,11 @@
       "slots": "OO-",
       "bonus": "+10",
       "rarity": "6",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "35000",
@@ -1390,7 +1602,11 @@
       "slots": "OO-",
       "bonus": "+12",
       "rarity": "9",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "75000",
@@ -1416,7 +1632,11 @@
       "slots": "OO-",
       "bonus": "+14",
       "rarity": "9",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "100000",
@@ -1440,7 +1660,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.whiteNote.greenNote.blue",
+      "notes": [
+        "w",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "10000",
       "improve-cost": "10000",
@@ -1470,7 +1694,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "8",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "90000",
@@ -1496,7 +1724,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "130000",
@@ -1520,7 +1752,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "3",
-      "notes": "Note.whiteNote.yellowNote.red",
+      "notes": [
+        "w",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "1935",
       "improve-cost": "1935",
@@ -1549,7 +1785,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "4",
-      "notes": "Note.whiteNote.yellowNote.red",
+      "notes": [
+        "w",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "5040",
@@ -1574,7 +1814,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "50000",
       "improve-cost": "50000",
@@ -1604,7 +1848,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "60000",
@@ -1631,7 +1879,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.yellowNote.red",
+      "notes": [
+        "p",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "95000",
@@ -1655,7 +1907,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "85000",
       "improve-cost": "85000",
@@ -1685,7 +1941,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.blue",
+      "notes": [
+        "p",
+        "g",
+        "b"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "115000",
@@ -1709,7 +1969,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.whiteNote.aquaNote.red",
+      "notes": [
+        "w",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "15000",
       "improve-cost": null,
@@ -1735,7 +1999,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "8",
-      "notes": "Note.purpleNote.aquaNote.red",
+      "notes": [
+        "p",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "100000",
@@ -1761,7 +2029,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.aquaNote.red",
+      "notes": [
+        "p",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "150000",
@@ -1784,7 +2056,11 @@
       "slots": "---",
       "bonus": "+8",
       "rarity": "8",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "100000",
@@ -1810,7 +2086,11 @@
       "slots": "---",
       "bonus": "+8",
       "rarity": "10",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "150000",
@@ -1834,7 +2114,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "20000",
       "improve-cost": null,
@@ -1860,7 +2144,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "8",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "75000",
@@ -1885,7 +2173,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "120000",
       "improve-cost": "120000",
@@ -1915,7 +2207,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "145000",
@@ -1939,7 +2235,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "6",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "40000",
       "improve-cost": null,
@@ -1964,7 +2264,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "75000",
@@ -1988,7 +2292,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "5",
-      "notes": "Note.whiteNote.aquaNote.red",
+      "notes": [
+        "w",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "35000",
       "improve-cost": null,
@@ -2015,7 +2323,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.aquaNote.red",
+      "notes": [
+        "p",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "80000",
@@ -2040,7 +2352,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.aquaNote.red",
+      "notes": [
+        "p",
+        "a",
+        "r"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "125000",
@@ -2064,7 +2380,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "7",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "80000",
       "improve-cost": "80000",
@@ -2094,7 +2414,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "120000",
       "improve-cost": "120000",
@@ -2123,7 +2447,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "8",
-      "notes": "Note.purpleNote.greenNote.aqua",
+      "notes": [
+        "p",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2149,7 +2477,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.greenNote.aqua",
+      "notes": [
+        "p",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": null,
       "improve-cost": "145000",
@@ -2173,7 +2505,11 @@
       "slots": "---",
       "bonus": "+10",
       "rarity": "10",
-      "notes": "Note.purpleNote.greenNote.red",
+      "notes": [
+        "p",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "150000",
       "improve-cost": null,
@@ -2197,7 +2533,11 @@
       "slots": "OO-",
       "bonus": "+10",
       "rarity": "9",
-      "notes": "Note.whiteNote.blueNote.red",
+      "notes": [
+        "w",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2221,7 +2561,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.whiteNote.yellowNote.red",
+      "notes": [
+        "w",
+        "y",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2245,7 +2589,11 @@
       "slots": "O--",
       "bonus": "+15",
       "rarity": "9",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2269,7 +2617,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.whiteNote.blueNote.yellow",
+      "notes": [
+        "w",
+        "b",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2293,7 +2645,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.yellowNote.aqua",
+      "notes": [
+        "p",
+        "y",
+        "a"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2317,7 +2673,11 @@
       "slots": "O--",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2341,7 +2701,11 @@
       "slots": "OO-",
       "bonus": "+20",
       "rarity": "9",
-      "notes": "Note.whiteNote.greenNote.red",
+      "notes": [
+        "w",
+        "g",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2365,7 +2729,11 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.purpleNote.greenNote.yellow",
+      "notes": [
+        "p",
+        "g",
+        "y"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2389,7 +2757,11 @@
       "slots": "---",
       "bonus": null,
       "rarity": "9",
-      "notes": "Note.whiteNote.greenNote.aqua",
+      "notes": [
+        "w",
+        "g",
+        "a"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2413,7 +2785,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.aquaNote.blue",
+      "notes": [
+        "p",
+        "a",
+        "b"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
@@ -2437,7 +2813,11 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": "10",
-      "notes": "Note.purpleNote.blueNote.red",
+      "notes": [
+        "p",
+        "b",
+        "r"
+      ],
       "type": "hh",
       "create-cost": "100000",
       "improve-cost": null,
