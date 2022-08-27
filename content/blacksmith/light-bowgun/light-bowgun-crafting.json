@@ -131,7 +131,7 @@
       "create-cost": "550",
       "improve-mats": null,
       "create-mats": [
-        "Velociprey Scale:  6",
+        "Velociprey Scale (6)",
         "Sm Monster Bone (3)",
         "Iron Ore (6)",
         "Velociprey Hide (4)"
@@ -1631,7 +1631,6 @@
       "improve-mats": null,
       "create-mats": [
         "Azre Rathalos Shl (5)",
-        "Azr Rathalos Scl: Shortcut3",
         "Dragonite Ore (2)",
         "FireWyvernMarrow (1)"
       ]

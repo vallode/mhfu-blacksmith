@@ -538,9 +538,9 @@
       "improve-from": "Sentoryu Wolf",
       "create-mats": null,
       "improve-mats": [
-        "Rejuvenated Beak x 1",
-        "Long Garuga Ear x 2",
-        "Garuga Mane x 4"
+        "Rejuvenated Beak (1)",
+        "Long Garuga Ear (2)",
+        "Garuga Mane (4)"
       ],
       "improve-to": [
         "Daito Crow"
@@ -1842,9 +1842,9 @@
       "improve-cost": "2600",
       "improve-from": "Bone Katana \"Shark\"",
       "create-mats": [
-        "Rathian Scale2",
-        "Rathian Shell 5",
-        "Firewyvern Fluid 20"
+        "Rathian Scale (2)",
+        "Rathian Shell (5)",
+        "Firewyvern Fluid (20)"
       ],
       "improve-mats": [
         "FireWyvern Fluid (3)",
@@ -2646,10 +2646,10 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G x 1",
-        "Eltalite Ore x 10",
-        "Wyvern Fang x 20",
-        "Velociprey Hide+ x 20"
+        "Commendation G (1)",
+        "Eltalite Ore (10)",
+        "Wyvern Fang (20)",
+        "Velociprey Hide+ (20)"
       ],
       "improve-mats": null,
       "improve-to": null,
