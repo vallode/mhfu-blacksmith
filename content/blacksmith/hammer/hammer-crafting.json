@@ -275,8 +275,8 @@
         {
           "name": "Union Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -315,14 +315,14 @@
         {
           "name": "Eltalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Union Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Piercing Claw",
@@ -341,20 +341,20 @@
         {
           "name": "Eltalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Carbalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Emperor Cricket",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "orange"
         }
       ],
       "improve-to": [
@@ -383,7 +383,7 @@
         {
           "name": "Mellanje Ore",
           "amount": "5",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -428,8 +428,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Disk Stone",
@@ -461,8 +461,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Machalite Ore",
@@ -499,8 +499,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Iron Ore",
@@ -519,8 +519,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Iron Ore",
@@ -561,8 +561,8 @@
         {
           "name": "Union Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Velocidrome Head",
@@ -573,8 +573,8 @@
         {
           "name": "Remobra Skull",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -644,14 +644,14 @@
         {
           "name": "Eltalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Thunderbug Jelly",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         },
         {
           "name": "Gld Rathian Scl+",
@@ -683,8 +683,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "HvyGldRathianShl",
@@ -722,8 +722,8 @@
         {
           "name": "Union Ore",
           "amount": "25",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Iron Ore",
@@ -734,7 +734,7 @@
         {
           "name": "Novacrystal",
           "amount": "5",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -764,7 +764,7 @@
         {
           "name": "Mellanje Ore",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -782,8 +782,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ],
       "improve-to": null,
@@ -808,8 +808,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Ice Crystal",
@@ -826,8 +826,8 @@
         {
           "name": "Monster Essence",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "improve-mats": [
@@ -840,14 +840,14 @@
         {
           "name": "Eltalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Emperor Cricket",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "orange"
         },
         {
           "name": "DaoraDragonScal+",
@@ -926,8 +926,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Dragonite Ore",
@@ -967,8 +967,8 @@
         {
           "name": "Union Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -1008,7 +1008,7 @@
         {
           "name": "Mellanje Ore",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -1044,8 +1044,8 @@
         {
           "name": "FireWyvern Fluid",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Machalite Ore",
@@ -1070,8 +1070,8 @@
         {
           "name": "FireWyvern Fluid",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Machalite Ore",
@@ -1148,20 +1148,20 @@
         {
           "name": "Firecell Stone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "orange"
         },
         {
           "name": "Carbalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Monster Broth",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "FireWyvrn BrnStm",
@@ -1192,20 +1192,20 @@
         {
           "name": "Eltalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Blazing Fire Sac",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Firecell Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "orange"
         },
         {
           "name": "FireWyvrn BrnStm",
@@ -1218,20 +1218,20 @@
         {
           "name": "Eltalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Blazing Fire Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Monster Essence",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -1257,8 +1257,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Naruga Thck Scl",
@@ -1300,8 +1300,8 @@
         {
           "name": "Speartuna",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "blue"
         },
         {
           "name": "Cephalos Fin",
@@ -1390,8 +1390,8 @@
         {
           "name": "Union Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ],
       "improve-to": null,
@@ -1414,8 +1414,8 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Iron Ore",
@@ -1434,8 +1434,8 @@
         {
           "name": "FlynMealPassReg",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Iron Ore",
@@ -1446,8 +1446,8 @@
         {
           "name": "Carpenterbug",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1474,14 +1474,14 @@
         {
           "name": "FlynMealPassReg",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Carbalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Black Blos Shell",
@@ -1511,14 +1511,14 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Rainbow Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "DaoraDragonScale",
@@ -1550,14 +1550,14 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Union Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Slvr Rthlos Scl+",
@@ -1599,8 +1599,8 @@
         {
           "name": "Monster Fluid",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -1666,7 +1666,7 @@
           "name": "Hrd Monster Bone",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         },
         {
           "name": "Monster Bone+",
@@ -1677,14 +1677,14 @@
         {
           "name": "Monster Broth",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "King Scarab",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -1727,8 +1727,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         }
       ],
       "improve-mats": [
@@ -1747,14 +1747,14 @@
         {
           "name": "Carbalite Ore",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "King Scarab",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -1799,8 +1799,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -1841,8 +1841,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -1945,8 +1945,8 @@
         {
           "name": "Carpenterbug",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1986,8 +1986,8 @@
         {
           "name": "Killer Beetle",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "green"
         }
       ],
       "improve-to": [
@@ -2034,8 +2034,8 @@
         {
           "name": "Carpenterbug",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -2054,8 +2054,8 @@
         {
           "name": "Killer Beetle",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "green"
         }
       ],
       "improve-to": [
@@ -2087,8 +2087,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Ice Crystal",
@@ -2121,7 +2121,7 @@
         {
           "name": "Novacrystal",
           "amount": "3",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -2296,8 +2296,8 @@
         {
           "name": "Hercudrome",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -2516,8 +2516,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Inferno Sac",
@@ -2689,7 +2689,7 @@
           "name": "Hrd Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         },
         {
           "name": "Gourmet Steak",
@@ -2805,8 +2805,8 @@
         {
           "name": "Piscine Fang",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Kut-Ku Scale",
@@ -2817,8 +2817,8 @@
         {
           "name": "Mega Demondrug",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -2837,8 +2837,8 @@
         {
           "name": "Monster Fluid",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -3148,14 +3148,14 @@
         {
           "name": "Iodrome Hide",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "red"
         },
         {
           "name": "Carbalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -3236,8 +3236,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -3382,7 +3382,7 @@
           "name": "Hvy Monster Bone",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -3418,8 +3418,8 @@
         {
           "name": "Carpenterbug",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -3695,8 +3695,8 @@
         {
           "name": "Thunderbug",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Rubbery Hide",
@@ -3770,8 +3770,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Thunder Sac",
@@ -3808,8 +3808,8 @@
         {
           "name": "Thunderbug",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -3880,8 +3880,8 @@
         {
           "name": "Thunderbug Jelly",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         },
         {
           "name": "KhezuSpecialCut",
@@ -3929,8 +3929,8 @@
         {
           "name": "Monster Fluid",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -3964,8 +3964,8 @@
         {
           "name": "Piscine Fang",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Congalala Claw",
@@ -4079,8 +4079,8 @@
         {
           "name": "Hercudrome",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -4249,8 +4249,8 @@
         {
           "name": "Carbalite Ore",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Wyvern Stone",
@@ -4280,7 +4280,7 @@
         {
           "name": "Blango Pelt",
           "amount": "6",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -4521,8 +4521,8 @@
         {
           "name": "Carpenterbug",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -4742,8 +4742,8 @@
         {
           "name": "Lunastra Shell",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Firestone",
@@ -4873,7 +4873,7 @@
         {
           "name": "Commendation",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         }
       ],
@@ -4998,7 +4998,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         }
       ],
@@ -5143,8 +5143,8 @@
         {
           "name": "Blackbelt Ticket",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Gravios Coin",
@@ -5201,8 +5201,8 @@
         {
           "name": "Gld Rathian Cpc",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -5246,7 +5246,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         }
       ],
@@ -5276,14 +5276,14 @@
         {
           "name": "Dark Piece",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Pokke Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -5526,8 +5526,8 @@
         {
           "name": "Pokke Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -5717,8 +5717,8 @@
         {
           "name": "Tigrex Scale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Shell",
@@ -5729,8 +5729,8 @@
         {
           "name": "Pokke Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -5764,14 +5764,14 @@
         {
           "name": "Tigrex Scale +",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Skull Shl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -5878,7 +5878,7 @@
           "name": "Hrd Monster Bone",
           "amount": "4",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -5971,20 +5971,20 @@
         {
           "name": "Pawprint Stamp",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "FlynMealPassReg",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Paralysis Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         }
       ],
       "improve-mats": null,
@@ -6013,14 +6013,14 @@
         {
           "name": "FlynMealPassReg",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Carbalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Blango Pelt+",
@@ -6050,8 +6050,8 @@
         {
           "name": "FlynMealPassReg",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -6090,8 +6090,8 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Black Blos Spine",
@@ -6132,14 +6132,14 @@
         {
           "name": "FlynMealPassReg",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "FlynMealPassPlus",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Gold Rathian Scl+",
@@ -6152,8 +6152,8 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Gold Rathian Scl+",
@@ -6191,8 +6191,8 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Felyne Fur Ruby",
@@ -6209,8 +6209,8 @@
         {
           "name": "Thunderbug Jelly",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "improve-to": null,
@@ -6233,7 +6233,7 @@
         {
           "name": "Commendation",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6245,8 +6245,8 @@
         {
           "name": "Black Pearl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -6259,14 +6259,14 @@
         {
           "name": "Antiseptic Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "yellow"
         },
         {
           "name": "Pokke Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -6332,7 +6332,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6375,7 +6375,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6393,8 +6393,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -6418,7 +6418,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6449,7 +6449,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6461,14 +6461,14 @@
         {
           "name": "Eltalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Emperor Cricket",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "orange"
         }
       ],
       "improve-mats": null,
@@ -6492,7 +6492,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6510,7 +6510,7 @@
         {
           "name": "Mellanje Ore",
           "amount": "5",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -6535,7 +6535,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6578,20 +6578,20 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Hrd Monster Bone",
           "amount": "15",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         },
         {
           "name": "Monster Essence",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "Hvy Tigrex Shell",
@@ -6621,7 +6621,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6639,8 +6639,8 @@
         {
           "name": "Monster Essence",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -6664,7 +6664,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6707,7 +6707,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6719,7 +6719,7 @@
         {
           "name": "Novacrystal",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -6750,14 +6750,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Thunderbug",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "SpecRubberyHide+",
@@ -6768,7 +6768,7 @@
         {
           "name": "Mellanje Ore",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -6793,7 +6793,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6811,8 +6811,8 @@
         {
           "name": "Monster Essence",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -6836,7 +6836,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6879,14 +6879,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Eltalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Firestone",
@@ -6922,7 +6922,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6940,8 +6940,8 @@
         {
           "name": "Eltalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -6965,7 +6965,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7008,7 +7008,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7051,7 +7051,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7094,7 +7094,7 @@
         {
           "name": "Commendation",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7137,7 +7137,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7180,20 +7180,20 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "FlynMealPassReg",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Carbalite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "HvyBlkBlosShell",
@@ -7223,7 +7223,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7235,14 +7235,14 @@
         {
           "name": "FlynMealPassReg",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Hvy Monster Bone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -7266,14 +7266,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Antiseptic Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "yellow"
         },
         {
           "name": "Purecrystal",
@@ -7284,8 +7284,8 @@
         {
           "name": "Sleep Sac",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -7309,7 +7309,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7352,20 +7352,20 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Pawprint Stamp",
           "amount": "10",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Paralysis Sac",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "HrdBlangongaPlt+",
@@ -7395,14 +7395,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Felyne Fur Ruby",
@@ -7438,7 +7438,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7481,7 +7481,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7524,20 +7524,20 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Eltalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Carbalite Ore",
           "amount": "25",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Velocidrome Head",
@@ -7567,14 +7567,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Hvy Monster Bone",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "gray"
         },
         {
           "name": "BigEDragonBone",
@@ -7610,20 +7610,20 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Rainbow Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "HvySlvrRthlsShl",
@@ -7653,7 +7653,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7696,7 +7696,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7714,8 +7714,8 @@
         {
           "name": "Union Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ],
       "improve-mats": null,
@@ -7739,14 +7739,14 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Carbalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         },
         {
           "name": "Disk Stone",
@@ -7782,25 +7782,25 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Firecell Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "orange"
         },
         {
           "name": "Monster Essence",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "Mellanje Ore",
           "amount": "5",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -7825,7 +7825,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7868,7 +7868,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -7880,8 +7880,8 @@
         {
           "name": "Blazing Fire Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Wyvern Stone",
@@ -7911,7 +7911,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
