@@ -15,9 +15,24 @@
         "Attack +1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Power Seed (1)",
-        "Kut-Ku Scale (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Seed",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -32,9 +47,24 @@
         "Defense -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Fire Wyvern Claw (1)",
-        "Demondrug (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Wyvern Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Demondrug",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OO-",
@@ -49,10 +79,30 @@
         "Defense -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "HrdFireWyvernClw (4)",
-        "Mega Demondrug (3)",
-        "Lthr Pelagus Plt (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdFireWyvernClw",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Demondrug",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lthr Pelagus Plt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OOO",
@@ -75,13 +125,38 @@
         "Recovery -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Rathalos Plate (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos Plate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Azure LaoS Shell (2)",
-        "Slver Rthalos Tail (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Azure LaoS Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Slver Rthalos Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -96,10 +171,30 @@
         "Recovery -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Slver Rthalos Wing (1)",
-        "Fatalis Eye (1)",
-        "Majestic Horn (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Slver Rthalos Wing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Eye",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Majestic Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "OOO",
@@ -122,9 +217,24 @@
         "Defense -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Ceanataur Pincer (1)",
-        "Sharpened Beak (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Pincer",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharpened Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -139,10 +249,30 @@
         "Defense -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Gravios BrainStm (1)",
-        "Black Blos Tail (2)",
-        "Garuga Wing (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios BrainStm",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Tail",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Wing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -166,9 +296,24 @@
         "Health -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Blue Kut-Ku Shl (1)",
-        "Anteka Antlers (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blue Kut-Ku Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Anteka Antlers",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -183,13 +328,38 @@
         "Health -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Teostra Shell (1)",
-        "Twisted Horn (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Teostra Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Twisted Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Teostra Horn+ (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Teostra Horn+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OO-",
@@ -204,10 +374,30 @@
         "Health -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Fire Dragon Pwdr (2)",
-        "Splendid Beak (1)",
-        "Giadrome Skull (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Dragon Pwdr",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Splendid Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giadrome Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OOO",
@@ -228,9 +418,24 @@
         "SwrShrpner +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Earth Crystal (1)",
-        "Giadrome Claw (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Earth Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giadrome Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -253,13 +458,38 @@
         "Expert -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Monoblos Carapace (2)",
-        "Rathalos Wing (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monoblos Carapace",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos Wing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "StrRathalosWing (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "StrRathalosWing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -274,9 +504,24 @@
         "Expert -1"
       ],
       "create-mats": [
-        "LapisLazuli Jewel (1)",
-        "HrdCeanataurClaw (3)",
-        "Rathalos Ruby (1)"
+        {
+          "name": "LapisLazuli Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdCeanataurClaw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OO-",
@@ -299,9 +544,24 @@
         "Rec Speed -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Chameleos Horn (1)",
-        "Chaos Mushroom (2)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chaos Mushroom",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -316,9 +576,24 @@
         "Rec Speed -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Lg Pelagus Fang (3)",
-        "LethrGarugaTail (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Pelagus Fang",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LethrGarugaTail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OO-",
@@ -341,10 +616,30 @@
         "Rec Speed -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Kirin Horn (1)",
-        "Firestone (1)",
-        "Ice Crystal (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -359,10 +654,30 @@
         "Rec Speed -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "LthrKirinThndrTl (2)",
-        "HvyBlangongaFang (4)",
-        "Big Wyvern Stone (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LthrKirinThndrTl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlangongaFang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OOO",
@@ -383,9 +698,24 @@
         "BombStrUp +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Flame Sac (1)",
-        "FlynMealPassReg (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flame Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -408,14 +738,44 @@
         "Constitutn -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Daora Horn (1)",
-        "ElderDragonBlood (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Rajang Horn (1)",
-        "DaoraDragonScal+ (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rajang Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDragonScal+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -430,10 +790,30 @@
         "Constitutn -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "GoldRajangPelt+ (2)",
-        "ThckDaoraDrgnScl (3)",
-        "HvyLavasiothFang (4)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GoldRajangPelt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThckDaoraDrgnScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyLavasiothFang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "OOO",
@@ -456,9 +836,24 @@
         "MixSucRate -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "PlumD.HermitrShl (1)",
-        "RobustWyvernBone (2)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PlumD.HermitrShl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustWyvernBone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -473,10 +868,30 @@
         "MixSucRate -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "HvyLavasiothShl (3)",
-        "Hvy Gaoren Spine (1)",
-        "Tailed Frog (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyLavasiothShl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Gaoren Spine",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tailed Frog",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OO-",
@@ -498,8 +913,18 @@
         "Defense +1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Sm Hermitaur Shl (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Hermitaur Shl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -514,13 +939,38 @@
         "All Resist -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Blk Gravios Shl (1)",
-        "Hermitaur Claw (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hermitaur Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "BattlefieldJewel (1)",
-        "HrdHermitaurClaw (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdHermitaurClaw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OO-",
@@ -543,8 +993,18 @@
         "Water Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Fire Herb (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Herb",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -558,8 +1018,18 @@
         "Fire Res +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Flame Sac (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flame Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -582,8 +1052,18 @@
         "ThunderRes -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Knife Mackerel (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Knife Mackerel",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -597,8 +1077,18 @@
         "Water Res +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Plesioth Scale (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -621,8 +1111,18 @@
         "Fire Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Ice Crystal (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -636,8 +1136,18 @@
         "Ice Skill +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Giadrome Hide (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giadrome Hide",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -660,8 +1170,18 @@
         "Ice Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Thunderbug (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -675,8 +1195,18 @@
         "ThunderRes +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Electro Sac (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Electro Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -699,9 +1229,24 @@
         "Poison -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Hornetaur Head (1)",
-        "Dragon Seed (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hornetaur Head",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragon Seed",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -716,9 +1261,24 @@
         "Poison -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "HornetaurInnrWng (1)",
-        "ElderDragonBlood (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HornetaurInnrWng",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "OO-",
@@ -742,8 +1302,18 @@
         "Everlasting -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Kirin Mane (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Mane",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -758,9 +1328,24 @@
         "Everlasting -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Kirin Azure Horn (1)",
-        "Dragonmoss (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Azure Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonmoss",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OO-",
@@ -775,10 +1360,30 @@
         "Everlasting -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "SpecialKirinHide (2)",
-        "AncientDrgmoss (1)",
-        "BlackBeltCoinG (3)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecialKirinHide",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "AncientDrgmoss",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlackBeltCoinG",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OOO",
@@ -801,9 +1406,24 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Basarios Shell (1)",
-        "Hermitaur Shell (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hermitaur Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -818,14 +1438,44 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Gaoren Spine (1)",
-        "Gravios Skl Shl (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Spine",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Skl Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Gravios Carapace (1)",
-        "Gaoren Spine (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Carapace",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Spine",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OO-",
@@ -849,8 +1499,18 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Blk Gravios Shl (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -865,10 +1525,30 @@
         "Stamina -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Blk Gravios Cpc (1)",
-        "Hermitaur Claw+ (4)",
-        "Lunastra Shell (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Cpc",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hermitaur Claw+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -883,9 +1563,24 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "PlumD.HermitrClw (2)",
-        "HvyGraviosShell (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PlumD.HermitrClw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyGraviosShell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OO-",
@@ -906,9 +1601,24 @@
         "Auto-Guard +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Bullfango Pelt (1)",
-        "Sm Hermitaur Shl (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bullfango Pelt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Hermitaur Shl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -929,8 +1639,18 @@
         "Health +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Bulldrome Hide (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bulldrome Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -953,9 +1673,24 @@
         "Faint -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Pale Extract (1)",
-        "Killer Beetle (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pale Extract",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Killer Beetle",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -970,15 +1705,50 @@
         "Faint -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Pale Khezu Steak (1)",
-        "Lifepowder (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pale Khezu Steak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lifepowder",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "Battlefield Jewel (1)",
-        "Pale Bone (1)",
-        "Lao-Shan's Shell (3)",
-        "Lifecrystals (10)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pale Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Shell",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lifecrystals",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OO-",
@@ -1002,9 +1772,24 @@
         "Health -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Flabby Hide (1)",
-        "Kelbi Horn (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flabby Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kelbi Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -1019,9 +1804,24 @@
         "Health -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Khezu Hide Tan (1)",
-        "Ancient Potion (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Khezu Hide Tan",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ancient Potion",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OO-",
@@ -1036,10 +1836,30 @@
         "Health -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "KhezuHide-Cream (3)",
-        "LunastraCarapace (2)",
-        "Honey (10)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "KhezuHide-Cream",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LunastraCarapace",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Honey",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OO-",
@@ -1063,9 +1883,24 @@
         "Sneak -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Alluring Hide (1)",
-        "Cactus Flower (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Alluring Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cactus Flower",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -1080,10 +1915,30 @@
         "Sneak -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Alurring Webbing (1)",
-        "Lifepowder (1)",
-        "Dosbiscus (4)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Alurring Webbing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lifepowder",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dosbiscus",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OO-",
@@ -1098,10 +1953,30 @@
         "Sneak -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "StrAlluringWing (3)",
-        "ThckPnkRathnScl (4)",
-        "Wyvern Stone (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "StrAlluringWing",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThckPnkRathnScl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OOO",
@@ -1123,9 +1998,24 @@
         "Protection +1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Commendation (1)",
-        "Black Pearl (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -1139,9 +2029,24 @@
         "Protection +2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "UkanlosUnderscl (1)",
-        "Commendation S (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "UkanlosUnderscl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -1164,9 +2069,24 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "FlynMealPassPlus (1)",
-        "Sharpened Beak (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharpened Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1181,15 +2101,50 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Black Narga Pelt (3)",
-        "Hypno Beak (1)",
-        "Pawprint Stamp (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Narga Pelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hypno Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pawprint Stamp",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "BlackNargaPelt+ (1)",
-        "Hypno Fang (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlackNargaPelt+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hypno Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OO-",
@@ -1213,9 +2168,24 @@
         "Cooking -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Cephalos Scale (1)",
-        "Well-Done Steak (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Well-Done Steak",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1230,10 +2200,30 @@
         "Cooking -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Grn Plesioth Fin (1)",
-        "Cephalos Scale (1)",
-        "Gourmet Steak (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Grn Plesioth Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gourmet Steak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OO-",
@@ -1247,10 +2237,30 @@
         "Hunger +2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "ThckGrnPlesioScl (1)",
-        "Coral Cphlos Fin (1)",
-        "Power Juice (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThckGrnPlesioScl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Coral Cphlos Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Juice",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1271,9 +2281,24 @@
         "Gluttony +2"
       ],
       "create-mats": [
-        "Akito jewel (1)",
-        "Congalala Fang (1)",
-        "Glutton Tuna (1)"
+        {
+          "name": "Akito jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Glutton Tuna",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1296,9 +2321,24 @@
         "Recovery -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Tigrex Fang (1)",
-        "Mosswine Hide (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mosswine Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -1313,10 +2353,30 @@
         "Recovery -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Tigrex Fang+ (1)",
-        "Conga Pelt+ (2)",
-        "Iodrome Skull (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Fang+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Conga Pelt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iodrome Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "OO-",
@@ -1339,10 +2399,30 @@
         "Hunger -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Firestone (1)",
-        "Mega Juice (1)",
-        "Gourmet Steak (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Juice",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gourmet Steak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -1357,10 +2437,30 @@
         "Hunger -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Firecell Stone (3)",
-        "Plesioth Fin (1)",
-        "Gypceros Head (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gypceros Head",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "OOO",
@@ -1381,9 +2481,24 @@
         "Throw +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Blango Pelt (2)",
-        "Conga Pelt (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blango Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Conga Pelt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -1406,9 +2521,24 @@
         "Hunger -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Sm Ceanataur Shl (1)",
-        "Kelbi Hide (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Ceanataur Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kelbi Hide",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -1423,9 +2553,24 @@
         "Hunger -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Azure LaoS Horn (1)",
-        "Black Blos Thracic (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Azure LaoS Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Thracic",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "OO-",
@@ -1448,13 +2593,38 @@
         "Protection -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Rathian Plate (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathian Plate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Fatalis Scale (1)",
-        "Sinister Cloth (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sinister Cloth",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -1469,10 +2639,30 @@
         "Protection -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Akantor Spike (1)",
-        "FireWvyrn BrnStm (1)",
-        "Gendrome Skull (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Akantor Spike",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWvyrn BrnStm",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gendrome Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "OOO",
@@ -1495,14 +2685,44 @@
         "Load -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Gaoren Shell (1)",
-        "Blk Gravios Skl (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Skl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "PlumD.HermitrClw (1)",
-        "Gaoren Carapace (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PlumD.HermitrClw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Carapace",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -1517,10 +2737,30 @@
         "Load -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Gaoren Thoracic (2)",
-        "Wyvern Stone (1)",
-        "Lao-Shan's Claw (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Thoracic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -1543,9 +2783,24 @@
         "Load-1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Congalala Claw (1)",
-        "Rumblefish (5)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rumblefish",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1561,10 +2816,30 @@
         "Reload -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "HvyC.BlangoFang (3)",
-        "Blk Rajang Pelt+ (4)",
-        "Fire Drgn Jwl (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyC.BlangoFang",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Rajang Pelt+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OOO",
@@ -1587,9 +2862,24 @@
         "Load -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Ceanataur Claw (1)",
-        "Pin Tuna (3)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pin Tuna",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1605,10 +2895,30 @@
         "Reload -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "TerraCeanataurClaw (3)",
-        "LtherSlvrRthlsTal (2)",
-        "Daora Jewel (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "TerraCeanataurClaw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LtherSlvrRthlsTal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OOO",
@@ -1631,9 +2941,24 @@
         "Reload -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Piscine Fang (3)",
-        "Wyvern Fang (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piscine Fang",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Fang",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1648,10 +2973,30 @@
         "Reload -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "HrdE.CongaClaw (3)",
-        "Azure LaoS Claw (3)",
-        "Chameleos Jewel (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdE.CongaClaw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Azure LaoS Claw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OOO",
@@ -1672,9 +3017,24 @@
         "NormalSAdd +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Lao Shan's Scale (1)",
-        "Normal S Lv3 (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao Shan's Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Normal S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1695,9 +3055,24 @@
         "PierceSAdd +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Garuga Scale (1)",
-        "Pierce S Lv3 (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pierce S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1718,9 +3093,24 @@
         "PelletSAdd +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Cephalos Fin (1)",
-        "Pellet S Lv3 (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pellet S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1741,9 +3131,24 @@
         "Crag S Add +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Basarios Shell (1)",
-        "Crag S Lv3 (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Crag S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1764,9 +3169,24 @@
         "ClustSAdd +2"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Gravios Shell (1)",
-        "Clust S Lv3 (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Clust S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -1789,14 +3209,44 @@
         "Reload -1"
       ],
       "create-mats": [
-        "Battlefield Jewel (1)",
-        "Rathian Spike (1)",
-        "Remobra Skull (1)"
+        {
+          "name": "Battlefield Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathian Spike",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Remobra Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Akantor Scale (1)",
-        "Dragonwood+ (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Akantor Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonwood+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -1811,10 +3261,30 @@
         "Reload -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Fatalis Horn (1)",
-        "Rathian Spike+ (1)",
-        "Thunderbug Juice (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathian Spike+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Juice",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -1837,9 +3307,24 @@
         "Speed Fire -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Anteka Antlers (1)",
-        "Sharp Claw (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Anteka Antlers",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharp Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1853,10 +3338,30 @@
         "Precision +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Kelbi Horn (1)",
-        "Killer Beetle (1)",
-        "Pin Tuna (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kelbi Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Killer Beetle",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pin Tuna",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -1877,10 +3382,30 @@
         "PoisonCAdd +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Rubbery Hide (1)",
-        "Poison Sac (1)",
-        "Poison Coating (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rubbery Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Poison Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Poison Coating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -1903,10 +3428,30 @@
         "ShortCharge -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Gendrome Hide (1)",
-        "Vespoid Wing (1)",
-        "ParaylsisCoating (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gendrome Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Wing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ParaylsisCoating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "slots": "O--",
       "rarity": 4,
@@ -1920,10 +3465,30 @@
         "ShortCharge -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Gendrome Tail (2)",
-        "Vespoid Abdomen (1)",
-        "ParaylsisCoating (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gendrome Tail",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Abdomen",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ParaylsisCoating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "slots": "OO-",
       "rarity": 5,
@@ -1943,10 +3508,30 @@
         "SleepCAdd +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Plesioth Fin (1)",
-        "Sleep Sac (1)",
-        "Sleep Coating (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleep Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleep Coating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -1969,10 +3554,30 @@
         "ShortCharg -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Congalala Pelt+ (1)",
-        "Dark Piece (1)",
-        "Power Coating (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Pelt+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dark Piece",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Coating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -1987,10 +3592,30 @@
         "ShortCharg -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "E.CongalalaPelt+ (3)",
-        "Dark Stone (2)",
-        "Power Coating (50)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "E.CongalalaPelt+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dark Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Coating",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OO-",
@@ -2011,10 +3636,30 @@
         "SleepCAdd +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "DaoraDragonScale (1)",
-        "Garuga Mane (1)",
-        "CloseRngCoating (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDragonScale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Mane",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "CloseRngCoating",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -2035,10 +3680,30 @@
         "Shot Mix +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Normal S Lv3 (3)",
-        "Pellet S Lv3 (2)",
-        "Clust S Lv3 (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Normal S Lv3",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pellet S Lv3",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Clust S Lv3",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -2061,13 +3726,38 @@
         "Potential -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Monoblos Heart (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monoblos Heart",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Ceanataur Claw + (1)",
-        "Lao-ShanCarapace (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Claw +",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-ShanCarapace",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2082,10 +3772,30 @@
         "Potential -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Akantor Claw (1)",
-        "Daora Sharp Claw (2)",
-        "Basarios Wing (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Akantor Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Sharp Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Wing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "OOO",
@@ -2108,9 +3818,24 @@
         "Map -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Sharp Claw (1)",
-        "Ivy (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharp Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ivy",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2124,8 +3849,18 @@
         "Sneak +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Chameleos Hide (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2148,14 +3883,44 @@
         "Cold Res -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Sm Lobstershell (1)",
-        "Hercudrome (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Lobstershell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "BattlefieldJewel(1)",
-        "Narga Scale+ (1)",
-        "Great Hornfly (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Scale+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -2170,9 +3935,24 @@
         "Cold Res -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Lg Lobstershell (1)",
-        "Gendrome Tail (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Lobstershell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gendrome Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "OO-",
@@ -2195,14 +3975,44 @@
         "Attack -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "NargaCuttingWing (1)",
-        "Lunastra Spike (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "NargaCuttingWing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Spike",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "StrNargaCttngWing (1)",
-        "Emperor Cricket (5)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "StrNargaCttngWing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Cricket",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -2217,10 +4027,30 @@
         "Attack -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Str Fatalis Wng (2)",
-        "Narga Brain Stem (1)",
-        "SilverGarugaPelt (3)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Str Fatalis Wng",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Brain Stem",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SilverGarugaPelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OOO",
@@ -2244,9 +4074,24 @@
         "Protection -1"
       ],
       "create-mats": [
-        "BattlefieldJewel(1)",
-        "Monoblos Spine (1)",
-        "Wyvern Skull Shl (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monoblos Spine",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Skull Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -2261,10 +4106,30 @@
         "Protection -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Gold Rajang Pelt (1)",
-        "Blood Red Horn (1)",
-        "Wht Monoblos Hrn (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Rajang Pelt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blood Red Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Hrn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OOO",
@@ -2279,10 +4144,30 @@
         "Protection -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Akantor Shell (1)",
-        "Top-GrdRedHorn (1)",
-        "Blk Rajang Pelt (3)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Akantor Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Top-GrdRedHorn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Rajang Pelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OOO",
@@ -2303,9 +4188,24 @@
         "BBQ +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "FlynMealPassReg (1)",
-        "B urnt Meat (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "B urnt Meat",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -2326,9 +4226,24 @@
         "Map +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Dragonite Ore (1)",
-        "Rainbow Ore (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Ore",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -2349,9 +4264,24 @@
         "PsychicVis +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Kut-Ku Ear (1)",
-        "Psychoserum (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kut-Ku Ear",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Psychoserum",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -2372,9 +4302,24 @@
         "Perceive +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "RainbowTailFeath (1)",
-        "Binoculars (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RainbowTailFeath",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Binoculars",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -2398,9 +4343,24 @@
         "Poison -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Grn Plesioth Scl (1)",
-        "Vespoid Shell (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Grn Plesioth Scl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -2415,9 +4375,24 @@
         "Poison -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Grn Plesioth Scl+ (1)",
-        "Vespoid Wing (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Grn Plesioth Scl+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Wing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OO-",
@@ -2432,10 +4407,30 @@
         "Poison -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "SpecGrnPlesioFn+ (1)",
-        "Vespoid Razorwing (1)",
-        "Catalyst (3)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecGrnPlesioFn+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Razorwing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Catalyst",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OO-",
@@ -2456,9 +4451,24 @@
         "MixSucRate +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Book of Combos 1 (1)",
-        "Springnight Carp (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Book of Combos 1",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Springnight Carp",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2479,10 +4489,30 @@
         "Alchemy +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Health Flute (1)",
-        "Ancient Potion (1)",
-        "Antiseptic Stone (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Health Flute",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ancient Potion",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2505,9 +4535,24 @@
         "Stamina -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Machalite Ore (1)",
-        "Gunpowder (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gunpowder",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -2521,9 +4566,24 @@
         "Gunnery +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Dragonite Ore (2)",
-        "Firestone (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -2544,9 +4604,24 @@
         "Horn +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Congalala Pelt (2)",
-        "Flute (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flute",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -2570,8 +4645,18 @@
         "Paralysis -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Velociprey Fang (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Velociprey Fang",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -2586,9 +4671,24 @@
         "Paralysis -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Velocidrome Claw (2)",
-        "Pur Rubbery Hide (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Velocidrome Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pur Rubbery Hide",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "OO-",
@@ -2602,9 +4702,24 @@
         "Faint +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "LthrC.BlangoTail (1)",
-        "ThkBullfangoPelt (2)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LthrC.BlangoTail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThkBullfangoPelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "---",
@@ -2628,8 +4743,18 @@
         "Poison -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Genprey Fang (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Genprey Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -2644,8 +4769,18 @@
         "Poison -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Paralysis Sac (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Paralysis Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "OO-",
@@ -2659,9 +4794,24 @@
         "Paralysis +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "VespoidQn'sCrown (1)",
-        "Thunderbug Jelly (2)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "VespoidQn'sCrown",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "yellow",
       "slots": "O--",
@@ -2684,8 +4834,18 @@
         "Water Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Sleep Herb (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleep Herb",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -2699,9 +4859,24 @@
         "Sleep +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Sleep Sac (1)",
-        "Sleepy Fish (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleep Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleepy Fish",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -2725,8 +4900,18 @@
         "Faint -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Ioprey Fang (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ioprey Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2741,9 +4926,24 @@
         "Faint -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Poison Sac (2)",
-        "Herbal Medicine (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Poison Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Herbal Medicine",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "OO-",
@@ -2757,9 +4957,24 @@
         "Poison +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "DeadlyPoisonSac (1)",
-        "SpecRemobraSkin+ (2)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DeadlyPoisonSac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecRemobraSkin+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2783,8 +4998,18 @@
         "Terrain -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Giaprey Scale (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giaprey Scale",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -2799,8 +5024,18 @@
         "Terrain -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Blangonga Fang (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "OO-",
@@ -2814,9 +5049,24 @@
         "Snow Res +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "LeathrBlangoTail (1)",
-        "Giaprey Scale+ (3)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LeathrBlangoTail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giaprey Scale+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "white",
       "slots": "O--",
@@ -2839,9 +5089,24 @@
         "Sleep -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Blangonga Pelt (1)",
-        "Power Pill (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Pelt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Pill",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "O--",
@@ -2856,13 +5121,38 @@
         "Sleep -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Gaoren Pincer (1)",
-        "Blangonga Tail (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Pincer",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Hard Gaoren Claw (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hard Gaoren Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "slate",
       "slots": "OO-",
@@ -2885,13 +5175,38 @@
         "Protection -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Garuga Ear (1)",
-        "Hornetaur Head (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Ear",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hornetaur Head",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Long Garuga Ear (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Long Garuga Ear",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -2906,15 +5221,50 @@
         "Protection -2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Azure Rthlos Cpc (1)",
-        "Tigrex Skull Shl (1)",
-        "Monster Broth (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Azure Rthlos Cpc",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "HvyAzurRthlsShl (1)",
-        "LthrChameleoTail (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyAzurRthlsShl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LthrChameleoTail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -2938,9 +5288,24 @@
         "Fate -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Diablos Shell (1)",
-        "Lightcrystal (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Diablos Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightcrystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -2955,9 +5320,24 @@
         "Fate -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Chameleos Hide+ (1)",
-        "Diablos Carapace (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Hide+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Diablos Carapace",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OO-",
@@ -2972,10 +5352,30 @@
         "Fate -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "SpecChameleHide+ (2)",
-        "HvyDiablosSpine (1)",
-        "Purecrystal (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecChameleHide+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyDiablosSpine",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Purecrystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "OOO",
@@ -2999,8 +5399,18 @@
         "Heat Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Cephalos Scale (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Scale",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -3015,9 +5425,24 @@
         "Heat Res -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Cephalos Fin (1)",
-        "Nitroshroom (4)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Fin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Nitroshroom",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "OO-",
@@ -3031,9 +5456,24 @@
         "Cold Res +2"
       ],
       "create-mats": [
-        "LapisLazuli Jewel (1)",
-        "C.BlangongaPelt+ (2)",
-        "Genprey Hide+ (1)"
+        {
+          "name": "LapisLazuli Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "C.BlangongaPelt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Genprey Hide+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -3057,8 +5497,18 @@
         "Cold Res -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Blango Pelt (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blango Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -3073,9 +5523,24 @@
         "Cold Res -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Blangonga Whiskr (1)",
-        "Ice Crystal (4)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Whiskr",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "OO-",
@@ -3089,9 +5554,24 @@
         "Heat Res +2"
       ],
       "create-mats": [
-        "LapisLazuli Jewel (1)",
-        "2 HrdBlangongaPlt+ (2)",
-        "Giaprey Hide+ (1)"
+        {
+          "name": "LapisLazuli Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "2 HrdBlangongaPlt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giaprey Hide+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -3114,9 +5594,24 @@
         "Fate -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Basarios Shell (1)",
-        "Armor Pill (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Armor Pill",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -3131,16 +5626,56 @@
         "Fate -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Fire Dragon Scl (2)",
-        "Teostra Tail (1)",
-        "Gourmet Fish+ (3)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Dragon Scl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Teostra Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gourmet Fish+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Daora Carapace (2)",
-        "Basarios Carpace (1)",
-        "Immunizer (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Carapace",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Carpace",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Immunizer",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "OO-",
@@ -3161,9 +5696,24 @@
         "Anti-Theft +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Felvine (2)",
-        "Unknown Skull (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Felvine",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Unknown Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "gray",
       "slots": "O--",
@@ -3186,9 +5736,24 @@
         "Sneak -1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Conga Pelt (2)",
-        "Bitterbug (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Conga Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bitterbug",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3202,13 +5767,38 @@
         "Antiseptic +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Congalala Pelt (2)",
-        "Antiseptic Jewel (2)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Jewel",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "BattlefieldJewel (1)",
-        "HrdCongalalaPlt+ (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdCongalalaPlt+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3230,14 +5820,44 @@
         "Fatigue +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Fire Drgn Webbing (1)",
-        "Sunset Herb (3)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Drgn Webbing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sunset Herb",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "ThckFireDrgnScl (2)",
-        "Energy Drink (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThckFireDrgnScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Energy Drink",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3258,9 +5878,24 @@
         "Backpacking +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Power Extract (1)",
-        "Giant Bone (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Extract",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -3281,9 +5916,24 @@
         "Gathering +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Dosbiscus (1)",
-        "Bughopper (2)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dosbiscus",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bughopper",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3304,9 +5954,24 @@
         "HiSpdGathr +2"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Great Hornfly (1)",
-        "Power Extract (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Power Extract",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3328,10 +5993,30 @@
         "Whim +1"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Exciteshroom (2)",
-        "Boomerang (1)",
-        "Flute (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Exciteshroom",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Boomerang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flute",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -3345,10 +6030,30 @@
         "Whim +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Pnk Rathian Shl (1)",
-        "Mega Pickaxe (1)",
-        "Mega Bugnet (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pnk Rathian Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Pickaxe",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Bugnet",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "pink",
       "slots": "O--",
@@ -3371,14 +6076,44 @@
         "Fate -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Daora Claw (1)",
-        "ShakalakaTreasre (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ShakalakaTreasre",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "LapisLazuliJewel (1)",
-        "Rubbery Hide+ (1)",
-        "ShakaInheritance (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rubbery Hide+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ShakaInheritance",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "O--",
@@ -3393,10 +6128,30 @@
         "Fate -2"
       ],
       "create-mats": [
-        "LapisLazuli Jewel (1)",
-        "UkanlosDiggnClw (3)",
-        "ShakalakaTreasr+ (1)",
-        "Big Wyvern Stone (1)"
+        {
+          "name": "LapisLazuli Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "UkanlosDiggnClw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ShakalakaTreasr+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "orange",
       "slots": "OOO",
@@ -3419,8 +6174,18 @@
         "Whim -1"
       ],
       "create-mats": [
-        "Akito Jewel (1)",
-        "Steel Egg (1)"
+        {
+          "name": "Akito Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Steel Egg",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "O--",
@@ -3435,8 +6200,18 @@
         "Whim -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "Gold Egg (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Egg",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "red",
       "slots": "OO-",
@@ -3457,9 +6232,24 @@
         "SpeedSetup +2"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "ShakalakaTreasre (1)",
-        "Shock Trap (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ShakalakaTreasre",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Shock Trap",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "OO-",
@@ -3482,10 +6272,30 @@
         "Fate -1"
       ],
       "create-mats": [
-        "BattlefieldJewel (1)",
-        "OrangeHypnoPelt (1)",
-        "Piscine Fang (1)",
-        "Net (1)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "OrangeHypnoPelt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piscine Fang",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Net",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "O--",
@@ -3500,10 +6310,30 @@
         "Fate -1"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "OrangeHypnoPelt+ (3)",
-        "HvyPiscineFang (3)",
-        "Trap Tool (2)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "OrangeHypnoPelt+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyPiscineFang",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Trap Tool",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "green",
       "slots": "OO-",
@@ -3524,9 +6354,24 @@
         "Fishing +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Cricket (1)",
-        "Yambug (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cricket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Yambug",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "cyan",
       "slots": "O--",
@@ -3547,14 +6392,44 @@
         "ComrdGuide +2"
       ],
       "create-mats": [
-        "Suiko Jewel (1)",
-        "Comrade Ticket (1)"
+        {
+          "name": "Suiko Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Comrade Ticket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "alternative-create-mats": [
-        "BattlefieldJewel (1)",
-        "Commendation G (1)",
-        "Gastronome Tuna (1)",
-        "Felvine (10)"
+        {
+          "name": "BattlefieldJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gastronome Tuna",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Felvine",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -3575,10 +6450,30 @@
         "ComradeAtk +2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Piercing Claw (1)",
-        "Commendation G (1)",
-        "Mega Demondrug (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piercing Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Demondrug",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
@@ -3599,10 +6494,30 @@
         "ComradeDef +2"
       ],
       "create-mats": [
-        "LapisLazuliJewel (1)",
-        "Hvy Kut-Ku Shell (1)",
-        "Commendation G (1)",
-        "Mega Armorskin (1)"
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Kut-Ku Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Armorskin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "color": "blue",
       "slots": "O--",
