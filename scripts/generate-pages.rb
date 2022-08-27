@@ -9,6 +9,33 @@ FILE_TEMPLATE = %{+++
   <% value.each_pair do |key, val| %>
   <%= key.gsub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
   <% end %>
+  <% if create_mats %>
+  <% create_mats.each do |el| %>
+  [[extra.create_mats]]
+  name = "<%= el["name"] %>"
+  amount = <%= el["amount"] %>
+  type = "<%= el["type"] %>"
+  color = "<%= el["color"] %>"
+  <% end %>
+  <% end %>
+  <% if improve_mats %>
+  <% improve_mats.each do |el| %>
+  [[extra.improve_mats]]
+  name = "<%= el["name"] %>"
+  amount = <%= el["amount"] %>
+  type = "<%= el["type"] %>"
+  color = "<%= el["color"] %>"
+  <% end %>
+  <% end %>
+  <% if alternative_create_mats %>
+  <% alternative_create_mats.each do |el| %>
+  [[extra.alternative_create_mats]]
+  name = "<%= el["name"] %>"
+  amount = <%= el["amount"] %>
+  type = "<%= el["type"] %>"
+  color = "<%= el["color"] %>"
+  <% end %>
+  <% end %>
   <% if shelling %>
   [extra.shelling]
   type = "<%= shelling["type"] %>"
@@ -76,6 +103,21 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
 
       slug = slugify(value["name"])
       value["type"] = WEAPON_ABBR.key(value["type"])
+
+      if value["create-mats"]
+        create_mats = value["create-mats"]
+        value["create-mats"] = nil
+      end
+
+      if value["improve-mats"]
+        improve_mats = value["improve-mats"]
+        value["improve-mats"] = nil
+      end
+
+      if value["alternative-create-mats"]
+        alternative_create_mats = value["alternative-create-mats"]
+        value["alternative-create-mats"] = nil
+      end
       
       if value["element"]
         element = parseElements(value["element"])

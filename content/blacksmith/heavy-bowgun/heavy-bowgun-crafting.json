@@ -44,14 +44,14 @@
         {
           "name": "Iron Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Sm Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ]
     },
@@ -111,8 +111,8 @@
         {
           "name": "Disk Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Brute Bone",
@@ -233,13 +233,13 @@
         {
           "name": "Rubbery Hide",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "hide",
+          "color": "blue"
         },
         {
           "name": "Earth Crystal",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ]
@@ -294,8 +294,8 @@
         {
           "name": "Machalite Ore",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Carpenterbug",
@@ -361,14 +361,14 @@
         {
           "name": "Iron Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ]
     },
@@ -428,14 +428,14 @@
         {
           "name": "Flabby Hide",
           "amount": "5",
-          "type": "bone",
+          "type": "hide",
           "color": "white"
         },
         {
           "name": "Lg Monster Bone",
           "amount": "10",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ]
     },
@@ -556,8 +556,8 @@
         {
           "name": "Machalite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Poison Sac",
@@ -615,28 +615,28 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "FireStone",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Dragonite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Machalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Iron Ore",
           "amount": "40",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ]
     },
@@ -703,7 +703,7 @@
           "name": "Monster Bone+",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ]
     },
@@ -763,8 +763,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Wht Monoblos Hrn",
@@ -837,7 +837,7 @@
           "name": "Lg Monster Bone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ]
     },
@@ -903,8 +903,8 @@
         {
           "name": "Machalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ]
     },
@@ -964,8 +964,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Majestic Horn",
@@ -1031,14 +1031,14 @@
         {
           "name": "Dragonite Ore",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Monster Bone+",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ]
     },
@@ -1165,8 +1165,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Twisted Horn",
@@ -1238,8 +1238,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ]
     },
@@ -1372,8 +1372,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ]
     },
@@ -1437,10 +1437,10 @@
           "color": "white"
         },
         {
-          "name": "FireStone",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ]
     },
@@ -1504,10 +1504,10 @@
           "color": "white"
         },
         {
-          "name": "FireStone",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ]
     },
@@ -1565,10 +1565,10 @@
           "color": "white"
         },
         {
-          "name": "FireStone",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Pokke Ticket",
@@ -1640,8 +1640,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ]
     },
@@ -1890,8 +1890,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "King Scarab",
@@ -2232,7 +2232,7 @@
           "name": "Monster Bone+",
           "amount": "10",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ]
     },
@@ -5582,7 +5582,7 @@
           "name": "Lg Monster Bone",
           "amount": "30",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ]
     },
@@ -5910,8 +5910,8 @@
         {
           "name": "Lightcrystal",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Novacrystal",
@@ -6170,10 +6170,10 @@
           "color": "white"
         },
         {
-          "name": "FireStone",
+          "name": "Firestone",
           "amount": "40",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Mellanje Ore",

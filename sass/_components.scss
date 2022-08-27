@@ -166,6 +166,12 @@ $weapon-types: (
   "bow",
   "decoration",
   "note",
+  "bone",
+  "ore",
+  "hide",
+  "sac",
+  "claw",
+  "ukwn",
 );
 
 $decoration-colors: (
@@ -459,6 +465,11 @@ $element-types: (
 
       span {
         color: #EAEA4B;
+      }
+
+      .material {
+        align-items: center;
+        display: flex;
       }
       
       &.improve-mats .create-mats,

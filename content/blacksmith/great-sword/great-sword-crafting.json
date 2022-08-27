@@ -17,14 +17,14 @@
         {
           "name": "Iron Ore",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
-          "name": "Disc Stone",
+          "name": "Disk Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -53,14 +53,14 @@
         {
           "name": "Iron Ore",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Disk Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -88,19 +88,19 @@
         {
           "name": "Iron Ore",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Earth Crystal",
           "amount": "5",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -129,39 +129,39 @@
         {
           "name": "Earth Crystal",
           "amount": "15",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
           "name": "Iron Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Ice Crystal",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "improve-mats": [
         {
           "name": "Iron Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Earth Crystal",
           "amount": "10",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -196,27 +196,27 @@
         {
           "name": "Dragonite Ore",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ],
       "improve-mats": [
         {
           "name": "Dragonite Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Machalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Earth Crystal",
           "amount": "15",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -250,10 +250,10 @@
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "name": "Sharp Claw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Daora Claw",
@@ -338,8 +338,8 @@
         {
           "name": "Tigrex Fang",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -412,14 +412,14 @@
         {
           "name": "Iron Ore",
           "amount": "50",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "orPlus Class Ticket",
@@ -444,14 +444,14 @@
         {
           "name": "Dragonite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Machalite Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -493,8 +493,8 @@
         {
           "name": "Disk Stone",
           "amount": "50",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -992,7 +992,7 @@
         {
           "name": "Flabby Hide",
           "amount": "5",
-          "type": "bone",
+          "type": "hide",
           "color": "white"
         },
         {
@@ -1004,34 +1004,34 @@
         {
           "name": "Machalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Rubbery Hide",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "hide",
+          "color": "blue"
         }
       ],
       "improve-mats": [
         {
           "name": "Flabby Hide",
           "amount": "3",
-          "type": "bone",
+          "type": "hide",
           "color": "white"
         },
         {
           "name": "Electro Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "Iron Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1430,20 +1430,20 @@
         {
           "name": "Iron Ore",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Disk Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -1471,20 +1471,20 @@
         {
           "name": "Iron Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Earth Crystal",
           "amount": "15",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
           "name": "Machalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -1512,14 +1512,14 @@
         {
           "name": "Flame Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Iron Ore",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Carpenterbug",
@@ -1531,27 +1531,27 @@
           "name": "Unknown Skull",
           "amount": "1",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-mats": [
         {
           "name": "Machalite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Unknown Skull",
           "amount": "1",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Flame Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1579,8 +1579,8 @@
         {
           "name": "Machalite Ore",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Gravios Shell",
@@ -1591,8 +1591,8 @@
         {
           "name": "Firestone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -1617,20 +1617,20 @@
         {
           "name": "Dragonite Ore",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Iron Ore",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Monster Bone+",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         },
         {
           "name": "Hercudrome",
@@ -1643,20 +1643,20 @@
         {
           "name": "Dragonite Ore",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Iron Ore",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Med Monster Bone",
           "amount": "15",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -1690,8 +1690,8 @@
         {
           "name": "Machalite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "King Scarab",
@@ -1726,14 +1726,14 @@
         {
           "name": "Sharp Claw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Iron Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Brute Bone",
@@ -1767,7 +1767,7 @@
           "name": "Sm Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Carpenterbug",
@@ -1801,7 +1801,7 @@
         {
           "name": "Giadrome Claw",
           "amount": "4",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -1814,7 +1814,7 @@
           "name": "Med Monster Bone",
           "amount": "10",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -1890,14 +1890,14 @@
         {
           "name": "Ioprey Fang",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lightcrystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -2001,7 +2001,7 @@
           "name": "Sm Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-mats": null,
@@ -2031,7 +2031,7 @@
           "name": "Sm Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -2075,7 +2075,7 @@
           "name": "Sm Monster Bone",
           "amount": "4",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Brute Bone",
@@ -2118,7 +2118,7 @@
           "name": "Lg Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Brute Bone",
@@ -2129,8 +2129,8 @@
         {
           "name": "Sharp Claw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Carpenterbug",
@@ -2144,13 +2144,13 @@
           "name": "Med Monster Bone",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Sharp Claw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Monster Fluid",
@@ -2185,7 +2185,7 @@
           "name": "Lg Monster Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Piscine Fang",
@@ -2683,7 +2683,7 @@
           "name": "Monster Bone+",
           "amount": "1",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ],
       "improve-mats": [
@@ -2691,7 +2691,7 @@
           "name": "Lg Monster Bone",
           "amount": "10",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Hercudrome",
@@ -2702,8 +2702,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ],
       "improve-to": [
@@ -2735,7 +2735,7 @@
           "name": "Lg Monster Bone",
           "amount": "12",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Diablos Spine",
@@ -2820,13 +2820,13 @@
           "name": "Med Monster Bone",
           "amount": "20",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Lg Monster Bone",
           "amount": "10",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "orPlus Class Ticket",
@@ -2852,13 +2852,13 @@
           "name": "Monster Bone+",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         },
         {
           "name": "Lg Monster Bone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -3131,14 +3131,14 @@
         {
           "name": "Rubbery Hide",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "hide",
+          "color": "blue"
         },
         {
           "name": "Lightcrystal",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -3157,8 +3157,8 @@
         {
           "name": "Rubbery Hide",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "hide",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -3431,13 +3431,13 @@
           "name": "Lg Monster Bone",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Machalite Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -3519,7 +3519,7 @@
           "name": "Monster Bone+",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ],
       "improve-to": [
@@ -4308,10 +4308,10 @@
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "name": "Sharp Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "FireWyvern Fluid",
@@ -4322,8 +4322,8 @@
         {
           "name": "Flame Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -4337,13 +4337,13 @@
           "name": "Lg Monster Bone",
           "amount": "4",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Flame Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4382,10 +4382,10 @@
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "name": "Sharp Claw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -4423,8 +4423,8 @@
         {
           "name": "Flame Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4502,8 +4502,8 @@
         {
           "name": "Sharp Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Black Pearl",
@@ -4517,7 +4517,7 @@
           "name": "Sm Monster Bone",
           "amount": "4",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Anteka Antlers",
@@ -4612,7 +4612,7 @@
           "name": "Monster Bone+",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ],
       "improve-to": [
@@ -4956,7 +4956,7 @@
           "name": "Monster Bone+",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ],
       "improve-to": [
@@ -5184,8 +5184,8 @@
         {
           "name": "Tigrex Fang",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Scale",
@@ -5920,8 +5920,8 @@
         {
           "name": "Machalite Ore",
           "amount": "35",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Hvy Monster Bone",
@@ -6030,7 +6030,7 @@
         {
           "name": "Earth Crystal",
           "amount": "20",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -6060,7 +6060,7 @@
         {
           "name": "Earth Crystal",
           "amount": "40",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -6289,7 +6289,7 @@
         {
           "name": "Earth Crystal",
           "amount": "20",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -6319,7 +6319,7 @@
         {
           "name": "Earth Crystal",
           "amount": "40",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -6517,14 +6517,14 @@
         {
           "name": "Iron Ore",
           "amount": "40",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Dragonite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Eltalite Ore",
@@ -6561,7 +6561,7 @@
           "name": "Sm Monster Bone",
           "amount": "30",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Hvy Monster Bone",
@@ -6634,14 +6634,14 @@
         {
           "name": "Earth Crystal",
           "amount": "40",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
           "name": "Machalite Ore",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Mellanje Ore",
@@ -6720,8 +6720,8 @@
         {
           "name": "Disk Stone",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Carbalite Ore",
@@ -7065,7 +7065,7 @@
           "name": "Lg Monster Bone",
           "amount": "15",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "HvyDiablosSpine",
@@ -7420,8 +7420,8 @@
         {
           "name": "Iron Ore",
           "amount": "50",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -7549,8 +7549,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         }
       ],
       "improve-mats": null,
@@ -7633,10 +7633,10 @@
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "name": "Sharp Claw",
           "amount": "25",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         }
       ],
       "improve-mats": null,

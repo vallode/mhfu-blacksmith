@@ -54,10 +54,10 @@
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "name": "Sharp Claw",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Demondrug",
@@ -427,13 +427,13 @@
         {
           "name": "Earth Crystal",
           "amount": "1",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
           "name": "Giadrome Claw",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         }
       ],
@@ -631,14 +631,14 @@
         {
           "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Ice Crystal",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "color": "pink",
@@ -707,8 +707,8 @@
         {
           "name": "Flame Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "FlynMealPassReg",
@@ -1027,8 +1027,8 @@
         {
           "name": "Flame Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "color": "red",
@@ -1120,8 +1120,8 @@
         {
           "name": "Ice Crystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "color": "blue",
@@ -1204,8 +1204,8 @@
         {
           "name": "Electro Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -1781,7 +1781,7 @@
         {
           "name": "Flabby Hide",
           "amount": "1",
-          "type": "bone",
+          "type": "hide",
           "color": "white"
         },
         {
@@ -2330,8 +2330,8 @@
         {
           "name": "Tigrex Fang",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Mosswine Hide",
@@ -2408,8 +2408,8 @@
         {
           "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Mega Juice",
@@ -3322,8 +3322,8 @@
         {
           "name": "Sharp Claw",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "color": "white",
@@ -3391,8 +3391,8 @@
         {
           "name": "Rubbery Hide",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "hide",
+          "color": "blue"
         },
         {
           "name": "Poison Sac",
@@ -3827,8 +3827,8 @@
         {
           "name": "Sharp Claw",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Ivy",
@@ -4235,8 +4235,8 @@
         {
           "name": "Dragonite Ore",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Rainbow Ore",
@@ -4544,8 +4544,8 @@
         {
           "name": "Machalite Ore",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "blue"
         },
         {
           "name": "Gunpowder",
@@ -4575,14 +4575,14 @@
         {
           "name": "Dragonite Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "green"
         },
         {
           "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "color": "gray",
@@ -4909,8 +4909,8 @@
         {
           "name": "Ioprey Fang",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         }
       ],
       "color": "slate",
@@ -5303,8 +5303,8 @@
         {
           "name": "Lightcrystal",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "color": "gray",
@@ -5538,8 +5538,8 @@
         {
           "name": "Ice Crystal",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "color": "cyan",
@@ -5712,7 +5712,7 @@
           "name": "Unknown Skull",
           "amount": "1",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "color": "gray",
