@@ -166,10 +166,15 @@
                   <div class="improve-mats">
                     <p>
                       <span>Improve cost: </span>{{ page.extra.improve_cost }}z
-                    </p>
-  
-                    {%- for material in page.extra.improve_mats %}
-                      <p>{{ material }}</p>
+                    </p>                    
+
+                    {% for material in page.extra.improve_mats %}
+                      <div class="material">
+                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                          <img src="/images/{{ material.type }}.png">
+                        </div>
+                        <p>{{ material.name }}: {{ material.amount }}</p>
+                      </div>
                     {% endfor %}
                   </div>
                 {% endif %}
@@ -181,7 +186,12 @@
                     </p>
     
                     {% for material in page.extra.create_mats %}
-                       <p>{{ material }}</p>
+                      <div class="material">
+                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                          <img src="/images/{{ material.type }}.png">
+                        </div>
+                        <p>{{ material.name }}: {{ material.amount }}</p>
+                      </div>
                     {% endfor %}
                   </div>
                 {% endif %}
@@ -196,7 +206,7 @@
                       </p>
       
                       {% for material in page.extra.alternative_create_mats %}
-                        <p>{{ material }}</p>
+                      <p>{{ material.name }}: {{ material.amount }}</p>
                       {% endfor %}
                     </div>
                   {% endif %}
