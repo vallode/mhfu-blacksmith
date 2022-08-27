@@ -66,6 +66,17 @@ WEAPON_ABBR = {
   "decoration": "dec"
 }
 
+WEAPON_CLASS_MULTIPLIER = {
+  "great-sword": 4.8,
+  "long-sword": 4.8,
+  "sword-and-shield": 1.4,
+  "dual-blades": 1.4,
+  "hammer": 5.2,
+  "hunting-horn": 5.2,
+  "lance": 2.3,
+  "gunlance":  2.3,
+}
+
 def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
@@ -103,6 +114,10 @@ Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
 
       slug = slugify(value["name"])
       value["type"] = WEAPON_ABBR.key(value["type"])
+
+      if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
+        value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
+      end
 
       if value["create-mats"]
         create_mats = value["create-mats"]
