@@ -168,9 +168,17 @@ $weapon-types: (
   "note",
   "bone",
   "ore",
+  "fish",
   "hide",
   "sac",
   "claw",
+  "scale",
+  "pelt",
+  "insect",
+  "fluid",
+  "part",
+  "egg",
+  "ticket",
   "ukwn",
 );
 
@@ -517,6 +525,7 @@ $element-types: (
 
     #weaponSlots {
       font-family: monospace;
+      opacity: 0.5;
     }
 
     span.negative {

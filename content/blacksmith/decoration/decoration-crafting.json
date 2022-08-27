@@ -62,8 +62,8 @@
         {
           "name": "Demondrug",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         }
       ],
       "color": "red",
@@ -94,8 +94,8 @@
         {
           "name": "Mega Demondrug",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         },
         {
           "name": "Lthr Pelagus Plt",
@@ -134,8 +134,8 @@
         {
           "name": "Rathalos Plate",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         }
       ],
       "alternative-create-mats": [
@@ -270,8 +270,8 @@
         {
           "name": "Garuga Wing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         }
       ],
       "color": "gray",
@@ -625,7 +625,7 @@
         {
           "name": "Kirin Horn",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -713,8 +713,8 @@
         {
           "name": "FlynMealPassReg",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         }
       ],
       "color": "red",
@@ -1086,8 +1086,8 @@
         {
           "name": "Plesioth Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         }
       ],
       "color": "cyan",
@@ -1179,8 +1179,8 @@
         {
           "name": "Thunderbug",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -1311,7 +1311,7 @@
         {
           "name": "Kirin Mane",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -1546,8 +1546,8 @@
         {
           "name": "Lunastra Shell",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         }
       ],
       "color": "gray",
@@ -1688,8 +1688,8 @@
         {
           "name": "Killer Beetle",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "green"
         }
       ],
       "color": "green",
@@ -2007,14 +2007,14 @@
         {
           "name": "Commendation",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Black Pearl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "color": "yellow",
@@ -2044,7 +2044,7 @@
         {
           "name": "Commendation S",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         }
       ],
@@ -2078,8 +2078,8 @@
         {
           "name": "FlynMealPassPlus",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Sharpened Beak",
@@ -2122,7 +2122,7 @@
         {
           "name": "Pawprint Stamp",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         }
       ],
@@ -2177,8 +2177,8 @@
         {
           "name": "Cephalos Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "cyan"
         },
         {
           "name": "Well-Done Steak",
@@ -2215,8 +2215,8 @@
         {
           "name": "Cephalos Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "cyan"
         },
         {
           "name": "Gourmet Steak",
@@ -2290,8 +2290,8 @@
         {
           "name": "Congalala Fang",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "pink"
         },
         {
           "name": "Glutton Tuna",
@@ -2446,8 +2446,8 @@
         {
           "name": "Firecell Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "orange"
         },
         {
           "name": "Plesioth Fin",
@@ -2490,7 +2490,7 @@
         {
           "name": "Blango Pelt",
           "amount": "2",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -2602,8 +2602,8 @@
         {
           "name": "Rathian Plate",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "green"
         }
       ],
       "alternative-create-mats": [
@@ -2950,8 +2950,8 @@
         {
           "name": "Piscine Fang",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Wyvern Fang",
@@ -3224,8 +3224,8 @@
         {
           "name": "Remobra Skull",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ],
       "alternative-create-mats": [
@@ -3353,8 +3353,8 @@
         {
           "name": "Killer Beetle",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "green"
         },
         {
           "name": "Pin Tuna",
@@ -3437,8 +3437,8 @@
         {
           "name": "Gendrome Hide",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "green"
         },
         {
           "name": "Vespoid Wing",
@@ -3523,8 +3523,8 @@
         {
           "name": "Sleep Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         },
         {
           "name": "Sleep Coating",
@@ -3569,8 +3569,8 @@
         {
           "name": "Dark Piece",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Power Coating",
@@ -3781,8 +3781,8 @@
         {
           "name": "Akantor Claw",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Daora Sharp Claw",
@@ -3898,8 +3898,8 @@
         {
           "name": "Hercudrome",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         }
       ],
       "alternative-create-mats": [
@@ -3918,8 +3918,8 @@
         {
           "name": "Great Hornfly",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "color": "cyan",
@@ -4010,8 +4010,8 @@
         {
           "name": "Emperor Cricket",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "orange"
         }
       ],
       "color": "blue",
@@ -4153,8 +4153,8 @@
         {
           "name": "Akantor Shell",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Top-GrdRedHorn",
@@ -4197,8 +4197,8 @@
         {
           "name": "FlynMealPassReg",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "B urnt Meat",
@@ -4241,8 +4241,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ],
       "color": "white",
@@ -4466,8 +4466,8 @@
         {
           "name": "Springnight Carp",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "pink"
         }
       ],
       "color": "slate",
@@ -4510,8 +4510,8 @@
         {
           "name": "Antiseptic Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "yellow"
         }
       ],
       "color": "slate",
@@ -4613,8 +4613,8 @@
         {
           "name": "Congalala Pelt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Flute",
@@ -4778,8 +4778,8 @@
         {
           "name": "Paralysis Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -4809,8 +4809,8 @@
         {
           "name": "Thunderbug Jelly",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -4868,8 +4868,8 @@
         {
           "name": "Sleep Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         },
         {
           "name": "Sleepy Fish",
@@ -4972,8 +4972,8 @@
         {
           "name": "SpecRemobraSkin+",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         }
       ],
       "color": "slate",
@@ -5007,7 +5007,7 @@
         {
           "name": "Giaprey Scale",
           "amount": "2",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         }
       ],
@@ -5236,14 +5236,14 @@
         {
           "name": "Tigrex Skull Shl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Monster Broth",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "alternative-create-mats": [
@@ -5408,8 +5408,8 @@
         {
           "name": "Cephalos Scale",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "cyan"
         }
       ],
       "color": "orange",
@@ -5506,7 +5506,7 @@
         {
           "name": "Blango Pelt",
           "amount": "2",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         }
       ],
@@ -5776,8 +5776,8 @@
         {
           "name": "Congalala Pelt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Antiseptic Jewel",
@@ -5963,8 +5963,8 @@
         {
           "name": "Great Hornfly",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Power Extract",
@@ -6287,8 +6287,8 @@
         {
           "name": "Piscine Fang",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Net",
@@ -6415,7 +6415,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
@@ -6465,14 +6465,14 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
           "name": "Mega Demondrug",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         }
       ],
       "color": "blue",
@@ -6509,7 +6509,7 @@
         {
           "name": "Commendation G",
           "amount": "1",
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {
