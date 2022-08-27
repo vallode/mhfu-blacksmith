@@ -77,15 +77,16 @@ done
 
 Keeping track of who helped out, directly or indirectly, with this project. (Keep in mind the order is fairly random)
 
-* kpworthi
-* Assis
-* rafaellum
-* Emanon
-* Yaas
 * Vid (Firaga)
-* Darkcola
-* Zack
 * Hunsterverse contributors
+* Assis
+* Darkcola
+* Yaas
+* Zack
+* Emanon
+* kushala
+* kpworthi
+* rafaellum
 
 ## Development
 
