@@ -2481,7 +2481,7 @@
         "Eltalite Ore (20)",
         "Hrd Monster Bone (6)",
         "Hvy Monster Bone (1)",
-        "1"
+        "Commendation G (1)"
       ]
     },
     {
@@ -3421,7 +3421,7 @@
         "Hvy Daora Shell (5)",
         "Daora Webing G (4)",
         "BigEDragonJewel (1)",
-        "1"
+        "Commendation S (1)"
       ]
     },
     {
@@ -3562,7 +3562,7 @@
         "HvyTeostraShell (5)",
         "FireDragonStrngClw (2)",
         "BigEDragonJewel (1)",
-        "1"
+        "Commendation S (1)"
       ]
     },
     {
@@ -3935,7 +3935,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G (1)",
         "ThkBullfangoPelt (15)",
         "RobustWyvernBone (20)",
         "Lg Monster Bone (30)"
@@ -3982,7 +3982,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G (1)",
         "Kelbi Hide (20)",
         "Majestic Horn (10)",
         "Carpenterbug (99)"
@@ -4029,7 +4029,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G (1)",
         "Monster Essence (30)",
         "Monster Broth (30)",
         "Monster Fluid (30)"
@@ -4076,7 +4076,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G (1)",
         "YamaTsukamiFluid (4)",
         "Verspoid Abdomen (10)",
         "Hornetaur Head (10)"
@@ -4123,7 +4123,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation G (1)",
         "DeadlyPoisonSac (10)",
         "Toxin Sac (10)",
         "Purecrystal (5)"
@@ -4170,7 +4170,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "HardGypcerosHead (3)",
         "Lightcrystal (20)",
         "Novacrystal (10)"
@@ -4217,7 +4217,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "HvyPiscineFang (10)",
         "Coral Cphlos Fin (6)",
         "Union Ore (30)"
@@ -4264,7 +4264,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Vibrant Comb (2)",
         "HrdCongalalaClw+ (4)",
         "GrnConglalaClaw (6)"
@@ -4311,7 +4311,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Hermitaur Claw+ (8)",
         "HvyHermitaurShl (8)",
         "Black Pearl (20)"
@@ -4358,7 +4358,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "FireStone (40)",
         "Mellanje Ore (30)",
         "Basarios Tears (5)"
@@ -4405,7 +4405,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "ThckPlesiothScl (10)",
         "Ancient Fish (10)",
         "Hrd Monster Bone (20)"
@@ -4452,7 +4452,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "PlumD.HermitrClw (6)",
         "PlumD.HermitrShl (8)",
         "WyvernSkull Shl (3)"
@@ -4499,7 +4499,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Thick Kut-Ku Scl (10)",
         "Lucky Kut-Ku Ear (5)",
         "Pale Khezu Steak (3)"
@@ -4546,7 +4546,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "ThkBlueKut-KuScl (10)",
         "Long Kut-Ku Ear (10)",
         "KhezuSpecialCut (1)"
@@ -4593,7 +4593,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Wht Monoblos Cpc (8)",
         "StoutBlkTwstdHrn (4)",
         "Monoblos Heart (2)"
@@ -4640,7 +4640,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "HvyDiablosShell (8)",
         "Top-GrdPlatHorn (6)",
         "WyvernStone (10)"
@@ -4687,7 +4687,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "VespoidQn'sCrown (5)",
         "Thunderbug Jelly (20)",
         "Killer Beetle (99)"
@@ -4734,7 +4734,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Dark Stone (10)",
         "BigEDragonJewel (1)",
         "Giant Blk Pearl (5)"
@@ -4781,7 +4781,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "ThckFireDrgnScl (4)",
         "LunastraCarapace (8)",
         "Fire Drgn Jwl (3)"
@@ -4828,7 +4828,7 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "1",
+        "Commendation S (1)",
         "Lao-ShanHvnlyScl (1)",
         "Lao-Shan's Ruby (2)",
         "ElderDragonBlood (10)"
