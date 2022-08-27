@@ -86,6 +86,7 @@
               {% if page.extra.attack %}
                 <p>
                   Attack: <span>{{ page.extra.attack }}</span>
+                  <span class="raw">{% if page.extra.raw_attack %}[ {{ page.extra.raw_attack }} ]{% endif %}</span>
                   {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
                 </p>
               {% endif %}
