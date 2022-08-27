@@ -14,8 +14,18 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Iron Ore(3)",
-        "Disk Stone (1)"
+        {
+          "name": "Iron Ore",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -40,8 +50,18 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (5)",
-        "Disk Stone (1)"
+        {
+          "name": "Iron Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "War Mace",
@@ -66,8 +86,18 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (10)",
-        "Disk Stone (5)"
+        {
+          "name": "Iron Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Iron Striker",
@@ -94,14 +124,44 @@
         "War Mace"
       ],
       "create-mats": [
-        "Earth Crystal (10)",
-        "Iron Ore (20)",
-        "Disk Stone (20)"
+        {
+          "name": "Earth Crystal",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Iron Ore (12)",
-        "Machalite Ore (5)",
-        "Earth Crystal (3)"
+        {
+          "name": "Iron Ore",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Earth Crystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Iron Striker+",
@@ -126,9 +186,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Dragonite Ore (5)",
-        "Machalite Ore (8)",
-        "Earth Crystal (15)"
+        {
+          "name": "Dragonite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Earth Crystal",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Anvil Hammer"
@@ -152,9 +227,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Gravios Shell (2)",
-        "Dragonite Ore (10)",
-        "Iron Ore (30)"
+        {
+          "name": "Gravios Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Onslaught Hammer",
@@ -182,9 +272,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Union Ore (5)",
-        "Dragonite Ore (20)",
-        "Iron Ore (99)"
+        {
+          "name": "Union Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "99",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Blacksmith"
@@ -207,15 +312,50 @@
         "Onslaught Hammer"
       ],
       "create-mats": [
-        "Eltalite Ore (10)",
-        "Union Ore (10)",
-        "Piercing Claw (4)",
-        "RobustWyvernBone (5)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piercing Claw",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustWyvernBone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Eltalite Ore (5)",
-        "Carbalite Ore (20)",
-        "Emperor Cricket (7)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Cricket",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Juggernaut",
@@ -240,9 +380,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Mellanje Ore (5)",
-        "RobustWyvernBone (8)",
-        "PhantomButterfly (5)"
+        {
+          "name": "Mellanje Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustWyvernBone",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
@@ -264,9 +419,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Dragonite Ore (15)",
-        "Carbalite Ore (15)",
-        "Disk Stone (50)"
+        {
+          "name": "Dragonite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "War Basher"
@@ -288,9 +458,24 @@
       "improve-from": "War Stamp",
       "create-mats": null,
       "improve-mats": [
-        "Carbalite Ore (30)",
-        "Machalite Ore (40)",
-        "Black Blos Cpc (10)"
+        {
+          "name": "Carbalite Ore",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "40",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Cpc",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.2"
@@ -311,14 +496,44 @@
         "Anvil Hammer"
       ],
       "create-mats": [
-        "Carbalite Ore (5)",
-        "Iron Ore (50)",
-        "Disk Stone (30)"
+        {
+          "name": "Carbalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Carbalite Ore (3)",
-        "Iron Ore (30)",
-        "Dragonite Ore (5)"
+        {
+          "name": "Carbalite Ore",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Great Demon Hammer",
@@ -343,9 +558,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Union Ore (10)",
-        "Velocidrome Head (3)",
-        "Remobra Skull (3)"
+        {
+          "name": "Union Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Velocidrome Head",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Remobra Skull",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Devil Masher",
@@ -370,9 +600,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Gendrome Skull (3)",
-        "Vespoid Abdomen (3)",
-        "Gold Rathian Cpc (3)"
+        {
+          "name": "Gendrome Skull",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Abdomen",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Rathian Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Devil Masher+"
@@ -396,9 +641,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Eltalite Ore (5)",
-        "Thunderbug Jelly (5)",
-        "Gld Rathian Scl+ (8)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gld Rathian Scl+",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Iron Devil's Soul"
@@ -420,9 +680,24 @@
       "improve-from": "Devil Masher+",
       "create-mats": null,
       "improve-mats": [
-        "Eltalite Ore (10)",
-        "HvyGldRathianShl (5)",
-        "YamaTsukamiFluid (2)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyGldRathianShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "YamaTsukamiFluid",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
@@ -444,9 +719,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Union Ore (25)",
-        "Iron Ore (50)",
-        "Novacrystal (5)"
+        {
+          "name": "Union Ore",
+          "amount": "25",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Novacrystal",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Iron Repellant",
@@ -471,10 +761,30 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Mellanje Ore (10)",
-        "Iron Ore (90)",
-        "HvyLavasiothShl (5)",
-        "Rainbow Ore (10)"
+        {
+          "name": "Mellanje Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "90",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyLavasiothShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.4"
@@ -495,16 +805,56 @@
         "Iron Impact"
       ],
       "create-mats": [
-        "Eltalite Ore (12)",
-        "Ice Crystal (20)",
-        "Blangonga Pelt+ (20)",
-        "Monster Essence (5)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Pelt+",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Ice Crystal (10)",
-        "Eltalite Ore (8)",
-        "Emperor Cricket (10)",
-        "DaoraDragonScal+ (5)"
+        {
+          "name": "Ice Crystal",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Cricket",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDragonScal+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Axion"
@@ -528,10 +878,30 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Ice Crystal (20)",
-        "Purecrystal (2)",
-        "HrdBlangongaPlt+ (10)",
-        "HvyBasariosShell (3)"
+        {
+          "name": "Ice Crystal",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Purecrystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdBlangongaPlt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBasariosShell",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
@@ -553,9 +923,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Carbalite Ore (15)",
-        "Dragonite Ore (10)",
-        "Gaoren Shell (5)"
+        {
+          "name": "Carbalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Ancient Blow"
@@ -579,9 +964,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Union Ore (10)",
-        "Dragonite Ore (25)",
-        "Gaoren Carapace (5)"
+        {
+          "name": "Union Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "25",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Carapace",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Foolhardy Stone Fist"
@@ -605,9 +1005,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Mellanje Ore (10)",
-        "Gaoren Carapace (10)",
-        "Lao-Shan's HvyScl (5)"
+        {
+          "name": "Mellanje Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Carapace",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's HvyScl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.11.2"
@@ -626,15 +1041,50 @@
       "improve-cost": "3100",
       "improve-from": "Iron Striker",
       "create-mats": [
-        "FireWyvern Fluid (4)",
-        "Machalite Ore (20)",
-        "Flame Sac (1)",
-        "Gunpowder (20)"
+        {
+          "name": "FireWyvern Fluid",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Flame Sac",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gunpowder",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "FireWyvern Fluid (2)",
-        "Machalite Ore (15)",
-        "Gunpowder (10)"
+        {
+          "name": "FireWyvern Fluid",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gunpowder",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Dead Revolver"
@@ -656,9 +1106,24 @@
       "improve-from": "Gunhammer Prototype",
       "create-mats": null,
       "improve-mats": [
-        "Dragonite Ore (15)",
-        "FireWyvrn Marrow (2)",
-        "Firestone (4)"
+        {
+          "name": "Dragonite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Sanctioned Gunhammer"
@@ -680,10 +1145,30 @@
       "improve-from": "Dead Revolver",
       "create-mats": null,
       "improve-mats": [
-        "Firecell Stone (4)",
-        "Carbalite Ore (20)",
-        "Monster Broth (2)",
-        "FireWyvrn BrnStm (1)"
+        {
+          "name": "Firecell Stone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Regulation GunHammer"
@@ -704,15 +1189,50 @@
       "improve-cost": "95000",
       "improve-from": "Sanctioned Gunhammer",
       "create-mats": [
-        "Eltalite Ore (10)",
-        "Blazing Fire Sac (6)",
-        "Firecell Stone (10)",
-        "FireWyvrn BrnStm (2)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Eltalite Ore (5)",
-        "Blazing Fire Sac (4)",
-        "Monster Essence (2)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "ImperialGunHmmrSpark"
@@ -734,10 +1254,30 @@
       "improve-from": "Regulation GunHammer",
       "create-mats": null,
       "improve-mats": [
-        "Eltalite Ore (20)",
-        "Naruga Thck Scl (5)",
-        "BlkGraviosHvyShl (5)",
-        "Wyvern Stone (3)"
+        {
+          "name": "Eltalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Naruga Thck Scl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlkGraviosHvyShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
@@ -757,9 +1297,24 @@
       "improve-from": "War Mace",
       "create-mats": null,
       "improve-mats": [
-        "Speartuna (1)",
-        "Cephalos Fin (2)",
-        "Disk Stone (20)"
+        {
+          "name": "Speartuna",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cephalos Fin",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Anchor Hammer+"
@@ -781,9 +1336,24 @@
       "improve-from": "Anchor Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Glutton Tuna (5)",
-        "Plesioth Fin (5)",
-        "Dragonite Ore (20)"
+        {
+          "name": "Glutton Tuna",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Anchor Crusher"
@@ -805,9 +1375,24 @@
       "improve-from": "Anchor Hammer+",
       "create-mats": null,
       "improve-mats": [
-        "Ancient Fish (5)",
-        "Plesioth Fin+ (5)",
-        "Union Ore (20)"
+        {
+          "name": "Ancient Fish",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "9.2.13.7.5.4"
@@ -826,14 +1411,44 @@
       "improve-cost": "1400",
       "improve-from": "War Mace",
       "create-mats": [
-        "FlynMealPassPlus (1)",
-        "Iron Ore (10)",
-        "Disk Stone (7)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "FlynMealPassReg (2)",
-        "Iron Ore (10)",
-        "Carpenterbug (10)"
+        {
+          "name": "FlynMealPassReg",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carpenterbug",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "True Black Cauldron",
@@ -856,9 +1471,24 @@
       "improve-from": "Black Cauldron",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassReg (7)",
-        "Carbalite Ore (10)",
-        "Black Blos Shell (5)"
+        {
+          "name": "FlynMealPassReg",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "10.1.3.16"
@@ -878,9 +1508,24 @@
       "improve-from": "Black Cauldron",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassPlus (2)",
-        "Rainbow Ore (10)",
-        "DaoraDragonScale (5)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDragonScale",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Two Star Silver Pot"
@@ -902,9 +1547,24 @@
       "improve-from": "One Star Silver Pot",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassPlus (8)",
-        "Union Ore (10)",
-        "Slvr Rthlos Scl+ (5)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Slvr Rthlos Scl+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.4"
@@ -924,9 +1584,24 @@
       "improve-from": "War Mace",
       "create-mats": null,
       "improve-mats": [
-        "Med Monster Bone (3)",
-        "Sm Monster Bone (3)",
-        "Monster Fluid (1)"
+        {
+          "name": "Med Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Fluid",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Bone Broadaxe"
@@ -948,9 +1623,24 @@
       "improve-from": "Bone Axe",
       "create-mats": null,
       "improve-mats": [
-        "Monster Bone+ (2)",
-        "Lg Monster Bone (4)",
-        "Tigrex Shell (4)"
+        {
+          "name": "Monster Bone+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Bone Great Axe"
@@ -972,10 +1662,30 @@
       "improve-from": "Bone Broadaxe",
       "create-mats": null,
       "improve-mats": [
-        "Hrd Monster Bone (2)",
-        "Monster Bone+ (4)",
-        "Monster Broth (1)",
-        "King Scarab (5)"
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "King Scarab",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Ceanataur Head Axe"
@@ -996,16 +1706,56 @@
       "improve-cost": "60000",
       "improve-from": "Bone Great Axe",
       "create-mats": [
-        "Ceanataur Carpce (6)",
-        "Ceanataur Claw+ (4)",
-        "Ceanataur Leg (2)",
-        "Carbalite Ore (10)"
+        {
+          "name": "Ceanataur Carpce",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Claw+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Leg",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Ceanataur Carpce (4)",
-        "Ceanataur Pincer (2)",
-        "Carbalite Ore (6)",
-        "King Scarab (4)"
+        {
+          "name": "Ceanataur Carpce",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Pincer",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "King Scarab",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Big Blue Chopper",
@@ -1028,10 +1778,30 @@
       "improve-from": "Ceanataur Head Axe",
       "create-mats": null,
       "improve-mats": [
-        "Heavy Ceanataur Shell (4)",
-        "Hard Ceanataur Claw (2)",
-        "Heavy Ceanataur Leg (3)",
-        "Eltalite Ore (4)"
+        {
+          "name": "Heavy Ceanataur Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hard Ceanataur Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavy Ceanataur Leg",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
@@ -1050,15 +1820,50 @@
       "improve-cost": "85000",
       "improve-from": "Ceanataur Head Axe",
       "create-mats": [
-        "Terra Ceanataur Shell (6)",
-        "Terra Ceanataur Claw (4)",
-        "Ceanataur Pincer (10)",
-        "Eltalite Ore (10)"
+        {
+          "name": "Terra Ceanataur Shell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Terra Ceanataur Claw",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Pincer",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Terra Ceanataur Shell (4)",
-        "Terra Ceanataur Claw (2)",
-        "Heavy Ceanataur Leg (2)"
+        {
+          "name": "Terra Ceanataur Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Terra Ceanataur Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavy Ceanataur Leg",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "The Great Divider"
@@ -1080,10 +1885,30 @@
       "improve-from": "Carmine Axe",
       "create-mats": null,
       "improve-mats": [
-        "Terra Ceanataur Shell (2)",
-        "Heavy Black Gravios Shell (1)",
-        "Hard Gaoren Claw (2)",
-        "Giant Black Pearl (2)"
+        {
+          "name": "Terra Ceanataur Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavy Black Gravios Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hard Gaoren Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Black Pearl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -1105,9 +1930,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (10)",
-        "Needleberry (10)",
-        "Carpenterbug (5)"
+        {
+          "name": "Iron Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Needleberry",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carpenterbug",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Spiked Hammer+"
@@ -1131,9 +1971,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Iron Ore (20)",
-        "Needleberry (15)",
-        "Killer Beetle (2)"
+        {
+          "name": "Iron Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Needleberry",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Killer Beetle",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Crystal Hammer",
@@ -1158,15 +2013,50 @@
         "Spiked Hammer+"
       ],
       "create-mats": [
-        "Lightcrystal (2)",
-        "Iron Ore (25)",
-        "Ice Crystal (7)",
-        "Carpenterbug (10)"
+        {
+          "name": "Lightcrystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "25",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carpenterbug",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Lightcrystal (1)",
-        "Machalite Ore (8)",
-        "Killer Beetle (6)"
+        {
+          "name": "Lightcrystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Killer Beetle",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Crystal Nova"
@@ -1188,9 +2078,24 @@
       "improve-from": "Crystal Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Lightcrystal (3)",
-        "Rainbow Ore (2)",
-        "Ice Crystal (10)"
+        {
+          "name": "Lightcrystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Ore",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ice Crystal",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Great Nova",
@@ -1213,9 +2118,24 @@
       "improve-from": "Crystal Nova",
       "create-mats": null,
       "improve-mats": [
-        "Novacrystal (3)",
-        "Basarios Carpace (8)",
-        "Thunder Sac (5)"
+        {
+          "name": "Novacrystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Carpace",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunder Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Super Nova"
@@ -1237,10 +2157,30 @@
       "improve-from": "Great Nova",
       "create-mats": null,
       "improve-mats": [
-        "Purecrystal (3)",
-        "Lightning Sac (5)",
-        "LthrKirinThndrTl (2)",
-        "StrBasariosWing (2)"
+        {
+          "name": "Purecrystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightning Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LthrKirinThndrTl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "StrBasariosWing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
@@ -1260,9 +2200,24 @@
       "improve-from": "Crystal Nova",
       "create-mats": null,
       "improve-mats": [
-        "Gravios Skl Shl (1)",
-        "Basarios Shell (4)",
-        "Machalite Ore (10)"
+        {
+          "name": "Gravios Skl Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Titan Hammer"
@@ -1284,9 +2239,24 @@
       "improve-from": "Gigaton Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Gravios Shell (10)",
-        "Gaoren Shell (4)",
-        "Machalite Ore (15)"
+        {
+          "name": "Gravios Shell",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.8"
@@ -1305,15 +2275,50 @@
       "improve-cost": "4250",
       "improve-from": "Spiked Hammer+",
       "create-mats": [
-        "Basarios Shell (8)",
-        "Machalite Ore (5)",
-        "Ioprey Fang (18)",
-        "Hercudrome (3)"
+        {
+          "name": "Basarios Shell",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ioprey Fang",
+          "amount": "18",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Basarios Shell (8)",
-        "Wyvern Fang (15)",
-        "Poison Sac (5)"
+        {
+          "name": "Basarios Shell",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Fang",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Poison Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Graviton Hammer"
@@ -1335,9 +2340,24 @@
       "improve-from": "Shell Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Gravios Shell (10)",
-        "Machalite Ore (10)",
-        "Chameleos Claw (1)"
+        {
+          "name": "Gravios Shell",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Claw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Torment Hammer",
@@ -1360,9 +2380,24 @@
       "improve-from": "Graviton Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Gravios Carapace (12)",
-        "Wyvern Stone (3)",
-        "Toxin Sac (8)"
+        {
+          "name": "Gravios Carapace",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Toxin Sac",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "VenomousCraterMaker"
@@ -1384,10 +2419,30 @@
       "improve-from": "Crater Maker",
       "create-mats": null,
       "improve-mats": [
-        "HvyBlkGraviosShl (5)",
-        "HvyGraviosShell (2)",
-        "LethrGarugaTail (4)",
-        "DeadlyPoisonSac (5)"
+        {
+          "name": "HvyBlkGraviosShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyGraviosShell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LethrGarugaTail",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DeadlyPoisonSac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Glasya-Labolas"
@@ -1409,10 +2464,30 @@
       "improve-from": "VenomousCraterMaker",
       "create-mats": null,
       "improve-mats": [
-        "HvyBlkGraviosShl (10)",
-        "SpecChameleHide+ (3)",
-        "StrBasariosWing (2)",
-        "HvnlyBlkGraviShl (1)"
+        {
+          "name": "HvyBlkGraviosShl",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecChameleHide+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "StrBasariosWing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvnlyBlkGraviShl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
@@ -1432,9 +2507,24 @@
       "improve-from": "Graviton Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Blk Gravios Shl (8)",
-        "Carbalite Ore (20)",
-        "Inferno Sac (4)"
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Inferno Sac",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Torment (Purgatory)"
@@ -1456,9 +2546,24 @@
       "improve-from": "Torment Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Black Gravios Carapace (12)",
-        "Black Gravios Skl Shl (2)",
-        "Gravios Brainstem (3)"
+        {
+          "name": "Black Gravios Carapace",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Gravios Skl Shl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Brainstem",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.11.5.2"
@@ -1477,7 +2582,12 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Mystery Bone (3)"
+        {
+          "name": "Mystery Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -1503,8 +2613,18 @@
       "improve-from": "Bone Club",
       "create-mats": null,
       "improve-mats": [
-        "Giant Bone (1)",
-        "Mystery Bone (5)"
+        {
+          "name": "Giant Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mystery Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Enormous Ham"
@@ -1526,9 +2646,24 @@
       "improve-from": "Large Bone Club",
       "create-mats": null,
       "improve-mats": [
-        "Giant Bone (3)",
-        "Well Done Steak (10)",
-        "FelyneMealPassReg (3)"
+        {
+          "name": "Giant Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Well Done Steak",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FelyneMealPassReg",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Ham of Hams"
@@ -1550,9 +2685,24 @@
       "improve-from": "Enormous Ham",
       "create-mats": null,
       "improve-mats": [
-        "Hrd Monster Bone (3)",
-        "Gourmet Steak (10)",
-        "FelyneMealPassPlus (3)"
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gourmet Steak",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FelyneMealPassPlus",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "10.1.3.6"
@@ -1574,8 +2724,18 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Brute Bone (3)",
-        "Sm Monster Bone (3)"
+        {
+          "name": "Brute Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Atlas Hammer",
@@ -1602,8 +2762,18 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Giant Bone (2)",
-        "Sm Monster Bone (10)"
+        {
+          "name": "Giant Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Kut-Ku Jaw",
@@ -1626,15 +2796,50 @@
       "improve-cost": "2600",
       "improve-from": "Atlas Hammer",
       "create-mats": [
-        "Giant Beak (1)",
-        "Piscine Fang (5)",
-        "Kut-Ku Scale (5)",
-        "Mega Demondrug (1)"
+        {
+          "name": "Giant Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piscine Fang",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mega Demondrug",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Giant Beak (1)",
-        "Sharp Claw (5)",
-        "Monster Fluid (2)"
+        {
+          "name": "Giant Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharp Claw",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Fluid",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Kut-Ku Pick",
@@ -1661,9 +2866,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Kut-Ku Ear (4)",
-        "Vibrant Pelt (2)",
-        "Monster Bone+ (4)"
+        {
+          "name": "Kut-Ku Ear",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Vibrant Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Hard Bone Hammer",
@@ -1687,15 +2907,50 @@
         "Kut-Ku Pick"
       ],
       "create-mats": [
-        "Stout Bone (5)",
-        "Giant Bone (20)",
-        "Sm Monster Bone (60)",
-        "Iron Ore (15)"
+        {
+          "name": "Stout Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Bone",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "60",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Stout Bone (2)",
-        "Elder Dragon Bone (5)",
-        "Brute Bone (60)"
+        {
+          "name": "Stout Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Brute Bone",
+          "amount": "60",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Hard Bone Hammer+",
@@ -1720,9 +2975,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Stout Bone(8)",
-        "Dragonite Ore(10)",
-        "Rare Scarab(10)"
+        {
+          "name": "Stout Bone",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Diablos Hammer"
@@ -1746,9 +3016,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Blood Red Horn (1)",
-        "TwstBlkBlosHrn (1)",
-        "Black Blos Cpc (6)"
+        {
+          "name": "Blood Red Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "TwstBlkBlosHrn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Cpc",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Diablo Chaos Broker"
@@ -1770,9 +3055,24 @@
       "improve-from": "Diablos Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Majestic Horn (2)",
-        "Blk Blos Thracic (6)",
-        "Diablos Thoracic (6)"
+        {
+          "name": "Majestic Horn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Blos Thracic",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Diablos Thoracic",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Chaotic Order"
@@ -1794,10 +3094,30 @@
       "improve-from": "Diablo Chaos Broker",
       "create-mats": null,
       "improve-mats": [
-        "StoutBlkTwstdHrn (2)",
-        "Top-GrdRedHorn (2)",
-        "HvyBlkBlosSpine (6)",
-        "MonoblosThoracic (6)"
+        {
+          "name": "StoutBlkTwstdHrn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Top-GrdRedHorn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlkBlosSpine",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "MonoblosThoracic",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
@@ -1819,9 +3139,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Sm Lobstershell (4)",
-        "Iodrome Hide (10)",
-        "Carbalite Ore (10)"
+        {
+          "name": "Sm Lobstershell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iodrome Hide",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "King Lobster Hammer"
@@ -1845,9 +3180,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Lg Lobstershell (2)",
-        "Ioprey Hide+ (5)",
-        "Ancient Fish (5)"
+        {
+          "name": "Lg Lobstershell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ioprey Hide+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ancient Fish",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Royal Lobster Hammer"
@@ -1871,9 +3221,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Gt Lobstershell (2)",
-        "HvyPiscineFang (6)",
-        "Eltalite Ore (5)"
+        {
+          "name": "Gt Lobstershell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyPiscineFang",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "5.4.14.10.4.3"
@@ -1892,14 +3257,44 @@
       "improve-cost": "10000",
       "improve-from": "Kut-Ku Jaw",
       "create-mats": [
-        "Sharpened Beak (2)",
-        "Garuga Mane (4)",
-        "Garuga Scale (8)"
+        {
+          "name": "Sharpened Beak",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Mane",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Scale",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Sharpened Beak (1)",
-        "Garuga Ear (2)",
-        "Garuga Mane (3)"
+        {
+          "name": "Sharpened Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Ear",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Mane",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Wolf Torrent"
@@ -1923,9 +3318,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Rejuvenated Beak (1)",
-        "Garuga Mane (10)",
-        "Long Garuga Ear (2)"
+        {
+          "name": "Rejuvenated Beak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Mane",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Long Garuga Ear",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Crow Torrent",
@@ -1950,10 +3360,30 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Rejuvenated Beak (2)",
-        "SilverGarugaPelt (5)",
-        "ThickGarugaScale (5)",
-        "Hvy Monster Bone (2)"
+        {
+          "name": "Rejuvenated Beak",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SilverGarugaPelt",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThickGarugaScale",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
@@ -1973,9 +3403,24 @@
       "improve-from": "Kut-Ku Jaw",
       "create-mats": null,
       "improve-mats": [
-        "Blue Kut-Ku Shell (6)",
-        "Blue Kut-Ku Scale (8)",
-        "Carpenterbug (5)"
+        {
+          "name": "Blue Kut-Ku Shell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blue Kut-Ku Scale",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carpenterbug",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Violence Hammer"
@@ -1997,9 +3442,24 @@
       "improve-from": "Dynamic Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Blue Kut-Ku Cpc(4)",
-        "Blue Kut-Ku Scl+(6)",
-        "Long Kut-Ku Ear(2)"
+        {
+          "name": "Blue Kut-Ku Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blue Kut-Ku Scl+",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Long Kut-Ku Ear",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Mysterious Jaw"
@@ -2021,10 +3481,30 @@
       "improve-from": "Violence Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Splendid Beak(2)",
-        "ThkBlueKut-KuScl(4)",
-        "HvyBlueKut-KuShl(6)",
-        "Lucky Kut-Ku Ear(2)"
+        {
+          "name": "Splendid Beak",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThkBlueKut-KuScl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlueKut-KuShl",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lucky Kut-Ku Ear",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
@@ -2044,9 +3524,24 @@
       "improve-from": "Kut-Ku Jaw",
       "create-mats": null,
       "improve-mats": [
-        "Rubbery Hide (10)",
-        "Poison Sac (5)",
-        "Gypceros Head (1)"
+        {
+          "name": "Rubbery Hide",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Poison Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gypceros Head",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Death Venom Hammer"
@@ -2068,9 +3563,24 @@
       "improve-from": "Venom Monster",
       "create-mats": null,
       "improve-mats": [
-        "Rubbery Hide+ (10)",
-        "Toxin Sac (5)",
-        "Splendid Beak (5)"
+        {
+          "name": "Rubbery Hide+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Toxin Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Splendid Beak",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Purple Mace"
@@ -2094,9 +3604,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "HrdPuGypcerosWng (5)",
-        "DeadlyPoisonSac (5)",
-        "Pur Gypceros Wng (7)"
+        {
+          "name": "HrdPuGypcerosWng",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DeadlyPoisonSac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pur Gypceros Wng",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Pitohui Bird Mace"
@@ -2118,10 +3643,30 @@
       "improve-from": "Purple Mace",
       "create-mats": null,
       "improve-mats": [
-        "HrdPuGypcerosWng (5)",
-        "HardGypcerosHead (1)",
-        "LethrGarugaTail (2)",
-        "Rejuvenated Beak (3)"
+        {
+          "name": "HrdPuGypcerosWng",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HardGypcerosHead",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LethrGarugaTail",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rejuvenated Beak",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
@@ -2141,9 +3686,24 @@
       "improve-from": "Atlas Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Machalite Ore(6)",
-        "Thunderbug(12)",
-        "Rubbery Hide(3)"
+        {
+          "name": "Machalite Ore",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rubbery Hide",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Binder Mace"
@@ -2165,9 +3725,24 @@
       "improve-from": "Jail Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Dragonite Ore(12)",
-        "Thunderbug Juice(8)",
-        "Electro Sac(8)"
+        {
+          "name": "Dragonite Ore",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Juice",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Electro Sac",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.2"
@@ -2186,16 +3761,56 @@
       "improve-cost": "50000",
       "improve-from": "Khezu Horn+",
       "create-mats": [
-        "Khezu Hide - Tan (8)",
-        "Carbalite Ore (10)",
-        "Thunder Sac (5)",
-        "Pale Bone (2)"
+        {
+          "name": "Khezu Hide - Tan",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunder Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pale Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Khezu Hide - Tan (5)",
-        "Dragonite Ore (10)",
-        "Thunder Sac (3)",
-        "Thunderbug (20)"
+        {
+          "name": "Khezu Hide - Tan",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunder Sac",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Purse Bop+"
@@ -2217,9 +3832,24 @@
       "improve-from": "Purse Bop",
       "create-mats": null,
       "improve-mats": [
-        "Khezu Hide - Cream (3)",
-        "Lightning Sac (5)",
-        "PaleKhezuSteak (2)"
+        {
+          "name": "Khezu Hide - Cream",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightning Sac",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PaleKhezuSteak",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Khezu Thunder"
@@ -2241,10 +3871,30 @@
       "improve-from": "Purse Bop+",
       "create-mats": null,
       "improve-mats": [
-        "Khezu Hide - Cream (8)",
-        "Thunderbug Jelly (5)",
-        "KhezuSpecialCut (1)",
-        "YamaTsukami Fluid (2)"
+        {
+          "name": "Khezu Hide - Cream",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "KhezuSpecialCut",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "YamaTsukami Fluid",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
@@ -2264,9 +3914,24 @@
       "improve-from": "Cyclo-Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Med Monster Bone (2)",
-        "Sharp Claw (8)",
-        "Monster Fluid (1)"
+        {
+          "name": "Med Monster Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sharp Claw",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Fluid",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Skullcrusher+"
@@ -2290,9 +3955,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Med Monster Bone (6)",
-        "Piscine Fang (10)",
-        "Congalala Claw (3)"
+        {
+          "name": "Med Monster Bone",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piscine Fang",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Claw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Diablos Maul",
@@ -2317,15 +3997,50 @@
         "Skullcrusher+"
       ],
       "create-mats": [
-        "Diablos Tail (1)",
-        "Monoblos Shell (4)",
-        "Eldr Dragon Bone (2)",
-        "Earth Crystal (20)"
+        {
+          "name": "Diablos Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monoblos Shell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eldr Dragon Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Earth Crystal",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Monoblos Shell (6)",
-        "Lg Monster Bone (5)",
-        "Machalite Ore (8)"
+        {
+          "name": "Monoblos Shell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Monster Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Finishing Hammer"
@@ -2349,9 +4064,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Diablos Tail (3)",
-        "Diablos Shell (12)",
-        "Hercudrome (8)"
+        {
+          "name": "Diablos Tail",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Diablos Shell",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "10.1.3.17.4"
@@ -2370,14 +4100,44 @@
       "improve-cost": "2600",
       "improve-from": "Skullcrusher+",
       "create-mats": [
-        "Wyvern Skull Shell (2)",
-        "Lg Monster Bone (3)",
-        "Unknown Skull (5)"
+        {
+          "name": "Wyvern Skull Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Unknown Skull",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Wyvern Skull Shell (1)",
-        "Giant Bone (3)",
-        "Unknown Skull (3)"
+        {
+          "name": "Wyvern Skull Shell",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Unknown Skull",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Ancient Relic",
@@ -2402,9 +4162,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Wyvern Skull Shell (5)",
-        "Elder Dragon Bone (10)",
-        "Gaoren Shell (5)"
+        {
+          "name": "Wyvern Skull Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Bone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Shell Castanet"
@@ -2426,9 +4201,24 @@
       "improve-from": "Dragonhead Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Basarios Wing (1)",
-        "Basarios Shell (6)",
-        "Elder Dragon Bone (3)"
+        {
+          "name": "Basarios Wing",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Shell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Basarios Bash"
@@ -2450,9 +4240,24 @@
       "improve-from": "Basarios Blow",
       "create-mats": null,
       "improve-mats": [
-        "Basarios Carapace (12)",
-        "Carbalite Ore (12)",
-        "Wyvern Stone (1)"
+        {
+          "name": "Basarios Carapace",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.2"
@@ -2472,9 +4277,24 @@
       "improve-from": "Cyclo-Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Blango Pelt (6)",
-        "Iron Ore (6)",
-        "Unknown Skull (1)"
+        {
+          "name": "Blango Pelt",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Unknown Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Conehead Hammer+"
@@ -2496,9 +4316,24 @@
       "improve-from": "Conehead Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Blangonga Fang (2)",
-        "Blangonga Whiskr (4)",
-        "Blangonga Pelt (8)"
+        {
+          "name": "Blangonga Fang",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Whiskr",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Pelt",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Great Cone"
@@ -2520,9 +4355,24 @@
       "improve-from": "Conehead Hammer+",
       "create-mats": null,
       "improve-mats": [
-        "Blangonga Fang+ (5)",
-        "Blangonga Pelt+ (10)",
-        "Master's Skull (1)"
+        {
+          "name": "Blangonga Fang+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blangonga Pelt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Master's Skull",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Desert Cone"
@@ -2543,15 +4393,50 @@
       "improve-cost": "115000",
       "improve-from": "Great Cone",
       "create-mats": [
-        "BlangongaPelt+ (10)",
-        "BlangoFang (4)",
-        "BlangoTail (1)",
-        "Massive Bone (1)"
+        {
+          "name": "BlangongaPelt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlangoFang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlangoTail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Copper Blangonga Fur+ (5)",
-        "Leather Pelagus Fur (3)",
-        "Massive Bone (4)"
+        {
+          "name": "Copper Blangonga Fur+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Leather Pelagus Fur",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Magnitude"
@@ -2573,10 +4458,30 @@
       "improve-from": "Desert Cone",
       "create-mats": null,
       "improve-mats": [
-        "BlangoFang (2)",
-        "Brwn BlngngaTail (2)",
-        "Black Rajang Pelt+ (4)",
-        "PhantomButterfly (10)"
+        {
+          "name": "BlangoFang",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Brwn BlngngaTail",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Rajang Pelt+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
@@ -2595,15 +4500,50 @@
       "improve-cost": "1750",
       "improve-from": "Bone Club",
       "create-mats": [
-        "Bullfango Pelt (4)",
-        "Bullfango Head (1)",
-        "Brute Bone (5)",
-        "Carpenterbug (2)"
+        {
+          "name": "Bullfango Pelt",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bullfango Head",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Brute Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carpenterbug",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Bullfango Pelt (2)",
-        "Anteka Antlers (2)",
-        "Brute Bone (3)"
+        {
+          "name": "Bullfango Pelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Anteka Antlers",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Brute Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Bull Head Hammer"
@@ -2625,9 +4565,24 @@
       "improve-from": "Bull Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Bulldrome Hide (2)",
-        "Bulldrome Tusk (2)",
-        "Giant Bone (1)"
+        {
+          "name": "Bulldrome Hide",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bulldrome Tusk",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Bull Tusk Hammer"
@@ -2649,9 +4604,24 @@
       "improve-from": "Bull Head Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Bulldrome Hide (5)",
-        "Bulldrome Tusk (6)",
-        "Monster Bone+ (5)"
+        {
+          "name": "Bulldrome Hide",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bulldrome Tusk",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.8"
@@ -2670,7 +4640,12 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Large Ruststone (1)"
+        {
+          "name": "Large Ruststone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -2695,7 +4670,12 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Earth Crystal (20)"
+        {
+          "name": "Earth Crystal",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Breath Core Hammer",
@@ -2720,8 +4700,18 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Earth Crystal (40)",
-        "ElderDragonBlood (1)"
+        {
+          "name": "Earth Crystal",
+          "amount": "40",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.2"
@@ -2743,9 +4733,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Lunastra Horn (3)",
-        "Lunastra Shell (3)",
-        "Firestone (7)"
+        {
+          "name": "Lunastra Horn",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Shell",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Jade Mace"
@@ -2769,9 +4774,24 @@
       ],
       "create-mats": null,
       "improve-mats": [
-        "Fire Drgn Webbing (4)",
-        "Teostra Shell (5)",
-        "ElderDragonBlood (2)"
+        {
+          "name": "Fire Drgn Webbing",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Teostra Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Lunastra's Crown"
@@ -2793,9 +4813,24 @@
       "improve-from": "Jade Mace",
       "create-mats": null,
       "improve-mats": [
-        "Lunastra Horn (6)",
-        "Fire Drgn Scl+ (6)",
-        "Fire Drgn Jwl (1)"
+        {
+          "name": "Lunastra Horn",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Drgn Scl+",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Luna's Skirt"
@@ -2817,10 +4852,30 @@
       "improve-from": "Lunastra's Crown",
       "create-mats": null,
       "improve-mats": [
-        "Lunastra Spike (3)",
-        "ThckFireDrgnScl (6)",
-        "BigEDragonJewel (1)",
-        "Commendation (1)"
+        {
+          "name": "Lunastra Spike",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThckFireDrgnScl",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
@@ -2839,7 +4894,12 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Lg Ancient Stone (1)"
+        {
+          "name": "Lg Ancient Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -2862,7 +4922,12 @@
       "improve-from": "Worn Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Earth Crystal (20)"
+        {
+          "name": "Earth Crystal",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Pulsating Core",
@@ -2885,8 +4950,18 @@
       "improve-from": "Weathered Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Earth Crystal (40)",
-        "ElderDragonBlood (5)"
+        {
+          "name": "Earth Crystal",
+          "amount": "40",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Pulse Crusher Core"
@@ -2908,9 +4983,24 @@
       "improve-from": "Pulsating Core",
       "create-mats": null,
       "improve-mats": [
-        "Purecrystal (8)",
-        "ElderDragonBlood (10)",
-        "Commendation G (1)"
+        {
+          "name": "Purecrystal",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
@@ -2930,9 +5020,24 @@
       "improve-from": "Weathered Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Daora Carapace (6)",
-        "Daora Tail (1)",
-        "Rare Scarab (4)"
+        {
+          "name": "Daora Carapace",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Tail",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Daora's Colossus"
@@ -2954,9 +5059,24 @@
       "improve-from": "Steel Ice Hammer",
       "create-mats": null,
       "improve-mats": [
-        "DaoraDragonScal+ (10)",
-        "Daora Sharp Claw (2)",
-        "Daora Jewel (1)"
+        {
+          "name": "DaoraDragonScal+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Sharp Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Jewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Daora's Hyperborea"
@@ -2978,10 +5098,30 @@
       "improve-from": "Daora's Colossus",
       "create-mats": null,
       "improve-mats": [
-        "Hvy Daora Shell (6)",
-        "Hard Daora Horn (2)",
-        "Str Daora Wing (2)",
-        "BigEDragonJewel (1)"
+        {
+          "name": "Hvy Daora Shell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hard Daora Horn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Str Daora Wing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
@@ -3000,10 +5140,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Blackbelt Ticket (8)",
-        "Gravios Coin (5)",
-        "Diablos Coin (8)",
-        "Daimyo Coin (10)"
+        {
+          "name": "Blackbelt Ticket",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Coin",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Diablos Coin",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daimyo Coin",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3026,9 +5186,24 @@
       "improve-from": "Black Belt Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Expert Ticket (15)",
-        "Tigrex Coin (8)",
-        "Gld Rathian Cpc (3)"
+        {
+          "name": "Expert Ticket",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Coin",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gld Rathian Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Warrior's Hammer"
@@ -3050,10 +5225,30 @@
       "improve-from": "Expert Hammer",
       "create-mats": null,
       "improve-mats": [
-        "HvyGldRathianShl (3)",
-        "Warrior Coin G (4)",
-        "Expert Coin G (6)",
-        "Commendation G (1)"
+        {
+          "name": "HvyGldRathianShl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Warrior Coin G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Expert Coin G",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -3072,9 +5267,24 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Dark Stone (1)",
-        "Dark Piece (4)",
-        "Pokke Ticket (1)"
+        {
+          "name": "Dark Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dark Piece",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pokke Ticket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3098,9 +5308,24 @@
       "improve-from": "Black Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Fatalis Horn (3)",
-        "Fatalis Eye (2)",
-        "Fire Drgn Jwl (1)"
+        {
+          "name": "Fatalis Horn",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Eye",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Fatalis Demolisher"
@@ -3122,10 +5347,30 @@
       "improve-from": "Fatalis Buster",
       "create-mats": null,
       "improve-mats": [
-        "Hard Fatalis Horn (3)",
-        "Fatalis Evil Eye (1)",
-        "Hvy Fatalis Shl (2)",
-        "BigEDragonJewel (1)"
+        {
+          "name": "Hard Fatalis Horn",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Evil Eye",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Fatalis Shl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonJewel",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.4"
@@ -3145,9 +5390,24 @@
       "improve-from": "Black Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Wht Fatalis Horn (5)",
-        "Wht Fatalis Shl (3)",
-        "Lao-Shan's Ruby (3)"
+        {
+          "name": "Wht Fatalis Horn",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Fatalis Shl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Ruby",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "AncientFatalisRuiner"
@@ -3169,10 +5429,30 @@
       "improve-from": "AncientFatalisBuster",
       "create-mats": null,
       "improve-mats": [
-        "HrdWhtFatlisHorn (5)",
-        "HvyWhtFatalisShl (2)",
-        "Fatalis Evil Eye (2)",
-        "BigEDragonJewel (3)"
+        {
+          "name": "HrdWhtFatlisHorn",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyWhtFatalisShl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Evil Eye",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonJewel",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -3191,9 +5471,24 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Cactus Flower (2)",
-        "Bone (1)",
-        "Dobiscus (3)"
+        {
+          "name": "Cactus Flower",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dobiscus",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3216,9 +5511,24 @@
       "improve-from": "Cactus Creamer",
       "create-mats": null,
       "improve-mats": [
-        "Cactus Flower (10)",
-        "Stout Bone (2)",
-        "Pokke Ticket (1)"
+        {
+          "name": "Cactus Flower",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pokke Ticket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "6.4.8.12.6.4"
@@ -3238,9 +5548,24 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Lao-Shan's Claw (2)",
-        "Lao-Shan's Shell (5)",
-        "Monster Bone+ (5)"
+        {
+          "name": "Lao-Shan's Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3263,9 +5588,24 @@
       "improve-from": "Dragon Destroyer",
       "create-mats": null,
       "improve-mats": [
-        "Lao-Shan's Claw (2)",
-        "Gaoren Spine (3)",
-        "ElderDragonBlood (2)"
+        {
+          "name": "Lao-Shan's Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gaoren Spine",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Dragon Demolisher"
@@ -3287,9 +5627,24 @@
       "improve-from": "Dragonbreaker",
       "create-mats": null,
       "improve-mats": [
-        "Ash Lao-Shan Shell (5)",
-        "Lao-Shan Ruby (1)",
-        "Nova Crystal (3)"
+        {
+          "name": "Ash Lao-Shan Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan Ruby",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Nova Crystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Claw of Doom"
@@ -3311,10 +5666,30 @@
       "improve-from": "Dragon Demolisher",
       "create-mats": null,
       "improve-mats": [
-        "Azure LaoS Claw (2)",
-        "Lao-Shan'sHvyShl(5)",
-        "Lao-ShanHvnlyScl (1)",
-        "Purecrystal(3)"
+        {
+          "name": "Azure LaoS Claw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan'sHvyShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-ShanHvnlyScl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Purecrystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -3333,10 +5708,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Tigrex Claw (3)",
-        "Tigrex Scale (5)",
-        "Tigrex Shell (5)",
-        "Pokke Ticket (1)"
+        {
+          "name": "Tigrex Claw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Scale",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pokke Ticket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3360,9 +5755,24 @@
       "improve-from": "Striped Striker",
       "create-mats": null,
       "improve-mats": [
-        "Tigrex Claw + (3)",
-        "Tigrex Scale + (5)",
-        "Tigrex Skull Shl (3)"
+        {
+          "name": "Tigrex Claw +",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Scale +",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Tigrex Hammer+"
@@ -3384,10 +5794,30 @@
       "improve-from": "Tigrex Hammer",
       "create-mats": null,
       "improve-mats": [
-        "Hard Tigrex Claw (3)",
-        "ThickTigrexScale (5)",
-        "Hvy Tigrex Shell (5)",
-        "HvnlyTigrexScale (1)"
+        {
+          "name": "Hard Tigrex Claw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThickTigrexScale",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Tigrex Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvnlyTigrexScale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
@@ -3406,15 +5836,50 @@
       "improve-cost": "80000",
       "improve-from": "Striped Striker",
       "create-mats": [
-        "Black NargaPelt (10)",
-        "Narga Scale+ (4)",
-        "Narga Brain Stem (1)",
-        "Hard Monster Bone (6)"
+        {
+          "name": "Black NargaPelt",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Scale+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Brain Stem",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hard Monster Bone",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Black Narga Pelt (6)",
-        "Narga Scale+ (3)",
-        "Hrd Monster Bone (4)"
+        {
+          "name": "Black Narga Pelt",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Scale+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Deep Darkhammer"
@@ -3435,16 +5900,56 @@
       "improve-cost": "120000",
       "improve-from": "Hidden Breaker",
       "create-mats": [
-        "Black Nargacuga Pelt+ (10)",
-        "Heavy Nargacuga Fang (4)",
-        "Heavy Nargacuga Tail Spike (6)",
-        "Heavenly Nargacuga Scale (1)"
+        {
+          "name": "Black Nargacuga Pelt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavy Nargacuga Fang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavy Nargacuga Tail Spike",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Heavenly Nargacuga Scale",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "BlackNargaPelt+ (7)",
-        "ThickNargaScale (3)",
-        "HvyNargacugaFang (2)",
-        "Narga Brain Stem (2)"
+        {
+          "name": "BlackNargaPelt+",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThickNargaScale",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyNargacugaFang",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Narga Brain Stem",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -3463,9 +5968,24 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Pawprint Stamp (1)",
-        "FlynMealPassReg (1)",
-        "Paralysis Sac (2)"
+        {
+          "name": "Pawprint Stamp",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Paralysis Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": [
@@ -3490,9 +6010,24 @@
       "improve-from": "White Cat Stamp",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassReg (10)",
-        "Carbalite Ore (5)",
-        "Blango Pelt+ (5)"
+        {
+          "name": "FlynMealPassReg",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blango Pelt+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "8.7.7.11.5.2"
@@ -3512,9 +6047,24 @@
       "improve-from": "White Cat Stamp",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassReg (2)",
-        "Dragonite Ore (5)",
-        "Barrel Lid (1)"
+        {
+          "name": "FlynMealPassReg",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Barrel Lid",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Black Cat Hammer",
@@ -3537,9 +6087,24 @@
       "improve-from": "Black Cat Stamp",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassPlus (6)",
-        "Black Blos Spine (5)",
-        "Felyne Fur Ruby (1)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Blos Spine",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Felyne Fur Ruby",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.2"
@@ -3558,15 +6123,50 @@
       "improve-cost": "45000",
       "improve-from": "Black Cat Stamp",
       "create-mats": [
-        "Felyne Fur Ruby (3)",
-        "FlynMealPassReg(15)",
-        "FlynMealPassPlus(5)",
-        "Gold Rathian Scl+(5)"
+        {
+          "name": "Felyne Fur Ruby",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Rathian Scl+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "FlynMealPassPlus (10)",
-        "Gold Rathian Scl+ (3)",
-        "Gold Rajang Pelt (3)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Rathian Scl+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gold Rajang Pelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": [
         "Gold Cat Crusher"
@@ -3588,10 +6188,30 @@
       "improve-from": "Gold Cat Hammer",
       "create-mats": null,
       "improve-mats": [
-        "FlynMealPassPlus (10)",
-        "Felyne Fur Ruby (3)",
-        "GoldRajangPelt+ (3)",
-        "Thunderbug Jelly (10)"
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Felyne Fur Ruby",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GoldRajangPelt+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.1"
@@ -3610,14 +6230,44 @@
       "improve-cost": "5000",
       "improve-from": "White Cat Stamp",
       "create-mats": [
-        "Commendation (1)",
-        "Lightcrystal (2)",
-        "Black Pearl (2)"
+        {
+          "name": "Commendation",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightcrystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": [
-        "Lightcrystal (1)",
-        "Antiseptic Stone (3)",
-        "Pokke Ticket (1)"
+        {
+          "name": "Lightcrystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pokke Ticket",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-to": null,
       "sharpness_plus": "5.4.11"
@@ -3636,10 +6286,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "UkanlosDiggngClw (3)",
-        "HvyUkanlosShell (4)",
-        "Lightning Sac (10)",
-        "Ukanlos Stone (1)"
+        {
+          "name": "UkanlosDiggngClw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyUkanlosShell",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightning Sac",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ukanlos Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3659,10 +6329,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Mystery Bone (50)",
-        "Stout Bone (15)",
-        "Massive Bone (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mystery Bone",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3682,10 +6372,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Iron Ore (30)",
-        "Disk Stone (30)",
-        "Eltalite Ore (12)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3705,8 +6415,18 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Large Ruststone (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Large Ruststone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3726,10 +6446,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Needleberry (50)",
-        "Eltalite Ore (8)",
-        "Emperor Cricket (8)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Needleberry",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Cricket",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3749,10 +6489,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Iron Ore (30)",
-        "Machalite Ore (15)",
-        "Mellanje Ore (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mellanje Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3772,10 +6532,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Sm Monster Bone (40)",
-        "Giant Bone (30)",
-        "Massive Bone (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "40",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Bone",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3795,10 +6575,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Hrd Monster Bone (15)",
-        "Monster Essence (5)",
-        "Hvy Tigrex Shell (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Tigrex Shell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3818,10 +6618,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "HvyPiscineFang (6)",
-        "Piercing Claw (8)",
-        "Monster Essence (3)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyPiscineFang",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Piercing Claw",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3841,10 +6661,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Bullfango Head (5)",
-        "Bulldrome Tusk (10)",
-        "ThkBullfangoPelt (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bullfango Head",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bulldrome Tusk",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ThkBullfangoPelt",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3864,10 +6704,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Lightcrystal (15)",
-        "Novacrystal (10)",
-        "Purecrystal (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lightcrystal",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Novacrystal",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Purecrystal",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3887,10 +6747,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Thunderbug (30)",
-        "SpecRubberyHide+ (5)",
-        "Mellanje Ore (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug",
+          "amount": "30",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecRubberyHide+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mellanje Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3910,10 +6790,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Giant Beak (6)",
-        "Hvy Kut-Ku Shell (10)",
-        "Monster Essence (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Giant Beak",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Kut-Ku Shell",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3933,10 +6833,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "SpecRubberyHide+ (8)",
-        "Toxin Sac (12)",
-        "Gypceros Head (3)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecRubberyHide+",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Toxin Sac",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gypceros Head",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3956,10 +6876,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Eltalite Ore (10)",
-        "Firestone (15)",
-        "FireWyvrn Marrow (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firestone",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -3979,10 +6919,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Ancient Fish (10)",
-        "SpecPlesiothFin+ (5)",
-        "Eltalite Ore (8)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ancient Fish",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SpecPlesiothFin+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4002,10 +6962,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Splendid Beak (4)",
-        "Thick Kut-Ku Scl (10)",
-        "Lucky Kut-Ku Ear (4)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Splendid Beak",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thick Kut-Ku Scl",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lucky Kut-Ku Ear",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4025,10 +7005,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Wyvern Skull Shl (10)",
-        "Unknown Skull (10)",
-        "BigEDragonBone (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Skull Shl",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Unknown Skull",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonBone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4048,10 +7048,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "HvyBasariosShell (10)",
-        "Basarios Tears (5)",
-        "Wyvern Stone (3)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBasariosShell",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Tears",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4071,10 +7091,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation (1)",
-        "HvyBasariosShell (6)",
-        "Gravios Carapace (10)",
-        "Machalite Ore (20)"
+        {
+          "name": "Commendation",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBasariosShell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Carapace",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4094,10 +7134,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "LthrDiablosTail (3)",
-        "BigEDragonBone (5)",
-        "Monoblos Carapace (5)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "LthrDiablosTail",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonBone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monoblos Carapace",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4117,10 +7177,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "FlynMealPassReg (10)",
-        "Carbalite Ore (15)",
-        "HvyBlkBlosShell (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlkBlosShell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4140,10 +7220,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Gourmet Steak (10)",
-        "FlynMealPassReg (10)",
-        "Hvy Monster Bone (8)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gourmet Steak",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassReg",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4163,10 +7263,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Antiseptic Stone (10)",
-        "Purecrystal (4)",
-        "Sleep Sac (20)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Stone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Purecrystal",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Sleep Sac",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4186,10 +7306,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Cactus Flower (10)",
-        "Massive Bone (10)",
-        "Dosbiscus (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Cactus Flower",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dosbiscus",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4209,10 +7349,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Pawprint Stamp (10)",
-        "Paralysis Sac (15)",
-        "HrdBlangongaPlt+ (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pawprint Stamp",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Paralysis Sac",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdBlangongaPlt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4232,10 +7392,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "FlynMealPassPlus (10)",
-        "Felyne Fur Ruby (5)",
-        "BlackNargaPelt+ (10)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Felyne Fur Ruby",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlackNargaPelt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4255,10 +7435,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Expert Ticket (10)",
-        "Fire Coin (7)",
-        "Legend Coin (1)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Expert Ticket",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Coin",
+          "amount": "7",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Legend Coin",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4278,10 +7478,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "Lg Ancient Stone (3)",
-        "ElderDragonBlood (10)",
-        "Big Wyvern Stone (1)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Ancient Stone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4301,10 +7521,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Eltalite Ore (8)",
-        "Carbalite Ore (25)",
-        "Velocidrome Head (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "25",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Velocidrome Head",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4324,10 +7564,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "Hvy Monster Bone (5)",
-        "BigEDragonBone (3)",
-        "Dragonite Ore (15)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BigEDragonBone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4347,10 +7607,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "FlynMealPassPlus (10)",
-        "Rainbow Ore (20)",
-        "HvySlvrRthlsShl (5)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvySlvrRthlsShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4370,10 +7650,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation G (1)",
-        "HvyBlangongaFang (3)",
-        "HrdBlangongaPlt+ (10)",
-        "Blango Pelt+ (20)"
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlangongaFang",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdBlangongaPlt+",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blango Pelt+",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4393,10 +7693,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "Dragonite Ore (20)",
-        "HvyGraviosShell (5)",
-        "Union Ore (15)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyGraviosShell",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4416,10 +7736,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "Carbalite Ore (20)",
-        "Disk Stone (50)",
-        "HvyBlkBlosShell (8)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "20",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "50",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlkBlosShell",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4439,10 +7779,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "Firecell Stone (10)",
-        "Monster Essence (8)",
-        "Mellanje Ore (5)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "10",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Essence",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Mellanje Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4462,10 +7822,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "HvyGraviosShell (6)",
-        "DeadlyPoisonSac (3)",
-        "Wyvern Stone (5)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyGraviosShell",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DeadlyPoisonSac",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4485,10 +7865,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "HvyBlkGraviosShl (6)",
-        "Blazing Fire Sac (3)",
-        "Wyvern Stone (5)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HvyBlkGraviosShl",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
@@ -4508,10 +7908,30 @@
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
-        "Commendation S (1)",
-        "Lao-Shan's Claw (3)",
-        "Lao-Shan'sHvyShl (5)",
-        "Lao-ShanScale+ (15)"
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Claw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan'sHvyShl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lao-ShanScale+",
+          "amount": "15",
+          "type": "bone",
+          "color": "white"
+        }
       ],
       "improve-mats": null,
       "improve-to": null,
