@@ -75,6 +75,9 @@ WEAPON_CLASS_MULTIPLIER = {
   "hunting-horn": 5.2,
   "lance": 2.3,
   "gunlance":  2.3,
+  "light-bowgun":  1.2,
+  "heavy-bowgun":  1.2,
+  "bow":  1.2,
 }
 
 def slugify(value)
