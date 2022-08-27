@@ -41,8 +41,8 @@
       "create-cost": "700",
       "improve-mats": null,
       "create-mats": [
-        "Iron Ore: 8",
-        "Sm Monster Bone: 3"
+        "Iron Ore (8)",
+        "Sm Monster Bone (3)"
       ]
     },
     {
@@ -86,10 +86,10 @@
       "create-cost": "900",
       "improve-mats": null,
       "create-mats": [
-        "Vespoid Wing: 6",
-        "Hornetaur Shell: 4",
-        "Disk Stone: 3",
-        "Brute Bone: 2"
+        "Vespoid Wing (6)",
+        "Hornetaur Shell (4)",
+        "Disk Stone (3)",
+        "Brute Bone (2)"
       ]
     },
     {
@@ -133,10 +133,10 @@
       "create-cost": "1000",
       "improve-mats": null,
       "create-mats": [
-        "Brute Bone: 4",
-        "Bulldrome Hide: 4",
-        "Kelbi Hide: 4",
-        "Kelbi Horn: 2"
+        "Brute Bone (4)",
+        "Bulldrome Hide (4)",
+        "Kelbi Hide (4)",
+        "Kelbi Horn (2)"
       ]
     },
     {
@@ -180,8 +180,8 @@
       "create-cost": "1400",
       "improve-mats": null,
       "create-mats": [
-        "Rubbery Hide: 4",
-        "Earth Crystal: 10"
+        "Rubbery Hide (4)",
+        "Earth Crystal (10)"
       ]
     },
     {
@@ -225,9 +225,9 @@
       "create-cost": "1675",
       "improve-mats": null,
       "create-mats": [
-        "Pur Rubbery Hide: 8",
-        "Machalite Ore: 4",
-        "Carpenterbug: 6"
+        "Pur Rubbery Hide (8)",
+        "Machalite Ore (4)",
+        "Carpenterbug (6)"
       ]
     },
     {
@@ -271,10 +271,10 @@
       "create-cost": "1250",
       "improve-mats": null,
       "create-mats": [
-        "Cephalos Fin: 2",
-        "Cephalos Scale: 6",
-        "Iron Ore: 10",
-        "Machalite Ore: 3"
+        "Cephalos Fin (2)",
+        "Cephalos Scale (6)",
+        "Iron Ore (10)",
+        "Machalite Ore (3)"
       ]
     },
     {
@@ -318,10 +318,10 @@
       "create-cost": "2675",
       "improve-mats": null,
       "create-mats": [
-        "Kut-Ku Shell: 8",
-        "Kut-Ku Scale: 8",
-        "Flabby Hide: 5",
-        "Lg Monster Bone: 10"
+        "Kut-Ku Shell (8)",
+        "Kut-Ku Scale (8)",
+        "Flabby Hide (5)",
+        "Lg Monster Bone (10)"
       ]
     },
     {
@@ -359,16 +359,16 @@
       "misc-ammo": [
         "2",
         "2",
-        "Demon S:0",
+        "Demon S (0)",
         "1"
       ],
       "create-cost": "2750",
       "improve-mats": null,
       "create-mats": [
-        "Hermitaur Claw: 3",
-        "Hermitaur Shell: 8",
-        "Sm Hermitaur Shl: 10",
-        "Piscine Fang: 4"
+        "Hermitaur Claw (3)",
+        "Hermitaur Shell (8)",
+        "Sm Hermitaur Shl (10)",
+        "Piscine Fang (4)"
       ]
     },
     {
@@ -412,10 +412,10 @@
       "create-cost": "3250",
       "improve-mats": null,
       "create-mats": [
-        "Basarios Shell: 10",
-        "Machalite Ore: 15",
-        "Poison Sac: 4",
-        "Basarios Wing: 1"
+        "Basarios Shell (10)",
+        "Machalite Ore (15)",
+        "Poison Sac (4)",
+        "Basarios Wing (1)"
       ]
     },
     {
@@ -459,10 +459,10 @@
       "create-cost": "3000",
       "improve-mats": null,
       "create-mats": [
-        "FireStone: 1",
-        "Dragonite Ore: 15",
-        "Machalite Ore: 20",
-        "Iron Ore: 40"
+        "FireStone (1)",
+        "Dragonite Ore (15)",
+        "Machalite Ore (20)",
+        "Iron Ore (40)"
       ]
     },
     {
@@ -506,10 +506,10 @@
       "create-cost": "3375",
       "improve-mats": null,
       "create-mats": [
-        "Hercudrome: 2",
-        "Vespoid Abdomen: 1",
-        "Hornetaur Shell: 15",
-        "Monster Bone+: 3"
+        "Hercudrome (2)",
+        "Vespoid Abdomen (1)",
+        "Hornetaur Shell (15)",
+        "Monster Bone+ (3)"
       ]
     },
     {
@@ -553,10 +553,10 @@
       "create-cost": "3050",
       "improve-mats": null,
       "create-mats": [
-        "Wht Monoblos Spn: 5",
-        "Wht Monoblos Shl: 5",
-        "Dragonite Ore: 2",
-        "Wht Monoblos Hrn: 2"
+        "Wht Monoblos Spn (5)",
+        "Wht Monoblos Shl (5)",
+        "Dragonite Ore (2)",
+        "Wht Monoblos Hrn (2)"
       ]
     },
     {
@@ -600,10 +600,10 @@
       "create-cost": "3750",
       "improve-mats": null,
       "create-mats": [
-        "Ceanataur Leg: 3",
-        "Ceanataur Shell: 6",
-        "Ceanataur Claw: 3",
-        "Lg Monster Bone: 8"
+        "Ceanataur Leg (3)",
+        "Ceanataur Shell (6)",
+        "Ceanataur Claw (3)",
+        "Lg Monster Bone (8)"
       ]
     },
     {
@@ -647,10 +647,10 @@
       "create-cost": "4000",
       "improve-mats": null,
       "create-mats": [
-        "Giant Beak: 1",
-        "Blue Kut-Ku Shl: 5",
-        "Alluring Hide: 5",
-        "Machalite Ore: 10"
+        "Giant Beak (1)",
+        "Blue Kut-Ku Shl (5)",
+        "Alluring Hide (5)",
+        "Machalite Ore (10)"
       ]
     },
     {
@@ -694,10 +694,10 @@
       "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
-        "Diablos Spine: 5",
-        "Diablos Shell: 5",
-        "Dragonite Ore: 15",
-        "Majestic Horn: 1"
+        "Diablos Spine (5)",
+        "Diablos Shell (5)",
+        "Dragonite Ore (15)",
+        "Majestic Horn (1)"
       ]
     },
     {
@@ -741,10 +741,10 @@
       "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
-        "Tigrex Skull Shl: 2",
-        "Tigrex Shell: 8",
-        "Dragonite Ore: 6",
-        "Monster Bone+: 8"
+        "Tigrex Skull Shl (2)",
+        "Tigrex Shell (8)",
+        "Dragonite Ore (6)",
+        "Monster Bone+ (8)"
       ]
     },
     {
@@ -788,10 +788,10 @@
       "create-cost": "2000",
       "improve-mats": null,
       "create-mats": [
-        "Great Ladybug: 2",
-        "Killer Beetle: 2",
-        "Giant Bone: 3",
-        "Congalala Fang: 4"
+        "Great Ladybug (2)",
+        "Killer Beetle (2)",
+        "Giant Bone (3)",
+        "Congalala Fang (4)"
       ]
     },
     {
@@ -835,10 +835,10 @@
       "create-cost": "4300",
       "improve-mats": null,
       "create-mats": [
-        "Kirin Mane: 8",
-        "Kirin Hide: 2",
-        "Dragonite Ore: 10",
-        "Twisted Horn: 2"
+        "Kirin Mane (8)",
+        "Kirin Hide (2)",
+        "Dragonite Ore (10)",
+        "Twisted Horn (2)"
       ]
     },
     {
@@ -882,10 +882,10 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Dark Stone: 1",
-        "Dark Piece: 4",
-        "ElderDragonBlood: 1",
-        "Dragonite Ore: 3"
+        "Dark Stone (1)",
+        "Dark Piece (4)",
+        "ElderDragonBlood (1)",
+        "Dragonite Ore (3)"
       ]
     },
     {
@@ -929,10 +929,10 @@
       "create-cost": "4800",
       "improve-mats": null,
       "create-mats": [
-        "Garuga Ear: 2",
-        "Garuga Shell: 8",
-        "Blangonga Whiskr: 4",
-        "Ceanataur Claw: 3"
+        "Garuga Ear (2)",
+        "Garuga Shell (8)",
+        "Blangonga Whiskr (4)",
+        "Ceanataur Claw (3)"
       ]
     },
     {
@@ -976,10 +976,10 @@
       "create-cost": "5400",
       "improve-mats": null,
       "create-mats": [
-        "Daora Shell: 5",
-        "DaoraDragonScale: 8",
-        "ElderDragonBlood: 1",
-        "Dragonite Ore: 4"
+        "Daora Shell (5)",
+        "DaoraDragonScale (8)",
+        "ElderDragonBlood (1)",
+        "Dragonite Ore (4)"
       ]
     },
     {
@@ -1023,10 +1023,10 @@
       "create-cost": "5250",
       "improve-mats": null,
       "create-mats": [
-        "Lunstra Shell: 4",
-        "Fire Dragon Scl: 6",
-        "Lunstra Mane: 2",
-        "FireStone: 1"
+        "Lunstra Shell (4)",
+        "Fire Dragon Scl (6)",
+        "Lunstra Mane (2)",
+        "FireStone (1)"
       ]
     },
     {
@@ -1070,10 +1070,10 @@
       "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
-        "Teostra Shell: 4",
-        "Fire Dragon Scl: 2",
-        "Teostra Mane: 2",
-        "FireStone: 2"
+        "Teostra Shell (4)",
+        "Fire Dragon Scl (2)",
+        "Teostra Mane (2)",
+        "FireStone (2)"
       ]
     },
     {
@@ -1117,10 +1117,10 @@
       "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
-        "Gaoren Pincer: 2",
-        "Gaoren Shell: 5",
-        "FireStone: 1",
-        "Pokke Ticket: 2"
+        "Gaoren Pincer (2)",
+        "Gaoren Shell (5)",
+        "FireStone (1)",
+        "Pokke Ticket (2)"
       ]
     },
     {
@@ -1164,10 +1164,10 @@
       "create-cost": "6000",
       "improve-mats": null,
       "create-mats": [
-        "Lao-Shan's Shell: 4",
-        "Lao-Shan's Scale: 6",
-        "Rathalos Plate: 1",
-        "Dragonite Ore: 10"
+        "Lao-Shan's Shell (4)",
+        "Lao-Shan's Scale (6)",
+        "Rathalos Plate (1)",
+        "Dragonite Ore (10)"
       ]
     },
     {
@@ -1211,10 +1211,10 @@
       "create-cost": "5000",
       "improve-mats": null,
       "create-mats": [
-        "Stout Bone: 4",
-        "FlynMealPassPlus: 2",
-        "Bulldrome Hide+: 3",
-        "King Scarab: 6"
+        "Stout Bone (4)",
+        "FlynMealPassPlus (2)",
+        "Bulldrome Hide+ (3)",
+        "King Scarab (6)"
       ]
     },
     {
@@ -1258,8 +1258,8 @@
       "create-cost": "3075",
       "improve-mats": null,
       "create-mats": [
-        "Rubbery Hide+: 4",
-        "Carbalite Ore: 10"
+        "Rubbery Hide+ (4)",
+        "Carbalite Ore (10)"
       ]
     },
     {
@@ -1303,10 +1303,10 @@
       "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
-        "Cephalos Fin+: 5",
-        "Cephalos Scale+: 6",
-        "Coral Cphalos Scl: 3",
-        "Hrd Monster Bone: 3"
+        "Cephalos Fin+ (5)",
+        "Cephalos Scale+ (6)",
+        "Coral Cphalos Scl (3)",
+        "Hrd Monster Bone (3)"
       ]
     },
     {
@@ -1350,10 +1350,10 @@
       "create-cost": "4400",
       "improve-mats": null,
       "create-mats": [
-        "Firecell Stone: 1",
-        "Carbalite Ore: 5",
-        "Dragonite Ore: 10",
-        "King Scarab: 6"
+        "Firecell Stone (1)",
+        "Carbalite Ore (5)",
+        "Dragonite Ore (10)",
+        "King Scarab (6)"
       ]
     },
     {
@@ -1397,10 +1397,10 @@
       "create-cost": "4950",
       "improve-mats": null,
       "create-mats": [
-        "Vespoid Carapace: 10",
-        "Vespoid Abdomen: 1",
-        "HorNetaur Crapce: 10",
-        "King Scarab: 6"
+        "Vespoid Carapace (10)",
+        "Vespoid Abdomen (1)",
+        "HorNetaur Crapce (10)",
+        "King Scarab (6)"
       ]
     },
     {
@@ -1444,10 +1444,10 @@
       "create-cost": "4725",
       "improve-mats": null,
       "create-mats": [
-        "Basarios Carpace: 10",
-        "Basarios Tears: 2",
-        "Carbalite Ore: 20",
-        "King Scarab: 8"
+        "Basarios Carpace (10)",
+        "Basarios Tears (2)",
+        "Carbalite Ore (20)",
+        "King Scarab (8)"
       ]
     },
     {
@@ -1491,10 +1491,10 @@
       "create-cost": "6050",
       "improve-mats": null,
       "create-mats": [
-        "Hermitaur Carpce: 8",
-        "Hermitaur Shell: 10",
-        "Cephalos Scale+: 6",
-        "Stout Bone: 4"
+        "Hermitaur Carpce (8)",
+        "Hermitaur Shell (10)",
+        "Cephalos Scale+ (6)",
+        "Stout Bone (4)"
       ]
     },
     {
@@ -1538,10 +1538,10 @@
       "create-cost": "6600",
       "improve-mats": null,
       "create-mats": [
-        "Gravios Carapace: 8",
-        "Gravios Skl Shl: 1",
-        "Basarios Tears: 1",
-        "Rare Scarab: 2"
+        "Gravios Carapace (8)",
+        "Gravios Skl Shl (1)",
+        "Basarios Tears (1)",
+        "Rare Scarab (2)"
       ]
     },
     {
@@ -1585,10 +1585,10 @@
       "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
-        "Ceanataur Carpca: 6",
-        "Ceanataur Pincer: 3",
-        "Coral Cphalos Scl: 4",
-        "Monster Bone+: 10"
+        "Ceanataur Carpca (6)",
+        "Ceanataur Pincer (3)",
+        "Coral Cphalos Scl (4)",
+        "Monster Bone+ (10)"
       ]
     },
     {
@@ -1632,10 +1632,10 @@
       "create-cost": "7025",
       "improve-mats": null,
       "create-mats": [
-        "Diablos Thoracic: 3",
-        "Diablos Carapace: 6",
-        "Union Ore: 5",
-        "Majestic Horn: 2"
+        "Diablos Thoracic (3)",
+        "Diablos Carapace (6)",
+        "Union Ore (5)",
+        "Majestic Horn (2)"
       ]
     },
     {
@@ -1679,10 +1679,10 @@
       "create-cost": "7025",
       "improve-mats": null,
       "create-mats": [
-        "Tigrex Carapace: 6",
-        "Tigrex Skull Shl: 3",
-        "FireWyvernBrnStm: 1",
-        "WyvernStone: 2"
+        "Tigrex Carapace (6)",
+        "Tigrex Skull Shl (3)",
+        "FireWyvernBrnStm (1)",
+        "WyvernStone (2)"
       ]
     },
     {
@@ -1726,10 +1726,10 @@
       "create-cost": "7250",
       "improve-mats": null,
       "create-mats": [
-        "Narga Scale+: 10",
-        "Black Narga Pelt: 5",
-        "Narga Brain Stem: 1",
-        "Hrd Monster Bone: 6"
+        "Narga Scale+ (10)",
+        "Black Narga Pelt (5)",
+        "Narga Brain Stem (1)",
+        "Hrd Monster Bone (6)"
       ]
     },
     {
@@ -1773,10 +1773,10 @@
       "create-cost": "3675",
       "improve-mats": null,
       "create-mats": [
-        "Pur Gypceros Wng: 8",
-        "Carbalite Ore: 6",
-        "Congalala Pelt+: 3",
-        "Hercudrome: 4"
+        "Pur Gypceros Wng (8)",
+        "Carbalite Ore (6)",
+        "Congalala Pelt+ (3)",
+        "Hercudrome (4)"
       ]
     },
     {
@@ -1820,10 +1820,10 @@
       "create-cost": "7900",
       "improve-mats": null,
       "create-mats": [
-        "Blk Gravios Cpc: 8",
-        "Blk Gravios Skl: 1",
-        "Gravios BrainStm: 1",
-        "Hrd Monster Bone: 2"
+        "Blk Gravios Cpc (8)",
+        "Blk Gravios Skl (1)",
+        "Gravios BrainStm (1)",
+        "Hrd Monster Bone (2)"
       ]
     },
     {
@@ -1867,10 +1867,10 @@
       "create-cost": "7050",
       "improve-mats": null,
       "create-mats": [
-        "Blue Kut-Ku Cpc: 8",
-        "Long Kut-Ku Ear: 2",
-        "Pale Khezu Steak: 2",
-        "Union Ore: 8"
+        "Blue Kut-Ku Cpc (8)",
+        "Long Kut-Ku Ear (2)",
+        "Pale Khezu Steak (2)",
+        "Union Ore (8)"
       ]
     },
     {
@@ -1914,10 +1914,10 @@
       "create-cost": "4500",
       "improve-mats": null,
       "create-mats": [
-        "Wht Monoblos Cpc: 5",
-        "WhtMonoblosThrcic: 5",
-        "Hrd Monster Bone: 6",
-        "Monoblos Heart: 1"
+        "Wht Monoblos Cpc (5)",
+        "WhtMonoblosThrcic (5)",
+        "Hrd Monster Bone (6)",
+        "Monoblos Heart (1)"
       ]
     },
     {
@@ -1961,10 +1961,10 @@
       "create-cost": "4400",
       "improve-mats": null,
       "create-mats": [
-        "Rare Scarab: 3",
-        "Great Ladybug: 4",
-        "Hrd Monster Bone: 1",
-        "Monster Broth: 4"
+        "Rare Scarab (3)",
+        "Great Ladybug (4)",
+        "Hrd Monster Bone (1)",
+        "Monster Broth (4)"
       ]
     },
     {
@@ -2008,10 +2008,10 @@
       "create-cost": "6250",
       "improve-mats": null,
       "create-mats": [
-        "Kirin Hide+: 3",
-        "Kirin Thndr Tail: 3",
-        "Carbalite Ore: 10",
-        "Majestic Horn: 2"
+        "Kirin Hide+ (3)",
+        "Kirin Thndr Tail (3)",
+        "Carbalite Ore (10)",
+        "Majestic Horn (2)"
       ]
     },
     {
@@ -2055,10 +2055,10 @@
       "create-cost": "7700",
       "improve-mats": null,
       "create-mats": [
-        "Daora Jewel: 1",
-        "Daora Carapace: 5",
-        "ElderDragonBlood: 4",
-        "Hrd Monster Bone: 4"
+        "Daora Jewel (1)",
+        "Daora Carapace (5)",
+        "ElderDragonBlood (4)",
+        "Hrd Monster Bone (4)"
       ]
     },
     {
@@ -2102,10 +2102,10 @@
       "create-cost": "7350",
       "improve-mats": null,
       "create-mats": [
-        "Fatalis Shell: 2",
-        "Fatalis Horn: 2",
-        "Fatalis Scale: 2",
-        "Union Ore: 6"
+        "Fatalis Shell (2)",
+        "Fatalis Horn (2)",
+        "Fatalis Scale (2)",
+        "Union Ore (6)"
       ]
     },
     {
@@ -2149,10 +2149,10 @@
       "create-cost": "7525",
       "improve-mats": null,
       "create-mats": [
-        "Lunstra Carpace: 4",
-        "Fire Drgn Jwl: 1",
-        "Lunastra Mane: 1",
-        "Firecell Stone: 2"
+        "Lunstra Carpace (4)",
+        "Fire Drgn Jwl (1)",
+        "Lunastra Mane (1)",
+        "Firecell Stone (2)"
       ]
     },
     {
@@ -2196,10 +2196,10 @@
       "create-cost": "8025",
       "improve-mats": null,
       "create-mats": [
-        "Fire Drgn Jwl: 1",
-        "Teostra Carapace: 5",
-        "ElderDragonBlood: 4",
-        "Hrd Monster Bone: 4"
+        "Fire Drgn Jwl (1)",
+        "Teostra Carapace (5)",
+        "ElderDragonBlood (4)",
+        "Hrd Monster Bone (4)"
       ]
     },
     {
@@ -2243,10 +2243,10 @@
       "create-cost": "8825",
       "improve-mats": null,
       "create-mats": [
-        "Fatalis CrmsnShl: 2",
-        "Fatalis CrmsnHrn: 2",
-        "Fatalis CrmsnScl: 2",
-        "Firecell Stone: 4"
+        "Fatalis CrmsnShl (2)",
+        "Fatalis CrmsnHrn (2)",
+        "Fatalis CrmsnScl (2)",
+        "Firecell Stone (4)"
       ]
     },
     {
@@ -2290,10 +2290,10 @@
       "create-cost": "8450",
       "improve-mats": null,
       "create-mats": [
-        "Long Garuga Ear: 3",
-        "Garuga carapce: 5",
-        "Garuga Wing: 3",
-        "Black Blos Cpc: 3"
+        "Long Garuga Ear (3)",
+        "Garuga carapce (5)",
+        "Garuga Wing (3)",
+        "Black Blos Cpc (3)"
       ]
     },
     {
@@ -2337,10 +2337,10 @@
       "create-cost": "8025",
       "improve-mats": null,
       "create-mats": [
-        "Gaoren Thoracic: 3",
-        "Gaoren Carapace: 5",
-        "Firecell Stone: 2",
-        "Pokke Ticket: 4"
+        "Gaoren Thoracic (3)",
+        "Gaoren Carapace (5)",
+        "Firecell Stone (2)",
+        "Pokke Ticket (4)"
       ]
     },
     {
@@ -2384,10 +2384,10 @@
       "create-cost": "8800",
       "improve-mats": null,
       "create-mats": [
-        "Lao-Shan's Ruby: 1",
-        "Lao-ShanCarapace: 3",
-        "Lao-Shan Scale+: 5",
-        "Hrd Monster Bone: 8"
+        "Lao-Shan's Ruby (1)",
+        "Lao-ShanCarapace (3)",
+        "Lao-Shan Scale+ (5)",
+        "Hrd Monster Bone (8)"
       ]
     },
     {
@@ -2431,10 +2431,10 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "Azure LaoS Shell: 5",
-        "Lao-Shan's Ruby: 1",
-        "Lao-ShanCarapace: 3",
-        "WyvernStone: 4"
+        "Azure LaoS Shell (5)",
+        "Lao-Shan's Ruby (1)",
+        "Lao-ShanCarapace (3)",
+        "WyvernStone (4)"
       ]
     },
     {
@@ -2478,9 +2478,9 @@
       "create-cost": "5500",
       "improve-mats": null,
       "create-mats": [
-        "Eltalite Ore: 20",
-        "Hrd Monster Bone: 6",
-        "Hvy Monster Bone: 1",
+        "Eltalite Ore (20)",
+        "Hrd Monster Bone (6)",
+        "Hvy Monster Bone (1)",
         "1"
       ]
     },
@@ -2525,10 +2525,10 @@
       "create-cost": "6000",
       "improve-mats": null,
       "create-mats": [
-        "SpecRubberyHide+: 6",
-        "Gypceros Head: 1",
-        "KhezuHide-Cream: 3",
-        "Purecrystal: 1"
+        "SpecRubberyHide+ (6)",
+        "Gypceros Head (1)",
+        "KhezuHide-Cream (3)",
+        "Purecrystal (1)"
       ]
     },
     {
@@ -2572,10 +2572,10 @@
       "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
-        "HrdPuGypcerosWng: 6",
-        "HardGypcerosHead: 1",
-        "Alluring Wing: 3",
-        "Eltalite Ore: 10"
+        "HrdPuGypcerosWng (6)",
+        "HardGypcerosHead (1)",
+        "Alluring Wing (3)",
+        "Eltalite Ore (10)"
       ]
     },
     {
@@ -2619,10 +2619,10 @@
       "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
-        "HrdCongalalaPlt+: 8",
-        "CongalalaStrngFng: 4",
-        "Vibrant Pelt: 3",
-        "Hvy Monster Bone: 1"
+        "HrdCongalalaPlt+ (8)",
+        "CongalalaStrngFng (4)",
+        "Vibrant Pelt (3)",
+        "Hvy Monster Bone (1)"
       ]
     },
     {
@@ -2666,10 +2666,10 @@
       "create-cost": "8000",
       "improve-mats": null,
       "create-mats": [
-        "ThckPlesiothScl: 8",
-        "SpecPlesiothFin+: 4",
-        "ThckGrnPlesioScl: 4",
-        "Emperor Cricket: 6"
+        "ThckPlesiothScl (8)",
+        "SpecPlesiothFin+ (4)",
+        "ThckGrnPlesioScl (4)",
+        "Emperor Cricket (6)"
       ]
     },
     {
@@ -2713,10 +2713,10 @@
       "create-cost": "9250",
       "improve-mats": null,
       "create-mats": [
-        "PlumD.HermitrShl: 8",
-        "HrdHermitaurClaw: 3",
-        "GrnPlesiothThkScl: 3",
-        "Massive Bone: 2"
+        "PlumD.HermitrShl (8)",
+        "HrdHermitaurClaw (3)",
+        "GrnPlesiothThkScl (3)",
+        "Massive Bone (2)"
       ]
     },
     {
@@ -2760,10 +2760,10 @@
       "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
-        "Kut-Ku Cpc: 6",
-        "Str Kut-Ku Wing: 6",
-        "Hypno Bezoar: 2",
-        "Eltalite Ore: 10"
+        "Kut-Ku Cpc (6)",
+        "Str Kut-Ku Wing (6)",
+        "Hypno Bezoar (2)",
+        "Eltalite Ore (10)"
       ]
     },
     {
@@ -2807,10 +2807,10 @@
       "create-cost": "9000",
       "improve-mats": null,
       "create-mats": [
-        "HvyBlueKut-KuShl: 6",
-        "Lucky Kut-Ku Ear: 3",
-        "Hypno Claw+: 5",
-        "Hvy Monster Bone: 2"
+        "HvyBlueKut-KuShl (6)",
+        "Lucky Kut-Ku Ear (3)",
+        "Hypno Claw+ (5)",
+        "Hvy Monster Bone (2)"
       ]
     },
     {
@@ -2854,10 +2854,10 @@
       "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
-        "Mellanje Ore: 10",
-        "ThckLavasiothScl: 4",
-        "Eltalite Ore: 20",
-        "Big WyvernStone: 1"
+        "Mellanje Ore (10)",
+        "ThckLavasiothScl (4)",
+        "Eltalite Ore (20)",
+        "Big WyvernStone (1)"
       ]
     },
     {
@@ -2901,10 +2901,10 @@
       "create-cost": "7500",
       "improve-mats": null,
       "create-mats": [
-        "HvyBasariosShell: 10",
-        "StrBasariosWing: 2",
-        "Eltalite Ore: 20",
-        "Emperor Cricket: 6"
+        "HvyBasariosShell (10)",
+        "StrBasariosWing (2)",
+        "Eltalite Ore (20)",
+        "Emperor Cricket (6)"
       ]
     },
     {
@@ -2948,10 +2948,10 @@
       "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
-        "HrdBlangongaPlt+: 8",
-        "HvyBlangongaFang: 4",
-        "Lthr Pelagus Plt: 2",
-        "CongalalaStrngFng: 2"
+        "HrdBlangongaPlt+ (8)",
+        "HvyBlangongaFang (4)",
+        "Lthr Pelagus Plt (2)",
+        "CongalalaStrngFng (2)"
       ]
     },
     {
@@ -2995,10 +2995,10 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "HvyCeanataurShl: 6",
-        "HrdCeanataurClaw: 4",
-        "Hvy Monster Bone: 4",
-        "Big WyvernStone: 2"
+        "HvyCeanataurShl (6)",
+        "HrdCeanataurClaw (4)",
+        "Hvy Monster Bone (4)",
+        "Big WyvernStone (2)"
       ]
     },
     {
@@ -3042,10 +3042,10 @@
       "create-cost": "11000",
       "improve-mats": null,
       "create-mats": [
-        "HvyGraviosShell: 8",
-        "Gravios Skl Shl: 2",
-        "StrBasariosWing: 1",
-        "HvnlyGraviosShl: 1"
+        "HvyGraviosShell (8)",
+        "Gravios Skl Shl (2)",
+        "StrBasariosWing (1)",
+        "HvnlyGraviosShl (1)"
       ]
     },
     {
@@ -3089,10 +3089,10 @@
       "create-cost": "230",
       "improve-mats": null,
       "create-mats": [
-        "dummy: 4",
-        "ThckFireDrgnScl: 10",
-        "FireDrgnStrngClaw: 3",
-        "Elder Dragon Jewel: 1"
+        "dummy (4)",
+        "ThckFireDrgnScl (10)",
+        "FireDrgnStrngClaw (3)",
+        "Elder Dragon Jewel (1)"
       ]
     },
     {
@@ -3136,10 +3136,10 @@
       "create-cost": "8500",
       "improve-mats": null,
       "create-mats": [
-        "VespoidQn'sCrown: 3",
-        "Vespoid Abdomen: 3",
-        "Lightning Sac: 2",
-        "HorNetaurRazrWng: 4"
+        "VespoidQn'sCrown (3)",
+        "Vespoid Abdomen (3)",
+        "Lightning Sac (2)",
+        "HorNetaurRazrWng (4)"
       ]
     },
     {
@@ -3183,10 +3183,10 @@
       "create-cost": "11000",
       "improve-mats": null,
       "create-mats": [
-        "ThickNargaScale: 10",
-        "BlackNargaPelt+: 5",
-        "NarugeDvinePlate: 1",
-        "Hvy Monster Bone: 6"
+        "ThickNargaScale (10)",
+        "BlackNargaPelt+ (5)",
+        "NarugeDvinePlate (1)",
+        "Hvy Monster Bone (6)"
       ]
     },
     {
@@ -3230,10 +3230,10 @@
       "create-cost": "6500",
       "improve-mats": null,
       "create-mats": [
-        "PhantomButterfly: 8",
-        "HvyRathalosShl: 2",
-        "Great Ladybug: 10",
-        "Monster Essence: 4"
+        "PhantomButterfly (8)",
+        "HvyRathalosShl (2)",
+        "Great Ladybug (10)",
+        "Monster Essence (4)"
       ]
     },
     {
@@ -3277,10 +3277,10 @@
       "create-cost": "10750",
       "improve-mats": null,
       "create-mats": [
-        "SpecialKirinHide: 3",
-        "Platinum Mane: 3",
-        "Mellanje Ore: 4",
-        "StoutWarpedHorn: 2"
+        "SpecialKirinHide (3)",
+        "Platinum Mane (3)",
+        "Mellanje Ore (4)",
+        "StoutWarpedHorn (2)"
       ]
     },
     {
@@ -3324,10 +3324,10 @@
       "create-cost": "10000",
       "improve-mats": null,
       "create-mats": [
-        "SilverGarugaPelt: 4",
-        "Hvy Garuga Shell: 5",
-        "Str Garuga Wing: 4",
-        "Hvy Monster Bone: 6"
+        "SilverGarugaPelt (4)",
+        "Hvy Garuga Shell (5)",
+        "Str Garuga Wing (4)",
+        "Hvy Monster Bone (6)"
       ]
     },
     {
@@ -3371,10 +3371,10 @@
       "create-cost": "10500",
       "improve-mats": null,
       "create-mats": [
-        "TerraCeanatrShl: 6",
-        "TerraCeanatrClaw: 4",
-        "HvyBasariosShell: 4",
-        "ThckLavasiothScl: 4"
+        "TerraCeanatrShl (6)",
+        "TerraCeanatrClaw (4)",
+        "HvyBasariosShell (4)",
+        "ThckLavasiothScl (4)"
       ]
     },
     {
@@ -3412,15 +3412,15 @@
       "misc-ammo": [
         "2",
         "2",
-        "Demon S:1",
+        "Demon S (1)",
         "0"
       ],
       "create-cost": "11750",
       "improve-mats": null,
       "create-mats": [
-        "Hvy Daora Shell: 5",
-        "Daora Webing G: 4",
-        "BigEDragonJewel: 1",
+        "Hvy Daora Shell (5)",
+        "Daora Webing G (4)",
+        "BigEDragonJewel (1)",
         "1"
       ]
     },
@@ -3465,10 +3465,10 @@
       "create-cost": "20000",
       "improve-mats": null,
       "create-mats": [
-        "HvyFatalisCrmShl: 2",
-        "HrdFatlisCrmHorn: 2",
-        "ThckFatlisCrmScl: 2",
-        "BigEDragonJewel: 2"
+        "HvyFatalisCrmShl (2)",
+        "HrdFatlisCrmHorn (2)",
+        "ThckFatlisCrmScl (2)",
+        "BigEDragonJewel (2)"
       ]
     },
     {
@@ -3512,10 +3512,10 @@
       "create-cost": "11500",
       "improve-mats": null,
       "create-mats": [
-        "HvyBlkGraviosShl: 8",
-        "Gravios BrainStm: 1",
-        "Firecell Stone: 6",
-        "HvnlyBlkGraviShl: 1"
+        "HvyBlkGraviosShl (8)",
+        "Gravios BrainStm (1)",
+        "Firecell Stone (6)",
+        "HvnlyBlkGraviShl (1)"
       ]
     },
     {
@@ -3559,9 +3559,9 @@
       "create-cost": "12000",
       "improve-mats": null,
       "create-mats": [
-        "HvyTeostraShell: 5",
-        "FireDragonStrngClw: 2",
-        "BigEDragonJewel: 1",
+        "HvyTeostraShell (5)",
+        "FireDragonStrngClw (2)",
+        "BigEDragonJewel (1)",
         "1"
       ]
     },
@@ -3606,10 +3606,10 @@
       "create-cost": "11500",
       "improve-mats": null,
       "create-mats": [
-        "HvyBlkBlosSpine: 3",
-        "HvyDiablosShell: 6",
-        "Mellanje Ore: 5",
-        "StoutBlkTwstdHrn: 2"
+        "HvyBlkBlosSpine (3)",
+        "HvyDiablosShell (6)",
+        "Mellanje Ore (5)",
+        "StoutBlkTwstdHrn (2)"
       ]
     },
     {
@@ -3653,10 +3653,10 @@
       "create-cost": "15000",
       "improve-mats": null,
       "create-mats": [
-        "Hvy Fatalis Shl: 2",
-        "HardFatalisHorn: 2",
-        "ThckFatalisScale: 2",
-        "BigEDragonJewel: 1"
+        "Hvy Fatalis Shl (2)",
+        "HardFatalisHorn (2)",
+        "ThckFatalisScale (2)",
+        "BigEDragonJewel (1)"
       ]
     },
     {
@@ -3700,10 +3700,10 @@
       "create-cost": "10500",
       "improve-mats": null,
       "create-mats": [
-        "Hvy Tigrex Shell: 6",
-        "Tigrex Skull Shl: 3",
-        "Hvy Tigrex Fang: 3",
-        "HvnlyTigrexScale: 1"
+        "Hvy Tigrex Shell (6)",
+        "Tigrex Skull Shl (3)",
+        "Hvy Tigrex Fang (3)",
+        "HvnlyTigrexScale (1)"
       ]
     },
     {
@@ -3747,10 +3747,10 @@
       "create-cost": "12500",
       "improve-mats": null,
       "create-mats": [
-        "Hvy Gaoren Spine: 4",
-        "HvyGaorenShell: 6",
-        "Firecell Stone: 20",
-        "HvnlyGaorenShell: 1"
+        "Hvy Gaoren Spine (4)",
+        "HvyGaorenShell (6)",
+        "Firecell Stone (20)",
+        "HvnlyGaorenShell (1)"
       ]
     },
     {
@@ -3794,10 +3794,10 @@
       "create-cost": "13000",
       "improve-mats": null,
       "create-mats": [
-        "AncientDrgnwood: 4",
-        "YamaTsukamiFluid: 8",
-        "Thunderbug Jelly: 6",
-        "Mellanje Ore: 10"
+        "AncientDrgnwood (4)",
+        "YamaTsukamiFluid (8)",
+        "Thunderbug Jelly (6)",
+        "Mellanje Ore (10)"
       ]
     },
     {
@@ -3835,16 +3835,16 @@
       "misc-ammo": [
         "2",
         "2",
-        "Demon S:0",
+        "Demon S (0)",
         "0"
       ],
       "create-cost": "15000",
       "improve-mats": null,
       "create-mats": [
-        "Laso-Shan Hvy Cpc: 4",
-        "Azure LaoS Claw: 3",
-        "Lao-ShanHvnlyScl: 1",
-        "Big WyvernStone: 4"
+        "Laso-Shan Hvy Cpc (4)",
+        "Azure LaoS Claw (3)",
+        "Lao-ShanHvnlyScl (1)",
+        "Big WyvernStone (4)"
       ]
     },
     {
@@ -3888,10 +3888,10 @@
       "create-cost": "20000",
       "improve-mats": null,
       "create-mats": [
-        "HvyUkanlosShell: 6",
-        "StrongUkanlosFin: 4",
-        "UkanlosUnderscl: 3",
-        "Ukanlos Stone: 1"
+        "HvyUkanlosShell (6)",
+        "StrongUkanlosFin (4)",
+        "UkanlosUnderscl (3)",
+        "Ukanlos Stone (1)"
       ]
     },
     {
@@ -3936,9 +3936,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "ThkBullfangoPelt: 15",
-        "RobustWyvernBone: 20",
-        "Lg Monster Bone: 30"
+        "ThkBullfangoPelt (15)",
+        "RobustWyvernBone (20)",
+        "Lg Monster Bone (30)"
       ]
     },
     {
@@ -3983,9 +3983,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Kelbi Hide: 20",
-        "Majestic Horn: 10",
-        "Carpenterbug: 99"
+        "Kelbi Hide (20)",
+        "Majestic Horn (10)",
+        "Carpenterbug (99)"
       ]
     },
     {
@@ -4030,9 +4030,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Monster Essence: 30",
-        "Monster Broth: 30",
-        "Monster Fluid: 30"
+        "Monster Essence (30)",
+        "Monster Broth (30)",
+        "Monster Fluid (30)"
       ]
     },
     {
@@ -4077,9 +4077,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "YamaTsukamiFluid: 4",
-        "Verspoid Abdomen: 10",
-        "Hornetaur Head: 10"
+        "YamaTsukamiFluid (4)",
+        "Verspoid Abdomen (10)",
+        "Hornetaur Head (10)"
       ]
     },
     {
@@ -4124,9 +4124,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "DeadlyPoisonSac: 10",
-        "Toxin Sac: 10",
-        "Purecrystal: 5"
+        "DeadlyPoisonSac (10)",
+        "Toxin Sac (10)",
+        "Purecrystal (5)"
       ]
     },
     {
@@ -4171,9 +4171,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "HardGypcerosHead: 3",
-        "Lightcrystal: 20",
-        "Novacrystal: 10"
+        "HardGypcerosHead (3)",
+        "Lightcrystal (20)",
+        "Novacrystal (10)"
       ]
     },
     {
@@ -4218,9 +4218,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "HvyPiscineFang: 10",
-        "Coral Cphlos Fin: 6",
-        "Union Ore: 30"
+        "HvyPiscineFang (10)",
+        "Coral Cphlos Fin (6)",
+        "Union Ore (30)"
       ]
     },
     {
@@ -4265,9 +4265,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Vibrant Comb: 2",
-        "HrdCongalalaClw+: 4",
-        "GrnConglalaClaw: 6"
+        "Vibrant Comb (2)",
+        "HrdCongalalaClw+ (4)",
+        "GrnConglalaClaw (6)"
       ]
     },
     {
@@ -4312,9 +4312,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Hermitaur Claw+: 8",
-        "HvyHermitaurShl: 8",
-        "Black Pearl: 20"
+        "Hermitaur Claw+ (8)",
+        "HvyHermitaurShl (8)",
+        "Black Pearl (20)"
       ]
     },
     {
@@ -4359,9 +4359,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "FireStone: 40",
-        "Mellanje Ore: 30",
-        "Basarios Tears: 5"
+        "FireStone (40)",
+        "Mellanje Ore (30)",
+        "Basarios Tears (5)"
       ]
     },
     {
@@ -4406,9 +4406,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "ThckPlesiothScl: 10",
-        "Ancient Fish: 10",
-        "Hrd Monster Bone: 20"
+        "ThckPlesiothScl (10)",
+        "Ancient Fish (10)",
+        "Hrd Monster Bone (20)"
       ]
     },
     {
@@ -4453,9 +4453,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "PlumD.HermitrClw: 6",
-        "PlumD.HermitrShl: 8",
-        "WyvernSkull Shl: 3"
+        "PlumD.HermitrClw (6)",
+        "PlumD.HermitrShl (8)",
+        "WyvernSkull Shl (3)"
       ]
     },
     {
@@ -4500,9 +4500,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Thick Kut-Ku Scl: 10",
-        "Lucky Kut-Ku Ear: 5",
-        "Pale Khezu Steak: 3"
+        "Thick Kut-Ku Scl (10)",
+        "Lucky Kut-Ku Ear (5)",
+        "Pale Khezu Steak (3)"
       ]
     },
     {
@@ -4547,9 +4547,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "ThkBlueKut-KuScl: 10",
-        "Long Kut-Ku Ear: 10",
-        "KhezuSpecialCut: 1"
+        "ThkBlueKut-KuScl (10)",
+        "Long Kut-Ku Ear (10)",
+        "KhezuSpecialCut (1)"
       ]
     },
     {
@@ -4594,9 +4594,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Wht Monoblos Cpc: 8",
-        "StoutBlkTwstdHrn: 4",
-        "Monoblos Heart: 2"
+        "Wht Monoblos Cpc (8)",
+        "StoutBlkTwstdHrn (4)",
+        "Monoblos Heart (2)"
       ]
     },
     {
@@ -4641,9 +4641,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "HvyDiablosShell: 8",
-        "Top-GrdPlatHorn: 6",
-        "WyvernStone: 10"
+        "HvyDiablosShell (8)",
+        "Top-GrdPlatHorn (6)",
+        "WyvernStone (10)"
       ]
     },
     {
@@ -4688,9 +4688,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "VespoidQn'sCrown: 5",
-        "Thunderbug Jelly: 20",
-        "Killer Beetle: 99"
+        "VespoidQn'sCrown (5)",
+        "Thunderbug Jelly (20)",
+        "Killer Beetle (99)"
       ]
     },
     {
@@ -4735,9 +4735,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Dark Stone: 10",
-        "BigEDragonJewel: 1",
-        "Giant Blk Pearl: 5"
+        "Dark Stone (10)",
+        "BigEDragonJewel (1)",
+        "Giant Blk Pearl (5)"
       ]
     },
     {
@@ -4782,9 +4782,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "ThckFireDrgnScl: 4",
-        "LunastraCarapace: 8",
-        "Fire Drgn Jwl: 3"
+        "ThckFireDrgnScl (4)",
+        "LunastraCarapace (8)",
+        "Fire Drgn Jwl (3)"
       ]
     },
     {
@@ -4829,9 +4829,9 @@
       "improve-mats": null,
       "create-mats": [
         "1",
-        "Lao-ShanHvnlyScl: 1",
-        "Lao-Shan's Ruby: 2",
-        "ElderDragonBlood: 10"
+        "Lao-ShanHvnlyScl (1)",
+        "Lao-Shan's Ruby (2)",
+        "ElderDragonBlood (10)"
       ]
     }
   ]
