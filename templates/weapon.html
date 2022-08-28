@@ -13,11 +13,11 @@
   {% endif %}
 
   {% if page.extra.create_mats %}
-    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
   {% elif page.extra.improve_mats %}
-    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
   {% endif %}
 {% endblock %}
 
