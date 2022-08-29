@@ -1555,8 +1555,8 @@
         {
           "name": "Tigrex Shell",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Fang",
@@ -5661,8 +5661,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Hrd Rathalos Scl",
@@ -8822,8 +8822,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "SpecRemobraSkin+",

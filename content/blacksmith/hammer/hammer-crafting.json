@@ -1638,8 +1638,8 @@
         {
           "name": "Tigrex Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -5551,8 +5551,8 @@
         {
           "name": "Lao-Shan's Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Shell",
@@ -5591,8 +5591,8 @@
         {
           "name": "Lao-Shan's Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Gaoren Spine",
@@ -5711,8 +5711,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Scale",
@@ -5723,8 +5723,8 @@
         {
           "name": "Tigrex Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Pokke Ticket",
@@ -7917,8 +7917,8 @@
         {
           "name": "Lao-Shan's Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lao-Shan'sHvyShl",
