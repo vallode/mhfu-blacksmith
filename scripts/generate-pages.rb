@@ -63,7 +63,12 @@ WEAPON_ABBR = {
   "light-bowgun": "lbg",
   "heavy-bowgun": "hbg",
   "bow": "bw",
-  "decoration": "dec"
+  "decoration": "dec",
+  "helmet": "helmet",
+  "plate": "plate",
+  "gauntlets": "gauntlets",
+  "waist": "waist",
+  "leggings": "leggings"
 }
 
 WEAPON_CLASS_MULTIPLIER = {

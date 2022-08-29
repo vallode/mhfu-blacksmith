@@ -49,9 +49,9 @@ weapon_types = [
 ]
 
 armor_types = [
-  "head",
-  "body",
-  "arms",
+  "helmet",
+  "plate",
+  "gauntlets",
   "waist",
-  "legs"
+  "leggings"
 ]
