@@ -103,54 +103,60 @@ def parseElements(elements)
   return parsedElements
 end
 
+threads = []
+
 Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
-  File.open(path) do |file|
-    json_data = JSON.load(file)
+  threads << Thread.new {
+    File.open(path) do |file|
+      json_data = JSON.load(file)
 
-    json_data["weapons"].each do |value|
-      if value.key?("donotrender")
-        next
+      json_data["weapons"].each do |value|
+        if value.key?("donotrender")
+          next
+        end
+
+        output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
+        output_binding = binding
+
+        slug = slugify(value["name"])
+        value["type"] = WEAPON_ABBR.key(value["type"])
+
+        if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
+          value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
+        end
+
+        if value["create-mats"]
+          create_mats = value["create-mats"]
+          value["create-mats"] = nil
+        end
+
+        if value["improve-mats"]
+          improve_mats = value["improve-mats"]
+          value["improve-mats"] = nil
+        end
+
+        if value["alternative-create-mats"]
+          alternative_create_mats = value["alternative-create-mats"]
+          value["alternative-create-mats"] = nil
+        end
+        
+        if value["element"]
+          element = parseElements(value["element"])
+          value["element"] = nil
+        end
+
+        if value["shelling"]
+          shelling = value["shelling"]
+          value["shelling"] = nil
+        end
+
+        value = value.select {|key, value| value != nil }
+
+        File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
       end
-
-      output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-      output_binding = binding
-
-      slug = slugify(value["name"])
-      value["type"] = WEAPON_ABBR.key(value["type"])
-
-      if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
-        value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
-      end
-
-      if value["create-mats"]
-        create_mats = value["create-mats"]
-        value["create-mats"] = nil
-      end
-
-      if value["improve-mats"]
-        improve_mats = value["improve-mats"]
-        value["improve-mats"] = nil
-      end
-
-      if value["alternative-create-mats"]
-        alternative_create_mats = value["alternative-create-mats"]
-        value["alternative-create-mats"] = nil
-      end
-      
-      if value["element"]
-        element = parseElements(value["element"])
-        value["element"] = nil
-      end
-
-      if value["shelling"]
-        shelling = value["shelling"]
-        value["shelling"] = nil
-      end
-
-      value = value.select {|key, value| value != nil }
-
-      File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
     end
-  end
+  }
 end
+
+threads.each(&:join)
   
