@@ -28,7 +28,7 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   p row
   armor_piece = {
     "name": row["Name"],
-    "type": "head",
+    "type": "helmet",
     "defence": row["Defence"],
     "fire_res": row["Fire Res"],
     "thunder_res": row["Thunder Res"],
