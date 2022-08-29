@@ -327,14 +327,14 @@
         {
           "name": "Piercing Claw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "RobustWyvernBone",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "cyan"
         }
       ],
       "improve-mats": [
@@ -390,7 +390,7 @@
           "name": "RobustWyvernBone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "cyan"
         },
         {
           "name": "PhantomButterfly",
@@ -776,8 +776,8 @@
         {
           "name": "HvyLavasiothShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Rainbow Ore",
@@ -887,13 +887,13 @@
         {
           "name": "Purecrystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "HrdBlangongaPlt+",
           "amount": "10",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1166,8 +1166,8 @@
         {
           "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1210,8 +1210,8 @@
         {
           "name": "FireWyvrn BrnStm",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -1900,8 +1900,8 @@
         {
           "name": "Hard Gaoren Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Giant Black Pearl",
@@ -2160,14 +2160,14 @@
         {
           "name": "Purecrystal",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Lightning Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "LthrKirinThndrTl",
@@ -2178,8 +2178,8 @@
         {
           "name": "StrBasariosWing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -2310,7 +2310,7 @@
         {
           "name": "Wyvern Fang",
           "amount": "15",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -2440,8 +2440,8 @@
         {
           "name": "DeadlyPoisonSac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2479,8 +2479,8 @@
         {
           "name": "StrBasariosWing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "HvnlyBlkGraviShl",
@@ -3103,8 +3103,8 @@
         {
           "name": "Top-GrdRedHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "HvyBlkBlosSpine",
@@ -3230,8 +3230,8 @@
         {
           "name": "HvyPiscineFang",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Eltalite Ore",
@@ -3613,8 +3613,8 @@
         {
           "name": "DeadlyPoisonSac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Pur Gypceros Wng",
@@ -3841,8 +3841,8 @@
         {
           "name": "Lightning Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "PaleKhezuSteak",
@@ -4709,8 +4709,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -4789,8 +4789,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4855,8 +4855,8 @@
         {
           "name": "Lunastra Spike",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "ThckFireDrgnScl",
@@ -4867,8 +4867,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         },
         {
           "name": "Commendation",
@@ -4959,8 +4959,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4986,14 +4986,14 @@
         {
           "name": "Purecrystal",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "ElderDragonBlood",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Commendation G",
@@ -5023,8 +5023,8 @@
         {
           "name": "Daora Carapace",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Daora Tail",
@@ -5068,14 +5068,14 @@
         {
           "name": "Daora Sharp Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Daora Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -5119,8 +5119,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -5270,8 +5270,8 @@
         {
           "name": "Dark Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "egg",
+          "color": "gray"
         },
         {
           "name": "Dark Piece",
@@ -5368,8 +5368,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -5405,8 +5405,8 @@
         {
           "name": "Lao-Shan's Ruby",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -5450,8 +5450,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -5603,8 +5603,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -5669,8 +5669,8 @@
         {
           "name": "Azure LaoS Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Lao-Shan'sHvyShl",
@@ -5687,8 +5687,8 @@
         {
           "name": "Purecrystal",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -5851,8 +5851,8 @@
         {
           "name": "Narga Brain Stem",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Hard Monster Bone",
@@ -5865,8 +5865,8 @@
         {
           "name": "Black Narga Pelt",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "Narga Scale+",
@@ -5929,8 +5929,8 @@
         {
           "name": "BlackNargaPelt+",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "ThickNargaScale",
@@ -5947,8 +5947,8 @@
         {
           "name": "Narga Brain Stem",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -6025,7 +6025,7 @@
         {
           "name": "Blango Pelt+",
           "amount": "5",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         }
       ],
@@ -6096,8 +6096,8 @@
         {
           "name": "Black Blos Spine",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Felyne Fur Ruby",
@@ -6164,8 +6164,8 @@
         {
           "name": "Gold Rajang Pelt",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -6301,13 +6301,13 @@
         {
           "name": "Lightning Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "Ukanlos Stone",
           "amount": "1",
-          "type": "bone",
+          "type": "heavenly",
           "color": "white"
         }
       ],
@@ -6627,14 +6627,14 @@
         {
           "name": "HvyPiscineFang",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Piercing Claw",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Monster Essence",
@@ -6725,8 +6725,8 @@
         {
           "name": "Purecrystal",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -6934,8 +6934,8 @@
         {
           "name": "SpecPlesiothFin+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Eltalite Ore",
@@ -6977,8 +6977,8 @@
         {
           "name": "Thick Kut-Ku Scl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         },
         {
           "name": "Lucky Kut-Ku Ear",
@@ -7027,7 +7027,7 @@
           "name": "BigEDragonBone",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "slate"
         }
       ],
       "improve-mats": null,
@@ -7063,8 +7063,8 @@
         {
           "name": "Basarios Tears",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Wyvern Stone",
@@ -7150,7 +7150,7 @@
           "name": "BigEDragonBone",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "slate"
         },
         {
           "name": "Monoblos Carapace",
@@ -7278,8 +7278,8 @@
         {
           "name": "Purecrystal",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Sleep Sac",
@@ -7370,7 +7370,7 @@
         {
           "name": "HrdBlangongaPlt+",
           "amount": "10",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         }
       ],
@@ -7413,8 +7413,8 @@
         {
           "name": "BlackNargaPelt+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -7493,14 +7493,14 @@
         {
           "name": "ElderDragonBlood",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Big Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -7580,7 +7580,7 @@
           "name": "BigEDragonBone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "slate"
         },
         {
           "name": "Dragonite Ore",
@@ -7665,13 +7665,13 @@
         {
           "name": "HrdBlangongaPlt+",
           "amount": "10",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
           "name": "Blango Pelt+",
           "amount": "20",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         }
       ],
@@ -7837,8 +7837,8 @@
         {
           "name": "DeadlyPoisonSac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Wyvern Stone",

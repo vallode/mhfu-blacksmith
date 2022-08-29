@@ -134,7 +134,7 @@
           "name": "RobustWyvernBone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -173,8 +173,8 @@
         {
           "name": "Purecrystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -203,8 +203,8 @@
         {
           "name": "SpecPlesiothFin+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Hvy Monster Bone",
@@ -215,8 +215,8 @@
         {
           "name": "HvyPiscineFang",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -229,20 +229,20 @@
         {
           "name": "SpecPlesiothFin+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "ThckLavasiothScl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "ThckPlesiothScl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -274,8 +274,8 @@
         {
           "name": "SpecPlesiothFin+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "YamaTsukamiFluid",
@@ -286,8 +286,8 @@
         {
           "name": "Big Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -459,8 +459,8 @@
         {
           "name": "Lightning Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "SpecRubberyHide+",
@@ -608,8 +608,8 @@
         {
           "name": "DeadlyPoisonSac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Hvy Monster Bone",
@@ -787,13 +787,13 @@
         {
           "name": "LeathrBlangoTail",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "HrdBlangongaPlt+",
           "amount": "6",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1137,8 +1137,8 @@
         {
           "name": "Purecrystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Eltalite Ore",
@@ -1176,8 +1176,8 @@
         {
           "name": "Purecrystal",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Mellanje Ore",
@@ -1188,14 +1188,14 @@
         {
           "name": "HrdCeanataurClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Giant Blk Pearl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -1336,8 +1336,8 @@
         {
           "name": "Hornet Razorwing",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Vespoid Razorwing",
@@ -1375,8 +1375,8 @@
         {
           "name": "Hornet RazorWing",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Vespoid RazorWing",
@@ -1489,8 +1489,8 @@
         {
           "name": "Basarios Tears",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ],
       "improve-to": null,
@@ -1644,7 +1644,7 @@
         {
           "name": "Giadrome Claw+",
           "amount": "6",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -1872,7 +1872,7 @@
         {
           "name": "Giadrome Claw+",
           "amount": "4",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -2005,8 +2005,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -2114,7 +2114,7 @@
         {
           "name": "WhtMonoblosThora",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2165,8 +2165,8 @@
         {
           "name": "Big Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -2387,8 +2387,8 @@
         {
           "name": "Dragonmoss+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         }
       ],
       "improve-to": [
@@ -2414,8 +2414,8 @@
         {
           "name": "AncientDrgnwood",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamaTsukamiHide",
@@ -2502,8 +2502,8 @@
         {
           "name": "Rathian Spike",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Rathalos Tail",
@@ -2547,8 +2547,8 @@
         {
           "name": "FireWyvrn BrnStm",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2586,8 +2586,8 @@
         {
           "name": "Rathalos Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2625,14 +2625,14 @@
         {
           "name": "HvnlyRathalosScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "HvnlyRathianScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -2743,8 +2743,8 @@
         {
           "name": "Velocidrome Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -2926,8 +2926,8 @@
         {
           "name": "Piercing Claw",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Emperor Cricket",
@@ -2985,8 +2985,8 @@
         {
           "name": "Hard Gaoren Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Hard Ceanataur Claw",
@@ -3540,8 +3540,8 @@
         {
           "name": "Piercing Claw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -3585,7 +3585,7 @@
         {
           "name": "LeathrBlangoTail",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -3661,8 +3661,8 @@
         {
           "name": "Dark Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "egg",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -3770,8 +3770,8 @@
         {
           "name": "Dark Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "egg",
+          "color": "gray"
         },
         {
           "name": "Dark Piece",
@@ -3823,8 +3823,8 @@
         {
           "name": "Daora Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -3862,8 +3862,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -3950,8 +3950,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -3974,8 +3974,8 @@
         {
           "name": "Lao-Shan's Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Scale",
@@ -4021,8 +4021,8 @@
         {
           "name": "Lao-Shan's Horn",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Fire Dragon Powder",
@@ -4033,8 +4033,8 @@
         {
           "name": "Lao-Shan's Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4148,8 +4148,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Commendation",
@@ -4243,8 +4243,8 @@
         {
           "name": "Daora Sharp Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Fire Dragon Claw",
@@ -4255,8 +4255,8 @@
         {
           "name": "Daora Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "Fire Drgn Jwl",
@@ -4288,14 +4288,14 @@
         {
           "name": "HrdFireDrgnClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Daora Sharp Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "ThckDaoraDrgnScl",
@@ -4306,8 +4306,8 @@
         {
           "name": "BigEDragonJewel",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -4390,10 +4390,10 @@
           "color": "white"
         },
         {
-          "name": "Elder Dragon Blood",
+          "name": "ElderDragonBlood",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Wyvern Stone",
@@ -4425,14 +4425,14 @@
         {
           "name": "Purecrystal",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "ElderDragonBlood",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Commendation G",
@@ -4443,8 +4443,8 @@
         {
           "name": "Big Wyvern Stone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -4478,10 +4478,10 @@
           "color": "white"
         },
         {
-          "name": "Elder Dragon Blood",
+          "name": "ElderDragonBlood",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4683,8 +4683,8 @@
         {
           "name": "Narga Brain Stem",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -4753,8 +4753,8 @@
         {
           "name": "HvnlyNargaScale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -4773,8 +4773,8 @@
         {
           "name": "Narga Brain Stem",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Hvy Monster bone",
@@ -4849,7 +4849,7 @@
         {
           "name": "Ukanlos Stone",
           "amount": "1",
-          "type": "bone",
+          "type": "heavenly",
           "color": "white"
         },
         {
@@ -4909,8 +4909,8 @@
         {
           "name": "Dragonwood",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         }
       ],
       "improve-mats": null,
@@ -4955,8 +4955,8 @@
         {
           "name": "AncientDrgnwood",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -4979,7 +4979,7 @@
         {
           "name": "StrongUkanlosFin",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -4991,13 +4991,13 @@
         {
           "name": "UkanlosShovelJaw",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Ukanlos Stone",
           "amount": "1",
-          "type": "bone",
+          "type": "heavenly",
           "color": "white"
         }
       ],
@@ -5034,8 +5034,8 @@
         {
           "name": "Piercing Claw",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -5102,8 +5102,8 @@
         {
           "name": "HrdFireWyvernClw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Velocidrome Head",
@@ -5139,7 +5139,7 @@
         {
           "name": "Giadrome Claw+",
           "amount": "10",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5237,8 +5237,8 @@
         {
           "name": "HornetaurInnrWng",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -5280,8 +5280,8 @@
         {
           "name": "StrBasariosWing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -5354,8 +5354,8 @@
         {
           "name": "Purecrystal",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Carbalite Ore",
@@ -5538,8 +5538,8 @@
         {
           "name": "Lightning Sac",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         }
       ],
       "improve-mats": null,
@@ -5569,8 +5569,8 @@
         {
           "name": "ThckPlesiothScl",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "Plesioth Fin+",
@@ -5581,8 +5581,8 @@
         {
           "name": "Cephalos Scale+",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -5612,8 +5612,8 @@
         {
           "name": "HrdCeanataurClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "HvyCeanataurLeg",
@@ -5661,8 +5661,8 @@
         {
           "name": "MonoblosCarapace",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "LthrDiablosTail",
@@ -5710,8 +5710,8 @@
         {
           "name": "ElderDragonBlood",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -5741,8 +5741,8 @@
         {
           "name": "StrRathalosWing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Rathian Thorn",
@@ -5753,8 +5753,8 @@
         {
           "name": "FireWyvrn BrnStm",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -5827,8 +5827,8 @@
         {
           "name": "Lao-Shan's Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lao-Shan'sHvyShl",
@@ -5870,8 +5870,8 @@
         {
           "name": "Lao-Shan'sThkScl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "ThckFatalisScale",
@@ -5882,8 +5882,8 @@
         {
           "name": "Dark Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "egg",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -5919,13 +5919,13 @@
         {
           "name": "ElderDragonBlood",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Ukanlos Stone",
           "amount": "1",
-          "type": "bone",
+          "type": "heavenly",
           "color": "white"
         }
       ],
