@@ -1025,8 +1025,8 @@
         {
           "name": "Tigrex Shell",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Dragonite Ore",
@@ -4564,8 +4564,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Great Ladybug",
@@ -5173,8 +5173,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "BigEDragonJewel",

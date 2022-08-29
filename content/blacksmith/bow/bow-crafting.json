@@ -831,8 +831,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Monster Bone+",
@@ -3903,8 +3903,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "StrRathalosWing",
@@ -3929,8 +3929,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Rathalos Ruby",
@@ -4414,8 +4414,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Monster Bone+",
@@ -5777,8 +5777,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Hvy Fatalis Shl",

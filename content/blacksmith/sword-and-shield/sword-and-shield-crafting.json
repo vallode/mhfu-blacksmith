@@ -1472,8 +1472,8 @@
         {
           "name": "Chameleos Horn",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "Lunastra Horn",
@@ -3427,8 +3427,8 @@
         {
           "name": "Rathalos Webbing",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "red"
         },
         {
           "name": "Fire Dragon Scale",
@@ -4066,8 +4066,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "BigEDragonJewel",
@@ -4269,8 +4269,8 @@
         {
           "name": "Lao-Shan's claw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Commendation",
@@ -5042,8 +5042,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Fang",
@@ -5054,8 +5054,8 @@
         {
           "name": "Tigrex Shell",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Pokke Ticket",
@@ -5089,14 +5089,14 @@
         {
           "name": "Tigrex Claw+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Claw",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Carpace",
@@ -6627,8 +6627,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "FireWyvern Marrow",

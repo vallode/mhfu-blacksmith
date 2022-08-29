@@ -246,8 +246,8 @@
         {
           "name": "Rathalos Webbing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "red"
         },
         {
           "name": "Sharp Claw",
@@ -293,8 +293,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Rathian Spike",
@@ -326,8 +326,8 @@
         {
           "name": "Chameleos Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "Teostra Horn",
@@ -530,8 +530,8 @@
         {
           "name": "Tigrex Claw+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Carbalite Ore",
@@ -565,8 +565,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "HrdFireWyvernClw",
@@ -2520,8 +2520,8 @@
         {
           "name": "Tigrex Tail",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -4417,8 +4417,8 @@
         {
           "name": "Rathalos Webbing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "red"
         },
         {
           "name": "Flame Sac",
@@ -5576,8 +5576,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "ThckFatlisCrmScl",
@@ -7105,7 +7105,7 @@
           "color": "white"
         },
         {
-          "name": "s Skull",
+          "name": "Master's Skull",
           "amount": "5",
           "type": "bone",
           "color": "white"
@@ -7623,8 +7623,8 @@
         {
           "name": "HvyRathalosShl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "HrdFireWyvernClw",

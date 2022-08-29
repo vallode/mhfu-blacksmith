@@ -1681,8 +1681,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Velocidrome Hide",
@@ -1915,14 +1915,14 @@
         {
           "name": "Chameleos Tail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Chameleos Hide",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -3034,8 +3034,8 @@
         {
           "name": "Knife Mackarel",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -3986,8 +3986,8 @@
         {
           "name": "Lao-Shan's Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Firestone",
@@ -4543,8 +4543,8 @@
         {
           "name": "Tigrex Claw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Fang",
@@ -4590,8 +4590,8 @@
         {
           "name": "Tigrex Claw+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Fang+",
@@ -5876,8 +5876,8 @@
         {
           "name": "ThckFatalisScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Dark Stone",
