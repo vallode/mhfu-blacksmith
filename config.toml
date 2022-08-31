@@ -19,6 +19,8 @@ ignored_content = ["*-crafting.json"]
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+minify_html = true
+
 [search]
 include_title = true
 include_description = false
