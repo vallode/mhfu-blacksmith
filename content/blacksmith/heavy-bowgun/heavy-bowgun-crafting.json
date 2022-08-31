@@ -172,20 +172,20 @@
         {
           "name": "Bulldrome Hide",
           "amount": "4",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
           "name": "Kelbi Hide",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "blue"
         },
         {
           "name": "Kelbi Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         }
       ]
     },
@@ -288,8 +288,8 @@
         {
           "name": "Pur Rubbery Hide",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
           "name": "Machalite Ore",
@@ -349,8 +349,8 @@
         {
           "name": "Cephalos Fin",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "cyan"
         },
         {
           "name": "Cephalos Scale",
@@ -416,14 +416,14 @@
         {
           "name": "Kut-Ku Shell",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Kut-Ku Scale",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         },
         {
           "name": "Flabby Hide",
@@ -489,8 +489,8 @@
         {
           "name": "Hermitaur Shell",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Sm Hermitaur Shl",
@@ -550,8 +550,8 @@
         {
           "name": "Basarios Shell",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Machalite Ore",
@@ -568,8 +568,8 @@
         {
           "name": "Basarios Wing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ]
     },
@@ -751,13 +751,13 @@
         {
           "name": "Wht Monoblos Spn",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Wht Monoblos Shl",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -818,20 +818,20 @@
         {
           "name": "Ceanataur Leg",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Ceanataur Shell",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Ceanataur Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Lg Monster Bone",
@@ -886,19 +886,19 @@
           "name": "Giant Beak",
           "amount": "1",
           "type": "bone",
-          "color": "white"
+          "color": "pink"
         },
         {
           "name": "Blue Kut-Ku Shl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Alluring Hide",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Machalite Ore",
@@ -952,14 +952,14 @@
         {
           "name": "Diablos Spine",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Diablos Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Dragonite Ore",
@@ -970,8 +970,8 @@
         {
           "name": "Majestic Horn",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -1159,7 +1159,7 @@
         {
           "name": "Kirin Hide",
           "amount": "2",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1171,8 +1171,8 @@
         {
           "name": "Twisted Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -1287,8 +1287,8 @@
         {
           "name": "Garuga Ear",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Garuga Shell",
@@ -1299,14 +1299,14 @@
         {
           "name": "Blangonga Whiskr",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Ceanataur Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         }
       ]
     },
@@ -1354,8 +1354,8 @@
         {
           "name": "Daora Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "DaoraDragonScale",
@@ -1427,8 +1427,8 @@
         {
           "name": "Fire Dragon Scl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Lunstra Mane",
@@ -1488,20 +1488,20 @@
         {
           "name": "Teostra Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Fire Dragon Scl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Teostra Mane",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Firestone",
@@ -1555,14 +1555,14 @@
         {
           "name": "Gaoren Pincer",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
           "name": "Gaoren Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
           "name": "Firestone",
@@ -1622,14 +1622,14 @@
         {
           "name": "Lao-Shan's Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Scale",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Rathalos Plate",
@@ -1701,7 +1701,7 @@
         {
           "name": "Bulldrome Hide+",
           "amount": "3",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1756,8 +1756,8 @@
         {
           "name": "Rubbery Hide+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "blue"
         },
         {
           "name": "Carbalite Ore",
@@ -1811,8 +1811,8 @@
         {
           "name": "Cephalos Fin+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "cyan"
         },
         {
           "name": "Cephalos Scale+",
@@ -2012,8 +2012,8 @@
         {
           "name": "Basarios Carpace",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Basarios Tears",
@@ -2079,14 +2079,14 @@
         {
           "name": "Hermitaur Carpce",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Hermitaur Shell",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Cephalos Scale+",
@@ -2146,13 +2146,13 @@
         {
           "name": "Gravios Carapace",
           "amount": "8",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Gravios Skl Shl",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2219,8 +2219,8 @@
         {
           "name": "Ceanataur Pincer",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Coral Cphalos Scl",
@@ -2280,14 +2280,14 @@
         {
           "name": "Diablos Thoracic",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Diablos Carapace",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Union Ore",
@@ -2298,8 +2298,8 @@
         {
           "name": "Majestic Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -2347,8 +2347,8 @@
         {
           "name": "Tigrex Carapace",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Skull Shl",
@@ -2481,8 +2481,8 @@
         {
           "name": "Pur Gypceros Wng",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Carbalite Ore",
@@ -2493,8 +2493,8 @@
         {
           "name": "Congalala Pelt+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Hercudrome",
@@ -2548,20 +2548,20 @@
         {
           "name": "Blk Gravios Cpc",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Blk Gravios Skl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Gravios BrainStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -2615,19 +2615,19 @@
         {
           "name": "Blue Kut-Ku Cpc",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Long Kut-Ku Ear",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Pale Khezu Steak",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2686,9 +2686,9 @@
           "color": "white"
         },
         {
-          "name": "WhtMonoblosThrcic",
+          "name": "WhtMonoblosThora",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2700,8 +2700,8 @@
         {
           "name": "Monoblos Heart",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -2816,13 +2816,13 @@
         {
           "name": "Kirin Hide+",
           "amount": "3",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
           "name": "Kirin Thndr Tail",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2834,8 +2834,8 @@
         {
           "name": "Majestic Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -2950,14 +2950,14 @@
         {
           "name": "Fatalis Shell",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Fatalis Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Fatalis Scale",
@@ -3023,8 +3023,8 @@
         {
           "name": "Fire Drgn Jwl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         },
         {
           "name": "Lunastra Mane",
@@ -3084,14 +3084,14 @@
         {
           "name": "Fire Drgn Jwl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         },
         {
           "name": "Teostra Carapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "ElderDragonBlood",
@@ -3151,20 +3151,20 @@
         {
           "name": "Fatalis CrmsnShl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Fatalis CrmsnHrn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Fatalis CrmsnScl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Firecell Stone",
@@ -3218,8 +3218,8 @@
         {
           "name": "Long Garuga Ear",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Garuga carapce",
@@ -3236,8 +3236,8 @@
         {
           "name": "Black Blos Cpc",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ]
     },
@@ -3285,14 +3285,14 @@
         {
           "name": "Gaoren Thoracic",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
           "name": "Gaoren Carapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
           "name": "Firecell Stone",
@@ -3358,8 +3358,8 @@
         {
           "name": "Lao-ShanCarapace",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Lao-Shan Scale+",
@@ -3419,8 +3419,8 @@
         {
           "name": "Azure LaoS Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Lao-Shan's Ruby",
@@ -3431,8 +3431,8 @@
         {
           "name": "Lao-ShanCarapace",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "WyvernStone",
@@ -3553,19 +3553,19 @@
         {
           "name": "SpecRubberyHide+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "blue"
         },
         {
           "name": "Gypceros Head",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "KhezuHide-Cream",
           "amount": "3",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -3620,14 +3620,14 @@
         {
           "name": "HrdPuGypcerosWng",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "HardGypcerosHead",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Alluring Wing",
@@ -3687,8 +3687,8 @@
         {
           "name": "HrdCongalalaPlt+",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "CongalalaStrngFng",
@@ -3699,8 +3699,8 @@
         {
           "name": "Vibrant Pelt",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "yellow"
         },
         {
           "name": "Hvy Monster Bone",
@@ -3821,8 +3821,8 @@
         {
           "name": "PlumD.HermitrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "HrdHermitaurClaw",
@@ -3900,7 +3900,7 @@
         {
           "name": "Hypno Bezoar",
           "amount": "2",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -3955,20 +3955,20 @@
         {
           "name": "HvyBlueKut-KuShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Lucky Kut-Ku Ear",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Hypno Claw+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Hvy Monster Bone",
@@ -4089,8 +4089,8 @@
         {
           "name": "HvyBasariosShell",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "StrBasariosWing",
@@ -4162,7 +4162,7 @@
         {
           "name": "HvyBlangongaFang",
           "amount": "4",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -4290,13 +4290,13 @@
         {
           "name": "HvyGraviosShell",
           "amount": "8",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Gravios Skl Shl",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -4308,7 +4308,7 @@
         {
           "name": "HvnlyGraviosShl",
           "amount": "1",
-          "type": "bone",
+          "type": "heavenly",
           "color": "white"
         }
       ]
@@ -4363,8 +4363,8 @@
         {
           "name": "ThckFireDrgnScl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "FireDrgnStrngClaw",
@@ -4491,8 +4491,8 @@
         {
           "name": "ThickNargaScale",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "BlackNargaPelt+",
@@ -4558,7 +4558,7 @@
         {
           "name": "PhantomButterfly",
           "amount": "8",
-          "type": "bone",
+          "type": "insect",
           "color": "white"
         },
         {
@@ -4625,13 +4625,13 @@
         {
           "name": "SpecialKirinHide",
           "amount": "3",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
           "name": "Platinum Mane",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -4643,8 +4643,8 @@
         {
           "name": "StoutWarpedHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -4692,20 +4692,20 @@
         {
           "name": "SilverGarugaPelt",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
           "name": "Hvy Garuga Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Str Garuga Wing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Hvy Monster Bone",
@@ -4759,20 +4759,20 @@
         {
           "name": "TerraCeanatrShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
           "name": "TerraCeanatrClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "HvyBasariosShell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "ThckLavasiothScl",
@@ -4826,8 +4826,8 @@
         {
           "name": "Hvy Daora Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Daora Webing G",
@@ -4893,20 +4893,20 @@
         {
           "name": "HvyFatalisCrmShl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "HrdFatlisCrmHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "ThckFatlisCrmScl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "BigEDragonJewel",
@@ -4960,14 +4960,14 @@
         {
           "name": "HvyBlkGraviosShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Gravios BrainStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Firecell Stone",
@@ -4978,8 +4978,8 @@
         {
           "name": "HvnlyBlkGraviShl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         }
       ]
     },
@@ -5027,8 +5027,8 @@
         {
           "name": "HvyTeostraShell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "FireDragonStrngClw",
@@ -5094,8 +5094,8 @@
         {
           "name": "HvyBlkBlosSpine",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "HvyDiablosShell",
@@ -5112,8 +5112,8 @@
         {
           "name": "StoutBlkTwstdHrn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ]
     },
@@ -5161,14 +5161,14 @@
         {
           "name": "Hvy Fatalis Shl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "HardFatalisHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "ThckFatalisScale",
@@ -5228,8 +5228,8 @@
         {
           "name": "Hvy Tigrex Shell",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Skull Shl",
@@ -5240,14 +5240,14 @@
         {
           "name": "Hvy Tigrex Fang",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "HvnlyTigrexScale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "yellow"
         }
       ]
     },
@@ -5301,8 +5301,8 @@
         {
           "name": "HvyGaorenShell",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
           "name": "Firecell Stone",
@@ -5313,8 +5313,8 @@
         {
           "name": "HvnlyGaorenShell",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         }
       ]
     },
@@ -5496,7 +5496,7 @@
         {
           "name": "HvyUkanlosShell",
           "amount": "6",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -5569,8 +5569,8 @@
         {
           "name": "ThkBullfangoPelt",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "orange"
         },
         {
           "name": "RobustWyvernBone",
@@ -5636,14 +5636,14 @@
         {
           "name": "Kelbi Hide",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "blue"
         },
         {
           "name": "Majestic Horn",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Carpenterbug",
@@ -5904,8 +5904,8 @@
         {
           "name": "HardGypcerosHead",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Lightcrystal",
@@ -6038,8 +6038,8 @@
         {
           "name": "Vibrant Comb",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "orange"
         },
         {
           "name": "HrdCongalalaClw+",
@@ -6245,8 +6245,8 @@
         {
           "name": "Ancient Fish",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "gray"
         },
         {
           "name": "Hrd Monster Bone",
@@ -6306,14 +6306,14 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "PlumD.HermitrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "WyvernSkull Shl",
@@ -6379,13 +6379,13 @@
         {
           "name": "Lucky Kut-Ku Ear",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Pale Khezu Steak",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ]
@@ -6440,19 +6440,19 @@
         {
           "name": "ThkBlueKut-KuScl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "Long Kut-Ku Ear",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "KhezuSpecialCut",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ]
@@ -6513,14 +6513,14 @@
         {
           "name": "StoutBlkTwstdHrn",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Monoblos Heart",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -6775,8 +6775,8 @@
         {
           "name": "ThckFireDrgnScl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "LunastraCarapace",
@@ -6787,8 +6787,8 @@
         {
           "name": "Fire Drgn Jwl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ]
     },
