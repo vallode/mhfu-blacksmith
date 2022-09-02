@@ -56,7 +56,7 @@
       ]
     },
     {
-      "name": "Injection Cannon",
+      "name": "Injector Cannon",
       "attack": "168",
       "max-attack": "228",
       "rapid-fire": null,
@@ -119,6 +119,20 @@
           "amount": "2",
           "type": "bone",
           "color": "white"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        },
+        {
+          "name": "Vespoid Wing",
+          "amount": "1",
+          "type": "webbing",
+          "color": "yellow"
         }
       ]
     },
@@ -187,6 +201,20 @@
           "type": "claw",
           "color": "blue"
         }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Bulldrome Hide",
+          "amount": "1",
+          "type": "pelt",
+          "color": "white"
+        }
       ]
     },
     {
@@ -241,6 +269,20 @@
           "amount": "10",
           "type": "ore",
           "color": "white"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Rubbery Hide",
+          "amount": "1",
+          "type": "pelt",
+          "color": "blue"
         }
       ]
     },
@@ -1709,6 +1751,20 @@
           "amount": "6",
           "type": "insect",
           "color": "slate"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
         }
       ]
     },

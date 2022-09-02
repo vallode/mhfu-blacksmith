@@ -108,6 +108,14 @@
           "type": "ore",
           "color": "gray"
         }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
       ]
     },
     {
@@ -173,6 +181,20 @@
           "name": "Velociprey Hide",
           "amount": "4",
           "type": "pelt",
+          "color": "blue"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Velociprey Scale",
+          "amount": "1",
+          "type": "scale",
           "color": "blue"
         }
       ]
@@ -375,6 +397,20 @@
           "amount": "5",
           "type": "ore",
           "color": "white"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Cephalos Scale",
+          "amount": "1",
+          "type": "scale",
+          "color": "cyan"
         }
       ]
     },
@@ -2952,6 +2988,20 @@
           "amount": "3",
           "type": "insect",
           "color": "slate"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
         }
       ]
     },

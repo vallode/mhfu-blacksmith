@@ -10,10 +10,23 @@
       "bonus": null,
       "rarity": "6",
       "type": "db",
-      "create-cost": null,
+      "create-cost": "30000",
       "improve-cost": "30000",
       "improve-from": "Odyssey",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "1",
+          "type": "ore",
+          "color": "slate"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Carbalite Ore",
@@ -839,6 +852,20 @@
           "color": "white"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Disk Stone",
+          "amount": "1",
+          "type": "ore",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Machalite Ore",
@@ -1566,6 +1593,20 @@
           "color": "yellow"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Giaprey Hide",
+          "amount": "1",
+          "type": "pelt",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Giaprey Scale",
@@ -1673,10 +1714,23 @@
       "bonus": null,
       "rarity": "4",
       "type": "db",
-      "create-cost": null,
+      "create-cost": "4480",
       "improve-cost": "4480",
       "improve-from": "Velociprey Claws",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Tigrex Claw",
+          "amount": "1",
+          "type": "claw",
+          "color": "yellow"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Tigrex Claw",

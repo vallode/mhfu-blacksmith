@@ -341,6 +341,20 @@
           "color": "gray"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Giaprey Hide",
+          "amount": "1",
+          "type": "pelt",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Giaprey Hide",
@@ -901,6 +915,20 @@
           "color": "gray"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Hermitaur Claw+",
+          "amount": "1",  
+          "type": "claw",
+          "color": "red"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Hermitaur Claw+",
@@ -1124,6 +1152,20 @@
           "color": "red"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "1",
+          "type": "ore",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Iron Ore",
@@ -1251,10 +1293,23 @@
         "level": "3"
       },
       "type": "gl",
-      "create-cost": null,
+      "create-cost": "3100",
       "improve-cost": "3100",
       "improve-from": "Steel Gunlance",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Firestone",
+          "amount": "1",
+          "type": "ore",
+          "color": "red"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Machalite Ore",

@@ -2224,6 +2224,20 @@
           "color": "gray"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Giaprey Scale",
+          "amount": "1",
+          "type": "scale",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Giaprey Hide",
@@ -2588,13 +2602,26 @@
         "r"
       ],
       "type": "hh",
-      "create-cost": null,
+      "create-cost": "1575",
       "improve-cost": "1575",
       "improve-from": [
         "Ivory Horn",
         "Cyclo-Hammer"
       ],
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Brute Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Blue Mushroom",
@@ -3046,10 +3073,29 @@
         "r"
       ],
       "type": "hh",
-      "create-cost": null,
+      "create-cost": "5040",
       "improve-cost": "5040",
       "improve-from": "War Drum",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Striped Skin",
+          "amount": "1",
+          "type": "pelt",
+          "color": "gray"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "1",
+          "type": "bone",
+          "color": "orange"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Vibrant Pelt",
@@ -3117,6 +3163,20 @@
           "amount": "3",
           "type": "bone",
           "color": "red"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Congalala Pelt+",
+          "amount": "1",  
+          "type": "pelt",
+          "color": "pink"
         }
       ],
       "improve-mats": [

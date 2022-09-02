@@ -45,10 +45,17 @@
       "bonus": null,
       "rarity": "1",
       "type": "gs",
-      "create-cost": null,
+      "create-cost": "850",
       "improve-cost": "850",
       "improve-from": "Buster Sword",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Iron Ore",
@@ -187,6 +194,20 @@
         "Ravager Blade"
       ],
       "create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": "1",
+          "type": "ore",
+          "color": "green"
+        }
+      ],
+      "alternative-create-mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -2072,6 +2093,20 @@
           "color": "white"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Brute Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Sm Monster Bone",
@@ -2669,6 +2704,26 @@
         "Golem Blade+"
       ],
       "create-mats": [
+        {
+          "name": "Plus Class Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": "1",
+          "type": "insect",
+          "color": "red"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "1",
+          "type": "bone",
+          "color": "orange"
+        }
+      ],
+      "alternative-create-mats": [
         {
           "name": "Plus Class Ticket",
           "amount": "1",
