@@ -130,19 +130,19 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
 
-        if value["create-mats"]
-          create_mats = value["create-mats"]
-          value["create-mats"] = nil
+        if value["create_mats"]
+          create_mats = value["create_mats"]
+          value["create_mats"] = nil
         end
 
-        if value["improve-mats"]
-          improve_mats = value["improve-mats"]
-          value["improve-mats"] = nil
+        if value["improve_mats"]
+          improve_mats = value["improve_mats"]
+          value["improve_mats"] = nil
         end
 
-        if value["alternative-create-mats"]
-          alternative_create_mats = value["alternative-create-mats"]
-          value["alternative-create-mats"] = nil
+        if value["alternative_create_mats"]
+          alternative_create_mats = value["alternative_create_mats"]
+          value["alternative_create_mats"] = nil
         end
         
         if value["element"]
