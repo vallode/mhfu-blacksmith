@@ -1305,8 +1305,8 @@
         {
           "name": "Gunpowder",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ]
     },
@@ -1372,8 +1372,8 @@
         {
           "name": "Gunpowder",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ]
     },
@@ -1933,8 +1933,8 @@
         {
           "name": "Tigrex Coin",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "Blackbelt Ticket",
@@ -1945,14 +1945,14 @@
         {
           "name": "Khezu Coin",
           "amount": "7",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
           "name": "Yian Garuga Coin",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "slate"
         }
       ]
     },
@@ -2670,8 +2670,8 @@
         {
           "name": "Hornetaur Crapce",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Stout Bone",
@@ -2737,8 +2737,8 @@
         {
           "name": "Toxin Sac",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Stout Bone",
@@ -3216,10 +3216,10 @@
           "color": "white"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ]
     },
@@ -3334,8 +3334,8 @@
         {
           "name": "Narga Scale+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Black Narga Pelt",
@@ -3785,8 +3785,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassPlus",
@@ -3852,8 +3852,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassPlus",
@@ -3992,14 +3992,14 @@
         {
           "name": "Kirin Coin",
           "amount": "7",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
           "name": "Fire Coin",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         },
         {
           "name": "Expert Ticket",
@@ -4203,10 +4203,10 @@
           "color": "white"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ]
     },
@@ -4668,8 +4668,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Carbalite Ore",
@@ -6270,14 +6270,14 @@
         {
           "name": "Warrior Coin G",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "cyan"
         },
         {
           "name": "BlackBeltCoinG",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "gray"
         },
         {
           "name": "Commendation G",
@@ -6672,7 +6672,7 @@
         {
           "name": "ThckSlvrRthlsScl",
           "amount": "6",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -6952,8 +6952,8 @@
         {
           "name": "Expert Coin G",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         }
       ]
     },
@@ -7068,7 +7068,7 @@
         {
           "name": "ThckWhtFatlisScl",
           "amount": "4",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -7214,7 +7214,7 @@
         {
           "name": "UkanlosUnderscl",
           "amount": "4",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -7348,14 +7348,14 @@
         {
           "name": "Hornetaur Crapce",
           "amount": "30",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ]
     },
@@ -8548,8 +8548,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassPlus",
@@ -8615,8 +8615,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "BlackNargaPelt+",

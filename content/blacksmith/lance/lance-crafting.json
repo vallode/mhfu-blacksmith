@@ -322,8 +322,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Piercing Claw",
@@ -946,8 +946,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -977,8 +977,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Firestone",
@@ -1065,9 +1065,9 @@
           "color": "white"
         },
         {
-          "name": "Phantom Butterfly",
+          "name": "PhantomButterfly",
           "amount": "5",
-          "type": "bone",
+          "type": "insect",
           "color": "white"
         }
       ],
@@ -1281,8 +1281,8 @@
         {
           "name": "Gunpowder",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1306,10 +1306,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         },
         {
           "name": "Dragonite Ore",
@@ -1320,8 +1320,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1395,8 +1395,8 @@
         {
           "name": "Poison Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Machalite Ore",
@@ -1696,10 +1696,10 @@
           "color": "cyan"
         },
         {
-          "name": "Sleepyfish",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         },
         {
           "name": "Springnight Carp",
@@ -1903,8 +1903,8 @@
         {
           "name": "Poison Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -1942,8 +1942,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -1982,8 +1982,8 @@
         {
           "name": "Poison Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2021,8 +2021,8 @@
         {
           "name": "Toxin Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2416,16 +2416,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "HvyCeanataurLeg",
@@ -2808,10 +2808,10 @@
           "color": "white"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Hrd Monster Bone",
@@ -3183,8 +3183,8 @@
         {
           "name": "Toxin Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -3395,7 +3395,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -3434,7 +3434,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -3930,10 +3930,10 @@
           "color": "white"
         },
         {
-          "name": "Giant Black Pearl",
+          "name": "Giant Blk Pearl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Heavy Gaoren Shell",
@@ -4043,14 +4043,14 @@
         {
           "name": "Hornetaur Shell",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Vespoid Abdomen",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Paralysis Sac",
@@ -4082,8 +4082,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Hercudrome",
@@ -4166,14 +4166,14 @@
         {
           "name": "Vespoid RazorWing",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Crapce",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Monster Essence",
@@ -4376,7 +4376,7 @@
         {
           "name": "Wyvern Claw",
           "amount": "6",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -4459,8 +4459,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -4577,9 +4577,9 @@
           "color": "white"
         },
         {
-          "name": "Godbug",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
+          "type": "insect",
           "color": "white"
         }
       ],
@@ -4800,8 +4800,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -5193,20 +5193,20 @@
         {
           "name": "Congalala Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "pink"
         },
         {
           "name": "Plesioth Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "blue"
         },
         {
           "name": "Kut-Ku Coin",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "pink"
         }
       ],
       "improve-mats": null,
@@ -5239,7 +5239,7 @@
         {
           "name": "Kirin Coin",
           "amount": "5",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
@@ -5284,8 +5284,8 @@
         {
           "name": "Expert Coin G",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "Commendation G",
@@ -5506,7 +5506,7 @@
         {
           "name": "Wyvern Claw",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5552,8 +5552,8 @@
         {
           "name": "Toxin Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "FlynMealPassReg",
@@ -6117,7 +6117,7 @@
         {
           "name": "UkanlosUnderscl",
           "amount": "8",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -6465,10 +6465,10 @@
           "color": "blue"
         },
         {
-          "name": "Sleepyfish",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -6504,8 +6504,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "QueenVespoidShl",
@@ -6676,8 +6676,8 @@
         {
           "name": "Gunpowder",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "FireWyvrn BrainStm",
@@ -6891,7 +6891,7 @@
         {
           "name": "Kirin Coin",
           "amount": "6",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
@@ -7153,9 +7153,9 @@
           "color": "yellow"
         },
         {
-          "name": "Phantom Butterfly",
+          "name": "PhantomButterfly",
           "amount": "5",
-          "type": "bone",
+          "type": "insect",
           "color": "white"
         }
       ],
@@ -7358,8 +7358,8 @@
         {
           "name": "ThckDaoraDrgnScl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Carbalite Ore",
@@ -7368,10 +7368,10 @@
           "color": "slate"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -7536,8 +7536,8 @@
         {
           "name": "Poison Sac",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Gravios BrainStm",

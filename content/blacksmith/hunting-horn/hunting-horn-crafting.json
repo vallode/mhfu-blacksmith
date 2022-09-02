@@ -40,8 +40,8 @@
         {
           "name": "Screamer",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -60,8 +60,8 @@
         {
           "name": "Screamer",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -424,10 +424,10 @@
           "color": "yellow"
         },
         {
-          "name": "Small Goldenfish",
+          "name": "Firestone",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -561,8 +561,8 @@
         {
           "name": "Screamer",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -631,8 +631,8 @@
         {
           "name": "Screamer",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1363,8 +1363,8 @@
         {
           "name": "Pale Extract",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "Electro Sac",
@@ -1539,8 +1539,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         },
         {
           "name": "Thunder Sac",
@@ -1879,10 +1879,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "TerraCeanatrShl",
@@ -1934,8 +1934,8 @@
         {
           "name": "Vespoid Wing",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Wing",
@@ -1954,20 +1954,20 @@
         {
           "name": "Vespoid Abdomen",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Vespoid Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -2004,8 +2004,8 @@
         {
           "name": "Vespoid Wing",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Wing",
@@ -2048,8 +2048,8 @@
         {
           "name": "Vespoid InnrWng",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur InnrWng",
@@ -2103,8 +2103,8 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -2284,8 +2284,8 @@
         {
           "name": "Screamer",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -2377,8 +2377,8 @@
         {
           "name": "Screamer",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -2419,10 +2419,10 @@
           "color": "blue"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Remobra Skin+",
@@ -3301,10 +3301,10 @@
           "color": "yellow"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -3339,10 +3339,10 @@
           "color": "white"
         },
         {
-          "name": "CongalalaPelt+",
+          "name": "Congalala Pelt+",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "CongaClaw",
@@ -3440,8 +3440,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Chameleos Jewel",
@@ -3520,19 +3520,19 @@
         {
           "name": "Wht Fatalis Horn",
           "amount": "2",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
           "name": "Wht Fatalis Wbng",
           "amount": "1",
-          "type": "bone",
+          "type": "webbing",
           "color": "white"
         },
         {
           "name": "Wht Fatalis Scl",
           "amount": "2",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -3570,7 +3570,7 @@
         {
           "name": "HrdWhtFatlisHorn",
           "amount": "2",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -3582,7 +3582,7 @@
         {
           "name": "ThckWhtFatlisScl",
           "amount": "2",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -3787,8 +3787,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         },
         {
           "name": "Thunderbug Jelly",
@@ -3826,10 +3826,10 @@
       "improve-from": null,
       "create-mats": [
         {
-          "name": "Tailed Frog",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "cyan"
         },
         {
           "name": "Dragonwood+",
@@ -3871,10 +3871,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Tailed Frog",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "cyan"
         },
         {
           "name": "Frog",
@@ -4217,8 +4217,8 @@
         {
           "name": "Akantor Scale",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Firecell Stone",
@@ -4315,7 +4315,7 @@
         {
           "name": "Ukanlosunderscl",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -4465,8 +4465,8 @@
         {
           "name": "Screamer",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -4597,8 +4597,8 @@
         {
           "name": "Vespoid Abdomen",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Vspoid Razorwing",

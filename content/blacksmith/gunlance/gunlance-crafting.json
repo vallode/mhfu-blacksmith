@@ -291,8 +291,8 @@
         {
           "name": "Coma Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -489,10 +489,10 @@
           "color": "gray"
         },
         {
-          "name": "Burst Arrowana",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "green"
         }
       ],
       "improve-mats": [
@@ -628,8 +628,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         },
         {
           "name": "Green Plesioth Scale+",
@@ -779,8 +779,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-mats": [
@@ -989,16 +989,16 @@
       "improve-from": "Scissor Cannon",
       "create-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "Giant Blk Pearl",
@@ -1015,16 +1015,16 @@
       ],
       "improve-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "Blazing Fire Sac",
@@ -1058,16 +1058,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "HvyLavasiothFang",
@@ -1114,8 +1114,8 @@
         {
           "name": "Gunpowder",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Flame Sac",
@@ -1183,8 +1183,8 @@
         {
           "name": "Gunpowder",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1357,7 +1357,7 @@
         {
           "name": "Slvr Rthlos Scl+",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         }
       ],
@@ -1406,8 +1406,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1818,8 +1818,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         },
         {
           "name": "Blk Gravios Shl",
@@ -2227,10 +2227,10 @@
           "color": "white"
         },
         {
-          "name": "Rumblefish",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -2309,10 +2309,10 @@
           "color": "yellow"
         },
         {
-          "name": "Burst Arrowana",
+          "name": "Firestone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "green"
         }
       ],
       "improve-to": [
@@ -2536,10 +2536,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "BlangoFang",
+          "name": "HvtC.BlangoFang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "BlangongaPelt+",
@@ -2639,8 +2639,8 @@
         {
           "name": "Poison Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Firestone",
@@ -2665,8 +2665,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2745,8 +2745,8 @@
         {
           "name": "Toxin Sac",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Novacrystal",
@@ -3342,8 +3342,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         },
         {
           "name": "ThckFireDrgnScl",
@@ -3650,8 +3650,8 @@
         {
           "name": "Narga Scale+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -3901,8 +3901,8 @@
         {
           "name": "Gunpowder",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Eltalite Ore",
@@ -3958,10 +3958,10 @@
           "color": "white"
         },
         {
-          "name": "Burst Arrowana",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "green"
         }
       ],
       "improve-mats": null,
@@ -4146,10 +4146,10 @@
           "color": "slate"
         },
         {
-          "name": "Deadly Poison Sac",
+          "name": "DeadlyPoisonSac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-mats": null,

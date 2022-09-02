@@ -99,14 +99,14 @@
         {
           "name": "Vespoid Wing",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Disk Stone",
@@ -562,8 +562,8 @@
         {
           "name": "Poison Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Basarios Wing",
@@ -690,14 +690,14 @@
         {
           "name": "Vespoid Abdomen",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Shell",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Monster Bone+",
@@ -769,7 +769,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "2",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         }
       ]
@@ -1086,8 +1086,8 @@
         {
           "name": "Great Ladybug",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         },
         {
           "name": "Killer Beetle",
@@ -1360,8 +1360,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "ElderDragonBlood",
@@ -1945,20 +1945,20 @@
         {
           "name": "Vespoid Carapace",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Vespoid Abdomen",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "HorNetaur Crapce",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "King Scarab",
@@ -2162,10 +2162,10 @@
           "color": "pink"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ]
     },
@@ -2414,8 +2414,8 @@
         {
           "name": "Narga Scale+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Black Narga Pelt",
@@ -2747,16 +2747,16 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Great Ladybug",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -2962,8 +2962,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Union Ore",
@@ -4424,14 +4424,14 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Vespoid Abdomen",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Lightning Sac",
@@ -4570,8 +4570,8 @@
         {
           "name": "Great Ladybug",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "red"
         },
         {
           "name": "Monster Essence",
@@ -5368,8 +5368,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         },
         {
           "name": "Thunderbug Jelly",
@@ -5441,8 +5441,8 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "Big WyvernStone",
@@ -5508,7 +5508,7 @@
         {
           "name": "UkanlosUnderscl",
           "amount": "3",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -5770,8 +5770,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         },
         {
           "name": "Verspoid Abdomen",
@@ -5782,8 +5782,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ]
     },
@@ -5843,8 +5843,8 @@
         {
           "name": "Toxin Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Purecrystal",
@@ -6641,8 +6641,8 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Thunderbug Jelly",
@@ -6842,8 +6842,8 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Ruby",

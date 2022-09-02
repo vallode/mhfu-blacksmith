@@ -92,10 +92,10 @@
           "color": "yellow"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -139,8 +139,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -381,9 +381,9 @@
           "color": "white"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": "15",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
@@ -733,10 +733,10 @@
           "color": "white"
         },
         {
-          "name": "BlangoFang",
+          "name": "HvtC.BlangoFang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Eltalite Ore",
@@ -862,8 +862,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -895,8 +895,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "FireWyvrn BrnStm",
@@ -1198,10 +1198,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "TerraCeanatrClaw",
@@ -2201,10 +2201,10 @@
           "color": "white"
         },
         {
-          "name": "Knife Mackerel",
+          "name": "Firestone",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         },
         {
           "name": "Monster Fluid",
@@ -2303,8 +2303,8 @@
         {
           "name": "Toxin Sac",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Union Ore",
@@ -2495,7 +2495,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -2534,7 +2534,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -3027,8 +3027,8 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "Commendation S",
@@ -3279,7 +3279,7 @@
         {
           "name": "ThckSlvrRthlsScl",
           "amount": "3",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -3347,8 +3347,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -3452,8 +3452,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Hornetaur Wing",
@@ -3491,14 +3491,14 @@
         {
           "name": "Hornetaur Shell",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Vespoid Shell",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Hercudrome",
@@ -3530,8 +3530,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "HornetaurInnrWng",
@@ -3639,8 +3639,8 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Monster Essence",
@@ -4045,8 +4045,8 @@
         {
           "name": "YamatsukamiFluid",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         },
         {
           "name": "Thunderbug Juice",
@@ -4369,8 +4369,8 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "PhantomButterfly",
@@ -4411,8 +4411,8 @@
         {
           "name": "Daora Webbing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Remobra Skin",
