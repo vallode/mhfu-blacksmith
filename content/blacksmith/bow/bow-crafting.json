@@ -152,12 +152,14 @@
           "amount": "5",
           "type": "pelt",
           "color": "green"
-        },
+        }
+      ],
+      "alternative-create-mats": [
         {
-          "name": "or Hard Ticket",
+          "name": "Hard Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Piscine Fang",
@@ -651,12 +653,14 @@
           "amount": "10",
           "type": "bone",
           "color": "white"
-        },
+        }
+      ],
+      "alternative-create-mats": [
         {
-          "name": "or Plus Class Ticket",
+          "name": "Plus Class Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         },
         {
           "name": "Sharp Claw",

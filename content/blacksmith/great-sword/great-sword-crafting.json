@@ -420,12 +420,14 @@
           "amount": "20",
           "type": "ore",
           "color": "blue"
-        },
+        }
+      ],
+      "alternative-create-mats": [
         {
-          "name": "orPlus Class Ticket",
+          "name": "Plus Class Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         },
         {
           "name": "Carbalite Ore",
@@ -2827,12 +2829,14 @@
           "amount": "10",
           "type": "bone",
           "color": "yellow"
-        },
+        }
+      ],
+      "alternative-create-mats": [
         {
-          "name": "orPlus Class Ticket",
+          "name": "Plus Class Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         },
         {
           "name": "Hrd Monster Bone",
