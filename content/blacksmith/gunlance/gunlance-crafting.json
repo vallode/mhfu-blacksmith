@@ -445,8 +445,8 @@
         {
           "name": "Inferno Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -917,8 +917,8 @@
         {
           "name": "Inferno Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2493,7 +2493,26 @@
       "improve-cost": "90000",
       "improve-from": "Hellstinger",
       "create-mats": null,
-      "improve-mats": null,
+      "improve-mats": [
+        {
+          "name": "HvyBlangongaFang",
+          "amount": "4",
+          "type": "claw",
+          "color": "white"
+        },
+        {
+          "name": "Lthr Pelagus Plt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "HrdBlangongaPlt+",
+          "amount": "8",
+          "type": "pelt",
+          "color": "white"
+        }
+      ],
       "improve-to": null,
       "sharpness_plus": "2.4.16.7.5.6.5"
     },
@@ -2775,8 +2794,8 @@
         {
           "name": "Inferno Sac",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2891,8 +2910,8 @@
         {
           "name": "Inferno Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -3369,8 +3388,8 @@
         {
           "name": "Inferno Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Ivy",
@@ -4082,8 +4101,8 @@
         {
           "name": "Inferno Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-mats": null,
