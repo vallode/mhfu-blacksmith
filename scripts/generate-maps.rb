@@ -20,7 +20,7 @@ WEAPON_PAIRS = [
   ["heavy-bowgun"],
   ["bow"],
   ["decoration"],
-  ["head"],
+  ["helmet"],
 ]
 
 WEAPON_ABBR = {
@@ -36,7 +36,7 @@ WEAPON_ABBR = {
   "heavy-bowgun": "hbg",
   "bow": "bw",
   "decoration": "dec",
-  "head": "head"
+  "helmet": "helmet"
 }
 
 def slugify(value)

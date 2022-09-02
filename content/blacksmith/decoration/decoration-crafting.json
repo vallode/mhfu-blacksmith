@@ -2,7 +2,7 @@
   "weapons": [
     {
       "name": "Attack up",
-      "improve-to": [
+      "improve_to": [
         "Attack Jewel",
         "Fierce Jewel",
         "Strongest Jewel"
@@ -14,7 +14,7 @@
       "skills": [
         "Attack +1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -37,7 +37,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -46,7 +46,7 @@
         "Attack +3",
         "Defense -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -69,7 +69,7 @@
       "color": "red",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -78,7 +78,7 @@
         "Attack +5",
         "Defense -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -107,12 +107,12 @@
       "color": "red",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "ESP",
-      "improve-to": [
+      "improve_to": [
         "Fencer Jewel",
         "Swordsman Jewel"
       ],
@@ -124,7 +124,7 @@
         "Fencing +1",
         "Recovery -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -138,7 +138,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -161,7 +161,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -170,7 +170,7 @@
         "Fencing +4",
         "Recovery -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -199,12 +199,12 @@
       "color": "cyan",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Sharp Sword",
-      "improve-to": [
+      "improve_to": [
         "Razor Jewel",
         "Cutter Jewel"
       ],
@@ -216,7 +216,7 @@
         "Sharpness +1",
         "Defense -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -239,7 +239,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -248,7 +248,7 @@
         "Sharpness +4",
         "Defense -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -277,12 +277,12 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Reckless Abandon",
-      "improve-to": [
+      "improve_to": [
         "Expert Jewel",
         "Celebrity Jewel",
         "Hermit Jewel"
@@ -295,7 +295,7 @@
         "Expert +1",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -318,7 +318,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -327,7 +327,7 @@
         "Expert +3",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -347,7 +347,7 @@
           "color": "yellow"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -364,7 +364,7 @@
       "color": "blue",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -373,7 +373,7 @@
         "Expert +5",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -402,12 +402,12 @@
       "color": "blue",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Sharping Skl Inc",
-      "improve-to": [
+      "improve_to": [
         "Grinder Jewel"
       ],
       "donotrender": true
@@ -417,7 +417,7 @@
       "skills": [
         "SwrShrpner +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -440,12 +440,12 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Art of Unsheathing",
-      "improve-to": [
+      "improve_to": [
         "Sword Draw Jewel",
         "UnsheathingJewel"
       ],
@@ -457,7 +457,7 @@
         "Sword Draw +1",
         "Expert -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -477,7 +477,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -494,7 +494,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -503,7 +503,7 @@
         "Sword Draw +3",
         "Expert -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -526,12 +526,12 @@
       "color": "red",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Spc Atk Up",
-      "improve-to": [
+      "improve_to": [
         "SpecialAtk Jewel",
         "SpecialAtkJewel+"
       ],
@@ -543,7 +543,7 @@
         "Spc Attack +1",
         "Rec Speed -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -566,7 +566,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -575,7 +575,7 @@
         "Spc Attack +3",
         "Rec Speed -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -598,12 +598,12 @@
       "color": "pink",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Elem Atk Up",
-      "improve-to": [
+      "improve_to": [
         "Element Jewel",
         "Element Jewel+"
       ],
@@ -615,7 +615,7 @@
         "ElementAtk +1",
         "Rec Speed -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -644,7 +644,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -653,7 +653,7 @@
         "ElementAtk +4",
         "Rec Speed -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -682,12 +682,12 @@
       "color": "pink",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Bomber",
-      "improve-to": [
+      "improve_to": [
         "Bombardier Jewel"
       ],
       "donotrender": true
@@ -697,7 +697,7 @@
       "skills": [
         "BombStrUp +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -720,12 +720,12 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Focus",
-      "improve-to": [
+      "improve_to": [
         "ShortChargeJewel",
         "RapidChargeJewel"
       ],
@@ -737,7 +737,7 @@
         "ShortCharg +1",
         "Constitutn -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -757,7 +757,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -780,7 +780,7 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -789,7 +789,7 @@
         "ShortCharg +4",
         "Constitutn -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -818,12 +818,12 @@
       "color": "orange",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Guts",
-      "improve-to": [
+      "improve_to": [
         "Guts Jewel",
         "More Guts Jewel"
       ],
@@ -835,7 +835,7 @@
         "Guts +1",
         "MixSucRate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -858,7 +858,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -867,7 +867,7 @@
         "Guts +3",
         "MixSucRate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -896,12 +896,12 @@
       "color": "pink",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Defense up",
-      "improve-to": [
+      "improve_to": [
         "Defense Jewel",
         "Turtle Jewel"
       ],
@@ -912,7 +912,7 @@
       "skills": [
         "Defense +1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -929,7 +929,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -938,7 +938,7 @@
         "Defense +3",
         "All Resist -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -958,7 +958,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -975,12 +975,12 @@
       "color": "blue",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Fire Res up",
-      "improve-to": [
+      "improve_to": [
         "Inferno Jewel",
         "Crimson Jewel"
       ],
@@ -992,7 +992,7 @@
         "Fire Res +1",
         "Water Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1009,7 +1009,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1017,7 +1017,7 @@
       "skills": [
         "Fire Res +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1034,12 +1034,12 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Water Res up",
-      "improve-to": [
+      "improve_to": [
         "Stream Jewel",
         "Torrent Jewel"
       ],
@@ -1051,7 +1051,7 @@
         "Water Res +1",
         "ThunderRes -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1068,7 +1068,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1076,7 +1076,7 @@
       "skills": [
         "Water Res +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1093,12 +1093,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Ice Res up",
-      "improve-to": [
+      "improve_to": [
         "Freeze Jewel",
         "Glacier Jewel"
       ],
@@ -1110,7 +1110,7 @@
         "Ice Res +1",
         "Fire Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1127,7 +1127,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1135,7 +1135,7 @@
       "skills": [
         "Ice Skill +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1152,12 +1152,12 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Thunder Res up",
-      "improve-to": [
+      "improve_to": [
         "Lightning Jewel",
         "Thunder Jewel"
       ],
@@ -1169,7 +1169,7 @@
         "ThunderRes +1",
         "Ice Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1186,7 +1186,7 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1194,7 +1194,7 @@
       "skills": [
         "ThunderRes +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1211,12 +1211,12 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Dragon Res up",
-      "improve-to": [
+      "improve_to": [
         "Slayer Jewel",
         "Extinction Jewel"
       ],
@@ -1228,7 +1228,7 @@
         "Dragon Res +1",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1251,7 +1251,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1260,7 +1260,7 @@
         "Dragon Res +3",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -1283,12 +1283,12 @@
       "color": "slate",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "All Res up",
-      "improve-to": [
+      "improve_to": [
         "Impervious Jewel",
         "Omnipotent Jewel",
         "TrueResistJewel"
@@ -1301,7 +1301,7 @@
         "All Resist +1",
         "Everlasting -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -1318,7 +1318,7 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1327,7 +1327,7 @@
         "All Resist +3",
         "Everlasting -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1350,7 +1350,7 @@
       "color": "green",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -1359,7 +1359,7 @@
         "All Resist +5",
         "Everlasting -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1388,12 +1388,12 @@
       "color": "green",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Guard up",
-      "improve-to": [
+      "improve_to": [
         "Stone Wall Jewel",
         "IronCurtainJewel"
       ],
@@ -1405,7 +1405,7 @@
         "Guard +1",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1428,7 +1428,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1437,7 +1437,7 @@
         "Guard +3",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -1457,7 +1457,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1480,12 +1480,12 @@
       "color": "gray",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Guard inc",
-      "improve-to": [
+      "improve_to": [
         "Hard Wall Jewel",
         "StrongWall Jewel",
         "Wall Jewel"
@@ -1498,7 +1498,7 @@
         "Guard Up +1",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -1515,7 +1515,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1524,7 +1524,7 @@
         "Guard Up +4",
         "Stamina -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1553,7 +1553,7 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
@@ -1562,7 +1562,7 @@
         "Guard Up +3",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1585,12 +1585,12 @@
       "color": "gray",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Auto-Guard",
-      "improve-to": [
+      "improve_to": [
         "HvnlyShieldJewel"
       ],
       "donotrender": true
@@ -1600,7 +1600,7 @@
       "skills": [
         "Auto-Guard +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1623,12 +1623,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Health up",
-      "improve-to": [
+      "improve_to": [
         "Strength Jewel"
       ],
       "donotrender": true
@@ -1638,7 +1638,7 @@
       "skills": [
         "Health +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -1655,12 +1655,12 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Damage Rec Spd up",
-      "improve-to": [
+      "improve_to": [
         "Feel Good Jewel",
         "SpeedyRecvrJewel"
       ],
@@ -1672,7 +1672,7 @@
         "Rec Speed +1",
         "Faint -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1695,7 +1695,7 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1704,7 +1704,7 @@
         "Rec Speed +3",
         "Faint -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1724,7 +1724,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -1753,12 +1753,12 @@
       "color": "green",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "HealthRecItemsImprvd",
-      "improve-to": [
+      "improve_to": [
         "Curing Jewel",
         "Cure All Jewel",
         "Cure All Jewel+"
@@ -1771,7 +1771,7 @@
         "Recovery +1",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1794,7 +1794,7 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1803,7 +1803,7 @@
         "Recovery +2",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1826,7 +1826,7 @@
       "color": "green",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -1835,7 +1835,7 @@
         "Recovery +3",
         "Health -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1864,12 +1864,12 @@
       "color": "green",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Wide Area",
-      "improve-to": [
+      "improve_to": [
         "Friendship Jewel",
         "Beloved Jewel",
         "Tenderness Jewel"
@@ -1882,7 +1882,7 @@
         "Wide Area +1",
         "Sneak -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -1905,7 +1905,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -1914,7 +1914,7 @@
         "Wide Area +3",
         "Sneak -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1943,7 +1943,7 @@
       "color": "pink",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -1952,7 +1952,7 @@
         "Wide Area +5",
         "Sneak -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -1981,12 +1981,12 @@
       "color": "pink",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Divine Protection",
-      "improve-to": [
+      "improve_to": [
         "Protection Jewel",
         "DivineProtectJwl"
       ],
@@ -1997,7 +1997,7 @@
       "skills": [
         "Protection +1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2020,7 +2020,7 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2028,7 +2028,7 @@
       "skills": [
         "Protection +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2051,12 +2051,12 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Constitutn",
-      "improve-to": [
+      "improve_to": [
         "Constitutn Jewel",
         "Health Jewel"
       ],
@@ -2068,7 +2068,7 @@
         "Constitutn +1",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2091,7 +2091,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2100,7 +2100,7 @@
         "Constitutn +3",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -2126,7 +2126,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2149,12 +2149,12 @@
       "color": "white",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Hunger Halved/Negate",
-      "improve-to": [
+      "improve_to": [
         "PickyEater Jewel",
         "Fasting Jewel",
         "No Food Jewel"
@@ -2167,7 +2167,7 @@
         "Hunger +1",
         "Cooking -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -2190,7 +2190,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2199,7 +2199,7 @@
         "Hunger +3",
         "Cooking -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2228,7 +2228,7 @@
       "color": "white",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -2236,7 +2236,7 @@
       "skills": [
         "Hunger +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2265,12 +2265,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Filled Up/Scavenger",
-      "improve-to": [
+      "improve_to": [
         "Fatso Jewel"
       ],
       "donotrender": true
@@ -2280,7 +2280,7 @@
       "skills": [
         "Gluttony +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito jewel",
           "amount": "1",
@@ -2303,12 +2303,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Quick Eating",
-      "improve-to": [
+      "improve_to": [
         "QuickEaterJewel",
         "Fast Food Jewel"
       ],
@@ -2320,7 +2320,7 @@
         "Cooking +1",
         "Recovery -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -2343,7 +2343,7 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2352,7 +2352,7 @@
         "Cooking +2",
         "Recovery -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2381,12 +2381,12 @@
       "color": "yellow",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Runner",
-      "improve-to": [
+      "improve_to": [
         "Marathon Jewel",
         "Sprinter Jewel"
       ],
@@ -2398,7 +2398,7 @@
         "Stamina +1",
         "Hunger -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2427,7 +2427,7 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2436,7 +2436,7 @@
         "Stamina +4",
         "Hunger -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2465,12 +2465,12 @@
       "color": "yellow",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Throwing Sk Up",
-      "improve-to": [
+      "improve_to": [
         "Hardball Jewel"
       ],
       "donotrender": true
@@ -2480,7 +2480,7 @@
       "skills": [
         "Throw +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -2503,12 +2503,12 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Reload Speed up",
-      "improve-to": [
+      "improve_to": [
         "Early Bird Jewel",
         "High Speed Jewel"
       ],
@@ -2520,7 +2520,7 @@
         "Load +1",
         "Hunger -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2543,7 +2543,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2552,7 +2552,7 @@
         "Load +3",
         "Hunger -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2575,12 +2575,12 @@
       "color": "cyan",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Autoreload",
-      "improve-to": [
+      "improve_to": [
         "Cont. Fire Jewel",
         "Barrage Jewel"
       ],
@@ -2592,7 +2592,7 @@
         "Speed Fire +1",
         "Protection -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -2606,7 +2606,7 @@
           "color": "green"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2629,7 +2629,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2638,7 +2638,7 @@
         "Speed Fire +4",
         "Protection -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2667,12 +2667,12 @@
       "color": "slate",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Recoil Reduct",
-      "improve-to": [
+      "improve_to": [
         "Recoilless Jewel",
         "Shockless Jewel"
       ],
@@ -2684,7 +2684,7 @@
         "Recoil +1",
         "Load -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -2704,7 +2704,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2727,7 +2727,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2736,7 +2736,7 @@
         "Recoil +4",
         "Load -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2765,12 +2765,12 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "NormS/RapidBow Up",
-      "improve-to": [
+      "improve_to": [
         "StrongShot Jewel",
         "StrongShot Jewel+"
       ],
@@ -2782,7 +2782,7 @@
         "NormalS Up+1",
         "Load-1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2805,7 +2805,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2815,7 +2815,7 @@
         "",
         "Reload -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2844,12 +2844,12 @@
       "color": "white",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "PrceS/PrceBow Up",
-      "improve-to": [
+      "improve_to": [
         "Pierce Jewel",
         "Pierce Jewel+"
       ],
@@ -2861,7 +2861,7 @@
         "PierceS Up+1",
         "Load -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2884,7 +2884,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2894,7 +2894,7 @@
         "",
         "Reload -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -2923,12 +2923,12 @@
       "color": "white",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "PellS/ScattBow Up",
-      "improve-to": [
+      "improve_to": [
         "Pellet Jewel",
         "Pellet Jewel+"
       ],
@@ -2940,7 +2940,7 @@
         "PelletS Up +1",
         "Reload -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -2963,7 +2963,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -2972,7 +2972,7 @@
         "PelletS Up +4",
         "Reload -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3001,12 +3001,12 @@
       "color": "white",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "NormS All Add",
-      "improve-to": [
+      "improve_to": [
         "Shot Bonus Jewel"
       ],
       "donotrender": true
@@ -3016,7 +3016,7 @@
       "skills": [
         "NormalSAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3039,12 +3039,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "PierceS LV Add",
-      "improve-to": [
+      "improve_to": [
         "PierceBonusJewel"
       ],
       "donotrender": true
@@ -3054,7 +3054,7 @@
       "skills": [
         "PierceSAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3077,12 +3077,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "PelletS LV Add",
-      "improve-to": [
+      "improve_to": [
         "PelletBonusJewel"
       ],
       "donotrender": true
@@ -3092,7 +3092,7 @@
       "skills": [
         "PelletSAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -3115,12 +3115,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "CragS LV Add",
-      "improve-to": [
+      "improve_to": [
         "Crag Bonus Jewel"
       ],
       "donotrender": true
@@ -3130,7 +3130,7 @@
       "skills": [
         "Crag S Add +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3153,12 +3153,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "ClustS LV Add",
-      "improve-to": [
+      "improve_to": [
         "ScattrBonusJewel"
       ],
       "donotrender": true
@@ -3168,7 +3168,7 @@
       "skills": [
         "ClustSAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3191,12 +3191,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Load Up",
-      "improve-to": [
+      "improve_to": [
         "Ammo Box Jewel",
         "Magazine Jewel"
       ],
@@ -3208,7 +3208,7 @@
         "Capacity +1",
         "Reload -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3228,7 +3228,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3251,7 +3251,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3260,7 +3260,7 @@
         "Capacity +4",
         "Reload -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3289,12 +3289,12 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Target Range Down",
-      "improve-to": [
+      "improve_to": [
         "Sniper Jewel",
         "SharpshootrJewel"
       ],
@@ -3306,7 +3306,7 @@
         "Precision +1",
         "Speed Fire -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -3329,7 +3329,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3337,7 +3337,7 @@
       "skills": [
         "Precision +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3366,12 +3366,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "PoisonCAdd",
-      "improve-to": [
+      "improve_to": [
         "PoisonCoatJewel"
       ],
       "donotrender": true
@@ -3381,7 +3381,7 @@
       "skills": [
         "PoisonCAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3410,12 +3410,12 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "ParalyCAdd",
-      "improve-to": [
+      "improve_to": [
         "ParalysCoatJewel",
         "ParalysisCAddJwl"
       ],
@@ -3427,7 +3427,7 @@
         "ParalyCAdd +1",
         "ShortCharge -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3455,7 +3455,7 @@
       ],
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3464,7 +3464,7 @@
         "ParalyCAdd +3",
         "ShortCharge -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3492,12 +3492,12 @@
       ],
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "SleepCAdd",
-      "improve-to": [
+      "improve_to": [
         "Sleep Coat Jewel"
       ],
       "donotrender": true
@@ -3507,7 +3507,7 @@
       "skills": [
         "SleepCAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3536,12 +3536,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "PowerCAdd",
-      "improve-to": [
+      "improve_to": [
         "Power Coat Jewel",
         "PowerCAddJewel"
       ],
@@ -3553,7 +3553,7 @@
         "PowerCAdd +1",
         "ShortCharg -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3582,7 +3582,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3591,7 +3591,7 @@
         "PowerCAdd +3",
         "ShortCharg -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3620,12 +3620,12 @@
       "color": "red",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "ClsRngCAdd",
-      "improve-to": [
+      "improve_to": [
         "Combo Coat Jewel"
       ],
       "donotrender": true
@@ -3635,7 +3635,7 @@
       "skills": [
         "SleepCAdd +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3664,12 +3664,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Bullet Limit",
-      "improve-to": [
+      "improve_to": [
         "Armory Jewel"
       ],
       "donotrender": true
@@ -3679,7 +3679,7 @@
       "skills": [
         "Shot Mix +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -3708,12 +3708,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Sharpness Plus",
-      "improve-to": [
+      "improve_to": [
         "Artisan Jewel",
         "Master Jewel"
       ],
@@ -3725,7 +3725,7 @@
         "Artisan +1",
         "Potential -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3739,7 +3739,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3762,7 +3762,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3771,7 +3771,7 @@
         "Artisan +4",
         "Potential -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3800,12 +3800,12 @@
       "color": "slate",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Stealth",
-      "improve-to": [
+      "improve_to": [
         "Tip Toe Jewel",
         "Ninja Jewel"
       ],
@@ -3817,7 +3817,7 @@
         "Sneak +1",
         "Map -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -3840,7 +3840,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3848,7 +3848,7 @@
       "skills": [
         "Sneak +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3865,12 +3865,12 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Evade up",
-      "improve-to": [
+      "improve_to": [
         "Evade Jewel",
         "Dodge Jewel"
       ],
@@ -3882,7 +3882,7 @@
         "Evade +1",
         "Cold Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -3902,7 +3902,7 @@
           "color": "red"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3925,7 +3925,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -3934,7 +3934,7 @@
         "Evade +3",
         "Cold Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -3957,12 +3957,12 @@
       "color": "cyan",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Evade Distance Up",
-      "improve-to": [
+      "improve_to": [
         "Jumping Jewel",
         "Flying Jewel"
       ],
@@ -3974,7 +3974,7 @@
         "Evade Dist +1",
         "Attack -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -3994,7 +3994,7 @@
           "color": "blue"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4017,7 +4017,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4026,7 +4026,7 @@
         "Evade Dist +4",
         "Attack -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4055,12 +4055,12 @@
       "color": "blue",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Adrenaline up",
-      "improve-to": [
+      "improve_to": [
         "Danger Jewel",
         "Crisis Jewel",
         "Pinch Jewel"
@@ -4073,7 +4073,7 @@
         "Potential +1",
         "Protection -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4096,7 +4096,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4105,7 +4105,7 @@
         "Potential +4",
         "Protection -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4134,7 +4134,7 @@
       "color": "red",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
@@ -4143,7 +4143,7 @@
         "Potential +3",
         "Protection -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4172,12 +4172,12 @@
       "color": "red",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "BBQ Celebrity",
-      "improve-to": [
+      "improve_to": [
         "BBQ Jewel"
       ],
       "donotrender": true
@@ -4187,7 +4187,7 @@
       "skills": [
         "BBQ +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4210,12 +4210,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Map",
-      "improve-to": [
+      "improve_to": [
         "Map Jewel"
       ],
       "donotrender": true
@@ -4225,7 +4225,7 @@
       "skills": [
         "Map +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4248,12 +4248,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Detect/Autotracker",
-      "improve-to": [
+      "improve_to": [
         "Psychic Jewel"
       ],
       "donotrender": true
@@ -4263,7 +4263,7 @@
       "skills": [
         "PsychicVis +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4286,12 +4286,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Tranquilizing Guru",
-      "improve-to": [
+      "improve_to": [
         "Perceive Jewel"
       ],
       "donotrender": true
@@ -4301,7 +4301,7 @@
       "skills": [
         "Perceive +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4324,12 +4324,12 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Item Usage Improved",
-      "improve-to": [
+      "improve_to": [
         "StayingPwr Jewel",
         "Permanence Jewel",
         "Eternal Jewel"
@@ -4342,7 +4342,7 @@
         "Everlasting +1",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4365,7 +4365,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4374,7 +4374,7 @@
         "Everlasting +2",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4397,7 +4397,7 @@
       "color": "blue",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -4406,7 +4406,7 @@
         "Everlasting +3",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -4435,12 +4435,12 @@
       "color": "blue",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Comb Suc up",
-      "improve-to": [
+      "improve_to": [
         "Professor Jewel"
       ],
       "donotrender": true
@@ -4450,7 +4450,7 @@
       "skills": [
         "MixSucRate +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4473,12 +4473,12 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Alchemy",
-      "improve-to": [
+      "improve_to": [
         "SecretArts Jewel"
       ],
       "donotrender": true
@@ -4488,7 +4488,7 @@
       "skills": [
         "Alchemy +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4517,12 +4517,12 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Gunnery Master/King",
-      "improve-to": [
+      "improve_to": [
         "Small Arms Jewel",
         "Howitzer Jewel"
       ],
@@ -4534,7 +4534,7 @@
         "Gunnery +1",
         "Stamina -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4557,7 +4557,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4565,7 +4565,7 @@
       "skills": [
         "Gunnery +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4588,12 +4588,12 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Flute Expert",
-      "improve-to": [
+      "improve_to": [
         "Fife Jewel"
       ],
       "donotrender": true
@@ -4603,7 +4603,7 @@
       "skills": [
         "Horn +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4626,12 +4626,12 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Faint duration down/negated",
-      "improve-to": [
+      "improve_to": [
         "Steadfast Jewel",
         "Anti-Faint Jewel",
         "Steadfast Jewel+"
@@ -4644,7 +4644,7 @@
         "Faint +1",
         "Paralysis -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4661,7 +4661,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4670,7 +4670,7 @@
         "Faint +3",
         "Paralysis -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4693,7 +4693,7 @@
       "color": "blue",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -4701,7 +4701,7 @@
       "skills": [
         "Faint +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4724,12 +4724,12 @@
       "color": "blue",
       "slots": "---",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Paralysis duration down/negated",
-      "improve-to": [
+      "improve_to": [
         "Paralysis Jewel",
         "AntiParalyzJewel",
         "Paralysis Jewel+"
@@ -4742,7 +4742,7 @@
         "Paralysis +1",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4759,7 +4759,7 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4768,7 +4768,7 @@
         "Paralysis +3",
         "Poison -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4785,7 +4785,7 @@
       "color": "yellow",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -4793,7 +4793,7 @@
       "skills": [
         "Paralysis +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4816,12 +4816,12 @@
       "color": "yellow",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Sleep duration down/negated",
-      "improve-to": [
+      "improve_to": [
         "Pep Jewel",
         "Jolt Jewel"
       ],
@@ -4833,7 +4833,7 @@
         "Sleep +1",
         "Water Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4850,7 +4850,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4858,7 +4858,7 @@
       "skills": [
         "Sleep +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4881,12 +4881,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Poison duration down/negated",
-      "improve-to": [
+      "improve_to": [
         "Antidote Jewel",
         "Antivenin Jewel",
         "Antidote Jewel+"
@@ -4899,7 +4899,7 @@
         "Poison +1",
         "Faint -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -4916,7 +4916,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -4925,7 +4925,7 @@
         "Poison +3",
         "Faint -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -4948,7 +4948,7 @@
       "color": "slate",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -4956,7 +4956,7 @@
       "skills": [
         "Poison +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -4979,12 +4979,12 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Immunity to Snowman",
-      "improve-to": [
+      "improve_to": [
         "Snowblower Jewel",
         "Snowplow Jewel",
         "SnowblowerJewel+"
@@ -4997,7 +4997,7 @@
         "Snow Res +1",
         "Terrain -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5014,7 +5014,7 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5023,7 +5023,7 @@
         "Snow Res +3",
         "Terrain -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5040,7 +5040,7 @@
       "color": "white",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -5048,7 +5048,7 @@
       "skills": [
         "Snow Res +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5071,12 +5071,12 @@
       "color": "white",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Immunity to Quake",
-      "improve-to": [
+      "improve_to": [
         "Anchor Jewel",
         "Tectonic Jewel"
       ],
@@ -5088,7 +5088,7 @@
         "Quake Res +1",
         "Sleep -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5111,7 +5111,7 @@
       "color": "slate",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5120,7 +5120,7 @@
         "Quake Res +3",
         "Sleep -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5140,7 +5140,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5157,12 +5157,12 @@
       "color": "slate",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Earplug/High Grade Earplug",
-      "improve-to": [
+      "improve_to": [
         "Earplug Jewel",
         "Silencer Jewel"
       ],
@@ -5174,7 +5174,7 @@
         "HearProtect +1",
         "Protection -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5194,7 +5194,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5211,7 +5211,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5220,7 +5220,7 @@
         "HearProtect +4",
         "Protection -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5246,7 +5246,7 @@
           "color": "blue"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5269,12 +5269,12 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Low/High Wind Pres/Drg Wind Breaker",
-      "improve-to": [
+      "improve_to": [
         "PaperweightJewel",
         "HeavyMetal Jewel",
         "Solid Rock Jewel"
@@ -5287,7 +5287,7 @@
         "WindPress +1",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5310,7 +5310,7 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5319,7 +5319,7 @@
         "WindPress +3",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5342,7 +5342,7 @@
       "color": "gray",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -5351,7 +5351,7 @@
         "WindPress +5",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5380,12 +5380,12 @@
       "color": "gray",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Cold Elimination",
-      "improve-to": [
+      "improve_to": [
         "WarmBreeze Jewel",
         "Hot Wind Jewel",
         "HotBreezeJewel"
@@ -5398,7 +5398,7 @@
         "Cold Res +1",
         "Heat Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5415,7 +5415,7 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5424,7 +5424,7 @@
         "Cold Res +3",
         "Heat Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5447,7 +5447,7 @@
       "color": "orange",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -5455,7 +5455,7 @@
       "skills": [
         "Cold Res +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5478,12 +5478,12 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Heat Cancel",
-      "improve-to": [
+      "improve_to": [
         "ColdBreeze Jewel",
         "Cold Wind Jewel",
         "ColdBreezeJewel"
@@ -5496,7 +5496,7 @@
         "Heat Res +1",
         "Cold Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5513,7 +5513,7 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5522,7 +5522,7 @@
         "Heat Res +3",
         "Cold Res -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5545,7 +5545,7 @@
       "color": "cyan",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
@@ -5553,7 +5553,7 @@
       "skills": [
         "Heat Res +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5576,12 +5576,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Terrain damage reduced/negated",
-      "improve-to": [
+      "improve_to": [
         "Melt-Proof Jewel",
         "Anti-Thaw Jewel"
       ],
@@ -5593,7 +5593,7 @@
         "Terrain +1",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5616,7 +5616,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5625,7 +5625,7 @@
         "Terrain +3",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5651,7 +5651,7 @@
           "color": "orange"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5680,12 +5680,12 @@
       "color": "pink",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Steal No Effect",
-      "improve-to": [
+      "improve_to": [
         "Alarm Jewel"
       ],
       "donotrender": true
@@ -5695,7 +5695,7 @@
       "skills": [
         "Anti-Theft +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5718,12 +5718,12 @@
       "color": "gray",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Immunity to territorial dung",
-      "improve-to": [
+      "improve_to": [
         "Retroviral Jewel",
         "Antiviral Jewel"
       ],
@@ -5735,7 +5735,7 @@
         "Antiseptic +1",
         "Sneak -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5758,7 +5758,7 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -5766,7 +5766,7 @@
       "skills": [
         "Antiseptic +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5786,7 +5786,7 @@
           "color": "yellow"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5803,12 +5803,12 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Fatigue duration halved/negated",
-      "improve-to": [
+      "improve_to": [
         "Tireless Jewel",
         "Antiviral Jewel"
       ],
@@ -5819,7 +5819,7 @@
       "skills": [
         "Fatigue +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -5839,7 +5839,7 @@
           "color": "slate"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -5862,12 +5862,12 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Backpacking Expert",
-      "improve-to": [
+      "improve_to": [
         "Backpacker Jewel"
       ],
       "donotrender": true
@@ -5877,7 +5877,7 @@
       "skills": [
         "Backpacking +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5900,12 +5900,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Gathering",
-      "improve-to": [
+      "improve_to": [
         "Gathering Jewel"
       ],
       "donotrender": true
@@ -5915,7 +5915,7 @@
       "skills": [
         "Gathering +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -5938,12 +5938,12 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "HighSpdGather",
-      "improve-to": [
+      "improve_to": [
         "Grab'n'DashJewel"
       ],
       "donotrender": true
@@ -5953,7 +5953,7 @@
       "skills": [
         "HiSpdGathr +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -5976,12 +5976,12 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Spirit's/Divine Whim",
-      "improve-to": [
+      "improve_to": [
         "Good Luck Jewel",
         "Blessing Jewel"
       ],
@@ -5992,7 +5992,7 @@
       "skills": [
         "Whim +1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -6021,7 +6021,7 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -6029,7 +6029,7 @@
       "skills": [
         "Whim +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6058,12 +6058,12 @@
       "color": "pink",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Carving Iron Man/Celebrity",
-      "improve-to": [
+      "improve_to": [
         "HideCutter Jewel",
         "Carving Jewel"
       ],
@@ -6075,7 +6075,7 @@
         "Carving +1",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6095,7 +6095,7 @@
           "color": "orange"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -6118,7 +6118,7 @@
       "color": "orange",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -6127,7 +6127,7 @@
         "Carving +4",
         "Fate -2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -6156,12 +6156,12 @@
       "color": "orange",
       "slots": "OOO",
       "rarity": 5,
-      "create-cost": 450,
+      "create_cost": 450,
       "type": "dec"
     },
     {
       "name": "Good Luck/Luck Boost",
-      "improve-to": [
+      "improve_to": [
         "Fate Jewel",
         "Destiny Jewel"
       ],
@@ -6173,7 +6173,7 @@
         "Fate +1",
         "Whim -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Akito Jewel",
           "amount": "1",
@@ -6190,7 +6190,7 @@
       "color": "red",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -6199,7 +6199,7 @@
         "Fate +3",
         "Whim -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6216,12 +6216,12 @@
       "color": "red",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "SpeedSetup",
-      "improve-to": [
+      "improve_to": [
         "TrapMasterJewel"
       ],
       "donotrender": true
@@ -6231,7 +6231,7 @@
       "skills": [
         "SpeedSetup +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6254,12 +6254,12 @@
       "color": "cyan",
       "slots": "OO-",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Tranquilzr",
-      "improve-to": [
+      "improve_to": [
         "Tranq Jewel",
         "Knockout Jewel"
       ],
@@ -6271,7 +6271,7 @@
         "Tranquilzr +1",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6300,7 +6300,7 @@
       "color": "green",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
@@ -6309,7 +6309,7 @@
         "Tranquilzr +3",
         "Fate -1"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -6338,12 +6338,12 @@
       "color": "green",
       "slots": "OO-",
       "rarity": 5,
-      "create-cost": 375,
+      "create_cost": 375,
       "type": "dec"
     },
     {
       "name": "Fishing Expert",
-      "improve-to": [
+      "improve_to": [
         "Fisher Jewel"
       ],
       "donotrender": true
@@ -6353,7 +6353,7 @@
       "skills": [
         "Fishing +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -6376,12 +6376,12 @@
       "color": "cyan",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Comrade Guidance/Trade",
-      "improve-to": [
+      "improve_to": [
         "Cat Guide Jewel"
       ],
       "donotrender": true
@@ -6391,7 +6391,7 @@
       "skills": [
         "ComrdGuide +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Suiko Jewel",
           "amount": "1",
@@ -6405,7 +6405,7 @@
           "color": "blue"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
@@ -6434,12 +6434,12 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Comrade Attack Up",
-      "improve-to": [
+      "improve_to": [
         "Cat Attack Jewel"
       ],
       "donotrender": true
@@ -6449,7 +6449,7 @@
       "skills": [
         "ComradeAtk +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -6478,12 +6478,12 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     },
     {
       "name": "Comrade Defense Up",
-      "improve-to": [
+      "improve_to": [
         "CatDefenseJewel"
       ],
       "donotrender": true
@@ -6493,7 +6493,7 @@
       "skills": [
         "ComradeDef +2"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
@@ -6522,7 +6522,7 @@
       "color": "blue",
       "slots": "O--",
       "rarity": 4,
-      "create-cost": 200,
+      "create_cost": 200,
       "type": "dec"
     }
   ]

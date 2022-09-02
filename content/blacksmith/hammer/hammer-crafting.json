@@ -10,10 +10,10 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": "500",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "500",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Iron Ore",
           "amount": "3",
@@ -27,8 +27,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "War Hammer+"
       ],
       "sharpness_plus": "9.2.9"
@@ -43,12 +43,12 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": "650",
-      "improve-cost": "650",
-      "improve-from": [
+      "create_cost": "650",
+      "improve_cost": "650",
+      "improve_from": [
         "War Hammer"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Normal Ticket",
           "amount": "1",
@@ -56,7 +56,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "5",
@@ -70,7 +70,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "War Mace",
         "Spiked Hammer"
       ],
@@ -86,13 +86,13 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1100",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "1100",
+      "improve_from": [
         "War Hammer+"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "10",
@@ -106,7 +106,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Iron Striker",
         "Anchor Hammer",
         "Black Cauldron",
@@ -125,12 +125,12 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": "2150",
-      "improve-cost": "2150",
-      "improve-from": [
+      "create_cost": "2150",
+      "improve_cost": "2150",
+      "improve_from": [
         "War Mace"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Earth Crystal",
           "amount": "10",
@@ -150,7 +150,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "12",
@@ -170,7 +170,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Iron Striker+",
         "Gunhammer Prototype"
       ],
@@ -186,12 +186,12 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": "4250",
-      "improve-cost": "4250",
-      "improve-from": [
+      "create_cost": "4250",
+      "improve_cost": "4250",
+      "improve_from": [
         "Iron Striker"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -205,7 +205,7 @@
           "color": "green"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Dragonite Ore",
           "amount": "5",
@@ -225,7 +225,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Anvil Hammer"
       ],
       "sharpness_plus": "3.2.17.8"
@@ -240,13 +240,13 @@
       "bonus": "+4",
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "6350",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "6350",
+      "improve_from": [
         "Iron Striker+"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Shell",
           "amount": "2",
@@ -266,7 +266,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Onslaught Hammer",
         "War Stamp",
         "Bronze Bell",
@@ -285,13 +285,13 @@
       "bonus": "+6",
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "60000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "60000",
+      "improve_from": [
         "Anvil Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "5",
@@ -311,7 +311,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Blacksmith"
       ],
       "sharpness_plus": "6.4.8.12.6.4"
@@ -326,12 +326,12 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "hm",
-      "create-cost": "75000",
-      "improve-cost": "75000",
-      "improve-from": [
+      "create_cost": "75000",
+      "improve_cost": "75000",
+      "improve_from": [
         "Onslaught Hammer"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "10",
@@ -357,7 +357,7 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "5",
@@ -377,7 +377,7 @@
           "color": "orange"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Juggernaut",
         "Lava Alphorn"
       ],
@@ -393,13 +393,13 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": [
         "Blacksmith"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Mellanje Ore",
           "amount": "5",
@@ -419,7 +419,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -432,13 +432,13 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "30000",
+      "improve_from": [
         "Anvil Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dragonite Ore",
           "amount": "15",
@@ -458,7 +458,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "War Basher"
       ],
       "sharpness_plus": "3.2.17.12.1"
@@ -473,11 +473,11 @@
       "bonus": "+8",
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "War Stamp",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "75000",
+      "improve_from": "War Stamp",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "30",
@@ -497,7 +497,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.2"
     },
     {
@@ -510,12 +510,12 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": "25000",
-      "improve-cost": "25000",
-      "improve-from": [
+      "create_cost": "25000",
+      "improve_cost": "25000",
+      "improve_from": [
         "Anvil Hammer"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "5",
@@ -535,7 +535,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -549,7 +549,7 @@
           "color": "slate"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "3",
@@ -569,7 +569,7 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Great Demon Hammer",
         "Fist of Fury"
       ],
@@ -585,13 +585,13 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "35000",
+      "improve_from": [
         "Iron Devil"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "10",
@@ -611,7 +611,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Devil Masher",
         "Iron Impact"
       ],
@@ -627,13 +627,13 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "55000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "55000",
+      "improve_from": [
         "Great Demon Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gendrome Skull",
           "amount": "3",
@@ -653,7 +653,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Devil Masher+"
       ],
       "sharpness_plus": "6.4.8.12.5"
@@ -668,13 +668,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "80000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "80000",
+      "improve_from": [
         "Devil Masher"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "5",
@@ -694,7 +694,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Iron Devil's Soul"
       ],
       "sharpness_plus": "6.4.8.12.6.4"
@@ -709,11 +709,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": "Devil Masher+",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "105000",
+      "improve_from": "Devil Masher+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "10",
@@ -733,7 +733,7 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -746,13 +746,13 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "55000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "55000",
+      "improve_from": [
         "Great Demon Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "25",
@@ -772,7 +772,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Iron Repellant",
         "Icy Impact"
       ],
@@ -788,13 +788,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "85000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "85000",
+      "improve_from": [
         "Iron Impact"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Mellanje Ore",
           "amount": "10",
@@ -820,7 +820,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -833,12 +833,12 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "75000",
-      "improve-cost": "75000",
-      "improve-from": [
+      "create_cost": "75000",
+      "improve_cost": "75000",
+      "improve_from": [
         "Iron Impact"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "12",
@@ -864,7 +864,7 @@
           "color": "blue"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "10",
@@ -890,7 +890,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Axion"
       ],
       "sharpness_plus": "5.4.14.10.4.3"
@@ -905,13 +905,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": [
         "Icy Impact"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "20",
@@ -937,7 +937,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -950,13 +950,13 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "35000",
+      "improve_from": [
         "Iron Devil"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "15",
@@ -976,7 +976,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Ancient Blow"
       ],
       "sharpness_plus": "14.4.6.6"
@@ -991,13 +991,13 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "70000",
+      "improve_from": [
         "Fist of Fury"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "10",
@@ -1017,7 +1017,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Foolhardy Stone Fist"
       ],
       "sharpness_plus": "19.2.5.7.2"
@@ -1032,13 +1032,13 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "110000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "110000",
+      "improve_from": [
         "Fist of Fury"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Mellanje Ore",
           "amount": "10",
@@ -1058,7 +1058,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.2"
     },
     {
@@ -1071,10 +1071,10 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "3100",
-      "improve-cost": "3100",
-      "improve-from": "Iron Striker",
-      "create-mats": [
+      "create_cost": "3100",
+      "improve_cost": "3100",
+      "improve_from": "Iron Striker",
+      "create_mats": [
         {
           "name": "FireWyvern Fluid",
           "amount": "4",
@@ -1100,7 +1100,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "FireWyvern Fluid",
           "amount": "2",
@@ -1120,7 +1120,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Dead Revolver"
       ],
       "sharpness_plus": "10.1.3.11"
@@ -1135,11 +1135,11 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "6350",
-      "improve-from": "Gunhammer Prototype",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "6350",
+      "improve_from": "Gunhammer Prototype",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dragonite Ore",
           "amount": "15",
@@ -1159,7 +1159,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Sanctioned Gunhammer"
       ],
       "sharpness_plus": "10.1.3.17.4"
@@ -1174,11 +1174,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "60000",
-      "improve-from": "Dead Revolver",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "60000",
+      "improve_from": "Dead Revolver",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Firecell Stone",
           "amount": "4",
@@ -1204,7 +1204,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Regulation GunHammer"
       ],
       "sharpness_plus": "8.7.7.11.5.2"
@@ -1219,10 +1219,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "95000",
-      "improve-cost": "95000",
-      "improve-from": "Sanctioned Gunhammer",
-      "create-mats": [
+      "create_cost": "95000",
+      "improve_cost": "95000",
+      "improve_from": "Sanctioned Gunhammer",
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "10",
@@ -1248,7 +1248,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "5",
@@ -1268,7 +1268,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "ImperialGunHmmrSpark"
       ],
       "sharpness_plus": "8.7.7.11.5.5.2"
@@ -1283,11 +1283,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "120000",
-      "improve-from": "Regulation GunHammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "120000",
+      "improve_from": "Regulation GunHammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "20",
@@ -1313,7 +1313,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -1326,11 +1326,11 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2150",
-      "improve-from": "War Mace",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "2150",
+      "improve_from": "War Mace",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Speartuna",
           "amount": "1",
@@ -1350,7 +1350,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Anchor Hammer+"
       ],
       "sharpness_plus": "9.2.13.6"
@@ -1365,11 +1365,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "4900",
-      "improve-from": "Anchor Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "4900",
+      "improve_from": "Anchor Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Glutton Tuna",
           "amount": "5",
@@ -1389,7 +1389,7 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Anchor Crusher"
       ],
       "sharpness_plus": "9.2.13.7.4"
@@ -1404,11 +1404,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "65000",
-      "improve-from": "Anchor Hammer+",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "65000",
+      "improve_from": "Anchor Hammer+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ancient Fish",
           "amount": "5",
@@ -1428,7 +1428,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.4"
     },
     {
@@ -1441,10 +1441,10 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "1400",
-      "improve-cost": "1400",
-      "improve-from": "War Mace",
-      "create-mats": [
+      "create_cost": "1400",
+      "improve_cost": "1400",
+      "improve_from": "War Mace",
+      "create_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "1",
@@ -1464,7 +1464,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "2",
@@ -1484,7 +1484,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "True Black Cauldron",
         "One Star Silver Pot"
       ],
@@ -1500,11 +1500,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": "Black Cauldron",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "35000",
+      "improve_from": "Black Cauldron",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "7",
@@ -1524,7 +1524,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.16"
     },
     {
@@ -1537,11 +1537,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2150",
-      "improve-from": "Black Cauldron",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "2150",
+      "improve_from": "Black Cauldron",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "2",
@@ -1561,7 +1561,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Two Star Silver Pot"
       ],
       "sharpness_plus": "19.2.5.7.4.3"
@@ -1576,11 +1576,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "One Star Silver Pot",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": "One Star Silver Pot",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "8",
@@ -1600,7 +1600,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -1613,11 +1613,11 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2150",
-      "improve-from": "War Mace",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "2150",
+      "improve_from": "War Mace",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Med Monster Bone",
           "amount": "3",
@@ -1637,7 +1637,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Bone Broadaxe"
       ],
       "sharpness_plus": "6.4.8.2"
@@ -1652,11 +1652,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "5600",
-      "improve-from": "Bone Axe",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "5600",
+      "improve_from": "Bone Axe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Monster Bone+",
           "amount": "2",
@@ -1676,7 +1676,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Bone Great Axe"
       ],
       "sharpness_plus": "14.4.6.6"
@@ -1691,11 +1691,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": "Bone Broadaxe",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "40000",
+      "improve_from": "Bone Broadaxe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hrd Monster Bone",
           "amount": "2",
@@ -1721,7 +1721,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Ceanataur Head Axe"
       ],
       "sharpness_plus": "19.2.5.7.2"
@@ -1736,10 +1736,10 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": "60000",
-      "improve-cost": "60000",
-      "improve-from": "Bone Great Axe",
-      "create-mats": [
+      "create_cost": "60000",
+      "improve_cost": "60000",
+      "improve_from": "Bone Great Axe",
+      "create_mats": [
         {
           "name": "Ceanataur Carpce",
           "amount": "6",
@@ -1765,7 +1765,7 @@
           "color": "slate"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Ceanataur Carpce",
           "amount": "4",
@@ -1791,7 +1791,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Big Blue Chopper",
         "Carmine Axe"
       ],
@@ -1807,11 +1807,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "110000",
-      "improve-from": "Ceanataur Head Axe",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "110000",
+      "improve_from": "Ceanataur Head Axe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyCeanataurShl",
           "amount": "4",
@@ -1837,7 +1837,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -1850,10 +1850,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "85000",
-      "improve-cost": "85000",
-      "improve-from": "Ceanataur Head Axe",
-      "create-mats": [
+      "create_cost": "85000",
+      "improve_cost": "85000",
+      "improve_from": "Ceanataur Head Axe",
+      "create_mats": [
         {
           "name": "TerraCeanatrShl",
           "amount": "6",
@@ -1879,7 +1879,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "TerraCeanatrShl",
           "amount": "4",
@@ -1899,7 +1899,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "The Great Divider"
       ],
       "sharpness_plus": "14.4.6.7.4.6.4"
@@ -1914,11 +1914,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Carmine Axe",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "115000",
+      "improve_from": "Carmine Axe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "TerraCeanatrShl",
           "amount": "2",
@@ -1944,7 +1944,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -1957,13 +1957,13 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1400",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "1400",
+      "improve_from": [
         "War Hammer+"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "10",
@@ -1983,7 +1983,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Spiked Hammer+"
       ],
       "sharpness_plus": "10.1.3.6"
@@ -1998,13 +1998,13 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1750",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "1750",
+      "improve_from": [
         "Spiked Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "20",
@@ -2024,7 +2024,7 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Crystal Hammer",
         "Shell Hammer",
         "Basarios Rock"
@@ -2041,12 +2041,12 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "2600",
-      "improve-cost": "2600",
-      "improve-from": [
+      "create_cost": "2600",
+      "improve_cost": "2600",
+      "improve_from": [
         "Spiked Hammer+"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Lightcrystal",
           "amount": "2",
@@ -2072,7 +2072,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Lightcrystal",
           "amount": "1",
@@ -2092,7 +2092,7 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Crystal Nova"
       ],
       "sharpness_plus": "8.7.7.8"
@@ -2107,11 +2107,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "3650",
-      "improve-from": "Crystal Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "3650",
+      "improve_from": "Crystal Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lightcrystal",
           "amount": "3",
@@ -2131,7 +2131,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Great Nova",
         "Gigaton Hammer"
       ],
@@ -2147,11 +2147,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Crystal Nova",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": "Crystal Nova",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Novacrystal",
           "amount": "3",
@@ -2171,7 +2171,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Super Nova"
       ],
       "sharpness_plus": "8.7.7.11.5.2"
@@ -2186,11 +2186,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Great Nova",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": "Great Nova",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Purecrystal",
           "amount": "3",
@@ -2216,7 +2216,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -2229,11 +2229,11 @@
       "bonus": "+8",
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "4250",
-      "improve-from": "Crystal Nova",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "4250",
+      "improve_from": "Crystal Nova",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Skl Shl",
           "amount": "1",
@@ -2253,7 +2253,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Titan Hammer"
       ],
       "sharpness_plus": "6.4.8.7"
@@ -2268,11 +2268,11 @@
       "bonus": "+8",
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "8000",
-      "improve-from": "Gigaton Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "8000",
+      "improve_from": "Gigaton Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Shell",
           "amount": "10",
@@ -2292,7 +2292,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.8"
     },
     {
@@ -2305,10 +2305,10 @@
       "bonus": "+8",
       "rarity": "4",
       "type": "hm",
-      "create-cost": "4250",
-      "improve-cost": "4250",
-      "improve-from": "Spiked Hammer+",
-      "create-mats": [
+      "create_cost": "4250",
+      "improve_cost": "4250",
+      "improve_from": "Spiked Hammer+",
+      "create_mats": [
         {
           "name": "Basarios Shell",
           "amount": "8",
@@ -2334,7 +2334,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Basarios Shell",
           "amount": "8",
@@ -2354,7 +2354,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Graviton Hammer"
       ],
       "sharpness_plus": "14.4.6.6"
@@ -2369,11 +2369,11 @@
       "bonus": "+14",
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "4900",
-      "improve-from": "Shell Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "4900",
+      "improve_from": "Shell Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Shell",
           "amount": "10",
@@ -2393,7 +2393,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Torment Hammer",
         "Crater Maker"
       ],
@@ -2409,11 +2409,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": "Graviton Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "70000",
+      "improve_from": "Graviton Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Carapace",
           "amount": "12",
@@ -2433,7 +2433,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "VenomousCraterMaker"
       ],
       "sharpness_plus": "14.4.6.7.4.5"
@@ -2448,11 +2448,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Crater Maker",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "90000",
+      "improve_from": "Crater Maker",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyBlkGraviosShl",
           "amount": "5",
@@ -2478,7 +2478,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Glasya-Labolas"
       ],
       "sharpness_plus": "8.7.7.11.5.5.2"
@@ -2493,11 +2493,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "VenomousCraterMaker",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "115000",
+      "improve_from": "VenomousCraterMaker",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyBlkGraviosShl",
           "amount": "10",
@@ -2523,7 +2523,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
     },
     {
@@ -2536,11 +2536,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "45000",
-      "improve-from": "Graviton Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "45000",
+      "improve_from": "Graviton Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blk Gravios Shl",
           "amount": "8",
@@ -2560,7 +2560,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Torment (Purgatory)"
       ],
       "sharpness_plus": "8.7.7.11.2"
@@ -2575,11 +2575,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": "Torment Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "70000",
+      "improve_from": "Torment Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blk Gravios Cpc",
           "amount": "12",
@@ -2599,7 +2599,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.2"
     },
     {
@@ -2612,10 +2612,10 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": "400",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "400",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Mystery Bone",
           "amount": "3",
@@ -2623,8 +2623,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Large Bone Club",
         "Cyclo-Hammer",
         "Bull Hammer",
@@ -2642,11 +2642,11 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2600",
-      "improve-from": "Bone Club",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "2600",
+      "improve_from": "Bone Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Giant Bone",
           "amount": "1",
@@ -2660,7 +2660,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Enormous Ham"
       ],
       "sharpness_plus": "8.7.7.3"
@@ -2675,11 +2675,11 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "7500",
-      "improve-from": "Large Bone Club",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "7500",
+      "improve_from": "Large Bone Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Giant Bone",
           "amount": "3",
@@ -2699,7 +2699,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Ham of Hams"
       ],
       "sharpness_plus": "10.1.3.6"
@@ -2714,11 +2714,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Enormous Ham",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": "Enormous Ham",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hrd Monster Bone",
           "amount": "3",
@@ -2738,7 +2738,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.6"
     },
     {
@@ -2751,12 +2751,12 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": "1100",
-      "improve-cost": "1750",
-      "improve-from": [
+      "create_cost": "1100",
+      "improve_cost": "1750",
+      "improve_from": [
         "Bone Club"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -2770,7 +2770,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Brute Bone",
           "amount": "3",
@@ -2784,7 +2784,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Atlas Hammer",
         "Skullcrusher",
         "Conehead Hammer",
@@ -2802,13 +2802,13 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1750",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "1750",
+      "improve_from": [
         "Cyclo-Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Giant Bone",
           "amount": "2",
@@ -2822,7 +2822,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Kut-Ku Jaw",
         "Jail Hammer",
         "Khezu Horn"
@@ -2839,10 +2839,10 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "2600",
-      "improve-cost": "2600",
-      "improve-from": "Atlas Hammer",
-      "create-mats": [
+      "create_cost": "2600",
+      "improve_cost": "2600",
+      "improve_from": "Atlas Hammer",
+      "create_mats": [
         {
           "name": "Giant Beak",
           "amount": "1",
@@ -2868,7 +2868,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Giant Beak",
           "amount": "1",
@@ -2888,7 +2888,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Kut-Ku Pick",
         "Raven Torrent",
         "Dynamic Hammer",
@@ -2906,12 +2906,12 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": "5600",
-      "improve-cost": "5600",
-      "improve-from": [
+      "create_cost": "5600",
+      "improve_cost": "5600",
+      "improve_from": [
         "Kut-Ku Jaw"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -2931,7 +2931,7 @@
           "color": "orange"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Kut-Ku Ear",
           "amount": "4",
@@ -2951,7 +2951,7 @@
           "color": "orange"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hard Bone Hammer",
         "Feather Whistle"
       ],
@@ -2967,12 +2967,12 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": "25000",
-      "improve-cost": "25000",
-      "improve-from": [
+      "create_cost": "25000",
+      "improve_cost": "25000",
+      "improve_from": [
         "Kut-Ku Pick"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Stout Bone",
           "amount": "5",
@@ -2998,7 +2998,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -3012,7 +3012,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Stout Bone",
           "amount": "2",
@@ -3032,7 +3032,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hard Bone Hammer+",
         "Lobster Hammer"
       ],
@@ -3048,13 +3048,13 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "35000",
+      "improve_from": [
         "Hard Bone Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Stout Bone",
           "amount": "8",
@@ -3074,7 +3074,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Diablos Hammer"
       ],
       "sharpness_plus": "5.4.14.10.2"
@@ -3089,13 +3089,13 @@
       "bonus": "+8",
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "45000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "45000",
+      "improve_from": [
         "Hard Bone Hammer+"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blood Red Horn",
           "amount": "1",
@@ -3115,7 +3115,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Diablo Chaos Broker"
       ],
       "sharpness_plus": "10.1.3.17.4"
@@ -3130,11 +3130,11 @@
       "bonus": "+10",
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Diablos Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "75000",
+      "improve_from": "Diablos Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Majestic Horn",
           "amount": "2",
@@ -3154,7 +3154,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Chaotic Order"
       ],
       "sharpness_plus": "10.1.3.17.6.3"
@@ -3169,11 +3169,11 @@
       "bonus": "+20",
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Diablo Chaos Broker",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "115000",
+      "improve_from": "Diablo Chaos Broker",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "StoutBlkTwstdHrn",
           "amount": "2",
@@ -3199,7 +3199,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -3212,13 +3212,13 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "30000",
+      "improve_from": [
         "Hard Bone Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Sm Lobstershell",
           "amount": "4",
@@ -3238,7 +3238,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "King Lobster Hammer"
       ],
       "sharpness_plus": "6.4.8.12"
@@ -3253,13 +3253,13 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "55000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "55000",
+      "improve_from": [
         "Lobster Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lg Lobstershell",
           "amount": "2",
@@ -3279,7 +3279,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Royal Lobster Hammer"
       ],
       "sharpness_plus": "5.4.14.10.2"
@@ -3294,13 +3294,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "90000",
+      "improve_from": [
         "King Lobster Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gt Lobstershell",
           "amount": "2",
@@ -3320,7 +3320,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.3"
     },
     {
@@ -3333,10 +3333,10 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": "10000",
-      "improve-cost": "10000",
-      "improve-from": "Kut-Ku Jaw",
-      "create-mats": [
+      "create_cost": "10000",
+      "improve_cost": "10000",
+      "improve_from": "Kut-Ku Jaw",
+      "create_mats": [
         {
           "name": "Sharpened Beak",
           "amount": "2",
@@ -3356,7 +3356,7 @@
           "color": "slate"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Sharpened Beak",
           "amount": "1",
@@ -3376,7 +3376,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Wolf Torrent"
       ],
       "sharpness_plus": "14.4.6.7.4"
@@ -3391,13 +3391,13 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "65000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "65000",
+      "improve_from": [
         "Raven Torrent"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rejuvenated Beak",
           "amount": "1",
@@ -3417,7 +3417,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Crow Torrent",
         "Wolf Shamisen"
       ],
@@ -3433,13 +3433,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "105000",
+      "improve_from": [
         "Wolf Torrent"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rejuvenated Beak",
           "amount": "2",
@@ -3465,7 +3465,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
     },
     {
@@ -3478,11 +3478,11 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "3100",
-      "improve-from": "Kut-Ku Jaw",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "3100",
+      "improve_from": "Kut-Ku Jaw",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blue Kut-Ku Shl",
           "amount": "6",
@@ -3502,7 +3502,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Violence Hammer"
       ],
       "sharpness_plus": "19.2.5.7.2"
@@ -3517,11 +3517,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "45000",
-      "improve-from": "Dynamic Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "45000",
+      "improve_from": "Dynamic Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blue Kut-Ku Cpc",
           "amount": "4",
@@ -3541,7 +3541,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Mysterious Jaw"
       ],
       "sharpness_plus": "5.4.14.10.2"
@@ -3556,11 +3556,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "80000",
-      "improve-from": "Violence Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "80000",
+      "improve_from": "Violence Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Splendid Beak",
           "amount": "2",
@@ -3586,7 +3586,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -3599,11 +3599,11 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "3100",
-      "improve-from": "Kut-Ku Jaw",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "3100",
+      "improve_from": "Kut-Ku Jaw",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rubbery Hide",
           "amount": "10",
@@ -3623,7 +3623,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Death Venom Hammer"
       ],
       "sharpness_plus": "14.4.6.7.4"
@@ -3638,11 +3638,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "60000",
-      "improve-from": "Venom Monster",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "60000",
+      "improve_from": "Venom Monster",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rubbery Hide+",
           "amount": "10",
@@ -3662,7 +3662,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Purple Mace"
       ],
       "sharpness_plus": "19.2.5.7.4.3"
@@ -3677,13 +3677,13 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "85000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "85000",
+      "improve_from": [
         "Death Venom Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HrdPuGypcerosWng",
           "amount": "5",
@@ -3703,7 +3703,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Pitohui Bird Mace"
       ],
       "sharpness_plus": "19.2.5.7.4.5.3"
@@ -3718,11 +3718,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "110000",
-      "improve-from": "Purple Mace",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "110000",
+      "improve_from": "Purple Mace",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HrdPuGypcerosWng",
           "amount": "5",
@@ -3748,7 +3748,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -3761,11 +3761,11 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "3100",
-      "improve-from": "Atlas Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "3100",
+      "improve_from": "Atlas Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Machalite Ore",
           "amount": "6",
@@ -3785,7 +3785,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Binder Mace"
       ],
       "sharpness_plus": "14.4.6.6"
@@ -3800,11 +3800,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "5600",
-      "improve-from": "Jail Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "5600",
+      "improve_from": "Jail Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dragonite Ore",
           "amount": "12",
@@ -3824,7 +3824,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.2"
     },
     {
@@ -3837,10 +3837,10 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": "50000",
-      "improve-cost": "50000",
-      "improve-from": "Khezu Horn+",
-      "create-mats": [
+      "create_cost": "50000",
+      "improve_cost": "50000",
+      "improve_from": "Khezu Horn+",
+      "create_mats": [
         {
           "name": "Khezu Hide - Tan",
           "amount": "8",
@@ -3866,7 +3866,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Khezu Hide - Tan",
           "amount": "5",
@@ -3892,7 +3892,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Purse Bop+"
       ],
       "sharpness_plus": "5.4.14.10.4.3"
@@ -3907,11 +3907,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "85000",
-      "improve-from": "Purse Bop",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "85000",
+      "improve_from": "Purse Bop",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "KhezuHide-Cream",
           "amount": "3",
@@ -3931,7 +3931,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Khezu Thunder"
       ],
       "sharpness_plus": "5.4.14.10.4.6.2"
@@ -3946,11 +3946,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "120000",
-      "improve-from": "Purse Bop+",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "120000",
+      "improve_from": "Purse Bop+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "KhezuHide-Cream",
           "amount": "8",
@@ -3976,7 +3976,7 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -3989,11 +3989,11 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1400",
-      "improve-from": "Cyclo-Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "1400",
+      "improve_from": "Cyclo-Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Med Monster Bone",
           "amount": "2",
@@ -4013,7 +4013,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Skullcrusher+"
       ],
       "sharpness_plus": "3.2.15"
@@ -4028,13 +4028,13 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2150",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "2150",
+      "improve_from": [
         "Skullcrusher"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Med Monster Bone",
           "amount": "6",
@@ -4054,7 +4054,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Diablos Maul",
         "Dragonhead Hammer",
         "Sonic Glass"
@@ -4071,12 +4071,12 @@
       "bonus": "+4",
       "rarity": "4",
       "type": "hm",
-      "create-cost": "4250",
-      "improve-cost": "4250",
-      "improve-from": [
+      "create_cost": "4250",
+      "improve_cost": "4250",
+      "improve_from": [
         "Skullcrusher+"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Diablos Tail",
           "amount": "1",
@@ -4102,7 +4102,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Monoblos Shell",
           "amount": "6",
@@ -4122,7 +4122,7 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Finishing Hammer"
       ],
       "sharpness_plus": "6.4.8.12"
@@ -4137,13 +4137,13 @@
       "bonus": "+10",
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "30000",
+      "improve_from": [
         "Diablos Maul"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Diablos Tail",
           "amount": "3",
@@ -4163,7 +4163,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.4"
     },
     {
@@ -4176,10 +4176,10 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "2600",
-      "improve-cost": "2600",
-      "improve-from": "Skullcrusher+",
-      "create-mats": [
+      "create_cost": "2600",
+      "improve_cost": "2600",
+      "improve_from": "Skullcrusher+",
+      "create_mats": [
         {
           "name": "Wyvern Skull Shl",
           "amount": "2",
@@ -4205,7 +4205,7 @@
           "color": "green"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Wyvern Skull Shl",
           "amount": "1",
@@ -4225,7 +4225,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Ancient Relic",
         "Basarios Blow"
       ],
@@ -4241,13 +4241,13 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "7150",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "7150",
+      "improve_from": [
         "Dragonhead Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Wyvern Skull Shl",
           "amount": "5",
@@ -4267,7 +4267,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Shell Castanet"
       ],
       "sharpness_plus": "5.4.14.10.2"
@@ -4282,11 +4282,11 @@
       "bonus": "+24",
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "4900",
-      "improve-from": "Dragonhead Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "4900",
+      "improve_from": "Dragonhead Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Basarios Wing",
           "amount": "1",
@@ -4306,7 +4306,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Basarios Bash"
       ],
       "sharpness_plus": "3.2.17.12.1"
@@ -4321,11 +4321,11 @@
       "bonus": "+36",
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Basarios Blow",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": "Basarios Blow",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Basarios Carapace",
           "amount": "12",
@@ -4345,7 +4345,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.2"
     },
     {
@@ -4358,11 +4358,11 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "1400",
-      "improve-from": "Cyclo-Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "1400",
+      "improve_from": "Cyclo-Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blango Pelt",
           "amount": "6",
@@ -4382,7 +4382,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Conehead Hammer+"
       ],
       "sharpness_plus": "3.2.15"
@@ -4397,11 +4397,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "4250",
-      "improve-from": "Conehead Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "4250",
+      "improve_from": "Conehead Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blangonga Fang",
           "amount": "2",
@@ -4421,7 +4421,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Great Cone"
       ],
       "sharpness_plus": "3.2.17.12.1"
@@ -4436,11 +4436,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Conehead Hammer+",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": "Conehead Hammer+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blangonga Fang+",
           "amount": "5",
@@ -4460,7 +4460,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Desert Cone"
       ],
       "sharpness_plus": "3.2.17.12.4.2"
@@ -4475,10 +4475,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "95000",
-      "improve-cost": "115000",
-      "improve-from": "Great Cone",
-      "create-mats": [
+      "create_cost": "95000",
+      "improve_cost": "115000",
+      "improve_from": "Great Cone",
+      "create_mats": [
         {
           "name": "Blangonga Pelt+",
           "amount": "10",
@@ -4504,7 +4504,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "C.BlangongaPelt+",
           "amount": "5",
@@ -4524,7 +4524,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Magnitude"
       ],
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -4539,11 +4539,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Desert Cone",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "115000",
+      "improve_from": "Desert Cone",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyC.BlangoFang",
           "amount": "2",
@@ -4569,7 +4569,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -4582,10 +4582,10 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": "1400",
-      "improve-cost": "1750",
-      "improve-from": "Bone Club",
-      "create-mats": [
+      "create_cost": "1400",
+      "improve_cost": "1750",
+      "improve_from": "Bone Club",
+      "create_mats": [
         {
           "name": "Bullfango Pelt",
           "amount": "4",
@@ -4611,7 +4611,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -4625,7 +4625,7 @@
           "color": "orange"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Bullfango Pelt",
           "amount": "2",
@@ -4645,7 +4645,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Bull Head Hammer"
       ],
       "sharpness_plus": "6.4.8.2"
@@ -4660,11 +4660,11 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2150",
-      "improve-from": "Bull Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "2150",
+      "improve_from": "Bull Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Bulldrome Hide",
           "amount": "2",
@@ -4684,7 +4684,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Bull Tusk Hammer"
       ],
       "sharpness_plus": "8.7.7.3"
@@ -4699,11 +4699,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "5600",
-      "improve-from": "Bull Head Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "5600",
+      "improve_from": "Bull Head Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Bulldrome Hide",
           "amount": "5",
@@ -4723,7 +4723,7 @@
           "color": "orange"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.8"
     },
     {
@@ -4736,10 +4736,10 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": "1000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "1000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Large Ruststone",
           "amount": "1",
@@ -4747,8 +4747,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Tarnished Hammer"
       ],
       "sharpness_plus": "19.1"
@@ -4763,13 +4763,13 @@
       "bonus": null,
       "rarity": "1",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "2500",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "2500",
+      "improve_from": [
         "Rusted Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "20",
@@ -4777,7 +4777,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Breath Core Hammer",
         "Jadite Mace"
       ],
@@ -4793,13 +4793,13 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "40000",
+      "improve_from": [
         "Tarnished Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "40",
@@ -4813,7 +4813,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.2"
     },
     {
@@ -4826,13 +4826,13 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "35000",
+      "improve_from": [
         "Tarnished Hammer"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lunastra Horn",
           "amount": "3",
@@ -4852,7 +4852,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Jade Mace"
       ],
       "sharpness_plus": "8.7.7.8"
@@ -4867,13 +4867,13 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": [
+      "create_cost": null,
+      "improve_cost": "50000",
+      "improve_from": [
         "Jadite Mace"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Fire Drgn Webbng",
           "amount": "4",
@@ -4893,7 +4893,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Lunastra's Crown"
       ],
       "sharpness_plus": "9.2.13.7.4"
@@ -4908,11 +4908,11 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Jade Mace",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "90000",
+      "improve_from": "Jade Mace",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lunastra Horn",
           "amount": "6",
@@ -4932,7 +4932,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Luna's Skirt"
       ],
       "sharpness_plus": "9.2.13.7.5.4"
@@ -4947,11 +4947,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "130000",
-      "improve-from": "Lunastra's Crown",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "130000",
+      "improve_from": "Lunastra's Crown",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lunastra Spike",
           "amount": "3",
@@ -4977,7 +4977,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -4990,10 +4990,10 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": "1000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "1000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Lg Ancient Stone",
           "amount": "1",
@@ -5001,8 +5001,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Weathered Hammer"
       ],
       "sharpness_plus": "19.2.4"
@@ -5017,11 +5017,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "12500",
-      "improve-from": "Worn Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "12500",
+      "improve_from": "Worn Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "20",
@@ -5029,7 +5029,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Pulsating Core",
         "Steel Ice Hammer"
       ],
@@ -5045,11 +5045,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "60000",
-      "improve-from": "Weathered Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "60000",
+      "improve_from": "Weathered Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "40",
@@ -5063,7 +5063,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Pulse Crusher Core"
       ],
       "sharpness_plus": "19.2.5.7.4.3"
@@ -5078,11 +5078,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Pulsating Core",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": "Pulsating Core",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Purecrystal",
           "amount": "8",
@@ -5102,7 +5102,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -5115,11 +5115,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "80000",
-      "improve-from": "Weathered Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "80000",
+      "improve_from": "Weathered Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Daora Carapace",
           "amount": "6",
@@ -5139,7 +5139,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Daora's Colossus"
       ],
       "sharpness_plus": "6.4.8.12.5"
@@ -5154,11 +5154,11 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Steel Ice Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "90000",
+      "improve_from": "Steel Ice Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "DaoraDragonScal+",
           "amount": "10",
@@ -5178,7 +5178,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Daora's Hyperborea"
       ],
       "sharpness_plus": "6.4.8.12.6.4"
@@ -5193,11 +5193,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "130000",
-      "improve-from": "Daora's Colossus",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "130000",
+      "improve_from": "Daora's Colossus",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hvy Daora Shell",
           "amount": "6",
@@ -5223,7 +5223,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -5236,10 +5236,10 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": "6000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "6000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Blackbelt Ticket",
           "amount": "8",
@@ -5265,8 +5265,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Expert Hammer"
       ],
       "sharpness_plus": "8.7.7.8"
@@ -5281,11 +5281,11 @@
       "bonus": "+12",
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "20000",
-      "improve-from": "Black Belt Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "20000",
+      "improve_from": "Black Belt Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Expert Ticket",
           "amount": "15",
@@ -5305,7 +5305,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Warrior's Hammer"
       ],
       "sharpness_plus": "3.2.17.12.1"
@@ -5320,11 +5320,11 @@
       "bonus": "+22",
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Expert Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "75000",
+      "improve_from": "Expert Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyGldRathianShl",
           "amount": "3",
@@ -5350,7 +5350,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -5363,10 +5363,10 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": "15000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "15000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Dark Stone",
           "amount": "1",
@@ -5386,8 +5386,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Fatalis Buster",
         "AncientFatalisBuster"
       ],
@@ -5403,11 +5403,11 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Black Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": "Black Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Fatalis Horn",
           "amount": "3",
@@ -5427,7 +5427,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Fatalis Demolisher"
       ],
       "sharpness_plus": "9.2.13.7.5.4"
@@ -5442,11 +5442,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "150000",
-      "improve-from": "Fatalis Buster",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "150000",
+      "improve_from": "Fatalis Buster",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HardFatalisHorn",
           "amount": "3",
@@ -5472,7 +5472,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -5485,11 +5485,11 @@
       "bonus": "+8",
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Black Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "100000",
+      "improve_from": "Black Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Wht Fatalis Horn",
           "amount": "5",
@@ -5509,7 +5509,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "AncientFatalisRuiner"
       ],
       "sharpness_plus": "3.2.17.12.4.2"
@@ -5524,11 +5524,11 @@
       "bonus": "+8",
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "150000",
-      "improve-from": "AncientFatalisBuster",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "150000",
+      "improve_from": "AncientFatalisBuster",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HrdWhtFatlisHorn",
           "amount": "5",
@@ -5554,7 +5554,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -5567,10 +5567,10 @@
       "bonus": null,
       "rarity": "3",
       "type": "hm",
-      "create-cost": "7500",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "7500",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Cactus Flower",
           "amount": "2",
@@ -5590,8 +5590,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Green Monster"
       ],
       "sharpness_plus": "3.2.15"
@@ -5606,11 +5606,11 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": "Cactus Creamer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "30000",
+      "improve_from": "Cactus Creamer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Cactus Flower",
           "amount": "10",
@@ -5630,7 +5630,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -5644,10 +5644,10 @@
       "rarity": "5",
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
       "type": "hm",
-      "create-cost": "5600",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "5600",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Lao-Shan's Claw",
           "amount": "2",
@@ -5667,8 +5667,8 @@
           "color": "orange"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Dragonbreaker"
       ],
       "sharpness_plus": "6.4.8.12"
@@ -5683,11 +5683,11 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": "Dragon Destroyer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "40000",
+      "improve_from": "Dragon Destroyer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lao-Shan's Claw",
           "amount": "2",
@@ -5707,7 +5707,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Dragon Demolisher"
       ],
       "sharpness_plus": "6.4.8.12.5"
@@ -5722,11 +5722,11 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "95000",
-      "improve-from": "Dragonbreaker",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "95000",
+      "improve_from": "Dragonbreaker",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Azure LaoS Shell",
           "amount": "5",
@@ -5746,7 +5746,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Claw of Doom"
       ],
       "sharpness_plus": "3.2.17.12.4.2"
@@ -5761,11 +5761,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "140000",
-      "improve-from": "Dragon Demolisher",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "140000",
+      "improve_from": "Dragon Demolisher",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Azure LaoS Claw",
           "amount": "2",
@@ -5791,7 +5791,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -5804,10 +5804,10 @@
       "bonus": null,
       "rarity": "5",
       "type": "hm",
-      "create-cost": "35000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "35000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Tigrex Claw",
           "amount": "3",
@@ -5833,8 +5833,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Tigrex Hammer",
         "Hidden Breaker"
       ],
@@ -5850,11 +5850,11 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "80000",
-      "improve-from": "Striped Striker",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "80000",
+      "improve_from": "Striped Striker",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Tigrex Claw+",
           "amount": "3",
@@ -5874,7 +5874,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Tigrex Hammer+"
       ],
       "sharpness_plus": "19.2.5.7.4.5.3"
@@ -5889,11 +5889,11 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "125000",
-      "improve-from": "Tigrex Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "125000",
+      "improve_from": "Tigrex Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hard Tigrex Claw",
           "amount": "3",
@@ -5919,7 +5919,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -5932,10 +5932,10 @@
       "bonus": null,
       "rarity": "7",
       "type": "hm",
-      "create-cost": "80000",
-      "improve-cost": "80000",
-      "improve-from": "Striped Striker",
-      "create-mats": [
+      "create_cost": "80000",
+      "improve_cost": "80000",
+      "improve_from": "Striped Striker",
+      "create_mats": [
         {
           "name": "Black Narga Pelt",
           "amount": "10",
@@ -5961,7 +5961,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Black Narga Pelt",
           "amount": "6",
@@ -5981,7 +5981,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Deep Darkhammer"
       ],
       "sharpness_plus": "3.2.17.12.4.5.2"
@@ -5996,10 +5996,10 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": "120000",
-      "improve-cost": "120000",
-      "improve-from": "Hidden Breaker",
-      "create-mats": [
+      "create_cost": "120000",
+      "improve_cost": "120000",
+      "improve_from": "Hidden Breaker",
+      "create_mats": [
         {
           "name": "BlackNargaPelt+",
           "amount": "10",
@@ -6025,7 +6025,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "BlackNargaPelt+",
           "amount": "7",
@@ -6051,7 +6051,7 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -6064,10 +6064,10 @@
       "bonus": null,
       "rarity": "2",
       "type": "hm",
-      "create-cost": "2150",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "2150",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Pawprint Stamp",
           "amount": "1",
@@ -6087,8 +6087,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "White Cat Hammer",
         "Black Cat Stamp",
         "Teddybear"
@@ -6105,11 +6105,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "20000",
-      "improve-from": "White Cat Stamp",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "20000",
+      "improve_from": "White Cat Stamp",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "10",
@@ -6129,7 +6129,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.2"
     },
     {
@@ -6142,11 +6142,11 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "3650",
-      "improve-from": "White Cat Stamp",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "3650",
+      "improve_from": "White Cat Stamp",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "2",
@@ -6166,7 +6166,7 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Black Cat Hammer",
         "Gold Cat Hammer"
       ],
@@ -6182,11 +6182,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "25000",
-      "improve-from": "Black Cat Stamp",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "25000",
+      "improve_from": "Black Cat Stamp",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "6",
@@ -6206,7 +6206,7 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.2"
     },
     {
@@ -6219,10 +6219,10 @@
       "bonus": null,
       "rarity": "8",
       "type": "hm",
-      "create-cost": "45000",
-      "improve-cost": "45000",
-      "improve-from": "Black Cat Stamp",
-      "create-mats": [
+      "create_cost": "45000",
+      "improve_cost": "45000",
+      "improve_from": "Black Cat Stamp",
+      "create_mats": [
         {
           "name": "Felyne Fur Ruby",
           "amount": "3",
@@ -6248,7 +6248,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
@@ -6268,7 +6268,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Gold Cat Crusher"
       ],
       "sharpness_plus": "3.2.17.8"
@@ -6283,11 +6283,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Gold Cat Hammer",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "90000",
+      "improve_from": "Gold Cat Hammer",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "10",
@@ -6313,7 +6313,7 @@
           "color": "yellow"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.1"
     },
     {
@@ -6326,10 +6326,10 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": "5000",
-      "improve-cost": "5000",
-      "improve-from": "White Cat Stamp",
-      "create-mats": [
+      "create_cost": "5000",
+      "improve_cost": "5000",
+      "improve_from": "White Cat Stamp",
+      "create_mats": [
         {
           "name": "Commendation",
           "amount": "1",
@@ -6349,7 +6349,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Lightcrystal",
           "amount": "1",
@@ -6369,7 +6369,7 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.11"
     },
     {
@@ -6612,10 +6612,10 @@
       "bonus": "+10",
       "rarity": "10",
       "type": "hm",
-      "create-cost": "150000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "150000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "UkanlosDiggngClw",
           "amount": "3",
@@ -6641,8 +6641,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "17.2.4.7.4.3"
     },
     {
@@ -6655,10 +6655,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6684,8 +6684,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.2"
     },
     {
@@ -6698,10 +6698,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6727,8 +6727,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -6741,10 +6741,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6758,8 +6758,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.4"
     },
     {
@@ -6772,10 +6772,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6801,8 +6801,8 @@
           "color": "orange"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -6815,10 +6815,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6844,8 +6844,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -6858,10 +6858,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6887,8 +6887,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -6901,10 +6901,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6930,8 +6930,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -6944,10 +6944,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6973,8 +6973,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.2"
     },
     {
@@ -6987,10 +6987,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7016,8 +7016,8 @@
           "color": "orange"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -7030,10 +7030,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7059,8 +7059,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -7073,10 +7073,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7102,8 +7102,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
     },
     {
@@ -7116,10 +7116,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7145,8 +7145,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -7159,10 +7159,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7188,8 +7188,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -7202,10 +7202,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7231,8 +7231,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -7245,10 +7245,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7274,8 +7274,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -7288,10 +7288,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7317,8 +7317,8 @@
           "color": "pink"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "9.2.13.7.5.6.3"
     },
     {
@@ -7331,10 +7331,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7360,8 +7360,8 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -7374,10 +7374,10 @@
       "bonus": "+36",
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7403,8 +7403,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -7417,10 +7417,10 @@
       "bonus": "+8",
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation",
           "amount": "1",
@@ -7446,8 +7446,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.2"
     },
     {
@@ -7460,10 +7460,10 @@
       "bonus": "+10",
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7489,8 +7489,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -7503,10 +7503,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7532,8 +7532,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.6.5.3"
     },
     {
@@ -7546,10 +7546,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7575,8 +7575,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "10.1.3.17.4"
     },
     {
@@ -7589,10 +7589,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7618,8 +7618,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.2"
     },
     {
@@ -7632,10 +7632,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7661,8 +7661,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -7675,10 +7675,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7704,8 +7704,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.2"
     },
     {
@@ -7718,10 +7718,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7747,8 +7747,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -7761,10 +7761,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7790,8 +7790,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -7804,10 +7804,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7833,8 +7833,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
     },
     {
@@ -7890,10 +7890,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7919,8 +7919,8 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -7933,10 +7933,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -7962,8 +7962,8 @@
           "color": "green"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -7976,10 +7976,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -8005,8 +8005,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -8019,10 +8019,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -8048,8 +8048,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -8062,10 +8062,10 @@
       "bonus": "+6",
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8091,8 +8091,8 @@
           "color": "pink"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     },
     {
@@ -8105,10 +8105,10 @@
       "bonus": "+8",
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8134,8 +8134,8 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
     {
@@ -8148,10 +8148,10 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8177,8 +8177,8 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -8191,10 +8191,10 @@
       "bonus": "+14",
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8220,8 +8220,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "14.4.6.7.4.6.4"
     },
     {
@@ -8234,10 +8234,10 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8263,8 +8263,8 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "8.7.7.11.5.5.2"
     },
     {
@@ -8277,10 +8277,10 @@
       "bonus": null,
       "rarity": "10",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -8306,8 +8306,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.5.4"
     }
   ]
