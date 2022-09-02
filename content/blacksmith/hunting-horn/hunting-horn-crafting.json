@@ -1489,8 +1489,8 @@
         {
           "name": "Alluring Webbing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Alluring Hide",
@@ -1533,8 +1533,8 @@
         {
           "name": "Alluring Webbing",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Wyvern Stone",
@@ -1583,8 +1583,8 @@
         {
           "name": "Alluring Webbing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Lighting Sac",
@@ -3680,8 +3680,8 @@
         {
           "name": "Pokke Ticket+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         }
       ],
       "improve-to": [

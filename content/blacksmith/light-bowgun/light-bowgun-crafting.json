@@ -3602,8 +3602,8 @@
         {
           "name": "Alluring Webbing",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Lost Umbrella",
@@ -4004,8 +4004,8 @@
         {
           "name": "Expert Ticket",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         }
       ]
     },

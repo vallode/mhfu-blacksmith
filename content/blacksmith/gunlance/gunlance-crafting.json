@@ -3237,8 +3237,8 @@
         {
           "name": "Pokke Ticket+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         }
       ],
       "improve-to": [
