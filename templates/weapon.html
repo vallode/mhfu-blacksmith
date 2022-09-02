@@ -207,7 +207,12 @@
                       </p>
       
                       {% for material in page.extra.alternative_create_mats %}
-                      <p>{{ material.name }}: {{ material.amount }}</p>
+                        <div class="material">
+                          <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                            <img src="/images/{{ material.type }}.png">
+                          </div>
+                          <p>{{ material.name }}: {{ material.amount }}</p>
+                        </div>
                       {% endfor %}
                     </div>
                   {% endif %}
