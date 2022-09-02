@@ -3803,8 +3803,8 @@
         {
           "name": "Inferno Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ]
     },
@@ -3870,8 +3870,8 @@
         {
           "name": "Inferno Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ]
     },
@@ -4138,8 +4138,8 @@
         {
           "name": "Inferno Sac",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ]
     },

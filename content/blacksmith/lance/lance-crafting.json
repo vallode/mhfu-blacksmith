@@ -1359,8 +1359,8 @@
         {
           "name": "Inferno Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -1569,10 +1569,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Light Crystal",
+          "name": "Lightcrystal",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         },
         {
           "name": "Dragonite Ore",
@@ -3370,8 +3370,8 @@
         {
           "name": "Inferno Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": null,

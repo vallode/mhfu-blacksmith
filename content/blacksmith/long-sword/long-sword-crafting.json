@@ -2470,8 +2470,8 @@
         {
           "name": "Inferno Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": null,
