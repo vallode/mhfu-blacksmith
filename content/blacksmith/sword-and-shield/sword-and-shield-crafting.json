@@ -1517,8 +1517,8 @@
         {
           "name": "Pokke Ticket+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -4660,8 +4660,8 @@
         {
           "name": "Hero of KKto Bio",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "yellow"
         },
         {
           "name": "Black Pearl",
@@ -4725,8 +4725,8 @@
         {
           "name": "Hero of JumboBio",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "yellow"
         },
         {
           "name": "Lightcrystal",
@@ -5348,8 +5348,8 @@
         {
           "name": "Expert Ticket",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Fire Coin",
@@ -5429,8 +5429,8 @@
         {
           "name": "Pokke Ticket+",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         },
         {
           "name": "Gld Rathian Cpc",

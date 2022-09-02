@@ -18,8 +18,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Power Seed",
@@ -50,7 +50,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -82,8 +82,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HrdFireWyvernClw",
@@ -128,8 +128,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Rathalos Plate",
@@ -142,8 +142,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Azure LaoS Shell",
@@ -174,13 +174,13 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
-          "name": "Slver Rthalos Wing",
+          "name": "Slvr Rthlos Wing",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -220,8 +220,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Ceanataur Pincer",
@@ -252,8 +252,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Gravios BrainStm",
@@ -299,7 +299,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -331,8 +331,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Teostra Shell",
@@ -351,8 +351,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Teostra Horn+",
@@ -377,8 +377,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Fire Dragon Pwdr",
@@ -421,8 +421,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Earth Crystal",
@@ -459,10 +459,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Monoblos Carapace",
@@ -481,8 +481,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "StrRathalosWing",
@@ -505,10 +505,10 @@
       ],
       "create-mats": [
         {
-          "name": "LapisLazuli Jewel",
+          "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HrdCeanataurClaw",
@@ -545,10 +545,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Chameleos Horn",
@@ -579,8 +579,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Lg Pelagus Fang",
@@ -617,10 +617,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Kirin Horn",
@@ -657,8 +657,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "LthrKirinThndrTl",
@@ -701,7 +701,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -741,8 +741,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Daora Horn",
@@ -761,8 +761,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Rajang Horn",
@@ -793,8 +793,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "GoldRajangPelt+",
@@ -839,8 +839,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "PlumD.HermitrShl",
@@ -871,8 +871,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HvyLavasiothShl",
@@ -916,8 +916,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Sm Hermitaur Shl",
@@ -942,7 +942,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -962,8 +962,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "HrdHermitaurClaw",
@@ -996,8 +996,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Fire Herb",
@@ -1021,7 +1021,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1055,8 +1055,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Firestone",
@@ -1080,7 +1080,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1114,8 +1114,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Ice Crystal",
@@ -1139,7 +1139,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1173,8 +1173,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Thunderbug",
@@ -1198,7 +1198,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1232,7 +1232,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1264,8 +1264,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "HornetaurInnrWng",
@@ -1305,8 +1305,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Kirin Mane",
@@ -1331,8 +1331,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Kirin Azure Horn",
@@ -1363,8 +1363,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "SpecialKirinHide",
@@ -1409,7 +1409,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1441,8 +1441,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Gaoren Spine",
@@ -1461,8 +1461,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Gravios Carapace",
@@ -1502,8 +1502,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Blk Gravios Shl",
@@ -1528,8 +1528,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Blk Gravios Cpc",
@@ -1566,8 +1566,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "PlumD.HermitrClw",
@@ -1604,8 +1604,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Bullfango Pelt",
@@ -1642,8 +1642,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Bulldrome Hide",
@@ -1676,7 +1676,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1708,8 +1708,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Pale Khezu Steak",
@@ -1726,10 +1726,10 @@
       ],
       "alternative-create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Pale Bone",
@@ -1775,7 +1775,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1807,8 +1807,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Khezu Hide Tan",
@@ -1839,8 +1839,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "KhezuHide-Cream",
@@ -1857,8 +1857,8 @@
         {
           "name": "Honey",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "orange"
         }
       ],
       "color": "green",
@@ -1886,7 +1886,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -1918,8 +1918,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Alurring Webbing",
@@ -1956,8 +1956,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "StrAlluringWing",
@@ -2001,7 +2001,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2032,8 +2032,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "UkanlosUnderscl",
@@ -2072,7 +2072,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2104,8 +2104,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Black Narga Pelt",
@@ -2130,8 +2130,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "BlackNargaPelt+",
@@ -2171,8 +2171,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Cephalos Scale",
@@ -2203,7 +2203,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2240,8 +2240,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "ThckGrnPlesioScl",
@@ -2258,8 +2258,8 @@
         {
           "name": "Power Juice",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "white",
@@ -2284,7 +2284,7 @@
         {
           "name": "Akito jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2322,10 +2322,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Tigrex Fang",
@@ -2356,8 +2356,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Fang+",
@@ -2402,7 +2402,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2440,8 +2440,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Firecell Stone",
@@ -2484,8 +2484,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Blango Pelt",
@@ -2524,7 +2524,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2556,8 +2556,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Azure LaoS Horn",
@@ -2566,10 +2566,10 @@
           "color": "blue"
         },
         {
-          "name": "Black Blos Thracic",
+          "name": "Blk Blos Thracic",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ],
       "color": "cyan",
@@ -2594,10 +2594,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Rathian Plate",
@@ -2610,8 +2610,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Fatalis Scale",
@@ -2642,8 +2642,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Akantor Spike",
@@ -2652,10 +2652,10 @@
           "color": "gray"
         },
         {
-          "name": "FireWvyrn BrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Gendrome Skull",
@@ -2688,8 +2688,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Gaoren Shell",
@@ -2708,8 +2708,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "PlumD.HermitrClw",
@@ -2740,8 +2740,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Gaoren Thoracic",
@@ -2786,7 +2786,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2796,7 +2796,7 @@
           "color": "pink"
         },
         {
-          "name": "Firestone",
+          "name": "Rumblefish",
           "amount": "5",
           "type": "fish",
           "color": "gray"
@@ -2819,8 +2819,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HvyC.BlangoFang",
@@ -2865,7 +2865,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2875,7 +2875,7 @@
           "color": "blue"
         },
         {
-          "name": "Firestone",
+          "name": "Pin Tuna",
           "amount": "3",
           "type": "fish",
           "color": "gray"
@@ -2898,19 +2898,19 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
-          "name": "TerraCeanataurClaw",
+          "name": "TerraCeanatrClaw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "LtherSlvrRthlsTal",
+          "name": "LthrSlvrRthlsTal",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2944,7 +2944,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -2976,8 +2976,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HrdE.CongaClaw",
@@ -3020,14 +3020,14 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
-          "name": "Lao Shan's Scale",
+          "name": "Lao-Shan's Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Normal S Lv3",
@@ -3058,7 +3058,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3096,8 +3096,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Cephalos Fin",
@@ -3134,7 +3134,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3170,10 +3170,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Gravios Shell",
@@ -3210,10 +3210,10 @@
       ],
       "create-mats": [
         {
-          "name": "Battlefield Jewel",
+          "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Rathian Spike",
@@ -3232,8 +3232,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Akantor Scale",
@@ -3264,8 +3264,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Fatalis Horn",
@@ -3310,8 +3310,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Anteka Antlers",
@@ -3341,7 +3341,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3357,7 +3357,7 @@
           "color": "green"
         },
         {
-          "name": "Firestone",
+          "name": "Pin Tuna",
           "amount": "2",
           "type": "fish",
           "color": "gray"
@@ -3385,7 +3385,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3431,7 +3431,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3468,8 +3468,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Gendrome Tail",
@@ -3511,7 +3511,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3557,8 +3557,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Congalala Pelt+",
@@ -3595,8 +3595,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "E.CongalalaPelt+",
@@ -3639,7 +3639,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3683,8 +3683,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Normal S Lv3",
@@ -3729,8 +3729,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Monoblos Heart",
@@ -3743,8 +3743,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Ceanataur Claw +",
@@ -3775,8 +3775,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Akantor Claw",
@@ -3821,8 +3821,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Sharp Claw",
@@ -3852,7 +3852,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3886,7 +3886,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -3906,8 +3906,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Narga Scale+",
@@ -3938,8 +3938,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Lg Lobstershell",
@@ -3978,8 +3978,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "NargaCuttingWing",
@@ -3998,8 +3998,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "StrNargaCttngWing",
@@ -4030,8 +4030,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Str Fatalis Wng",
@@ -4077,8 +4077,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Monoblos Spine",
@@ -4109,8 +4109,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Gold Rajang Pelt",
@@ -4147,8 +4147,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Akantor Shell",
@@ -4191,8 +4191,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "FlynMealPassReg",
@@ -4201,7 +4201,7 @@
           "color": "pink"
         },
         {
-          "name": "B urnt Meat",
+          "name": "Burnt Meat",
           "amount": "1",
           "type": "bone",
           "color": "white"
@@ -4229,7 +4229,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4267,8 +4267,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Kut-Ku Ear",
@@ -4305,8 +4305,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "RainbowTailFeath",
@@ -4346,7 +4346,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4378,8 +4378,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Grn Plsioth Scl+",
@@ -4410,8 +4410,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "SpecGrnPlesioFn+",
@@ -4454,8 +4454,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Book of Combos 1",
@@ -4492,7 +4492,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4538,8 +4538,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Machalite Ore",
@@ -4569,8 +4569,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Dragonite Ore",
@@ -4607,7 +4607,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4648,8 +4648,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Velociprey Fang",
@@ -4674,7 +4674,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4705,8 +4705,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "LthrC.BlangoTail",
@@ -4746,8 +4746,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Genprey Fang",
@@ -4772,7 +4772,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4797,8 +4797,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "VespoidQn'sCrown",
@@ -4837,8 +4837,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Sleep Herb",
@@ -4862,7 +4862,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4872,10 +4872,10 @@
           "color": "blue"
         },
         {
-          "name": "Sleepy Fish",
+          "name": "Sleepyfish",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         }
       ],
       "color": "cyan",
@@ -4903,8 +4903,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Ioprey Fang",
@@ -4929,7 +4929,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -4960,8 +4960,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "DeadlyPoisonSac",
@@ -5001,8 +5001,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Giaprey Scale",
@@ -5027,7 +5027,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5052,8 +5052,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "LeathrBlangoTail",
@@ -5092,7 +5092,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5124,8 +5124,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Gaoren Pincer",
@@ -5144,8 +5144,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Hard Gaoren Claw",
@@ -5178,8 +5178,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Garuga Ear",
@@ -5198,8 +5198,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Long Garuga Ear",
@@ -5224,8 +5224,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Azure Rthlos Cpc",
@@ -5250,8 +5250,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "HvyAzurRthlsShl",
@@ -5291,7 +5291,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5323,8 +5323,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Chameleos Hide+",
@@ -5355,8 +5355,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "SpecChameleHide+",
@@ -5402,8 +5402,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Cephalos Scale",
@@ -5428,7 +5428,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5440,8 +5440,8 @@
         {
           "name": "Nitroshroom",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "red"
         }
       ],
       "color": "orange",
@@ -5457,10 +5457,10 @@
       ],
       "create-mats": [
         {
-          "name": "LapisLazuli Jewel",
+          "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "C.BlangongaPelt+",
@@ -5500,8 +5500,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Blango Pelt",
@@ -5526,7 +5526,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5555,15 +5555,15 @@
       ],
       "create-mats": [
         {
-          "name": "LapisLazuli Jewel",
+          "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
-          "name": "2 HrdBlangongaPlt+",
+          "name": "HrdBlangongaPlt+",
           "amount": "2",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -5597,7 +5597,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5629,8 +5629,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Fire Dragon Scl",
@@ -5655,8 +5655,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Daora Carapace",
@@ -5699,8 +5699,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Felvine",
@@ -5739,8 +5739,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Conga Pelt",
@@ -5770,7 +5770,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5780,18 +5780,18 @@
           "color": "pink"
         },
         {
-          "name": "Antiseptic Jewel",
+          "name": "Antiseptic Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "yellow"
         }
       ],
       "alternative-create-mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "HrdCongalalaPlt+",
@@ -5823,14 +5823,14 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
-          "name": "Fire Drgn Webbing",
+          "name": "Fire Drgn Webbng",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "red"
         },
         {
           "name": "Sunset Herb",
@@ -5843,8 +5843,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "ThckFireDrgnScl",
@@ -5881,8 +5881,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Power Extract",
@@ -5919,8 +5919,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Dosbiscus",
@@ -5929,7 +5929,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Bughopper",
           "amount": "2",
           "type": "insect",
           "color": "white"
@@ -5957,7 +5957,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -5996,14 +5996,14 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Exciteshroom",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "slate"
         },
         {
           "name": "Boomerang",
@@ -6033,8 +6033,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Pnk Rathian Shl",
@@ -6079,8 +6079,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Daora Claw",
@@ -6099,8 +6099,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Rubbery Hide+",
@@ -6129,15 +6129,15 @@
       ],
       "create-mats": [
         {
-          "name": "LapisLazuli Jewel",
+          "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
-          "name": "UkanlosDiggnClw",
+          "name": "UkanlosDiggngClw",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -6177,7 +6177,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "bone",
+          "type": "decoration",
           "color": "white"
         },
         {
@@ -6203,14 +6203,14 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
-          "name": "Gold Egg",
+          "name": "Golden Egg",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "egg",
+          "color": "yellow"
         }
       ],
       "color": "red",
@@ -6235,8 +6235,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "ShakalakaTreasre",
@@ -6275,8 +6275,8 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "OrangeHypnoPelt",
@@ -6313,8 +6313,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "OrangeHypnoPelt+",
@@ -6357,8 +6357,8 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Cricket",
@@ -6395,22 +6395,22 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "cyan"
         },
         {
           "name": "Comrade Ticket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         }
       ],
       "alternative-create-mats": [
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "slate"
         },
         {
           "name": "Commendation G",
@@ -6453,8 +6453,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Piercing Claw",
@@ -6497,8 +6497,8 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "decoration",
+          "color": "yellow"
         },
         {
           "name": "Hvy Kut-Ku Shell",

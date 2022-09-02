@@ -4775,10 +4775,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Fire Drgn Webbing",
+          "name": "Fire Drgn Webbng",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "red"
         },
         {
           "name": "Teostra Shell",
@@ -5189,8 +5189,8 @@
         {
           "name": "Expert Ticket",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Tigrex Coin",
@@ -7444,8 +7444,8 @@
         {
           "name": "Expert Ticket",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Fire Coin",

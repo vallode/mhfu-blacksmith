@@ -4999,8 +4999,8 @@
         {
           "name": "Pokke Ticket+",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "blue"
         },
         {
           "name": "Dragonmoss+",

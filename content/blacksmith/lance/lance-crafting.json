@@ -4577,7 +4577,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Godbug",
           "amount": "1",
           "type": "insect",
           "color": "white"
@@ -5233,8 +5233,8 @@
         {
           "name": "Expert Ticket",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Kirin Coin",
@@ -6885,8 +6885,8 @@
         {
           "name": "Expert Ticket",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "green"
         },
         {
           "name": "Kirin Coin",
