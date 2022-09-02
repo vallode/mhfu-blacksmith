@@ -21,6 +21,10 @@ WEAPON_PAIRS = [
   ["bow"],
   ["decoration"],
   ["helmet"],
+  ["plate"],
+  ["gauntlets"],
+  ["waist"],
+  ["leggings"],
 ]
 
 WEAPON_ABBR = {
@@ -36,7 +40,11 @@ WEAPON_ABBR = {
   "heavy-bowgun": "hbg",
   "bow": "bw",
   "decoration": "dec",
-  "helmet": "helmet"
+  "helmet": "helmet",
+  "plate": "plate",
+  "gauntlets": "gauntlets",
+  "waist": "waist",
+  "leggings": "leggings",
 }
 
 def slugify(value)
@@ -66,10 +74,10 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
     array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
   end
 
-  if weapon.key?("improve-to") and weapon["improve-to"]
+  if weapon.key?("improve_to") and weapon["improve_to"]
     array.last[:children] = []
 
-    for child_weapon_name in weapon["improve-to"]
+    for child_weapon_name in weapon["improve_to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
       
       if child_weapon
@@ -101,15 +109,15 @@ WEAPON_PAIRS.each do |array|
   if file.path.include?("decoration")
     root_weapons = weapons.select {|element| element.key?("donotrender")}
   else
-    root_weapons = weapons.select {|element| not element["improve-from"]}
+    root_weapons = weapons.select {|element| not element["improve_from"]}
 
     if sibling_weapons
-      root_sibling_weapons = sibling_weapons.select {|element| element["improve-to"]}
+      root_sibling_weapons = sibling_weapons.select {|element| element["improve_to"]}
 
       root_sibling_weapons = root_sibling_weapons.select do |element|
         has_sibling_child = false
 
-        element["improve-to"].each do |child|
+        element["improve_to"].each do |child|
           child_weapon = weapons.select {|element| element["name"] == child}
 
           if child_weapon.length > 0
@@ -124,7 +132,7 @@ WEAPON_PAIRS.each do |array|
     end
   end
 
-  dead_end_weapons = root_weapons.select {|element| not element["improve-from"] and not element["improve-to"]}
+  dead_end_weapons = root_weapons.select {|element| not element["improve_from"] and not element["improve_to"]}
 
   root_weapons = root_weapons.sort_by {|s| s["rarity"].to_i}
 

@@ -19,7 +19,7 @@ def slugify(value)
   value = value.gsub("+", "-plus")
 end
 
-ARMOR_PATH = "head.csv"
+ARMOR_PATH = "legs.csv"
 
 output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
 armor_map = []
@@ -28,7 +28,7 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   p row
   armor_piece = {
     "name": row["Name"],
-    "type": "helmet",
+    "type": "leggings",
     "defence": row["Defence"],
     "fire_res": row["Fire Res"],
     "thunder_res": row["Thunder Res"],

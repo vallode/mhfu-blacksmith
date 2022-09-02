@@ -1,9 +1,9 @@
 +++
-title = "Helmet"
-description = "Helmet armor list"
+title = "Leggings"
+description = "Leggings armor list"
 template = "armor-tree.html"
 page_template = "armor.html"
 weight = 10
 [extra]
-type = "helmet"
+type = "leggings"
 +++

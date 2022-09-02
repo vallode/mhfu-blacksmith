@@ -8,7 +8,7 @@ FILE_TEMPLATE = %{{
 }.gsub(/^  /, '')
 
 WEAPON_PAIRS = [
-  ["helmet"],
+  ["waist"],
 ]
 
 WEAPON_ABBR = {

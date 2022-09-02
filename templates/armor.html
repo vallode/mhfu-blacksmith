@@ -25,23 +25,23 @@
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
   <nav class="weapon-navigation">
-    {% for weapon_type in config.extra.weapon_types %}
-      {%- set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
+    {%- for weapon_type in config.extra.armor_types %}
+      {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
 
       <div>
-        <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
+        <a href="/armorsmith/{{ weapon_type }}/" title="{{ weapon_name }}">
           <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
             <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
           </div>
         </a>
       </div>
-    {% endfor %}
+    {%- endfor %}
   </nav>
 
   <hr class="border">
 
   <div class="weapon-details-page">
-    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
+    <turbo-frame id="weapon_tree" src="/armorsmith/{{ page.extra.type }}" data-turbo-action="replace">
       <div class="card card--weapon-tree"></div>
     </turbo-frame>
   
@@ -169,7 +169,12 @@
                     </p>
     
                     {% for material in page.extra.create_mats %}
-                       <p>{{ material }}</p>
+                      <div class="material">
+                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                          <img src="/images/{{ material.type }}.png">
+                        </div>
+                        <p>{{ material.name }}: {{ material.amount }}</p>
+                      </div>
                     {% endfor %}
                   </div>
                 {% endif %}
