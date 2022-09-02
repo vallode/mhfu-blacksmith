@@ -773,8 +773,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "color": "orange",
@@ -805,8 +805,8 @@
         {
           "name": "ThckDaoraDrgnScl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "HvyLavasiothFang",
@@ -887,10 +887,10 @@
           "color": "gray"
         },
         {
-          "name": "Tailed Frog",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "cyan"
         }
       ],
       "color": "pink",
@@ -1059,10 +1059,10 @@
           "color": "white"
         },
         {
-          "name": "Knife Mackerel",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "color": "cyan",
@@ -1238,8 +1238,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         },
         {
           "name": "Dragon Seed",
@@ -1381,8 +1381,8 @@
         {
           "name": "BlackBeltCoinG",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "gray"
         }
       ],
       "color": "green",
@@ -1682,8 +1682,8 @@
         {
           "name": "Pale Extract",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "Killer Beetle",
@@ -1720,7 +1720,7 @@
         {
           "name": "Lifepowder",
           "amount": "2",
-          "type": "bone",
+          "type": "sac",
           "color": "white"
         }
       ],
@@ -1746,7 +1746,7 @@
         {
           "name": "Lifecrystals",
           "amount": "10",
-          "type": "bone",
+          "type": "sac",
           "color": "white"
         }
       ],
@@ -1819,8 +1819,8 @@
         {
           "name": "Ancient Potion",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "color": "green",
@@ -1930,7 +1930,7 @@
         {
           "name": "Lifepowder",
           "amount": "1",
-          "type": "bone",
+          "type": "sac",
           "color": "white"
         },
         {
@@ -1974,8 +1974,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "color": "pink",
@@ -2038,7 +2038,7 @@
         {
           "name": "UkanlosUnderscl",
           "amount": "1",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -2294,10 +2294,10 @@
           "color": "pink"
         },
         {
-          "name": "Glutton Tuna",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "orange"
         }
       ],
       "color": "orange",
@@ -2414,8 +2414,8 @@
         {
           "name": "Mega Juice",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         },
         {
           "name": "Gourmet Steak",
@@ -2616,8 +2616,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Sinister Cloth",
@@ -2752,8 +2752,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         },
         {
           "name": "Lao-Shan's Claw",
@@ -2796,10 +2796,10 @@
           "color": "pink"
         },
         {
-          "name": "Rumblefish",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "gray"
         }
       ],
       "color": "white",
@@ -2875,10 +2875,10 @@
           "color": "blue"
         },
         {
-          "name": "Pin Tuna",
+          "name": "Firestone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "gray"
         }
       ],
       "color": "white",
@@ -3238,8 +3238,8 @@
         {
           "name": "Akantor Scale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Dragonwood+",
@@ -3357,10 +3357,10 @@
           "color": "green"
         },
         {
-          "name": "Pin Tuna",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "gray"
         }
       ],
       "color": "white",
@@ -3397,8 +3397,8 @@
         {
           "name": "Poison Sac",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Poison Coating",
@@ -3443,8 +3443,8 @@
         {
           "name": "Vespoid Wing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "ParaylsisCoating",
@@ -3480,8 +3480,8 @@
         {
           "name": "Vespoid Abdomen",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "ParaylsisCoating",
@@ -3645,8 +3645,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Garuga Mane",
@@ -3912,8 +3912,8 @@
         {
           "name": "Narga Scale+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Great Hornfly",
@@ -4127,7 +4127,7 @@
         {
           "name": "Wht Monoblos Hrn",
           "amount": "1",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         }
       ],
@@ -4279,8 +4279,8 @@
         {
           "name": "Psychoserum",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "orange"
         }
       ],
       "color": "orange",
@@ -4358,8 +4358,8 @@
         {
           "name": "Vespoid Shell",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "color": "blue",
@@ -4382,16 +4382,16 @@
           "color": "white"
         },
         {
-          "name": "Grn Plesioth Scl+",
+          "name": "Grn Plsioth Scl+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "green"
         },
         {
           "name": "Vespoid Wing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         }
       ],
       "color": "blue",
@@ -4422,14 +4422,14 @@
         {
           "name": "Vespoid Razorwing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
           "name": "Catalyst",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "color": "blue",
@@ -4504,8 +4504,8 @@
         {
           "name": "Ancient Potion",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Antiseptic Stone",
@@ -4550,8 +4550,8 @@
         {
           "name": "Gunpowder",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "color": "gray",
@@ -4803,8 +4803,8 @@
         {
           "name": "VespoidQn'sCrown",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Thunderbug Jelly",
@@ -4935,13 +4935,13 @@
         {
           "name": "Poison Sac",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Herbal Medicine",
           "amount": "2",
-          "type": "bone",
+          "type": "sac",
           "color": "white"
         }
       ],
@@ -5104,8 +5104,8 @@
         {
           "name": "Power Pill",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "color": "slate",
@@ -5190,8 +5190,8 @@
         {
           "name": "Hornetaur Head",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "gray"
         }
       ],
       "alternative-create-mats": [
@@ -5609,8 +5609,8 @@
         {
           "name": "Armor Pill",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "orange"
         }
       ],
       "color": "pink",
@@ -5647,8 +5647,8 @@
         {
           "name": "Gourmet Fish+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "orange"
         }
       ],
       "alternative-create-mats": [
@@ -5749,10 +5749,10 @@
           "color": "pink"
         },
         {
-          "name": "Bitterbug",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "blue"
         }
       ],
       "color": "green",
@@ -5855,8 +5855,8 @@
         {
           "name": "Energy Drink",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "green",
@@ -5887,8 +5887,8 @@
         {
           "name": "Power Extract",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         },
         {
           "name": "Giant Bone",
@@ -5929,9 +5929,9 @@
           "color": "white"
         },
         {
-          "name": "Bughopper",
+          "name": "Firestone",
           "amount": "2",
-          "type": "bone",
+          "type": "insect",
           "color": "white"
         }
       ],
@@ -5969,8 +5969,8 @@
         {
           "name": "Power Extract",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "blue"
         }
       ],
       "color": "green",
@@ -6367,10 +6367,10 @@
           "color": "white"
         },
         {
-          "name": "Yambug",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "blue"
         }
       ],
       "color": "cyan",
@@ -6419,10 +6419,10 @@
           "color": "white"
         },
         {
-          "name": "Gastronome Tuna",
+          "name": "Firestone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "orange"
         },
         {
           "name": "Felvine",
@@ -6515,8 +6515,8 @@
         {
           "name": "Mega Armorskin",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "orange"
         }
       ],
       "color": "blue",

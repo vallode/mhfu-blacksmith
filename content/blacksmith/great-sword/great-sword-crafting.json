@@ -1231,8 +1231,8 @@
         {
           "name": "Rainbow Insect",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "pink"
         },
         {
           "name": "FlynMealPassReg",
@@ -1278,8 +1278,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassPlus",
@@ -1330,8 +1330,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -1391,8 +1391,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassPlus",
@@ -3846,10 +3846,10 @@
           "color": "slate"
         },
         {
-          "name": "Sleepyfish",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -3959,16 +3959,16 @@
           "color": "orange"
         },
         {
-          "name": "HypnoBezoar+",
+          "name": "Hypno Bezoar+",
           "amount": "1",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         },
         {
           "name": "Coma Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -4031,8 +4031,8 @@
         {
           "name": "Toxin Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -4224,8 +4224,8 @@
         {
           "name": "Daora Webbing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Rejuvenated Beak",
@@ -4378,8 +4378,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Sharp Claw",
@@ -4639,16 +4639,16 @@
       ],
       "create-mats": [
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "HrdHermitaurClaw",
@@ -4665,16 +4665,16 @@
       ],
       "improve-mats": [
         {
-          "name": "HermitrShl",
+          "name": "PlumD.HermitrShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "Hvy Monster Bone",
@@ -4706,10 +4706,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HermitrClw",
+          "name": "PlumD.HermitrClw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "HvyHermitaurShl",
@@ -4912,10 +4912,10 @@
           "color": "blue"
         },
         {
-          "name": "Knife Mackerel",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -5059,20 +5059,20 @@
         {
           "name": "Blangonga Coin",
           "amount": "10",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
           "name": "Shogun Coin",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "blue"
         },
         {
           "name": "Daimyo Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -5148,14 +5148,14 @@
         {
           "name": "Expert Coin G",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "BlackBeltCoinG",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "gray"
         },
         {
           "name": "Commendation G",
@@ -5350,8 +5350,8 @@
         {
           "name": "Narga Scale+",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -5452,8 +5452,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Fire Dragon Scl",
@@ -5535,8 +5535,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Fatalis CrmsnScl",
@@ -5588,7 +5588,7 @@
         {
           "name": "ThckWhtFatlisScl",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -5741,13 +5741,13 @@
         {
           "name": "Wht Fatalis Scl",
           "amount": "6",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
           "name": "Wht Fatalis Horn",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5782,13 +5782,13 @@
         {
           "name": "ThckWhtFatlisScl",
           "amount": "6",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
           "name": "HrdWhtFatlisHorn",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5963,7 +5963,7 @@
         {
           "name": "UkanlosUnderscl",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -6093,8 +6093,8 @@
         {
           "name": "Daora Webbing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Eldr Dragon Bone",
@@ -6105,8 +6105,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -6134,8 +6134,8 @@
         {
           "name": "Daora Webbing",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Daora Shell",
@@ -6176,8 +6176,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Daora Carapace",
@@ -6223,8 +6223,8 @@
         {
           "name": "ThckDaoraDrgnScl",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Hvy Daora Shell",

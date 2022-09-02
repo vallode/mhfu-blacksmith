@@ -242,8 +242,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -1023,8 +1023,8 @@
         {
           "name": "Poison Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -1102,8 +1102,8 @@
         {
           "name": "Toxin Sac",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": null,
@@ -1270,10 +1270,10 @@
           "color": "white"
         },
         {
-          "name": "Knife Mackerel",
+          "name": "Firestone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -1416,8 +1416,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -1440,8 +1440,8 @@
         {
           "name": "Daora Webbing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "ChameleosWebbing",
@@ -1733,8 +1733,8 @@
         {
           "name": "Poison Sac",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Sm Monster Bone",
@@ -1838,8 +1838,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2617,8 +2617,8 @@
         {
           "name": "Coma Sac",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         },
         {
           "name": "Purecrystal",
@@ -2652,10 +2652,10 @@
           "color": "white"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Elder Dragon Bone",
@@ -2909,10 +2909,10 @@
           "color": "yellow"
         },
         {
-          "name": "BlangoFang",
+          "name": "HvtC.BlangoFang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         }
       ],
       "improve-to": [
@@ -3210,10 +3210,10 @@
           "color": "green"
         },
         {
-          "name": "Sleepyfish",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -3394,8 +3394,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -3865,10 +3865,10 @@
           "color": "white"
         },
         {
-          "name": "Giant Black Pearl",
+          "name": "Giant Blk Pearl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -3947,10 +3947,10 @@
           "color": "white"
         },
         {
-          "name": "Giant Black Pearl",
+          "name": "Giant Blk Pearl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Heavenly Gaoren Shell",
@@ -4027,8 +4027,8 @@
         {
           "name": "Fatalis Scale",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Chameleos Jewel",
@@ -4227,14 +4227,14 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "YamaTsukamiFluid",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -4437,16 +4437,16 @@
           "color": "pink"
         },
         {
-          "name": "Gastronome Tuna",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "orange"
         },
         {
           "name": "Felyne Fur Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -4475,8 +4475,8 @@
         {
           "name": "Poison Sac",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Pawprint Stamp",
@@ -4501,8 +4501,8 @@
         {
           "name": "Poison Sac",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "ShakalakaTreasre",
@@ -4546,8 +4546,8 @@
         {
           "name": "Toxin Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -4894,8 +4894,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -4967,8 +4967,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Daora Jewel",
@@ -5170,8 +5170,8 @@
         {
           "name": "Narga Scale+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Black Narga Pelt",
@@ -5202,8 +5202,8 @@
         {
           "name": "Narga Scale+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Narga Tail Spike",
@@ -5308,20 +5308,20 @@
         {
           "name": "Yian Garuga Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "slate"
         },
         {
           "name": "Khezu Coin",
           "amount": "10",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
           "name": "Cephadrome Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -5354,8 +5354,8 @@
         {
           "name": "Fire Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -5399,8 +5399,8 @@
         {
           "name": "BlackBeltCoinG",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "gray"
         },
         {
           "name": "Commendation G",
@@ -5859,8 +5859,8 @@
         {
           "name": "Toxin Sac",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-mats": null,
@@ -5943,10 +5943,10 @@
           "color": "cyan"
         },
         {
-          "name": "Sleepyfish",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -6547,8 +6547,8 @@
         {
           "name": "Poison Sac",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-mats": null,
@@ -6590,8 +6590,8 @@
         {
           "name": "Coma Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -6842,14 +6842,14 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "YamaTsukamiFluid",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         }
       ],
       "improve-mats": null,
@@ -6977,8 +6977,8 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         }
       ],
       "improve-mats": null,

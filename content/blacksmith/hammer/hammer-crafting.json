@@ -609,8 +609,8 @@
         {
           "name": "Vespoid Abdomen",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Gold Rathian Cpc",
@@ -695,8 +695,8 @@
         {
           "name": "YamaTsukamiFluid",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -852,8 +852,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1062,8 +1062,8 @@
         {
           "name": "Gunpowder",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -1082,8 +1082,8 @@
         {
           "name": "Gunpowder",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -1115,8 +1115,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Firestone",
@@ -1275,8 +1275,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -1337,10 +1337,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Glutton Tuna",
+          "name": "Firestone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "orange"
         },
         {
           "name": "Plesioth Fin",
@@ -1523,8 +1523,8 @@
         {
           "name": "DaoraDragonScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1562,7 +1562,7 @@
         {
           "name": "Slvr Rthlos Scl+",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         }
       ],
@@ -1904,10 +1904,10 @@
           "color": "gray"
         },
         {
-          "name": "Giant Black Pearl",
+          "name": "Giant Blk Pearl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -2316,8 +2316,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2389,14 +2389,14 @@
         {
           "name": "Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         },
         {
           "name": "Toxin Sac",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -2988,10 +2988,10 @@
           "color": "green"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -3533,8 +3533,8 @@
         {
           "name": "Poison Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Gypceros Head",
@@ -3572,8 +3572,8 @@
         {
           "name": "Toxin Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Splendid Beak",
@@ -4255,8 +4255,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-to": null,
@@ -4400,10 +4400,10 @@
           "color": "white"
         },
         {
-          "name": "BlangoFang",
+          "name": "HvtC.BlangoFang",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "BlangoTail",
@@ -4459,10 +4459,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "BlangoFang",
+          "name": "HvtC.BlangoFang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Brwn BlngngaTail",
@@ -5033,10 +5033,10 @@
           "color": "gray"
         },
         {
-          "name": "Rare Scarab",
+          "name": "Firestone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -5062,8 +5062,8 @@
         {
           "name": "DaoraDragonScal+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Daora Sharp Claw",
@@ -5149,20 +5149,20 @@
         {
           "name": "Gravios Coin",
           "amount": "5",
-          "type": "bone",
+          "type": "coin",
           "color": "white"
         },
         {
           "name": "Diablos Coin",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "Daimyo Coin",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -5195,8 +5195,8 @@
         {
           "name": "Tigrex Coin",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "Gld Rathian Cpc",
@@ -5234,14 +5234,14 @@
         {
           "name": "Warrior Coin G",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "cyan"
         },
         {
           "name": "Expert Coin G",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "yellow"
         },
         {
           "name": "Commendation G",
@@ -5393,7 +5393,7 @@
         {
           "name": "Wht Fatalis Horn",
           "amount": "5",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5432,7 +5432,7 @@
         {
           "name": "HrdWhtFatlisHorn",
           "amount": "5",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -5640,9 +5640,9 @@
           "color": "white"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": "3",
-          "type": "bone",
+          "type": "ore",
           "color": "white"
         }
       ],
@@ -5681,8 +5681,8 @@
         {
           "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "Purecrystal",
@@ -5845,8 +5845,8 @@
         {
           "name": "Narga Scale+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Narga Brain Stem",
@@ -5871,8 +5871,8 @@
         {
           "name": "Narga Scale+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Hrd Monster Bone",
@@ -6102,8 +6102,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -6126,8 +6126,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "FlynMealPassReg",
@@ -6197,8 +6197,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "GoldRajangPelt+",
@@ -6848,8 +6848,8 @@
         {
           "name": "Toxin Sac",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "slate"
         },
         {
           "name": "Gypceros Head",
@@ -6897,8 +6897,8 @@
         {
           "name": "FireWyvrn Marrow",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -7069,8 +7069,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -7407,8 +7407,8 @@
         {
           "name": "Felyne Fur Ruby",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "gray"
         },
         {
           "name": "BlackNargaPelt+",
@@ -7450,8 +7450,8 @@
         {
           "name": "Fire Coin",
           "amount": "7",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         },
         {
           "name": "Legend Coin",
@@ -7843,8 +7843,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
@@ -7886,8 +7886,8 @@
         {
           "name": "Wyvern Stone",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ],
       "improve-mats": null,
