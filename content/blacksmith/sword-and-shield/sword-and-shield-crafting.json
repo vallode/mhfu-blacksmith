@@ -45,10 +45,17 @@
       "bonus": null,
       "rarity": "1",
       "type": "sns",
-      "create-cost": null,
+      "create-cost": "510",
       "improve-cost": "510",
       "improve-from": "Hunter's Dagger",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Iron Ore",
@@ -182,10 +189,23 @@
       "bonus": null,
       "rarity": "2",
       "type": "sns",
-      "create-cost": null,
+      "create-cost": "3360",
       "improve-cost": "3360",
       "improve-from": "Velocidrome Bite",
-      "create-mats": null,
+      "create-mats": [ 
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Striped Skin",
+          "amount": "1",
+          "type": "pelt",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Velocidrome Claw",
@@ -280,6 +300,20 @@
           "amount": "40",
           "type": "ore",
           "color": "gray"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "1",
+          "type": "ore",
+          "color": "slate"
         }
       ],
       "improve-mats": [
@@ -1557,6 +1591,20 @@
           "color": "gray"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Giaprey Scale",
+          "amount": "1",
+          "type": "scale",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Sharp Claw",
@@ -2097,10 +2145,23 @@
       "bonus": null,
       "rarity": "1",
       "type": "sns",
-      "create-cost": null,
+      "create-cost": "840",
       "improve-cost": "840",
       "improve-from": "Bone Kris+",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "yellow"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Med Monster Bone",
@@ -2242,10 +2303,23 @@
       "bonus": null,
       "rarity": "4",
       "type": "sns",
-      "create-cost": null,
+      "create-cost": "3360",
       "improve-cost": "3360",
       "improve-from": "Monoblos Club",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Twisted Horn",
+          "amount": "1",
+          "type": "claw",
+          "color": "yellow"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Twisted Horn",
@@ -2419,6 +2493,20 @@
           "amount": "30",
           "type": "bone",
           "color": "white"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "1",
+          "type": "bone",
+          "color": "red"
         }
       ],
       "improve-mats": [

@@ -266,10 +266,23 @@
       "bonus": null,
       "rarity": "6",
       "type": "ls",
-      "create-cost": null,
+      "create-cost": "30000",
       "improve-cost": "30000",
       "improve-from": "Carbalite Sword",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Novacrystal",
+          "amount": "1",
+          "type": "ore",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Novacrystal",
@@ -567,6 +580,20 @@
           "amount": "5",
           "type": "insect",
           "color": "gray"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Blango Pelt",
+          "amount": "1",
+          "type": "pelt",
+          "color": "white"
         }
       ],
       "improve-mats": [
@@ -1520,6 +1547,20 @@
           "color": "cyan"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": "1",
+          "type": "ore",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Iron Ore",
@@ -2249,10 +2290,23 @@
       "bonus": null,
       "rarity": "4",
       "type": "ls",
-      "create-cost": null,
+      "create-cost": "5600",
       "improve-cost": "5600",
       "improve-from": "Dark Scythe",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Black Blos Spine",
+          "amount": "1",
+          "type": "part",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Eldr Dragon Bone",

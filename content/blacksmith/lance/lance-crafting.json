@@ -39,12 +39,19 @@
       "bonus": null,
       "rarity": "1",
       "type": "ln",
-      "create-cost": null,
+      "create-cost": "650",
       "improve-cost": "650",
       "improve-from": [
         "Iron Lance"
       ],
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Iron Ore",
@@ -204,10 +211,23 @@
       "bonus": "+10",
       "rarity": "4",
       "type": "ln",
-      "create-cost": null,
+      "create-cost": "4900",
       "improve-cost": "4900",
       "improve-from": "Rampart",
-      "create-mats": null,
+      "create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "1",
+          "type": "part",
+          "color": "gray"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Dragonite Ore",
@@ -417,6 +437,20 @@
           "amount": "10",
           "type": "pelt",
           "color": "blue"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "1",  
+          "type": "ore",
+          "color": "slate"
         }
       ],
       "improve-mats": [
@@ -2761,6 +2795,20 @@
           "color": "gray"
         }
       ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "1",  
+          "type": "bone",
+          "color": "white"
+        }
+      ],
       "improve-mats": [
         {
           "name": "Stout Bone",
@@ -4222,6 +4270,20 @@
           "amount": "5",
           "type": "insect",
           "color": "gray"
+        }
+      ],
+      "alternative-create-mats": [
+        {
+          "name": "Plus Class Tcket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Bullfango Pelt",
+          "amount": "1",
+          "type": "pelt",
+          "color": "orange"
         }
       ],
       "improve-mats": [
