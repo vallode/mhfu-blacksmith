@@ -83,51 +83,34 @@
 
           <div class="weapon-card__details">
             <div class="stats">
-              {% if page.extra.attack %}
+              {% if page.extra.defence %}
                 <p>
-                  Attack: <span>{{ page.extra.attack }}</span>
-                  {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
+                  Defense: <span>{{ page.extra.defence }}</span>
+                  <!-- {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %} -->
                 </p>
               {% endif %}
 
-              {% if page.extra.max_attack %}
-                <p>Max attack: <span>{{ page.extra.max_attack }}</span></p>
-              {% endif %}
+              <p>
+                Fire Res: <span>{{ page.extra.fire_res }}</span>
+              </p>
 
-              {% if page.extra.affinity %}
-                <p>
-                  Affinity:
-                  <span
-                    class="
-                    {% if page.extra.affinity is starting_with('-') %}
-                      negative
-                    {% elif page.extra.affinity is not starting_with('0')%}
-                      positive
-                    {% endif %}
-                    "
-                  >
-                    {{ page.extra.affinity }}
-                  </span>
-                </p>
-              {% endif %}
+              <p>
+                Thundr Res: <span>{{ page.extra.thunder_res }}</span>
+              </p>
+
+              <p>
+                Dragon Res: <span>{{ page.extra.dragon_res }}</span>
+              </p>
+
+              <p>
+                Water Res: <span>{{ page.extra.water_res }}</span>
+              </p>
+
+              <p>
+                Ice Res: <span>{{ page.extra.ice_res }}</span>
+              </p>
 
               <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
-
-              {% if page.extra.rapid_fire %}
-                <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
-              {% endif %}
-
-              {% if page.extra.shelling %}
-                <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
-              {% endif %}
-
-              {% if page.extra.element %}
-                {% for element in page.extra.element %}
-                  <p class="element">
-                    {{ element.name }} Attrib: {{ element.attack }}
-                  </p>
-                {% endfor %}
-              {% endif %}
 
               {% if page.extra.skills %}
                 {% for skill in page.extra.skills %}

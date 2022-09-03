@@ -29,6 +29,8 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   armor_piece = {
     "name": row["Name"],
     "type": "leggings",
+    "hr": row["HR"],
+    "elder": row["Elder*"],
     "defence": row["Defence"],
     "fire_res": row["Fire Res"],
     "thunder_res": row["Thunder Res"],
@@ -45,10 +47,23 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   create_materials = []
   row.fields(2...10).each_slice(2) do |material, amount|
     if material and amount
-      create_materials.push("#{material} (#{amount})")
+      create_materials.push({
+        "name": material,
+        "amount": amount,
+        "type": "bone",
+        "color": "white"
+      })
     end
   end
 
+  skills = []
+  row.fields(24...34).each_slice(2) do |skill, point|
+    if skill and point
+      skills.push("#{skill} #{point}")
+    end
+  end
+
+  armor_piece["skills"] = skills
   armor_piece["create_mats"] = create_materials
 
   armor_map.push(armor_piece)
