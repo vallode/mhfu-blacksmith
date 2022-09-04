@@ -7710,8 +7710,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Machalite Ore",
@@ -8243,8 +8243,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Lightcrystal",
@@ -11195,8 +11195,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Rathian Carapace",
@@ -11236,8 +11236,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Rathian Carapace",

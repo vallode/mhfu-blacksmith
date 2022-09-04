@@ -7875,8 +7875,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -8092,8 +8092,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ]
     },
@@ -8133,8 +8133,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ]
     },
@@ -8320,8 +8320,8 @@
         {
           "name": "Basarios Tears",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Carbalite Ore",
@@ -8361,8 +8361,8 @@
         {
           "name": "Basarios Tears",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Carbalite Ore",
@@ -8408,8 +8408,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Lightcrystal",

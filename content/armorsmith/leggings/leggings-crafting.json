@@ -9174,8 +9174,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -10926,8 +10926,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ]
     },
@@ -10973,8 +10973,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         }
       ]
     },
@@ -13232,8 +13232,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Pnk Rathian Cpc",
@@ -13279,8 +13279,8 @@
         {
           "name": "Rainbow Ore",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Pnk Rathian Cpc",
