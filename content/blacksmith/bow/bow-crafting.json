@@ -1089,9 +1089,9 @@
           "color": "orange"
         },
         {
-          "name": "BlangongaPelt+",
+          "name": "Blangonga Pelt+",
           "amount": "6",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1420,8 +1420,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "PhantomButterfly",
@@ -2004,7 +2004,7 @@
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "3",
           "type": "insect",
           "color": "yellow"
@@ -3147,7 +3147,7 @@
           "color": "yellow"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "4",
           "type": "insect",
           "color": "yellow"
@@ -3433,7 +3433,7 @@
           "color": "green"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "3",
           "type": "insect",
           "color": "yellow"
@@ -3453,7 +3453,7 @@
           "color": "green"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "3",
           "type": "insect",
           "color": "yellow"
@@ -6012,7 +6012,7 @@
           "color": "cyan"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "10",
           "type": "insect",
           "color": "yellow"

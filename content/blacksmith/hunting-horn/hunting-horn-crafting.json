@@ -424,7 +424,7 @@
           "color": "yellow"
         },
         {
-          "name": "Firestone",
+          "name": "Small Goldenfish",
           "amount": "20",
           "type": "fish",
           "color": "yellow"
@@ -2433,7 +2433,7 @@
           "color": "blue"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "5",
           "type": "insect",
           "color": "yellow"
@@ -2860,10 +2860,10 @@
           "color": "slate"
         },
         {
-          "name": "Chameleos Webbing",
+          "name": "ChameleosWebbing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "slate"
         },
         {
           "name": "Dragonite Ore",
@@ -2924,10 +2924,10 @@
           "color": "slate"
         },
         {
-          "name": "Chameleos Webbing",
+          "name": "ChameleosWebbing",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "slate"
         },
         {
           "name": "Chameleos Spike",
@@ -3361,7 +3361,7 @@
           "color": "yellow"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "5",
           "type": "insect",
           "color": "yellow"
@@ -3405,10 +3405,10 @@
           "color": "pink"
         },
         {
-          "name": "CongaClaw",
+          "name": "HrdE.CongaClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "green"
         },
         {
           "name": "Vibrant Comb",
@@ -3494,8 +3494,8 @@
         {
           "name": "Fatalis Webbing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Fatalis Scale",
@@ -3886,7 +3886,7 @@
       "improve-from": null,
       "create-mats": [
         {
-          "name": "Firestone",
+          "name": "Tailed Frog",
           "amount": "2",
           "type": "pelt",
           "color": "cyan"
@@ -3931,7 +3931,7 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Firestone",
+          "name": "Tailed Frog",
           "amount": "5",
           "type": "pelt",
           "color": "cyan"

@@ -503,7 +503,7 @@
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "name": "Burst Arrowana",
           "amount": "10",
           "type": "fish",
           "color": "green"
@@ -2282,7 +2282,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Rumblefish",
           "amount": "1",
           "type": "fish",
           "color": "gray"
@@ -2364,7 +2364,7 @@
           "color": "yellow"
         },
         {
-          "name": "Firestone",
+          "name": "Burst Arrowana",
           "amount": "3",
           "type": "fish",
           "color": "green"
@@ -2558,8 +2558,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "HrdBlangongaPlt+",
@@ -2597,9 +2597,9 @@
           "color": "orange"
         },
         {
-          "name": "BlangongaPelt+",
+          "name": "Blangonga Pelt+",
           "amount": "4",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -4013,7 +4013,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Burst Arrowana",
           "amount": "10",
           "type": "fish",
           "color": "green"

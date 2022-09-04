@@ -3266,7 +3266,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "5",
           "type": "insect",
           "color": "yellow"
@@ -4253,7 +4253,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "4",
           "type": "insect",
           "color": "yellow"
@@ -4706,8 +4706,8 @@
         {
           "name": "Fatalis Webbing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Lost Umbrella",
@@ -5784,8 +5784,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Massive Bone",
@@ -6052,8 +6052,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "HvyC.BlangoFang",
@@ -7402,7 +7402,7 @@
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "15",
           "type": "insect",
           "color": "yellow"
@@ -8736,10 +8736,10 @@
           "color": "orange"
         },
         {
-          "name": "ShakalakaTreasure",
+          "name": "ShakalakaTreasre",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "orange"
         },
         {
           "name": "Old Pickaxe",

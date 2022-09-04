@@ -647,10 +647,10 @@
           "color": "yellow"
         },
         {
-          "name": "Gold Rathian Cpc",
+          "name": "Gld Rathian Cpc",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -1371,7 +1371,7 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Firestone",
+          "name": "Glutton Tuna",
           "amount": "5",
           "type": "fish",
           "color": "orange"
@@ -1813,22 +1813,22 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Heavy Ceanataur Shell",
+          "name": "HvyCeanataurShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
-          "name": "Hard Ceanataur Claw",
+          "name": "HrdCeanataurClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
-          "name": "Heavy Ceanataur Leg",
+          "name": "HvyCeanataurLeg",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Eltalite Ore",
@@ -1855,16 +1855,16 @@
       "improve-from": "Ceanataur Head Axe",
       "create-mats": [
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Ceanataur Pincer",
@@ -1881,22 +1881,22 @@
       ],
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Heavy Ceanataur Leg",
+          "name": "HvyCeanataurLeg",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -1920,10 +1920,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
           "name": "Heavy Black Gravios Shell",
@@ -3068,7 +3068,7 @@
           "color": "green"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "10",
           "type": "insect",
           "color": "yellow"
@@ -3484,10 +3484,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Blue Kut-Ku Shell",
+          "name": "Blue Kut-Ku Shl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Blue Kut-Ku Scale",
@@ -3970,10 +3970,10 @@
           "color": "white"
         },
         {
-          "name": "YamaTsukami Fluid",
+          "name": "YamaTsukamiFluid",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "green"
         }
       ],
       "improve-to": null,
@@ -4294,10 +4294,10 @@
           "color": "gray"
         },
         {
-          "name": "Elder Dragon Bone",
+          "name": "Eldr Dragon Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "slate"
         }
       ],
       "improve-to": [
@@ -4474,9 +4474,9 @@
       "improve-from": "Great Cone",
       "create-mats": [
         {
-          "name": "BlangongaPelt+",
+          "name": "Blangonga Pelt+",
           "amount": "10",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -4486,10 +4486,10 @@
           "color": "orange"
         },
         {
-          "name": "BlangoTail",
+          "name": "LthrC.BlangoTail",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "orange"
         },
         {
           "name": "Massive Bone",
@@ -4506,10 +4506,10 @@
           "color": "white"
         },
         {
-          "name": "Leather Pelagus Fur",
+          "name": "Lthr Pelagus Plt",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Massive Bone",
@@ -5127,7 +5127,7 @@
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "4",
           "type": "insect",
           "color": "yellow"
@@ -6236,10 +6236,10 @@
           "color": "pink"
         },
         {
-          "name": "Gold Rathian Scl+",
+          "name": "Gld Rathian Scl\+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -6250,10 +6250,10 @@
           "color": "pink"
         },
         {
-          "name": "Gold Rathian Scl+",
+          "name": "Gld Rathian Scl\+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "yellow"
         },
         {
           "name": "Gold Rajang Pelt",
@@ -6383,7 +6383,7 @@
         {
           "name": "UkanlosDiggngClw",
           "amount": "3",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -7247,10 +7247,10 @@
           "color": "slate"
         },
         {
-          "name": "Monoblos Carapace",
+          "name": "MonoblosCarapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-mats": null,

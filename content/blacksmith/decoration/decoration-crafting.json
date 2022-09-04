@@ -100,8 +100,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "color": "red",
@@ -465,10 +465,10 @@
           "color": "slate"
         },
         {
-          "name": "Monoblos Carapace",
+          "name": "MonoblosCarapace",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Rathalos Wing",
@@ -887,7 +887,7 @@
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "name": "Tailed Frog",
           "amount": "2",
           "type": "pelt",
           "color": "cyan"
@@ -1059,7 +1059,7 @@
           "color": "cyan"
         },
         {
-          "name": "Firestone",
+          "name": "Knife Mackerel",
           "amount": "2",
           "type": "fish",
           "color": "yellow"
@@ -2294,7 +2294,7 @@
           "color": "pink"
         },
         {
-          "name": "Firestone",
+          "name": "Glutton Tuna",
           "amount": "1",
           "type": "fish",
           "color": "orange"
@@ -4843,8 +4843,8 @@
         {
           "name": "Sleep Herb",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "cyan"
         }
       ],
       "color": "cyan",
@@ -5262,8 +5262,8 @@
         {
           "name": "LthrChameleoTail",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         }
       ],
       "color": "gray",
@@ -5705,8 +5705,8 @@
         {
           "name": "Felvine",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "yellow"
         },
         {
           "name": "Unknown Skull",
@@ -5749,7 +5749,7 @@
           "color": "pink"
         },
         {
-          "name": "Firestone",
+          "name": "Bitterbug",
           "amount": "1",
           "type": "insect",
           "color": "blue"
@@ -6367,7 +6367,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Yambug",
           "amount": "1",
           "type": "insect",
           "color": "blue"
@@ -6419,7 +6419,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Gastronome Tuna",
           "amount": "1",
           "type": "fish",
           "color": "orange"
@@ -6427,8 +6427,8 @@
         {
           "name": "Felvine",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "yellow"
         }
       ],
       "color": "blue",
