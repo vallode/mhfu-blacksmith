@@ -2218,7 +2218,7 @@
           "color": "pink"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "2",
           "type": "insect",
           "color": "yellow"
@@ -2803,7 +2803,7 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "3",
           "type": "insect",
           "color": "yellow"
@@ -3278,10 +3278,10 @@
           "color": "slate"
         },
         {
-          "name": "Garuga carapce",
+          "name": "Garuga Carapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Garuga Wing",
@@ -3420,8 +3420,8 @@
         {
           "name": "Lao-Shan Scale+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -4224,8 +4224,8 @@
         {
           "name": "Lthr Pelagus Plt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "CongalalaStrngFng",

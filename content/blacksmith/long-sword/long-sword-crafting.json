@@ -92,7 +92,7 @@
           "color": "yellow"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "10",
           "type": "insect",
           "color": "yellow"
@@ -362,10 +362,10 @@
       "improve-from": "Imperial Sword",
       "create-mats": [
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Union Ore",
@@ -388,10 +388,10 @@
       ],
       "improve-mats": [
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Novacrystal",
@@ -452,10 +452,10 @@
           "color": "gray"
         },
         {
-          "name": "BigWyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ],
       "improve-to": null,
@@ -483,10 +483,10 @@
           "color": "red"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "cyan"
         },
         {
           "name": "Ice Crystal",
@@ -676,9 +676,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Blangonga Whisker",
+          "name": "Blangonga Whiskr",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -754,9 +754,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "BlangongaPelt+",
+          "name": "Blangonga Pelt+",
           "amount": "5",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -793,16 +793,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "BlangoTail",
+          "name": "LthrC.BlangoTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "orange"
         },
         {
-          "name": "Lthr Pelagus Pelt",
+          "name": "Lthr Pelagus Plt",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Blk Rajang Pelt+",
@@ -1035,16 +1035,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Garuga Slvr Mane",
+          "name": "SilverGarugaPelt",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
-          "name": "Thick Garuga Scale",
+          "name": "ThickGarugaScale",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "slate"
         },
         {
           "name": "Garuga Carapace",
@@ -1151,10 +1151,10 @@
           "color": "red"
         },
         {
-          "name": "Hermitaur Crpce",
+          "name": "Hermitaur Carpce",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Ceanataur Claw+",
@@ -1186,22 +1186,22 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Pur HermitaurClw",
+          "name": "PlumD.HermitrClw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
-          "name": "Pur HermitaurShl",
+          "name": "PlumD.HermitrShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
-          "name": "Razor Claw",
+          "name": "Piercing Claw",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -1481,16 +1481,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Leather Daora Tail",
+          "name": "Lthr Daora Tail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
-          "name": "DaoraDrgnThckScl",
+          "name": "ThckDaoraDrgnScl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Hard Daora Horn",
@@ -1869,9 +1869,9 @@
           "color": "yellow"
         },
         {
-          "name": "LeatherKirinTail",
+          "name": "LthrKirinThndrTl",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2015,10 +2015,10 @@
           "color": "red"
         },
         {
-          "name": "Fire Drgn Jewl",
+          "name": "Fire Drgn Jwl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2048,10 +2048,10 @@
           "color": "blue"
         },
         {
-          "name": "Lunastra Carpace",
+          "name": "LunastraCarapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "ElderDragonBlood",
@@ -2202,8 +2202,8 @@
         {
           "name": "LthrChameleoTail",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Chameleos Jewel",
@@ -2242,7 +2242,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Knife Mackerel",
           "amount": "8",
           "type": "fish",
           "color": "yellow"
@@ -2510,16 +2510,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Majestic Red Hrn",
+          "name": "Top-GrdRedHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Inferno Sac",
@@ -2631,15 +2631,15 @@
           "color": "white"
         },
         {
-          "name": "White Monoblos Carapace",
+          "name": "Wht Monoblos Cpc",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
-          "name": "White Monoblos Thoratic",
+          "name": "WhtMonoblosThora",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -3073,10 +3073,10 @@
           "color": "blue"
         },
         {
-          "name": "Lao-Shan'sThckScl",
+          "name": "Lao-Shan'sThkScl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Lao-ShanHvnlyScl",
@@ -3260,15 +3260,15 @@
           "color": "red"
         },
         {
-          "name": "FireWyvrnHrdClaw",
+          "name": "HrdFireWyvernClw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
-          "name": "Slvr Rathlos Cpc",
+          "name": "Slvr Rthlos Cpc",
           "amount": "8",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -3286,15 +3286,15 @@
           "color": "red"
         },
         {
-          "name": "Rathalos Hvy Cpc",
+          "name": "HvyRathalosShl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
-          "name": "Slvr Ratlos Scl+",
+          "name": "Slvr Rthlos Scl+",
           "amount": "5",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -3325,9 +3325,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HvySlvrRthalsShl",
+          "name": "HvySlvrRthlsShl",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -3813,10 +3813,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HrdTigrexClw",
+          "name": "Hard Tigrex Claw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Hvy Tigrex Shell",
@@ -3913,10 +3913,10 @@
       "improve-from": "Hidden Saber",
       "create-mats": [
         {
-          "name": "StrNargaCuttngWng",
+          "name": "StrNargaCttngWng",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "BlackNargaPelt+",
@@ -3957,10 +3957,10 @@
           "color": "gray"
         },
         {
-          "name": "NargaBrainStem",
+          "name": "Narga Brain Stem",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -4065,22 +4065,22 @@
       "improve-from": "Fanatic Dragonwd LS",
       "create-mats": [
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Dragonmoss G",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Yamatsukami Fillet",
+          "name": "YamaTsukaFillet",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Thunderbug Jelly",
@@ -4091,10 +4091,10 @@
       ],
       "improve-mats": [
         {
-          "name": "Ancientdragonwood",
+          "name": "AncientDrgnwood",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamatsukamiFluid",
@@ -4130,16 +4130,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "AncientDragonmoss",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "YamatsukamiFillet",
+          "name": "YamatsukaFillet",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Dragonwood+",
@@ -4220,8 +4220,8 @@
         {
           "name": "Fatalis Webbing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "Fire Drgn Jwl",
@@ -4329,8 +4329,8 @@
         {
           "name": "Elder Thank You+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "yellow"
         },
         {
           "name": "Elder Thank You",
@@ -4509,10 +4509,10 @@
           "color": "white"
         },
         {
-          "name": "Remombra Skin G",
+          "name": "SpecRemobraSkin+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "PnkRathianThkScl",
@@ -4719,9 +4719,9 @@
           "color": "white"
         },
         {
-          "name": "UkanlosShoverljaw",
+          "name": "UkanlosShovelJaw",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -5057,16 +5057,16 @@
           "color": "white"
         },
         {
-          "name": "Top-Grade Red Horn",
+          "name": "Top-GrdRedHorn",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
-          "name": "Monoblos Carapace",
+          "name": "MonoblosCarapace",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Blazing Fire Sac",
@@ -5401,10 +5401,10 @@
           "color": "white"
         },
         {
-          "name": "Lunastra Carapace",
+          "name": "LunastraCarapace",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Lunastra Spike",
@@ -5493,10 +5493,10 @@
           "color": "red"
         },
         {
-          "name": "Lao-Shan'sThckScl",
+          "name": "Lao-Shan'sThkScl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Ruby",

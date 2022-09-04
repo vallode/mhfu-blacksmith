@@ -1730,7 +1730,7 @@
           "color": "cyan"
         },
         {
-          "name": "Firestone",
+          "name": "Sleepyfish",
           "amount": "10",
           "type": "fish",
           "color": "cyan"
@@ -1758,8 +1758,8 @@
         {
           "name": "Sleep Herb",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "cyan"
         }
       ],
       "improve-to": [
@@ -2385,10 +2385,10 @@
       ],
       "create-mats": [
         {
-          "name": "Plum Daimyo Hermitaur Shell",
+          "name": "PlumD.HermitrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
           "name": "Plum Daimyo Hermiatur Claw",
@@ -2411,16 +2411,16 @@
       ],
       "improve-mats": [
         {
-          "name": "Plum Daimyo Hermitaur Shell",
+          "name": "PlumD.HermitrShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "slate"
         },
         {
-          "name": "Plum Daimyo Hermitaur Claw",
+          "name": "PlumD.HermitrClw",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "Piercing Claw",
@@ -2856,7 +2856,7 @@
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "10",
           "type": "insect",
           "color": "yellow"
@@ -3256,10 +3256,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Garuga Tail+",
+          "name": "LethrGarugaTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "Str Garuga Wing",
@@ -3901,16 +3901,16 @@
       "improve-from": "Ceanataur Piercer",
       "create-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
           "name": "Ceanataur Leg",
@@ -3927,16 +3927,16 @@
       ],
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
           "name": "Hard Hermitaur Claw",
@@ -3966,16 +3966,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Heavy Ceanataur Leg",
+          "name": "HvyCeanataurLeg",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Giant Blk Pearl",
@@ -4965,10 +4965,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "LthrDaoraTail",
+          "name": "Lthr Daora Tail",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Hvy Daora Shell",
@@ -5429,8 +5429,8 @@
         {
           "name": "Lao Shan's Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -5972,10 +5972,10 @@
       "improve-from": null,
       "create-mats": [
         {
-          "name": "Lao-Shan Horn",
+          "name": "Lao-Shan's Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Lao-Shan Shell",
@@ -6527,7 +6527,7 @@
           "color": "blue"
         },
         {
-          "name": "Firestone",
+          "name": "Sleepyfish",
           "amount": "10",
           "type": "fish",
           "color": "cyan"
@@ -6656,10 +6656,10 @@
           "color": "red"
         },
         {
-          "name": "Razor Claw",
+          "name": "Piercing Claw",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "improve-mats": null,
@@ -6822,10 +6822,10 @@
           "color": "red"
         },
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Eltalite Ore",
@@ -7467,10 +7467,10 @@
           "color": "orange"
         },
         {
-          "name": "FireWyvern Marrow",
+          "name": "FireWyvrn Marrow",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Blazing Fire Sac",

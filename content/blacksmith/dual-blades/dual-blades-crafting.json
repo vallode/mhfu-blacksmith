@@ -510,10 +510,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Velocidrome Claws",
+          "name": "Velocidrome Claw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Velocidrome Head",
@@ -1135,7 +1135,7 @@
           "color": "pink"
         },
         {
-          "name": "Firestone",
+          "name": "Rare Scarab",
           "amount": "10",
           "type": "insect",
           "color": "yellow"
@@ -1772,10 +1772,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Velocidrome Claw+",
+          "name": "Velocidrome Clw+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Velociprey Scle+",
@@ -2041,8 +2041,8 @@
         {
           "name": "LthrChameleoTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "slate"
         },
         {
           "name": "HrdChameleosHorn",
@@ -2051,10 +2051,10 @@
           "color": "slate"
         },
         {
-          "name": "SpecChameleoHide+",
+          "name": "SpecChameleHide+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
           "name": "BigEDragonJewel",
@@ -2966,16 +2966,16 @@
       "improve-from": "Limb Cutter",
       "create-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
           "name": "Piercing Claw",
@@ -2992,22 +2992,22 @@
       ],
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
-          "name": "Terra Ceanataur Shell",
+          "name": "TerraCeanatrShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "orange"
         },
         {
-          "name": "Heavy Ceanataur Leg",
+          "name": "HvyCeanataurLeg",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         }
       ],
       "improve-to": [
@@ -3031,10 +3031,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Terra Ceanataur Claw",
+          "name": "TerraCeanatrClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Hard Gaoren Claw",
@@ -3043,10 +3043,10 @@
           "color": "gray"
         },
         {
-          "name": "Hard Ceanataur Claw",
+          "name": "HrdCeanataurClaw",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Giant Blk Pearl",
@@ -3222,10 +3222,10 @@
           "color": "pink"
         },
         {
-          "name": "Blue Kut-Ku Shell",
+          "name": "Blue Kut-Ku Shl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Monster Bone+",
@@ -3395,15 +3395,15 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Thick Garuga Scale",
+          "name": "ThickGarugaScale",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "slate"
         },
         {
-          "name": "Silver Garuga Pelt",
+          "name": "SilverGarugaPelt",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -3413,10 +3413,10 @@
           "color": "slate"
         },
         {
-          "name": "Heavy Monster Bone",
+          "name": "Hvy Monster Bone",
           "amount": "4",
           "type": "bone",
-          "color": "white"
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -3489,9 +3489,9 @@
           "color": "yellow"
         },
         {
-          "name": "Blangonga Whisker",
+          "name": "Blangonga Whiskr",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -3586,10 +3586,10 @@
           "color": "pink"
         },
         {
-          "name": "CongaClaw",
+          "name": "HrdE.CongaClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "green"
         },
         {
           "name": "Piercing Claw",
@@ -5148,10 +5148,10 @@
           "color": "white"
         },
         {
-          "name": "Velocidrome Claw+",
+          "name": "Velocidrome Clw+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "HrdFireWyvernClw",
