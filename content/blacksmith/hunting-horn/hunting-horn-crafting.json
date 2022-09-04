@@ -711,10 +711,10 @@
           "color": "pink"
         },
         {
-          "name": "Basarios Tear",
+          "name": "Basarios Tears",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Blk Gravios Cpc",

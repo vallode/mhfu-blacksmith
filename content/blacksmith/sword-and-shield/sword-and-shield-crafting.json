@@ -366,10 +366,10 @@
           "color": "pink"
         },
         {
-          "name": "Basarios Tear",
+          "name": "Basarios Tears",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "pink"
         },
         {
           "name": "Rathian Plate",
@@ -742,16 +742,16 @@
           "color": "pink"
         },
         {
-          "name": "VelocidromeClw+",
+          "name": "Velocidrome Clw+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
-          "name": "VelocipreyScle+",
+          "name": "Velociprey Scle+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         }
       ],
       "improve-to": null,
