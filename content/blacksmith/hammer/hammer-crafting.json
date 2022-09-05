@@ -1052,10 +1052,10 @@
           "color": "gray"
         },
         {
-          "name": "Lao-Shan's HvyScl",
+          "name": "Lao-Shan'sHvyShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -1295,16 +1295,16 @@
           "color": "red"
         },
         {
-          "name": "Naruga Thck Scl",
+          "name": "ThickNargaScale",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
-          "name": "BlkGraviosHvyShl",
+          "name": "HvnlyBlkGraviShl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         },
         {
           "name": "Wyvern Stone",
@@ -1926,10 +1926,10 @@
           "color": "orange"
         },
         {
-          "name": "Heavy Black Gravios Shell",
+          "name": "HvyBlkGraviosShl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Hard Gaoren Claw",
@@ -1973,8 +1973,8 @@
         {
           "name": "Needleberry",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "gray"
         },
         {
           "name": "Carpenterbug",
@@ -2014,8 +2014,8 @@
         {
           "name": "Needleberry",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "gray"
         },
         {
           "name": "Killer Beetle",
@@ -2581,22 +2581,22 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Black Gravios Carapace",
+          "name": "Blk Gravios Cpc",
           "amount": "12",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
-          "name": "Black Gravios Skl Shl",
+          "name": "Blk Gravios Skl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
-          "name": "Gravios Brainstem",
+          "name": "Gravios BrainStm",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -2620,7 +2620,7 @@
           "name": "Mystery Bone",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-mats": null,
@@ -2657,7 +2657,7 @@
           "name": "Mystery Bone",
           "amount": "5",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         }
       ],
       "improve-to": [
@@ -2693,10 +2693,10 @@
           "color": "white"
         },
         {
-          "name": "FelyneMealPassReg",
+          "name": "FlynMealPassReg",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         }
       ],
       "improve-to": [
@@ -2728,14 +2728,14 @@
         {
           "name": "Gourmet Steak",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         },
         {
-          "name": "FelyneMealPassPlus",
+          "name": "FlynMealPassPlus",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         }
       ],
       "improve-to": null,
@@ -3490,10 +3490,10 @@
           "color": "blue"
         },
         {
-          "name": "Blue Kut-Ku Scale",
+          "name": "Blue Kut-Ku Scl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "Carpenterbug",
@@ -3913,9 +3913,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Khezu Hide - Cream",
+          "name": "KhezuHide-Cream",
           "amount": "3",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -3925,9 +3925,9 @@
           "color": "yellow"
         },
         {
-          "name": "PaleKhezuSteak",
+          "name": "Pale Khezu Steak",
           "amount": "2",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -3952,9 +3952,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Khezu Hide - Cream",
+          "name": "KhezuHide-Cream",
           "amount": "8",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -4181,10 +4181,10 @@
       "improve-from": "Skullcrusher+",
       "create-mats": [
         {
-          "name": "Wyvern Skull Shell",
+          "name": "Wyvern Skull Shl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Lg Monster Bone",
@@ -4197,14 +4197,20 @@
           "amount": "5",
           "type": "bone",
           "color": "yellow"
+        },
+        {
+          "name": "Killer Beetle",
+          "amount": "10",
+          "type": "insect",
+          "color": "green"
         }
       ],
       "improve-mats": [
         {
-          "name": "Wyvern Skull Shell",
+          "name": "Wyvern Skull Shl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Giant Bone",
@@ -4243,10 +4249,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Wyvern Skull Shell",
+          "name": "Wyvern Skull Shl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Eldr Dragon Bone",
@@ -4480,7 +4486,7 @@
           "color": "white"
         },
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "4",
           "type": "claw",
           "color": "orange"
@@ -4500,10 +4506,10 @@
       ],
       "improve-mats": [
         {
-          "name": "Copper Blangonga Fur+",
+          "name": "C.BlangongaPelt+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "orange"
         },
         {
           "name": "Lthr Pelagus Plt",
@@ -4539,22 +4545,22 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "2",
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Brwn BlngngaTail",
+          "name": "LthrC.BlangoTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "orange"
         },
         {
-          "name": "Black Rajang Pelt+",
+          "name": "Blk Rajang Pelt+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "PhantomButterfly",
@@ -5442,10 +5448,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Hard Fatalis Horn",
+          "name": "HardFatalisHorn",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Fatalis Evil Eye",
@@ -5568,8 +5574,8 @@
         {
           "name": "Cactus Flower",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "pink"
         },
         {
           "name": "Bone",
@@ -5578,10 +5584,10 @@
           "color": "white"
         },
         {
-          "name": "Dobiscus",
+          "name": "Dosbiscus",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -5608,8 +5614,8 @@
         {
           "name": "Cactus Flower",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "pink"
         },
         {
           "name": "Stout Bone",
@@ -5722,16 +5728,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Ash Lao-Shan Shell",
+          "name": "Azure LaoS Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
-          "name": "Lao-Shan Ruby",
+          "name": "Lao-Shan's Ruby",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "red"
         },
         {
           "name": "Novacrystal",
@@ -5850,10 +5856,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Tigrex Claw +",
+          "name": "Tigrex Claw+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Scale +",
@@ -5931,10 +5937,10 @@
       "improve-from": "Striped Striker",
       "create-mats": [
         {
-          "name": "Black NargaPelt",
+          "name": "Black Narga Pelt",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "Narga Scale+",
@@ -5949,10 +5955,10 @@
           "color": "red"
         },
         {
-          "name": "Hard Monster Bone",
+          "name": "Hrd Monster Bone",
           "amount": "6",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -5995,28 +6001,28 @@
       "improve-from": "Hidden Breaker",
       "create-mats": [
         {
-          "name": "Black Nargacuga Pelt+",
+          "name": "BlackNargaPelt+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
-          "name": "Heavy Nargacuga Fang",
+          "name": "HvyNargacugaFang",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
-          "name": "Heavy Nargacuga Tail Spike",
+          "name": "HvyNargaTailSpik",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
-          "name": "Heavenly Nargacuga Scale",
+          "name": "HvnlyNargaScale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         }
       ],
       "improve-mats": [
@@ -6236,7 +6242,7 @@
           "color": "pink"
         },
         {
-          "name": "Gld Rathian Scl\+",
+          "name": "Gld Rathian Scl+",
           "amount": "5",
           "type": "scale",
           "color": "yellow"
@@ -6250,7 +6256,7 @@
           "color": "pink"
         },
         {
-          "name": "Gld Rathian Scl\+",
+          "name": "Gld Rathian Scl+",
           "amount": "3",
           "type": "scale",
           "color": "yellow"
@@ -6433,7 +6439,7 @@
           "name": "Mystery Bone",
           "amount": "50",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Stout Bone",
@@ -6549,8 +6555,8 @@
         {
           "name": "Needleberry",
           "amount": "50",
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "gray"
         },
         {
           "name": "Eltalite Ore",
@@ -7323,8 +7329,8 @@
         {
           "name": "Gourmet Steak",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         },
         {
           "name": "FlynMealPassReg",
@@ -7409,8 +7415,8 @@
         {
           "name": "Cactus Flower",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "pink"
         },
         {
           "name": "Massive Bone",
@@ -7421,8 +7427,8 @@
         {
           "name": "Dosbiscus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -7548,10 +7554,10 @@
           "color": "red"
         },
         {
-          "name": "Legend Coin",
+          "name": "Legend Coin G",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "coin",
+          "color": "red"
         }
       ],
       "improve-mats": null,
@@ -8021,10 +8027,10 @@
           "color": "red"
         },
         {
-          "name": "Lao-ShanScale+",
+          "name": "Lao-Shan Scale+",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         }
       ],
       "improve-mats": null,

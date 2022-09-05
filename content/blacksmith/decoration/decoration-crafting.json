@@ -18,14 +18,14 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
           "name": "Power Seed",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "red"
         },
         {
           "name": "Kut-Ku Scale",
@@ -50,7 +50,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -82,7 +82,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -128,7 +128,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -142,7 +142,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -152,9 +152,9 @@
           "color": "blue"
         },
         {
-          "name": "Slver Rthalos Tail",
+          "name": "Slvr Rthlos Tail",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         }
       ],
@@ -174,7 +174,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -220,7 +220,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -252,7 +252,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -299,7 +299,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -331,7 +331,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -351,7 +351,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -377,7 +377,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -421,7 +421,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -461,7 +461,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -481,7 +481,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -507,7 +507,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -547,7 +547,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -579,7 +579,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -619,7 +619,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -657,7 +657,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -701,7 +701,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -741,7 +741,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -761,7 +761,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -793,7 +793,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -839,7 +839,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -871,7 +871,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -916,7 +916,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -942,7 +942,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -962,7 +962,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -996,14 +996,14 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
           "name": "Fire Herb",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "color": "red",
@@ -1021,7 +1021,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1055,7 +1055,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -1080,7 +1080,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1114,7 +1114,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -1139,7 +1139,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1173,7 +1173,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -1198,7 +1198,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1232,7 +1232,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1244,8 +1244,8 @@
         {
           "name": "Dragon Seed",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "red"
         }
       ],
       "color": "slate",
@@ -1264,7 +1264,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -1305,7 +1305,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -1331,7 +1331,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1363,7 +1363,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1373,10 +1373,10 @@
           "color": "white"
         },
         {
-          "name": "AncientDrgmoss",
+          "name": "AncientDrgnmoss",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "BlackBeltCoinG",
@@ -1409,7 +1409,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1441,7 +1441,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -1461,7 +1461,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1502,7 +1502,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -1528,7 +1528,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1566,7 +1566,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1604,7 +1604,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -1642,7 +1642,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -1676,7 +1676,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1708,7 +1708,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1728,7 +1728,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -1775,7 +1775,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1807,13 +1807,13 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Khezu Hide Tan",
+          "name": "Khezu Hide - Tan",
           "amount": "1",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -1839,7 +1839,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -1886,7 +1886,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -1898,8 +1898,8 @@
         {
           "name": "Cactus Flower",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "pink"
         }
       ],
       "color": "pink",
@@ -1918,14 +1918,14 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Alurring Webbing",
+          "name": "Alluring Webbing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Lifepowder",
@@ -1936,8 +1936,8 @@
         {
           "name": "Dosbiscus",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "color": "pink",
@@ -1956,7 +1956,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2001,7 +2001,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2032,7 +2032,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2072,7 +2072,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2104,7 +2104,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -2130,7 +2130,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2171,7 +2171,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -2183,8 +2183,8 @@
         {
           "name": "Well-Done Steak",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         }
       ],
       "color": "white",
@@ -2203,7 +2203,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2221,8 +2221,8 @@
         {
           "name": "Gourmet Steak",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         }
       ],
       "color": "white",
@@ -2240,7 +2240,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2284,7 +2284,7 @@
         {
           "name": "Akito jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2324,7 +2324,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -2356,7 +2356,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2402,7 +2402,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2420,8 +2420,8 @@
         {
           "name": "Gourmet Steak",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         }
       ],
       "color": "yellow",
@@ -2440,7 +2440,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2484,7 +2484,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -2524,7 +2524,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2556,7 +2556,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2596,7 +2596,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -2610,7 +2610,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2642,7 +2642,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2688,7 +2688,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -2708,7 +2708,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2740,7 +2740,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2786,7 +2786,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2819,7 +2819,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2865,7 +2865,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2898,7 +2898,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -2944,7 +2944,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -2976,7 +2976,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3020,7 +3020,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3058,7 +3058,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3096,7 +3096,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -3134,7 +3134,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3172,7 +3172,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3212,7 +3212,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3232,7 +3232,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3264,7 +3264,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3310,7 +3310,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -3341,7 +3341,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3385,7 +3385,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3431,7 +3431,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3468,7 +3468,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3511,7 +3511,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3557,7 +3557,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3595,7 +3595,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3639,7 +3639,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3683,7 +3683,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -3729,7 +3729,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3743,14 +3743,14 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Ceanataur Claw +",
+          "name": "Ceanataur Claw+",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
           "name": "Lao-ShanCarapace",
@@ -3775,7 +3775,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3821,7 +3821,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -3833,8 +3833,8 @@
         {
           "name": "Ivy",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "green"
         }
       ],
       "color": "slate",
@@ -3852,7 +3852,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3886,7 +3886,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -3906,7 +3906,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3938,7 +3938,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -3978,7 +3978,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -3998,7 +3998,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4030,7 +4030,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4077,7 +4077,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -4109,7 +4109,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4147,7 +4147,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4191,7 +4191,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4203,8 +4203,8 @@
         {
           "name": "Burnt Meat",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "gray"
         }
       ],
       "color": "orange",
@@ -4229,7 +4229,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4267,7 +4267,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4305,7 +4305,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -4346,7 +4346,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4378,7 +4378,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4410,7 +4410,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -4454,7 +4454,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4492,7 +4492,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4538,7 +4538,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4569,7 +4569,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -4607,7 +4607,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4648,7 +4648,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4674,7 +4674,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4705,7 +4705,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -4746,7 +4746,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4772,7 +4772,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4797,7 +4797,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -4837,7 +4837,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4862,7 +4862,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4903,7 +4903,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -4929,7 +4929,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -4960,7 +4960,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5001,7 +5001,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5027,7 +5027,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5052,7 +5052,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5092,7 +5092,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5124,7 +5124,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5144,7 +5144,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5178,7 +5178,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5198,7 +5198,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5224,7 +5224,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5250,7 +5250,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5291,7 +5291,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5323,7 +5323,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5355,7 +5355,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5402,7 +5402,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5428,7 +5428,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5459,7 +5459,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5500,7 +5500,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5526,7 +5526,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5557,7 +5557,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5597,7 +5597,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5629,7 +5629,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5655,7 +5655,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5673,8 +5673,8 @@
         {
           "name": "Immunizer",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "pink",
@@ -5699,7 +5699,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5739,7 +5739,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5770,7 +5770,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5790,7 +5790,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5823,7 +5823,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -5835,15 +5835,15 @@
         {
           "name": "Sunset Herb",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "slate"
         }
       ],
       "alternative-create-mats": [
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -5881,7 +5881,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -5919,14 +5919,14 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
           "name": "Dosbiscus",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         },
         {
           "name": "Bughopper",
@@ -5957,7 +5957,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -5996,7 +5996,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -6033,7 +6033,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6079,7 +6079,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6099,7 +6099,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -6131,7 +6131,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -6177,7 +6177,7 @@
         {
           "name": "Akito Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "white"
         },
         {
@@ -6203,7 +6203,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6235,7 +6235,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6275,7 +6275,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6313,7 +6313,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -6357,14 +6357,14 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
           "name": "Cricket",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "bait",
+          "color": "green"
         },
         {
           "name": "Yambug",
@@ -6395,7 +6395,7 @@
         {
           "name": "Suiko Jewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "cyan"
         },
         {
@@ -6409,7 +6409,7 @@
         {
           "name": "BattlefieldJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "slate"
         },
         {
@@ -6453,7 +6453,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {
@@ -6497,7 +6497,7 @@
         {
           "name": "LapisLazuliJewel",
           "amount": "1",
-          "type": "decoration",
+          "type": "deco",
           "color": "yellow"
         },
         {

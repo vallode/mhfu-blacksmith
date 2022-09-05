@@ -1036,10 +1036,10 @@
           "color": "blue"
         },
         {
-          "name": "Small Golden Fish",
+          "name": "Small Goldenfish",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "fish",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -1322,16 +1322,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Vespoid InnerWing",
+          "name": "Vespoid InnrWng",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "yellow"
         },
         {
-          "name": "Hornetaur InnerWing",
+          "name": "HornetaurInnrWng",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         },
         {
           "name": "King Scarab",
@@ -1442,10 +1442,10 @@
       "improve-from": "Twin Dagger+",
       "create-mats": [
         {
-          "name": "Felyne Meal Pass Regular",
+          "name": "FlynMealPassReg",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Iron Ore",
@@ -1462,10 +1462,10 @@
       ],
       "improve-mats": [
         {
-          "name": "Felyne Meal Pass Plus",
+          "name": "FlynMealPassPlus",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Machalite Ore",
@@ -1502,10 +1502,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Felyne Meal Pass Plus",
+          "name": "FlynMealPassPlus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Union Ore",
@@ -1539,10 +1539,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Felyne Meal Pass Regular",
+          "name": "FlynMealPassReg",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -1918,10 +1918,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Robust Wyvern Bone",
+          "name": "RobustWyvernBone",
           "amount": "6",
           "type": "bone",
-          "color": "white"
+          "color": "cyan"
         },
         {
           "name": "Giadrome Claw+",
@@ -2160,10 +2160,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "LthBlkBlosTail",
+          "name": "LthrBlkBlosTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "WhtMonoblosThora",
@@ -2199,15 +2199,15 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "StoutBlkTwistedHorn",
+          "name": "StoutBlkTwstdHrn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
-          "name": "TopGrdPlatHorn",
+          "name": "Top-GrdPlatHorn",
           "amount": "2",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
@@ -2242,16 +2242,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Gravios Skull Shell",
+          "name": "Gravios Skl Shl",
           "amount": "4",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
-          "name": "Black Gravios Skull",
+          "name": "Blk Gravios Skl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Toxin Sac",
@@ -2287,10 +2287,10 @@
           "color": "white"
         },
         {
-          "name": "Black Gravios Carapace",
+          "name": "Blk Gravios Cpc",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Wyvern Stone",
@@ -2407,10 +2407,10 @@
           "color": "blue"
         },
         {
-          "name": "Dragon Wood+",
+          "name": "Dragonwood+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Carbalite Ore",
@@ -2433,10 +2433,10 @@
           "color": "blue"
         },
         {
-          "name": "Dragon Wood+",
+          "name": "Dragonwood+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Dragonmoss+",
@@ -2632,10 +2632,10 @@
           "color": "white"
         },
         {
-          "name": "Gld Rthian Scl+",
+          "name": "Gld Rathian Scl+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "yellow"
         },
         {
           "name": "Rathalos Ruby",
@@ -3701,10 +3701,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Lao-Shan Carapace",
+          "name": "Lao-ShanCarapace",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Scale+",
@@ -3902,16 +3902,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HrdFatalisHorn",
+          "name": "HardFatalisHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
-          "name": "HvyFatalisShell",
+          "name": "Hvy Fatalis Shl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "BigEDragonJewel",
@@ -3945,16 +3945,16 @@
           "color": "gray"
         },
         {
-          "name": "White Fatalis Horn",
+          "name": "Wht Fatalis Horn",
           "amount": "2",
-          "type": "bone",
+          "type": "claw",
           "color": "white"
         },
         {
-          "name": "Fatalis Devil Eye",
+          "name": "Fatalis DevilEye",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Chameleos Jewel",
@@ -4079,10 +4079,10 @@
           "color": "red"
         },
         {
-          "name": "Fire Dragon Powder",
+          "name": "Fire Dragon Pwdr",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "red"
         },
         {
           "name": "Lao-Shan's Ruby",
@@ -4112,16 +4112,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Azure Lao-Shan's Horn",
+          "name": "Azure LaoS Horn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
-          "name": "Azure Lao-Shan's Shell",
+          "name": "Azure LaoS Shell",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Lao-Shan's Thick Scale",
@@ -4151,28 +4151,28 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Azure Lao-Shan's Horn",
+          "name": "Azure LaoS Horn",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
-          "name": "Azure Lao-Shan's Claw",
+          "name": "Azure LaoS Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "blue"
         },
         {
-          "name": "Heavy Gaoren Spine",
+          "name": "Hvy Gaoren Spine",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "gray"
         },
         {
-          "name": "Lao-Shan Heavenly Scale",
+          "name": "Lao-ShanHvnlyScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         }
       ],
       "improve-to": null,
@@ -4559,10 +4559,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Daora Dragon Scale+",
+          "name": "DaoraDragonScal+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         },
         {
           "name": "Union Ore",
@@ -4687,10 +4687,10 @@
           "color": "yellow"
         },
         {
-          "name": "Heavy Tigrex Fang",
+          "name": "Hvy Tigrex Fang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "ThickTigrexScale",
@@ -4907,10 +4907,10 @@
           "color": "white"
         },
         {
-          "name": "Lg WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         },
         {
           "name": "Akantor Claw",
@@ -5498,10 +5498,10 @@
           "color": "pink"
         },
         {
-          "name": "Ku-Ku Scale+",
+          "name": "Kut-ku Scale+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         },
         {
           "name": "Blazing Fire Sac",
