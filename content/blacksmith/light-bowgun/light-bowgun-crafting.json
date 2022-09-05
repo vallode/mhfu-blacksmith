@@ -1461,10 +1461,10 @@
           "color": "white"
         },
         {
-          "name": "WyvernSkull Shl",
+          "name": "Wyvern Skull Shl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Monster Bone+",
@@ -1784,10 +1784,10 @@
           "color": "gray"
         },
         {
-          "name": "Hermiatur Claw",
+          "name": "Hermitaur Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "Flame Sac",
@@ -1900,16 +1900,16 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Chamelos Hide",
+          "name": "Chameleos Hide",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
-          "name": "ChamelosWebbing",
+          "name": "ChameleosWebbing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "slate"
         },
         {
           "name": "Firestone",
@@ -2235,10 +2235,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Azre Rathalos Shl",
+          "name": "Azure Rthlos Shl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Pnk Rathian Scl",
@@ -2253,10 +2253,10 @@
           "color": "gray"
         },
         {
-          "name": "FireWyvernMarrow",
+          "name": "FireWyvrn Marrow",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -2302,10 +2302,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Azre Rathalos Shl",
+          "name": "Azure Rthlos Shl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Dragonite Ore",
@@ -2314,10 +2314,10 @@
           "color": "green"
         },
         {
-          "name": "FireWyvernMarrow",
+          "name": "FireWyvrn Marrow",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -3260,10 +3260,10 @@
           "color": "gray"
         },
         {
-          "name": "WyvernSkull Shl",
+          "name": "Wyvern Skull Shl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Rare Scarab",
@@ -3315,10 +3315,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Tigrex Scarapace",
+          "name": "Tigrex Carapace",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Tigrex Scale+",
@@ -3327,16 +3327,16 @@
           "color": "yellow"
         },
         {
-          "name": "FireWyvernBrnstm",
+          "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
@@ -3467,10 +3467,10 @@
           "color": "red"
         },
         {
-          "name": "carbalite",
+          "name": "Carbalite Ore",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "slate"
         }
       ]
     },
@@ -3729,10 +3729,10 @@
           "color": "gray"
         },
         {
-          "name": "Blk Gavios Skl",
+          "name": "Blk Gravios Skl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Union Ore",
@@ -4034,10 +4034,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "FireWyvernBrnstm",
+          "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Kirin Coin",
@@ -4119,10 +4119,10 @@
           "color": "green"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
@@ -4174,10 +4174,10 @@
           "color": "green"
         },
         {
-          "name": "FireWyvernBrnstm",
+          "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Firecell Stone",
@@ -4235,22 +4235,22 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Chamelos Jewel",
+          "name": "Chameleos Jewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         },
         {
-          "name": "Chamelos Hide+",
+          "name": "Chameleos Hide+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
-          "name": "Chamelos: Hide",
+          "name": "Chameleos Hide",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
           "name": "Rare Scarab",
@@ -4302,28 +4302,28 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Azre Rathalos Cpc",
+          "name": "Azure Rthlos Cpc",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
-          "name": "Azr Rathalos Scl+",
+          "name": "Azre Rthlos Scl+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
-          "name": "Azur Rathalos Wng",
+          "name": "Azur Rthlos Wing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
@@ -4369,10 +4369,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Azre Rathalos Cpc",
+          "name": "Azure Rthlos Cpc",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Pnk Rathian Scl+",
@@ -4454,10 +4454,10 @@
           "color": "white"
         },
         {
-          "name": "FireWyvernBrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -4576,9 +4576,9 @@
           "color": "white"
         },
         {
-          "name": "Slvr Rathlos Scl+",
+          "name": "Slvr Rthlos Scl+",
           "amount": "6",
-          "type": "bone",
+          "type": "scale",
           "color": "white"
         },
         {
@@ -4588,10 +4588,10 @@
           "color": "white"
         },
         {
-          "name": "FireWyvernBrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ]
     },
@@ -4978,10 +4978,10 @@
           "color": "blue"
         },
         {
-          "name": "Plesioth Thck Scl",
+          "name": "ThckPlesiothScl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "PlumD.HermitrShl",
@@ -5045,10 +5045,10 @@
           "color": "green"
         },
         {
-          "name": "GrnPlsoth Fin G",
+          "name": "SpecGrnPlesioFn+",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "HvyHermitaurShl",
@@ -5374,10 +5374,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Kut-Ku Hvy Cpc",
+          "name": "Hvy Kut-Ku Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Lucky Kut-Ku Ear",
@@ -5386,10 +5386,10 @@
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Hrd Wbbing",
+          "name": "Str Kut-Ku Wing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "OrangeHypnoPelt+",
@@ -5459,10 +5459,10 @@
           "color": "gray"
         },
         {
-          "name": "HypnocFangedBeak",
+          "name": "Hypno Fang",
           "amount": "3",
           "type": "bone",
-          "color": "white"
+          "color": "orange"
         }
       ]
     },
@@ -5520,10 +5520,10 @@
           "color": "gray"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         },
         {
           "name": "Hvy Monster Bone",
@@ -5575,10 +5575,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "basariosSrngWng",
+          "name": "StrBasariosWing",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Eltalite Ore",
@@ -5861,10 +5861,10 @@
           "color": "green"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -5922,16 +5922,16 @@
           "color": "blue"
         },
         {
-          "name": "FireWyvernBrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -5995,10 +5995,10 @@
           "color": "orange"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -6405,7 +6405,7 @@
       ]
     },
     {
-      "name": "True  Azure Sakura",
+      "name": "Pollination",
       "attack": "324",
       "max-attack": "384",
       "rapid-fire": "Normal S Lv2|Pierce S Lv1",
@@ -6458,10 +6458,10 @@
           "color": "pink"
         },
         {
-          "name": "RathalosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "Rathian Thorn",
@@ -6793,10 +6793,10 @@
           "color": "yellow"
         },
         {
-          "name": "RathalosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "red"
         },
         {
           "name": "HvnlyRathianScl",
@@ -6848,16 +6848,16 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Chamelos Hide G",
+          "name": "SpecChameleHide+",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "slate"
         },
         {
-          "name": "Chamelos Horn G",
+          "name": "HrdChameleosHorn",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "slate"
         },
         {
           "name": "Commendation S",
@@ -6927,10 +6927,10 @@
           "color": "red"
         },
         {
-          "name": "BlkHvnlyGraviosShl",
+          "name": "HvnlyBlkGraviShl",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         },
         {
           "name": "Mellanje Ore",
@@ -6988,9 +6988,9 @@
           "color": "red"
         },
         {
-          "name": "SlvrRathlosHvyCpc",
+          "name": "HvySlvrRthlsShl",
           "amount": "6",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -7201,10 +7201,10 @@
           "color": "yellow"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -7865,10 +7865,10 @@
           "color": "blue"
         },
         {
-          "name": "Plesioth Thck Scl",
+          "name": "ThckPlesiothScl",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "Black Pearl",
@@ -8080,7 +8080,7 @@
       ]
     },
     {
-      "name": "Sakura Parasol G",
+      "name": "Peach Parasol G",
       "attack": "312",
       "max-attack": "372",
       "rapid-fire": "Thunder S",
@@ -8133,10 +8133,10 @@
           "color": "orange"
         },
         {
-          "name": "Alluring Wing",
+          "name": "StrAlluringWing",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Basarios Tears",
@@ -8334,10 +8334,10 @@
           "color": "white"
         },
         {
-          "name": "Alluring Wing",
+          "name": "StrAlluringWing",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "HrdPuGypcerosWng",
@@ -8407,10 +8407,10 @@
           "color": "orange"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -8809,10 +8809,10 @@
           "color": "pink"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },

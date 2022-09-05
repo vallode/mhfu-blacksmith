@@ -234,10 +234,10 @@
           "color": "orange"
         },
         {
-          "name": "Top-GrdHpnoClaw",
+          "name": "Top-GrdHypnoClaw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "OrangeHypnoPelt+",
@@ -277,10 +277,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Hypno Claw +",
+          "name": "Hypno Claw+",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "orange"
         },
         {
           "name": "Hypno Bezoar+",
@@ -1441,15 +1441,15 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Silver Rathalos Tail",
+          "name": "Slvr Rthlos Tail",
           "amount": "3",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
-          "name": "Silver Rathalos Wing",
+          "name": "Slvr Rthlos Wing",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -1490,9 +1490,9 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Silver Rathalos Carapace",
+          "name": "Slvr  Rthlos Cpc",
           "amount": "5",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -2118,9 +2118,9 @@
       ],
       "create-mats": [
         {
-          "name": "Khezu Hide-Tan",
+          "name": "Khezu Hide - Tan",
           "amount": "8",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -2144,9 +2144,9 @@
       ],
       "improve-mats": [
         {
-          "name": "Khezu Hide-Tan",
+          "name": "Khezu Hide - Tan",
           "amount": "5",
-          "type": "bone",
+          "type": "pelt",
           "color": "white"
         },
         {
@@ -2322,8 +2322,8 @@
         {
           "name": "Fire Herb",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -2591,7 +2591,7 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "2",
           "type": "claw",
           "color": "orange"
@@ -2652,10 +2652,10 @@
           "color": "white"
         },
         {
-          "name": "Rajang Strng Claw",
+          "name": "Hard Rajang Claw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -3449,8 +3449,8 @@
         {
           "name": "Ivy",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "green"
         },
         {
           "name": "Commendation G",
@@ -3497,10 +3497,10 @@
           "color": "red"
         },
         {
-          "name": "Ancient Dragonwood",
+          "name": "AncientDrgnwood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Eltalite Ore",
@@ -3625,16 +3625,16 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HeavyTigrexFang",
+          "name": "Hvy Tigrex Fang",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
-          "name": "HardTigrexClaw",
+          "name": "Hard Tigrex Claw",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "HvnlyTigrexScale",
@@ -3673,8 +3673,8 @@
         {
           "name": "Nargacuga Tail",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Narga Brain Stem",
@@ -3699,8 +3699,8 @@
         {
           "name": "Nargacuga Tail",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "Narga Scale+",
@@ -3751,10 +3751,10 @@
           "color": "gray"
         },
         {
-          "name": "LeatherTigrexTail",
+          "name": "LeathrTigrexTail",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "improve-mats": [
@@ -4001,10 +4001,10 @@
           "color": "white"
         },
         {
-          "name": "Hard Monster Bone",
+          "name": "Hrd Monster Bone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "red"
         },
         {
           "name": "Massive Bone",

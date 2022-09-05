@@ -534,10 +534,10 @@
           "color": "white"
         },
         {
-          "name": "ThckDaoraDrgnScale",
+          "name": "ThckDaoraDrgnScl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "gray"
         }
       ],
       "improve-to": null,
@@ -760,7 +760,7 @@
           "color": "white"
         },
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "2",
           "type": "claw",
           "color": "orange"
@@ -2692,7 +2692,7 @@
           "name": "Mystery Bone",
           "amount": "2",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Brute Bone",
@@ -4503,10 +4503,10 @@
           "color": "white"
         },
         {
-          "name": "Daora Webbing G",
+          "name": "Str Daora Wing",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "SpecRemobraSkin+",
@@ -4515,10 +4515,10 @@
           "color": "gray"
         },
         {
-          "name": "PnkRathianThkScl",
+          "name": "ThckPnkRathnScl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         }
       ],
       "improve-to": null,
@@ -4759,7 +4759,7 @@
           "name": "Mystery Bone",
           "amount": "20",
           "type": "bone",
-          "color": "white"
+          "color": "yellow"
         },
         {
           "name": "Brute Bone",

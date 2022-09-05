@@ -5357,7 +5357,7 @@
           "color": "gray"
         },
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "3",
           "type": "claw",
           "color": "orange"
@@ -5900,9 +5900,9 @@
           "color": "white"
         },
         {
-          "name": "HvyWhtFatlisShl",
+          "name": "HvyWhtFatalisShl",
           "amount": "1",
-          "type": "bone",
+          "type": "part",
           "color": "white"
         },
         {
@@ -6054,10 +6054,10 @@
           "color": "white"
         },
         {
-          "name": "HrdCongalalaPelt+",
+          "name": "HrdCongalalaPlt+",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Lg Pelagus Fang",

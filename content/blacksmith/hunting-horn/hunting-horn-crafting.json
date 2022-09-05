@@ -32,10 +32,10 @@
           "color": "gray"
         },
         {
-          "name": "Hvy Monster Bon",
+          "name": "Hvy Monster Bone",
           "amount": "8",
           "type": "bone",
-          "color": "white"
+          "color": "gray"
         },
         {
           "name": "Screamer",
@@ -251,10 +251,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Hrd Gaoren Claw",
+          "name": "Hard Gaoren Claw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Hvy Gaoren Spine",
@@ -298,22 +298,22 @@
       "improve-from": "Anvil Hammer",
       "create-mats": [
         {
-          "name": "Pink Rathian Scl",
+          "name": "Pnk Rathian Scl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         },
         {
-          "name": "Pink Rathian Shl",
+          "name": "Pnk Rathian Shl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Dosbiscus",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         },
         {
           "name": "Killer Beetle",
@@ -324,16 +324,16 @@
       ],
       "improve-mats": [
         {
-          "name": "Pink Rathian Scl",
+          "name": "Pnk Rathian Scl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "pink"
         },
         {
-          "name": "Pink Rathian Shl",
+          "name": "Pnk Rathian Shl",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Dragonite Ore",
@@ -456,22 +456,22 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "HvyPinkRathianShl",
+          "name": "HvyPnkRathianShl",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
-          "name": "Hvy Rathian Shl",
+          "name": "ThckRathianScl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "green"
         },
         {
-          "name": "Gld Rathian Carapace",
+          "name": "Gld Rathian Cpc",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
           "name": "Rathian Thorn",
@@ -1182,7 +1182,32 @@
       "improve-cost": "105000",
       "improve-from": "Hypno Whistle",
       "create-mats": null,
-      "improve-mats": null,
+      "improve-mats": [
+        {
+          "name": "Hypno Claw+",
+          "amount": "8",
+          "type": "claw",
+          "color": "orange"
+        },
+        {
+          "name": "RainbowTailFeath",
+          "amount": "5",
+          "type": "scale",
+          "color": "orange"
+        },
+        {
+          "name": "Hypno Bezoar+",
+          "amount": "1",
+          "type": "ore",
+          "color": "white"
+        },
+        {
+          "name": "Coma sac",
+          "amount": "3",
+          "type": "sac",
+          "color": "blue"
+        }
+      ],
       "improve-to": null,
       "sharpness_plus": "3.2.17.12.4.5.2"
     },
@@ -1587,10 +1612,10 @@
           "color": "pink"
         },
         {
-          "name": "Lighting Sac",
+          "name": "Lightning Sac",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "sac",
+          "color": "yellow"
         },
         {
           "name": "Pale Khezu Steak",
@@ -2052,10 +2077,10 @@
           "color": "yellow"
         },
         {
-          "name": "Hornetaur InnrWng",
+          "name": "HornetaurInnrWng",
           "amount": "15",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         }
       ],
       "improve-to": [
@@ -2421,10 +2446,10 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Velociprey Scale+",
+          "name": "Velociprey Scle+",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "blue"
         },
         {
           "name": "Velociprey Hide+",
@@ -2665,8 +2690,8 @@
         {
           "name": "Dragon Toadstool",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "red"
         },
         {
           "name": "Monster Bone+",
@@ -2709,8 +2734,8 @@
         {
           "name": "Dragon Toadstool",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "red"
         },
         {
           "name": "Hrd Monster Bone",
@@ -2753,8 +2778,8 @@
         {
           "name": "Dragon Toadstool",
           "amount": "8",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "red"
         },
         {
           "name": "Hvy Monster Bone",
@@ -2803,8 +2828,8 @@
         {
           "name": "Dragon Toadstool",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "mushroom",
+          "color": "red"
         },
         {
           "name": "BigEDragonBone",
@@ -3029,8 +3054,8 @@
         {
           "name": "Fire Herb",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "improve-mats": [
@@ -3049,8 +3074,8 @@
         {
           "name": "Fire Herb",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "herb",
+          "color": "red"
         }
       ],
       "improve-to": [
@@ -3681,10 +3706,10 @@
           "color": "green"
         },
         {
-          "name": "Dragon Moss",
+          "name": "Dragonmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Monster Fluid",
@@ -3900,8 +3925,8 @@
         {
           "name": "Frog",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "bait",
+          "color": "blue"
         }
       ],
       "improve-mats": null,
@@ -3939,8 +3964,8 @@
         {
           "name": "Frog",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "bait",
+          "color": "blue"
         },
         {
           "name": "Giant Blk Pearl",
@@ -4190,10 +4215,10 @@
       "improve-from": "Hidden Tone",
       "create-mats": [
         {
-          "name": "BlackNargaPelt",
+          "name": "Black Narga Pelt",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "gray"
         },
         {
           "name": "StrNargaCttngWng",
@@ -4469,10 +4494,10 @@
           "color": "pink"
         },
         {
-          "name": "Conga Pelt +",
+          "name": "Conga Pelt+",
           "amount": "20",
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "pink"
         },
         {
           "name": "Hvy Monster Bone",

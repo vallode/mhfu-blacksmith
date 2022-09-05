@@ -2997,7 +2997,7 @@
           "color": "yellow"
         },
         {
-          "name": "HvtC.BlangoFang",
+          "name": "HvyC.BlangoFang",
           "amount": "2",
           "type": "claw",
           "color": "orange"
@@ -3583,7 +3583,7 @@
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Gld Rathian Scl\+",
+          "name": "Gld Rathian Scl+",
           "amount": "10",
           "type": "scale",
           "color": "yellow"
@@ -3901,10 +3901,10 @@
           "color": "blue"
         },
         {
-          "name": "Hard Hermitaur Claw",
+          "name": "HrdHermitaurClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "HvyHermitaurShl",

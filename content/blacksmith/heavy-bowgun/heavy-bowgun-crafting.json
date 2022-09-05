@@ -1461,10 +1461,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Lunstra Shell",
+          "name": "Lunastra Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Fire Dragon Scl",
@@ -1473,10 +1473,10 @@
           "color": "red"
         },
         {
-          "name": "Lunstra Mane",
+          "name": "Lunastra Mane",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Firestone",
@@ -1877,10 +1877,10 @@
           "color": "cyan"
         },
         {
-          "name": "Coral Cphalos Scl",
+          "name": "Coral Cphlos Scl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "slate"
         },
         {
           "name": "Hrd Monster Bone",
@@ -2267,10 +2267,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Ceanataur Carpca",
+          "name": "Ceanataur Carpce",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "blue"
         },
         {
           "name": "Ceanataur Pincer",
@@ -2279,10 +2279,10 @@
           "color": "blue"
         },
         {
-          "name": "Coral Cphalos Scl",
+          "name": "Coral Cphlos Scl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "slate"
         },
         {
           "name": "Monster Bone+",
@@ -2413,16 +2413,16 @@
           "color": "yellow"
         },
         {
-          "name": "FireWyvernBrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
@@ -3071,10 +3071,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Lunstra Carpace",
+          "name": "LunastraCarapace",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "Fire Drgn Jwl",
@@ -3491,10 +3491,10 @@
           "color": "red"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
@@ -3686,10 +3686,10 @@
           "color": "blue"
         },
         {
-          "name": "Alluring Wing",
+          "name": "StrAlluringWing",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Eltalite Ore",
@@ -3747,10 +3747,10 @@
           "color": "pink"
         },
         {
-          "name": "CongalalaStrngFng",
+          "name": "Lg Pelagus Fang",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         },
         {
           "name": "Vibrant Pelt",
@@ -3887,10 +3887,10 @@
           "color": "red"
         },
         {
-          "name": "GrnPlesiothThkScl",
+          "name": "ThckGrnPlesioScl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "green"
         },
         {
           "name": "Massive Bone",
@@ -3942,10 +3942,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Kut-Ku Cpc",
+          "name": "Kut-Ku Carapace",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "pink"
         },
         {
           "name": "Str Kut-Ku Wing",
@@ -4094,10 +4094,10 @@
           "color": "red"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -4228,10 +4228,10 @@
           "color": "yellow"
         },
         {
-          "name": "CongalalaStrngFng",
+          "name": "Lg Pelagus Fang",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "yellow"
         }
       ]
     },
@@ -4295,10 +4295,10 @@
           "color": "gray"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -4370,7 +4370,7 @@
       ]
     },
     {
-      "name": "Jolly Roger Cannon",
+      "name": "Pirate J Cannon",
       "attack": "420",
       "max-attack": "480",
       "rapid-fire": null,
@@ -4411,10 +4411,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "dummy",
+          "name": "Pirate Tckt J G",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "red"
         },
         {
           "name": "ThckFireDrgnScl",
@@ -4423,16 +4423,16 @@
           "color": "red"
         },
         {
-          "name": "FireDrgnStrngClaw",
+          "name": "HrdFireDrgnClaw",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
-          "name": "Elder Dragon Jewel",
+          "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ]
     },
@@ -4496,10 +4496,10 @@
           "color": "yellow"
         },
         {
-          "name": "HorNetaurRazrWng",
+          "name": "Hornet Razorwing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "webbing",
+          "color": "gray"
         }
       ]
     },
@@ -4557,10 +4557,10 @@
           "color": "gray"
         },
         {
-          "name": "NarugeDvinePlate",
+          "name": "HvnlyNargaScale",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "heavenly",
+          "color": "gray"
         },
         {
           "name": "Hvy Monster Bone",
@@ -4886,10 +4886,10 @@
           "color": "gray"
         },
         {
-          "name": "Daora Webing G",
+          "name": "Str Daora Wing",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         },
         {
           "name": "BigEDragonJewel",
@@ -5087,10 +5087,10 @@
           "color": "red"
         },
         {
-          "name": "FireDragonStrngClw",
+          "name": "HrdFireDrgnClaw",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "red"
         },
         {
           "name": "BigEDragonJewel",
@@ -5483,10 +5483,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "Laso-Shan Hvy Cpc",
+          "name": "Lao-Shan'sHvyShl",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         },
         {
           "name": "Azure LaoS Claw",
@@ -5501,10 +5501,10 @@
           "color": "red"
         },
         {
-          "name": "Big WyvernStone",
+          "name": "Big Wyvern Stone",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "blue"
         }
       ]
     },
@@ -5830,10 +5830,10 @@
           "color": "green"
         },
         {
-          "name": "Verspoid Abdomen",
+          "name": "Vespoid Abdomen",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "insect",
+          "color": "yellow"
         },
         {
           "name": "Hornetaur Head",
@@ -6104,10 +6104,10 @@
           "color": "pink"
         },
         {
-          "name": "GrnConglalaClaw",
+          "name": "HrdE.CongaClaw",
           "amount": "6",
-          "type": "bone",
-          "color": "white"
+          "type": "claw",
+          "color": "green"
         }
       ]
     },
@@ -6372,10 +6372,10 @@
           "color": "slate"
         },
         {
-          "name": "WyvernSkull Shl",
+          "name": "Wyvern Skull Shl",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "gray"
         }
       ]
     },
@@ -6640,10 +6640,10 @@
           "color": "white"
         },
         {
-          "name": "WyvernStone",
+          "name": "Wyvern Stone",
           "amount": "10",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "cyan"
         }
       ]
     },
