@@ -1798,7 +1798,7 @@
       ]
     },
     {
-      "name": "Red Lobster Gun",
+      "name": "dummy (Amezari Bowgun)",
       "attack": "156",
       "max-attack": "216",
       "rapid-fire": "Water S",
@@ -1839,10 +1839,10 @@
       "improve-mats": null,
       "create-mats": [
         {
-          "name": "dummy",
+          "name": "Amezari Shell",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Plesioth Scale",
@@ -8750,7 +8750,7 @@
       ]
     },
     {
-      "name": "Red Lobster Gun G",
+      "name": "dummy (Amezari Bowgun G)",
       "attack": "312",
       "max-attack": "372",
       "rapid-fire": "Water S",
@@ -8797,10 +8797,10 @@
           "color": "white"
         },
         {
-          "name": "dummy",
+          "name": "Amezari Shell",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
           "name": "Lg Lobstershell",

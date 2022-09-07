@@ -4903,6 +4903,49 @@
       "sharpness_plus": "12.11.5.4.8.3.2"
     },
     {
+      "name": "dummy (RoaringDecisionSword)",
+      "attack": "1152",
+      "element": null,
+      "sharpness": "18.2.7.7.4.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": "50",
+      "rarity": "9",
+      "type": "gs",
+      "create-cost": "250",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Magazine Ticket",
+          "amount": "4",
+          "type": "ticket",
+          "color": "orange"
+        },
+        {
+          "name": "Eltalite Ore",
+          "amount": "10",
+          "type": "ore",
+          "color": "red"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "amount": "2",
+          "type": "part",
+          "color": "yellow"
+        },
+        {
+          "name": "HvnlyTigrexScale",
+          "amount": "1",
+          "type": "heavenly",
+          "color": "yellow"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "18.2.7.7.4.4.3"
+    },
+    {
       "name": "Killer's Carver",
       "attack": "1248",
       "element": null,

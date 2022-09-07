@@ -1056,6 +1056,56 @@
     ]
   },
   {
+    "slug": "dummy-polytan",
+    "type": "hammer",
+    "name": "dummy (Polytan)",
+    "rarity": "4",
+    "element": "thunder",
+    "children": [
+      {
+        "slug": "dummy-polytan-g",
+        "type": "hammer",
+        "name": "dummy (Polytan G)",
+        "rarity": "6",
+        "element": "thunder",
+        "children": [
+          {
+            "slug": "dummy-true-polytan-g",
+            "type": "hammer",
+            "name": "dummy (True Polytan G)",
+            "rarity": "9",
+            "element": "thunder"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dummy-amezari-hammer",
+    "type": "hammer",
+    "name": "dummy (Amezari Hammer)",
+    "rarity": "4",
+    "element": "water",
+    "children": [
+      {
+        "slug": "dummy-amezari-hammer-plus",
+        "type": "hammer",
+        "name": "dummy (Amezari Hammer+)",
+        "rarity": "6",
+        "element": "water",
+        "children": [
+          {
+            "slug": "dummy-amezari-impact",
+            "type": "hammer",
+            "name": "dummy (Amezari Impact)",
+            "rarity": "9",
+            "element": "water"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "khezu-horn-plus",
     "type": "hunting-horn",
     "name": "Khezu Horn+",
@@ -1437,6 +1487,13 @@
     "type": "hammer",
     "name": "Breath Core Hammer G",
     "rarity": "9"
+  },
+  {
+    "slug": "polytan-g",
+    "type": "hammer",
+    "name": "Polytan G",
+    "rarity": "9",
+    "element": "thunder"
   },
   {
     "slug": "great-demon-hammer-g",

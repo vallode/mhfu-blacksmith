@@ -1291,6 +1291,12 @@
     ]
   },
   {
+    "slug": "dummy-roaringdecisionsword",
+    "type": "great-sword",
+    "name": "dummy (RoaringDecisionSword)",
+    "rarity": "9"
+  },
+  {
     "slug": "g-blade",
     "type": "great-sword",
     "name": "G Blade",

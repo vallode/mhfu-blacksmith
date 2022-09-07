@@ -544,7 +544,7 @@
         },
         {
           "name": "Carbalite Ore",
-          "amount": "1",  
+          "amount": "1",
           "type": "ore",
           "color": "slate"
         }
@@ -3007,7 +3007,7 @@
         },
         {
           "name": "Stout Bone",
-          "amount": "1",  
+          "amount": "1",
           "type": "bone",
           "color": "white"
         }
@@ -6373,6 +6373,236 @@
       "sharpness_plus": "5.4.11"
     },
     {
+      "name": "dummy (Polytan)",
+      "attack": "520",
+      "element": "Thunder 280",
+      "sharpness": "5.4.11",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "4",
+      "type": "hm",
+      "create-cost": "550",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Dengeki Ticket",
+          "amount": "4",
+          "type": "ticket",
+          "color": "yellow"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "dummy (Polytan G)"
+      ],
+      "sharpness_plus": "5.4.14.2"
+    },
+    {
+      "name": "dummy (Polytan G)",
+      "attack": "780",
+      "element": "Thunder 420",
+      "sharpness": "5.4.14.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "6",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "550",
+      "improve-from": "dummy (Polytan)",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Dengeki Ticket+",
+          "amount": "4",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "Dengeki Ticket",
+          "amount": "5",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "King Scarab",
+          "amount": "6",
+          "type": "insect",
+          "color": "slate"
+        }
+      ],
+      "improve-to": [
+        "dummy (True Polytan G)"
+      ],
+      "sharpness_plus": "5.4.14.7"
+    },
+    {
+      "name": "dummy (True Polytan G)",
+      "attack": "1144",
+      "element": "Thunder 600",
+      "sharpness": "5.4.14.10.4.3",
+      "affinity": "0%",
+      "slots": "OO-",
+      "bonus": null,
+      "rarity": "9",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "590",
+      "improve-from": "dummy (Polytan G)",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Dengeki Ticket+",
+          "amount": "3",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "Lightning Sac",
+          "amount": "4",
+          "type": "sac",
+          "color": "yellow"
+        },
+        {
+          "name": "Emperor Cricket",
+          "amount": "6",
+          "type": "insect",
+          "color": "orange"
+        }
+      ],
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.10.4.6.2"
+    },
+    {
+      "name": "dummy (Amezari Hammer)",
+      "attack": "520",
+      "element": "Water 400",
+      "sharpness": "6.4.8.7",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "4",
+      "type": "hm",
+      "create-cost": "25000",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Amezari Shell",
+          "amount": "2",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Famitsu Ticket",
+          "amount": "1",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Sm Lobstershell",
+          "amount": "1",
+          "type": "shell",
+          "color": "pink"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "dummy (Amezari Hammer+)"
+      ],
+      "sharpness_plus": "6.4.8.12"
+    },
+    {
+      "name": "dummy (Amezari Hammer+)",
+      "attack": "728",
+      "element": "Water 450",
+      "sharpness": "6.4.8.7",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "6",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "25000",
+      "improve-from": "dummy (Amezari Hammer)",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Famitsu PO",
+          "amount": "2",
+          "type": "ticket",
+          "color": "red"
+        },
+        {
+          "name": "Amezari Shell",
+          "amount": "4",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Lg Lobstershell",
+          "amount": "3",
+          "type": "shell",
+          "color": "pink"
+        },
+        {
+          "name": "Ioprey Hide+",
+          "amount": "8",
+          "type": "pelt",
+          "color": "red"
+        }
+      ],
+      "improve-to": [
+        "dummy (Amezari Impact)"
+      ],
+      "sharpness_plus": "6.4.8.12"
+    },
+    {
+      "name": "dummy (Amezari Impact)",
+      "attack": "1040",
+      "element": "Water 600",
+      "sharpness": "6.4.8.12.5",
+      "affinity": "0%",
+      "slots": "OOO",
+      "bonus": null,
+      "rarity": "9",
+      "type": "hm",
+      "create-cost": null,
+      "improve-cost": "25000",
+      "improve-from": "dummy (Amezari Hammer+)",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Amezari Shell",
+          "amount": "8",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Gt Lobstershell",
+          "amount": "2",
+          "type": "shell",
+          "color": "pink"
+        },
+        {
+          "name": "Lg Lobstershell",
+          "amount": "4",
+          "type": "shell",
+          "color": "pink"
+        },
+        {
+          "name": "Sm Lobstershell",
+          "amount": "10",
+          "type": "shell",
+          "color": "pink"
+        }
+      ],
+      "improve-to": null,
+      "sharpness_plus": "6.4.8.12.6.4"
+    },
+    {
       "name": "Ukanlos Trampler",
       "attack": "1820",
       "element": "Ice 120",
@@ -7606,6 +7836,49 @@
       "improve-mats": null,
       "improve-to": null,
       "sharpness_plus": "19.2.5.7.4.5.3"
+    },
+    {
+      "name": "Polytan G",
+      "attack": "1196",
+      "element": "Thunder 280",
+      "sharpness": "5.4.14.2",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "type": "hm",
+      "create-cost": "100000",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        },
+        {
+          "name": "Dengeki Ticket",
+          "amount": "5",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "Dengeki Ticket+",
+          "amount": "5",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "Lightning Sac",
+          "amount": "10",
+          "type": "sac",
+          "color": "yellow"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "5.4.14.7"
     },
     {
       "name": "Great Demon Hammer G",

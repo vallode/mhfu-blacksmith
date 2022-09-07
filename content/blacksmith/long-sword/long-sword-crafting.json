@@ -4446,15 +4446,15 @@
       "bonus": null,
       "rarity": "6",
       "type": "ls",
-      "create-cost": "35000",
+      "create-cost": "350",
       "improve-cost": null,
       "improve-from": null,
       "create-mats": [
         {
-          "name": "Famitsu Invoice",
+          "name": "Famitsu PO",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "red"
         },
         {
           "name": "Famitsu Ticket",
@@ -4477,12 +4477,12 @@
       ],
       "improve-mats": null,
       "improve-to": [
-        "dummy (10000 Gavas Great Fan)"
+        "dummy (LS Fan \"10K Gavas\")"
       ],
       "sharpness_plus": "16.3.2.9.5"
     },
     {
-      "name": "dummy (10000 Gavas Great Fan)",
+      "name": "dummy (LS Fan \"10K Gavas\")",
       "attack": "912",
       "element": "Ice 500",
       "sharpness": "16.3.2.9.7.6.2",
@@ -4492,15 +4492,15 @@
       "rarity": "9",
       "type": "ls",
       "create-cost": null,
-      "improve-cost": "35,000",
+      "improve-cost": "350",
       "improve-from": "dummy (LS Fan \"Gavas\")",
       "create-mats": null,
       "improve-mats": [
         {
-          "name": "Famitsu Invoice",
+          "name": "Famitsu PO",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "red"
         },
         {
           "name": "Str Daora Wing",
@@ -4613,7 +4613,7 @@
       "sharpness_plus": "9.4.11.7.4"
     },
     {
-      "name": "dummy (Red Lobster Blade)",
+      "name": "dummy (Amezari Blade)",
       "attack": "1104",
       "element": "Water 500",
       "sharpness": "8.3.11.10.6.2",
@@ -4627,16 +4627,16 @@
       "improve-from": null,
       "create-mats": [
         {
-          "name": "King Lobster Cpc",
+          "name": "Gt Amezari Shell",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "red"
         },
         {
-          "name": "Hg Lobstershell",
+          "name": "Gt Lobstershell",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "shell",
+          "color": "pink"
         },
         {
           "name": "Eltalite Ore",
@@ -4650,7 +4650,7 @@
       "sharpness_plus": "8.3.11.10.6.5.2"
     },
     {
-      "name": "dummy (Jolly Roger Saber)",
+      "name": "dummy (Pirate Sword J)",
       "attack": "1296",
       "element": null,
       "sharpness": "3.7.18.4.4.4",
@@ -4664,16 +4664,16 @@
       "improve-from": null,
       "create-mats": [
         {
-          "name": "Pirate J Tckt G",
+          "name": "Pirate Tckt J G",
           "amount": "4",
-          "type": "bone",
-          "color": "white"
+          "type": "ticket",
+          "color": "red"
         },
         {
-          "name": "Fire Drgn HvyScl",
+          "name": "ThckFireDrgnScl",
           "amount": "5",
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "red"
         },
         {
           "name": "Master's Skull",
@@ -4682,10 +4682,10 @@
           "color": "white"
         },
         {
-          "name": "Elder Dragon Jwl",
+          "name": "BigEDragonJewel",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "slate"
         }
       ],
       "improve-mats": null,
