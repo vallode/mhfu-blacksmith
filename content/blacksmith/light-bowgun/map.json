@@ -163,9 +163,9 @@
     "rarity": "5"
   },
   {
-    "slug": "red-lobster-gun",
+    "slug": "dummy-amezari-bowgun",
     "type": "light-bowgun",
-    "name": "Red Lobster Gun",
+    "name": "dummy (Amezari Bowgun)",
     "rarity": "5"
   },
   {
@@ -787,9 +787,9 @@
     "rarity": "10"
   },
   {
-    "slug": "red-lobster-gun-g",
+    "slug": "dummy-amezari-bowgun-g",
     "type": "light-bowgun",
-    "name": "Red Lobster Gun G",
+    "name": "dummy (Amezari Bowgun G)",
     "rarity": "10"
   },
   {

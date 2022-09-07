@@ -4380,6 +4380,57 @@
       "improve-to": null
     },
     {
+      "name": "dummy (Diasorute Arrow)",
+      "attack": "324",
+      "element": "Fire 150",
+      "affinity": "10%",
+      "slots": "O--",
+      "bonus": "10",
+      "rarity": "9",
+      "coatings": [
+        "power",
+        "paint"
+      ],
+      "shots": [
+        "Pierce 3",
+        "Pierce 4",
+        "Pierce 5",
+        "Scatter 5"
+      ],
+      "type": "bw",
+      "create-cost": "690",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Dengeki Ticket G",
+          "amount": "4",
+          "type": "ticket",
+          "color": "yellow"
+        },
+        {
+          "name": "HvyDiablosSpine",
+          "amount": "4",
+          "type": "part",
+          "color": "yellow"
+        },
+        {
+          "name": "HvyDiablosShell",
+          "amount": "8",
+          "type": "part",
+          "color": "yellow"
+        },
+        {
+          "name": "Top-GrdRedHorn",
+          "amount": "6",
+          "type": "claw",
+          "color": "red"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": null
+    },
+    {
       "name": "Tiger Arrow I",
       "attack": "264",
       "element": null,

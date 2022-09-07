@@ -844,6 +844,13 @@
     ]
   },
   {
+    "slug": "dummy-diasorute-arrow",
+    "type": "bow",
+    "name": "dummy (Diasorute Arrow)",
+    "rarity": "9",
+    "element": "fire"
+  },
+  {
     "slug": "ukanlos-bow",
     "type": "bow",
     "name": "Ukanlos Bow",

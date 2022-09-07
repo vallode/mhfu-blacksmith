@@ -3513,6 +3513,53 @@
       "sharpness_plus": "3.7.4.16.7.3"
     },
     {
+      "name": "dummy (EldrDrgGLance\"Emblem\")",
+      "attack": "598",
+      "element": null,
+      "sharpness": "7.5.5.16.5.2",
+      "affinity": "0%",
+      "slots": "O--",
+      "bonus": null,
+      "rarity": "9",
+      "shelling": {
+        "type": "Long",
+        "level": "5"
+      },
+      "type": "gl",
+      "create-cost": "250",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "SpecFamitsuTckt",
+          "amount": "4",
+          "type": "ticket",
+          "color": "cyan"
+        },
+        {
+          "name": "Lthr Daora Tail",
+          "amount": "4",
+          "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "ThckFireDrgnScl",
+          "amount": "20",
+          "type": "scale",
+          "color": "red"
+        },
+        {
+          "name": "SpecChameleHide+",
+          "amount": "10",
+          "type": "pelt",
+          "color": "slate"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "7.5.5.16.5.5.2"
+    },
+    {
       "name": "Rex Blast",
       "attack": "391",
       "element": null,

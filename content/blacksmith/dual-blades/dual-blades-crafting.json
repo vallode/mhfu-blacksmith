@@ -2952,6 +2952,133 @@
       "sharpness_plus": "12.5.5.10.8.3.2"
     },
     {
+      "name": "dummy (Dual Tessen \"Gavas\")",
+      "attack": "168",
+      "element": null,
+      "sharpness": "9.9.8",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": "10",
+      "rarity": "4",
+      "type": "db",
+      "create-cost": "350",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Famitsu Ticket",
+          "amount": "5",
+          "type": "ticket",
+          "color": "blue"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": "8",
+          "type": "ore",
+          "color": "blue"
+        },
+        {
+          "name": "Pnk Rathian Scl",
+          "amount": "6",
+          "type": "scale",
+          "color": "pink"
+        },
+        {
+          "name": "Rainbow Insect",
+          "amount": "4",
+          "type": "insect",
+          "color": "pink"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": [
+        "dummy (DualTessen \"100Gavas\")"
+      ],
+      "sharpness_plus": "9.9.8.5"
+    },
+    {
+      "name": "dummy (DualTessen \"100Gavas\")",
+      "attack": "224",
+      "element": null,
+      "sharpness": "9.8.8.5",
+      "affinity": "20%",
+      "slots": "O--",
+      "bonus": "15",
+      "rarity": "6",
+      "type": "db",
+      "create-cost": null,
+      "improve-cost": "350",
+      "improve-from": "dummy (Dual Tessen \"Gavas\")",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Famitsu PO",
+          "amount": "5",
+          "type": "ticket",
+          "color": "red"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "5",
+          "type": "ore",
+          "color": "pink"
+        },
+        {
+          "name": "Pnk Rathian Scl+",
+          "amount": "6",
+          "type": "scale",
+          "color": "pink"
+        }
+      ],
+      "improve-to": [
+        "dummy (DualTessen \"10KGavas\")"
+      ],
+      "sharpness_plus": "9.8.8.7.3"
+    },
+    {
+      "name": "dummy (DualTessen \"10KGavas\")",
+      "attack": "280",
+      "element": "Sleep 20",
+      "sharpness": "8.13.6.4.3.1",
+      "affinity": "30%",
+      "slots": "O--",
+      "bonus": "15",
+      "rarity": "9",
+      "type": "db",
+      "create-cost": null,
+      "improve-cost": "350",
+      "improve-from": "dummy (DualTessen \"100Gavas\")",
+      "create-mats": null,
+      "improve-mats": [
+        {
+          "name": "Famitsu PO",
+          "amount": "3",
+          "type": "ticket",
+          "color": "red"
+        },
+        {
+          "name": "Coma Sac",
+          "amount": "2",
+          "type": "sac",
+          "color": "blue"
+        },
+        {
+          "name": "ThckPnkRathnScl",
+          "amount": "5",
+          "type": "scale",
+          "color": "pink"
+        },
+        {
+          "name": "Mellanje Ore",
+          "amount": "5",
+          "type": "ore",
+          "color": "white"
+        }
+      ],
+      "improve-to": null,
+      "sharpness_plus": "8.13.6.4.3.6"
+    },
+    {
       "name": "Carmine Edge",
       "attack": "336",
       "element": null,
@@ -5058,6 +5185,43 @@
       "improve-mats": null,
       "improve-to": null,
       "sharpness_plus": "15.3.8.5.2.1"
+    },
+    {
+      "name": "dummy (Amezari Claws)",
+      "attack": "322",
+      "element": "Water 500",
+      "sharpness": "7.6.6.5.3.3",
+      "affinity": "0%",
+      "slots": "---",
+      "bonus": null,
+      "rarity": "9",
+      "type": "db",
+      "create-cost": "25000",
+      "improve-cost": null,
+      "improve-from": null,
+      "create-mats": [
+        {
+          "name": "Gt Amezari Shell",
+          "amount": "2",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Gt Lobstershell",
+          "amount": "1",
+          "type": "shell",
+          "color": "pink"
+        },
+        {
+          "name": "HrdHermitaurClaw",
+          "amount": "4",
+          "type": "claw",
+          "color": "red"
+        }
+      ],
+      "improve-mats": null,
+      "improve-to": null,
+      "sharpness_plus": "7.6.6.5.3.4.3"
     },
     {
       "name": "Bone Scythe G",

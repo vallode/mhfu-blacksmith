@@ -665,6 +665,29 @@
     ]
   },
   {
+    "slug": "dummy-dual-tessen-gavas",
+    "type": "dual-blades",
+    "name": "dummy (Dual Tessen \"Gavas\")",
+    "rarity": "4",
+    "children": [
+      {
+        "slug": "dummy-dualtessen-100gavas",
+        "type": "dual-blades",
+        "name": "dummy (DualTessen \"100Gavas\")",
+        "rarity": "6",
+        "children": [
+          {
+            "slug": "dummy-dualtessen-10kgavas",
+            "type": "dual-blades",
+            "name": "dummy (DualTessen \"10KGavas\")",
+            "rarity": "9",
+            "element": "sleep"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "felyne-and-melynx",
     "type": "dual-blades",
     "name": "Felyne and Melynx",
@@ -1265,6 +1288,13 @@
     "name": "UkanlosRuinerBlades",
     "rarity": "10",
     "element": "ice"
+  },
+  {
+    "slug": "dummy-amezari-claws",
+    "type": "dual-blades",
+    "name": "dummy (Amezari Claws)",
+    "rarity": "9",
+    "element": "water"
   },
   {
     "slug": "bone-scythe-g",

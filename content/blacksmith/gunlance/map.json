@@ -847,6 +847,12 @@
     ]
   },
   {
+    "slug": "dummy-eldrdrgglanceemblem",
+    "type": "gunlance",
+    "name": "dummy (EldrDrgGLance\"Emblem\")",
+    "rarity": "9"
+  },
+  {
     "slug": "ukanlosblazegunlance",
     "type": "gunlance",
     "name": "UkanlosBlazeGunlance",

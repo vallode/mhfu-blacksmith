@@ -937,9 +937,9 @@
     "element": "ice",
     "children": [
       {
-        "slug": "dummy-10000-gavas-great-fan",
+        "slug": "dummy-ls-fan-10k-gavas",
         "type": "long-sword",
-        "name": "dummy (10000 Gavas Great Fan)",
+        "name": "dummy (LS Fan \"10K Gavas\")",
         "rarity": "9",
         "element": "ice"
       }
@@ -1182,16 +1182,16 @@
     ]
   },
   {
-    "slug": "dummy-red-lobster-blade",
+    "slug": "dummy-amezari-blade",
     "type": "long-sword",
-    "name": "dummy (Red Lobster Blade)",
+    "name": "dummy (Amezari Blade)",
     "rarity": "9",
     "element": "water"
   },
   {
-    "slug": "dummy-jolly-roger-saber",
+    "slug": "dummy-pirate-sword-j",
     "type": "long-sword",
-    "name": "dummy (Jolly Roger Saber)",
+    "name": "dummy (Pirate Sword J)",
     "rarity": "9"
   },
   {
