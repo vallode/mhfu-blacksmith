@@ -90,9 +90,9 @@
         event.preventDefault()
         this.hidden = !this.hidden
 
-        this.weaponChildrenTarget.style.visibility = this.hidden ? "hidden" : "initial"
-        this.weaponChildrenTarget.style.height = this.hidden ? "0" : "initial"
-        event.currentTarget.style.opacity = this.hidden ? "1" : "initial"
+        this.weaponChildrenTarget.style.visibility = this.hidden ? "hidden" : ""
+        this.weaponChildrenTarget.style.height = this.hidden ? "0" : ""
+        event.currentTarget.style.opacity = this.hidden ? "1" : ""
         event.currentTarget.innerText = this.hidden ? "[+]" : "[-]"
       }
     })
