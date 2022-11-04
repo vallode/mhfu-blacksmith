@@ -102,6 +102,15 @@
     a {
       text-decoration: none;
     }
+
+    &__toggle {
+      color: white;
+      font-family: monospace;
+      margin-left: 1.6rem;
+      opacity: 0.2;
+      padding-bottom: 6px;
+      z-index: 10000;
+    }
   }
 
   ul {

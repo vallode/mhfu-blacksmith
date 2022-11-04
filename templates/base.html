@@ -78,6 +78,25 @@
       }
     })
 
+    // WIP
+    Stimulus.register("weapon-row-toggle", class extends Controller {
+      static targets = ["weaponChildren"]
+
+      initialize() {
+        this.hidden = false
+      }
+
+      toggle(event) {
+        event.preventDefault()
+        this.hidden = !this.hidden
+
+        this.weaponChildrenTarget.style.visibility = this.hidden ? "hidden" : "initial"
+        this.weaponChildrenTarget.style.height = this.hidden ? "0" : "initial"
+        event.currentTarget.style.opacity = this.hidden ? "1" : "initial"
+        event.currentTarget.innerText = this.hidden ? "[+]" : "[-]"
+      }
+    })
+
     // TODO: Improve this hacky zoom.
     Stimulus.register("image-zoom", class extends Controller {
       zoom(event) {

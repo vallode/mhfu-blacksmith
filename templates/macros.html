@@ -1,5 +1,9 @@
 {% macro weapon_tree_row(weapon) %}
-<li>
+<li
+  {% if weapon.children %}
+  data-controller="weapon-row-toggle"
+  {% endif %}
+>
   <a
     id="{{ weapon.slug }}"
     {% if weapon.type != section.extra.type %}
@@ -33,10 +37,16 @@
       {# For now this only means decoration categories, no icon for those. #}
     {% endif %}
     <p class="name">{{ weapon.name }}</p>
+
+    {% if weapon.children %}
+    <span class="weapon-tree__row__toggle" data-action="click->weapon-row-toggle#toggle">
+      [-]
+    </span>
+    {% endif %}
   </a>
   
   {% if weapon.children %}
-  <ul {% if weapon.children | length > 1 %}class="multiple-children"{% endif %}>
+  <ul data-weapon-row-toggle-target="weaponChildren" {% if weapon.children | length > 1 %}class="multiple-children"{% endif %}>
     {% for child_weapon in weapon.children %}
       {{ self::weapon_tree_row(weapon=child_weapon) }}
     {% endfor %}
