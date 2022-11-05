@@ -32,10 +32,10 @@ arrWeapons.flatMap((weapon) => {
     "status-ammo": weapon["Info"][12].split("|"),
     "element-ammo": weapon["Info"][13].split("|"),
     "misc-ammo": weapon["Info"][14].split("|"),
-    "create-cost": weapon["Info"][15],
+    "create_cost": weapon["Info"][15],
   })
-  newWeapon["improve-mats"] = weapon["Improve"] || "N/A"
-  newWeapon["create-mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
+  newWeapon["improve_mats"] = weapon["Improve"] || "N/A"
+  newWeapon["create_mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
   return newWeapon
 })
 ```

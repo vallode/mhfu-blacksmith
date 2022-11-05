@@ -3526,10 +3526,10 @@
         "level": "5"
       },
       "type": "gl",
-      "create-cost": "250",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "250",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "SpecFamitsuTckt",
           "amount": "4",
@@ -3555,8 +3555,8 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "7.5.5.16.5.5.2"
     },
     {

@@ -134,7 +134,7 @@
             >
               <div id="page-1" class="active">
                 {% if page.extra.improve_mats %}
-                  <div class="improve-mats">
+                  <div class="improve_mats">
                     <p>
                       <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                     </p>
@@ -146,7 +146,7 @@
                 {% endif %}
   
                 {%- if page.extra.create_mats %}
-                  <div class="create-mats">
+                  <div class="create_mats">
                     <p>
                       <span>Create cost: </span>{{ page.extra.create_cost }}z
                     </p>
@@ -166,7 +166,7 @@
               {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
                 <div id="page-2">
                   {%- if page.extra.alternative_create_mats %}
-                    <div class="create-mats">
+                    <div class="create_mats">
                       <p>
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
                       </p>
