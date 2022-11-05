@@ -4398,10 +4398,10 @@
         "Scatter 5"
       ],
       "type": "bw",
-      "create-cost": "690",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "690",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Dengeki Ticket G",
           "amount": "4",
@@ -4427,8 +4427,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null
+      "improve_mats": null,
+      "improve_to": null
     },
     {
       "name": "Tiger Arrow I",

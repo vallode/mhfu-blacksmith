@@ -4912,10 +4912,10 @@
       "bonus": "50",
       "rarity": "9",
       "type": "gs",
-      "create-cost": "250",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "250",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Magazine Ticket",
           "amount": "4",
@@ -4941,8 +4941,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "18.2.7.7.4.4.3"
     },
     {

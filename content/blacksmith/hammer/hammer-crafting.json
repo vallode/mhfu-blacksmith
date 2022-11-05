@@ -6382,10 +6382,10 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": "550",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "550",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Dengeki Ticket",
           "amount": "4",
@@ -6393,8 +6393,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "dummy (Polytan G)"
       ],
       "sharpness_plus": "5.4.14.2"
@@ -6409,11 +6409,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "550",
-      "improve-from": "dummy (Polytan)",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "550",
+      "improve_from": "dummy (Polytan)",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dengeki Ticket+",
           "amount": "4",
@@ -6433,7 +6433,7 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "dummy (True Polytan G)"
       ],
       "sharpness_plus": "5.4.14.7"
@@ -6448,11 +6448,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "590",
-      "improve-from": "dummy (Polytan G)",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "590",
+      "improve_from": "dummy (Polytan G)",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dengeki Ticket+",
           "amount": "3",
@@ -6472,7 +6472,7 @@
           "color": "orange"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.10.4.6.2"
     },
     {
@@ -6485,10 +6485,10 @@
       "bonus": null,
       "rarity": "4",
       "type": "hm",
-      "create-cost": "25000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "25000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Amezari Shell",
           "amount": "2",
@@ -6508,8 +6508,8 @@
           "color": "pink"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "dummy (Amezari Hammer+)"
       ],
       "sharpness_plus": "6.4.8.12"
@@ -6524,11 +6524,11 @@
       "bonus": null,
       "rarity": "6",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "25000",
-      "improve-from": "dummy (Amezari Hammer)",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "25000",
+      "improve_from": "dummy (Amezari Hammer)",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Famitsu PO",
           "amount": "2",
@@ -6554,7 +6554,7 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "dummy (Amezari Impact)"
       ],
       "sharpness_plus": "6.4.8.12"
@@ -6569,11 +6569,11 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": null,
-      "improve-cost": "25000",
-      "improve-from": "dummy (Amezari Hammer+)",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "25000",
+      "improve_from": "dummy (Amezari Hammer+)",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Amezari Shell",
           "amount": "8",
@@ -6599,7 +6599,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "6.4.8.12.6.4"
     },
     {
@@ -7847,10 +7847,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "hm",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "100000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7876,8 +7876,8 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "5.4.14.7"
     },
     {

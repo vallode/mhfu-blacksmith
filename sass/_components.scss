@@ -421,8 +421,8 @@ $element-types: (
     margin: 2rem 0 0;
 
     .stats,
-    .improve-mats,
-    .create-mats {
+    .improve_mats,
+    .create_mats {
       display: flex;
       flex-direction: column;
       gap: 13px;
@@ -494,8 +494,8 @@ $element-types: (
       color: white;
       flex: 1 1 0%;
 
-      .improve-mats,
-      .create-mats {
+      .improve_mats,
+      .create_mats {
         display: flex;
         flex: 1 1 0%;
       }
@@ -509,17 +509,17 @@ $element-types: (
         display: flex;
       }
       
-      &.improve-mats .create-mats,
-      &.create-mats .improve-mats {
+      &.improve_mats .create_mats,
+      &.create_mats .improve_mats {
         display: none;
       }
 
-      &.improve-mats .weapon-card__navigation::before {
+      &.improve_mats .weapon-card__navigation::before {
         content: 'Improve';
         display: block;
       }
 
-      &.create-mats .weapon-card__navigation::before {
+      &.create_mats .weapon-card__navigation::before {
         content: 'Create';
         display: block;
       }

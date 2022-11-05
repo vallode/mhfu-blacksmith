@@ -2961,10 +2961,10 @@
       "bonus": "10",
       "rarity": "4",
       "type": "db",
-      "create-cost": "350",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "350",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Famitsu Ticket",
           "amount": "5",
@@ -2990,8 +2990,8 @@
           "color": "pink"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "dummy (DualTessen \"100Gavas\")"
       ],
       "sharpness_plus": "9.9.8.5"
@@ -3006,11 +3006,11 @@
       "bonus": "15",
       "rarity": "6",
       "type": "db",
-      "create-cost": null,
-      "improve-cost": "350",
-      "improve-from": "dummy (Dual Tessen \"Gavas\")",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "350",
+      "improve_from": "dummy (Dual Tessen \"Gavas\")",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Famitsu PO",
           "amount": "5",
@@ -3030,7 +3030,7 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "dummy (DualTessen \"10KGavas\")"
       ],
       "sharpness_plus": "9.8.8.7.3"
@@ -3045,11 +3045,11 @@
       "bonus": "15",
       "rarity": "9",
       "type": "db",
-      "create-cost": null,
-      "improve-cost": "350",
-      "improve-from": "dummy (DualTessen \"100Gavas\")",
-      "create-mats": null,
-      "improve-mats": [
+      "create_cost": null,
+      "improve_cost": "350",
+      "improve_from": "dummy (DualTessen \"100Gavas\")",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Famitsu PO",
           "amount": "3",
@@ -3075,7 +3075,7 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
+      "improve_to": null,
       "sharpness_plus": "8.13.6.4.3.6"
     },
     {
@@ -5196,10 +5196,10 @@
       "bonus": null,
       "rarity": "9",
       "type": "db",
-      "create-cost": "25000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "create_cost": "25000",
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Gt Amezari Shell",
           "amount": "2",
@@ -5219,8 +5219,8 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
+      "improve_mats": null,
+      "improve_to": null,
       "sharpness_plus": "7.6.6.5.3.4.3"
     },
     {
