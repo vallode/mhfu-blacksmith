@@ -19,7 +19,7 @@ def slugify(value)
   value = value.gsub("+", "-plus")
 end
 
-ARMOR_PATH = "legs.csv"
+ARMOR_PATH = "waist.csv"
 
 output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
 armor_map = []
@@ -69,7 +69,7 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   armor_map.push(armor_piece)
 end 
 
-File.write("#{File.dirname(ARMOR_PATH)}/map.json", output.result(binding))
+File.write("#{File.dirname(ARMOR_PATH)}/waist-crafting.json", output.result(binding))
 
 # WEAPON_PAIRS.each do |array|
 

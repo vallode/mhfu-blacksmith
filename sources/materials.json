@@ -1,0 +1,5974 @@
+{
+"materials": {
+  "Brute Bone": {
+    "name": "Brute Bone",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Iron Ore": {
+    "name": "Iron Ore",
+    "amount": "40",
+    "type": "ore",
+    "color": "gray"
+  },
+  "Anteka Pelt": {
+    "name": "Anteka Pelt",
+    "amount": "5",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "Giant Bone": {
+    "name": "Giant Bone",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Disk Stone": {
+    "name": "Disk Stone",
+    "amount": "40",
+    "type": "ore",
+    "color": "gray"
+  },
+  "Giadrome Claw": {
+    "name": "Giadrome Claw",
+    "amount": "4",
+    "type": "claw",
+    "color": "white"
+  },
+  "Piscine Fang": {
+    "name": "Piscine Fang",
+    "amount": "3",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Lg Monster Bone": {
+    "name": "Lg Monster Bone",
+    "amount": "12",
+    "type": "bone",
+    "color": "yellow"
+  },
+  "Earth Crystal": {
+    "name": "Earth Crystal",
+    "amount": "40",
+    "type": "ore",
+    "color": "white"
+  },
+  "Gendrome Hide": {
+    "name": "Gendrome Hide",
+    "amount": "3",
+    "type": "pelt",
+    "color": "green"
+  },
+  "Rubbery Hide": {
+    "name": "Rubbery Hide",
+    "amount": "20",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Machalite Ore": {
+    "name": "Machalite Ore",
+    "amount": "20",
+    "type": "ore",
+    "color": "blue"
+  },
+  "Iodrome Hide": {
+    "name": "Iodrome Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "red"
+  },
+  "Basarios Wing": {
+    "name": "Basarios Wing",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "Dragonite Ore": {
+    "name": "Dragonite Ore",
+    "amount": "5",
+    "type": "ore",
+    "color": "green"
+  },
+  "Basarios Shell": {
+    "name": "Basarios Shell",
+    "amount": "6",
+    "type": "part",
+    "color": "gray"
+  },
+  "Killer Beetle": {
+    "name": "Killer Beetle",
+    "amount": "5",
+    "type": "insect",
+    "color": "green"
+  },
+  "Monoblos Shell": {
+    "name": "Monoblos Shell",
+    "amount": "3",
+    "type": "part",
+    "color": "red"
+  },
+  "Gravios Shell": {
+    "name": "Gravios Shell",
+    "amount": "4",
+    "type": "part",
+    "color": "white"
+  },
+  "Blos Fang": {
+    "name": "Blos Fang",
+    "amount": "15",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Bulldrome Hide+": {
+    "name": "Bulldrome Hide+",
+    "amount": "8",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Giadrome Claw+": {
+    "name": "Giadrome Claw+",
+    "amount": "8",
+    "type": "claw",
+    "color": "white"
+  },
+  "Gendrome Tail": {
+    "name": "Gendrome Tail",
+    "amount": "6",
+    "type": "pelt",
+    "color": "green"
+  },
+  "StrBasariosWing": {
+    "name": "StrBasariosWing",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "HvyBasariosShell": {
+    "name": "HvyBasariosShell",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "Eltalite Ore": {
+    "name": "Eltalite Ore",
+    "amount": "5",
+    "type": "ore",
+    "color": "red"
+  },
+  "Hvy Monster Bone": {
+    "name": "Hvy Monster Bone",
+    "amount": "8",
+    "type": "bone",
+    "color": "gray"
+  },
+  "Purecrystal": {
+    "name": "Purecrystal",
+    "amount": "5",
+    "type": "ore",
+    "color": "cyan"
+  },
+  "Ice Crystal": {
+    "name": "Ice Crystal",
+    "amount": "20",
+    "type": "ore",
+    "color": "cyan"
+  },
+  "Lg Pelagus Fang": {
+    "name": "Lg Pelagus Fang",
+    "amount": "2",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "RobustWyvernBone": {
+    "name": "RobustWyvernBone",
+    "amount": "10",
+    "type": "bone",
+    "color": "cyan"
+  },
+  "Carbalite Ore": {
+    "name": "Carbalite Ore",
+    "amount": "15",
+    "type": "ore",
+    "color": "slate"
+  },
+  "HvyBlangongaFang": {
+    "name": "HvyBlangongaFang",
+    "amount": "4",
+    "type": "claw",
+    "color": "white"
+  },
+  "PureCrystal": {
+    "name": "PureCrystal",
+    "amount": "3",
+    "type": "ore",
+    "color": "cyan"
+  },
+  "Piercing Claw": {
+    "name": "Piercing Claw",
+    "amount": "8",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Congalala Pelt": {
+    "name": "Congalala Pelt",
+    "amount": "5",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Sharp Claw": {
+    "name": "Sharp Claw",
+    "amount": "1",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Bone": {
+    "name": "Bone",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Conga Pelt": {
+    "name": "Conga Pelt",
+    "amount": "6",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Monoblos Spine": {
+    "name": "Monoblos Spine",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Congalala Claw": {
+    "name": "Congalala Claw",
+    "amount": "3",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Pale Bone": {
+    "name": "Pale Bone",
+    "amount": "1",
+    "type": "part",
+    "color": "white"
+  },
+  "Congalala Fang": {
+    "name": "Congalala Fang",
+    "amount": "3",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Garuga Mane": {
+    "name": "Garuga Mane",
+    "amount": "4",
+    "type": "part",
+    "color": "slate"
+  },
+  "Vibrant Pelt": {
+    "name": "Vibrant Pelt",
+    "amount": "6",
+    "type": "pelt",
+    "color": "yellow"
+  },
+  "Tigrex Claw": {
+    "name": "Tigrex Claw",
+    "amount": "10",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Monster Bone+": {
+    "name": "Monster Bone+",
+    "amount": "10",
+    "type": "bone",
+    "color": "orange"
+  },
+  "Congalala Pelt+": {
+    "name": "Congalala Pelt+",
+    "amount": "6",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Chameleos Claw": {
+    "name": "Chameleos Claw",
+    "amount": "1",
+    "type": "claw",
+    "color": "slate"
+  },
+  "Congalala Claw+": {
+    "name": "Congalala Claw+",
+    "amount": "2",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Pur Gypceros Wng": {
+    "name": "Pur Gypceros Wng",
+    "amount": "10",
+    "type": "part",
+    "color": "slate"
+  },
+  "King Scarab": {
+    "name": "King Scarab",
+    "amount": "2",
+    "type": "insect",
+    "color": "slate"
+  },
+  "Vibrant Comb": {
+    "name": "Vibrant Comb",
+    "amount": "4",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "HrdCongalalaClw+": {
+    "name": "HrdCongalalaClw+",
+    "amount": "6",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Emperor Cricket": {
+    "name": "Emperor Cricket",
+    "amount": "3",
+    "type": "insect",
+    "color": "orange"
+  },
+  "Blangonga Pelt+": {
+    "name": "Blangonga Pelt+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Massive Bone": {
+    "name": "Massive Bone",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "PhantomButterfly": {
+    "name": "PhantomButterfly",
+    "amount": "5",
+    "type": "insect",
+    "color": "white"
+  },
+  "Blango Pelt": {
+    "name": "Blango Pelt",
+    "amount": "3",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Giaprey Scale": {
+    "name": "Giaprey Scale",
+    "amount": "4",
+    "type": "scale",
+    "color": "white"
+  },
+  "Giadrome Hide": {
+    "name": "Giadrome Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "CarpenterBug": {
+    "name": "CarpenterBug",
+    "amount": "4",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Blangonga pelt": {
+    "name": "Blangonga pelt",
+    "amount": "4",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Wht Monoblos Hrn": {
+    "name": "Wht Monoblos Hrn",
+    "amount": "3",
+    "type": "claw",
+    "color": "white"
+  },
+  "Blangonga Whiskr": {
+    "name": "Blangonga Whiskr",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "DaoraDragonScale": {
+    "name": "DaoraDragonScale",
+    "amount": "3",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Blangonga Pelt": {
+    "name": "Blangonga Pelt",
+    "amount": "3",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Blangonga Fang+": {
+    "name": "Blangonga Fang+",
+    "amount": "2",
+    "type": "claw",
+    "color": "white"
+  },
+  "Daora Claw": {
+    "name": "Daora Claw",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "HrdBlangongaPlt+": {
+    "name": "HrdBlangongaPlt+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Lthr Pelagus Plt": {
+    "name": "Lthr Pelagus Plt",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Kut-Ku Shell": {
+    "name": "Kut-Ku Shell",
+    "amount": "5",
+    "type": "part",
+    "color": "pink"
+  },
+  "Kut-Ku Scale": {
+    "name": "Kut-Ku Scale",
+    "amount": "8",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Flame Sac": {
+    "name": "Flame Sac",
+    "amount": "10",
+    "type": "sac",
+    "color": "red"
+  },
+  "FireWyvern Fluid": {
+    "name": "FireWyvern Fluid",
+    "amount": "20",
+    "type": "part",
+    "color": "red"
+  },
+  "Blue Kut-Ku Scl": {
+    "name": "Blue Kut-Ku Scl",
+    "amount": "8",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Kut-Ku Ear": {
+    "name": "Kut-Ku Ear",
+    "amount": "2",
+    "type": "part",
+    "color": "pink"
+  },
+  "Blk Gravios Shl": {
+    "name": "Blk Gravios Shl",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "Carpenterbug": {
+    "name": "Carpenterbug",
+    "amount": "4",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Blue Kut-Ku Cpc": {
+    "name": "Blue Kut-Ku Cpc",
+    "amount": "8",
+    "type": "part",
+    "color": "blue"
+  },
+  "Lunastra Shell": {
+    "name": "Lunastra Shell",
+    "amount": "2",
+    "type": "part",
+    "color": "blue"
+  },
+  "Hrd Monster Bone": {
+    "name": "Hrd Monster Bone",
+    "amount": "4",
+    "type": "bone",
+    "color": "red"
+  },
+  "Inferno Sac": {
+    "name": "Inferno Sac",
+    "amount": "3",
+    "type": "sac",
+    "color": "red"
+  },
+  "HvyBlueKut-KuShl": {
+    "name": "HvyBlueKut-KuShl",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "Lucky Kut-Ku Ear": {
+    "name": "Lucky Kut-Ku Ear",
+    "amount": "3",
+    "type": "part",
+    "color": "pink"
+  },
+  "Blazing Fire Sac": {
+    "name": "Blazing Fire Sac",
+    "amount": "5",
+    "type": "sac",
+    "color": "red"
+  },
+  "Monster Essence": {
+    "name": "Monster Essence",
+    "amount": "2",
+    "type": "fluid",
+    "color": "blue"
+  },
+  "HvyAzurRthlsShl": {
+    "name": "HvyAzurRthlsShl",
+    "amount": "3",
+    "type": "part",
+    "color": "blue"
+  },
+  "ThkBlueKut-KuScl": {
+    "name": "ThkBlueKut-KuScl",
+    "amount": "10",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Mellanje Ore": {
+    "name": "Mellanje Ore",
+    "amount": "8",
+    "type": "ore",
+    "color": "white"
+  },
+  "Hvy Garuga Shell": {
+    "name": "Hvy Garuga Shell",
+    "amount": "7",
+    "type": "part",
+    "color": "slate"
+  },
+  "SilverGarugaPelt": {
+    "name": "SilverGarugaPelt",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "LethrGarugaTail": {
+    "name": "LethrGarugaTail",
+    "amount": "2",
+    "type": "part",
+    "color": "slate"
+  },
+  "HardGypcerosHead": {
+    "name": "HardGypcerosHead",
+    "amount": "1",
+    "type": "part",
+    "color": "blue"
+  },
+  "ThickGarugaScale": {
+    "name": "ThickGarugaScale",
+    "amount": "4",
+    "type": "scale",
+    "color": "slate"
+  },
+  "Rejuvenated Beak": {
+    "name": "Rejuvenated Beak",
+    "amount": "1",
+    "type": "bone",
+    "color": "slate"
+  },
+  "DeadlyPoisonSac": {
+    "name": "DeadlyPoisonSac",
+    "amount": "5",
+    "type": "sac",
+    "color": "slate"
+  },
+  "SpecChameleHide+": {
+    "name": "SpecChameleHide+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "slate"
+  },
+  "OrangeHypnoPelt": {
+    "name": "OrangeHypnoPelt",
+    "amount": "3",
+    "type": "part",
+    "color": "orange"
+  },
+  "Hypno Beak": {
+    "name": "Hypno Beak",
+    "amount": "1",
+    "type": "bone",
+    "color": "orange"
+  },
+  "Top-GrdHypnoClaw": {
+    "name": "Top-GrdHypnoClaw",
+    "amount": "6",
+    "type": "claw",
+    "color": "orange"
+  },
+  "Basarios Carpace": {
+    "name": "Basarios Carpace",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "Rare Scarab": {
+    "name": "Rare Scarab",
+    "amount": "10",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "OrangeHypnoPelt+": {
+    "name": "OrangeHypnoPelt+",
+    "amount": "3",
+    "type": "part",
+    "color": "orange"
+  },
+  "Hypno Claw+": {
+    "name": "Hypno Claw+",
+    "amount": "5",
+    "type": "claw",
+    "color": "orange"
+  },
+  "Hypno Bezoar": {
+    "name": "Hypno Bezoar",
+    "amount": "1",
+    "type": "ore",
+    "color": "white"
+  },
+  "Hypno Fang": {
+    "name": "Hypno Fang",
+    "amount": "3",
+    "type": "bone",
+    "color": "orange"
+  },
+  "Sleep Sac": {
+    "name": "Sleep Sac",
+    "amount": "5",
+    "type": "sac",
+    "color": "blue"
+  },
+  "Str Kut-Ku Wing": {
+    "name": "Str Kut-Ku Wing",
+    "amount": "4",
+    "type": "part",
+    "color": "pink"
+  },
+  "Hypno Bezoar+": {
+    "name": "Hypno Bezoar+",
+    "amount": "1",
+    "type": "ore",
+    "color": "white"
+  },
+  "HvyGraviosShell": {
+    "name": "HvyGraviosShell",
+    "amount": "8",
+    "type": "part",
+    "color": "white"
+  },
+  "Coma Sac": {
+    "name": "Coma Sac",
+    "amount": "5",
+    "type": "sac",
+    "color": "blue"
+  },
+  "Speartuna": {
+    "name": "Speartuna",
+    "amount": "1",
+    "type": "fish",
+    "color": "blue"
+  },
+  "Black Pearl": {
+    "name": "Black Pearl",
+    "amount": "2",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Antiseptic Stone": {
+    "name": "Antiseptic Stone",
+    "amount": "1",
+    "type": "ore",
+    "color": "yellow"
+  },
+  "FlynMealPassReg": {
+    "name": "FlynMealPassReg",
+    "amount": "1",
+    "type": "ticket",
+    "color": "pink"
+  },
+  "Novacrystal": {
+    "name": "Novacrystal",
+    "amount": "3",
+    "type": "ore",
+    "color": "white"
+  },
+  "FlynMealPassPlus": {
+    "name": "FlynMealPassPlus",
+    "amount": "10",
+    "type": "ticket",
+    "color": "pink"
+  },
+  "Ancient Fish": {
+    "name": "Ancient Fish",
+    "amount": "2",
+    "type": "fish",
+    "color": "gray"
+  },
+  "Paralysis Sac": {
+    "name": "Paralysis Sac",
+    "amount": "5",
+    "type": "sac",
+    "color": "yellow"
+  },
+  "Hermitaur Shell": {
+    "name": "Hermitaur Shell",
+    "amount": "3",
+    "type": "shell",
+    "color": "red"
+  },
+  "Plesioth Scale": {
+    "name": "Plesioth Scale",
+    "amount": "5",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Sm Hermitaur Shl": {
+    "name": "Sm Hermitaur Shl",
+    "amount": "5",
+    "type": "shell",
+    "color": "red"
+  },
+  "Ceanataur Claw": {
+    "name": "Ceanataur Claw",
+    "amount": "8",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Grn Plesioth Scl": {
+    "name": "Grn Plesioth Scl",
+    "amount": "6",
+    "type": "scale",
+    "color": "green"
+  },
+  "Med Monster Bone": {
+    "name": "Med Monster Bone",
+    "amount": "20",
+    "type": "bone",
+    "color": "yellow"
+  },
+  "Twisted Horn": {
+    "name": "Twisted Horn",
+    "amount": "1",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Hermitaur Claw": {
+    "name": "Hermitaur Claw",
+    "amount": "15",
+    "type": "claw",
+    "color": "red"
+  },
+  "Hermitaur Carpce": {
+    "name": "Hermitaur Carpce",
+    "amount": "3",
+    "type": "shell",
+    "color": "red"
+  },
+  "Hermitaur Claw+": {
+    "name": "Hermitaur Claw+",
+    "amount": "1",
+    "type": "claw",
+    "color": "red"
+  },
+  "Coral Cphlos Fin": {
+    "name": "Coral Cphlos Fin",
+    "amount": "5",
+    "type": "part",
+    "color": "pink"
+  },
+  "Cephalos Fin+": {
+    "name": "Cephalos Fin+",
+    "amount": "5",
+    "type": "part",
+    "color": "cyan"
+  },
+  "PlumD.HermitrShl": {
+    "name": "PlumD.HermitrShl",
+    "amount": "4",
+    "type": "shell",
+    "color": "slate"
+  },
+  "PlumD.HermitrClw": {
+    "name": "PlumD.HermitrClw",
+    "amount": "4",
+    "type": "claw",
+    "color": "slate"
+  },
+  "HrdHermitaurClaw": {
+    "name": "HrdHermitaurClaw",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "SpecGrnPlesioFn+": {
+    "name": "SpecGrnPlesioFn+",
+    "amount": "5",
+    "type": "part",
+    "color": "green"
+  },
+  "HvyHermitaurShl": {
+    "name": "HvyHermitaurShl",
+    "amount": "2",
+    "type": "shell",
+    "color": "red"
+  },
+  "ThckGrnPlesioScl": {
+    "name": "ThckGrnPlesioScl",
+    "amount": "8",
+    "type": "scale",
+    "color": "green"
+  },
+  "Giant Blk Pearl": {
+    "name": "Giant Blk Pearl",
+    "amount": "3",
+    "type": "scale",
+    "color": "gray"
+  },
+  "HvyGaorenShell": {
+    "name": "HvyGaorenShell",
+    "amount": "3",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Ceanataur Shell": {
+    "name": "Ceanataur Shell",
+    "amount": "8",
+    "type": "shell",
+    "color": "blue"
+  },
+  "Ceanataur Pincer": {
+    "name": "Ceanataur Pincer",
+    "amount": "5",
+    "type": "shell",
+    "color": "blue"
+  },
+  "Hercudrome": {
+    "name": "Hercudrome",
+    "amount": "3",
+    "type": "insect",
+    "color": "red"
+  },
+  "Ceanataur Carpce": {
+    "name": "Ceanataur Carpce",
+    "amount": "5",
+    "type": "shell",
+    "color": "blue"
+  },
+  "Ceanataur Claw+": {
+    "name": "Ceanataur Claw+",
+    "amount": "3",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Hrd monster Bone": {
+    "name": "Hrd monster Bone",
+    "amount": "3",
+    "type": "bone",
+    "color": "red"
+  },
+  "HvyCeanataurShl": {
+    "name": "HvyCeanataurShl",
+    "amount": "4",
+    "type": "shell",
+    "color": "blue"
+  },
+  "HrdCeanataurClaw": {
+    "name": "HrdCeanataurClaw",
+    "amount": "2",
+    "type": "claw",
+    "color": "blue"
+  },
+  "HvyCeanataurLeg": {
+    "name": "HvyCeanataurLeg",
+    "amount": "5",
+    "type": "shell",
+    "color": "blue"
+  },
+  "TerraCeanatrShl": {
+    "name": "TerraCeanatrShl",
+    "amount": "4",
+    "type": "shell",
+    "color": "orange"
+  },
+  "ThckPlesiothScl": {
+    "name": "ThckPlesiothScl",
+    "amount": "8",
+    "type": "scale",
+    "color": "blue"
+  },
+  "TerraCeanatrClaw": {
+    "name": "TerraCeanatrClaw",
+    "amount": "4",
+    "type": "claw",
+    "color": "orange"
+  },
+  "HvyBlkGraviosShl": {
+    "name": "HvyBlkGraviosShl",
+    "amount": "6",
+    "type": "part",
+    "color": "gray"
+  },
+  "Electro Sac": {
+    "name": "Electro Sac",
+    "amount": "4",
+    "type": "sac",
+    "color": "yellow"
+  },
+  "Vespoid Shell": {
+    "name": "Vespoid Shell",
+    "amount": "10",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "Hornetaur Wing": {
+    "name": "Hornetaur Wing",
+    "amount": "30",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Thunderbug Juice": {
+    "name": "Thunderbug Juice",
+    "amount": "2",
+    "type": "fluid",
+    "color": "yellow"
+  },
+  "Alluring Hide": {
+    "name": "Alluring Hide",
+    "amount": "4",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Hornetaur Head": {
+    "name": "Hornetaur Head",
+    "amount": "6",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Thunder Sac": {
+    "name": "Thunder Sac",
+    "amount": "10",
+    "type": "sac",
+    "color": "yellow"
+  },
+  "HornetaurInnrWng": {
+    "name": "HornetaurInnrWng",
+    "amount": "20",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Vespoid Carapace": {
+    "name": "Vespoid Carapace",
+    "amount": "10",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "KhezuHide-Cream": {
+    "name": "KhezuHide-Cream",
+    "amount": "10",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Lightning Sac": {
+    "name": "Lightning Sac",
+    "amount": "5",
+    "type": "sac",
+    "color": "yellow"
+  },
+  "SpecRubberyHide+": {
+    "name": "SpecRubberyHide+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "StrAlluringWing": {
+    "name": "StrAlluringWing",
+    "amount": "6",
+    "type": "part",
+    "color": "pink"
+  },
+  "KhezuSpecialCut": {
+    "name": "KhezuSpecialCut",
+    "amount": "1",
+    "type": "part",
+    "color": "white"
+  },
+  "HrdPuGypcerosWng": {
+    "name": "HrdPuGypcerosWng",
+    "amount": "5",
+    "type": "part",
+    "color": "slate"
+  },
+  "Rathian Shell": {
+    "name": "Rathian Shell",
+    "amount": "6",
+    "type": "part",
+    "color": "green"
+  },
+  "Rathian Scale": {
+    "name": "Rathian Scale",
+    "amount": "4",
+    "type": "scale",
+    "color": "green"
+  },
+  "Rathian Carapace": {
+    "name": "Rathian Carapace",
+    "amount": "8",
+    "type": "part",
+    "color": "green"
+  },
+  "Rathian Scale+": {
+    "name": "Rathian Scale+",
+    "amount": "5",
+    "type": "scale",
+    "color": "green"
+  },
+  "Rathian Plate": {
+    "name": "Rathian Plate",
+    "amount": "5",
+    "type": "scale",
+    "color": "green"
+  },
+  "Rathian Spike": {
+    "name": "Rathian Spike",
+    "amount": "1",
+    "type": "part",
+    "color": "green"
+  },
+  "ThckRathianScl": {
+    "name": "ThckRathianScl",
+    "amount": "8",
+    "type": "scale",
+    "color": "green"
+  },
+  "Rathian Ruby": {
+    "name": "Rathian Ruby",
+    "amount": "1",
+    "type": "stone",
+    "color": "green"
+  },
+  "HvyRathianShell": {
+    "name": "HvyRathianShell",
+    "amount": "3",
+    "type": "part",
+    "color": "green"
+  },
+  "HvnlyRathianScl": {
+    "name": "HvnlyRathianScl",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "green"
+  },
+  "ThckGldRathnScl": {
+    "name": "ThckGldRathnScl",
+    "amount": "7",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "Pnk Rathian Cpc": {
+    "name": "Pnk Rathian Cpc",
+    "amount": "3",
+    "type": "part",
+    "color": "pink"
+  },
+  "Pnk Rathian Scl+": {
+    "name": "Pnk Rathian Scl+",
+    "amount": "5",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Rathian Spike+": {
+    "name": "Rathian Spike+",
+    "amount": "5",
+    "type": "part",
+    "color": "green"
+  },
+  "FireWyvrn Marrow": {
+    "name": "FireWyvrn Marrow",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "Union Ore": {
+    "name": "Union Ore",
+    "amount": "10",
+    "type": "ore",
+    "color": "pink"
+  },
+  "Rathian Thorn": {
+    "name": "Rathian Thorn",
+    "amount": "1",
+    "type": "part",
+    "color": "green"
+  },
+  "ThckPnkRathnScl": {
+    "name": "ThckPnkRathnScl",
+    "amount": "5",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Rathalos Shell": {
+    "name": "Rathalos Shell",
+    "amount": "10",
+    "type": "part",
+    "color": "red"
+  },
+  "Rathalos Scale": {
+    "name": "Rathalos Scale",
+    "amount": "8",
+    "type": "scale",
+    "color": "red"
+  },
+  "Blood Red Horn": {
+    "name": "Blood Red Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "Firestone": {
+    "name": "Firestone",
+    "amount": "6",
+    "type": "ore",
+    "color": "red"
+  },
+  "Rathalos Carpace": {
+    "name": "Rathalos Carpace",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "FireWyvrn BrnStm": {
+    "name": "FireWyvrn BrnStm",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "Firecell Stone": {
+    "name": "Firecell Stone",
+    "amount": "5",
+    "type": "ore",
+    "color": "orange"
+  },
+  "HvyRathalosShl": {
+    "name": "HvyRathalosShl",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "StrRathalosWing": {
+    "name": "StrRathalosWing",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Rathalos Ruby": {
+    "name": "Rathalos Ruby",
+    "amount": "1",
+    "type": "stone",
+    "color": "red"
+  },
+  "ThckLavasiothScl": {
+    "name": "ThckLavasiothScl",
+    "amount": "8",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Hrd Rathalos Scl": {
+    "name": "Hrd Rathalos Scl",
+    "amount": "8",
+    "type": "scale",
+    "color": "red"
+  },
+  "HvnlyRathalosScl": {
+    "name": "HvnlyRathalosScl",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "red"
+  },
+  "HvySlvrRthlsShl": {
+    "name": "HvySlvrRthlsShl",
+    "amount": "10",
+    "type": "part",
+    "color": "white"
+  },
+  "Teostra Carapace": {
+    "name": "Teostra Carapace",
+    "amount": "8",
+    "type": "part",
+    "color": "red"
+  },
+  "Teostra Mane": {
+    "name": "Teostra Mane",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Lunastra Mane": {
+    "name": "Lunastra Mane",
+    "amount": "1",
+    "type": "part",
+    "color": "blue"
+  },
+  "Fire Dragon Pwdr": {
+    "name": "Fire Dragon Pwdr",
+    "amount": "3",
+    "type": "sac",
+    "color": "red"
+  },
+  "Gravios BrainStm": {
+    "name": "Gravios BrainStm",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "HrdFireDrgnClaw": {
+    "name": "HrdFireDrgnClaw",
+    "amount": "3",
+    "type": "claw",
+    "color": "red"
+  },
+  "ThckFireDrgnScl": {
+    "name": "ThckFireDrgnScl",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "LunastraCarapace": {
+    "name": "LunastraCarapace",
+    "amount": "12",
+    "type": "part",
+    "color": "blue"
+  },
+  "Commendation S": {
+    "name": "Commendation S",
+    "amount": "1",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Diablos Carapace": {
+    "name": "Diablos Carapace",
+    "amount": "3",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Majestic Horn": {
+    "name": "Majestic Horn",
+    "amount": "1",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Wyvern Stone": {
+    "name": "Wyvern Stone",
+    "amount": "1",
+    "type": "stone",
+    "color": "cyan"
+  },
+  "Black Blos Spine": {
+    "name": "Black Blos Spine",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "Diablos Thoracic": {
+    "name": "Diablos Thoracic",
+    "amount": "6",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Black Blos Cpc": {
+    "name": "Black Blos Cpc",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "HvyBlkBlosShell": {
+    "name": "HvyBlkBlosShell",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "HvyDiablosSpine": {
+    "name": "HvyDiablosSpine",
+    "amount": "3",
+    "type": "part",
+    "color": "yellow"
+  },
+  "StoutBlkTwstdHrn": {
+    "name": "StoutBlkTwstdHrn",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Big Wyvern Stone": {
+    "name": "Big Wyvern Stone",
+    "amount": "5",
+    "type": "stone",
+    "color": "blue"
+  },
+  "HvyBlkBlosSpine": {
+    "name": "HvyBlkBlosSpine",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "StoutWarpedHorn": {
+    "name": "StoutWarpedHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Dengeki Ticket G": {
+    "name": "Dengeki Ticket G",
+    "amount": "4",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "HvyDiablosShell": {
+    "name": "HvyDiablosShell",
+    "amount": "8",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Top-GrdRedHorn": {
+    "name": "Top-GrdRedHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "Tigrex Scale": {
+    "name": "Tigrex Scale",
+    "amount": "5",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "Tigrex Fang": {
+    "name": "Tigrex Fang",
+    "amount": "4",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "TwstBlkBlosHrn": {
+    "name": "TwstBlkBlosHrn",
+    "amount": "3",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Tigrex Carapace": {
+    "name": "Tigrex Carapace",
+    "amount": "5",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Tigrex Scale+": {
+    "name": "Tigrex Scale+",
+    "amount": "8",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "Hvy Tigrex Shell": {
+    "name": "Hvy Tigrex Shell",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "ThickTigrexScale": {
+    "name": "ThickTigrexScale",
+    "amount": "8",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "HvnlyTigrexScale": {
+    "name": "HvnlyTigrexScale",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "yellow"
+  },
+  "Black Narga Pelt": {
+    "name": "Black Narga Pelt",
+    "amount": "6",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "NargaCuttingWing": {
+    "name": "NargaCuttingWing",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Narga Brain Stem": {
+    "name": "Narga Brain Stem",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Nargacuga Fang+": {
+    "name": "Nargacuga Fang+",
+    "amount": "8",
+    "type": "claw",
+    "color": "gray"
+  },
+  "ThickNargaScale": {
+    "name": "ThickNargaScale",
+    "amount": "4",
+    "type": "scale",
+    "color": "gray"
+  },
+  "StrNargaCttngWng": {
+    "name": "StrNargaCttngWng",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "HvyNargacugaFang": {
+    "name": "HvyNargacugaFang",
+    "amount": "8",
+    "type": "claw",
+    "color": "gray"
+  },
+  "HvnlyNargaScale": {
+    "name": "HvnlyNargaScale",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "gray"
+  },
+  "BlackNargaPelt+": {
+    "name": "BlackNargaPelt+",
+    "amount": "4",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Wyverian Harp": {
+    "name": "Wyverian Harp",
+    "amount": "1",
+    "type": "ukwn",
+    "color": "cyan"
+  },
+  "Plesioth Scale+": {
+    "name": "Plesioth Scale+",
+    "amount": "5",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Grn Plsioth Scl+": {
+    "name": "Grn Plsioth Scl+",
+    "amount": "5",
+    "type": "scale",
+    "color": "green"
+  },
+  "Commendation G": {
+    "name": "Commendation G",
+    "amount": "5",
+    "type": "ticket",
+    "color": "white"
+  },
+  "SpecPlesiothFin+": {
+    "name": "SpecPlesiothFin+",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "HvyLavasiothFang": {
+    "name": "HvyLavasiothFang",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Dragonwood": {
+    "name": "Dragonwood",
+    "amount": "3",
+    "type": "part",
+    "color": "green"
+  },
+  "Dragonmoss": {
+    "name": "Dragonmoss",
+    "amount": "1",
+    "type": "part",
+    "color": "green"
+  },
+  "Kirin Thndr Tail": {
+    "name": "Kirin Thndr Tail",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "ElderDragonBlood": {
+    "name": "ElderDragonBlood",
+    "amount": "10",
+    "type": "part",
+    "color": "red"
+  },
+  "Pokke Ticket+": {
+    "name": "Pokke Ticket+",
+    "amount": "2",
+    "type": "ticket",
+    "color": "blue"
+  },
+  "Dragonmoss+": {
+    "name": "Dragonmoss+",
+    "amount": "10",
+    "type": "part",
+    "color": "green"
+  },
+  "Kirin Azure Horn": {
+    "name": "Kirin Azure Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "blue"
+  },
+  "YamaTsukamiHide": {
+    "name": "YamaTsukamiHide",
+    "amount": "2",
+    "type": "pelt",
+    "color": "green"
+  },
+  "YamaTsukaFillet": {
+    "name": "YamaTsukaFillet",
+    "amount": "3",
+    "type": "part",
+    "color": "green"
+  },
+  "YamaTsukamiFluid": {
+    "name": "YamaTsukamiFluid",
+    "amount": "3",
+    "type": "fluid",
+    "color": "green"
+  },
+  "AncientDrgnwood": {
+    "name": "AncientDrgnwood",
+    "amount": "1",
+    "type": "part",
+    "color": "green"
+  },
+  "AncientDrgnmoss": {
+    "name": "AncientDrgnmoss",
+    "amount": "3",
+    "type": "part",
+    "color": "green"
+  },
+  "Lao-Shan's Horn": {
+    "name": "Lao-Shan's Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "red"
+  },
+  "Lao-Shan's Scale": {
+    "name": "Lao-Shan's Scale",
+    "amount": "6",
+    "type": "scale",
+    "color": "red"
+  },
+  "Lao-Shan's Shell": {
+    "name": "Lao-Shan's Shell",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "Lao-Shan's Ruby": {
+    "name": "Lao-Shan's Ruby",
+    "amount": "3",
+    "type": "stone",
+    "color": "red"
+  },
+  "Chameleos Hide+": {
+    "name": "Chameleos Hide+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "slate"
+  },
+  "Daora Carapace": {
+    "name": "Daora Carapace",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "Lao-ShanHvnlyScl": {
+    "name": "Lao-ShanHvnlyScl",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "red"
+  },
+  "Lao-Shan'sHvyShl": {
+    "name": "Lao-Shan'sHvyShl",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "Lao-Shan'sThkScl": {
+    "name": "Lao-Shan'sThkScl",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "Blk Rajang Pelt+": {
+    "name": "Blk Rajang Pelt+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Hvy Rajang Fang": {
+    "name": "Hvy Rajang Fang",
+    "amount": "2",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Hard Rajang Claw": {
+    "name": "Hard Rajang Claw",
+    "amount": "4",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Gold Rajang Pelt": {
+    "name": "Gold Rajang Pelt",
+    "amount": "1",
+    "type": "pelt",
+    "color": "yellow"
+  },
+  "GoldRajangPelt+": {
+    "name": "GoldRajangPelt+",
+    "amount": "1",
+    "type": "pelt",
+    "color": "yellow"
+  },
+  "HvyC.BlangoFang": {
+    "name": "HvyC.BlangoFang",
+    "amount": "2",
+    "type": "claw",
+    "color": "orange"
+  },
+  "Hvy Daora Shell": {
+    "name": "Hvy Daora Shell",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "ThckDaoraDrgnScl": {
+    "name": "ThckDaoraDrgnScl",
+    "amount": "8",
+    "type": "scale",
+    "color": "gray"
+  },
+  "BigEDragonBone": {
+    "name": "BigEDragonBone",
+    "amount": "3",
+    "type": "bone",
+    "color": "slate"
+  },
+  "Daora Jewel": {
+    "name": "Daora Jewel",
+    "amount": "1",
+    "type": "stone",
+    "color": "gray"
+  },
+  "Hard Daora Horn": {
+    "name": "Hard Daora Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Str Daora Wing": {
+    "name": "Str Daora Wing",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "BigEDragonJewel": {
+    "name": "BigEDragonJewel",
+    "amount": "1",
+    "type": "stone",
+    "color": "slate"
+  },
+  "Akantor Fang": {
+    "name": "Akantor Fang",
+    "amount": "4",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Akantor Spike": {
+    "name": "Akantor Spike",
+    "amount": "5",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Akantor Scale": {
+    "name": "Akantor Scale",
+    "amount": "8",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Gaoren Pincer": {
+    "name": "Gaoren Pincer",
+    "amount": "1",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Big Wyvern stone": {
+    "name": "Big Wyvern stone",
+    "amount": "4",
+    "type": "stone",
+    "color": "blue"
+  },
+  "Ukanlos Stone": {
+    "name": "Ukanlos Stone",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "white"
+  },
+  "Dark Stone": {
+    "name": "Dark Stone",
+    "amount": "1",
+    "type": "egg",
+    "color": "gray"
+  },
+  "Dark Piece": {
+    "name": "Dark Piece",
+    "amount": "4",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Pokke Ticket": {
+    "name": "Pokke Ticket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "cyan"
+  },
+  "Fatalis Horn": {
+    "name": "Fatalis Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Fatalis Scale": {
+    "name": "Fatalis Scale",
+    "amount": "7",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Fatalis Shell": {
+    "name": "Fatalis Shell",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "HardFatalisHorn": {
+    "name": "HardFatalisHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "ThckFatalisScale": {
+    "name": "ThckFatalisScale",
+    "amount": "5",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Hvy Fatalis Shl": {
+    "name": "Hvy Fatalis Shl",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "Wht Fatalis Horn": {
+    "name": "Wht Fatalis Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "white"
+  },
+  "Wht Fatalis Scl": {
+    "name": "Wht Fatalis Scl",
+    "amount": "2",
+    "type": "scale",
+    "color": "white"
+  },
+  "Wht Fatalis Shl": {
+    "name": "Wht Fatalis Shl",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "HrdWhtFatlisHorn": {
+    "name": "HrdWhtFatlisHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "white"
+  },
+  "ThckWhtFatlisScl": {
+    "name": "ThckWhtFatlisScl",
+    "amount": "4",
+    "type": "scale",
+    "color": "white"
+  },
+  "HvyWhtFatalisShl": {
+    "name": "HvyWhtFatalisShl",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "UkanlosShovelJaw": {
+    "name": "UkanlosShovelJaw",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "StrongUkanlosFin": {
+    "name": "StrongUkanlosFin",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "UkanlosUnderscl": {
+    "name": "UkanlosUnderscl",
+    "amount": "4",
+    "type": "scale",
+    "color": "white"
+  },
+  "HrdCongalalaPlt+": {
+    "name": "HrdCongalalaPlt+",
+    "amount": "3",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Stout Bone": {
+    "name": "Stout Bone",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Top-GrdPlatHorn": {
+    "name": "Top-GrdPlatHorn",
+    "amount": "3",
+    "type": "claw",
+    "color": "white"
+  },
+  "Thick Kut-Ku Scl": {
+    "name": "Thick Kut-Ku Scl",
+    "amount": "10",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Hvy Kut-Ku Shell": {
+    "name": "Hvy Kut-Ku Shell",
+    "amount": "5",
+    "type": "part",
+    "color": "pink"
+  },
+  "Wyvern Skull Shl": {
+    "name": "Wyvern Skull Shl",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "MonoblosCarapace": {
+    "name": "MonoblosCarapace",
+    "amount": "8",
+    "type": "part",
+    "color": "red"
+  },
+  "VespoidQn'sCrown": {
+    "name": "VespoidQn'sCrown",
+    "amount": "2",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "Hornet Razorwing": {
+    "name": "Hornet Razorwing",
+    "amount": "10",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Dragonwood+": {
+    "name": "Dragonwood+",
+    "amount": "10",
+    "type": "part",
+    "color": "green"
+  },
+  "Thunderbug Jelly": {
+    "name": "Thunderbug Jelly",
+    "amount": "15",
+    "type": "fluid",
+    "color": "yellow"
+  },
+  "Vespoid Razorwing": {
+    "name": "Vespoid Razorwing",
+    "amount": "8",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Suiko Jewel": {
+    "name": "Suiko Jewel",
+    "amount": "1",
+    "type": "deco",
+    "color": "cyan"
+  },
+  "Power Seed": {
+    "name": "Power Seed",
+    "amount": "1",
+    "type": "seed",
+    "color": "red"
+  },
+  "Akito Jewel": {
+    "name": "Akito Jewel",
+    "amount": "1",
+    "type": "deco",
+    "color": "white"
+  },
+  "Demondrug": {
+    "name": "Demondrug",
+    "amount": "3",
+    "type": "fluid",
+    "color": "red"
+  },
+  "LapisLazuliJewel": {
+    "name": "LapisLazuliJewel",
+    "amount": "1",
+    "type": "deco",
+    "color": "yellow"
+  },
+  "HrdFireWyvernClw": {
+    "name": "HrdFireWyvernClw",
+    "amount": "5",
+    "type": "claw",
+    "color": "red"
+  },
+  "Mega Demondrug": {
+    "name": "Mega Demondrug",
+    "amount": "1",
+    "type": "fluid",
+    "color": "red"
+  },
+  "BattlefieldJewel": {
+    "name": "BattlefieldJewel",
+    "amount": "1",
+    "type": "deco",
+    "color": "slate"
+  },
+  "Rathalos Plate": {
+    "name": "Rathalos Plate",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "Slvr Rthlos Wing": {
+    "name": "Slvr Rthlos Wing",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Fatalis Eye": {
+    "name": "Fatalis Eye",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Sharpened Beak": {
+    "name": "Sharpened Beak",
+    "amount": "2",
+    "type": "bone",
+    "color": "slate"
+  },
+  "Black Blos Tail": {
+    "name": "Black Blos Tail",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Garuga Wing": {
+    "name": "Garuga Wing",
+    "amount": "4",
+    "type": "part",
+    "color": "slate"
+  },
+  "Blue Kut-Ku Shl": {
+    "name": "Blue Kut-Ku Shl",
+    "amount": "4",
+    "type": "part",
+    "color": "blue"
+  },
+  "Anteka Antlers": {
+    "name": "Anteka Antlers",
+    "amount": "2",
+    "type": "claw",
+    "color": "orange"
+  },
+  "Teostra Shell": {
+    "name": "Teostra Shell",
+    "amount": "8",
+    "type": "part",
+    "color": "red"
+  },
+  "Splendid Beak": {
+    "name": "Splendid Beak",
+    "amount": "4",
+    "type": "bone",
+    "color": "pink"
+  },
+  "Giadrome Skull": {
+    "name": "Giadrome Skull",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Rathalos Wing": {
+    "name": "Rathalos Wing",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "Chameleos Horn": {
+    "name": "Chameleos Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "slate"
+  },
+  "Chaos Mushroom": {
+    "name": "Chaos Mushroom",
+    "amount": "10",
+    "type": "mushroom",
+    "color": "slate"
+  },
+  "Kirin Horn": {
+    "name": "Kirin Horn",
+    "amount": "5",
+    "type": "claw",
+    "color": "white"
+  },
+  "LthrKirinThndrTl": {
+    "name": "LthrKirinThndrTl",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Daora Horn": {
+    "name": "Daora Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "HvyLavasiothShl": {
+    "name": "HvyLavasiothShl",
+    "amount": "8",
+    "type": "part",
+    "color": "gray"
+  },
+  "Hvy Gaoren Spine": {
+    "name": "Hvy Gaoren Spine",
+    "amount": "4",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Tailed Frog": {
+    "name": "Tailed Frog",
+    "amount": "5",
+    "type": "pelt",
+    "color": "cyan"
+  },
+  "Fire Herb": {
+    "name": "Fire Herb",
+    "amount": "3",
+    "type": "herb",
+    "color": "red"
+  },
+  "Knife Mackerel": {
+    "name": "Knife Mackerel",
+    "amount": "3",
+    "type": "fish",
+    "color": "yellow"
+  },
+  "Thunderbug": {
+    "name": "Thunderbug",
+    "amount": "15",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "Dragon Seed": {
+    "name": "Dragon Seed",
+    "amount": "1",
+    "type": "seed",
+    "color": "red"
+  },
+  "Kirin Mane": {
+    "name": "Kirin Mane",
+    "amount": "15",
+    "type": "part",
+    "color": "white"
+  },
+  "SpecialKirinHide": {
+    "name": "SpecialKirinHide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "BlackBeltCoinG": {
+    "name": "BlackBeltCoinG",
+    "amount": "8",
+    "type": "coin",
+    "color": "gray"
+  },
+  "Gaoren Spine": {
+    "name": "Gaoren Spine",
+    "amount": "6",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Gravios Skl Shl": {
+    "name": "Gravios Skl Shl",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Blk Gravios Cpc": {
+    "name": "Blk Gravios Cpc",
+    "amount": "6",
+    "type": "part",
+    "color": "gray"
+  },
+  "Bullfango Pelt": {
+    "name": "Bullfango Pelt",
+    "amount": "3",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "Bulldrome Hide": {
+    "name": "Bulldrome Hide",
+    "amount": "3",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Pale Extract": {
+    "name": "Pale Extract",
+    "amount": "4",
+    "type": "fluid",
+    "color": "blue"
+  },
+  "Pale Khezu Steak": {
+    "name": "Pale Khezu Steak",
+    "amount": "1",
+    "type": "part",
+    "color": "white"
+  },
+  "Lifepowder": {
+    "name": "Lifepowder",
+    "amount": "1",
+    "type": "sac",
+    "color": "white"
+  },
+  "Flabby Hide": {
+    "name": "Flabby Hide",
+    "amount": "2",
+    "type": "hide",
+    "color": "white"
+  },
+  "Kelbi Horn": {
+    "name": "Kelbi Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Khezu Hide - Tan": {
+    "name": "Khezu Hide - Tan",
+    "amount": "6",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Ancient Potion": {
+    "name": "Ancient Potion",
+    "amount": "1",
+    "type": "sac",
+    "color": "red"
+  },
+  "Honey": {
+    "name": "Honey",
+    "amount": "10",
+    "type": "webbing",
+    "color": "orange"
+  },
+  "Cactus Flower": {
+    "name": "Cactus Flower",
+    "amount": "10",
+    "type": "herb",
+    "color": "pink"
+  },
+  "Alluring Webbing": {
+    "name": "Alluring Webbing",
+    "amount": "8",
+    "type": "webbing",
+    "color": "pink"
+  },
+  "Dosbiscus": {
+    "name": "Dosbiscus",
+    "amount": "10",
+    "type": "herb",
+    "color": "red"
+  },
+  "Commendation": {
+    "name": "Commendation",
+    "amount": "10",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Pawprint Stamp": {
+    "name": "Pawprint Stamp",
+    "amount": "10",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Cephalos Scale": {
+    "name": "Cephalos Scale",
+    "amount": "8",
+    "type": "scale",
+    "color": "cyan"
+  },
+  "Well-Done Steak": {
+    "name": "Well-Done Steak",
+    "amount": "2",
+    "type": "meat",
+    "color": "orange"
+  },
+  "Grn Plesioth Fin": {
+    "name": "Grn Plesioth Fin",
+    "amount": "5",
+    "type": "part",
+    "color": "green"
+  },
+  "Gourmet Steak": {
+    "name": "Gourmet Steak",
+    "amount": "10",
+    "type": "meat",
+    "color": "orange"
+  },
+  "Power Juice": {
+    "name": "Power Juice",
+    "amount": "1",
+    "type": "fluid",
+    "color": "yellow"
+  },
+  "Akito jewel": {
+    "name": "Akito jewel",
+    "amount": "1",
+    "type": "deco",
+    "color": "white"
+  },
+  "Glutton Tuna": {
+    "name": "Glutton Tuna",
+    "amount": "5",
+    "type": "fish",
+    "color": "orange"
+  },
+  "Mosswine Hide": {
+    "name": "Mosswine Hide",
+    "amount": "1",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Tigrex Fang+": {
+    "name": "Tigrex Fang+",
+    "amount": "7",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Conga Pelt+": {
+    "name": "Conga Pelt+",
+    "amount": "10",
+    "type": "pelt",
+    "color": "pink"
+  },
+  "Iodrome Skull": {
+    "name": "Iodrome Skull",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "Mega Juice": {
+    "name": "Mega Juice",
+    "amount": "1",
+    "type": "fluid",
+    "color": "yellow"
+  },
+  "Plesioth Fin": {
+    "name": "Plesioth Fin",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "Gypceros Head": {
+    "name": "Gypceros Head",
+    "amount": "3",
+    "type": "part",
+    "color": "blue"
+  },
+  "Sm Ceanataur Shl": {
+    "name": "Sm Ceanataur Shl",
+    "amount": "10",
+    "type": "shell",
+    "color": "blue"
+  },
+  "Kelbi Hide": {
+    "name": "Kelbi Hide",
+    "amount": "20",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Azure LaoS Horn": {
+    "name": "Azure LaoS Horn",
+    "amount": "1",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Blk Blos Thracic": {
+    "name": "Blk Blos Thracic",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Gendrome Skull": {
+    "name": "Gendrome Skull",
+    "amount": "5",
+    "type": "part",
+    "color": "green"
+  },
+  "Gaoren Shell": {
+    "name": "Gaoren Shell",
+    "amount": "4",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Blk Gravios Skl": {
+    "name": "Blk Gravios Skl",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "Gaoren Thoracic": {
+    "name": "Gaoren Thoracic",
+    "amount": "5",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Lao-Shan's Claw": {
+    "name": "Lao-Shan's Claw",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "Rumblefish": {
+    "name": "Rumblefish",
+    "amount": "1",
+    "type": "fish",
+    "color": "gray"
+  },
+  "Fire Drgn Jwl": {
+    "name": "Fire Drgn Jwl",
+    "amount": "1",
+    "type": "stone",
+    "color": "red"
+  },
+  "Pin Tuna": {
+    "name": "Pin Tuna",
+    "amount": "2",
+    "type": "fish",
+    "color": "gray"
+  },
+  "LthrSlvrRthlsTal": {
+    "name": "LthrSlvrRthlsTal",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Wyvern Fang": {
+    "name": "Wyvern Fang",
+    "amount": "2",
+    "type": "claw",
+    "color": "white"
+  },
+  "HrdE.CongaClaw": {
+    "name": "HrdE.CongaClaw",
+    "amount": "3",
+    "type": "claw",
+    "color": "green"
+  },
+  "Azure LaoS Claw": {
+    "name": "Azure LaoS Claw",
+    "amount": "2",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Chameleos Jewel": {
+    "name": "Chameleos Jewel",
+    "amount": "1",
+    "type": "stone",
+    "color": "slate"
+  },
+  "Normal S Lv3": {
+    "name": "Normal S Lv3",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Scale": {
+    "name": "Garuga Scale",
+    "amount": "5",
+    "type": "scale",
+    "color": "slate"
+  },
+  "Pierce S Lv3": {
+    "name": "Pierce S Lv3",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Cephalos Fin": {
+    "name": "Cephalos Fin",
+    "amount": "2",
+    "type": "part",
+    "color": "cyan"
+  },
+  "Pellet S Lv3": {
+    "name": "Pellet S Lv3",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Crag S Lv3": {
+    "name": "Crag S Lv3",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Clust S Lv3": {
+    "name": "Clust S Lv3",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Remobra Skull": {
+    "name": "Remobra Skull",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "Poison Sac": {
+    "name": "Poison Sac",
+    "amount": "20",
+    "type": "sac",
+    "color": "slate"
+  },
+  "Poison Coating": {
+    "name": "Poison Coating",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Vespoid Wing": {
+    "name": "Vespoid Wing",
+    "amount": "20",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "ParaylsisCoating": {
+    "name": "ParaylsisCoating",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Vespoid Abdomen": {
+    "name": "Vespoid Abdomen",
+    "amount": "1",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "Sleep Coating": {
+    "name": "Sleep Coating",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Power Coating": {
+    "name": "Power Coating",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "E.CongalalaPelt+": {
+    "name": "E.CongalalaPelt+",
+    "amount": "8",
+    "type": "pelt",
+    "color": "green"
+  },
+  "CloseRngCoating": {
+    "name": "CloseRngCoating",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Monoblos Heart": {
+    "name": "Monoblos Heart",
+    "amount": "3",
+    "type": "part",
+    "color": "red"
+  },
+  "Akantor Claw": {
+    "name": "Akantor Claw",
+    "amount": "3",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Daora Sharp Claw": {
+    "name": "Daora Sharp Claw",
+    "amount": "5",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Ivy": {
+    "name": "Ivy",
+    "amount": "10",
+    "type": "herb",
+    "color": "green"
+  },
+  "Chameleos Hide": {
+    "name": "Chameleos Hide",
+    "amount": "3",
+    "type": "pelt",
+    "color": "slate"
+  },
+  "Sm Lobstershell": {
+    "name": "Sm Lobstershell",
+    "amount": "2",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Lg Lobstershell": {
+    "name": "Lg Lobstershell",
+    "amount": "2",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Lunastra Spike": {
+    "name": "Lunastra Spike",
+    "amount": "2",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Str Fatalis Wng": {
+    "name": "Str Fatalis Wng",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Akantor Shell": {
+    "name": "Akantor Shell",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "Blk Rajang Pelt": {
+    "name": "Blk Rajang Pelt",
+    "amount": "5",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Burnt Meat": {
+    "name": "Burnt Meat",
+    "amount": "1",
+    "type": "meat",
+    "color": "gray"
+  },
+  "Rainbow Ore": {
+    "name": "Rainbow Ore",
+    "amount": "2",
+    "type": "ore",
+    "color": "pink"
+  },
+  "Psychoserum": {
+    "name": "Psychoserum",
+    "amount": "1",
+    "type": "fluid",
+    "color": "orange"
+  },
+  "RainbowTailFeath": {
+    "name": "RainbowTailFeath",
+    "amount": "5",
+    "type": "scale",
+    "color": "orange"
+  },
+  "Binoculars": {
+    "name": "Binoculars",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Catalyst": {
+    "name": "Catalyst",
+    "amount": "3",
+    "type": "sac",
+    "color": "gray"
+  },
+  "Book of Combos 1": {
+    "name": "Book of Combos 1",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Springnight Carp": {
+    "name": "Springnight Carp",
+    "amount": "4",
+    "type": "fish",
+    "color": "pink"
+  },
+  "Health Flute": {
+    "name": "Health Flute",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gunpowder": {
+    "name": "Gunpowder",
+    "amount": "10",
+    "type": "sac",
+    "color": "red"
+  },
+  "Flute": {
+    "name": "Flute",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Velociprey Fang": {
+    "name": "Velociprey Fang",
+    "amount": "30",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Velocidrome Claw": {
+    "name": "Velocidrome Claw",
+    "amount": "6",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Pur Rubbery Hide": {
+    "name": "Pur Rubbery Hide",
+    "amount": "2",
+    "type": "pelt",
+    "color": "slate"
+  },
+  "LthrC.BlangoTail": {
+    "name": "LthrC.BlangoTail",
+    "amount": "2",
+    "type": "part",
+    "color": "orange"
+  },
+  "ThkBullfangoPelt": {
+    "name": "ThkBullfangoPelt",
+    "amount": "5",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "Genprey Fang": {
+    "name": "Genprey Fang",
+    "amount": "30",
+    "type": "claw",
+    "color": "green"
+  },
+  "Sleep Herb": {
+    "name": "Sleep Herb",
+    "amount": "10",
+    "type": "herb",
+    "color": "cyan"
+  },
+  "Sleepyfish": {
+    "name": "Sleepyfish",
+    "amount": "10",
+    "type": "fish",
+    "color": "cyan"
+  },
+  "Ioprey Fang": {
+    "name": "Ioprey Fang",
+    "amount": "30",
+    "type": "claw",
+    "color": "red"
+  },
+  "Herbal Medicine": {
+    "name": "Herbal Medicine",
+    "amount": "2",
+    "type": "sac",
+    "color": "white"
+  },
+  "SpecRemobraSkin+": {
+    "name": "SpecRemobraSkin+",
+    "amount": "10",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Blangonga Fang": {
+    "name": "Blangonga Fang",
+    "amount": "2",
+    "type": "claw",
+    "color": "white"
+  },
+  "LeathrBlangoTail": {
+    "name": "LeathrBlangoTail",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "Giaprey Scale+": {
+    "name": "Giaprey Scale+",
+    "amount": "10",
+    "type": "scale",
+    "color": "white"
+  },
+  "Power Pill": {
+    "name": "Power Pill",
+    "amount": "1",
+    "type": "sac",
+    "color": "red"
+  },
+  "Blangonga Tail": {
+    "name": "Blangonga Tail",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Garuga Ear": {
+    "name": "Garuga Ear",
+    "amount": "2",
+    "type": "part",
+    "color": "slate"
+  },
+  "Azure Rthlos Cpc": {
+    "name": "Azure Rthlos Cpc",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "Tigrex Skull Shl": {
+    "name": "Tigrex Skull Shl",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Monster Broth": {
+    "name": "Monster Broth",
+    "amount": "5",
+    "type": "fluid",
+    "color": "blue"
+  },
+  "Diablos Shell": {
+    "name": "Diablos Shell",
+    "amount": "5",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Lightcrystal": {
+    "name": "Lightcrystal",
+    "amount": "2",
+    "type": "ore",
+    "color": "gray"
+  },
+  "Nitroshroom": {
+    "name": "Nitroshroom",
+    "amount": "4",
+    "type": "mushroom",
+    "color": "red"
+  },
+  "C.BlangongaPelt+": {
+    "name": "C.BlangongaPelt+",
+    "amount": "6",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "Genprey Hide+": {
+    "name": "Genprey Hide+",
+    "amount": "1",
+    "type": "pelt",
+    "color": "green"
+  },
+  "Giaprey Hide+": {
+    "name": "Giaprey Hide+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Armor Pill": {
+    "name": "Armor Pill",
+    "amount": "1",
+    "type": "sac",
+    "color": "orange"
+  },
+  "Fire Dragon Scl": {
+    "name": "Fire Dragon Scl",
+    "amount": "6",
+    "type": "scale",
+    "color": "red"
+  },
+  "Teostra Tail": {
+    "name": "Teostra Tail",
+    "amount": "4",
+    "type": "part",
+    "color": "red"
+  },
+  "Gourmet Fish+": {
+    "name": "Gourmet Fish+",
+    "amount": "3",
+    "type": "fish",
+    "color": "orange"
+  },
+  "Felvine": {
+    "name": "Felvine",
+    "amount": "10",
+    "type": "herb",
+    "color": "yellow"
+  },
+  "Unknown Skull": {
+    "name": "Unknown Skull",
+    "amount": "10",
+    "type": "bone",
+    "color": "yellow"
+  },
+  "Bitterbug": {
+    "name": "Bitterbug",
+    "amount": "1",
+    "type": "insect",
+    "color": "blue"
+  },
+  "Fire Drgn Webbng": {
+    "name": "Fire Drgn Webbng",
+    "amount": "4",
+    "type": "webbing",
+    "color": "red"
+  },
+  "Sunset Herb": {
+    "name": "Sunset Herb",
+    "amount": "3",
+    "type": "herb",
+    "color": "slate"
+  },
+  "Power Extract": {
+    "name": "Power Extract",
+    "amount": "1",
+    "type": "fluid",
+    "color": "blue"
+  },
+  "Bughopper": {
+    "name": "Bughopper",
+    "amount": "2",
+    "type": "insect",
+    "color": "white"
+  },
+  "Great Hornfly": {
+    "name": "Great Hornfly",
+    "amount": "5",
+    "type": "insect",
+    "color": "yellow"
+  },
+  "Exciteshroom": {
+    "name": "Exciteshroom",
+    "amount": "2",
+    "type": "mushroom",
+    "color": "slate"
+  },
+  "Boomerang": {
+    "name": "Boomerang",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pnk Rathian Shl": {
+    "name": "Pnk Rathian Shl",
+    "amount": "3",
+    "type": "part",
+    "color": "pink"
+  },
+  "Mega Pickaxe": {
+    "name": "Mega Pickaxe",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Mega Bugnet": {
+    "name": "Mega Bugnet",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "ShakalakaTreasre": {
+    "name": "ShakalakaTreasre",
+    "amount": "8",
+    "type": "sac",
+    "color": "orange"
+  },
+  "UkanlosDiggngClw": {
+    "name": "UkanlosDiggngClw",
+    "amount": "3",
+    "type": "claw",
+    "color": "white"
+  },
+  "ShakalakaTreasr+": {
+    "name": "ShakalakaTreasr+",
+    "amount": "3",
+    "type": "sac",
+    "color": "orange"
+  },
+  "Steel Egg": {
+    "name": "Steel Egg",
+    "amount": "1",
+    "type": "egg",
+    "color": "gray"
+  },
+  "Golden Egg": {
+    "name": "Golden Egg",
+    "amount": "1",
+    "type": "egg",
+    "color": "yellow"
+  },
+  "Shock Trap": {
+    "name": "Shock Trap",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Net": {
+    "name": "Net",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "HvyPiscineFang": {
+    "name": "HvyPiscineFang",
+    "amount": "8",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Trap Tool": {
+    "name": "Trap Tool",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Cricket": {
+    "name": "Cricket",
+    "amount": "1",
+    "type": "bait",
+    "color": "green"
+  },
+  "Yambug": {
+    "name": "Yambug",
+    "amount": "1",
+    "type": "insect",
+    "color": "blue"
+  },
+  "Comrade Ticket": {
+    "name": "Comrade Ticket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "blue"
+  },
+  "Mega Armorskin": {
+    "name": "Mega Armorskin",
+    "amount": "1",
+    "type": "fluid",
+    "color": "orange"
+  },
+  "Plus Class Tcket": {
+    "name": "Plus Class Tcket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "blue"
+  },
+  "SpecLavasioFin+": {
+    "name": "SpecLavasioFin+",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "Kirin Hide": {
+    "name": "Kirin Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Rubbery Hide+": {
+    "name": "Rubbery Hide+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Rajang Claw": {
+    "name": "Rajang Claw",
+    "amount": "2",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Velocidrome Head": {
+    "name": "Velocidrome Head",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "Toxin Sac": {
+    "name": "Toxin Sac",
+    "amount": "10",
+    "type": "sac",
+    "color": "slate"
+  },
+  "GoldRathianThorn": {
+    "name": "GoldRathianThorn",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "DaoraDragonScal+": {
+    "name": "DaoraDragonScal+",
+    "amount": "5",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Small Goldenfish": {
+    "name": "Small Goldenfish",
+    "amount": "20",
+    "type": "fish",
+    "color": "yellow"
+  },
+  "Vespoid wing": {
+    "name": "Vespoid wing",
+    "amount": "10",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Hornetaur Shell": {
+    "name": "Hornetaur Shell",
+    "amount": "15",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Monster Fluid": {
+    "name": "Monster Fluid",
+    "amount": "5",
+    "type": "fluid",
+    "color": "cyan"
+  },
+  "Vespoid InnrWng": {
+    "name": "Vespoid InnrWng",
+    "amount": "15",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Hornet RazorWing": {
+    "name": "Hornet RazorWing",
+    "amount": "5",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Vespoid RazorWing": {
+    "name": "Vespoid RazorWing",
+    "amount": "5",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Sm Monster Bone": {
+    "name": "Sm Monster Bone",
+    "amount": "20",
+    "type": "bone",
+    "color": "yellow"
+  },
+  "Basarios Tears": {
+    "name": "Basarios Tears",
+    "amount": "1",
+    "type": "ore",
+    "color": "pink"
+  },
+  "Giaprey Hide": {
+    "name": "Giaprey Hide",
+    "amount": "50",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Velocidrome Hide": {
+    "name": "Velocidrome Hide",
+    "amount": "15",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Velocidrome Clw+": {
+    "name": "Velocidrome Clw+",
+    "amount": "10",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Velociprey Scle+": {
+    "name": "Velociprey Scle+",
+    "amount": "10",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Ioprey Hide+": {
+    "name": "Ioprey Hide+",
+    "amount": "10",
+    "type": "pelt",
+    "color": "red"
+  },
+  "Ioprey Scale+": {
+    "name": "Ioprey Scale+",
+    "amount": "10",
+    "type": "scale",
+    "color": "red"
+  },
+  "Chameleos Tail": {
+    "name": "Chameleos Tail",
+    "amount": "1",
+    "type": "part",
+    "color": "slate"
+  },
+  "Chameleos Spike": {
+    "name": "Chameleos Spike",
+    "amount": "2",
+    "type": "claw",
+    "color": "slate"
+  },
+  "LthrChameleoTail": {
+    "name": "LthrChameleoTail",
+    "amount": "3",
+    "type": "part",
+    "color": "slate"
+  },
+  "HrdChameleosHorn": {
+    "name": "HrdChameleosHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "slate"
+  },
+  "Diablos Spine": {
+    "name": "Diablos Spine",
+    "amount": "7",
+    "type": "part",
+    "color": "yellow"
+  },
+  "LthrBlkBlosTail": {
+    "name": "LthrBlkBlosTail",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "WhtMonoblosThora": {
+    "name": "WhtMonoblosThora",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Gravios Carapace": {
+    "name": "Gravios Carapace",
+    "amount": "6",
+    "type": "part",
+    "color": "white"
+  },
+  "HvnlyGraviosShl": {
+    "name": "HvnlyGraviosShl",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "white"
+  },
+  "HvnlyBlkGraviShl": {
+    "name": "HvnlyBlkGraviShl",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "gray"
+  },
+  "Platinum Mane": {
+    "name": "Platinum Mane",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "Rathalos Tail": {
+    "name": "Rathalos Tail",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "Rathalos Scale+": {
+    "name": "Rathalos Scale+",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "Slvr Rthlos Scl+": {
+    "name": "Slvr Rthlos Scl+",
+    "amount": "5",
+    "type": "scale",
+    "color": "white"
+  },
+  "Gld Rathian Scl+": {
+    "name": "Gld Rathian Scl+",
+    "amount": "10",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "ThckSlvrRthlsScl": {
+    "name": "ThckSlvrRthlsScl",
+    "amount": "3",
+    "type": "scale",
+    "color": "white"
+  },
+  "Sm Bone Husk": {
+    "name": "Sm Bone Husk",
+    "amount": "8",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ceanataur Leg": {
+    "name": "Ceanataur Leg",
+    "amount": "8",
+    "type": "shell",
+    "color": "blue"
+  },
+  "Famitsu Ticket": {
+    "name": "Famitsu Ticket",
+    "amount": "5",
+    "type": "ticket",
+    "color": "blue"
+  },
+  "Pnk Rathian Scl": {
+    "name": "Pnk Rathian Scl",
+    "amount": "5",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Rainbow Insect": {
+    "name": "Rainbow Insect",
+    "amount": "2",
+    "type": "insect",
+    "color": "pink"
+  },
+  "Famitsu PO": {
+    "name": "Famitsu PO",
+    "amount": "3",
+    "type": "ticket",
+    "color": "red"
+  },
+  "Hard Gaoren Claw": {
+    "name": "Hard Gaoren Claw",
+    "amount": "3",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Knife Mackarel": {
+    "name": "Knife Mackarel",
+    "amount": "4",
+    "type": "fish",
+    "color": "yellow"
+  },
+  "Giant Beak": {
+    "name": "Giant Beak",
+    "amount": "1",
+    "type": "bone",
+    "color": "pink"
+  },
+  "Hot Drink": {
+    "name": "Hot Drink",
+    "amount": "4",
+    "type": "fluid",
+    "color": "red"
+  },
+  "Long Kut-Ku Ear": {
+    "name": "Long Kut-Ku Ear",
+    "amount": "10",
+    "type": "part",
+    "color": "pink"
+  },
+  "Garuga Tail": {
+    "name": "Garuga Tail",
+    "amount": "1",
+    "type": "part",
+    "color": "slate"
+  },
+  "Garuga Scale+": {
+    "name": "Garuga Scale+",
+    "amount": "5",
+    "type": "scale",
+    "color": "slate"
+  },
+  "Long Garuga Ear": {
+    "name": "Long Garuga Ear",
+    "amount": "4",
+    "type": "part",
+    "color": "slate"
+  },
+  "Lao-ShanCarapace": {
+    "name": "Lao-ShanCarapace",
+    "amount": "3",
+    "type": "part",
+    "color": "red"
+  },
+  "Lao-Shan's Scale+": {
+    "name": "Lao-Shan's Scale+",
+    "amount": "7",
+    "type": "scale",
+    "color": "red"
+  },
+  "Fatalis CrmsnHrn": {
+    "name": "Fatalis CrmsnHrn",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "Fatalis DevilEye": {
+    "name": "Fatalis DevilEye",
+    "amount": "1",
+    "type": "part",
+    "color": "red"
+  },
+  "HrdFatlisCrmHorn": {
+    "name": "HrdFatlisCrmHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "Fatalis Evil Eye": {
+    "name": "Fatalis Evil Eye",
+    "amount": "2",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Azure LaoS Shell": {
+    "name": "Azure LaoS Shell",
+    "amount": "3",
+    "type": "part",
+    "color": "blue"
+  },
+  "Lao-Shan's Thick Scale": {
+    "name": "Lao-Shan's Thick Scale",
+    "amount": "4",
+    "type": "scale",
+    "color": "red"
+  },
+  "Fire Dragon Claw": {
+    "name": "Fire Dragon Claw",
+    "amount": "10",
+    "type": "claw",
+    "color": "red"
+  },
+  "Daora Webbing": {
+    "name": "Daora Webbing",
+    "amount": "4",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Sm Ancient Stone": {
+    "name": "Sm Ancient Stone",
+    "amount": "3",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Tigrex Claw+": {
+    "name": "Tigrex Claw+",
+    "amount": "4",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Hard Tigrex Claw": {
+    "name": "Hard Tigrex Claw",
+    "amount": "4",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Hvy Tigrex Fang": {
+    "name": "Hvy Tigrex Fang",
+    "amount": "4",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Narga Scale+": {
+    "name": "Narga Scale+",
+    "amount": "4",
+    "type": "scale",
+    "color": "gray"
+  },
+  "Hvy Monster bone": {
+    "name": "Hvy Monster bone",
+    "amount": "4",
+    "type": "bone",
+    "color": "gray"
+  },
+  "Puppet Ticket": {
+    "name": "Puppet Ticket",
+    "amount": "5",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Felyne Fur Ruby": {
+    "name": "Felyne Fur Ruby",
+    "amount": "5",
+    "type": "stone",
+    "color": "gray"
+  },
+  "Gt Amezari Shell": {
+    "name": "Gt Amezari Shell",
+    "amount": "2",
+    "type": "shell",
+    "color": "red"
+  },
+  "Gt Lobstershell": {
+    "name": "Gt Lobstershell",
+    "amount": "2",
+    "type": "claw",
+    "color": "pink"
+  },
+  "Kut-Ku Scale+": {
+    "name": "Kut-Ku Scale+",
+    "amount": "10",
+    "type": "scale",
+    "color": "pink"
+  },
+  "Plesioth Fin+": {
+    "name": "Plesioth Fin+",
+    "amount": "4",
+    "type": "part",
+    "color": "blue"
+  },
+  "Cephalos Scale+": {
+    "name": "Cephalos Scale+",
+    "amount": "10",
+    "type": "scale",
+    "color": "cyan"
+  },
+  "LthrDiablosTail": {
+    "name": "LthrDiablosTail",
+    "amount": "3",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Normal Ticket": {
+    "name": "Normal Ticket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Hard Ticket": {
+    "name": "Hard Ticket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "green"
+  },
+  "Rathalos Webbing": {
+    "name": "Rathalos Webbing",
+    "amount": "10",
+    "type": "webbing",
+    "color": "red"
+  },
+  "Teostra Horn": {
+    "name": "Teostra Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "red"
+  },
+  "Gaoren Claw": {
+    "name": "Gaoren Claw",
+    "amount": "8",
+    "type": "claw",
+    "color": "gray"
+  },
+  "Gaoren Carapace": {
+    "name": "Gaoren Carapace",
+    "amount": "6",
+    "type": "shell",
+    "color": "gray"
+  },
+  "HvnlyGaorenShell": {
+    "name": "HvnlyGaorenShell",
+    "amount": "1",
+    "type": "heavenly",
+    "color": "gray"
+  },
+  "Gld Rathian Cpc": {
+    "name": "Gld Rathian Cpc",
+    "amount": "5",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Velociprey Scale": {
+    "name": "Velociprey Scale",
+    "amount": "6",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Remobra Skin": {
+    "name": "Remobra Skin",
+    "amount": "10",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Remobra Skin+": {
+    "name": "Remobra Skin+",
+    "amount": "5",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Eldr Dragon Bone": {
+    "name": "Eldr Dragon Bone",
+    "amount": "10",
+    "type": "bone",
+    "color": "slate"
+  },
+  "ThckAzurRthlsScl": {
+    "name": "ThckAzurRthlsScl",
+    "amount": "6",
+    "type": "scale",
+    "color": "blue"
+  },
+  "HvyPnkRathianShl": {
+    "name": "HvyPnkRathianShl",
+    "amount": "5",
+    "type": "part",
+    "color": "pink"
+  },
+  "LthrAzrRthlsTail": {
+    "name": "LthrAzrRthlsTail",
+    "amount": "2",
+    "type": "part",
+    "color": "blue"
+  },
+  "Tigrex Tail": {
+    "name": "Tigrex Tail",
+    "amount": "4",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Azure Rthlos Shl": {
+    "name": "Azure Rthlos Shl",
+    "amount": "5",
+    "type": "part",
+    "color": "blue"
+  },
+  "Azure Rthlos Scl": {
+    "name": "Azure Rthlos Scl",
+    "amount": "6",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Azur Rthlos Wing": {
+    "name": "Azur Rthlos Wing",
+    "amount": "2",
+    "type": "part",
+    "color": "blue"
+  },
+  "Plus Class Ticket": {
+    "name": "Plus Class Ticket",
+    "amount": "1",
+    "type": "ticket",
+    "color": "blue"
+  },
+  "Wht Monoblos Spn": {
+    "name": "Wht Monoblos Spn",
+    "amount": "4",
+    "type": "part",
+    "color": "white"
+  },
+  "Rajang Horn": {
+    "name": "Rajang Horn",
+    "amount": "1",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Rajang Fang": {
+    "name": "Rajang Fang",
+    "amount": "4",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Rajang Tail": {
+    "name": "Rajang Tail",
+    "amount": "4",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Hard Rajang Horn": {
+    "name": "Hard Rajang Horn",
+    "amount": "2",
+    "type": "claw",
+    "color": "yellow"
+  },
+  "Diablos Tail": {
+    "name": "Diablos Tail",
+    "amount": "3",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Grn Plsioth Fin+": {
+    "name": "Grn Plsioth Fin+",
+    "amount": "4",
+    "type": "part",
+    "color": "green"
+  },
+  "Coral Cphlos Scl": {
+    "name": "Coral Cphlos Scl",
+    "amount": "4",
+    "type": "scale",
+    "color": "slate"
+  },
+  "Kut-Ku Webbing": {
+    "name": "Kut-Ku Webbing",
+    "amount": "6",
+    "type": "webbing",
+    "color": "pink"
+  },
+  "Kut-Ku Carapace": {
+    "name": "Kut-Ku Carapace",
+    "amount": "6",
+    "type": "part",
+    "color": "pink"
+  },
+  "Garuga Shell": {
+    "name": "Garuga Shell",
+    "amount": "6",
+    "type": "part",
+    "color": "slate"
+  },
+  "Garuga Carapace": {
+    "name": "Garuga Carapace",
+    "amount": "8",
+    "type": "part",
+    "color": "slate"
+  },
+  "Str Garuga Wing": {
+    "name": "Str Garuga Wing",
+    "amount": "2",
+    "type": "part",
+    "color": "slate"
+  },
+  "Magazine Ticket": {
+    "name": "Magazine Ticket",
+    "amount": "4",
+    "type": "ticket",
+    "color": "orange"
+  },
+  "Cool Drink": {
+    "name": "Cool Drink",
+    "amount": "3",
+    "type": "fluid",
+    "color": "white"
+  },
+  "Blackbelt Ticket": {
+    "name": "Blackbelt Ticket",
+    "amount": "8",
+    "type": "ticket",
+    "color": "green"
+  },
+  "Blangonga Coin": {
+    "name": "Blangonga Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "white"
+  },
+  "Shogun Coin": {
+    "name": "Shogun Coin",
+    "amount": "8",
+    "type": "coin",
+    "color": "blue"
+  },
+  "Daimyo Coin": {
+    "name": "Daimyo Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "red"
+  },
+  "Expert Ticket": {
+    "name": "Expert Ticket",
+    "amount": "15",
+    "type": "ticket",
+    "color": "green"
+  },
+  "Rajang Coin": {
+    "name": "Rajang Coin",
+    "amount": "1",
+    "type": "coin",
+    "color": "yellow"
+  },
+  "Expert Coin G": {
+    "name": "Expert Coin G",
+    "amount": "7",
+    "type": "coin",
+    "color": "yellow"
+  },
+  "Fatalis CrmsnScl": {
+    "name": "Fatalis CrmsnScl",
+    "amount": "6",
+    "type": "scale",
+    "color": "red"
+  },
+  "ThckFatlisCrmScl": {
+    "name": "ThckFatlisCrmScl",
+    "amount": "6",
+    "type": "scale",
+    "color": "red"
+  },
+  "Akantor Tail": {
+    "name": "Akantor Tail",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "Great Stone": {
+    "name": "Great Stone",
+    "amount": "5",
+    "type": "ore",
+    "color": "gray"
+  },
+  "HvyUkanlosShell": {
+    "name": "HvyUkanlosShell",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Flat Ruststone": {
+    "name": "Flat Ruststone",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Daora Shell": {
+    "name": "Daora Shell",
+    "amount": "2",
+    "type": "part",
+    "color": "gray"
+  },
+  "AncientFlatstone": {
+    "name": "AncientFlatstone",
+    "amount": "3",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Teostra Horn+": {
+    "name": "Teostra Horn+",
+    "amount": "5",
+    "type": "claw",
+    "color": "red"
+  },
+  "HardTeostraHorn": {
+    "name": "HardTeostraHorn",
+    "amount": "2",
+    "type": "claw",
+    "color": "red"
+  },
+  "HvyTeostraShell": {
+    "name": "HvyTeostraShell",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "Master's Skull": {
+    "name": "Master's Skull",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Legend Coin G": {
+    "name": "Legend Coin G",
+    "amount": "2",
+    "type": "coin",
+    "color": "red"
+  },
+  "Azur Rthlos Tail": {
+    "name": "Azur Rthlos Tail",
+    "amount": "10",
+    "type": "part",
+    "color": "blue"
+  },
+  "LthrRathalosTail": {
+    "name": "LthrRathalosTail",
+    "amount": "3",
+    "type": "part",
+    "color": "red"
+  },
+  "Burst Arrowana": {
+    "name": "Burst Arrowana",
+    "amount": "10",
+    "type": "fish",
+    "color": "green"
+  },
+  "Grn Plesioth Fin+": {
+    "name": "Grn Plesioth Fin+",
+    "amount": "15",
+    "type": "part",
+    "color": "green"
+  },
+  "Green Plesioth Scale+": {
+    "name": "Green Plesioth Scale+",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "LeatherNargaTail": {
+    "name": "LeatherNargaTail",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "Fire Wyvern BrnStm": {
+    "name": "Fire Wyvern BrnStm",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Slvr Rthlos Tail": {
+    "name": "Slvr Rthlos Tail",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Slvr Rthlos Cpc": {
+    "name": "Slvr Rthlos Cpc",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Slvr  Rthlos Cpc": {
+    "name": "Slvr  Rthlos Cpc",
+    "amount": "5",
+    "type": "part",
+    "color": "white"
+  },
+  "Lunastra Tail": {
+    "name": "Lunastra Tail",
+    "amount": "4",
+    "type": "part",
+    "color": "blue"
+  },
+  "Fire Drgn Scl+": {
+    "name": "Fire Drgn Scl+",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "LthrTeostraTail": {
+    "name": "LthrTeostraTail",
+    "amount": "4",
+    "type": "part",
+    "color": "red"
+  },
+  "Blango Pelt+": {
+    "name": "Blango Pelt+",
+    "amount": "10",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Brwn Blngnga Tail": {
+    "name": "Brwn Blngnga Tail",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blngnga Hrd Whskr": {
+    "name": "Blngnga Hrd Whskr",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Brwn Blngnga Pelt": {
+    "name": "Brwn Blngnga Pelt",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "HrdGypcerosHead": {
+    "name": "HrdGypcerosHead",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "StrChameleosWing": {
+    "name": "StrChameleosWing",
+    "amount": "5",
+    "type": "part",
+    "color": "slate"
+  },
+  "Sinister Cloth": {
+    "name": "Sinister Cloth",
+    "amount": "10",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Giant Corn": {
+    "name": "Giant Corn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "SpecFamitsuTckt": {
+    "name": "SpecFamitsuTckt",
+    "amount": "4",
+    "type": "ticket",
+    "color": "cyan"
+  },
+  "Lthr Daora Tail": {
+    "name": "Lthr Daora Tail",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Tigrex Shell": {
+    "name": "Tigrex Shell",
+    "amount": "3",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Nargacuga Tail": {
+    "name": "Nargacuga Tail",
+    "amount": "1",
+    "type": "part",
+    "color": "gray"
+  },
+  "LeathrTigrexTail": {
+    "name": "LeathrTigrexTail",
+    "amount": "1",
+    "type": "part",
+    "color": "yellow"
+  },
+  "HvyGldRathianShl": {
+    "name": "HvyGldRathianShl",
+    "amount": "10",
+    "type": "part",
+    "color": "yellow"
+  },
+  "Black Blos Shell": {
+    "name": "Black Blos Shell",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "Needleberry": {
+    "name": "Needleberry",
+    "amount": "50",
+    "type": "seed",
+    "color": "gray"
+  },
+  "Mystery Bone": {
+    "name": "Mystery Bone",
+    "amount": "20",
+    "type": "bone",
+    "color": "yellow"
+  },
+  "Well Done Steak": {
+    "name": "Well Done Steak",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "MonoblosThoracic": {
+    "name": "MonoblosThoracic",
+    "amount": "4",
+    "type": "part",
+    "color": "red"
+  },
+  "Blue Kut-Ku Scl+": {
+    "name": "Blue Kut-Ku Scl+",
+    "amount": "6",
+    "type": "scale",
+    "color": "blue"
+  },
+  "Basarios Carapace": {
+    "name": "Basarios Carapace",
+    "amount": "12",
+    "type": "part",
+    "color": "gray"
+  },
+  "Bullfango Head": {
+    "name": "Bullfango Head",
+    "amount": "5",
+    "type": "part",
+    "color": "orange"
+  },
+  "Bulldrome Tusk": {
+    "name": "Bulldrome Tusk",
+    "amount": "3",
+    "type": "claw",
+    "color": "white"
+  },
+  "Large Ruststone": {
+    "name": "Large Ruststone",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Lunastra Horn": {
+    "name": "Lunastra Horn",
+    "amount": "3",
+    "type": "claw",
+    "color": "blue"
+  },
+  "Lg Ancient Stone": {
+    "name": "Lg Ancient Stone",
+    "amount": "3",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Daora Tail": {
+    "name": "Daora Tail",
+    "amount": "3",
+    "type": "part",
+    "color": "gray"
+  },
+  "Gravios Coin": {
+    "name": "Gravios Coin",
+    "amount": "5",
+    "type": "coin",
+    "color": "white"
+  },
+  "Diablos Coin": {
+    "name": "Diablos Coin",
+    "amount": "8",
+    "type": "coin",
+    "color": "yellow"
+  },
+  "Tigrex Coin": {
+    "name": "Tigrex Coin",
+    "amount": "8",
+    "type": "coin",
+    "color": "yellow"
+  },
+  "Warrior Coin G": {
+    "name": "Warrior Coin G",
+    "amount": "7",
+    "type": "coin",
+    "color": "cyan"
+  },
+  "Tigrex Scale +": {
+    "name": "Tigrex Scale +",
+    "amount": "5",
+    "type": "scale",
+    "color": "yellow"
+  },
+  "HvyNargaTailSpik": {
+    "name": "HvyNargaTailSpik",
+    "amount": "8",
+    "type": "part",
+    "color": "gray"
+  },
+  "Barrel Lid": {
+    "name": "Barrel Lid",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Dengeki Ticket": {
+    "name": "Dengeki Ticket",
+    "amount": "5",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Dengeki Ticket+": {
+    "name": "Dengeki Ticket+",
+    "amount": "5",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Amezari Shell": {
+    "name": "Amezari Shell",
+    "amount": "5",
+    "type": "shell",
+    "color": "red"
+  },
+  "Fire Coin": {
+    "name": "Fire Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "red"
+  },
+  "Lao-Shan Scale+": {
+    "name": "Lao-Shan Scale+",
+    "amount": "5",
+    "type": "scale",
+    "color": "red"
+  },
+  "Wht Monoblos Shl": {
+    "name": "Wht Monoblos Shl",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Great Ladybug": {
+    "name": "Great Ladybug",
+    "amount": "10",
+    "type": "insect",
+    "color": "red"
+  },
+  "HorNetaur Crapce": {
+    "name": "HorNetaur Crapce",
+    "amount": "10",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Wht Monoblos Cpc": {
+    "name": "Wht Monoblos Cpc",
+    "amount": "8",
+    "type": "part",
+    "color": "white"
+  },
+  "Kirin Hide+": {
+    "name": "Kirin Hide+",
+    "amount": "4",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Fatalis CrmsnShl": {
+    "name": "Fatalis CrmsnShl",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Pirate Tckt J G": {
+    "name": "Pirate Tckt J G",
+    "amount": "4",
+    "type": "ticket",
+    "color": "red"
+  },
+  "HvyFatalisCrmShl": {
+    "name": "HvyFatalisCrmShl",
+    "amount": "5",
+    "type": "part",
+    "color": "red"
+  },
+  "Screamer": {
+    "name": "Screamer",
+    "amount": "10",
+    "type": "sac",
+    "color": "gray"
+  },
+  "Coma sac": {
+    "name": "Coma sac",
+    "amount": "3",
+    "type": "sac",
+    "color": "blue"
+  },
+  "Vspoid Razorwing": {
+    "name": "Vspoid Razorwing",
+    "amount": "10",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Velociprey Hide": {
+    "name": "Velociprey Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Velociprey Hide+": {
+    "name": "Velociprey Hide+",
+    "amount": "10",
+    "type": "pelt",
+    "color": "blue"
+  },
+  "Blue Mushroom": {
+    "name": "Blue Mushroom",
+    "amount": "10",
+    "type": "mushroom",
+    "color": "blue"
+  },
+  "Dragon Toadstool": {
+    "name": "Dragon Toadstool",
+    "amount": "10",
+    "type": "mushroom",
+    "color": "red"
+  },
+  "ChameleosWebbing": {
+    "name": "ChameleosWebbing",
+    "amount": "4",
+    "type": "webbing",
+    "color": "slate"
+  },
+  "Striped Skin": {
+    "name": "Striped Skin",
+    "amount": "5",
+    "type": "pelt",
+    "color": "gray"
+  },
+  "Fatalis Webbing": {
+    "name": "Fatalis Webbing",
+    "amount": "3",
+    "type": "webbing",
+    "color": "gray"
+  },
+  "Wht Fatalis Wbng": {
+    "name": "Wht Fatalis Wbng",
+    "amount": "1",
+    "type": "webbing",
+    "color": "white"
+  },
+  "StrWhtFatalisWng": {
+    "name": "StrWhtFatalisWng",
+    "amount": "2",
+    "type": "part",
+    "color": "white"
+  },
+  "Frog": {
+    "name": "Frog",
+    "amount": "10",
+    "type": "bait",
+    "color": "blue"
+  },
+  "Narga Tail Spike": {
+    "name": "Narga Tail Spike",
+    "amount": "4",
+    "type": "part",
+    "color": "gray"
+  },
+  "UkanlosShoveljaw": {
+    "name": "UkanlosShoveljaw",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "Hvy Ukanlos Tail": {
+    "name": "Hvy Ukanlos Tail",
+    "amount": "3",
+    "type": "part",
+    "color": "white"
+  },
+  "Ukanlosunderscl": {
+    "name": "Ukanlosunderscl",
+    "amount": "5",
+    "type": "scale",
+    "color": "white"
+  },
+  "Genprey Scale+": {
+    "name": "Genprey Scale+",
+    "amount": "10",
+    "type": "scale",
+    "color": "green"
+  },
+  "HvygaorenShell": {
+    "name": "HvygaorenShell",
+    "amount": "3",
+    "type": "shell",
+    "color": "gray"
+  },
+  "Toadstool": {
+    "name": "Toadstool",
+    "amount": "10",
+    "type": "mushroom",
+    "color": "slate"
+  },
+  "PlumD.HermitrClaw": {
+    "name": "PlumD.HermitrClaw",
+    "amount": "2",
+    "type": "claw",
+    "color": "slate"
+  },
+  "Ioprey Hide": {
+    "name": "Ioprey Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "red"
+  },
+  "Hornetaur Crapce": {
+    "name": "Hornetaur Crapce",
+    "amount": "30",
+    "type": "insect",
+    "color": "gray"
+  },
+  "Bullfango pelt": {
+    "name": "Bullfango pelt",
+    "amount": "5",
+    "type": "pelt",
+    "color": "orange"
+  },
+  "Wyvern Claw": {
+    "name": "Wyvern Claw",
+    "amount": "1",
+    "type": "claw",
+    "color": "white"
+  },
+  "Sap Plant": {
+    "name": "Sap Plant",
+    "amount": "5",
+    "type": "herb",
+    "color": "white"
+  },
+  "Godbug": {
+    "name": "Godbug",
+    "amount": "1",
+    "type": "insect",
+    "color": "white"
+  },
+  "Ruststone Rod": {
+    "name": "Ruststone Rod",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Ancient StoneRod": {
+    "name": "Ancient StoneRod",
+    "amount": "3",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Congalala Coin": {
+    "name": "Congalala Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "pink"
+  },
+  "Plesioth Coin": {
+    "name": "Plesioth Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "blue"
+  },
+  "Kut-Ku Coin": {
+    "name": "Kut-Ku Coin",
+    "amount": "15",
+    "type": "coin",
+    "color": "pink"
+  },
+  "Kirin Coin": {
+    "name": "Kirin Coin",
+    "amount": "7",
+    "type": "coin",
+    "color": "white"
+  },
+  "Lao Shan's Ruby": {
+    "name": "Lao Shan's Ruby",
+    "amount": "1",
+    "type": "stone",
+    "color": "red"
+  },
+  "StrNargaCttngWing": {
+    "name": "StrNargaCttngWing",
+    "amount": "5",
+    "type": "part",
+    "color": "gray"
+  },
+  "Narga Brain stem": {
+    "name": "Narga Brain stem",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Lao Shan'sThkScl": {
+    "name": "Lao Shan'sThkScl",
+    "amount": "6",
+    "type": "scale",
+    "color": "red"
+  },
+  "Genprey Scale": {
+    "name": "Genprey Scale",
+    "amount": "8",
+    "type": "scale",
+    "color": "green"
+  },
+  "Ioprey Scale": {
+    "name": "Ioprey Scale",
+    "amount": "7",
+    "type": "scale",
+    "color": "red"
+  },
+  "Lost Umbrella": {
+    "name": "Lost Umbrella",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "orange"
+  },
+  "Ruststone": {
+    "name": "Ruststone",
+    "amount": "1",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Khezu Coin": {
+    "name": "Khezu Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "white"
+  },
+  "Yian Garuga Coin": {
+    "name": "Yian Garuga Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "slate"
+  },
+  "Ancient Stone": {
+    "name": "Ancient Stone",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "ShakaInheritance": {
+    "name": "ShakaInheritance",
+    "amount": "10",
+    "type": "sac",
+    "color": "orange"
+  },
+  "Azre Rthlos Scl+": {
+    "name": "Azre Rthlos Scl+",
+    "amount": "3",
+    "type": "scale",
+    "color": "blue"
+  },
+  "SlvrRthlosHrdTail": {
+    "name": "SlvrRthlosHrdTail",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Old Pickaxe": {
+    "name": "Old Pickaxe",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fatalis CrmsnWng": {
+    "name": "Fatalis CrmsnWng",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "StrFatlisCrmWing": {
+    "name": "StrFatlisCrmWing",
+    "amount": "2",
+    "type": "part",
+    "color": "red"
+  },
+  "Firewyvern Fluid": {
+    "name": "Firewyvern Fluid",
+    "amount": "20",
+    "type": "part",
+    "color": "red"
+  },
+  "YamatsukamiFluid": {
+    "name": "YamatsukamiFluid",
+    "amount": "2",
+    "type": "fluid",
+    "color": "green"
+  },
+  "YamatsukaFillet": {
+    "name": "YamatsukaFillet",
+    "amount": "3",
+    "type": "part",
+    "color": "green"
+  },
+  "Elder Thank You": {
+    "name": "Elder Thank You",
+    "amount": "1",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Elder Thank You+": {
+    "name": "Elder Thank You+",
+    "amount": "1",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Vespoid InnrWing": {
+    "name": "Vespoid InnrWing",
+    "amount": "5",
+    "type": "webbing",
+    "color": "yellow"
+  },
+  "Whetstone": {
+    "name": "Whetstone",
+    "amount": "20",
+    "type": "bone",
+    "color": "white"
+  },
+  "Commedation S": {
+    "name": "Commedation S",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Giadrome hide": {
+    "name": "Giadrome hide",
+    "amount": "1",
+    "type": "pelt",
+    "color": "white"
+  },
+  "Genprey Hide": {
+    "name": "Genprey Hide",
+    "amount": "5",
+    "type": "pelt",
+    "color": "green"
+  },
+  "Lao-Shan's claw": {
+    "name": "Lao-Shan's claw",
+    "amount": "4",
+    "type": "claw",
+    "color": "red"
+  },
+  "Gastronome Tuna": {
+    "name": "Gastronome Tuna",
+    "amount": "5",
+    "type": "fish",
+    "color": "orange"
+  },
+  "LethrGarugatail": {
+    "name": "LethrGarugatail",
+    "amount": "2",
+    "type": "part",
+    "color": "slate"
+  },
+  "Hero of KKto Bio": {
+    "name": "Hero of KKto Bio",
+    "amount": "1",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Hero of JumboBio": {
+    "name": "Hero of JumboBio",
+    "amount": "1",
+    "type": "ticket",
+    "color": "yellow"
+  },
+  "Lao-Shan's scale": {
+    "name": "Lao-Shan's scale",
+    "amount": "3",
+    "type": "scale",
+    "color": "red"
+  },
+  "Small Ruststone": {
+    "name": "Small Ruststone",
+    "amount": "5",
+    "type": "ukwn",
+    "color": "gray"
+  },
+  "Cephadrome Coin": {
+    "name": "Cephadrome Coin",
+    "amount": "10",
+    "type": "coin",
+    "color": "cyan"
+  },
+  "SpecPuppetTicket": {
+    "name": "SpecPuppetTicket",
+    "amount": "5",
+    "type": "ticket",
+    "color": "white"
+  },
+  "Huskberry": {
+    "name": "Huskberry",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fire Stone": {
+    "name": "Fire Stone",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Cephalos Coin": {
+    "name": "Cephalos Coin",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Nutrients": {
+    "name": "Nutrients",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Bomb Arrowana": {
+    "name": "Bomb Arrowana",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc Ticket": {
+    "name": "Hypnoc Ticket",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc Feather+": {
+    "name": "Hypnoc Feather+",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc StrngClaw": {
+    "name": "Hypnoc StrngClaw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Elder Drgn Bone": {
+    "name": "Elder Drgn Bone",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lava Ticket": {
+    "name": "Lava Ticket",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Volganos Thk Scl": {
+    "name": "Volganos Thk Scl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Volganos Fin+": {
+    "name": "Volganos Fin+",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fire Drgn Wbng": {
+    "name": "Fire Drgn Wbng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "King Lobster Shl": {
+    "name": "King Lobster Shl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azre Rathlos Shl": {
+    "name": "Azre Rathlos Shl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azr Rathlos Scl": {
+    "name": "Azr Rathlos Scl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azr Rathlos Tail": {
+    "name": "Azr Rathlos Tail",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "High Quality Pelt": {
+    "name": "High Quality Pelt",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Velociprey Scl+": {
+    "name": "Velociprey Scl+",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Nova Crystal": {
+    "name": "Nova Crystal",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hornetaur Carpce": {
+    "name": "Hornetaur Carpce",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc Feather": {
+    "name": "Hypnoc Feather",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc Claw+": {
+    "name": "Hypnoc Claw+",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Monoblos Thrcic": {
+    "name": "Monoblos Thrcic",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Monoblos Carpce": {
+    "name": "Monoblos Carpce",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Pelt": {
+    "name": "Naruga Pelt",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Scale+": {
+    "name": "Naruga Scale+",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Fang+": {
+    "name": "Naruga Fang+",
+    "amount": "6",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pur GypcerosWng": {
+    "name": "Pur GypcerosWng",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azr Rathlos Scl+": {
+    "name": "Azr Rathlos Scl+",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azre Rathlos Cpc": {
+    "name": "Azre Rathlos Cpc",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "One-HornedTicket": {
+    "name": "One-HornedTicket",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pirate J Ticket": {
+    "name": "Pirate J Ticket",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "WhtMnoblosThrcic": {
+    "name": "WhtMnoblosThrcic",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "PnkRathian Scl+": {
+    "name": "PnkRathian Scl+",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Slvr Rathlos Cpc": {
+    "name": "Slvr Rathlos Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Slvr Ratlos Scl+": {
+    "name": "Slvr Ratlos Scl+",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Slvr Ratlos Tail": {
+    "name": "Slvr Ratlos Tail",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "White Ftalis Hrn": {
+    "name": "White Ftalis Hrn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Wht Fatalis Cpc": {
+    "name": "Wht Fatalis Cpc",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Kut-Ku Thck Scl": {
+    "name": "Kut-Ku Thck Scl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Kut-Ku Hvy Cpc": {
+    "name": "Kut-Ku Hvy Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Kut-Ku Hrd Wbbng": {
+    "name": "Kut-Ku Hrd Wbbng",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Congalala Pelt G": {
+    "name": "Congalala Pelt G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Razor Claw": {
+    "name": "Razor Claw",
+    "amount": "6",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rubbery Hide G": {
+    "name": "Rubbery Hide G",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Monster Broth+": {
+    "name": "Monster Broth+",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pure Crystal": {
+    "name": "Pure Crystal",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Khezu Hide-Gloss": {
+    "name": "Khezu Hide-Gloss",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Etherlite Ore": {
+    "name": "Etherlite Ore",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "HermitaurClaw G": {
+    "name": "HermitaurClaw G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hermitaur HvyCpc": {
+    "name": "Hermitaur HvyCpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "HypncFangedBeak": {
+    "name": "HypncFangedBeak",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Basarios Hvy Cpc": {
+    "name": "Basarios Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Melange Ore": {
+    "name": "Melange Ore",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Venom Sac": {
+    "name": "Venom Sac",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Plsioth Thck Scl": {
+    "name": "Plsioth Thck Scl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Plesioth Fin G": {
+    "name": "Plesioth Fin G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Emperor Locust": {
+    "name": "Emperor Locust",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Majestic Red Hrn": {
+    "name": "Majestic Red Hrn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Scale G": {
+    "name": "Garuga Scale G",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Hvy Cpc": {
+    "name": "Garuga Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Tail+": {
+    "name": "Garuga Tail+",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blangonga Pelt G": {
+    "name": "Blangonga Pelt G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blangonga Tail G": {
+    "name": "Blangonga Tail G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "CeanataurHvyCpc": {
+    "name": "CeanataurHvyCpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "CeanataurHvyLeg": {
+    "name": "CeanataurHvyLeg",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rathian Spike G": {
+    "name": "Rathian Spike G",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rathian Hvy Cpc": {
+    "name": "Rathian Hvy Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rathian Thck Scl": {
+    "name": "Rathian Thck Scl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Blk Pelt": {
+    "name": "Naruga Blk Pelt",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Thck Scl": {
+    "name": "Naruga Thck Scl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Hvy Fang": {
+    "name": "Naruga Hvy Fang",
+    "amount": "6",
+    "type": "bone",
+    "color": "white"
+  },
+  "Remobra Skin G": {
+    "name": "Remobra Skin G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Volganos Hvy Cpc": {
+    "name": "Volganos Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Tigrex StrngClaw": {
+    "name": "Tigrex StrngClaw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Tigrex Thck Scl": {
+    "name": "Tigrex Thck Scl",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rathalos ThckScl": {
+    "name": "Rathalos ThckScl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rathalos Hvy Cpc": {
+    "name": "Rathalos Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Diablos Hvy Cpc": {
+    "name": "Diablos Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Glorious Horn": {
+    "name": "Glorious Horn",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gravios Hvy Cpc": {
+    "name": "Gravios Hvy Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "GraviosDvnePlate": {
+    "name": "GraviosDvnePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "BlueKut-KuThkScl": {
+    "name": "BlueKut-KuThkScl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "BlueKut-KuHvyCpc": {
+    "name": "BlueKut-KuHvyCpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Bullfango Pelt+": {
+    "name": "Bullfango Pelt+",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "GrnCongalalaPelt": {
+    "name": "GrnCongalalaPelt",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Vibrant Crown": {
+    "name": "Vibrant Crown",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "GrnCongalalaClaw": {
+    "name": "GrnCongalalaClaw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pur Gyp StrngWng": {
+    "name": "Pur Gyp StrngWng",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "BirdWyvnStoutBne": {
+    "name": "BirdWyvnStoutBne",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Alluring Wing": {
+    "name": "Alluring Wing",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pur HermitaurClw": {
+    "name": "Pur HermitaurClw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Pur HermitaurShl": {
+    "name": "Pur HermitaurShl",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "GrnPlsiothThkScl": {
+    "name": "GrnPlsiothThkScl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "GrnPlsioth Fin G": {
+    "name": "GrnPlsioth Fin G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Brwn BlngngaPelt": {
+    "name": "Brwn BlngngaPelt",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Brwn BlngngaTail": {
+    "name": "Brwn BlngngaTail",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "RedCeanataurShl": {
+    "name": "RedCeanataurShl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Black Pearl+": {
+    "name": "Black Pearl+",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blk Blos Hvy Cpc": {
+    "name": "Blk Blos Hvy Cpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "RobustBlkBlosHrn": {
+    "name": "RobustBlkBlosHrn",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "BlkGraviosHvyShl": {
+    "name": "BlkGraviosHvyShl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rajang Hard Horn": {
+    "name": "Rajang Hard Horn",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "ShiningRajangPlt": {
+    "name": "ShiningRajangPlt",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "BlkRajangThkPelt": {
+    "name": "BlkRajangThkPelt",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "GldRathianThkScl": {
+    "name": "GldRathianThkScl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "DaoraDrgnThckScl": {
+    "name": "DaoraDrgnThckScl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Kirin Hide G": {
+    "name": "Kirin Hide G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blackbelt Coin G": {
+    "name": "Blackbelt Coin G",
+    "amount": "8",
+    "type": "bone",
+    "color": "white"
+  },
+  "Legendary Coin G": {
+    "name": "Legendary Coin G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Chameleos Hide G": {
+    "name": "Chameleos Hide G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Chameleos Horn G": {
+    "name": "Chameleos Horn G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ancient DrgnBone": {
+    "name": "Ancient DrgnBone",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Elder Dragon Jwl": {
+    "name": "Elder Dragon Jwl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Daora Hvy Carpce": {
+    "name": "Daora Hvy Carpce",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fire Drgn HvyScl": {
+    "name": "Fire Drgn HvyScl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lunastra Carpace": {
+    "name": "Lunastra Carpace",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gaoren Hvy Cpc": {
+    "name": "Gaoren Hvy Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "GaorenStrngClaw": {
+    "name": "GaorenStrngClaw",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Teostra Hvy Cpc": {
+    "name": "Teostra Hvy Cpc",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "FireDrgnStrngClw": {
+    "name": "FireDrgnStrngClw",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Dragonwood G": {
+    "name": "Dragonwood G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Yamatsukami Skin": {
+    "name": "Yamatsukami Skin",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fatalis Hvy Horn": {
+    "name": "Fatalis Hvy Horn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fatalis Hvy Shl": {
+    "name": "Fatalis Hvy Shl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fatalis Thck Scl": {
+    "name": "Fatalis Thck Scl",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "RathianDvnePlate": {
+    "name": "RathianDvnePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Shell": {
+    "name": "Ucamulbas Shell",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Fang": {
+    "name": "Ucamulbas Fang",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rajang StrngClaw": {
+    "name": "Rajang StrngClaw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamu Divine Jwl": {
+    "name": "Ucamu Divine Jwl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Book of Combos 5": {
+    "name": "Book of Combos 5",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "PnkRathianHvyCpc": {
+    "name": "PnkRathianHvyCpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "PnkRathianThkScl": {
+    "name": "PnkRathianThkScl",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "AzrRathlosHvyCpc": {
+    "name": "AzrRathlosHvyCpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "AzrRathlosThkScl": {
+    "name": "AzrRathlosThkScl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "GldRathianHvyCpc": {
+    "name": "GldRathianHvyCpc",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "SlvrRthlosHvyCpc": {
+    "name": "SlvrRthlosHvyCpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "SlvrRthlosThkScl": {
+    "name": "SlvrRthlosThkScl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "RathlosDvnePlate": {
+    "name": "RathlosDvnePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lg Wyvern Stone": {
+    "name": "Lg Wyvern Stone",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "SlvRthlosHrdTail": {
+    "name": "SlvRthlosHrdTail",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lao-Shan Hvy Cpc": {
+    "name": "Lao-Shan Hvy Cpc",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Marrow": {
+    "name": "Naruga Marrow",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "FataHvyCrmsnHrn": {
+    "name": "FataHvyCrmsnHrn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "FataHvyCrmsnShl": {
+    "name": "FataHvyCrmsnShl",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "FataHrdCrmsnWng": {
+    "name": "FataHrdCrmsnWng",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "WhtFatalisHvyHrn": {
+    "name": "WhtFatalisHvyHrn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "WhtFatalisHvyCpc": {
+    "name": "WhtFatalisHvyCpc",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Wht Fatalis Wng": {
+    "name": "Wht Fatalis Wng",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "TwstBlkBlosHorn": {
+    "name": "TwstBlkBlosHorn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Chaoshroom": {
+    "name": "Chaoshroom",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Parashroom": {
+    "name": "Parashroom",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lifecrystals": {
+    "name": "Lifecrystals",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "FlynFighterPass": {
+    "name": "FlynFighterPass",
+    "amount": "8",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gourmet Fish": {
+    "name": "Gourmet Fish",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Azur Rathlos Wng": {
+    "name": "Azur Rathlos Wng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rainbow Down": {
+    "name": "Rainbow Down",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hypnoc Beak": {
+    "name": "Hypnoc Beak",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Devil Ear": {
+    "name": "Garuga Devil Ear",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Sharpened Beak+": {
+    "name": "Sharpened Beak+",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Spike": {
+    "name": "Naruga Spike",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Majestic Wht Hrn": {
+    "name": "Majestic Wht Hrn",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Slvr Rathlos Wng": {
+    "name": "Slvr Rathlos Wng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lucky Kut-KuEar": {
+    "name": "Lucky Kut-KuEar",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Congalala Claw G": {
+    "name": "Congalala Claw G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gypceros HrdHead": {
+    "name": "Gypceros HrdHead",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "HypncGizzardStn+": {
+    "name": "HypncGizzardStn+",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "BasariosStrngWng": {
+    "name": "BasariosStrngWng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Piscine Fang+": {
+    "name": "Piscine Fang+",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga Slvr Mane": {
+    "name": "Garuga Slvr Mane",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blangnga HvyFang": {
+    "name": "Blangnga HvyFang",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "CeanataurClaw G": {
+    "name": "CeanataurClaw G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Hvy Spike": {
+    "name": "Naruga Hvy Spike",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "NarugaDvinePlate": {
+    "name": "NarugaDvinePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "TigrexDvinePlate": {
+    "name": "TigrexDvinePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "RathlosStrngWng": {
+    "name": "RathlosStrngWng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "ChoiceKhezuSteak": {
+    "name": "ChoiceKhezuSteak",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Brwn BlngngaFang": {
+    "name": "Brwn BlngngaFang",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "RedCeanataurClaw": {
+    "name": "RedCeanataurClaw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fighter Coin G": {
+    "name": "Fighter Coin G",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blaze Sac": {
+    "name": "Blaze Sac",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Daora Horn G": {
+    "name": "Daora Horn G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Kirin Slvr Mane": {
+    "name": "Kirin Slvr Mane",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Gaoren Hvy Spn": {
+    "name": "Gaoren Hvy Spn",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "GaorenDvinePlate": {
+    "name": "GaorenDvinePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Teostra Horn G": {
+    "name": "Teostra Horn G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Dragonmoss G": {
+    "name": "Dragonmoss G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Fin": {
+    "name": "Ucamulbas Fin",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "GldRathianSpike": {
+    "name": "GldRathianSpike",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "LaoS Dvine Plate": {
+    "name": "LaoS Dvine Plate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "WhtFatalisThkScl": {
+    "name": "WhtFatalisThkScl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "FireWyvern Claw": {
+    "name": "FireWyvern Claw",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Antidote Herb": {
+    "name": "Antidote Herb",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Immunizer": {
+    "name": "Immunizer",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Famitsu PT Tckt": {
+    "name": "Famitsu PT Tckt",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Max Potion": {
+    "name": "Max Potion",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Garuga StrngWng": {
+    "name": "Garuga StrngWng",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Colossal Bone": {
+    "name": "Colossal Bone",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Tigrex Hvy Cpc": {
+    "name": "Tigrex Hvy Cpc",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "FireWyvrnHrdClaw": {
+    "name": "FireWyvrnHrdClaw",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Diablos HvySpne": {
+    "name": "Diablos HvySpne",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blk Blos Hvy Spn": {
+    "name": "Blk Blos Hvy Spn",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "BlkGravDvnePlate": {
+    "name": "BlkGravDvnePlate",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hg Lobstershell": {
+    "name": "Hg Lobstershell",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "FamitsuSpcialTkt": {
+    "name": "FamitsuSpcialTkt",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "ChameleosWbng G": {
+    "name": "ChameleosWbng G",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Fatalis Hrd Wbng": {
+    "name": "Fatalis Hrd Wbng",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Scale": {
+    "name": "Ucamulbas Scale",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lao-ShanThckScl": {
+    "name": "Lao-ShanThckScl",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "FataThkCrmsnScl": {
+    "name": "FataThkCrmsnScl",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hunter Soul Tckt": {
+    "name": "Hunter Soul Tckt",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hot Meat": {
+    "name": "Hot Meat",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Volganos HvyFang": {
+    "name": "Volganos HvyFang",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "HypncGizzardStne": {
+    "name": "HypncGizzardStne",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Famitsu Invoice": {
+    "name": "Famitsu Invoice",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Hunter's Ticket": {
+    "name": "Hunter's Ticket",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Spicy Mushroom": {
+    "name": "Spicy Mushroom",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Tigrex Hvy Fang": {
+    "name": "Tigrex Hvy Fang",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Blngnga HrdWhskr": {
+    "name": "Blngnga HrdWhskr",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Puppet Ticket+": {
+    "name": "Puppet Ticket+",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Rajang Hvy Fang": {
+    "name": "Rajang Hvy Fang",
+    "amount": "4",
+    "type": "bone",
+    "color": "white"
+  },
+  "Daora Webbing G": {
+    "name": "Daora Webbing G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "KirinThndrTail G": {
+    "name": "KirinThndrTail G",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lunastra Horn G": {
+    "name": "Lunastra Horn G",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Yamatsukami Fin": {
+    "name": "Yamatsukami Fin",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Jaw": {
+    "name": "Ucamulbas Jaw",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Cold Meat": {
+    "name": "Cold Meat",
+    "amount": "10",
+    "type": "bone",
+    "color": "white"
+  },
+  "Armorskin": {
+    "name": "Armorskin",
+    "amount": "3",
+    "type": "bone",
+    "color": "white"
+  },
+  "Lg Bone Husk": {
+    "name": "Lg Bone Husk",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Wing": {
+    "name": "Naruga Wing",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "Frozen Berry": {
+    "name": "Frozen Berry",
+    "amount": "5",
+    "type": "bone",
+    "color": "white"
+  },
+  "Naruga Strng Wng": {
+    "name": "Naruga Strng Wng",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  },
+  "ConglalaStrngFng": {
+    "name": "ConglalaStrngFng",
+    "amount": "6",
+    "type": "bone",
+    "color": "white"
+  },
+  "Chameleos Tail G": {
+    "name": "Chameleos Tail G",
+    "amount": "1",
+    "type": "bone",
+    "color": "white"
+  },
+  "Ucamulbas Tail": {
+    "name": "Ucamulbas Tail",
+    "amount": "2",
+    "type": "bone",
+    "color": "white"
+  }
+}
+}

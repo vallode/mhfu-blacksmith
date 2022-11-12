@@ -3,7 +3,7 @@ require 'find'
 require 'erb'
 
 FILE_TEMPLATE = %{{
-    "map": <%= JSON.pretty_generate(weapon_map) %>
+    "weapons": <%= JSON.pretty_generate(weapon_map) %>
   }
 }.gsub(/^  /, '')
 
@@ -11,23 +11,11 @@ WEAPON_PAIRS = [
   ["helmet"],
   ["plate"],
   ["gauntlets"],
-  ["leggings"],
   ["waist"],
+  ["leggings"],
 ]
 
 WEAPON_ABBR = {
-  "great-sword": "gs",
-  "long-sword": "ls",
-  "sword-and-shield": "sns",
-  "dual-blades": "db",
-  "hammer": "hm",
-  "hunting-horn": "hh",
-  "lance": "ln",
-  "gunlance":  "gl",
-  "light-bowgun": "lbg",
-  "heavy-bowgun": "hbg",
-  "bow": "bw",
-  "decoration": "dec",
   "helmet": "helmet"
 }
 
@@ -42,9 +30,11 @@ def slugify(value)
   value = value.gsub("+", "-plus")
 end
 
+materials = JSON.load(File.open(Dir.glob("test.json")[0]))["materials"]
+
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/{blacksmith,armorsmith}/{#{array.join(",")}}/*-crafting.json")
+  weapon_files = Dir.glob("content/{armorsmith}/{#{array.join(",")}}/*-crafting.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 
@@ -56,15 +46,18 @@ WEAPON_PAIRS.each do |array|
   weapon_map = []
 
   weapons.each do |weapon|
-    skills = weapon["skills"]
-    weapon["skills"] = []
+    create_mats = weapon["create_mats"]
+    weapon["create_mats"] = []
 
-    skills.each do |skill|
-      match = %r{([A-Za-z\s]+)\s([-]?[0-9])}.match(skill)
-      weapon["skills"].push({
-        "name": match[1],
-        "amount": match[2],
-      })
+    create_mats.each do |material|
+      unless materials.key?(material["name"])
+        raise "#{material['name']} not in the material list!!!}"
+      end
+
+      material["type"] = materials[material["name"]]["type"]
+      material["color"] = materials[material["name"]]["color"]
+
+      weapon["create_mats"].push(material)
     end
 
     weapon_map.push(weapon)
