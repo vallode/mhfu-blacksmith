@@ -9,6 +9,13 @@ FILE_TEMPLATE = %{+++
   <% value.each_pair do |key, val| %>
   <%= key.gsub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
   <% end %>
+  <% if skills %>
+  <% skills.each do |el| %>
+  [[extra.skills]]
+  name = "<%= el["name"] %>"
+  amount = <%= el["amount"] %>
+  <% end %>
+  <% end %>
   <% if create_mats %>
   <% create_mats.each do |el| %>
   [[extra.create_mats]]
@@ -130,6 +137,11 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
 
+        if value["skills"] and value["type"].to_s != "decoration"
+          skills = value["skills"]
+          value["skills"] = nil
+        end
+
         if value["create_mats"]
           create_mats = value["create_mats"]
           value["create_mats"] = nil
@@ -138,6 +150,7 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
         if value["improve_mats"]
           improve_mats = value["improve_mats"]
           value["improve_mats"] = nil
+
         end
 
         if value["alternative_create_mats"]
@@ -157,11 +170,15 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
 
         value = value.select {|key, value| value != nil }
 
-        File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
+        if path.include?("armorsmith")
+          # Dir.mkdir("#{File.dirname(path)}/")
+          File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
+        else
+          File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
+        end
       end
     end
   }
 end
 
 threads.each(&:join)
-  

@@ -8,6 +8,10 @@ FILE_TEMPLATE = %{{
 }.gsub(/^  /, '')
 
 WEAPON_PAIRS = [
+  ["helmet"],
+  ["plate"],
+  ["gauntlets"],
+  ["leggings"],
   ["waist"],
 ]
 
@@ -52,16 +56,14 @@ WEAPON_PAIRS.each do |array|
   weapon_map = []
 
   weapons.each do |weapon|
-    create_mats = weapon["create_mats"]
-    weapon["create_mats"] = []
+    skills = weapon["skills"]
+    weapon["skills"] = []
 
-    create_mats.each do |material|
-      match = %r{([\w\s\+]+)\s\((\d+)\)}.match(material)
-      weapon["create_mats"].push({
+    skills.each do |skill|
+      match = %r{([A-Za-z\s]+)\s([-]?[0-9])}.match(skill)
+      weapon["skills"].push({
         "name": match[1],
         "amount": match[2],
-        "type": "bone",
-        "color": "white"
       })
     end
 
