@@ -20,10 +20,6 @@ build_search_index = true
 
 minify_html = true
 
-taxonomies = [
-    { name = "rarity", feed = true},
-]
-
 [search]
 include_title = true
 include_description = false
