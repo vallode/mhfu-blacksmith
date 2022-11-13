@@ -2,15 +2,14 @@
   "weapons": [
     {
       "name": "Buster Sword",
-      "attack": "288",
-      "element": null,
+      "attack": 288,
       "sharpness": "5.3.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
-      "create_cost": "500",
+      "create_cost": 500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -33,20 +32,20 @@
         "White Serpentblade",
         "Blango Destroyer"
       ],
-      "sharpness_plus": "5.3.9.3"
+      "sharpness_plus": "5.3.9.3",
+      "elements": null
     },
     {
       "name": "Buster Sword+",
-      "attack": "384",
-      "element": null,
+      "attack": 384,
       "sharpness": "8.3.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
-      "create_cost": "850",
-      "improve_cost": "850",
+      "create_cost": 850,
+      "improve_cost": 850,
       "improve_from": "Buster Sword",
       "create_mats": [
         {
@@ -75,20 +74,20 @@
         "Defender",
         "Iron Katana"
       ],
-      "sharpness_plus": "8.3.11.3"
+      "sharpness_plus": "8.3.11.3",
+      "elements": null
     },
     {
       "name": "Buster Blade",
-      "attack": "480",
-      "element": null,
+      "attack": 480,
       "sharpness": "5.2.9.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": "Buster Sword+",
       "create_mats": null,
       "improve_mats": [
@@ -115,20 +114,20 @@
         "Ravager Blade",
         "Cat's Soul"
       ],
-      "sharpness_plus": "5.2.9.8"
+      "sharpness_plus": "5.2.9.8",
+      "elements": null
     },
     {
       "name": "Ravager Blade",
-      "attack": "576",
-      "element": null,
+      "attack": 576,
       "sharpness": "8.3.11.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+1",
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "Buster Blade"
       ],
@@ -176,20 +175,20 @@
         "Ravager Blade+",
         "Khezu Shock Sword"
       ],
-      "sharpness_plus": "8.3.11.8"
+      "sharpness_plus": "8.3.11.8",
+      "elements": null
     },
     {
       "name": "Ravager Blade+",
-      "attack": "768",
-      "element": null,
+      "attack": 768,
       "sharpness": "9.4.11.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+2",
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": [
         "Ravager Blade"
       ],
@@ -245,20 +244,20 @@
         "Tactical Blade",
         "Chrome Razor"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": null
     },
     {
       "name": "Tactical Blade",
-      "attack": "960",
-      "element": null,
+      "attack": 960,
       "sharpness": "5.3.9.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "25000",
+      "improve_cost": 25000,
       "improve_from": [
         "Ravager Blade+"
       ],
@@ -286,20 +285,20 @@
       "improve_to": [
         "Strategic Blade"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": null
     },
     {
       "name": "Strategic Blade",
-      "attack": "1008",
-      "element": null,
+      "attack": 1008,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+8",
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Tactical Blade"
       ],
@@ -325,20 +324,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": null
     },
     {
       "name": "Chrome Razor",
-      "attack": "816",
-      "element": "Poison 320",
+      "attack": 816,
       "sharpness": "8.3.11.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "7150",
+      "improve_cost": 7150,
       "improve_from": [
         "Ravager Blade+"
       ],
@@ -367,20 +366,25 @@
         "Chrome Death Razor",
         "Carbalite Sword"
       ],
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Chrome Death Razor",
-      "attack": "912",
-      "element": "Poison 500",
+      "attack": 912,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "7150",
+      "improve_cost": 7150,
       "improve_from": [
         "Chrome Razor"
       ],
@@ -406,20 +410,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Carbalite Sword",
-      "attack": "912",
-      "element": null,
+      "attack": 912,
       "sharpness": "8.3.11.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
-      "create_cost": "25000",
-      "improve_cost": "25000",
+      "create_cost": 25000,
+      "improve_cost": 25000,
       "improve_from": [
         "Chrome Razor"
       ],
@@ -482,20 +491,20 @@
         "Bronze Coin",
         "Guardian Sword"
       ],
-      "sharpness_plus": "8.3.11.8"
+      "sharpness_plus": "8.3.11.8",
+      "elements": null
     },
     {
       "name": "Carbalite Sword+",
-      "attack": "960",
-      "element": null,
+      "attack": 960,
       "sharpness": "8.3.11.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Carbalite Sword"
       ],
@@ -525,20 +534,20 @@
         "Demon Halberd",
         "Decider"
       ],
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": null
     },
     {
       "name": "Lacerator Blade",
-      "attack": "1104",
-      "element": null,
+      "attack": 1104,
       "sharpness": "16.3.2.9",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+4",
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Carbalite Sword+"
       ],
@@ -566,20 +575,20 @@
       "improve_to": [
         "Master Blaze"
       ],
-      "sharpness_plus": "16.3.2.9.5"
+      "sharpness_plus": "16.3.2.9.5",
+      "elements": null
     },
     {
       "name": "Master Blaze",
-      "attack": "1440",
-      "element": null,
+      "attack": 1440,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": [
         "Lacerator Blade"
       ],
@@ -611,20 +620,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": null
     },
     {
       "name": "Decider",
-      "attack": "1104",
-      "element": null,
+      "attack": 1104,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "75000",
-      "improve_cost": "75000",
+      "create_cost": 75000,
+      "improve_cost": 75000,
       "improve_from": [
         "Carbalite Sword+"
       ],
@@ -685,20 +694,20 @@
         "Igneous Blade",
         "Liquid Fire Blade"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": null
     },
     {
       "name": "Punisher",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": [
         "Decider"
       ],
@@ -730,20 +739,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Igneous Blade",
-      "attack": "1200",
-      "element": "Fire 200",
+      "attack": 1200,
       "sharpness": "18.2.7.7.1",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
-      "improve_cost": "100000",
+      "create_cost": 100000,
+      "improve_cost": 100000,
       "improve_from": [
         "Decider"
       ],
@@ -797,20 +806,25 @@
         "Igneous Sword",
         "Liquid Fire Blade"
       ],
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Igneous Sword",
-      "attack": "1344",
-      "element": "Fire 220",
+      "attack": 1344,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": [
         "Igneous Blade"
       ],
@@ -842,20 +856,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Bronze Coin",
-      "attack": "864",
-      "element": null,
+      "attack": 864,
       "sharpness": "12.11.5.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+20",
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "35000",
-      "improve_cost": "35000",
+      "create_cost": 35000,
+      "improve_cost": 35000,
       "improve_from": [
         "Carbalite Sword"
       ],
@@ -908,20 +927,20 @@
       "improve_to": [
         "Gaoren Coin"
       ],
-      "sharpness_plus": "12.11.5.2.8"
+      "sharpness_plus": "12.11.5.2.8",
+      "elements": null
     },
     {
       "name": "Gaoren Coin",
-      "attack": "1008",
-      "element": null,
+      "attack": 1008,
       "sharpness": "8.3.11.10.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+30",
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": [
         "Bronze Coin"
       ],
@@ -949,20 +968,20 @@
       "improve_to": [
         "Gaoren Cleaver"
       ],
-      "sharpness_plus": "8.3.11.10.6.2"
+      "sharpness_plus": "8.3.11.10.6.2",
+      "elements": null
     },
     {
       "name": "Gaoren Cleaver",
-      "attack": "1440",
-      "element": null,
+      "attack": 1440,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+30",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": [
         "Gaoren Coin"
       ],
@@ -994,20 +1013,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Khezu Shock Sword",
-      "attack": "624",
-      "element": "Thunder 220",
+      "attack": 624,
       "sharpness": "13.1.6.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": [
         "Ravager Blade"
       ],
@@ -1060,20 +1079,25 @@
       "improve_to": [
         "Khezu Shock Blade"
       ],
-      "sharpness_plus": "13.1.6.10"
+      "sharpness_plus": "13.1.6.10",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Khezu Shock Blade",
-      "attack": "960",
-      "element": "Thunder 250",
+      "attack": 960,
       "sharpness": "8.3.11.10.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": [
         "Khezu Shock Sword"
       ],
@@ -1101,20 +1125,25 @@
       "improve_to": [
         "Khezu Shock Full"
       ],
-      "sharpness_plus": "8.3.11.10.6.2"
+      "sharpness_plus": "8.3.11.10.6.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Khezu Shock Full",
-      "attack": "1056",
-      "element": "Thunder 280",
+      "attack": 1056,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": [
         "Khezu Shock Blade"
       ],
@@ -1148,20 +1177,25 @@
       "improve_to": [
         "Khezu Shock Full+"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Khezu Shock Full+",
-      "attack": "1200",
-      "element": "Thunder 350",
+      "attack": 1200,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": [
         "Khezu Shock Full"
       ],
@@ -1193,20 +1227,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Cat's Soul",
-      "attack": "480",
-      "element": "Paralysis 200",
+      "attack": 480,
       "sharpness": "13.1.6.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Buster Blade",
       "create_mats": null,
       "improve_mats": [
@@ -1232,20 +1271,25 @@
       "improve_to": [
         "Cat's Curse"
       ],
-      "sharpness_plus": "13.1.6.10"
+      "sharpness_plus": "13.1.6.10",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Cat's Curse",
-      "attack": "624",
-      "element": "Paralysis 360",
+      "attack": 624,
       "sharpness": "18.2.7.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "4250",
+      "improve_cost": 4250,
       "improve_from": [
         "Cat's Soul"
       ],
@@ -1273,20 +1317,25 @@
       "improve_to": [
         "Cat's King"
       ],
-      "sharpness_plus": "18.2.7.7.1"
+      "sharpness_plus": "18.2.7.7.1",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 360
+        }
+      ]
     },
     {
       "name": "Cat's King",
-      "attack": "720",
-      "element": "Paralysis 450",
+      "attack": 720,
       "sharpness": "8.3.11.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": [
         "Cat's Curse"
       ],
@@ -1314,20 +1363,25 @@
       "improve_to": [
         "Cat of Venus"
       ],
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Cat of Venus",
-      "attack": "912",
-      "element": "Paralysis 400",
+      "attack": 912,
       "sharpness": "12.11.5.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "75000",
-      "improve_cost": "75000",
+      "create_cost": 75000,
+      "improve_cost": 75000,
       "improve_from": [
         "Cat's King"
       ],
@@ -1386,20 +1440,25 @@
       "improve_to": [
         "Cat of Gold"
       ],
-      "sharpness_plus": "12.11.5.4.8"
+      "sharpness_plus": "12.11.5.4.8",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Cat of Gold",
-      "attack": "1008",
-      "element": "Paralysis 460",
+      "attack": 1008,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": [
         "Cat of Venus"
       ],
@@ -1431,20 +1490,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 460
+        }
+      ]
     },
     {
       "name": "Defender",
-      "attack": "432",
-      "element": null,
+      "attack": 432,
       "sharpness": "3.7.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": [
         "Buster Sword+"
       ],
@@ -1472,20 +1536,20 @@
       "improve_to": [
         "Sentinel"
       ],
-      "sharpness_plus": "3.7.10"
+      "sharpness_plus": "3.7.10",
+      "elements": null
     },
     {
       "name": "Sentinel",
-      "attack": "576",
-      "element": null,
+      "attack": 576,
       "sharpness": "3.7.10",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2600",
+      "improve_cost": 2600,
       "improve_from": [
         "Defender"
       ],
@@ -1514,20 +1578,20 @@
         "Barbaroi Blade",
         "Halberd"
       ],
-      "sharpness_plus": "3.7.15"
+      "sharpness_plus": "3.7.15",
+      "elements": null
     },
     {
       "name": "Barbaroi Blade",
-      "attack": "480",
-      "element": "Fire 250",
+      "attack": 480,
       "sharpness": "9.4.11.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+12",
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "Sentinel"
       ],
@@ -1580,20 +1644,25 @@
       "improve_to": [
         "Crimson Goat"
       ],
-      "sharpness_plus": "9.4.11.6"
+      "sharpness_plus": "9.4.11.6",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Crimson Goat",
-      "attack": "624",
-      "element": "Fire 500",
+      "attack": 624,
       "sharpness": "3.7.18.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+16",
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": [
         "Barbaroi Blade"
       ],
@@ -1619,20 +1688,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.7.18.4.3"
+      "sharpness_plus": "3.7.18.4.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Halberd",
-      "attack": "864",
-      "element": null,
+      "attack": 864,
       "sharpness": "12.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": [
         "Sentinel"
       ],
@@ -1685,20 +1759,20 @@
       "improve_to": [
         "Judgment"
       ],
-      "sharpness_plus": "12.11.5.2"
+      "sharpness_plus": "12.11.5.2",
+      "elements": null
     },
     {
       "name": "Judgment",
-      "attack": "1056",
-      "element": null,
+      "attack": 1056,
       "sharpness": "5.3.9.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Halberd"
       ],
@@ -1724,20 +1798,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.8"
+      "sharpness_plus": "5.3.9.8",
+      "elements": null
     },
     {
       "name": "White Serpentblade",
-      "attack": "384",
-      "element": "Ice 120",
+      "attack": 384,
       "sharpness": "13.1.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
-      "create_cost": "1100",
-      "improve_cost": "1100",
+      "create_cost": 1100,
+      "improve_cost": 1100,
       "improve_from": "Buster Sword",
       "create_mats": [
         {
@@ -1802,20 +1876,25 @@
       "improve_to": [
         "Silver Serpentblade"
       ],
-      "sharpness_plus": "13.1.6.5"
+      "sharpness_plus": "13.1.6.5",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Silver Serpentblade",
-      "attack": "480",
-      "element": "Ice 240",
+      "attack": 480,
       "sharpness": "5.3.9.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": [
         "White Serpentblade"
       ],
@@ -1844,20 +1923,25 @@
         "Vile Serpentblade",
         "Golden Serpentblade"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Vile Serpentblade",
-      "attack": "528",
-      "element": null,
+      "attack": 528,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": [
         "Silver Serpentblade"
       ],
@@ -1885,20 +1969,20 @@
       "improve_to": [
         "Deadly Serpentblade"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": null
     },
     {
       "name": "Deadly Serpentblade",
-      "attack": "720",
-      "element": "Poison 270",
+      "attack": 720,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": [
         "Vile Serpentblade"
       ],
@@ -1926,20 +2010,25 @@
       "improve_to": [
         "Poison Serpentblade"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 270
+        }
+      ]
     },
     {
       "name": "Poison Serpentblade",
-      "attack": "864",
-      "element": "Poison 380",
+      "attack": 864,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Deadly Serpentblade"
       ],
@@ -1965,20 +2054,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Golden Serpentblade",
-      "attack": "816",
-      "element": "Ice 400",
+      "attack": 816,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Silver Serpentblade"
       ],
@@ -2004,19 +2098,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Bone Blade",
-      "attack": "336",
-      "element": null,
+      "attack": 336,
       "sharpness": "9.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
-      "create_cost": "500",
+      "create_cost": 500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -2031,20 +2130,20 @@
       "improve_to": [
         "Bone Blade+"
       ],
-      "sharpness_plus": "9.4.7"
+      "sharpness_plus": "9.4.7",
+      "elements": null
     },
     {
       "name": "Bone Blade+",
-      "attack": "384",
-      "element": null,
+      "attack": 384,
       "sharpness": "9.4.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "850",
+      "improve_cost": 850,
       "improve_from": [
         "Bone Blade"
       ],
@@ -2062,20 +2161,20 @@
         "Red Stripe",
         "Bone Katana \"Wolf\""
       ],
-      "sharpness_plus": "9.4.11.1"
+      "sharpness_plus": "9.4.11.1",
+      "elements": null
     },
     {
       "name": "Bone Slasher",
-      "attack": "432",
-      "element": null,
+      "attack": 432,
       "sharpness": "9.4.11.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
-      "create_cost": "1100",
-      "improve_cost": "1100",
+      "create_cost": 1100,
+      "improve_cost": 1100,
       "improve_from": [
         "Bone Blade+"
       ],
@@ -2133,20 +2232,20 @@
         "Chick Decapitator",
         "Red Wing"
       ],
-      "sharpness_plus": "9.4.11.6"
+      "sharpness_plus": "9.4.11.6",
+      "elements": null
     },
     {
       "name": "Golem Blade",
-      "attack": "528",
-      "element": null,
+      "attack": 528,
       "sharpness": "3.7.15",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+2",
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
-      "create_cost": "1750",
-      "improve_cost": "1750",
+      "create_cost": 1750,
+      "improve_cost": 1750,
       "improve_from": [
         "Bone Slasher"
       ],
@@ -2199,20 +2298,20 @@
       "improve_to": [
         "Golem Blade+"
       ],
-      "sharpness_plus": "3.7.18.2"
+      "sharpness_plus": "3.7.18.2",
+      "elements": null
     },
     {
       "name": "Golem Blade+",
-      "attack": "576",
-      "element": null,
+      "attack": 576,
       "sharpness": "5.3.9.3.",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+4",
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2600",
+      "improve_cost": 2600,
       "improve_from": [
         "Golem Blade"
       ],
@@ -2241,20 +2340,20 @@
         "Valkyrie Blade",
         "Executioner"
       ],
-      "sharpness_plus": "5.3.9.8"
+      "sharpness_plus": "5.3.9.8",
+      "elements": null
     },
     {
       "name": "Valkyrie Blade",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "8.3.11.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+6",
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": [
         "Golem Blade+"
       ],
@@ -2309,20 +2408,20 @@
         "Titernia",
         "Spartacus Blade"
       ],
-      "sharpness_plus": "8.3.11.8"
+      "sharpness_plus": "8.3.11.8",
+      "elements": null
     },
     {
       "name": "Sieglinde",
-      "attack": "912",
-      "element": null,
+      "attack": 912,
       "sharpness": "16.3.2.9",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+6",
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "8000",
+      "improve_cost": 8000,
       "improve_from": [
         "Valkyrie Blade"
       ],
@@ -2348,20 +2447,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.5"
+      "sharpness_plus": "16.3.2.9.5",
+      "elements": null
     },
     {
       "name": "Titernia",
-      "attack": "768",
-      "element": "Dragon 160",
+      "attack": 768,
       "sharpness": "9.4.11.6",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "7150",
+      "improve_cost": 7150,
       "improve_from": [
         "Valkyrie Blade"
       ],
@@ -2389,20 +2488,25 @@
       "improve_to": [
         "Blushing Dame"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 160
+        }
+      ]
     },
     {
       "name": "Blushing Dame",
-      "attack": "864",
-      "element": "Dragon 220",
+      "attack": 864,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": [
         "Titernia"
       ],
@@ -2430,20 +2534,25 @@
       "improve_to": [
         "Alveblade"
       ],
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Alveblade",
-      "attack": "1200",
-      "element": "Dragon 240",
+      "attack": 1200,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": [
         "Blushing Dame",
         "Pael Keizah"
@@ -2478,20 +2587,25 @@
       "improve_to": [
         "Brünhild"
       ],
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Brünhild",
-      "attack": "1296",
-      "element": "Dragon 250",
+      "attack": 1296,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": [
         "Alveblade"
       ],
@@ -2523,20 +2637,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Spartacus Blade",
-      "attack": "816",
-      "element": null,
+      "attack": 816,
       "sharpness": "9.4.11.6",
       "affinity": "10%",
       "slots": "O--",
       "bonus": "+4",
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": [
         "Valkyrie Blade"
       ],
@@ -2565,20 +2684,20 @@
         "Siegmund",
         "Obelion"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": null
     },
     {
       "name": "Siegmund",
-      "attack": "1056",
-      "element": null,
+      "attack": 1056,
       "sharpness": "13.1.6.13.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": [
         "Spartacus Blade"
       ],
@@ -2604,20 +2723,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": null
     },
     {
       "name": "Obelion",
-      "attack": "816",
-      "element": "Dragon 180",
+      "attack": 816,
       "sharpness": "13.1.6.10",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": [
         "Spartacus Blade"
       ],
@@ -2645,20 +2764,25 @@
       "improve_to": [
         "Pael Keizah"
       ],
-      "sharpness_plus": "13.1.6.13.2"
+      "sharpness_plus": "13.1.6.13.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Pael Keizah",
-      "attack": "912",
-      "element": "Dragon 230",
+      "attack": 912,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": [
         "Obelion"
       ],
@@ -2686,20 +2810,25 @@
       "improve_to": [
         "Alveblade"
       ],
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Executioner",
-      "attack": "816",
-      "element": null,
+      "attack": 816,
       "sharpness": "18.2.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": [
         "Golem Blade+"
       ],
@@ -2769,20 +2898,20 @@
         "Kirin Thundersword",
         "Sword of the Diablos"
       ],
-      "sharpness_plus": "18.2.7.3"
+      "sharpness_plus": "18.2.7.3",
+      "elements": null
     },
     {
       "name": "Executioner+",
-      "attack": "864",
-      "element": null,
+      "attack": 864,
       "sharpness": "18.2.7.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": [
         "Executioner"
       ],
@@ -2810,20 +2939,20 @@
       "improve_to": [
         "Enforcer's Axe"
       ],
-      "sharpness_plus": "18.2.7.7.1"
+      "sharpness_plus": "18.2.7.7.1",
+      "elements": null
     },
     {
       "name": "Enforcer's Axe",
-      "attack": "1104",
-      "element": null,
+      "attack": 1104,
       "sharpness": "8.3.11.8",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": [
         "Executioner+"
       ],
@@ -2849,20 +2978,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": null
     },
     {
       "name": "Agito",
-      "attack": "960",
-      "element": null,
+      "attack": 960,
       "sharpness": "9.4.11.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
-      "create_cost": "25000",
-      "improve_cost": "25000",
+      "create_cost": 25000,
+      "improve_cost": 25000,
       "improve_from": [
         "Executioner"
       ],
@@ -2924,20 +3053,20 @@
         "Wyvern Agito",
         "Rusty Claymore"
       ],
-      "sharpness_plus": "9.4.11.6"
+      "sharpness_plus": "9.4.11.6",
+      "elements": null
     },
     {
       "name": "Wyvern Agito",
-      "attack": "1008",
-      "element": null,
+      "attack": 1008,
       "sharpness": "9.4.11.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Agito"
       ],
@@ -2966,20 +3095,20 @@
         "True Dragon's Jaw",
         "Demon Rod"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": null
     },
     {
       "name": "True Dragon's Jaw",
-      "attack": "1056",
-      "element": null,
+      "attack": 1056,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Wyvern Agito"
       ],
@@ -3005,20 +3134,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": null
     },
     {
       "name": "Demon Rod",
-      "attack": "768",
-      "element": "Thunder 300",
+      "attack": 768,
       "sharpness": "9.4.11.6",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": [
         "Wyvern Agito"
       ],
@@ -3071,20 +3200,25 @@
       "improve_to": [
         "Great Demon Rod"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Great Demon Rod",
-      "attack": "864",
-      "element": "Thunder 380",
+      "attack": 864,
       "sharpness": "18.2.7.7.1",
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "Demon Rod"
       ],
@@ -3112,20 +3246,25 @@
       "improve_to": [
         "Great Demon Hot Rod"
       ],
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Great Demon Hot Rod",
-      "attack": "1248",
-      "element": "Thunder 400",
+      "attack": 1248,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "25%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": [
         "Great Demon Rod"
       ],
@@ -3157,20 +3296,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Kirin Thundersword",
-      "attack": "624",
-      "element": "Thunder 550",
+      "attack": 624,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "20000",
-      "improve_cost": "20000",
+      "create_cost": 20000,
+      "improve_cost": 20000,
       "improve_from": [
         "Executioner"
       ],
@@ -3223,20 +3367,25 @@
       "improve_to": [
         "King Thundersword"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 550
+        }
+      ]
     },
     {
       "name": "King Thundersword",
-      "attack": "816",
-      "element": "Thunder 610",
+      "attack": 816,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": [
         "Kirin Thundersword"
       ],
@@ -3264,20 +3413,25 @@
       "improve_to": [
         "ImperialThundersword"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 610
+        }
+      ]
     },
     {
       "name": "ImperialThundersword",
-      "attack": "1152",
-      "element": "Thunder 640",
+      "attack": 1152,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "King Thundersword"
       ],
@@ -3309,20 +3463,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 640
+        }
+      ]
     },
     {
       "name": "Sword of the Diablos",
-      "attack": "912",
-      "element": null,
+      "attack": 912,
       "sharpness": "9.4.11.6",
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": [
         "Executioner"
       ],
@@ -3350,20 +3509,20 @@
       "improve_to": [
         "Diablo Destroyer"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": null
     },
     {
       "name": "Diablo Destroyer",
-      "attack": "1152",
-      "element": null,
+      "attack": 1152,
       "sharpness": "9.4.11.7.4",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": [
         "Sword of the Diablos"
       ],
@@ -3391,20 +3550,20 @@
       "improve_to": [
         "King Atillart Sword"
       ],
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": null
     },
     {
       "name": "King Atillart Sword",
-      "attack": "1488",
-      "element": null,
+      "attack": 1488,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "-15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": [
         "Diablo Destroyer"
       ],
@@ -3436,20 +3595,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Finblade",
-      "attack": "480",
-      "element": "Water 260",
+      "attack": 480,
       "sharpness": "8.3.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "Bone Slasher"
       ],
@@ -3502,20 +3661,25 @@
       "improve_to": [
         "Plesioth Watersword"
       ],
-      "sharpness_plus": "8.3.9"
+      "sharpness_plus": "8.3.9",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Plesioth Watersword",
-      "attack": "576",
-      "element": "Water 390",
+      "attack": 576,
       "sharpness": "13.1.6.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "3650",
+      "improve_cost": 3650,
       "improve_from": [
         "Finblade"
       ],
@@ -3543,20 +3707,25 @@
       "improve_to": [
         "Plesioth Crystasword"
       ],
-      "sharpness_plus": "13.1.6.10"
+      "sharpness_plus": "13.1.6.10",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 390
+        }
+      ]
     },
     {
       "name": "Plesioth Crystasword",
-      "attack": "672",
-      "element": "Water 470",
+      "attack": 672,
       "sharpness": "13.1.6.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": [
         "Plesioth Watersword"
       ],
@@ -3584,20 +3753,25 @@
       "improve_to": [
         "Plesioth Azureblade"
       ],
-      "sharpness_plus": "13.1.6.13.2"
+      "sharpness_plus": "13.1.6.13.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 470
+        }
+      ]
     },
     {
       "name": "Plesioth Azureblade",
-      "attack": "816",
-      "element": "Water 620",
+      "attack": 816,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Plesioth Crystasword"
       ],
@@ -3625,20 +3799,25 @@
       "improve_to": [
         "Plesioth Wave Sword"
       ],
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 620
+        }
+      ]
     },
     {
       "name": "Plesioth Wave Sword",
-      "attack": "1056",
-      "element": "Water 400",
+      "attack": 1056,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "Plesioth Azureblade"
       ],
@@ -3672,20 +3851,25 @@
       "improve_to": [
         "Plesioth Wave Blade"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Plesioth Wave Blade",
-      "attack": "1296",
-      "element": "Water 470",
+      "attack": 1296,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": [
         "Plesioth Wave Sword"
       ],
@@ -3717,20 +3901,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 470
+        }
+      ]
     },
     {
       "name": "Chick Decapitator",
-      "attack": "528",
-      "element": null,
+      "attack": 528,
       "sharpness": "5.3.9.3",
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": [
         "Bone Slasher"
       ],
@@ -3759,20 +3948,20 @@
         "Chicken Decapitator",
         "Sentoryu Raven"
       ],
-      "sharpness_plus": "5.3.9.8"
+      "sharpness_plus": "5.3.9.8",
+      "elements": null
     },
     {
       "name": "Chicken Decapitator",
-      "attack": "768",
-      "element": null,
+      "attack": 768,
       "sharpness": "5.3.9.8",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": [
         "Chick Decapitator"
       ],
@@ -3800,20 +3989,20 @@
       "improve_to": [
         "Rooster Decapitator"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": null
     },
     {
       "name": "Rooster Decapitator",
-      "attack": "912",
-      "element": null,
+      "attack": 912,
       "sharpness": "13.1.6.10",
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": [
         "Chicken Decapitator"
       ],
@@ -3842,20 +4031,20 @@
         "Pickaxe Blade",
         "Slaughter"
       ],
-      "sharpness_plus": "13.1.6.13.2"
+      "sharpness_plus": "13.1.6.13.2",
+      "elements": null
     },
     {
       "name": "Pickaxe Blade",
-      "attack": "672",
-      "element": "Sleep 150",
+      "attack": 672,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": [
         "Rooster Decapitator"
       ],
@@ -3914,20 +4103,25 @@
       "improve_to": [
         "Pickaxe Blade+"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Pickaxe Blade+",
-      "attack": "864",
-      "element": "Sleep 170",
+      "attack": 864,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+14",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": [
         "Pickaxe Blade"
       ],
@@ -3986,20 +4180,25 @@
       "improve_to": [
         "Sleep Sword Zantoma"
       ],
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 170
+        }
+      ]
     },
     {
       "name": "Sleep Sword Zantoma",
-      "attack": "1056",
-      "element": "Sleep 220",
+      "attack": 1056,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+18",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": [
         "Pickaxe Blade+"
       ],
@@ -4031,20 +4230,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Slaughter",
-      "attack": "816",
-      "element": "Poison 420",
+      "attack": 816,
       "sharpness": "18.2.7.7.1",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
-      "create_cost": "65000",
-      "improve_cost": "65000",
+      "create_cost": 65000,
+      "improve_cost": 65000,
       "improve_from": [
         "Rooster Decapitator"
       ],
@@ -4097,20 +4301,25 @@
       "improve_to": [
         "Slaughter+"
       ],
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Slaughter+",
-      "attack": "1056",
-      "element": "Poison 450",
+      "attack": 1056,
       "sharpness": "9.4.11.7.4",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "Slaughter"
       ],
@@ -4144,20 +4353,25 @@
       "improve_to": [
         "Poison King"
       ],
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Poison King",
-      "attack": "1296",
-      "element": "Poison 470",
+      "attack": 1296,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": [
         "Slaughter+"
       ],
@@ -4189,20 +4403,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 470
+        }
+      ]
     },
     {
       "name": "Sentoryu Raven",
-      "attack": "672",
-      "element": null,
+      "attack": 672,
       "sharpness": "9.4.11.6",
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "10000",
-      "improve_cost": "10000",
+      "create_cost": 10000,
+      "improve_cost": 10000,
       "improve_from": [
         "Chick Decapitator"
       ],
@@ -4255,20 +4474,20 @@
       "improve_to": [
         "Sentoryu Wolf"
       ],
-      "sharpness_plus": "9.4.11.7.4"
+      "sharpness_plus": "9.4.11.7.4",
+      "elements": null
     },
     {
       "name": "Sentoryu Wolf",
-      "attack": "864",
-      "element": null,
+      "attack": 864,
       "sharpness": "9.4.11.7.4",
       "affinity": "35%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "65000",
+      "improve_cost": 65000,
       "improve_from": [
         "Sentoryu Raven"
       ],
@@ -4297,20 +4516,20 @@
         "Sentoryu Crow",
         "Daito Wolf"
       ],
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": null
     },
     {
       "name": "Sentoryu Crow",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "40%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": [
         "Sentoryu Wolf"
       ],
@@ -4342,20 +4561,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Red Wing",
-      "attack": "528",
-      "element": "Fire 150",
+      "attack": 528,
       "sharpness": "8.3.11.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "Bone Slasher"
       ],
@@ -4409,20 +4628,25 @@
         "Rathalos Firesword",
         "Blue Wing"
       ],
-      "sharpness_plus": "8.3.11.8"
+      "sharpness_plus": "8.3.11.8",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Rathalos Firesword",
-      "attack": "768",
-      "element": "Fire 420",
+      "attack": 768,
       "sharpness": "7.2.10.7",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "8000",
+      "improve_cost": 8000,
       "improve_from": [
         "Red Wing"
       ],
@@ -4448,20 +4672,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "7.2.10.7.2"
+      "sharpness_plus": "7.2.10.7.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Blue Wing",
-      "attack": "720",
-      "element": "Fire 380",
+      "attack": 720,
       "sharpness": "8.3.11.8",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": [
         "Red Wing"
       ],
@@ -4489,20 +4718,25 @@
       "improve_to": [
         "Shiny Rathalos Sword"
       ],
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Shiny Rathalos Sword",
-      "attack": "864",
-      "element": "Fire 520",
+      "attack": 864,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": [
         "Blue Wing"
       ],
@@ -4528,20 +4762,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Red Stripe",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "3.7.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+4",
-      "rarity": "2",
+      "rarity": 2,
       "type": "gs",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "Bone Blade+"
       ],
@@ -4595,20 +4834,20 @@
         "Red Pincer",
         "Ceanataur Blade"
       ],
-      "sharpness_plus": "3.7.10"
+      "sharpness_plus": "3.7.10",
+      "elements": null
     },
     {
       "name": "Red Pincer",
-      "attack": "720",
-      "element": null,
+      "attack": 720,
       "sharpness": "3.7.15",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "3100",
+      "improve_cost": 3100,
       "improve_from": [
         "Red Stripe"
       ],
@@ -4636,20 +4875,20 @@
       "improve_to": [
         "Great Pincer"
       ],
-      "sharpness_plus": "3.7.18.2"
+      "sharpness_plus": "3.7.18.2",
+      "elements": null
     },
     {
       "name": "Great Pincer",
-      "attack": "768",
-      "element": null,
+      "attack": 768,
       "sharpness": "3.7.18.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+20",
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": [
         "Red Pincer"
       ],
@@ -4678,20 +4917,20 @@
         "Crab Cutter",
         "Killer's Scythe"
       ],
-      "sharpness_plus": "3.7.18.4.3"
+      "sharpness_plus": "3.7.18.4.3",
+      "elements": null
     },
     {
       "name": "Violet Pincer",
-      "attack": "1104",
-      "element": null,
+      "attack": 1104,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+40",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "85000",
-      "improve_cost": "85000",
+      "create_cost": 85000,
+      "improve_cost": 85000,
       "improve_from": [
         "Daimyo Cutter",
         "Killer's Scythe"
@@ -4745,20 +4984,20 @@
       "improve_to": [
         "Grand Pincer"
       ],
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": null
     },
     {
       "name": "Grand Pincer",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+40",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": [
         "Violet Pincer"
       ],
@@ -4790,20 +5029,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Killer's Scythe",
-      "attack": "1008",
-      "element": null,
+      "attack": 1008,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": [
         "Great Pincer",
         "Blue Claw Blade"
@@ -4834,20 +5073,20 @@
         "Carmine Blade",
         "Violet Pincer"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": null
     },
     {
       "name": "Carmine Blade",
-      "attack": "1200",
-      "element": null,
+      "attack": 1200,
       "sharpness": "12.11.5.4.8.3.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "85000",
-      "improve_cost": "85000",
+      "create_cost": 85000,
+      "improve_cost": 85000,
       "improve_from": [
         "Killer's Scythe"
       ],
@@ -4900,19 +5139,19 @@
       "improve_to": [
         "Killer's Carver"
       ],
-      "sharpness_plus": "12.11.5.4.8.3.2"
+      "sharpness_plus": "12.11.5.4.8.3.2",
+      "elements": null
     },
     {
       "name": "dummy (RoaringDecisionSword)",
-      "attack": "1152",
-      "element": null,
+      "attack": 1152,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "50",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "250",
+      "create_cost": 250,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4943,20 +5182,20 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": null
     },
     {
       "name": "Killer's Carver",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": [
         "Carmine Blade"
       ],
@@ -4982,20 +5221,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Ceanataur Blade",
-      "attack": "720",
-      "element": null,
+      "attack": 720,
       "sharpness": "5.3.9.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "3650",
+      "improve_cost": 3650,
       "improve_from": [
         "Red Stripe"
       ],
@@ -5023,20 +5262,20 @@
       "improve_to": [
         "Blue Claw Blade"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": null
     },
     {
       "name": "Blue Claw Blade",
-      "attack": "816",
-      "element": null,
+      "attack": 816,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": [
         "Ceanataur Blade"
       ],
@@ -5064,19 +5303,19 @@
       "improve_to": [
         "Killer's Scythe"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": null
     },
     {
       "name": "Frozen Tuna",
-      "attack": "336",
-      "element": "Ice 330",
+      "attack": 336,
       "sharpness": "3.7.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "gs",
-      "create_cost": "7500",
+      "create_cost": 7500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5097,20 +5336,25 @@
       "improve_to": [
         "Crystallized Tuna"
       ],
-      "sharpness_plus": "3.7.15"
+      "sharpness_plus": "3.7.15",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 330
+        }
+      ]
     },
     {
       "name": "Crystallized Tuna",
-      "attack": "480",
-      "element": "Ice 700",
+      "attack": 480,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": [
         "Frozen Tuna"
       ],
@@ -5136,19 +5380,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 700
+        }
+      ]
     },
     {
       "name": "Black Belt Blade",
-      "attack": "720",
-      "element": null,
+      "attack": 720,
       "sharpness": "5.3.9.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "gs",
-      "create_cost": "6000",
+      "create_cost": 6000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5181,20 +5430,20 @@
       "improve_to": [
         "Expert Blade"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": null
     },
     {
       "name": "Expert Blade",
-      "attack": "1008",
-      "element": null,
+      "attack": 1008,
       "sharpness": "8.3.11.8",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "20000",
+      "improve_cost": 20000,
       "improve_from": [
         "Black Belt Blade"
       ],
@@ -5222,20 +5471,20 @@
       "improve_to": [
         "Warrior's Blade"
       ],
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": null
     },
     {
       "name": "Warrior's Blade",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": [
         "Expert Blade"
       ],
@@ -5267,19 +5516,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Tiger Agito",
-      "attack": "816",
-      "element": null,
+      "attack": 816,
       "sharpness": "18.2.7.7.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "35000",
+      "create_cost": 35000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5313,20 +5562,20 @@
         "Tigrex Great Sword",
         "Hidden Blaze"
       ],
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": null
     },
     {
       "name": "Tigrex Great Sword",
-      "attack": "1056",
-      "element": null,
+      "attack": 1056,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": [
         "Tiger Agito"
       ],
@@ -5354,20 +5603,20 @@
       "improve_to": [
         "Tigrex Supreme Sword"
       ],
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": null
     },
     {
       "name": "Tigrex Supreme Sword",
-      "attack": "1392",
-      "element": null,
+      "attack": 1392,
       "sharpness": "18.2.7.7.4.4.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": [
         "Tigrex Great Sword"
       ],
@@ -5393,20 +5642,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": null
     },
     {
       "name": "Hidden Blaze",
-      "attack": "912",
-      "element": null,
+      "attack": 912,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": [
         "Tiger Agito"
       ],
@@ -5459,20 +5708,20 @@
       "improve_to": [
         "Darkness Darkblade"
       ],
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Darkness Darkblade",
-      "attack": "1152",
-      "element": null,
+      "attack": 1152,
       "sharpness": "8.3.11.10.6.5.2",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": [
         "Hidden Blaze"
       ],
@@ -5529,19 +5778,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Dragonslayer",
-      "attack": "624",
-      "element": "Dragon 460",
+      "attack": 624,
       "sharpness": "5.3.9.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "5600",
+      "create_cost": 5600,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5574,20 +5823,25 @@
       "improve_to": [
         "Eternal Annihilator"
       ],
-      "sharpness_plus": "5.3.9.13"
+      "sharpness_plus": "5.3.9.13",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 460
+        }
+      ]
     },
     {
       "name": "Eternal Annihilator",
-      "attack": "672",
-      "element": "Dragon 520",
+      "attack": 672,
       "sharpness": "13.1.6.10",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Dragonslayer"
       ],
@@ -5615,20 +5869,25 @@
       "improve_to": [
         "Eternal Eradicator"
       ],
-      "sharpness_plus": "13.1.6.13.2"
+      "sharpness_plus": "13.1.6.13.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Eternal Eradicator",
-      "attack": "720",
-      "element": "Dragon 840",
+      "attack": 720,
       "sharpness": "13.1.6.13.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "65000",
+      "improve_cost": 65000,
       "improve_from": [
         "Eternal Annihilator"
       ],
@@ -5656,20 +5915,25 @@
       "improve_to": [
         "Eternal Destroyer"
       ],
-      "sharpness_plus": "13.1.6.13.4.3"
+      "sharpness_plus": "13.1.6.13.4.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 840
+        }
+      ]
     },
     {
       "name": "Eternal Destroyer",
-      "attack": "1008",
-      "element": "Dragon 860",
+      "attack": 1008,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": [
         "Eternal Eradicator"
       ],
@@ -5701,19 +5965,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 860
+        }
+      ]
     },
     {
       "name": "Black Blade",
-      "attack": "720",
-      "element": "Dragon 140",
+      "attack": 720,
       "sharpness": "16.3.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
-      "create_cost": "15000",
+      "create_cost": 15000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5741,20 +6010,25 @@
         "Fatalis Blade",
         "Fatalis Ancestor"
       ],
-      "sharpness_plus": "16.3.2.9"
+      "sharpness_plus": "16.3.2.9",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 140
+        }
+      ]
     },
     {
       "name": "Fatalis Blade",
-      "attack": "1008",
-      "element": "Dragon 250",
+      "attack": 1008,
       "sharpness": "16.3.2.9",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Black Blade"
       ],
@@ -5782,20 +6056,25 @@
       "improve_to": [
         "Black Fatalis Blade"
       ],
-      "sharpness_plus": "16.3.2.9.5"
+      "sharpness_plus": "16.3.2.9.5",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Black Fatalis Blade",
-      "attack": "1344",
-      "element": "Dragon 270",
+      "attack": 1344,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": [
         "Fatalis Blade"
       ],
@@ -5821,20 +6100,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 270
+        }
+      ]
     },
     {
       "name": "Fatalis Ancestor",
-      "attack": "960",
-      "element": "Dragon 380",
+      "attack": 960,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Black Blade"
       ],
@@ -5862,20 +6146,25 @@
       "improve_to": [
         "Fatalis Legacy"
       ],
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Fatalis Legacy",
-      "attack": "1200",
-      "element": "Dragon 400",
+      "attack": 1200,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": [
         "Fatalis Ancestor"
       ],
@@ -5907,19 +6196,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Akantor Broadsword",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "8.3.9",
       "affinity": "50%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5952,20 +6246,20 @@
       "improve_to": [
         "Akantor Broadsword+"
       ],
-      "sharpness_plus": "8.3.11.3"
+      "sharpness_plus": "8.3.11.3",
+      "elements": null
     },
     {
       "name": "Akantor Broadsword+",
-      "attack": "1584",
-      "element": null,
+      "attack": 1584,
       "sharpness": "8.3.11.3",
       "affinity": "50%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "145000",
+      "improve_cost": 145000,
       "improve_from": [
         "Akantor Broadsword"
       ],
@@ -5997,19 +6291,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.3.11.8"
+      "sharpness_plus": "8.3.11.8",
+      "elements": null
     },
     {
       "name": "G Blade",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6040,19 +6334,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": null
     },
     {
       "name": "Ukanlos Destructor",
-      "attack": "1680",
-      "element": "Ice 120",
+      "attack": 1680,
       "sharpness": "18.2.7.7.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "150000",
+      "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6083,19 +6377,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Rusted Great Sword",
-      "attack": "432",
-      "element": null,
+      "attack": 432,
       "sharpness": "18.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6110,20 +6409,20 @@
       "improve_to": [
         "Tarnished Great Swd"
       ],
-      "sharpness_plus": "18.2.5"
+      "sharpness_plus": "18.2.5",
+      "elements": null
     },
     {
       "name": "Tarnished Great Swd",
-      "attack": "528",
-      "element": null,
+      "attack": 528,
       "sharpness": "18.2.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "2500",
+      "improve_cost": 2500,
       "improve_from": [
         "Rusted Great Sword"
       ],
@@ -6140,20 +6439,20 @@
         "Ancient Blade",
         "Steel Ice Blade"
       ],
-      "sharpness_plus": "18.2.7.3"
+      "sharpness_plus": "18.2.7.3",
+      "elements": null
     },
     {
       "name": "Ancient Blade",
-      "attack": "864",
-      "element": "Dragon 100",
+      "attack": 864,
       "sharpness": "16.3.2.9",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Tarnished Great Swd"
       ],
@@ -6173,20 +6472,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.5"
+      "sharpness_plus": "16.3.2.9.5",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Steel Ice Blade",
-      "attack": "672",
-      "element": "Ice 200",
+      "attack": 672,
       "sharpness": "16.3.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Tarnished Great Swd"
       ],
@@ -6214,20 +6518,25 @@
       "improve_to": [
         "Steel Ice Blade+"
       ],
-      "sharpness_plus": "16.3.2.9"
+      "sharpness_plus": "16.3.2.9",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Steel Ice Blade+",
-      "attack": "720",
-      "element": "Ice 240",
+      "attack": 720,
       "sharpness": "16.3.2.9",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": [
         "Steel Ice Blade"
       ],
@@ -6256,20 +6565,25 @@
         "Daora's Decimator",
         "Icesteel Blade"
       ],
-      "sharpness_plus": "16.3.2.9.5"
+      "sharpness_plus": "16.3.2.9.5",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Daora's Decimator",
-      "attack": "912",
-      "element": "Ice 350",
+      "attack": 912,
       "sharpness": "16.3.2.9.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "Steel Ice Blade+"
       ],
@@ -6297,20 +6611,25 @@
       "improve_to": [
         "Daora's Tughril Beg"
       ],
-      "sharpness_plus": "16.3.2.9.7.3"
+      "sharpness_plus": "16.3.2.9.7.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Daora's Tughril Beg",
-      "attack": "1296",
-      "element": "Ice 450",
+      "attack": 1296,
       "sharpness": "16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": [
         "Daora's Decimator"
       ],
@@ -6342,19 +6661,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.6.2"
+      "sharpness_plus": "16.3.2.9.7.6.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Worn Great Sword",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "18.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6369,20 +6693,20 @@
       "improve_to": [
         "Weathered Grt Sword"
       ],
-      "sharpness_plus": "18.2.5"
+      "sharpness_plus": "18.2.5",
+      "elements": null
     },
     {
       "name": "Weathered Grt Sword",
-      "attack": "720",
-      "element": null,
+      "attack": 720,
       "sharpness": "12.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "12500",
+      "improve_cost": 12500,
       "improve_from": [
         "Worn Great Sword"
       ],
@@ -6399,20 +6723,20 @@
         "Epitaph Blade",
         "Teostra Blade"
       ],
-      "sharpness_plus": "12.11.5.2"
+      "sharpness_plus": "12.11.5.2",
+      "elements": null
     },
     {
       "name": "Epitaph Blade",
-      "attack": "960",
-      "element": "Dragon 100",
+      "attack": 960,
       "sharpness": "3.7.18.4.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": [
         "Weathered Grt Sword"
       ],
@@ -6434,20 +6758,25 @@
       "improve_to": [
         "Epitaph Eternal"
       ],
-      "sharpness_plus": "3.7.18.4.4.4"
+      "sharpness_plus": "3.7.18.4.4.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Epitaph Eternal",
-      "attack": "1152",
-      "element": "Dragon 100",
+      "attack": 1152,
       "sharpness": "18.2.7.7.4.2",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Epitaph Blade"
       ],
@@ -6473,20 +6802,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Teostra Blade",
-      "attack": "768",
-      "element": "Fire 480",
+      "attack": 768,
       "sharpness": "5.3.9.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": [
         "Weathered Grt Sword"
       ],
@@ -6514,20 +6848,25 @@
       "improve_to": [
         "King Teostra Blade"
       ],
-      "sharpness_plus": "5.3.9.14.4"
+      "sharpness_plus": "5.3.9.14.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "King Teostra Blade",
-      "attack": "816",
-      "element": "Fire 620",
+      "attack": 816,
       "sharpness": "5.3.9.14.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "Teostra Blade"
       ],
@@ -6555,20 +6894,25 @@
       "improve_to": [
         "Teostra del Sol"
       ],
-      "sharpness_plus": "5.3.9.14.6.3"
+      "sharpness_plus": "5.3.9.14.6.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 620
+        }
+      ]
     },
     {
       "name": "Teostra del Sol",
-      "attack": "1248",
-      "element": "Fire 650",
+      "attack": 1248,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": [
         "King Teostra Blade"
       ],
@@ -6594,19 +6938,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 650
+        }
+      ]
     },
     {
       "name": "Buster Blade G",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6637,19 +6986,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Bone Blade G",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6680,19 +7029,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "TarnishdGreatSwd G",
-      "attack": "1536",
-      "element": null,
+      "attack": 1536,
       "sharpness": "18.2.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6711,19 +7060,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "18.2.7.3"
+      "sharpness_plus": "18.2.7.3",
+      "elements": null
     },
     {
       "name": "Ravager Blade G",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+2",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6754,19 +7103,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Golem Blade G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+4",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6797,19 +7146,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Sentinel G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "3.7.18.4.4.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+20",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6840,19 +7189,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.7.18.4.4.4.5"
+      "sharpness_plus": "3.7.18.4.4.4.5",
+      "elements": null
     },
     {
       "name": "Red Stripe G",
-      "attack": "1392",
-      "element": null,
+      "attack": 1392,
       "sharpness": "3.7.18.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+4",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6883,19 +7232,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.7.18.4.4.4"
+      "sharpness_plus": "3.7.18.4.4.4",
+      "elements": null
     },
     {
       "name": "GoldnSerpentblade G",
-      "attack": "1152",
-      "element": "Ice 400",
+      "attack": 1152,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6926,19 +7275,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Great Serpentblade G",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6969,19 +7323,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Cat's Soul G",
-      "attack": "1104",
-      "element": "Paralysis 450",
+      "attack": 1104,
       "sharpness": "8.3.11.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100.000",
+      "create_cost": 100,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7012,19 +7366,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.3"
+      "sharpness_plus": "8.3.11.10.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "PoisnSerpentblade G",
-      "attack": "1248",
-      "element": "Poison 380",
+      "attack": 1248,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7055,19 +7414,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Decapitator G",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7098,19 +7462,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Great Pincer G",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "3.7.18.4.4.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+20",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7141,19 +7505,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.7.18.4.4.4.5"
+      "sharpness_plus": "3.7.18.4.4.4.5",
+      "elements": null
     },
     {
       "name": "Executioner G",
-      "attack": "1392",
-      "element": null,
+      "attack": 1392,
       "sharpness": "18.2.7.7.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7184,19 +7548,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.2"
+      "sharpness_plus": "18.2.7.7.4.2",
+      "elements": null
     },
     {
       "name": "Barbaroi Blade G",
-      "attack": "1248",
-      "element": "Fire 500",
+      "attack": 1248,
       "sharpness": "9.4.11.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+16",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "2150",
+      "create_cost": 2150,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7227,19 +7591,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.3"
+      "sharpness_plus": "9.4.11.7.6.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Chrome Razor G",
-      "attack": "1152",
-      "element": "Poison 500",
+      "attack": 1152,
       "sharpness": "16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7270,19 +7639,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.6.2"
+      "sharpness_plus": "16.3.2.9.7.6.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Plesioth Waterswd G",
-      "attack": "1200",
-      "element": "Water 390",
+      "attack": 1200,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7313,19 +7687,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 390
+        }
+      ]
     },
     {
       "name": "Plesioth Crystaswd G",
-      "attack": "1104",
-      "element": "Water 620",
+      "attack": 1104,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7356,19 +7735,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 620
+        }
+      ]
     },
     {
       "name": "Killer's Scythe G",
-      "attack": "1200",
-      "element": null,
+      "attack": 1200,
       "sharpness": "5.3.9.14.6.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7399,19 +7783,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Black Belt Blade G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "5.3.9.14.6.3.0",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7442,19 +7826,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Ancient P G",
-      "attack": "1344",
-      "element": "Dragon 100",
+      "attack": 1344,
       "sharpness": "16.3.2.9.7.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7485,19 +7869,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.6.2"
+      "sharpness_plus": "16.3.2.9.7.6.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Carbalite Sword G",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7528,19 +7917,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": null
     },
     {
       "name": "Wyvern Agito G",
-      "attack": "1344",
-      "element": null,
+      "attack": 1344,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7571,19 +7960,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Crystallized Tuna G",
-      "attack": "816",
-      "element": "Ice 700",
+      "attack": 816,
       "sharpness": "18.2.7.7.4.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7614,19 +8003,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "18.2.7.7.4.4.3"
+      "sharpness_plus": "18.2.7.7.4.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 700
+        }
+      ]
     },
     {
       "name": "Judgment G",
-      "attack": "1440",
-      "element": null,
+      "attack": 1440,
       "sharpness": "12.11.5.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7657,19 +8051,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "12.11.5.4.8"
+      "sharpness_plus": "12.11.5.4.8",
+      "elements": null
     },
     {
       "name": "True Dragon's Jaw G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7700,19 +8094,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": null
     },
     {
       "name": "Tactical Blade G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "5.3.9.14.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
-      "rarity": "9",
+      "rarity": 9,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7743,19 +8137,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.3.9.14.6.5.3"
+      "sharpness_plus": "5.3.9.14.6.5.3",
+      "elements": null
     },
     {
       "name": "Rathalos Firesword G",
-      "attack": "1200",
-      "element": "Fire 420",
+      "attack": 1200,
       "sharpness": "8.3.11.10.6.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7786,19 +8180,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.5.2"
+      "sharpness_plus": "8.3.11.10.6.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "ShinyRathalosSwd G",
-      "attack": "1152",
-      "element": "Fire 520",
+      "attack": 1152,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7829,19 +8228,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Enforcer's Axe G",
-      "attack": "1440",
-      "element": null,
+      "attack": 1440,
       "sharpness": "8.3.11.10.3",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7872,19 +8276,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.3.11.10.6.2"
+      "sharpness_plus": "8.3.11.10.6.2",
+      "elements": null
     },
     {
       "name": "Siegmund G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "20%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7915,19 +8319,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": null
     },
     {
       "name": "Sieglinde G",
-      "attack": "1296",
-      "element": null,
+      "attack": 1296,
       "sharpness": "16.3.2.9.7.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+6",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7958,19 +8362,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "16.3.2.9.7.6.2"
+      "sharpness_plus": "16.3.2.9.7.6.2",
+      "elements": null
     },
     {
       "name": "Pael Keizah G",
-      "attack": "1248",
-      "element": "Dragon 230",
+      "attack": 1248,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8001,19 +8405,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Blushing Dame G",
-      "attack": "1200",
-      "element": "Dragon 220",
+      "attack": 1200,
       "sharpness": "9.4.11.7.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8044,19 +8453,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.4.11.7.6.4.4"
+      "sharpness_plus": "9.4.11.7.6.4.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "EternlAnnihilator G",
-      "attack": "1104",
-      "element": "Dragon 520",
+      "attack": 1104,
       "sharpness": "13.1.6.13.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "gs",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8087,7 +8501,13 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "13.1.6.13.4.6.2"
+      "sharpness_plus": "13.1.6.13.4.6.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 520
+        }
+      ]
     }
   ]
 }

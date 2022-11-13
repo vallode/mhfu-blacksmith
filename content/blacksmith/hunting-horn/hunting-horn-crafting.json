@@ -2,21 +2,20 @@
   "weapons": [
     {
       "name": "Lava Alphorn",
-      "attack": "1248",
-      "element": "Fire 270",
+      "attack": 1248,
       "sharpness": "5.4.14.10.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
-      "improve_cost": "100000",
+      "create_cost": 100000,
+      "improve_cost": 100000,
       "improve_from": "Blacksmith",
       "create_mats": [
         {
@@ -67,17 +66,22 @@
       "improve_to": [
         "Volcano Alphorn"
       ],
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 270
+        }
+      ]
     },
     {
       "name": "Volcano Alphorn",
-      "attack": "1404",
-      "element": "Fire 300",
+      "attack": 1404,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "y",
@@ -85,7 +89,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Lava Alphorn",
       "create_mats": null,
       "improve_mats": [
@@ -115,25 +119,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Bronze Bell",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+24",
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "p",
         "b",
         "y"
       ],
       "type": "hh",
-      "create_cost": "35000",
-      "improve_cost": "35000",
+      "create_cost": 35000,
+      "improve_cost": 35000,
       "improve_from": "Anvil Hammer",
       "create_mats": [
         {
@@ -184,17 +193,17 @@
       "improve_to": [
         "Gaoren Bell"
       ],
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": null
     },
     {
       "name": "Gaoren Bell",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+34",
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "b",
@@ -202,7 +211,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": "Bronze Bell",
       "create_mats": null,
       "improve_mats": [
@@ -228,17 +237,17 @@
       "improve_to": [
         "Gaoren Zhong"
       ],
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": null
     },
     {
       "name": "Gaoren Zhong",
-      "attack": "1560",
-      "element": null,
+      "attack": 1560,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+36",
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "b",
@@ -246,7 +255,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Gaoren Bell",
       "create_mats": null,
       "improve_mats": [
@@ -276,25 +285,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": null
     },
     {
       "name": "Sakura Recorder",
-      "attack": "884",
-      "element": "Dragon 290",
+      "attack": 884,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "w",
         "a",
         "b"
       ],
       "type": "hh",
-      "create_cost": "25000",
-      "improve_cost": "25000",
+      "create_cost": 25000,
+      "improve_cost": 25000,
       "improve_from": "Anvil Hammer",
       "create_mats": [
         {
@@ -345,17 +354,22 @@
       "improve_to": [
         "Sakura Recorder+"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Sakura Recorder+",
-      "attack": "936",
-      "element": "Dragon 340",
+      "attack": 936,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "w",
         "a",
@@ -363,7 +377,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": "Sakura Recorder",
       "create_mats": null,
       "improve_mats": [
@@ -389,17 +403,22 @@
       "improve_to": [
         "Gold Recorder"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Gold Recorder",
-      "attack": "988",
-      "element": "Dragon 380",
+      "attack": 988,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "a",
@@ -407,7 +426,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Sakura Recorder+",
       "create_mats": null,
       "improve_mats": [
@@ -433,17 +452,22 @@
       "improve_to": [
         "Gold Recorder+"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Gold Recorder+",
-      "attack": "1196",
-      "element": "Dragon 400",
+      "attack": 1196,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "a",
@@ -451,7 +475,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Gold Recorder",
       "create_mats": null,
       "improve_mats": [
@@ -483,17 +507,22 @@
       "improve_to": [
         "Lunar Recorder"
       ],
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Lunar Recorder",
-      "attack": "1300",
-      "element": "Dragon 420",
+      "attack": 1300,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "a",
@@ -501,7 +530,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": "Gold Recorder+",
       "create_mats": null,
       "improve_mats": [
@@ -525,25 +554,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Metal Bagpipe",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "3.2.15",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "2",
+      "rarity": 2,
       "notes": [
         "w",
         "g",
         "r"
       ],
       "type": "hh",
-      "create_cost": "2340",
-      "improve_cost": "2340",
+      "create_cost": 2340,
+      "improve_cost": 2340,
       "improve_from": "War Mace",
       "create_mats": [
         {
@@ -594,17 +628,17 @@
       "improve_to": [
         "Great Bagpipe"
       ],
-      "sharpness_plus": "3.2.17.3"
+      "sharpness_plus": "3.2.17.3",
+      "elements": null
     },
     {
       "name": "Great Bagpipe",
-      "attack": "832",
-      "element": null,
+      "attack": 832,
       "sharpness": "3.2.17.3",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+15",
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "g",
@@ -612,7 +646,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "4410",
+      "improve_cost": 4410,
       "improve_from": "Metal Bagpipe",
       "create_mats": null,
       "improve_mats": [
@@ -638,17 +672,17 @@
       "improve_to": [
         "Heavy Bagpipe"
       ],
-      "sharpness_plus": "3.2.17.8"
+      "sharpness_plus": "3.2.17.8",
+      "elements": null
     },
     {
       "name": "Heavy Bagpipe",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "3.2.17.8",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "w",
         "g",
@@ -656,7 +690,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Great Bagpipe",
       "create_mats": null,
       "improve_mats": [
@@ -682,17 +716,17 @@
       "improve_to": [
         "Heavy Bagpipe+"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": null
     },
     {
       "name": "Heavy Bagpipe+",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "3.2.17.12.1",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "w",
         "g",
@@ -700,7 +734,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "Heavy Bagpipe",
       "create_mats": null,
       "improve_mats": [
@@ -726,17 +760,17 @@
       "improve_to": [
         "Master Bagpipe"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": null
     },
     {
       "name": "Master Bagpipe",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "8.7.7.11.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "g",
@@ -744,7 +778,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": "Heavy Bagpipe+",
       "create_mats": null,
       "improve_mats": [
@@ -770,17 +804,17 @@
       "improve_to": [
         "Sforzando"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": null
     },
     {
       "name": "Sforzando",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "g",
@@ -788,7 +822,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": "Master Bagpipe",
       "create_mats": null,
       "improve_mats": [
@@ -812,25 +846,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Basarios Rock",
-      "attack": "676",
-      "element": "Fire 250",
+      "attack": 676,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "y",
         "a"
       ],
       "type": "hh",
-      "create_cost": "3825",
-      "improve_cost": "3825",
+      "create_cost": 3825,
+      "improve_cost": 3825,
       "improve_from": "Spiked Hammer+",
       "create_mats": [
         {
@@ -881,17 +915,22 @@
       "improve_to": [
         "Basarios Rock Mk.II"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Basarios Rock Mk.II",
-      "attack": "832",
-      "element": "Fire 280",
+      "attack": 832,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "w",
         "y",
@@ -899,7 +938,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "5715",
+      "improve_cost": 5715,
       "improve_from": "Basarios Rock",
       "create_mats": null,
       "improve_mats": [
@@ -925,17 +964,22 @@
       "improve_to": [
         "Volcanic Rock"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Volcanic Rock",
-      "attack": "988",
-      "element": "Fire 320",
+      "attack": 988,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "y",
@@ -943,7 +987,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Basarios Rock Mk.II",
       "create_mats": null,
       "improve_mats": [
@@ -969,17 +1013,22 @@
       "improve_to": [
         "Volcanic Gig"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Volcanic Gig",
-      "attack": "1300",
-      "element": "Fire 400",
+      "attack": 1300,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "y",
@@ -987,7 +1036,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": "Volcanic Rock",
       "create_mats": null,
       "improve_mats": [
@@ -1017,25 +1066,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Feather Whistle",
-      "attack": "780",
-      "element": "Sleep 120",
+      "attack": 780,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+5",
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "p",
         "g",
         "b"
       ],
       "type": "hh",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": "Kut-Ku Pick",
       "create_mats": [
         {
@@ -1086,25 +1140,30 @@
       "improve_to": [
         "Hypno Whistle"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Hypno Whistle",
-      "attack": "884",
-      "element": "Sleep 150",
+      "attack": 884,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
         "b"
       ],
       "type": "hh",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Feather Whistle",
       "create_mats": [
         {
@@ -1161,17 +1220,22 @@
       "improve_to": [
         "Hypno Slide Whistle"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Hypno Slide Whistle",
-      "attack": "1040",
-      "element": "Sleep 180",
+      "attack": 1040,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -1179,7 +1243,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Hypno Whistle",
       "create_mats": null,
       "improve_mats": [
@@ -1209,25 +1273,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Wolf Shamisen",
-      "attack": "1040",
-      "element": "Poison 150",
+      "attack": 1040,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "65000",
-      "improve_cost": "65000",
+      "create_cost": 65000,
+      "improve_cost": 65000,
       "improve_from": "Wolf Torrent",
       "create_mats": [
         {
@@ -1284,17 +1353,22 @@
       "improve_to": [
         "Crow Shamisen"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Crow Shamisen",
-      "attack": "1404",
-      "element": "Poison 180",
+      "attack": 1404,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "y",
@@ -1302,7 +1376,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Wolf Shamisen",
       "create_mats": null,
       "improve_mats": [
@@ -1332,25 +1406,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Khezu Horn",
-      "attack": "624",
-      "element": "Thunder 200",
+      "attack": 624,
       "sharpness": "9.2.13.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "notes": [
         "w",
         "b",
         "y"
       ],
       "type": "hh",
-      "create_cost": "2790",
-      "improve_cost": "2790",
+      "create_cost": 2790,
+      "improve_cost": 2790,
       "improve_from": "Atlas Hammer",
       "create_mats": [
         {
@@ -1401,17 +1480,22 @@
       "improve_to": [
         "Khezu Horn+"
       ],
-      "sharpness_plus": "9.2.13.6"
+      "sharpness_plus": "9.2.13.6",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Khezu Horn+",
-      "attack": "780",
-      "element": "Thunder 290",
+      "attack": 780,
       "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "b",
@@ -1419,7 +1503,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "5040",
+      "improve_cost": 5040,
       "improve_from": "Khezu Horn",
       "create_mats": null,
       "improve_mats": [
@@ -1447,17 +1531,22 @@
         "Blood Horn",
         "Purse Bop"
       ],
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Khezu Flute",
-      "attack": "884",
-      "element": "Thunder 480",
+      "attack": 884,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "w",
         "b",
@@ -1465,7 +1554,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": "Khezu Horn+",
       "create_mats": null,
       "improve_mats": [
@@ -1489,17 +1578,22 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "Blood Horn",
-      "attack": "936",
-      "element": "Thunder 320",
+      "attack": 936,
       "sharpness": "14.4.6.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "p",
         "g",
@@ -1507,7 +1601,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Khezu Horn+",
       "create_mats": null,
       "improve_mats": [
@@ -1533,17 +1627,22 @@
       "improve_to": [
         "Blood Flute"
       ],
-      "sharpness_plus": "14.4.6.7.4"
+      "sharpness_plus": "14.4.6.7.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Blood Flute",
-      "attack": "988",
-      "element": "Thunder 380",
+      "attack": 988,
       "sharpness": "14.4.6.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "g",
@@ -1551,7 +1650,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Blood Horn",
       "create_mats": null,
       "improve_mats": [
@@ -1577,17 +1676,22 @@
       "improve_to": [
         "Blood Flute+"
       ],
-      "sharpness_plus": "14.4.6.7.4.5"
+      "sharpness_plus": "14.4.6.7.4.5",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Blood Flute+",
-      "attack": "1092",
-      "element": "Thunder 400",
+      "attack": 1092,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -1595,7 +1699,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Blood Flute",
       "create_mats": null,
       "improve_mats": [
@@ -1627,17 +1731,22 @@
       "improve_to": [
         "Brute Flute"
       ],
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Brute Flute",
-      "attack": "1300",
-      "element": "Thunder 420",
+      "attack": 1300,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -1645,7 +1754,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Blood Flute+",
       "create_mats": null,
       "improve_mats": [
@@ -1669,25 +1778,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Shell Castanet",
-      "attack": "1040",
-      "element": "Water 220",
+      "attack": 1040,
       "sharpness": "10.1.3.17.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": "Ancient Relic",
       "create_mats": [
         {
@@ -1739,17 +1853,22 @@
         "Shell Castanet+",
         "Crabby Castanet"
       ],
-      "sharpness_plus": "10.1.3.17.6.3"
+      "sharpness_plus": "10.1.3.17.6.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Shell Castanet+",
-      "attack": "1144",
-      "element": "Water 240",
+      "attack": 1144,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+15",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "b",
@@ -1757,7 +1876,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": "Shell Castanet",
       "create_mats": null,
       "improve_mats": [
@@ -1789,17 +1908,22 @@
       "improve_to": [
         "Bi-Colored Castanet"
       ],
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Bi-Colored Castanet",
-      "attack": "1404",
-      "element": "Water 260",
+      "attack": 1404,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+20",
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "b",
@@ -1807,7 +1931,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Shell Castanet+",
       "create_mats": null,
       "improve_mats": [
@@ -1837,17 +1961,22 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Crabby Castanet",
-      "attack": "1300",
-      "element": null,
+      "attack": 1300,
       "sharpness": "5.4.14.10.4.6.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+28",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -1855,7 +1984,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Shell Castanet",
       "create_mats": null,
       "improve_mats": [
@@ -1881,17 +2010,17 @@
       "improve_to": [
         "Klick-Klack"
       ],
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Klick-Klack",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "9.2.13.7.5.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+34",
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "g",
@@ -1899,7 +2028,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Crabby Castanet",
       "create_mats": null,
       "improve_mats": [
@@ -1929,25 +2058,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": null
     },
     {
       "name": "Sonic Glass",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "10.1.3.11",
       "affinity": "5%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "notes": [
         "w",
         "g",
         "y"
       ],
       "type": "hh",
-      "create_cost": "2340",
-      "improve_cost": "2340",
+      "create_cost": 2340,
+      "improve_cost": 2340,
       "improve_from": "Skullcrusher+",
       "create_mats": [
         {
@@ -1998,17 +2127,17 @@
       "improve_to": [
         "Sonic Glass+"
       ],
-      "sharpness_plus": "10.1.3.16"
+      "sharpness_plus": "10.1.3.16",
+      "elements": null
     },
     {
       "name": "Sonic Glass+",
-      "attack": "728",
-      "element": null,
+      "attack": 728,
       "sharpness": "8.7.7.11.2",
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "g",
@@ -2016,7 +2145,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "3285",
+      "improve_cost": 3285,
       "improve_from": "Sonic Glass",
       "create_mats": null,
       "improve_mats": [
@@ -2042,17 +2171,17 @@
       "improve_to": [
         "Glass Queen"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": null
     },
     {
       "name": "Glass Queen",
-      "attack": "832",
-      "element": null,
+      "attack": 832,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "p",
         "g",
@@ -2060,7 +2189,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": "Sonic Glass+",
       "create_mats": null,
       "improve_mats": [
@@ -2086,25 +2215,25 @@
       "improve_to": [
         "Glass Royale"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Glass Royale",
-      "attack": "1092",
-      "element": "Ice 250",
+      "attack": 1092,
       "sharpness": "8.7.7.11.5.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
         "y"
       ],
       "type": "hh",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Glass Queen",
       "create_mats": [
         {
@@ -2155,17 +2284,22 @@
       "improve_to": [
         "Queen's Flute"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Queen's Flute",
-      "attack": "1248",
-      "element": "Ice 300",
+      "attack": 1248,
       "sharpness": "5.4.14.10.4.6.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -2173,7 +2307,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Glass Royale",
       "create_mats": null,
       "improve_mats": [
@@ -2203,25 +2337,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Giaprey Balloon",
-      "attack": "416",
-      "element": "Ice 100",
+      "attack": 416,
       "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "notes": [
         "w",
         "g",
         "a"
       ],
       "type": "hh",
-      "create_cost": "990",
-      "improve_cost": "990",
+      "create_cost": 990,
+      "improve_cost": 990,
       "improve_from": "Bone Club",
       "create_mats": [
         {
@@ -2286,17 +2425,22 @@
       "improve_to": [
         "Giaprey Balloon+"
       ],
-      "sharpness_plus": "3.2.15"
+      "sharpness_plus": "3.2.15",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Giaprey Balloon+",
-      "attack": "520",
-      "element": "Ice 150",
+      "attack": 520,
       "sharpness": "3.2.15",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "notes": [
         "w",
         "g",
@@ -2304,7 +2448,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "1935",
+      "improve_cost": 1935,
       "improve_from": "Giaprey Balloon",
       "create_mats": null,
       "improve_mats": [
@@ -2331,17 +2475,22 @@
         "Giadrome Balloon",
         "Velociprey Balloon"
       ],
-      "sharpness_plus": "3.2.17.3"
+      "sharpness_plus": "3.2.17.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Giadrome Balloon",
-      "attack": "1040",
-      "element": "Ice 180",
+      "attack": 1040,
       "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "w",
         "g",
@@ -2349,7 +2498,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Giaprey Balloon+",
       "create_mats": null,
       "improve_mats": [
@@ -2373,17 +2522,22 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Velociprey Balloon",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "p",
         "g",
@@ -2391,7 +2545,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": "Giaprey Balloon+",
       "create_mats": null,
       "improve_mats": [
@@ -2423,17 +2577,17 @@
       "improve_to": [
         "Velociprey Balloon+"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": null
     },
     {
       "name": "Velociprey Balloon+",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "g",
@@ -2441,7 +2595,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Velociprey Balloon",
       "create_mats": null,
       "improve_mats": [
@@ -2473,17 +2627,17 @@
       "improve_to": [
         "Velocidrome Balloon"
       ],
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": null
     },
     {
       "name": "Velocidrome Balloon",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -2491,7 +2645,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Velociprey Balloon+",
       "create_mats": null,
       "improve_mats": [
@@ -2523,17 +2677,17 @@
       "improve_to": [
         "Velocidrome Balloon+"
       ],
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": null
     },
     {
       "name": "Velocidrome Balloon+",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -2541,7 +2695,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Velocidrome Balloon",
       "create_mats": null,
       "improve_mats": [
@@ -2571,24 +2725,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Ivory Horn",
-      "attack": "364",
-      "element": null,
+      "attack": 364,
       "sharpness": "9.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "notes": [
         "w",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "585",
+      "create_cost": 585,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -2610,25 +2764,25 @@
         "Bone Horn",
         "War Drum"
       ],
-      "sharpness_plus": "9.2.9"
+      "sharpness_plus": "9.2.9",
+      "elements": null
     },
     {
       "name": "Bone Horn",
-      "attack": "572",
-      "element": null,
+      "attack": 572,
       "sharpness": "10.1.3.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+5",
-      "rarity": "2",
+      "rarity": 2,
       "notes": [
         "w",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "1575",
-      "improve_cost": "1575",
+      "create_cost": 1575,
+      "improve_cost": 1575,
       "improve_from": [
         "Ivory Horn",
         "Cyclo-Hammer"
@@ -2665,17 +2819,17 @@
         "Bone Horn+",
         "Blessed Ocarina"
       ],
-      "sharpness_plus": "10.1.3.6"
+      "sharpness_plus": "10.1.3.6",
+      "elements": null
     },
     {
       "name": "Bone Horn+",
-      "attack": "884",
-      "element": null,
+      "attack": 884,
       "sharpness": "10.1.3.6",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "b",
@@ -2683,7 +2837,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "5040",
+      "improve_cost": 5040,
       "improve_from": "Bone Horn",
       "create_mats": null,
       "improve_mats": [
@@ -2709,17 +2863,17 @@
       "improve_to": [
         "Hunter's Horn"
       ],
-      "sharpness_plus": "10.1.3.11"
+      "sharpness_plus": "10.1.3.11",
+      "elements": null
     },
     {
       "name": "Hunter's Horn",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "w",
         "b",
@@ -2727,7 +2881,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": "Bone Horn+",
       "create_mats": null,
       "improve_mats": [
@@ -2753,17 +2907,17 @@
       "improve_to": [
         "Hunter's Horn+"
       ],
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": null
     },
     {
       "name": "Hunter's Horn+",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+12",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "b",
@@ -2771,7 +2925,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Hunter's Horn",
       "create_mats": null,
       "improve_mats": [
@@ -2803,17 +2957,17 @@
       "improve_to": [
         "Native's Horn"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": null
     },
     {
       "name": "Native's Horn",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+14",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "b",
@@ -2821,7 +2975,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Hunter's Horn+",
       "create_mats": null,
       "improve_mats": [
@@ -2851,25 +3005,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Blessed Ocarina",
-      "attack": "832",
-      "element": "Poison 290",
+      "attack": 832,
       "sharpness": "14.4.6.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "w",
         "g",
         "b"
       ],
       "type": "hh",
-      "create_cost": "10000",
-      "improve_cost": "10000",
+      "create_cost": 10000,
+      "improve_cost": 10000,
       "improve_from": "Bone Horn",
       "create_mats": [
         {
@@ -2920,17 +3074,22 @@
       "improve_to": [
         "Cursed Ocarina"
       ],
-      "sharpness_plus": "14.4.6.6"
+      "sharpness_plus": "14.4.6.6",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Cursed Ocarina",
-      "attack": "936",
-      "element": "Poison 410",
+      "attack": 936,
       "sharpness": "14.4.6.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "g",
@@ -2938,7 +3097,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Blessed Ocarina",
       "create_mats": null,
       "improve_mats": [
@@ -2970,17 +3129,22 @@
       "improve_to": [
         "Genie's Ocarina"
       ],
-      "sharpness_plus": "14.4.6.7.4.5"
+      "sharpness_plus": "14.4.6.7.4.5",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 410
+        }
+      ]
     },
     {
       "name": "Genie's Ocarina",
-      "attack": "1300",
-      "element": "Poison 440",
+      "attack": 1300,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "g",
@@ -2988,7 +3152,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Cursed Ocarina",
       "create_mats": null,
       "improve_mats": [
@@ -3018,25 +3182,30 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 440
+        }
+      ]
     },
     {
       "name": "War Drum",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "5.4.11",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "notes": [
         "w",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "1935",
-      "improve_cost": "1935",
+      "create_cost": 1935,
+      "improve_cost": 1935,
       "improve_from": "Ivory Horn",
       "create_mats": [
         {
@@ -3081,25 +3250,25 @@
       "improve_to": [
         "War Drum+"
       ],
-      "sharpness_plus": "5.4.14.2"
+      "sharpness_plus": "5.4.14.2",
+      "elements": null
     },
     {
       "name": "War Drum+",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "notes": [
         "w",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "5040",
-      "improve_cost": "5040",
+      "create_cost": 5040,
+      "improve_cost": 5040,
       "improve_from": "War Drum",
       "create_mats": [
         {
@@ -3144,25 +3313,25 @@
       "improve_to": [
         "War Bongo"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": null
     },
     {
       "name": "War Bongo",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "p",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": "War Drum+",
       "create_mats": [
         {
@@ -3199,7 +3368,7 @@
         },
         {
           "name": "Congalala Pelt+",
-          "amount": "1",  
+          "amount": "1",
           "type": "pelt",
           "color": "pink"
         }
@@ -3227,17 +3396,17 @@
       "improve_to": [
         "War Conga"
       ],
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": null
     },
     {
       "name": "War Conga",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "y",
@@ -3245,7 +3414,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "War Bongo",
       "create_mats": null,
       "improve_mats": [
@@ -3278,17 +3447,17 @@
         "Conga Conga",
         "Jungle Bongo"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": null
     },
     {
       "name": "Conga Conga",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "y",
@@ -3296,7 +3465,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": "War Conga",
       "create_mats": null,
       "improve_mats": [
@@ -3326,25 +3495,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": null
     },
     {
       "name": "Jungle Bongo",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
         "b"
       ],
       "type": "hh",
-      "create_cost": "85000",
-      "improve_cost": "85000",
+      "create_cost": 85000,
+      "improve_cost": 85000,
       "improve_from": "War Conga",
       "create_mats": [
         {
@@ -3395,17 +3564,17 @@
       "improve_to": [
         "Jungle Conga"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": null
     },
     {
       "name": "Jungle Conga",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
@@ -3413,7 +3582,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Jungle Bongo",
       "create_mats": null,
       "improve_mats": [
@@ -3443,24 +3612,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Black Lute",
-      "attack": "780",
-      "element": "Dragon 100",
+      "attack": 780,
       "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "w",
         "a",
         "r"
       ],
       "type": "hh",
-      "create_cost": "15000",
+      "create_cost": 15000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3488,17 +3657,22 @@
         "Fatalis Menace",
         "Ancient Fatalis Lied"
       ],
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Fatalis Menace",
-      "attack": "1092",
-      "element": "Dragon 260",
+      "attack": 1092,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "a",
@@ -3506,7 +3680,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Black Lute",
       "create_mats": null,
       "improve_mats": [
@@ -3538,17 +3712,22 @@
       "improve_to": [
         "Fatalis Menace Lute"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Fatalis Menace Lute",
-      "attack": "1456",
-      "element": "Dragon 320",
+      "attack": 1456,
       "sharpness": "10.1.3.17.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "a",
@@ -3556,7 +3735,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": "Fatalis Menace",
       "create_mats": null,
       "improve_mats": [
@@ -3580,17 +3759,22 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.3"
+      "sharpness_plus": "10.1.3.17.6.3",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Ancient Fatalis Lied",
-      "attack": "1040",
-      "element": "Dragon 330",
+      "attack": 1040,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "g",
@@ -3598,7 +3782,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Black Lute",
       "create_mats": null,
       "improve_mats": [
@@ -3630,17 +3814,22 @@
       "improve_to": [
         "Ancient Fatalis Lute"
       ],
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 330
+        }
+      ]
     },
     {
       "name": "Ancient Fatalis Lute",
-      "attack": "1352",
-      "element": "Dragon 380",
+      "attack": 1352,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "g",
@@ -3648,7 +3837,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": "Ancient Fatalis Lied",
       "create_mats": null,
       "improve_mats": [
@@ -3678,24 +3867,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Dragonwood Horn",
-      "attack": "624",
-      "element": "Paralysis 140",
+      "attack": 624,
       "sharpness": "19.2.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "20000",
+      "create_cost": 20000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3728,17 +3922,22 @@
       "improve_to": [
         "Spirit Dragonwd Horn"
       ],
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 140
+        }
+      ]
     },
     {
       "name": "Spirit Dragonwd Horn",
-      "attack": "780",
-      "element": "Paralysis 220",
+      "attack": 780,
       "sharpness": "19.2.5.7.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "b",
@@ -3746,7 +3945,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Dragonwood Horn",
       "create_mats": null,
       "improve_mats": [
@@ -3772,25 +3971,30 @@
       "improve_to": [
         "AncientDrgnwoodFlute"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "AncientDrgnwoodFlute",
-      "attack": "936",
-      "element": "Paralysis 240",
+      "attack": 936,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": "Spirit Dragonwd Horn",
       "create_mats": [
         {
@@ -3841,17 +4045,22 @@
       "improve_to": [
         "DivineAncDrgnwdFlute"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "DivineAncDrgnwdFlute",
-      "attack": "1092",
-      "element": "Paralysis 260",
+      "attack": 1092,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "b",
@@ -3859,7 +4068,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "145000",
+      "improve_cost": 145000,
       "improve_from": "AncientDrgnwoodFlute",
       "create_mats": null,
       "improve_mats": [
@@ -3889,24 +4098,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Handmade Frog",
-      "attack": "884",
-      "element": "Water 450",
+      "attack": 884,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "notes": [
         "w",
         "b",
         "y"
       ],
       "type": "hh",
-      "create_cost": "40000",
+      "create_cost": 40000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3933,17 +4147,22 @@
       "improve_to": [
         "Handcrafted Frog"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Handcrafted Frog",
-      "attack": "1248",
-      "element": "Water 500",
+      "attack": 1248,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "b",
@@ -3951,7 +4170,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Handmade Frog",
       "create_mats": null,
       "improve_mats": [
@@ -3981,24 +4200,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Striped Dragonga",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "19.2.5.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "notes": [
         "w",
         "a",
         "r"
       ],
       "type": "hh",
-      "create_cost": "35000",
+      "create_cost": 35000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4032,17 +4256,17 @@
         "Tigrex Horn",
         "Hidden Tone"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": null
     },
     {
       "name": "Tigrex Horn",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "a",
@@ -4050,7 +4274,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Striped Dragonga",
       "create_mats": null,
       "improve_mats": [
@@ -4076,17 +4300,17 @@
       "improve_to": [
         "Tigrex Horn+"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Tigrex Horn+",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "19.2.5.7.4.5.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "a",
@@ -4094,7 +4318,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": "Tigrex Horn",
       "create_mats": null,
       "improve_mats": [
@@ -4124,25 +4348,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Hidden Tone",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Striped Dragonga",
       "create_mats": [
         {
@@ -4193,25 +4417,25 @@
       "improve_to": [
         "Demon's Darkflute"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Demon's Darkflute",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "3.2.17.12.4.5.2",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": "Hidden Tone",
       "create_mats": [
         {
@@ -4266,24 +4490,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Akantor Horn",
-      "attack": "1300",
-      "element": null,
+      "attack": 1300,
       "sharpness": "9.2.13.1",
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "notes": [
         "p",
         "g",
         "a"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4316,17 +4540,17 @@
       "improve_to": [
         "Akantor Dark Melody"
       ],
-      "sharpness_plus": "9.2.13.6"
+      "sharpness_plus": "9.2.13.6",
+      "elements": null
     },
     {
       "name": "Akantor Dark Melody",
-      "attack": "1716",
-      "element": null,
+      "attack": 1716,
       "sharpness": "9.2.13.6",
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "g",
@@ -4334,7 +4558,7 @@
       ],
       "type": "hh",
       "create_cost": null,
-      "improve_cost": "145000",
+      "improve_cost": 145000,
       "improve_from": "Akantor Horn",
       "create_mats": null,
       "improve_mats": [
@@ -4364,24 +4588,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": null
     },
     {
       "name": "Ukanlos Horned Flute",
-      "attack": "1820",
-      "element": "Ice 120",
+      "attack": 1820,
       "sharpness": "19.2.5.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "g",
         "r"
       ],
       "type": "hh",
-      "create_cost": "150000",
+      "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4412,24 +4636,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Bone Horn G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4460,24 +4689,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": null
     },
     {
       "name": "War Drum G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "y",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4508,24 +4737,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Great Bagpipe G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+15",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "g",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4556,24 +4785,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Khezu Flute G",
-      "attack": "1196",
-      "element": "Thunder 480",
+      "attack": 1196,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "b",
         "y"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4604,24 +4833,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "Basarios Rock G",
-      "attack": "1352",
-      "element": "Fire 280",
+      "attack": 1352,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "y",
         "a"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4652,24 +4886,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Glass Queen G",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "8.7.7.11.5.5.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
         "y"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4700,24 +4939,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Heavy Bagpipe G",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "-5%",
       "slots": "OO-",
       "bonus": "+20",
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "g",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4748,24 +4987,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Velociprey Balloon G",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "p",
         "g",
         "y"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4796,24 +5035,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Giadrome Balloon G",
-      "attack": "1404",
-      "element": "Ice 180",
+      "attack": 1404,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "notes": [
         "w",
         "g",
         "a"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4844,24 +5083,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Sakura Recorder G",
-      "attack": "1300",
-      "element": "Dragon 340",
+      "attack": 1300,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "a",
         "b"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4892,24 +5136,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Spirit Dragonwd Horn G",
-      "attack": "1040",
-      "element": "Paralysis 220",
+      "attack": 1040,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "notes": [
         "p",
         "b",
         "r"
       ],
       "type": "hh",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4940,7 +5189,13 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 220
+        }
+      ]
     }
   ]
 }

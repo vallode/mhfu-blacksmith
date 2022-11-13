@@ -2,15 +2,14 @@
   "weapons": [
     {
       "name": "War Hammer",
-      "attack": "312",
-      "element": null,
+      "attack": 312,
       "sharpness": "9.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
-      "create_cost": "500",
+      "create_cost": 500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -31,20 +30,20 @@
       "improve_to": [
         "War Hammer+"
       ],
-      "sharpness_plus": "9.2.9"
+      "sharpness_plus": "9.2.9",
+      "elements": null
     },
     {
       "name": "War Hammer+",
-      "attack": "364",
-      "element": null,
+      "attack": 364,
       "sharpness": "9.2.9",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
-      "create_cost": "650",
-      "improve_cost": "650",
+      "create_cost": 650,
+      "improve_cost": 650,
       "improve_from": [
         "War Hammer"
       ],
@@ -74,20 +73,20 @@
         "War Mace",
         "Spiked Hammer"
       ],
-      "sharpness_plus": "9.2.13.1"
+      "sharpness_plus": "9.2.13.1",
+      "elements": null
     },
     {
       "name": "War Mace",
-      "attack": "468",
-      "element": null,
+      "attack": 468,
       "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1100",
+      "improve_cost": 1100,
       "improve_from": [
         "War Hammer+"
       ],
@@ -113,20 +112,20 @@
         "Bone Axe",
         "Metal Bagpipe"
       ],
-      "sharpness_plus": "3.2.15"
+      "sharpness_plus": "3.2.15",
+      "elements": null
     },
     {
       "name": "Iron Striker",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "9.2.13.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
-      "create_cost": "2150",
-      "improve_cost": "2150",
+      "create_cost": 2150,
+      "improve_cost": 2150,
       "improve_from": [
         "War Mace"
       ],
@@ -174,20 +173,20 @@
         "Iron Striker+",
         "Gunhammer Prototype"
       ],
-      "sharpness_plus": "9.2.13.6"
+      "sharpness_plus": "9.2.13.6",
+      "elements": null
     },
     {
       "name": "Iron Striker+",
-      "attack": "832",
-      "element": null,
+      "attack": 832,
       "sharpness": "3.2.17.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": [
         "Iron Striker"
       ],
@@ -228,20 +227,20 @@
       "improve_to": [
         "Anvil Hammer"
       ],
-      "sharpness_plus": "3.2.17.8"
+      "sharpness_plus": "3.2.17.8",
+      "elements": null
     },
     {
       "name": "Anvil Hammer",
-      "attack": "884",
-      "element": null,
+      "attack": 884,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+4",
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": [
         "Iron Striker+"
       ],
@@ -273,20 +272,20 @@
         "Sakura Recorder",
         "Iron Devil"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": null
     },
     {
       "name": "Onslaught Hammer",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": [
         "Anvil Hammer"
       ],
@@ -314,20 +313,20 @@
       "improve_to": [
         "Blacksmith"
       ],
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": null
     },
     {
       "name": "Blacksmith",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "75000",
-      "improve_cost": "75000",
+      "create_cost": 75000,
+      "improve_cost": 75000,
       "improve_from": [
         "Onslaught Hammer"
       ],
@@ -381,20 +380,20 @@
         "Juggernaut",
         "Lava Alphorn"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Juggernaut",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Blacksmith"
       ],
@@ -420,20 +419,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": null
     },
     {
       "name": "War Stamp",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": [
         "Anvil Hammer"
       ],
@@ -461,20 +460,20 @@
       "improve_to": [
         "War Basher"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": null
     },
     {
       "name": "War Basher",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "War Stamp",
       "create_mats": null,
       "improve_mats": [
@@ -498,20 +497,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": null
     },
     {
       "name": "Iron Devil",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "9.2.13.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
-      "create_cost": "25000",
-      "improve_cost": "25000",
+      "create_cost": 25000,
+      "improve_cost": 25000,
       "improve_from": [
         "Anvil Hammer"
       ],
@@ -573,20 +572,20 @@
         "Great Demon Hammer",
         "Fist of Fury"
       ],
-      "sharpness_plus": "9.2.13.6"
+      "sharpness_plus": "9.2.13.6",
+      "elements": null
     },
     {
       "name": "Great Demon Hammer",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "6.4.8.7",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Iron Devil"
       ],
@@ -615,20 +614,20 @@
         "Devil Masher",
         "Iron Impact"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": null
     },
     {
       "name": "Devil Masher",
-      "attack": "1040",
-      "element": "Paralysis 140",
+      "attack": 1040,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Great Demon Hammer"
       ],
@@ -656,20 +655,25 @@
       "improve_to": [
         "Devil Masher+"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 140
+        }
+      ]
     },
     {
       "name": "Devil Masher+",
-      "attack": "1144",
-      "element": "Paralysis 150",
+      "attack": 1144,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": [
         "Devil Masher"
       ],
@@ -697,20 +701,25 @@
       "improve_to": [
         "Iron Devil's Soul"
       ],
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Iron Devil's Soul",
-      "attack": "1300",
-      "element": "Paralysis 170",
+      "attack": 1300,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Devil Masher+",
       "create_mats": null,
       "improve_mats": [
@@ -734,20 +743,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 170
+        }
+      ]
     },
     {
       "name": "Iron Impact",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Great Demon Hammer"
       ],
@@ -776,20 +790,20 @@
         "Iron Repellant",
         "Icy Impact"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": null
     },
     {
       "name": "Iron Repellant",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": [
         "Iron Impact"
       ],
@@ -821,20 +835,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": null
     },
     {
       "name": "Icy Impact",
-      "attack": "1196",
-      "element": "Ice 240",
+      "attack": 1196,
       "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "75000",
-      "improve_cost": "75000",
+      "create_cost": 75000,
+      "improve_cost": 75000,
       "improve_from": [
         "Iron Impact"
       ],
@@ -893,20 +907,25 @@
       "improve_to": [
         "Axion"
       ],
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Axion",
-      "attack": "1352",
-      "element": "Ice 280",
+      "attack": 1352,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Icy Impact"
       ],
@@ -938,20 +957,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Fist of Fury",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "14.4.6.1",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Iron Devil"
       ],
@@ -979,20 +1003,20 @@
       "improve_to": [
         "Ancient Blow"
       ],
-      "sharpness_plus": "14.4.6.6"
+      "sharpness_plus": "14.4.6.6",
+      "elements": null
     },
     {
       "name": "Ancient Blow",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "19.2.5.4",
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": [
         "Fist of Fury"
       ],
@@ -1020,20 +1044,20 @@
       "improve_to": [
         "Foolhardy Stone Fist"
       ],
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": null
     },
     {
       "name": "Foolhardy Stone Fist",
-      "attack": "1664",
-      "element": null,
+      "attack": 1664,
       "sharpness": "8.7.7.8",
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": [
         "Fist of Fury"
       ],
@@ -1059,20 +1083,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": null
     },
     {
       "name": "Gunhammer Prototype",
-      "attack": "572",
-      "element": "Fire 300",
+      "attack": 572,
       "sharpness": "10.1.3.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": "Iron Striker",
       "create_mats": [
         {
@@ -1123,20 +1147,25 @@
       "improve_to": [
         "Dead Revolver"
       ],
-      "sharpness_plus": "10.1.3.11"
+      "sharpness_plus": "10.1.3.11",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Dead Revolver",
-      "attack": "728",
-      "element": "Fire 400",
+      "attack": 728,
       "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": "Gunhammer Prototype",
       "create_mats": null,
       "improve_mats": [
@@ -1162,20 +1191,25 @@
       "improve_to": [
         "Sanctioned Gunhammer"
       ],
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Sanctioned Gunhammer",
-      "attack": "832",
-      "element": "Fire 500",
+      "attack": 832,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "Dead Revolver",
       "create_mats": null,
       "improve_mats": [
@@ -1207,20 +1241,25 @@
       "improve_to": [
         "Regulation GunHammer"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Regulation GunHammer",
-      "attack": "1092",
-      "element": "Fire 520",
+      "attack": 1092,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "95000",
-      "improve_cost": "95000",
+      "create_cost": 95000,
+      "improve_cost": 95000,
       "improve_from": "Sanctioned Gunhammer",
       "create_mats": [
         {
@@ -1271,20 +1310,25 @@
       "improve_to": [
         "ImperialGunHmmrSpark"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "ImperialGunHmmrSpark",
-      "attack": "1248",
-      "element": "Fire 540",
+      "attack": 1248,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Regulation GunHammer",
       "create_mats": null,
       "improve_mats": [
@@ -1314,20 +1358,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 540
+        }
+      ]
     },
     {
       "name": "Anchor Hammer",
-      "attack": "572",
-      "element": "Water 100",
+      "attack": 572,
       "sharpness": "9.2.13.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "War Mace",
       "create_mats": null,
       "improve_mats": [
@@ -1353,20 +1402,25 @@
       "improve_to": [
         "Anchor Hammer+"
       ],
-      "sharpness_plus": "9.2.13.6"
+      "sharpness_plus": "9.2.13.6",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Anchor Hammer+",
-      "attack": "728",
-      "element": "Water 290",
+      "attack": 728,
       "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": "Anchor Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -1392,20 +1446,25 @@
       "improve_to": [
         "Anchor Crusher"
       ],
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Anchor Crusher",
-      "attack": "884",
-      "element": "Water 380",
+      "attack": 884,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "65000",
+      "improve_cost": 65000,
       "improve_from": "Anchor Hammer+",
       "create_mats": null,
       "improve_mats": [
@@ -1429,20 +1488,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Black Cauldron",
-      "attack": "468",
-      "element": null,
+      "attack": 468,
       "sharpness": "14.4.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "1400",
-      "improve_cost": "1400",
+      "create_cost": 1400,
+      "improve_cost": 1400,
       "improve_from": "War Mace",
       "create_mats": [
         {
@@ -1488,20 +1552,20 @@
         "True Black Cauldron",
         "One Star Silver Pot"
       ],
-      "sharpness_plus": "14.4.6.1"
+      "sharpness_plus": "14.4.6.1",
+      "elements": null
     },
     {
       "name": "True Black Cauldron",
-      "attack": "780",
-      "element": null,
+      "attack": 780,
       "sharpness": "10.1.3.11",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": "Black Cauldron",
       "create_mats": null,
       "improve_mats": [
@@ -1525,20 +1589,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.16"
+      "sharpness_plus": "10.1.3.16",
+      "elements": null
     },
     {
       "name": "One Star Silver Pot",
-      "attack": "520",
-      "element": null,
+      "attack": 520,
       "sharpness": "19.2.5.7.2",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Black Cauldron",
       "create_mats": null,
       "improve_mats": [
@@ -1564,20 +1628,20 @@
       "improve_to": [
         "Two Star Silver Pot"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": null
     },
     {
       "name": "Two Star Silver Pot",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "6.4.8.12.5",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "One Star Silver Pot",
       "create_mats": null,
       "improve_mats": [
@@ -1601,20 +1665,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": null
     },
     {
       "name": "Bone Axe",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "6.4.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "War Mace",
       "create_mats": null,
       "improve_mats": [
@@ -1640,20 +1704,20 @@
       "improve_to": [
         "Bone Broadaxe"
       ],
-      "sharpness_plus": "6.4.8.2"
+      "sharpness_plus": "6.4.8.2",
+      "elements": null
     },
     {
       "name": "Bone Broadaxe",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "14.4.6.1",
       "affinity": "5%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": "Bone Axe",
       "create_mats": null,
       "improve_mats": [
@@ -1679,20 +1743,20 @@
       "improve_to": [
         "Bone Great Axe"
       ],
-      "sharpness_plus": "14.4.6.6"
+      "sharpness_plus": "14.4.6.6",
+      "elements": null
     },
     {
       "name": "Bone Great Axe",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "19.2.5.4",
       "affinity": "5%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Bone Broadaxe",
       "create_mats": null,
       "improve_mats": [
@@ -1724,20 +1788,20 @@
       "improve_to": [
         "Ceanataur Head Axe"
       ],
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": null
     },
     {
       "name": "Ceanataur Head Axe",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
-      "create_cost": "60000",
-      "improve_cost": "60000",
+      "create_cost": 60000,
+      "improve_cost": 60000,
       "improve_from": "Bone Great Axe",
       "create_mats": [
         {
@@ -1795,20 +1859,20 @@
         "Big Blue Chopper",
         "Carmine Axe"
       ],
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": null
     },
     {
       "name": "Big Blue Chopper",
-      "attack": "1300",
-      "element": null,
+      "attack": 1300,
       "sharpness": "6.4.8.12.6.5.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": "Ceanataur Head Axe",
       "create_mats": null,
       "improve_mats": [
@@ -1838,20 +1902,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": null
     },
     {
       "name": "Carmine Axe",
-      "attack": "1196",
-      "element": "Water 280",
+      "attack": 1196,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "85000",
-      "improve_cost": "85000",
+      "create_cost": 85000,
+      "improve_cost": 85000,
       "improve_from": "Ceanataur Head Axe",
       "create_mats": [
         {
@@ -1902,20 +1966,25 @@
       "improve_to": [
         "The Great Divider"
       ],
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "The Great Divider",
-      "attack": "1248",
-      "element": "Water 300",
+      "attack": 1248,
       "sharpness": "3.2.17.12.4.5.2",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Carmine Axe",
       "create_mats": null,
       "improve_mats": [
@@ -1945,20 +2014,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Spiked Hammer",
-      "attack": "520",
-      "element": null,
+      "attack": 520,
       "sharpness": "10.1.3.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": [
         "War Hammer+"
       ],
@@ -1986,20 +2060,20 @@
       "improve_to": [
         "Spiked Hammer+"
       ],
-      "sharpness_plus": "10.1.3.6"
+      "sharpness_plus": "10.1.3.6",
+      "elements": null
     },
     {
       "name": "Spiked Hammer+",
-      "attack": "572",
-      "element": null,
+      "attack": 572,
       "sharpness": "10.1.3.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1750",
+      "improve_cost": 1750,
       "improve_from": [
         "Spiked Hammer"
       ],
@@ -2029,20 +2103,20 @@
         "Shell Hammer",
         "Basarios Rock"
       ],
-      "sharpness_plus": "10.1.3.11"
+      "sharpness_plus": "10.1.3.11",
+      "elements": null
     },
     {
       "name": "Crystal Hammer",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "2600",
-      "improve_cost": "2600",
+      "create_cost": 2600,
+      "improve_cost": 2600,
       "improve_from": [
         "Spiked Hammer+"
       ],
@@ -2095,20 +2169,20 @@
       "improve_to": [
         "Crystal Nova"
       ],
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": null
     },
     {
       "name": "Crystal Nova",
-      "attack": "780",
-      "element": null,
+      "attack": 780,
       "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "3650",
+      "improve_cost": 3650,
       "improve_from": "Crystal Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2135,20 +2209,20 @@
         "Great Nova",
         "Gigaton Hammer"
       ],
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": null
     },
     {
       "name": "Great Nova",
-      "attack": "936",
-      "element": "Thunder 300",
+      "attack": 936,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Crystal Nova",
       "create_mats": null,
       "improve_mats": [
@@ -2174,20 +2248,25 @@
       "improve_to": [
         "Super Nova"
       ],
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Super Nova",
-      "attack": "1352",
-      "element": "Thunder 450",
+      "attack": 1352,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Great Nova",
       "create_mats": null,
       "improve_mats": [
@@ -2217,20 +2296,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Gigaton Hammer",
-      "attack": "832",
-      "element": null,
+      "attack": 832,
       "sharpness": "6.4.8.2",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "4250",
+      "improve_cost": 4250,
       "improve_from": "Crystal Nova",
       "create_mats": null,
       "improve_mats": [
@@ -2256,20 +2340,20 @@
       "improve_to": [
         "Titan Hammer"
       ],
-      "sharpness_plus": "6.4.8.7"
+      "sharpness_plus": "6.4.8.7",
+      "elements": null
     },
     {
       "name": "Titan Hammer",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "8.7.7.3",
       "affinity": "-15%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "8000",
+      "improve_cost": 8000,
       "improve_from": "Gigaton Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2293,20 +2377,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": null
     },
     {
       "name": "Shell Hammer",
-      "attack": "728",
-      "element": "Poison 120",
+      "attack": 728,
       "sharpness": "14.4.6.1",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": "Spiked Hammer+",
       "create_mats": [
         {
@@ -2357,20 +2441,25 @@
       "improve_to": [
         "Graviton Hammer"
       ],
-      "sharpness_plus": "14.4.6.6"
+      "sharpness_plus": "14.4.6.6",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Graviton Hammer",
-      "attack": "780",
-      "element": "Poison 180",
+      "attack": 780,
       "sharpness": "14.4.6.6",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+14",
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": "Shell Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2397,20 +2486,25 @@
         "Torment Hammer",
         "Crater Maker"
       ],
-      "sharpness_plus": "14.4.6.7.4"
+      "sharpness_plus": "14.4.6.7.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Crater Maker",
-      "attack": "988",
-      "element": "Poison 200",
+      "attack": 988,
       "sharpness": "14.4.6.7.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": "Graviton Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2436,20 +2530,25 @@
       "improve_to": [
         "VenomousCraterMaker"
       ],
-      "sharpness_plus": "14.4.6.7.4.5"
+      "sharpness_plus": "14.4.6.7.4.5",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "VenomousCraterMaker",
-      "attack": "1300",
-      "element": "Poison 220",
+      "attack": 1300,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Crater Maker",
       "create_mats": null,
       "improve_mats": [
@@ -2481,20 +2580,25 @@
       "improve_to": [
         "Glasya-Labolas"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Glasya-Labolas",
-      "attack": "1404",
-      "element": "Poison 240",
+      "attack": 1404,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "VenomousCraterMaker",
       "create_mats": null,
       "improve_mats": [
@@ -2524,20 +2628,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Torment Hammer",
-      "attack": "884",
-      "element": "Fire 250",
+      "attack": 884,
       "sharpness": "8.7.7.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": "Graviton Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2563,20 +2672,25 @@
       "improve_to": [
         "Torment (Purgatory)"
       ],
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Torment (Purgatory)",
-      "attack": "988",
-      "element": "Fire 310",
+      "attack": 988,
       "sharpness": "8.7.7.11.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "70000",
+      "improve_cost": 70000,
       "improve_from": "Torment Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -2600,19 +2714,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 310
+        }
+      ]
     },
     {
       "name": "Bone Club",
-      "attack": "364",
-      "element": null,
+      "attack": 364,
       "sharpness": "8.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
-      "create_cost": "400",
+      "create_cost": 400,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -2630,20 +2749,20 @@
         "Bull Hammer",
         "Giaprey Balloon"
       ],
-      "sharpness_plus": "8.7.5"
+      "sharpness_plus": "8.7.5",
+      "elements": null
     },
     {
       "name": "Large Bone Club",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "8.7.5",
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2600",
+      "improve_cost": 2600,
       "improve_from": "Bone Club",
       "create_mats": null,
       "improve_mats": [
@@ -2663,20 +2782,20 @@
       "improve_to": [
         "Enormous Ham"
       ],
-      "sharpness_plus": "8.7.7.3"
+      "sharpness_plus": "8.7.7.3",
+      "elements": null
     },
     {
       "name": "Enormous Ham",
-      "attack": "728",
-      "element": null,
+      "attack": 728,
       "sharpness": "10.1.3.1",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "7500",
+      "improve_cost": 7500,
       "improve_from": "Large Bone Club",
       "create_mats": null,
       "improve_mats": [
@@ -2702,20 +2821,20 @@
       "improve_to": [
         "Ham of Hams"
       ],
-      "sharpness_plus": "10.1.3.6"
+      "sharpness_plus": "10.1.3.6",
+      "elements": null
     },
     {
       "name": "Ham of Hams",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "10.1.3.1",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Enormous Ham",
       "create_mats": null,
       "improve_mats": [
@@ -2739,20 +2858,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.6"
+      "sharpness_plus": "10.1.3.6",
+      "elements": null
     },
     {
       "name": "Cyclo-Hammer",
-      "attack": "468",
-      "element": null,
+      "attack": 468,
       "sharpness": "5.4.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
-      "create_cost": "1100",
-      "improve_cost": "1750",
+      "create_cost": 1100,
+      "improve_cost": 1750,
       "improve_from": [
         "Bone Club"
       ],
@@ -2790,20 +2909,20 @@
         "Conehead Hammer",
         "Bone Horn"
       ],
-      "sharpness_plus": "5.4.11"
+      "sharpness_plus": "5.4.11",
+      "elements": null
     },
     {
       "name": "Atlas Hammer",
-      "attack": "572",
-      "element": null,
+      "attack": 572,
       "sharpness": "5.4.11",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1750",
+      "improve_cost": 1750,
       "improve_from": [
         "Cyclo-Hammer"
       ],
@@ -2827,20 +2946,20 @@
         "Jail Hammer",
         "Khezu Horn"
       ],
-      "sharpness_plus": "5.4.14.2"
+      "sharpness_plus": "5.4.14.2",
+      "elements": null
     },
     {
       "name": "Kut-Ku Jaw",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "5.4.14.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "2600",
-      "improve_cost": "2600",
+      "create_cost": 2600,
+      "improve_cost": 2600,
       "improve_from": "Atlas Hammer",
       "create_mats": [
         {
@@ -2894,20 +3013,20 @@
         "Dynamic Hammer",
         "Venom Monster"
       ],
-      "sharpness_plus": "5.4.14.7"
+      "sharpness_plus": "5.4.14.7",
+      "elements": null
     },
     {
       "name": "Kut-Ku Pick",
-      "attack": "884",
-      "element": null,
+      "attack": 884,
       "sharpness": "9.2.13.6",
       "affinity": "10%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "5600",
-      "improve_cost": "5600",
+      "create_cost": 5600,
+      "improve_cost": 5600,
       "improve_from": [
         "Kut-Ku Jaw"
       ],
@@ -2955,20 +3074,20 @@
         "Hard Bone Hammer",
         "Feather Whistle"
       ],
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": null
     },
     {
       "name": "Hard Bone Hammer",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "5.4.14.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
-      "create_cost": "25000",
-      "improve_cost": "25000",
+      "create_cost": 25000,
+      "improve_cost": 25000,
       "improve_from": [
         "Kut-Ku Pick"
       ],
@@ -3036,20 +3155,20 @@
         "Hard Bone Hammer+",
         "Lobster Hammer"
       ],
-      "sharpness_plus": "5.4.14.7"
+      "sharpness_plus": "5.4.14.7",
+      "elements": null
     },
     {
       "name": "Hard Bone Hammer+",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Hard Bone Hammer"
       ],
@@ -3077,20 +3196,20 @@
       "improve_to": [
         "Diablos Hammer"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": null
     },
     {
       "name": "Diablos Hammer",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "10.1.3.16",
       "affinity": "-10%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": [
         "Hard Bone Hammer+"
       ],
@@ -3118,20 +3237,20 @@
       "improve_to": [
         "Diablo Chaos Broker"
       ],
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": null
     },
     {
       "name": "Diablo Chaos Broker",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "10.1.3.17.4",
       "affinity": "-10%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Diablos Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -3157,20 +3276,20 @@
       "improve_to": [
         "Chaotic Order"
       ],
-      "sharpness_plus": "10.1.3.17.6.3"
+      "sharpness_plus": "10.1.3.17.6.3",
+      "elements": null
     },
     {
       "name": "Chaotic Order",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+20",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Diablo Chaos Broker",
       "create_mats": null,
       "improve_mats": [
@@ -3200,20 +3319,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": null
     },
     {
       "name": "Lobster Hammer",
-      "attack": "936",
-      "element": "Water 200",
+      "attack": 936,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": [
         "Hard Bone Hammer"
       ],
@@ -3241,20 +3360,25 @@
       "improve_to": [
         "King Lobster Hammer"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "King Lobster Hammer",
-      "attack": "988",
-      "element": "Water 230",
+      "attack": 988,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": [
         "Lobster Hammer"
       ],
@@ -3282,20 +3406,25 @@
       "improve_to": [
         "Royal Lobster Hammer"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Royal Lobster Hammer",
-      "attack": "1144",
-      "element": "Water 350",
+      "attack": 1144,
       "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": [
         "King Lobster Hammer"
       ],
@@ -3321,20 +3450,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Raven Torrent",
-      "attack": "728",
-      "element": null,
+      "attack": 728,
       "sharpness": "14.4.6.6",
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
-      "create_cost": "10000",
-      "improve_cost": "10000",
+      "create_cost": 10000,
+      "improve_cost": 10000,
       "improve_from": "Kut-Ku Jaw",
       "create_mats": [
         {
@@ -3379,20 +3513,20 @@
       "improve_to": [
         "Wolf Torrent"
       ],
-      "sharpness_plus": "14.4.6.7.4"
+      "sharpness_plus": "14.4.6.7.4",
+      "elements": null
     },
     {
       "name": "Wolf Torrent",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "14.4.6.7.4",
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "65000",
+      "improve_cost": 65000,
       "improve_from": [
         "Raven Torrent"
       ],
@@ -3421,20 +3555,20 @@
         "Crow Torrent",
         "Wolf Shamisen"
       ],
-      "sharpness_plus": "14.4.6.7.4.5"
+      "sharpness_plus": "14.4.6.7.4.5",
+      "elements": null
     },
     {
       "name": "Crow Torrent",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "40%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": [
         "Wolf Torrent"
       ],
@@ -3466,20 +3600,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": null
     },
     {
       "name": "Dynamic Hammer",
-      "attack": "728",
-      "element": null,
+      "attack": 728,
       "sharpness": "19.2.5.4",
       "affinity": "5%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "3100",
+      "improve_cost": 3100,
       "improve_from": "Kut-Ku Jaw",
       "create_mats": null,
       "improve_mats": [
@@ -3505,20 +3639,20 @@
       "improve_to": [
         "Violence Hammer"
       ],
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": null
     },
     {
       "name": "Violence Hammer",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "5.4.14.7",
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "45000",
+      "improve_cost": 45000,
       "improve_from": "Dynamic Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -3544,20 +3678,20 @@
       "improve_to": [
         "Mysterious Jaw"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": null
     },
     {
       "name": "Mysterious Jaw",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "30%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Violence Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -3587,20 +3721,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Venom Monster",
-      "attack": "572",
-      "element": "Poison 260",
+      "attack": 572,
       "sharpness": "14.4.6.6",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "3100",
+      "improve_cost": 3100,
       "improve_from": "Kut-Ku Jaw",
       "create_mats": null,
       "improve_mats": [
@@ -3626,20 +3760,25 @@
       "improve_to": [
         "Death Venom Hammer"
       ],
-      "sharpness_plus": "14.4.6.7.4"
+      "sharpness_plus": "14.4.6.7.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Death Venom Hammer",
-      "attack": "936",
-      "element": "Poison 350",
+      "attack": 936,
       "sharpness": "19.2.5.7.2",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "Venom Monster",
       "create_mats": null,
       "improve_mats": [
@@ -3665,20 +3804,25 @@
       "improve_to": [
         "Purple Mace"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Purple Mace",
-      "attack": "1092",
-      "element": "Poison 380",
+      "attack": 1092,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": [
         "Death Venom Hammer"
       ],
@@ -3706,20 +3850,25 @@
       "improve_to": [
         "Pitohui Bird Mace"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Pitohui Bird Mace",
-      "attack": "1248",
-      "element": "Poison 400",
+      "attack": 1248,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": "Purple Mace",
       "create_mats": null,
       "improve_mats": [
@@ -3749,20 +3898,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Jail Hammer",
-      "attack": "624",
-      "element": "Paralysis 190",
+      "attack": 624,
       "sharpness": "14.4.6.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "3100",
+      "improve_cost": 3100,
       "improve_from": "Atlas Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -3788,20 +3942,25 @@
       "improve_to": [
         "Binder Mace"
       ],
-      "sharpness_plus": "14.4.6.6"
+      "sharpness_plus": "14.4.6.6",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 190
+        }
+      ]
     },
     {
       "name": "Binder Mace",
-      "attack": "780",
-      "element": "Paralysis 280",
+      "attack": 780,
       "sharpness": "19.2.5.4",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": "Jail Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -3825,20 +3984,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Purse Bop",
-      "attack": "1040",
-      "element": "Thunder 200",
+      "attack": 1040,
       "sharpness": "5.4.14.10.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": "Khezu Horn+",
       "create_mats": [
         {
@@ -3895,20 +4059,25 @@
       "improve_to": [
         "Purse Bop+"
       ],
-      "sharpness_plus": "5.4.14.10.4.3"
+      "sharpness_plus": "5.4.14.10.4.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Purse Bop+",
-      "attack": "1144",
-      "element": "Thunder 220",
+      "attack": 1144,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": "Purse Bop",
       "create_mats": null,
       "improve_mats": [
@@ -3934,20 +4103,25 @@
       "improve_to": [
         "Khezu Thunder"
       ],
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Khezu Thunder",
-      "attack": "1456",
-      "element": "Thunder 250",
+      "attack": 1456,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Purse Bop+",
       "create_mats": null,
       "improve_mats": [
@@ -3977,20 +4151,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Skullcrusher",
-      "attack": "520",
-      "element": null,
+      "attack": 520,
       "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": "Cyclo-Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4016,20 +4195,20 @@
       "improve_to": [
         "Skullcrusher+"
       ],
-      "sharpness_plus": "3.2.15"
+      "sharpness_plus": "3.2.15",
+      "elements": null
     },
     {
       "name": "Skullcrusher+",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "3.2.15",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": [
         "Skullcrusher"
       ],
@@ -4059,20 +4238,20 @@
         "Dragonhead Hammer",
         "Sonic Glass"
       ],
-      "sharpness_plus": "3.2.17.3"
+      "sharpness_plus": "3.2.17.3",
+      "elements": null
     },
     {
       "name": "Diablos Maul",
-      "attack": "832",
-      "element": null,
+      "attack": 832,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+4",
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": [
         "Skullcrusher+"
       ],
@@ -4125,20 +4304,20 @@
       "improve_to": [
         "Finishing Hammer"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": null
     },
     {
       "name": "Finishing Hammer",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": [
         "Diablos Maul"
       ],
@@ -4164,20 +4343,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": null
     },
     {
       "name": "Dragonhead Hammer",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "19.2.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "2600",
-      "improve_cost": "2600",
+      "create_cost": 2600,
+      "improve_cost": 2600,
       "improve_from": "Skullcrusher+",
       "create_mats": [
         {
@@ -4229,20 +4408,20 @@
         "Ancient Relic",
         "Basarios Blow"
       ],
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": null
     },
     {
       "name": "Ancient Relic",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "7150",
+      "improve_cost": 7150,
       "improve_from": [
         "Dragonhead Hammer"
       ],
@@ -4270,20 +4449,20 @@
       "improve_to": [
         "Shell Castanet"
       ],
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": null
     },
     {
       "name": "Basarios Blow",
-      "attack": "780",
-      "element": null,
+      "attack": 780,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+24",
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": "Dragonhead Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4309,20 +4488,20 @@
       "improve_to": [
         "Basarios Bash"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": null
     },
     {
       "name": "Basarios Bash",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+36",
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Basarios Blow",
       "create_mats": null,
       "improve_mats": [
@@ -4346,20 +4525,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": null
     },
     {
       "name": "Conehead Hammer",
-      "attack": "416",
-      "element": "Ice 180",
+      "attack": 416,
       "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": "Cyclo-Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4385,20 +4564,25 @@
       "improve_to": [
         "Conehead Hammer+"
       ],
-      "sharpness_plus": "3.2.15"
+      "sharpness_plus": "3.2.15",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Conehead Hammer+",
-      "attack": "676",
-      "element": "Ice 320",
+      "attack": 676,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "4250",
+      "improve_cost": 4250,
       "improve_from": "Conehead Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4424,20 +4608,25 @@
       "improve_to": [
         "Great Cone"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Great Cone",
-      "attack": "884",
-      "element": "Ice 400",
+      "attack": 884,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Conehead Hammer+",
       "create_mats": null,
       "improve_mats": [
@@ -4463,20 +4652,25 @@
       "improve_to": [
         "Desert Cone"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Desert Cone",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "95000",
-      "improve_cost": "115000",
+      "create_cost": 95000,
+      "improve_cost": 115000,
       "improve_from": "Great Cone",
       "create_mats": [
         {
@@ -4527,20 +4721,20 @@
       "improve_to": [
         "Magnitude"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Magnitude",
-      "attack": "1612",
-      "element": null,
+      "attack": 1612,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "-15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Desert Cone",
       "create_mats": null,
       "improve_mats": [
@@ -4570,20 +4764,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Bull Hammer",
-      "attack": "520",
-      "element": null,
+      "attack": 520,
       "sharpness": "6.4.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
-      "create_cost": "1400",
-      "improve_cost": "1750",
+      "create_cost": 1400,
+      "improve_cost": 1750,
       "improve_from": "Bone Club",
       "create_mats": [
         {
@@ -4648,20 +4842,20 @@
       "improve_to": [
         "Bull Head Hammer"
       ],
-      "sharpness_plus": "6.4.8.2"
+      "sharpness_plus": "6.4.8.2",
+      "elements": null
     },
     {
       "name": "Bull Head Hammer",
-      "attack": "624",
-      "element": null,
+      "attack": 624,
       "sharpness": "8.7.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Bull Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4687,20 +4881,20 @@
       "improve_to": [
         "Bull Tusk Hammer"
       ],
-      "sharpness_plus": "8.7.7.3"
+      "sharpness_plus": "8.7.7.3",
+      "elements": null
     },
     {
       "name": "Bull Tusk Hammer",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": "Bull Head Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -4724,19 +4918,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": null
     },
     {
       "name": "Rusted Hammer",
-      "attack": "468",
-      "element": null,
+      "attack": 468,
       "sharpness": "15",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4751,20 +4945,20 @@
       "improve_to": [
         "Tarnished Hammer"
       ],
-      "sharpness_plus": "19.1"
+      "sharpness_plus": "19.1",
+      "elements": null
     },
     {
       "name": "Tarnished Hammer",
-      "attack": "572",
-      "element": null,
+      "attack": 572,
       "sharpness": "14.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "2500",
+      "improve_cost": 2500,
       "improve_from": [
         "Rusted Hammer"
       ],
@@ -4781,20 +4975,20 @@
         "Breath Core Hammer",
         "Jadite Mace"
       ],
-      "sharpness_plus": "14.4.6.1"
+      "sharpness_plus": "14.4.6.1",
+      "elements": null
     },
     {
       "name": "Breath Core Hammer",
-      "attack": "936",
-      "element": null,
+      "attack": 936,
       "sharpness": "19.2.5.4",
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": [
         "Tarnished Hammer"
       ],
@@ -4814,20 +5008,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.2"
+      "sharpness_plus": "19.2.5.7.2",
+      "elements": null
     },
     {
       "name": "Jadite Mace",
-      "attack": "780",
-      "element": "Fire 260",
+      "attack": 780,
       "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Tarnished Hammer"
       ],
@@ -4855,20 +5049,25 @@
       "improve_to": [
         "Jade Mace"
       ],
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Jade Mace",
-      "attack": "832",
-      "element": "Fire 300",
+      "attack": 832,
       "sharpness": "9.2.13.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": [
         "Jadite Mace"
       ],
@@ -4896,20 +5095,25 @@
       "improve_to": [
         "Lunastra's Crown"
       ],
-      "sharpness_plus": "9.2.13.7.4"
+      "sharpness_plus": "9.2.13.7.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Lunastra's Crown",
-      "attack": "936",
-      "element": "Fire 370",
+      "attack": 936,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Jade Mace",
       "create_mats": null,
       "improve_mats": [
@@ -4935,20 +5139,25 @@
       "improve_to": [
         "Luna's Skirt"
       ],
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 370
+        }
+      ]
     },
     {
       "name": "Luna's Skirt",
-      "attack": "1300",
-      "element": "Fire 400",
+      "attack": 1300,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Lunastra's Crown",
       "create_mats": null,
       "improve_mats": [
@@ -4978,19 +5187,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Worn Hammer",
-      "attack": "676",
-      "element": null,
+      "attack": 676,
       "sharpness": "19.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5005,20 +5219,20 @@
       "improve_to": [
         "Weathered Hammer"
       ],
-      "sharpness_plus": "19.2.4"
+      "sharpness_plus": "19.2.4",
+      "elements": null
     },
     {
       "name": "Weathered Hammer",
-      "attack": "780",
-      "element": null,
+      "attack": 780,
       "sharpness": "19.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "12500",
+      "improve_cost": 12500,
       "improve_from": "Worn Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5033,20 +5247,20 @@
         "Pulsating Core",
         "Steel Ice Hammer"
       ],
-      "sharpness_plus": "19.2.5.4"
+      "sharpness_plus": "19.2.5.4",
+      "elements": null
     },
     {
       "name": "Pulsating Core",
-      "attack": "1040",
-      "element": null,
+      "attack": 1040,
       "sharpness": "19.2.5.7.2",
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "Weathered Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5066,20 +5280,20 @@
       "improve_to": [
         "Pulse Crusher Core"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": null
     },
     {
       "name": "Pulse Crusher Core",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Pulsating Core",
       "create_mats": null,
       "improve_mats": [
@@ -5103,20 +5317,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Steel Ice Hammer",
-      "attack": "832",
-      "element": "Ice 290",
+      "attack": 832,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Weathered Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5142,20 +5356,25 @@
       "improve_to": [
         "Daora's Colossus"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Daora's Colossus",
-      "attack": "988",
-      "element": "Ice 330",
+      "attack": 988,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Steel Ice Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5181,20 +5400,25 @@
       "improve_to": [
         "Daora's Hyperborea"
       ],
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 330
+        }
+      ]
     },
     {
       "name": "Daora's Hyperborea",
-      "attack": "1300",
-      "element": "Ice 450",
+      "attack": 1300,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Daora's Colossus",
       "create_mats": null,
       "improve_mats": [
@@ -5224,19 +5448,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Black Belt Hammer",
-      "attack": "780",
-      "element": null,
+      "attack": 780,
       "sharpness": "8.7.7.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "6000",
+      "create_cost": 6000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5269,20 +5498,20 @@
       "improve_to": [
         "Expert Hammer"
       ],
-      "sharpness_plus": "8.7.7.8"
+      "sharpness_plus": "8.7.7.8",
+      "elements": null
     },
     {
       "name": "Expert Hammer",
-      "attack": "1092",
-      "element": null,
+      "attack": 1092,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+12",
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "20000",
+      "improve_cost": 20000,
       "improve_from": "Black Belt Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5308,20 +5537,20 @@
       "improve_to": [
         "Warrior's Hammer"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": null
     },
     {
       "name": "Warrior's Hammer",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+22",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Expert Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5351,19 +5580,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Black Hammer",
-      "attack": "728",
-      "element": "Dragon 100",
+      "attack": 728,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
-      "create_cost": "15000",
+      "create_cost": 15000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5391,20 +5620,25 @@
         "Fatalis Buster",
         "AncientFatalisBuster"
       ],
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Fatalis Buster",
-      "attack": "1040",
-      "element": "Dragon 240",
+      "attack": 1040,
       "sharpness": "9.2.13.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Black Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5430,20 +5664,25 @@
       "improve_to": [
         "Fatalis Demolisher"
       ],
-      "sharpness_plus": "9.2.13.7.5.4"
+      "sharpness_plus": "9.2.13.7.5.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Fatalis Demolisher",
-      "attack": "1404",
-      "element": "Dragon 260",
+      "attack": 1404,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": "Fatalis Buster",
       "create_mats": null,
       "improve_mats": [
@@ -5473,20 +5712,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "AncientFatalisBuster",
-      "attack": "988",
-      "element": "Dragon 350",
+      "attack": 988,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Black Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5512,20 +5756,25 @@
       "improve_to": [
         "AncientFatalisRuiner"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "AncientFatalisRuiner",
-      "attack": "1300",
-      "element": "Dragon 380",
+      "attack": 1300,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": "AncientFatalisBuster",
       "create_mats": null,
       "improve_mats": [
@@ -5555,19 +5804,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Cactus Creamer",
-      "attack": "260",
-      "element": "Poison 300",
+      "attack": 260,
       "sharpness": "3.2.10",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "hm",
-      "create_cost": "7500",
+      "create_cost": 7500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5594,20 +5848,25 @@
       "improve_to": [
         "Green Monster"
       ],
-      "sharpness_plus": "3.2.15"
+      "sharpness_plus": "3.2.15",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Green Monster",
-      "attack": "468",
-      "element": "Poison 300",
+      "attack": 468,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": "Cactus Creamer",
       "create_mats": null,
       "improve_mats": [
@@ -5631,20 +5890,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Dragon Destroyer",
-      "attack": "832",
-      "element": "Dragon 170",
+      "attack": 832,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
       "type": "hm",
-      "create_cost": "5600",
+      "create_cost": 5600,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5671,20 +5935,25 @@
       "improve_to": [
         "Dragonbreaker"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 170
+        }
+      ]
     },
     {
       "name": "Dragonbreaker",
-      "attack": "884",
-      "element": "Dragon 330",
+      "attack": 884,
       "sharpness": "6.4.8.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Dragon Destroyer",
       "create_mats": null,
       "improve_mats": [
@@ -5710,20 +5979,25 @@
       "improve_to": [
         "Dragon Demolisher"
       ],
-      "sharpness_plus": "6.4.8.12.5"
+      "sharpness_plus": "6.4.8.12.5",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 330
+        }
+      ]
     },
     {
       "name": "Dragon Demolisher",
-      "attack": "936",
-      "element": "Dragon 410",
+      "attack": 936,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": "Dragonbreaker",
       "create_mats": null,
       "improve_mats": [
@@ -5749,20 +6023,25 @@
       "improve_to": [
         "Claw of Doom"
       ],
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 410
+        }
+      ]
     },
     {
       "name": "Claw of Doom",
-      "attack": "1248",
-      "element": "Dragon 450",
+      "attack": 1248,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "140000",
+      "improve_cost": 140000,
       "improve_from": "Dragon Demolisher",
       "create_mats": null,
       "improve_mats": [
@@ -5792,19 +6071,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Striped Striker",
-      "attack": "884",
-      "element": null,
+      "attack": 884,
       "sharpness": "19.2.5.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "hm",
-      "create_cost": "35000",
+      "create_cost": 35000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5838,20 +6122,20 @@
         "Tigrex Hammer",
         "Hidden Breaker"
       ],
-      "sharpness_plus": "19.2.5.7.4.3"
+      "sharpness_plus": "19.2.5.7.4.3",
+      "elements": null
     },
     {
       "name": "Tigrex Hammer",
-      "attack": "1144",
-      "element": null,
+      "attack": 1144,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Striped Striker",
       "create_mats": null,
       "improve_mats": [
@@ -5877,20 +6161,20 @@
       "improve_to": [
         "Tigrex Hammer+"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Tigrex Hammer+",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "19.2.5.7.4.5.3",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": "Tigrex Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -5920,20 +6204,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Hidden Breaker",
-      "attack": "988",
-      "element": null,
+      "attack": 988,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "hm",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Striped Striker",
       "create_mats": [
         {
@@ -5984,20 +6268,20 @@
       "improve_to": [
         "Deep Darkhammer"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Deep Darkhammer",
-      "attack": "1248",
-      "element": null,
+      "attack": 1248,
       "sharpness": "3.2.17.12.4.5.2",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": "Hidden Breaker",
       "create_mats": [
         {
@@ -6052,19 +6336,19 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "White Cat Stamp",
-      "attack": "520",
-      "element": "Paralysis 200",
+      "attack": 520,
       "sharpness": "10.1.3.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "type": "hm",
-      "create_cost": "2150",
+      "create_cost": 2150,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6093,20 +6377,25 @@
         "Black Cat Stamp",
         "Teddybear"
       ],
-      "sharpness_plus": "10.1.3.6"
+      "sharpness_plus": "10.1.3.6",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "White Cat Hammer",
-      "attack": "728",
-      "element": "Paralysis 180",
+      "attack": 728,
       "sharpness": "8.7.7.11.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "20000",
+      "improve_cost": 20000,
       "improve_from": "White Cat Stamp",
       "create_mats": null,
       "improve_mats": [
@@ -6130,20 +6419,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Black Cat Stamp",
-      "attack": "624",
-      "element": "Paralysis 240",
+      "attack": 624,
       "sharpness": "10.1.3.16",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "3650",
+      "improve_cost": 3650,
       "improve_from": "White Cat Stamp",
       "create_mats": null,
       "improve_mats": [
@@ -6170,20 +6464,25 @@
         "Black Cat Hammer",
         "Gold Cat Hammer"
       ],
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Black Cat Hammer",
-      "attack": "676",
-      "element": "Paralysis 380",
+      "attack": 676,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "25000",
+      "improve_cost": 25000,
       "improve_from": "Black Cat Stamp",
       "create_mats": null,
       "improve_mats": [
@@ -6207,20 +6506,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Gold Cat Hammer",
-      "attack": "832",
-      "element": "Paralysis 280",
+      "attack": 832,
       "sharpness": "3.2.17.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "hm",
-      "create_cost": "45000",
-      "improve_cost": "45000",
+      "create_cost": 45000,
+      "improve_cost": 45000,
       "improve_from": "Black Cat Stamp",
       "create_mats": [
         {
@@ -6271,20 +6575,25 @@
       "improve_to": [
         "Gold Cat Crusher"
       ],
-      "sharpness_plus": "3.2.17.8"
+      "sharpness_plus": "3.2.17.8",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Gold Cat Crusher",
-      "attack": "988",
-      "element": "Paralysis 380",
+      "attack": 988,
       "sharpness": "3.2.17.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Gold Cat Hammer",
       "create_mats": null,
       "improve_mats": [
@@ -6314,20 +6623,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.1"
+      "sharpness_plus": "3.2.17.12.1",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Teddybear",
-      "attack": "260",
-      "element": "Sleep 200",
+      "attack": 260,
       "sharpness": "5.4.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "5000",
-      "improve_cost": "5000",
+      "create_cost": 5000,
+      "improve_cost": 5000,
       "improve_from": "White Cat Stamp",
       "create_mats": [
         {
@@ -6370,19 +6684,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.11"
+      "sharpness_plus": "5.4.11",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "dummy (Polytan)",
-      "attack": "520",
-      "element": "Thunder 280",
+      "attack": 520,
       "sharpness": "5.4.11",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "550",
+      "create_cost": 550,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6397,20 +6716,25 @@
       "improve_to": [
         "dummy (Polytan G)"
       ],
-      "sharpness_plus": "5.4.14.2"
+      "sharpness_plus": "5.4.14.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "dummy (Polytan G)",
-      "attack": "780",
-      "element": "Thunder 420",
+      "attack": 780,
       "sharpness": "5.4.14.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "550",
+      "improve_cost": 550,
       "improve_from": "dummy (Polytan)",
       "create_mats": null,
       "improve_mats": [
@@ -6436,20 +6760,25 @@
       "improve_to": [
         "dummy (True Polytan G)"
       ],
-      "sharpness_plus": "5.4.14.7"
+      "sharpness_plus": "5.4.14.7",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "dummy (True Polytan G)",
-      "attack": "1144",
-      "element": "Thunder 600",
+      "attack": 1144,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "590",
+      "improve_cost": 590,
       "improve_from": "dummy (Polytan G)",
       "create_mats": null,
       "improve_mats": [
@@ -6473,19 +6802,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 600
+        }
+      ]
     },
     {
       "name": "dummy (Amezari Hammer)",
-      "attack": "520",
-      "element": "Water 400",
+      "attack": 520,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "hm",
-      "create_cost": "25000",
+      "create_cost": 25000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6512,20 +6846,25 @@
       "improve_to": [
         "dummy (Amezari Hammer+)"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "dummy (Amezari Hammer+)",
-      "attack": "728",
-      "element": "Water 450",
+      "attack": 728,
       "sharpness": "6.4.8.7",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "25000",
+      "improve_cost": 25000,
       "improve_from": "dummy (Amezari Hammer)",
       "create_mats": null,
       "improve_mats": [
@@ -6557,20 +6896,25 @@
       "improve_to": [
         "dummy (Amezari Impact)"
       ],
-      "sharpness_plus": "6.4.8.12"
+      "sharpness_plus": "6.4.8.12",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "dummy (Amezari Impact)",
-      "attack": "1040",
-      "element": "Water 600",
+      "attack": 1040,
       "sharpness": "6.4.8.12.5",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
       "create_cost": null,
-      "improve_cost": "25000",
+      "improve_cost": 25000,
       "improve_from": "dummy (Amezari Hammer+)",
       "create_mats": null,
       "improve_mats": [
@@ -6600,19 +6944,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 600
+        }
+      ]
     },
     {
       "name": "Ukanlos Trampler",
-      "attack": "1820",
-      "element": "Ice 120",
+      "attack": 1820,
       "sharpness": "17.2.4.7.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "150000",
+      "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6643,19 +6992,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "17.2.4.7.4.3"
+      "sharpness_plus": "17.2.4.7.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Bone Club G",
-      "attack": "1560",
-      "element": null,
+      "attack": 1560,
       "sharpness": "8.7.7.8",
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6686,19 +7040,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.2"
+      "sharpness_plus": "8.7.7.11.2",
+      "elements": null
     },
     {
       "name": "War Hammer G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6729,19 +7083,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": null
     },
     {
       "name": "Tarnished Hammer G",
-      "attack": "1664",
-      "element": null,
+      "attack": 1664,
       "sharpness": "19.2.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6760,19 +7114,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.4"
+      "sharpness_plus": "19.2.5.4",
+      "elements": null
     },
     {
       "name": "Spiked Hammer G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6803,19 +7157,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": null
     },
     {
       "name": "Iron Striker G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6846,19 +7200,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Atlas Hammer G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6889,19 +7243,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Bone Axe G",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "6.4.8.12.5",
       "affinity": "10%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6932,19 +7286,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4"
+      "sharpness_plus": "6.4.8.12.6.4",
+      "elements": null
     },
     {
       "name": "Skullcrusher G",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "3.2.17.12.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6975,19 +7329,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2"
+      "sharpness_plus": "3.2.17.12.4.2",
+      "elements": null
     },
     {
       "name": "Bull Tusk Hammer G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7018,19 +7372,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Crystal Nova G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7061,19 +7415,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Binder Mace G",
-      "attack": "1144",
-      "element": "Paralysis 280",
+      "attack": 1144,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7104,19 +7458,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Kut-Ku Jaw G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7147,19 +7506,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Venom Monster G",
-      "attack": "1248",
-      "element": "Poison 350",
+      "attack": 1248,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7190,19 +7549,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Dead Revolver G",
-      "attack": "1248",
-      "element": "Fire 400",
+      "attack": 1248,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7233,19 +7597,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Anchor Crusher G",
-      "attack": "1300",
-      "element": "Water 380",
+      "attack": 1300,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7276,19 +7645,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Kut-Ku Pick G",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "9.2.13.7.5.4",
       "affinity": "20%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7319,19 +7693,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3"
+      "sharpness_plus": "9.2.13.7.5.6.3",
+      "elements": null
     },
     {
       "name": "Dragonhead Hammer G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7362,19 +7736,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Basarios Bash G",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+36",
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7405,19 +7779,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Titan Hammer G",
-      "attack": "1560",
-      "element": null,
+      "attack": 1560,
       "sharpness": "8.7.7.11.2",
       "affinity": "-15%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7448,19 +7822,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": null
     },
     {
       "name": "Finishing Hammer G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7491,19 +7865,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": null
     },
     {
       "name": "TrueBlackCauldron G",
-      "attack": "1300",
-      "element": null,
+      "attack": 1300,
       "sharpness": "10.1.3.17.6.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7534,19 +7908,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3"
+      "sharpness_plus": "10.1.3.17.6.5.3",
+      "elements": null
     },
     {
       "name": "Enormous Ham G",
-      "attack": "1612",
-      "element": null,
+      "attack": 1612,
       "sharpness": "10.1.3.16",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7577,19 +7951,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.4"
+      "sharpness_plus": "10.1.3.17.4",
+      "elements": null
     },
     {
       "name": "Teddybear G",
-      "attack": "936",
-      "element": "Sleep 200",
+      "attack": 936,
       "sharpness": "5.4.14.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7620,19 +7994,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.2"
+      "sharpness_plus": "5.4.14.10.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Cactus Creamer G",
-      "attack": "884",
-      "element": "Poison 300",
+      "attack": 884,
       "sharpness": "19.2.5.7.4.5.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7663,19 +8042,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "White Cat Hammer G",
-      "attack": "1040",
-      "element": "Paralysis 180",
+      "attack": 1040,
       "sharpness": "8.7.7.11.2",
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7706,19 +8090,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2"
+      "sharpness_plus": "8.7.7.11.5.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Black Cat Hammer G",
-      "attack": "936",
-      "element": "Paralysis 380",
+      "attack": 936,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7749,19 +8138,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Black Belt Hammer G",
-      "attack": "1352",
-      "element": null,
+      "attack": 1352,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7792,19 +8186,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": null
     },
     {
       "name": "Breath Core Hammer G",
-      "attack": "1508",
-      "element": null,
+      "attack": 1508,
       "sharpness": "19.2.5.7.4.3",
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7835,19 +8229,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3"
+      "sharpness_plus": "19.2.5.7.4.5.3",
+      "elements": null
     },
     {
       "name": "Polytan G",
-      "attack": "1196",
-      "element": "Thunder 280",
+      "attack": 1196,
       "sharpness": "5.4.14.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7878,19 +8272,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.7"
+      "sharpness_plus": "5.4.14.7",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Great Demon Hammer G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7921,19 +8320,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": null
     },
     {
       "name": "Hard Bone Hammer G",
-      "attack": "1456",
-      "element": null,
+      "attack": 1456,
       "sharpness": "5.4.14.10.4.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -7964,19 +8363,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2"
+      "sharpness_plus": "5.4.14.10.4.6.2",
+      "elements": null
     },
     {
       "name": "TwoStarSilverPot G",
-      "attack": "1196",
-      "element": null,
+      "attack": 1196,
       "sharpness": "3.2.17.12.4.5.2",
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8007,19 +8406,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "Great Cone G",
-      "attack": "1248",
-      "element": "Ice 400",
+      "attack": 1248,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8050,19 +8449,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Onslaught Hammer G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8093,19 +8497,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": null
     },
     {
       "name": "War Basher G",
-      "attack": "1404",
-      "element": null,
+      "attack": 1404,
       "sharpness": "3.2.17.12.4.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8136,19 +8540,19 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2"
+      "sharpness_plus": "3.2.17.12.4.5.2",
+      "elements": null
     },
     {
       "name": "SanctionedGunHammr G",
-      "attack": "1196",
-      "element": "Fire 500",
+      "attack": 1196,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8179,19 +8583,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Crater Maker G",
-      "attack": "1300",
-      "element": "Poison 200",
+      "attack": 1300,
       "sharpness": "14.4.6.7.4.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+14",
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8222,19 +8631,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4"
+      "sharpness_plus": "14.4.6.7.4.6.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Torment(Purgatory) G",
-      "attack": "1352",
-      "element": "Fire 310",
+      "attack": 1352,
       "sharpness": "8.7.7.11.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8265,19 +8679,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2"
+      "sharpness_plus": "8.7.7.11.5.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 310
+        }
+      ]
     },
     {
       "name": "Dragonbreaker G",
-      "attack": "1300",
-      "element": "Dragon 330",
+      "attack": 1300,
       "sharpness": "6.4.8.12.6.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "hm",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -8308,7 +8727,13 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4"
+      "sharpness_plus": "6.4.8.12.6.5.4",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 330
+        }
+      ]
     }
   ]
 }

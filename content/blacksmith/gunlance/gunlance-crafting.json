@@ -2,20 +2,19 @@
   "weapons": [
     {
       "name": "Ancient Destroyer",
-      "attack": "552",
-      "element": null,
+      "attack": 552,
       "sharpness": "7.4.7.9.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Babel Spear",
       "create_mats": [
         {
@@ -66,24 +65,24 @@
       "improve_to": [
         "Genesis"
       ],
-      "sharpness_plus": "7.4.7.9.4.2"
+      "sharpness_plus": "7.4.7.9.4.2",
+      "elements": null
     },
     {
       "name": "Genesis",
-      "attack": "621",
-      "element": null,
+      "attack": 621,
       "sharpness": "18.4.3.10.3.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Spread",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Ancient Destroyer",
       "create_mats": null,
       "improve_mats": [
@@ -113,24 +112,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.4.3.10.3.5.2"
+      "sharpness_plus": "18.4.3.10.3.5.2",
+      "elements": null
     },
     {
       "name": "Feather Gunlance",
-      "attack": "368",
-      "element": "Sleep 100",
+      "attack": 368,
       "sharpness": "7.4.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Spread",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": "Knight Lance",
       "create_mats": [
         {
@@ -181,24 +180,29 @@
       "improve_to": [
         "Feather Gunlance+"
       ],
-      "sharpness_plus": "7.4.8.9.2"
+      "sharpness_plus": "7.4.8.9.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Feather Gunlance+",
-      "attack": "460",
-      "element": "Sleep 120",
+      "attack": 460,
       "sharpness": "6.4.8.10.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Feather Gunlance",
       "create_mats": [
         {
@@ -255,24 +259,29 @@
       "improve_to": [
         "Hypno Cannon"
       ],
-      "sharpness_plus": "6.4.8.10.4.2"
+      "sharpness_plus": "6.4.8.10.4.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Hypno Cannon",
-      "attack": "506",
-      "element": "Sleep 140",
+      "attack": 506,
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Feather Gunlance+",
       "create_mats": null,
       "improve_mats": [
@@ -296,24 +305,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.5.9.10.5.5.2"
+      "sharpness_plus": "9.5.9.10.5.5.2",
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 140
+        }
+      ]
     },
     {
       "name": "Snow Gunlance",
-      "attack": "207",
-      "element": "Ice 100",
+      "attack": 207,
       "sharpness": "7.3.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "shelling": {
         "type": "Normal",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "1400",
-      "improve_cost": "1400",
+      "create_cost": 1400,
+      "improve_cost": 1400,
       "improve_from": "Iron Lance",
       "create_mats": [
         {
@@ -378,24 +392,29 @@
       "improve_to": [
         "Snow Gunlance Mk. II"
       ],
-      "sharpness_plus": "7.3.9"
+      "sharpness_plus": "7.3.9",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Snow Gunlance Mk. II",
-      "attack": "253",
-      "element": "Ice 120",
+      "attack": 253,
       "sharpness": "5.5.8.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Snow Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -423,24 +442,29 @@
         "Marine Fisher",
         "Scissor Gunlance"
       ],
-      "sharpness_plus": "5.5.8.6"
+      "sharpness_plus": "5.5.8.6",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Blizzard Gunlance",
-      "attack": "437",
-      "element": "Ice 150",
+      "attack": 437,
       "sharpness": "5.5.9.12.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Snow Gunlance Mk. II",
       "create_mats": null,
       "improve_mats": [
@@ -464,24 +488,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.5.9.12.4.3"
+      "sharpness_plus": "5.5.9.12.4.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Marine Fisher",
-      "attack": "299",
-      "element": "Water 100",
+      "attack": 299,
       "sharpness": "5.5.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "shelling": {
         "type": "Long",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": "Snow Gunlance Mk. II",
       "create_mats": [
         {
@@ -532,24 +561,29 @@
       "improve_to": [
         "Deep Fisher"
       ],
-      "sharpness_plus": "5.5.8.11"
+      "sharpness_plus": "5.5.8.11",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Deep Fisher",
-      "attack": "368",
-      "element": "Water 200",
+      "attack": 368,
       "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "shelling": {
         "type": "Long",
         "level": "1"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": "Marine Fisher",
       "create_mats": null,
       "improve_mats": [
@@ -575,24 +609,29 @@
       "improve_to": [
         "Deep Ocean"
       ],
-      "sharpness_plus": "5.5.8.13.3"
+      "sharpness_plus": "5.5.8.13.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Deep Ocean",
-      "attack": "391",
-      "element": "Water 300",
+      "attack": 391,
       "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Long",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "40000",
+      "improve_cost": 40000,
       "improve_from": "Deep Fisher",
       "create_mats": null,
       "improve_mats": [
@@ -618,24 +657,29 @@
       "improve_to": [
         "Sea King Gunlance"
       ],
-      "sharpness_plus": "5.7.5.13.2"
+      "sharpness_plus": "5.7.5.13.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Sea King Gunlance",
-      "attack": "437",
-      "element": "Water 350",
+      "attack": 437,
       "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "55000",
+      "improve_cost": 55000,
       "improve_from": "Deep Ocean",
       "create_mats": null,
       "improve_mats": [
@@ -662,24 +706,29 @@
         "Sea God Leviathan",
         "Volcano Gunlance"
       ],
-      "sharpness_plus": "5.5.9.13.4.3"
+      "sharpness_plus": "5.5.9.13.4.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Sea God Leviathan",
-      "attack": "506",
-      "element": "Water 370",
+      "attack": 506,
       "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Sea King Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -705,24 +754,29 @@
       "improve_to": [
         "Sea Abyss"
       ],
-      "sharpness_plus": "9.5.9.10.4.6.2"
+      "sharpness_plus": "9.5.9.10.4.6.2",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 370
+        }
+      ]
     },
     {
       "name": "Sea Abyss",
-      "attack": "575",
-      "element": "Water 400",
+      "attack": 575,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": "Sea God Leviathan",
       "create_mats": null,
       "improve_mats": [
@@ -752,24 +806,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Volcano Gunlance",
-      "attack": "598",
-      "element": "Fire 200",
+      "attack": 598,
       "sharpness": "5.5.9.13.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "100000",
-      "improve_cost": "100000",
+      "create_cost": 100000,
+      "improve_cost": 100000,
       "improve_from": "Sea King Gunlance",
       "create_mats": [
         {
@@ -820,24 +879,29 @@
       "improve_to": [
         "Lavasioth Gunlance"
       ],
-      "sharpness_plus": "5.5.9.13.5.3"
+      "sharpness_plus": "5.5.9.13.5.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Lavasioth Gunlance",
-      "attack": "644",
-      "element": "Fire 240",
+      "attack": 644,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Volcano Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -867,24 +931,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Scissor Gunlance",
-      "attack": "437",
-      "element": null,
+      "attack": 437,
       "sharpness": "5.7.5.12",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+24",
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "40000",
-      "improve_cost": "40000",
+      "create_cost": 40000,
+      "improve_cost": 40000,
       "improve_from": [
         "Bone Claw Lance+",
         "Snow Gunlance Mk. II"
@@ -924,7 +993,7 @@
         },
         {
           "name": "Hermitaur Claw+",
-          "amount": "1",  
+          "amount": "1",
           "type": "claw",
           "color": "red"
         }
@@ -952,24 +1021,24 @@
       "improve_to": [
         "Scissor Cannon"
       ],
-      "sharpness_plus": "5.7.5.16.2"
+      "sharpness_plus": "5.7.5.16.2",
+      "elements": null
     },
     {
       "name": "Scissor Cannon",
-      "attack": "460",
-      "element": null,
+      "attack": 460,
       "sharpness": "5.7.5.15.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+28",
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Scissor Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -996,24 +1065,24 @@
         "Violet Cannon",
         "Shell Claw Lance"
       ],
-      "sharpness_plus": "5.7.5.15.5.2"
+      "sharpness_plus": "5.7.5.15.5.2",
+      "elements": null
     },
     {
       "name": "Violet Cannon",
-      "attack": "529",
-      "element": null,
+      "attack": 529,
       "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+40",
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "85000",
-      "improve_cost": "85000",
+      "create_cost": 85000,
+      "improve_cost": 85000,
       "improve_from": "Scissor Cannon",
       "create_mats": [
         {
@@ -1064,24 +1133,24 @@
       "improve_to": [
         "Violet Buster"
       ],
-      "sharpness_plus": "3.7.4.15.7.3"
+      "sharpness_plus": "3.7.4.15.7.3",
+      "elements": null
     },
     {
       "name": "Violet Buster",
-      "attack": "621",
-      "element": null,
+      "attack": 621,
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+40",
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Violet Cannon",
       "create_mats": null,
       "improve_mats": [
@@ -1105,24 +1174,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.7.5.16.5.5.2"
+      "sharpness_plus": "5.7.5.16.5.5.2",
+      "elements": null
     },
     {
       "name": "Iron Gunlance",
-      "attack": "207",
-      "element": null,
+      "attack": 207,
       "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "shelling": {
         "type": "Normal",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "1100",
-      "improve_cost": "1100",
+      "create_cost": 1100,
+      "improve_cost": 1100,
       "improve_from": [
         "Iron Lance"
       ],
@@ -1189,24 +1258,24 @@
       "improve_to": [
         "Iron Gunlance+"
       ],
-      "sharpness_plus": "3.7.4.6"
+      "sharpness_plus": "3.7.4.6",
+      "elements": null
     },
     {
       "name": "Iron Gunlance+",
-      "attack": "253",
-      "element": null,
+      "attack": 253,
       "sharpness": "3.7.4.1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "shelling": {
         "type": "Normal",
         "level": "1"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "1750",
+      "improve_cost": 1750,
       "improve_from": "Iron Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1232,24 +1301,24 @@
       "improve_to": [
         "Steel Gunlance"
       ],
-      "sharpness_plus": "3.7.4.6"
+      "sharpness_plus": "3.7.4.6",
+      "elements": null
     },
     {
       "name": "Steel Gunlance",
-      "attack": "276",
-      "element": null,
+      "attack": 276,
       "sharpness": "5.7.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Iron Gunlance+",
       "create_mats": null,
       "improve_mats": [
@@ -1277,24 +1346,24 @@
         "Luna's Howl",
         "White Gunlance"
       ],
-      "sharpness_plus": "5.7.5.8"
+      "sharpness_plus": "5.7.5.8",
+      "elements": null
     },
     {
       "name": "Special Ops Gunlance",
-      "attack": "322",
-      "element": null,
+      "attack": 322,
       "sharpness": "5.7.5.8",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": "Steel Gunlance",
       "create_mats": [
         {
@@ -1333,24 +1402,24 @@
       "improve_to": [
         "Imperial Gunlance"
       ],
-      "sharpness_plus": "5.7.5.13"
+      "sharpness_plus": "5.7.5.13",
+      "elements": null
     },
     {
       "name": "Imperial Gunlance",
-      "attack": "391",
-      "element": null,
+      "attack": 391,
       "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "6500",
+      "improve_cost": 6500,
       "improve_from": "Special Ops Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1376,24 +1445,24 @@
       "improve_to": [
         "Silver Rook"
       ],
-      "sharpness_plus": "3.7.4.16.5"
+      "sharpness_plus": "3.7.4.16.5",
+      "elements": null
     },
     {
       "name": "Silver Rook",
-      "attack": "414",
-      "element": "Dragon 250",
+      "attack": 414,
       "sharpness": "5.7.5.13",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "65000",
+      "improve_cost": 65000,
       "improve_from": "Imperial Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1419,24 +1488,29 @@
       "improve_to": [
         "Gun Chariot"
       ],
-      "sharpness_plus": "5.7.5.16.2"
+      "sharpness_plus": "5.7.5.16.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Gun Chariot",
-      "attack": "437",
-      "element": "Dragon 320",
+      "attack": 437,
       "sharpness": "5.7.5.16.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Silver Rook",
       "create_mats": null,
       "improve_mats": [
@@ -1468,24 +1542,29 @@
       "improve_to": [
         "Gun Chariot+"
       ],
-      "sharpness_plus": "5.7.5.16.5.2"
+      "sharpness_plus": "5.7.5.16.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Gun Chariot+",
-      "attack": "529",
-      "element": "Dragon 350",
+      "attack": 529,
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Gun Chariot",
       "create_mats": null,
       "improve_mats": [
@@ -1511,24 +1590,29 @@
       "improve_to": [
         "World's End"
       ],
-      "sharpness_plus": "9.5.9.10.5.5.2"
+      "sharpness_plus": "9.5.9.10.5.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "World's End",
-      "attack": "575",
-      "element": "Dragon 370",
+      "attack": 575,
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": "Gun Chariot+",
       "create_mats": null,
       "improve_mats": [
@@ -1558,24 +1642,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.7.5.16.5.5.2"
+      "sharpness_plus": "5.7.5.16.5.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 370
+        }
+      ]
     },
     {
       "name": "Luna's Howl",
-      "attack": "345",
-      "element": "Fire 350",
+      "attack": 345,
       "sharpness": "8.3.8.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Spread",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "5600",
-      "improve_cost": "5600",
+      "create_cost": 5600,
+      "improve_cost": 5600,
       "improve_from": [
         "Steel Gunlance"
       ],
@@ -1628,24 +1717,29 @@
       "improve_to": [
         "Luna's Roar"
       ],
-      "sharpness_plus": "8.3.8.9.2"
+      "sharpness_plus": "8.3.8.9.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Luna's Roar",
-      "attack": "368",
-      "element": "Fire 400",
+      "attack": 368,
       "sharpness": "9.5.9.10.2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Spread",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": [
         "Luna's Howl"
       ],
@@ -1673,24 +1767,29 @@
       "improve_to": [
         "Luna's Flare"
       ],
-      "sharpness_plus": "9.5.9.10.5.2"
+      "sharpness_plus": "9.5.9.10.5.2",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Luna's Flare",
-      "attack": "414",
-      "element": "Fire 480",
+      "attack": 414,
       "sharpness": "2.4.16.7.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Luna's Roar",
       "create_mats": null,
       "improve_mats": [
@@ -1716,24 +1815,29 @@
       "improve_to": [
         "Luna's Sun"
       ],
-      "sharpness_plus": "2.4.16.7.5.4"
+      "sharpness_plus": "2.4.16.7.5.4",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "Luna's Sun",
-      "attack": "575",
-      "element": "Fire 500",
+      "attack": 575,
       "sharpness": "2.4.16.7.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Spread",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Luna's Flare",
       "create_mats": null,
       "improve_mats": [
@@ -1763,24 +1867,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "2.4.16.7.5.6.5"
+      "sharpness_plus": "2.4.16.7.5.6.5",
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "White Gunlance",
-      "attack": "368",
-      "element": null,
+      "attack": 368,
       "sharpness": "5.5.9.6",
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "4",
+      "rarity": 4,
       "shelling": {
         "type": "Long",
         "level": "1"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "4900",
+      "improve_cost": 4900,
       "improve_from": "Steel Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1806,24 +1915,24 @@
       "improve_to": [
         "White Cannon"
       ],
-      "sharpness_plus": "5.5.9.11"
+      "sharpness_plus": "5.5.9.11",
+      "elements": null
     },
     {
       "name": "White Cannon",
-      "attack": "414",
-      "element": null,
+      "attack": 414,
       "sharpness": "5.5.8.11",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Long",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "30000",
+      "improve_cost": 30000,
       "improve_from": "White Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1849,24 +1958,24 @@
       "improve_to": [
         "Black Gunlance"
       ],
-      "sharpness_plus": "5.5.8.12.2"
+      "sharpness_plus": "5.5.8.12.2",
+      "elements": null
     },
     {
       "name": "Black Gunlance",
-      "attack": "483",
-      "element": null,
+      "attack": 483,
       "sharpness": "9.5.8.7",
       "affinity": "-5%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Long",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "60000",
+      "improve_cost": 60000,
       "improve_from": "White Cannon",
       "create_mats": null,
       "improve_mats": [
@@ -1892,24 +2001,24 @@
       "improve_to": [
         "Black Gore Cannon"
       ],
-      "sharpness_plus": "9.5.8.8.2"
+      "sharpness_plus": "9.5.8.8.2",
+      "elements": null
     },
     {
       "name": "Black Gore Cannon",
-      "attack": "529",
-      "element": null,
+      "attack": 529,
       "sharpness": "9.5.9.10.2",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Black Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -1935,24 +2044,24 @@
       "improve_to": [
         "Black Gore Buster"
       ],
-      "sharpness_plus": "9.5.9.10.5.2"
+      "sharpness_plus": "9.5.9.10.5.2",
+      "elements": null
     },
     {
       "name": "Black Gore Buster",
-      "attack": "690",
-      "element": null,
+      "attack": 690,
       "sharpness": "9.5.9.10.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Black Gore Cannon",
       "create_mats": null,
       "improve_mats": [
@@ -1976,24 +2085,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.5.9.10.4.6.2"
+      "sharpness_plus": "9.5.9.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Heavy Bone Gunlance",
-      "attack": "506",
-      "element": null,
+      "attack": 506,
       "sharpness": "11.9.4.9.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "75000",
-      "improve_cost": "75000",
+      "create_cost": 75000,
+      "improve_cost": 75000,
       "improve_from": [
         "Barbarian Tusk"
       ],
@@ -2052,24 +2161,24 @@
       "improve_to": [
         "Hard Bone Cannon"
       ],
-      "sharpness_plus": "11.9.4.9.4.3"
+      "sharpness_plus": "11.9.4.9.4.3",
+      "elements": null
     },
     {
       "name": "Hard Bone Cannon",
-      "attack": "598",
-      "element": null,
+      "attack": 598,
       "sharpness": "11.9.4.9.4.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "5"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": [
         "Heavy Bone Gunlance"
       ],
@@ -2095,24 +2204,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "11.9.4.9.4.4.4"
+      "sharpness_plus": "11.9.4.9.4.4.4",
+      "elements": null
     },
     {
       "name": "Full Voltage",
-      "attack": "460",
-      "element": "Thunder 180",
+      "attack": 460,
       "sharpness": "11.9.4.6",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Long",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "50000",
-      "improve_cost": "50000",
+      "create_cost": 50000,
+      "improve_cost": 50000,
       "improve_from": [
         "Hard Bone Lance+"
       ],
@@ -2165,24 +2274,29 @@
       "improve_to": [
         "Full Generator"
       ],
-      "sharpness_plus": "11.9.4.9.2"
+      "sharpness_plus": "11.9.4.9.2",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Full Generator",
-      "attack": "529",
-      "element": "Thunder 220",
+      "attack": 529,
       "sharpness": "11.9.4.9.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "85000",
+      "improve_cost": 85000,
       "improve_from": "Full Voltage",
       "create_mats": null,
       "improve_mats": [
@@ -2208,24 +2322,29 @@
       "improve_to": [
         "High Volt Gunlance"
       ],
-      "sharpness_plus": "11.9.4.9.4.3"
+      "sharpness_plus": "11.9.4.9.4.3",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "High Volt Gunlance",
-      "attack": "644",
-      "element": "Thunder 260",
+      "attack": 644,
       "sharpness": "11.9.4.9.4.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "120000",
+      "improve_cost": 120000,
       "improve_from": "Full Generator",
       "create_mats": null,
       "improve_mats": [
@@ -2255,23 +2374,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "11.9.4.9.4.4.4"
+      "sharpness_plus": "11.9.4.9.4.4.4",
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Bone Gunlance",
-      "attack": "161",
-      "element": null,
+      "attack": 161,
       "sharpness": "2.4.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "shelling": {
         "type": "Normal",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "650",
+      "create_cost": 650,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -2292,24 +2416,24 @@
       "improve_to": [
         "Great Bone Gunlance"
       ],
-      "sharpness_plus": "2.4.10"
+      "sharpness_plus": "2.4.10",
+      "elements": null
     },
     {
       "name": "Great Bone Gunlance",
-      "attack": "230",
-      "element": null,
+      "attack": 230,
       "sharpness": "2.4.12",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
+      "rarity": 2,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "1400",
+      "improve_cost": 1400,
       "improve_from": "Bone Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -2330,24 +2454,24 @@
         "Wyvern Bone Gunlance",
         "Average Hitter"
       ],
-      "sharpness_plus": "2.4.16.1"
+      "sharpness_plus": "2.4.16.1",
+      "elements": null
     },
     {
       "name": "Wyvern Bone Gunlance",
-      "attack": "299",
-      "element": null,
+      "attack": 299,
       "sharpness": "2.4.16.1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "2150",
+      "improve_cost": 2150,
       "improve_from": "Great Bone Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -2373,24 +2497,24 @@
       "improve_to": [
         "Hellsting"
       ],
-      "sharpness_plus": "2.4.16.6"
+      "sharpness_plus": "2.4.16.6",
+      "elements": null
     },
     {
       "name": "Hellsting",
-      "attack": "322",
-      "element": "Ice 250",
+      "attack": 322,
       "sharpness": "15.4.3.5",
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "shelling": {
         "type": "Spread",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "4250",
-      "improve_cost": "4250",
+      "create_cost": 4250,
+      "improve_cost": 4250,
       "improve_from": "Wyvern Bone Gunlance",
       "create_mats": [
         {
@@ -2441,24 +2565,29 @@
       "improve_to": [
         "Hellsting+"
       ],
-      "sharpness_plus": "15.4.3.9.1"
+      "sharpness_plus": "15.4.3.9.1",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Hellsting+",
-      "attack": "345",
-      "element": "Ice 270",
+      "attack": 345,
       "sharpness": "2.4.16.5",
       "affinity": "10%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Spread",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "6350",
+      "improve_cost": 6350,
       "improve_from": "Hellsting",
       "create_mats": null,
       "improve_mats": [
@@ -2484,24 +2613,29 @@
       "improve_to": [
         "Hellstinger"
       ],
-      "sharpness_plus": "2.4.16.7.3"
+      "sharpness_plus": "2.4.16.7.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 270
+        }
+      ]
     },
     {
       "name": "Hellstinger",
-      "attack": "414",
-      "element": "Ice 320",
+      "attack": 414,
       "sharpness": "2.4.16.7.5",
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Hellsting+",
       "create_mats": null,
       "improve_mats": [
@@ -2528,24 +2662,29 @@
         "Demonic Blizzard",
         "Desert Slingshot"
       ],
-      "sharpness_plus": "2.4.16.7.5.5"
+      "sharpness_plus": "2.4.16.7.5.5",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Demonic Blizzard",
-      "attack": "575",
-      "element": "Ice 340",
+      "attack": 575,
       "sharpness": "2.4.16.7.5.5",
       "affinity": "25%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Spread",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "90000",
+      "improve_cost": 90000,
       "improve_from": "Hellstinger",
       "create_mats": null,
       "improve_mats": [
@@ -2569,24 +2708,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "2.4.16.7.5.6.5"
+      "sharpness_plus": "2.4.16.7.5.6.5",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Desert Slingshot",
-      "attack": "644",
-      "element": null,
+      "attack": 644,
       "sharpness": "16.5.4.9.4.2",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "95000",
+      "improve_cost": 95000,
       "improve_from": "Hellstinger",
       "create_mats": null,
       "improve_mats": [
@@ -2612,24 +2756,24 @@
       "improve_to": [
         "Desert Slingshoter"
       ],
-      "sharpness_plus": "16.5.4.9.4.5.2"
+      "sharpness_plus": "16.5.4.9.4.5.2",
+      "elements": null
     },
     {
       "name": "Desert Slingshoter",
-      "attack": "736",
-      "element": null,
+      "attack": 736,
       "sharpness": "11.8.5.8.5.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "115000",
+      "improve_cost": 115000,
       "improve_from": "Desert Slingshot",
       "create_mats": null,
       "improve_mats": [
@@ -2659,24 +2803,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "11.8.5.8.5.4.4"
+      "sharpness_plus": "11.8.5.8.5.4.4",
+      "elements": null
     },
     {
       "name": "Average Hitter",
-      "attack": "299",
-      "element": "Poison 180",
+      "attack": 299,
       "sharpness": "7.4.8",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "3100",
-      "improve_cost": "3100",
+      "create_cost": 3100,
+      "improve_cost": 3100,
       "improve_from": "Great Bone Gunlance",
       "create_mats": [
         {
@@ -2727,24 +2871,29 @@
       "improve_to": [
         "Grand Slam"
       ],
-      "sharpness_plus": "7.4.13"
+      "sharpness_plus": "7.4.13",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Grand Slam",
-      "attack": "391",
-      "element": "Poison 240",
+      "attack": 391,
       "sharpness": "7.4.8.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "5600",
+      "improve_cost": 5600,
       "improve_from": "Average Hitter",
       "create_mats": null,
       "improve_mats": [
@@ -2770,24 +2919,29 @@
       "improve_to": [
         "Hard Hitter"
       ],
-      "sharpness_plus": "7.4.8.6"
+      "sharpness_plus": "7.4.8.6",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Hard Hitter",
-      "attack": "437",
-      "element": "Poison 290",
+      "attack": 437,
       "sharpness": "6.3.15.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "35000",
+      "improve_cost": 35000,
       "improve_from": "Grand Slam",
       "create_mats": null,
       "improve_mats": [
@@ -2813,24 +2967,29 @@
       "improve_to": [
         "Big Slugger"
       ],
-      "sharpness_plus": "6.3.15.5.3"
+      "sharpness_plus": "6.3.15.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 290
+        }
+      ]
     },
     {
       "name": "Big Slugger",
-      "attack": "460",
-      "element": "Poison 320",
+      "attack": 460,
       "sharpness": "4.4.9.11",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "50000",
+      "improve_cost": 50000,
       "improve_from": "Hard Hitter",
       "create_mats": null,
       "improve_mats": [
@@ -2857,24 +3016,29 @@
         "Triple Crown",
         "Venomous Cologne"
       ],
-      "sharpness_plus": "4.4.9.12.2"
+      "sharpness_plus": "4.4.9.12.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Triple Crown",
-      "attack": "506",
-      "element": "Poison 400",
+      "attack": 506,
       "sharpness": "4.4.9.12.3",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "105000",
+      "improve_cost": 105000,
       "improve_from": "Big Slugger",
       "create_mats": null,
       "improve_mats": [
@@ -2904,24 +3068,29 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "4.4.9.12.4.2"
+      "sharpness_plus": "4.4.9.12.4.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Venomous Cologne",
-      "attack": "483",
-      "element": "Poison 160",
+      "attack": 483,
       "sharpness": "8.4.7.10.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Long",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "90000",
-      "improve_cost": "90000",
+      "create_cost": 90000,
+      "improve_cost": 90000,
       "improve_from": "Big Slugger",
       "create_mats": [
         {
@@ -2972,24 +3141,29 @@
       "improve_to": [
         "Venomous Attar"
       ],
-      "sharpness_plus": "8.4.7.10.3.2"
+      "sharpness_plus": "8.4.7.10.3.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 160
+        }
+      ]
     },
     {
       "name": "Venomous Attar",
-      "attack": "575",
-      "element": "Poison 200",
+      "attack": 575,
       "sharpness": "18.5.3.9.3.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "110000",
+      "improve_cost": 110000,
       "improve_from": "Venomous Cologne",
       "create_mats": null,
       "improve_mats": [
@@ -3021,24 +3195,29 @@
       "improve_to": [
         "Venomous Perfume"
       ],
-      "sharpness_plus": "18.5.3.9.3.5.2"
+      "sharpness_plus": "18.5.3.9.3.5.2",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Venomous Perfume",
-      "attack": "644",
-      "element": "Poison 240",
+      "attack": 644,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "130000",
+      "improve_cost": 130000,
       "improve_from": "Venomous Attar",
       "create_mats": null,
       "improve_mats": [
@@ -3068,23 +3247,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Black Smoke Gunlance",
-      "attack": "345",
-      "element": "Dragon 250",
+      "attack": 345,
       "sharpness": "5.5.9.7",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Spread",
         "level": "1"
       },
       "type": "gl",
-      "create_cost": "15000",
+      "create_cost": 15000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3111,24 +3295,29 @@
       "improve_to": [
         "BlackDragonGunlance"
       ],
-      "sharpness_plus": "5.5.9.10"
+      "sharpness_plus": "5.5.9.10",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "BlackDragonGunlance",
-      "attack": "460",
-      "element": "Dragon 310",
+      "attack": 460,
       "sharpness": "11.7.4.7.3",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "100000",
+      "improve_cost": 100000,
       "improve_from": "Black Smoke Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -3160,24 +3349,29 @@
       "improve_to": [
         "TrueBlkDrgnGunlance"
       ],
-      "sharpness_plus": "11.7.4.7.5.2"
+      "sharpness_plus": "11.7.4.7.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 310
+        }
+      ]
     },
     {
       "name": "TrueBlkDrgnGunlance",
-      "attack": "621",
-      "element": "Dragon 380",
+      "attack": 621,
       "sharpness": "18.5.3.9.3.2",
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Spread",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "150000",
+      "improve_cost": 150000,
       "improve_from": "BlackDragonGunlance",
       "create_mats": null,
       "improve_mats": [
@@ -3207,23 +3401,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "18.5.3.9.3.5.2"
+      "sharpness_plus": "18.5.3.9.3.5.2",
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Dragonwood Gunlance",
-      "attack": "299",
-      "element": "Paralysis 180",
+      "attack": 299,
       "sharpness": "6.3.13.5",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "20000",
+      "create_cost": 20000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3256,24 +3455,29 @@
       "improve_to": [
         "Gld Dragonwd GLance"
       ],
-      "sharpness_plus": "6.3.13.6.3"
+      "sharpness_plus": "6.3.13.6.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Gld Dragonwd GLance",
-      "attack": "368",
-      "element": "Paralysis 230",
+      "attack": 368,
       "sharpness": "6.3.13.5.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Dragonwood Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -3299,24 +3503,29 @@
       "improve_to": [
         "AncientDrgnwoodLance"
       ],
-      "sharpness_plus": "6.3.13.5.3.4"
+      "sharpness_plus": "6.3.13.5.3.4",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "AncientDrgnwoodLance",
-      "attack": "460",
-      "element": "Paralysis 250",
+      "attack": 460,
       "sharpness": "15.5.4.9.3.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": "Gld Dragonwd GLance",
       "create_mats": [
         {
@@ -3367,24 +3576,29 @@
       "improve_to": [
         "AncientDrgnwoodLanc+"
       ],
-      "sharpness_plus": "15.5.4.9.3.6.3"
+      "sharpness_plus": "15.5.4.9.3.6.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "AncientDrgnwoodLanc+",
-      "attack": "529",
-      "element": "Paralysis 270",
+      "attack": 529,
       "sharpness": "9.5.9.10.5.2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "145000",
+      "improve_cost": 145000,
       "improve_from": "AncientDrgnwoodLance",
       "create_mats": null,
       "improve_mats": [
@@ -3414,23 +3628,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.5.9.10.5.5.2"
+      "sharpness_plus": "9.5.9.10.5.5.2",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 270
+        }
+      ]
     },
     {
       "name": "Pop Corn",
-      "attack": "414",
-      "element": null,
+      "attack": 414,
       "sharpness": "3.7.4.16",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "40000",
+      "create_cost": 40000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3463,24 +3682,24 @@
       "improve_to": [
         "Large Pop Corn"
       ],
-      "sharpness_plus": "3.7.4.16.5"
+      "sharpness_plus": "3.7.4.16.5",
+      "elements": null
     },
     {
       "name": "Large Pop Corn",
-      "attack": "598",
-      "element": null,
+      "attack": 598,
       "sharpness": "3.7.4.16.5",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Spread",
         "level": "5"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "75000",
+      "improve_cost": 75000,
       "improve_from": "Pop Corn",
       "create_mats": null,
       "improve_mats": [
@@ -3510,23 +3729,23 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.7.4.16.7.3"
+      "sharpness_plus": "3.7.4.16.7.3",
+      "elements": null
     },
     {
       "name": "dummy (EldrDrgGLance\"Emblem\")",
-      "attack": "598",
-      "element": null,
+      "attack": 598,
       "sharpness": "7.5.5.16.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "5"
       },
       "type": "gl",
-      "create_cost": "250",
+      "create_cost": 250,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3557,23 +3776,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "7.5.5.16.5.5.2"
+      "sharpness_plus": "7.5.5.16.5.5.2",
+      "elements": null
     },
     {
       "name": "Rex Blast",
-      "attack": "391",
-      "element": null,
+      "attack": 391,
       "sharpness": "13.4.3.9.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "shelling": {
         "type": "Spread",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "35000",
+      "create_cost": 35000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3607,24 +3826,24 @@
         "Tigrex Gunlance",
         "Hidden Gunlance"
       ],
-      "sharpness_plus": "13.4.3.9.3.2"
+      "sharpness_plus": "13.4.3.9.3.2",
+      "elements": null
     },
     {
       "name": "Tigrex Gunlance",
-      "attack": "506",
-      "element": null,
+      "attack": 506,
       "sharpness": "9.5.9.10.4.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Spread",
         "level": "3"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "80000",
+      "improve_cost": 80000,
       "improve_from": "Rex Blast",
       "create_mats": null,
       "improve_mats": [
@@ -3650,24 +3869,24 @@
       "improve_to": [
         "GreatTigrexGunlance"
       ],
-      "sharpness_plus": "9.5.9.10.4.6.2"
+      "sharpness_plus": "9.5.9.10.4.6.2",
+      "elements": null
     },
     {
       "name": "GreatTigrexGunlance",
-      "attack": "667",
-      "element": null,
+      "attack": 667,
       "sharpness": "9.5.9.10.4.6.2",
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Spread",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "125000",
+      "improve_cost": 125000,
       "improve_from": "Tigrex Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -3691,24 +3910,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.5.9.10.4.6.2"
+      "sharpness_plus": "9.5.9.10.4.6.2",
+      "elements": null
     },
     {
       "name": "Hidden Gunlance",
-      "attack": "437",
-      "element": null,
+      "attack": 437,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "80000",
-      "improve_cost": "80000",
+      "create_cost": 80000,
+      "improve_cost": 80000,
       "improve_from": "Rex Blast",
       "create_mats": [
         {
@@ -3759,24 +3978,24 @@
       "improve_to": [
         "WanningMoonDarklance"
       ],
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": null
     },
     {
       "name": "WanningMoonDarklance",
-      "attack": "552",
-      "element": null,
+      "attack": 552,
       "sharpness": "5.5.9.13.5.5.3",
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "120000",
-      "improve_cost": "120000",
+      "create_cost": 120000,
+      "improve_cost": 120000,
       "improve_from": "Hidden Gunlance",
       "create_mats": [
         {
@@ -3831,23 +4050,23 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": null
     },
     {
       "name": "Akantor Gunlance",
-      "attack": "575",
-      "element": null,
+      "attack": 575,
       "sharpness": "4.7.4.2",
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "shelling": {
         "type": "Normal",
         "level": "2"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3880,24 +4099,24 @@
       "improve_to": [
         "AkantorNoirGunlance"
       ],
-      "sharpness_plus": "4.7.4.7"
+      "sharpness_plus": "4.7.4.7",
+      "elements": null
     },
     {
       "name": "AkantorNoirGunlance",
-      "attack": "759",
-      "element": null,
+      "attack": 759,
       "sharpness": "4.7.4.8",
       "affinity": "40%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
       "create_cost": null,
-      "improve_cost": "145000",
+      "improve_cost": 145000,
       "improve_from": "Akantor Gunlance",
       "create_mats": null,
       "improve_mats": [
@@ -3927,23 +4146,23 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "4.7.4.14"
+      "sharpness_plus": "4.7.4.14",
+      "elements": null
     },
     {
       "name": "UkanlosBlazeGunlance",
-      "attack": "805",
-      "element": "Ice 120",
+      "attack": 805,
       "sharpness": "16.5.4.9.1",
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "5"
       },
       "type": "gl",
-      "create_cost": "150000",
+      "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -3974,23 +4193,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "16.5.4.9.4.2"
+      "sharpness_plus": "16.5.4.9.4.2",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Iron Gunlance G",
-      "attack": "644",
-      "element": null,
+      "attack": 644,
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4021,23 +4245,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.7.5.16.5.5.2"
+      "sharpness_plus": "5.7.5.16.5.5.2",
+      "elements": null
     },
     {
       "name": "WyvernBone Gunlance G",
-      "attack": "644",
-      "element": null,
+      "attack": 644,
       "sharpness": "3.4.17.7.5.4",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4068,23 +4292,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.4.17.7.5.5.4"
+      "sharpness_plus": "3.4.17.7.5.5.4",
+      "elements": null
     },
     {
       "name": "Blizzard Gunlance G",
-      "attack": "598",
-      "element": "Ice 150",
+      "attack": 598,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4115,23 +4339,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Imperial Gunlance G",
-      "attack": "621",
-      "element": null,
+      "attack": 621,
       "sharpness": "3.7.4.16.7.3",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4162,23 +4391,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.7.4.16.7.5.3"
+      "sharpness_plus": "3.7.4.16.7.5.3",
+      "elements": null
     },
     {
       "name": "Scissor Cannon G",
-      "attack": "598",
-      "element": null,
+      "attack": 598,
       "sharpness": "5.7.5.16.5.2",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+28",
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4209,23 +4438,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.7.5.16.5.5.2"
+      "sharpness_plus": "5.7.5.16.5.5.2",
+      "elements": null
     },
     {
       "name": "Grand Slam G",
-      "attack": "621",
-      "element": "Poison 240",
+      "attack": 621,
       "sharpness": "7.4.15.6.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Normal",
         "level": "4"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4256,23 +4485,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "7.4.15.6.4.4"
+      "sharpness_plus": "7.4.15.6.4.4",
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Marine Fisher G",
-      "attack": "598",
-      "element": "Water 200",
+      "attack": 598,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4303,23 +4537,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "White Cannon G",
-      "attack": "621",
-      "element": null,
+      "attack": 621,
       "sharpness": "5.5.9.13.5.3",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+8",
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Long",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4350,23 +4589,23 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.5.9.13.5.5.3"
+      "sharpness_plus": "5.5.9.13.5.5.3",
+      "elements": null
     },
     {
       "name": "Gld Dragonwd GLance G",
-      "attack": "506",
-      "element": "Paralysis 230",
+      "attack": 506,
       "sharpness": "7.4.15.6.4.4",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "shelling": {
         "type": "Normal",
         "level": "3"
       },
       "type": "gl",
-      "create_cost": "100000",
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -4397,7 +4636,13 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "7.4.15.6.4.6.3"
+      "sharpness_plus": "7.4.15.6.4.6.3",
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 230
+        }
+      ]
     }
   ]
 }
