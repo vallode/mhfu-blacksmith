@@ -33,6 +33,7 @@ Dependencies:
 
 * [zola](https://github.com/getzola/zola/) 
 * [Ruby](https://www.ruby-lang.org/)
+  * [toml](https://github.com/jm/toml)
 * [ImageMagick](https://imagemagick.org/) (optional)
 
 Before running the first build you need to run `make generate-maps` to generate weapons maps.

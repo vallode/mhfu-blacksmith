@@ -1,6 +1,7 @@
 require 'json'
 require 'find'
 require 'erb'
+require 'toml'
 
 FILE_TEMPLATE = %{+++
   title = <%= value["name"].to_json %>
@@ -127,54 +128,22 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           next
         end
 
-        output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-        output_binding = binding
-
-        slug = slugify(value["name"])
-        value["type"] = WEAPON_ABBR.key(value["type"])
+        value["title"] = value["name"]
+        value["slug"] = slugify(value["name"])
+        value["type"] = WEAPON_ABBR.key(value["type"]).to_s
 
         if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
 
-        if value["skills"] and value["type"].to_s != "decoration"
-          skills = value["skills"]
-          value["skills"] = nil
-        end
-
-        if value["create_mats"]
-          create_mats = value["create_mats"]
-          value["create_mats"] = nil
-        end
-
-        if value["improve_mats"]
-          improve_mats = value["improve_mats"]
-          value["improve_mats"] = nil
-
-        end
-
-        if value["alternative_create_mats"]
-          alternative_create_mats = value["alternative_create_mats"]
-          value["alternative_create_mats"] = nil
-        end
-        
-        if value["element"]
-          element = parseElements(value["element"])
-          value["element"] = nil
-        end
-
-        if value["shelling"]
-          shelling = value["shelling"]
-          value["shelling"] = nil
-        end
-
         value = value.select {|key, value| value != nil }
 
+        value["extra"] = value.select {|key, value| ["title", "slug"].none?(key)}
+        value = value.select {|key, value| ["title", "slug", "extra"].include?(key) }
+
         if path.include?("armorsmith")
-          # Dir.mkdir("#{File.dirname(path)}/")
-          File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
         else
-          File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
+          File.write("#{File.dirname(path)}/#{value["slug"]}.md", "+++\n#{TOML::Generator.new(value).body}+++\n")
         end
       end
     end
