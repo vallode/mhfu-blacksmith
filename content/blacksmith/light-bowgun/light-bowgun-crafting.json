@@ -2,13 +2,13 @@
   "weapons": [
     {
       "name": "Shooter's Barrel",
-      "attack": "96",
+      "attack": 96,
       "max_attack": "156",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -38,7 +38,7 @@
         "0",
         "0"
       ],
-      "create_cost": "450",
+      "create_cost": 450,
       "improve_mats": null,
       "create_mats": [
         {
@@ -53,17 +53,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Chain Blitz",
-      "attack": "108",
+      "attack": 108,
       "max_attack": "168",
       "rapid_fire": "Normal S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
+      "rarity": 1,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -93,7 +94,7 @@
         "1",
         "1"
       ],
-      "create_cost": "600",
+      "create_cost": 600,
       "improve_mats": null,
       "create_mats": [
         {
@@ -116,17 +117,18 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Azure)",
-      "attack": "108",
+      "attack": 108,
       "max_attack": "168",
       "rapid_fire": null,
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -156,7 +158,7 @@
         "1",
         "1"
       ],
-      "create_cost": "550",
+      "create_cost": 550,
       "improve_mats": null,
       "create_mats": [
         {
@@ -197,17 +199,18 @@
           "type": "scale",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (White)",
-      "attack": "120",
+      "attack": 120,
       "max_attack": "180",
       "rapid_fire": "Pellet S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -237,7 +240,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -264,17 +267,18 @@
           "type": "bone",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Emerald)",
-      "attack": "120",
+      "attack": 120,
       "max_attack": "180",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -304,7 +308,7 @@
         "1",
         "1"
       ],
-      "create_cost": "750",
+      "create_cost": 750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -331,17 +335,18 @@
           "type": "pelt",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Storm",
-      "attack": "120",
+      "attack": 120,
       "max_attack": "180",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -371,7 +376,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1100",
+      "create_cost": 1100,
       "improve_mats": null,
       "create_mats": [
         {
@@ -412,17 +417,18 @@
           "type": "scale",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Maelstrom",
-      "attack": "120",
+      "attack": 120,
       "max_attack": "180",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -452,7 +458,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1150",
+      "create_cost": 1150,
       "improve_mats": null,
       "create_mats": [
         {
@@ -479,17 +485,18 @@
           "type": "insect",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Blood)",
-      "attack": "132",
+      "attack": 132,
       "max_attack": "192",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -519,7 +526,7 @@
         "1",
         "1"
       ],
-      "create_cost": "900",
+      "create_cost": 900,
       "improve_mats": null,
       "create_mats": [
         {
@@ -546,17 +553,18 @@
           "type": "scale",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tail String",
-      "attack": "132",
+      "attack": 132,
       "max_attack": "192",
       "rapid_fire": "Freeze S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -586,7 +594,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1150",
+      "create_cost": 1150,
       "improve_mats": null,
       "create_mats": [
         {
@@ -613,17 +621,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Assault Conga",
-      "attack": "132",
+      "attack": 132,
       "max_attack": "192",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -653,7 +662,7 @@
         "0",
         "1"
       ],
-      "create_cost": "1250",
+      "create_cost": 1250,
       "improve_mats": null,
       "create_mats": [
         {
@@ -680,17 +689,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jade Storm",
-      "attack": "132",
+      "attack": 132,
       "max_attack": "192",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -720,7 +730,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1375",
+      "create_cost": 1375,
       "improve_mats": null,
       "create_mats": [
         {
@@ -747,17 +757,18 @@
           "type": "fish",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lobster Gun",
-      "attack": "144",
+      "attack": 144,
       "max_attack": "204",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -787,7 +798,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1150",
+      "create_cost": 1150,
       "improve_mats": null,
       "create_mats": [
         {
@@ -808,17 +819,18 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Angel Parasol",
-      "attack": "144",
+      "attack": 144,
       "max_attack": "204",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -848,7 +860,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1200",
+      "create_cost": 1200,
       "improve_mats": null,
       "create_mats": [
         {
@@ -875,17 +887,18 @@
           "type": "sac",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Anger",
-      "attack": "156",
+      "attack": 156,
       "max_attack": "216",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": "8",
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -915,7 +928,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1200",
+      "create_cost": 1200,
       "improve_mats": null,
       "create_mats": [
         {
@@ -942,17 +955,18 @@
           "type": "hide",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Rage",
-      "attack": "180",
+      "attack": 180,
       "max_attack": "240",
       "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
+      "rarity": 3,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -982,7 +996,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1425",
+      "create_cost": 1425,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1009,17 +1023,18 @@
           "type": "pelt",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Grenade Launcher",
-      "attack": "132",
+      "attack": 132,
       "max_attack": "192",
       "rapid_fire": "Crag S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1049,7 +1064,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1575",
+      "create_cost": 1575,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1076,17 +1091,18 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sandfall",
-      "attack": "156",
+      "attack": 156,
       "max_attack": "216",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1116,7 +1132,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1975",
+      "create_cost": 1975,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1143,17 +1159,18 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sakura Parasol",
-      "attack": "156",
+      "attack": 156,
       "max_attack": "216",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "Fast ",
       "recoil": "Moderate",
@@ -1183,7 +1200,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1425",
+      "create_cost": 1425,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1210,17 +1227,18 @@
           "type": "sac",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tail String+",
-      "attack": "168",
+      "attack": 168,
       "max_attack": "228",
       "rapid_fire": "Freeze S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -1250,7 +1268,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1725",
+      "create_cost": 1725,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1277,17 +1295,18 @@
           "type": "insect",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Valkyrie Fire",
-      "attack": "168",
+      "attack": 168,
       "max_attack": "228",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -1317,7 +1336,7 @@
         "0",
         "1"
       ],
-      "create_cost": "1875",
+      "create_cost": 1875,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1344,17 +1363,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Spartacus Fire",
-      "attack": "180",
+      "attack": 180,
       "max_attack": "240",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -1384,7 +1404,7 @@
         "1",
         "0"
       ],
-      "create_cost": "1950",
+      "create_cost": 1950,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1411,17 +1431,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Titan Launcher",
-      "attack": "192",
+      "attack": 192,
       "max_attack": "252",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "O--",
       "bonus": "10",
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1451,7 +1472,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1950",
+      "create_cost": 1950,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1478,17 +1499,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Uranos Grenade",
-      "attack": "192",
+      "attack": 192,
       "max_attack": "252",
       "rapid_fire": "Flaming S",
       "affinity": "10%",
       "slots": "---",
       "bonus": "10",
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1518,7 +1540,7 @@
         "0",
         "0"
       ],
-      "create_cost": "2325",
+      "create_cost": 2325,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1545,17 +1567,18 @@
           "type": "insect",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Tank",
-      "attack": "204",
+      "attack": 204,
       "max_attack": "264",
       "rapid_fire": null,
       "affinity": "-30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
+      "rarity": 4,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1585,7 +1608,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1950",
+      "create_cost": 1950,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1612,17 +1635,18 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Demonlock",
-      "attack": "108",
+      "attack": 108,
       "max_attack": "168",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Slow",
       "recoil": "Moderate",
@@ -1652,7 +1676,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1661,17 +1685,18 @@
           "type": "ukwn",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Felyne Ragdoll",
-      "attack": "144",
+      "attack": 144,
       "max_attack": "204",
       "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1701,7 +1726,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1375",
+      "create_cost": 1375,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1728,17 +1753,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Melynx Ragdoll",
-      "attack": "144",
+      "attack": 144,
       "max_attack": "204",
       "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1768,7 +1794,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1375",
+      "create_cost": 1375,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1795,17 +1821,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "dummy (Amezari Bowgun)",
-      "attack": "156",
+      "attack": 156,
       "max_attack": "216",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -1835,7 +1862,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1375",
+      "create_cost": 1375,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1856,17 +1883,18 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Blessed Lamp",
-      "attack": "156",
+      "attack": 156,
       "max_attack": "216",
       "rapid_fire": null,
       "affinity": "30%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -1896,7 +1924,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2250",
+      "create_cost": 2250,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1923,17 +1951,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Black Belt Bowgun",
-      "attack": "168",
+      "attack": 168,
       "max_attack": "228",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -1963,7 +1992,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1875",
+      "create_cost": 1875,
       "improve_mats": null,
       "create_mats": [
         {
@@ -1990,17 +2019,18 @@
           "type": "coin",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Black Parasol",
-      "attack": "168",
+      "attack": 168,
       "max_attack": "228",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2030,7 +2060,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3000",
+      "create_cost": 3000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2057,17 +2087,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Raven Do",
-      "attack": "180",
+      "attack": 180,
       "max_attack": "240",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -2097,7 +2128,7 @@
         "0",
         "0"
       ],
-      "create_cost": "1725",
+      "create_cost": 1725,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2124,17 +2155,18 @@
           "type": "shell",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Valkyrie Heart",
-      "attack": "180",
+      "attack": 180,
       "max_attack": "240",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2164,7 +2196,7 @@
         "0",
         "1"
       ],
-      "create_cost": "2250",
+      "create_cost": 2250,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2191,17 +2223,18 @@
           "type": "part",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Azure Sakura",
-      "attack": "180",
+      "attack": 180,
       "max_attack": "240",
       "rapid_fire": "Normal S Lv2|Pierce S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "6",
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2231,7 +2264,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2700",
+      "create_cost": 2700,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2258,17 +2291,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Spartacus Soul",
-      "attack": "192",
+      "attack": 192,
       "max_attack": "252",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
+      "rarity": 5,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -2298,7 +2332,7 @@
         "1",
         "0"
       ],
-      "create_cost": "2325",
+      "create_cost": 2325,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2319,17 +2353,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Aqua Blade Shower",
-      "attack": "204",
+      "attack": 204,
       "max_attack": "264",
       "rapid_fire": null,
       "affinity": "30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2359,7 +2394,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1200",
+      "create_cost": 1200,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2386,17 +2421,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Maelstrom+",
-      "attack": "204",
+      "attack": 204,
       "max_attack": "264",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -2426,7 +2462,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2525",
+      "create_cost": 2525,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2453,17 +2489,18 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Green Blade Shower",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2493,7 +2530,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1650",
+      "create_cost": 1650,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2520,17 +2557,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Grenade Launcher+",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": "Crag S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -2560,7 +2598,7 @@
         "0",
         "0"
       ],
-      "create_cost": "2300",
+      "create_cost": 2300,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2587,17 +2625,18 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Tempest",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -2627,7 +2666,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2400",
+      "create_cost": 2400,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2654,17 +2693,18 @@
           "type": "insect",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "HorNet Gun",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2694,7 +2734,7 @@
         "0",
         "0"
       ],
-      "create_cost": "2450",
+      "create_cost": 2450,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2721,17 +2761,18 @@
           "type": "insect",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crimson Blade Shower",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2761,7 +2802,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1975",
+      "create_cost": 1975,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2788,17 +2829,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "King Lobster Gun",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -2828,7 +2870,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2525",
+      "create_cost": 2525,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2855,17 +2897,18 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Valkyrie Blaze",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2895,7 +2938,7 @@
         "0",
         "1"
       ],
-      "create_cost": "2750",
+      "create_cost": 2750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -2922,17 +2965,18 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Great Crossbow Gun",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -2962,7 +3006,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2450",
+      "create_cost": 2450,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3003,17 +3047,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Assault Conga+",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -3043,7 +3088,7 @@
         "0",
         "1"
       ],
-      "create_cost": "2900",
+      "create_cost": 2900,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3070,17 +3115,18 @@
           "type": "ore",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Spartacus Blaze",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -3110,7 +3156,7 @@
         "1",
         "0"
       ],
-      "create_cost": "2850",
+      "create_cost": 2850,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3137,17 +3183,18 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tail Catapult+",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Freeze S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -3177,7 +3224,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2525",
+      "create_cost": 2525,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3204,17 +3251,18 @@
           "type": "insect",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Titan Launcher+",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "O--",
       "bonus": "20",
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3244,7 +3292,7 @@
         "0",
         "0"
       ],
-      "create_cost": "2850",
+      "create_cost": 2850,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3271,17 +3319,18 @@
           "type": "insect",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Wargun",
-      "attack": "288",
+      "attack": 288,
       "max_attack": "348",
       "rapid_fire": null,
       "affinity": "-30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
+      "rarity": 6,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3311,7 +3360,7 @@
         "0",
         "0"
       ],
-      "create_cost": "2850",
+      "create_cost": 2850,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3338,17 +3387,18 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Hidden Gaze",
-      "attack": "204",
+      "attack": 204,
       "max_attack": "264",
       "rapid_fire": "Crag S Lv1",
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3378,7 +3428,7 @@
         "0",
         "0"
       ],
-      "create_cost": "3750",
+      "create_cost": 3750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3405,17 +3455,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bullet Storm",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": "Pellet S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -3445,7 +3496,7 @@
         "1",
         "Armor S (1)"
       ],
-      "create_cost": "2625",
+      "create_cost": 2625,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3472,17 +3523,18 @@
           "type": "ore",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jade Tempest",
-      "attack": "216",
+      "attack": 216,
       "max_attack": "276",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -3512,7 +3564,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3025",
+      "create_cost": 3025,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3539,17 +3591,18 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sandfall+",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3579,7 +3632,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2900",
+      "create_cost": 2900,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3606,17 +3659,18 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Peach Parasol",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -3646,7 +3700,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3150",
+      "create_cost": 3150,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3673,17 +3727,18 @@
           "type": "sac",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Chronos Grenade",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Flaming S",
       "affinity": "10%",
       "slots": "---",
       "bonus": "15",
-      "rarity": "7",
+      "rarity": 7,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3713,7 +3768,7 @@
         "0",
         "0"
       ],
-      "create_cost": "3425",
+      "create_cost": 3425,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3740,17 +3795,18 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Island of the Gods",
-      "attack": "204",
+      "attack": 204,
       "max_attack": "264",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Slow",
       "recoil": "Moderate",
@@ -3780,7 +3836,7 @@
         "1",
         "1"
       ],
-      "create_cost": "1000",
+      "create_cost": 1000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3789,17 +3845,18 @@
           "type": "ukwn",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Felyne Helldoll",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3829,7 +3886,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3025",
+      "create_cost": 3025,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3856,17 +3913,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Melynx Helldoll",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Normal S Lv1|Flaming",
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3896,7 +3954,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3025",
+      "create_cost": 3025,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3923,17 +3981,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shakalaka Prized Bow",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Dragon S",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -3963,7 +4022,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3025",
+      "create_cost": 3025,
       "improve_mats": null,
       "create_mats": [
         {
@@ -3990,17 +4049,18 @@
           "type": "fluid",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Expert Bowgun",
-      "attack": "228",
+      "attack": 228,
       "max_attack": "288",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -4030,7 +4090,7 @@
         "1",
         "1"
       ],
-      "create_cost": "2750",
+      "create_cost": 2750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4057,17 +4117,18 @@
           "type": "ticket",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Valkyrie Heart+",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4097,7 +4158,7 @@
         "0",
         "1"
       ],
-      "create_cost": "3300",
+      "create_cost": 3300,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4124,17 +4185,18 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crimson Blue",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "8",
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4164,7 +4226,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3300",
+      "create_cost": 3300,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4191,17 +4253,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Cursed Lamp",
-      "attack": "240",
+      "attack": 240,
       "max_attack": "300",
       "rapid_fire": null,
       "affinity": "30%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4231,7 +4294,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3300",
+      "create_cost": 3300,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4258,17 +4321,18 @@
           "type": "insect",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Spartacus Soul+",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4298,7 +4362,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3425",
+      "create_cost": 3425,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4325,17 +4389,18 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Supreme Azure Sakura",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Normal S Lv2|Pierce S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": "10",
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4365,7 +4430,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3950",
+      "create_cost": 3950,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4392,17 +4457,18 @@
           "type": "part",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gold Valkyrie",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Pellet S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4432,7 +4498,7 @@
         "0",
         "1"
       ],
-      "create_cost": "3950",
+      "create_cost": 3950,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4459,17 +4525,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Wolf Do",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4499,7 +4566,7 @@
         "0",
         "0"
       ],
-      "create_cost": "3800",
+      "create_cost": 3800,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4526,17 +4593,18 @@
           "type": "part",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Silver Spartacus",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": "Pierce S Lv2",
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4566,7 +4634,7 @@
         "1",
         "0"
       ],
-      "create_cost": "4100",
+      "create_cost": 4100,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4593,17 +4661,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Profusion",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": "Pellet S Lv1|Pierce S Lv2",
       "affinity": "-15%",
       "slots": "O--",
       "bonus": "12",
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4633,7 +4702,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4660,17 +4729,18 @@
           "type": "stone",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Dark Parasol",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -4700,7 +4770,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4400",
+      "create_cost": 4400,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4727,17 +4797,18 @@
           "type": "ore",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Fire Wrath",
-      "attack": "276",
+      "attack": 276,
       "max_attack": "336",
       "rapid_fire": "Pierce S Lv1|Flaming S ",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -4767,7 +4838,7 @@
         "1",
         "0"
       ],
-      "create_cost": "4600",
+      "create_cost": 4600,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4794,17 +4865,18 @@
           "type": "coin",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Rajang Barrage",
-      "attack": "276",
+      "attack": 276,
       "max_attack": "336",
       "rapid_fire": "Crag S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
+      "rarity": 8,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4834,7 +4906,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4861,17 +4933,18 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Hi Chain Blitz",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": "Normal S Lv1",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4901,7 +4974,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3000",
+      "create_cost": 3000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4928,17 +5001,18 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Nebula Storm",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -4968,7 +5042,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3500",
+      "create_cost": 3500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -4995,17 +5069,18 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jade Typhoon",
-      "attack": "264",
+      "attack": 264,
       "max_attack": "324",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5035,7 +5110,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4000",
+      "create_cost": 4000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5062,17 +5137,18 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Royal Lobster Gun",
-      "attack": "276",
+      "attack": 276,
       "max_attack": "336",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5102,7 +5178,7 @@
         "1",
         "1"
       ],
-      "create_cost": "3750",
+      "create_cost": 3750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5129,17 +5205,18 @@
           "type": "insect",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Combat Conga",
-      "attack": "288",
+      "attack": 288,
       "max_attack": "348",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -5169,7 +5246,7 @@
         "0",
         "1"
       ],
-      "create_cost": "3750",
+      "create_cost": 3750,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5196,17 +5273,18 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jungle Assault",
-      "attack": "288",
+      "attack": 288,
       "max_attack": "348",
       "rapid_fire": "Pellet S Lv2",
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -5236,7 +5314,7 @@
         "0",
         "Armor S (1)"
       ],
-      "create_cost": "4250",
+      "create_cost": 4250,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5263,17 +5341,18 @@
           "type": "insect",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Heartfelt Cast",
-      "attack": "288",
+      "attack": 288,
       "max_attack": "348",
       "rapid_fire": "Recov S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -5303,7 +5382,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4000",
+      "create_cost": 4000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5330,17 +5409,18 @@
           "type": "insect",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Counterattack",
-      "attack": "300",
+      "attack": 300,
       "max_attack": "360",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": "14",
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -5370,7 +5450,7 @@
         "0",
         "0"
       ],
-      "create_cost": "3500",
+      "create_cost": 3500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5397,17 +5477,18 @@
           "type": "part",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Barrage",
-      "attack": "300",
+      "attack": 300,
       "max_attack": "360",
       "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -5437,7 +5518,7 @@
         "0",
         "0"
       ],
-      "create_cost": "4000",
+      "create_cost": 4000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5464,17 +5545,18 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Snake)",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Pellet S Lv3|Posion S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -5504,7 +5586,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4500",
+      "create_cost": 4500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5531,17 +5613,18 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Grenade Revolver",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Crag S Lv1",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -5571,7 +5654,7 @@
         "0",
         "0"
       ],
-      "create_cost": "3500",
+      "create_cost": 3500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5598,17 +5681,18 @@
           "type": "ore",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Fierce Moss Green",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -5638,7 +5722,7 @@
         "0",
         "1"
       ],
-      "create_cost": "4000",
+      "create_cost": 4000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5665,17 +5749,18 @@
           "type": "insect",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Fierce Wine Red",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5705,7 +5790,7 @@
         "1",
         "0"
       ],
-      "create_cost": "4500",
+      "create_cost": 4500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5732,17 +5817,18 @@
           "type": "insect",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tail Launcher",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Freeze S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5772,7 +5858,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4000",
+      "create_cost": 4000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5799,17 +5885,18 @@
           "type": "claw",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sakura Semi-Auto",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -5839,7 +5926,7 @@
         "0",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5866,17 +5953,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Azure Semi-Auto",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5906,7 +5994,7 @@
         "1",
         "0"
       ],
-      "create_cost": "5500",
+      "create_cost": 5500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -5933,17 +6021,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lava Storm",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": "Pierce S Lv3",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -5973,7 +6062,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5500",
+      "create_cost": 5500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6000,17 +6089,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Tail",
-      "attack": "348",
+      "attack": 348,
       "max_attack": "408",
       "rapid_fire": "Normal S Lv3",
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -6040,7 +6130,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6067,17 +6157,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Titan Panzer",
-      "attack": "348",
+      "attack": 348,
       "max_attack": "408",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "30",
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6107,7 +6198,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5500",
+      "create_cost": 5500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6134,17 +6225,18 @@
           "type": "insect",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Hexed Shaka Bow",
-      "attack": "276",
+      "attack": 276,
       "max_attack": "336",
       "rapid_fire": "Dragon S",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6174,7 +6266,7 @@
         "1",
         "0"
       ],
-      "create_cost": "4500",
+      "create_cost": 4500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6201,17 +6293,18 @@
           "type": "fluid",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Owl's Eye Darkbow",
-      "attack": "288",
+      "attack": 288,
       "max_attack": "348",
       "rapid_fire": "Crag S Lv1",
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6241,7 +6334,7 @@
         "0",
         "0"
       ],
-      "create_cost": "6000",
+      "create_cost": 6000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6268,17 +6361,18 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Warrior's Bowgun",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6308,7 +6402,7 @@
         "1",
         "1"
       ],
-      "create_cost": "4250",
+      "create_cost": 4250,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6335,17 +6429,18 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Promenade",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "12",
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -6375,7 +6470,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5500",
+      "create_cost": 5500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6402,17 +6497,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Pollination",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Normal S Lv2|Pierce S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": "14",
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -6442,7 +6538,7 @@
         "1",
         "1"
       ],
-      "create_cost": "6500",
+      "create_cost": 6500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6469,17 +6565,18 @@
           "type": "part",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Mythical Three-Horn",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": "Clust S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -6509,7 +6606,7 @@
         "1",
         "1"
       ],
-      "create_cost": "8000",
+      "create_cost": 8000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6536,17 +6633,18 @@
           "type": "ore",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crow Do",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -6576,7 +6674,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6603,17 +6701,18 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gold Semi-Auto ",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": "Pellet S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -6643,7 +6742,7 @@
         "0",
         "1"
       ],
-      "create_cost": "6000",
+      "create_cost": 6000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6670,17 +6769,18 @@
           "type": "part",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Silver Semi-Auto",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": "Pierce S Lv2",
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -6710,7 +6810,7 @@
         "1",
         "0"
       ],
-      "create_cost": "6500",
+      "create_cost": 6500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6737,17 +6837,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Prosperity",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": "Pellet S Lv1|Pierce S Lv2",
       "affinity": "-15%",
       "slots": "---",
       "bonus": "16",
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -6777,7 +6878,7 @@
         "1",
         "1"
       ],
-      "create_cost": "7500",
+      "create_cost": 7500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6804,17 +6905,18 @@
           "type": "heavenly",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Genie's Lamp",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": null,
       "affinity": "30%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -6844,7 +6946,7 @@
         "1",
         "1"
       ],
-      "create_cost": "7000",
+      "create_cost": 7000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6871,17 +6973,18 @@
           "type": "stone",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Chronos Panzer",
-      "attack": "348",
+      "attack": 348,
       "max_attack": "408",
       "rapid_fire": "Flaming S",
       "affinity": "10%",
       "slots": "---",
       "bonus": "20",
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6911,7 +7014,7 @@
         "0",
         "0"
       ],
-      "create_cost": "6000",
+      "create_cost": 6000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -6938,17 +7041,18 @@
           "type": "ore",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "EngravedFireWyvnBow",
-      "attack": "360",
+      "attack": 360,
       "max_attack": "420",
       "rapid_fire": "Pierce S Lv1|Flaming S ",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -6978,7 +7082,7 @@
         "1",
         "0"
       ],
-      "create_cost": "7000",
+      "create_cost": 7000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7005,17 +7109,18 @@
           "type": "coin",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Ten-Thousand Volts",
-      "attack": "360",
+      "attack": 360,
       "max_attack": "420",
       "rapid_fire": "Crag S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -7045,7 +7150,7 @@
         "0",
         "0"
       ],
-      "create_cost": "7500",
+      "create_cost": 7500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7072,17 +7177,18 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Absolute Bow",
-      "attack": "360",
+      "attack": 360,
       "max_attack": "420",
       "rapid_fire": "Pierce S Lv1|Flame S|Water S|Thunder S|Freeze S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -7112,7 +7218,7 @@
         "0",
         "0"
       ],
-      "create_cost": "10000",
+      "create_cost": 10000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7139,17 +7245,18 @@
           "type": "stone",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Wargun+",
-      "attack": "372",
+      "attack": 372,
       "max_attack": "432",
       "rapid_fire": null,
       "affinity": "-30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -7179,7 +7286,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5500",
+      "create_cost": 5500,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7206,17 +7313,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Ukanlos Flame Bow",
-      "attack": "432",
+      "attack": 432,
       "max_attack": "492",
       "rapid_fire": "Freeze S",
       "affinity": "-40%",
       "slots": "---",
       "bonus": "10",
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Slow",
       "recoil": "Moderate",
@@ -7246,7 +7354,7 @@
         "0",
         "0"
       ],
-      "create_cost": "10000",
+      "create_cost": 10000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7273,17 +7381,18 @@
           "type": "heavenly",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crossbow Gun G",
-      "attack": "252",
+      "attack": 252,
       "max_attack": "312",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal ",
       "recoil": "Moderate",
@@ -7313,7 +7422,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7340,17 +7449,18 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "HorNet Gun G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -7380,7 +7490,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7407,17 +7517,18 @@
           "type": "insect",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (White) G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Pellet S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -7447,7 +7558,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7474,17 +7585,18 @@
           "type": "part",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Azure) G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -7514,7 +7626,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7541,17 +7653,18 @@
           "type": "part",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Emerald) G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -7581,7 +7694,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7608,17 +7721,18 @@
           "type": "part",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Shotgun (Blood) G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -7648,7 +7762,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7675,17 +7789,18 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Tempest G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -7715,7 +7830,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7742,17 +7857,18 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sandfall G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -7782,7 +7898,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7809,17 +7925,18 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Maelstrom G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -7849,7 +7966,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7876,17 +7993,18 @@
           "type": "scale",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jade Typhoon G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Normal S Lv2",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal ",
       "recoil": "Moderate",
@@ -7916,7 +8034,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -7943,17 +8061,18 @@
           "type": "scale",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "King Lobster Gun G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Normal ",
       "recoil": "Moderate",
@@ -7983,7 +8102,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8010,17 +8129,18 @@
           "type": "part",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Angel Parasol G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -8050,7 +8170,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8077,17 +8197,18 @@
           "type": "part",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Peach Parasol G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Thunder S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -8117,7 +8238,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8144,17 +8265,18 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Combat Conga G",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Pierce S Lv1",
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -8184,7 +8306,7 @@
         "0",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8211,17 +8333,18 @@
           "type": "ore",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Jungle Assault G",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Pellet S Lv2",
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -8251,7 +8374,7 @@
         "0",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8278,17 +8401,18 @@
           "type": "ore",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Heartfelt Cast G",
-      "attack": "324",
+      "attack": 324,
       "max_attack": "384",
       "rapid_fire": "Recov S Lv1",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -8318,7 +8442,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8345,17 +8469,18 @@
           "type": "part",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Counteratk G",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": "14",
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -8385,7 +8510,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8412,17 +8537,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Kut-Ku Barrage G",
-      "attack": "336",
+      "attack": 336,
       "max_attack": "396",
       "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
+      "rarity": 9,
       "type": "lbg",
       "reload": "VerySlow",
       "recoil": "Moderate",
@@ -8452,7 +8578,7 @@
         "0",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8479,17 +8605,18 @@
           "type": "ore",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Island of the Gods G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Slow",
       "recoil": "Moderate",
@@ -8519,7 +8646,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8546,17 +8673,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Felyne Helldoll G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Normal S Lv1|Flame S",
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -8586,7 +8714,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8613,17 +8741,18 @@
           "type": "sac",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Melynx Helldoll G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Normal S Lv1|Flame S",
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -8653,7 +8782,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000z ",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8680,17 +8809,18 @@
           "type": "ukwn",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Hexed Shaka Bow G",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Dragon S",
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "VeryFast",
       "recoil": "Moderate",
@@ -8720,7 +8850,7 @@
         "1",
         "0"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8747,17 +8877,18 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "dummy (Amezari Bowgun G)",
-      "attack": "312",
+      "attack": 312,
       "max_attack": "372",
       "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Normal",
       "recoil": "Moderate",
@@ -8787,7 +8918,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8814,17 +8945,18 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Dark Parasol G",
-      "attack": "348",
+      "attack": 348,
       "max_attack": "408",
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
+      "rarity": 10,
       "type": "lbg",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -8854,7 +8986,7 @@
         "1",
         "1"
       ],
-      "create_cost": "5000",
+      "create_cost": 5000,
       "improve_mats": null,
       "create_mats": [
         {
@@ -8881,7 +9013,8 @@
           "type": "pelt",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     }
   ]
 }
