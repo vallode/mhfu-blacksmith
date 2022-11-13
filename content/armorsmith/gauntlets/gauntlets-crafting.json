@@ -4214,7 +4214,7 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": "3300",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Kut-Ku Coin",
@@ -5520,7 +5520,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -5564,7 +5564,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -12903,7 +12903,7 @@
       "rarity": "8",
       "slots": "---",
       "create_cost": "5250",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Rare Scarab",
@@ -19819,7 +19819,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",
@@ -19963,7 +19963,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "19800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Kirin Hide G",
@@ -20007,7 +20007,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "19800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Kirin Hide G",

@@ -431,7 +431,7 @@
       "rarity": "2",
       "slots": "---",
       "create_cost": "750",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Giaprey Scale",
@@ -469,7 +469,7 @@
       "rarity": "2",
       "slots": "---",
       "create_cost": "750",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Giaprey Scale",
@@ -621,7 +621,7 @@
       "rarity": "2",
       "slots": "---",
       "create_cost": "950",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "FireWyvern Fluid",
@@ -1199,8 +1199,8 @@
       "rarity": "3",
       "slots": "---",
       "create_cost": "3630",
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     },
     {
       "name": "Steel Belt",
@@ -4534,7 +4534,7 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": "1650",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Remobra Skin",
@@ -5156,7 +5156,7 @@
       "rarity": "5",
       "slots": "OOO",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -5200,7 +5200,7 @@
       "rarity": "5",
       "slots": "OOO",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -7509,7 +7509,7 @@
       "rarity": "6",
       "slots": "---",
       "create_cost": "7800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Velociprey Scl+",
@@ -7553,7 +7553,7 @@
       "rarity": "6",
       "slots": "---",
       "create_cost": "7800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Velociprey Scl+",
@@ -19501,7 +19501,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",

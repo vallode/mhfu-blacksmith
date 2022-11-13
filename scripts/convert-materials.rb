@@ -3,7 +3,7 @@ require 'find'
 require 'erb'
 
 FILE_TEMPLATE = %{{
-    "map": <%= JSON.pretty_generate(weapon_map) %>
+    "weapons": <%= JSON.pretty_generate(weapon_map) %>
   }
 }.gsub(/^  /, '')
 
@@ -56,15 +56,11 @@ WEAPON_PAIRS.each do |array|
   weapon_map = []
 
   weapons.each do |weapon|
-    skills = weapon["skills"]
-    weapon["skills"] = []
-
-    skills.each do |skill|
-      match = %r{([A-Za-z\s]+)\s([-]?[0-9])}.match(skill)
-      weapon["skills"].push({
-        "name": match[1],
-        "amount": match[2],
-      })
+    if weapon["create_mats"] == []
+      weapon["create_mats"] = nil
+    end
+    if weapon["improve_mats"] == []
+      weapon["improve_mats"] = nil
     end
 
     weapon_map.push(weapon)
