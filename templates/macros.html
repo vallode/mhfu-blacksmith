@@ -14,7 +14,7 @@
     data-turbo-frame="weapon_details"
     {% endif %}
     {% if weapon.rarity %}
-    href="/blacksmith/{{ weapon.type }}/{{ weapon.slug }}/"
+    href="{{section.path}}{{ weapon.slug }}/"
     {% endif %}
   >
     {% if weapon.rarity %}
@@ -47,53 +47,6 @@
   
   {% if weapon.children %}
   <ul data-weapon-row-toggle-target="weaponChildren" {% if weapon.children | length > 1 %}class="multiple-children"{% endif %}>
-    {% for child_weapon in weapon.children %}
-      {{ self::weapon_tree_row(weapon=child_weapon) }}
-    {% endfor %}
-  </ul>
-  {% endif %}
-</li>
-{% endmacro input %}
-
-{% macro armor_tree_row(weapon) %}
-<li>
-  <a
-    id="{{ weapon.slug }}"
-    {% if weapon.type != section.extra.type %}
-    class="weapon-tree__row weapon-tree__row--external"
-    data-turbo-frame="_top"
-    {% else %}
-    class="weapon-tree__row" 
-    data-turbo-frame="weapon_details"
-    {% endif %}
-    {% if weapon.rarity %}
-    href="/armorsmith/{{ weapon.type }}/{{ weapon.slug }}/"
-    {% endif %}
-  >
-    {% if weapon.rarity %}
-      <div class="
-        icon
-        icon--mini
-        icon--{{ weapon.type }}
-        icon--rarity-{{ weapon.rarity }}
-        {% if weapon.color -%}
-          icon--{{ weapon.color }}
-        {%- endif -%}
-        {% if weapon.element -%}
-          icon--{{ weapon.element }}
-        {%- endif -%}
-        "
-      >
-        <img src="/images/{{ weapon.type }}-mini.png" alt="?">
-      </div>
-    {% else %}
-      {# For now this only means decoration categories, no icon for those. #}
-    {% endif %}
-    <p class="name">{{ weapon.name }}</p>
-  </a>
-  
-  {% if weapon.children %}
-  <ul {% if weapon.children | length > 1 %}class="multiple-children"{% endif %}>
     {% for child_weapon in weapon.children %}
       {{ self::weapon_tree_row(weapon=child_weapon) }}
     {% endfor %}

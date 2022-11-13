@@ -14,7 +14,7 @@
       {%- for section in section.subsections %}
         {% set section_data = get_section(path=section, metadata_only=true) %}
 
-        <a class="row" href="/blacksmith/{{ section_data.extra.type }}/">
+        <a class="row" href="{{section.path}}{{ section_data.extra.type }}/">
           <div class="icon"><img src="/images/{{ section_data.extra.type }}.png" alt=""></div>
           <p>{{ section_data.title }} weapon tree</p>
         </a>
