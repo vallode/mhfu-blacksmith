@@ -249,7 +249,7 @@
       "rarity": "2",
       "slots": "---",
       "create_cost": "550",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Machalite Ore",
@@ -4522,7 +4522,7 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": "1150",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Commendation G",
@@ -4566,7 +4566,7 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": "1150",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "FlynFighterPass",
@@ -4741,7 +4741,7 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": "3300",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Yian Garuga Coin",
@@ -6047,7 +6047,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -6091,7 +6091,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -13331,7 +13331,7 @@
       "rarity": "8",
       "slots": "---",
       "create_cost": "5250",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Rare Scarab",
@@ -20246,7 +20246,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",
@@ -20443,7 +20443,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "19800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Kirin Hide G",
@@ -22813,8 +22813,8 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": null,
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     },
     {
       "name": "Sword Saint Piercing",
@@ -22832,8 +22832,8 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": null,
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     },
     {
       "name": "Eagle Eye Piercing",
@@ -22851,8 +22851,8 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": null,
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     },
     {
       "name": "Barrage Piercing",
@@ -22870,8 +22870,8 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": null,
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     }
   ]
 }

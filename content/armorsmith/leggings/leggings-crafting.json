@@ -591,7 +591,7 @@
           "amount": "5"
         }
       ],
-      "create_mats": []
+      "create_mats": null
     },
     {
       "name": "Dark Metal Boots",
@@ -615,7 +615,7 @@
           "amount": "5"
         }
       ],
-      "create_mats": []
+      "create_mats": null
     },
     {
       "name": "Velociprey Greaves",
@@ -1053,7 +1053,7 @@
       "rarity": "3",
       "slots": "---",
       "create_cost": "1350",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Gendrome Hide",
@@ -1097,7 +1097,7 @@
       "rarity": "3",
       "slots": "---",
       "create_cost": "1350",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Gendrome Hide",
@@ -1141,8 +1141,8 @@
       "rarity": "3",
       "slots": "---",
       "create_cost": "3630",
-      "skills": [],
-      "create_mats": []
+      "skills": null,
+      "create_mats": null
     },
     {
       "name": "Ioprey Greaves",
@@ -5615,7 +5615,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -5659,7 +5659,7 @@
       "rarity": "5",
       "slots": "OO-",
       "create_cost": "11111",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -8504,7 +8504,7 @@
       "rarity": "6",
       "slots": "---",
       "create_cost": "8950",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Ioprey Scale+",
@@ -8548,7 +8548,7 @@
       "rarity": "6",
       "slots": "---",
       "create_cost": "8950",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Ioprey Scale+",
@@ -19997,7 +19997,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",
@@ -20035,7 +20035,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "5600",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "FamitsuSpcialTkt",
@@ -20079,7 +20079,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "5600",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "FamitsuSpcialTkt",
@@ -20229,7 +20229,7 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "19800",
-      "skills": [],
+      "skills": null,
       "create_mats": [
         {
           "name": "Kirin Hide G",
