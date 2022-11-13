@@ -1,44 +1,15 @@
-{% extends "base.html" %}
-{% import "macros.html" as macros %}
+{% extends "base-tree.html" %}
 
-{% block content -%}
-  <nav class="weapon-navigation">
-    {%- for weapon_type in config.extra.armor_types %}
-      {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
+{% block navigation %}
+  {%- for armor_type in config.extra.armor_types %}
+    {% set armor_name = armor_type | replace(from='-', to=' ') | capitalize -%}
 
-      <div>
-        <a href="/armorsmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == section.extra.type %}icon--rarity-4{% endif %}">
-            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
-          </div>
-        </a>
-      </div>
-    {%- endfor %}
-  </nav>
-
-  <hr class="border">
-
-  <div class="weapon-tree-page">
-    <turbo-frame id="weapon_tree" data-turbo-action="replace">
-      <div class="card card--weapon-tree">
-        <div class="weapon-tree">
-          {% set data = load_data(path=current_path ~ "map.json" ) %}
-
-          {%- for weapon in data.map %}
-            <ul>
-              {{ macros::armor_tree_row(weapon=weapon) }}
-            </ul>
-          {% endfor %}
+    <div>
+      <a href="/armorsmith/{{ armor_type }}/" title="{{ armor_name }}">
+        <div class="icon icon--large icon--{{ armor_type }} {% if armor_type == section.extra.type %}icon--rarity-4{% endif %}">
+          <img src="/images/{{ armor_type }}.png" alt="{{ armor_name }}">
         </div>
-      </div>
-    </turbo-frame>
-  
-    {% block weapon__details -%}
-      <turbo-frame id="weapon_details" data-turbo-action="replace">
-        <div class="card weapon-card" id="weaponDetails">
-          <p>1 NO WEAPON SELECTED</p>
-        </div>
-      </turbo-frame>
-    {% endblock weapon__details -%}
-  </div>
-{% endblock content -%}
+      </a>
+    </div>
+  {%- endfor %}
+{% endblock%}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block content -%}
+  <nav class="weapon-navigation">
+    {% block navigation %}{% endblock %}
+  </nav>
+
+  <hr class="border">
+
+  <div class="weapon-tree-page">
+    <turbo-frame id="weapon_tree" data-turbo-action="replace">
+      <div class="card card--weapon-tree">
+        <div class="weapon-tree">
+          {% set data = load_data(path=current_path ~ "map.json" ) %}
+
+          {%- for weapon in data.map %}
+            <ul>
+              {{ macros::weapon_tree_row(weapon=weapon) }}
+            </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </turbo-frame>
+  
+    {% block weapon__details -%}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card" id="weaponDetails">
+          <p>1 NO WEAPON SELECTED</p>
+        </div>
+      </turbo-frame>
+    {% endblock weapon__details -%}
+  </div>
+{% endblock content -%}
