@@ -72,6 +72,8 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           next
         end
 
+        output = {}
+
         output["title"] = value["name"]
         output["slug"] = slugify(value["name"])
         
@@ -84,9 +86,9 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
         output["extra"] = value.select {|key, value| ["title", "slug"].none?(key)}
 
         if path.include?("armorsmith")
-          File.write("#{File.dirname(path)}/#{value["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+          File.write("#{File.dirname(path)}/#{output["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
         else
-          File.write("#{File.dirname(path)}/#{value["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+          File.write("#{File.dirname(path)}/#{output["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
         end
       end
     end
