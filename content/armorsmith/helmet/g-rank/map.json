@@ -1,0 +1,328 @@
+{
+  "map": [
+  {
+    "slug": "monoblos-helm",
+    "type": "helmet",
+    "name": "Monoblos Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-cap",
+    "type": "helmet",
+    "name": "Monoblos Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-helm",
+    "type": "helmet",
+    "name": "Yian Garuga Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-cap",
+    "type": "helmet",
+    "name": "Yian Garuga Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "black-head",
+    "type": "helmet",
+    "name": "Black Head",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-face",
+    "type": "helmet",
+    "name": "Black Face",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-crown",
+    "type": "helmet",
+    "name": "Empress Crown",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-mask",
+    "type": "helmet",
+    "name": "Empress Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-helm",
+    "type": "helmet",
+    "name": "Monodevil Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-cap",
+    "type": "helmet",
+    "name": "Monodevil Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "monoblos-helm-s",
+    "type": "helmet",
+    "name": "Monoblos Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-cap-s",
+    "type": "helmet",
+    "name": "Monoblos Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monodevil-helm-u",
+    "type": "helmet",
+    "name": "Monodevil Helm U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-cap-u",
+    "type": "helmet",
+    "name": "Monodevil Cap U",
+    "rarity": "8"
+  },
+  {
+    "slug": "tigrex-helm-x",
+    "type": "helmet",
+    "name": "Tigrex Helm X",
+    "rarity": "9"
+  },
+  {
+    "slug": "tigrex-cap-x",
+    "type": "helmet",
+    "name": "Tigrex Cap X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-helm-x",
+    "type": "helmet",
+    "name": "Diablo Helm X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-cap-x",
+    "type": "helmet",
+    "name": "Diablo Cap X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-helm-x",
+    "type": "helmet",
+    "name": "Gravios Helm X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-cap-x",
+    "type": "helmet",
+    "name": "Gravios Cap X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-helm-z",
+    "type": "helmet",
+    "name": "Diablo Helm Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-cap-z",
+    "type": "helmet",
+    "name": "Diablo Cap Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-helm-z",
+    "type": "helmet",
+    "name": "Gravios Helm Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-cap-z",
+    "type": "helmet",
+    "name": "Gravios Cap Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "true-golden-hair-tie",
+    "type": "helmet",
+    "name": "True Golden Hair Tie",
+    "rarity": "10"
+  },
+  {
+    "slug": "truepuppetmastermask",
+    "type": "helmet",
+    "name": "TruePuppetMasterMask",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-cap-x",
+    "type": "helmet",
+    "name": "Black Belt Cap X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-mizuha-cap",
+    "type": "helmet",
+    "name": "True Mizuha Cap",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-extravagant-cap",
+    "type": "helmet",
+    "name": "True Extravagant Cap",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-glare-x",
+    "type": "helmet",
+    "name": "Kushala Glare X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kusha-snarl-x",
+    "type": "helmet",
+    "name": "Kusha Snarl X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-horn-x",
+    "type": "helmet",
+    "name": "Kirin Horn X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-crest-x",
+    "type": "helmet",
+    "name": "Kirin Crest X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-crown-x",
+    "type": "helmet",
+    "name": "Empress Crown X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-mask-x",
+    "type": "helmet",
+    "name": "Empress Mask X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-indra-helm",
+    "type": "helmet",
+    "name": "True Indra Helm",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-steadfast-helm",
+    "type": "helmet",
+    "name": "True Steadfast Helm",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-crown-x",
+    "type": "helmet",
+    "name": "Kaiser Crown X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-mask-x",
+    "type": "helmet",
+    "name": "Kaiser Mask X",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueguardianspritmask",
+    "type": "helmet",
+    "name": "TrueGuardianSpritMask",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-carnage-mask",
+    "type": "helmet",
+    "name": "True Carnage Mask",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragon-head-x",
+    "type": "helmet",
+    "name": "Dragon Head X",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragon-face-x",
+    "type": "helmet",
+    "name": "Dragon Face X",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-mask",
+    "type": "helmet",
+    "name": "Ucamulbas Mask",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-fangs",
+    "type": "helmet",
+    "name": "Ucamulbas Fangs",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-helm-z",
+    "type": "helmet",
+    "name": "Golden Moon Helm Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-cap-z",
+    "type": "helmet",
+    "name": "Golden Moon Cap Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-helm-z",
+    "type": "helmet",
+    "name": "Silver Sol Helm Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-cap-z",
+    "type": "helmet",
+    "name": "Silver Sol Cap Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-head-z",
+    "type": "helmet",
+    "name": "Fatalis Head Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-face-z",
+    "type": "helmet",
+    "name": "Fatalis Face Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "white-fatalis-head-z",
+    "type": "helmet",
+    "name": "White Fatalis Head Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "white-fatalis-face-z",
+    "type": "helmet",
+    "name": "White Fatalis Face Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "aspire-piercing",
+    "type": "helmet",
+    "name": "Aspire Piercing",
+    "rarity": "10"
+  }
+]
+}

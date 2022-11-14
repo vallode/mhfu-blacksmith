@@ -1,0 +1,2954 @@
+{
+  "weapons": [
+    {
+      "name": "Monoblos Vambraces",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-1",
+      "water_res": "-1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "4",
+      "slots": "OO-",
+      "create_cost": "4900",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "1"
+        },
+        {
+          "name": "Protection",
+          "amount": "-1"
+        },
+        {
+          "name": "Potential",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Monoblos Spine",
+          "amount": "2",
+          "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Blood Red Horn",
+          "amount": "1",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monoblos Shell",
+          "amount": "3",
+          "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Monster Fluid",
+          "amount": "4",
+          "type": "fluid",
+          "color": "cyan"
+        }
+      ]
+    },
+    {
+      "name": "Monoblos Guards",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "4",
+      "slots": "O--",
+      "create_cost": "4900",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "2"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Monoblos Spine",
+          "amount": "2",
+          "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Blood Red Horn",
+          "amount": "1",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monoblos Shell",
+          "amount": "3",
+          "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Monster Fluid",
+          "amount": "4",
+          "type": "fluid",
+          "color": "cyan"
+        }
+      ]
+    },
+    {
+      "name": "Garuga Vambraces",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "2",
+      "dragon_res": "0",
+      "water_res": "0",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "4",
+      "slots": "O--",
+      "create_cost": "4900",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "2"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        },
+        {
+          "name": "Gathering",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Garuga Scale",
+          "amount": "5",
+          "type": "scale",
+          "color": "slate"
+        },
+        {
+          "name": "Garuga Shell",
+          "amount": "4",
+          "type": "part",
+          "color": "slate"
+        },
+        {
+          "name": "Garuga Wing",
+          "amount": "2",
+          "type": "part",
+          "color": "slate"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "1",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Garuga Guards",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "4",
+      "slots": "O--",
+      "create_cost": "4900",
+      "skills": [
+        {
+          "name": "PierceSAdd",
+          "amount": "3"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        },
+        {
+          "name": "Gathering",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Garuga Scale",
+          "amount": "5",
+          "type": "scale",
+          "color": "slate"
+        },
+        {
+          "name": "Garuga Shell",
+          "amount": "4",
+          "type": "part",
+          "color": "slate"
+        },
+        {
+          "name": "Garuga Tail",
+          "amount": "1",
+          "type": "part",
+          "color": "slate"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "1",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Black Claw",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "5!",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "-5",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "5",
+      "slots": "OO-",
+      "create_cost": "11111",
+      "skills": null,
+      "create_mats": [
+        {
+          "name": "Dark Stone",
+          "amount": "1",
+          "type": "egg",
+          "color": "gray"
+        },
+        {
+          "name": "Dark Piece",
+          "amount": "1",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "Ancient Potion",
+          "amount": "1",
+          "type": "sac",
+          "color": "red"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Black Fist",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "5!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "4",
+      "dragon_res": "-2",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "5",
+      "slots": "OO-",
+      "create_cost": "11111",
+      "skills": null,
+      "create_mats": [
+        {
+          "name": "Dark Stone",
+          "amount": "1",
+          "type": "egg",
+          "color": "gray"
+        },
+        {
+          "name": "Dark Piece",
+          "amount": "1",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "Ancient Potion",
+          "amount": "1",
+          "type": "sac",
+          "color": "red"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Empress Vambraces",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "5",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "0",
+      "dragon_res": "-2",
+      "water_res": "-1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "5",
+      "slots": "O--",
+      "create_cost": "11625",
+      "skills": [
+        {
+          "name": "Guard",
+          "amount": "3"
+        },
+        {
+          "name": "Theft",
+          "amount": "2"
+        },
+        {
+          "name": "Cold Res",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Lunastra Shell",
+          "amount": "3",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Drgn Wbng",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Mane",
+          "amount": "1",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Empress Guards",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "5",
+      "defence": null,
+      "fire_res": "6",
+      "thunder_res": "2",
+      "dragon_res": "-1",
+      "water_res": "1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "5",
+      "slots": "O--",
+      "create_cost": "11625",
+      "skills": [
+        {
+          "name": "Guard Up",
+          "amount": "2"
+        },
+        {
+          "name": "Theft",
+          "amount": "2"
+        },
+        {
+          "name": "Cold Res",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Lunastra Shell",
+          "amount": "3",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Drgn Wbng",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Mane",
+          "amount": "1",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Monodevil Vambraces",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-1",
+      "water_res": "-1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "5",
+      "slots": "OO-",
+      "create_cost": "5900",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "1"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Wht Monoblos Hrn",
+          "amount": "1",
+          "type": "claw",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Spn",
+          "amount": "2",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Shl",
+          "amount": "4",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "3",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Monodevil Guards",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "4!",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "5",
+      "slots": "OO-",
+      "create_cost": "5900",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "-1"
+        },
+        {
+          "name": "Potential",
+          "amount": "4"
+        },
+        {
+          "name": "Loading",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Wht Monoblos Hrn",
+          "amount": "1",
+          "type": "claw",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Spn",
+          "amount": "2",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Shl",
+          "amount": "4",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "3",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Monoblos Vambraces S",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-1",
+      "water_res": "-1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "6",
+      "slots": "OO-",
+      "create_cost": "9900",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Monoblos Thrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blood Red Horn",
+          "amount": "2",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monoblos Carpce",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Monoblos Guards S",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "6",
+      "slots": "OO-",
+      "create_cost": "9900",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Monoblos Thrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blood Red Horn",
+          "amount": "2",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monoblos Carpce",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Monodevil Braces U",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-1",
+      "water_res": "-1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "8",
+      "slots": "O--",
+      "create_cost": "9900",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "1"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "WhtMnoblosThrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Cpc",
+          "amount": "5",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Hrn",
+          "amount": "2",
+          "type": "claw",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Monodevil Guards U",
+      "type": "gauntlets",
+      "hr": "10",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "8",
+      "slots": "O--",
+      "create_cost": "9900",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Potential",
+          "amount": "4"
+        },
+        {
+          "name": "Loading",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "WhtMnoblosThrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Cpc",
+          "amount": "5",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Wht Monoblos Hrn",
+          "amount": "2",
+          "type": "claw",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Tigrex Vambraces X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "-2",
+      "dragon_res": "-1",
+      "water_res": "2",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "1"
+        },
+        {
+          "name": "Cooking",
+          "amount": "3"
+        },
+        {
+          "name": "Observance",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Tigrex StrngClaw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Thck Scl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Claw+",
+          "amount": "3",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Tigrex Guards X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "-1",
+      "dragon_res": "0",
+      "water_res": "3",
+      "ice_res": "4",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "1"
+        },
+        {
+          "name": "Cooking",
+          "amount": "3"
+        },
+        {
+          "name": "Observance",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Tigrex StrngClaw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Thck Scl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Tigrex Claw+",
+          "amount": "3",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Diablo Vambraces X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "-1",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "WindPress",
+          "amount": "1"
+        },
+        {
+          "name": "Map",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Diablos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Glorious Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blos Fang",
+          "amount": "8",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "gray"
+        }
+      ]
+    },
+    {
+      "name": "Diablo Guards X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "WindPress",
+          "amount": "4"
+        },
+        {
+          "name": "Map",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Diablos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Glorious Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blos Fang",
+          "amount": "8",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "gray"
+        }
+      ]
+    },
+    {
+      "name": "Gravios Vambraces X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "2",
+      "dragon_res": "-2",
+      "water_res": "-2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Guard",
+          "amount": "3"
+        },
+        {
+          "name": "Guard Up",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Gravios Hvy Cpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Carapace",
+          "amount": "2",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GraviosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Gravios Guards X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Guard Up",
+          "amount": "1"
+        },
+        {
+          "name": "Recoil",
+          "amount": "3"
+        },
+        {
+          "name": "Technique",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Gravios Hvy Cpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Gravios Carapace",
+          "amount": "2",
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GraviosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Diablo Vambraces Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "-1",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "3"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Blk Blos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustBlkBlosHrn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blos Fang",
+          "amount": "8",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Diablo Guards Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Load",
+          "amount": "2"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Blk Blos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustBlkBlosHrn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blos Fang",
+          "amount": "8",
+          "type": "claw",
+          "color": "yellow"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Gravios Vambraces Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "2",
+      "dragon_res": "0",
+      "water_res": "-2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Defence",
+          "amount": "5"
+        },
+        {
+          "name": "Stamina",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "BlkGraviosHvyShl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "2",
+          "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "Coma Sac",
+          "amount": "3",
+          "type": "sac",
+          "color": "blue"
+        },
+        {
+          "name": "Gravios BrainStm",
+          "amount": "2",
+          "type": "part",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Gravios Guards Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Defence",
+          "amount": "3"
+        },
+        {
+          "name": "Stamina",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "BlkGraviosHvyShl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blk Gravios Shl",
+          "amount": "2",
+          "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "Coma Sac",
+          "amount": "3",
+          "type": "sac",
+          "color": "blue"
+        },
+        {
+          "name": "Gravios BrainStm",
+          "amount": "2",
+          "type": "part",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "True Golden Kote",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "2",
+      "dragon_res": "3",
+      "water_res": "2",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "23700",
+      "skills": [
+        {
+          "name": "Artisan",
+          "amount": "3"
+        },
+        {
+          "name": "Dragon Res",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rajang Hard Horn",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ShiningRajangPlt",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlkRajangThkPelt",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GldRathianThkScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "TruePupptMastrGloves",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "3",
+      "dragon_res": "4",
+      "water_res": "3",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "23700",
+      "skills": [
+        {
+          "name": "NormalS Up",
+          "amount": "3"
+        },
+        {
+          "name": "Dragon Res",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "BlkRajangThkPelt",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rajang Tail",
+          "amount": "2",
+          "type": "part",
+          "color": "yellow"
+        },
+        {
+          "name": "DaoraDrgnThckScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Remobra Skin G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Black Belt Braces X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "1",
+      "thunder_res": "1",
+      "dragon_res": "1",
+      "water_res": "1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "---",
+      "create_cost": "19800",
+      "skills": null,
+      "create_mats": [
+        {
+          "name": "Kirin Hide G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blackbelt Coin G",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Legendary Coin G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Black Belt Guards X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "3",
+      "dragon_res": "3",
+      "water_res": "3",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "---",
+      "create_cost": "19800",
+      "skills": null,
+      "create_mats": [
+        {
+          "name": "Kirin Hide G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blackbelt Coin G",
+          "amount": "8",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Legendary Coin G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "True Mizuha Sleeves",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "0",
+      "dragon_res": "-1",
+      "water_res": "3",
+      "ice_res": "4",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "21000",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "1"
+        },
+        {
+          "name": "Terrain",
+          "amount": "-2"
+        },
+        {
+          "name": "Daora Res",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Chameleos Hide G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Horn G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "amount": "4",
+          "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "TrueExtrvagantSleeves",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-3",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "5",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "21000",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "5"
+        },
+        {
+          "name": "Terrain",
+          "amount": "-2"
+        },
+        {
+          "name": "Daora Res",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Chameleos Hide G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Chameleos Horn G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ancient DrgnBone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Kushala Grip X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "-2",
+      "dragon_res": "-3",
+      "water_res": "2",
+      "ice_res": "4",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Sharpness",
+          "amount": "3"
+        },
+        {
+          "name": "Evade",
+          "amount": "2"
+        },
+        {
+          "name": "FireDrgRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Daora Hvy Carpce",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDrgnThckScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Sharp Claw",
+          "amount": "1",
+          "type": "claw",
+          "color": "gray"
+        },
+        {
+          "name": "Daora Jewel",
+          "amount": "1",
+          "type": "stone",
+          "color": "gray"
+        }
+      ]
+    },
+    {
+      "name": "Kushala Grasp X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-2",
+      "water_res": "3",
+      "ice_res": "5",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Load",
+          "amount": "2"
+        },
+        {
+          "name": "Recoil",
+          "amount": "3"
+        },
+        {
+          "name": "FireDrgRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Daora Hvy Carpce",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDrgnThckScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Daora Sharp Claw",
+          "amount": "1",
+          "type": "claw",
+          "color": "gray"
+        },
+        {
+          "name": "Daora Jewel",
+          "amount": "1",
+          "type": "stone",
+          "color": "gray"
+        }
+      ]
+    },
+    {
+      "name": "Kirin Longarms X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "4",
+      "dragon_res": "-1",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "2"
+        },
+        {
+          "name": "All Resist",
+          "amount": "-2"
+        },
+        {
+          "name": "Stamina",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Kirin Hide G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Hide+",
+          "amount": "2",
+          "type": "pelt",
+          "color": "white"
+        },
+        {
+          "name": "Pur Gyp StrngWng",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "6",
+          "type": "fluid",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Kirin Gloves X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "1",
+      "thunder_res": "6",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "2"
+        },
+        {
+          "name": "All Resist",
+          "amount": "-2"
+        },
+        {
+          "name": "Stamina",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Kirin Hide G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Hide+",
+          "amount": "2",
+          "type": "pelt",
+          "color": "white"
+        },
+        {
+          "name": "Pur Gyp StrngWng",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "6",
+          "type": "fluid",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Empress Vambraces X",
+      "type": "gauntlets",
+      "hr": "9!",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "0",
+      "dragon_res": "-2",
+      "water_res": "-1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "27000",
+      "skills": [
+        {
+          "name": "Recovery",
+          "amount": "3"
+        },
+        {
+          "name": "Everlastng",
+          "amount": "-2"
+        },
+        {
+          "name": "ChmleosRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Fire Drgn HvyScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Carpace",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Mane",
+          "amount": "3",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "amount": "1",
+          "type": "stone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Empress Guards X",
+      "type": "gauntlets",
+      "hr": "9!",
+      "elder": "8!",
+      "defence": null,
+      "fire_res": "6",
+      "thunder_res": "2",
+      "dragon_res": "-1",
+      "water_res": "1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "27000",
+      "skills": [
+        {
+          "name": "Recovery",
+          "amount": "3"
+        },
+        {
+          "name": "Everlastng",
+          "amount": "-2"
+        },
+        {
+          "name": "ChmleosRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Fire Drgn HvyScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Carpace",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lunastra Mane",
+          "amount": "3",
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "amount": "1",
+          "type": "stone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "True Indra Gloves",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-2",
+      "thunder_res": "2",
+      "dragon_res": "-2",
+      "water_res": "3",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Cooking",
+          "amount": "-2"
+        },
+        {
+          "name": "Survival",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Gaoren Hvy Cpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GaorenStrngClaw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDrgnThckScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "True SteadfastGuards",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "3",
+      "dragon_res": "-1",
+      "water_res": "5",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Cooking",
+          "amount": "-2"
+        },
+        {
+          "name": "Survival",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Gaoren Hvy Cpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GaorenStrngClaw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "DaoraDrgnThckScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Kaiser Vambraces X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "0",
+      "dragon_res": "-2",
+      "water_res": "-1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Everlastng",
+          "amount": "-2"
+        },
+        {
+          "name": "ChmleosRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Teostra Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireDrgnStrngClw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "4",
+          "type": "ore",
+          "color": "orange"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Kaiser Guards X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "6",
+      "thunder_res": "2",
+      "dragon_res": "-1",
+      "water_res": "1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Everlastng",
+          "amount": "-2"
+        },
+        {
+          "name": "ChmleosRes",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Teostra Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireDrgnStrngClw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "4",
+          "type": "ore",
+          "color": "orange"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "TrueGuardnSprtBraces",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "3",
+      "dragon_res": "-2",
+      "water_res": "2",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Fencing",
+          "amount": "1"
+        },
+        {
+          "name": "Hunger",
+          "amount": "-2"
+        },
+        {
+          "name": "Cooking",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Dragonwood G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Yamatsukami Skin",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "TrueCarnageVambraces",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "5",
+      "dragon_res": "-1",
+      "water_res": "3",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Loading",
+          "amount": "1"
+        },
+        {
+          "name": "Cooking",
+          "amount": "3"
+        },
+        {
+          "name": "Para CtAdd",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Dragonwood G",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Yamatsukami Skin",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Commendation S",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Dragonclaw X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "-5",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "44444",
+      "skills": [
+        {
+          "name": "Dragon Res",
+          "amount": "-3"
+        },
+        {
+          "name": "Evade Inc",
+          "amount": "3"
+        },
+        {
+          "name": "Status Res",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Fatalis Hvy Horn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Hvy Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Thck Scl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Dragonfist X",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "4",
+      "dragon_res": "-2",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "44444",
+      "skills": [
+        {
+          "name": "Dragon Res",
+          "amount": "-3"
+        },
+        {
+          "name": "Evade Inc",
+          "amount": "3"
+        },
+        {
+          "name": "Status Res",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Fatalis Hvy Horn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Hvy Shl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fatalis Thck Scl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ucamulbas Claw",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "-2",
+      "dragon_res": "0",
+      "water_res": "3",
+      "ice_res": "5",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Fencing",
+          "amount": "3"
+        },
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Quake Res",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Ucamulbas Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ucamulbas Fang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rajang StrngClaw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ucamu Divine Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ucamulbas Gauntlets",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-2",
+      "thunder_res": "0",
+      "dragon_res": "1",
+      "water_res": "5",
+      "ice_res": "6",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "31500",
+      "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
+          "name": "Loading",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Ucamulbas Shell",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ucamulbas Fang",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rajang StrngClaw",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ucamu Divine Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Golden Moon Braces Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "1",
+      "water_res": "0",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Fate",
+          "amount": "4"
+        },
+        {
+          "name": "Trapper",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GldRathianHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GldRathianThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathian Spike G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Golden Moon Guards Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "2",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24000",
+      "skills": [
+        {
+          "name": "Fate",
+          "amount": "4"
+        },
+        {
+          "name": "Trapper",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GldRathianHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GldRathianThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathian Spike G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Silver Sol Braces Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-1",
+      "dragon_res": "1",
+      "water_res": "-1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24500",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "4"
+        },
+        {
+          "name": "Defence",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "SlvrRthlosHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SlvrRthlosThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathlosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Wyvern Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Silver Sol Guards Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "1",
+      "dragon_res": "2",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "24500",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "4"
+        },
+        {
+          "name": "Defence",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "SlvrRthlosHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "SlvRthlosHrdTail",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathlosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Lg Wyvern Stone",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Fatalis Claw Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "-5",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "55555",
+      "skills": [
+        {
+          "name": "Artisan",
+          "amount": "2"
+        },
+        {
+          "name": "Evade",
+          "amount": "2"
+        },
+        {
+          "name": "Rage",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "FataHvyCrmsnHrn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FataHvyCrmsnShl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FataHrdCrmsnWng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GraviosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Fatalis Fist Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "4",
+      "dragon_res": "-2",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "55555",
+      "skills": [
+        {
+          "name": "Evade",
+          "amount": "2"
+        },
+        {
+          "name": "Loading",
+          "amount": "2"
+        },
+        {
+          "name": "Rage",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "FataHvyCrmsnHrn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FataHvyCrmsnShl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FataHrdCrmsnWng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GraviosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Wht Fatalis Claw Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "-5",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "66666",
+      "skills": [
+        {
+          "name": "Technique",
+          "amount": "4"
+        },
+        {
+          "name": "SwdMastery",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "WhtFatalisHvyHrn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "WhtFatalisHvyCpc",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Fatalis Wng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Wht Fatalis Fist Z",
+      "type": "gauntlets",
+      "hr": "9",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "4",
+      "dragon_res": "-2",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "66666",
+      "skills": [
+        {
+          "name": "Technique",
+          "amount": "2"
+        },
+        {
+          "name": "Marksman",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "WhtFatalisHvyHrn",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "WhtFatalisHvyCpc",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wht Fatalis Wng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Elder Dragon Jwl",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    }
+  ]
+}

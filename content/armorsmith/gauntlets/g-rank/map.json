@@ -1,0 +1,328 @@
+{
+  "map": [
+  {
+    "slug": "monoblos-vambraces",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-guards",
+    "type": "gauntlets",
+    "name": "Monoblos Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-vambraces",
+    "type": "gauntlets",
+    "name": "Garuga Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-guards",
+    "type": "gauntlets",
+    "name": "Garuga Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "black-claw",
+    "type": "gauntlets",
+    "name": "Black Claw",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-fist",
+    "type": "gauntlets",
+    "name": "Black Fist",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-vambraces",
+    "type": "gauntlets",
+    "name": "Empress Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-guards",
+    "type": "gauntlets",
+    "name": "Empress Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-vambraces",
+    "type": "gauntlets",
+    "name": "Monodevil Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-guards",
+    "type": "gauntlets",
+    "name": "Monodevil Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "monoblos-vambraces-s",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-guards-s",
+    "type": "gauntlets",
+    "name": "Monoblos Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monodevil-braces-u",
+    "type": "gauntlets",
+    "name": "Monodevil Braces U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-guards-u",
+    "type": "gauntlets",
+    "name": "Monodevil Guards U",
+    "rarity": "8"
+  },
+  {
+    "slug": "tigrex-vambraces-x",
+    "type": "gauntlets",
+    "name": "Tigrex Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "tigrex-guards-x",
+    "type": "gauntlets",
+    "name": "Tigrex Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vambraces-x",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-guards-x",
+    "type": "gauntlets",
+    "name": "Diablo Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vambraces-x",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-guards-x",
+    "type": "gauntlets",
+    "name": "Gravios Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vambraces-z",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-guards-z",
+    "type": "gauntlets",
+    "name": "Diablo Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vambraces-z",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-guards-z",
+    "type": "gauntlets",
+    "name": "Gravios Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "true-golden-kote",
+    "type": "gauntlets",
+    "name": "True Golden Kote",
+    "rarity": "10"
+  },
+  {
+    "slug": "truepupptmastrgloves",
+    "type": "gauntlets",
+    "name": "TruePupptMastrGloves",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-braces-x",
+    "type": "gauntlets",
+    "name": "Black Belt Braces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-guards-x",
+    "type": "gauntlets",
+    "name": "Black Belt Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-mizuha-sleeves",
+    "type": "gauntlets",
+    "name": "True Mizuha Sleeves",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueextrvagantsleeves",
+    "type": "gauntlets",
+    "name": "TrueExtrvagantSleeves",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-grip-x",
+    "type": "gauntlets",
+    "name": "Kushala Grip X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-grasp-x",
+    "type": "gauntlets",
+    "name": "Kushala Grasp X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-longarms-x",
+    "type": "gauntlets",
+    "name": "Kirin Longarms X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-gloves-x",
+    "type": "gauntlets",
+    "name": "Kirin Gloves X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-vambraces-x",
+    "type": "gauntlets",
+    "name": "Empress Vambraces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-guards-x",
+    "type": "gauntlets",
+    "name": "Empress Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-indra-gloves",
+    "type": "gauntlets",
+    "name": "True Indra Gloves",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-steadfastguards",
+    "type": "gauntlets",
+    "name": "True SteadfastGuards",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-vambraces-x",
+    "type": "gauntlets",
+    "name": "Kaiser Vambraces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-guards-x",
+    "type": "gauntlets",
+    "name": "Kaiser Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueguardnsprtbraces",
+    "type": "gauntlets",
+    "name": "TrueGuardnSprtBraces",
+    "rarity": "10"
+  },
+  {
+    "slug": "truecarnagevambraces",
+    "type": "gauntlets",
+    "name": "TrueCarnageVambraces",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonclaw-x",
+    "type": "gauntlets",
+    "name": "Dragonclaw X",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonfist-x",
+    "type": "gauntlets",
+    "name": "Dragonfist X",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-claw",
+    "type": "gauntlets",
+    "name": "Ucamulbas Claw",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-gauntlets",
+    "type": "gauntlets",
+    "name": "Ucamulbas Gauntlets",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-braces-z",
+    "type": "gauntlets",
+    "name": "Golden Moon Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-guards-z",
+    "type": "gauntlets",
+    "name": "Golden Moon Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-braces-z",
+    "type": "gauntlets",
+    "name": "Silver Sol Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-guards-z",
+    "type": "gauntlets",
+    "name": "Silver Sol Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-claw-z",
+    "type": "gauntlets",
+    "name": "Fatalis Claw Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-fist-z",
+    "type": "gauntlets",
+    "name": "Fatalis Fist Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "wht-fatalis-claw-z",
+    "type": "gauntlets",
+    "name": "Wht Fatalis Claw Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "wht-fatalis-fist-z",
+    "type": "gauntlets",
+    "name": "Wht Fatalis Fist Z",
+    "rarity": "10"
+  }
+]
+}

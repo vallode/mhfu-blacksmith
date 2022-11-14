@@ -1,15 +1,17 @@
 {% extends "base-tree.html" %}
 
 {% block navigation %}
-  {%- for armor_type in config.extra.armor_types %}
-    {% set armor_name = armor_type | replace(from='-', to=' ') | capitalize -%}
+  {%- for armor in config.extra.armor_types %}
+    {% set armor_name = armor | replace(from='-', to=' ') | capitalize -%}
 
-    <div>
-      <a href="/armorsmith/{{ armor_type }}/" title="{{ armor_name }}">
-        <div class="icon icon--large icon--{{ armor_type }} {% if armor_type == section.extra.type %}icon--rarity-4{% endif %}">
-          <img src="/images/{{ armor_type }}.png" alt="{{ armor_name }}">
-        </div>
-      </a>
-    </div>
+    {% for rank in ["low-rank", "high-rank", "g-rank"] %}
+      <div>
+        <a href="/armorsmith/{{ armor }}/{{ rank }}/" title="{{ armor_name }}">
+          <div class="icon icon--large icon--{{ armor }} {% if armor == section.extra.type %}icon--rarity-4{% endif %}">
+            <img src="/images/{{ armor }}.png" alt="{{ armor_name }} icon">
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   {%- endfor %}
 {% endblock%}
