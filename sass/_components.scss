@@ -407,6 +407,12 @@ $element-types: (
       background-image: url("/images/sharpness-plus.png");
     }
 
+    .hunter_type,
+    .sex {
+      margin-left: 1.3rem;
+      color: #c0c0c0;
+    }
+
     @media screen and (max-width: 600px) {
       flex-wrap: wrap;
       height: auto;

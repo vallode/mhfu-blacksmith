@@ -51,6 +51,11 @@
 
     .row {
       padding-left: 6px;
+
+      &--external {
+        cursor: default;
+        color: gray;
+      }
     }
   }
 
@@ -69,6 +74,11 @@
         background: -o-linear-gradient(left, rgba(0,0,0,0), rgba(3, 119, 3, 0.84), rgba(0,0,0,0));
         background: linear-gradient(0.25turn, rgba(0,0,0,0), rgba(3, 119, 3, 0.84), rgba(0,0,0,0));
       }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
     }
   }
 }

@@ -1,5 +1,5 @@
 +++
-title = "Decoration"
+title = "Decoration tree"
 description = "Decoration tree"
 template = "weapon-tree.html"
 page_template = "weapon.html"

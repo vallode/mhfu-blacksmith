@@ -1,5 +1,5 @@
 +++
-title = "Sword and shield"
+title = "Sword and shield weapon tree"
 description = "Sword and shield weapon tree"
 template = "weapon-tree.html"
 page_template = "weapon.html"

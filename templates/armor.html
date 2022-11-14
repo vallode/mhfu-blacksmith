@@ -22,26 +22,29 @@
 {% endblock %}
 
 {% block content %}
+  {% set section_path = page.components | slice(start=0, end=3) | join(sep='/') %}
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
   <nav class="weapon-navigation">
-    {%- for weapon_type in config.extra.armor_types %}
-      {% set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
+    {%- for armor in config.extra.armor_types %}
+      {% set armor_name = armor | replace(from='-', to=' ') | capitalize -%}
 
-      <div>
-        <a href="/armorsmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
-            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
-          </div>
-        </a>
-      </div>
+      {% for rank in ["low-rank", "high-rank", "g-rank"] %}
+        <div>
+          <a href="/armorsmith/{{ armor }}/{{ rank }}/" title="{{ armor_name }}">
+            <div class="icon icon--large icon--{{ armor }} {% if armor == page.extra.type %}icon--rarity-4{% endif %}">
+              <img src="/images/{{ armor }}.png" alt="{{ armor_name }} icon">
+            </div>
+          </a>
+        </div>
+      {% endfor %}
     {%- endfor %}
   </nav>
 
   <hr class="border">
 
   <div class="weapon-details-page">
-    <turbo-frame id="weapon_tree" src="/armorsmith/{{ page.extra.type }}" data-turbo-action="replace">
+    <turbo-frame id="weapon_tree" src="/{{ section_path }}/" data-turbo-action="replace">
       <div class="card card--weapon-tree"></div>
     </turbo-frame>
   
@@ -65,19 +68,11 @@
             <p id="weapon_name">
               {{ page.extra.name }}
             </p>
-            
-            {% if page.extra.sharpness %}
-            <div tabindex="0" class="sharpness">
-              {% for sharp in page.extra.sharpness %}
-                <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
-              {% endfor %}
 
-              {% if page.extra.sharpness_plus %}
-                {% for sharp in page.extra.sharpness_plus %}
-                  <span class="sharp-{{ loop.index }} sharp--plus" style="width: {{ sharp | int * 4 }}px;"></span>
-                {% endfor %}
-              {% endif %}
-            </div>
+            <p class="hunter_type">{{ page.extra.hunter_type }}</p>
+
+            {% if not page.extra.sex == "Male/Female" %}
+              <p class="sex">{{ page.extra.sex }}</p>
             {% endif %}
           </div>
 
@@ -115,7 +110,7 @@
               {% if page.extra.skills %}
                 {% for skill in page.extra.skills %}
                   <p class="element">
-                    {{ skill }}
+                    {{ skill.name }} {{ skill.amount }}
                   </p>
                 {% endfor %}
               {% endif %}
