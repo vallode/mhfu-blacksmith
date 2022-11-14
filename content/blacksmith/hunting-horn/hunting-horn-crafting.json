@@ -13,7 +13,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": 100000,
       "improve_from": "Blacksmith",
@@ -87,7 +87,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 120000,
       "improve_from": "Lava Alphorn",
@@ -140,7 +140,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 35000,
       "improve_cost": 35000,
       "improve_from": "Anvil Hammer",
@@ -209,7 +209,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
       "improve_from": "Bronze Bell",
@@ -253,7 +253,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 130000,
       "improve_from": "Gaoren Bell",
@@ -301,7 +301,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 25000,
       "improve_cost": 25000,
       "improve_from": "Anvil Hammer",
@@ -375,7 +375,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 70000,
       "improve_from": "Sakura Recorder",
@@ -424,7 +424,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
       "improve_from": "Sakura Recorder+",
@@ -473,7 +473,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
       "improve_from": "Gold Recorder",
@@ -528,7 +528,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 125000,
       "improve_from": "Gold Recorder+",
@@ -575,7 +575,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 2340,
       "improve_cost": 2340,
       "improve_from": "War Mace",
@@ -644,7 +644,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 4410,
       "improve_from": "Metal Bagpipe",
@@ -688,7 +688,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
       "improve_from": "Great Bagpipe",
@@ -732,7 +732,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 60000,
       "improve_from": "Heavy Bagpipe",
@@ -776,7 +776,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
       "improve_from": "Heavy Bagpipe+",
@@ -820,7 +820,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 110000,
       "improve_from": "Master Bagpipe",
@@ -862,7 +862,7 @@
         "y",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 3825,
       "improve_cost": 3825,
       "improve_from": "Spiked Hammer+",
@@ -936,7 +936,7 @@
         "y",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5715,
       "improve_from": "Basarios Rock",
@@ -985,7 +985,7 @@
         "y",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
       "improve_from": "Basarios Rock Mk.II",
@@ -1034,7 +1034,7 @@
         "y",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 95000,
       "improve_from": "Volcanic Rock",
@@ -1087,7 +1087,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
       "improve_from": "Kut-Ku Pick",
@@ -1161,7 +1161,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Feather Whistle",
@@ -1241,7 +1241,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
       "improve_from": "Hypno Whistle",
@@ -1294,7 +1294,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 65000,
       "improve_cost": 65000,
       "improve_from": "Wolf Torrent",
@@ -1374,7 +1374,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
       "improve_from": "Wolf Shamisen",
@@ -1427,7 +1427,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 2790,
       "improve_cost": 2790,
       "improve_from": "Atlas Hammer",
@@ -1501,7 +1501,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5040,
       "improve_from": "Khezu Horn",
@@ -1552,7 +1552,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 30000,
       "improve_from": "Khezu Horn+",
@@ -1599,7 +1599,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
       "improve_from": "Khezu Horn+",
@@ -1648,7 +1648,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": "Blood Horn",
@@ -1697,7 +1697,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
       "improve_from": "Blood Flute",
@@ -1752,7 +1752,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
       "improve_from": "Blood Flute+",
@@ -1799,7 +1799,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
       "improve_from": "Ancient Relic",
@@ -1874,7 +1874,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
       "improve_from": "Shell Castanet",
@@ -1929,7 +1929,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
       "improve_from": "Shell Castanet+",
@@ -1982,7 +1982,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
       "improve_from": "Shell Castanet",
@@ -2026,7 +2026,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 120000,
       "improve_from": "Crabby Castanet",
@@ -2074,7 +2074,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 2340,
       "improve_cost": 2340,
       "improve_from": "Skullcrusher+",
@@ -2143,7 +2143,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 3285,
       "improve_from": "Sonic Glass",
@@ -2187,7 +2187,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 55000,
       "improve_from": "Sonic Glass+",
@@ -2231,7 +2231,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Glass Queen",
@@ -2305,7 +2305,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
       "improve_from": "Glass Royale",
@@ -2358,7 +2358,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 990,
       "improve_cost": 990,
       "improve_from": "Bone Club",
@@ -2446,7 +2446,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 1935,
       "improve_from": "Giaprey Balloon",
@@ -2496,7 +2496,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
       "improve_from": "Giaprey Balloon+",
@@ -2543,7 +2543,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 30000,
       "improve_from": "Giaprey Balloon+",
@@ -2593,7 +2593,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": "Velociprey Balloon",
@@ -2643,7 +2643,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 80000,
       "improve_from": "Velociprey Balloon+",
@@ -2693,7 +2693,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
       "improve_from": "Velocidrome Balloon",
@@ -2741,7 +2741,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 585,
       "improve_cost": null,
       "improve_from": null,
@@ -2780,7 +2780,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 1575,
       "improve_cost": 1575,
       "improve_from": [
@@ -2835,7 +2835,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5040,
       "improve_from": "Bone Horn",
@@ -2879,7 +2879,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 35000,
       "improve_from": "Bone Horn+",
@@ -2923,7 +2923,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
       "improve_from": "Hunter's Horn",
@@ -2973,7 +2973,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
       "improve_from": "Hunter's Horn+",
@@ -3021,7 +3021,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 10000,
       "improve_cost": 10000,
       "improve_from": "Bone Horn",
@@ -3095,7 +3095,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
       "improve_from": "Blessed Ocarina",
@@ -3150,7 +3150,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 130000,
       "improve_from": "Cursed Ocarina",
@@ -3203,7 +3203,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 1935,
       "improve_cost": 1935,
       "improve_from": "Ivory Horn",
@@ -3266,7 +3266,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 5040,
       "improve_cost": 5040,
       "improve_from": "War Drum",
@@ -3329,7 +3329,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
       "improve_from": "War Drum+",
@@ -3412,7 +3412,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 60000,
       "improve_from": "War Bongo",
@@ -3463,7 +3463,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 95000,
       "improve_from": "War Conga",
@@ -3511,7 +3511,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 85000,
       "improve_cost": 85000,
       "improve_from": "War Conga",
@@ -3580,7 +3580,7 @@
         "g",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
       "improve_from": "Jungle Bongo",
@@ -3628,7 +3628,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 15000,
       "improve_cost": null,
       "improve_from": null,
@@ -3678,7 +3678,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
       "improve_from": "Black Lute",
@@ -3733,7 +3733,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 150000,
       "improve_from": "Fatalis Menace",
@@ -3780,7 +3780,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
       "improve_from": "Black Lute",
@@ -3835,7 +3835,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 150000,
       "improve_from": "Ancient Fatalis Lied",
@@ -3888,7 +3888,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 20000,
       "improve_cost": null,
       "improve_from": null,
@@ -3943,7 +3943,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
       "improve_from": "Dragonwood Horn",
@@ -3992,7 +3992,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 120000,
       "improve_cost": 120000,
       "improve_from": "Spirit Dragonwd Horn",
@@ -4066,7 +4066,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 145000,
       "improve_from": "AncientDrgnwoodFlute",
@@ -4119,7 +4119,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 40000,
       "improve_cost": null,
       "improve_from": null,
@@ -4168,7 +4168,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
       "improve_from": "Handmade Frog",
@@ -4221,7 +4221,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 35000,
       "improve_cost": null,
       "improve_from": null,
@@ -4272,7 +4272,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 80000,
       "improve_from": "Striped Dragonga",
@@ -4316,7 +4316,7 @@
         "a",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 125000,
       "improve_from": "Tigrex Horn",
@@ -4364,7 +4364,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Striped Dragonga",
@@ -4433,7 +4433,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 120000,
       "improve_cost": 120000,
       "improve_from": "Hidden Tone",
@@ -4506,7 +4506,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4556,7 +4556,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 145000,
       "improve_from": "Akantor Horn",
@@ -4604,7 +4604,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
@@ -4657,7 +4657,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4705,7 +4705,7 @@
         "y",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4753,7 +4753,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4801,7 +4801,7 @@
         "b",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4854,7 +4854,7 @@
         "y",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4907,7 +4907,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -4955,7 +4955,7 @@
         "g",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -5003,7 +5003,7 @@
         "g",
         "y"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -5051,7 +5051,7 @@
         "g",
         "a"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -5104,7 +5104,7 @@
         "a",
         "b"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
@@ -5157,7 +5157,7 @@
         "b",
         "r"
       ],
-      "type": "hh",
+      "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,

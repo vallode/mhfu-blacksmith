@@ -7,7 +7,8 @@
         "Fierce Jewel",
         "Strongest Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Attack Jewel",
@@ -38,7 +39,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fierce Jewel",
@@ -70,7 +71,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Strongest Jewel",
@@ -108,7 +109,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ESP",
@@ -116,7 +117,8 @@
         "Fencer Jewel",
         "Swordsman Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Fencer Jewel",
@@ -162,7 +164,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Swordsman Jewel",
@@ -200,7 +202,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Sharp Sword",
@@ -208,7 +210,8 @@
         "Razor Jewel",
         "Cutter Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Razor Jewel",
@@ -240,7 +243,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Cutter Jewel",
@@ -278,7 +281,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Reckless Abandon",
@@ -287,7 +290,8 @@
         "Celebrity Jewel",
         "Hermit Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Expert Jewel",
@@ -319,7 +323,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Celebrity Jewel",
@@ -365,7 +369,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Hermit Jewel",
@@ -403,14 +407,15 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Sharping Skl Inc",
       "improve_to": [
         "Grinder Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Grinder Jewel",
@@ -441,7 +446,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Art of Unsheathing",
@@ -449,7 +454,8 @@
         "Sword Draw Jewel",
         "UnsheathingJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Sword Draw Jewel",
@@ -495,7 +501,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "UnsheathingJewel",
@@ -527,7 +533,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Spc Atk Up",
@@ -535,7 +541,8 @@
         "SpecialAtk Jewel",
         "SpecialAtkJewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "SpecialAtk Jewel",
@@ -567,7 +574,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SpecialAtkJewel+",
@@ -599,7 +606,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Elem Atk Up",
@@ -607,7 +614,8 @@
         "Element Jewel",
         "Element Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Element Jewel",
@@ -645,7 +653,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Element Jewel+",
@@ -683,14 +691,15 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Bomber",
       "improve_to": [
         "Bombardier Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Bombardier Jewel",
@@ -721,7 +730,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Focus",
@@ -729,7 +738,8 @@
         "ShortChargeJewel",
         "RapidChargeJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "ShortChargeJewel",
@@ -781,7 +791,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "RapidChargeJewel",
@@ -819,7 +829,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Guts",
@@ -827,7 +837,8 @@
         "Guts Jewel",
         "More Guts Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Guts Jewel",
@@ -859,7 +870,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "More Guts Jewel",
@@ -897,7 +908,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Defense up",
@@ -905,7 +916,8 @@
         "Defense Jewel",
         "Turtle Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Defense Jewel",
@@ -930,7 +942,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Turtle Jewel",
@@ -976,7 +988,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fire Res up",
@@ -984,7 +996,8 @@
         "Inferno Jewel",
         "Crimson Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Inferno Jewel",
@@ -1010,7 +1023,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Crimson Jewel",
@@ -1035,7 +1048,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Water Res up",
@@ -1043,7 +1056,8 @@
         "Stream Jewel",
         "Torrent Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Stream Jewel",
@@ -1069,7 +1083,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Torrent Jewel",
@@ -1094,7 +1108,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Ice Res up",
@@ -1102,7 +1116,8 @@
         "Freeze Jewel",
         "Glacier Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Freeze Jewel",
@@ -1128,7 +1143,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Glacier Jewel",
@@ -1153,7 +1168,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Thunder Res up",
@@ -1161,7 +1176,8 @@
         "Lightning Jewel",
         "Thunder Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Lightning Jewel",
@@ -1187,7 +1203,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Thunder Jewel",
@@ -1212,7 +1228,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Dragon Res up",
@@ -1220,7 +1236,8 @@
         "Slayer Jewel",
         "Extinction Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Slayer Jewel",
@@ -1252,7 +1269,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Extinction Jewel",
@@ -1284,7 +1301,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "All Res up",
@@ -1293,7 +1310,8 @@
         "Omnipotent Jewel",
         "TrueResistJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Impervious Jewel",
@@ -1319,7 +1337,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Omnipotent Jewel",
@@ -1351,7 +1369,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "TrueResistJewel",
@@ -1389,7 +1407,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Guard up",
@@ -1397,7 +1415,8 @@
         "Stone Wall Jewel",
         "IronCurtainJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Stone Wall Jewel",
@@ -1429,7 +1448,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "IronCurtainJewel",
@@ -1481,7 +1500,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Guard inc",
@@ -1490,7 +1509,8 @@
         "StrongWall Jewel",
         "Wall Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Hard Wall Jewel",
@@ -1516,7 +1536,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "StrongWall Jewel",
@@ -1554,7 +1574,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Wall Jewel",
@@ -1586,14 +1606,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Auto-Guard",
       "improve_to": [
         "HvnlyShieldJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "HvnlyShieldJewel",
@@ -1624,14 +1645,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Health up",
       "improve_to": [
         "Strength Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Strength Jewel",
@@ -1656,7 +1678,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Damage Rec Spd up",
@@ -1664,7 +1686,8 @@
         "Feel Good Jewel",
         "SpeedyRecvrJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Feel Good Jewel",
@@ -1696,7 +1719,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SpeedyRecvrJewel",
@@ -1754,7 +1777,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "HealthRecItemsImprvd",
@@ -1763,7 +1786,8 @@
         "Cure All Jewel",
         "Cure All Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Curing Jewel",
@@ -1795,7 +1819,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Cure All Jewel",
@@ -1827,7 +1851,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Cure All Jewel+",
@@ -1865,7 +1889,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Wide Area",
@@ -1874,7 +1898,8 @@
         "Beloved Jewel",
         "Tenderness Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Friendship Jewel",
@@ -1906,7 +1931,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Beloved Jewel",
@@ -1944,7 +1969,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Tenderness Jewel",
@@ -1982,7 +2007,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Divine Protection",
@@ -1990,7 +2015,8 @@
         "Protection Jewel",
         "DivineProtectJwl"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Protection Jewel",
@@ -2021,7 +2047,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "DivineProtectJwl",
@@ -2052,7 +2078,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Constitutn",
@@ -2060,7 +2086,8 @@
         "Constitutn Jewel",
         "Health Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Constitutn Jewel",
@@ -2092,7 +2119,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Health Jewel",
@@ -2150,7 +2177,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Hunger Halved/Negate",
@@ -2159,7 +2186,8 @@
         "Fasting Jewel",
         "No Food Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "PickyEater Jewel",
@@ -2191,7 +2219,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fasting Jewel",
@@ -2229,7 +2257,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "No Food Jewel",
@@ -2266,14 +2294,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Filled Up/Scavenger",
       "improve_to": [
         "Fatso Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Fatso Jewel",
@@ -2304,7 +2333,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Quick Eating",
@@ -2312,7 +2341,8 @@
         "QuickEaterJewel",
         "Fast Food Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "QuickEaterJewel",
@@ -2344,7 +2374,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fast Food Jewel",
@@ -2382,7 +2412,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Runner",
@@ -2390,7 +2420,8 @@
         "Marathon Jewel",
         "Sprinter Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Marathon Jewel",
@@ -2428,7 +2459,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Sprinter Jewel",
@@ -2466,14 +2497,15 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Throwing Sk Up",
       "improve_to": [
         "Hardball Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Hardball Jewel",
@@ -2504,7 +2536,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Reload Speed up",
@@ -2512,7 +2544,8 @@
         "Early Bird Jewel",
         "High Speed Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Early Bird Jewel",
@@ -2544,7 +2577,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "High Speed Jewel",
@@ -2576,7 +2609,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Autoreload",
@@ -2584,7 +2617,8 @@
         "Cont. Fire Jewel",
         "Barrage Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Cont. Fire Jewel",
@@ -2630,7 +2664,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Barrage Jewel",
@@ -2668,7 +2702,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Recoil Reduct",
@@ -2676,7 +2710,8 @@
         "Recoilless Jewel",
         "Shockless Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Recoilless Jewel",
@@ -2728,7 +2763,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Shockless Jewel",
@@ -2766,7 +2801,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "NormS/RapidBow Up",
@@ -2774,7 +2809,8 @@
         "StrongShot Jewel",
         "StrongShot Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "StrongShot Jewel",
@@ -2806,7 +2842,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "StrongShot Jewel+",
@@ -2845,7 +2881,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PrceS/PrceBow Up",
@@ -2853,7 +2889,8 @@
         "Pierce Jewel",
         "Pierce Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Pierce Jewel",
@@ -2885,7 +2922,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Pierce Jewel+",
@@ -2924,7 +2961,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PellS/ScattBow Up",
@@ -2932,7 +2969,8 @@
         "Pellet Jewel",
         "Pellet Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Pellet Jewel",
@@ -2964,7 +3002,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Pellet Jewel+",
@@ -3002,14 +3040,15 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "NormS All Add",
       "improve_to": [
         "Shot Bonus Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Shot Bonus Jewel",
@@ -3040,14 +3079,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PierceS LV Add",
       "improve_to": [
         "PierceBonusJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "PierceBonusJewel",
@@ -3078,14 +3118,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PelletS LV Add",
       "improve_to": [
         "PelletBonusJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "PelletBonusJewel",
@@ -3116,14 +3157,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "CragS LV Add",
       "improve_to": [
         "Crag Bonus Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Crag Bonus Jewel",
@@ -3154,14 +3196,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ClustS LV Add",
       "improve_to": [
         "ScattrBonusJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "ScattrBonusJewel",
@@ -3192,7 +3235,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Load Up",
@@ -3200,7 +3243,8 @@
         "Ammo Box Jewel",
         "Magazine Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Ammo Box Jewel",
@@ -3252,7 +3296,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Magazine Jewel",
@@ -3290,7 +3334,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Target Range Down",
@@ -3298,7 +3342,8 @@
         "Sniper Jewel",
         "SharpshootrJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Sniper Jewel",
@@ -3330,7 +3375,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SharpshootrJewel",
@@ -3367,14 +3412,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PoisonCAdd",
       "improve_to": [
         "PoisonCoatJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "PoisonCoatJewel",
@@ -3411,7 +3457,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ParalyCAdd",
@@ -3419,7 +3465,8 @@
         "ParalysCoatJewel",
         "ParalysisCAddJwl"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "ParalysCoatJewel",
@@ -3456,7 +3503,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ParalysisCAddJwl",
@@ -3493,14 +3540,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SleepCAdd",
       "improve_to": [
         "Sleep Coat Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Sleep Coat Jewel",
@@ -3537,7 +3585,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PowerCAdd",
@@ -3545,7 +3593,8 @@
         "Power Coat Jewel",
         "PowerCAddJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Power Coat Jewel",
@@ -3583,7 +3632,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "PowerCAddJewel",
@@ -3621,14 +3670,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ClsRngCAdd",
       "improve_to": [
         "Combo Coat Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Combo Coat Jewel",
@@ -3665,14 +3715,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Bullet Limit",
       "improve_to": [
         "Armory Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Armory Jewel",
@@ -3709,7 +3760,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Sharpness Plus",
@@ -3717,7 +3768,8 @@
         "Artisan Jewel",
         "Master Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Artisan Jewel",
@@ -3763,7 +3815,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Master Jewel",
@@ -3801,7 +3853,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Stealth",
@@ -3809,7 +3861,8 @@
         "Tip Toe Jewel",
         "Ninja Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Tip Toe Jewel",
@@ -3841,7 +3894,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Ninja Jewel",
@@ -3866,7 +3919,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Evade up",
@@ -3874,7 +3927,8 @@
         "Evade Jewel",
         "Dodge Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Evade Jewel",
@@ -3926,7 +3980,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Dodge Jewel",
@@ -3958,7 +4012,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Evade Distance Up",
@@ -3966,7 +4020,8 @@
         "Jumping Jewel",
         "Flying Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Jumping Jewel",
@@ -4018,7 +4073,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Flying Jewel",
@@ -4056,7 +4111,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Adrenaline up",
@@ -4065,7 +4120,8 @@
         "Crisis Jewel",
         "Pinch Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Danger Jewel",
@@ -4097,7 +4153,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Crisis Jewel",
@@ -4135,7 +4191,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Pinch Jewel",
@@ -4173,14 +4229,15 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "BBQ Celebrity",
       "improve_to": [
         "BBQ Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "BBQ Jewel",
@@ -4211,14 +4268,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Map",
       "improve_to": [
         "Map Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Map Jewel",
@@ -4249,14 +4307,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Detect/Autotracker",
       "improve_to": [
         "Psychic Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Psychic Jewel",
@@ -4287,14 +4346,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Tranquilizing Guru",
       "improve_to": [
         "Perceive Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Perceive Jewel",
@@ -4325,7 +4385,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Item Usage Improved",
@@ -4334,7 +4394,8 @@
         "Permanence Jewel",
         "Eternal Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "StayingPwr Jewel",
@@ -4366,7 +4427,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Permanence Jewel",
@@ -4398,7 +4459,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Eternal Jewel",
@@ -4436,14 +4497,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Comb Suc up",
       "improve_to": [
         "Professor Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Professor Jewel",
@@ -4474,14 +4536,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Alchemy",
       "improve_to": [
         "SecretArts Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "SecretArts Jewel",
@@ -4518,7 +4581,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Gunnery Master/King",
@@ -4526,7 +4589,8 @@
         "Small Arms Jewel",
         "Howitzer Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Small Arms Jewel",
@@ -4558,7 +4622,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Howitzer Jewel",
@@ -4589,14 +4653,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Flute Expert",
       "improve_to": [
         "Fife Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Fife Jewel",
@@ -4627,7 +4692,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Faint duration down/negated",
@@ -4636,7 +4701,8 @@
         "Anti-Faint Jewel",
         "Steadfast Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Steadfast Jewel",
@@ -4662,7 +4728,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Anti-Faint Jewel",
@@ -4694,7 +4760,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Steadfast Jewel+",
@@ -4725,7 +4791,7 @@
       "slots": "---",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Paralysis duration down/negated",
@@ -4734,7 +4800,8 @@
         "AntiParalyzJewel",
         "Paralysis Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Paralysis Jewel",
@@ -4760,7 +4827,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "AntiParalyzJewel",
@@ -4786,7 +4853,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Paralysis Jewel+",
@@ -4817,7 +4884,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Sleep duration down/negated",
@@ -4825,7 +4892,8 @@
         "Pep Jewel",
         "Jolt Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Pep Jewel",
@@ -4851,7 +4919,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Jolt Jewel",
@@ -4882,7 +4950,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Poison duration down/negated",
@@ -4891,7 +4959,8 @@
         "Antivenin Jewel",
         "Antidote Jewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Antidote Jewel",
@@ -4917,7 +4986,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Antivenin Jewel",
@@ -4949,7 +5018,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Antidote Jewel+",
@@ -4980,7 +5049,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Immunity to Snowman",
@@ -4989,7 +5058,8 @@
         "Snowplow Jewel",
         "SnowblowerJewel+"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Snowblower Jewel",
@@ -5015,7 +5085,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Snowplow Jewel",
@@ -5041,7 +5111,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SnowblowerJewel+",
@@ -5072,7 +5142,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Immunity to Quake",
@@ -5080,7 +5150,8 @@
         "Anchor Jewel",
         "Tectonic Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Anchor Jewel",
@@ -5112,7 +5183,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Tectonic Jewel",
@@ -5158,7 +5229,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Earplug/High Grade Earplug",
@@ -5166,7 +5237,8 @@
         "Earplug Jewel",
         "Silencer Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Earplug Jewel",
@@ -5212,7 +5284,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Silencer Jewel",
@@ -5270,7 +5342,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Low/High Wind Pres/Drg Wind Breaker",
@@ -5279,7 +5351,8 @@
         "HeavyMetal Jewel",
         "Solid Rock Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "PaperweightJewel",
@@ -5311,7 +5384,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "HeavyMetal Jewel",
@@ -5343,7 +5416,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Solid Rock Jewel",
@@ -5381,7 +5454,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Cold Elimination",
@@ -5390,7 +5463,8 @@
         "Hot Wind Jewel",
         "HotBreezeJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "WarmBreeze Jewel",
@@ -5416,7 +5490,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Hot Wind Jewel",
@@ -5448,7 +5522,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "HotBreezeJewel",
@@ -5479,7 +5553,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Heat Cancel",
@@ -5488,7 +5562,8 @@
         "Cold Wind Jewel",
         "ColdBreezeJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "ColdBreeze Jewel",
@@ -5514,7 +5589,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Cold Wind Jewel",
@@ -5546,7 +5621,7 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "ColdBreezeJewel",
@@ -5577,7 +5652,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Terrain damage reduced/negated",
@@ -5585,7 +5660,8 @@
         "Melt-Proof Jewel",
         "Anti-Thaw Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Melt-Proof Jewel",
@@ -5617,7 +5693,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Anti-Thaw Jewel",
@@ -5681,14 +5757,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Steal No Effect",
       "improve_to": [
         "Alarm Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Alarm Jewel",
@@ -5719,7 +5796,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Immunity to territorial dung",
@@ -5727,7 +5804,8 @@
         "Retroviral Jewel",
         "Antiviral Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Retroviral Jewel",
@@ -5759,7 +5837,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Antiviral Jewel",
@@ -5804,7 +5882,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fatigue duration halved/negated",
@@ -5812,7 +5890,8 @@
         "Tireless Jewel",
         "Antiviral Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Tireless Jewel",
@@ -5863,14 +5942,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Backpacking Expert",
       "improve_to": [
         "Backpacker Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Backpacker Jewel",
@@ -5901,14 +5981,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Gathering",
       "improve_to": [
         "Gathering Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Gathering Jewel",
@@ -5939,14 +6020,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "HighSpdGather",
       "improve_to": [
         "Grab'n'DashJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Grab'n'DashJewel",
@@ -5977,7 +6059,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Spirit's/Divine Whim",
@@ -5985,7 +6067,8 @@
         "Good Luck Jewel",
         "Blessing Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Good Luck Jewel",
@@ -6022,7 +6105,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Blessing Jewel",
@@ -6059,7 +6142,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Carving Iron Man/Celebrity",
@@ -6067,7 +6150,8 @@
         "HideCutter Jewel",
         "Carving Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "HideCutter Jewel",
@@ -6119,7 +6203,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Carving Jewel",
@@ -6157,7 +6241,7 @@
       "slots": "OOO",
       "rarity": 5,
       "create_cost": 450,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Good Luck/Luck Boost",
@@ -6165,7 +6249,8 @@
         "Fate Jewel",
         "Destiny Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Fate Jewel",
@@ -6191,7 +6276,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Destiny Jewel",
@@ -6217,14 +6302,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "SpeedSetup",
       "improve_to": [
         "TrapMasterJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "TrapMasterJewel",
@@ -6255,7 +6341,7 @@
       "slots": "OO-",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Tranquilzr",
@@ -6263,7 +6349,8 @@
         "Tranq Jewel",
         "Knockout Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Tranq Jewel",
@@ -6301,7 +6388,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Knockout Jewel",
@@ -6339,14 +6426,15 @@
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Fishing Expert",
       "improve_to": [
         "Fisher Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Fisher Jewel",
@@ -6377,14 +6465,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Comrade Guidance/Trade",
       "improve_to": [
         "Cat Guide Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Cat Guide Jewel",
@@ -6435,14 +6524,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Comrade Attack Up",
       "improve_to": [
         "Cat Attack Jewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "Cat Attack Jewel",
@@ -6479,14 +6569,15 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     },
     {
       "name": "Comrade Defense Up",
       "improve_to": [
         "CatDefenseJewel"
       ],
-      "donotrender": true
+      "donotrender": true,
+      "type": ""
     },
     {
       "name": "CatDefenseJewel",
@@ -6523,7 +6614,7 @@
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
-      "type": "dec"
+      "type": "decoration"
     }
   ]
 }
