@@ -27,26 +27,6 @@ WEAPON_PAIRS = [
   ["leggings"],
 ]
 
-WEAPON_ABBR = {
-  "great-sword": "gs",
-  "long-sword": "ls",
-  "sword-and-shield": "sns",
-  "dual-blades": "db",
-  "hammer": "hm",
-  "hunting-horn": "hh",
-  "lance": "ln",
-  "gunlance":  "gl",
-  "light-bowgun": "lbg",
-  "heavy-bowgun": "hbg",
-  "bow": "bw",
-  "decoration": "dec",
-  "helmet": "helmet",
-  "plate": "plate",
-  "gauntlets": "gauntlets",
-  "waist": "waist",
-  "leggings": "leggings",
-}
-
 def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
@@ -61,7 +41,7 @@ end
 def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapons_data)
   array.push({
     slug: slugify(weapon["name"]),
-    type: WEAPON_ABBR.key(weapon["type"]),
+    type: weapon["type"],
     name: weapon["name"],
     rarity: weapon["rarity"]
   })
@@ -70,8 +50,9 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
     array.last[:color] = weapon["color"]
   end
     
-  if weapon.key?("element") and weapon["element"]
-    array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
+  if weapon.key?("elements") and weapon["elements"]
+    # TODO: Adjust to use both elements in dual element weapons.
+    array.last[:element] = weapon["elements"][0]["name"].downcase
   end
 
   if weapon.key?("improve_to") and weapon["improve_to"]
