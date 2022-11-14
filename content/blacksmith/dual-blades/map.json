@@ -4,49 +4,49 @@
     "slug": "bone-scythe",
     "type": "dual-blades",
     "name": "Bone Scythe",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "bone-scythe-plus",
         "type": "dual-blades",
         "name": "Bone Scythe+",
-        "rarity": "2",
+        "rarity": 2,
         "children": [
           {
             "slug": "chief-scythe",
             "type": "dual-blades",
             "name": "Chief Scythe",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "bladed-edge",
                 "type": "dual-blades",
                 "name": "Bladed Edge",
-                "rarity": "4",
+                "rarity": 4,
                 "children": [
                   {
                     "slug": "bladed-edge-plus",
                     "type": "dual-blades",
                     "name": "Bladed Edge+",
-                    "rarity": "5",
+                    "rarity": 5,
                     "children": [
                       {
                         "slug": "limb-cutter",
                         "type": "dual-blades",
                         "name": "Limb Cutter",
-                        "rarity": "7",
+                        "rarity": 7,
                         "children": [
                           {
                             "slug": "carmine-edge",
                             "type": "dual-blades",
                             "name": "Carmine Edge",
-                            "rarity": "9",
+                            "rarity": 9,
                             "children": [
                               {
                                 "slug": "red-rippers",
                                 "type": "dual-blades",
                                 "name": "Red Rippers",
-                                "rarity": "10"
+                                "rarity": 10
                               }
                             ]
                           }
@@ -56,7 +56,7 @@
                         "slug": "dual-carapace",
                         "type": "sword-and-shield",
                         "name": "Dual Carapace",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "water",
                         "children": [
 
@@ -70,14 +70,14 @@
                 "slug": "cutlass",
                 "type": "dual-blades",
                 "name": "Cutlass",
-                "rarity": "3",
+                "rarity": 3,
                 "element": "water",
                 "children": [
                   {
                     "slug": "cutlass-plus",
                     "type": "dual-blades",
                     "name": "Cutlass+",
-                    "rarity": "5",
+                    "rarity": 5,
                     "element": "water"
                   }
                 ]
@@ -86,38 +86,38 @@
                 "slug": "twin-kut-ku",
                 "type": "dual-blades",
                 "name": "Twin Kut-Ku",
-                "rarity": "2",
+                "rarity": 2,
                 "element": "fire",
                 "children": [
                   {
                     "slug": "pink-maracas",
                     "type": "dual-blades",
                     "name": "Pink Maracas",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "pink-maracas-plus",
                         "type": "dual-blades",
                         "name": "Pink Maracas+",
-                        "rarity": "4",
+                        "rarity": 4,
                         "children": [
                           {
                             "slug": "funky-maracas",
                             "type": "dual-blades",
                             "name": "Funky Maracas",
-                            "rarity": "6",
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "jungle-maracas",
                                 "type": "dual-blades",
                                 "name": "Jungle Maracas",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "children": [
                                   {
                                     "slug": "evergreen",
                                     "type": "dual-blades",
                                     "name": "Evergreen",
-                                    "rarity": "9"
+                                    "rarity": 9
                                   }
                                 ]
                               }
@@ -131,14 +131,14 @@
                     "slug": "twin-kut-ku-plus",
                     "type": "dual-blades",
                     "name": "Twin Kut-Ku+",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "dual-kut-ku",
                         "type": "dual-blades",
                         "name": "Dual Kut-Ku",
-                        "rarity": "6",
+                        "rarity": 6,
                         "element": "fire"
                       }
                     ]
@@ -147,19 +147,19 @@
                     "slug": "raven-tessen",
                     "type": "dual-blades",
                     "name": "Raven Tessen",
-                    "rarity": "5",
+                    "rarity": 5,
                     "children": [
                       {
                         "slug": "wolf-tessen",
                         "type": "dual-blades",
                         "name": "Wolf Tessen",
-                        "rarity": "7",
+                        "rarity": 7,
                         "children": [
                           {
                             "slug": "crow-tessen",
                             "type": "dual-blades",
                             "name": "Crow Tessen",
-                            "rarity": "9"
+                            "rarity": 9
                           }
                         ]
                       }
@@ -177,46 +177,46 @@
     "slug": "hunter-s-dagger",
     "type": "sword-and-shield",
     "name": "Hunter's Dagger",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "giaprey-claws",
         "type": "dual-blades",
         "name": "Giaprey Claws",
-        "rarity": "2",
+        "rarity": 2,
         "element": "ice",
         "children": [
           {
             "slug": "giaprey-claws-plus",
             "type": "dual-blades",
             "name": "Giaprey Claws+",
-            "rarity": "2",
+            "rarity": 2,
             "element": "ice",
             "children": [
               {
                 "slug": "white-death",
                 "type": "dual-blades",
                 "name": "White Death",
-                "rarity": "6",
+                "rarity": 6,
                 "element": "ice"
               },
               {
                 "slug": "velociprey-claws",
                 "type": "dual-blades",
                 "name": "Velociprey Claws",
-                "rarity": "3",
+                "rarity": 3,
                 "children": [
                   {
                     "slug": "velociprey-claws-plus",
                     "type": "dual-blades",
                     "name": "Velociprey Claws+",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "hi-velociprey-claws",
                         "type": "dual-blades",
                         "name": "Hi Velociprey Claws",
-                        "rarity": "6"
+                        "rarity": 6
                       }
                     ]
                   }
@@ -226,21 +226,21 @@
                 "slug": "snow-venom",
                 "type": "dual-blades",
                 "name": "Snow Venom",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "ice",
                 "children": [
                   {
                     "slug": "snow-venom-plus",
                     "type": "dual-blades",
                     "name": "Snow Venom+",
-                    "rarity": "6",
+                    "rarity": 6,
                     "element": "ice",
                     "children": [
                       {
                         "slug": "glacial-medusa",
                         "type": "dual-blades",
                         "name": "Glacial Medusa",
-                        "rarity": "9",
+                        "rarity": 9,
                         "element": "ice"
                       }
                     ]
@@ -257,37 +257,37 @@
     "slug": "hunter-s-dagger-plus",
     "type": "sword-and-shield",
     "name": "Hunter's Dagger+",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "twin-dagger",
         "type": "dual-blades",
         "name": "Twin Dagger",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "twin-dagger-plus",
             "type": "dual-blades",
             "name": "Twin Dagger+",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "glutton-s-set",
                 "type": "dual-blades",
                 "name": "Glutton's Set",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "spatula-set",
                     "type": "dual-blades",
                     "name": "Spatula Set",
-                    "rarity": "4"
+                    "rarity": 4
                   },
                   {
                     "slug": "chereau-s-tool",
                     "type": "dual-blades",
                     "name": "Chereau's Tool",
-                    "rarity": "6"
+                    "rarity": 6
                   }
                 ]
               },
@@ -295,31 +295,31 @@
                 "slug": "insector",
                 "type": "dual-blades",
                 "name": "Insector",
-                "rarity": "3",
+                "rarity": 3,
                 "children": [
                   {
                     "slug": "insector-plus",
                     "type": "dual-blades",
                     "name": "Insector+",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "insect-slicer",
                         "type": "dual-blades",
                         "name": "Insect Slicer",
-                        "rarity": "6",
+                        "rarity": 6,
                         "children": [
                           {
                             "slug": "alated-insect",
                             "type": "dual-blades",
                             "name": "Alated Insect",
-                            "rarity": "9",
+                            "rarity": 9,
                             "children": [
                               {
                                 "slug": "insect-lord",
                                 "type": "dual-blades",
                                 "name": "Insect Lord",
-                                "rarity": "9"
+                                "rarity": 9
                               }
                             ]
                           }
@@ -333,41 +333,41 @@
                 "slug": "dual-tomahawk",
                 "type": "dual-blades",
                 "name": "Dual Tomahawk",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "order-rapier",
                     "type": "dual-blades",
                     "name": "Order Rapier",
-                    "rarity": "3",
+                    "rarity": 3,
                     "element": "water",
                     "children": [
                       {
                         "slug": "holy-saber",
                         "type": "dual-blades",
                         "name": "Holy Saber",
-                        "rarity": "4",
+                        "rarity": 4,
                         "element": "water",
                         "children": [
                           {
                             "slug": "guild-knight-sabers",
                             "type": "dual-blades",
                             "name": "Guild Knight Sabers",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "water",
                             "children": [
                               {
                                 "slug": "master-sabers",
                                 "type": "dual-blades",
                                 "name": "Master Sabers",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "water",
                                 "children": [
                                   {
                                     "slug": "holy-guild-knight",
                                     "type": "dual-blades",
                                     "name": "Holy Guild Knight",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "water"
                                   }
                                 ]
@@ -378,7 +378,7 @@
                             "slug": "ninja-sword",
                             "type": "sword-and-shield",
                             "name": "Ninja Sword",
-                            "rarity": "5",
+                            "rarity": 5,
                             "children": [
 
                             ]
@@ -391,7 +391,7 @@
                     "slug": "dual-tomahawk-plus",
                     "type": "dual-blades",
                     "name": "Dual Tomahawk+",
-                    "rarity": "4"
+                    "rarity": 4
                   }
                 ]
               }
@@ -405,55 +405,55 @@
     "slug": "bone-kris-plus",
     "type": "sword-and-shield",
     "name": "Bone Kris+",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "bone-scythe",
         "type": "dual-blades",
         "name": "Bone Scythe",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "bone-scythe-plus",
             "type": "dual-blades",
             "name": "Bone Scythe+",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "chief-scythe",
                 "type": "dual-blades",
                 "name": "Chief Scythe",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "bladed-edge",
                     "type": "dual-blades",
                     "name": "Bladed Edge",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "bladed-edge-plus",
                         "type": "dual-blades",
                         "name": "Bladed Edge+",
-                        "rarity": "5",
+                        "rarity": 5,
                         "children": [
                           {
                             "slug": "limb-cutter",
                             "type": "dual-blades",
                             "name": "Limb Cutter",
-                            "rarity": "7",
+                            "rarity": 7,
                             "children": [
                               {
                                 "slug": "carmine-edge",
                                 "type": "dual-blades",
                                 "name": "Carmine Edge",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "children": [
                                   {
                                     "slug": "red-rippers",
                                     "type": "dual-blades",
                                     "name": "Red Rippers",
-                                    "rarity": "10"
+                                    "rarity": 10
                                   }
                                 ]
                               }
@@ -463,7 +463,7 @@
                             "slug": "dual-carapace",
                             "type": "sword-and-shield",
                             "name": "Dual Carapace",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "water",
                             "children": [
 
@@ -477,14 +477,14 @@
                     "slug": "cutlass",
                     "type": "dual-blades",
                     "name": "Cutlass",
-                    "rarity": "3",
+                    "rarity": 3,
                     "element": "water",
                     "children": [
                       {
                         "slug": "cutlass-plus",
                         "type": "dual-blades",
                         "name": "Cutlass+",
-                        "rarity": "5",
+                        "rarity": 5,
                         "element": "water"
                       }
                     ]
@@ -493,38 +493,38 @@
                     "slug": "twin-kut-ku",
                     "type": "dual-blades",
                     "name": "Twin Kut-Ku",
-                    "rarity": "2",
+                    "rarity": 2,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "pink-maracas",
                         "type": "dual-blades",
                         "name": "Pink Maracas",
-                        "rarity": "3",
+                        "rarity": 3,
                         "children": [
                           {
                             "slug": "pink-maracas-plus",
                             "type": "dual-blades",
                             "name": "Pink Maracas+",
-                            "rarity": "4",
+                            "rarity": 4,
                             "children": [
                               {
                                 "slug": "funky-maracas",
                                 "type": "dual-blades",
                                 "name": "Funky Maracas",
-                                "rarity": "6",
+                                "rarity": 6,
                                 "children": [
                                   {
                                     "slug": "jungle-maracas",
                                     "type": "dual-blades",
                                     "name": "Jungle Maracas",
-                                    "rarity": "9",
+                                    "rarity": 9,
                                     "children": [
                                       {
                                         "slug": "evergreen",
                                         "type": "dual-blades",
                                         "name": "Evergreen",
-                                        "rarity": "9"
+                                        "rarity": 9
                                       }
                                     ]
                                   }
@@ -538,14 +538,14 @@
                         "slug": "twin-kut-ku-plus",
                         "type": "dual-blades",
                         "name": "Twin Kut-Ku+",
-                        "rarity": "4",
+                        "rarity": 4,
                         "element": "fire",
                         "children": [
                           {
                             "slug": "dual-kut-ku",
                             "type": "dual-blades",
                             "name": "Dual Kut-Ku",
-                            "rarity": "6",
+                            "rarity": 6,
                             "element": "fire"
                           }
                         ]
@@ -554,19 +554,19 @@
                         "slug": "raven-tessen",
                         "type": "dual-blades",
                         "name": "Raven Tessen",
-                        "rarity": "5",
+                        "rarity": 5,
                         "children": [
                           {
                             "slug": "wolf-tessen",
                             "type": "dual-blades",
                             "name": "Wolf Tessen",
-                            "rarity": "7",
+                            "rarity": 7,
                             "children": [
                               {
                                 "slug": "crow-tessen",
                                 "type": "dual-blades",
                                 "name": "Crow Tessen",
-                                "rarity": "9"
+                                "rarity": 9
                               }
                             ]
                           }
@@ -586,25 +586,25 @@
     "slug": "velocidrome-bite",
     "type": "sword-and-shield",
     "name": "Velocidrome Bite",
-    "rarity": "2",
+    "rarity": 2,
     "children": [
       {
         "slug": "velociprey-claws",
         "type": "dual-blades",
         "name": "Velociprey Claws",
-        "rarity": "3",
+        "rarity": 3,
         "children": [
           {
             "slug": "velociprey-claws-plus",
             "type": "dual-blades",
             "name": "Velociprey Claws+",
-            "rarity": "4",
+            "rarity": 4,
             "children": [
               {
                 "slug": "hi-velociprey-claws",
                 "type": "dual-blades",
                 "name": "Hi Velociprey Claws",
-                "rarity": "6"
+                "rarity": 6
               }
             ]
           }
@@ -616,42 +616,42 @@
     "slug": "red-saber",
     "type": "sword-and-shield",
     "name": "Red Saber",
-    "rarity": "3",
+    "rarity": 3,
     "element": "fire",
     "children": [
       {
         "slug": "twin-flames",
         "type": "dual-blades",
         "name": "Twin Flames",
-        "rarity": "4",
+        "rarity": 4,
         "element": "fire",
         "children": [
           {
             "slug": "hi-twin-flames",
             "type": "dual-blades",
             "name": "Hi Twin Flames",
-            "rarity": "5",
+            "rarity": 5,
             "element": "fire",
             "children": [
               {
                 "slug": "gradios-ultimus",
                 "type": "dual-blades",
                 "name": "Gradios Ultimus",
-                "rarity": "7",
+                "rarity": 7,
                 "element": "fire",
                 "children": [
                   {
                     "slug": "corpse-blades",
                     "type": "dual-blades",
                     "name": "Corpse Blades",
-                    "rarity": "8",
+                    "rarity": 8,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "punishment-blades",
                         "type": "dual-blades",
                         "name": "Punishment Blades",
-                        "rarity": "10",
+                        "rarity": 10,
                         "element": "fire"
                       }
                     ]
@@ -668,19 +668,19 @@
     "slug": "dummy-dual-tessen-gavas",
     "type": "dual-blades",
     "name": "dummy (Dual Tessen \"Gavas\")",
-    "rarity": "4",
+    "rarity": 4,
     "children": [
       {
         "slug": "dummy-dualtessen-100gavas",
         "type": "dual-blades",
         "name": "dummy (DualTessen \"100Gavas\")",
-        "rarity": "6",
+        "rarity": 6,
         "children": [
           {
             "slug": "dummy-dualtessen-10kgavas",
             "type": "dual-blades",
             "name": "dummy (DualTessen \"10KGavas\")",
-            "rarity": "9",
+            "rarity": 9,
             "element": "sleep"
           }
         ]
@@ -691,14 +691,14 @@
     "slug": "felyne-and-melynx",
     "type": "dual-blades",
     "name": "Felyne and Melynx",
-    "rarity": "4",
+    "rarity": 4,
     "element": "paralysis",
     "children": [
       {
         "slug": "felyne-and-melynx-plus",
         "type": "dual-blades",
         "name": "Felyne and Melynx+",
-        "rarity": "9",
+        "rarity": 9,
         "element": "paralysis"
       }
     ]
@@ -707,28 +707,28 @@
     "slug": "upper-battleaxe",
     "type": "sword-and-shield",
     "name": "Upper Battleaxe",
-    "rarity": "4",
+    "rarity": 4,
     "element": "poison",
     "children": [
       {
         "slug": "dual-battleaxe",
         "type": "dual-blades",
         "name": "Dual Battleaxe",
-        "rarity": "6",
+        "rarity": 6,
         "element": "poison",
         "children": [
           {
             "slug": "dual-battleaxe-plus",
             "type": "dual-blades",
             "name": "Dual Battleaxe+",
-            "rarity": "9",
+            "rarity": 9,
             "element": "poison",
             "children": [
               {
                 "slug": "final-battleaxe",
                 "type": "dual-blades",
                 "name": "Final Battleaxe",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "poison"
               }
             ]
@@ -741,28 +741,28 @@
     "slug": "frost-edge-plus",
     "type": "sword-and-shield",
     "name": "Frost Edge+",
-    "rarity": "4",
+    "rarity": 4,
     "element": "ice",
     "children": [
       {
         "slug": "freezing-daggers",
         "type": "dual-blades",
         "name": "Freezing Daggers",
-        "rarity": "4",
+        "rarity": 4,
         "element": "ice",
         "children": [
           {
             "slug": "icicle-daggers",
             "type": "dual-blades",
             "name": "Icicle Daggers",
-            "rarity": "6",
+            "rarity": 6,
             "element": "ice",
             "children": [
               {
                 "slug": "frozen-death",
                 "type": "dual-blades",
                 "name": "Frozen Death",
-                "rarity": "9",
+                "rarity": 9,
                 "element": "ice"
               }
             ]
@@ -775,28 +775,28 @@
     "slug": "deadly-poison",
     "type": "sword-and-shield",
     "name": "Deadly Poison",
-    "rarity": "4",
+    "rarity": 4,
     "element": "poison",
     "children": [
       {
         "slug": "rouge-flames",
         "type": "dual-blades",
         "name": "Rouge Flames",
-        "rarity": "5",
+        "rarity": 5,
         "element": "poison",
         "children": [
           {
             "slug": "dual-chameleos",
             "type": "dual-blades",
             "name": "Dual Chameleos",
-            "rarity": "8",
+            "rarity": 8,
             "element": "poison",
             "children": [
               {
                 "slug": "chameleosdualblades",
                 "type": "dual-blades",
                 "name": "ChameleosDualBlades",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "poison"
               }
             ]
@@ -809,31 +809,31 @@
     "slug": "studded-club",
     "type": "sword-and-shield",
     "name": "Studded Club",
-    "rarity": "4",
+    "rarity": 4,
     "children": [
       {
         "slug": "dual-diablo",
         "type": "dual-blades",
         "name": "Dual Diablo",
-        "rarity": "5",
+        "rarity": 5,
         "children": [
           {
             "slug": "dual-diablo-plus",
             "type": "dual-blades",
             "name": "Dual Diablo+",
-            "rarity": "7",
+            "rarity": 7,
             "children": [
               {
                 "slug": "blos-doppelganger",
                 "type": "dual-blades",
                 "name": "Blos Doppelganger",
-                "rarity": "9",
+                "rarity": 9,
                 "children": [
                   {
                     "slug": "grand-blos",
                     "type": "dual-blades",
                     "name": "Grand Blos",
-                    "rarity": "10"
+                    "rarity": 10
                   }
                 ]
               }
@@ -847,13 +847,13 @@
     "slug": "hero-s-blade-replica",
     "type": "sword-and-shield",
     "name": "Hero's Blade Replica",
-    "rarity": "4",
+    "rarity": 4,
     "children": [
       {
         "slug": "legendary-replica",
         "type": "dual-blades",
         "name": "Legendary Replica",
-        "rarity": "5"
+        "rarity": 5
       }
     ]
   },
@@ -861,21 +861,21 @@
     "slug": "black-twin-daggers",
     "type": "dual-blades",
     "name": "Black Twin Daggers",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "fatalis-dual-blades",
         "type": "dual-blades",
         "name": "Fatalis Dual Blades",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "fatalis-dual-sky",
             "type": "dual-blades",
             "name": "Fatalis Dual Sky",
-            "rarity": "10",
+            "rarity": 10,
             "element": "dragon"
           }
         ]
@@ -884,14 +884,14 @@
         "slug": "ultimus-celestials",
         "type": "dual-blades",
         "name": "Ultimus Celestials",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "ultimus-apocalypse",
             "type": "dual-blades",
             "name": "Ultimus Apocalypse",
-            "rarity": "10",
+            "rarity": 10,
             "element": "dragon"
           }
         ]
@@ -902,28 +902,28 @@
     "slug": "flaming-pair",
     "type": "dual-blades",
     "name": "Flaming Pair",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "crimson-lotus-blades",
         "type": "dual-blades",
         "name": "Crimson Lotus Blades",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "demonic-flaming-pair",
             "type": "dual-blades",
             "name": "Demonic Flaming Pair",
-            "rarity": "9",
+            "rarity": 9,
             "element": "dragon",
             "children": [
               {
                 "slug": "azure-dual-swords",
                 "type": "dual-blades",
                 "name": "Azure Dual Swords",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "dragon"
               }
             ]
@@ -934,7 +934,7 @@
         "slug": "blue-ogre-sword",
         "type": "sword-and-shield",
         "name": "Blue Ogre Sword",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
 
@@ -946,19 +946,19 @@
     "slug": "rex-slicers",
     "type": "dual-blades",
     "name": "Rex Slicers",
-    "rarity": "5",
+    "rarity": 5,
     "children": [
       {
         "slug": "tigrex-claws",
         "type": "dual-blades",
         "name": "Tigrex Claws",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "tigrex-claws-plus",
             "type": "dual-blades",
             "name": "Tigrex Claws+",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       },
@@ -966,13 +966,13 @@
         "slug": "hidden-ones",
         "type": "dual-blades",
         "name": "Hidden Ones",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "ebony-wings",
             "type": "dual-blades",
             "name": "Ebony Wings",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       }
@@ -982,28 +982,28 @@
     "slug": "kirin-bolt-plus",
     "type": "sword-and-shield",
     "name": "Kirin Bolt+",
-    "rarity": "5",
+    "rarity": 5,
     "element": "thunder",
     "children": [
       {
         "slug": "kirin-bolts",
         "type": "dual-blades",
         "name": "Kirin Bolts",
-        "rarity": "5",
+        "rarity": 5,
         "element": "thunder",
         "children": [
           {
             "slug": "festive-fall-typhoon",
             "type": "dual-blades",
             "name": "Festive Fall Typhoon",
-            "rarity": "8",
+            "rarity": 8,
             "element": "thunder",
             "children": [
               {
                 "slug": "festiverustlingrain",
                 "type": "dual-blades",
                 "name": "FestiveRustlingRain",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "thunder"
               }
             ]
@@ -1016,42 +1016,42 @@
     "slug": "black-sword",
     "type": "sword-and-shield",
     "name": "Black Sword",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "double-dragon",
         "type": "dual-blades",
         "name": "Double Dragon",
-        "rarity": "5",
+        "rarity": 5,
         "element": "dragon",
         "children": [
           {
             "slug": "dual-dragon-ultimus",
             "type": "dual-blades",
             "name": "Dual Dragon Ultimus",
-            "rarity": "7",
+            "rarity": 7,
             "element": "dragon",
             "children": [
               {
                 "slug": "ultimus-heaven-earth",
                 "type": "dual-blades",
                 "name": "Ultimus Heaven&Earth",
-                "rarity": "8",
+                "rarity": 8,
                 "element": "dragon",
                 "children": [
                   {
                     "slug": "dual-dragon-ultimus-plus",
                     "type": "dual-blades",
                     "name": "Dual Dragon Ultimus+",
-                    "rarity": "10",
+                    "rarity": 10,
                     "element": "dragon"
                   },
                   {
                     "slug": "azure-ogre-sword",
                     "type": "sword-and-shield",
                     "name": "Azure Ogre Sword",
-                    "rarity": "8",
+                    "rarity": 8,
                     "element": "dragon",
                     "children": [
 
@@ -1069,28 +1069,28 @@
     "slug": "steel-ice-dagger-plus",
     "type": "sword-and-shield",
     "name": "Steel Ice Dagger+",
-    "rarity": "5",
+    "rarity": 5,
     "element": "ice",
     "children": [
       {
         "slug": "twin-nails",
         "type": "dual-blades",
         "name": "Twin Nails",
-        "rarity": "5",
+        "rarity": 5,
         "element": "ice",
         "children": [
           {
             "slug": "twin-nails-plus",
             "type": "dual-blades",
             "name": "Twin Nails+",
-            "rarity": "8",
+            "rarity": 8,
             "element": "ice",
             "children": [
               {
                 "slug": "fire-and-ice",
                 "type": "dual-blades",
                 "name": "Fire and Ice",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "ice"
               }
             ]
@@ -1103,26 +1103,26 @@
     "slug": "worn-blades",
     "type": "dual-blades",
     "name": "Worn Blades",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "weathered-blades",
         "type": "dual-blades",
         "name": "Weathered Blades",
-        "rarity": "6",
+        "rarity": 6,
         "children": [
           {
             "slug": "eternal-schism",
             "type": "dual-blades",
             "name": "Eternal Schism",
-            "rarity": "7",
+            "rarity": 7,
             "element": "dragon",
             "children": [
               {
                 "slug": "eternal-sacrifice",
                 "type": "dual-blades",
                 "name": "Eternal Sacrifice",
-                "rarity": "9",
+                "rarity": 9,
                 "element": "dragon"
               }
             ]
@@ -1131,14 +1131,14 @@
             "slug": "hi-twin-daggers",
             "type": "dual-blades",
             "name": "Hi Twin Daggers",
-            "rarity": "6",
+            "rarity": 6,
             "element": "ice",
             "children": [
               {
                 "slug": "silhouette-sabers",
                 "type": "dual-blades",
                 "name": "Silhouette Sabers",
-                "rarity": "7",
+                "rarity": 7,
                 "element": "ice"
               }
             ]
@@ -1151,44 +1151,44 @@
     "slug": "odyssey",
     "type": "sword-and-shield",
     "name": "Odyssey",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "hurricane",
         "type": "dual-blades",
         "name": "Hurricane",
-        "rarity": "6",
+        "rarity": 6,
         "children": [
           {
             "slug": "cyclone",
             "type": "dual-blades",
             "name": "Cyclone",
-            "rarity": "7",
+            "rarity": 7,
             "children": [
               {
                 "slug": "tornado-tomahawks",
                 "type": "dual-blades",
                 "name": "Tornado Tomahawks",
-                "rarity": "9",
+                "rarity": 9,
                 "children": [
                   {
                     "slug": "typhoon",
                     "type": "dual-blades",
                     "name": "Typhoon",
-                    "rarity": "9"
+                    "rarity": 9
                   },
                   {
                     "slug": "firestorm",
                     "type": "dual-blades",
                     "name": "Firestorm",
-                    "rarity": "9",
+                    "rarity": 9,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "volcanic-storm",
                         "type": "dual-blades",
                         "name": "Volcanic Storm",
-                        "rarity": "10",
+                        "rarity": 10,
                         "element": "fire"
                       }
                     ]
@@ -1203,28 +1203,28 @@
         "slug": "prototype-saw-slicer",
         "type": "dual-blades",
         "name": "Prototype Saw-Slicer",
-        "rarity": "6",
+        "rarity": 6,
         "element": "thunder",
         "children": [
           {
             "slug": "sanctioned-blades",
             "type": "dual-blades",
             "name": "Sanctioned Blades",
-            "rarity": "7",
+            "rarity": 7,
             "element": "thunder",
             "children": [
               {
                 "slug": "improved-power-saws",
                 "type": "dual-blades",
                 "name": "Improved Power Saws",
-                "rarity": "8",
+                "rarity": 8,
                 "element": "thunder",
                 "children": [
                   {
                     "slug": "divine-power-saws",
                     "type": "dual-blades",
                     "name": "Divine Power Saws",
-                    "rarity": "9",
+                    "rarity": 9,
                     "element": "thunder"
                   }
                 ]
@@ -1239,27 +1239,27 @@
     "slug": "osteon-pick-plus",
     "type": "sword-and-shield",
     "name": "Osteon Pick+",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "melting-wail",
         "type": "dual-blades",
         "name": "Melting Wail",
-        "rarity": "6",
+        "rarity": 6,
         "element": "fire",
         "children": [
           {
             "slug": "melting-wail-plus",
             "type": "dual-blades",
             "name": "Melting Wail+",
-            "rarity": "7",
+            "rarity": 7,
             "element": "fire",
             "children": [
               {
                 "slug": "melting-blazer",
                 "type": "dual-blades",
                 "name": "Melting Blazer",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "fire"
               }
             ]
@@ -1272,13 +1272,13 @@
     "slug": "akantor-blades",
     "type": "dual-blades",
     "name": "Akantor Blades",
-    "rarity": "8",
+    "rarity": 8,
     "children": [
       {
         "slug": "akantor-shadow-claws",
         "type": "dual-blades",
         "name": "Akantor Shadow Claws",
-        "rarity": "10"
+        "rarity": 10
       }
     ]
   },
@@ -1286,157 +1286,157 @@
     "slug": "ukanlosruinerblades",
     "type": "dual-blades",
     "name": "UkanlosRuinerBlades",
-    "rarity": "10",
+    "rarity": 10,
     "element": "ice"
   },
   {
     "slug": "dummy-amezari-claws",
     "type": "dual-blades",
     "name": "dummy (Amezari Claws)",
-    "rarity": "9",
+    "rarity": 9,
     "element": "water"
   },
   {
     "slug": "bone-scythe-g",
     "type": "dual-blades",
     "name": "Bone Scythe G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "worn-blades-g",
     "type": "dual-blades",
     "name": "Worn Blades G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "velociprey-claws-g",
     "type": "dual-blades",
     "name": "Velociprey Claws G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "white-death-g",
     "type": "dual-blades",
     "name": "White Death G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "ice"
   },
   {
     "slug": "dual-tomahawk-g",
     "type": "dual-blades",
     "name": "Dual Tomahawk G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "insector-g",
     "type": "dual-blades",
     "name": "Insector G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "glutton-s-set-g",
     "type": "dual-blades",
     "name": "Glutton's Set G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "spatula-set-g",
     "type": "dual-blades",
     "name": "Spatula Set G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "holy-saber-g",
     "type": "dual-blades",
     "name": "Holy Saber G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "water"
   },
   {
     "slug": "cyclone-g",
     "type": "dual-blades",
     "name": "Cyclone G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "dual-kut-ku-g",
     "type": "dual-blades",
     "name": "Dual Kut-Ku G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "fire"
   },
   {
     "slug": "funky-maracas-g",
     "type": "dual-blades",
     "name": "Funky Maracas G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "prototypesaw-slicr-g",
     "type": "dual-blades",
     "name": "PrototypeSaw-Slicr G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "thunder"
   },
   {
     "slug": "cutlass-g",
     "type": "dual-blades",
     "name": "Cutlass G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "water"
   },
   {
     "slug": "limb-cutter-g",
     "type": "dual-blades",
     "name": "Limb Cutter G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "dual-diablo-g",
     "type": "dual-blades",
     "name": "Dual Diablo G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "silhouette-sabers-g",
     "type": "dual-blades",
     "name": "Silhouette Sabers G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "ice"
   },
   {
     "slug": "gradios-ultimus-g",
     "type": "dual-blades",
     "name": "Gradios Ultimus G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "fire"
   },
   {
     "slug": "kirin-bolts-g",
     "type": "dual-blades",
     "name": "Kirin Bolts G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "thunder"
   },
   {
     "slug": "crimsonlotusblades-g",
     "type": "dual-blades",
     "name": "CrimsonLotusBlades G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "dragon"
   },
   {
     "slug": "dualdragonultimus-g",
     "type": "dual-blades",
     "name": "DualDragonUltimus G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "dragon"
   },
   {
     "slug": "legendary-blades-g",
     "type": "dual-blades",
     "name": "Legendary Blades G",
-    "rarity": "10"
+    "rarity": 10
   }
 ]
 }

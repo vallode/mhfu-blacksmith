@@ -2,7 +2,7 @@
   "map": [
   {
     "slug": "attack-up",
-    "type": null,
+    "type": "",
     "name": "Attack up",
     "rarity": null,
     "children": [
@@ -31,7 +31,7 @@
   },
   {
     "slug": "esp",
-    "type": null,
+    "type": "",
     "name": "ESP",
     "rarity": null,
     "children": [
@@ -53,7 +53,7 @@
   },
   {
     "slug": "sharp-sword",
-    "type": null,
+    "type": "",
     "name": "Sharp Sword",
     "rarity": null,
     "children": [
@@ -75,7 +75,7 @@
   },
   {
     "slug": "reckless-abandon",
-    "type": null,
+    "type": "",
     "name": "Reckless Abandon",
     "rarity": null,
     "children": [
@@ -104,7 +104,7 @@
   },
   {
     "slug": "sharping-skl-inc",
-    "type": null,
+    "type": "",
     "name": "Sharping Skl Inc",
     "rarity": null,
     "children": [
@@ -119,7 +119,7 @@
   },
   {
     "slug": "art-of-unsheathing",
-    "type": null,
+    "type": "",
     "name": "Art of Unsheathing",
     "rarity": null,
     "children": [
@@ -141,7 +141,7 @@
   },
   {
     "slug": "spc-atk-up",
-    "type": null,
+    "type": "",
     "name": "Spc Atk Up",
     "rarity": null,
     "children": [
@@ -163,7 +163,7 @@
   },
   {
     "slug": "elem-atk-up",
-    "type": null,
+    "type": "",
     "name": "Elem Atk Up",
     "rarity": null,
     "children": [
@@ -185,7 +185,7 @@
   },
   {
     "slug": "bomber",
-    "type": null,
+    "type": "",
     "name": "Bomber",
     "rarity": null,
     "children": [
@@ -200,7 +200,7 @@
   },
   {
     "slug": "focus",
-    "type": null,
+    "type": "",
     "name": "Focus",
     "rarity": null,
     "children": [
@@ -222,7 +222,7 @@
   },
   {
     "slug": "guts",
-    "type": null,
+    "type": "",
     "name": "Guts",
     "rarity": null,
     "children": [
@@ -244,7 +244,7 @@
   },
   {
     "slug": "defense-up",
-    "type": null,
+    "type": "",
     "name": "Defense up",
     "rarity": null,
     "children": [
@@ -266,7 +266,7 @@
   },
   {
     "slug": "fire-res-up",
-    "type": null,
+    "type": "",
     "name": "Fire Res up",
     "rarity": null,
     "children": [
@@ -288,7 +288,7 @@
   },
   {
     "slug": "water-res-up",
-    "type": null,
+    "type": "",
     "name": "Water Res up",
     "rarity": null,
     "children": [
@@ -310,7 +310,7 @@
   },
   {
     "slug": "ice-res-up",
-    "type": null,
+    "type": "",
     "name": "Ice Res up",
     "rarity": null,
     "children": [
@@ -332,7 +332,7 @@
   },
   {
     "slug": "thunder-res-up",
-    "type": null,
+    "type": "",
     "name": "Thunder Res up",
     "rarity": null,
     "children": [
@@ -354,7 +354,7 @@
   },
   {
     "slug": "dragon-res-up",
-    "type": null,
+    "type": "",
     "name": "Dragon Res up",
     "rarity": null,
     "children": [
@@ -376,7 +376,7 @@
   },
   {
     "slug": "all-res-up",
-    "type": null,
+    "type": "",
     "name": "All Res up",
     "rarity": null,
     "children": [
@@ -405,7 +405,7 @@
   },
   {
     "slug": "guard-up",
-    "type": null,
+    "type": "",
     "name": "Guard up",
     "rarity": null,
     "children": [
@@ -427,7 +427,7 @@
   },
   {
     "slug": "guard-inc",
-    "type": null,
+    "type": "",
     "name": "Guard inc",
     "rarity": null,
     "children": [
@@ -456,7 +456,7 @@
   },
   {
     "slug": "auto-guard",
-    "type": null,
+    "type": "",
     "name": "Auto-Guard",
     "rarity": null,
     "children": [
@@ -471,7 +471,7 @@
   },
   {
     "slug": "health-up",
-    "type": null,
+    "type": "",
     "name": "Health up",
     "rarity": null,
     "children": [
@@ -486,7 +486,7 @@
   },
   {
     "slug": "damage-rec-spd-up",
-    "type": null,
+    "type": "",
     "name": "Damage Rec Spd up",
     "rarity": null,
     "children": [
@@ -508,7 +508,7 @@
   },
   {
     "slug": "healthrecitemsimprvd",
-    "type": null,
+    "type": "",
     "name": "HealthRecItemsImprvd",
     "rarity": null,
     "children": [
@@ -537,7 +537,7 @@
   },
   {
     "slug": "wide-area",
-    "type": null,
+    "type": "",
     "name": "Wide Area",
     "rarity": null,
     "children": [
@@ -566,7 +566,7 @@
   },
   {
     "slug": "divine-protection",
-    "type": null,
+    "type": "",
     "name": "Divine Protection",
     "rarity": null,
     "children": [
@@ -588,7 +588,7 @@
   },
   {
     "slug": "constitutn",
-    "type": null,
+    "type": "",
     "name": "Constitutn",
     "rarity": null,
     "children": [
@@ -610,7 +610,7 @@
   },
   {
     "slug": "hunger-halved/negate",
-    "type": null,
+    "type": "",
     "name": "Hunger Halved/Negate",
     "rarity": null,
     "children": [
@@ -639,7 +639,7 @@
   },
   {
     "slug": "filled-up/scavenger",
-    "type": null,
+    "type": "",
     "name": "Filled Up/Scavenger",
     "rarity": null,
     "children": [
@@ -654,7 +654,7 @@
   },
   {
     "slug": "quick-eating",
-    "type": null,
+    "type": "",
     "name": "Quick Eating",
     "rarity": null,
     "children": [
@@ -676,7 +676,7 @@
   },
   {
     "slug": "runner",
-    "type": null,
+    "type": "",
     "name": "Runner",
     "rarity": null,
     "children": [
@@ -698,7 +698,7 @@
   },
   {
     "slug": "throwing-sk-up",
-    "type": null,
+    "type": "",
     "name": "Throwing Sk Up",
     "rarity": null,
     "children": [
@@ -713,7 +713,7 @@
   },
   {
     "slug": "reload-speed-up",
-    "type": null,
+    "type": "",
     "name": "Reload Speed up",
     "rarity": null,
     "children": [
@@ -735,7 +735,7 @@
   },
   {
     "slug": "autoreload",
-    "type": null,
+    "type": "",
     "name": "Autoreload",
     "rarity": null,
     "children": [
@@ -757,7 +757,7 @@
   },
   {
     "slug": "recoil-reduct",
-    "type": null,
+    "type": "",
     "name": "Recoil Reduct",
     "rarity": null,
     "children": [
@@ -779,7 +779,7 @@
   },
   {
     "slug": "norms/rapidbow-up",
-    "type": null,
+    "type": "",
     "name": "NormS/RapidBow Up",
     "rarity": null,
     "children": [
@@ -801,7 +801,7 @@
   },
   {
     "slug": "prces/prcebow-up",
-    "type": null,
+    "type": "",
     "name": "PrceS/PrceBow Up",
     "rarity": null,
     "children": [
@@ -823,7 +823,7 @@
   },
   {
     "slug": "pells/scattbow-up",
-    "type": null,
+    "type": "",
     "name": "PellS/ScattBow Up",
     "rarity": null,
     "children": [
@@ -845,7 +845,7 @@
   },
   {
     "slug": "norms-all-add",
-    "type": null,
+    "type": "",
     "name": "NormS All Add",
     "rarity": null,
     "children": [
@@ -860,7 +860,7 @@
   },
   {
     "slug": "pierces-lv-add",
-    "type": null,
+    "type": "",
     "name": "PierceS LV Add",
     "rarity": null,
     "children": [
@@ -875,7 +875,7 @@
   },
   {
     "slug": "pellets-lv-add",
-    "type": null,
+    "type": "",
     "name": "PelletS LV Add",
     "rarity": null,
     "children": [
@@ -890,7 +890,7 @@
   },
   {
     "slug": "crags-lv-add",
-    "type": null,
+    "type": "",
     "name": "CragS LV Add",
     "rarity": null,
     "children": [
@@ -905,7 +905,7 @@
   },
   {
     "slug": "clusts-lv-add",
-    "type": null,
+    "type": "",
     "name": "ClustS LV Add",
     "rarity": null,
     "children": [
@@ -920,7 +920,7 @@
   },
   {
     "slug": "load-up",
-    "type": null,
+    "type": "",
     "name": "Load Up",
     "rarity": null,
     "children": [
@@ -942,7 +942,7 @@
   },
   {
     "slug": "target-range-down",
-    "type": null,
+    "type": "",
     "name": "Target Range Down",
     "rarity": null,
     "children": [
@@ -964,7 +964,7 @@
   },
   {
     "slug": "poisoncadd",
-    "type": null,
+    "type": "",
     "name": "PoisonCAdd",
     "rarity": null,
     "children": [
@@ -979,7 +979,7 @@
   },
   {
     "slug": "paralycadd",
-    "type": null,
+    "type": "",
     "name": "ParalyCAdd",
     "rarity": null,
     "children": [
@@ -999,7 +999,7 @@
   },
   {
     "slug": "sleepcadd",
-    "type": null,
+    "type": "",
     "name": "SleepCAdd",
     "rarity": null,
     "children": [
@@ -1014,7 +1014,7 @@
   },
   {
     "slug": "powercadd",
-    "type": null,
+    "type": "",
     "name": "PowerCAdd",
     "rarity": null,
     "children": [
@@ -1036,7 +1036,7 @@
   },
   {
     "slug": "clsrngcadd",
-    "type": null,
+    "type": "",
     "name": "ClsRngCAdd",
     "rarity": null,
     "children": [
@@ -1051,7 +1051,7 @@
   },
   {
     "slug": "bullet-limit",
-    "type": null,
+    "type": "",
     "name": "Bullet Limit",
     "rarity": null,
     "children": [
@@ -1066,7 +1066,7 @@
   },
   {
     "slug": "sharpness-plus",
-    "type": null,
+    "type": "",
     "name": "Sharpness Plus",
     "rarity": null,
     "children": [
@@ -1088,7 +1088,7 @@
   },
   {
     "slug": "stealth",
-    "type": null,
+    "type": "",
     "name": "Stealth",
     "rarity": null,
     "children": [
@@ -1110,7 +1110,7 @@
   },
   {
     "slug": "evade-up",
-    "type": null,
+    "type": "",
     "name": "Evade up",
     "rarity": null,
     "children": [
@@ -1132,7 +1132,7 @@
   },
   {
     "slug": "evade-distance-up",
-    "type": null,
+    "type": "",
     "name": "Evade Distance Up",
     "rarity": null,
     "children": [
@@ -1154,7 +1154,7 @@
   },
   {
     "slug": "adrenaline-up",
-    "type": null,
+    "type": "",
     "name": "Adrenaline up",
     "rarity": null,
     "children": [
@@ -1183,7 +1183,7 @@
   },
   {
     "slug": "bbq-celebrity",
-    "type": null,
+    "type": "",
     "name": "BBQ Celebrity",
     "rarity": null,
     "children": [
@@ -1198,7 +1198,7 @@
   },
   {
     "slug": "map",
-    "type": null,
+    "type": "",
     "name": "Map",
     "rarity": null,
     "children": [
@@ -1213,7 +1213,7 @@
   },
   {
     "slug": "detect/autotracker",
-    "type": null,
+    "type": "",
     "name": "Detect/Autotracker",
     "rarity": null,
     "children": [
@@ -1228,7 +1228,7 @@
   },
   {
     "slug": "tranquilizing-guru",
-    "type": null,
+    "type": "",
     "name": "Tranquilizing Guru",
     "rarity": null,
     "children": [
@@ -1243,7 +1243,7 @@
   },
   {
     "slug": "item-usage-improved",
-    "type": null,
+    "type": "",
     "name": "Item Usage Improved",
     "rarity": null,
     "children": [
@@ -1272,7 +1272,7 @@
   },
   {
     "slug": "comb-suc-up",
-    "type": null,
+    "type": "",
     "name": "Comb Suc up",
     "rarity": null,
     "children": [
@@ -1287,7 +1287,7 @@
   },
   {
     "slug": "alchemy",
-    "type": null,
+    "type": "",
     "name": "Alchemy",
     "rarity": null,
     "children": [
@@ -1302,7 +1302,7 @@
   },
   {
     "slug": "gunnery-master/king",
-    "type": null,
+    "type": "",
     "name": "Gunnery Master/King",
     "rarity": null,
     "children": [
@@ -1324,7 +1324,7 @@
   },
   {
     "slug": "flute-expert",
-    "type": null,
+    "type": "",
     "name": "Flute Expert",
     "rarity": null,
     "children": [
@@ -1339,7 +1339,7 @@
   },
   {
     "slug": "faint-duration-down/negated",
-    "type": null,
+    "type": "",
     "name": "Faint duration down/negated",
     "rarity": null,
     "children": [
@@ -1368,7 +1368,7 @@
   },
   {
     "slug": "paralysis-duration-down/negated",
-    "type": null,
+    "type": "",
     "name": "Paralysis duration down/negated",
     "rarity": null,
     "children": [
@@ -1397,7 +1397,7 @@
   },
   {
     "slug": "sleep-duration-down/negated",
-    "type": null,
+    "type": "",
     "name": "Sleep duration down/negated",
     "rarity": null,
     "children": [
@@ -1419,7 +1419,7 @@
   },
   {
     "slug": "poison-duration-down/negated",
-    "type": null,
+    "type": "",
     "name": "Poison duration down/negated",
     "rarity": null,
     "children": [
@@ -1448,7 +1448,7 @@
   },
   {
     "slug": "immunity-to-snowman",
-    "type": null,
+    "type": "",
     "name": "Immunity to Snowman",
     "rarity": null,
     "children": [
@@ -1477,7 +1477,7 @@
   },
   {
     "slug": "immunity-to-quake",
-    "type": null,
+    "type": "",
     "name": "Immunity to Quake",
     "rarity": null,
     "children": [
@@ -1499,7 +1499,7 @@
   },
   {
     "slug": "earplug/high-grade-earplug",
-    "type": null,
+    "type": "",
     "name": "Earplug/High Grade Earplug",
     "rarity": null,
     "children": [
@@ -1521,7 +1521,7 @@
   },
   {
     "slug": "low/high-wind-pres/drg-wind-breaker",
-    "type": null,
+    "type": "",
     "name": "Low/High Wind Pres/Drg Wind Breaker",
     "rarity": null,
     "children": [
@@ -1550,7 +1550,7 @@
   },
   {
     "slug": "cold-elimination",
-    "type": null,
+    "type": "",
     "name": "Cold Elimination",
     "rarity": null,
     "children": [
@@ -1579,7 +1579,7 @@
   },
   {
     "slug": "heat-cancel",
-    "type": null,
+    "type": "",
     "name": "Heat Cancel",
     "rarity": null,
     "children": [
@@ -1608,7 +1608,7 @@
   },
   {
     "slug": "terrain-damage-reduced/negated",
-    "type": null,
+    "type": "",
     "name": "Terrain damage reduced/negated",
     "rarity": null,
     "children": [
@@ -1630,7 +1630,7 @@
   },
   {
     "slug": "steal-no-effect",
-    "type": null,
+    "type": "",
     "name": "Steal No Effect",
     "rarity": null,
     "children": [
@@ -1645,7 +1645,7 @@
   },
   {
     "slug": "immunity-to-territorial-dung",
-    "type": null,
+    "type": "",
     "name": "Immunity to territorial dung",
     "rarity": null,
     "children": [
@@ -1667,7 +1667,7 @@
   },
   {
     "slug": "fatigue-duration-halved/negated",
-    "type": null,
+    "type": "",
     "name": "Fatigue duration halved/negated",
     "rarity": null,
     "children": [
@@ -1689,7 +1689,7 @@
   },
   {
     "slug": "backpacking-expert",
-    "type": null,
+    "type": "",
     "name": "Backpacking Expert",
     "rarity": null,
     "children": [
@@ -1704,7 +1704,7 @@
   },
   {
     "slug": "gathering",
-    "type": null,
+    "type": "",
     "name": "Gathering",
     "rarity": null,
     "children": [
@@ -1719,7 +1719,7 @@
   },
   {
     "slug": "highspdgather",
-    "type": null,
+    "type": "",
     "name": "HighSpdGather",
     "rarity": null,
     "children": [
@@ -1734,7 +1734,7 @@
   },
   {
     "slug": "spirit-s/divine-whim",
-    "type": null,
+    "type": "",
     "name": "Spirit's/Divine Whim",
     "rarity": null,
     "children": [
@@ -1756,7 +1756,7 @@
   },
   {
     "slug": "carving-iron-man/celebrity",
-    "type": null,
+    "type": "",
     "name": "Carving Iron Man/Celebrity",
     "rarity": null,
     "children": [
@@ -1778,7 +1778,7 @@
   },
   {
     "slug": "good-luck/luck-boost",
-    "type": null,
+    "type": "",
     "name": "Good Luck/Luck Boost",
     "rarity": null,
     "children": [
@@ -1800,7 +1800,7 @@
   },
   {
     "slug": "speedsetup",
-    "type": null,
+    "type": "",
     "name": "SpeedSetup",
     "rarity": null,
     "children": [
@@ -1815,7 +1815,7 @@
   },
   {
     "slug": "tranquilzr",
-    "type": null,
+    "type": "",
     "name": "Tranquilzr",
     "rarity": null,
     "children": [
@@ -1837,7 +1837,7 @@
   },
   {
     "slug": "fishing-expert",
-    "type": null,
+    "type": "",
     "name": "Fishing Expert",
     "rarity": null,
     "children": [
@@ -1852,7 +1852,7 @@
   },
   {
     "slug": "comrade-guidance/trade",
-    "type": null,
+    "type": "",
     "name": "Comrade Guidance/Trade",
     "rarity": null,
     "children": [
@@ -1867,7 +1867,7 @@
   },
   {
     "slug": "comrade-attack-up",
-    "type": null,
+    "type": "",
     "name": "Comrade Attack Up",
     "rarity": null,
     "children": [
@@ -1882,7 +1882,7 @@
   },
   {
     "slug": "comrade-defense-up",
-    "type": null,
+    "type": "",
     "name": "Comrade Defense Up",
     "rarity": null,
     "children": [

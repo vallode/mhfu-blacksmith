@@ -4,59 +4,59 @@
     "slug": "bone-gunlance",
     "type": "gunlance",
     "name": "Bone Gunlance",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "great-bone-gunlance",
         "type": "gunlance",
         "name": "Great Bone Gunlance",
-        "rarity": "2",
+        "rarity": 2,
         "children": [
           {
             "slug": "wyvern-bone-gunlance",
             "type": "gunlance",
             "name": "Wyvern Bone Gunlance",
-            "rarity": "1",
+            "rarity": 1,
             "children": [
               {
                 "slug": "hellsting",
                 "type": "gunlance",
                 "name": "Hellsting",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "ice",
                 "children": [
                   {
                     "slug": "hellsting-plus",
                     "type": "gunlance",
                     "name": "Hellsting+",
-                    "rarity": "5",
+                    "rarity": 5,
                     "element": "ice",
                     "children": [
                       {
                         "slug": "hellstinger",
                         "type": "gunlance",
                         "name": "Hellstinger",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "ice",
                         "children": [
                           {
                             "slug": "demonic-blizzard",
                             "type": "gunlance",
                             "name": "Demonic Blizzard",
-                            "rarity": "10",
+                            "rarity": 10,
                             "element": "ice"
                           },
                           {
                             "slug": "desert-slingshot",
                             "type": "gunlance",
                             "name": "Desert Slingshot",
-                            "rarity": "9",
+                            "rarity": 9,
                             "children": [
                               {
                                 "slug": "desert-slingshoter",
                                 "type": "gunlance",
                                 "name": "Desert Slingshoter",
-                                "rarity": "10"
+                                "rarity": 10
                               }
                             ]
                           }
@@ -72,56 +72,56 @@
             "slug": "average-hitter",
             "type": "gunlance",
             "name": "Average Hitter",
-            "rarity": "3",
+            "rarity": 3,
             "element": "poison",
             "children": [
               {
                 "slug": "grand-slam",
                 "type": "gunlance",
                 "name": "Grand Slam",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "poison",
                 "children": [
                   {
                     "slug": "hard-hitter",
                     "type": "gunlance",
                     "name": "Hard Hitter",
-                    "rarity": "6",
+                    "rarity": 6,
                     "element": "poison",
                     "children": [
                       {
                         "slug": "big-slugger",
                         "type": "gunlance",
                         "name": "Big Slugger",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "poison",
                         "children": [
                           {
                             "slug": "triple-crown",
                             "type": "gunlance",
                             "name": "Triple Crown",
-                            "rarity": "9",
+                            "rarity": 9,
                             "element": "poison"
                           },
                           {
                             "slug": "venomous-cologne",
                             "type": "gunlance",
                             "name": "Venomous Cologne",
-                            "rarity": "8",
+                            "rarity": 8,
                             "element": "poison",
                             "children": [
                               {
                                 "slug": "venomous-attar",
                                 "type": "gunlance",
                                 "name": "Venomous Attar",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "poison",
                                 "children": [
                                   {
                                     "slug": "venomous-perfume",
                                     "type": "gunlance",
                                     "name": "Venomous Perfume",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "poison"
                                   }
                                 ]
@@ -144,64 +144,64 @@
     "slug": "iron-lance",
     "type": "lance",
     "name": "Iron Lance",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "iron-gunlance",
         "type": "gunlance",
         "name": "Iron Gunlance",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "iron-gunlance-plus",
             "type": "gunlance",
             "name": "Iron Gunlance+",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "steel-gunlance",
                 "type": "gunlance",
                 "name": "Steel Gunlance",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "special-ops-gunlance",
                     "type": "gunlance",
                     "name": "Special Ops Gunlance",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "imperial-gunlance",
                         "type": "gunlance",
                         "name": "Imperial Gunlance",
-                        "rarity": "4",
+                        "rarity": 4,
                         "children": [
                           {
                             "slug": "silver-rook",
                             "type": "gunlance",
                             "name": "Silver Rook",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "dragon",
                             "children": [
                               {
                                 "slug": "gun-chariot",
                                 "type": "gunlance",
                                 "name": "Gun Chariot",
-                                "rarity": "8",
+                                "rarity": 8,
                                 "element": "dragon",
                                 "children": [
                                   {
                                     "slug": "gun-chariot-plus",
                                     "type": "gunlance",
                                     "name": "Gun Chariot+",
-                                    "rarity": "9",
+                                    "rarity": 9,
                                     "element": "dragon",
                                     "children": [
                                       {
                                         "slug": "world-s-end",
                                         "type": "gunlance",
                                         "name": "World's End",
-                                        "rarity": "10",
+                                        "rarity": 10,
                                         "element": "dragon"
                                       }
                                     ]
@@ -218,28 +218,28 @@
                     "slug": "luna-s-howl",
                     "type": "gunlance",
                     "name": "Luna's Howl",
-                    "rarity": "5",
+                    "rarity": 5,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "luna-s-roar",
                         "type": "gunlance",
                         "name": "Luna's Roar",
-                        "rarity": "5",
+                        "rarity": 5,
                         "element": "fire",
                         "children": [
                           {
                             "slug": "luna-s-flare",
                             "type": "gunlance",
                             "name": "Luna's Flare",
-                            "rarity": "8",
+                            "rarity": 8,
                             "element": "fire",
                             "children": [
                               {
                                 "slug": "luna-s-sun",
                                 "type": "gunlance",
                                 "name": "Luna's Sun",
-                                "rarity": "10",
+                                "rarity": 10,
                                 "element": "fire"
                               }
                             ]
@@ -252,31 +252,31 @@
                     "slug": "white-gunlance",
                     "type": "gunlance",
                     "name": "White Gunlance",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "white-cannon",
                         "type": "gunlance",
                         "name": "White Cannon",
-                        "rarity": "5",
+                        "rarity": 5,
                         "children": [
                           {
                             "slug": "black-gunlance",
                             "type": "gunlance",
                             "name": "Black Gunlance",
-                            "rarity": "6",
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "black-gore-cannon",
                                 "type": "gunlance",
                                 "name": "Black Gore Cannon",
-                                "rarity": "7",
+                                "rarity": 7,
                                 "children": [
                                   {
                                     "slug": "black-gore-buster",
                                     "type": "gunlance",
                                     "name": "Black Gore Buster",
-                                    "rarity": "10"
+                                    "rarity": 10
                                   }
                                 ]
                               }
@@ -296,63 +296,63 @@
         "slug": "snow-gunlance",
         "type": "gunlance",
         "name": "Snow Gunlance",
-        "rarity": "2",
+        "rarity": 2,
         "element": "ice",
         "children": [
           {
             "slug": "snow-gunlance-mk-ii",
             "type": "gunlance",
             "name": "Snow Gunlance Mk. II",
-            "rarity": "3",
+            "rarity": 3,
             "element": "ice",
             "children": [
               {
                 "slug": "blizzard-gunlance",
                 "type": "gunlance",
                 "name": "Blizzard Gunlance",
-                "rarity": "6",
+                "rarity": 6,
                 "element": "ice"
               },
               {
                 "slug": "marine-fisher",
                 "type": "gunlance",
                 "name": "Marine Fisher",
-                "rarity": "3",
+                "rarity": 3,
                 "element": "water",
                 "children": [
                   {
                     "slug": "deep-fisher",
                     "type": "gunlance",
                     "name": "Deep Fisher",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "water",
                     "children": [
                       {
                         "slug": "deep-ocean",
                         "type": "gunlance",
                         "name": "Deep Ocean",
-                        "rarity": "6",
+                        "rarity": 6,
                         "element": "water",
                         "children": [
                           {
                             "slug": "sea-king-gunlance",
                             "type": "gunlance",
                             "name": "Sea King Gunlance",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "water",
                             "children": [
                               {
                                 "slug": "sea-god-leviathan",
                                 "type": "gunlance",
                                 "name": "Sea God Leviathan",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "water",
                                 "children": [
                                   {
                                     "slug": "sea-abyss",
                                     "type": "gunlance",
                                     "name": "Sea Abyss",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "water"
                                   }
                                 ]
@@ -361,14 +361,14 @@
                                 "slug": "volcano-gunlance",
                                 "type": "gunlance",
                                 "name": "Volcano Gunlance",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "fire",
                                 "children": [
                                   {
                                     "slug": "lavasioth-gunlance",
                                     "type": "gunlance",
                                     "name": "Lavasioth Gunlance",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "fire"
                                   }
                                 ]
@@ -385,25 +385,25 @@
                 "slug": "scissor-gunlance",
                 "type": "gunlance",
                 "name": "Scissor Gunlance",
-                "rarity": "6",
+                "rarity": 6,
                 "children": [
                   {
                     "slug": "scissor-cannon",
                     "type": "gunlance",
                     "name": "Scissor Cannon",
-                    "rarity": "7",
+                    "rarity": 7,
                     "children": [
                       {
                         "slug": "violet-cannon",
                         "type": "gunlance",
                         "name": "Violet Cannon",
-                        "rarity": "9",
+                        "rarity": 9,
                         "children": [
                           {
                             "slug": "violet-buster",
                             "type": "gunlance",
                             "name": "Violet Buster",
-                            "rarity": "9"
+                            "rarity": 9
                           }
                         ]
                       },
@@ -411,7 +411,7 @@
                         "slug": "shell-claw-lance",
                         "type": "lance",
                         "name": "Shell Claw Lance",
-                        "rarity": "9",
+                        "rarity": 9,
                         "children": [
 
                         ]
@@ -430,59 +430,59 @@
     "slug": "longhorn-plus",
     "type": "lance",
     "name": "Longhorn+",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "great-bone-gunlance",
         "type": "gunlance",
         "name": "Great Bone Gunlance",
-        "rarity": "2",
+        "rarity": 2,
         "children": [
           {
             "slug": "wyvern-bone-gunlance",
             "type": "gunlance",
             "name": "Wyvern Bone Gunlance",
-            "rarity": "1",
+            "rarity": 1,
             "children": [
               {
                 "slug": "hellsting",
                 "type": "gunlance",
                 "name": "Hellsting",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "ice",
                 "children": [
                   {
                     "slug": "hellsting-plus",
                     "type": "gunlance",
                     "name": "Hellsting+",
-                    "rarity": "5",
+                    "rarity": 5,
                     "element": "ice",
                     "children": [
                       {
                         "slug": "hellstinger",
                         "type": "gunlance",
                         "name": "Hellstinger",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "ice",
                         "children": [
                           {
                             "slug": "demonic-blizzard",
                             "type": "gunlance",
                             "name": "Demonic Blizzard",
-                            "rarity": "10",
+                            "rarity": 10,
                             "element": "ice"
                           },
                           {
                             "slug": "desert-slingshot",
                             "type": "gunlance",
                             "name": "Desert Slingshot",
-                            "rarity": "9",
+                            "rarity": 9,
                             "children": [
                               {
                                 "slug": "desert-slingshoter",
                                 "type": "gunlance",
                                 "name": "Desert Slingshoter",
-                                "rarity": "10"
+                                "rarity": 10
                               }
                             ]
                           }
@@ -498,56 +498,56 @@
             "slug": "average-hitter",
             "type": "gunlance",
             "name": "Average Hitter",
-            "rarity": "3",
+            "rarity": 3,
             "element": "poison",
             "children": [
               {
                 "slug": "grand-slam",
                 "type": "gunlance",
                 "name": "Grand Slam",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "poison",
                 "children": [
                   {
                     "slug": "hard-hitter",
                     "type": "gunlance",
                     "name": "Hard Hitter",
-                    "rarity": "6",
+                    "rarity": 6,
                     "element": "poison",
                     "children": [
                       {
                         "slug": "big-slugger",
                         "type": "gunlance",
                         "name": "Big Slugger",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "poison",
                         "children": [
                           {
                             "slug": "triple-crown",
                             "type": "gunlance",
                             "name": "Triple Crown",
-                            "rarity": "9",
+                            "rarity": 9,
                             "element": "poison"
                           },
                           {
                             "slug": "venomous-cologne",
                             "type": "gunlance",
                             "name": "Venomous Cologne",
-                            "rarity": "8",
+                            "rarity": 8,
                             "element": "poison",
                             "children": [
                               {
                                 "slug": "venomous-attar",
                                 "type": "gunlance",
                                 "name": "Venomous Attar",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "poison",
                                 "children": [
                                   {
                                     "slug": "venomous-perfume",
                                     "type": "gunlance",
                                     "name": "Venomous Perfume",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "poison"
                                   }
                                 ]
@@ -570,31 +570,31 @@
     "slug": "bone-claw-lance-plus",
     "type": "lance",
     "name": "Bone Claw Lance+",
-    "rarity": "4",
+    "rarity": 4,
     "children": [
       {
         "slug": "scissor-gunlance",
         "type": "gunlance",
         "name": "Scissor Gunlance",
-        "rarity": "6",
+        "rarity": 6,
         "children": [
           {
             "slug": "scissor-cannon",
             "type": "gunlance",
             "name": "Scissor Cannon",
-            "rarity": "7",
+            "rarity": 7,
             "children": [
               {
                 "slug": "violet-cannon",
                 "type": "gunlance",
                 "name": "Violet Cannon",
-                "rarity": "9",
+                "rarity": 9,
                 "children": [
                   {
                     "slug": "violet-buster",
                     "type": "gunlance",
                     "name": "Violet Buster",
-                    "rarity": "9"
+                    "rarity": 9
                   }
                 ]
               },
@@ -602,7 +602,7 @@
                 "slug": "shell-claw-lance",
                 "type": "lance",
                 "name": "Shell Claw Lance",
-                "rarity": "9",
+                "rarity": 9,
                 "children": [
 
                 ]
@@ -617,21 +617,21 @@
     "slug": "black-smoke-gunlance",
     "type": "gunlance",
     "name": "Black Smoke Gunlance",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "blackdragongunlance",
         "type": "gunlance",
         "name": "BlackDragonGunlance",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "trueblkdrgngunlance",
             "type": "gunlance",
             "name": "TrueBlkDrgnGunlance",
-            "rarity": "10",
+            "rarity": 10,
             "element": "dragon"
           }
         ]
@@ -642,28 +642,28 @@
     "slug": "dragonwood-gunlance",
     "type": "gunlance",
     "name": "Dragonwood Gunlance",
-    "rarity": "5",
+    "rarity": 5,
     "element": "paralysis",
     "children": [
       {
         "slug": "gld-dragonwd-glance",
         "type": "gunlance",
         "name": "Gld Dragonwd GLance",
-        "rarity": "8",
+        "rarity": 8,
         "element": "paralysis",
         "children": [
           {
             "slug": "ancientdrgnwoodlance",
             "type": "gunlance",
             "name": "AncientDrgnwoodLance",
-            "rarity": "9",
+            "rarity": 9,
             "element": "paralysis",
             "children": [
               {
                 "slug": "ancientdrgnwoodlanc-plus",
                 "type": "gunlance",
                 "name": "AncientDrgnwoodLanc+",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "paralysis"
               }
             ]
@@ -676,19 +676,19 @@
     "slug": "rex-blast",
     "type": "gunlance",
     "name": "Rex Blast",
-    "rarity": "5",
+    "rarity": 5,
     "children": [
       {
         "slug": "tigrex-gunlance",
         "type": "gunlance",
         "name": "Tigrex Gunlance",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "greattigrexgunlance",
             "type": "gunlance",
             "name": "GreatTigrexGunlance",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       },
@@ -696,13 +696,13 @@
         "slug": "hidden-gunlance",
         "type": "gunlance",
         "name": "Hidden Gunlance",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "wanningmoondarklance",
             "type": "gunlance",
             "name": "WanningMoonDarklance",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       }
@@ -712,13 +712,13 @@
     "slug": "pop-corn",
     "type": "gunlance",
     "name": "Pop Corn",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "large-pop-corn",
         "type": "gunlance",
         "name": "Large Pop Corn",
-        "rarity": "9"
+        "rarity": 9
       }
     ]
   },
@@ -726,27 +726,27 @@
     "slug": "knight-lance",
     "type": "lance",
     "name": "Knight Lance",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "feather-gunlance",
         "type": "gunlance",
         "name": "Feather Gunlance",
-        "rarity": "6",
+        "rarity": 6,
         "element": "sleep",
         "children": [
           {
             "slug": "feather-gunlance-plus",
             "type": "gunlance",
             "name": "Feather Gunlance+",
-            "rarity": "9",
+            "rarity": 9,
             "element": "sleep",
             "children": [
               {
                 "slug": "hypno-cannon",
                 "type": "gunlance",
                 "name": "Hypno Cannon",
-                "rarity": "9",
+                "rarity": 9,
                 "element": "sleep"
               }
             ]
@@ -759,27 +759,27 @@
     "slug": "hard-bone-lance-plus",
     "type": "lance",
     "name": "Hard Bone Lance+",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "full-voltage",
         "type": "gunlance",
         "name": "Full Voltage",
-        "rarity": "7",
+        "rarity": 7,
         "element": "thunder",
         "children": [
           {
             "slug": "full-generator",
             "type": "gunlance",
             "name": "Full Generator",
-            "rarity": "9",
+            "rarity": 9,
             "element": "thunder",
             "children": [
               {
                 "slug": "high-volt-gunlance",
                 "type": "gunlance",
                 "name": "High Volt Gunlance",
-                "rarity": "9",
+                "rarity": 9,
                 "element": "thunder"
               }
             ]
@@ -792,19 +792,19 @@
     "slug": "babel-spear",
     "type": "lance",
     "name": "Babel Spear",
-    "rarity": "7",
+    "rarity": 7,
     "children": [
       {
         "slug": "ancient-destroyer",
         "type": "gunlance",
         "name": "Ancient Destroyer",
-        "rarity": "9",
+        "rarity": 9,
         "children": [
           {
             "slug": "genesis",
             "type": "gunlance",
             "name": "Genesis",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       }
@@ -814,19 +814,19 @@
     "slug": "barbarian-tusk",
     "type": "lance",
     "name": "Barbarian Tusk",
-    "rarity": "7",
+    "rarity": 7,
     "children": [
       {
         "slug": "heavy-bone-gunlance",
         "type": "gunlance",
         "name": "Heavy Bone Gunlance",
-        "rarity": "9",
+        "rarity": 9,
         "children": [
           {
             "slug": "hard-bone-cannon",
             "type": "gunlance",
             "name": "Hard Bone Cannon",
-            "rarity": "9"
+            "rarity": 9
           }
         ]
       }
@@ -836,13 +836,13 @@
     "slug": "akantor-gunlance",
     "type": "gunlance",
     "name": "Akantor Gunlance",
-    "rarity": "8",
+    "rarity": 8,
     "children": [
       {
         "slug": "akantornoirgunlance",
         "type": "gunlance",
         "name": "AkantorNoirGunlance",
-        "rarity": "10"
+        "rarity": 10
       }
     ]
   },
@@ -850,71 +850,71 @@
     "slug": "dummy-eldrdrgglanceemblem",
     "type": "gunlance",
     "name": "dummy (EldrDrgGLance\"Emblem\")",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "ukanlosblazegunlance",
     "type": "gunlance",
     "name": "UkanlosBlazeGunlance",
-    "rarity": "10",
+    "rarity": 10,
     "element": "ice"
   },
   {
     "slug": "iron-gunlance-g",
     "type": "gunlance",
     "name": "Iron Gunlance G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "wyvernbone-gunlance-g",
     "type": "gunlance",
     "name": "WyvernBone Gunlance G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "blizzard-gunlance-g",
     "type": "gunlance",
     "name": "Blizzard Gunlance G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "ice"
   },
   {
     "slug": "imperial-gunlance-g",
     "type": "gunlance",
     "name": "Imperial Gunlance G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "scissor-cannon-g",
     "type": "gunlance",
     "name": "Scissor Cannon G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "grand-slam-g",
     "type": "gunlance",
     "name": "Grand Slam G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "poison"
   },
   {
     "slug": "marine-fisher-g",
     "type": "gunlance",
     "name": "Marine Fisher G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "water"
   },
   {
     "slug": "white-cannon-g",
     "type": "gunlance",
     "name": "White Cannon G",
-    "rarity": "10"
+    "rarity": 10
   },
   {
     "slug": "gld-dragonwd-glance-g",
     "type": "gunlance",
     "name": "Gld Dragonwd GLance G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "paralysis"
   }
 ]
