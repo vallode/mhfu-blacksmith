@@ -3,7 +3,11 @@
     {
       "name": "War Hammer",
       "attack": 312,
-      "sharpness": "9.2.4",
+      "sharpness": [
+        "9",
+        "2",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -30,13 +34,21 @@
       "improve_to": [
         "War Hammer+"
       ],
-      "sharpness_plus": "9.2.9",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "9"
+      ],
       "elements": null
     },
     {
       "name": "War Hammer+",
       "attack": 364,
-      "sharpness": "9.2.9",
+      "sharpness": [
+        "9",
+        "2",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -73,13 +85,22 @@
         "War Mace",
         "Spiked Hammer"
       ],
-      "sharpness_plus": "9.2.13.1",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "War Mace",
       "attack": 468,
-      "sharpness": "3.2.10",
+      "sharpness": [
+        "3",
+        "2",
+        "10"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -112,13 +133,22 @@
         "Bone Axe",
         "Metal Bagpipe"
       ],
-      "sharpness_plus": "3.2.15",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "15"
+      ],
       "elements": null
     },
     {
       "name": "Iron Striker",
       "attack": 624,
-      "sharpness": "9.2.13.1",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -173,13 +203,23 @@
         "Iron Striker+",
         "Gunhammer Prototype"
       ],
-      "sharpness_plus": "9.2.13.6",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Iron Striker+",
       "attack": 832,
-      "sharpness": "3.2.17.3",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -227,13 +267,23 @@
       "improve_to": [
         "Anvil Hammer"
       ],
-      "sharpness_plus": "3.2.17.8",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "elements": null
     },
     {
       "name": "Anvil Hammer",
       "attack": 884,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+4",
@@ -272,13 +322,25 @@
         "Sakura Recorder",
         "Iron Devil"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "Onslaught Hammer",
       "attack": 1092,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
@@ -313,13 +375,27 @@
       "improve_to": [
         "Blacksmith"
       ],
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Blacksmith",
       "attack": 1196,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
@@ -380,13 +456,28 @@
         "Juggernaut",
         "Lava Alphorn"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Juggernaut",
       "attack": 1404,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
@@ -419,13 +510,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "War Stamp",
       "attack": 1040,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -460,13 +564,25 @@
       "improve_to": [
         "War Basher"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "War Basher",
       "attack": 1144,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
@@ -497,13 +613,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Iron Devil",
       "attack": 988,
-      "sharpness": "9.2.13.1",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -572,13 +700,23 @@
         "Great Demon Hammer",
         "Fist of Fury"
       ],
-      "sharpness_plus": "9.2.13.6",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Great Demon Hammer",
       "attack": 1040,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
@@ -614,13 +752,23 @@
         "Devil Masher",
         "Iron Impact"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": null
     },
     {
       "name": "Devil Masher",
       "attack": 1040,
-      "sharpness": "6.4.8.12",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -655,7 +803,13 @@
       "improve_to": [
         "Devil Masher+"
       ],
-      "sharpness_plus": "6.4.8.12.5",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -666,7 +820,13 @@
     {
       "name": "Devil Masher+",
       "attack": 1144,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -701,7 +861,14 @@
       "improve_to": [
         "Iron Devil's Soul"
       ],
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -712,7 +879,14 @@
     {
       "name": "Iron Devil's Soul",
       "attack": 1300,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -743,7 +917,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -754,7 +936,12 @@
     {
       "name": "Iron Impact",
       "attack": 1092,
-      "sharpness": "6.4.8.12",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -790,13 +977,25 @@
         "Iron Repellant",
         "Icy Impact"
       ],
-      "sharpness_plus": "6.4.8.12.5",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "elements": null
     },
     {
       "name": "Iron Repellant",
       "attack": 1456,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -835,13 +1034,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Icy Impact",
       "attack": 1196,
-      "sharpness": "5.4.14.10.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -907,7 +1119,14 @@
       "improve_to": [
         "Axion"
       ],
-      "sharpness_plus": "5.4.14.10.4.3",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -918,7 +1137,14 @@
     {
       "name": "Axion",
       "attack": 1352,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -957,7 +1183,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -968,7 +1202,12 @@
     {
       "name": "Fist of Fury",
       "attack": 1144,
-      "sharpness": "14.4.6.1",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
@@ -1003,13 +1242,23 @@
       "improve_to": [
         "Ancient Blow"
       ],
-      "sharpness_plus": "14.4.6.6",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Ancient Blow",
       "attack": 1248,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
@@ -1044,13 +1293,24 @@
       "improve_to": [
         "Foolhardy Stone Fist"
       ],
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Foolhardy Stone Fist",
       "attack": 1664,
-      "sharpness": "8.7.7.8",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
@@ -1083,13 +1343,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Gunhammer Prototype",
       "attack": 572,
-      "sharpness": "10.1.3.6",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -1147,7 +1418,12 @@
       "improve_to": [
         "Dead Revolver"
       ],
-      "sharpness_plus": "10.1.3.11",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "11"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -1158,7 +1434,12 @@
     {
       "name": "Dead Revolver",
       "attack": 728,
-      "sharpness": "10.1.3.16",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1191,7 +1472,13 @@
       "improve_to": [
         "Sanctioned Gunhammer"
       ],
-      "sharpness_plus": "10.1.3.17.4",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -1202,7 +1489,13 @@
     {
       "name": "Sanctioned Gunhammer",
       "attack": 832,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1241,7 +1534,14 @@
       "improve_to": [
         "Regulation GunHammer"
       ],
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -1252,7 +1552,14 @@
     {
       "name": "Regulation GunHammer",
       "attack": 1092,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1310,7 +1617,15 @@
       "improve_to": [
         "ImperialGunHmmrSpark"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -1321,7 +1636,14 @@
     {
       "name": "ImperialGunHmmrSpark",
       "attack": 1248,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1358,7 +1680,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -1369,7 +1699,12 @@
     {
       "name": "Anchor Hammer",
       "attack": 572,
-      "sharpness": "9.2.13.1",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -1402,7 +1737,12 @@
       "improve_to": [
         "Anchor Hammer+"
       ],
-      "sharpness_plus": "9.2.13.6",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -1413,7 +1753,12 @@
     {
       "name": "Anchor Hammer+",
       "attack": 728,
-      "sharpness": "9.2.13.6",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -1446,7 +1791,13 @@
       "improve_to": [
         "Anchor Crusher"
       ],
-      "sharpness_plus": "9.2.13.7.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -1457,7 +1808,13 @@
     {
       "name": "Anchor Crusher",
       "attack": 884,
-      "sharpness": "9.2.13.7.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1488,7 +1845,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -1499,7 +1863,11 @@
     {
       "name": "Black Cauldron",
       "attack": 468,
-      "sharpness": "14.4.2",
+      "sharpness": [
+        "14",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -1552,13 +1920,23 @@
         "True Black Cauldron",
         "One Star Silver Pot"
       ],
-      "sharpness_plus": "14.4.6.1",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "True Black Cauldron",
       "attack": 780,
-      "sharpness": "10.1.3.11",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "11"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -1589,13 +1967,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.16",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "elements": null
     },
     {
       "name": "One Star Silver Pot",
       "attack": 520,
-      "sharpness": "19.2.5.7.2",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
@@ -1628,13 +2017,26 @@
       "improve_to": [
         "Two Star Silver Pot"
       ],
-      "sharpness_plus": "19.2.5.7.4.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Two Star Silver Pot",
       "attack": 676,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
@@ -1665,13 +2067,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Bone Axe",
       "attack": 624,
-      "sharpness": "6.4.5",
+      "sharpness": [
+        "6",
+        "4",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -1704,13 +2117,23 @@
       "improve_to": [
         "Bone Broadaxe"
       ],
-      "sharpness_plus": "6.4.8.2",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Bone Broadaxe",
       "attack": 936,
-      "sharpness": "14.4.6.1",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "affinity": "5%",
       "slots": "OO-",
       "bonus": null,
@@ -1743,13 +2166,23 @@
       "improve_to": [
         "Bone Great Axe"
       ],
-      "sharpness_plus": "14.4.6.6",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Bone Great Axe",
       "attack": 1092,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "5%",
       "slots": "OO-",
       "bonus": null,
@@ -1788,13 +2221,25 @@
       "improve_to": [
         "Ceanataur Head Axe"
       ],
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Ceanataur Head Axe",
       "attack": 1144,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -1859,13 +2304,28 @@
         "Big Blue Chopper",
         "Carmine Axe"
       ],
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Big Blue Chopper",
       "attack": 1300,
-      "sharpness": "6.4.8.12.6.5.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -1902,13 +2362,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Carmine Axe",
       "attack": 1196,
-      "sharpness": "14.4.6.7.4.5",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
@@ -1966,7 +2441,15 @@
       "improve_to": [
         "The Great Divider"
       ],
-      "sharpness_plus": "14.4.6.7.4.6.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -1977,7 +2460,15 @@
     {
       "name": "The Great Divider",
       "attack": 1248,
-      "sharpness": "3.2.17.12.4.5.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
@@ -2014,7 +2505,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -2025,7 +2524,12 @@
     {
       "name": "Spiked Hammer",
       "attack": 520,
-      "sharpness": "10.1.3.1",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -2060,13 +2564,23 @@
       "improve_to": [
         "Spiked Hammer+"
       ],
-      "sharpness_plus": "10.1.3.6",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Spiked Hammer+",
       "attack": 572,
-      "sharpness": "10.1.3.6",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -2103,13 +2617,23 @@
         "Shell Hammer",
         "Basarios Rock"
       ],
-      "sharpness_plus": "10.1.3.11",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "11"
+      ],
       "elements": null
     },
     {
       "name": "Crystal Hammer",
       "attack": 676,
-      "sharpness": "8.7.7.3",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -2169,13 +2693,23 @@
       "improve_to": [
         "Crystal Nova"
       ],
-      "sharpness_plus": "8.7.7.8",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "elements": null
     },
     {
       "name": "Crystal Nova",
       "attack": 780,
-      "sharpness": "8.7.7.8",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -2209,13 +2743,25 @@
         "Great Nova",
         "Gigaton Hammer"
       ],
-      "sharpness_plus": "8.7.7.11.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Great Nova",
       "attack": 936,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -2248,7 +2794,14 @@
       "improve_to": [
         "Super Nova"
       ],
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -2259,7 +2812,14 @@
     {
       "name": "Super Nova",
       "attack": 1352,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -2296,7 +2856,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -2307,7 +2875,12 @@
     {
       "name": "Gigaton Hammer",
       "attack": 832,
-      "sharpness": "6.4.8.2",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "2"
+      ],
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "+8",
@@ -2340,13 +2913,23 @@
       "improve_to": [
         "Titan Hammer"
       ],
-      "sharpness_plus": "6.4.8.7",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "elements": null
     },
     {
       "name": "Titan Hammer",
       "attack": 1040,
-      "sharpness": "8.7.7.3",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "affinity": "-15%",
       "slots": "O--",
       "bonus": "+8",
@@ -2377,13 +2960,23 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.8",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "elements": null
     },
     {
       "name": "Shell Hammer",
       "attack": 728,
-      "sharpness": "14.4.6.1",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
@@ -2441,7 +3034,12 @@
       "improve_to": [
         "Graviton Hammer"
       ],
-      "sharpness_plus": "14.4.6.6",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -2452,7 +3050,12 @@
     {
       "name": "Graviton Hammer",
       "attack": 780,
-      "sharpness": "14.4.6.6",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+14",
@@ -2486,7 +3089,13 @@
         "Torment Hammer",
         "Crater Maker"
       ],
-      "sharpness_plus": "14.4.6.7.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -2497,7 +3106,13 @@
     {
       "name": "Crater Maker",
       "attack": 988,
-      "sharpness": "14.4.6.7.4",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -2530,7 +3145,14 @@
       "improve_to": [
         "VenomousCraterMaker"
       ],
-      "sharpness_plus": "14.4.6.7.4.5",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -2541,7 +3163,14 @@
     {
       "name": "VenomousCraterMaker",
       "attack": 1300,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -2580,7 +3209,15 @@
       "improve_to": [
         "Glasya-Labolas"
       ],
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -2591,7 +3228,14 @@
     {
       "name": "Glasya-Labolas",
       "attack": 1404,
-      "sharpness": "14.4.6.7.4.5",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -2628,7 +3272,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -2639,7 +3291,12 @@
     {
       "name": "Torment Hammer",
       "attack": 884,
-      "sharpness": "8.7.7.8",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -2672,7 +3329,13 @@
       "improve_to": [
         "Torment (Purgatory)"
       ],
-      "sharpness_plus": "8.7.7.11.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -2683,7 +3346,13 @@
     {
       "name": "Torment (Purgatory)",
       "attack": 988,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -2714,7 +3383,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -2725,7 +3401,10 @@
     {
       "name": "Bone Club",
       "attack": 364,
-      "sharpness": "8.7",
+      "sharpness": [
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -2749,13 +3428,21 @@
         "Bull Hammer",
         "Giaprey Balloon"
       ],
-      "sharpness_plus": "8.7.5",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "5"
+      ],
       "elements": null
     },
     {
       "name": "Large Bone Club",
       "attack": 676,
-      "sharpness": "8.7.5",
+      "sharpness": [
+        "8",
+        "7",
+        "5"
+      ],
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
@@ -2782,13 +3469,23 @@
       "improve_to": [
         "Enormous Ham"
       ],
-      "sharpness_plus": "8.7.7.3",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Enormous Ham",
       "attack": 728,
-      "sharpness": "10.1.3.1",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "1"
+      ],
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
@@ -2821,13 +3518,23 @@
       "improve_to": [
         "Ham of Hams"
       ],
-      "sharpness_plus": "10.1.3.6",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Ham of Hams",
       "attack": 1196,
-      "sharpness": "10.1.3.1",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "1"
+      ],
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
@@ -2858,13 +3565,22 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.6",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "elements": null
     },
     {
       "name": "Cyclo-Hammer",
       "attack": 468,
-      "sharpness": "5.4.6",
+      "sharpness": [
+        "5",
+        "4",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -2909,13 +3625,21 @@
         "Conehead Hammer",
         "Bone Horn"
       ],
-      "sharpness_plus": "5.4.11",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "11"
+      ],
       "elements": null
     },
     {
       "name": "Atlas Hammer",
       "attack": 572,
-      "sharpness": "5.4.11",
+      "sharpness": [
+        "5",
+        "4",
+        "11"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -2946,13 +3670,23 @@
         "Jail Hammer",
         "Khezu Horn"
       ],
-      "sharpness_plus": "5.4.14.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Kut-Ku Jaw",
       "attack": 676,
-      "sharpness": "5.4.14.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -3013,13 +3747,23 @@
         "Dynamic Hammer",
         "Venom Monster"
       ],
-      "sharpness_plus": "5.4.14.7",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "elements": null
     },
     {
       "name": "Kut-Ku Pick",
       "attack": 884,
-      "sharpness": "9.2.13.6",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "affinity": "10%",
       "slots": "OOO",
       "bonus": null,
@@ -3074,13 +3818,24 @@
         "Hard Bone Hammer",
         "Feather Whistle"
       ],
-      "sharpness_plus": "9.2.13.7.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Hard Bone Hammer",
       "attack": 1040,
-      "sharpness": "5.4.14.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -3155,13 +3910,23 @@
         "Hard Bone Hammer+",
         "Lobster Hammer"
       ],
-      "sharpness_plus": "5.4.14.7",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "elements": null
     },
     {
       "name": "Hard Bone Hammer+",
       "attack": 1092,
-      "sharpness": "5.4.14.7",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -3196,13 +3961,24 @@
       "improve_to": [
         "Diablos Hammer"
       ],
-      "sharpness_plus": "5.4.14.10.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Diablos Hammer",
       "attack": 1092,
-      "sharpness": "10.1.3.16",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "affinity": "-10%",
       "slots": "---",
       "bonus": "+8",
@@ -3237,13 +4013,25 @@
       "improve_to": [
         "Diablo Chaos Broker"
       ],
-      "sharpness_plus": "10.1.3.17.4",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Diablo Chaos Broker",
       "attack": 1196,
-      "sharpness": "10.1.3.17.4",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "affinity": "-10%",
       "slots": "---",
       "bonus": "+10",
@@ -3276,13 +4064,27 @@
       "improve_to": [
         "Chaotic Order"
       ],
-      "sharpness_plus": "10.1.3.17.6.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Chaotic Order",
       "attack": 1508,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+20",
@@ -3319,13 +4121,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Lobster Hammer",
       "attack": 936,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -3360,7 +4175,12 @@
       "improve_to": [
         "King Lobster Hammer"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -3371,7 +4191,12 @@
     {
       "name": "King Lobster Hammer",
       "attack": 988,
-      "sharpness": "5.4.14.7",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -3406,7 +4231,13 @@
       "improve_to": [
         "Royal Lobster Hammer"
       ],
-      "sharpness_plus": "5.4.14.10.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -3417,7 +4248,13 @@
     {
       "name": "Royal Lobster Hammer",
       "attack": 1144,
-      "sharpness": "5.4.14.10.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -3450,7 +4287,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.3",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -3461,7 +4305,12 @@
     {
       "name": "Raven Torrent",
       "attack": 728,
-      "sharpness": "14.4.6.6",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
@@ -3513,13 +4362,25 @@
       "improve_to": [
         "Wolf Torrent"
       ],
-      "sharpness_plus": "14.4.6.7.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Wolf Torrent",
       "attack": 936,
-      "sharpness": "14.4.6.7.4",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4"
+      ],
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
@@ -3555,13 +4416,27 @@
         "Crow Torrent",
         "Wolf Shamisen"
       ],
-      "sharpness_plus": "14.4.6.7.4.5",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "elements": null
     },
     {
       "name": "Crow Torrent",
       "attack": 1352,
-      "sharpness": "14.4.6.7.4.5",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "affinity": "40%",
       "slots": "OO-",
       "bonus": null,
@@ -3600,13 +4475,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Dynamic Hammer",
       "attack": 728,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "5%",
       "slots": "---",
       "bonus": null,
@@ -3639,13 +4527,24 @@
       "improve_to": [
         "Violence Hammer"
       ],
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Violence Hammer",
       "attack": 1040,
-      "sharpness": "5.4.14.7",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
@@ -3678,13 +4577,26 @@
       "improve_to": [
         "Mysterious Jaw"
       ],
-      "sharpness_plus": "5.4.14.10.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Mysterious Jaw",
       "attack": 1144,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "30%",
       "slots": "OO-",
       "bonus": null,
@@ -3721,13 +4633,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Venom Monster",
       "attack": 572,
-      "sharpness": "14.4.6.6",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
@@ -3760,7 +4685,13 @@
       "improve_to": [
         "Death Venom Hammer"
       ],
-      "sharpness_plus": "14.4.6.7.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -3771,7 +4702,13 @@
     {
       "name": "Death Venom Hammer",
       "attack": 936,
-      "sharpness": "19.2.5.7.2",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
@@ -3804,7 +4741,14 @@
       "improve_to": [
         "Purple Mace"
       ],
-      "sharpness_plus": "19.2.5.7.4.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -3815,7 +4759,14 @@
     {
       "name": "Purple Mace",
       "attack": 1092,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
@@ -3850,7 +4801,15 @@
       "improve_to": [
         "Pitohui Bird Mace"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -3861,7 +4820,14 @@
     {
       "name": "Pitohui Bird Mace",
       "attack": 1248,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
@@ -3898,7 +4864,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -3909,7 +4883,12 @@
     {
       "name": "Jail Hammer",
       "attack": 624,
-      "sharpness": "14.4.6.1",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -3942,7 +4921,12 @@
       "improve_to": [
         "Binder Mace"
       ],
-      "sharpness_plus": "14.4.6.6",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "6"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -3953,7 +4937,12 @@
     {
       "name": "Binder Mace",
       "attack": 780,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -3984,7 +4973,13 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -3995,7 +4990,13 @@
     {
       "name": "Purse Bop",
       "attack": 1040,
-      "sharpness": "5.4.14.10.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4059,7 +5060,14 @@
       "improve_to": [
         "Purse Bop+"
       ],
-      "sharpness_plus": "5.4.14.10.4.3",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -4070,7 +5078,14 @@
     {
       "name": "Purse Bop+",
       "attack": 1144,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4103,7 +5118,15 @@
       "improve_to": [
         "Khezu Thunder"
       ],
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -4114,7 +5137,14 @@
     {
       "name": "Khezu Thunder",
       "attack": 1456,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -4151,7 +5181,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -4162,7 +5200,11 @@
     {
       "name": "Skullcrusher",
       "attack": 520,
-      "sharpness": "3.2.10",
+      "sharpness": [
+        "3",
+        "2",
+        "10"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4195,13 +5237,21 @@
       "improve_to": [
         "Skullcrusher+"
       ],
-      "sharpness_plus": "3.2.15",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "15"
+      ],
       "elements": null
     },
     {
       "name": "Skullcrusher+",
       "attack": 624,
-      "sharpness": "3.2.15",
+      "sharpness": [
+        "3",
+        "2",
+        "15"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4238,13 +5288,23 @@
         "Dragonhead Hammer",
         "Sonic Glass"
       ],
-      "sharpness_plus": "3.2.17.3",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Diablos Maul",
       "attack": 832,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+4",
@@ -4304,13 +5364,23 @@
       "improve_to": [
         "Finishing Hammer"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": null
     },
     {
       "name": "Finishing Hammer",
       "attack": 988,
-      "sharpness": "10.1.3.16",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
@@ -4343,13 +5413,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.4",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Dragonhead Hammer",
       "attack": 676,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -4408,13 +5489,24 @@
         "Ancient Relic",
         "Basarios Blow"
       ],
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Ancient Relic",
       "attack": 988,
-      "sharpness": "5.4.14.7",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -4449,13 +5541,24 @@
       "improve_to": [
         "Shell Castanet"
       ],
-      "sharpness_plus": "5.4.14.10.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Basarios Blow",
       "attack": 780,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+24",
@@ -4488,13 +5591,25 @@
       "improve_to": [
         "Basarios Bash"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "Basarios Bash",
       "attack": 1040,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+36",
@@ -4525,13 +5640,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Conehead Hammer",
       "attack": 416,
-      "sharpness": "3.2.10",
+      "sharpness": [
+        "3",
+        "2",
+        "10"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4564,7 +5690,11 @@
       "improve_to": [
         "Conehead Hammer+"
       ],
-      "sharpness_plus": "3.2.15",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "15"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -4575,7 +5705,12 @@
     {
       "name": "Conehead Hammer+",
       "attack": 676,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4608,7 +5743,13 @@
       "improve_to": [
         "Great Cone"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -4619,7 +5760,13 @@
     {
       "name": "Great Cone",
       "attack": 884,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -4652,7 +5799,14 @@
       "improve_to": [
         "Desert Cone"
       ],
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -4663,7 +5817,14 @@
     {
       "name": "Desert Cone",
       "attack": 1456,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
@@ -4721,13 +5882,28 @@
       "improve_to": [
         "Magnitude"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Magnitude",
       "attack": 1612,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "-15%",
       "slots": "O--",
       "bonus": null,
@@ -4764,13 +5940,25 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Bull Hammer",
       "attack": 520,
-      "sharpness": "6.4.5",
+      "sharpness": [
+        "6",
+        "4",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4842,13 +6030,22 @@
       "improve_to": [
         "Bull Head Hammer"
       ],
-      "sharpness_plus": "6.4.8.2",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Bull Head Hammer",
       "attack": 624,
-      "sharpness": "8.7.5",
+      "sharpness": [
+        "8",
+        "7",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -4881,13 +6078,23 @@
       "improve_to": [
         "Bull Tusk Hammer"
       ],
-      "sharpness_plus": "8.7.7.3",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Bull Tusk Hammer",
       "attack": 936,
-      "sharpness": "8.7.7.3",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -4918,13 +6125,20 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.8",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "elements": null
     },
     {
       "name": "Rusted Hammer",
       "attack": 468,
-      "sharpness": "15",
+      "sharpness": [
+        "15"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4945,13 +6159,20 @@
       "improve_to": [
         "Tarnished Hammer"
       ],
-      "sharpness_plus": "19.1",
+      "sharpness_plus": [
+        "19",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "Tarnished Hammer",
       "attack": 572,
-      "sharpness": "14.4.2",
+      "sharpness": [
+        "14",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -4975,13 +6196,23 @@
         "Breath Core Hammer",
         "Jadite Mace"
       ],
-      "sharpness_plus": "14.4.6.1",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "Breath Core Hammer",
       "attack": 936,
-      "sharpness": "19.2.5.4",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
@@ -5008,13 +6239,24 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.2",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Jadite Mace",
       "attack": 780,
-      "sharpness": "8.7.7.3",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5049,7 +6291,12 @@
       "improve_to": [
         "Jade Mace"
       ],
-      "sharpness_plus": "8.7.7.8",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -5060,7 +6307,12 @@
     {
       "name": "Jade Mace",
       "attack": 832,
-      "sharpness": "9.2.13.6",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -5095,7 +6347,13 @@
       "improve_to": [
         "Lunastra's Crown"
       ],
-      "sharpness_plus": "9.2.13.7.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -5106,7 +6364,13 @@
     {
       "name": "Lunastra's Crown",
       "attack": 936,
-      "sharpness": "9.2.13.7.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -5139,7 +6403,14 @@
       "improve_to": [
         "Luna's Skirt"
       ],
-      "sharpness_plus": "9.2.13.7.5.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -5150,7 +6421,14 @@
     {
       "name": "Luna's Skirt",
       "attack": 1300,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -5187,7 +6465,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -5198,7 +6484,10 @@
     {
       "name": "Worn Hammer",
       "attack": 676,
-      "sharpness": "19.1",
+      "sharpness": [
+        "19",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5219,13 +6508,21 @@
       "improve_to": [
         "Weathered Hammer"
       ],
-      "sharpness_plus": "19.2.4",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Weathered Hammer",
       "attack": 780,
-      "sharpness": "19.2.4",
+      "sharpness": [
+        "19",
+        "2",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5247,13 +6544,24 @@
         "Pulsating Core",
         "Steel Ice Hammer"
       ],
-      "sharpness_plus": "19.2.5.4",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Pulsating Core",
       "attack": 1040,
-      "sharpness": "19.2.5.7.2",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
@@ -5280,13 +6588,27 @@
       "improve_to": [
         "Pulse Crusher Core"
       ],
-      "sharpness_plus": "19.2.5.7.4.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Pulse Crusher Core",
       "attack": 1352,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "-20%",
       "slots": "OO-",
       "bonus": null,
@@ -5317,13 +6639,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Steel Ice Hammer",
       "attack": 832,
-      "sharpness": "6.4.8.12",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5356,7 +6691,13 @@
       "improve_to": [
         "Daora's Colossus"
       ],
-      "sharpness_plus": "6.4.8.12.5",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -5367,7 +6708,13 @@
     {
       "name": "Daora's Colossus",
       "attack": 988,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5400,7 +6747,14 @@
       "improve_to": [
         "Daora's Hyperborea"
       ],
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -5411,7 +6765,14 @@
     {
       "name": "Daora's Hyperborea",
       "attack": 1300,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
@@ -5448,7 +6809,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -5459,7 +6828,12 @@
     {
       "name": "Black Belt Hammer",
       "attack": 780,
-      "sharpness": "8.7.7.3",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -5498,13 +6872,23 @@
       "improve_to": [
         "Expert Hammer"
       ],
-      "sharpness_plus": "8.7.7.8",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "elements": null
     },
     {
       "name": "Expert Hammer",
       "attack": 1092,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+12",
@@ -5537,13 +6921,26 @@
       "improve_to": [
         "Warrior's Hammer"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": null
     },
     {
       "name": "Warrior's Hammer",
       "attack": 1404,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": "+22",
@@ -5580,13 +6977,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Black Hammer",
       "attack": 728,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5620,7 +7030,13 @@
         "Fatalis Buster",
         "AncientFatalisBuster"
       ],
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5631,7 +7047,13 @@
     {
       "name": "Fatalis Buster",
       "attack": 1040,
-      "sharpness": "9.2.13.7.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5664,7 +7086,14 @@
       "improve_to": [
         "Fatalis Demolisher"
       ],
-      "sharpness_plus": "9.2.13.7.5.4",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5675,7 +7104,13 @@
     {
       "name": "Fatalis Demolisher",
       "attack": 1404,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -5712,7 +7147,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5723,7 +7165,13 @@
     {
       "name": "AncientFatalisBuster",
       "attack": 988,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
@@ -5756,7 +7204,14 @@
       "improve_to": [
         "AncientFatalisRuiner"
       ],
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5767,7 +7222,14 @@
     {
       "name": "AncientFatalisRuiner",
       "attack": 1300,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
@@ -5804,7 +7266,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5815,7 +7285,11 @@
     {
       "name": "Cactus Creamer",
       "attack": 260,
-      "sharpness": "3.2.10",
+      "sharpness": [
+        "3",
+        "2",
+        "10"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5848,7 +7322,11 @@
       "improve_to": [
         "Green Monster"
       ],
-      "sharpness_plus": "3.2.15",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "15"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -5859,7 +7337,13 @@
     {
       "name": "Green Monster",
       "attack": 468,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -5890,7 +7374,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -5901,7 +7392,12 @@
     {
       "name": "Dragon Destroyer",
       "attack": 832,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5935,7 +7431,12 @@
       "improve_to": [
         "Dragonbreaker"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5946,7 +7447,12 @@
     {
       "name": "Dragonbreaker",
       "attack": 884,
-      "sharpness": "6.4.8.12",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -5979,7 +7485,13 @@
       "improve_to": [
         "Dragon Demolisher"
       ],
-      "sharpness_plus": "6.4.8.12.5",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -5990,7 +7502,13 @@
     {
       "name": "Dragon Demolisher",
       "attack": 936,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6023,7 +7541,14 @@
       "improve_to": [
         "Claw of Doom"
       ],
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -6034,7 +7559,14 @@
     {
       "name": "Claw of Doom",
       "attack": 1248,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6071,7 +7603,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Dragon",
@@ -6082,7 +7622,13 @@
     {
       "name": "Striped Striker",
       "attack": 884,
-      "sharpness": "19.2.5.7.2",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "2"
+      ],
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
@@ -6122,13 +7668,27 @@
         "Tigrex Hammer",
         "Hidden Breaker"
       ],
-      "sharpness_plus": "19.2.5.7.4.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Tigrex Hammer",
       "attack": 1144,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
@@ -6161,13 +7721,29 @@
       "improve_to": [
         "Tigrex Hammer+"
       ],
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Tigrex Hammer+",
       "attack": 1508,
-      "sharpness": "19.2.5.7.4.5.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
@@ -6204,13 +7780,28 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Hidden Breaker",
       "attack": 988,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
@@ -6268,13 +7859,29 @@
       "improve_to": [
         "Deep Darkhammer"
       ],
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Deep Darkhammer",
       "attack": 1248,
-      "sharpness": "3.2.17.12.4.5.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
@@ -6336,13 +7943,26 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "White Cat Stamp",
       "attack": 520,
-      "sharpness": "10.1.3.1",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6377,7 +7997,12 @@
         "Black Cat Stamp",
         "Teddybear"
       ],
-      "sharpness_plus": "10.1.3.6",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "6"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6388,7 +8013,13 @@
     {
       "name": "White Cat Hammer",
       "attack": 728,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
@@ -6419,7 +8050,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6430,7 +8068,12 @@
     {
       "name": "Black Cat Stamp",
       "attack": 624,
-      "sharpness": "10.1.3.16",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -6464,7 +8107,13 @@
         "Black Cat Hammer",
         "Gold Cat Hammer"
       ],
-      "sharpness_plus": "10.1.3.17.4",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6475,7 +8124,13 @@
     {
       "name": "Black Cat Hammer",
       "attack": 676,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6506,7 +8161,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6517,7 +8179,12 @@
     {
       "name": "Gold Cat Hammer",
       "attack": 832,
-      "sharpness": "3.2.17.3",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -6575,7 +8242,12 @@
       "improve_to": [
         "Gold Cat Crusher"
       ],
-      "sharpness_plus": "3.2.17.8",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6586,7 +8258,12 @@
     {
       "name": "Gold Cat Crusher",
       "attack": 988,
-      "sharpness": "3.2.17.8",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -6623,7 +8300,13 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.1",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -6634,7 +8317,11 @@
     {
       "name": "Teddybear",
       "attack": 260,
-      "sharpness": "5.4.6",
+      "sharpness": [
+        "5",
+        "4",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6684,7 +8371,11 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.11",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "11"
+      ],
       "elements": [
         {
           "name": "Sleep",
@@ -6695,7 +8386,11 @@
     {
       "name": "dummy (Polytan)",
       "attack": 520,
-      "sharpness": "5.4.11",
+      "sharpness": [
+        "5",
+        "4",
+        "11"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6716,7 +8411,12 @@
       "improve_to": [
         "dummy (Polytan G)"
       ],
-      "sharpness_plus": "5.4.14.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -6727,7 +8427,12 @@
     {
       "name": "dummy (Polytan G)",
       "attack": 780,
-      "sharpness": "5.4.14.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -6760,7 +8465,12 @@
       "improve_to": [
         "dummy (True Polytan G)"
       ],
-      "sharpness_plus": "5.4.14.7",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -6771,7 +8481,14 @@
     {
       "name": "dummy (True Polytan G)",
       "attack": 1144,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -6802,7 +8519,15 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -6813,7 +8538,12 @@
     {
       "name": "dummy (Amezari Hammer)",
       "attack": 520,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -6846,7 +8576,12 @@
       "improve_to": [
         "dummy (Amezari Hammer+)"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -6857,7 +8592,12 @@
     {
       "name": "dummy (Amezari Hammer+)",
       "attack": 728,
-      "sharpness": "6.4.8.7",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -6896,7 +8636,12 @@
       "improve_to": [
         "dummy (Amezari Impact)"
       ],
-      "sharpness_plus": "6.4.8.12",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -6907,7 +8652,13 @@
     {
       "name": "dummy (Amezari Impact)",
       "attack": 1040,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -6944,7 +8695,14 @@
         }
       ],
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -6955,7 +8713,13 @@
     {
       "name": "Ukanlos Trampler",
       "attack": 1820,
-      "sharpness": "17.2.4.7.2",
+      "sharpness": [
+        "17",
+        "2",
+        "4",
+        "7",
+        "2"
+      ],
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
@@ -6992,7 +8756,14 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "17.2.4.7.4.3",
+      "sharpness_plus": [
+        "17",
+        "2",
+        "4",
+        "7",
+        "4",
+        "3"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -7003,7 +8774,12 @@
     {
       "name": "Bone Club G",
       "attack": 1560,
-      "sharpness": "8.7.7.8",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "8"
+      ],
       "affinity": "-10%",
       "slots": "---",
       "bonus": null,
@@ -7040,13 +8816,26 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "War Hammer G",
       "attack": 1456,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7083,13 +8872,25 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Tarnished Hammer G",
       "attack": 1664,
-      "sharpness": "19.2.4",
+      "sharpness": [
+        "19",
+        "2",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7114,13 +8915,25 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.4",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Spiked Hammer G",
       "attack": 1456,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7157,13 +8970,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Iron Striker G",
       "attack": 1456,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7200,13 +9028,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Atlas Hammer G",
       "attack": 1456,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7243,13 +9086,27 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Bone Axe G",
       "attack": 1508,
-      "sharpness": "6.4.8.12.5",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "10%",
       "slots": "OO-",
       "bonus": null,
@@ -7286,13 +9143,26 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Skullcrusher G",
       "attack": 1508,
-      "sharpness": "3.2.17.12.1",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7329,13 +9199,27 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Bull Tusk Hammer G",
       "attack": 1404,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -7372,13 +9256,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Crystal Nova G",
       "attack": 1456,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -7415,13 +9314,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Binder Mace G",
       "attack": 1144,
-      "sharpness": "14.4.6.7.4.5",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -7458,7 +9372,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -7469,7 +9391,14 @@
     {
       "name": "Kut-Ku Jaw G",
       "attack": 1456,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7506,13 +9435,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Venom Monster G",
       "attack": 1248,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
@@ -7549,7 +9493,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -7560,7 +9512,14 @@
     {
       "name": "Dead Revolver G",
       "attack": 1248,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -7597,7 +9556,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -7608,7 +9575,14 @@
     {
       "name": "Anchor Crusher G",
       "attack": 1300,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -7645,7 +9619,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": [
         {
           "name": "Water",
@@ -7656,7 +9638,14 @@
     {
       "name": "Kut-Ku Pick G",
       "attack": 1352,
-      "sharpness": "9.2.13.7.5.4",
+      "sharpness": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "4"
+      ],
       "affinity": "20%",
       "slots": "OOO",
       "bonus": null,
@@ -7693,13 +9682,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "9.2.13.7.5.6.3",
+      "sharpness_plus": [
+        "9",
+        "2",
+        "13",
+        "7",
+        "5",
+        "6",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Dragonhead Hammer G",
       "attack": 1404,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -7736,13 +9740,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Basarios Bash G",
       "attack": 1352,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+36",
@@ -7779,13 +9798,27 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Titan Hammer G",
       "attack": 1560,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "-15%",
       "slots": "O--",
       "bonus": "+8",
@@ -7822,13 +9855,27 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Finishing Hammer G",
       "attack": 1404,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+10",
@@ -7865,13 +9912,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "TrueBlackCauldron G",
       "attack": 1300,
-      "sharpness": "10.1.3.17.6.3",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -7908,13 +9970,26 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.6.5.3",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "6",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Enormous Ham G",
       "attack": 1612,
-      "sharpness": "10.1.3.16",
+      "sharpness": [
+        "10",
+        "1",
+        "3",
+        "16"
+      ],
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
@@ -7951,13 +10026,24 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "10.1.3.17.4",
+      "sharpness_plus": [
+        "10",
+        "1",
+        "3",
+        "17",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Teddybear G",
       "attack": 936,
-      "sharpness": "5.4.14.7",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -7994,7 +10080,13 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "2"
+      ],
       "elements": [
         {
           "name": "Sleep",
@@ -8005,7 +10097,15 @@
     {
       "name": "Cactus Creamer G",
       "attack": 884,
-      "sharpness": "19.2.5.7.4.5.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -8042,7 +10142,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -8053,7 +10161,13 @@
     {
       "name": "White Cat Hammer G",
       "attack": 1040,
-      "sharpness": "8.7.7.11.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
@@ -8090,7 +10204,14 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -8101,7 +10222,14 @@
     {
       "name": "Black Cat Hammer G",
       "attack": 936,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -8138,7 +10266,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Paralysis",
@@ -8149,7 +10285,14 @@
     {
       "name": "Black Belt Hammer G",
       "attack": 1352,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
@@ -8186,13 +10329,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Breath Core Hammer G",
       "attack": 1508,
-      "sharpness": "19.2.5.7.4.3",
+      "sharpness": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "3"
+      ],
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
@@ -8229,13 +10387,26 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "19.2.5.7.4.5.3",
+      "sharpness_plus": [
+        "19",
+        "2",
+        "5",
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
       "elements": null
     },
     {
       "name": "Polytan G",
       "attack": 1196,
-      "sharpness": "5.4.14.2",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -8272,7 +10443,12 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.7",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "7"
+      ],
       "elements": [
         {
           "name": "Thunder",
@@ -8283,7 +10459,14 @@
     {
       "name": "Great Demon Hammer G",
       "attack": 1404,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
@@ -8320,13 +10503,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "Hard Bone Hammer G",
       "attack": 1456,
-      "sharpness": "5.4.14.10.4.3",
+      "sharpness": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -8363,13 +10561,29 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "5.4.14.10.4.6.2",
+      "sharpness_plus": [
+        "5",
+        "4",
+        "14",
+        "10",
+        "4",
+        "6",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "TwoStarSilverPot G",
       "attack": 1196,
-      "sharpness": "3.2.17.12.4.5.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
@@ -8406,13 +10620,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "Great Cone G",
       "attack": 1248,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -8449,7 +10678,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Ice",
@@ -8460,7 +10697,14 @@
     {
       "name": "Onslaught Hammer G",
       "attack": 1404,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
@@ -8497,13 +10741,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": null
     },
     {
       "name": "War Basher G",
       "attack": 1404,
-      "sharpness": "3.2.17.12.4.2",
+      "sharpness": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+8",
@@ -8540,13 +10799,28 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "3.2.17.12.4.5.2",
+      "sharpness_plus": [
+        "3",
+        "2",
+        "17",
+        "12",
+        "4",
+        "5",
+        "2"
+      ],
       "elements": null
     },
     {
       "name": "SanctionedGunHammr G",
       "attack": 1196,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
@@ -8583,7 +10857,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -8594,7 +10876,14 @@
     {
       "name": "Crater Maker G",
       "attack": 1300,
-      "sharpness": "14.4.6.7.4.5",
+      "sharpness": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+14",
@@ -8631,7 +10920,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "14.4.6.7.4.6.4",
+      "sharpness_plus": [
+        "14",
+        "4",
+        "6",
+        "7",
+        "4",
+        "6",
+        "4"
+      ],
       "elements": [
         {
           "name": "Poison",
@@ -8642,7 +10939,14 @@
     {
       "name": "Torment(Purgatory) G",
       "attack": 1352,
-      "sharpness": "8.7.7.11.5.2",
+      "sharpness": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
@@ -8679,7 +10983,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "8.7.7.11.5.5.2",
+      "sharpness_plus": [
+        "8",
+        "7",
+        "7",
+        "11",
+        "5",
+        "5",
+        "2"
+      ],
       "elements": [
         {
           "name": "Fire",
@@ -8690,7 +11002,14 @@
     {
       "name": "Dragonbreaker G",
       "attack": 1300,
-      "sharpness": "6.4.8.12.6.4",
+      "sharpness": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
@@ -8727,7 +11046,15 @@
       ],
       "improve_mats": null,
       "improve_to": null,
-      "sharpness_plus": "6.4.8.12.6.5.4",
+      "sharpness_plus": [
+        "6",
+        "4",
+        "8",
+        "12",
+        "6",
+        "5",
+        "4"
+      ],
       "elements": [
         {
           "name": "Dragon",
