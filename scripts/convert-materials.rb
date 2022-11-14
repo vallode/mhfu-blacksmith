@@ -2,17 +2,14 @@ require 'json'
 require 'find'
 require 'erb'
 
-FILE_TEMPLATE = %{{
-    "weapons": <%= JSON.pretty_generate(weapon_map) %>
-  }
-}.gsub(/^  /, '')
+FILE_TEMPLATE = %{<%= JSON.pretty_generate(json_data) %>}.gsub(/^  /, '')
 
 WEAPON_PAIRS = [
   ["helmet"],
   ["plate"],
   ["gauntlets"],
-  ["leggings"],
   ["waist"],
+  ["leggings"],
 ]
 
 WEAPON_ABBR = {
@@ -44,7 +41,7 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/{blacksmith,armorsmith}/{#{array.join(",")}}/*-crafting.json")
+  weapon_files = Dir.glob("content/{armorsmith}/{#{array.join(",")}}/*-source.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 
@@ -55,17 +52,22 @@ WEAPON_PAIRS.each do |array|
 
   weapon_map = []
 
-  weapons.each do |weapon|
-    if weapon["create_mats"] == []
-      weapon["create_mats"] = nil
-    end
-    if weapon["improve_mats"] == []
-      weapon["improve_mats"] = nil
-    end
+  lr = weapons.select {|weapon| weapon["hr"].to_i <= 5 }
+  hr = weapons.select {|weapon| weapon["hr"].to_i > 5 and weapon["hr"].to_i <= 8 }
+  gr = weapons.select {|weapon| weapon["hr"].to_i > 8 }
 
+  json_data = {weapons: lr}
+  # Dir.mkdir("#{File.dirname(file.path)}/low-rank")
+  File.write("#{File.dirname(file.path)}/low-rank/#{array[0]}-crafting.json", output.result(binding))
+  json_data = {weapons: hr}
+  File.write("#{File.dirname(file.path)}/high-rank/#{array[0]}-crafting.json", output.result(binding))
+  json_data = {weapons: gr}
+  File.write("#{File.dirname(file.path)}/g-rank/#{array[0]}-crafting.json", output.result(binding))
+
+  weapons.each do |weapon|
     weapon_map.push(weapon)
   end
 
-  File.write(file.path, output.result(binding))
+  # File.write(file.path, output.result(binding))
 end
   
