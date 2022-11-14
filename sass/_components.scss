@@ -373,12 +373,16 @@ $element-types: (
     text-decoration: none;
 
     .sharpness {
-      height: 2.4rem;
-      position: relative;
-      padding: 6px 8px;
       display: flex;
-      width: 19.6rem;
+      height: 2.4rem;
+      padding: 6px 8px;
+      position: relative;
       margin-left: auto;
+      width: 19.6rem;
+
+      @media screen and (max-width: 600px) {
+        margin: 0 auto;
+      }
     }
     
     .sharpness::after {
@@ -419,7 +423,7 @@ $element-types: (
     .create-mats {
       display: flex;
       flex-direction: column;
-      gap: 13px;
+      gap: 13px 0;
     }
 
     .ammo,
@@ -458,6 +462,14 @@ $element-types: (
     .stats {
       flex-flow: column wrap;
       height: 11rem;
+
+      @media screen and (max-width: 600px) {
+        height: auto;
+      }
+    }
+
+    .stats > * {
+      width: 50%;
     }
 
     .stats span {
@@ -520,12 +532,13 @@ $element-types: (
 
       [id*=page] {
         display: none;
+        flex-flow: row wrap;
         flex: 1 1 0%;
-      }
 
-      // [id*=page].active {
-      //   display: flex;
-      // }
+        @media screen and (max-width: 600px) {
+          gap: 16px;
+        }
+      }
 
       &[data-weapon-page-page-value="1"] #page-1 {
         display: flex;
