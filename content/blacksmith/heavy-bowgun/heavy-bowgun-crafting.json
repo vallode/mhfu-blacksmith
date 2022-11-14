@@ -9,7 +9,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 1,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -65,7 +65,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 2,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -147,7 +147,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 2,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -229,7 +229,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 3,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -299,7 +299,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 3,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -361,7 +361,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 3,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -429,7 +429,7 @@
       "slots": "O--",
       "bonus": "6",
       "rarity": 3,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -497,7 +497,7 @@
       "slots": "OO-",
       "bonus": "6",
       "rarity": 3,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -565,7 +565,7 @@
       "slots": "---",
       "bonus": "10",
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -633,7 +633,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -701,7 +701,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -769,7 +769,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -837,7 +837,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -905,7 +905,7 @@
       "slots": "---",
       "bonus": "6",
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -973,7 +973,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -1041,7 +1041,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 4,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -1109,7 +1109,7 @@
       "slots": "OOO",
       "bonus": "20",
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -1177,7 +1177,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -1245,7 +1245,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1313,7 +1313,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1381,7 +1381,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -1449,7 +1449,7 @@
       "slots": "---",
       "bonus": "15",
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -1517,7 +1517,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -1585,7 +1585,7 @@
       "slots": "O--",
       "bonus": "10",
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -1653,7 +1653,7 @@
       "slots": "O--",
       "bonus": "10",
       "rarity": 5,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -1721,7 +1721,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -1803,7 +1803,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -1859,7 +1859,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1927,7 +1927,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1995,7 +1995,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -2063,7 +2063,7 @@
       "slots": "OO-",
       "bonus": "15",
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2131,7 +2131,7 @@
       "slots": "OO-",
       "bonus": "10",
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2199,7 +2199,7 @@
       "slots": "---",
       "bonus": "20",
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2267,7 +2267,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -2335,7 +2335,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2403,7 +2403,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 6,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2471,7 +2471,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 7,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2539,7 +2539,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 7,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2607,7 +2607,7 @@
       "slots": "---",
       "bonus": "15",
       "rarity": 7,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2675,7 +2675,7 @@
       "slots": "---",
       "bonus": "10",
       "rarity": 7,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -2743,7 +2743,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 7,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2811,7 +2811,7 @@
       "slots": "OOO",
       "bonus": "30",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -2879,7 +2879,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2947,7 +2947,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -3015,7 +3015,7 @@
       "slots": "O--",
       "bonus": "15",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3083,7 +3083,7 @@
       "slots": "---",
       "bonus": "15",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3151,7 +3151,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3219,7 +3219,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3287,7 +3287,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3355,7 +3355,7 @@
       "slots": "O--",
       "bonus": "12",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -3423,7 +3423,7 @@
       "slots": "O--",
       "bonus": "20",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -3491,7 +3491,7 @@
       "slots": "---",
       "bonus": "14",
       "rarity": 8,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -3559,7 +3559,7 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3627,7 +3627,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3695,7 +3695,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3763,7 +3763,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3831,7 +3831,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3899,7 +3899,7 @@
       "slots": "O--",
       "bonus": "16",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3967,7 +3967,7 @@
       "slots": "O--",
       "bonus": "14",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -4035,7 +4035,7 @@
       "slots": "---",
       "bonus": "14",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -4103,7 +4103,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -4171,7 +4171,7 @@
       "slots": "OO-",
       "bonus": "20",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4239,7 +4239,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4307,7 +4307,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4375,7 +4375,7 @@
       "slots": "OOO",
       "bonus": "30",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4443,7 +4443,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4511,7 +4511,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4579,7 +4579,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -4647,7 +4647,7 @@
       "slots": "OOO",
       "bonus": "40",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -4715,7 +4715,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -4783,7 +4783,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -4851,7 +4851,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4919,7 +4919,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -4987,7 +4987,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5055,7 +5055,7 @@
       "slots": "---",
       "bonus": "20",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5123,7 +5123,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -5191,7 +5191,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5259,7 +5259,7 @@
       "slots": "O--",
       "bonus": "20",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5327,7 +5327,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5395,7 +5395,7 @@
       "slots": "O--",
       "bonus": "14",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -5463,7 +5463,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Light",
       "ammo": [
@@ -5531,7 +5531,7 @@
       "slots": "O--",
       "bonus": "18",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -5599,7 +5599,7 @@
       "slots": "---",
       "bonus": "10",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5667,7 +5667,7 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5735,7 +5735,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5803,7 +5803,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5871,7 +5871,7 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -5939,7 +5939,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6007,7 +6007,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6075,7 +6075,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6143,7 +6143,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6211,7 +6211,7 @@
       "slots": "OO-",
       "bonus": "16",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6279,7 +6279,7 @@
       "slots": "OOO",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6347,7 +6347,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -6415,7 +6415,7 @@
       "slots": "O--",
       "bonus": "16",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6483,7 +6483,7 @@
       "slots": "O--",
       "bonus": "14",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -6551,7 +6551,7 @@
       "slots": "---",
       "bonus": "14",
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -6619,7 +6619,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -6687,7 +6687,7 @@
       "slots": "---",
       "bonus": null,
       "rarity": 9,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -6755,7 +6755,7 @@
       "slots": "OO-",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6823,7 +6823,7 @@
       "slots": "O--",
       "bonus": null,
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6891,7 +6891,7 @@
       "slots": "---",
       "bonus": "25",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -6959,7 +6959,7 @@
       "slots": "OO-",
       "bonus": "30",
       "rarity": 10,
-      "type": "hbg",
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [

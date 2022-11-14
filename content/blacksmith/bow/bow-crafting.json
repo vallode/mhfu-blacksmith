@@ -21,7 +21,7 @@
         "Rapid 2",
         "Scatter 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 550,
       "improve_cost": null,
       "improve_from": null,
@@ -72,7 +72,7 @@
         "Rapid 3",
         "Scatter 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 1100,
       "improve_from": "Hunter's Bow I",
@@ -123,7 +123,7 @@
         "Rapid 3",
         "Scatter 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 1650,
       "improve_cost": 1650,
       "improve_from": "Hunter's Bow II",
@@ -213,7 +213,7 @@
         "Rapid 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 2750,
       "improve_from": "Hunter's Bow III",
@@ -263,7 +263,7 @@
         "Rapid 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 4400,
       "improve_cost": 4400,
       "improve_from": "Hunter's Bow IV",
@@ -338,7 +338,7 @@
         "Rapid 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 5500,
       "improve_from": "Hunter's Power Bow I",
@@ -388,7 +388,7 @@
         "Rapid 4",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 7900,
       "improve_from": "Hunter's Power Bow II",
@@ -439,7 +439,7 @@
         "Rapid 5",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 49500,
       "improve_from": "Hunter's Power Bow III",
@@ -494,7 +494,7 @@
         "Scatter 4",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 34650,
       "improve_cost": 34650,
       "improve_from": "Hunter's Power Bow III",
@@ -581,7 +581,7 @@
         "Scatter 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 55450,
       "improve_from": "Icicle Bow I",
@@ -640,7 +640,7 @@
         "Pierce 3",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 2200,
       "improve_cost": null,
       "improve_from": null,
@@ -704,7 +704,7 @@
         "Pierce 3",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 3500,
       "improve_from": "Wild Bow I",
@@ -754,7 +754,7 @@
         "Pierce 3",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 5250,
       "improve_cost": 5250,
       "improve_from": "Wild Bow II",
@@ -829,7 +829,7 @@
         "Pierce 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 6150,
       "improve_from": "Wild Bow III",
@@ -879,7 +879,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 8950,
       "improve_cost": 8950,
       "improve_from": "Wild Bow IV",
@@ -954,7 +954,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 10550,
       "improve_from": "Wild Power Bow I",
@@ -1004,7 +1004,7 @@
         "Scatter 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 49500,
       "improve_cost": 49500,
       "improve_from": "Wild Power Bow II",
@@ -1085,7 +1085,7 @@
         "Scatter 5",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 74250,
       "improve_from": "Jungle Bow I",
@@ -1139,7 +1139,7 @@
         "Rapid 2",
         "Scatter 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 770,
       "improve_cost": null,
       "improve_from": null,
@@ -1194,7 +1194,7 @@
         "Rapid 3",
         "Scatter 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 1500,
       "improve_from": "Blango Fur Bow I",
@@ -1249,7 +1249,7 @@
         "Rapid 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 3850,
       "improve_cost": 3850,
       "improve_from": "Blango Fur Bow II",
@@ -1323,7 +1323,7 @@
         "Rapid 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
       "improve_from": "Blango Fur Bow III",
@@ -1378,7 +1378,7 @@
         "Rapid 4",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 7350,
       "improve_from": "Blango Fur Bow IV",
@@ -1433,7 +1433,7 @@
         "Rapid 4",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 69300,
       "improve_from": "Abominable Bow I",
@@ -1492,7 +1492,7 @@
         "Scatter 3",
         "Pierce 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 1500,
       "improve_cost": null,
       "improve_from": null,
@@ -1553,7 +1553,7 @@
         "Scatter 3",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 2300,
       "improve_from": "Kut-Ku Stave I",
@@ -1608,7 +1608,7 @@
         "Scatter 4",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
       "improve_from": "Kut-Ku Stave II",
@@ -1664,7 +1664,7 @@
         "Scatter 4",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
       "improve_from": "Kut-Ku Stave III",
@@ -1746,7 +1746,7 @@
         "Scatter 5",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 41600,
       "improve_from": "Blue Kut-Ku Stave I",
@@ -1808,7 +1808,7 @@
         "Scatter 5",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 62400,
       "improve_from": "Blue Kut-Ku Stave II",
@@ -1866,7 +1866,7 @@
         "Rapid 4",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 83150,
       "improve_cost": 83150,
       "improve_from": "Blue Kut-Ku Stave I",
@@ -1946,7 +1946,7 @@
         "Rapid 5",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
       "improve_from": "Wolf Bow",
@@ -1999,7 +1999,7 @@
         "Rapid 3",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 11100,
       "improve_cost": null,
       "improve_from": null,
@@ -2059,7 +2059,7 @@
         "Rapid 4",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 13450,
       "improve_from": "Wing Bow I",
@@ -2113,7 +2113,7 @@
         "Rapid 4",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 53450,
       "improve_cost": 53450,
       "improve_from": "Wing Bow II",
@@ -2198,7 +2198,7 @@
         "Rapid 5",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 77200,
       "improve_from": "Wing Bow III",
@@ -2257,7 +2257,7 @@
         "Scatter 3",
         "Rapid 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 1250,
       "improve_cost": null,
       "improve_from": null,
@@ -2318,7 +2318,7 @@
         "Scatter 4",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 5950,
       "improve_from": "Defect Swordfish Bow",
@@ -2379,7 +2379,7 @@
         "Scatter 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 35650,
       "improve_from": "Whole Swordfish Bow",
@@ -2438,7 +2438,7 @@
         "Pierce 3",
         "Rapid 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 2300,
       "improve_cost": null,
       "improve_from": null,
@@ -2499,7 +2499,7 @@
         "Pierce 3",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 3850,
       "improve_from": "Daimyo's Warbow I",
@@ -2554,7 +2554,7 @@
         "Pierce 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
       "improve_from": "Daimyo's Warbow II",
@@ -2609,7 +2609,7 @@
         "Pierce 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
       "improve_from": "Daimyo's Warbow III",
@@ -2689,7 +2689,7 @@
         "Rapid 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 52000,
       "improve_cost": 52000,
       "improve_from": "Daimyo's Warbow IV",
@@ -2769,7 +2769,7 @@
         "Rapid 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 81700,
       "improve_from": "Great Purple Emperor I",
@@ -2828,7 +2828,7 @@
         "Pierce 3",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7700,
       "improve_cost": null,
       "improve_from": null,
@@ -2884,7 +2884,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 23100,
       "improve_from": "Blue Blade Bow I",
@@ -2934,7 +2934,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 90100,
       "improve_cost": 90100,
       "improve_from": "Blue Blade Bow II",
@@ -3010,7 +3010,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
       "improve_from": "Blue Blade Bow III",
@@ -3057,7 +3057,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 89100,
       "improve_from": "Blue Blade Bow III",
@@ -3111,7 +3111,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
       "improve_from": "Carmine Bow",
@@ -3163,7 +3163,7 @@
         "Rapid 2",
         "Scatter 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 2300,
       "improve_cost": null,
       "improve_from": null,
@@ -3223,7 +3223,7 @@
         "Rapid 3",
         "Scatter 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
       "improve_from": "Sonic Bow I",
@@ -3277,7 +3277,7 @@
         "Rapid 4",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
       "improve_from": "Sonic Bow II",
@@ -3357,7 +3357,7 @@
         "Scatter 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 52000,
       "improve_cost": null,
       "improve_from": null,
@@ -3418,7 +3418,7 @@
         "Scatter 5",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 74,
       "improve_from": "Khezu Bow I",
@@ -3475,7 +3475,7 @@
         "Scatter 3",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 5500,
       "improve_cost": null,
       "improve_from": null,
@@ -3534,7 +3534,7 @@
         "Scatter 4",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 6600,
       "improve_from": "Queen Blaster I",
@@ -3588,7 +3588,7 @@
         "Scatter 4",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 16500,
       "improve_cost": 16500,
       "improve_from": "Queen Blaster II",
@@ -3666,7 +3666,7 @@
         "Scatter 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 54450,
       "improve_from": "Queen Blaster III",
@@ -3725,7 +3725,7 @@
         "Scatter 5",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 69300,
       "improve_from": "Queen Blaster IV",
@@ -3776,7 +3776,7 @@
         "Pierce 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 13450,
       "improve_cost": 13450,
       "improve_from": "Queen Blaster II",
@@ -3849,7 +3849,7 @@
         "Pierce 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 19800,
       "improve_from": "Heartshot Bow I",
@@ -3897,7 +3897,7 @@
         "Pierce 4",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 83150,
       "improve_from": "Heartshot Bow II",
@@ -3943,7 +3943,7 @@
         "Pierce 2",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 6850,
       "improve_cost": null,
       "improve_from": null,
@@ -4002,7 +4002,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 8250,
       "improve_from": "Prominence Bow I",
@@ -4055,7 +4055,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 16500,
       "improve_from": "Prominence Bow II",
@@ -4108,7 +4108,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 61900,
       "improve_cost": 61900,
       "improve_from": "Prominence Bow III",
@@ -4186,7 +4186,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 74250,
       "improve_from": "Prominence Bow IV",
@@ -4238,7 +4238,7 @@
         "Rapid 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 16800,
       "improve_cost": null,
       "improve_from": null,
@@ -4298,7 +4298,7 @@
         "Rapid 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 39600,
       "improve_from": "Courageous Hope",
@@ -4352,7 +4352,7 @@
         "Rapid 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 111350,
       "improve_from": "Courageous Wish",
@@ -4408,7 +4408,7 @@
         "Pierce 3",
         "Scatter 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 10250,
       "improve_cost": null,
       "improve_from": null,
@@ -4461,7 +4461,7 @@
         "Pierce 4",
         "Scatter 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 25700,
       "improve_from": "Diablos Horn Bow I",
@@ -4508,7 +4508,7 @@
         "Pierce 4",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 90100,
       "improve_cost": 90100,
       "improve_from": "Diablos Horn Bow II",
@@ -4580,7 +4580,7 @@
         "Pierce 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 117800,
       "improve_from": "Gale Horn Bow",
@@ -4631,7 +4631,7 @@
         "Pierce 5",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 690,
       "improve_cost": null,
       "improve_from": null,
@@ -4688,7 +4688,7 @@
         "Rapid 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 8550,
       "improve_cost": null,
       "improve_from": null,
@@ -4742,7 +4742,7 @@
         "Rapid 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 10000,
       "improve_from": "Tiger Arrow I",
@@ -4791,7 +4791,7 @@
         "Rapid 4",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 25700,
       "improve_cost": 25700,
       "improve_from": "Tiger Arrow II",
@@ -4864,7 +4864,7 @@
         "Rapid 5",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 90100,
       "improve_from": "Tigrex Whisker",
@@ -4919,7 +4919,7 @@
         "Pierce 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 27750,
       "improve_cost": 27750,
       "improve_from": "Tiger Arrow II",
@@ -4995,7 +4995,7 @@
         "Pierce 5",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 103950,
       "improve_cost": 103950,
       "improve_from": "Hidden Bow",
@@ -5072,7 +5072,7 @@
         "Rapid 1",
         "Pierce 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 50000,
       "improve_cost": null,
       "improve_from": null,
@@ -5131,7 +5131,7 @@
         "Rapid 1",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": "Dragonhead Harp I",
@@ -5184,7 +5184,7 @@
         "Rapid 1",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 125000,
       "improve_from": "Dragonhead Harp II",
@@ -5243,7 +5243,7 @@
         "Pierce 2",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7900,
       "improve_cost": null,
       "improve_from": null,
@@ -5304,7 +5304,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 23750,
       "improve_from": "Dragon Bow Halo",
@@ -5359,7 +5359,7 @@
         "Pierce 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 115800,
       "improve_cost": 115800,
       "improve_from": "Dragon Bow Solar",
@@ -5448,7 +5448,7 @@
         "Scatter 3",
         "Rapid 2"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7900,
       "improve_cost": null,
       "improve_from": null,
@@ -5510,7 +5510,7 @@
         "Scatter 4",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 47500,
       "improve_from": "Dragon Bow Earth",
@@ -5566,7 +5566,7 @@
         "Scatter 5",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 124750,
       "improve_from": "Dragon Bow Mountain",
@@ -5623,7 +5623,7 @@
         "Rapid 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 95000,
       "improve_cost": null,
       "improve_from": null,
@@ -5682,7 +5682,7 @@
         "Rapid 5",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 118800,
       "improve_from": "Beast Thunderbow",
@@ -5740,7 +5740,7 @@
         "Pierce 4",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 84150,
       "improve_cost": null,
       "improve_from": null,
@@ -5800,7 +5800,7 @@
         "Pierce 5",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 117800,
       "improve_from": "Icy Steel Bow",
@@ -5857,7 +5857,7 @@
         "Rapid 4",
         "-"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 80000,
       "improve_cost": null,
       "improve_from": null,
@@ -5916,7 +5916,7 @@
         "Rapid 5",
         "-"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 145000,
       "improve_from": "Akantor Bow",
@@ -5973,7 +5973,7 @@
         "Pierce 3",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 7500,
       "improve_cost": null,
       "improve_from": null,
@@ -6026,7 +6026,7 @@
         "Pierce 4",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 15000,
       "improve_from": "Black Bow I",
@@ -6079,7 +6079,7 @@
         "Rapid 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Black Bow II",
@@ -6145,7 +6145,7 @@
         "Rapid 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 150000,
       "improve_from": "Exterminator Bow I",
@@ -6195,7 +6195,7 @@
         "Rapid 2",
         "Rapid 3"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Black Bow II",
@@ -6265,7 +6265,7 @@
         "Rapid 3",
         "Rapid 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": null,
       "improve_cost": 150000,
       "improve_from": "Glorious Victory I",
@@ -6322,7 +6322,7 @@
         "Scatter 2",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 150000,
       "improve_cost": null,
       "improve_from": null,
@@ -6382,7 +6382,7 @@
         "Rapid 5",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6436,7 +6436,7 @@
         "Pierce 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6490,7 +6490,7 @@
         "Pierce 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6544,7 +6544,7 @@
         "Rapid 4",
         "Pierce 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6603,7 +6603,7 @@
         "Scatter 5",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6662,7 +6662,7 @@
         "Pierce 4",
         "Rapid 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6720,7 +6720,7 @@
         "Rapid 5",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6776,7 +6776,7 @@
         "Pierce 5",
         "Scatter 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6830,7 +6830,7 @@
         "Pierce 3",
         "Pierce 4"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6887,7 +6887,7 @@
         "Pierce 5",
         "Scatter 5"
       ],
-      "type": "bw",
+      "type": "bow",
       "create_cost": 75000,
       "improve_cost": null,
       "improve_from": null,
@@ -6945,7 +6945,7 @@
         "power",
         "paint"
       ],
-      "type": "bw",
+      "type": "bow",
       "improve_from": "Sonic Bow III",
       "improve_cost": 0,
       "improve_mats": [
