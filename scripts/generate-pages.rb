@@ -1,28 +1,7 @@
 require 'json'
-require 'find'
-require 'erb'
 require 'toml'
 
-WEAPON_ABBR = {
-  "great-sword": "gs",
-  "long-sword": "ls",
-  "sword-and-shield": "sns",
-  "dual-blades": "db",
-  "hammer": "hm",
-  "hunting-horn": "hh",
-  "lance": "ln",
-  "gunlance":  "gl",
-  "light-bowgun": "lbg",
-  "heavy-bowgun": "hbg",
-  "bow": "bw",
-  "decoration": "dec",
-  "helmet": "helmet",
-  "plate": "plate",
-  "gauntlets": "gauntlets",
-  "waist": "waist",
-  "leggings": "leggings"
-}
-
+# TODO: Raw damage can be embedded directly into the dataset, no need for this?
 WEAPON_CLASS_MULTIPLIER = {
   "great-sword": 4.8,
   "long-sword": 4.8,
@@ -37,6 +16,7 @@ WEAPON_CLASS_MULTIPLIER = {
   "bow":  1.2,
 }
 
+# TODO: Take inspiration from `parameterize` in rails and clean this up.
 def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
@@ -48,48 +28,30 @@ def slugify(value)
   value = value.gsub("+", "-plus")
 end
 
-def parseElements(elements)
-  parsedElements = []
-
-  if elements
-    elements.scan(/([A-Za-z]+)\s([0-9]+)/) do |element, attack|
-      parsedElements.push({name: element, attack: attack})
-    end
-  end
-
-  return parsedElements
-end
-
 threads = []
 
+# Iterate over crafting JSON data in all content directories to generate
+# individual markdown files.
 Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
   threads << Thread.new {
     File.open(path) do |file|
       json_data = JSON.load(file)
 
       json_data["weapons"].each do |value|
-        if value.key?("donotrender")
-          next
-        end
+        # Easiest way of handling "category" items in mapping right now.
+        next if value.key?("donotrender")
 
-        output = {}
-
-        output["title"] = value["name"]
-        output["slug"] = slugify(value["name"])
-        
-        value["type"] = WEAPON_ABBR.key(value["type"]).to_s
         if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
-        value = value.select {|key, value| value != nil }
 
-        output["extra"] = value.select {|key, value| ["title", "slug"].none?(key)}
+        output = {
+          title: value["name"],
+          slug: slugify(value["name"]),
+          extra: value.select {|key, value| ["title", "slug"].none?(key)},
+        }
 
-        if path.include?("armorsmith")
-          File.write("#{File.dirname(path)}/#{output["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
-        else
-          File.write("#{File.dirname(path)}/#{output["slug"]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
-        end
+        File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
       end
     end
   }
