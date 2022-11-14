@@ -2,7 +2,7 @@
   "weapons": [
     {
       "name": "Mafumofu Jacket",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -41,7 +41,7 @@
     },
     {
       "name": "Leather Armor",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -90,7 +90,7 @@
     },
     {
       "name": "Chain Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -139,7 +139,7 @@
     },
     {
       "name": "Hunter's Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -190,7 +190,7 @@
     },
     {
       "name": "Hunter's Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -241,7 +241,7 @@
     },
     {
       "name": "Bone Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -296,7 +296,7 @@
     },
     {
       "name": "Bone Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -351,7 +351,7 @@
     },
     {
       "name": "Giaprey Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -402,7 +402,7 @@
     },
     {
       "name": "Giaprey Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -453,7 +453,7 @@
     },
     {
       "name": "Battle Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -510,7 +510,7 @@
     },
     {
       "name": "Battle Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -567,7 +567,7 @@
     },
     {
       "name": "Velociprey Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -624,7 +624,7 @@
     },
     {
       "name": "Velociprey Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -681,7 +681,7 @@
     },
     {
       "name": "Vespoid Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -732,7 +732,7 @@
     },
     {
       "name": "Vespoid Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -783,7 +783,7 @@
     },
     {
       "name": "Hi-Metal Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -834,7 +834,7 @@
     },
     {
       "name": "Hi-Metal Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -885,7 +885,7 @@
     },
     {
       "name": "Hornet Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -938,7 +938,7 @@
     },
     {
       "name": "Hornet Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -991,7 +991,7 @@
     },
     {
       "name": "Genprey Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1044,7 +1044,7 @@
     },
     {
       "name": "Genprey Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1105,7 +1105,7 @@
     },
     {
       "name": "Steel Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1152,7 +1152,7 @@
     },
     {
       "name": "Ioprey Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1209,7 +1209,7 @@
     },
     {
       "name": "Ioprey Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1266,7 +1266,7 @@
     },
     {
       "name": "Kut-Ku Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1323,7 +1323,7 @@
     },
     {
       "name": "Kut-Ku Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1380,7 +1380,7 @@
     },
     {
       "name": "Cephalos Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1427,7 +1427,7 @@
     },
     {
       "name": "Cephalos Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1474,7 +1474,7 @@
     },
     {
       "name": "Conga Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1531,7 +1531,7 @@
     },
     {
       "name": "Conga Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1588,7 +1588,7 @@
     },
     {
       "name": "Gypceros Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1645,7 +1645,7 @@
     },
     {
       "name": "Gypceros Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1702,7 +1702,7 @@
     },
     {
       "name": "Khezu Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1759,7 +1759,7 @@
     },
     {
       "name": "Khezu Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1816,7 +1816,7 @@
     },
     {
       "name": "Hermitaur Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1873,7 +1873,7 @@
     },
     {
       "name": "Hermitaur Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1930,7 +1930,7 @@
     },
     {
       "name": "Plesioth Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1987,7 +1987,7 @@
     },
     {
       "name": "Plesioth Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2044,7 +2044,7 @@
     },
     {
       "name": "Lobster Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2101,7 +2101,7 @@
     },
     {
       "name": "Lobster Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2158,7 +2158,7 @@
     },
     {
       "name": "Kut-Ku Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2219,7 +2219,7 @@
     },
     {
       "name": "Kut-Ku Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2280,7 +2280,7 @@
     },
     {
       "name": "Gypceros Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2337,7 +2337,7 @@
     },
     {
       "name": "Gypceros Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2394,7 +2394,7 @@
     },
     {
       "name": "Khezu Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2447,7 +2447,7 @@
     },
     {
       "name": "Khezu Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2500,7 +2500,7 @@
     },
     {
       "name": "Plesioth Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2553,7 +2553,7 @@
     },
     {
       "name": "Plesioth Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2606,7 +2606,7 @@
     },
     {
       "name": "Basarios Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2667,7 +2667,7 @@
     },
     {
       "name": "Basarios Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2728,7 +2728,7 @@
     },
     {
       "name": "Monoblos Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2785,7 +2785,7 @@
     },
     {
       "name": "Monoblos Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2842,7 +2842,7 @@
     },
     {
       "name": "Yian Garuga Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2899,7 +2899,7 @@
     },
     {
       "name": "Yian Garuga Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2956,7 +2956,7 @@
     },
     {
       "name": "Blango Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3013,7 +3013,7 @@
     },
     {
       "name": "Blango Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3070,7 +3070,7 @@
     },
     {
       "name": "Ceanataur Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3127,7 +3127,7 @@
     },
     {
       "name": "Ceanataur Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3184,7 +3184,7 @@
     },
     {
       "name": "Rathian Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3241,7 +3241,7 @@
     },
     {
       "name": "Rathian Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3298,7 +3298,7 @@
     },
     {
       "name": "Tigrex Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3355,7 +3355,7 @@
     },
     {
       "name": "Tigrex Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3412,7 +3412,7 @@
     },
     {
       "name": "Rathalos Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3469,7 +3469,7 @@
     },
     {
       "name": "Rathalos Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3526,7 +3526,7 @@
     },
     {
       "name": "Diablo Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3583,7 +3583,7 @@
     },
     {
       "name": "Diablo Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3640,7 +3640,7 @@
     },
     {
       "name": "Gravios Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3697,7 +3697,7 @@
     },
     {
       "name": "Gravios Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3750,7 +3750,7 @@
     },
     {
       "name": "Diablo Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3807,7 +3807,7 @@
     },
     {
       "name": "Diablo Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3864,7 +3864,7 @@
     },
     {
       "name": "Gravios Mail D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3917,7 +3917,7 @@
     },
     {
       "name": "Gravios Vest D",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3970,7 +3970,7 @@
     },
     {
       "name": "Moss Breastplate",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4027,7 +4027,7 @@
     },
     {
       "name": "Giaprey Body",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4080,7 +4080,7 @@
     },
     {
       "name": "Velociprey Body",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4133,7 +4133,7 @@
     },
     {
       "name": "Famitsu T-Shirt",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "5",
       "defence": null,
@@ -4182,7 +4182,7 @@
     },
     {
       "name": "Hunter Soul T-Shirt",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -4231,7 +4231,7 @@
     },
     {
       "name": "Bistro Jacket",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4278,7 +4278,7 @@
     },
     {
       "name": "Genprey Body",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4331,7 +4331,7 @@
     },
     {
       "name": "Black Belt Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -4388,7 +4388,7 @@
     },
     {
       "name": "Shinobi Suit (Sun)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4445,7 +4445,7 @@
     },
     {
       "name": "Shinobi Suit (Moon)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4502,7 +4502,7 @@
     },
     {
       "name": "Guild Knight Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -4559,7 +4559,7 @@
     },
     {
       "name": "Guild Knight Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "4",
       "defence": null,
@@ -4616,7 +4616,7 @@
     },
     {
       "name": "Guardian Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4673,7 +4673,7 @@
     },
     {
       "name": "Guardian Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4730,7 +4730,7 @@
     },
     {
       "name": "Maiden's Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -4787,7 +4787,7 @@
     },
     {
       "name": "Personal Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "4",
       "defence": null,
@@ -4844,7 +4844,7 @@
     },
     {
       "name": "Helper Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4901,7 +4901,7 @@
     },
     {
       "name": "Healer Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4958,7 +4958,7 @@
     },
     {
       "name": "Ioprey Body",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5011,7 +5011,7 @@
     },
     {
       "name": "Remobra Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -5072,7 +5072,7 @@
     },
     {
       "name": "MelahoaFlowerJacket",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5129,7 +5129,7 @@
     },
     {
       "name": "Melahoa Stalk",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5186,7 +5186,7 @@
     },
     {
       "name": "Makluva Cover",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5243,7 +5243,7 @@
     },
     {
       "name": "Makluva Scale",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5300,7 +5300,7 @@
     },
     {
       "name": "Hypnoc Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5353,7 +5353,7 @@
     },
     {
       "name": "Hypnoc Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5406,7 +5406,7 @@
     },
     {
       "name": "Obituary Petto",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "4",
       "defence": null,
@@ -5463,7 +5463,7 @@
     },
     {
       "name": "Obituary Pectus",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "4",
       "defence": null,
@@ -5520,7 +5520,7 @@
     },
     {
       "name": "Butterfly Petto",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "4",
       "defence": null,
@@ -5577,7 +5577,7 @@
     },
     {
       "name": "Butterfly Pectus",
-      "type": "leggings",
+      "type": "plate",
       "hr": "1",
       "elder": "4",
       "defence": null,
@@ -5634,7 +5634,7 @@
     },
     {
       "name": "Black Hide",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5678,7 +5678,7 @@
     },
     {
       "name": "Black Skin",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5722,7 +5722,7 @@
     },
     {
       "name": "Death Stench Muscle",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5775,7 +5775,7 @@
     },
     {
       "name": "Death Stench Heart",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5828,7 +5828,7 @@
     },
     {
       "name": "Volganos Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5885,7 +5885,7 @@
     },
     {
       "name": "Volganos Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5942,7 +5942,7 @@
     },
     {
       "name": "Mizuha Guards",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5995,7 +5995,7 @@
     },
     {
       "name": "Extravagant Camise",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -6048,7 +6048,7 @@
     },
     {
       "name": "Kushala Cista",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6105,7 +6105,7 @@
     },
     {
       "name": "Kushala Vise",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6162,7 +6162,7 @@
     },
     {
       "name": "Kirin Jacket",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -6215,7 +6215,7 @@
     },
     {
       "name": "Kirin Cape",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -6268,7 +6268,7 @@
     },
     {
       "name": "GuardianSpritRaiment",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6325,7 +6325,7 @@
     },
     {
       "name": "Carnage Raiment",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6382,7 +6382,7 @@
     },
     {
       "name": "Auroros Torso",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6439,7 +6439,7 @@
     },
     {
       "name": "Genesis Torso",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6496,7 +6496,7 @@
     },
     {
       "name": "Borealis Chest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6553,7 +6553,7 @@
     },
     {
       "name": "Glyph Chest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6610,7 +6610,7 @@
     },
     {
       "name": "Empress Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -6667,7 +6667,7 @@
     },
     {
       "name": "Empress Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -6724,7 +6724,7 @@
     },
     {
       "name": "Indra Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6777,7 +6777,7 @@
     },
     {
       "name": "Steadfast Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6834,7 +6834,7 @@
     },
     {
       "name": "Kaiser Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6887,7 +6887,7 @@
     },
     {
       "name": "Kaiser Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6940,7 +6940,7 @@
     },
     {
       "name": "Red Lobster Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "4",
       "defence": null,
@@ -6991,7 +6991,7 @@
     },
     {
       "name": "Red Lobster Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "4",
       "defence": null,
@@ -7042,7 +7042,7 @@
     },
     {
       "name": "Monodevil Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -7099,7 +7099,7 @@
     },
     {
       "name": "Monodevil Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -7156,7 +7156,7 @@
     },
     {
       "name": "Rathian Heart Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7213,7 +7213,7 @@
     },
     {
       "name": "Rathian Heart Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7270,7 +7270,7 @@
     },
     {
       "name": "Rathalos Soul Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7327,7 +7327,7 @@
     },
     {
       "name": "Rathalos Soul Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7384,7 +7384,7 @@
     },
     {
       "name": "Mafumofu Jacket S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7431,7 +7431,7 @@
     },
     {
       "name": "Leather Armor S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7480,7 +7480,7 @@
     },
     {
       "name": "Chain Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7537,7 +7537,7 @@
     },
     {
       "name": "Hunter's Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7594,7 +7594,7 @@
     },
     {
       "name": "Hunter's Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7651,7 +7651,7 @@
     },
     {
       "name": "Bone Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7708,7 +7708,7 @@
     },
     {
       "name": "Bone Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7765,7 +7765,7 @@
     },
     {
       "name": "Battle Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7822,7 +7822,7 @@
     },
     {
       "name": "Battle Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7879,7 +7879,7 @@
     },
     {
       "name": "Velociprey Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7932,7 +7932,7 @@
     },
     {
       "name": "Velociprey Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7985,7 +7985,7 @@
     },
     {
       "name": "Vespoid Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8038,7 +8038,7 @@
     },
     {
       "name": "Vespoid Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8091,7 +8091,7 @@
     },
     {
       "name": "Hi-Metal Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8144,7 +8144,7 @@
     },
     {
       "name": "Hi-Metal Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8197,7 +8197,7 @@
     },
     {
       "name": "Steel Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8246,7 +8246,7 @@
     },
     {
       "name": "Hornet Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8299,7 +8299,7 @@
     },
     {
       "name": "Hornet Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8352,7 +8352,7 @@
     },
     {
       "name": "Genprey Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8405,7 +8405,7 @@
     },
     {
       "name": "Genprey Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8458,7 +8458,7 @@
     },
     {
       "name": "Ioprey Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8511,7 +8511,7 @@
     },
     {
       "name": "Ioprey Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8564,7 +8564,7 @@
     },
     {
       "name": "Kut-Ku Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8617,7 +8617,7 @@
     },
     {
       "name": "Kut-Ku Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8670,7 +8670,7 @@
     },
     {
       "name": "Cephalos Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8723,7 +8723,7 @@
     },
     {
       "name": "Cephalos Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8776,7 +8776,7 @@
     },
     {
       "name": "Conga Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8829,7 +8829,7 @@
     },
     {
       "name": "Conga Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8882,7 +8882,7 @@
     },
     {
       "name": "Gypceros Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8935,7 +8935,7 @@
     },
     {
       "name": "Gypceros Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8988,7 +8988,7 @@
     },
     {
       "name": "Khezu Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9041,7 +9041,7 @@
     },
     {
       "name": "Khezu Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9094,7 +9094,7 @@
     },
     {
       "name": "Hermitaur Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -9151,7 +9151,7 @@
     },
     {
       "name": "Hermitaur Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -9208,7 +9208,7 @@
     },
     {
       "name": "Hypnoc Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -9261,7 +9261,7 @@
     },
     {
       "name": "Hypnoc Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -9314,7 +9314,7 @@
     },
     {
       "name": "Basarios Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9371,7 +9371,7 @@
     },
     {
       "name": "Basarios Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9428,7 +9428,7 @@
     },
     {
       "name": "Plesioth Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9485,7 +9485,7 @@
     },
     {
       "name": "Plesioth Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9542,7 +9542,7 @@
     },
     {
       "name": "Monoblos Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9595,7 +9595,7 @@
     },
     {
       "name": "Monoblos Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9648,7 +9648,7 @@
     },
     {
       "name": "Yian Garuga Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9701,7 +9701,7 @@
     },
     {
       "name": "Yian Garuga Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9754,7 +9754,7 @@
     },
     {
       "name": "Blango Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9811,7 +9811,7 @@
     },
     {
       "name": "Blango Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9868,7 +9868,7 @@
     },
     {
       "name": "Ceanataur Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9925,7 +9925,7 @@
     },
     {
       "name": "Ceanataur Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9978,7 +9978,7 @@
     },
     {
       "name": "Rathian Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10031,7 +10031,7 @@
     },
     {
       "name": "Rathian Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10084,7 +10084,7 @@
     },
     {
       "name": "Naruga Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -10137,7 +10137,7 @@
     },
     {
       "name": "Naruga Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -10190,7 +10190,7 @@
     },
     {
       "name": "Tigrex Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10247,7 +10247,7 @@
     },
     {
       "name": "Tigrex Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10304,7 +10304,7 @@
     },
     {
       "name": "Rathalos Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10357,7 +10357,7 @@
     },
     {
       "name": "Rathalos Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10410,7 +10410,7 @@
     },
     {
       "name": "Diablo Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10463,7 +10463,7 @@
     },
     {
       "name": "Diablo Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10516,7 +10516,7 @@
     },
     {
       "name": "Gravios Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10569,7 +10569,7 @@
     },
     {
       "name": "Gravios Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10622,7 +10622,7 @@
     },
     {
       "name": "Leather Armor U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10675,7 +10675,7 @@
     },
     {
       "name": "Chain Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10728,7 +10728,7 @@
     },
     {
       "name": "Hunter's Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10781,7 +10781,7 @@
     },
     {
       "name": "Hunter's Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10834,7 +10834,7 @@
     },
     {
       "name": "Bone Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10891,7 +10891,7 @@
     },
     {
       "name": "Bone Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10944,7 +10944,7 @@
     },
     {
       "name": "Battle Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10997,7 +10997,7 @@
     },
     {
       "name": "Battle Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11050,7 +11050,7 @@
     },
     {
       "name": "Giaprey Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11103,7 +11103,7 @@
     },
     {
       "name": "Giaprey Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11156,7 +11156,7 @@
     },
     {
       "name": "Vespoid Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11209,7 +11209,7 @@
     },
     {
       "name": "Vespoid Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11262,7 +11262,7 @@
     },
     {
       "name": "Hi-Metal Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11315,7 +11315,7 @@
     },
     {
       "name": "Hi-Metal Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11368,7 +11368,7 @@
     },
     {
       "name": "Steel Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11417,7 +11417,7 @@
     },
     {
       "name": "Hornet Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11470,7 +11470,7 @@
     },
     {
       "name": "Hornet Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11523,7 +11523,7 @@
     },
     {
       "name": "Genprey Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11576,7 +11576,7 @@
     },
     {
       "name": "Genprey Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11629,7 +11629,7 @@
     },
     {
       "name": "Ioprey Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11682,7 +11682,7 @@
     },
     {
       "name": "Ioprey Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11735,7 +11735,7 @@
     },
     {
       "name": "Kut-Ku Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11788,7 +11788,7 @@
     },
     {
       "name": "Kut-Ku Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11841,7 +11841,7 @@
     },
     {
       "name": "Cephalos Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11894,7 +11894,7 @@
     },
     {
       "name": "Cephalos Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11947,7 +11947,7 @@
     },
     {
       "name": "Conga Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12000,7 +12000,7 @@
     },
     {
       "name": "Conga Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12053,7 +12053,7 @@
     },
     {
       "name": "Gypceros Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12106,7 +12106,7 @@
     },
     {
       "name": "Gypceros Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12159,7 +12159,7 @@
     },
     {
       "name": "Khezu Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12212,7 +12212,7 @@
     },
     {
       "name": "Khezu Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12265,7 +12265,7 @@
     },
     {
       "name": "Hermitaur Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12318,7 +12318,7 @@
     },
     {
       "name": "Hermitaur Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12371,7 +12371,7 @@
     },
     {
       "name": "Basarios Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12424,7 +12424,7 @@
     },
     {
       "name": "Basarios Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12477,7 +12477,7 @@
     },
     {
       "name": "Plesioth Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12530,7 +12530,7 @@
     },
     {
       "name": "Plesioth Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12583,7 +12583,7 @@
     },
     {
       "name": "Blango Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12636,7 +12636,7 @@
     },
     {
       "name": "Blango Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12689,7 +12689,7 @@
     },
     {
       "name": "Ceanataur Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12742,7 +12742,7 @@
     },
     {
       "name": "Ceanataur Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12795,7 +12795,7 @@
     },
     {
       "name": "Diablo Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12848,7 +12848,7 @@
     },
     {
       "name": "Diablo Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12901,7 +12901,7 @@
     },
     {
       "name": "Gravios Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12954,7 +12954,7 @@
     },
     {
       "name": "Gravios Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13007,7 +13007,7 @@
     },
     {
       "name": "Famitsu T-Shirt S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13056,7 +13056,7 @@
     },
     {
       "name": "Hunter T-Shirt",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13100,7 +13100,7 @@
     },
     {
       "name": "Black Belt Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -13157,7 +13157,7 @@
     },
     {
       "name": "Shinobi Suit(Heaven)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13210,7 +13210,7 @@
     },
     {
       "name": "Shinobi Suit (Earth)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13263,7 +13263,7 @@
     },
     {
       "name": "Red Guild Guard Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -13320,7 +13320,7 @@
     },
     {
       "name": "Red Guild Guard Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "9",
       "defence": null,
@@ -13377,7 +13377,7 @@
     },
     {
       "name": "Blue GuildGuard Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13430,7 +13430,7 @@
     },
     {
       "name": "Blue GuildGuard Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13483,7 +13483,7 @@
     },
     {
       "name": "Red Guild Guard Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -13540,7 +13540,7 @@
     },
     {
       "name": "Red Guild Guard Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "9",
       "defence": null,
@@ -13597,7 +13597,7 @@
     },
     {
       "name": "Blue GuildGuard Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13650,7 +13650,7 @@
     },
     {
       "name": "Blue GuildGuard Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13703,7 +13703,7 @@
     },
     {
       "name": "Devil Blos Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13760,7 +13760,7 @@
     },
     {
       "name": "Devil Blos Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13817,7 +13817,7 @@
     },
     {
       "name": "Jolly Roger Suit",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13874,7 +13874,7 @@
     },
     {
       "name": "Jolly Roger Jacket",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13931,7 +13931,7 @@
     },
     {
       "name": "Golden Haori",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "6",
       "defence": null,
@@ -13982,7 +13982,7 @@
     },
     {
       "name": "PuppetMaster Costume",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14039,7 +14039,7 @@
     },
     {
       "name": "Obituary Petto S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14092,7 +14092,7 @@
     },
     {
       "name": "Obituary Pectus S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14145,7 +14145,7 @@
     },
     {
       "name": "Butterfly Petto S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14198,7 +14198,7 @@
     },
     {
       "name": "Butterfly Pectus S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14251,7 +14251,7 @@
     },
     {
       "name": "DeathStench Muscle S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -14304,7 +14304,7 @@
     },
     {
       "name": "Death Stench Heart S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -14357,7 +14357,7 @@
     },
     {
       "name": "SupremeMizuha Guards",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14410,7 +14410,7 @@
     },
     {
       "name": "SprmExtrvagantCamise",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14463,7 +14463,7 @@
     },
     {
       "name": "Kushala Cista S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14520,7 +14520,7 @@
     },
     {
       "name": "Kushala Vise S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14577,7 +14577,7 @@
     },
     {
       "name": "Kirin Jacket S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14630,7 +14630,7 @@
     },
     {
       "name": "Kirin Cape S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14683,7 +14683,7 @@
     },
     {
       "name": "Auroros Torso Haku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14740,7 +14740,7 @@
     },
     {
       "name": "Genesis Torso Haku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14793,7 +14793,7 @@
     },
     {
       "name": "Borealis Chest Haku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14850,7 +14850,7 @@
     },
     {
       "name": "Glyph Chest Haku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14903,7 +14903,7 @@
     },
     {
       "name": "Ultimate Indra Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14956,7 +14956,7 @@
     },
     {
       "name": "SupremeSteadfastVest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15013,7 +15013,7 @@
     },
     {
       "name": "Kaiser Mail S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15066,7 +15066,7 @@
     },
     {
       "name": "Kaiser Vest S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15119,7 +15119,7 @@
     },
     {
       "name": "Dragonhide S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15176,7 +15176,7 @@
     },
     {
       "name": "Dragonskin S",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15233,7 +15233,7 @@
     },
     {
       "name": "Dark Akantor Aegis",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15290,7 +15290,7 @@
     },
     {
       "name": "Dark Akantor Plate",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15347,7 +15347,7 @@
     },
     {
       "name": "Bistro Jacket U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -15394,7 +15394,7 @@
     },
     {
       "name": "Shinobi Suit (Sky)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15447,7 +15447,7 @@
     },
     {
       "name": "Shinobi Suit (Sea)",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15500,7 +15500,7 @@
     },
     {
       "name": "Guardian Suit U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15553,7 +15553,7 @@
     },
     {
       "name": "Guardian Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15606,7 +15606,7 @@
     },
     {
       "name": "Helper Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15659,7 +15659,7 @@
     },
     {
       "name": "Healer Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15712,7 +15712,7 @@
     },
     {
       "name": "MelahoaFlowerJacketU",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15769,7 +15769,7 @@
     },
     {
       "name": "Melahoa Stalk U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15826,7 +15826,7 @@
     },
     {
       "name": "Makluva Cover U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15875,7 +15875,7 @@
     },
     {
       "name": "Makluva Scale U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15924,7 +15924,7 @@
     },
     {
       "name": "Monodevil Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -15981,7 +15981,7 @@
     },
     {
       "name": "Monodevil Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -16038,7 +16038,7 @@
     },
     {
       "name": "Rathian Heart Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16095,7 +16095,7 @@
     },
     {
       "name": "Rathian Heart Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16152,7 +16152,7 @@
     },
     {
       "name": "Rathalos Soul Mail U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16205,7 +16205,7 @@
     },
     {
       "name": "Rathalos Soul Vest U",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16258,7 +16258,7 @@
     },
     {
       "name": "Golden Moon Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16311,7 +16311,7 @@
     },
     {
       "name": "Golden Moon Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16364,7 +16364,7 @@
     },
     {
       "name": "Silver Sol Mail",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16417,7 +16417,7 @@
     },
     {
       "name": "Silver Sol Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16470,7 +16470,7 @@
     },
     {
       "name": "Auroros Torso Ten",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "5!8",
       "defence": null,
@@ -16523,7 +16523,7 @@
     },
     {
       "name": "Genesis Torso Ten",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16576,7 +16576,7 @@
     },
     {
       "name": "Borealis Chest Ten",
-      "type": "leggings",
+      "type": "plate",
       "hr": "5",
       "elder": "5!8",
       "defence": null,
@@ -16629,7 +16629,7 @@
     },
     {
       "name": "Glyph Chest Ten",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16682,7 +16682,7 @@
     },
     {
       "name": "Fatalis Hide",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16739,7 +16739,7 @@
     },
     {
       "name": "Fatalis Skin",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16796,7 +16796,7 @@
     },
     {
       "name": "White Fatalis Hide",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16853,7 +16853,7 @@
     },
     {
       "name": "White Fatalis Skin",
-      "type": "leggings",
+      "type": "plate",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16910,7 +16910,7 @@
     },
     {
       "name": "Kut-Ku Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16967,7 +16967,7 @@
     },
     {
       "name": "Kut-Ku Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17024,7 +17024,7 @@
     },
     {
       "name": "Conga Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17081,7 +17081,7 @@
     },
     {
       "name": "Conga Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17138,7 +17138,7 @@
     },
     {
       "name": "Gypceros Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17191,7 +17191,7 @@
     },
     {
       "name": "Gypceros Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17244,7 +17244,7 @@
     },
     {
       "name": "Khezu Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17301,7 +17301,7 @@
     },
     {
       "name": "Khezu Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17358,7 +17358,7 @@
     },
     {
       "name": "Hermitaur Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17411,7 +17411,7 @@
     },
     {
       "name": "Hermitaur Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17464,7 +17464,7 @@
     },
     {
       "name": "Hypnoc Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17517,7 +17517,7 @@
     },
     {
       "name": "Hypnoc Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17570,7 +17570,7 @@
     },
     {
       "name": "Basarios Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17627,7 +17627,7 @@
     },
     {
       "name": "Basarios Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17684,7 +17684,7 @@
     },
     {
       "name": "Plesioth Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17737,7 +17737,7 @@
     },
     {
       "name": "Plesioth Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17790,7 +17790,7 @@
     },
     {
       "name": "Monoblos Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17847,7 +17847,7 @@
     },
     {
       "name": "Monoblos Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17904,7 +17904,7 @@
     },
     {
       "name": "Yian Garuga Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17957,7 +17957,7 @@
     },
     {
       "name": "Yian Garuga Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18010,7 +18010,7 @@
     },
     {
       "name": "Blango Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18063,7 +18063,7 @@
     },
     {
       "name": "Blango Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18116,7 +18116,7 @@
     },
     {
       "name": "Ceanataur Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18169,7 +18169,7 @@
     },
     {
       "name": "Ceanataur Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18222,7 +18222,7 @@
     },
     {
       "name": "Rathian Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18275,7 +18275,7 @@
     },
     {
       "name": "Rathian Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18328,7 +18328,7 @@
     },
     {
       "name": "Naruga Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18381,7 +18381,7 @@
     },
     {
       "name": "Naruga Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18434,7 +18434,7 @@
     },
     {
       "name": "Volganos Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18487,7 +18487,7 @@
     },
     {
       "name": "Volganos Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18540,7 +18540,7 @@
     },
     {
       "name": "Tigrex Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18597,7 +18597,7 @@
     },
     {
       "name": "Tigrex Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18654,7 +18654,7 @@
     },
     {
       "name": "Rathalos Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18707,7 +18707,7 @@
     },
     {
       "name": "Rathalos Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18760,7 +18760,7 @@
     },
     {
       "name": "Diablo Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18813,7 +18813,7 @@
     },
     {
       "name": "Diablo Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18866,7 +18866,7 @@
     },
     {
       "name": "Gravios Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18923,7 +18923,7 @@
     },
     {
       "name": "Gravios Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18980,7 +18980,7 @@
     },
     {
       "name": "Kut-Ku Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19037,7 +19037,7 @@
     },
     {
       "name": "Kut-Ku Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19094,7 +19094,7 @@
     },
     {
       "name": "Conga Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19147,7 +19147,7 @@
     },
     {
       "name": "Conga Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19200,7 +19200,7 @@
     },
     {
       "name": "Gypceros Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19253,7 +19253,7 @@
     },
     {
       "name": "Gypceros Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19306,7 +19306,7 @@
     },
     {
       "name": "Khezu Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19359,7 +19359,7 @@
     },
     {
       "name": "Khezu Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19412,7 +19412,7 @@
     },
     {
       "name": "Hermitaur Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19469,7 +19469,7 @@
     },
     {
       "name": "Hermitaur Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19526,7 +19526,7 @@
     },
     {
       "name": "Plesioth Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19579,7 +19579,7 @@
     },
     {
       "name": "Plesioth Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19632,7 +19632,7 @@
     },
     {
       "name": "Blango Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19689,7 +19689,7 @@
     },
     {
       "name": "Blango Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19746,7 +19746,7 @@
     },
     {
       "name": "Ceanataur Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19799,7 +19799,7 @@
     },
     {
       "name": "Ceanataur Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19852,7 +19852,7 @@
     },
     {
       "name": "Diablo Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19909,7 +19909,7 @@
     },
     {
       "name": "Diablo Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19966,7 +19966,7 @@
     },
     {
       "name": "Gravios Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20019,7 +20019,7 @@
     },
     {
       "name": "Gravios Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20072,7 +20072,7 @@
     },
     {
       "name": "Chakra Necklace",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20110,7 +20110,7 @@
     },
     {
       "name": "Famitsu T-Shirt X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20159,7 +20159,7 @@
     },
     {
       "name": "Hunter Soul T-Shirt X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20203,7 +20203,7 @@
     },
     {
       "name": "Hunter T-Shirt X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20247,7 +20247,7 @@
     },
     {
       "name": "True Golden Haori",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20304,7 +20304,7 @@
     },
     {
       "name": "TruePuppetMstrCostume",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20361,7 +20361,7 @@
     },
     {
       "name": "Black Belt Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -20418,7 +20418,7 @@
     },
     {
       "name": "Black Belt Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -20475,7 +20475,7 @@
     },
     {
       "name": "Obituary Petto X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20528,7 +20528,7 @@
     },
     {
       "name": "Obituary Pectus X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20581,7 +20581,7 @@
     },
     {
       "name": "Butterfly Petto X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20634,7 +20634,7 @@
     },
     {
       "name": "Butterfly Pectus X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20687,7 +20687,7 @@
     },
     {
       "name": "True Mizuha Guards",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20744,7 +20744,7 @@
     },
     {
       "name": "TrueExtrvagantCamise",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20801,7 +20801,7 @@
     },
     {
       "name": "Kushala Cista X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20854,7 +20854,7 @@
     },
     {
       "name": "Kushala Vise X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20907,7 +20907,7 @@
     },
     {
       "name": "Kirin Jacket X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20964,7 +20964,7 @@
     },
     {
       "name": "Kirin Cape X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21021,7 +21021,7 @@
     },
     {
       "name": "Empress Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -21078,7 +21078,7 @@
     },
     {
       "name": "Empress Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -21135,7 +21135,7 @@
     },
     {
       "name": "True Indra Vest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21192,7 +21192,7 @@
     },
     {
       "name": "TrueSteadfastVest",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21249,7 +21249,7 @@
     },
     {
       "name": "Kaiser Mail X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21302,7 +21302,7 @@
     },
     {
       "name": "Kaiser Vest X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21355,7 +21355,7 @@
     },
     {
       "name": "TruGuardnSpritRaiment",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21412,7 +21412,7 @@
     },
     {
       "name": "True Carnage Raiment",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21469,7 +21469,7 @@
     },
     {
       "name": "Dragonhide X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21526,7 +21526,7 @@
     },
     {
       "name": "Dragonskin X",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21583,7 +21583,7 @@
     },
     {
       "name": "Ucamulbas Aegis",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21636,7 +21636,7 @@
     },
     {
       "name": "Ucamulbas Plate",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21689,7 +21689,7 @@
     },
     {
       "name": "MelahoaFlowerJacketZ",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21742,7 +21742,7 @@
     },
     {
       "name": "Melahoa Stalk Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21795,7 +21795,7 @@
     },
     {
       "name": "Makluva Cover Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21848,7 +21848,7 @@
     },
     {
       "name": "Makluva Scale Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21901,7 +21901,7 @@
     },
     {
       "name": "Rathian Heart Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21954,7 +21954,7 @@
     },
     {
       "name": "Rathian Heart Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22007,7 +22007,7 @@
     },
     {
       "name": "Rathalos Soul Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22064,7 +22064,7 @@
     },
     {
       "name": "Rathalos Soul Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22121,7 +22121,7 @@
     },
     {
       "name": "Golden Moon Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22174,7 +22174,7 @@
     },
     {
       "name": "Golden Moon Vest Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22227,7 +22227,7 @@
     },
     {
       "name": "Silver Sol Mail Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22280,7 +22280,7 @@
     },
     {
       "name": "Silver Sol VestZ",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22333,7 +22333,7 @@
     },
     {
       "name": "Auroros Torso Kyoku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22386,7 +22386,7 @@
     },
     {
       "name": "Genesis Torso Kyoku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22439,7 +22439,7 @@
     },
     {
       "name": "Borealis Chest Kyoku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22492,7 +22492,7 @@
     },
     {
       "name": "Glyph Chest Kyoku",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22545,7 +22545,7 @@
     },
     {
       "name": "Fatalis Hide Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22602,7 +22602,7 @@
     },
     {
       "name": "Fatalis Skin Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22659,7 +22659,7 @@
     },
     {
       "name": "White Fatalis Hide Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22712,7 +22712,7 @@
     },
     {
       "name": "White Fatalis Skin Z",
-      "type": "leggings",
+      "type": "plate",
       "hr": "9",
       "elder": "10",
       "defence": null,

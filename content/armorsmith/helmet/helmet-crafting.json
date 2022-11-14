@@ -2,7 +2,7 @@
   "weapons": [
     {
       "name": "Mafumofu Hood",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "1",
@@ -41,7 +41,7 @@
     },
     {
       "name": "Leather Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "2",
@@ -84,7 +84,7 @@
     },
     {
       "name": "Chain Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "4",
@@ -133,7 +133,7 @@
     },
     {
       "name": "Hunter's Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "8",
@@ -184,7 +184,7 @@
     },
     {
       "name": "Hunter's Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "6",
@@ -235,7 +235,7 @@
     },
     {
       "name": "Protection Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "12",
@@ -279,7 +279,7 @@
     },
     {
       "name": "Bone Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "14",
@@ -328,7 +328,7 @@
     },
     {
       "name": "Bone Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "8",
@@ -377,7 +377,7 @@
     },
     {
       "name": "Giaprey Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "16",
@@ -428,7 +428,7 @@
     },
     {
       "name": "Giaprey Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "8",
@@ -479,7 +479,7 @@
     },
     {
       "name": "Battle Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "16",
@@ -540,7 +540,7 @@
     },
     {
       "name": "Battle Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "10",
@@ -601,7 +601,7 @@
     },
     {
       "name": "Velociprey Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "20",
@@ -656,7 +656,7 @@
     },
     {
       "name": "Velociprey Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "10",
@@ -711,7 +711,7 @@
     },
     {
       "name": "Vespoid Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "20",
@@ -762,7 +762,7 @@
     },
     {
       "name": "Vespoid Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "1",
       "defence": "10",
@@ -813,7 +813,7 @@
     },
     {
       "name": "Hi-Metal Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -864,7 +864,7 @@
     },
     {
       "name": "Hi-Metal Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "10",
@@ -915,7 +915,7 @@
     },
     {
       "name": "Hornetaur Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "22",
@@ -968,7 +968,7 @@
     },
     {
       "name": "Hornetaur Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "11",
@@ -1021,7 +1021,7 @@
     },
     {
       "name": "Genprey Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "22",
@@ -1078,7 +1078,7 @@
     },
     {
       "name": "Genprey Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "11",
@@ -1135,7 +1135,7 @@
     },
     {
       "name": "Ioprey Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "24",
@@ -1196,7 +1196,7 @@
     },
     {
       "name": "Ioprey Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "12",
@@ -1253,7 +1253,7 @@
     },
     {
       "name": "Kut-Ku Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "24",
@@ -1314,7 +1314,7 @@
     },
     {
       "name": "Kut-Ku Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "12",
@@ -1375,7 +1375,7 @@
     },
     {
       "name": "Cephalos Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "28",
@@ -1422,7 +1422,7 @@
     },
     {
       "name": "Cephalos Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "16",
@@ -1469,7 +1469,7 @@
     },
     {
       "name": "Conga Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "28",
@@ -1526,7 +1526,7 @@
     },
     {
       "name": "Conga Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "16",
@@ -1583,7 +1583,7 @@
     },
     {
       "name": "Gypceros Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "30",
@@ -1640,7 +1640,7 @@
     },
     {
       "name": "Gypceros Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "16",
@@ -1697,7 +1697,7 @@
     },
     {
       "name": "Khezu Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "32",
@@ -1754,7 +1754,7 @@
     },
     {
       "name": "Khezu Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "16",
@@ -1811,7 +1811,7 @@
     },
     {
       "name": "Hermitaur Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "32",
@@ -1868,7 +1868,7 @@
     },
     {
       "name": "Hermitaur Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "16",
@@ -1925,7 +1925,7 @@
     },
     {
       "name": "Plesioth Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "34",
@@ -1982,7 +1982,7 @@
     },
     {
       "name": "Plesioth Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "17",
@@ -2039,7 +2039,7 @@
     },
     {
       "name": "Lobster Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "34",
@@ -2096,7 +2096,7 @@
     },
     {
       "name": "Lobster Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "17",
@@ -2153,7 +2153,7 @@
     },
     {
       "name": "Kut-Ku Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "22",
@@ -2214,7 +2214,7 @@
     },
     {
       "name": "Kut-Ku Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "10",
@@ -2275,7 +2275,7 @@
     },
     {
       "name": "Gypceros Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "3",
       "defence": "28",
@@ -2332,7 +2332,7 @@
     },
     {
       "name": "Gypceros Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "3",
       "defence": "14",
@@ -2389,7 +2389,7 @@
     },
     {
       "name": "Khezu Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "4",
       "defence": "30",
@@ -2442,7 +2442,7 @@
     },
     {
       "name": "Khezu Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "4",
       "defence": "14",
@@ -2495,7 +2495,7 @@
     },
     {
       "name": "Plesioth Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "3",
       "defence": "32",
@@ -2552,7 +2552,7 @@
     },
     {
       "name": "Plesioth Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "3",
       "defence": "15",
@@ -2609,7 +2609,7 @@
     },
     {
       "name": "Basarios Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "4",
       "defence": "32",
@@ -2670,7 +2670,7 @@
     },
     {
       "name": "Basarios Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "2",
       "elder": "4",
       "defence": "16",
@@ -2731,7 +2731,7 @@
     },
     {
       "name": "Monoblos Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "36",
@@ -2788,7 +2788,7 @@
     },
     {
       "name": "Monoblos Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "18",
@@ -2845,7 +2845,7 @@
     },
     {
       "name": "Yian Garuga Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "36",
@@ -2902,7 +2902,7 @@
     },
     {
       "name": "Yian Garuga Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "18",
@@ -2959,7 +2959,7 @@
     },
     {
       "name": "Blango Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "36",
@@ -3016,7 +3016,7 @@
     },
     {
       "name": "Blango Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "18",
@@ -3073,7 +3073,7 @@
     },
     {
       "name": "Ceanataur Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "37",
@@ -3130,7 +3130,7 @@
     },
     {
       "name": "Ceanataur Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "18",
@@ -3187,7 +3187,7 @@
     },
     {
       "name": "Rathian Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "6",
       "defence": "38",
@@ -3244,7 +3244,7 @@
     },
     {
       "name": "Rathian Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "6",
       "defence": "18",
@@ -3301,7 +3301,7 @@
     },
     {
       "name": "Tigrex Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "40",
@@ -3358,7 +3358,7 @@
     },
     {
       "name": "Tigrex Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -3415,7 +3415,7 @@
     },
     {
       "name": "Rathalos Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "6",
       "defence": "40",
@@ -3466,7 +3466,7 @@
     },
     {
       "name": "Rathalos Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "6",
       "defence": "20",
@@ -3517,7 +3517,7 @@
     },
     {
       "name": "Diablo Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "40",
@@ -3574,7 +3574,7 @@
     },
     {
       "name": "Diablo Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -3631,7 +3631,7 @@
     },
     {
       "name": "Gravios Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "40",
@@ -3688,7 +3688,7 @@
     },
     {
       "name": "Gravios Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -3741,7 +3741,7 @@
     },
     {
       "name": "Diablo Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "38",
@@ -3798,7 +3798,7 @@
     },
     {
       "name": "Diablo Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "18",
@@ -3855,7 +3855,7 @@
     },
     {
       "name": "Gravios Helm D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "38",
@@ -3908,7 +3908,7 @@
     },
     {
       "name": "Gravios Cap D",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "18",
@@ -3961,7 +3961,7 @@
     },
     {
       "name": "Chaos Shroom",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "2",
@@ -4010,7 +4010,7 @@
     },
     {
       "name": "Mosswine Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "3",
@@ -4061,7 +4061,7 @@
     },
     {
       "name": "Felyne Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "4",
@@ -4110,7 +4110,7 @@
     },
     {
       "name": "Bullfango Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "6",
@@ -4153,7 +4153,7 @@
     },
     {
       "name": "Giaprey Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "16",
@@ -4206,7 +4206,7 @@
     },
     {
       "name": "Velociprey Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "18",
@@ -4259,7 +4259,7 @@
     },
     {
       "name": "Red Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4308,7 +4308,7 @@
     },
     {
       "name": "Blue Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4357,7 +4357,7 @@
     },
     {
       "name": "Yellow Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4406,7 +4406,7 @@
     },
     {
       "name": "Black Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4459,7 +4459,7 @@
     },
     {
       "name": "White Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "4",
       "defence": "20",
@@ -4508,7 +4508,7 @@
     },
     {
       "name": "Felyne Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "7",
       "defence": "20",
@@ -4552,7 +4552,7 @@
     },
     {
       "name": "Felyne Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "7",
       "defence": "20",
@@ -4578,7 +4578,7 @@
     },
     {
       "name": "Garuga Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "4",
       "defence": "20",
@@ -4627,7 +4627,7 @@
     },
     {
       "name": "Bistro Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4674,7 +4674,7 @@
     },
     {
       "name": "Genprey Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -4727,7 +4727,7 @@
     },
     {
       "name": "Black Belt Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "4",
       "defence": "20",
@@ -4771,7 +4771,7 @@
     },
     {
       "name": "Shinobi Mask (Sun)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "20",
@@ -4828,7 +4828,7 @@
     },
     {
       "name": "Shinobi Mask (Moon)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "20",
@@ -4885,7 +4885,7 @@
     },
     {
       "name": "Guild Knight Feather",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -4942,7 +4942,7 @@
     },
     {
       "name": "Guild Knight Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -4999,7 +4999,7 @@
     },
     {
       "name": "Guardian Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -5056,7 +5056,7 @@
     },
     {
       "name": "Guardian Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -5113,7 +5113,7 @@
     },
     {
       "name": "Maiden's Hat",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -5170,7 +5170,7 @@
     },
     {
       "name": "Designer Glasses",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -5227,7 +5227,7 @@
     },
     {
       "name": "Helper Hood",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -5284,7 +5284,7 @@
     },
     {
       "name": "Healer Glasses",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "20",
@@ -5341,7 +5341,7 @@
     },
     {
       "name": "Ioprey Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "3",
       "defence": "22",
@@ -5394,7 +5394,7 @@
     },
     {
       "name": "Remobra Face",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "24",
@@ -5455,7 +5455,7 @@
     },
     {
       "name": "Melahoa Flower Hat",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "20",
@@ -5516,7 +5516,7 @@
     },
     {
       "name": "Melahoa Bloom",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "10",
@@ -5577,7 +5577,7 @@
     },
     {
       "name": "Makluva Hood",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "28",
@@ -5634,7 +5634,7 @@
     },
     {
       "name": "Makluva Gills",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "2",
       "defence": "16",
@@ -5691,7 +5691,7 @@
     },
     {
       "name": "Hypnoc Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "10",
       "defence": "32",
@@ -5748,7 +5748,7 @@
     },
     {
       "name": "Hypnoc Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "10",
       "defence": "16",
@@ -5805,7 +5805,7 @@
     },
     {
       "name": "Obituary Testa",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "32",
@@ -5862,7 +5862,7 @@
     },
     {
       "name": "Obituary Caput",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "16",
@@ -5919,7 +5919,7 @@
     },
     {
       "name": "Butterfly Testa",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "32",
@@ -5976,7 +5976,7 @@
     },
     {
       "name": "Butterfly Caput",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "4",
       "defence": "16",
@@ -6033,7 +6033,7 @@
     },
     {
       "name": "Black Head",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "5!",
       "defence": "36",
@@ -6077,7 +6077,7 @@
     },
     {
       "name": "Black Face",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "5!",
       "defence": "18",
@@ -6121,7 +6121,7 @@
     },
     {
       "name": "Death Stench Brain",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "4",
       "defence": "40",
@@ -6174,7 +6174,7 @@
     },
     {
       "name": "Death Stench Soul",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "4",
       "defence": "20",
@@ -6227,7 +6227,7 @@
     },
     {
       "name": "Volganos Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "10",
       "defence": "40",
@@ -6284,7 +6284,7 @@
     },
     {
       "name": "Volganos Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "10",
       "defence": "20",
@@ -6341,7 +6341,7 @@
     },
     {
       "name": "Mizuha Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "40",
@@ -6388,7 +6388,7 @@
     },
     {
       "name": "Extravagant Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "20",
@@ -6435,7 +6435,7 @@
     },
     {
       "name": "Kushala Glare",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "4",
       "defence": "42",
@@ -6486,7 +6486,7 @@
     },
     {
       "name": "Kushala Snarl",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "4",
       "defence": "21",
@@ -6537,7 +6537,7 @@
     },
     {
       "name": "Kirin Horn",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "44",
@@ -6594,7 +6594,7 @@
     },
     {
       "name": "Kirin Crest",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "5",
       "defence": "22",
@@ -6651,7 +6651,7 @@
     },
     {
       "name": "Guardian Spirit Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "44",
@@ -6708,7 +6708,7 @@
     },
     {
       "name": "Carnage Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "22",
@@ -6765,7 +6765,7 @@
     },
     {
       "name": "Auroros Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "44",
@@ -6822,7 +6822,7 @@
     },
     {
       "name": "Genesis Headpiece",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "22",
@@ -6879,7 +6879,7 @@
     },
     {
       "name": "Borealis Crown",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "44",
@@ -6936,7 +6936,7 @@
     },
     {
       "name": "Glyph Crown",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "22",
@@ -6993,7 +6993,7 @@
     },
     {
       "name": "Empress Crown",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "5!",
       "defence": "46",
@@ -7050,7 +7050,7 @@
     },
     {
       "name": "Empress Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "5!",
       "defence": "23",
@@ -7107,7 +7107,7 @@
     },
     {
       "name": "Indra Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "48",
@@ -7158,7 +7158,7 @@
     },
     {
       "name": "Steadfast Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "24",
@@ -7213,7 +7213,7 @@
     },
     {
       "name": "Kaiser Crown",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "48",
@@ -7260,7 +7260,7 @@
     },
     {
       "name": "Kaiser Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "24",
@@ -7307,7 +7307,7 @@
     },
     {
       "name": "Red Lobster Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "5",
       "defence": "32",
@@ -7358,7 +7358,7 @@
     },
     {
       "name": "Red Lobster Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "5",
       "defence": "15",
@@ -7409,7 +7409,7 @@
     },
     {
       "name": "Monodevil Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "34",
@@ -7466,7 +7466,7 @@
     },
     {
       "name": "Monodevil Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "4!",
       "defence": "16",
@@ -7523,7 +7523,7 @@
     },
     {
       "name": "Rathian Heart Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "36",
@@ -7580,7 +7580,7 @@
     },
     {
       "name": "Rathian Heart Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "16",
@@ -7637,7 +7637,7 @@
     },
     {
       "name": "Rathalos Soul Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "38",
@@ -7694,7 +7694,7 @@
     },
     {
       "name": "Rathalos Soul Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "3",
       "elder": "6",
       "defence": "18",
@@ -7751,7 +7751,7 @@
     },
     {
       "name": "Mafumofu Hood S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "20",
@@ -7804,7 +7804,7 @@
     },
     {
       "name": "Leather Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "22",
@@ -7853,7 +7853,7 @@
     },
     {
       "name": "Chain Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -7898,7 +7898,7 @@
     },
     {
       "name": "Hunter's Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "38",
@@ -7955,7 +7955,7 @@
     },
     {
       "name": "Hunter's Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8012,7 +8012,7 @@
     },
     {
       "name": "Bone Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "44",
@@ -8069,7 +8069,7 @@
     },
     {
       "name": "Bone Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8126,7 +8126,7 @@
     },
     {
       "name": "Battle Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "46",
@@ -8183,7 +8183,7 @@
     },
     {
       "name": "Battle Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8240,7 +8240,7 @@
     },
     {
       "name": "Velociprey Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -8287,7 +8287,7 @@
     },
     {
       "name": "Velociprey Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8334,7 +8334,7 @@
     },
     {
       "name": "Vespoid Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -8387,7 +8387,7 @@
     },
     {
       "name": "Vespoid Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8440,7 +8440,7 @@
     },
     {
       "name": "Hi-Metal Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -8493,7 +8493,7 @@
     },
     {
       "name": "Hi-Metal Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8546,7 +8546,7 @@
     },
     {
       "name": "Hornetaur Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -8599,7 +8599,7 @@
     },
     {
       "name": "Hornetaur Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8656,7 +8656,7 @@
     },
     {
       "name": "Genprey Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -8709,7 +8709,7 @@
     },
     {
       "name": "Genprey Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -8762,7 +8762,7 @@
     },
     {
       "name": "Ioprey Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -8815,7 +8815,7 @@
     },
     {
       "name": "Ioprey Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -8868,7 +8868,7 @@
     },
     {
       "name": "Kut-Ku Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -8921,7 +8921,7 @@
     },
     {
       "name": "Kut-Ku Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -8974,7 +8974,7 @@
     },
     {
       "name": "Cephalos Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "54",
@@ -9027,7 +9027,7 @@
     },
     {
       "name": "Cephalos Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -9080,7 +9080,7 @@
     },
     {
       "name": "Conga Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "54",
@@ -9137,7 +9137,7 @@
     },
     {
       "name": "Conga Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -9194,7 +9194,7 @@
     },
     {
       "name": "Gypceros Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "54",
@@ -9247,7 +9247,7 @@
     },
     {
       "name": "Gypceros Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "28",
@@ -9300,7 +9300,7 @@
     },
     {
       "name": "Khezu Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "56",
@@ -9353,7 +9353,7 @@
     },
     {
       "name": "Khezu Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "28",
@@ -9406,7 +9406,7 @@
     },
     {
       "name": "Hermitaur Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "56",
@@ -9463,7 +9463,7 @@
     },
     {
       "name": "Hermitaur Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -9516,7 +9516,7 @@
     },
     {
       "name": "Hypnoc Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "7",
       "defence": "56",
@@ -9569,7 +9569,7 @@
     },
     {
       "name": "Hypnoc Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "7",
       "defence": "28",
@@ -9622,7 +9622,7 @@
     },
     {
       "name": "Basarios Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "56",
@@ -9679,7 +9679,7 @@
     },
     {
       "name": "Basarios Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "28",
@@ -9736,7 +9736,7 @@
     },
     {
       "name": "Plesioth Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "58",
@@ -9793,7 +9793,7 @@
     },
     {
       "name": "Plesioth Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "30",
@@ -9850,7 +9850,7 @@
     },
     {
       "name": "Monoblos Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "8!",
       "defence": "60",
@@ -9903,7 +9903,7 @@
     },
     {
       "name": "Monoblos Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "8!",
       "defence": "30",
@@ -9956,7 +9956,7 @@
     },
     {
       "name": "Garuga Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "8",
       "defence": "60",
@@ -10013,7 +10013,7 @@
     },
     {
       "name": "Garuga Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "8",
       "defence": "30",
@@ -10070,7 +10070,7 @@
     },
     {
       "name": "Blango Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "60",
@@ -10127,7 +10127,7 @@
     },
     {
       "name": "Blango Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "30",
@@ -10184,7 +10184,7 @@
     },
     {
       "name": "Ceanataur Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "61",
@@ -10241,7 +10241,7 @@
     },
     {
       "name": "Ceanataur Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "30",
@@ -10294,7 +10294,7 @@
     },
     {
       "name": "Rathian Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "62",
@@ -10347,7 +10347,7 @@
     },
     {
       "name": "Rathian Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "30",
@@ -10400,7 +10400,7 @@
     },
     {
       "name": "Naruga Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "9",
       "defence": "62",
@@ -10453,7 +10453,7 @@
     },
     {
       "name": "Naruga Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "9",
       "defence": "30",
@@ -10506,7 +10506,7 @@
     },
     {
       "name": "Tigrex Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -10567,7 +10567,7 @@
     },
     {
       "name": "Tigrex Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "30",
@@ -10628,7 +10628,7 @@
     },
     {
       "name": "Rathalos Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "64",
@@ -10681,7 +10681,7 @@
     },
     {
       "name": "Rathalos Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "30",
@@ -10734,7 +10734,7 @@
     },
     {
       "name": "Diablo Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -10787,7 +10787,7 @@
     },
     {
       "name": "Diablo Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "30",
@@ -10840,7 +10840,7 @@
     },
     {
       "name": "Gravios Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -10893,7 +10893,7 @@
     },
     {
       "name": "Gravios Cap S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "30",
@@ -10946,7 +10946,7 @@
     },
     {
       "name": "Leather Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "20",
@@ -10999,7 +10999,7 @@
     },
     {
       "name": "Chain Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "22",
@@ -11046,7 +11046,7 @@
     },
     {
       "name": "Hunter's Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "36",
@@ -11099,7 +11099,7 @@
     },
     {
       "name": "Hunter's Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11152,7 +11152,7 @@
     },
     {
       "name": "Bone Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "42",
@@ -11209,7 +11209,7 @@
     },
     {
       "name": "Bone Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11262,7 +11262,7 @@
     },
     {
       "name": "Battle Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "44",
@@ -11315,7 +11315,7 @@
     },
     {
       "name": "Battle Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11368,7 +11368,7 @@
     },
     {
       "name": "Giaprey Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "44",
@@ -11421,7 +11421,7 @@
     },
     {
       "name": "Giaprey Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11474,7 +11474,7 @@
     },
     {
       "name": "Vespoid Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "48",
@@ -11527,7 +11527,7 @@
     },
     {
       "name": "Vespoid Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11580,7 +11580,7 @@
     },
     {
       "name": "Hi-Metal Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "48",
@@ -11627,7 +11627,7 @@
     },
     {
       "name": "Hi-Metal Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "24",
@@ -11674,7 +11674,7 @@
     },
     {
       "name": "Hornetaur Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -11727,7 +11727,7 @@
     },
     {
       "name": "Hornetaur Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11780,7 +11780,7 @@
     },
     {
       "name": "Genprey Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -11833,7 +11833,7 @@
     },
     {
       "name": "Genprey Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -11886,7 +11886,7 @@
     },
     {
       "name": "Ioprey Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -11939,7 +11939,7 @@
     },
     {
       "name": "Ioprey Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -11992,7 +11992,7 @@
     },
     {
       "name": "Kut-Ku Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "50",
@@ -12045,7 +12045,7 @@
     },
     {
       "name": "Kut-Ku Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -12098,7 +12098,7 @@
     },
     {
       "name": "Cephalos Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -12151,7 +12151,7 @@
     },
     {
       "name": "Cephalos Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -12204,7 +12204,7 @@
     },
     {
       "name": "Conga Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -12257,7 +12257,7 @@
     },
     {
       "name": "Conga Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -12310,7 +12310,7 @@
     },
     {
       "name": "Gypceros Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "52",
@@ -12363,7 +12363,7 @@
     },
     {
       "name": "Gypceros Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "26",
@@ -12416,7 +12416,7 @@
     },
     {
       "name": "Khezu Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "54",
@@ -12469,7 +12469,7 @@
     },
     {
       "name": "Khezu Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "26",
@@ -12522,7 +12522,7 @@
     },
     {
       "name": "Hermitaur Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "54",
@@ -12575,7 +12575,7 @@
     },
     {
       "name": "Hermitaur Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -12628,7 +12628,7 @@
     },
     {
       "name": "Basarios Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "54",
@@ -12681,7 +12681,7 @@
     },
     {
       "name": "Basarios Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "26",
@@ -12734,7 +12734,7 @@
     },
     {
       "name": "Plesioth Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "56",
@@ -12787,7 +12787,7 @@
     },
     {
       "name": "Plesioth Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "28",
@@ -12840,7 +12840,7 @@
     },
     {
       "name": "Blango Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "58",
@@ -12893,7 +12893,7 @@
     },
     {
       "name": "Blango Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "28",
@@ -12946,7 +12946,7 @@
     },
     {
       "name": "Ceanataur Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "59",
@@ -12999,7 +12999,7 @@
     },
     {
       "name": "Ceanataur Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "8",
       "defence": "28",
@@ -13052,7 +13052,7 @@
     },
     {
       "name": "Diablo Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "62",
@@ -13105,7 +13105,7 @@
     },
     {
       "name": "Diablo Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "28",
@@ -13158,7 +13158,7 @@
     },
     {
       "name": "Gravios Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "62",
@@ -13211,7 +13211,7 @@
     },
     {
       "name": "Gravios Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "28",
@@ -13264,7 +13264,7 @@
     },
     {
       "name": "Skull Face",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "22",
@@ -13317,7 +13317,7 @@
     },
     {
       "name": "Black Belt Helm S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "8",
       "defence": "30",
@@ -13361,7 +13361,7 @@
     },
     {
       "name": "Shinobi Mask (Heaven)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "30",
@@ -13414,7 +13414,7 @@
     },
     {
       "name": "Shinobi Mask (Earth)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "30",
@@ -13467,7 +13467,7 @@
     },
     {
       "name": "RdGuildGuardTricorne",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "30",
@@ -13524,7 +13524,7 @@
     },
     {
       "name": "Red Guild Guard Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "30",
@@ -13581,7 +13581,7 @@
     },
     {
       "name": "BlGuildGuardTricorne",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "30",
@@ -13634,7 +13634,7 @@
     },
     {
       "name": "Blue GuildGuard Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "30",
@@ -13687,7 +13687,7 @@
     },
     {
       "name": "Red Guild Guard Hat",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "30",
@@ -13744,7 +13744,7 @@
     },
     {
       "name": "RedGuildGuardPiercng",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "30",
@@ -13801,7 +13801,7 @@
     },
     {
       "name": "Blue Guild Guard Hat",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "30",
@@ -13854,7 +13854,7 @@
     },
     {
       "name": "BluGuildGuardPiercng",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "30",
@@ -13907,7 +13907,7 @@
     },
     {
       "name": "Devil Blos Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "40",
@@ -13960,7 +13960,7 @@
     },
     {
       "name": "Devil Blos Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "20",
@@ -14017,7 +14017,7 @@
     },
     {
       "name": "Jolly Roger Hat",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "48",
@@ -14070,7 +14070,7 @@
     },
     {
       "name": "Jolly Roger Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "24",
@@ -14127,7 +14127,7 @@
     },
     {
       "name": "Golden Hair Tie",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "6",
       "defence": "55",
@@ -14178,7 +14178,7 @@
     },
     {
       "name": "Puppet Master Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "28",
@@ -14235,7 +14235,7 @@
     },
     {
       "name": "Obituary Testa S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "9",
       "defence": "56",
@@ -14288,7 +14288,7 @@
     },
     {
       "name": "Obituary Caput S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "9",
       "defence": "28",
@@ -14341,7 +14341,7 @@
     },
     {
       "name": "Butterfly Testa S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "9",
       "defence": "56",
@@ -14394,7 +14394,7 @@
     },
     {
       "name": "Butterfly Caput S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "9",
       "defence": "28",
@@ -14447,7 +14447,7 @@
     },
     {
       "name": "Death Stench Brain S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -14500,7 +14500,7 @@
     },
     {
       "name": "Death Stench Soul S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "30",
@@ -14553,7 +14553,7 @@
     },
     {
       "name": "Supreme Mizuha Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -14606,7 +14606,7 @@
     },
     {
       "name": "SuprmeExtravagantCap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "30",
@@ -14659,7 +14659,7 @@
     },
     {
       "name": "Kushala Glare S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "66",
@@ -14716,7 +14716,7 @@
     },
     {
       "name": "Kushala Snarl S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "8",
       "defence": "32",
@@ -14773,7 +14773,7 @@
     },
     {
       "name": "Kirin Horn S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "66",
@@ -14826,7 +14826,7 @@
     },
     {
       "name": "Kirin Crest S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "32",
@@ -14879,7 +14879,7 @@
     },
     {
       "name": "Auroros Helm Haku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "66",
@@ -14936,7 +14936,7 @@
     },
     {
       "name": "GenesisHeadpieceHaku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "32",
@@ -14989,7 +14989,7 @@
     },
     {
       "name": "Borealis Crown Haku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "66",
@@ -15046,7 +15046,7 @@
     },
     {
       "name": "Glyph Crown Haku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "32",
@@ -15099,7 +15099,7 @@
     },
     {
       "name": "Ultimate Indra Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "70",
@@ -15146,7 +15146,7 @@
     },
     {
       "name": "SupremeSteadfastHelm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "34",
@@ -15197,7 +15197,7 @@
     },
     {
       "name": "Kaiser Crown S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "70",
@@ -15244,7 +15244,7 @@
     },
     {
       "name": "Kaiser Mask S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "34",
@@ -15291,7 +15291,7 @@
     },
     {
       "name": "Dragon Head S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "70",
@@ -15348,7 +15348,7 @@
     },
     {
       "name": "Dragon Face S",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "34",
@@ -15405,7 +15405,7 @@
     },
     {
       "name": "Dark Akantor Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "70",
@@ -15462,7 +15462,7 @@
     },
     {
       "name": "Dark Akantor Fangs",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "34",
@@ -15519,7 +15519,7 @@
     },
     {
       "name": "Bistro Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "7",
       "defence": "28",
@@ -15562,7 +15562,7 @@
     },
     {
       "name": "Shinobi Mask (Sky)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "28",
@@ -15615,7 +15615,7 @@
     },
     {
       "name": "Shinobi Mask (Sea)",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "28",
@@ -15668,7 +15668,7 @@
     },
     {
       "name": "Guardian Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -15721,7 +15721,7 @@
     },
     {
       "name": "Guardian Mask U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -15774,7 +15774,7 @@
     },
     {
       "name": "Helper Hood U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -15827,7 +15827,7 @@
     },
     {
       "name": "Healer Beret U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "28",
@@ -15880,7 +15880,7 @@
     },
     {
       "name": "Melahoa Flower Hat U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "48",
@@ -15937,7 +15937,7 @@
     },
     {
       "name": "Melahoa Bloom U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "24",
@@ -15994,7 +15994,7 @@
     },
     {
       "name": "Makluva Hood U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "52",
@@ -16043,7 +16043,7 @@
     },
     {
       "name": "Makluva Gills U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "4",
       "elder": "7",
       "defence": "26",
@@ -16092,7 +16092,7 @@
     },
     {
       "name": "Monodevil Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "8!",
       "defence": "58",
@@ -16149,7 +16149,7 @@
     },
     {
       "name": "Monodevil Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "10",
       "elder": "8!",
       "defence": "28",
@@ -16206,7 +16206,7 @@
     },
     {
       "name": "Rathian Heart Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "60",
@@ -16263,7 +16263,7 @@
     },
     {
       "name": "Rathian Heart Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "28",
@@ -16320,7 +16320,7 @@
     },
     {
       "name": "Rathalos Soul Helm U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "62",
@@ -16373,7 +16373,7 @@
     },
     {
       "name": "Rathalos Soul Cap U",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "28",
@@ -16426,7 +16426,7 @@
     },
     {
       "name": "Golden Moon Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "62",
@@ -16479,7 +16479,7 @@
     },
     {
       "name": "Golden Moon Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "31",
@@ -16532,7 +16532,7 @@
     },
     {
       "name": "Silver Sol Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "64",
@@ -16585,7 +16585,7 @@
     },
     {
       "name": "Silver Sol Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "9",
       "defence": "32",
@@ -16642,7 +16642,7 @@
     },
     {
       "name": "Auroros Helm Ten",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "64",
@@ -16695,7 +16695,7 @@
     },
     {
       "name": "Genesis Headpiece Ten",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "30",
@@ -16748,7 +16748,7 @@
     },
     {
       "name": "Borealis Crown Ten",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "64",
@@ -16801,7 +16801,7 @@
     },
     {
       "name": "Glyph Crown Ten",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "9",
       "defence": "30",
@@ -16854,7 +16854,7 @@
     },
     {
       "name": "Fatalis Head",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "68",
@@ -16911,7 +16911,7 @@
     },
     {
       "name": "Fatalis Face",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "32",
@@ -16968,7 +16968,7 @@
     },
     {
       "name": "White Fatalis Head",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "71",
@@ -17025,7 +17025,7 @@
     },
     {
       "name": "White Fatalis Face",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6!",
       "elder": "10",
       "defence": "35",
@@ -17082,7 +17082,7 @@
     },
     {
       "name": "Kut-Ku Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "78",
@@ -17135,7 +17135,7 @@
     },
     {
       "name": "Kut-Ku Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "38",
@@ -17188,7 +17188,7 @@
     },
     {
       "name": "Conga Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "80",
@@ -17241,7 +17241,7 @@
     },
     {
       "name": "Conga Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -17294,7 +17294,7 @@
     },
     {
       "name": "Gypceros Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "80",
@@ -17347,7 +17347,7 @@
     },
     {
       "name": "Gypceros Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -17400,7 +17400,7 @@
     },
     {
       "name": "Khezu Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -17453,7 +17453,7 @@
     },
     {
       "name": "Khezu Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -17506,7 +17506,7 @@
     },
     {
       "name": "Hermitaur Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -17563,7 +17563,7 @@
     },
     {
       "name": "Hermitaur Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -17620,7 +17620,7 @@
     },
     {
       "name": "Hypnoc Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -17673,7 +17673,7 @@
     },
     {
       "name": "Hypnoc Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -17726,7 +17726,7 @@
     },
     {
       "name": "Basarios Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "84",
@@ -17783,7 +17783,7 @@
     },
     {
       "name": "Basarios Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "42",
@@ -17836,7 +17836,7 @@
     },
     {
       "name": "Plesioth Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "84",
@@ -17889,7 +17889,7 @@
     },
     {
       "name": "Plesioth Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -17946,7 +17946,7 @@
     },
     {
       "name": "Monoblos Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "8!",
       "defence": "88",
@@ -18003,7 +18003,7 @@
     },
     {
       "name": "Monoblos Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7!",
       "elder": "8!",
       "defence": "44",
@@ -18060,7 +18060,7 @@
     },
     {
       "name": "Yian Garuga Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "88",
@@ -18117,7 +18117,7 @@
     },
     {
       "name": "Yian Garuga Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "44",
@@ -18174,7 +18174,7 @@
     },
     {
       "name": "Blango Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "88",
@@ -18227,7 +18227,7 @@
     },
     {
       "name": "Blango Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "44",
@@ -18280,7 +18280,7 @@
     },
     {
       "name": "Ceanataur Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "89",
@@ -18333,7 +18333,7 @@
     },
     {
       "name": "Ceanataur Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "44",
@@ -18386,7 +18386,7 @@
     },
     {
       "name": "Rathian Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "90",
@@ -18443,7 +18443,7 @@
     },
     {
       "name": "Rathian Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "44",
@@ -18500,7 +18500,7 @@
     },
     {
       "name": "Naruga Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "90",
@@ -18557,7 +18557,7 @@
     },
     {
       "name": "Naruga Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "44",
@@ -18610,7 +18610,7 @@
     },
     {
       "name": "Volganos Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "92",
@@ -18667,7 +18667,7 @@
     },
     {
       "name": "Volganos Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "46",
@@ -18724,7 +18724,7 @@
     },
     {
       "name": "Tigrex Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "92",
@@ -18781,7 +18781,7 @@
     },
     {
       "name": "Tigrex Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "46",
@@ -18834,7 +18834,7 @@
     },
     {
       "name": "Rathalos Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "92",
@@ -18887,7 +18887,7 @@
     },
     {
       "name": "Rathalos Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "46",
@@ -18940,7 +18940,7 @@
     },
     {
       "name": "Diablo Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "92",
@@ -18993,7 +18993,7 @@
     },
     {
       "name": "Diablo Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "46",
@@ -19046,7 +19046,7 @@
     },
     {
       "name": "Gravios Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "92",
@@ -19103,7 +19103,7 @@
     },
     {
       "name": "Gravios Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "46",
@@ -19160,7 +19160,7 @@
     },
     {
       "name": "Kut-Ku Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "80",
@@ -19213,7 +19213,7 @@
     },
     {
       "name": "Kut-Ku Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "40",
@@ -19266,7 +19266,7 @@
     },
     {
       "name": "Conga Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -19319,7 +19319,7 @@
     },
     {
       "name": "Conga Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -19372,7 +19372,7 @@
     },
     {
       "name": "Gypceros Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -19425,7 +19425,7 @@
     },
     {
       "name": "Gypceros Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -19478,7 +19478,7 @@
     },
     {
       "name": "Khezu Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "84",
@@ -19531,7 +19531,7 @@
     },
     {
       "name": "Khezu Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -19584,7 +19584,7 @@
     },
     {
       "name": "Hermitaur Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "84",
@@ -19641,7 +19641,7 @@
     },
     {
       "name": "Hermitaur Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -19698,7 +19698,7 @@
     },
     {
       "name": "Plesioth Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "86",
@@ -19751,7 +19751,7 @@
     },
     {
       "name": "Plesioth Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "44",
@@ -19808,7 +19808,7 @@
     },
     {
       "name": "Blango Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "90",
@@ -19861,7 +19861,7 @@
     },
     {
       "name": "Blango Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "46",
@@ -19914,7 +19914,7 @@
     },
     {
       "name": "Ceanataur Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "91",
@@ -19967,7 +19967,7 @@
     },
     {
       "name": "Ceanataur Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "46",
@@ -20020,7 +20020,7 @@
     },
     {
       "name": "Diablo Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "94",
@@ -20073,7 +20073,7 @@
     },
     {
       "name": "Diablo Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "48",
@@ -20126,7 +20126,7 @@
     },
     {
       "name": "Gravios Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "94",
@@ -20179,7 +20179,7 @@
     },
     {
       "name": "Gravios Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "48",
@@ -20232,7 +20232,7 @@
     },
     {
       "name": "Crystal Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "30",
@@ -20270,7 +20270,7 @@
     },
     {
       "name": "True Golden Hair Tie",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "81",
@@ -20323,7 +20323,7 @@
     },
     {
       "name": "TruePuppetMasterMask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "40",
@@ -20376,7 +20376,7 @@
     },
     {
       "name": "Black Belt Helm X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "82",
@@ -20429,7 +20429,7 @@
     },
     {
       "name": "Black Belt Cap X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "42",
@@ -20473,7 +20473,7 @@
     },
     {
       "name": "Obituary Testa X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "84",
@@ -20530,7 +20530,7 @@
     },
     {
       "name": "Obituary Caput X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -20587,7 +20587,7 @@
     },
     {
       "name": "Butterfly Testa X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "84",
@@ -20644,7 +20644,7 @@
     },
     {
       "name": "Butterfly Caput X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -20701,7 +20701,7 @@
     },
     {
       "name": "True Mizuha Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "92",
@@ -20758,7 +20758,7 @@
     },
     {
       "name": "True Extravagant Cap",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "46",
@@ -20815,7 +20815,7 @@
     },
     {
       "name": "Kushala Glare X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "94",
@@ -20872,7 +20872,7 @@
     },
     {
       "name": "Kusha Snarl X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "48",
@@ -20929,7 +20929,7 @@
     },
     {
       "name": "Kirin Horn X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "96",
@@ -20986,7 +20986,7 @@
     },
     {
       "name": "Kirin Crest X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "48",
@@ -21043,7 +21043,7 @@
     },
     {
       "name": "Empress Crown X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9!",
       "elder": "8!",
       "defence": "98",
@@ -21100,7 +21100,7 @@
     },
     {
       "name": "Empress Mask X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9!",
       "elder": "8!",
       "defence": "49",
@@ -21157,7 +21157,7 @@
     },
     {
       "name": "True Indra Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "100",
@@ -21214,7 +21214,7 @@
     },
     {
       "name": "True Steadfast Helm",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -21271,7 +21271,7 @@
     },
     {
       "name": "Kaiser Crown X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "100",
@@ -21328,7 +21328,7 @@
     },
     {
       "name": "Kaiser Mask X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -21385,7 +21385,7 @@
     },
     {
       "name": "TrueGuardianSpritMask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "100",
@@ -21438,7 +21438,7 @@
     },
     {
       "name": "True Carnage Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -21491,7 +21491,7 @@
     },
     {
       "name": "Dragon Head X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "100",
@@ -21548,7 +21548,7 @@
     },
     {
       "name": "Dragon Face X",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -21605,7 +21605,7 @@
     },
     {
       "name": "Ucamulbas Mask",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "100",
@@ -21662,7 +21662,7 @@
     },
     {
       "name": "Ucamulbas Fangs",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -21715,7 +21715,7 @@
     },
     {
       "name": "Melahoa Flower Hat Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "78",
@@ -21768,7 +21768,7 @@
     },
     {
       "name": "Melahoa Bloom Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "38",
@@ -21825,7 +21825,7 @@
     },
     {
       "name": "Makluva Hood Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "82",
@@ -21878,7 +21878,7 @@
     },
     {
       "name": "Makluva Gills Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "7",
       "elder": "10",
       "defence": "42",
@@ -21931,7 +21931,7 @@
     },
     {
       "name": "Rathian Heart Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "92",
@@ -21984,7 +21984,7 @@
     },
     {
       "name": "Rathian Heart Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "46",
@@ -22037,7 +22037,7 @@
     },
     {
       "name": "Rathalos Soul Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "94",
@@ -22094,7 +22094,7 @@
     },
     {
       "name": "Rathalos Soul Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "48",
@@ -22147,7 +22147,7 @@
     },
     {
       "name": "Golden Moon Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "96",
@@ -22204,7 +22204,7 @@
     },
     {
       "name": "Golden Moon Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "48",
@@ -22261,7 +22261,7 @@
     },
     {
       "name": "Silver Sol Helm Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "98",
@@ -22314,7 +22314,7 @@
     },
     {
       "name": "Silver Sol Cap Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "50",
@@ -22367,7 +22367,7 @@
     },
     {
       "name": "Auroros Helm Kyoku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "98",
@@ -22420,7 +22420,7 @@
     },
     {
       "name": "GenesisHeadpieceKyoku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "50",
@@ -22473,7 +22473,7 @@
     },
     {
       "name": "Borealis Crown Kyoku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "98",
@@ -22526,7 +22526,7 @@
     },
     {
       "name": "Glyph Crown Kyoku",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "8",
       "elder": "10",
       "defence": "50",
@@ -22579,7 +22579,7 @@
     },
     {
       "name": "Fatalis Head Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "103",
@@ -22636,7 +22636,7 @@
     },
     {
       "name": "Fatalis Face Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "53",
@@ -22693,7 +22693,7 @@
     },
     {
       "name": "White Fatalis Head Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "104",
@@ -22746,7 +22746,7 @@
     },
     {
       "name": "White Fatalis Face Z",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "54",
@@ -22799,7 +22799,7 @@
     },
     {
       "name": "Aspire Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "9",
       "elder": "10",
       "defence": "0",
@@ -22818,7 +22818,7 @@
     },
     {
       "name": "Sword Saint Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "6",
       "elder": "6",
       "defence": "0",
@@ -22837,7 +22837,7 @@
     },
     {
       "name": "Eagle Eye Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "1",
       "elder": "9!",
       "defence": "0",
@@ -22856,7 +22856,7 @@
     },
     {
       "name": "Barrage Piercing",
-      "type": "leggings",
+      "type": "helmet",
       "hr": "5",
       "elder": "5",
       "defence": "0",
