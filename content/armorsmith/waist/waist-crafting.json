@@ -2,7 +2,7 @@
   "weapons": [
     {
       "name": "Mafumofu Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -41,7 +41,7 @@
     },
     {
       "name": "Light Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -72,7 +72,7 @@
     },
     {
       "name": "Leather Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -121,7 +121,7 @@
     },
     {
       "name": "Iron Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -168,7 +168,7 @@
     },
     {
       "name": "Chain Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -217,7 +217,7 @@
     },
     {
       "name": "Hunter Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -262,7 +262,7 @@
     },
     {
       "name": "Hunter Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -307,7 +307,7 @@
     },
     {
       "name": "Bone Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -362,7 +362,7 @@
     },
     {
       "name": "Bone Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -417,7 +417,7 @@
     },
     {
       "name": "Giaprey Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -455,7 +455,7 @@
     },
     {
       "name": "Giaprey Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -493,7 +493,7 @@
     },
     {
       "name": "Battle Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -550,7 +550,7 @@
     },
     {
       "name": "Battle Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -607,7 +607,7 @@
     },
     {
       "name": "Hide Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -639,7 +639,7 @@
     },
     {
       "name": "Velociprey Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -696,7 +696,7 @@
     },
     {
       "name": "Velociprey Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -753,7 +753,7 @@
     },
     {
       "name": "Vespoid Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -804,7 +804,7 @@
     },
     {
       "name": "Vespoid Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -855,7 +855,7 @@
     },
     {
       "name": "Hi-Metal Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -906,7 +906,7 @@
     },
     {
       "name": "Hi-Metal Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -957,7 +957,7 @@
     },
     {
       "name": "Hornet Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1014,7 +1014,7 @@
     },
     {
       "name": "Hornet Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1071,7 +1071,7 @@
     },
     {
       "name": "Genprey Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1124,7 +1124,7 @@
     },
     {
       "name": "Genprey Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1185,7 +1185,7 @@
     },
     {
       "name": "Chrome Metal Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "6",
       "defence": null,
@@ -1204,7 +1204,7 @@
     },
     {
       "name": "Steel Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -1255,7 +1255,7 @@
     },
     {
       "name": "Ioprey Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1312,7 +1312,7 @@
     },
     {
       "name": "Ioprey Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1369,7 +1369,7 @@
     },
     {
       "name": "Kut-Ku Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1424,7 +1424,7 @@
     },
     {
       "name": "Kut-Ku Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1479,7 +1479,7 @@
     },
     {
       "name": "Cephalos Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1532,7 +1532,7 @@
     },
     {
       "name": "Cephalos Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1585,7 +1585,7 @@
     },
     {
       "name": "Conga Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1642,7 +1642,7 @@
     },
     {
       "name": "Conga Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1699,7 +1699,7 @@
     },
     {
       "name": "Gypceros Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1750,7 +1750,7 @@
     },
     {
       "name": "Gypceros Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1801,7 +1801,7 @@
     },
     {
       "name": "Khezu Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1852,7 +1852,7 @@
     },
     {
       "name": "Khezu Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1903,7 +1903,7 @@
     },
     {
       "name": "Hermitaur Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1960,7 +1960,7 @@
     },
     {
       "name": "Hermitaur Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2017,7 +2017,7 @@
     },
     {
       "name": "Lobster Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2074,7 +2074,7 @@
     },
     {
       "name": "Lobster Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2131,7 +2131,7 @@
     },
     {
       "name": "Kut-Ku Tasset D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2192,7 +2192,7 @@
     },
     {
       "name": "Kut-Ku Coat D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2253,7 +2253,7 @@
     },
     {
       "name": "Gypceros Tasset D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2304,7 +2304,7 @@
     },
     {
       "name": "Gypceros Coat D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2355,7 +2355,7 @@
     },
     {
       "name": "Khezu Tasset D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2402,7 +2402,7 @@
     },
     {
       "name": "Khezu Coat D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2449,7 +2449,7 @@
     },
     {
       "name": "Basarios Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2510,7 +2510,7 @@
     },
     {
       "name": "Basarios Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2571,7 +2571,7 @@
     },
     {
       "name": "Monoblos Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2628,7 +2628,7 @@
     },
     {
       "name": "Monoblos Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2685,7 +2685,7 @@
     },
     {
       "name": "Garuga Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2742,7 +2742,7 @@
     },
     {
       "name": "Garuga Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2799,7 +2799,7 @@
     },
     {
       "name": "Blango Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2856,7 +2856,7 @@
     },
     {
       "name": "Blango Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2913,7 +2913,7 @@
     },
     {
       "name": "Ceanataur Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2970,7 +2970,7 @@
     },
     {
       "name": "Ceanataur Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3027,7 +3027,7 @@
     },
     {
       "name": "Rathian Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3084,7 +3084,7 @@
     },
     {
       "name": "Rathian Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3141,7 +3141,7 @@
     },
     {
       "name": "Tigrex Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3198,7 +3198,7 @@
     },
     {
       "name": "Tigrex Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3255,7 +3255,7 @@
     },
     {
       "name": "Rathalos Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3312,7 +3312,7 @@
     },
     {
       "name": "Rathalos Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3369,7 +3369,7 @@
     },
     {
       "name": "Diablo Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3420,7 +3420,7 @@
     },
     {
       "name": "Diablo Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3471,7 +3471,7 @@
     },
     {
       "name": "Gravios Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3528,7 +3528,7 @@
     },
     {
       "name": "Gravios Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3581,7 +3581,7 @@
     },
     {
       "name": "Diablo Coil D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3632,7 +3632,7 @@
     },
     {
       "name": "Diablo Coat D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3683,7 +3683,7 @@
     },
     {
       "name": "Gravios Tasset D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3736,7 +3736,7 @@
     },
     {
       "name": "Gravios Coat D",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3789,7 +3789,7 @@
     },
     {
       "name": "Mosswine Hip",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -3846,7 +3846,7 @@
     },
     {
       "name": "Bistro Apron",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -3893,7 +3893,7 @@
     },
     {
       "name": "Black Belt Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -3950,7 +3950,7 @@
     },
     {
       "name": "Shinobi Belt (Sun)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4007,7 +4007,7 @@
     },
     {
       "name": "Shinobi Belt (Moon)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4064,7 +4064,7 @@
     },
     {
       "name": "Guild Knight Kilt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4121,7 +4121,7 @@
     },
     {
       "name": "Guild Knight Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4178,7 +4178,7 @@
     },
     {
       "name": "Guardian Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "4",
       "defence": null,
@@ -4235,7 +4235,7 @@
     },
     {
       "name": "Guardian Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -4292,7 +4292,7 @@
     },
     {
       "name": "Maiden's Skirt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4349,7 +4349,7 @@
     },
     {
       "name": "Personal Frills",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4406,7 +4406,7 @@
     },
     {
       "name": "Helper Skirt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "4",
       "defence": null,
@@ -4463,7 +4463,7 @@
     },
     {
       "name": "Healer Frills",
-      "type": "leggings",
+      "type": "waist",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -4520,7 +4520,7 @@
     },
     {
       "name": "Remobra Belt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4564,7 +4564,7 @@
     },
     {
       "name": "Melahoa Skirt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4625,7 +4625,7 @@
     },
     {
       "name": "Melahoa Trunk",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4686,7 +4686,7 @@
     },
     {
       "name": "Makluva Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4743,7 +4743,7 @@
     },
     {
       "name": "Makluva Fin",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4800,7 +4800,7 @@
     },
     {
       "name": "Hypnoc Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -4857,7 +4857,7 @@
     },
     {
       "name": "Hypnoc Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -4914,7 +4914,7 @@
     },
     {
       "name": "Obituary Anka",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4971,7 +4971,7 @@
     },
     {
       "name": "Obituary Cocusa",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5028,7 +5028,7 @@
     },
     {
       "name": "Butterfly Anka",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5085,7 +5085,7 @@
     },
     {
       "name": "Butterfly Cocusa",
-      "type": "leggings",
+      "type": "waist",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5142,7 +5142,7 @@
     },
     {
       "name": "Black Spine",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5186,7 +5186,7 @@
     },
     {
       "name": "Black Scale",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5230,7 +5230,7 @@
     },
     {
       "name": "Death Stench Bowels",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5283,7 +5283,7 @@
     },
     {
       "name": "Death Stench Belly",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5336,7 +5336,7 @@
     },
     {
       "name": "Volganos Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5393,7 +5393,7 @@
     },
     {
       "name": "Volganos Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5450,7 +5450,7 @@
     },
     {
       "name": "Mizuha Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5503,7 +5503,7 @@
     },
     {
       "name": "Extravagant Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5556,7 +5556,7 @@
     },
     {
       "name": "Kushala Cocoon",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5613,7 +5613,7 @@
     },
     {
       "name": "Kushala Wind Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5670,7 +5670,7 @@
     },
     {
       "name": "Kirin Hoop",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5727,7 +5727,7 @@
     },
     {
       "name": "Kirin Shorts",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5784,7 +5784,7 @@
     },
     {
       "name": "Guardian Spirit Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5841,7 +5841,7 @@
     },
     {
       "name": "Carnage Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5898,7 +5898,7 @@
     },
     {
       "name": "Auroros Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -5955,7 +5955,7 @@
     },
     {
       "name": "Genesis Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6012,7 +6012,7 @@
     },
     {
       "name": "Borealis Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6069,7 +6069,7 @@
     },
     {
       "name": "Glyph Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6126,7 +6126,7 @@
     },
     {
       "name": "Red Borealis Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6175,7 +6175,7 @@
     },
     {
       "name": "Red Glyph Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6224,7 +6224,7 @@
     },
     {
       "name": "Empress Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -6281,7 +6281,7 @@
     },
     {
       "name": "Empress Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -6338,7 +6338,7 @@
     },
     {
       "name": "Indra Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6395,7 +6395,7 @@
     },
     {
       "name": "Steadfast Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6456,7 +6456,7 @@
     },
     {
       "name": "Kaiser Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6509,7 +6509,7 @@
     },
     {
       "name": "Kaiser Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6562,7 +6562,7 @@
     },
     {
       "name": "Red Lobster Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "5",
       "defence": null,
@@ -6613,7 +6613,7 @@
     },
     {
       "name": "Red Lobster Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "5",
       "defence": null,
@@ -6664,7 +6664,7 @@
     },
     {
       "name": "Monodevil Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -6721,7 +6721,7 @@
     },
     {
       "name": "Monodevil Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -6778,7 +6778,7 @@
     },
     {
       "name": "Rathian Heart Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6835,7 +6835,7 @@
     },
     {
       "name": "Rathian Heart Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6892,7 +6892,7 @@
     },
     {
       "name": "Rathalos Soul Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6949,7 +6949,7 @@
     },
     {
       "name": "Rathalos Soul Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7006,7 +7006,7 @@
     },
     {
       "name": "Mafumofu Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7053,7 +7053,7 @@
     },
     {
       "name": "Leather Belt S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7102,7 +7102,7 @@
     },
     {
       "name": "Chain Belt S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7153,7 +7153,7 @@
     },
     {
       "name": "Hunter Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7210,7 +7210,7 @@
     },
     {
       "name": "Hunter Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7267,7 +7267,7 @@
     },
     {
       "name": "Bone Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7324,7 +7324,7 @@
     },
     {
       "name": "Bone Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7381,7 +7381,7 @@
     },
     {
       "name": "Battle Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7438,7 +7438,7 @@
     },
     {
       "name": "Battle Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7495,7 +7495,7 @@
     },
     {
       "name": "Velociprey Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7539,7 +7539,7 @@
     },
     {
       "name": "Velociprey Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7583,7 +7583,7 @@
     },
     {
       "name": "Vespoid Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7636,7 +7636,7 @@
     },
     {
       "name": "Vespoid Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7689,7 +7689,7 @@
     },
     {
       "name": "Hi-Metal Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7742,7 +7742,7 @@
     },
     {
       "name": "Hi-Metal Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7795,7 +7795,7 @@
     },
     {
       "name": "Steel Belt S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7848,7 +7848,7 @@
     },
     {
       "name": "Hornet Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7901,7 +7901,7 @@
     },
     {
       "name": "Hornet Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7954,7 +7954,7 @@
     },
     {
       "name": "Genprey Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8007,7 +8007,7 @@
     },
     {
       "name": "Genprey Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8060,7 +8060,7 @@
     },
     {
       "name": "Ioprey Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8113,7 +8113,7 @@
     },
     {
       "name": "Ioprey Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8166,7 +8166,7 @@
     },
     {
       "name": "Kut-Ku Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8213,7 +8213,7 @@
     },
     {
       "name": "Kut-Ku Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8260,7 +8260,7 @@
     },
     {
       "name": "Cephalos Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8313,7 +8313,7 @@
     },
     {
       "name": "Cephalos Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8366,7 +8366,7 @@
     },
     {
       "name": "Conga Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8423,7 +8423,7 @@
     },
     {
       "name": "Conga Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8480,7 +8480,7 @@
     },
     {
       "name": "Gypceros Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8533,7 +8533,7 @@
     },
     {
       "name": "Gypceros Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8586,7 +8586,7 @@
     },
     {
       "name": "Khezu Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8639,7 +8639,7 @@
     },
     {
       "name": "Khezu Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8692,7 +8692,7 @@
     },
     {
       "name": "Hermitaur Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8749,7 +8749,7 @@
     },
     {
       "name": "Hermitaur Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8806,7 +8806,7 @@
     },
     {
       "name": "Hypnoc Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -8859,7 +8859,7 @@
     },
     {
       "name": "Hypnoc Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -8912,7 +8912,7 @@
     },
     {
       "name": "Basarios Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8969,7 +8969,7 @@
     },
     {
       "name": "Basarios Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9026,7 +9026,7 @@
     },
     {
       "name": "Plesioth Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9083,7 +9083,7 @@
     },
     {
       "name": "Plesioth Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9140,7 +9140,7 @@
     },
     {
       "name": "Monoblos Coil S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9193,7 +9193,7 @@
     },
     {
       "name": "Monoblos Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9246,7 +9246,7 @@
     },
     {
       "name": "Garuga Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9303,7 +9303,7 @@
     },
     {
       "name": "Garuga Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9360,7 +9360,7 @@
     },
     {
       "name": "Blango Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9417,7 +9417,7 @@
     },
     {
       "name": "Blango Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9474,7 +9474,7 @@
     },
     {
       "name": "Ceanataur Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9531,7 +9531,7 @@
     },
     {
       "name": "Ceanataur Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9584,7 +9584,7 @@
     },
     {
       "name": "Rathian Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -9637,7 +9637,7 @@
     },
     {
       "name": "Rathian Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -9690,7 +9690,7 @@
     },
     {
       "name": "Naruga Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -9743,7 +9743,7 @@
     },
     {
       "name": "Naruga Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -9796,7 +9796,7 @@
     },
     {
       "name": "Tigrex Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -9853,7 +9853,7 @@
     },
     {
       "name": "Tigrex Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -9910,7 +9910,7 @@
     },
     {
       "name": "Rathalos Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -9963,7 +9963,7 @@
     },
     {
       "name": "Rathalos Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10016,7 +10016,7 @@
     },
     {
       "name": "Diablo Coil S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10069,7 +10069,7 @@
     },
     {
       "name": "Diablo Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10122,7 +10122,7 @@
     },
     {
       "name": "Gravios Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10175,7 +10175,7 @@
     },
     {
       "name": "Gravios Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10228,7 +10228,7 @@
     },
     {
       "name": "Leather Belt U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10281,7 +10281,7 @@
     },
     {
       "name": "Chain Belt U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10334,7 +10334,7 @@
     },
     {
       "name": "Hunter Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10387,7 +10387,7 @@
     },
     {
       "name": "Hunter Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10440,7 +10440,7 @@
     },
     {
       "name": "Bone Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10497,7 +10497,7 @@
     },
     {
       "name": "Bone Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10550,7 +10550,7 @@
     },
     {
       "name": "Battle Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10603,7 +10603,7 @@
     },
     {
       "name": "Battle Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10656,7 +10656,7 @@
     },
     {
       "name": "Giaprey Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10709,7 +10709,7 @@
     },
     {
       "name": "Giaprey Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10762,7 +10762,7 @@
     },
     {
       "name": "Vespoid Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10815,7 +10815,7 @@
     },
     {
       "name": "Vespoid Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10868,7 +10868,7 @@
     },
     {
       "name": "Hi-Metal Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -10921,7 +10921,7 @@
     },
     {
       "name": "Hi-Metal Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -10974,7 +10974,7 @@
     },
     {
       "name": "Steel Belt U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11027,7 +11027,7 @@
     },
     {
       "name": "Hornet Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11080,7 +11080,7 @@
     },
     {
       "name": "Hornet Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11133,7 +11133,7 @@
     },
     {
       "name": "Genprey Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11186,7 +11186,7 @@
     },
     {
       "name": "Genprey Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11239,7 +11239,7 @@
     },
     {
       "name": "Ioprey Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11292,7 +11292,7 @@
     },
     {
       "name": "Ioprey Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11345,7 +11345,7 @@
     },
     {
       "name": "Kut-Ku Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "8",
       "defence": null,
@@ -11398,7 +11398,7 @@
     },
     {
       "name": "Kut-Ku Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "8",
       "defence": null,
@@ -11451,7 +11451,7 @@
     },
     {
       "name": "Cephalos Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11504,7 +11504,7 @@
     },
     {
       "name": "Cephalos Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11557,7 +11557,7 @@
     },
     {
       "name": "Conga Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11610,7 +11610,7 @@
     },
     {
       "name": "Conga Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11663,7 +11663,7 @@
     },
     {
       "name": "Gypceros Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11716,7 +11716,7 @@
     },
     {
       "name": "Gypceros Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11769,7 +11769,7 @@
     },
     {
       "name": "Khezu Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11822,7 +11822,7 @@
     },
     {
       "name": "Khezu Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11875,7 +11875,7 @@
     },
     {
       "name": "Hermitaur Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11928,7 +11928,7 @@
     },
     {
       "name": "Hermitaur Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11981,7 +11981,7 @@
     },
     {
       "name": "Basarios Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12034,7 +12034,7 @@
     },
     {
       "name": "Basarios Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12087,7 +12087,7 @@
     },
     {
       "name": "Blango Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12140,7 +12140,7 @@
     },
     {
       "name": "Blango Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12193,7 +12193,7 @@
     },
     {
       "name": "Ceanataur Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12246,7 +12246,7 @@
     },
     {
       "name": "Ceanataur Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12299,7 +12299,7 @@
     },
     {
       "name": "Diablo Coil U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12352,7 +12352,7 @@
     },
     {
       "name": "Diablo Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12405,7 +12405,7 @@
     },
     {
       "name": "Gravios Tasset U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12458,7 +12458,7 @@
     },
     {
       "name": "Gravios Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12511,7 +12511,7 @@
     },
     {
       "name": "Black Belt Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12568,7 +12568,7 @@
     },
     {
       "name": "Shinobi Belt(Heaven)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -12621,7 +12621,7 @@
     },
     {
       "name": "Shinobi Belt (Earth)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -12674,7 +12674,7 @@
     },
     {
       "name": "Red Guild Guard Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12731,7 +12731,7 @@
     },
     {
       "name": "Red Guild Guard Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12788,7 +12788,7 @@
     },
     {
       "name": "Blue GuildGuard Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "5!7",
       "defence": null,
@@ -12841,7 +12841,7 @@
     },
     {
       "name": "Blue GuildGuard Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "5!7",
       "defence": null,
@@ -12894,7 +12894,7 @@
     },
     {
       "name": "Red Guild Guard Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12951,7 +12951,7 @@
     },
     {
       "name": "Red Guild Guard Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13008,7 +13008,7 @@
     },
     {
       "name": "Blue GuildGuard Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "5!7",
       "defence": null,
@@ -13061,7 +13061,7 @@
     },
     {
       "name": "Blue GuildGuard Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "5!7",
       "defence": null,
@@ -13114,7 +13114,7 @@
     },
     {
       "name": "Devil Blos Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13171,7 +13171,7 @@
     },
     {
       "name": "Devil Blos Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13228,7 +13228,7 @@
     },
     {
       "name": "Jolly Roger Coil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13285,7 +13285,7 @@
     },
     {
       "name": "Jolly Roger Skirt",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13342,7 +13342,7 @@
     },
     {
       "name": "Golden Obi",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13393,7 +13393,7 @@
     },
     {
       "name": "Puppet Master Obi",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -13450,7 +13450,7 @@
     },
     {
       "name": "Obituary Anka S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13503,7 +13503,7 @@
     },
     {
       "name": "Obituary Cocusa S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13556,7 +13556,7 @@
     },
     {
       "name": "Butterfly Anka S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13609,7 +13609,7 @@
     },
     {
       "name": "Butterfly Cocusa S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13662,7 +13662,7 @@
     },
     {
       "name": "DeathStench Bowels S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13715,7 +13715,7 @@
     },
     {
       "name": "Death Stench Belly S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13768,7 +13768,7 @@
     },
     {
       "name": "Supreme Mizuha Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13821,7 +13821,7 @@
     },
     {
       "name": "SuprmExtravagantCoat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13874,7 +13874,7 @@
     },
     {
       "name": "Kushala Cocoon S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -13927,7 +13927,7 @@
     },
     {
       "name": "Kushala Wind Wrap S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -13980,7 +13980,7 @@
     },
     {
       "name": "Kirin Hoop S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14033,7 +14033,7 @@
     },
     {
       "name": "Kirin Shorts S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14086,7 +14086,7 @@
     },
     {
       "name": "Auroros Tasset Haku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14143,7 +14143,7 @@
     },
     {
       "name": "Genesis Tasset Haku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14196,7 +14196,7 @@
     },
     {
       "name": "Borealis Tasset Haku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14253,7 +14253,7 @@
     },
     {
       "name": "Glyph Tasset Haku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14306,7 +14306,7 @@
     },
     {
       "name": "Ultimate Indra Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14359,7 +14359,7 @@
     },
     {
       "name": "SupremeSteadfastCoat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14416,7 +14416,7 @@
     },
     {
       "name": "Kaiser Tasset S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14469,7 +14469,7 @@
     },
     {
       "name": "Kaiser Coat S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14522,7 +14522,7 @@
     },
     {
       "name": "Dragon Spine S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14579,7 +14579,7 @@
     },
     {
       "name": "Dragon Scale S",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14636,7 +14636,7 @@
     },
     {
       "name": "DarkAkantor Cincture",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14693,7 +14693,7 @@
     },
     {
       "name": "Dark Akantor Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14750,7 +14750,7 @@
     },
     {
       "name": "Bistro Apron U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -14793,7 +14793,7 @@
     },
     {
       "name": "Shinobi Belt (Sky)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14846,7 +14846,7 @@
     },
     {
       "name": "Shinobi Belt (Sea)",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14899,7 +14899,7 @@
     },
     {
       "name": "Guardian Coil U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14952,7 +14952,7 @@
     },
     {
       "name": "Guardian Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15005,7 +15005,7 @@
     },
     {
       "name": "Helper Skirt U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15058,7 +15058,7 @@
     },
     {
       "name": "Healer Frills U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15111,7 +15111,7 @@
     },
     {
       "name": "Melahoa Skirt U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15168,7 +15168,7 @@
     },
     {
       "name": "Melahoa Trunk U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15225,7 +15225,7 @@
     },
     {
       "name": "Makluva Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15278,7 +15278,7 @@
     },
     {
       "name": "Makluva Fin U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15331,7 +15331,7 @@
     },
     {
       "name": "Monodevil Coil U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -15388,7 +15388,7 @@
     },
     {
       "name": "Monodevil Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -15445,7 +15445,7 @@
     },
     {
       "name": "Rathian Heart Coil U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15502,7 +15502,7 @@
     },
     {
       "name": "Rathian Heart Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15559,7 +15559,7 @@
     },
     {
       "name": "Rathalos Soul Coil U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15612,7 +15612,7 @@
     },
     {
       "name": "Rathalos Soul Coat U",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15665,7 +15665,7 @@
     },
     {
       "name": "Golden Moon Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15718,7 +15718,7 @@
     },
     {
       "name": "Golden Moon Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15771,7 +15771,7 @@
     },
     {
       "name": "Silver Sol Tasset",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15824,7 +15824,7 @@
     },
     {
       "name": "Silver Sol Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15881,7 +15881,7 @@
     },
     {
       "name": "Auroros Tasset Ten",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15934,7 +15934,7 @@
     },
     {
       "name": "Genesis Tasset Ten",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15987,7 +15987,7 @@
     },
     {
       "name": "Borealis Tasset Ten",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16040,7 +16040,7 @@
     },
     {
       "name": "Glyph Tasset Ten",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16093,7 +16093,7 @@
     },
     {
       "name": "Fatalis Spine",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16150,7 +16150,7 @@
     },
     {
       "name": "Fatalis Scale",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16207,7 +16207,7 @@
     },
     {
       "name": "White Fatalis Spine",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16264,7 +16264,7 @@
     },
     {
       "name": "White Fatalis Scale",
-      "type": "leggings",
+      "type": "waist",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16321,7 +16321,7 @@
     },
     {
       "name": "Kut-Ku Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16372,7 +16372,7 @@
     },
     {
       "name": "Kut-Ku Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16423,7 +16423,7 @@
     },
     {
       "name": "Conga Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16476,7 +16476,7 @@
     },
     {
       "name": "Conga Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16529,7 +16529,7 @@
     },
     {
       "name": "Gypceros Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16582,7 +16582,7 @@
     },
     {
       "name": "Gypceros Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16635,7 +16635,7 @@
     },
     {
       "name": "Khezu Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16688,7 +16688,7 @@
     },
     {
       "name": "Khezu Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16741,7 +16741,7 @@
     },
     {
       "name": "Hermitaur Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16798,7 +16798,7 @@
     },
     {
       "name": "Hermitaur Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16855,7 +16855,7 @@
     },
     {
       "name": "Hypnoc Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16908,7 +16908,7 @@
     },
     {
       "name": "Hypnoc Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16961,7 +16961,7 @@
     },
     {
       "name": "Basarios Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17018,7 +17018,7 @@
     },
     {
       "name": "Basarios Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17075,7 +17075,7 @@
     },
     {
       "name": "Plesioth Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17132,7 +17132,7 @@
     },
     {
       "name": "Plesioth Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17189,7 +17189,7 @@
     },
     {
       "name": "Monoblos Coil X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17246,7 +17246,7 @@
     },
     {
       "name": "Monoblos Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17303,7 +17303,7 @@
     },
     {
       "name": "Garuga Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17360,7 +17360,7 @@
     },
     {
       "name": "Garuga Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17417,7 +17417,7 @@
     },
     {
       "name": "Blango Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17470,7 +17470,7 @@
     },
     {
       "name": "Blango Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17523,7 +17523,7 @@
     },
     {
       "name": "Ceanataur Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17576,7 +17576,7 @@
     },
     {
       "name": "Ceanataur Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17629,7 +17629,7 @@
     },
     {
       "name": "Rathian Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17682,7 +17682,7 @@
     },
     {
       "name": "Rathian Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17735,7 +17735,7 @@
     },
     {
       "name": "Naruga Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17788,7 +17788,7 @@
     },
     {
       "name": "Naruga Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17845,7 +17845,7 @@
     },
     {
       "name": "Volganos Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17902,7 +17902,7 @@
     },
     {
       "name": "Volganos Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17959,7 +17959,7 @@
     },
     {
       "name": "Tigrex Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18016,7 +18016,7 @@
     },
     {
       "name": "Tigrex Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18073,7 +18073,7 @@
     },
     {
       "name": "Rathalos Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18126,7 +18126,7 @@
     },
     {
       "name": "Rathalos Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18179,7 +18179,7 @@
     },
     {
       "name": "Diablo Coil X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18232,7 +18232,7 @@
     },
     {
       "name": "Diablo Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18285,7 +18285,7 @@
     },
     {
       "name": "Gravios Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18342,7 +18342,7 @@
     },
     {
       "name": "Gravios Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18399,7 +18399,7 @@
     },
     {
       "name": "Kut-Ku Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18450,7 +18450,7 @@
     },
     {
       "name": "Kut-Ku Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18501,7 +18501,7 @@
     },
     {
       "name": "Conga Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18558,7 +18558,7 @@
     },
     {
       "name": "Conga Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18615,7 +18615,7 @@
     },
     {
       "name": "Gypceros Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18668,7 +18668,7 @@
     },
     {
       "name": "Gypceros Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18721,7 +18721,7 @@
     },
     {
       "name": "Khezu Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18774,7 +18774,7 @@
     },
     {
       "name": "Khezu Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18827,7 +18827,7 @@
     },
     {
       "name": "Hermitaur Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18880,7 +18880,7 @@
     },
     {
       "name": "Hermitaur Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18933,7 +18933,7 @@
     },
     {
       "name": "Plesioth Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18990,7 +18990,7 @@
     },
     {
       "name": "Plesioth Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19047,7 +19047,7 @@
     },
     {
       "name": "Blango Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19104,7 +19104,7 @@
     },
     {
       "name": "Blango Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19161,7 +19161,7 @@
     },
     {
       "name": "Ceanataur Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19214,7 +19214,7 @@
     },
     {
       "name": "Ceanataur Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19267,7 +19267,7 @@
     },
     {
       "name": "Diablo Coil Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19324,7 +19324,7 @@
     },
     {
       "name": "Diablo Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19381,7 +19381,7 @@
     },
     {
       "name": "Gravios Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19434,7 +19434,7 @@
     },
     {
       "name": "Gravios Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19487,7 +19487,7 @@
     },
     {
       "name": "Crystal Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19525,7 +19525,7 @@
     },
     {
       "name": "True Golden Obi",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19582,7 +19582,7 @@
     },
     {
       "name": "True PuppetMastr Obi",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19639,7 +19639,7 @@
     },
     {
       "name": "Black Belt Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19696,7 +19696,7 @@
     },
     {
       "name": "Black Belt Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19753,7 +19753,7 @@
     },
     {
       "name": "Obituary Anka X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19806,7 +19806,7 @@
     },
     {
       "name": "Obituary Cocusa X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19859,7 +19859,7 @@
     },
     {
       "name": "Butterfly Anka X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19912,7 +19912,7 @@
     },
     {
       "name": "Butterfly Cocusa X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19965,7 +19965,7 @@
     },
     {
       "name": "True Mizuha Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20022,7 +20022,7 @@
     },
     {
       "name": "True Extrvagant Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20079,7 +20079,7 @@
     },
     {
       "name": "Kushala Cocoon X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20136,7 +20136,7 @@
     },
     {
       "name": "Kushala Wind Wrap X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20193,7 +20193,7 @@
     },
     {
       "name": "Kirin Hoop X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20250,7 +20250,7 @@
     },
     {
       "name": "Kirin Shorts X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20307,7 +20307,7 @@
     },
     {
       "name": "Empress Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -20364,7 +20364,7 @@
     },
     {
       "name": "Empress Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -20421,7 +20421,7 @@
     },
     {
       "name": "True Indra Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20474,7 +20474,7 @@
     },
     {
       "name": "True Steadfast Coat",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20527,7 +20527,7 @@
     },
     {
       "name": "Kaiser Tasset X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20580,7 +20580,7 @@
     },
     {
       "name": "Kaiser Coat X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20633,7 +20633,7 @@
     },
     {
       "name": "True GuardnSpritCoil",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20690,7 +20690,7 @@
     },
     {
       "name": "True Carnage Wrap",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20747,7 +20747,7 @@
     },
     {
       "name": "Dragon Spine X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20804,7 +20804,7 @@
     },
     {
       "name": "Dragon Scale X",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20861,7 +20861,7 @@
     },
     {
       "name": "Ucamulbas Cincture",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20918,7 +20918,7 @@
     },
     {
       "name": "Ucamulbas Sash",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20971,7 +20971,7 @@
     },
     {
       "name": "Melahoa Skirt Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21028,7 +21028,7 @@
     },
     {
       "name": "Melahoa Trunk Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21081,7 +21081,7 @@
     },
     {
       "name": "Makluva Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21134,7 +21134,7 @@
     },
     {
       "name": "Makluva Fin Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21187,7 +21187,7 @@
     },
     {
       "name": "Rathian Heart Coil Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21240,7 +21240,7 @@
     },
     {
       "name": "Rathian Heart Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21293,7 +21293,7 @@
     },
     {
       "name": "Rathalos Soul Coil Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21350,7 +21350,7 @@
     },
     {
       "name": "Rathalos Soul Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21407,7 +21407,7 @@
     },
     {
       "name": "Golden Moon Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21460,7 +21460,7 @@
     },
     {
       "name": "Golden Moon Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21513,7 +21513,7 @@
     },
     {
       "name": "Silver Sol Tasset Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21566,7 +21566,7 @@
     },
     {
       "name": "Silver Sol Coat Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21619,7 +21619,7 @@
     },
     {
       "name": "Auroros Tasset Kyoku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21672,7 +21672,7 @@
     },
     {
       "name": "Genesis Tasset Kyoku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21725,7 +21725,7 @@
     },
     {
       "name": "BorealisTasset Kyoku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21778,7 +21778,7 @@
     },
     {
       "name": "Glyph Tasset Kyoku",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21831,7 +21831,7 @@
     },
     {
       "name": "Fatalis Spine Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21888,7 +21888,7 @@
     },
     {
       "name": "Fatalis Scale Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21945,7 +21945,7 @@
     },
     {
       "name": "Wht Fatalis Spine Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21998,7 +21998,7 @@
     },
     {
       "name": "Wht Fatalis Scale Z",
-      "type": "leggings",
+      "type": "waist",
       "hr": "9",
       "elder": "10",
       "defence": null,

@@ -2,7 +2,7 @@
   "weapons": [
     {
       "name": "Mafumofu Mittens",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -41,7 +41,7 @@
     },
     {
       "name": "Leather Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -86,7 +86,7 @@
     },
     {
       "name": "Chain Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -135,7 +135,7 @@
     },
     {
       "name": "Hunter Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -186,7 +186,7 @@
     },
     {
       "name": "Hunter Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -237,7 +237,7 @@
     },
     {
       "name": "Bone Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -292,7 +292,7 @@
     },
     {
       "name": "Bone Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -347,7 +347,7 @@
     },
     {
       "name": "Giaprey Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -398,7 +398,7 @@
     },
     {
       "name": "Giaprey Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -449,7 +449,7 @@
     },
     {
       "name": "Battle Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -510,7 +510,7 @@
     },
     {
       "name": "Battle Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -571,7 +571,7 @@
     },
     {
       "name": "Velociprey Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -632,7 +632,7 @@
     },
     {
       "name": "Velociprey Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -693,7 +693,7 @@
     },
     {
       "name": "Vespoid Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -744,7 +744,7 @@
     },
     {
       "name": "Vespoid Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -795,7 +795,7 @@
     },
     {
       "name": "Hi-Metal Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -846,7 +846,7 @@
     },
     {
       "name": "Hi-Metal Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -897,7 +897,7 @@
     },
     {
       "name": "Hornet Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -954,7 +954,7 @@
     },
     {
       "name": "Hornet Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1011,7 +1011,7 @@
     },
     {
       "name": "Genprey Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1068,7 +1068,7 @@
     },
     {
       "name": "Genprey Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -1125,7 +1125,7 @@
     },
     {
       "name": "Steel Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -1176,7 +1176,7 @@
     },
     {
       "name": "Ioprey Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1237,7 +1237,7 @@
     },
     {
       "name": "Ioprey Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1294,7 +1294,7 @@
     },
     {
       "name": "Kut-Ku Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1349,7 +1349,7 @@
     },
     {
       "name": "Kut-Ku Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1404,7 +1404,7 @@
     },
     {
       "name": "Cephalos Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1457,7 +1457,7 @@
     },
     {
       "name": "Cephalos Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1510,7 +1510,7 @@
     },
     {
       "name": "Conga Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1567,7 +1567,7 @@
     },
     {
       "name": "Conga Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1624,7 +1624,7 @@
     },
     {
       "name": "Gypceros Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1681,7 +1681,7 @@
     },
     {
       "name": "Gypceros Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1738,7 +1738,7 @@
     },
     {
       "name": "Khezu Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1795,7 +1795,7 @@
     },
     {
       "name": "Khezu Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1852,7 +1852,7 @@
     },
     {
       "name": "Hermitaur Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1909,7 +1909,7 @@
     },
     {
       "name": "Hermitaur Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -1966,7 +1966,7 @@
     },
     {
       "name": "Plesioth Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2023,7 +2023,7 @@
     },
     {
       "name": "Plesioth Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2080,7 +2080,7 @@
     },
     {
       "name": "Lobster Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2137,7 +2137,7 @@
     },
     {
       "name": "Lobster Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2194,7 +2194,7 @@
     },
     {
       "name": "Kut-Ku Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2255,7 +2255,7 @@
     },
     {
       "name": "Kut-Ku Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -2316,7 +2316,7 @@
     },
     {
       "name": "Gypceros Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2373,7 +2373,7 @@
     },
     {
       "name": "Gypceros Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2430,7 +2430,7 @@
     },
     {
       "name": "Khezu Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2483,7 +2483,7 @@
     },
     {
       "name": "Khezu Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2536,7 +2536,7 @@
     },
     {
       "name": "Plesioth Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2593,7 +2593,7 @@
     },
     {
       "name": "Plesioth Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "3",
       "defence": null,
@@ -2650,7 +2650,7 @@
     },
     {
       "name": "Basarios Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2711,7 +2711,7 @@
     },
     {
       "name": "Basarios Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -2772,7 +2772,7 @@
     },
     {
       "name": "Monoblos Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2829,7 +2829,7 @@
     },
     {
       "name": "Monoblos Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2886,7 +2886,7 @@
     },
     {
       "name": "Garuga Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -2943,7 +2943,7 @@
     },
     {
       "name": "Garuga Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -3000,7 +3000,7 @@
     },
     {
       "name": "Blango Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3057,7 +3057,7 @@
     },
     {
       "name": "Blango Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3114,7 +3114,7 @@
     },
     {
       "name": "Ceanataur Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3171,7 +3171,7 @@
     },
     {
       "name": "Ceanataur Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "4",
       "defence": null,
@@ -3228,7 +3228,7 @@
     },
     {
       "name": "Rathian Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3285,7 +3285,7 @@
     },
     {
       "name": "Rathian Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3342,7 +3342,7 @@
     },
     {
       "name": "Tigrex Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3399,7 +3399,7 @@
     },
     {
       "name": "Tigrex Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3456,7 +3456,7 @@
     },
     {
       "name": "Rathalos Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3513,7 +3513,7 @@
     },
     {
       "name": "Rathalos Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "6",
       "defence": null,
@@ -3570,7 +3570,7 @@
     },
     {
       "name": "Diablo Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3621,7 +3621,7 @@
     },
     {
       "name": "Diablo Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3672,7 +3672,7 @@
     },
     {
       "name": "Gravios Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3729,7 +3729,7 @@
     },
     {
       "name": "Gravios Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3782,7 +3782,7 @@
     },
     {
       "name": "Diablo Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3833,7 +3833,7 @@
     },
     {
       "name": "Diablo Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3884,7 +3884,7 @@
     },
     {
       "name": "Gravios Vambraces D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3937,7 +3937,7 @@
     },
     {
       "name": "Gravios Guards D",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -3990,7 +3990,7 @@
     },
     {
       "name": "Mosswine Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -4041,7 +4041,7 @@
     },
     {
       "name": "Giaprey Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4094,7 +4094,7 @@
     },
     {
       "name": "Velociprey Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4147,7 +4147,7 @@
     },
     {
       "name": "Genprey Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4200,7 +4200,7 @@
     },
     {
       "name": "Black Belt Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4244,7 +4244,7 @@
     },
     {
       "name": "Shinobi Kote (Sun)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4301,7 +4301,7 @@
     },
     {
       "name": "Shinobi Kote (Moon)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -4358,7 +4358,7 @@
     },
     {
       "name": "Guild Knight Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4415,7 +4415,7 @@
     },
     {
       "name": "Guild Knight Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4472,7 +4472,7 @@
     },
     {
       "name": "Guardian Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4529,7 +4529,7 @@
     },
     {
       "name": "Guardian Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4586,7 +4586,7 @@
     },
     {
       "name": "Maiden's Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4643,7 +4643,7 @@
     },
     {
       "name": "Personal Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -4700,7 +4700,7 @@
     },
     {
       "name": "Helper Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4757,7 +4757,7 @@
     },
     {
       "name": "Healer Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4814,7 +4814,7 @@
     },
     {
       "name": "Ioprey Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4867,7 +4867,7 @@
     },
     {
       "name": "Remobra Hands",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -4928,7 +4928,7 @@
     },
     {
       "name": "Melahoa Branch",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -4989,7 +4989,7 @@
     },
     {
       "name": "Melahoa Petal",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "1",
       "defence": null,
@@ -5050,7 +5050,7 @@
     },
     {
       "name": "Makluva Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5107,7 +5107,7 @@
     },
     {
       "name": "Makluva Sucker",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "2",
       "defence": null,
@@ -5164,7 +5164,7 @@
     },
     {
       "name": "Hypnoc Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5221,7 +5221,7 @@
     },
     {
       "name": "Hypnoc Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5278,7 +5278,7 @@
     },
     {
       "name": "Obituary Mano",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5335,7 +5335,7 @@
     },
     {
       "name": "Obituary Brasso",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5392,7 +5392,7 @@
     },
     {
       "name": "Butterfly Mano",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5449,7 +5449,7 @@
     },
     {
       "name": "Butterfly Brasso",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "1",
       "elder": "3",
       "defence": null,
@@ -5506,7 +5506,7 @@
     },
     {
       "name": "Black Claw",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5550,7 +5550,7 @@
     },
     {
       "name": "Black Fist",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "5!",
       "defence": null,
@@ -5594,7 +5594,7 @@
     },
     {
       "name": "Death Stench Grip",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5647,7 +5647,7 @@
     },
     {
       "name": "Death Stench Grasp",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5700,7 +5700,7 @@
     },
     {
       "name": "Volganos Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5757,7 +5757,7 @@
     },
     {
       "name": "Volganos Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "10",
       "defence": null,
@@ -5814,7 +5814,7 @@
     },
     {
       "name": "Mizuha Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5867,7 +5867,7 @@
     },
     {
       "name": "Extravagant Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -5920,7 +5920,7 @@
     },
     {
       "name": "Kushala Grip",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -5973,7 +5973,7 @@
     },
     {
       "name": "Kushala Embrace",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6026,7 +6026,7 @@
     },
     {
       "name": "Kirin Longarms",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -6083,7 +6083,7 @@
     },
     {
       "name": "Kirin Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "5",
       "defence": null,
@@ -6140,7 +6140,7 @@
     },
     {
       "name": "GuardianSprtVambrces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6197,7 +6197,7 @@
     },
     {
       "name": "Carnage Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "4",
       "defence": null,
@@ -6254,7 +6254,7 @@
     },
     {
       "name": "Auroros Gauntlets",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6311,7 +6311,7 @@
     },
     {
       "name": "Genesis Gauntlets",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6368,7 +6368,7 @@
     },
     {
       "name": "Borealis Gauntlets",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6425,7 +6425,7 @@
     },
     {
       "name": "Glyph Gauntlets",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "2",
       "elder": "6",
       "defence": null,
@@ -6482,7 +6482,7 @@
     },
     {
       "name": "Empress Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "5",
       "defence": null,
@@ -6539,7 +6539,7 @@
     },
     {
       "name": "Empress Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "5",
       "defence": null,
@@ -6596,7 +6596,7 @@
     },
     {
       "name": "Indra Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6653,7 +6653,7 @@
     },
     {
       "name": "Steadfast Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6714,7 +6714,7 @@
     },
     {
       "name": "Kaiser Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6767,7 +6767,7 @@
     },
     {
       "name": "Kaiser Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -6820,7 +6820,7 @@
     },
     {
       "name": "Red Lobster Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "5",
       "defence": null,
@@ -6871,7 +6871,7 @@
     },
     {
       "name": "Red Lobster Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "5",
       "defence": null,
@@ -6922,7 +6922,7 @@
     },
     {
       "name": "Monodevil Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -6979,7 +6979,7 @@
     },
     {
       "name": "Monodevil Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "4!",
       "defence": null,
@@ -7036,7 +7036,7 @@
     },
     {
       "name": "Rathian Heart Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7093,7 +7093,7 @@
     },
     {
       "name": "Rathian Heart Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7150,7 +7150,7 @@
     },
     {
       "name": "Rathalos Soul Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7207,7 +7207,7 @@
     },
     {
       "name": "Rathalos Soul Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "3",
       "elder": "6",
       "defence": null,
@@ -7264,7 +7264,7 @@
     },
     {
       "name": "Mafumofu Mittens S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7311,7 +7311,7 @@
     },
     {
       "name": "Leather Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7360,7 +7360,7 @@
     },
     {
       "name": "Chain Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7411,7 +7411,7 @@
     },
     {
       "name": "Hunter Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7468,7 +7468,7 @@
     },
     {
       "name": "Hunter Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7525,7 +7525,7 @@
     },
     {
       "name": "Bone Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7582,7 +7582,7 @@
     },
     {
       "name": "Bone Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7639,7 +7639,7 @@
     },
     {
       "name": "Battle Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7696,7 +7696,7 @@
     },
     {
       "name": "Battle Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7753,7 +7753,7 @@
     },
     {
       "name": "Velociprey Braces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7806,7 +7806,7 @@
     },
     {
       "name": "Velociprey Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7859,7 +7859,7 @@
     },
     {
       "name": "Vespoid Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7912,7 +7912,7 @@
     },
     {
       "name": "Vespoid Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -7965,7 +7965,7 @@
     },
     {
       "name": "Hi-Metal Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8018,7 +8018,7 @@
     },
     {
       "name": "Hi-Metal Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8071,7 +8071,7 @@
     },
     {
       "name": "Steel Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8124,7 +8124,7 @@
     },
     {
       "name": "Hornet Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8181,7 +8181,7 @@
     },
     {
       "name": "Hornet Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8234,7 +8234,7 @@
     },
     {
       "name": "Genprey Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8287,7 +8287,7 @@
     },
     {
       "name": "Genprey Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8340,7 +8340,7 @@
     },
     {
       "name": "Ioprey Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8393,7 +8393,7 @@
     },
     {
       "name": "Ioprey Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8446,7 +8446,7 @@
     },
     {
       "name": "Kut-Ku Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8493,7 +8493,7 @@
     },
     {
       "name": "Kut-Ku Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8540,7 +8540,7 @@
     },
     {
       "name": "Cephalos Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8593,7 +8593,7 @@
     },
     {
       "name": "Cephalos Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8646,7 +8646,7 @@
     },
     {
       "name": "Conga Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8703,7 +8703,7 @@
     },
     {
       "name": "Conga Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -8760,7 +8760,7 @@
     },
     {
       "name": "Gypceros Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8813,7 +8813,7 @@
     },
     {
       "name": "Gypceros Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8866,7 +8866,7 @@
     },
     {
       "name": "Khezu Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8919,7 +8919,7 @@
     },
     {
       "name": "Khezu Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -8972,7 +8972,7 @@
     },
     {
       "name": "Hermitaur Braces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -9029,7 +9029,7 @@
     },
     {
       "name": "Hermitaur Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -9086,7 +9086,7 @@
     },
     {
       "name": "Hypnoc Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -9139,7 +9139,7 @@
     },
     {
       "name": "Hypnoc Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "7",
       "defence": null,
@@ -9192,7 +9192,7 @@
     },
     {
       "name": "Basarios Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9249,7 +9249,7 @@
     },
     {
       "name": "Basarios Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -9306,7 +9306,7 @@
     },
     {
       "name": "Plesioth Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9363,7 +9363,7 @@
     },
     {
       "name": "Plesioth Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9420,7 +9420,7 @@
     },
     {
       "name": "Monoblos Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9473,7 +9473,7 @@
     },
     {
       "name": "Monoblos Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -9526,7 +9526,7 @@
     },
     {
       "name": "Garuga Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9579,7 +9579,7 @@
     },
     {
       "name": "Garuga Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "8",
       "defence": null,
@@ -9632,7 +9632,7 @@
     },
     {
       "name": "Blango Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9689,7 +9689,7 @@
     },
     {
       "name": "Blango Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9746,7 +9746,7 @@
     },
     {
       "name": "Ceanataur Braces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9803,7 +9803,7 @@
     },
     {
       "name": "Ceanataur Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -9856,7 +9856,7 @@
     },
     {
       "name": "Rathian Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -9909,7 +9909,7 @@
     },
     {
       "name": "Rathian Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -9962,7 +9962,7 @@
     },
     {
       "name": "Naruga Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -10015,7 +10015,7 @@
     },
     {
       "name": "Naruga Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "9",
       "defence": null,
@@ -10068,7 +10068,7 @@
     },
     {
       "name": "Tigrex Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10125,7 +10125,7 @@
     },
     {
       "name": "Tigrex Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10182,7 +10182,7 @@
     },
     {
       "name": "Rathalos Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10235,7 +10235,7 @@
     },
     {
       "name": "Rathalos Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -10288,7 +10288,7 @@
     },
     {
       "name": "Diablo Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10341,7 +10341,7 @@
     },
     {
       "name": "Diablo Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10394,7 +10394,7 @@
     },
     {
       "name": "Gravios Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10447,7 +10447,7 @@
     },
     {
       "name": "Gravios Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -10500,7 +10500,7 @@
     },
     {
       "name": "Leather Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10553,7 +10553,7 @@
     },
     {
       "name": "Chain Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10606,7 +10606,7 @@
     },
     {
       "name": "Hunter Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10659,7 +10659,7 @@
     },
     {
       "name": "Hunter Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10712,7 +10712,7 @@
     },
     {
       "name": "Bone Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10769,7 +10769,7 @@
     },
     {
       "name": "Bone Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10822,7 +10822,7 @@
     },
     {
       "name": "Battle Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10875,7 +10875,7 @@
     },
     {
       "name": "Battle Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10928,7 +10928,7 @@
     },
     {
       "name": "Giaprey Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -10981,7 +10981,7 @@
     },
     {
       "name": "Giaprey Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11034,7 +11034,7 @@
     },
     {
       "name": "Vespoid Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11087,7 +11087,7 @@
     },
     {
       "name": "Vespoid Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11140,7 +11140,7 @@
     },
     {
       "name": "Hi-Metal Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11193,7 +11193,7 @@
     },
     {
       "name": "Hi-Metal Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11246,7 +11246,7 @@
     },
     {
       "name": "Steel Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11299,7 +11299,7 @@
     },
     {
       "name": "Hornet Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11352,7 +11352,7 @@
     },
     {
       "name": "Hornet Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11405,7 +11405,7 @@
     },
     {
       "name": "Genprey Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11458,7 +11458,7 @@
     },
     {
       "name": "Genprey Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11511,7 +11511,7 @@
     },
     {
       "name": "Ioprey Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11564,7 +11564,7 @@
     },
     {
       "name": "Ioprey Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11617,7 +11617,7 @@
     },
     {
       "name": "Kut-Ku Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "8",
       "defence": null,
@@ -11670,7 +11670,7 @@
     },
     {
       "name": "Kut-Ku Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "8",
       "defence": null,
@@ -11723,7 +11723,7 @@
     },
     {
       "name": "Cephalos Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11776,7 +11776,7 @@
     },
     {
       "name": "Cephalos Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11829,7 +11829,7 @@
     },
     {
       "name": "Conga Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11882,7 +11882,7 @@
     },
     {
       "name": "Conga Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -11935,7 +11935,7 @@
     },
     {
       "name": "Gypceros Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -11988,7 +11988,7 @@
     },
     {
       "name": "Gypceros Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12041,7 +12041,7 @@
     },
     {
       "name": "Khezu Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12094,7 +12094,7 @@
     },
     {
       "name": "Khezu Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12147,7 +12147,7 @@
     },
     {
       "name": "Hermitaur Braces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12200,7 +12200,7 @@
     },
     {
       "name": "Hermitaur Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12253,7 +12253,7 @@
     },
     {
       "name": "Basarios Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12306,7 +12306,7 @@
     },
     {
       "name": "Basarios Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "7",
       "defence": null,
@@ -12359,7 +12359,7 @@
     },
     {
       "name": "Plesioth Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12412,7 +12412,7 @@
     },
     {
       "name": "Plesioth Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12465,7 +12465,7 @@
     },
     {
       "name": "Blango Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12518,7 +12518,7 @@
     },
     {
       "name": "Blango Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12571,7 +12571,7 @@
     },
     {
       "name": "Ceanataur Braces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12624,7 +12624,7 @@
     },
     {
       "name": "Ceanataur Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -12677,7 +12677,7 @@
     },
     {
       "name": "Diablo Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12730,7 +12730,7 @@
     },
     {
       "name": "Diablo Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12783,7 +12783,7 @@
     },
     {
       "name": "Gravios Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12836,7 +12836,7 @@
     },
     {
       "name": "Gravios Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -12889,7 +12889,7 @@
     },
     {
       "name": "BlackBeltVambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -12933,7 +12933,7 @@
     },
     {
       "name": "Shinobi Kote(Heaven)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -12986,7 +12986,7 @@
     },
     {
       "name": "Shinobi Kote (Earth)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13039,7 +13039,7 @@
     },
     {
       "name": "RedGuildGuard Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13096,7 +13096,7 @@
     },
     {
       "name": "RedGuildGuardSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13153,7 +13153,7 @@
     },
     {
       "name": "BlueGuildGuardGloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13206,7 +13206,7 @@
     },
     {
       "name": "BluGuildGuardSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13259,7 +13259,7 @@
     },
     {
       "name": "RedGuildGuard Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "8",
       "defence": null,
@@ -13316,7 +13316,7 @@
     },
     {
       "name": "RedGuildGuardSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13373,7 +13373,7 @@
     },
     {
       "name": "BlueGuildGuardGloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13426,7 +13426,7 @@
     },
     {
       "name": "BluGuildGuardSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13479,7 +13479,7 @@
     },
     {
       "name": "Devil Blos Vambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13536,7 +13536,7 @@
     },
     {
       "name": "Devil Blos Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13593,7 +13593,7 @@
     },
     {
       "name": "Jolly Roger Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13650,7 +13650,7 @@
     },
     {
       "name": "Jolly Roger Cuffs",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -13703,7 +13703,7 @@
     },
     {
       "name": "Golden Kote",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -13754,7 +13754,7 @@
     },
     {
       "name": "PuppetMaster Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "7",
       "defence": null,
@@ -13811,7 +13811,7 @@
     },
     {
       "name": "Obituary Mano S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13864,7 +13864,7 @@
     },
     {
       "name": "Obituary Brasso S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13917,7 +13917,7 @@
     },
     {
       "name": "Butterfly Mano S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -13970,7 +13970,7 @@
     },
     {
       "name": "Butterfly Brasso S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -14023,7 +14023,7 @@
     },
     {
       "name": "Death Stench Grip S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14076,7 +14076,7 @@
     },
     {
       "name": "Death Stench Grasp S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14129,7 +14129,7 @@
     },
     {
       "name": "SupremeMizuhaSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14182,7 +14182,7 @@
     },
     {
       "name": "SprmExtrvgantSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14235,7 +14235,7 @@
     },
     {
       "name": "Kushala Grip S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14288,7 +14288,7 @@
     },
     {
       "name": "Kushala Embrace S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14341,7 +14341,7 @@
     },
     {
       "name": "Kirin Longarms S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14394,7 +14394,7 @@
     },
     {
       "name": "Kirin Gloves S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -14447,7 +14447,7 @@
     },
     {
       "name": "Auroros GauntletHaku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14504,7 +14504,7 @@
     },
     {
       "name": "Genesis GauntletHaku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14557,7 +14557,7 @@
     },
     {
       "name": "BorealisGauntletHaku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14614,7 +14614,7 @@
     },
     {
       "name": "Glyph Gauntlets Haku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "8",
       "defence": null,
@@ -14667,7 +14667,7 @@
     },
     {
       "name": "UltimateIndraGloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14720,7 +14720,7 @@
     },
     {
       "name": "SuprmSteadfastGuards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14777,7 +14777,7 @@
     },
     {
       "name": "Kaiser Vambraces S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14830,7 +14830,7 @@
     },
     {
       "name": "Kaiser Guards S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -14883,7 +14883,7 @@
     },
     {
       "name": "Dragonclaw S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14940,7 +14940,7 @@
     },
     {
       "name": "Dragonfist S",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -14997,7 +14997,7 @@
     },
     {
       "name": "Dark Akantor Claw",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15054,7 +15054,7 @@
     },
     {
       "name": "DarkAkantor Gauntlet",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15111,7 +15111,7 @@
     },
     {
       "name": "Shinobi Kote (Sky)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15164,7 +15164,7 @@
     },
     {
       "name": "Shinobi Kote (Sea)",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -15217,7 +15217,7 @@
     },
     {
       "name": "Guardian Vambraces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15270,7 +15270,7 @@
     },
     {
       "name": "Guardian Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15323,7 +15323,7 @@
     },
     {
       "name": "Helper Sleeves U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15376,7 +15376,7 @@
     },
     {
       "name": "Healer Sleeves U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15429,7 +15429,7 @@
     },
     {
       "name": "Melahoa Branch U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15486,7 +15486,7 @@
     },
     {
       "name": "Melahoa Petal U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15543,7 +15543,7 @@
     },
     {
       "name": "Makluva Sleeves U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15592,7 +15592,7 @@
     },
     {
       "name": "Makluva Sucker U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "4",
       "elder": "7",
       "defence": null,
@@ -15641,7 +15641,7 @@
     },
     {
       "name": "Monodevil Braces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -15698,7 +15698,7 @@
     },
     {
       "name": "Monodevil Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "10",
       "elder": "8!",
       "defence": null,
@@ -15755,7 +15755,7 @@
     },
     {
       "name": "Rthan Heart Braces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15812,7 +15812,7 @@
     },
     {
       "name": "Rthan Heart Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15869,7 +15869,7 @@
     },
     {
       "name": "Rthlos Soul Braces U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15922,7 +15922,7 @@
     },
     {
       "name": "Rthlos Soul Guards U",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -15975,7 +15975,7 @@
     },
     {
       "name": "Golden Moon Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16028,7 +16028,7 @@
     },
     {
       "name": "Golden Moon Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16081,7 +16081,7 @@
     },
     {
       "name": "Silver Sol Braces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16134,7 +16134,7 @@
     },
     {
       "name": "Silver Sol Guards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6",
       "elder": "9",
       "defence": null,
@@ -16191,7 +16191,7 @@
     },
     {
       "name": "Auroros Gauntlet Ten",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -16244,7 +16244,7 @@
     },
     {
       "name": "Genesis Gauntlet Ten",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -16297,7 +16297,7 @@
     },
     {
       "name": "Borealis GauntletTen",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -16350,7 +16350,7 @@
     },
     {
       "name": "Glyph Gauntlets Ten",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "5",
       "elder": "9",
       "defence": null,
@@ -16403,7 +16403,7 @@
     },
     {
       "name": "Fatalis Claw",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16460,7 +16460,7 @@
     },
     {
       "name": "Fatalis Fist",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16517,7 +16517,7 @@
     },
     {
       "name": "White Fatalis Claw",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16574,7 +16574,7 @@
     },
     {
       "name": "White Fatalis Fist",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "6!",
       "elder": "10",
       "defence": null,
@@ -16631,7 +16631,7 @@
     },
     {
       "name": "Kut-Ku Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16688,7 +16688,7 @@
     },
     {
       "name": "Kut-Ku Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16745,7 +16745,7 @@
     },
     {
       "name": "Conga Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16798,7 +16798,7 @@
     },
     {
       "name": "Conga Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16851,7 +16851,7 @@
     },
     {
       "name": "Gypceros Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16904,7 +16904,7 @@
     },
     {
       "name": "Gypceros Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -16957,7 +16957,7 @@
     },
     {
       "name": "Khezu Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17010,7 +17010,7 @@
     },
     {
       "name": "Khezu Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17063,7 +17063,7 @@
     },
     {
       "name": "Hermitaur Braces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17120,7 +17120,7 @@
     },
     {
       "name": "Hermitaur Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17177,7 +17177,7 @@
     },
     {
       "name": "Hypnoc Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17230,7 +17230,7 @@
     },
     {
       "name": "Hypnoc Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17287,7 +17287,7 @@
     },
     {
       "name": "Basarios Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17340,7 +17340,7 @@
     },
     {
       "name": "Basarios Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17397,7 +17397,7 @@
     },
     {
       "name": "Plesioth Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17454,7 +17454,7 @@
     },
     {
       "name": "Plesioth Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -17507,7 +17507,7 @@
     },
     {
       "name": "Monoblos Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17564,7 +17564,7 @@
     },
     {
       "name": "Monoblos Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7!",
       "elder": "8!",
       "defence": null,
@@ -17621,7 +17621,7 @@
     },
     {
       "name": "Garuga Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17678,7 +17678,7 @@
     },
     {
       "name": "Garuga Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17735,7 +17735,7 @@
     },
     {
       "name": "Blango Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17788,7 +17788,7 @@
     },
     {
       "name": "Blango Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17841,7 +17841,7 @@
     },
     {
       "name": "Ceanataur Braces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17894,7 +17894,7 @@
     },
     {
       "name": "Ceanataur Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -17947,7 +17947,7 @@
     },
     {
       "name": "Rathian Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18000,7 +18000,7 @@
     },
     {
       "name": "Rathian Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18053,7 +18053,7 @@
     },
     {
       "name": "Naruga Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18110,7 +18110,7 @@
     },
     {
       "name": "Naruga Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18163,7 +18163,7 @@
     },
     {
       "name": "Volganos Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18220,7 +18220,7 @@
     },
     {
       "name": "Volganos Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18277,7 +18277,7 @@
     },
     {
       "name": "Tigrex Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18334,7 +18334,7 @@
     },
     {
       "name": "Tigrex Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18391,7 +18391,7 @@
     },
     {
       "name": "Rathalos Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18444,7 +18444,7 @@
     },
     {
       "name": "Rathalos Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -18497,7 +18497,7 @@
     },
     {
       "name": "Diablo Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18550,7 +18550,7 @@
     },
     {
       "name": "Diablo Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18603,7 +18603,7 @@
     },
     {
       "name": "Gravios Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18660,7 +18660,7 @@
     },
     {
       "name": "Gravios Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -18717,7 +18717,7 @@
     },
     {
       "name": "Kut-Ku Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18774,7 +18774,7 @@
     },
     {
       "name": "Kut-Ku Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18831,7 +18831,7 @@
     },
     {
       "name": "Conga Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18884,7 +18884,7 @@
     },
     {
       "name": "Conga Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18937,7 +18937,7 @@
     },
     {
       "name": "Gypceros Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -18990,7 +18990,7 @@
     },
     {
       "name": "Gypceros Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19043,7 +19043,7 @@
     },
     {
       "name": "Khezu Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19096,7 +19096,7 @@
     },
     {
       "name": "Khezu Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19149,7 +19149,7 @@
     },
     {
       "name": "Hermitaur Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19202,7 +19202,7 @@
     },
     {
       "name": "Hermitaur Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19255,7 +19255,7 @@
     },
     {
       "name": "Plesioth Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19312,7 +19312,7 @@
     },
     {
       "name": "Plesioth Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19365,7 +19365,7 @@
     },
     {
       "name": "Blango Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19422,7 +19422,7 @@
     },
     {
       "name": "Blango Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19479,7 +19479,7 @@
     },
     {
       "name": "Ceanataur Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19532,7 +19532,7 @@
     },
     {
       "name": "Ceanataur Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -19585,7 +19585,7 @@
     },
     {
       "name": "Diablo Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19642,7 +19642,7 @@
     },
     {
       "name": "Diablo Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19699,7 +19699,7 @@
     },
     {
       "name": "Gravios Vambraces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19752,7 +19752,7 @@
     },
     {
       "name": "Gravios Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19805,7 +19805,7 @@
     },
     {
       "name": "Crystal Bracelet",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -19843,7 +19843,7 @@
     },
     {
       "name": "True Golden Kote",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19896,7 +19896,7 @@
     },
     {
       "name": "TruePupptMastrGloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19949,7 +19949,7 @@
     },
     {
       "name": "Black Belt Braces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -19993,7 +19993,7 @@
     },
     {
       "name": "Black Belt Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20037,7 +20037,7 @@
     },
     {
       "name": "Obituary Mano X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20090,7 +20090,7 @@
     },
     {
       "name": "Obituary Brasso X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20143,7 +20143,7 @@
     },
     {
       "name": "Butterfly Mano X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20196,7 +20196,7 @@
     },
     {
       "name": "Butterfly Brasso X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -20249,7 +20249,7 @@
     },
     {
       "name": "True Mizuha Sleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20306,7 +20306,7 @@
     },
     {
       "name": "TrueExtrvagantSleeves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20363,7 +20363,7 @@
     },
     {
       "name": "Kushala Grip X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20420,7 +20420,7 @@
     },
     {
       "name": "Kushala Grasp X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20477,7 +20477,7 @@
     },
     {
       "name": "Kirin Longarms X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20534,7 +20534,7 @@
     },
     {
       "name": "Kirin Gloves X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20591,7 +20591,7 @@
     },
     {
       "name": "Empress Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -20648,7 +20648,7 @@
     },
     {
       "name": "Empress Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9!",
       "elder": "8!",
       "defence": null,
@@ -20705,7 +20705,7 @@
     },
     {
       "name": "True Indra Gloves",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20758,7 +20758,7 @@
     },
     {
       "name": "True SteadfastGuards",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20811,7 +20811,7 @@
     },
     {
       "name": "Kaiser Vambraces X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20864,7 +20864,7 @@
     },
     {
       "name": "Kaiser Guards X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20917,7 +20917,7 @@
     },
     {
       "name": "TrueGuardnSprtBraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -20974,7 +20974,7 @@
     },
     {
       "name": "TrueCarnageVambraces",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21031,7 +21031,7 @@
     },
     {
       "name": "Dragonclaw X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21088,7 +21088,7 @@
     },
     {
       "name": "Dragonfist X",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21145,7 +21145,7 @@
     },
     {
       "name": "Ucamulbas Claw",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21202,7 +21202,7 @@
     },
     {
       "name": "Ucamulbas Gauntlets",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21255,7 +21255,7 @@
     },
     {
       "name": "Melahoa Branch Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21312,7 +21312,7 @@
     },
     {
       "name": "Melahoa Petal Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21369,7 +21369,7 @@
     },
     {
       "name": "Makluva Sleeves Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21418,7 +21418,7 @@
     },
     {
       "name": "Makluva Sucker Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "7",
       "elder": "10",
       "defence": null,
@@ -21467,7 +21467,7 @@
     },
     {
       "name": "Rthan Heart Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21520,7 +21520,7 @@
     },
     {
       "name": "Rthan Heart Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21573,7 +21573,7 @@
     },
     {
       "name": "Rthlos Soul Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21626,7 +21626,7 @@
     },
     {
       "name": "Rthlos Soul Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21683,7 +21683,7 @@
     },
     {
       "name": "Golden Moon Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21736,7 +21736,7 @@
     },
     {
       "name": "Golden Moon Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21789,7 +21789,7 @@
     },
     {
       "name": "Silver Sol Braces Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21842,7 +21842,7 @@
     },
     {
       "name": "Silver Sol Guards Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -21895,7 +21895,7 @@
     },
     {
       "name": "AurorosGauntletKyoku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -21948,7 +21948,7 @@
     },
     {
       "name": "GenesisGauntletKyoku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22001,7 +22001,7 @@
     },
     {
       "name": "BorealisGauntletKyoku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22054,7 +22054,7 @@
     },
     {
       "name": "Glyph Gauntlets Kyoku",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "8",
       "elder": "10",
       "defence": null,
@@ -22107,7 +22107,7 @@
     },
     {
       "name": "Fatalis Claw Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22164,7 +22164,7 @@
     },
     {
       "name": "Fatalis Fist Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22221,7 +22221,7 @@
     },
     {
       "name": "Wht Fatalis Claw Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
@@ -22274,7 +22274,7 @@
     },
     {
       "name": "Wht Fatalis Fist Z",
-      "type": "leggings",
+      "type": "gauntlets",
       "hr": "9",
       "elder": "10",
       "defence": null,
