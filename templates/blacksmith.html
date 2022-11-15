@@ -10,28 +10,30 @@
   <hr class="border">
 
   <div class="card card--weapon-tree">
-    <div class="blacksmith-page__table">
+    <div class="weapon-tree blacksmith-page__table">
       {% for subsection in section.subsections %}
         {% set section_data = get_section(path=subsection, metadata_only=true) %}
 
         <ul>
-          <a class="row {% if section_data.subsections %}row--external{% endif %}" {% if not section_data.subsections %}href="{{section.path}}{{ section_data.extra.type }}/"{% endif %}>
-            <div class="icon"><img src="/images/{{ section_data.extra.type }}.png" alt=""></div>
-            <p>{{ section_data.title }}</p>
-          </a>
-
-          {% if section_data.subsections %}
-            <ul>
-            {% for s in section_data.subsections %}
-              {% set s_data = get_section(path=s, metadata_only=true) %}
-
-              <a class="row" href="{{s_data.path}}">
-                <div class="icon"><img src="/images/{{ s_data.extra.type }}.png" alt=""></div>
-                <p>{{ s_data.title }}</p>
-              </a>
-            {% endfor %}
-            </ul>
-          {% endif %}
+          <li>
+            <a class="row {% if section_data.subsections %}row--external{% endif %}" {% if not section_data.subsections %}href="{{section.path}}{{ section_data.extra.type }}/"{% endif %}>
+              <div class="icon"><img src="/images/{{ section_data.extra.type }}.png" alt=""></div>
+              <p>{{ section_data.title }}</p>
+            </a>
+  
+            {% if section_data.subsections %}
+              <ul>
+              {% for s in section_data.subsections %}
+                {% set s_data = get_section(path=s, metadata_only=true) %}
+  
+                <a class="row" href="{{s_data.path}}">
+                  <div class="icon"><img src="/images/{{ s_data.extra.type }}.png" alt=""></div>
+                  <p>{{ s_data.title }}</p>
+                </a>
+              {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
         </ul>
       {% endfor %}
     </div>
