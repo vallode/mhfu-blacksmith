@@ -45,6 +45,14 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
 
+        if value["hr"].to_i <= 5
+          value["rank"] = "low-rank"
+        elsif value["hr"].to_i > 5 and value["hr"].to_i <= 8
+          value["rank"] = "high-rank"
+        elsif value["hr"] and value["elder"]
+          value["rank"] = "g-rank"
+        end
+
         output = {
           title: value["name"],
           slug: slugify(value["name"]),
