@@ -7,4 +7,5 @@ weight = 1
 transparent = true
 [extra]
 type = "gauntlets"
+rank = "high-rank"
 +++

@@ -7,4 +7,5 @@ weight = 1
 transparent = true
 [extra]
 type = "waist"
+rank = "high-rank"
 +++

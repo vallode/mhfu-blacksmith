@@ -7,4 +7,5 @@ weight = 1
 transparent = true
 [extra]
 type = "leggings"
+rank = "high-rank"
 +++

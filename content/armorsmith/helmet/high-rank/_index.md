@@ -7,4 +7,5 @@ weight = 1
 transparent = true
 [extra]
 type = "helmet"
+rank = "high-rank"
 +++
