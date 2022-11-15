@@ -4,61 +4,61 @@
     "slug": "war-hammer",
     "type": "hammer",
     "name": "War Hammer",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "war-hammer-plus",
         "type": "hammer",
         "name": "War Hammer+",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "war-mace",
             "type": "hammer",
             "name": "War Mace",
-            "rarity": "1",
+            "rarity": 1,
             "children": [
               {
                 "slug": "iron-striker",
                 "type": "hammer",
                 "name": "Iron Striker",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "iron-striker-plus",
                     "type": "hammer",
                     "name": "Iron Striker+",
-                    "rarity": "2",
+                    "rarity": 2,
                     "children": [
                       {
                         "slug": "anvil-hammer",
                         "type": "hammer",
                         "name": "Anvil Hammer",
-                        "rarity": "5",
+                        "rarity": 5,
                         "children": [
                           {
                             "slug": "onslaught-hammer",
                             "type": "hammer",
                             "name": "Onslaught Hammer",
-                            "rarity": "5",
+                            "rarity": 5,
                             "children": [
                               {
                                 "slug": "blacksmith",
                                 "type": "hammer",
                                 "name": "Blacksmith",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "children": [
                                   {
                                     "slug": "juggernaut",
                                     "type": "hammer",
                                     "name": "Juggernaut",
-                                    "rarity": "9"
+                                    "rarity": 9
                                   },
                                   {
                                     "slug": "lava-alphorn",
                                     "type": "hunting-horn",
                                     "name": "Lava Alphorn",
-                                    "rarity": "9",
+                                    "rarity": 9,
                                     "element": "fire",
                                     "children": [
 
@@ -72,13 +72,13 @@
                             "slug": "war-stamp",
                             "type": "hammer",
                             "name": "War Stamp",
-                            "rarity": "6",
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "war-basher",
                                 "type": "hammer",
                                 "name": "War Basher",
-                                "rarity": "7"
+                                "rarity": 7
                               }
                             ]
                           },
@@ -86,7 +86,7 @@
                             "slug": "bronze-bell",
                             "type": "hunting-horn",
                             "name": "Bronze Bell",
-                            "rarity": "5",
+                            "rarity": 5,
                             "children": [
 
                             ]
@@ -95,7 +95,7 @@
                             "slug": "sakura-recorder",
                             "type": "hunting-horn",
                             "name": "Sakura Recorder",
-                            "rarity": "5",
+                            "rarity": 5,
                             "element": "dragon",
                             "children": [
 
@@ -105,33 +105,33 @@
                             "slug": "iron-devil",
                             "type": "hammer",
                             "name": "Iron Devil",
-                            "rarity": "6",
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "great-demon-hammer",
                                 "type": "hammer",
                                 "name": "Great Demon Hammer",
-                                "rarity": "6",
+                                "rarity": 6,
                                 "children": [
                                   {
                                     "slug": "devil-masher",
                                     "type": "hammer",
                                     "name": "Devil Masher",
-                                    "rarity": "8",
+                                    "rarity": 8,
                                     "element": "paralysis",
                                     "children": [
                                       {
                                         "slug": "devil-masher-plus",
                                         "type": "hammer",
                                         "name": "Devil Masher+",
-                                        "rarity": "9",
+                                        "rarity": 9,
                                         "element": "paralysis",
                                         "children": [
                                           {
                                             "slug": "iron-devil-s-soul",
                                             "type": "hammer",
                                             "name": "Iron Devil's Soul",
-                                            "rarity": "9",
+                                            "rarity": 9,
                                             "element": "paralysis"
                                           }
                                         ]
@@ -142,26 +142,26 @@
                                     "slug": "iron-impact",
                                     "type": "hammer",
                                     "name": "Iron Impact",
-                                    "rarity": "7",
+                                    "rarity": 7,
                                     "children": [
                                       {
                                         "slug": "iron-repellant",
                                         "type": "hammer",
                                         "name": "Iron Repellant",
-                                        "rarity": "9"
+                                        "rarity": 9
                                       },
                                       {
                                         "slug": "icy-impact",
                                         "type": "hammer",
                                         "name": "Icy Impact",
-                                        "rarity": "9",
+                                        "rarity": 9,
                                         "element": "ice",
                                         "children": [
                                           {
                                             "slug": "axion",
                                             "type": "hammer",
                                             "name": "Axion",
-                                            "rarity": "9",
+                                            "rarity": 9,
                                             "element": "ice"
                                           }
                                         ]
@@ -174,19 +174,19 @@
                                 "slug": "fist-of-fury",
                                 "type": "hammer",
                                 "name": "Fist of Fury",
-                                "rarity": "7",
+                                "rarity": 7,
                                 "children": [
                                   {
                                     "slug": "ancient-blow",
                                     "type": "hammer",
                                     "name": "Ancient Blow",
-                                    "rarity": "8",
+                                    "rarity": 8,
                                     "children": [
                                       {
                                         "slug": "foolhardy-stone-fist",
                                         "type": "hammer",
                                         "name": "Foolhardy Stone Fist",
-                                        "rarity": "10"
+                                        "rarity": 10
                                       }
                                     ]
                                   }
@@ -202,35 +202,35 @@
                     "slug": "gunhammer-prototype",
                     "type": "hammer",
                     "name": "Gunhammer Prototype",
-                    "rarity": "3",
+                    "rarity": 3,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "dead-revolver",
                         "type": "hammer",
                         "name": "Dead Revolver",
-                        "rarity": "5",
+                        "rarity": 5,
                         "element": "fire",
                         "children": [
                           {
                             "slug": "sanctioned-gunhammer",
                             "type": "hammer",
                             "name": "Sanctioned Gunhammer",
-                            "rarity": "6",
+                            "rarity": 6,
                             "element": "fire",
                             "children": [
                               {
                                 "slug": "regulation-gunhammer",
                                 "type": "hammer",
                                 "name": "Regulation GunHammer",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "fire",
                                 "children": [
                                   {
                                     "slug": "imperialgunhmmrspark",
                                     "type": "hammer",
                                     "name": "ImperialGunHmmrSpark",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "fire"
                                   }
                                 ]
@@ -247,21 +247,21 @@
                 "slug": "anchor-hammer",
                 "type": "hammer",
                 "name": "Anchor Hammer",
-                "rarity": "3",
+                "rarity": 3,
                 "element": "water",
                 "children": [
                   {
                     "slug": "anchor-hammer-plus",
                     "type": "hammer",
                     "name": "Anchor Hammer+",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "water",
                     "children": [
                       {
                         "slug": "anchor-crusher",
                         "type": "hammer",
                         "name": "Anchor Crusher",
-                        "rarity": "6",
+                        "rarity": 6,
                         "element": "water"
                       }
                     ]
@@ -272,25 +272,25 @@
                 "slug": "black-cauldron",
                 "type": "hammer",
                 "name": "Black Cauldron",
-                "rarity": "3",
+                "rarity": 3,
                 "children": [
                   {
                     "slug": "true-black-cauldron",
                     "type": "hammer",
                     "name": "True Black Cauldron",
-                    "rarity": "6"
+                    "rarity": 6
                   },
                   {
                     "slug": "one-star-silver-pot",
                     "type": "hammer",
                     "name": "One Star Silver Pot",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "two-star-silver-pot",
                         "type": "hammer",
                         "name": "Two Star Silver Pot",
-                        "rarity": "7"
+                        "rarity": 7
                       }
                     ]
                   }
@@ -300,44 +300,44 @@
                 "slug": "bone-axe",
                 "type": "hammer",
                 "name": "Bone Axe",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "bone-broadaxe",
                     "type": "hammer",
                     "name": "Bone Broadaxe",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "bone-great-axe",
                         "type": "hammer",
                         "name": "Bone Great Axe",
-                        "rarity": "6",
+                        "rarity": 6,
                         "children": [
                           {
                             "slug": "ceanataur-head-axe",
                             "type": "hammer",
                             "name": "Ceanataur Head Axe",
-                            "rarity": "7",
+                            "rarity": 7,
                             "children": [
                               {
                                 "slug": "big-blue-chopper",
                                 "type": "hammer",
                                 "name": "Big Blue Chopper",
-                                "rarity": "10"
+                                "rarity": 10
                               },
                               {
                                 "slug": "carmine-axe",
                                 "type": "hammer",
                                 "name": "Carmine Axe",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "water",
                                 "children": [
                                   {
                                     "slug": "the-great-divider",
                                     "type": "hammer",
                                     "name": "The Great Divider",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "water"
                                   }
                                 ]
@@ -354,7 +354,7 @@
                 "slug": "metal-bagpipe",
                 "type": "hunting-horn",
                 "name": "Metal Bagpipe",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
 
                 ]
@@ -365,38 +365,38 @@
             "slug": "spiked-hammer",
             "type": "hammer",
             "name": "Spiked Hammer",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "spiked-hammer-plus",
                 "type": "hammer",
                 "name": "Spiked Hammer+",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "crystal-hammer",
                     "type": "hammer",
                     "name": "Crystal Hammer",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "crystal-nova",
                         "type": "hammer",
                         "name": "Crystal Nova",
-                        "rarity": "4",
+                        "rarity": 4,
                         "children": [
                           {
                             "slug": "great-nova",
                             "type": "hammer",
                             "name": "Great Nova",
-                            "rarity": "6",
+                            "rarity": 6,
                             "element": "thunder",
                             "children": [
                               {
                                 "slug": "super-nova",
                                 "type": "hammer",
                                 "name": "Super Nova",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "thunder"
                               }
                             ]
@@ -405,13 +405,13 @@
                             "slug": "gigaton-hammer",
                             "type": "hammer",
                             "name": "Gigaton Hammer",
-                            "rarity": "4",
+                            "rarity": 4,
                             "children": [
                               {
                                 "slug": "titan-hammer",
                                 "type": "hammer",
                                 "name": "Titan Hammer",
-                                "rarity": "5"
+                                "rarity": 5
                               }
                             ]
                           }
@@ -423,28 +423,28 @@
                     "slug": "shell-hammer",
                     "type": "hammer",
                     "name": "Shell Hammer",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "poison",
                     "children": [
                       {
                         "slug": "graviton-hammer",
                         "type": "hammer",
                         "name": "Graviton Hammer",
-                        "rarity": "5",
+                        "rarity": 5,
                         "element": "poison",
                         "children": [
                           {
                             "slug": "torment-hammer",
                             "type": "hammer",
                             "name": "Torment Hammer",
-                            "rarity": "6",
+                            "rarity": 6,
                             "element": "fire",
                             "children": [
                               {
                                 "slug": "torment-purgatory",
                                 "type": "hammer",
                                 "name": "Torment (Purgatory)",
-                                "rarity": "7",
+                                "rarity": 7,
                                 "element": "fire"
                               }
                             ]
@@ -453,21 +453,21 @@
                             "slug": "crater-maker",
                             "type": "hammer",
                             "name": "Crater Maker",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "poison",
                             "children": [
                               {
                                 "slug": "venomouscratermaker",
                                 "type": "hammer",
                                 "name": "VenomousCraterMaker",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "poison",
                                 "children": [
                                   {
                                     "slug": "glasya-labolas",
                                     "type": "hammer",
                                     "name": "Glasya-Labolas",
-                                    "rarity": "10",
+                                    "rarity": 10,
                                     "element": "poison"
                                   }
                                 ]
@@ -482,7 +482,7 @@
                     "slug": "basarios-rock",
                     "type": "hunting-horn",
                     "name": "Basarios Rock",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "fire",
                     "children": [
 
@@ -500,25 +500,25 @@
     "slug": "bone-club",
     "type": "hammer",
     "name": "Bone Club",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "large-bone-club",
         "type": "hammer",
         "name": "Large Bone Club",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "enormous-ham",
             "type": "hammer",
             "name": "Enormous Ham",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "ham-of-hams",
                 "type": "hammer",
                 "name": "Ham of Hams",
-                "rarity": "6"
+                "rarity": 6
               }
             ]
           }
@@ -528,55 +528,55 @@
         "slug": "cyclo-hammer",
         "type": "hammer",
         "name": "Cyclo-Hammer",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "atlas-hammer",
             "type": "hammer",
             "name": "Atlas Hammer",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "kut-ku-jaw",
                 "type": "hammer",
                 "name": "Kut-Ku Jaw",
-                "rarity": "3",
+                "rarity": 3,
                 "children": [
                   {
                     "slug": "kut-ku-pick",
                     "type": "hammer",
                     "name": "Kut-Ku Pick",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "hard-bone-hammer",
                         "type": "hammer",
                         "name": "Hard Bone Hammer",
-                        "rarity": "6",
+                        "rarity": 6,
                         "children": [
                           {
                             "slug": "hard-bone-hammer-plus",
                             "type": "hammer",
                             "name": "Hard Bone Hammer+",
-                            "rarity": "6",
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "diablos-hammer",
                                 "type": "hammer",
                                 "name": "Diablos Hammer",
-                                "rarity": "6",
+                                "rarity": 6,
                                 "children": [
                                   {
                                     "slug": "diablo-chaos-broker",
                                     "type": "hammer",
                                     "name": "Diablo Chaos Broker",
-                                    "rarity": "7",
+                                    "rarity": 7,
                                     "children": [
                                       {
                                         "slug": "chaotic-order",
                                         "type": "hammer",
                                         "name": "Chaotic Order",
-                                        "rarity": "10"
+                                        "rarity": 10
                                       }
                                     ]
                                   }
@@ -588,21 +588,21 @@
                             "slug": "lobster-hammer",
                             "type": "hammer",
                             "name": "Lobster Hammer",
-                            "rarity": "6",
+                            "rarity": 6,
                             "element": "water",
                             "children": [
                               {
                                 "slug": "king-lobster-hammer",
                                 "type": "hammer",
                                 "name": "King Lobster Hammer",
-                                "rarity": "7",
+                                "rarity": 7,
                                 "element": "water",
                                 "children": [
                                   {
                                     "slug": "royal-lobster-hammer",
                                     "type": "hammer",
                                     "name": "Royal Lobster Hammer",
-                                    "rarity": "9",
+                                    "rarity": 9,
                                     "element": "water"
                                   }
                                 ]
@@ -615,7 +615,7 @@
                         "slug": "feather-whistle",
                         "type": "hunting-horn",
                         "name": "Feather Whistle",
-                        "rarity": "6",
+                        "rarity": 6,
                         "element": "sleep",
                         "children": [
 
@@ -627,25 +627,25 @@
                     "slug": "raven-torrent",
                     "type": "hammer",
                     "name": "Raven Torrent",
-                    "rarity": "5",
+                    "rarity": 5,
                     "children": [
                       {
                         "slug": "wolf-torrent",
                         "type": "hammer",
                         "name": "Wolf Torrent",
-                        "rarity": "7",
+                        "rarity": 7,
                         "children": [
                           {
                             "slug": "crow-torrent",
                             "type": "hammer",
                             "name": "Crow Torrent",
-                            "rarity": "9"
+                            "rarity": 9
                           },
                           {
                             "slug": "wolf-shamisen",
                             "type": "hunting-horn",
                             "name": "Wolf Shamisen",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "poison",
                             "children": [
 
@@ -659,19 +659,19 @@
                     "slug": "dynamic-hammer",
                     "type": "hammer",
                     "name": "Dynamic Hammer",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "violence-hammer",
                         "type": "hammer",
                         "name": "Violence Hammer",
-                        "rarity": "6",
+                        "rarity": 6,
                         "children": [
                           {
                             "slug": "mysterious-jaw",
                             "type": "hammer",
                             "name": "Mysterious Jaw",
-                            "rarity": "9"
+                            "rarity": 9
                           }
                         ]
                       }
@@ -681,28 +681,28 @@
                     "slug": "venom-monster",
                     "type": "hammer",
                     "name": "Venom Monster",
-                    "rarity": "3",
+                    "rarity": 3,
                     "element": "poison",
                     "children": [
                       {
                         "slug": "death-venom-hammer",
                         "type": "hammer",
                         "name": "Death Venom Hammer",
-                        "rarity": "7",
+                        "rarity": 7,
                         "element": "poison",
                         "children": [
                           {
                             "slug": "purple-mace",
                             "type": "hammer",
                             "name": "Purple Mace",
-                            "rarity": "9",
+                            "rarity": 9,
                             "element": "poison",
                             "children": [
                               {
                                 "slug": "pitohui-bird-mace",
                                 "type": "hammer",
                                 "name": "Pitohui Bird Mace",
-                                "rarity": "9",
+                                "rarity": 9,
                                 "element": "poison"
                               }
                             ]
@@ -717,14 +717,14 @@
                 "slug": "jail-hammer",
                 "type": "hammer",
                 "name": "Jail Hammer",
-                "rarity": "3",
+                "rarity": 3,
                 "element": "paralysis",
                 "children": [
                   {
                     "slug": "binder-mace",
                     "type": "hammer",
                     "name": "Binder Mace",
-                    "rarity": "4",
+                    "rarity": 4,
                     "element": "paralysis"
                   }
                 ]
@@ -733,7 +733,7 @@
                 "slug": "khezu-horn",
                 "type": "hunting-horn",
                 "name": "Khezu Horn",
-                "rarity": "3",
+                "rarity": 3,
                 "element": "thunder",
                 "children": [
 
@@ -745,25 +745,25 @@
             "slug": "skullcrusher",
             "type": "hammer",
             "name": "Skullcrusher",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
               {
                 "slug": "skullcrusher-plus",
                 "type": "hammer",
                 "name": "Skullcrusher+",
-                "rarity": "2",
+                "rarity": 2,
                 "children": [
                   {
                     "slug": "diablos-maul",
                     "type": "hammer",
                     "name": "Diablos Maul",
-                    "rarity": "4",
+                    "rarity": 4,
                     "children": [
                       {
                         "slug": "finishing-hammer",
                         "type": "hammer",
                         "name": "Finishing Hammer",
-                        "rarity": "5"
+                        "rarity": 5
                       }
                     ]
                   },
@@ -771,19 +771,19 @@
                     "slug": "dragonhead-hammer",
                     "type": "hammer",
                     "name": "Dragonhead Hammer",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "ancient-relic",
                         "type": "hammer",
                         "name": "Ancient Relic",
-                        "rarity": "5",
+                        "rarity": 5,
                         "children": [
                           {
                             "slug": "shell-castanet",
                             "type": "hunting-horn",
                             "name": "Shell Castanet",
-                            "rarity": "7",
+                            "rarity": 7,
                             "element": "water",
                             "children": [
 
@@ -795,13 +795,13 @@
                         "slug": "basarios-blow",
                         "type": "hammer",
                         "name": "Basarios Blow",
-                        "rarity": "4",
+                        "rarity": 4,
                         "children": [
                           {
                             "slug": "basarios-bash",
                             "type": "hammer",
                             "name": "Basarios Bash",
-                            "rarity": "7"
+                            "rarity": 7
                           }
                         ]
                       }
@@ -811,7 +811,7 @@
                     "slug": "sonic-glass",
                     "type": "hunting-horn",
                     "name": "Sonic Glass",
-                    "rarity": "3",
+                    "rarity": 3,
                     "children": [
 
                     ]
@@ -824,34 +824,34 @@
             "slug": "conehead-hammer",
             "type": "hammer",
             "name": "Conehead Hammer",
-            "rarity": "2",
+            "rarity": 2,
             "element": "ice",
             "children": [
               {
                 "slug": "conehead-hammer-plus",
                 "type": "hammer",
                 "name": "Conehead Hammer+",
-                "rarity": "4",
+                "rarity": 4,
                 "element": "ice",
                 "children": [
                   {
                     "slug": "great-cone",
                     "type": "hammer",
                     "name": "Great Cone",
-                    "rarity": "7",
+                    "rarity": 7,
                     "element": "ice",
                     "children": [
                       {
                         "slug": "desert-cone",
                         "type": "hammer",
                         "name": "Desert Cone",
-                        "rarity": "9",
+                        "rarity": 9,
                         "children": [
                           {
                             "slug": "magnitude",
                             "type": "hammer",
                             "name": "Magnitude",
-                            "rarity": "10"
+                            "rarity": 10
                           }
                         ]
                       }
@@ -865,7 +865,7 @@
             "slug": "bone-horn",
             "type": "hunting-horn",
             "name": "Bone Horn",
-            "rarity": "2",
+            "rarity": 2,
             "children": [
 
             ]
@@ -876,19 +876,19 @@
         "slug": "bull-hammer",
         "type": "hammer",
         "name": "Bull Hammer",
-        "rarity": "2",
+        "rarity": 2,
         "children": [
           {
             "slug": "bull-head-hammer",
             "type": "hammer",
             "name": "Bull Head Hammer",
-            "rarity": "3",
+            "rarity": 3,
             "children": [
               {
                 "slug": "bull-tusk-hammer",
                 "type": "hammer",
                 "name": "Bull Tusk Hammer",
-                "rarity": "4"
+                "rarity": 4
               }
             ]
           }
@@ -898,7 +898,7 @@
         "slug": "giaprey-balloon",
         "type": "hunting-horn",
         "name": "Giaprey Balloon",
-        "rarity": "2",
+        "rarity": 2,
         "element": "ice",
         "children": [
 
@@ -910,46 +910,46 @@
     "slug": "rusted-hammer",
     "type": "hammer",
     "name": "Rusted Hammer",
-    "rarity": "1",
+    "rarity": 1,
     "children": [
       {
         "slug": "tarnished-hammer",
         "type": "hammer",
         "name": "Tarnished Hammer",
-        "rarity": "1",
+        "rarity": 1,
         "children": [
           {
             "slug": "breath-core-hammer",
             "type": "hammer",
             "name": "Breath Core Hammer",
-            "rarity": "5"
+            "rarity": 5
           },
           {
             "slug": "jadite-mace",
             "type": "hammer",
             "name": "Jadite Mace",
-            "rarity": "5",
+            "rarity": 5,
             "element": "fire",
             "children": [
               {
                 "slug": "jade-mace",
                 "type": "hammer",
                 "name": "Jade Mace",
-                "rarity": "5",
+                "rarity": 5,
                 "element": "fire",
                 "children": [
                   {
                     "slug": "lunastra-s-crown",
                     "type": "hammer",
                     "name": "Lunastra's Crown",
-                    "rarity": "8",
+                    "rarity": 8,
                     "element": "fire",
                     "children": [
                       {
                         "slug": "luna-s-skirt",
                         "type": "hammer",
                         "name": "Luna's Skirt",
-                        "rarity": "10",
+                        "rarity": 10,
                         "element": "fire"
                       }
                     ]
@@ -966,42 +966,42 @@
     "slug": "white-cat-stamp",
     "type": "hammer",
     "name": "White Cat Stamp",
-    "rarity": "2",
+    "rarity": 2,
     "element": "paralysis",
     "children": [
       {
         "slug": "white-cat-hammer",
         "type": "hammer",
         "name": "White Cat Hammer",
-        "rarity": "6",
+        "rarity": 6,
         "element": "paralysis"
       },
       {
         "slug": "black-cat-stamp",
         "type": "hammer",
         "name": "Black Cat Stamp",
-        "rarity": "4",
+        "rarity": 4,
         "element": "paralysis",
         "children": [
           {
             "slug": "black-cat-hammer",
             "type": "hammer",
             "name": "Black Cat Hammer",
-            "rarity": "6",
+            "rarity": 6,
             "element": "paralysis"
           },
           {
             "slug": "gold-cat-hammer",
             "type": "hammer",
             "name": "Gold Cat Hammer",
-            "rarity": "8",
+            "rarity": 8,
             "element": "paralysis",
             "children": [
               {
                 "slug": "gold-cat-crusher",
                 "type": "hammer",
                 "name": "Gold Cat Crusher",
-                "rarity": "9",
+                "rarity": 9,
                 "element": "paralysis"
               }
             ]
@@ -1012,7 +1012,7 @@
         "slug": "teddybear",
         "type": "hammer",
         "name": "Teddybear",
-        "rarity": "4",
+        "rarity": 4,
         "element": "sleep"
       }
     ]
@@ -1021,14 +1021,14 @@
     "slug": "cactus-creamer",
     "type": "hammer",
     "name": "Cactus Creamer",
-    "rarity": "3",
+    "rarity": 3,
     "element": "poison",
     "children": [
       {
         "slug": "green-monster",
         "type": "hammer",
         "name": "Green Monster",
-        "rarity": "5",
+        "rarity": 5,
         "element": "poison"
       }
     ]
@@ -1037,19 +1037,19 @@
     "slug": "black-belt-hammer",
     "type": "hammer",
     "name": "Black Belt Hammer",
-    "rarity": "4",
+    "rarity": 4,
     "children": [
       {
         "slug": "expert-hammer",
         "type": "hammer",
         "name": "Expert Hammer",
-        "rarity": "8",
+        "rarity": 8,
         "children": [
           {
             "slug": "warrior-s-hammer",
             "type": "hammer",
             "name": "Warrior's Hammer",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       }
@@ -1059,21 +1059,21 @@
     "slug": "dummy-polytan",
     "type": "hammer",
     "name": "dummy (Polytan)",
-    "rarity": "4",
+    "rarity": 4,
     "element": "thunder",
     "children": [
       {
         "slug": "dummy-polytan-g",
         "type": "hammer",
         "name": "dummy (Polytan G)",
-        "rarity": "6",
+        "rarity": 6,
         "element": "thunder",
         "children": [
           {
             "slug": "dummy-true-polytan-g",
             "type": "hammer",
             "name": "dummy (True Polytan G)",
-            "rarity": "9",
+            "rarity": 9,
             "element": "thunder"
           }
         ]
@@ -1084,21 +1084,21 @@
     "slug": "dummy-amezari-hammer",
     "type": "hammer",
     "name": "dummy (Amezari Hammer)",
-    "rarity": "4",
+    "rarity": 4,
     "element": "water",
     "children": [
       {
         "slug": "dummy-amezari-hammer-plus",
         "type": "hammer",
         "name": "dummy (Amezari Hammer+)",
-        "rarity": "6",
+        "rarity": 6,
         "element": "water",
         "children": [
           {
             "slug": "dummy-amezari-impact",
             "type": "hammer",
             "name": "dummy (Amezari Impact)",
-            "rarity": "9",
+            "rarity": 9,
             "element": "water"
           }
         ]
@@ -1109,28 +1109,28 @@
     "slug": "khezu-horn-plus",
     "type": "hunting-horn",
     "name": "Khezu Horn+",
-    "rarity": "4",
+    "rarity": 4,
     "element": "thunder",
     "children": [
       {
         "slug": "purse-bop",
         "type": "hammer",
         "name": "Purse Bop",
-        "rarity": "7",
+        "rarity": 7,
         "element": "thunder",
         "children": [
           {
             "slug": "purse-bop-plus",
             "type": "hammer",
             "name": "Purse Bop+",
-            "rarity": "9",
+            "rarity": 9,
             "element": "thunder",
             "children": [
               {
                 "slug": "khezu-thunder",
                 "type": "hammer",
                 "name": "Khezu Thunder",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "thunder"
               }
             ]
@@ -1143,21 +1143,21 @@
     "slug": "black-hammer",
     "type": "hammer",
     "name": "Black Hammer",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "fatalis-buster",
         "type": "hammer",
         "name": "Fatalis Buster",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "fatalis-demolisher",
             "type": "hammer",
             "name": "Fatalis Demolisher",
-            "rarity": "10",
+            "rarity": 10,
             "element": "dragon"
           }
         ]
@@ -1166,14 +1166,14 @@
         "slug": "ancientfatalisbuster",
         "type": "hammer",
         "name": "AncientFatalisBuster",
-        "rarity": "8",
+        "rarity": 8,
         "element": "dragon",
         "children": [
           {
             "slug": "ancientfatalisruiner",
             "type": "hammer",
             "name": "AncientFatalisRuiner",
-            "rarity": "10",
+            "rarity": 10,
             "element": "dragon"
           }
         ]
@@ -1184,28 +1184,28 @@
     "slug": "dragon-destroyer",
     "type": "hammer",
     "name": "Dragon Destroyer",
-    "rarity": "5",
+    "rarity": 5,
     "element": "dragon",
     "children": [
       {
         "slug": "dragonbreaker",
         "type": "hammer",
         "name": "Dragonbreaker",
-        "rarity": "5",
+        "rarity": 5,
         "element": "dragon",
         "children": [
           {
             "slug": "dragon-demolisher",
             "type": "hammer",
             "name": "Dragon Demolisher",
-            "rarity": "8",
+            "rarity": 8,
             "element": "dragon",
             "children": [
               {
                 "slug": "claw-of-doom",
                 "type": "hammer",
                 "name": "Claw of Doom",
-                "rarity": "10",
+                "rarity": 10,
                 "element": "dragon"
               }
             ]
@@ -1218,19 +1218,19 @@
     "slug": "striped-striker",
     "type": "hammer",
     "name": "Striped Striker",
-    "rarity": "5",
+    "rarity": 5,
     "children": [
       {
         "slug": "tigrex-hammer",
         "type": "hammer",
         "name": "Tigrex Hammer",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "tigrex-hammer-plus",
             "type": "hammer",
             "name": "Tigrex Hammer+",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       },
@@ -1238,13 +1238,13 @@
         "slug": "hidden-breaker",
         "type": "hammer",
         "name": "Hidden Breaker",
-        "rarity": "7",
+        "rarity": 7,
         "children": [
           {
             "slug": "deep-darkhammer",
             "type": "hammer",
             "name": "Deep Darkhammer",
-            "rarity": "10"
+            "rarity": 10
           }
         ]
       }
@@ -1254,25 +1254,25 @@
     "slug": "worn-hammer",
     "type": "hammer",
     "name": "Worn Hammer",
-    "rarity": "6",
+    "rarity": 6,
     "children": [
       {
         "slug": "weathered-hammer",
         "type": "hammer",
         "name": "Weathered Hammer",
-        "rarity": "6",
+        "rarity": 6,
         "children": [
           {
             "slug": "pulsating-core",
             "type": "hammer",
             "name": "Pulsating Core",
-            "rarity": "7",
+            "rarity": 7,
             "children": [
               {
                 "slug": "pulse-crusher-core",
                 "type": "hammer",
                 "name": "Pulse Crusher Core",
-                "rarity": "9"
+                "rarity": 9
               }
             ]
           },
@@ -1280,21 +1280,21 @@
             "slug": "steel-ice-hammer",
             "type": "hammer",
             "name": "Steel Ice Hammer",
-            "rarity": "7",
+            "rarity": 7,
             "element": "ice",
             "children": [
               {
                 "slug": "daora-s-colossus",
                 "type": "hammer",
                 "name": "Daora's Colossus",
-                "rarity": "8",
+                "rarity": 8,
                 "element": "ice",
                 "children": [
                   {
                     "slug": "daora-s-hyperborea",
                     "type": "hammer",
                     "name": "Daora's Hyperborea",
-                    "rarity": "10",
+                    "rarity": 10,
                     "element": "ice"
                   }
                 ]
@@ -1309,255 +1309,255 @@
     "slug": "ukanlos-trampler",
     "type": "hammer",
     "name": "Ukanlos Trampler",
-    "rarity": "10",
+    "rarity": 10,
     "element": "ice"
   },
   {
     "slug": "bone-club-g",
     "type": "hammer",
     "name": "Bone Club G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "war-hammer-g",
     "type": "hammer",
     "name": "War Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "tarnished-hammer-g",
     "type": "hammer",
     "name": "Tarnished Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "spiked-hammer-g",
     "type": "hammer",
     "name": "Spiked Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "iron-striker-g",
     "type": "hammer",
     "name": "Iron Striker G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "atlas-hammer-g",
     "type": "hammer",
     "name": "Atlas Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "bone-axe-g",
     "type": "hammer",
     "name": "Bone Axe G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "skullcrusher-g",
     "type": "hammer",
     "name": "Skullcrusher G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "bull-tusk-hammer-g",
     "type": "hammer",
     "name": "Bull Tusk Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "crystal-nova-g",
     "type": "hammer",
     "name": "Crystal Nova G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "binder-mace-g",
     "type": "hammer",
     "name": "Binder Mace G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "paralysis"
   },
   {
     "slug": "kut-ku-jaw-g",
     "type": "hammer",
     "name": "Kut-Ku Jaw G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "venom-monster-g",
     "type": "hammer",
     "name": "Venom Monster G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "poison"
   },
   {
     "slug": "dead-revolver-g",
     "type": "hammer",
     "name": "Dead Revolver G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "fire"
   },
   {
     "slug": "anchor-crusher-g",
     "type": "hammer",
     "name": "Anchor Crusher G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "water"
   },
   {
     "slug": "kut-ku-pick-g",
     "type": "hammer",
     "name": "Kut-Ku Pick G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "dragonhead-hammer-g",
     "type": "hammer",
     "name": "Dragonhead Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "basarios-bash-g",
     "type": "hammer",
     "name": "Basarios Bash G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "titan-hammer-g",
     "type": "hammer",
     "name": "Titan Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "finishing-hammer-g",
     "type": "hammer",
     "name": "Finishing Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "trueblackcauldron-g",
     "type": "hammer",
     "name": "TrueBlackCauldron G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "enormous-ham-g",
     "type": "hammer",
     "name": "Enormous Ham G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "teddybear-g",
     "type": "hammer",
     "name": "Teddybear G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "sleep"
   },
   {
     "slug": "cactus-creamer-g",
     "type": "hammer",
     "name": "Cactus Creamer G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "poison"
   },
   {
     "slug": "white-cat-hammer-g",
     "type": "hammer",
     "name": "White Cat Hammer G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "paralysis"
   },
   {
     "slug": "black-cat-hammer-g",
     "type": "hammer",
     "name": "Black Cat Hammer G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "paralysis"
   },
   {
     "slug": "black-belt-hammer-g",
     "type": "hammer",
     "name": "Black Belt Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "breath-core-hammer-g",
     "type": "hammer",
     "name": "Breath Core Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "polytan-g",
     "type": "hammer",
     "name": "Polytan G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "thunder"
   },
   {
     "slug": "great-demon-hammer-g",
     "type": "hammer",
     "name": "Great Demon Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "hard-bone-hammer-g",
     "type": "hammer",
     "name": "Hard Bone Hammer G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "twostarsilverpot-g",
     "type": "hammer",
     "name": "TwoStarSilverPot G",
-    "rarity": "9"
+    "rarity": 9
   },
   {
     "slug": "great-cone-g",
     "type": "hammer",
     "name": "Great Cone G",
-    "rarity": "9",
+    "rarity": 9,
     "element": "ice"
   },
   {
     "slug": "onslaught-hammer-g",
     "type": "hammer",
     "name": "Onslaught Hammer G",
-    "rarity": "10"
+    "rarity": 10
   },
   {
     "slug": "war-basher-g",
     "type": "hammer",
     "name": "War Basher G",
-    "rarity": "10"
+    "rarity": 10
   },
   {
     "slug": "sanctionedgunhammr-g",
     "type": "hammer",
     "name": "SanctionedGunHammr G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "fire"
   },
   {
     "slug": "crater-maker-g",
     "type": "hammer",
     "name": "Crater Maker G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "poison"
   },
   {
     "slug": "tormentpurgatory-g",
     "type": "hammer",
     "name": "Torment(Purgatory) G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "fire"
   },
   {
     "slug": "dragonbreaker-g",
     "type": "hammer",
     "name": "Dragonbreaker G",
-    "rarity": "10",
+    "rarity": 10,
     "element": "dragon"
   }
 ]

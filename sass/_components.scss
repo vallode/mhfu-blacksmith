@@ -8,6 +8,7 @@
 
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
 
   display: flex;
   flex-direction: column;
@@ -81,6 +82,7 @@
       width: calc(50vw - 2.3rem);
       z-index: 0;
       background: transparent;
+      animation: opacityme 1s ease-in-out 0s infinite alternate;
 
       @media screen and (max-width: 600px) {
         left: 0;
@@ -105,6 +107,7 @@
 
     &__toggle {
       color: white;
+      cursor: pointer;
       font-family: monospace;
       margin-left: 1.6rem;
       opacity: 0.2;
@@ -199,6 +202,11 @@ $weapon-types: (
   "stone",
   "coin",
   "ukwn",
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "leggings"
 );
 
 $decoration-colors: (
@@ -245,6 +253,12 @@ $element-types: (
   "paralysis",
 );
 
+$ranks: (
+  "low-rank",
+  "high-rank",
+  "g-rank",
+);
+
 .icon {
   display: flex;
   flex: 0 0 3.2rem;
@@ -259,6 +273,7 @@ $element-types: (
     width: 32px;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 
   &--large,
@@ -270,6 +285,16 @@ $element-types: (
   &--large::before {
     -webkit-mask-size: 52px;
     mask-size: 52px;
+  }
+
+  &--nav {
+    &::before {
+      background-color: #bdbdbd;
+    }
+
+    &:hover::before {
+      background-color: white;
+    }
   }
 
   @each $value, $color in $rarity-colors {
@@ -300,6 +325,7 @@ $element-types: (
       mix-blend-mode: multiply;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -328,10 +354,32 @@ $element-types: (
       z-index: 1000;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
     }
 
     &--#{$element-name}::after {
       background-image: url("/images/#{$element-name}.png");
+    }
+  }
+
+  @each $rank-name in $ranks {
+    &--#{$rank-name}::after {
+      background-size: 37.5px 39px;
+      background-position: bottom 0px right 0px;
+      background-repeat: no-repeat;
+      bottom: 0;
+      content: '';
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1000;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+    }
+
+    &--#{$rank-name}::after {
+      background-image: url("/images/#{$rank-name}.png");
     }
   }
 }
@@ -396,12 +444,19 @@ $element-types: (
       background-size: cover;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
       z-index: 10;
     }
 
     .sharpness:focus-within::after,
     .sharpness:hover::after {
       background-image: url("/images/sharpness-plus.png");
+    }
+
+    .hunter_type,
+    .sex {
+      margin-left: 1.3rem;
+      color: #c0c0c0;
     }
 
     @media screen and (max-width: 600px) {
@@ -419,8 +474,8 @@ $element-types: (
     margin: 2rem 0 0;
 
     .stats,
-    .improve-mats,
-    .create-mats {
+    .improve_mats,
+    .create_mats {
       display: flex;
       flex-direction: column;
       gap: 13px 0;
@@ -500,8 +555,8 @@ $element-types: (
       color: white;
       flex: 1 1 0%;
 
-      .improve-mats,
-      .create-mats {
+      .improve_mats,
+      .create_mats {
         display: flex;
         flex: 1 1 0%;
       }
@@ -515,17 +570,17 @@ $element-types: (
         display: flex;
       }
       
-      &.improve-mats .create-mats,
-      &.create-mats .improve-mats {
+      &.improve_mats .create_mats,
+      &.create_mats .improve_mats {
         display: none;
       }
 
-      &.improve-mats .weapon-card__navigation::before {
+      &.improve_mats .weapon-card__navigation::before {
         content: 'Improve';
         display: block;
       }
 
-      &.create-mats .weapon-card__navigation::before {
+      &.create_mats .weapon-card__navigation::before {
         content: 'Create';
         display: block;
       }
@@ -639,4 +694,9 @@ $sharpness-colors: (
     justify-content: center;
     flex-wrap: wrap;
   }
+}
+
+@keyframes opacityme {
+  from {opacity: 1;}
+  to {opacity: 0.6;}
 }

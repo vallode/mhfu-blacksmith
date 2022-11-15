@@ -14,7 +14,7 @@
     data-turbo-frame="weapon_details"
     {% endif %}
     {% if weapon.rarity %}
-    href="/blacksmith/{{ weapon.type }}/{{ weapon.slug }}/"
+    href="{{section.path}}{{ weapon.slug }}/"
     {% endif %}
   >
     {% if weapon.rarity %}

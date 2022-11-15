@@ -1,0 +1,1414 @@
+{
+  "map": [
+  {
+    "slug": "mafumofu-hood",
+    "type": "helmet",
+    "name": "Mafumofu Hood",
+    "rarity": "1"
+  },
+  {
+    "slug": "leather-helm",
+    "type": "helmet",
+    "name": "Leather Helm",
+    "rarity": "1"
+  },
+  {
+    "slug": "chain-helm",
+    "type": "helmet",
+    "name": "Chain Helm",
+    "rarity": "1"
+  },
+  {
+    "slug": "hunter-s-helm",
+    "type": "helmet",
+    "name": "Hunter's Helm",
+    "rarity": "1"
+  },
+  {
+    "slug": "hunter-s-cap",
+    "type": "helmet",
+    "name": "Hunter's Cap",
+    "rarity": "1"
+  },
+  {
+    "slug": "protection-piercing",
+    "type": "helmet",
+    "name": "Protection Piercing",
+    "rarity": "2"
+  },
+  {
+    "slug": "bone-helm",
+    "type": "helmet",
+    "name": "Bone Helm",
+    "rarity": "2"
+  },
+  {
+    "slug": "bone-cap",
+    "type": "helmet",
+    "name": "Bone Cap",
+    "rarity": "2"
+  },
+  {
+    "slug": "giaprey-helm",
+    "type": "helmet",
+    "name": "Giaprey Helm",
+    "rarity": "2"
+  },
+  {
+    "slug": "giaprey-cap",
+    "type": "helmet",
+    "name": "Giaprey Cap",
+    "rarity": "2"
+  },
+  {
+    "slug": "battle-helm",
+    "type": "helmet",
+    "name": "Battle Helm",
+    "rarity": "2"
+  },
+  {
+    "slug": "battle-cap",
+    "type": "helmet",
+    "name": "Battle Cap",
+    "rarity": "2"
+  },
+  {
+    "slug": "velociprey-helm",
+    "type": "helmet",
+    "name": "Velociprey Helm",
+    "rarity": "2"
+  },
+  {
+    "slug": "velociprey-cap",
+    "type": "helmet",
+    "name": "Velociprey Cap",
+    "rarity": "2"
+  },
+  {
+    "slug": "vespoid-helm",
+    "type": "helmet",
+    "name": "Vespoid Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "vespoid-cap",
+    "type": "helmet",
+    "name": "Vespoid Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "hi-metal-helm",
+    "type": "helmet",
+    "name": "Hi-Metal Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "hi-metal-cap",
+    "type": "helmet",
+    "name": "Hi-Metal Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "hornetaur-helm",
+    "type": "helmet",
+    "name": "Hornetaur Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "hornetaur-cap",
+    "type": "helmet",
+    "name": "Hornetaur Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "genprey-helm",
+    "type": "helmet",
+    "name": "Genprey Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "genprey-cap",
+    "type": "helmet",
+    "name": "Genprey Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "ioprey-helm",
+    "type": "helmet",
+    "name": "Ioprey Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "ioprey-cap",
+    "type": "helmet",
+    "name": "Ioprey Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-helm",
+    "type": "helmet",
+    "name": "Kut-Ku Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-cap",
+    "type": "helmet",
+    "name": "Kut-Ku Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "cephalos-helm",
+    "type": "helmet",
+    "name": "Cephalos Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "cephalos-cap",
+    "type": "helmet",
+    "name": "Cephalos Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "conga-helm",
+    "type": "helmet",
+    "name": "Conga Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "conga-cap",
+    "type": "helmet",
+    "name": "Conga Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-helm",
+    "type": "helmet",
+    "name": "Gypceros Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-cap",
+    "type": "helmet",
+    "name": "Gypceros Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-helm",
+    "type": "helmet",
+    "name": "Khezu Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-cap",
+    "type": "helmet",
+    "name": "Khezu Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "hermitaur-helm",
+    "type": "helmet",
+    "name": "Hermitaur Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "hermitaur-cap",
+    "type": "helmet",
+    "name": "Hermitaur Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-helm",
+    "type": "helmet",
+    "name": "Plesioth Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-cap",
+    "type": "helmet",
+    "name": "Plesioth Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "lobster-helm",
+    "type": "helmet",
+    "name": "Lobster Helm",
+    "rarity": "3"
+  },
+  {
+    "slug": "lobster-cap",
+    "type": "helmet",
+    "name": "Lobster Cap",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-helm-d",
+    "type": "helmet",
+    "name": "Kut-Ku Helm D",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-cap-d",
+    "type": "helmet",
+    "name": "Kut-Ku Cap D",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-helm-d",
+    "type": "helmet",
+    "name": "Gypceros Helm D",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-cap-d",
+    "type": "helmet",
+    "name": "Gypceros Cap D",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-helm-d",
+    "type": "helmet",
+    "name": "Khezu Helm D",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-cap-d",
+    "type": "helmet",
+    "name": "Khezu Cap D",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-helm-d",
+    "type": "helmet",
+    "name": "Plesioth Helm D",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-cap-d",
+    "type": "helmet",
+    "name": "Plesioth Cap D",
+    "rarity": "3"
+  },
+  {
+    "slug": "basarios-helm",
+    "type": "helmet",
+    "name": "Basarios Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "basarios-cap",
+    "type": "helmet",
+    "name": "Basarios Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "blango-helm",
+    "type": "helmet",
+    "name": "Blango Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "blango-cap",
+    "type": "helmet",
+    "name": "Blango Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "ceanataur-helm",
+    "type": "helmet",
+    "name": "Ceanataur Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "ceanataur-cap",
+    "type": "helmet",
+    "name": "Ceanataur Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathian-helm",
+    "type": "helmet",
+    "name": "Rathian Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathian-cap",
+    "type": "helmet",
+    "name": "Rathian Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "tigrex-helm",
+    "type": "helmet",
+    "name": "Tigrex Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "tigrex-cap",
+    "type": "helmet",
+    "name": "Tigrex Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathalos-helm",
+    "type": "helmet",
+    "name": "Rathalos Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathalos-cap",
+    "type": "helmet",
+    "name": "Rathalos Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-helm",
+    "type": "helmet",
+    "name": "Diablo Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-cap",
+    "type": "helmet",
+    "name": "Diablo Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-helm",
+    "type": "helmet",
+    "name": "Gravios Helm",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-cap",
+    "type": "helmet",
+    "name": "Gravios Cap",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-helm-d",
+    "type": "helmet",
+    "name": "Diablo Helm D",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-cap-d",
+    "type": "helmet",
+    "name": "Diablo Cap D",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-helm-d",
+    "type": "helmet",
+    "name": "Gravios Helm D",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-cap-d",
+    "type": "helmet",
+    "name": "Gravios Cap D",
+    "rarity": "4"
+  },
+  {
+    "slug": "chaos-shroom",
+    "type": "helmet",
+    "name": "Chaos Shroom",
+    "rarity": "5"
+  },
+  {
+    "slug": "mosswine-mask",
+    "type": "helmet",
+    "name": "Mosswine Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "felyne-mask",
+    "type": "helmet",
+    "name": "Felyne Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "bullfango-mask",
+    "type": "helmet",
+    "name": "Bullfango Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "giaprey-mask",
+    "type": "helmet",
+    "name": "Giaprey Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "velociprey-mask",
+    "type": "helmet",
+    "name": "Velociprey Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-piercing",
+    "type": "helmet",
+    "name": "Red Piercing",
+    "rarity": "5"
+  },
+  {
+    "slug": "blue-piercing",
+    "type": "helmet",
+    "name": "Blue Piercing",
+    "rarity": "5"
+  },
+  {
+    "slug": "yellow-piercing",
+    "type": "helmet",
+    "name": "Yellow Piercing",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-piercing",
+    "type": "helmet",
+    "name": "Black Piercing",
+    "rarity": "5"
+  },
+  {
+    "slug": "white-piercing",
+    "type": "helmet",
+    "name": "White Piercing",
+    "rarity": "5"
+  },
+  {
+    "slug": "bistro-cap",
+    "type": "helmet",
+    "name": "Bistro Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "genprey-mask",
+    "type": "helmet",
+    "name": "Genprey Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "shinobi-mask-sun",
+    "type": "helmet",
+    "name": "Shinobi Mask (Sun)",
+    "rarity": "5"
+  },
+  {
+    "slug": "shinobi-mask-moon",
+    "type": "helmet",
+    "name": "Shinobi Mask (Moon)",
+    "rarity": "5"
+  },
+  {
+    "slug": "guild-knight-feather",
+    "type": "helmet",
+    "name": "Guild Knight Feather",
+    "rarity": "5"
+  },
+  {
+    "slug": "guild-knight-mask",
+    "type": "helmet",
+    "name": "Guild Knight Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardian-helm",
+    "type": "helmet",
+    "name": "Guardian Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardian-mask",
+    "type": "helmet",
+    "name": "Guardian Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "maiden-s-hat",
+    "type": "helmet",
+    "name": "Maiden's Hat",
+    "rarity": "5"
+  },
+  {
+    "slug": "designer-glasses",
+    "type": "helmet",
+    "name": "Designer Glasses",
+    "rarity": "5"
+  },
+  {
+    "slug": "helper-hood",
+    "type": "helmet",
+    "name": "Helper Hood",
+    "rarity": "5"
+  },
+  {
+    "slug": "healer-glasses",
+    "type": "helmet",
+    "name": "Healer Glasses",
+    "rarity": "5"
+  },
+  {
+    "slug": "ioprey-mask",
+    "type": "helmet",
+    "name": "Ioprey Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "remobra-face",
+    "type": "helmet",
+    "name": "Remobra Face",
+    "rarity": "5"
+  },
+  {
+    "slug": "melahoa-flower-hat",
+    "type": "helmet",
+    "name": "Melahoa Flower Hat",
+    "rarity": "5"
+  },
+  {
+    "slug": "melahoa-bloom",
+    "type": "helmet",
+    "name": "Melahoa Bloom",
+    "rarity": "5"
+  },
+  {
+    "slug": "makluva-hood",
+    "type": "helmet",
+    "name": "Makluva Hood",
+    "rarity": "5"
+  },
+  {
+    "slug": "makluva-gills",
+    "type": "helmet",
+    "name": "Makluva Gills",
+    "rarity": "5"
+  },
+  {
+    "slug": "obituary-testa",
+    "type": "helmet",
+    "name": "Obituary Testa",
+    "rarity": "5"
+  },
+  {
+    "slug": "obituary-caput",
+    "type": "helmet",
+    "name": "Obituary Caput",
+    "rarity": "5"
+  },
+  {
+    "slug": "butterfly-testa",
+    "type": "helmet",
+    "name": "Butterfly Testa",
+    "rarity": "5"
+  },
+  {
+    "slug": "butterfly-caput",
+    "type": "helmet",
+    "name": "Butterfly Caput",
+    "rarity": "5"
+  },
+  {
+    "slug": "death-stench-brain",
+    "type": "helmet",
+    "name": "Death Stench Brain",
+    "rarity": "5"
+  },
+  {
+    "slug": "death-stench-soul",
+    "type": "helmet",
+    "name": "Death Stench Soul",
+    "rarity": "5"
+  },
+  {
+    "slug": "mizuha-cap",
+    "type": "helmet",
+    "name": "Mizuha Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "extravagant-cap",
+    "type": "helmet",
+    "name": "Extravagant Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "kushala-glare",
+    "type": "helmet",
+    "name": "Kushala Glare",
+    "rarity": "5"
+  },
+  {
+    "slug": "kushala-snarl",
+    "type": "helmet",
+    "name": "Kushala Snarl",
+    "rarity": "5"
+  },
+  {
+    "slug": "kirin-horn",
+    "type": "helmet",
+    "name": "Kirin Horn",
+    "rarity": "5"
+  },
+  {
+    "slug": "kirin-crest",
+    "type": "helmet",
+    "name": "Kirin Crest",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardian-spirit-mask",
+    "type": "helmet",
+    "name": "Guardian Spirit Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "carnage-mask",
+    "type": "helmet",
+    "name": "Carnage Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "auroros-helm",
+    "type": "helmet",
+    "name": "Auroros Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "genesis-headpiece",
+    "type": "helmet",
+    "name": "Genesis Headpiece",
+    "rarity": "5"
+  },
+  {
+    "slug": "borealis-crown",
+    "type": "helmet",
+    "name": "Borealis Crown",
+    "rarity": "5"
+  },
+  {
+    "slug": "glyph-crown",
+    "type": "helmet",
+    "name": "Glyph Crown",
+    "rarity": "5"
+  },
+  {
+    "slug": "indra-helm",
+    "type": "helmet",
+    "name": "Indra Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "steadfast-helm",
+    "type": "helmet",
+    "name": "Steadfast Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "kaiser-crown",
+    "type": "helmet",
+    "name": "Kaiser Crown",
+    "rarity": "5"
+  },
+  {
+    "slug": "kaiser-mask",
+    "type": "helmet",
+    "name": "Kaiser Mask",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathian-heart-helm",
+    "type": "helmet",
+    "name": "Rathian Heart Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathian-heart-cap",
+    "type": "helmet",
+    "name": "Rathian Heart Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathalos-soul-helm",
+    "type": "helmet",
+    "name": "Rathalos Soul Helm",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathalos-soul-cap",
+    "type": "helmet",
+    "name": "Rathalos Soul Cap",
+    "rarity": "5"
+  },
+  {
+    "slug": "mafumofu-hood-s",
+    "type": "helmet",
+    "name": "Mafumofu Hood S",
+    "rarity": "6"
+  },
+  {
+    "slug": "leather-helm-s",
+    "type": "helmet",
+    "name": "Leather Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "chain-helm-s",
+    "type": "helmet",
+    "name": "Chain Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hunter-s-helm-s",
+    "type": "helmet",
+    "name": "Hunter's Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hunter-s-cap-s",
+    "type": "helmet",
+    "name": "Hunter's Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "bone-helm-s",
+    "type": "helmet",
+    "name": "Bone Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "bone-cap-s",
+    "type": "helmet",
+    "name": "Bone Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "battle-helm-s",
+    "type": "helmet",
+    "name": "Battle Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "battle-cap-s",
+    "type": "helmet",
+    "name": "Battle Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-helm-s",
+    "type": "helmet",
+    "name": "Velociprey Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-cap-s",
+    "type": "helmet",
+    "name": "Velociprey Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-helm-s",
+    "type": "helmet",
+    "name": "Vespoid Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-cap-s",
+    "type": "helmet",
+    "name": "Vespoid Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-helm-s",
+    "type": "helmet",
+    "name": "Hi-Metal Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-cap-s",
+    "type": "helmet",
+    "name": "Hi-Metal Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornetaur-helm-s",
+    "type": "helmet",
+    "name": "Hornetaur Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornetaur-cap-s",
+    "type": "helmet",
+    "name": "Hornetaur Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-helm-s",
+    "type": "helmet",
+    "name": "Genprey Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-cap-s",
+    "type": "helmet",
+    "name": "Genprey Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-helm-s",
+    "type": "helmet",
+    "name": "Ioprey Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-cap-s",
+    "type": "helmet",
+    "name": "Ioprey Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-helm-s",
+    "type": "helmet",
+    "name": "Kut-Ku Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-cap-s",
+    "type": "helmet",
+    "name": "Kut-Ku Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-helm-s",
+    "type": "helmet",
+    "name": "Cephalos Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-cap-s",
+    "type": "helmet",
+    "name": "Cephalos Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-helm-s",
+    "type": "helmet",
+    "name": "Conga Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-cap-s",
+    "type": "helmet",
+    "name": "Conga Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-helm-s",
+    "type": "helmet",
+    "name": "Gypceros Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-cap-s",
+    "type": "helmet",
+    "name": "Gypceros Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-helm-s",
+    "type": "helmet",
+    "name": "Khezu Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-cap-s",
+    "type": "helmet",
+    "name": "Khezu Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-helm-s",
+    "type": "helmet",
+    "name": "Hermitaur Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-cap-s",
+    "type": "helmet",
+    "name": "Hermitaur Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "basarios-helm-s",
+    "type": "helmet",
+    "name": "Basarios Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "basarios-cap-s",
+    "type": "helmet",
+    "name": "Basarios Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-helm-s",
+    "type": "helmet",
+    "name": "Plesioth Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-cap-s",
+    "type": "helmet",
+    "name": "Plesioth Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-helm-s",
+    "type": "helmet",
+    "name": "Blango Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-cap-s",
+    "type": "helmet",
+    "name": "Blango Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-helm-s",
+    "type": "helmet",
+    "name": "Ceanataur Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-cap-s",
+    "type": "helmet",
+    "name": "Ceanataur Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-helm-s",
+    "type": "helmet",
+    "name": "Rathian Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-cap-s",
+    "type": "helmet",
+    "name": "Rathian Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathalos-helm-s",
+    "type": "helmet",
+    "name": "Rathalos Helm S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathalos-cap-s",
+    "type": "helmet",
+    "name": "Rathalos Cap S",
+    "rarity": "6"
+  },
+  {
+    "slug": "leather-helm-u",
+    "type": "helmet",
+    "name": "Leather Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "chain-helm-u",
+    "type": "helmet",
+    "name": "Chain Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-s-helm-u",
+    "type": "helmet",
+    "name": "Hunter's Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-s-cap-u",
+    "type": "helmet",
+    "name": "Hunter's Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-helm-u",
+    "type": "helmet",
+    "name": "Bone Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-cap-u",
+    "type": "helmet",
+    "name": "Bone Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-helm-u",
+    "type": "helmet",
+    "name": "Battle Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-cap-u",
+    "type": "helmet",
+    "name": "Battle Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-helm-u",
+    "type": "helmet",
+    "name": "Giaprey Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-cap-u",
+    "type": "helmet",
+    "name": "Giaprey Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-helm-u",
+    "type": "helmet",
+    "name": "Vespoid Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-cap-u",
+    "type": "helmet",
+    "name": "Vespoid Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-helm-u",
+    "type": "helmet",
+    "name": "Hi-Metal Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-cap-u",
+    "type": "helmet",
+    "name": "Hi-Metal Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornetaur-helm-u",
+    "type": "helmet",
+    "name": "Hornetaur Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornetaur-cap-u",
+    "type": "helmet",
+    "name": "Hornetaur Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-helm-u",
+    "type": "helmet",
+    "name": "Genprey Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-cap-u",
+    "type": "helmet",
+    "name": "Genprey Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-helm-u",
+    "type": "helmet",
+    "name": "Ioprey Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-cap-u",
+    "type": "helmet",
+    "name": "Ioprey Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-helm-u",
+    "type": "helmet",
+    "name": "Kut-Ku Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-cap-u",
+    "type": "helmet",
+    "name": "Kut-Ku Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-helm-u",
+    "type": "helmet",
+    "name": "Cephalos Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-cap-u",
+    "type": "helmet",
+    "name": "Cephalos Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-helm-u",
+    "type": "helmet",
+    "name": "Conga Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-cap-u",
+    "type": "helmet",
+    "name": "Conga Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-helm-u",
+    "type": "helmet",
+    "name": "Gypceros Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-cap-u",
+    "type": "helmet",
+    "name": "Gypceros Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-helm-u",
+    "type": "helmet",
+    "name": "Khezu Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-cap-u",
+    "type": "helmet",
+    "name": "Khezu Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-helm-u",
+    "type": "helmet",
+    "name": "Hermitaur Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-cap-u",
+    "type": "helmet",
+    "name": "Hermitaur Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-helm-u",
+    "type": "helmet",
+    "name": "Basarios Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-cap-u",
+    "type": "helmet",
+    "name": "Basarios Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-helm-u",
+    "type": "helmet",
+    "name": "Plesioth Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-cap-u",
+    "type": "helmet",
+    "name": "Plesioth Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-helm-u",
+    "type": "helmet",
+    "name": "Blango Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-cap-u",
+    "type": "helmet",
+    "name": "Blango Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-helm-u",
+    "type": "helmet",
+    "name": "Ceanataur Helm U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-cap-u",
+    "type": "helmet",
+    "name": "Ceanataur Cap U",
+    "rarity": "7"
+  },
+  {
+    "slug": "skull-face",
+    "type": "helmet",
+    "name": "Skull Face",
+    "rarity": "8"
+  },
+  {
+    "slug": "black-belt-helm-s",
+    "type": "helmet",
+    "name": "Black Belt Helm S",
+    "rarity": "8"
+  },
+  {
+    "slug": "blguildguardtricorne",
+    "type": "helmet",
+    "name": "BlGuildGuardTricorne",
+    "rarity": "8"
+  },
+  {
+    "slug": "blue-guildguard-mask",
+    "type": "helmet",
+    "name": "Blue GuildGuard Mask",
+    "rarity": "8"
+  },
+  {
+    "slug": "blue-guild-guard-hat",
+    "type": "helmet",
+    "name": "Blue Guild Guard Hat",
+    "rarity": "8"
+  },
+  {
+    "slug": "bluguildguardpiercng",
+    "type": "helmet",
+    "name": "BluGuildGuardPiercng",
+    "rarity": "8"
+  },
+  {
+    "slug": "obituary-testa-s",
+    "type": "helmet",
+    "name": "Obituary Testa S",
+    "rarity": "8"
+  },
+  {
+    "slug": "obituary-caput-s",
+    "type": "helmet",
+    "name": "Obituary Caput S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-testa-s",
+    "type": "helmet",
+    "name": "Butterfly Testa S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-caput-s",
+    "type": "helmet",
+    "name": "Butterfly Caput S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-horn-s",
+    "type": "helmet",
+    "name": "Kirin Horn S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-crest-s",
+    "type": "helmet",
+    "name": "Kirin Crest S",
+    "rarity": "8"
+  },
+  {
+    "slug": "bistro-cap-u",
+    "type": "helmet",
+    "name": "Bistro Cap U",
+    "rarity": "8"
+  },
+  {
+    "slug": "guardian-helm-u",
+    "type": "helmet",
+    "name": "Guardian Helm U",
+    "rarity": "8"
+  },
+  {
+    "slug": "guardian-mask-u",
+    "type": "helmet",
+    "name": "Guardian Mask U",
+    "rarity": "8"
+  },
+  {
+    "slug": "helper-hood-u",
+    "type": "helmet",
+    "name": "Helper Hood U",
+    "rarity": "8"
+  },
+  {
+    "slug": "healer-beret-u",
+    "type": "helmet",
+    "name": "Healer Beret U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-flower-hat-u",
+    "type": "helmet",
+    "name": "Melahoa Flower Hat U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-bloom-u",
+    "type": "helmet",
+    "name": "Melahoa Bloom U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-hood-u",
+    "type": "helmet",
+    "name": "Makluva Hood U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-gills-u",
+    "type": "helmet",
+    "name": "Makluva Gills U",
+    "rarity": "8"
+  },
+  {
+    "slug": "auroros-helm-ten",
+    "type": "helmet",
+    "name": "Auroros Helm Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "genesis-headpiece-ten",
+    "type": "helmet",
+    "name": "Genesis Headpiece Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "borealis-crown-ten",
+    "type": "helmet",
+    "name": "Borealis Crown Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "glyph-crown-ten",
+    "type": "helmet",
+    "name": "Glyph Crown Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "eagle-eye-piercing",
+    "type": "helmet",
+    "name": "Eagle Eye Piercing",
+    "rarity": "10"
+  },
+  {
+    "slug": "barrage-piercing",
+    "type": "helmet",
+    "name": "Barrage Piercing",
+    "rarity": "5"
+  }
+]
+}

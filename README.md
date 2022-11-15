@@ -9,6 +9,37 @@ Weapon trees for Monster Hunter Freedom Unite in the style of the in-game UI.
 TODO: Create image dump of all weapons in MHFU  
 TODO: Create release file for all JSON crafting information
 
+## Credits
+
+Thank you to all the people below, and anyone I missed, for the invaluable help with this project:
+
+* Arxx
+* Assis
+* Athena
+* Danzell
+* Darkcola
+* Emanon
+* Hunsterverse contributors
+* kpworthi
+* kushala
+* rafaellum
+* Vid (Firaga)
+* Yaas
+* Zack
+
+## Development
+
+Dependencies:
+
+* [zola](https://github.com/getzola/zola/) 
+* [Ruby](https://www.ruby-lang.org/)
+  * [toml](https://github.com/jm/toml)
+* [ImageMagick](https://imagemagick.org/) (optional)
+
+Before running the first build you need to run `make generate-maps` to generate weapons maps.
+
+The makefile has everything covered: develop locally using `make`, test build output with `make build`, and deploy to netlify with `make deploy`.
+
 ## Hunstermonter weapon data scraping (WIP)
 
 Going onto any weapon tree page on hunstermonter (i.e https://hunstermonter.net/fu/weapon2.php?w=gs) allows you to access `arrWeapons` on the browser console. Using the script below you can filter it into a mostly usable javascript object.
@@ -32,10 +63,10 @@ arrWeapons.flatMap((weapon) => {
     "status-ammo": weapon["Info"][12].split("|"),
     "element-ammo": weapon["Info"][13].split("|"),
     "misc-ammo": weapon["Info"][14].split("|"),
-    "create-cost": weapon["Info"][15],
+    "create_cost": weapon["Info"][15],
   })
-  newWeapon["improve-mats"] = weapon["Improve"] || "N/A"
-  newWeapon["create-mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
+  newWeapon["improve_mats"] = weapon["Improve"] || "N/A"
+  newWeapon["create_mats"] = weapon["Create"] ? weapon["Create"].split("|") : "N/A"
   return newWeapon
 })
 ```
@@ -72,31 +103,3 @@ do
     output/${weapon}.png
 done
 ```
-
-## Credits
-
-Keeping track of who helped out, directly or indirectly, with this project. (Keep in mind the order is fairly random)
-
-* Hunsterverse contributors
-* Emanon
-* Zack
-* Assis
-* Yaas
-* kpworthi
-* kushala
-* rafaellum
-* Darkcola
-* Arxx
-* Vid (Firaga)
-
-## Development
-
-Dependencies:
-
-* [zola](https://github.com/getzola/zola/) 
-* [Ruby](https://www.ruby-lang.org/)
-* [ImageMagick](https://imagemagick.org/) (optional)
-
-The first time you run the site you have to run `make generate-maps`, this is temporary until the maps are hard-coded into the TOML configuration.
-
-The makefile has everything covered: develop locally using `make`, test build output with `make build`, and deploy to netlify with `make deploy`.

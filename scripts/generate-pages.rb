@@ -1,71 +1,7 @@
 require 'json'
-require 'find'
-require 'erb'
+require 'toml'
 
-FILE_TEMPLATE = %{+++
-  title = <%= value["name"].to_json %>
-  slug = "<%= slug %>"
-  [extra]
-  <% value.each_pair do |key, val| %>
-  <%= key.gsub("-", "_") %> = <%= JSON.pretty_generate(val) or "null" %> 
-  <% end %>
-  <% if create_mats %>
-  <% create_mats.each do |el| %>
-  [[extra.create_mats]]
-  name = "<%= el["name"] %>"
-  amount = <%= el["amount"] %>
-  type = "<%= el["type"] %>"
-  color = "<%= el["color"] %>"
-  <% end %>
-  <% end %>
-  <% if improve_mats %>
-  <% improve_mats.each do |el| %>
-  [[extra.improve_mats]]
-  name = "<%= el["name"] %>"
-  amount = <%= el["amount"] %>
-  type = "<%= el["type"] %>"
-  color = "<%= el["color"] %>"
-  <% end %>
-  <% end %>
-  <% if alternative_create_mats %>
-  <% alternative_create_mats.each do |el| %>
-  [[extra.alternative_create_mats]]
-  name = "<%= el["name"] %>"
-  amount = <%= el["amount"] %>
-  type = "<%= el["type"] %>"
-  color = "<%= el["color"] %>"
-  <% end %>
-  <% end %>
-  <% if shelling %>
-  [extra.shelling]
-  type = "<%= shelling["type"] %>"
-  level = <%= shelling["level"] %>
-  <% end %>
-  <% if element %>
-  <% element.each do |el| %>
-  [[extra.element]]
-  name = "<%= el[:name] %>"
-  attack = <%= el[:attack] %>
-  <% end %>
-  <% end %>
-  +++
-}.gsub(/^  /, '')
-
-WEAPON_ABBR = {
-  "great-sword": "gs",
-  "long-sword": "ls",
-  "sword-and-shield": "sns",
-  "dual-blades": "db",
-  "hammer": "hm",
-  "hunting-horn": "hh",
-  "lance": "ln",
-  "gunlance":  "gl",
-  "light-bowgun": "lbg",
-  "heavy-bowgun": "hbg",
-  "bow": "bw",
-  "decoration": "dec"
-}
-
+# TODO: Raw damage can be embedded directly into the dataset, no need for this?
 WEAPON_CLASS_MULTIPLIER = {
   "great-sword": 4.8,
   "long-sword": 4.8,
@@ -80,6 +16,7 @@ WEAPON_CLASS_MULTIPLIER = {
   "bow":  1.2,
 }
 
+# TODO: Take inspiration from `parameterize` in rails and clean this up.
 def slugify(value)
   value = value.downcase.strip
   value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
@@ -91,72 +28,41 @@ def slugify(value)
   value = value.gsub("+", "-plus")
 end
 
-def parseElements(elements)
-  parsedElements = []
-
-  if elements
-    elements.scan(/([A-Za-z]+)\s([0-9]+)/) do |element, attack|
-      parsedElements.push({name: element, attack: attack})
-    end
-  end
-
-  return parsedElements
-end
-
 threads = []
 
-Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|
+# Iterate over crafting JSON data in all content directories to generate
+# individual markdown files.
+Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
   threads << Thread.new {
     File.open(path) do |file|
       json_data = JSON.load(file)
 
       json_data["weapons"].each do |value|
-        if value.key?("donotrender")
-          next
-        end
-
-        output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-        output_binding = binding
-
-        slug = slugify(value["name"])
-        value["type"] = WEAPON_ABBR.key(value["type"])
+        # Easiest way of handling "category" items in mapping right now.
+        next if value.key?("donotrender")
 
         if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
         end
 
-        if value["create-mats"]
-          create_mats = value["create-mats"]
-          value["create-mats"] = nil
+        if value["hr"].to_i <= 5
+          value["rank"] = "low-rank"
+        elsif value["hr"].to_i > 5 and value["hr"].to_i <= 8
+          value["rank"] = "high-rank"
+        elsif value["hr"] and value["elder"]
+          value["rank"] = "g-rank"
         end
 
-        if value["improve-mats"]
-          improve_mats = value["improve-mats"]
-          value["improve-mats"] = nil
-        end
+        output = {
+          title: value["name"],
+          slug: slugify(value["name"]),
+          extra: value.select {|key, value| ["title", "slug"].none?(key)},
+        }
 
-        if value["alternative-create-mats"]
-          alternative_create_mats = value["alternative-create-mats"]
-          value["alternative-create-mats"] = nil
-        end
-        
-        if value["element"]
-          element = parseElements(value["element"])
-          value["element"] = nil
-        end
-
-        if value["shelling"]
-          shelling = value["shelling"]
-          value["shelling"] = nil
-        end
-
-        value = value.select {|key, value| value != nil }
-
-        File.write("#{File.dirname(path)}/#{slug}.md", output.result(output_binding))
+        File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
       end
     end
   }
 end
 
 threads.each(&:join)
-  

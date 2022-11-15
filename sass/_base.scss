@@ -41,6 +41,7 @@ a {
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 // Replacing broken images with a more fitting MHFU icon.
@@ -50,6 +51,7 @@ img {
   &:before {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    image-rendering: pixelated;
     background-image: url("/images/ukwn.png");
     background-repeat: no-repeat;
     content: ' ';
@@ -61,8 +63,10 @@ img {
 }
 
 hr {
-  border: 3px solid #6E905F;
+  background-color: #6E905F;
+  border: none;
   flex: 0 0 auto;
+  height: 6px;
   margin: 1.3rem 0 2.2rem 0;
   width: 100%;
 }
@@ -71,11 +75,13 @@ hr.border {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
   background-repeat: repeat-x;
   background-size: 32px 16px;
+  background-color: transparent;
   border: 0;
   height: 16px;
   // This applies to the background-image.
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
   width: calc(100% + 2.8rem);
 }
 

@@ -4,7 +4,6 @@ base_url = "https://mhfu-blacksmith.netlify.app/"
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
-
 # Avoid copying all images to public static directory.
 # https://github.com/getzola/zola/issues/1217
 # hard_link_static = true
@@ -33,7 +32,6 @@ include_content = false
 highlight_code = false
 
 [extra]
-# Put all your custom variables here
 weapon_types = [
   "great-sword",
   "long-sword",
@@ -47,4 +45,12 @@ weapon_types = [
   "heavy-bowgun",
   "bow",
   "decoration"
+]
+
+armor_types = [
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "leggings"
 ]
