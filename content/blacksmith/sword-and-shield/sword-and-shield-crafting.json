@@ -2,18 +2,21 @@
   "weapons": [
     {
       "name": "Hunter's Dagger",
-      "attack": "84",
-      "element": null,
-      "sharpness": "8.2.5",
+      "attack": 84,
+      "sharpness": [
+        "8",
+        "2",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "300",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 300,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Iron Ore",
           "amount": "1",
@@ -27,28 +30,38 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Hunter's Dagger+",
         "Snake Bite",
         "Giaprey Claws"
       ],
-      "sharpness_plus": "8.2.9.1"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Hunter's Dagger+",
-      "attack": "112",
-      "element": null,
-      "sharpness": "8.2.9.1",
+      "attack": 112,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "510",
-      "improve-cost": "510",
-      "improve-from": "Hunter's Dagger",
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 510,
+      "improve_cost": 510,
+      "improve_from": "Hunter's Dagger",
+      "create_mats": [
         {
           "name": "Normal Ticket",
           "amount": "1",
@@ -56,7 +69,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "3",
@@ -64,28 +77,38 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Assassin's Dagger",
         "Frost Edge",
         "Twin Dagger"
       ],
-      "sharpness_plus": "8.2.9.6"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
+      "elements": null
     },
     {
       "name": "Assassin's Dagger",
-      "attack": "140",
-      "element": null,
-      "sharpness": "8.2.9.6",
+      "attack": 140,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "840",
-      "improve-from": "Hunter's Dagger+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 840,
+      "improve_from": "Hunter's Dagger+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Machalite Ore",
           "amount": "1",
@@ -105,28 +128,38 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Velocidrome Bite",
         "Thunderbane",
         "Poison Battleaxe",
         "Kitchen Knife"
       ],
-      "sharpness_plus": "8.2.9.11"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
+      "elements": null
     },
     {
       "name": "Velocidrome Bite",
-      "attack": "168",
-      "element": null,
-      "sharpness": "12.1.3.7",
+      "attack": 168,
+      "sharpness": [
+        "12",
+        "1",
+        "3",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "1290",
-      "improve-cost": "1290",
-      "improve-from": "Assassin's Dagger",
-      "create-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 1290,
+      "improve_cost": 1290,
+      "improve_from": "Assassin's Dagger",
+      "create_mats": [
         {
           "name": "Velocidrome Claw",
           "amount": "6",
@@ -152,7 +185,7 @@
           "color": "pink"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Velocidrome Claw",
           "amount": "4",
@@ -172,27 +205,37 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Velocidrome Bite+",
         "Raven Blade",
         "Velociprey Claws"
       ],
-      "sharpness_plus": "12.1.3.12"
+      "sharpness_plus": [
+        "12",
+        "1",
+        "3",
+        "12"
+      ],
+      "elements": null
     },
     {
       "name": "Velocidrome Bite+",
-      "attack": "252",
-      "element": null,
-      "sharpness": "12.1.3.12",
+      "attack": 252,
+      "sharpness": [
+        "12",
+        "1",
+        "3",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "3360",
-      "improve-cost": "3360",
-      "improve-from": "Velocidrome Bite",
-      "create-mats": [ 
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 3360,
+      "improve_cost": 3360,
+      "improve_from": "Velocidrome Bite",
+      "create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -206,7 +249,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Velocidrome Claw",
           "amount": "6",
@@ -226,27 +269,39 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Dos Fang Dagger",
         "Odyssey"
       ],
-      "sharpness_plus": "12.1.3.15.2"
+      "sharpness_plus": [
+        "12",
+        "1",
+        "3",
+        "15",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Dos Fang Dagger",
-      "attack": "280",
-      "element": null,
-      "sharpness": "13.1.3.16.2",
+      "attack": 280,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": "Velocidrome Bite+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 40000,
+      "improve_from": "Velocidrome Bite+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Velociprey Hide+",
           "amount": "15",
@@ -266,23 +321,35 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.1"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Odyssey",
-      "attack": "266",
-      "element": null,
-      "sharpness": "8.2.9.1",
+      "attack": 266,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": "25000",
-      "improve-cost": "25000",
-      "improve-from": "Velocidrome Bite+",
-      "create-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": 25000,
+      "improve_cost": 25000,
+      "improve_from": "Velocidrome Bite+",
+      "create_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "4",
@@ -302,7 +369,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -316,7 +383,7 @@
           "color": "slate"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Carbalite Ore",
           "amount": "2",
@@ -336,29 +403,39 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Odyssey+",
         "Serpent Bite",
         "Hurricane",
         "Prototype Saw-Slicer"
       ],
-      "sharpness_plus": "8.2.9.6"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
+      "elements": null
     },
     {
       "name": "Odyssey+",
-      "attack": "266",
-      "element": "Water 300",
-      "sharpness": "2.5.17.5",
+      "attack": 266,
+      "sharpness": [
+        "2",
+        "5",
+        "17",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": "Odyssey",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 35000,
+      "improve_from": "Odyssey",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "8",
@@ -378,26 +455,43 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Odyssey Blade"
       ],
-      "sharpness_plus": "2.5.17.5.5"
+      "sharpness_plus": [
+        "2",
+        "5",
+        "17",
+        "5",
+        "5"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Odyssey Blade",
-      "attack": "280",
-      "element": "Water 350",
-      "sharpness": "8.2.9.13.3",
+      "attack": 280,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "13",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "55000",
-      "improve-from": "Odyssey+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 55000,
+      "improve_from": "Odyssey+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios BrainStm",
           "amount": "1",
@@ -417,28 +511,47 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Master Odyssey",
         "Heavy Bang",
         "Thunderblade Vajra"
       ],
-      "sharpness_plus": "8.2.9.13.6.2"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "13",
+        "6",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Master Odyssey",
-      "attack": "350",
-      "element": "Water 370",
-      "sharpness": "8.2.9.13.6.2",
+      "attack": 350,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "13",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": "Odyssey Blade",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 105000,
+      "improve_from": "Odyssey Blade",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "StrBasariosWing",
           "amount": "1",
@@ -458,23 +571,42 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.13.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "13",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 370
+        }
+      ]
     },
     {
       "name": "Heavy Bang",
-      "attack": "308",
-      "element": null,
-      "sharpness": "13.1.3.16.2",
+      "attack": 308,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "7500",
-      "improve-cost": "75000",
-      "improve-from": "Odyssey Blade",
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 7500,
+      "improve_cost": 75000,
+      "improve_from": "Odyssey Blade",
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "10",
@@ -500,7 +632,7 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "5",
@@ -520,26 +652,40 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Master Bang"
       ],
-      "sharpness_plus": "13.1.3.16.6.1"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Master Bang",
-      "attack": "378",
-      "element": null,
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 378,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "15%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Heavy Bang",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 100000,
+      "improve_from": "Heavy Bang",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Mellanje Ore",
           "amount": "8",
@@ -565,23 +711,37 @@
           "color": "blue"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Thunderblade Vajra",
-      "attack": "308",
-      "element": "Thunder 300",
-      "sharpness": "7.5.8.12.3",
+      "attack": 308,
+      "sharpness": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "90000",
-      "improve-cost": "90000",
-      "improve-from": "Odyssey Blade",
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 90000,
+      "improve_cost": 90000,
+      "improve_from": "Odyssey Blade",
+      "create_mats": [
         {
           "name": "Lightning Sac",
           "amount": "4",
@@ -607,7 +767,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Lightning Sac",
           "amount": "2",
@@ -633,26 +793,45 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Thunderblade Vajra+"
       ],
-      "sharpness_plus": "7.5.8.12.6.2"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "6",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Thunderblade Vajra+",
-      "attack": "350",
-      "element": "Thunder 380",
-      "sharpness": "7.5.8.12.6.2",
+      "attack": 350,
+      "sharpness": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "120000",
-      "improve-from": "Thunderblade Vajra",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 120000,
+      "improve_from": "Thunderblade Vajra",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "SpecialKirinHide",
           "amount": "3",
@@ -678,24 +857,42 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.8.12.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Serpent Bite",
-      "attack": "280",
-      "element": null,
-      "sharpness": "13.1.3.8",
+      "attack": 280,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": "Odyssey",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 30000,
+      "improve_from": "Odyssey",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Velociprey Hide+",
           "amount": "10",
@@ -715,26 +912,36 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Serpent Bite+"
       ],
-      "sharpness_plus": "13.1.3.13"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
+      "elements": null
     },
     {
       "name": "Serpent Bite+",
-      "attack": "294",
-      "element": null,
-      "sharpness": "13.1.3.13",
+      "attack": 294,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": "Serpent Bite",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 40000,
+      "improve_from": "Serpent Bite",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Union Ore",
           "amount": "10",
@@ -754,26 +961,37 @@
           "color": "blue"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Raven Blade",
-      "attack": "210",
-      "element": null,
-      "sharpness": "20.1.3.6",
+      "attack": 210,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "6"
+      ],
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": "10000",
-      "improve-cost": "10000",
-      "improve-from": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": 10000,
+      "improve_cost": 10000,
+      "improve_from": [
         "Velocidrome Bite",
         "Twin Kut-Ku"
       ],
-      "create-mats": [
+      "create_mats": [
         {
           "name": "Garuga Tail",
           "amount": "1",
@@ -799,7 +1017,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Garuga Ear",
           "amount": "2",
@@ -819,26 +1037,39 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Wolf Blade"
       ],
-      "sharpness_plus": "20.1.3.10.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Wolf Blade",
-      "attack": "252",
-      "element": null,
-      "sharpness": "10.9.8.3.4.1",
+      "attack": 252,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "1"
+      ],
       "affinity": "35%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "65000",
-      "improve-from": "Raven Blade",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 65000,
+      "improve_from": "Raven Blade",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Long Garuga Ear",
           "amount": "2",
@@ -858,26 +1089,40 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Crow Blade"
       ],
-      "sharpness_plus": "10.9.8.3.4.6"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "6"
+      ],
+      "elements": null
     },
     {
       "name": "Crow Blade",
-      "attack": "364",
-      "element": null,
-      "sharpness": "10.9.8.3.4.6",
+      "attack": 364,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "6"
+      ],
       "affinity": "35%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": "Wolf Blade",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 105000,
+      "improve_from": "Wolf Blade",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Long Garuga Ear",
           "amount": "4",
@@ -903,24 +1148,37 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "10.9.8.3.4.7.4"
+      "improve_to": null,
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "7",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Thunderbane",
-      "attack": "168",
-      "element": "Thunder 170",
-      "sharpness": "7.5.8.4",
+      "attack": 168,
+      "sharpness": [
+        "7",
+        "5",
+        "8",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "1860",
-      "improve-from": "Assassin's Dagger",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 1860,
+      "improve_from": "Assassin's Dagger",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rubbery Hide",
           "amount": "4",
@@ -940,26 +1198,41 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Frightbane"
       ],
-      "sharpness_plus": "7.5.8.9"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 170
+        }
+      ]
     },
     {
       "name": "Frightbane",
-      "attack": "196",
-      "element": "Thunder 190",
-      "sharpness": "7.5.8.9",
+      "attack": 196,
+      "sharpness": [
+        "7",
+        "5",
+        "8",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2550",
-      "improve-from": "Thunderbane",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2550,
+      "improve_from": "Thunderbane",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rubbery Hide",
           "amount": "6",
@@ -985,26 +1258,42 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Kirin Bolt Indora"
       ],
-      "sharpness_plus": "7.5.8.11.3"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 190
+        }
+      ]
     },
     {
       "name": "Kirin Bolt Indora",
-      "attack": "224",
-      "element": "Thunder 200",
-      "sharpness": "8.2.9.11",
+      "attack": 224,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3810",
-      "improve-from": "Frightbane",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3810,
+      "improve_from": "Frightbane",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pur Rubbery Hide",
           "amount": "8",
@@ -1024,24 +1313,40 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.4"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Poison Battleaxe",
-      "attack": "182",
-      "element": "Poison 240",
-      "sharpness": "5.3.12.4",
+      "attack": 182,
+      "sharpness": [
+        "5",
+        "3",
+        "12",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2190",
-      "improve-from": "Assassin's Dagger",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2190,
+      "improve_from": "Assassin's Dagger",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rubbery Hide",
           "amount": "4",
@@ -1061,26 +1366,41 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Upper Battleaxe"
       ],
-      "sharpness_plus": "5.3.12.8"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "12",
+        "8"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Upper Battleaxe",
-      "attack": "224",
-      "element": "Poison 300",
-      "sharpness": "5.3.12.8",
+      "attack": 224,
+      "sharpness": [
+        "5",
+        "3",
+        "12",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3810",
-      "improve-from": "Poison Battleaxe",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3810,
+      "improve_from": "Poison Battleaxe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pur Rubbery Hide",
           "amount": "5",
@@ -1100,27 +1420,44 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Deadly Battleaxe",
         "Dual Battleaxe"
       ],
-      "sharpness_plus": "5.3.12.11.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "12",
+        "11",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Deadly Battleaxe",
-      "attack": "266",
-      "element": "Poison 350",
-      "sharpness": "5.3.12.11.2",
+      "attack": 266,
+      "sharpness": [
+        "5",
+        "3",
+        "12",
+        "11",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3810",
-      "improve-from": "Upper Battleaxe",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3810,
+      "improve_from": "Upper Battleaxe",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pur Gypceros Wng",
           "amount": "7",
@@ -1140,23 +1477,39 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.12.11.6.1"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "12",
+        "11",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Kitchen Knife",
-      "attack": "112",
-      "element": null,
-      "sharpness": "13.1.1",
+      "attack": 112,
+      "sharpness": [
+        "13",
+        "1",
+        "1"
+      ],
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "510",
-      "improve-cost": "510",
-      "improve-from": "Assassin's Dagger",
-      "create-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 510,
+      "improve_cost": 510,
+      "improve_from": "Assassin's Dagger",
+      "create_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "2",
@@ -1176,7 +1529,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "1",
@@ -1190,26 +1543,36 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Iron Chefblade"
       ],
-      "sharpness_plus": "13.1.3.3"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Iron Chefblade",
-      "attack": "168",
-      "element": null,
-      "sharpness": "13.1.3.3",
+      "attack": 168,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "3"
+      ],
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "7500",
-      "improve-from": "Kitchen Knife",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 7500,
+      "improve_from": "Kitchen Knife",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassReg",
           "amount": "3",
@@ -1229,26 +1592,37 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Millennium Knife"
       ],
-      "sharpness_plus": "13.1.3.8"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
+      "elements": null
     },
     {
       "name": "Millennium Knife",
-      "attack": "182",
-      "element": null,
-      "sharpness": "8.2.8.12.5",
+      "attack": 182,
+      "sharpness": [
+        "8",
+        "2",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "45000",
-      "improve-from": "Iron Chefblade",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 45000,
+      "improve_from": "Iron Chefblade",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "3",
@@ -1268,23 +1642,35 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.8.12.7.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "8",
+        "12",
+        "7",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Frost Edge",
-      "attack": "98",
-      "element": "Ice 240",
-      "sharpness": "7.5.9.4",
+      "attack": 98,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "840",
-      "improve-cost": "840",
-      "improve-from": "Hunter's Dagger+",
-      "create-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 840,
+      "improve_cost": 840,
+      "improve_from": "Hunter's Dagger+",
+      "create_mats": [
         {
           "name": "Ice Crystal",
           "amount": "8",
@@ -1310,7 +1696,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "5",
@@ -1330,26 +1716,41 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Frost Edge+"
       ],
-      "sharpness_plus": "7.5.9.9"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Frost Edge+",
-      "attack": "182",
-      "element": "Ice 280",
-      "sharpness": "5.3.13.9",
+      "attack": 182,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3400",
-      "improve-from": "Frost Edge",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3400,
+      "improve_from": "Frost Edge",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "20",
@@ -1369,27 +1770,44 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hi Frost Edge",
         "Freezing Daggers"
       ],
-      "sharpness_plus": "5.3.13.12.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Hi Frost Edge",
-      "attack": "252",
-      "element": "Ice 420",
-      "sharpness": "13.1.3.16.2",
+      "attack": 252,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Frost Edge+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 50000,
+      "improve_from": "Frost Edge+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "20",
@@ -1409,26 +1827,45 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Ice Fang"
       ],
-      "sharpness_plus": "13.1.3.16.6.1"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Ice Fang",
-      "attack": "322",
-      "element": "Ice 500",
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 322,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "85000",
-      "improve-from": "Hi Frost Edge",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 85000,
+      "improve_from": "Hi Frost Edge",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ice Crystal",
           "amount": "20",
@@ -1454,23 +1891,41 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Ninja Sword",
-      "attack": "224",
-      "element": null,
-      "sharpness": "1.2.3.9",
+      "attack": 224,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "9"
+      ],
       "affinity": "25%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": "15000",
-      "improve-cost": "15000",
-      "improve-from": "Holy Saber",
-      "create-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": 15000,
+      "improve_cost": 15000,
+      "improve_from": "Holy Saber",
+      "create_mats": [
         {
           "name": "Daora Webbing",
           "amount": "4",
@@ -1496,7 +1951,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Daora Horn",
           "amount": "3",
@@ -1516,26 +1971,36 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hi Ninja Sword"
       ],
-      "sharpness_plus": "1.2.3.14"
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "14"
+      ],
+      "elements": null
     },
     {
       "name": "Hi Ninja Sword",
-      "attack": "280",
-      "element": null,
-      "sharpness": "1.2.3.14",
+      "attack": 280,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "14"
+      ],
       "affinity": "30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Ninja Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 75000,
+      "improve_from": "Ninja Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lao-Shan's Horn",
           "amount": "3",
@@ -1555,23 +2020,32 @@
           "color": "blue"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "1.2.3.19"
+      "improve_to": null,
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "19"
+      ],
+      "elements": null
     },
     {
       "name": "Snake Bite",
-      "attack": "126",
-      "element": null,
-      "sharpness": "5.3.12",
+      "attack": 126,
+      "sharpness": [
+        "5",
+        "3",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "660",
-      "improve-cost": "660",
-      "improve-from": "Hunter's Dagger",
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 660,
+      "improve_cost": 660,
+      "improve_from": "Hunter's Dagger",
+      "create_mats": [
         {
           "name": "Giaprey Scale",
           "amount": "4",
@@ -1591,7 +2065,7 @@
           "color": "gray"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -1605,7 +2079,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Sharp Claw",
           "amount": "1",
@@ -1625,26 +2099,36 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Snake Bite+"
       ],
-      "sharpness_plus": "5.3.12.4"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "12",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Snake Bite+",
-      "attack": "154",
-      "element": null,
-      "sharpness": "5.3.13.4",
+      "attack": 154,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "1050",
-      "improve-from": "Snake Bite",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 1050,
+      "improve_from": "Snake Bite",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Giadrome hide",
           "amount": "1",
@@ -1664,27 +2148,37 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Viper Bite",
         "Hydra Bite"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": null
     },
     {
       "name": "Viper Bite",
-      "attack": "140",
-      "element": "Paralysis 220",
-      "sharpness": "8.2.9.6",
+      "attack": 140,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "1290",
-      "improve-from": "Snake Bite+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 1290,
+      "improve_from": "Snake Bite+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Genprey Hide",
           "amount": "5",
@@ -1704,26 +2198,41 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Deathprize"
       ],
-      "sharpness_plus": "8.2.9.11"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 220
+        }
+      ]
     },
     {
       "name": "Deathprize",
-      "attack": "210",
-      "element": "Paralysis 260",
-      "sharpness": "8.2.9.11",
+      "attack": 210,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3360",
-      "improve-from": "Viper Bite",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3360,
+      "improve_from": "Viper Bite",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gendrome Hide",
           "amount": "3",
@@ -1749,23 +2258,39 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.4"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Hydra Bite",
-      "attack": "126",
-      "element": "Poison 280",
-      "sharpness": "13.1.3.3",
+      "attack": 126,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": "1290",
-      "improve-cost": "1290",
-      "improve-from": "Snake Bite+",
-      "create-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": 1290,
+      "improve_cost": 1290,
+      "improve_from": "Snake Bite+",
+      "create_mats": [
         {
           "name": "Iodrome Hide",
           "amount": "3",
@@ -1791,7 +2316,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Ioprey Hide",
           "amount": "5",
@@ -1811,26 +2336,41 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Deadly Poison"
       ],
-      "sharpness_plus": "13.1.3.8"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Deadly Poison",
-      "attack": "168",
-      "element": "Poison 360",
-      "sharpness": "13.1.3.8",
+      "attack": 168,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2550",
-      "improve-from": "Hydra Bite",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2550,
+      "improve_from": "Hydra Bite",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Dragonite Ore",
           "amount": "5",
@@ -1850,27 +2390,42 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Princess Rapier",
         "Rouge Flames"
       ],
-      "sharpness_plus": "13.1.3.13"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 360
+        }
+      ]
     },
     {
       "name": "Princess Rapier",
-      "attack": "196",
-      "element": "Poison 370",
-      "sharpness": "8.2.9.11",
+      "attack": 196,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
       "affinity": "5%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "4290",
-      "improve-from": "Deadly Poison",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 4290,
+      "improve_from": "Deadly Poison",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathian Spike",
           "amount": "1",
@@ -1890,26 +2445,43 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Princess Rapier+"
       ],
-      "sharpness_plus": "8.2.9.12.4"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 370
+        }
+      ]
     },
     {
       "name": "Princess Rapier+",
-      "attack": "238",
-      "element": "Poison 400",
-      "sharpness": "20.1.3.10.1",
+      "attack": 238,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
       "affinity": "10%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Princess Rapier",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 50000,
+      "improve_from": "Princess Rapier",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathian Spike+",
           "amount": "1",
@@ -1929,26 +2501,44 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Queen Rapier"
       ],
-      "sharpness_plus": "20.1.3.10.5.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Queen Rapier",
-      "attack": "252",
-      "element": "Poison 420",
-      "sharpness": "8.2.8.12.5",
+      "attack": 252,
+      "sharpness": [
+        "8",
+        "2",
+        "8",
+        "12",
+        "5"
+      ],
       "affinity": "10%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": "Princess Rapier+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 70000,
+      "improve_from": "Princess Rapier+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathian Carapace",
           "amount": "5",
@@ -1968,25 +2558,44 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Queen's Rose"
       ],
-      "sharpness_plus": "8.2.8.12.7.2"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "8",
+        "12",
+        "7",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Queen's Rose",
-      "attack": "322",
-      "element": "Poison 440",
-      "sharpness": "19.1.3.11.5.1",
+      "attack": 322,
+      "sharpness": [
+        "19",
+        "1",
+        "3",
+        "11",
+        "5",
+        "1"
+      ],
       "affinity": "15%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "95000",
-      "improve-cost": "95000",
-      "improve-from": "Queen Rapier",
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 95000,
+      "improve_cost": 95000,
+      "improve_from": "Queen Rapier",
+      "create_mats": [
         {
           "name": "Rathian Thorn",
           "amount": "2",
@@ -2012,7 +2621,7 @@
           "color": "green"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Rathian Thorn",
           "amount": "1",
@@ -2032,26 +2641,46 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Royal Rose"
       ],
-      "sharpness_plus": "19.1.3.11.5.4.2"
+      "sharpness_plus": [
+        "19",
+        "1",
+        "3",
+        "11",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 440
+        }
+      ]
     },
     {
       "name": "Royal Rose",
-      "attack": "350",
-      "element": "Poison 450",
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 350,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "120000",
-      "improve-from": "Queen's Rose",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 120000,
+      "improve_from": "Queen's Rose",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "GoldRathianThorn",
           "amount": "1",
@@ -2071,23 +2700,40 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Bone Kris",
-      "attack": "98",
-      "element": null,
-      "sharpness": "5.3.7",
+      "attack": 98,
+      "sharpness": [
+        "5",
+        "3",
+        "7"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "390",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 390,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Sm Monster Bone",
           "amount": "2",
@@ -2095,27 +2741,35 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Bone Kris+"
       ],
-      "sharpness_plus": "5.3.12"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "12"
+      ],
+      "elements": null
     },
     {
       "name": "Bone Kris+",
-      "attack": "112",
-      "element": null,
-      "sharpness": "5.3.12",
+      "attack": 112,
+      "sharpness": [
+        "5",
+        "3",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "510",
-      "improve-from": "Bone Kris",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 510,
+      "improve_from": "Bone Kris",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Sm Monster Bone",
           "amount": "1",
@@ -2129,26 +2783,36 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Chief Kris",
         "Bone Scythe"
       ],
-      "sharpness_plus": "5.3.13.4"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Chief Kris",
-      "attack": "140",
-      "element": null,
-      "sharpness": "5.3.13.4",
+      "attack": 140,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "840",
-      "improve-cost": "840",
-      "improve-from": "Bone Kris+",
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 840,
+      "improve_cost": 840,
+      "improve_from": "Bone Kris+",
+      "create_mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -2162,7 +2826,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Med Monster Bone",
           "amount": "1",
@@ -2182,27 +2846,37 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Crimson Club",
         "Weary Finsword",
         "Red Saber"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": null
     },
     {
       "name": "Crimson Club",
-      "attack": "196",
-      "element": null,
-      "sharpness": "8.2.9.1",
+      "attack": 196,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "1"
+      ],
       "affinity": "5%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "1860",
-      "improve-cost": "1860",
-      "improve-from": "Chief Kris",
-      "create-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 1860,
+      "improve_cost": 1860,
+      "improve_from": "Chief Kris",
+      "create_mats": [
         {
           "name": "Blood Red Horn",
           "amount": "1",
@@ -2228,7 +2902,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Blood Red Horn",
           "amount": "1",
@@ -2248,26 +2922,36 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Monoblos Club"
       ],
-      "sharpness_plus": "8.2.9.6"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
+      "elements": null
     },
     {
       "name": "Monoblos Club",
-      "attack": "224",
-      "element": null,
-      "sharpness": "7.5.9.4",
+      "attack": 224,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "4"
+      ],
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2940",
-      "improve-from": "Crimson Club",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2940,
+      "improve_from": "Crimson Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Blood Red Horn",
           "amount": "2",
@@ -2287,26 +2971,36 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Studded Club",
         "Kirin Bolt"
       ],
-      "sharpness_plus": "7.5.9.9"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
+      "elements": null
     },
     {
       "name": "Studded Club",
-      "attack": "238",
-      "element": null,
-      "sharpness": "5.3.13.4",
+      "attack": 238,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": "3360",
-      "improve-cost": "3360",
-      "improve-from": "Monoblos Club",
-      "create-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": 3360,
+      "improve_cost": 3360,
+      "improve_from": "Monoblos Club",
+      "create_mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -2320,7 +3014,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Twisted Horn",
           "amount": "1",
@@ -2340,28 +3034,38 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Spiked Bat",
         "Dual Diablo",
         "Osteon Pick"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": null
     },
     {
       "name": "Spiked Bat",
-      "attack": "266",
-      "element": null,
-      "sharpness": "2.5.18.5",
+      "attack": 266,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5"
+      ],
       "affinity": "10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "4290",
-      "improve-from": "Studded Club",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 4290,
+      "improve_from": "Studded Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Majestic Horn",
           "amount": "1",
@@ -2381,26 +3085,37 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Cursed Spirit"
       ],
-      "sharpness_plus": "2.5.18.5.5"
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "5"
+      ],
+      "elements": null
     },
     {
       "name": "Cursed Spirit",
-      "attack": "322",
-      "element": null,
-      "sharpness": "2.5.18.5",
+      "attack": 322,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5"
+      ],
       "affinity": "15%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": "Spiked Bat",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 70000,
+      "improve_from": "Spiked Bat",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "TwstBlkBlosHrn",
           "amount": "3",
@@ -2420,26 +3135,38 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Black Curse"
       ],
-      "sharpness_plus": "2.5.18.5.5"
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "5"
+      ],
+      "elements": null
     },
     {
       "name": "Black Curse",
-      "attack": "420",
-      "element": null,
-      "sharpness": "2.5.18.5.5",
+      "attack": 420,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "5"
+      ],
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Cursed Spirit",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 115000,
+      "improve_from": "Cursed Spirit",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "StoutBlkTwstdHrn",
           "amount": "2",
@@ -2459,23 +3186,35 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Osteon Pick",
-      "attack": "280",
-      "element": null,
-      "sharpness": "5.3.13.4",
+      "attack": 280,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": "2500",
-      "improve-cost": "25000",
-      "improve-from": "Studded Club",
-      "create-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": 2500,
+      "improve_cost": 25000,
+      "improve_from": "Studded Club",
+      "create_mats": [
         {
           "name": "Hrd Monster Bone",
           "amount": "4",
@@ -2495,7 +3234,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -2509,7 +3248,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Hrd Monster Bone",
           "amount": "2",
@@ -2529,26 +3268,36 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Osteon Pick+",
         "Feather Knife"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": null
     },
     {
       "name": "Feather Knife",
-      "attack": "266",
-      "element": "Sleep 150",
-      "sharpness": "5.3.13.9",
+      "attack": 266,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+5",
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": "50000",
-      "improve-cost": "50000",
-      "improve-from": "Osteon Pick",
-      "create-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": 50000,
+      "improve_cost": 50000,
+      "improve_from": "Osteon Pick",
+      "create_mats": [
         {
           "name": "OrangeHypnoPelt",
           "amount": "5",
@@ -2574,7 +3323,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "OrangeHypnoPelt",
           "amount": "3",
@@ -2600,25 +3349,42 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Feather Sword"
       ],
-      "sharpness_plus": "5.3.13.12.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Feather Sword",
-      "attack": "280",
-      "element": "Sleep 200",
-      "sharpness": "5.3.13.12.2",
+      "attack": 280,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+7",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "80000",
-      "improve-cost": "80000",
-      "improve-from": "Feather Knife",
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 80000,
+      "improve_cost": 80000,
+      "improve_from": "Feather Knife",
+      "create_mats": [
         {
           "name": "OrangeHypnoPelt+",
           "amount": "5",
@@ -2644,7 +3410,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "OrangeHypnoPelt+",
           "amount": "3",
@@ -2670,26 +3436,45 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hi Feather Sword"
       ],
-      "sharpness_plus": "5.3.13.12.6.1"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Hi Feather Sword",
-      "attack": "308",
-      "element": "Sleep 250",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 308,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+9",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": "Feather Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 105000,
+      "improve_from": "Feather Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hypno Claw+",
           "amount": "5",
@@ -2715,24 +3500,42 @@
           "color": "cyan"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Osteon Pick+",
-      "attack": "294",
-      "element": null,
-      "sharpness": "5.3.13.9",
+      "attack": 294,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": "Osteon Pick",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 35000,
+      "improve_from": "Osteon Pick",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Stout Bone",
           "amount": "4",
@@ -2752,27 +3555,38 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Melting Wail",
         "Rajang Club",
         "Binding Blade"
       ],
-      "sharpness_plus": "5.3.13.12.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Rajang Club",
-      "attack": "294",
-      "element": "Thunder 100",
-      "sharpness": "20.1.3.6",
+      "attack": 294,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "6"
+      ],
       "affinity": "-30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": "80000",
-      "improve-cost": "80000",
-      "improve-from": "Osteon Pick+",
-      "create-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": 80000,
+      "improve_cost": 80000,
+      "improve_from": "Osteon Pick+",
+      "create_mats": [
         {
           "name": "Rajang Horn",
           "amount": "2",
@@ -2798,7 +3612,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Rajang Horn",
           "amount": "1",
@@ -2818,26 +3632,43 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Taboo Rajang Club"
       ],
-      "sharpness_plus": "20.1.3.10.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 100
+        }
+      ]
     },
     {
       "name": "Taboo Rajang Club",
-      "attack": "308",
-      "element": "Thunder 200",
-      "sharpness": "20.1.3.10.1",
+      "attack": 308,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Rajang Club",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 90000,
+      "improve_from": "Rajang Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rajang Fang",
           "amount": "4",
@@ -2857,26 +3688,45 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "ForbiddenRajangClub"
       ],
-      "sharpness_plus": "20.1.3.10.5.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "ForbiddenRajangClub",
-      "attack": "392",
-      "element": "Thunder 250",
-      "sharpness": "20.1.3.10.5.1",
+      "attack": 392,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "130000",
-      "improve-from": "Taboo Rajang Club",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 130000,
+      "improve_from": "Taboo Rajang Club",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hard Rajang Horn",
           "amount": "2",
@@ -2902,23 +3752,42 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Binding Blade",
-      "attack": "322",
-      "element": null,
-      "sharpness": "5.3.13.12.2",
+      "attack": 322,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "75000",
-      "improve-cost": "75000",
-      "improve-from": "Osteon Pick+",
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 75000,
+      "improve_cost": 75000,
+      "improve_from": "Osteon Pick+",
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "8",
@@ -2944,7 +3813,7 @@
           "color": "slate"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "5",
@@ -2964,26 +3833,40 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Binding Blade+"
       ],
-      "sharpness_plus": "5.3.13.12.6.1"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Binding Blade+",
-      "attack": "378",
-      "element": null,
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 378,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Binding Blade",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 100000,
+      "improve_from": "Binding Blade",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "10",
@@ -3003,26 +3886,41 @@
           "color": "orange"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Great Kris"
       ],
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Great Kris",
-      "attack": "434",
-      "element": null,
-      "sharpness": "2.5.18.5.7.3",
+      "attack": 434,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
       "affinity": "-15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "110000",
-      "improve-from": "Binding Blade+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 110000,
+      "improve_from": "Binding Blade+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "YamaTsukamiFluid",
           "amount": "2",
@@ -3048,23 +3946,35 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.4.4"
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "4",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Kirin Bolt",
-      "attack": "168",
-      "element": "Thunder 230",
-      "sharpness": "5.3.12",
+      "attack": 168,
+      "sharpness": [
+        "5",
+        "3",
+        "12"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+2",
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": "1860",
-      "improve-cost": "1860",
-      "improve-from": "Monoblos Club",
-      "create-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": 1860,
+      "improve_cost": 1860,
+      "improve_from": "Monoblos Club",
+      "create_mats": [
         {
           "name": "Kirin Horn",
           "amount": "1",
@@ -3090,7 +4000,7 @@
           "color": "blue"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Kirin Horn",
           "amount": "1",
@@ -3110,26 +4020,41 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Kirin Bolt+"
       ],
-      "sharpness_plus": "5.3.13.4"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Kirin Bolt+",
-      "attack": "196",
-      "element": "Thunder 280",
-      "sharpness": "5.3.13.4",
+      "attack": 196,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+6",
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3360",
-      "improve-from": "Kirin Bolt",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3360,
+      "improve_from": "Kirin Bolt",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Kirin Horn",
           "amount": "2",
@@ -3149,27 +4074,42 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Kirin Bolt Ultimus",
         "Kirin Bolts"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Kirin Bolt Ultimus",
-      "attack": "224",
-      "element": "Thunder 340",
-      "sharpness": "5.3.13.9",
+      "attack": 224,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+10",
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Kirin Bolt+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 50000,
+      "improve_from": "Kirin Bolt+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Kirin Thndr Tail",
           "amount": "2",
@@ -3189,26 +4129,43 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Thor's Dagger"
       ],
-      "sharpness_plus": "5.3.13.12.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Thor's Dagger",
-      "attack": "238",
-      "element": "Thunder 390",
-      "sharpness": "5.3.13.12.2",
+      "attack": 238,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+16",
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "60000",
-      "improve-from": "Kirin Bolt Ultimus",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 60000,
+      "improve_from": "Kirin Bolt Ultimus",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Kirin Azure Horn",
           "amount": "3",
@@ -3228,24 +4185,41 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.1"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 390
+        }
+      ]
     },
     {
       "name": "Weary Finsword",
-      "attack": "168",
-      "element": "Sleep 180",
-      "sharpness": "13.1.3.3",
+      "attack": 168,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "1860",
-      "improve-from": "Chief Kris",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 1860,
+      "improve_from": "Chief Kris",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Plesioth Fin",
           "amount": "2",
@@ -3265,26 +4239,41 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Sandman Finsword"
       ],
-      "sharpness_plus": "13.1.3.8"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Sandman Finsword",
-      "attack": "182",
-      "element": "Sleep 230",
-      "sharpness": "13.1.3.8",
+      "attack": 182,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2550",
-      "improve-from": "Weary Finsword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2550,
+      "improve_from": "Weary Finsword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Plesioth Fin",
           "amount": "5",
@@ -3304,26 +4293,41 @@
           "color": "cyan"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Sandman Spike"
       ],
-      "sharpness_plus": "13.1.3.13"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Sandman Spike",
-      "attack": "210",
-      "element": "Sleep 260",
-      "sharpness": "7.5.9.9",
+      "attack": 210,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3360",
-      "improve-from": "Sandman Finsword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3360,
+      "improve_from": "Sandman Finsword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Grn Plesioth Fin",
           "amount": "5",
@@ -3343,26 +4347,42 @@
           "color": "blue"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "High Sandman Spike"
       ],
-      "sharpness_plus": "7.5.9.11.3"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "High Sandman Spike",
-      "attack": "252",
-      "element": "Sleep 320",
-      "sharpness": "7.5.9.9",
+      "attack": 252,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "55000",
-      "improve-from": "Sandman Spike",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 55000,
+      "improve_from": "Sandman Spike",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Grn Plsioth Fin+",
           "amount": "4",
@@ -3382,23 +4402,39 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Red Saber",
-      "attack": "154",
-      "element": "Fire 150",
-      "sharpness": "7.5.9.4",
+      "attack": 154,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": "1560",
-      "improve-cost": "1560",
-      "improve-from": "Chief Kris",
-      "create-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": 1560,
+      "improve_cost": 1560,
+      "improve_from": "Chief Kris",
+      "create_mats": [
         {
           "name": "FireWyvern Fluid",
           "amount": "4",
@@ -3424,7 +4460,7 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "FireWyvern Fluid",
           "amount": "2",
@@ -3444,29 +4480,44 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Djinn",
         "Corona",
         "Twin Flames",
         "Flame Syphos"
       ],
-      "sharpness_plus": "7.5.9.9"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 150
+        }
+      ]
     },
     {
       "name": "Djinn",
-      "attack": "210",
-      "element": "Fire 310",
-      "sharpness": "8.2.9.6",
+      "attack": 210,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "3360",
-      "improve-from": "Red Saber",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 3360,
+      "improve_from": "Red Saber",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathalos Shell",
           "amount": "5",
@@ -3486,26 +4537,41 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Blazing Falchion"
       ],
-      "sharpness_plus": "8.2.9.11"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 310
+        }
+      ]
     },
     {
       "name": "Blazing Falchion",
-      "attack": "238",
-      "element": "Fire 380",
-      "sharpness": "7.5.9.9",
+      "attack": 238,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "7500",
-      "improve-from": "Djinn",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 7500,
+      "improve_from": "Djinn",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathalos Shell",
           "amount": "10",
@@ -3525,24 +4591,40 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Corona",
-      "attack": "196",
-      "element": "Fire 440",
-      "sharpness": "7.5.9.9",
+      "attack": 196,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "20000",
-      "improve-from": "Red Saber",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 20000,
+      "improve_from": "Red Saber",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Rathalos Scale",
           "amount": "8",
@@ -3562,26 +4644,43 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Golden Falchion"
       ],
-      "sharpness_plus": "7.5.9.11.3"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 440
+        }
+      ]
     },
     {
       "name": "Golden Falchion",
-      "attack": "252",
-      "element": "Fire 480",
-      "sharpness": "20.1.3.10.1",
+      "attack": 252,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Corona",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 75000,
+      "improve_from": "Corona",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gld Rathian Scl+",
           "amount": "10",
@@ -3601,26 +4700,45 @@
           "color": "green"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Golden Falchion+"
       ],
-      "sharpness_plus": "20.1.3.10.5.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "Golden Falchion+",
-      "attack": "308",
-      "element": "Fire 500",
-      "sharpness": "20.1.3.10.5.1",
+      "attack": 308,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "105000",
-      "improve-from": "Golden Falchion",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 105000,
+      "improve_from": "Golden Falchion",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "ThckRathianScl",
           "amount": "8",
@@ -3646,26 +4764,46 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Golden Eclipse"
       ],
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Golden Eclipse",
-      "attack": "336",
-      "element": "Fire 520",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 336,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "125000",
-      "improve-from": "Golden Falchion+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 125000,
+      "improve_from": "Golden Falchion+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "ThckGldRathnScl",
           "amount": "7",
@@ -3685,24 +4823,42 @@
           "color": "yellow"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Flame Syphos",
-      "attack": "252",
-      "element": "Fire 180",
-      "sharpness": "8.2.9.6",
+      "attack": 252,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "6"
+      ],
       "affinity": "-15%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "15000",
-      "improve-from": "Red Saber",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 15000,
+      "improve_from": "Red Saber",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Shell",
           "amount": "4",
@@ -3722,26 +4878,42 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Black Doom Flame"
       ],
-      "sharpness_plus": "8.2.9.11"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "11"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Black Doom Flame",
-      "attack": "308",
-      "element": "Fire 280",
-      "sharpness": "8.2.9.12.4",
+      "attack": 308,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "4"
+      ],
       "affinity": "-25%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "70000",
-      "improve-from": "Flame Syphos",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 70000,
+      "improve_from": "Flame Syphos",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Gravios Carapace",
           "amount": "6",
@@ -3761,26 +4933,45 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Red Divine Flame"
       ],
-      "sharpness_plus": "8.2.9.12.7.2"
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Red Divine Flame",
-      "attack": "392",
-      "element": "Fire 300",
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 392,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "-15%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Black Doom Flame",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 115000,
+      "improve_from": "Black Doom Flame",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HvyGraviosShell",
           "amount": "6",
@@ -3806,23 +4997,42 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Dual Carapace",
-      "attack": "294",
-      "element": "Water 120",
-      "sharpness": "5.3.13.12.2",
+      "attack": 294,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": "60000",
-      "improve-cost": "60000",
-      "improve-from": "Bladed Edge+",
-      "create-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": 60000,
+      "improve_cost": 60000,
+      "improve_from": "Bladed Edge+",
+      "create_mats": [
         {
           "name": "Ceanataur Claw+",
           "amount": "3",
@@ -3848,7 +5058,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Ceanataur Claw+",
           "amount": "1",
@@ -3874,26 +5084,45 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Dual Carapace+"
       ],
-      "sharpness_plus": "5.3.13.12.6.1"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Dual Carapace+",
-      "attack": "308",
-      "element": "Water 200",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 308,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+8",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "85000",
-      "improve-from": "Dual Carapace",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 85000,
+      "improve_from": "Dual Carapace",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Ceanataur Claw+",
           "amount": "3",
@@ -3913,27 +5142,47 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Dual Scissors",
         "Twin Shells"
       ],
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Dual Scissors",
-      "attack": "378",
-      "element": "Water 250",
-      "sharpness": "8.2.8.13.7.2",
+      "attack": 378,
+      "sharpness": [
+        "8",
+        "2",
+        "8",
+        "13",
+        "7",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "110000",
-      "improve-from": "Dual Carapace+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 110000,
+      "improve_from": "Dual Carapace+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HrdCeanataurClaw",
           "amount": "2",
@@ -3959,24 +5208,45 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "8.2.8.13.7.3.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "8",
+        "13",
+        "7",
+        "3",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 250
+        }
+      ]
     },
     {
       "name": "Twin Shells",
-      "attack": "336",
-      "element": null,
-      "sharpness": "20.1.3.10.5.4.2",
+      "attack": 336,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+20",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Dual Carapace+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 90000,
+      "improve_from": "Dual Carapace+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "TerraCeanatrClaw",
           "amount": "2",
@@ -4002,26 +5272,42 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Twin Shears"
       ],
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Twin Shears",
-      "attack": "364",
-      "element": null,
-      "sharpness": "7.5.8.12.6.4.3",
+      "attack": 364,
+      "sharpness": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "6",
+        "4",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+30",
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "115000",
-      "improve-from": "Twin Shells",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 115000,
+      "improve_from": "Twin Shells",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "TerraCeanatrClaw",
           "amount": "4",
@@ -4047,23 +5333,35 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.8.12.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8",
+        "12",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Black Sword",
-      "attack": "210",
-      "element": "Dragon 200",
-      "sharpness": "10.9.6",
+      "attack": 210,
+      "sharpness": [
+        "10",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": "15000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": 15000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Dark Stone",
           "amount": "1",
@@ -4083,29 +5381,44 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Double Dragon",
         "Black Dragon Sword",
         "Black Ruiner Sword"
       ],
-      "sharpness_plus": "10.9.8.3"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Black Dragon Sword",
-      "attack": "294",
-      "element": "Dragon 240",
-      "sharpness": "7.5.9.9",
+      "attack": 294,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Black Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 100000,
+      "improve_from": "Black Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Fatalis Horn",
           "amount": "3",
@@ -4125,26 +5438,43 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "True Blk Dragon Swd"
       ],
-      "sharpness_plus": "7.5.9.11.3"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "True Blk Dragon Swd",
-      "attack": "392",
-      "element": "Dragon 280",
-      "sharpness": "7.5.9.11.3",
+      "attack": 392,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
       "affinity": "-10%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "150000",
-      "improve-from": "Black Dragon Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 150000,
+      "improve_from": "Black Dragon Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HardFatalisHorn",
           "amount": "2",
@@ -4164,24 +5494,42 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Black Ruiner Sword",
-      "attack": "280",
-      "element": "Dragon 300",
-      "sharpness": "7.5.9.11.3",
+      "attack": 280,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
       "affinity": "-20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "100000",
-      "improve-from": "Black Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 100000,
+      "improve_from": "Black Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Fatalis CrmsnHrn",
           "amount": "2",
@@ -4201,26 +5549,45 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "True Blk Ruiner Swd"
       ],
-      "sharpness_plus": "7.5.9.11.6.2"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "True Blk Ruiner Swd",
-      "attack": "350",
-      "element": "Dragon 340",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 350,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "-20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "150000",
-      "improve-from": "Black Ruiner Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 150000,
+      "improve_from": "Black Ruiner Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "HrdFatlisCrmHorn",
           "amount": "2",
@@ -4240,27 +5607,46 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Azure Ogre Sword",
-      "attack": "182",
-      "element": "Dragon 500",
-      "sharpness": "1.2.3.25.4",
+      "attack": 182,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "95000",
-      "improve-from": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 95000,
+      "improve_from": [
         "Blue Ogre Sword",
         "Ultimus Heaven&Earth"
       ],
-      "create-mats": null,
-      "improve-mats": [
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Azure LaoS Horn",
           "amount": "2",
@@ -4280,26 +5666,45 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Indigo Ogre Sword"
       ],
-      "sharpness_plus": "1.2.3.25.7.2"
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Indigo Ogre Sword",
-      "attack": "196",
-      "element": "Dragon 520",
-      "sharpness": "1.2.3.25.7.2",
+      "attack": 196,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "95000",
-      "improve-from": "Azure Ogre Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 95000,
+      "improve_from": "Azure Ogre Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Lao-Shan'sHvyShl",
           "amount": "5",
@@ -4325,23 +5730,41 @@
           "color": "green"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "1.2.3.25.7.5.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "5",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Blue Ogre Sword",
-      "attack": "266",
-      "element": "Dragon 10",
-      "sharpness": "1.2.3.24",
+      "attack": 266,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "24"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": "85000",
-      "improve-cost": "85000",
-      "improve-from": "Flaming Pair",
-      "create-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": 85000,
+      "improve_cost": 85000,
+      "improve_from": "Flaming Pair",
+      "create_mats": [
         {
           "name": "Azure LaoS Horn",
           "amount": "2",
@@ -4367,7 +5790,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Azure LaoS Horn",
           "amount": "1",
@@ -4387,25 +5810,40 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Azure Ogre Sword"
       ],
-      "sharpness_plus": "1.2.3.25.4"
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 10
+        }
+      ]
     },
     {
       "name": "Catspaw",
-      "attack": "112",
-      "element": "Paralysis 180",
-      "sharpness": "7.5.3",
+      "attack": 112,
+      "sharpness": [
+        "7",
+        "5",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "sns",
-      "create-cost": "1290",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 2,
+      "type": "sword-and-shield",
+      "create_cost": 1290,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Pawprint Stamp",
           "amount": "2",
@@ -4419,28 +5857,42 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Catburglar",
         "Melynx Tool"
       ],
-      "sharpness_plus": "7.5.8"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Catburglar",
-      "attack": "182",
-      "element": "Paralysis 300",
-      "sharpness": "13.1.3.3",
+      "attack": 182,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2550",
-      "improve-from": "Catspaw",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2550,
+      "improve_from": "Catspaw",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pawprint Stamp",
           "amount": "3",
@@ -4460,24 +5912,39 @@
           "color": "pink"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.8"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "8"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Melynx Tool",
-      "attack": "126",
-      "element": "Paralysis 340",
-      "sharpness": "5.3.13.4",
+      "attack": 126,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "1290",
-      "improve-from": "Catspaw",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 3,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 1290,
+      "improve_from": "Catspaw",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pawprint Stamp",
           "amount": "3",
@@ -4497,27 +5964,42 @@
           "color": "pink"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Melynx Gadget",
         "Shaka Poison Bite"
       ],
-      "sharpness_plus": "5.3.13.9"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 340
+        }
+      ]
     },
     {
       "name": "Melynx Gadget",
-      "attack": "182",
-      "element": "Paralysis 380",
-      "sharpness": "5.3.13.4",
+      "attack": 182,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "30000",
-      "improve-from": "Melynx Tool",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 30000,
+      "improve_from": "Melynx Tool",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "FlynMealPassPlus",
           "amount": "5",
@@ -4537,23 +6019,37 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.9"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Shaka Poison Bite",
-      "attack": "168",
-      "element": "Poison 400",
-      "sharpness": "10.9.6",
+      "attack": 168,
+      "sharpness": [
+        "10",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": "2940",
-      "improve-cost": "2940",
-      "improve-from": "Melynx Tool",
-      "create-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": 2940,
+      "improve_cost": 2940,
+      "improve_from": "Melynx Tool",
+      "create_mats": [
         {
           "name": "ShakalakaTreasre",
           "amount": "6",
@@ -4579,7 +6075,7 @@
           "color": "white"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Iron Ore",
           "amount": "10",
@@ -4599,26 +6095,41 @@
           "color": "orange"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Shakalaka Saber"
       ],
-      "sharpness_plus": "10.9.8.3"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 400
+        }
+      ]
     },
     {
       "name": "Shakalaka Saber",
-      "attack": "210",
-      "element": "Poison 450",
-      "sharpness": "10.9.8.3",
+      "attack": 210,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "4000",
-      "improve-from": "Shaka Poison Bite",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 6,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 4000,
+      "improve_from": "Shaka Poison Bite",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "ShakaInheritance",
           "amount": "3",
@@ -4638,26 +6149,45 @@
           "color": "slate"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hexed Shaka Hatchet"
       ],
-      "sharpness_plus": "10.9.8.3.4.1"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Hexed Shaka Hatchet",
-      "attack": "266",
-      "element": "Poison 480",
-      "sharpness": "10.9.8.3.4.1",
+      "attack": 266,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Shakalaka Saber",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 75000,
+      "improve_from": "Shakalaka Saber",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "ShakalakaTreasr+",
           "amount": "3",
@@ -4683,26 +6213,45 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Hexed Shaka Sword"
       ],
-      "sharpness_plus": "10.9.8.3.4.6"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "6"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 480
+        }
+      ]
     },
     {
       "name": "Hexed Shaka Sword",
-      "attack": "280",
-      "element": "Poison 500",
-      "sharpness": "20.1.3.10.5.1",
+      "attack": 280,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "95000",
-      "improve-from": "Hexed Shaka Hatchet",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 95000,
+      "improve_from": "Hexed Shaka Hatchet",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "ShakalakaTreasr+",
           "amount": "5",
@@ -4728,23 +6277,40 @@
           "color": "gray"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 500
+        }
+      ]
     },
     {
       "name": "Hero's Blade Replica",
-      "attack": "140",
-      "element": null,
-      "sharpness": "7.5.3",
+      "attack": 140,
+      "sharpness": [
+        "7",
+        "5",
+        "3"
+      ],
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": "5000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": 5000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Hero of KKto Bio",
           "amount": "1",
@@ -4758,28 +6324,37 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Master's Replica",
         "Legendary Replica"
       ],
-      "sharpness_plus": "7.5.8"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "8"
+      ],
+      "elements": null
     },
     {
       "name": "Master's Replica",
-      "attack": "196",
-      "element": null,
-      "sharpness": "1.2.3.14",
+      "attack": 196,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "14"
+      ],
       "affinity": "30%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "10000",
-      "improve-from": "Hero's Blade Replica",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 10000,
+      "improve_from": "Hero's Blade Replica",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pokke Ticket",
           "amount": "1",
@@ -4793,23 +6368,32 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "1.2.3.19"
+      "improve_to": null,
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "19"
+      ],
+      "elements": null
     },
     {
       "name": "Rusted Replica",
-      "attack": "126",
-      "element": null,
-      "sharpness": "7.5.8",
+      "attack": 126,
+      "sharpness": [
+        "7",
+        "5",
+        "8"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": "5000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": 5000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Hero of JumboBio",
           "amount": "1",
@@ -4823,27 +6407,37 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Eternal Replica"
       ],
-      "sharpness_plus": "7.5.9.4"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Eternal Replica",
-      "attack": "182",
-      "element": "Dragon 120",
-      "sharpness": "5.3.13.9",
+      "attack": 182,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "10000",
-      "improve-from": "Rusted Replica",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 10000,
+      "improve_from": "Rusted Replica",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Pokke Ticket",
           "amount": "1",
@@ -4863,23 +6457,36 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Rusted Sword",
-      "attack": "126",
-      "element": null,
-      "sharpness": "15",
+      "attack": 126,
+      "sharpness": [
+        "15"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": "1000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": 1000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Small Ruststone",
           "amount": "1",
@@ -4887,27 +6494,33 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Tarnished Sword"
       ],
-      "sharpness_plus": "20"
+      "sharpness_plus": [
+        "20"
+      ],
+      "elements": null
     },
     {
       "name": "Tarnished Sword",
-      "attack": "140",
-      "element": null,
-      "sharpness": "10.9.1",
+      "attack": 140,
+      "sharpness": [
+        "10",
+        "9",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "1",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "2550",
-      "improve-from": "Rusted Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 1,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 2550,
+      "improve_from": "Rusted Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "20",
@@ -4915,27 +6528,36 @@
           "color": "white"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Eternal Strife",
         "Steel Ice Dagger"
       ],
-      "sharpness_plus": "10.9.6"
+      "sharpness_plus": [
+        "10",
+        "9",
+        "6"
+      ],
+      "elements": null
     },
     {
       "name": "Eternal Strife",
-      "attack": "126",
-      "element": "Dragon 520",
-      "sharpness": "20.1.3.6",
+      "attack": 126,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "40000",
-      "improve-from": "Tarnished Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 40000,
+      "improve_from": "Tarnished Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Earth Crystal",
           "amount": "40",
@@ -4949,24 +6571,40 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.1"
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Steel Ice Dagger",
-      "attack": "196",
-      "element": "Ice 180",
-      "sharpness": "7.5.9.4",
+      "attack": 196,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "35000",
-      "improve-from": "Tarnished Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 35000,
+      "improve_from": "Tarnished Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Daora Claw",
           "amount": "2",
@@ -4986,26 +6624,41 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Steel Ice Dagger+"
       ],
-      "sharpness_plus": "7.5.9.9"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 180
+        }
+      ]
     },
     {
       "name": "Steel Ice Dagger+",
-      "attack": "210",
-      "element": "Ice 200",
-      "sharpness": "7.5.9.9",
+      "attack": 210,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "9"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "50000",
-      "improve-from": "Steel Ice Dagger",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 50000,
+      "improve_from": "Steel Ice Dagger",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Daora Horn",
           "amount": "2",
@@ -5025,27 +6678,44 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Daora's Razor",
         "Twin Nails"
       ],
-      "sharpness_plus": "7.5.9.11.3"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Daora's Razor",
-      "attack": "266",
-      "element": "Ice 320",
-      "sharpness": "7.5.9.11.3",
+      "attack": 266,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "90000",
-      "improve-from": "Steel Ice Dagger+",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 90000,
+      "improve_from": "Steel Ice Dagger+",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Daora Carapace",
           "amount": "4",
@@ -5065,26 +6735,45 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Daora's Maelstrom"
       ],
-      "sharpness_plus": "7.5.9.11.6.2"
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Daora's Maelstrom",
-      "attack": "378",
-      "element": "Ice 350",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 378,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "130000",
-      "improve-from": "Daora's Razor",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 130000,
+      "improve_from": "Daora's Razor",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hard Daora Horn",
           "amount": "2",
@@ -5110,23 +6799,42 @@
           "color": "slate"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "Rex Talon",
-      "attack": "238",
-      "element": null,
-      "sharpness": "20.1.3.10.1",
+      "attack": 238,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
       "affinity": "-25%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "sns",
-      "create-cost": "35000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 5,
+      "type": "sword-and-shield",
+      "create_cost": 35000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Tigrex Claw",
           "amount": "4",
@@ -5152,28 +6860,42 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Tigrex Sword",
         "Hidden Edge"
       ],
-      "sharpness_plus": "20.1.3.10.5.1"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Sword",
-      "attack": "308",
-      "element": null,
-      "sharpness": "20.1.3.10.5.1",
+      "attack": 308,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
       "affinity": "-25%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "80000",
-      "improve-from": "Rex Talon",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 80000,
+      "improve_from": "Rex Talon",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Tigrex Claw+",
           "amount": "4",
@@ -5193,26 +6915,42 @@
           "color": "yellow"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Tigrex Sword+"
       ],
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Sword+",
-      "attack": "406",
-      "element": null,
-      "sharpness": "20.1.3.10.5.4.2",
+      "attack": 406,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
       "affinity": "-25%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "125000",
-      "improve-from": "Tigrex Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 125000,
+      "improve_from": "Tigrex Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hard Tigrex Claw",
           "amount": "4",
@@ -5238,23 +6976,38 @@
           "color": "yellow"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Hidden Edge",
-      "attack": "266",
-      "element": null,
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 266,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "50%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
-      "type": "sns",
-      "create-cost": "80000",
-      "improve-cost": "80000",
-      "improve-from": "Rex Talon",
-      "create-mats": [
+      "rarity": 7,
+      "type": "sword-and-shield",
+      "create_cost": 80000,
+      "improve_cost": 80000,
+      "improve_from": "Rex Talon",
+      "create_mats": [
         {
           "name": "Narga Scale+",
           "amount": "6",
@@ -5280,7 +7033,7 @@
           "color": "red"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "Black Narga Pelt",
           "amount": "6",
@@ -5300,25 +7053,41 @@
           "color": "gray"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Midnight Blades"
       ],
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Midnight Blades",
-      "attack": "336",
-      "element": null,
-      "sharpness": "5.3.13.12.6.4.2",
+      "attack": 336,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
       "affinity": "50%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "120000",
-      "improve-cost": "120000",
-      "improve-from": "Hidden Edge",
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 120000,
+      "improve_cost": 120000,
+      "improve_from": "Hidden Edge",
+      "create_mats": [
         {
           "name": "ThickNargaScale",
           "amount": "6",
@@ -5344,7 +7113,7 @@
           "color": "gray"
         }
       ],
-      "improve-mats": [
+      "improve_mats": [
         {
           "name": "ThickNargaScale",
           "amount": "4",
@@ -5370,23 +7139,36 @@
           "color": "red"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Black Belt Sword",
-      "attack": "196",
-      "element": null,
-      "sharpness": "13.1.3.13",
+      "attack": 196,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
-      "type": "sns",
-      "create-cost": "6000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 4,
+      "type": "sword-and-shield",
+      "create_cost": 6000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Blackbelt Ticket",
           "amount": "8",
@@ -5412,27 +7194,37 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": [
+      "improve_mats": null,
+      "improve_to": [
         "Expert Sword"
       ],
-      "sharpness_plus": "13.1.3.13"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
+      "elements": null
     },
     {
       "name": "Expert Sword",
-      "attack": "238",
-      "element": "Paralysis 120",
-      "sharpness": "13.1.3.13",
+      "attack": 238,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "13"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "20000",
-      "improve-from": "Black Belt Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 20000,
+      "improve_from": "Black Belt Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Expert Ticket",
           "amount": "15",
@@ -5452,26 +7244,44 @@
           "color": "red"
         }
       ],
-      "improve-to": [
+      "improve_to": [
         "Warrior's Sword"
       ],
-      "sharpness_plus": "13.1.3.16.2"
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Warrior's Sword",
-      "attack": "336",
-      "element": "Paralysis 140",
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 336,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": null,
-      "improve-cost": "75000",
-      "improve-from": "Expert Sword",
-      "create-mats": null,
-      "improve-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": null,
+      "improve_cost": 75000,
+      "improve_from": "Expert Sword",
+      "create_mats": null,
+      "improve_mats": [
         {
           "name": "Hvy Monster Bone",
           "amount": "4",
@@ -5497,23 +7307,42 @@
           "color": "white"
         }
       ],
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 140
+        }
+      ]
     },
     {
       "name": "Shining Wyvern Blade",
-      "attack": "336",
-      "element": null,
-      "sharpness": "2.5.18.5.5",
+      "attack": 336,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "5"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "sns",
-      "create-cost": "95000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 8,
+      "type": "sword-and-shield",
+      "create_cost": 95000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Pokke Ticket+",
           "amount": "2",
@@ -5539,24 +7368,39 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Ms. M.H. Puppet",
-      "attack": "196",
-      "element": "Paralysis 80",
-      "sharpness": "10.9.8.3.4.7.4",
+      "attack": 196,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "7",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "6300",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 6300,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "SpecPuppetTicket",
           "amount": "5",
@@ -5576,24 +7420,43 @@
           "color": "green"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "10.9.8.3.4.7.4"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "7",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 80
+        }
+      ]
     },
     {
       "name": "Ukanlos Soul Hatchet",
-      "attack": "490",
-      "element": "Ice 120",
-      "sharpness": "20.1.3.10.1",
+      "attack": 490,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "1"
+      ],
       "affinity": "-30%",
       "slots": "---",
       "bonus": "+10",
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "150000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 150000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "StrongUkanlosFin",
           "amount": "2",
@@ -5619,24 +7482,43 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.5.1"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "Hunter's Dagger G",
-      "attack": "392",
-      "element": null,
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 392,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5662,24 +7544,39 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Chief Kris G",
-      "attack": "392",
-      "element": null,
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 392,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5705,24 +7602,36 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Tarnished Sword G",
-      "attack": "448",
-      "element": null,
-      "sharpness": "10.9.6",
+      "attack": 448,
+      "sharpness": [
+        "10",
+        "9",
+        "6"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5736,24 +7645,36 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "10.9.8.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Snake Bite G",
-      "attack": "392",
-      "element": null,
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 392,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5779,24 +7700,39 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Deathprize G",
-      "attack": "322",
-      "element": "Paralysis 260",
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 322,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5822,24 +7758,44 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 260
+        }
+      ]
     },
     {
       "name": "Deadly Poison G",
-      "attack": "336",
-      "element": "Poison 360",
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 336,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5865,24 +7821,44 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 360
+        }
+      ]
     },
     {
       "name": "Velocidrome Bite G",
-      "attack": "378",
-      "element": null,
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 378,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5908,24 +7884,39 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Poison Battleaxe G",
-      "attack": "364",
-      "element": "Poison 240",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 364,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5951,24 +7942,44 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 240
+        }
+      ]
     },
     {
       "name": "Thunderbane G",
-      "attack": "364",
-      "element": "Thunder 190",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 364,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5994,24 +8005,44 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 190
+        }
+      ]
     },
     {
       "name": "Sandman Finsword G",
-      "attack": "294",
-      "element": "Sleep 230",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 294,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6037,24 +8068,44 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Monoblos Club G",
-      "attack": "378",
-      "element": null,
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 378,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6080,24 +8131,39 @@
           "color": "gray"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Spiked Bat G",
-      "attack": "378",
-      "element": null,
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 378,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "20%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6123,24 +8189,39 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": null
     },
     {
       "name": "Kirin Bolt G",
-      "attack": "364",
-      "element": "Thunder 230",
-      "sharpness": "2.5.18.5.7.3",
+      "attack": 364,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+2",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6166,24 +8247,43 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.4.4"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "4",
+        "4"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 230
+        }
+      ]
     },
     {
       "name": "Kirin Bolt+ G",
-      "attack": "350",
-      "element": "Thunder 280",
-      "sharpness": "5.3.13.12.2",
+      "attack": 350,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": "+6",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6209,24 +8309,43 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.1"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 280
+        }
+      ]
     },
     {
       "name": "Kirin Bolt Indora G",
-      "attack": "350",
-      "element": "Thunder 200",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 350,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6252,24 +8371,44 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 200
+        }
+      ]
     },
     {
       "name": "Djinn G",
-      "attack": "350",
-      "element": "Fire 310",
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 350,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6295,24 +8434,43 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 310
+        }
+      ]
     },
     {
       "name": "Catburglar G",
-      "attack": "294",
-      "element": "Paralysis 300",
-      "sharpness": "8.2.9.12.4",
+      "attack": 294,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "4"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6338,24 +8496,42 @@
           "color": "yellow"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Eternal Strife G",
-      "attack": "196",
-      "element": "Dragon 520",
-      "sharpness": "5.3.13.12.2",
+      "attack": 196,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6381,24 +8557,43 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.1"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 520
+        }
+      ]
     },
     {
       "name": "Odyssey G",
-      "attack": "336",
-      "element": "Water 300",
-      "sharpness": "20.1.3.10.5.1",
+      "attack": 336,
+      "sharpness": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6424,24 +8619,44 @@
           "color": "green"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "20.1.3.10.5.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "20",
+        "1",
+        "3",
+        "10",
+        "5",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Water",
+          "attack": 300
+        }
+      ]
     },
     {
       "name": "Osteon Pick G",
-      "attack": "378",
-      "element": null,
-      "sharpness": "2.5.18.5.7.3",
+      "attack": 378,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+10",
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6467,24 +8682,39 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.4.4"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "4",
+        "4"
+      ],
+      "elements": null
     },
     {
       "name": "Serpent Bite G",
-      "attack": "364",
-      "element": null,
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 364,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6510,24 +8740,39 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Millennium Knife G",
-      "attack": "308",
-      "element": null,
-      "sharpness": "13.1.3.16.6.1",
+      "attack": 308,
+      "sharpness": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "1"
+      ],
       "affinity": "20%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6553,24 +8798,40 @@
           "color": "cyan"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "13.1.3.16.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "13",
+        "1",
+        "3",
+        "16",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Hi Frost Edge G",
-      "attack": "322",
-      "element": "Ice 420",
-      "sharpness": "5.3.13.12.6.4.2",
+      "attack": 322,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6596,24 +8857,44 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Ice",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Deadly Battleaxe G",
-      "attack": "350",
-      "element": "Poison 350",
-      "sharpness": "5.3.13.12.6.1.",
+      "attack": 350,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6639,24 +8920,44 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 350
+        }
+      ]
     },
     {
       "name": "High Sandman Spike G",
-      "attack": "280",
-      "element": "Sleep 320",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 280,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 9,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6682,24 +8983,44 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Sleep",
+          "attack": 320
+        }
+      ]
     },
     {
       "name": "Blazing Falchion G",
-      "attack": "336",
-      "element": "Fire 380",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 336,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6725,24 +9046,44 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Corona G",
-      "attack": "322",
-      "element": "Fire 440",
-      "sharpness": "7.5.9.11.6.2",
+      "attack": 322,
+      "sharpness": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6768,24 +9109,44 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "7.5.9.11.6.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "7",
+        "5",
+        "9",
+        "11",
+        "6",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Fire",
+          "attack": 440
+        }
+      ]
     },
     {
       "name": "Queen Rapier G",
-      "attack": "322",
-      "element": "Poison 420",
-      "sharpness": "8.2.9.12.7.2",
+      "attack": 322,
+      "sharpness": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "2"
+      ],
       "affinity": "15%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6811,24 +9172,44 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "8.2.9.12.7.4.3"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "8",
+        "2",
+        "9",
+        "12",
+        "7",
+        "4",
+        "3"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 420
+        }
+      ]
     },
     {
       "name": "Hi Ninja Sword G",
-      "attack": "336",
-      "element": null,
-      "sharpness": "1.2.3.25.7.2",
+      "attack": 336,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "2"
+      ],
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6854,24 +9235,39 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "1.2.3.25.7.5.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "5",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Thor's Dagger G",
-      "attack": "336",
-      "element": "Thunder 390",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 336,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": "+16",
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6897,24 +9293,43 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Thunder",
+          "attack": 390
+        }
+      ]
     },
     {
       "name": "Melynx Tool G",
-      "attack": "280",
-      "element": "Paralysis 380",
-      "sharpness": "5.3.13.12.2",
+      "attack": 280,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "2"
+      ],
       "affinity": "0%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6940,24 +9355,43 @@
           "color": "green"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.1"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
+      "elements": [
+        {
+          "name": "Paralysis",
+          "attack": 380
+        }
+      ]
     },
     {
       "name": "Shakalaka Saber G",
-      "attack": "280",
-      "element": "Poison 450",
-      "sharpness": "10.9.8.3.4.1",
+      "attack": 280,
+      "sharpness": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -6983,24 +9417,43 @@
           "color": "slate"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "10.9.8.3.4.6"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "10",
+        "9",
+        "8",
+        "3",
+        "4",
+        "6"
+      ],
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": 450
+        }
+      ]
     },
     {
       "name": "Master's Blade G",
-      "attack": "364",
-      "element": null,
-      "sharpness": "1.2.3.25.7.2",
+      "attack": 364,
+      "sharpness": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "2"
+      ],
       "affinity": "40%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7026,24 +9479,39 @@
           "color": "white"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "1.2.3.25.7.5.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "1",
+        "2",
+        "3",
+        "25",
+        "7",
+        "5",
+        "2"
+      ],
+      "elements": null
     },
     {
       "name": "Eternal Treasure G",
-      "attack": "350",
-      "element": "Dragon 120",
-      "sharpness": "5.3.13.12.6.1",
+      "attack": 350,
+      "sharpness": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "1"
+      ],
       "affinity": "0%",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7069,24 +9537,44 @@
           "color": "red"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "5.3.13.12.6.4.2"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "5",
+        "3",
+        "13",
+        "12",
+        "6",
+        "4",
+        "2"
+      ],
+      "elements": [
+        {
+          "name": "Dragon",
+          "attack": 120
+        }
+      ]
     },
     {
       "name": "ShiningWyvernBlade G",
-      "attack": "406",
-      "element": null,
-      "sharpness": "2.5.18.5.7.3",
+      "attack": 406,
+      "sharpness": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "3"
+      ],
       "affinity": "0%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "sns",
-      "create-cost": "100000",
-      "improve-cost": null,
-      "improve-from": null,
-      "create-mats": [
+      "rarity": 10,
+      "type": "sword-and-shield",
+      "create_cost": 100000,
+      "improve_cost": null,
+      "improve_from": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -7112,9 +9600,18 @@
           "color": "blue"
         }
       ],
-      "improve-mats": null,
-      "improve-to": null,
-      "sharpness_plus": "2.5.18.5.7.4.4"
+      "improve_mats": null,
+      "improve_to": null,
+      "sharpness_plus": [
+        "2",
+        "5",
+        "18",
+        "5",
+        "7",
+        "4",
+        "4"
+      ],
+      "elements": null
     }
   ]
 }

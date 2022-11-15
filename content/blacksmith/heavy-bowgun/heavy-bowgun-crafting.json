@@ -2,14 +2,14 @@
   "weapons": [
     {
       "name": "Bone Shooter",
-      "attack": "156",
-      "max-attack": "216",
-      "rapid-fire": null,
+      "attack": 156,
+      "max_attack": "216",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "1",
-      "type": "hbg",
+      "rarity": 1,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -19,28 +19,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "700",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 700,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Iron Ore",
           "amount": "8",
@@ -53,18 +53,19 @@
           "type": "bone",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Injector Cannon",
-      "attack": "168",
-      "max-attack": "228",
-      "rapid-fire": null,
+      "attack": 168,
+      "max_attack": "228",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "2",
-      "type": "hbg",
+      "rarity": 2,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -74,28 +75,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "900",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 900,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Vespoid Wing",
           "amount": "6",
@@ -121,7 +122,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Normal Ticket",
           "amount": "1",
@@ -134,18 +135,19 @@
           "type": "webbing",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Rapidcaster",
-      "attack": "180",
-      "max-attack": "240",
-      "rapid-fire": null,
+      "attack": 180,
+      "max_attack": "240",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "2",
-      "type": "hbg",
+      "rarity": 2,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -155,28 +157,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "1000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 1000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Brute Bone",
           "amount": "4",
@@ -202,7 +204,7 @@
           "color": "blue"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Hard Ticket",
           "amount": "1",
@@ -215,18 +217,19 @@
           "type": "pelt",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tankmage",
-      "attack": "180",
-      "max-attack": "240",
-      "rapid-fire": null,
+      "attack": 180,
+      "max_attack": "240",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "3",
-      "type": "hbg",
+      "rarity": 3,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -236,28 +239,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "1400",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 1400,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Rubbery Hide",
           "amount": "4",
@@ -271,7 +274,7 @@
           "color": "white"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -284,18 +287,19 @@
           "type": "pelt",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bastionmage",
-      "attack": "192",
-      "max-attack": "252",
-      "rapid-fire": null,
+      "attack": 192,
+      "max_attack": "252",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "3",
-      "type": "hbg",
+      "rarity": 3,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -305,28 +309,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "1675",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 1675,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Pur Rubbery Hide",
           "amount": "8",
@@ -345,18 +349,19 @@
           "type": "insect",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Sand Driver",
-      "attack": "192",
-      "max-attack": "252",
-      "rapid-fire": null,
+      "attack": 192,
+      "max_attack": "252",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "3",
-      "type": "hbg",
+      "rarity": 3,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -366,28 +371,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "4",
         "4",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "1250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 1250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Cephalos Fin",
           "amount": "2",
@@ -412,18 +417,19 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Yian Kut-Ku Cannon",
-      "attack": "216",
-      "max-attack": "276",
-      "rapid-fire": null,
+      "attack": 216,
+      "max_attack": "276",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "6",
-      "rarity": "3",
-      "type": "hbg",
+      "rarity": 3,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -433,28 +439,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "2675",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 2675,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Kut-Ku Shell",
           "amount": "8",
@@ -479,18 +485,19 @@
           "type": "bone",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crab Buster",
-      "attack": "216",
-      "max-attack": "276",
-      "rapid-fire": null,
+      "attack": 216,
+      "max_attack": "276",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "6",
-      "rarity": "3",
-      "type": "hbg",
+      "rarity": 3,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -500,28 +507,28 @@
         "0/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "Demon S (0)",
         "1"
       ],
-      "create-cost": "2750",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 2750,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hermitaur Claw",
           "amount": "3",
@@ -546,18 +553,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Rock Eater",
-      "attack": "216",
-      "max-attack": "276",
-      "rapid-fire": null,
+      "attack": 216,
+      "max_attack": "276",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "10",
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -567,28 +575,28 @@
         "2/2/2",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/3",
         "3/1",
         "0/1",
         "0/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "3250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Basarios Shell",
           "amount": "10",
@@ -613,18 +621,19 @@
           "type": "part",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Meteor Cannon",
-      "attack": "216",
-      "max-attack": "276",
-      "rapid-fire": null,
+      "attack": 216,
+      "max_attack": "276",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -634,28 +643,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "3000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Firestone",
           "amount": "1",
@@ -680,18 +689,19 @@
           "type": "ore",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Flechette Gun",
-      "attack": "228",
-      "max-attack": "288",
-      "rapid-fire": null,
+      "attack": 228,
+      "max_attack": "288",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -701,28 +711,28 @@
         "1/1/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "3",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "3375",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3375,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hercudrome",
           "amount": "2",
@@ -747,18 +757,19 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Monodevilcaster",
-      "attack": "240",
-      "max-attack": "300",
-      "rapid-fire": null,
+      "attack": 240,
+      "max_attack": "300",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -768,28 +779,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "3050",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3050,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Wht Monoblos Spn",
           "amount": "5",
@@ -814,18 +825,19 @@
           "type": "claw",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Piercing Crab",
-      "attack": "240",
-      "max-attack": "300",
-      "rapid-fire": null,
+      "attack": 240,
+      "max_attack": "300",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -835,28 +847,28 @@
         "1/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "3750",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3750,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Ceanataur Leg",
           "amount": "3",
@@ -881,18 +893,19 @@
           "type": "bone",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Blue Kut-Ku Cannon",
-      "attack": "252",
-      "max-attack": "312",
-      "rapid-fire": null,
+      "attack": 252,
+      "max_attack": "312",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "6",
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -902,28 +915,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Giant Beak",
           "amount": "1",
@@ -948,18 +961,19 @@
           "type": "ore",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Duelcaster",
-      "attack": "288",
-      "max-attack": "348",
-      "rapid-fire": null,
+      "attack": 288,
+      "max_attack": "348",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -969,28 +983,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4800",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4800,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Diablos Spine",
           "amount": "5",
@@ -1015,18 +1029,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Howl",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "4",
-      "type": "hbg",
+      "rarity": 4,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -1036,28 +1051,28 @@
         "2/2/2",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "Flame S:  0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4800",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4800,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Tigrex Skull Shl",
           "amount": "2",
@@ -1082,18 +1097,19 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Seven Nova",
-      "attack": "204",
-      "max-attack": "264",
-      "rapid-fire": null,
+      "attack": 204,
+      "max_attack": "264",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": "20",
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -1103,28 +1119,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "4",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "2000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 2000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Great Ladybug",
           "amount": "2",
@@ -1149,18 +1165,19 @@
           "type": "claw",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Quickcaster",
-      "attack": "252",
-      "max-attack": "312",
-      "rapid-fire": null,
+      "attack": 252,
+      "max_attack": "312",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -1170,28 +1187,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "4300",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4300,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Kirin Mane",
           "amount": "8",
@@ -1216,18 +1233,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Black Cannon",
-      "attack": "252",
-      "max-attack": "312",
-      "rapid-fire": null,
+      "attack": 252,
+      "max_attack": "312",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1237,28 +1255,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "5000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Dark Stone",
           "amount": "1",
@@ -1283,18 +1301,19 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Raven Heirloom",
-      "attack": "264",
-      "max-attack": "324",
-      "rapid-fire": null,
+      "attack": 264,
+      "max_attack": "324",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1304,28 +1323,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4800",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4800,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Garuga Ear",
           "amount": "2",
@@ -1350,18 +1369,19 @@
           "type": "claw",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Daora's Delphinidae",
-      "attack": "264",
-      "max-attack": "324",
-      "rapid-fire": null,
+      "attack": 264,
+      "max_attack": "324",
+      "rapid_fire": null,
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -1371,28 +1391,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "5400",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5400,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Daora Shell",
           "amount": "5",
@@ -1417,18 +1437,19 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lunastra's Cannon",
-      "attack": "264",
-      "max-attack": "324",
-      "rapid-fire": null,
+      "attack": 264,
+      "max_attack": "324",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "15",
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -1438,28 +1459,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "5250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Lunastra Shell",
           "amount": "4",
@@ -1484,18 +1505,19 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Teostra's Artillery",
-      "attack": "276",
-      "max-attack": "336",
-      "rapid-fire": null,
+      "attack": 276,
+      "max_attack": "336",
+      "rapid_fire": null,
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -1505,28 +1527,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "5500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Teostra Shell",
           "amount": "4",
@@ -1551,18 +1573,19 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bronze Fire",
-      "attack": "276",
-      "max-attack": "336",
-      "rapid-fire": null,
+      "attack": 276,
+      "max_attack": "336",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "10",
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -1572,28 +1595,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "2"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "5500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Gaoren Pincer",
           "amount": "2",
@@ -1618,18 +1641,19 @@
           "type": "ticket",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lao-Shan Lung Cannon",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "10",
-      "rarity": "5",
-      "type": "hbg",
+      "rarity": 5,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -1639,28 +1663,28 @@
         "0/0/1",
         "0/0/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "6000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Lao-Shan's Shell",
           "amount": "4",
@@ -1685,18 +1709,19 @@
           "type": "ore",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Great Arbalest",
-      "attack": "288",
-      "max-attack": "348",
-      "rapid-fire": null,
+      "attack": 288,
+      "max_attack": "348",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -1706,28 +1731,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "5000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Stout Bone",
           "amount": "4",
@@ -1753,7 +1778,7 @@
           "color": "slate"
         }
       ],
-      "alternative-create-mats": [
+      "alternative_create_mats": [
         {
           "name": "Plus Class Tcket",
           "amount": "1",
@@ -1766,18 +1791,19 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tankmage+",
-      "attack": "288",
-      "max-attack": "348",
-      "rapid-fire": null,
+      "attack": 288,
+      "max_attack": "348",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -1787,28 +1813,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "3075",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3075,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Rubbery Hide+",
           "amount": "4",
@@ -1821,18 +1847,19 @@
           "type": "ore",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Diver",
-      "attack": "288",
-      "max-attack": "348",
-      "rapid-fire": null,
+      "attack": 288,
+      "max_attack": "348",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1842,28 +1869,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "4",
         "4",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "5500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Cephalos Fin+",
           "amount": "5",
@@ -1888,18 +1915,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Meteor Buster",
-      "attack": "288",
-      "max-attack": "348",
-      "rapid-fire": null,
+      "attack": 288,
+      "max_attack": "348",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -1909,28 +1937,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4400",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4400,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Firecell Stone",
           "amount": "1",
@@ -1955,18 +1983,19 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Honeycomber",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -1976,28 +2005,28 @@
         "1/1/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "3",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "4950",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4950,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Vespoid Carapace",
           "amount": "10",
@@ -2022,18 +2051,19 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Earth Eater",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "15",
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2043,28 +2073,28 @@
         "2/2/2",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/3",
         "3/1",
         "0/1",
         "0/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "4725",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4725,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Basarios Carpace",
           "amount": "10",
@@ -2089,18 +2119,19 @@
           "type": "insect",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Heavy Buster Crab",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "10",
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2110,28 +2141,28 @@
         "0/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "6050",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6050,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hermitaur Carpce",
           "amount": "8",
@@ -2156,18 +2187,19 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gravios Howl",
-      "attack": "312",
-      "max-attack": "372",
-      "rapid-fire": null,
+      "attack": 312,
+      "max_attack": "372",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "20",
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2177,28 +2209,28 @@
         "0/1/1",
         "0/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "6600",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6600,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Gravios Carapace",
           "amount": "8",
@@ -2223,18 +2255,19 @@
           "type": "insect",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Heavy Piercing Crab",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -2244,28 +2277,28 @@
         "1/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "6500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Ceanataur Carpce",
           "amount": "6",
@@ -2290,18 +2323,19 @@
           "type": "bone",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Duelcaster+",
-      "attack": "348",
-      "max-attack": "408",
-      "rapid-fire": null,
+      "attack": 348,
+      "max_attack": "408",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2311,28 +2345,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "00"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7025",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7025,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Diablos Thoracic",
           "amount": "3",
@@ -2357,18 +2391,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Skull",
-      "attack": "360",
-      "max-attack": "420",
-      "rapid-fire": null,
+      "attack": 360,
+      "max_attack": "420",
+      "rapid_fire": null,
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "6",
-      "type": "hbg",
+      "rarity": 6,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2378,28 +2413,28 @@
         "2/2/2",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7025",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7025,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Tigrex Carapace",
           "amount": "6",
@@ -2424,18 +2459,19 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Hidden Sniper",
-      "attack": "276",
-      "max-attack": "336",
-      "rapid-fire": null,
+      "attack": 276,
+      "max_attack": "336",
+      "rapid_fire": null,
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
-      "type": "hbg",
+      "rarity": 7,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2445,28 +2481,28 @@
         "1/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/0",
         "0/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Narga Scale+",
           "amount": "10",
@@ -2491,18 +2527,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bastion Cannon",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "7",
-      "type": "hbg",
+      "rarity": 7,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2512,28 +2549,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "3675",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 3675,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Pur Gypceros Wng",
           "amount": "8",
@@ -2558,18 +2595,19 @@
           "type": "insect",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gravios Roar",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "15",
-      "rarity": "7",
-      "type": "hbg",
+      "rarity": 7,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -2579,28 +2617,28 @@
         "0/1/1",
         "0/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7900",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7900,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Blk Gravios Cpc",
           "amount": "8",
@@ -2625,18 +2663,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Mega Kut-Ku Cannon",
-      "attack": "336",
-      "max-attack": "396",
-      "rapid-fire": null,
+      "attack": 336,
+      "max_attack": "396",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "10",
-      "rarity": "7",
-      "type": "hbg",
+      "rarity": 7,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -2646,28 +2685,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7050",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7050,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Blue Kut-Ku Cpc",
           "amount": "8",
@@ -2692,18 +2731,19 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Monodevilcaster+",
-      "attack": "336",
-      "max-attack": "396",
-      "rapid-fire": null,
+      "attack": 336,
+      "max_attack": "396",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "7",
-      "type": "hbg",
+      "rarity": 7,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2713,28 +2753,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "4500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Wht Monoblos Cpc",
           "amount": "5",
@@ -2759,18 +2799,19 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Seven Stars",
-      "attack": "300",
-      "max-attack": "360",
-      "rapid-fire": null,
+      "attack": 300,
+      "max_attack": "360",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": "30",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -2780,28 +2821,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "4",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "4400",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 4400,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Rare Scarab",
           "amount": "3",
@@ -2826,18 +2867,19 @@
           "type": "fluid",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Quickcaster+",
-      "attack": "312",
-      "max-attack": "372",
-      "rapid-fire": null,
+      "attack": 312,
+      "max_attack": "372",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -2847,28 +2889,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "6250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Kirin Hide+",
           "amount": "3",
@@ -2893,18 +2935,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Grande Daora",
-      "attack": "312",
-      "max-attack": "372",
-      "rapid-fire": null,
+      "attack": 312,
+      "max_attack": "372",
+      "rapid_fire": null,
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -2914,28 +2957,28 @@
         "1/0/0",
         "1/0/00"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "7700",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7700,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Daora Jewel",
           "amount": "1",
@@ -2960,18 +3003,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Vor Cannon",
-      "attack": "312",
-      "max-attack": "372",
-      "rapid-fire": null,
+      "attack": 312,
+      "max_attack": "372",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "15",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -2981,28 +3025,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7350",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7350,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Fatalis Shell",
           "amount": "2",
@@ -3027,18 +3071,19 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lunastra's Flames",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "15",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3048,28 +3093,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "7525",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7525,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "LunastraCarapace",
           "amount": "4",
@@ -3094,18 +3139,19 @@
           "type": "ore",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Teostra's Flames",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3115,28 +3161,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "8025",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8025,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Fire Drgn Jwl",
           "amount": "1",
@@ -3161,18 +3207,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Destiny's Hands",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "-15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3182,28 +3229,28 @@
         "2/2/2",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "4",
         "4",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "8825",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8825,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Fatalis CrmsnShl",
           "amount": "2",
@@ -3228,18 +3275,19 @@
           "type": "ore",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Wolf Heirloom",
-      "attack": "336",
-      "max-attack": "396",
-      "rapid-fire": null,
+      "attack": 336,
+      "max_attack": "396",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3249,28 +3297,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "8450",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8450,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Long Garuga Ear",
           "amount": "3",
@@ -3295,18 +3343,19 @@
           "type": "part",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gaoren's Fire",
-      "attack": "348",
-      "max-attack": "408",
-      "rapid-fire": null,
+      "attack": 348,
+      "max_attack": "408",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "12",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -3316,28 +3365,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "2"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "8025",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8025,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Gaoren Thoracic",
           "amount": "3",
@@ -3362,18 +3411,19 @@
           "type": "ticket",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Suprm Lao-Shan Cannon",
-      "attack": "360",
-      "max-attack": "420",
-      "rapid-fire": null,
+      "attack": 360,
+      "max_attack": "420",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "20",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -3383,28 +3433,28 @@
         "0/0/1",
         "0/0/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "8800",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8800,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Lao-Shan's Ruby",
           "amount": "1",
@@ -3429,18 +3479,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Empr Lao-Shan Cannon",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "-10%",
       "slots": "---",
       "bonus": "14",
-      "rarity": "8",
-      "type": "hbg",
+      "rarity": 8,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -3450,28 +3501,28 @@
         "0/0/1",
         "0/0/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Azure LaoS Shell",
           "amount": "5",
@@ -3496,18 +3547,19 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Great Arbalest+",
-      "attack": "324",
-      "max-attack": "384",
-      "rapid-fire": null,
+      "attack": 324,
+      "max_attack": "384",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3517,28 +3569,28 @@
         "1/1/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "5500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 5500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Eltalite Ore",
           "amount": "20",
@@ -3563,18 +3615,19 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tanksorcerer",
-      "attack": "336",
-      "max-attack": "396",
-      "rapid-fire": null,
+      "attack": 336,
+      "max_attack": "396",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3584,28 +3637,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "6000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "SpecRubberyHide+",
           "amount": "6",
@@ -3630,18 +3683,19 @@
           "type": "ore",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bastionwitch",
-      "attack": "336",
-      "max-attack": "396",
-      "rapid-fire": null,
+      "attack": 336,
+      "max_attack": "396",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3651,28 +3705,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "6500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HrdPuGypcerosWng",
           "amount": "6",
@@ -3697,18 +3751,19 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Power Stinger",
-      "attack": "348",
-      "max-attack": "408",
-      "rapid-fire": null,
+      "attack": 348,
+      "max_attack": "408",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -3718,28 +3773,28 @@
         "0/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "7500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HrdCongalalaPlt+",
           "amount": "8",
@@ -3764,18 +3819,19 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Pressurized Plesioth",
-      "attack": "360",
-      "max-attack": "420",
-      "rapid-fire": null,
+      "attack": 360,
+      "max_attack": "420",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -3785,28 +3841,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "6",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "8000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "ThckPlesiothScl",
           "amount": "8",
@@ -3831,18 +3887,19 @@
           "type": "insect",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Violet Punisher",
-      "attack": "360",
-      "max-attack": "420",
-      "rapid-fire": null,
+      "attack": 360,
+      "max_attack": "420",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "16",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -3852,28 +3909,28 @@
         "0/0/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "4",
         "0",
         "4",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "9250",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 9250,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "PlumD.HermitrShl",
           "amount": "8",
@@ -3898,18 +3955,19 @@
           "type": "bone",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Super Kut-Ku Cannon",
-      "attack": "372",
-      "max-attack": "432",
-      "rapid-fire": null,
+      "attack": 372,
+      "max_attack": "432",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "14",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -3919,28 +3977,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "8500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Kut-Ku Carapace",
           "amount": "6",
@@ -3965,18 +4023,19 @@
           "type": "ore",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Ultra Kut-Ku Cannon",
-      "attack": "372",
-      "max-attack": "432",
-      "rapid-fire": null,
+      "attack": 372,
+      "max_attack": "432",
+      "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": "14",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -3986,28 +4045,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "9000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 9000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyBlueKut-KuShl",
           "amount": "6",
@@ -4032,18 +4091,19 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Meteor Shower",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -4053,28 +4113,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "7500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Mellanje Ore",
           "amount": "10",
@@ -4099,18 +4159,19 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gaia Eater",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "20",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4120,28 +4181,28 @@
         "2/2/2",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/3",
         "3/1",
         "0/1",
         "0/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "7500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 7500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyBasariosShell",
           "amount": "10",
@@ -4166,18 +4227,19 @@
           "type": "insect",
           "color": "orange"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Icethrower",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4187,28 +4249,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "3",
         "4",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "8500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HrdBlangongaPlt+",
           "amount": "8",
@@ -4233,18 +4295,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Ceanataur Blaster",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4254,28 +4317,28 @@
         "1/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyCeanataurShl",
           "amount": "6",
@@ -4300,18 +4363,19 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gravios gigahowl",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": "30",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4321,28 +4385,28 @@
         "0/1/1",
         "0/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "11000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 11000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyGraviosShell",
           "amount": "8",
@@ -4367,18 +4431,19 @@
           "type": "heavenly",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "dummy (Pirate J Cannon)",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4388,28 +4453,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "12",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "230",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 230,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Pirate Tckt J G",
           "amount": "4",
@@ -4434,18 +4499,19 @@
           "type": "stone",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Queen Needle",
-      "attack": "348",
-      "max-attack": "408",
-      "rapid-fire": null,
+      "attack": 348,
+      "max_attack": "408",
+      "rapid_fire": null,
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4455,28 +4521,28 @@
         "2/2/0",
         "2/2/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "6",
         "0",
         "3"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "8500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 8500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "VespoidQn'sCrown",
           "amount": "3",
@@ -4501,18 +4567,19 @@
           "type": "webbing",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Evil Wind Darkcannon",
-      "attack": "360",
-      "max-attack": "420",
-      "rapid-fire": null,
+      "attack": 360,
+      "max_attack": "420",
+      "rapid_fire": null,
       "affinity": "40%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -4522,28 +4589,28 @@
         "1/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/0",
         "0/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "11000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 11000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "ThickNargaScale",
           "amount": "10",
@@ -4568,18 +4635,19 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "GreatLadybugCannon+",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": "40",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -4589,28 +4657,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "4",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "6500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 6500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "PhantomButterfly",
           "amount": "8",
@@ -4635,18 +4703,19 @@
           "type": "fluid",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Quick Quiver",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -4656,28 +4725,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "10750",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10750,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "SpecialKirinHide",
           "amount": "3",
@@ -4702,18 +4771,19 @@
           "type": "claw",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crow Heirloom",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -4723,28 +4793,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "SilverGarugaPelt",
           "amount": "4",
@@ -4769,18 +4839,19 @@
           "type": "bone",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Terra C Blaster",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -4790,28 +4861,28 @@
         "2/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "10500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "TerraCeanatrShl",
           "amount": "6",
@@ -4836,18 +4907,19 @@
           "type": "scale",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Daora's Ceti",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "30%",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -4857,28 +4929,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "Demon S (1)",
         "0"
       ],
-      "create-cost": "11750",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 11750,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hvy Daora Shell",
           "amount": "5",
@@ -4903,18 +4975,19 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Destiny's Arm",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "-15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -4924,28 +4997,28 @@
         "2/2/2",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "4",
         "4",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "20000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 20000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyFatalisCrmShl",
           "amount": "2",
@@ -4970,18 +5043,19 @@
           "type": "stone",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gravios Gigaroar",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "20",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -4991,28 +5065,28 @@
         "0/1/1",
         "0/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "11500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 11500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyBlkGraviosShl",
           "amount": "8",
@@ -5037,18 +5111,19 @@
           "type": "heavenly",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Teostra Flamethrower",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "15%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -5058,28 +5133,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "12000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 12000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyTeostraShell",
           "amount": "5",
@@ -5104,18 +5179,19 @@
           "type": "ticket",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Dark Duelcaster",
-      "attack": "432",
-      "max-attack": "492",
-      "rapid-fire": null,
+      "attack": 432,
+      "max_attack": "492",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5125,28 +5201,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "11500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 11500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyBlkBlosSpine",
           "amount": "3",
@@ -5171,18 +5247,19 @@
           "type": "claw",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Vor Buster",
-      "attack": "432",
-      "max-attack": "492",
-      "rapid-fire": null,
+      "attack": 432,
+      "max_attack": "492",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "20",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5192,28 +5269,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "15000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 15000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hvy Fatalis Shl",
           "amount": "2",
@@ -5238,18 +5315,19 @@
           "type": "stone",
           "color": "slate"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tigrex Skull+",
-      "attack": "444",
-      "max-attack": "504",
-      "rapid-fire": null,
+      "attack": 444,
+      "max_attack": "504",
+      "rapid_fire": null,
       "affinity": "-30%",
       "slots": "---",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5259,28 +5337,28 @@
         "2/2/2",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "Demon S:  0",
         "0"
       ],
-      "create-cost": "10500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hvy Tigrex Shell",
           "amount": "6",
@@ -5305,18 +5383,19 @@
           "type": "heavenly",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Gaoren Orb",
-      "attack": "444",
-      "max-attack": "504",
-      "rapid-fire": null,
+      "attack": 444,
+      "max_attack": "504",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "14",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
@@ -5326,28 +5405,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "2"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "12500",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 12500,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Hvy Gaoren Spine",
           "amount": "4",
@@ -5372,18 +5451,19 @@
           "type": "heavenly",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "AncientDrgnwoodCan",
-      "attack": "444",
-      "max-attack": "504",
-      "rapid-fire": null,
+      "attack": 444,
+      "max_attack": "504",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Light",
       "ammo": [
@@ -5393,28 +5473,28 @@
         "3/3/3",
         "3/3/3"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "4/2",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "13000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 13000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "AncientDrgnwood",
           "amount": "4",
@@ -5439,18 +5519,19 @@
           "type": "ore",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "UltimateLao-ShaoCan",
-      "attack": "480",
-      "max-attack": "540",
-      "rapid-fire": null,
+      "attack": 480,
+      "max_attack": "540",
+      "rapid_fire": null,
       "affinity": "-10%",
       "slots": "O--",
       "bonus": "18",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -5460,28 +5541,28 @@
         "0/0/1",
         "0/0/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "Demon S (0)",
         "0"
       ],
-      "create-cost": "15000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 15000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Lao-Shan'sHvyShl",
           "amount": "4",
@@ -5506,18 +5587,19 @@
           "type": "stone",
           "color": "blue"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Ukanlos Cannon",
-      "attack": "504",
-      "max-attack": "564",
-      "rapid-fire": null,
+      "attack": 504,
+      "max_attack": "564",
+      "rapid_fire": null,
       "affinity": "-40%",
       "slots": "---",
       "bonus": "10",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5527,28 +5609,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "6",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "20000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 20000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "HvyUkanlosShell",
           "amount": "6",
@@ -5573,18 +5655,19 @@
           "type": "heavenly",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Arbalest G",
-      "attack": "312",
-      "max-attack": "372",
-      "rapid-fire": null,
+      "attack": 312,
+      "max_attack": "372",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5594,28 +5677,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5640,18 +5723,19 @@
           "type": "bone",
           "color": "yellow"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Rapidcaster G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -5661,28 +5745,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5707,18 +5791,19 @@
           "type": "insect",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Injector Cannon G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5728,28 +5813,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5774,18 +5859,19 @@
           "type": "fluid",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Honeycomber G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -5795,28 +5881,28 @@
         "1/1/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "3",
         "0",
         "1"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5841,18 +5927,19 @@
           "type": "insect",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Tanksorcerer G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5862,28 +5949,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation G",
           "amount": "1",
@@ -5908,18 +5995,19 @@
           "type": "ore",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Bastionwitch G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -5929,28 +6017,28 @@
         "1/0/0",
         "1/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -5975,18 +6063,19 @@
           "type": "ore",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Desert Diver G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -5996,28 +6085,28 @@
         "1/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "4",
         "4",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6042,18 +6131,19 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Power Stinger G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6063,28 +6153,28 @@
         "0/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6109,18 +6199,19 @@
           "type": "claw",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Crab Buster G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "16",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6130,28 +6221,28 @@
         "0/0/0",
         "1/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "3",
         "0",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6176,18 +6267,19 @@
           "type": "scale",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Meteor Cannon G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OOO",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6197,28 +6289,28 @@
         "1/1/1",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6243,18 +6335,19 @@
           "type": "ore",
           "color": "pink"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "PressurizedPlesiothG",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -6264,28 +6357,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "3/1",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "6",
         "3",
         "3",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6310,18 +6403,19 @@
           "type": "bone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Violet Punisher G",
-      "attack": "396",
-      "max-attack": "456",
-      "rapid-fire": null,
+      "attack": 396,
+      "max_attack": "456",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "16",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6331,28 +6425,28 @@
         "0/0/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "3/1",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "4",
         "0",
         "4",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6377,18 +6471,19 @@
           "type": "part",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "SuperKut-KuCannon G",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": "14",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -6398,28 +6493,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6444,18 +6539,19 @@
           "type": "part",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "UltraKut-KuCannon G",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "10%",
       "slots": "---",
       "bonus": "14",
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
@@ -6465,28 +6561,28 @@
         "0/1/0",
         "0/1/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "4",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6511,18 +6607,19 @@
           "type": "part",
           "color": "white"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Monodevilcaster G",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -6532,28 +6629,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6578,18 +6675,19 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Duelcaster G",
-      "attack": "432",
-      "max-attack": "492",
-      "rapid-fire": null,
+      "attack": 432,
+      "max_attack": "492",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": null,
-      "rarity": "9",
-      "type": "hbg",
+      "rarity": 9,
+      "type": "heavy-bowgun",
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
@@ -6599,28 +6697,28 @@
         "0/0/0",
         "0/0/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/0",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6645,18 +6743,19 @@
           "type": "stone",
           "color": "cyan"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Queen Needle G",
-      "attack": "384",
-      "max-attack": "444",
-      "rapid-fire": null,
+      "attack": 384,
+      "max_attack": "444",
+      "rapid_fire": null,
       "affinity": "20%",
       "slots": "OO-",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
@@ -6666,28 +6765,28 @@
         "2/2/0",
         "2/2/0"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "3/1",
         "3/1",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "0",
         "0",
         "6",
         "0",
         "3"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "1",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6712,18 +6811,19 @@
           "type": "insect",
           "color": "green"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Black Cannon G",
-      "attack": "408",
-      "max-attack": "468",
-      "rapid-fire": null,
+      "attack": 408,
+      "max_attack": "468",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "O--",
       "bonus": null,
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
@@ -6733,28 +6833,28 @@
         "1/1/1",
         "1/1/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/0",
         "3/0",
         "3/0",
         "3/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6779,18 +6879,19 @@
           "type": "scale",
           "color": "gray"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lunastra's Flames G",
-      "attack": "420",
-      "max-attack": "480",
-      "rapid-fire": null,
+      "attack": 420,
+      "max_attack": "480",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "---",
       "bonus": "25",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
@@ -6800,28 +6901,28 @@
         "3/3/3",
         "2/2/2"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "3/3",
         "0/0",
         "0/0",
         "3/1"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "6",
         "0",
         "0",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "1"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6846,18 +6947,19 @@
           "type": "stone",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     },
     {
       "name": "Lao-ShanLungCannon G",
-      "attack": "456",
-      "max-attack": "516",
-      "rapid-fire": null,
+      "attack": 456,
+      "max_attack": "516",
+      "rapid_fire": null,
       "affinity": "0",
       "slots": "OO-",
       "bonus": "30",
-      "rarity": "10",
-      "type": "hbg",
+      "rarity": 10,
+      "type": "heavy-bowgun",
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
@@ -6867,28 +6969,28 @@
         "0/0/1",
         "0/0/1"
       ],
-      "status-ammo": [
+      "status_ammo": [
         "0/0",
         "0/1",
         "0/0",
         "0/0"
       ],
-      "element-ammo": [
+      "element_ammo": [
         "3",
         "3",
         "3",
         "0",
         "0"
       ],
-      "misc-ammo": [
+      "misc_ammo": [
         "2",
         "2",
         "0",
         "0"
       ],
-      "create-cost": "10000",
-      "improve-mats": null,
-      "create-mats": [
+      "create_cost": 10000,
+      "improve_mats": null,
+      "create_mats": [
         {
           "name": "Commendation S",
           "amount": "1",
@@ -6913,7 +7015,8 @@
           "type": "part",
           "color": "red"
         }
-      ]
+      ],
+      "elements": null
     }
   ]
 }

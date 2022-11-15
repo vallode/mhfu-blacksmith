@@ -19,23 +19,13 @@ WEAPON_PAIRS = [
   ["light-bowgun"],
   ["heavy-bowgun"],
   ["bow"],
-  ["decoration"]
+  ["decoration"],
+  ["helmet"],
+  ["plate"],
+  ["gauntlets"],
+  ["waist"],
+  ["leggings"],
 ]
-
-WEAPON_ABBR = {
-  "great-sword": "gs",
-  "long-sword": "ls",
-  "sword-and-shield": "sns",
-  "dual-blades": "db",
-  "hammer": "hm",
-  "hunting-horn": "hh",
-  "lance": "ln",
-  "gunlance":  "gl",
-  "light-bowgun": "lbg",
-  "heavy-bowgun": "hbg",
-  "bow": "bw",
-  "decoration": "dec"
-}
 
 def slugify(value)
   value = value.downcase.strip
@@ -51,7 +41,7 @@ end
 def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapons_data)
   array.push({
     slug: slugify(weapon["name"]),
-    type: WEAPON_ABBR.key(weapon["type"]),
+    type: weapon["type"],
     name: weapon["name"],
     rarity: weapon["rarity"]
   })
@@ -60,14 +50,15 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
     array.last[:color] = weapon["color"]
   end
     
-  if weapon.key?("element") and weapon["element"]
-    array.last[:element] = weapon["element"].match(/([A-Za-z]+)\s([0-9\w]+)/).captures[0].downcase
+  if weapon.key?("elements") and weapon["elements"]
+    # TODO: Adjust to use both elements in dual element weapons.
+    array.last[:element] = weapon["elements"][0]["name"].downcase
   end
 
-  if weapon.key?("improve-to") and weapon["improve-to"]
+  if weapon.key?("improve_to") and weapon["improve_to"]
     array.last[:children] = []
 
-    for child_weapon_name in weapon["improve-to"]
+    for child_weapon_name in weapon["improve_to"]
       child_weapon = weapons_data.select {|element| element["name"] == child_weapon_name }[0]
       
       if child_weapon
@@ -85,7 +76,7 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/blacksmith/{#{array.join(",")}}/*-crafting.json")
+  weapon_files = Dir.glob("content/{blacksmith,armorsmith}/{#{array.join(",")}}/*-crafting.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 
@@ -99,15 +90,15 @@ WEAPON_PAIRS.each do |array|
   if file.path.include?("decoration")
     root_weapons = weapons.select {|element| element.key?("donotrender")}
   else
-    root_weapons = weapons.select {|element| not element["improve-from"]}
+    root_weapons = weapons.select {|element| not element["improve_from"]}
 
     if sibling_weapons
-      root_sibling_weapons = sibling_weapons.select {|element| element["improve-to"]}
+      root_sibling_weapons = sibling_weapons.select {|element| element["improve_to"]}
 
       root_sibling_weapons = root_sibling_weapons.select do |element|
         has_sibling_child = false
 
-        element["improve-to"].each do |child|
+        element["improve_to"].each do |child|
           child_weapon = weapons.select {|element| element["name"] == child}
 
           if child_weapon.length > 0
@@ -122,7 +113,7 @@ WEAPON_PAIRS.each do |array|
     end
   end
 
-  dead_end_weapons = root_weapons.select {|element| not element["improve-from"] and not element["improve-to"]}
+  dead_end_weapons = root_weapons.select {|element| not element["improve_from"] and not element["improve_to"]}
 
   root_weapons = root_weapons.sort_by {|s| s["rarity"].to_i}
 

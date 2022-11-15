@@ -1,0 +1,346 @@
+{
+  "map": [
+  {
+    "slug": "monoblos-mail",
+    "type": "plate",
+    "name": "Monoblos Mail",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-vest",
+    "type": "plate",
+    "name": "Monoblos Vest",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-mail",
+    "type": "plate",
+    "name": "Yian Garuga Mail",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-vest",
+    "type": "plate",
+    "name": "Yian Garuga Vest",
+    "rarity": "4"
+  },
+  {
+    "slug": "black-hide",
+    "type": "plate",
+    "name": "Black Hide",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-skin",
+    "type": "plate",
+    "name": "Black Skin",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-mail",
+    "type": "plate",
+    "name": "Empress Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-vest",
+    "type": "plate",
+    "name": "Empress Vest",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-mail",
+    "type": "plate",
+    "name": "Monodevil Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-vest",
+    "type": "plate",
+    "name": "Monodevil Vest",
+    "rarity": "5"
+  },
+  {
+    "slug": "monoblos-mail-s",
+    "type": "plate",
+    "name": "Monoblos Mail S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-vest-s",
+    "type": "plate",
+    "name": "Monoblos Vest S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monodevil-mail-u",
+    "type": "plate",
+    "name": "Monodevil Mail U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-vest-u",
+    "type": "plate",
+    "name": "Monodevil Vest U",
+    "rarity": "8"
+  },
+  {
+    "slug": "tigrex-mail-x",
+    "type": "plate",
+    "name": "Tigrex Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "tigrex-vest-x",
+    "type": "plate",
+    "name": "Tigrex Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-mail-x",
+    "type": "plate",
+    "name": "Diablo Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vest-x",
+    "type": "plate",
+    "name": "Diablo Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-mail-x",
+    "type": "plate",
+    "name": "Gravios Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vest-x",
+    "type": "plate",
+    "name": "Gravios Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-mail-z",
+    "type": "plate",
+    "name": "Diablo Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vest-z",
+    "type": "plate",
+    "name": "Diablo Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-mail-z",
+    "type": "plate",
+    "name": "Gravios Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vest-z",
+    "type": "plate",
+    "name": "Gravios Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "famitsu-t-shirt-x",
+    "type": "plate",
+    "name": "Famitsu T-Shirt X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-golden-haori",
+    "type": "plate",
+    "name": "True Golden Haori",
+    "rarity": "10"
+  },
+  {
+    "slug": "truepuppetmstrcostume",
+    "type": "plate",
+    "name": "TruePuppetMstrCostume",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-mizuha-guards",
+    "type": "plate",
+    "name": "True Mizuha Guards",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueextrvagantcamise",
+    "type": "plate",
+    "name": "TrueExtrvagantCamise",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-cista-x",
+    "type": "plate",
+    "name": "Kushala Cista X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-vise-x",
+    "type": "plate",
+    "name": "Kushala Vise X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-jacket-x",
+    "type": "plate",
+    "name": "Kirin Jacket X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-cape-x",
+    "type": "plate",
+    "name": "Kirin Cape X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-mail-x",
+    "type": "plate",
+    "name": "Empress Mail X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-vest-x",
+    "type": "plate",
+    "name": "Empress Vest X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-indra-vest",
+    "type": "plate",
+    "name": "True Indra Vest",
+    "rarity": "10"
+  },
+  {
+    "slug": "truesteadfastvest",
+    "type": "plate",
+    "name": "TrueSteadfastVest",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-mail-x",
+    "type": "plate",
+    "name": "Kaiser Mail X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-vest-x",
+    "type": "plate",
+    "name": "Kaiser Vest X",
+    "rarity": "10"
+  },
+  {
+    "slug": "truguardnspritraiment",
+    "type": "plate",
+    "name": "TruGuardnSpritRaiment",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-carnage-raiment",
+    "type": "plate",
+    "name": "True Carnage Raiment",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonhide-x",
+    "type": "plate",
+    "name": "Dragonhide X",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonskin-x",
+    "type": "plate",
+    "name": "Dragonskin X",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-aegis",
+    "type": "plate",
+    "name": "Ucamulbas Aegis",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-plate",
+    "type": "plate",
+    "name": "Ucamulbas Plate",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-mail-z",
+    "type": "plate",
+    "name": "Golden Moon Mail Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-vest-z",
+    "type": "plate",
+    "name": "Golden Moon Vest Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-mail-z",
+    "type": "plate",
+    "name": "Silver Sol Mail Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-vestz",
+    "type": "plate",
+    "name": "Silver Sol VestZ",
+    "rarity": "10"
+  },
+  {
+    "slug": "auroros-torso-kyoku",
+    "type": "plate",
+    "name": "Auroros Torso Kyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "genesis-torso-kyoku",
+    "type": "plate",
+    "name": "Genesis Torso Kyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "borealis-chest-kyoku",
+    "type": "plate",
+    "name": "Borealis Chest Kyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "glyph-chest-kyoku",
+    "type": "plate",
+    "name": "Glyph Chest Kyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-hide-z",
+    "type": "plate",
+    "name": "Fatalis Hide Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-skin-z",
+    "type": "plate",
+    "name": "Fatalis Skin Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "white-fatalis-hide-z",
+    "type": "plate",
+    "name": "White Fatalis Hide Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "white-fatalis-skin-z",
+    "type": "plate",
+    "name": "White Fatalis Skin Z",
+    "rarity": "10"
+  }
+]
+}

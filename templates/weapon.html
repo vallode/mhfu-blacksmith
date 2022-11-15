@@ -30,7 +30,7 @@
 
       <div>
         <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-          <div class="icon icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
+          <div class="icon icon--nav icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
             <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
           </div>
         </a>
@@ -68,12 +68,12 @@
             
             {% if page.extra.sharpness %}
             <div tabindex="0" class="sharpness">
-              {% for sharp in page.extra.sharpness | split(pat=".") %}
+              {% for sharp in page.extra.sharpness %}
                 <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
               {% endfor %}
 
               {% if page.extra.sharpness_plus %}
-                {% for sharp in page.extra.sharpness_plus | split(pat=".") %}
+                {% for sharp in page.extra.sharpness_plus %}
                   <span class="sharp-{{ loop.index }} sharp--plus" style="width: {{ sharp | int * 4 }}px;"></span>
                 {% endfor %}
               {% endif %}
@@ -164,7 +164,7 @@
             >
               <div id="page-1" class="active">
                 {% if page.extra.improve_mats %}
-                  <div class="improve-mats">
+                  <div class="improve_mats">
                     <p>
                       <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                     </p>                    
@@ -181,7 +181,7 @@
                 {% endif %}
   
                 {%- if page.extra.create_mats %}
-                  <div class="create-mats">
+                  <div class="create_mats">
                     <p>
                       <span>Create cost: </span>{{ page.extra.create_cost }}z
                     </p>
@@ -201,7 +201,7 @@
               {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
                 <div id="page-2">
                   {%- if page.extra.alternative_create_mats %}
-                    <div class="create-mats">
+                    <div class="create_mats">
                       <p>
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
                       </p>

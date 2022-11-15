@@ -1,0 +1,2464 @@
+{
+  "map": [
+  {
+    "slug": "mafumofu-mittens",
+    "type": "gauntlets",
+    "name": "Mafumofu Mittens",
+    "rarity": "1"
+  },
+  {
+    "slug": "leather-vambraces",
+    "type": "gauntlets",
+    "name": "Leather Vambraces",
+    "rarity": "1"
+  },
+  {
+    "slug": "chain-vambraces",
+    "type": "gauntlets",
+    "name": "Chain Vambraces",
+    "rarity": "1"
+  },
+  {
+    "slug": "hunter-vambraces",
+    "type": "gauntlets",
+    "name": "Hunter Vambraces",
+    "rarity": "1"
+  },
+  {
+    "slug": "hunter-guards",
+    "type": "gauntlets",
+    "name": "Hunter Guards",
+    "rarity": "1"
+  },
+  {
+    "slug": "bone-vambraces",
+    "type": "gauntlets",
+    "name": "Bone Vambraces",
+    "rarity": "2"
+  },
+  {
+    "slug": "bone-guards",
+    "type": "gauntlets",
+    "name": "Bone Guards",
+    "rarity": "2"
+  },
+  {
+    "slug": "giaprey-vambraces",
+    "type": "gauntlets",
+    "name": "Giaprey Vambraces",
+    "rarity": "2"
+  },
+  {
+    "slug": "giaprey-guards",
+    "type": "gauntlets",
+    "name": "Giaprey Guards",
+    "rarity": "2"
+  },
+  {
+    "slug": "battle-vambraces",
+    "type": "gauntlets",
+    "name": "Battle Vambraces",
+    "rarity": "2"
+  },
+  {
+    "slug": "battle-guards",
+    "type": "gauntlets",
+    "name": "Battle Guards",
+    "rarity": "2"
+  },
+  {
+    "slug": "velociprey-braces",
+    "type": "gauntlets",
+    "name": "Velociprey Braces",
+    "rarity": "2"
+  },
+  {
+    "slug": "velociprey-guards",
+    "type": "gauntlets",
+    "name": "Velociprey Guards",
+    "rarity": "2"
+  },
+  {
+    "slug": "vespoid-vambraces",
+    "type": "gauntlets",
+    "name": "Vespoid Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "vespoid-guards",
+    "type": "gauntlets",
+    "name": "Vespoid Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "hi-metal-vambraces",
+    "type": "gauntlets",
+    "name": "Hi-Metal Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "hi-metal-guards",
+    "type": "gauntlets",
+    "name": "Hi-Metal Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "hornet-vambraces",
+    "type": "gauntlets",
+    "name": "Hornet Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "hornet-guards",
+    "type": "gauntlets",
+    "name": "Hornet Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "genprey-vambraces",
+    "type": "gauntlets",
+    "name": "Genprey Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "genprey-guards",
+    "type": "gauntlets",
+    "name": "Genprey Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "steel-vambraces",
+    "type": "gauntlets",
+    "name": "Steel Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "ioprey-vambraces",
+    "type": "gauntlets",
+    "name": "Ioprey Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "ioprey-guards",
+    "type": "gauntlets",
+    "name": "Ioprey Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-vambraces",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-guards",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "cephalos-vambraces",
+    "type": "gauntlets",
+    "name": "Cephalos Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "cephalos-guards",
+    "type": "gauntlets",
+    "name": "Cephalos Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "conga-vambraces",
+    "type": "gauntlets",
+    "name": "Conga Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "conga-guards",
+    "type": "gauntlets",
+    "name": "Conga Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-vambraces",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-guards",
+    "type": "gauntlets",
+    "name": "Gypceros Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-vambraces",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-guards",
+    "type": "gauntlets",
+    "name": "Khezu Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "hermitaur-vambraces",
+    "type": "gauntlets",
+    "name": "Hermitaur Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "hermitaur-guards",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-vambraces",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-guards",
+    "type": "gauntlets",
+    "name": "Plesioth Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "lobster-vambraces",
+    "type": "gauntlets",
+    "name": "Lobster Vambraces",
+    "rarity": "3"
+  },
+  {
+    "slug": "lobster-guards",
+    "type": "gauntlets",
+    "name": "Lobster Guards",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-vambraces-d",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces D",
+    "rarity": "3"
+  },
+  {
+    "slug": "kut-ku-guards-d",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards D",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-vambraces-d",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces D",
+    "rarity": "3"
+  },
+  {
+    "slug": "gypceros-guards-d",
+    "type": "gauntlets",
+    "name": "Gypceros Guards D",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-vambraces-d",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces D",
+    "rarity": "3"
+  },
+  {
+    "slug": "khezu-guards-d",
+    "type": "gauntlets",
+    "name": "Khezu Guards D",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-vambraces-d",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces D",
+    "rarity": "3"
+  },
+  {
+    "slug": "plesioth-guards-d",
+    "type": "gauntlets",
+    "name": "Plesioth Guards D",
+    "rarity": "3"
+  },
+  {
+    "slug": "basarios-vambraces",
+    "type": "gauntlets",
+    "name": "Basarios Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "basarios-guards",
+    "type": "gauntlets",
+    "name": "Basarios Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-vambraces",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-guards",
+    "type": "gauntlets",
+    "name": "Monoblos Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-vambraces",
+    "type": "gauntlets",
+    "name": "Garuga Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-guards",
+    "type": "gauntlets",
+    "name": "Garuga Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "blango-vambraces",
+    "type": "gauntlets",
+    "name": "Blango Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "blango-guards",
+    "type": "gauntlets",
+    "name": "Blango Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "ceanataur-vambraces",
+    "type": "gauntlets",
+    "name": "Ceanataur Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "ceanataur-guards",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathian-vambraces",
+    "type": "gauntlets",
+    "name": "Rathian Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathian-guards",
+    "type": "gauntlets",
+    "name": "Rathian Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "tigrex-vambraces",
+    "type": "gauntlets",
+    "name": "Tigrex Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "tigrex-guards",
+    "type": "gauntlets",
+    "name": "Tigrex Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathalos-vambraces",
+    "type": "gauntlets",
+    "name": "Rathalos Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "rathalos-guards",
+    "type": "gauntlets",
+    "name": "Rathalos Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-vambraces",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-guards",
+    "type": "gauntlets",
+    "name": "Diablo Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-vambraces",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-guards",
+    "type": "gauntlets",
+    "name": "Gravios Guards",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-vambraces-d",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces D",
+    "rarity": "4"
+  },
+  {
+    "slug": "diablo-guards-d",
+    "type": "gauntlets",
+    "name": "Diablo Guards D",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-vambraces-d",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces D",
+    "rarity": "4"
+  },
+  {
+    "slug": "gravios-guards-d",
+    "type": "gauntlets",
+    "name": "Gravios Guards D",
+    "rarity": "4"
+  },
+  {
+    "slug": "mosswine-gloves",
+    "type": "gauntlets",
+    "name": "Mosswine Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "giaprey-gloves",
+    "type": "gauntlets",
+    "name": "Giaprey Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "velociprey-gloves",
+    "type": "gauntlets",
+    "name": "Velociprey Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "genprey-gloves",
+    "type": "gauntlets",
+    "name": "Genprey Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-belt-vambraces",
+    "type": "gauntlets",
+    "name": "Black Belt Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "shinobi-kote-sun",
+    "type": "gauntlets",
+    "name": "Shinobi Kote (Sun)",
+    "rarity": "5"
+  },
+  {
+    "slug": "shinobi-kote-moon",
+    "type": "gauntlets",
+    "name": "Shinobi Kote (Moon)",
+    "rarity": "5"
+  },
+  {
+    "slug": "guild-knight-gloves",
+    "type": "gauntlets",
+    "name": "Guild Knight Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "guild-knight-sleeves",
+    "type": "gauntlets",
+    "name": "Guild Knight Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardian-vambraces",
+    "type": "gauntlets",
+    "name": "Guardian Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardian-guards",
+    "type": "gauntlets",
+    "name": "Guardian Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "maiden-s-sleeves",
+    "type": "gauntlets",
+    "name": "Maiden's Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "personal-sleeves",
+    "type": "gauntlets",
+    "name": "Personal Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "helper-sleeves",
+    "type": "gauntlets",
+    "name": "Helper Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "healer-sleeves",
+    "type": "gauntlets",
+    "name": "Healer Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "ioprey-gloves",
+    "type": "gauntlets",
+    "name": "Ioprey Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "remobra-hands",
+    "type": "gauntlets",
+    "name": "Remobra Hands",
+    "rarity": "5"
+  },
+  {
+    "slug": "melahoa-branch",
+    "type": "gauntlets",
+    "name": "Melahoa Branch",
+    "rarity": "5"
+  },
+  {
+    "slug": "melahoa-petal",
+    "type": "gauntlets",
+    "name": "Melahoa Petal",
+    "rarity": "5"
+  },
+  {
+    "slug": "makluva-sleeves",
+    "type": "gauntlets",
+    "name": "Makluva Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "makluva-sucker",
+    "type": "gauntlets",
+    "name": "Makluva Sucker",
+    "rarity": "5"
+  },
+  {
+    "slug": "hypnoc-vambraces",
+    "type": "gauntlets",
+    "name": "Hypnoc Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "hypnoc-guards",
+    "type": "gauntlets",
+    "name": "Hypnoc Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "obituary-mano",
+    "type": "gauntlets",
+    "name": "Obituary Mano",
+    "rarity": "5"
+  },
+  {
+    "slug": "obituary-brasso",
+    "type": "gauntlets",
+    "name": "Obituary Brasso",
+    "rarity": "5"
+  },
+  {
+    "slug": "butterfly-mano",
+    "type": "gauntlets",
+    "name": "Butterfly Mano",
+    "rarity": "5"
+  },
+  {
+    "slug": "butterfly-brasso",
+    "type": "gauntlets",
+    "name": "Butterfly Brasso",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-claw",
+    "type": "gauntlets",
+    "name": "Black Claw",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-fist",
+    "type": "gauntlets",
+    "name": "Black Fist",
+    "rarity": "5"
+  },
+  {
+    "slug": "death-stench-grip",
+    "type": "gauntlets",
+    "name": "Death Stench Grip",
+    "rarity": "5"
+  },
+  {
+    "slug": "death-stench-grasp",
+    "type": "gauntlets",
+    "name": "Death Stench Grasp",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-vambraces",
+    "type": "gauntlets",
+    "name": "Volganos Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-guards",
+    "type": "gauntlets",
+    "name": "Volganos Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "mizuha-sleeves",
+    "type": "gauntlets",
+    "name": "Mizuha Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "extravagant-sleeves",
+    "type": "gauntlets",
+    "name": "Extravagant Sleeves",
+    "rarity": "5"
+  },
+  {
+    "slug": "kushala-grip",
+    "type": "gauntlets",
+    "name": "Kushala Grip",
+    "rarity": "5"
+  },
+  {
+    "slug": "kushala-embrace",
+    "type": "gauntlets",
+    "name": "Kushala Embrace",
+    "rarity": "5"
+  },
+  {
+    "slug": "kirin-longarms",
+    "type": "gauntlets",
+    "name": "Kirin Longarms",
+    "rarity": "5"
+  },
+  {
+    "slug": "kirin-gloves",
+    "type": "gauntlets",
+    "name": "Kirin Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "guardiansprtvambrces",
+    "type": "gauntlets",
+    "name": "GuardianSprtVambrces",
+    "rarity": "5"
+  },
+  {
+    "slug": "carnage-vambraces",
+    "type": "gauntlets",
+    "name": "Carnage Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "auroros-gauntlets",
+    "type": "gauntlets",
+    "name": "Auroros Gauntlets",
+    "rarity": "5"
+  },
+  {
+    "slug": "genesis-gauntlets",
+    "type": "gauntlets",
+    "name": "Genesis Gauntlets",
+    "rarity": "5"
+  },
+  {
+    "slug": "borealis-gauntlets",
+    "type": "gauntlets",
+    "name": "Borealis Gauntlets",
+    "rarity": "5"
+  },
+  {
+    "slug": "glyph-gauntlets",
+    "type": "gauntlets",
+    "name": "Glyph Gauntlets",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-vambraces",
+    "type": "gauntlets",
+    "name": "Empress Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-guards",
+    "type": "gauntlets",
+    "name": "Empress Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "indra-gloves",
+    "type": "gauntlets",
+    "name": "Indra Gloves",
+    "rarity": "5"
+  },
+  {
+    "slug": "steadfast-guards",
+    "type": "gauntlets",
+    "name": "Steadfast Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "kaiser-vambraces",
+    "type": "gauntlets",
+    "name": "Kaiser Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "kaiser-guards",
+    "type": "gauntlets",
+    "name": "Kaiser Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-braces",
+    "type": "gauntlets",
+    "name": "Red Lobster Braces",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-guards",
+    "type": "gauntlets",
+    "name": "Red Lobster Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-vambraces",
+    "type": "gauntlets",
+    "name": "Monodevil Vambraces",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-guards",
+    "type": "gauntlets",
+    "name": "Monodevil Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathian-heart-braces",
+    "type": "gauntlets",
+    "name": "Rathian Heart Braces",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathian-heart-guards",
+    "type": "gauntlets",
+    "name": "Rathian Heart Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathalos-soul-braces",
+    "type": "gauntlets",
+    "name": "Rathalos Soul Braces",
+    "rarity": "5"
+  },
+  {
+    "slug": "rathalos-soul-guards",
+    "type": "gauntlets",
+    "name": "Rathalos Soul Guards",
+    "rarity": "5"
+  },
+  {
+    "slug": "mafumofu-mittens-s",
+    "type": "gauntlets",
+    "name": "Mafumofu Mittens S",
+    "rarity": "6"
+  },
+  {
+    "slug": "leather-vambraces-s",
+    "type": "gauntlets",
+    "name": "Leather Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "chain-vambraces-s",
+    "type": "gauntlets",
+    "name": "Chain Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hunter-vambraces-s",
+    "type": "gauntlets",
+    "name": "Hunter Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hunter-guards-s",
+    "type": "gauntlets",
+    "name": "Hunter Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "bone-vambraces-s",
+    "type": "gauntlets",
+    "name": "Bone Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "bone-guards-s",
+    "type": "gauntlets",
+    "name": "Bone Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "battle-vambraces-s",
+    "type": "gauntlets",
+    "name": "Battle Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "battle-guards-s",
+    "type": "gauntlets",
+    "name": "Battle Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-braces-s",
+    "type": "gauntlets",
+    "name": "Velociprey Braces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-guards-s",
+    "type": "gauntlets",
+    "name": "Velociprey Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-vambraces-s",
+    "type": "gauntlets",
+    "name": "Vespoid Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-guards-s",
+    "type": "gauntlets",
+    "name": "Vespoid Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-vambraces-s",
+    "type": "gauntlets",
+    "name": "Hi-Metal Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-guards-s",
+    "type": "gauntlets",
+    "name": "Hi-Metal Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "steel-vambraces-s",
+    "type": "gauntlets",
+    "name": "Steel Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornet-vambraces-s",
+    "type": "gauntlets",
+    "name": "Hornet Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornet-guards-s",
+    "type": "gauntlets",
+    "name": "Hornet Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-vambraces-s",
+    "type": "gauntlets",
+    "name": "Genprey Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-guards-s",
+    "type": "gauntlets",
+    "name": "Genprey Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-vambraces-s",
+    "type": "gauntlets",
+    "name": "Ioprey Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-guards-s",
+    "type": "gauntlets",
+    "name": "Ioprey Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-vambraces-s",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-guards-s",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-vambraces-s",
+    "type": "gauntlets",
+    "name": "Cephalos Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-guards-s",
+    "type": "gauntlets",
+    "name": "Cephalos Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-vambraces-s",
+    "type": "gauntlets",
+    "name": "Conga Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-guards-s",
+    "type": "gauntlets",
+    "name": "Conga Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-vambraces-s",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-guards-s",
+    "type": "gauntlets",
+    "name": "Gypceros Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-vambraces-s",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-guards-s",
+    "type": "gauntlets",
+    "name": "Khezu Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-braces-s",
+    "type": "gauntlets",
+    "name": "Hermitaur Braces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-guards-s",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hypnoc-vambraces-s",
+    "type": "gauntlets",
+    "name": "Hypnoc Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hypnoc-guards-s",
+    "type": "gauntlets",
+    "name": "Hypnoc Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "basarios-vambraces-s",
+    "type": "gauntlets",
+    "name": "Basarios Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "basarios-guards-s",
+    "type": "gauntlets",
+    "name": "Basarios Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-vambraces-s",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-guards-s",
+    "type": "gauntlets",
+    "name": "Plesioth Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-vambraces-s",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-guards-s",
+    "type": "gauntlets",
+    "name": "Monoblos Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "garuga-vambraces-s",
+    "type": "gauntlets",
+    "name": "Garuga Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "garuga-guards-s",
+    "type": "gauntlets",
+    "name": "Garuga Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-vambraces-s",
+    "type": "gauntlets",
+    "name": "Blango Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-guards-s",
+    "type": "gauntlets",
+    "name": "Blango Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-braces-s",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-guards-s",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-vambraces-s",
+    "type": "gauntlets",
+    "name": "Rathian Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-guards-s",
+    "type": "gauntlets",
+    "name": "Rathian Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "naruga-vambraces-s",
+    "type": "gauntlets",
+    "name": "Naruga Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "naruga-guards-s",
+    "type": "gauntlets",
+    "name": "Naruga Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "tigrex-vambraces-s",
+    "type": "gauntlets",
+    "name": "Tigrex Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "tigrex-guards-s",
+    "type": "gauntlets",
+    "name": "Tigrex Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathalos-vambraces-s",
+    "type": "gauntlets",
+    "name": "Rathalos Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathalos-guards-s",
+    "type": "gauntlets",
+    "name": "Rathalos Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "diablo-vambraces-s",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "diablo-guards-s",
+    "type": "gauntlets",
+    "name": "Diablo Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gravios-vambraces-s",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gravios-guards-s",
+    "type": "gauntlets",
+    "name": "Gravios Guards S",
+    "rarity": "6"
+  },
+  {
+    "slug": "leather-vambraces-u",
+    "type": "gauntlets",
+    "name": "Leather Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "chain-vambraces-u",
+    "type": "gauntlets",
+    "name": "Chain Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-vambraces-u",
+    "type": "gauntlets",
+    "name": "Hunter Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-guards-u",
+    "type": "gauntlets",
+    "name": "Hunter Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-vambraces-u",
+    "type": "gauntlets",
+    "name": "Bone Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-guards-u",
+    "type": "gauntlets",
+    "name": "Bone Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-vambraces-u",
+    "type": "gauntlets",
+    "name": "Battle Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-guards-u",
+    "type": "gauntlets",
+    "name": "Battle Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-vambraces-u",
+    "type": "gauntlets",
+    "name": "Giaprey Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-guards-u",
+    "type": "gauntlets",
+    "name": "Giaprey Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-vambraces-u",
+    "type": "gauntlets",
+    "name": "Vespoid Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-guards-u",
+    "type": "gauntlets",
+    "name": "Vespoid Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-vambraces-u",
+    "type": "gauntlets",
+    "name": "Hi-Metal Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-guards-u",
+    "type": "gauntlets",
+    "name": "Hi-Metal Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "steel-vambraces-u",
+    "type": "gauntlets",
+    "name": "Steel Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornet-vambraces-u",
+    "type": "gauntlets",
+    "name": "Hornet Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornet-guards-u",
+    "type": "gauntlets",
+    "name": "Hornet Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-vambraces-u",
+    "type": "gauntlets",
+    "name": "Genprey Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-guards-u",
+    "type": "gauntlets",
+    "name": "Genprey Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-vambraces-u",
+    "type": "gauntlets",
+    "name": "Ioprey Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-guards-u",
+    "type": "gauntlets",
+    "name": "Ioprey Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-vambraces-u",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-guards-u",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-vambraces-u",
+    "type": "gauntlets",
+    "name": "Cephalos Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-guards-u",
+    "type": "gauntlets",
+    "name": "Cephalos Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-vambraces-u",
+    "type": "gauntlets",
+    "name": "Conga Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-guards-u",
+    "type": "gauntlets",
+    "name": "Conga Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-vambraces-u",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-guards-u",
+    "type": "gauntlets",
+    "name": "Gypceros Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-vambraces-u",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-guards-u",
+    "type": "gauntlets",
+    "name": "Khezu Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-braces-u",
+    "type": "gauntlets",
+    "name": "Hermitaur Braces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-guards-u",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-vambraces-u",
+    "type": "gauntlets",
+    "name": "Basarios Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-guards-u",
+    "type": "gauntlets",
+    "name": "Basarios Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-vambraces-u",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-guards-u",
+    "type": "gauntlets",
+    "name": "Plesioth Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-vambraces-u",
+    "type": "gauntlets",
+    "name": "Blango Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-guards-u",
+    "type": "gauntlets",
+    "name": "Blango Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-braces-u",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-guards-u",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "diablo-vambraces-u",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "diablo-guards-u",
+    "type": "gauntlets",
+    "name": "Diablo Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gravios-vambraces-u",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gravios-guards-u",
+    "type": "gauntlets",
+    "name": "Gravios Guards U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blackbeltvambraces-s",
+    "type": "gauntlets",
+    "name": "BlackBeltVambraces S",
+    "rarity": "8"
+  },
+  {
+    "slug": "shinobi-koteheaven",
+    "type": "gauntlets",
+    "name": "Shinobi Kote(Heaven)",
+    "rarity": "8"
+  },
+  {
+    "slug": "shinobi-kote-earth",
+    "type": "gauntlets",
+    "name": "Shinobi Kote (Earth)",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguard-gloves",
+    "type": "gauntlets",
+    "name": "RedGuildGuard Gloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguardsleeves",
+    "type": "gauntlets",
+    "name": "RedGuildGuardSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "blueguildguardgloves",
+    "type": "gauntlets",
+    "name": "BlueGuildGuardGloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "bluguildguardsleeves",
+    "type": "gauntlets",
+    "name": "BluGuildGuardSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguard-gloves",
+    "type": "gauntlets",
+    "name": "RedGuildGuard Gloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguardsleeves",
+    "type": "gauntlets",
+    "name": "RedGuildGuardSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "blueguildguardgloves",
+    "type": "gauntlets",
+    "name": "BlueGuildGuardGloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "bluguildguardsleeves",
+    "type": "gauntlets",
+    "name": "BluGuildGuardSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "devil-blos-vambraces",
+    "type": "gauntlets",
+    "name": "Devil Blos Vambraces",
+    "rarity": "8"
+  },
+  {
+    "slug": "devil-blos-guards",
+    "type": "gauntlets",
+    "name": "Devil Blos Guards",
+    "rarity": "8"
+  },
+  {
+    "slug": "jolly-roger-gloves",
+    "type": "gauntlets",
+    "name": "Jolly Roger Gloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "jolly-roger-cuffs",
+    "type": "gauntlets",
+    "name": "Jolly Roger Cuffs",
+    "rarity": "8"
+  },
+  {
+    "slug": "golden-kote",
+    "type": "gauntlets",
+    "name": "Golden Kote",
+    "rarity": "8"
+  },
+  {
+    "slug": "puppetmaster-gloves",
+    "type": "gauntlets",
+    "name": "PuppetMaster Gloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "obituary-mano-s",
+    "type": "gauntlets",
+    "name": "Obituary Mano S",
+    "rarity": "8"
+  },
+  {
+    "slug": "obituary-brasso-s",
+    "type": "gauntlets",
+    "name": "Obituary Brasso S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-mano-s",
+    "type": "gauntlets",
+    "name": "Butterfly Mano S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-brasso-s",
+    "type": "gauntlets",
+    "name": "Butterfly Brasso S",
+    "rarity": "8"
+  },
+  {
+    "slug": "death-stench-grip-s",
+    "type": "gauntlets",
+    "name": "Death Stench Grip S",
+    "rarity": "8"
+  },
+  {
+    "slug": "death-stench-grasp-s",
+    "type": "gauntlets",
+    "name": "Death Stench Grasp S",
+    "rarity": "8"
+  },
+  {
+    "slug": "suprememizuhasleeves",
+    "type": "gauntlets",
+    "name": "SupremeMizuhaSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "sprmextrvgantsleeves",
+    "type": "gauntlets",
+    "name": "SprmExtrvgantSleeves",
+    "rarity": "8"
+  },
+  {
+    "slug": "kushala-grip-s",
+    "type": "gauntlets",
+    "name": "Kushala Grip S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kushala-embrace-s",
+    "type": "gauntlets",
+    "name": "Kushala Embrace S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-longarms-s",
+    "type": "gauntlets",
+    "name": "Kirin Longarms S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-gloves-s",
+    "type": "gauntlets",
+    "name": "Kirin Gloves S",
+    "rarity": "8"
+  },
+  {
+    "slug": "auroros-gauntlethaku",
+    "type": "gauntlets",
+    "name": "Auroros GauntletHaku",
+    "rarity": "8"
+  },
+  {
+    "slug": "genesis-gauntlethaku",
+    "type": "gauntlets",
+    "name": "Genesis GauntletHaku",
+    "rarity": "8"
+  },
+  {
+    "slug": "borealisgauntlethaku",
+    "type": "gauntlets",
+    "name": "BorealisGauntletHaku",
+    "rarity": "8"
+  },
+  {
+    "slug": "glyph-gauntlets-haku",
+    "type": "gauntlets",
+    "name": "Glyph Gauntlets Haku",
+    "rarity": "8"
+  },
+  {
+    "slug": "ultimateindragloves",
+    "type": "gauntlets",
+    "name": "UltimateIndraGloves",
+    "rarity": "8"
+  },
+  {
+    "slug": "suprmsteadfastguards",
+    "type": "gauntlets",
+    "name": "SuprmSteadfastGuards",
+    "rarity": "8"
+  },
+  {
+    "slug": "kaiser-vambraces-s",
+    "type": "gauntlets",
+    "name": "Kaiser Vambraces S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kaiser-guards-s",
+    "type": "gauntlets",
+    "name": "Kaiser Guards S",
+    "rarity": "8"
+  },
+  {
+    "slug": "dragonclaw-s",
+    "type": "gauntlets",
+    "name": "Dragonclaw S",
+    "rarity": "8"
+  },
+  {
+    "slug": "dragonfist-s",
+    "type": "gauntlets",
+    "name": "Dragonfist S",
+    "rarity": "8"
+  },
+  {
+    "slug": "dark-akantor-claw",
+    "type": "gauntlets",
+    "name": "Dark Akantor Claw",
+    "rarity": "8"
+  },
+  {
+    "slug": "darkakantor-gauntlet",
+    "type": "gauntlets",
+    "name": "DarkAkantor Gauntlet",
+    "rarity": "8"
+  },
+  {
+    "slug": "shinobi-kote-sky",
+    "type": "gauntlets",
+    "name": "Shinobi Kote (Sky)",
+    "rarity": "8"
+  },
+  {
+    "slug": "shinobi-kote-sea",
+    "type": "gauntlets",
+    "name": "Shinobi Kote (Sea)",
+    "rarity": "8"
+  },
+  {
+    "slug": "guardian-vambraces-u",
+    "type": "gauntlets",
+    "name": "Guardian Vambraces U",
+    "rarity": "8"
+  },
+  {
+    "slug": "guardian-guards-u",
+    "type": "gauntlets",
+    "name": "Guardian Guards U",
+    "rarity": "8"
+  },
+  {
+    "slug": "helper-sleeves-u",
+    "type": "gauntlets",
+    "name": "Helper Sleeves U",
+    "rarity": "8"
+  },
+  {
+    "slug": "healer-sleeves-u",
+    "type": "gauntlets",
+    "name": "Healer Sleeves U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-branch-u",
+    "type": "gauntlets",
+    "name": "Melahoa Branch U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-petal-u",
+    "type": "gauntlets",
+    "name": "Melahoa Petal U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-sleeves-u",
+    "type": "gauntlets",
+    "name": "Makluva Sleeves U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-sucker-u",
+    "type": "gauntlets",
+    "name": "Makluva Sucker U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-braces-u",
+    "type": "gauntlets",
+    "name": "Monodevil Braces U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-guards-u",
+    "type": "gauntlets",
+    "name": "Monodevil Guards U",
+    "rarity": "8"
+  },
+  {
+    "slug": "rthan-heart-braces-u",
+    "type": "gauntlets",
+    "name": "Rthan Heart Braces U",
+    "rarity": "8"
+  },
+  {
+    "slug": "rthan-heart-guards-u",
+    "type": "gauntlets",
+    "name": "Rthan Heart Guards U",
+    "rarity": "8"
+  },
+  {
+    "slug": "rthlos-soul-braces-u",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Braces U",
+    "rarity": "8"
+  },
+  {
+    "slug": "rthlos-soul-guards-u",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Guards U",
+    "rarity": "8"
+  },
+  {
+    "slug": "golden-moon-braces",
+    "type": "gauntlets",
+    "name": "Golden Moon Braces",
+    "rarity": "8"
+  },
+  {
+    "slug": "golden-moon-guards",
+    "type": "gauntlets",
+    "name": "Golden Moon Guards",
+    "rarity": "8"
+  },
+  {
+    "slug": "silver-sol-braces",
+    "type": "gauntlets",
+    "name": "Silver Sol Braces",
+    "rarity": "8"
+  },
+  {
+    "slug": "silver-sol-guards",
+    "type": "gauntlets",
+    "name": "Silver Sol Guards",
+    "rarity": "8"
+  },
+  {
+    "slug": "auroros-gauntlet-ten",
+    "type": "gauntlets",
+    "name": "Auroros Gauntlet Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "genesis-gauntlet-ten",
+    "type": "gauntlets",
+    "name": "Genesis Gauntlet Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "borealis-gauntletten",
+    "type": "gauntlets",
+    "name": "Borealis GauntletTen",
+    "rarity": "8"
+  },
+  {
+    "slug": "glyph-gauntlets-ten",
+    "type": "gauntlets",
+    "name": "Glyph Gauntlets Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "fatalis-claw",
+    "type": "gauntlets",
+    "name": "Fatalis Claw",
+    "rarity": "8"
+  },
+  {
+    "slug": "fatalis-fist",
+    "type": "gauntlets",
+    "name": "Fatalis Fist",
+    "rarity": "8"
+  },
+  {
+    "slug": "white-fatalis-claw",
+    "type": "gauntlets",
+    "name": "White Fatalis Claw",
+    "rarity": "8"
+  },
+  {
+    "slug": "white-fatalis-fist",
+    "type": "gauntlets",
+    "name": "White Fatalis Fist",
+    "rarity": "8"
+  },
+  {
+    "slug": "kut-ku-vambraces-x",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-guards-x",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-vambraces-x",
+    "type": "gauntlets",
+    "name": "Conga Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-guards-x",
+    "type": "gauntlets",
+    "name": "Conga Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-vambraces-x",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-guards-x",
+    "type": "gauntlets",
+    "name": "Gypceros Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-vambraces-x",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-guards-x",
+    "type": "gauntlets",
+    "name": "Khezu Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-braces-x",
+    "type": "gauntlets",
+    "name": "Hermitaur Braces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-guards-x",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "hypnoc-vambraces-x",
+    "type": "gauntlets",
+    "name": "Hypnoc Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "hypnoc-guards-x",
+    "type": "gauntlets",
+    "name": "Hypnoc Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "basarios-vambraces-x",
+    "type": "gauntlets",
+    "name": "Basarios Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "basarios-guards-x",
+    "type": "gauntlets",
+    "name": "Basarios Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vambraces-x",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-guards-x",
+    "type": "gauntlets",
+    "name": "Plesioth Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-guards-x",
+    "type": "gauntlets",
+    "name": "Monoblos Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-vambraces-x",
+    "type": "gauntlets",
+    "name": "Garuga Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-guards-x",
+    "type": "gauntlets",
+    "name": "Garuga Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vambraces-x",
+    "type": "gauntlets",
+    "name": "Blango Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-guards-x",
+    "type": "gauntlets",
+    "name": "Blango Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-braces-x",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-guards-x",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-vambraces-x",
+    "type": "gauntlets",
+    "name": "Rathian Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-guards-x",
+    "type": "gauntlets",
+    "name": "Rathian Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-vambraces-x",
+    "type": "gauntlets",
+    "name": "Naruga Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-guards-x",
+    "type": "gauntlets",
+    "name": "Naruga Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Volganos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-guards-x",
+    "type": "gauntlets",
+    "name": "Volganos Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "tigrex-vambraces-x",
+    "type": "gauntlets",
+    "name": "Tigrex Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "tigrex-guards-x",
+    "type": "gauntlets",
+    "name": "Tigrex Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Rathalos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-guards-x",
+    "type": "gauntlets",
+    "name": "Rathalos Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vambraces-x",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-guards-x",
+    "type": "gauntlets",
+    "name": "Diablo Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vambraces-x",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-guards-x",
+    "type": "gauntlets",
+    "name": "Gravios Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-vambraces-z",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-guards-z",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-vambraces-z",
+    "type": "gauntlets",
+    "name": "Conga Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-guards-z",
+    "type": "gauntlets",
+    "name": "Conga Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-vambraces-z",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-guards-z",
+    "type": "gauntlets",
+    "name": "Gypceros Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-vambraces-z",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-guards-z",
+    "type": "gauntlets",
+    "name": "Khezu Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-braces-z",
+    "type": "gauntlets",
+    "name": "Hermitaur Braces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-guards-z",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vambraces-z",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-guards-z",
+    "type": "gauntlets",
+    "name": "Plesioth Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vambraces-z",
+    "type": "gauntlets",
+    "name": "Blango Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-guards-z",
+    "type": "gauntlets",
+    "name": "Blango Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-braces-z",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-guards-z",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-vambraces-z",
+    "type": "gauntlets",
+    "name": "Diablo Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "diablo-guards-z",
+    "type": "gauntlets",
+    "name": "Diablo Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-vambraces-z",
+    "type": "gauntlets",
+    "name": "Gravios Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gravios-guards-z",
+    "type": "gauntlets",
+    "name": "Gravios Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "crystal-bracelet",
+    "type": "gauntlets",
+    "name": "Crystal Bracelet",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-golden-kote",
+    "type": "gauntlets",
+    "name": "True Golden Kote",
+    "rarity": "10"
+  },
+  {
+    "slug": "truepupptmastrgloves",
+    "type": "gauntlets",
+    "name": "TruePupptMastrGloves",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-braces-x",
+    "type": "gauntlets",
+    "name": "Black Belt Braces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-guards-x",
+    "type": "gauntlets",
+    "name": "Black Belt Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-mano-x",
+    "type": "gauntlets",
+    "name": "Obituary Mano X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-brasso-x",
+    "type": "gauntlets",
+    "name": "Obituary Brasso X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-mano-x",
+    "type": "gauntlets",
+    "name": "Butterfly Mano X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-brasso-x",
+    "type": "gauntlets",
+    "name": "Butterfly Brasso X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-mizuha-sleeves",
+    "type": "gauntlets",
+    "name": "True Mizuha Sleeves",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueextrvagantsleeves",
+    "type": "gauntlets",
+    "name": "TrueExtrvagantSleeves",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-grip-x",
+    "type": "gauntlets",
+    "name": "Kushala Grip X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kushala-grasp-x",
+    "type": "gauntlets",
+    "name": "Kushala Grasp X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-longarms-x",
+    "type": "gauntlets",
+    "name": "Kirin Longarms X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kirin-gloves-x",
+    "type": "gauntlets",
+    "name": "Kirin Gloves X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-vambraces-x",
+    "type": "gauntlets",
+    "name": "Empress Vambraces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "empress-guards-x",
+    "type": "gauntlets",
+    "name": "Empress Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-indra-gloves",
+    "type": "gauntlets",
+    "name": "True Indra Gloves",
+    "rarity": "10"
+  },
+  {
+    "slug": "true-steadfastguards",
+    "type": "gauntlets",
+    "name": "True SteadfastGuards",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-vambraces-x",
+    "type": "gauntlets",
+    "name": "Kaiser Vambraces X",
+    "rarity": "10"
+  },
+  {
+    "slug": "kaiser-guards-x",
+    "type": "gauntlets",
+    "name": "Kaiser Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "trueguardnsprtbraces",
+    "type": "gauntlets",
+    "name": "TrueGuardnSprtBraces",
+    "rarity": "10"
+  },
+  {
+    "slug": "truecarnagevambraces",
+    "type": "gauntlets",
+    "name": "TrueCarnageVambraces",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonclaw-x",
+    "type": "gauntlets",
+    "name": "Dragonclaw X",
+    "rarity": "10"
+  },
+  {
+    "slug": "dragonfist-x",
+    "type": "gauntlets",
+    "name": "Dragonfist X",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-claw",
+    "type": "gauntlets",
+    "name": "Ucamulbas Claw",
+    "rarity": "10"
+  },
+  {
+    "slug": "ucamulbas-gauntlets",
+    "type": "gauntlets",
+    "name": "Ucamulbas Gauntlets",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-branch-z",
+    "type": "gauntlets",
+    "name": "Melahoa Branch Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-petal-z",
+    "type": "gauntlets",
+    "name": "Melahoa Petal Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-sleeves-z",
+    "type": "gauntlets",
+    "name": "Makluva Sleeves Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-sucker-z",
+    "type": "gauntlets",
+    "name": "Makluva Sucker Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthan-heart-braces-z",
+    "type": "gauntlets",
+    "name": "Rthan Heart Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthan-heart-guards-z",
+    "type": "gauntlets",
+    "name": "Rthan Heart Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthlos-soul-braces-z",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthlos-soul-guards-z",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-braces-z",
+    "type": "gauntlets",
+    "name": "Golden Moon Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "golden-moon-guards-z",
+    "type": "gauntlets",
+    "name": "Golden Moon Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-braces-z",
+    "type": "gauntlets",
+    "name": "Silver Sol Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "silver-sol-guards-z",
+    "type": "gauntlets",
+    "name": "Silver Sol Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "aurorosgauntletkyoku",
+    "type": "gauntlets",
+    "name": "AurorosGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "genesisgauntletkyoku",
+    "type": "gauntlets",
+    "name": "GenesisGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "borealisgauntletkyoku",
+    "type": "gauntlets",
+    "name": "BorealisGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "glyph-gauntlets-kyoku",
+    "type": "gauntlets",
+    "name": "Glyph Gauntlets Kyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-claw-z",
+    "type": "gauntlets",
+    "name": "Fatalis Claw Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "fatalis-fist-z",
+    "type": "gauntlets",
+    "name": "Fatalis Fist Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "wht-fatalis-claw-z",
+    "type": "gauntlets",
+    "name": "Wht Fatalis Claw Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "wht-fatalis-fist-z",
+    "type": "gauntlets",
+    "name": "Wht Fatalis Fist Z",
+    "rarity": "10"
+  }
+]
+}

@@ -1,5 +1,5 @@
 +++
-title = "Gunlance"
+title = "Gunlance weapon tree"
 description = "Gunlance weapon tree"
 template = "weapon-tree.html"
 page_template = "weapon.html"

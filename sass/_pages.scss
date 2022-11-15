@@ -51,11 +51,17 @@
 
     .row {
       padding-left: 6px;
+
+      &--external {
+        cursor: default;
+        color: gray;
+      }
     }
   }
 
   .blacksmith-page__table {
     flex-direction: column;
+    padding: 0;
     overflow: auto;
 
     a {

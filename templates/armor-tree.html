@@ -1,0 +1,17 @@
+{% extends "base-tree.html" %}
+
+{% block navigation %}
+  {%- for armor in config.extra.armor_types %}
+    {% set armor_name = armor | replace(from='-', to=' ') | capitalize -%}
+
+    {% for rank in ["low-rank", "high-rank", "g-rank"] %}
+      <div>
+        <a href="/armorsmith/{{ armor }}/{{ rank }}/" title="{{ armor_name }}">
+          <div class="icon icon--nav icon--large icon--{{ armor }} icon--{{ rank }} {% if armor == section.extra.type and rank == section.extra.rank %}icon--rarity-4{% endif %}">
+            <img src="/images/{{ armor }}.png" alt="{{ armor_name }} icon">
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  {%- endfor %}
+{% endblock%}
