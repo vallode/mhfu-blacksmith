@@ -8,6 +8,7 @@
 
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
 
   display: flex;
   flex-direction: column;
@@ -266,6 +267,7 @@ $element-types: (
     width: 32px;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 
   &--large,
@@ -307,6 +309,7 @@ $element-types: (
       mix-blend-mode: multiply;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -335,6 +338,7 @@ $element-types: (
       z-index: 1000;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
     }
 
     &--#{$element-name}::after {
@@ -399,6 +403,7 @@ $element-types: (
       background-size: cover;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      image-rendering: pixelated;
       z-index: 10;
     }
 
