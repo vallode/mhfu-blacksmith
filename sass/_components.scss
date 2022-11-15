@@ -254,7 +254,7 @@ $element-types: (
 );
 
 $ranks: (
-  "low-rank",
+  // We exclude low-rank because there is currently no distinct icon for it.
   "high-rank",
   "g-rank",
 );
