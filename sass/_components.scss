@@ -209,6 +209,18 @@ $weapon-types: (
   "leggings"
 );
 
+$monster-types: (
+  "bird-wyverns",
+  "carapaceons",
+  "elder-dragons",
+  "flying-wyverns",
+  "herbivores",
+  "lynians",
+  "neopterons",
+  "pelaguses",
+  "piscine-wyverns",
+);
+
 $decoration-colors: (
   "blue": #80C2FC,
   "cyan": #97E0EF,
@@ -292,9 +304,14 @@ $ranks: (
       background-color: #bdbdbd;
     }
 
+    &.active,
     &:hover::before {
       background-color: white;
     }
+  }
+
+  &--monster img {
+    padding: 4px;
   }
 
   @each $value, $color in $rarity-colors {
@@ -339,6 +356,28 @@ $ranks: (
     &--#{$weapon-name}.icon--mini::before {
       -webkit-mask-image: url("/images/#{$weapon-name}-mini.png");
       mask-image: url("/images/#{$weapon-name}-mini.png");
+    }
+  }
+
+  @each $monster-name in $monster-types {
+    &--#{$monster-name}::before {
+      content: '';
+      display: block;
+      height: 100%;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      mix-blend-mode: multiply;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      position: absolute;
+      width: 100%;
+      z-index: 100;
+    }
+
+    &--#{$monster-name}::before {
+      -webkit-mask-image: url("/images/monsters/#{$monster-name}.png");
+      mask-image: url("/images/monsters/#{$monster-name}.png");
     }
   }
 
