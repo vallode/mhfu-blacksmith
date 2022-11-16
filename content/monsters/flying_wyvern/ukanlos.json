@@ -1,0 +1,95 @@
+{
+  "name": "Ukanlos",
+  "drops": {
+    "G Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "HvyUkanlosShell",
+          "chance": "40%"
+        },
+        {
+          "name": "UkanlosUnderscl",
+          "chance": "28%"
+        },
+        {
+          "name": "StrongUkanlosFin",
+          "chance": "12%"
+        },
+        {
+          "name": "UkanlosShovelJaw",
+          "chance": "8%"
+        },
+        {
+          "name": "Ukanlos Stone",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x2) - Cut when HP < 25%": [
+        {
+          "name": "Hvy Ukanlos Tail",
+          "chance": "90%"
+        },
+        {
+          "name": "HvyUkanlosShell",
+          "chance": "10%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "UkanlosShovelJaw",
+          "chance": "85%"
+        },
+        {
+          "name": "UkanlosUnderscl",
+          "chance": "11%"
+        },
+        {
+          "name": "Ukanlos Stone",
+          "chance": "4%"
+        }
+      ],
+      "Break Dorsal Fin": [
+        {
+          "name": "StrongUkanlosFin x2",
+          "chance": "50%"
+        },
+        {
+          "name": "StrongUkanlosFin x1",
+          "chance": "35%"
+        },
+        {
+          "name": "HvyUkanlosShell x1",
+          "chance": "15%"
+        }
+      ],
+      "Break Chest - Requires fire element": [
+        {
+          "name": "UkanlosUnderscl",
+          "chance": "70%"
+        },
+        {
+          "name": "HvyUkanlosShell",
+          "chance": "24%"
+        },
+        {
+          "name": "Ukanlos Stone",
+          "chance": "6%"
+        }
+      ],
+      "Break Claws": [
+        {
+          "name": "UkanlosDiggngClw",
+          "chance": "80%"
+        },
+        {
+          "name": "UkanlosDiggngClw",
+          "chance": "10%"
+        },
+        {
+          "name": "HvyUkanlosShell",
+          "chance": "10%"
+        }
+      ]
+    }
+  }
+}

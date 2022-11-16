@@ -1,0 +1,121 @@
+{
+  "name": "Fatalis",
+  "drops": {
+    "High Rank": {
+      "Body Carves (x9)": [
+        {
+          "name": "Fatalis Scale",
+          "chance": "42%"
+        },
+        {
+          "name": "Fatalis Shell",
+          "chance": "50%"
+        },
+        {
+          "name": "Fatalis Horn",
+          "chance": "8%"
+        }
+      ],
+      "Break 1st Horn": [
+        {
+          "name": "Fatalis Horn x1",
+          "chance": "100%"
+        }
+      ],
+      "Break 2nd Horn": [
+        {
+          "name": "Fatalis Horn x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Eye": [
+        {
+          "name": "Fatalis Eye x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Fatalis Webbing x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Chest": [
+        {
+          "name": "Fatalis Shell x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Fatalis Scale x1",
+          "chance": "85%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x9)": [
+        {
+          "name": "Hvy Fatalis Shl",
+          "chance": "44%"
+        },
+        {
+          "name": "ThckFatalisScale",
+          "chance": "38%"
+        },
+        {
+          "name": "Fatalis Shell",
+          "chance": "10%"
+        },
+        {
+          "name": "HardFatalisHorn",
+          "chance": "8%"
+        }
+      ],
+      "Break 1st Horn": [
+        {
+          "name": "HardFatalisHorn x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Fatalis Horn x1",
+          "chance": "20%"
+        }
+      ],
+      "Break 2nd Horn": [
+        {
+          "name": "HardFatalisHorn x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Fatalis Horn x1",
+          "chance": "20%"
+        }
+      ],
+      "Break Eye": [
+        {
+          "name": "Fatalis Evil Eye x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Fatalis Eye x1",
+          "chance": "20%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Str Fatalis Wng x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Chest": [
+        {
+          "name": "ThckFatalisScale x1",
+          "chance": "85%"
+        },
+        {
+          "name": "Hvy Fatalis Shl x1",
+          "chance": "15%"
+        }
+      ]
+    }
+  }
+}

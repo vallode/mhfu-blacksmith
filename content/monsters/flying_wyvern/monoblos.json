@@ -1,0 +1,141 @@
+{
+  "name": "Monoblos",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "Monoblos Shell",
+          "chance": "55%"
+        },
+        {
+          "name": "Monoblos Spine",
+          "chance": "23%"
+        },
+        {
+          "name": "Blos Fang",
+          "chance": "20%"
+        },
+        {
+          "name": "Monoblos Heart",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "Monoblos Shell",
+          "chance": "80%"
+        },
+        {
+          "name": "Lg Monster Bone",
+          "chance": "20%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Monoblos Shell x1",
+          "chance": "67%"
+        },
+        {
+          "name": "Monoblos Spine x1",
+          "chance": "29%"
+        },
+        {
+          "name": "Monoblos Heart x1",
+          "chance": "4%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "98%"
+        },
+        {
+          "name": "Monoblos Heart",
+          "chance": "2%"
+        }
+      ],
+      "Break Horn": [
+        {
+          "name": "Blood Red Horn",
+          "chance": "100%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "MonoblosCarapace",
+          "chance": "55%"
+        },
+        {
+          "name": "MonoblosThoracic",
+          "chance": "20%"
+        },
+        {
+          "name": "Blos Fang",
+          "chance": "16%"
+        },
+        {
+          "name": "Wyvern Stone",
+          "chance": "5%"
+        },
+        {
+          "name": "Monoblos Heart",
+          "chance": "4%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "MonoblosCarapace",
+          "chance": "70%"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "chance": "20%"
+        },
+        {
+          "name": "Monoblos Shell",
+          "chance": "10%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "MonoblosCarapace x1",
+          "chance": "65%"
+        },
+        {
+          "name": "MonoblosThoracic x1",
+          "chance": "29%"
+        },
+        {
+          "name": "Monoblos Heart x1",
+          "chance": "6%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "48%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "48%"
+        },
+        {
+          "name": "Monoblos Heart",
+          "chance": "4%"
+        }
+      ],
+      "Break Horn": [
+        {
+          "name": "Top-GrdRedHorn x1",
+          "chance": "60%"
+        },
+        {
+          "name": "Blood Red Horn x1",
+          "chance": "40%"
+        }
+      ]
+    }
+  }
+}

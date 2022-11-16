@@ -1,0 +1,107 @@
+{
+  "name": "Giadrome",
+  "drops": {
+    "1-2 Star": {
+      "Body Carves (x2)": [
+        {
+          "name": "Giaprey Scale",
+          "chance": "17%"
+        },
+        {
+          "name": "Giadrome Hide",
+          "chance": "30%"
+        },
+        {
+          "name": "Giadrome Claw",
+          "chance": "53%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Giadrome Hide x1",
+          "chance": "45%"
+        },
+        {
+          "name": "Screamer x1",
+          "chance": "35%"
+        },
+        {
+          "name": "Giaprey Scale x2",
+          "chance": "20%"
+        }
+      ]
+    },
+    "Low Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Giadrome Claw",
+          "chance": "53%"
+        },
+        {
+          "name": "Giadrome Hide",
+          "chance": "30%"
+        },
+        {
+          "name": "Giaprey Scale",
+          "chance": "15%"
+        },
+        {
+          "name": "Giadrome Skull",
+          "chance": "2%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Giadrome Hide x1",
+          "chance": "56%"
+        },
+        {
+          "name": "Screamer x2",
+          "chance": "39%"
+        },
+        {
+          "name": "Giadrome Skull x1",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Giadrome Claw+",
+          "chance": "40%"
+        },
+        {
+          "name": "Giaprey Scale+",
+          "chance": "23%"
+        },
+        {
+          "name": "Giaprey Hide+",
+          "chance": "20%"
+        },
+        {
+          "name": "Giadrome Hide",
+          "chance": "10%"
+        },
+        {
+          "name": "Giadrome Skull",
+          "chance": "7%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Giaprey Hide+ x2",
+          "chance": "40%"
+        },
+        {
+          "name": "Screamer x2",
+          "chance": "36%"
+        },
+        {
+          "name": "Giaprey Scale+",
+          "chance": "24%"
+        }
+      ]
+    }
+  }
+}

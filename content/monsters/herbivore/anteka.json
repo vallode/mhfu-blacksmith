@@ -1,0 +1,73 @@
+{
+  "name": "Anteka",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Anteka Antlers",
+          "chance": "45%"
+        },
+        {
+          "name": "Anteka Pelt",
+          "chance": "2%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "18%"
+        },
+        {
+          "name": "White Liver",
+          "chance": "12%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Anteka Antlers",
+          "chance": "35%"
+        },
+        {
+          "name": "High Qualty Pelt",
+          "chance": "28%"
+        },
+        {
+          "name": "Anteka Pelt",
+          "chance": "15%"
+        },
+        {
+          "name": "White Liver",
+          "chance": "12%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "10%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "High Qualty Pelt",
+          "chance": "50%"
+        },
+        {
+          "name": "Anteka Pelt",
+          "chance": "23%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "10%"
+        },
+        {
+          "name": "White Liver",
+          "chance": "10%"
+        },
+        {
+          "name": "Anteka Antlers",
+          "chance": "7%"
+        }
+      ]
+    }
+  }
+}

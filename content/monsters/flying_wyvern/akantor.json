@@ -1,0 +1,105 @@
+{
+  "name": "Akantor",
+  "drops": {
+    "High Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "Akantor Scale",
+          "chance": "40%"
+        },
+        {
+          "name": "Akantor Shell",
+          "chance": "35%"
+        },
+        {
+          "name": "Akantor Claw",
+          "chance": "10%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "10%"
+        },
+        {
+          "name": "Akantor Fang",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "Akantor Tail",
+          "chance": "80%"
+        },
+        {
+          "name": "Akantor Scale",
+          "chance": "20%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "50%"
+        },
+        {
+          "name": "Akantor Shell",
+          "chance": "20%"
+        },
+        {
+          "name": "Akantor Spike",
+          "chance": "15%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "15%"
+        }
+      ],
+      "Break Fangs": [
+        {
+          "name": "Akantor Fang x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Akantor Scale x1",
+          "chance": "20%"
+        }
+      ],
+      "Break Claws": [
+        {
+          "name": "Akantor Claw x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Akantor Claw x2",
+          "chance": "10%"
+        },
+        {
+          "name": "Akantor Shell x1",
+          "chance": "10%"
+        }
+      ],
+      "Break Chest": [
+        {
+          "name": "Akantor Scale x1",
+          "chance": "60%"
+        },
+        {
+          "name": "Akantor Shell x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Firecell Stone x1",
+          "chance": "10%"
+        }
+      ],
+      "Break Spikes - Back": [
+        {
+          "name": "Akantor Spike x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Akantor Shell x1",
+          "chance": "20%"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Bullfango",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Bullfango Pelt",
+          "chance": "59%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "26%"
+        },
+        {
+          "name": "Bone",
+          "chance": "10%"
+        },
+        {
+          "name": "Bullfango Head",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "30%"
+        },
+        {
+          "name": "Bullfango Pelt",
+          "chance": "30%"
+        },
+        {
+          "name": "Bullfango Head",
+          "chance": "15%"
+        },
+        {
+          "name": "Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Brute Bone",
+          "chance": "10%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "ThkBullfangoPelt",
+          "chance": "30%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "25%"
+        },
+        {
+          "name": "Bullfango Head",
+          "chance": "20%"
+        },
+        {
+          "name": "Giant Bone",
+          "chance": "15%"
+        }
+      ]
+    }
+  }
+}

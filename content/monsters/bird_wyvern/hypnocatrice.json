@@ -1,0 +1,165 @@
+{
+  "name": "Hypnocatrice",
+  "drops": {
+    "High Rank": {
+      "Body Carve (x3)": [
+        {
+          "name": "Top-GrdHypnoClaw",
+          "chance": "40%"
+        },
+        {
+          "name": "OrangeHypnoPelt",
+          "chance": "32%"
+        },
+        {
+          "name": "Sleep Sac",
+          "chance": "24%"
+        },
+        {
+          "name": "Hypno Bezoar",
+          "chance": "4%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Hypno Beak x1",
+          "chance": "90%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drop : put hypnoc to sleep": [
+        {
+          "name": "OrangeHypnoPelt",
+          "chance": "32%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "30%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "30%"
+        },
+        {
+          "name": "Hypno Bezoar",
+          "chance": "8%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "RainbowTailFeath x1",
+          "chance": "36%"
+        },
+        {
+          "name": "OrangeHypnoPelt x2",
+          "chance": "28%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "24%"
+        },
+        {
+          "name": "Sleepyfish x2",
+          "chance": "6%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carve (x3)": [
+        {
+          "name": "Hypno Claw+",
+          "chance": "30%"
+        },
+        {
+          "name": "OrangeHypnoPelt+",
+          "chance": "28%"
+        },
+        {
+          "name": "OrangeHypnoPelt",
+          "chance": "12%"
+        },
+        {
+          "name": "Top-GrdHypnoClaw",
+          "chance": "10%"
+        },
+        {
+          "name": "Hypno Bezoar",
+          "chance": "8%"
+        },
+        {
+          "name": "Sleep Sac",
+          "chance": "8%"
+        },
+        {
+          "name": "Hypno Bezoar+",
+          "chance": "4%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Hypno Fang x1",
+          "chance": "85%"
+        },
+        {
+          "name": "Hypno Beak x1",
+          "chance": "10%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "5%"
+        }
+      ],
+      "Shiny Drop : put hypnoc to sleep": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "40%"
+        },
+        {
+          "name": "OrangeHypnoPelt+",
+          "chance": "32%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "20%"
+        },
+        {
+          "name": "Hypno Bezoar+",
+          "chance": "8%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "OrangeHypnoPelt+ x1",
+          "chance": "28%"
+        },
+        {
+          "name": "RainbowTailFeath x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Hypno Claw+ x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Hypno Bezoar x1",
+          "chance": "12%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "10%"
+        },
+        {
+          "name": "Hypno Bezoar+ x1",
+          "chance": "6%"
+        },
+        {
+          "name": "OrangeHypnoPelt x2",
+          "chance": "4%"
+        }
+      ]
+    }
+  }
+}

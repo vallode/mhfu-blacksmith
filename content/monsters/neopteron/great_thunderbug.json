@@ -1,0 +1,53 @@
+{
+  "name": "Great Thunderbug",
+  "drops": {
+    "Low-Rank": {
+      "Shiny Drop ( Killed )": [
+        {
+          "name": "Thunderbug Juice",
+          "chance": "50%"
+        },
+        {
+          "name": "Thunderbug",
+          "chance": "30%"
+        },
+        {
+          "name": "Monster Fluid",
+          "chance": "20%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Shiny Drop ( Killed )": [
+        {
+          "name": "Thunderbug Juice",
+          "chance": "70%"
+        },
+        {
+          "name": "Monster Broth",
+          "chance": "20%"
+        },
+        {
+          "name": "Thunderbug",
+          "chance": "10%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Shiny Drop ( Killed )": [
+        {
+          "name": "Thunderbug Jelly",
+          "chance": "70%"
+        },
+        {
+          "name": "Monster Essence",
+          "chance": "20%"
+        },
+        {
+          "name": "Thunderbug Juice",
+          "chance": "10%"
+        }
+      ]
+    }
+  }
+}

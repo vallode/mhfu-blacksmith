@@ -1,0 +1,57 @@
+{
+  "name": "Genprey",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Genprey Fang",
+          "chance": "42%"
+        },
+        {
+          "name": "Genprey Scale",
+          "chance": "33%"
+        },
+        {
+          "name": "Genprey Hide",
+          "chance": "25%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Genprey Fang",
+          "chance": "35%"
+        },
+        {
+          "name": "Genprey Scale+",
+          "chance": "35%"
+        },
+        {
+          "name": "Genprey Hide",
+          "chance": "30%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "RobustWyvernBone",
+          "chance": "40%"
+        },
+        {
+          "name": "Genprey Scale+",
+          "chance": "25%"
+        },
+        {
+          "name": "Genprey Hide+",
+          "chance": "20%"
+        },
+        {
+          "name": "Genprey Fang",
+          "chance": "15%"
+        }
+      ]
+    }
+  }
+}

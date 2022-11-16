@@ -1,0 +1,183 @@
+{
+  "name": "Cephadrome",
+  "drops": {
+    "1-2 Star Guild": {
+      "Body Carves (x3)": [
+        {
+          "name": "Piscine Liver",
+          "chance": "15%"
+        },
+        {
+          "name": "Cephalos Scale",
+          "chance": "65%"
+        },
+        {
+          "name": "Piscine Fang",
+          "chance": "20%"
+        }
+      ],
+      "Break Back Fin": [
+        {
+          "name": "Cephalos Scale x1",
+          "chance": "100%"
+        }
+      ],
+      "Shiny Drop": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "75%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "25%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Med Monster Bone x2",
+          "chance": "50%"
+        },
+        {
+          "name": "Lg Monster Bone x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Piscine Fang  x1",
+          "chance": "10%"
+        }
+      ]
+    },
+    "Low-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Cephalos Scale",
+          "chance": "58%"
+        },
+        {
+          "name": "Piscine Fang",
+          "chance": "20%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "12%"
+        },
+        {
+          "name": "Cephalos Fin",
+          "chance": "10%"
+        }
+      ],
+      "Break Back Fin": [
+        {
+          "name": "Cephalos Fin x1",
+          "chance": "100%"
+        }
+      ],
+      "Shiny Drop": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "70%"
+        },
+        {
+          "name": "Cephalos Scale",
+          "chance": "20%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "10%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Cephalos Fin x1",
+          "chance": "65%"
+        },
+        {
+          "name": "Lg Monster Bone x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Piscine Fang x1",
+          "chance": "10%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Coral Cphlos Scl",
+          "chance": "50%"
+        },
+        {
+          "name": "Cephalos Scale",
+          "chance": "20%"
+        },
+        {
+          "name": "Cephalos Fin+",
+          "chance": "14%"
+        },
+        {
+          "name": "Piscine Fang",
+          "chance": "13%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "3%"
+        }
+      ],
+      "Break Back Fin": [
+        {
+          "name": "Cephalos Fin+ x1",
+          "chance": "85%"
+        },
+        {
+          "name": "Coral Cphlos Fin x1",
+          "chance": "15%"
+        }
+      ],
+      "Shiny Drop": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "35%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "35%"
+        },
+        {
+          "name": "Coral Cphlos Scl",
+          "chance": "15%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "10%"
+        },
+        {
+          "name": "Cephalos Scale",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Cephalos Fin+ x1",
+          "chance": "55%"
+        },
+        {
+          "name": "Coral Cphlos Fin x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Monster Bone+ x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Piscine Fang x2",
+          "chance": "10%"
+        },
+        {
+          "name": "Hrd Monster Bone x1",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

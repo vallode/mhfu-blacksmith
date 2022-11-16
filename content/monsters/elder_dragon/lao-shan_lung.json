@@ -1,0 +1,117 @@
+{
+  "name": "Lao-Shan Lung",
+  "drops": {
+    "Low Rank": {
+      "Body Carves (x9)": [
+        {
+          "name": "Lao-Shan's Scale",
+          "chance": "58%"
+        },
+        {
+          "name": "Lao-Shan's Shell",
+          "chance": "37%"
+        },
+        {
+          "name": "Lao-Shan's Claw",
+          "chance": "5%"
+        }
+      ],
+      "Live Carving : jump to its back (x3)": [
+        {
+          "name": "Eldr Dragon Bone",
+          "chance": "35%"
+        },
+        {
+          "name": "Lao-Shan's Scale",
+          "chance": "28%"
+        },
+        {
+          "name": "Dragon Herb",
+          "chance": "25%"
+        },
+        {
+          "name": "Lao-Shan's Shell",
+          "chance": "12%"
+        }
+      ],
+      "Break Horn": [
+        {
+          "name": "Lao-Shan's Horn x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Lao-Shan's Shell x1",
+          "chance": "65%"
+        },
+        {
+          "name": "Flat Ruststone x1",
+          "chance": "7%"
+        },
+        {
+          "name": "Large Ruststone x1",
+          "chance": "7%"
+        },
+        {
+          "name": "Small Ruststone x1",
+          "chance": "7%"
+        },
+        {
+          "name": "Ruststone Rod x1",
+          "chance": "7%"
+        },
+        {
+          "name": "Ruststone x1",
+          "chance": "7%"
+        }
+      ],
+      "Break Back": [
+        {
+          "name": "Lao-Shan's Shell x1",
+          "chance": "75%"
+        },
+        {
+          "name": "Flat Ruststone x1",
+          "chance": "5%"
+        },
+        {
+          "name": "Large Ruststone x1",
+          "chance": "5%"
+        },
+        {
+          "name": "Small Ruststone x1",
+          "chance": "5%"
+        },
+        {
+          "name": "Ruststone Rod x1",
+          "chance": "5%"
+        },
+        {
+          "name": "Ruststone x1",
+          "chance": "5%"
+        }
+      ],
+      "Break Left Shoulder": [
+        {
+          "name": "Lao-Shan's Scale x1",
+          "chance": "58%"
+        },
+        {
+          "name": "Lao-Shan's Shell x1",
+          "chance": "42%"
+        }
+      ],
+      "Break Right Shoulder": [
+        {
+          "name": "Lao-Shan's Scale x1",
+          "chance": "58%"
+        },
+        {
+          "name": "Lao-Shan's Shell x1",
+          "chance": "42%"
+        }
+      ]
+    }
+  }
+}

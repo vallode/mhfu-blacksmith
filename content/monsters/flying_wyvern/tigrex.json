@@ -1,0 +1,365 @@
+{
+  "name": "Tigrex",
+  "drops": {
+    "1-2 Star": {
+      "Body Carves (x3)": [
+        {
+          "name": "Tigrex Scale",
+          "chance": "60%"
+        },
+        {
+          "name": "Tigrex Shell",
+          "chance": "40%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Tigrex Scale",
+          "chance": "100%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Tigrex Shell x1",
+          "chance": "70%"
+        },
+        {
+          "name": "Tigrex Scale x1",
+          "chance": "30%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "75%"
+        },
+        {
+          "name": "Tigrex Scale",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Claw",
+          "chance": "5%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Tigrex Shell x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Claw": [
+        {
+          "name": "Tigrex Claw x1",
+          "chance": "100%"
+        }
+      ]
+    },
+    "Low-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Tigrex Scale",
+          "chance": "40%"
+        },
+        {
+          "name": "Tigrex Claw",
+          "chance": "37%"
+        },
+        {
+          "name": "Tigrex Shell",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "chance": "3%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Tigrex Tail",
+          "chance": "80%"
+        },
+        {
+          "name": "Tigrex Scale",
+          "chance": "20%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Tigrex Shell x1",
+          "chance": "35%"
+        },
+        {
+          "name": "Tigrex Fang x2",
+          "chance": "30%"
+        },
+        {
+          "name": "Tigrex Scale x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Tail x1",
+          "chance": "10%"
+        },
+        {
+          "name": "Tigrex Skull Shl x1",
+          "chance": "5%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "75%"
+        },
+        {
+          "name": "Tigrex Scale",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Claw",
+          "chance": "5%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Tigrex Fang x2",
+          "chance": "50%"
+        },
+        {
+          "name": "Tigrex Shell x1",
+          "chance": "42%"
+        },
+        {
+          "name": "Tigrex Skull Shl x1",
+          "chance": "8%"
+        }
+      ],
+      "Break Claw": [
+        {
+          "name": "Tigrex Claw x2",
+          "chance": "80%"
+        },
+        {
+          "name": "Tigrex Claw x1",
+          "chance": "20%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Tigrex Scale+",
+          "chance": "38%"
+        },
+        {
+          "name": "Tigrex Claw+",
+          "chance": "30%"
+        },
+        {
+          "name": "Tigrex Carapace",
+          "chance": "17%"
+        },
+        {
+          "name": "Tigrex Scale",
+          "chance": "10%"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Tigrex Tail",
+          "chance": "60%"
+        },
+        {
+          "name": "Tigrex Scale+",
+          "chance": "40%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Tigrex Carapace x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Tigrex Fang+ x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Tigrex Scale+ x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Shell x1",
+          "chance": "10%"
+        },
+        {
+          "name": "Tigrex Tail x1",
+          "chance": "8%"
+        },
+        {
+          "name": "Tigrex Skull Shl x1",
+          "chance": "7%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "38%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "37%"
+        },
+        {
+          "name": "Tigrex Scale+",
+          "chance": "20%"
+        },
+        {
+          "name": "Tigrex Claw+",
+          "chance": "5%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Tigrex Fang+ x1",
+          "chance": "45%"
+        },
+        {
+          "name": "Tigrex Carapace x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Tigrex Fang x3",
+          "chance": "15%"
+        },
+        {
+          "name": "Tigrex Skull Shl x1",
+          "chance": "12%"
+        }
+      ],
+      "Break Claw": [
+        {
+          "name": "Tigrex Claw+ x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Tigrex Claw x3",
+          "chance": "20%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "ThickTigrexScale",
+          "chance": "38%"
+        },
+        {
+          "name": "Hard Tigrex Claw",
+          "chance": "30%"
+        },
+        {
+          "name": "Hvy Tigrex Shell",
+          "chance": "19%"
+        },
+        {
+          "name": "Tigrex Scale+",
+          "chance": "10%"
+        },
+        {
+          "name": "HvnlyTigrexScale",
+          "chance": "3%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "LeathrTigrexTail",
+          "chance": "80%"
+        },
+        {
+          "name": "ThickTigrexScale",
+          "chance": "20%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Hvy Tigrex Shell x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Hvy Tigrex Fang x1",
+          "chance": "25%"
+        },
+        {
+          "name": "ThickTigrexScale x2",
+          "chance": "20%"
+        },
+        {
+          "name": "LeathrTigrexTail x1",
+          "chance": "10%"
+        },
+        {
+          "name": "HvnlyTigrexScale x1",
+          "chance": "5%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "50%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "25%"
+        },
+        {
+          "name": "ThickTigrexScale",
+          "chance": "15%"
+        },
+        {
+          "name": "Hard Tigrex Claw",
+          "chance": "10%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Hvy Tigrex Fang x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Hvy Tigrex Fang x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Hvy Tigrex Shell x1",
+          "chance": "17%"
+        },
+        {
+          "name": "Tigrex Fang+ x3",
+          "chance": "15%"
+        },
+        {
+          "name": "Tigrex Skull Shl x1",
+          "chance": "10%"
+        },
+        {
+          "name": "HvnlyTigrexScale x1",
+          "chance": "8%"
+        }
+      ],
+      "Break Claw": [
+        {
+          "name": "Hard Tigrex Claw x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Tigrex Claw+ x3",
+          "chance": "20%"
+        }
+      ]
+    }
+  }
+}

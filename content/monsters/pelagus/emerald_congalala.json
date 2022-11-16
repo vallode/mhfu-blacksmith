@@ -1,0 +1,113 @@
+{
+  "name": "Emerald Congalala",
+  "drops": {
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "E.CongalalaPelt+",
+          "chance": "50%"
+        },
+        {
+          "name": "Lg Pelagus Fang",
+          "chance": "30%"
+        },
+        {
+          "name": "Massive Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Stout Bone",
+          "chance": "5%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "E.CongalalaPelt+ x1",
+          "chance": "60%"
+        },
+        {
+          "name": "Vibrant Comb x1",
+          "chance": "40%"
+        }
+      ],
+      "Break Claw": [
+        {
+          "name": "HrdE.CongaClaw x1",
+          "chance": "60%"
+        },
+        {
+          "name": "E.CongalalaPelt+ x1",
+          "chance": "20%"
+        },
+        {
+          "name": "HrdE.CongaClaw x2",
+          "chance": "20%"
+        }
+      ],
+      "Shiny Drop : Stagger the tail": [
+        {
+          "name": "TerritorialDung+",
+          "chance": "48%"
+        },
+        {
+          "name": "Territorial Dung",
+          "chance": "22%"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "chance": "20%"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "chance": "10%"
+        },
+        {
+          "name": "TerritorialDung+",
+          "chance": "48%"
+        },
+        {
+          "name": "Territorial Dung",
+          "chance": "22%"
+        },
+        {
+          "name": "Nitroshroom",
+          "chance": "20%"
+        },
+        {
+          "name": "Dragon Toadstool",
+          "chance": "10%"
+        },
+        {
+          "name": "TerritorialDung+",
+          "chance": "48%"
+        },
+        {
+          "name": "Territorial Dung",
+          "chance": "22%"
+        },
+        {
+          "name": "Union Ore",
+          "chance": "29%"
+        },
+        {
+          "name": "Purecrystal",
+          "chance": "1%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "E.CongalalaPelt+ x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Lg Pelagus Fang x2",
+          "chance": "35%"
+        },
+        {
+          "name": "Massive Bone x4",
+          "chance": "25%"
+        }
+      ]
+    }
+  }
+}

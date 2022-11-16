@@ -1,0 +1,107 @@
+{
+  "name": "Velocidrome",
+  "drops": {
+    "1-2 Star": {
+      "Body Carves (x2)": [
+        {
+          "name": "Velociprey Scale",
+          "chance": "17%"
+        },
+        {
+          "name": "Velocidrome Hide",
+          "chance": "30%"
+        },
+        {
+          "name": "Velocidrome Claw",
+          "chance": "53%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Velocidrome Hide x1",
+          "chance": "45%"
+        },
+        {
+          "name": "Screamer x1",
+          "chance": "35%"
+        },
+        {
+          "name": "Velociprey Fang x2",
+          "chance": "20%"
+        }
+      ]
+    },
+    "Low Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Velocidrome Claw",
+          "chance": "53%"
+        },
+        {
+          "name": "Velocidrome Hide",
+          "chance": "30%"
+        },
+        {
+          "name": "Velociprey Scale",
+          "chance": "15%"
+        },
+        {
+          "name": "Velocidrome Head",
+          "chance": "2%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Velocidrome Hide x1",
+          "chance": "56%"
+        },
+        {
+          "name": "Screamer x2",
+          "chance": "39%"
+        },
+        {
+          "name": "Velocidrome Head x1",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Velocidrome Clw+",
+          "chance": "40%"
+        },
+        {
+          "name": "Velociprey Scle+",
+          "chance": "23%"
+        },
+        {
+          "name": "Velociprey Hide+",
+          "chance": "20%"
+        },
+        {
+          "name": "Velocidrome Hide",
+          "chance": "10%"
+        },
+        {
+          "name": "Velocidrome Head",
+          "chance": "7%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Velociprey Hide+ x2",
+          "chance": "40%"
+        },
+        {
+          "name": "Screamer x2",
+          "chance": "36%"
+        },
+        {
+          "name": "Velociprey Scle+ x2",
+          "chance": "24%"
+        }
+      ]
+    }
+  }
+}

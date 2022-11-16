@@ -65,4 +65,20 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
   }
 end
 
+Dir.glob("content/monsters/**/*.json").each do |path|
+  threads << Thread.new {
+    File.open(path) do |file|
+      json_data = JSON.load(file)
+
+      output = {
+        title: json_data["name"],
+        slug: slugify(json_data["name"]),
+        extra: {}
+      }
+
+      File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+    end
+  }
+end
+
 threads.each(&:join)

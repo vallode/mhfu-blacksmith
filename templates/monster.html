@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block head__extra %}
+
+{% endblock %}
+
+{% block content %}
+  {% set section_path = page.components | slice(start=0, end=3) | join(sep='/') %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+
+  <nav class="weapon-navigation">
+  </nav>
+
+  <hr class="border">
+
+  <div class="weapon-details-page">
+    <turbo-frame id="weapon_tree" src="/{{ section_path }}/" data-turbo-action="replace">
+      <div class="card card--weapon-tree"></div>
+    </turbo-frame>
+  
+    {% block weapon__details %}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card">
+          <div class="weapon-card__header">
+            <p id="weapon_name">
+              {{ page.title }}
+            </p>
+          </div>
+
+          <div class="weapon-card__details">
+            <div class="stats">
+    
+            </div>
+
+            <hr>
+
+            <div
+              data-controller="weapon-page"
+              data-weapon-page-page-value="1"
+              class="requirements"
+            >
+              <div id="page-1" class="active">
+                
+              </div>
+
+              <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
+                <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if image_metadata %}
+          <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
+            <div class="weapon-card__preview__container">
+              <img
+                draggable="false"
+                src="/images/weapons/{{ page.slug }}.png"
+                alt="In-game render of weapon"
+                data-controller="image-zoom"
+                data-image-position-target="image"
+                data-action="wheel->image-zoom#zoom"
+              >
+            </div>
+          </div>
+        {% endif %}
+      </turbo-frame>
+    {% endblock weapon__details %}
+  </div>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{
+  "name": "Cephalos",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Piscine Liver",
+          "chance": "60%"
+        },
+        {
+          "name": "Cephalos Scale",
+          "chance": "23%"
+        },
+        {
+          "name": "Piscine Fang",
+          "chance": "15%"
+        },
+        {
+          "name": "Cephalos Fin",
+          "chance": "2%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Piscine Liver",
+          "chance": "50%"
+        },
+        {
+          "name": "Cephalos Scale+",
+          "chance": "25%"
+        },
+        {
+          "name": "Coral Cphlos Scl",
+          "chance": "15%"
+        },
+        {
+          "name": "Piscine Fang",
+          "chance": "8%"
+        },
+        {
+          "name": "Cephalos Fin",
+          "chance": "2%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "HvyPiscineFang",
+          "chance": "40%"
+        },
+        {
+          "name": "Coral Cphlos Scl",
+          "chance": "20%"
+        },
+        {
+          "name": "Coral Cphlos Fin",
+          "chance": "20%"
+        },
+        {
+          "name": "Piscine Liver",
+          "chance": "15%"
+        },
+        {
+          "name": "Cephalos Scale+",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

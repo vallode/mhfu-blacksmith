@@ -1,0 +1,229 @@
+{
+  "name": "Black Diablos",
+  "drops": {
+    "Low Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Black Blos Shell",
+          "chance": "63%"
+        },
+        {
+          "name": "Blos Fang",
+          "chance": "30%"
+        },
+        {
+          "name": "Black Blos Spine",
+          "chance": "7%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Black Blos Shell",
+          "chance": "60%"
+        },
+        {
+          "name": "Black Blos Tail",
+          "chance": "40%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Black Blos Shell x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Blos Fang x3",
+          "chance": "39%"
+        },
+        {
+          "name": "Black Blos Spine x1",
+          "chance": "11%"
+        },
+        {
+          "name": "Black Blos Tail x1",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "95%"
+        },
+        {
+          "name": "Diablos Spine",
+          "chance": "5%"
+        }
+      ],
+      "Break Horns": [
+        {
+          "name": "TwstBlkBlosHrn x1",
+          "chance": "69%"
+        },
+        {
+          "name": "Twisted Horn x2",
+          "chance": "16%"
+        },
+        {
+          "name": "Majestic Horn x1",
+          "chance": "15%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Black Blos Shell",
+          "chance": "63%"
+        },
+        {
+          "name": "Blos Fang",
+          "chance": "30%"
+        },
+        {
+          "name": "Black Blos Spine",
+          "chance": "7%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Black Blos Tail",
+          "chance": "60%"
+        },
+        {
+          "name": "Black Blos Shell",
+          "chance": "40%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Black Blos Shell x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Blos Fang x3",
+          "chance": "39%"
+        },
+        {
+          "name": "Black Blos Spine x1",
+          "chance": "11%"
+        },
+        {
+          "name": "Black Blos Tail x1",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "95%"
+        },
+        {
+          "name": "Black Blos Spine",
+          "chance": "5%"
+        }
+      ],
+      "Break Horns": [
+        {
+          "name": "TwstBlkBlosHrn x1",
+          "chance": "69%"
+        },
+        {
+          "name": "Twisted Horn x2",
+          "chance": "16%"
+        },
+        {
+          "name": "Majestic Horn x1",
+          "chance": "15%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "HvyBlkBlosShell",
+          "chance": "63%"
+        },
+        {
+          "name": "HvyBlkBlosSpine",
+          "chance": "17%"
+        },
+        {
+          "name": "Black Blos Cpc",
+          "chance": "8%"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "chance": "7%"
+        },
+        {
+          "name": "Blos Fang",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "LthrBlkBlosTail",
+          "chance": "64%"
+        },
+        {
+          "name": "HvyBlkBlosShell",
+          "chance": "26%"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "chance": "6%"
+        },
+        {
+          "name": "Black Blos Cpc",
+          "chance": "4%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "HvyBlkBlosShell x1",
+          "chance": "60%"
+        },
+        {
+          "name": "HvyBlkBlosSpine x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Blos Fang x4",
+          "chance": "15%"
+        },
+        {
+          "name": "LthrBlkBlosTail",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "65%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "35%"
+        },
+        {
+          "name": "HvyBlkBlosSpine",
+          "chance": "5%"
+        }
+      ],
+      "Break Horns": [
+        {
+          "name": "StoutBlkTwstdHrn x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Twisted Horn x2",
+          "chance": "40%"
+        },
+        {
+          "name": "Majestic Horn x1",
+          "chance": "20%"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Apceros",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "47%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "45%"
+        },
+        {
+          "name": "Med Monster Bone",
+          "chance": "8%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "43%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "40%"
+        },
+        {
+          "name": "Med Monster Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Monster Bone+",
+          "chance": "2%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "43%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "40%"
+        },
+        {
+          "name": "Med Monster Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "chance": "2%"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "name": "Azure Rathalos",
+  "drops": {
+    "Low Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Azure Rthlos Scl",
+          "chance": "30%"
+        },
+        {
+          "name": "Azure Rthlos Shl",
+          "chance": "24%"
+        },
+        {
+          "name": "Rathalos Webbing",
+          "chance": "19%"
+        },
+        {
+          "name": "FireWyvern Fluid",
+          "chance": "10%"
+        },
+        {
+          "name": "Flame Sac",
+          "chance": "10%"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "chance": "7%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Azur Rthlos Tail",
+          "chance": "38%"
+        },
+        {
+          "name": "Azure Rthlos Scl",
+          "chance": "35%"
+        },
+        {
+          "name": "Azure Rthlos Shl",
+          "chance": "18%"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "chance": "8%"
+        },
+        {
+          "name": "Rathalos Plate",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Azure Rthlos Scl x1",
+          "chance": "65%"
+        },
+        {
+          "name": "Azure Rthlos Shl x1",
+          "chance": "34%"
+        },
+        {
+          "name": "Rathalos Plate x1",
+          "chance": "1%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Fire Wyvern Claw x1",
+          "chance": "75%"
+        },
+        {
+          "name": "Wyvern Claw x4",
+          "chance": "25%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or flashed while flying": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "74%"
+        },
+        {
+          "name": "Azure Rthlos Scl",
+          "chance": "21%"
+        },
+        {
+          "name": "Rathalos Plate",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Azure Rthlos Shl x1",
+          "chance": "52%"
+        },
+        {
+          "name": "Rathalos Webbing x1",
+          "chance": "33%"
+        },
+        {
+          "name": "Azur Rthlos Wing x1",
+          "chance": "9%"
+        },
+        {
+          "name": "Azur Rthlos Tail x1",
+          "chance": "5%"
+        },
+        {
+          "name": "Rathalos Plate x1",
+          "chance": "1%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Azre Rthlos Scl+",
+          "chance": "38%"
+        },
+        {
+          "name": "Azure Rthlos Cpc",
+          "chance": "24%"
+        },
+        {
+          "name": "Rathalos Webbing",
+          "chance": "14%"
+        },
+        {
+          "name": "Inferno Sac",
+          "chance": "11%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "8%"
+        },
+        {
+          "name": "Azur Rthlos Wing",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Azre Rthlos Scl+",
+          "chance": "35%"
+        },
+        {
+          "name": "Azur Rthlos Tail",
+          "chance": "25%"
+        },
+        {
+          "name": "Azure Rthlos Cpc",
+          "chance": "22%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "10%"
+        },
+        {
+          "name": "Rathalos Plate",
+          "chance": "7%"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Azre Rthlos Scl+ x1",
+          "chance": "66%"
+        },
+        {
+          "name": "Azure Rthlos Cpc x1",
+          "chance": "32%"
+        },
+        {
+          "name": "Rathalos Ruby x1",
+          "chance": "2%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Fire Wyvern Claw x2",
+          "chance": "80%"
+        },
+        {
+          "name": "Wyvern Claw x5",
+          "chance": "20%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or flashed while flying": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "37%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "37%"
+        },
+        {
+          "name": "Azre Rthlos Scl+",
+          "chance": "21%"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Azure Rthlos Cpc x1",
+          "chance": "60%"
+        },
+        {
+          "name": "Azure Rthlos Scl x2",
+          "chance": "24%"
+        },
+        {
+          "name": "Azur Rthlos Wing x2",
+          "chance": "8%"
+        },
+        {
+          "name": "FireWyvrn Marrow x2",
+          "chance": "6%"
+        },
+        {
+          "name": "Rathalos Ruby x1",
+          "chance": "2%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "ThckAzurRthlsScl",
+          "chance": "37%"
+        },
+        {
+          "name": "HvyAzurRthlsShl",
+          "chance": "24%"
+        },
+        {
+          "name": "StrRathalosWing",
+          "chance": "20%"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "chance": "11%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "8%"
+        },
+        {
+          "name": "Azur Rthlos Wing",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "LthrAzrRthlsTail",
+          "chance": "38%"
+        },
+        {
+          "name": "ThckAzurRthlsScl",
+          "chance": "30%"
+        },
+        {
+          "name": "HvyAzurRthlsShl",
+          "chance": "20%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "7%"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "chance": "4%"
+        },
+        {
+          "name": "HvnlyRathalosScl",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "ThckAzurRthlsScl x1",
+          "chance": "56%"
+        },
+        {
+          "name": "HvyAzurRthlsShl x1",
+          "chance": "32%"
+        },
+        {
+          "name": "Rathalos Plate x1",
+          "chance": "10%"
+        },
+        {
+          "name": "HvnlyRathalosScl x1",
+          "chance": "2%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "HrdFireWyvernClw x2",
+          "chance": "80%"
+        },
+        {
+          "name": "Wyvern Claw x5",
+          "chance": "20%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or flashed while flying": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "50%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "24%"
+        },
+        {
+          "name": "ThckAzurRthlsScl",
+          "chance": "24%"
+        },
+        {
+          "name": "HvnlyRathalosScl",
+          "chance": "2%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "HvyAzurRthlsShl x1",
+          "chance": "60%"
+        },
+        {
+          "name": "ThckAzurRthlsScl x2",
+          "chance": "24%"
+        },
+        {
+          "name": "StrRathalosWing x2",
+          "chance": "8%"
+        },
+        {
+          "name": "Rathalos Ruby x1",
+          "chance": "6%"
+        },
+        {
+          "name": "HvnlyRathalosScl x1",
+          "chance": "2%"
+        }
+      ]
+    }
+  }
+}
