@@ -13,6 +13,7 @@ TODO: Create release file for all JSON crafting information
 
 Thank you to all the people below, and anyone I missed, for the invaluable help with this project:
 
+* Aino
 * Arxx
 * Assis
 * Athena
@@ -20,8 +21,10 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 * Darkcola
 * Emanon
 * Hunsterverse contributors
+* Jely
 * kpworthi
 * kushala
+* lirkas
 * rafaellum
 * Vid (Firaga)
 * Yaas
