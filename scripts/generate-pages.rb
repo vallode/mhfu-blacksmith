@@ -70,13 +70,15 @@ Dir.glob("content/monsters/**/*.json").each do |path|
     File.open(path) do |file|
       json_data = JSON.load(file)
 
-      output = {
-        title: json_data["name"],
-        slug: slugify(json_data["name"]),
-        extra: {}
-      }
-
-      File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+      json_data["monsters"].each do |monster|
+        output = {
+          title: monster["name"],
+          slug: slugify(monster["name"]),
+          extra: {}
+        }
+  
+        File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+      end
     end
   }
 end

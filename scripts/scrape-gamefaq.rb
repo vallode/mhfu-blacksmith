@@ -18,6 +18,8 @@ def slugify(value)
 end
 
 monster_list.each do |category, list|
+  data = {monsters: []}
+
   list.each do |monster|
     monster_data = {name: monster, drops: {}}
 
@@ -56,33 +58,13 @@ monster_list.each do |category, list|
             }
           end
         end
-
-        # file_data = file.read
-
-        # file_data.split("☆").each do |rank|
-        #   next if rank.length == 0
-
-        #   rank.scan(/^.*MHFU\s(.*)$/) {|rank_match|
-        #     monster_data[:drops][rank_match[0].strip.to_s] = {}
-
-        #     rank.scan(/^\d.\s(.*)(?:\s:)?(?:[\(.*\)])?$/) {|rewards|
-        #       monster_data[:drops][rank_match[0].strip.to_s][rewards[0].strip.to_s] = {}
-        #     }
-        #   }
-        # end
-
-        # file_data.scan(/☆.*((Low|High|G)\sRank)([\S\s]*)(☆$)?/) {|match|
-        #   p match[0]
-
-        #   match[2].scan(/(\d.\ )(\w+(?:\s\w+)?)/) {|match2|
-        #     monster_data[:drops][match[0].to_s][match2[1].to_s] = []
-        #   }
-        # } 
       end
     end
 
-    File.write("content/monsters/#{slugify(category)}/#{slugify(monster)}.json", JSON.pretty_generate(monster_data))
+    data[:monsters].push(monster_data)
   end
+
+  File.write("content/monsters/#{slugify(category)}/#{slugify(category)}.json", JSON.pretty_generate(data))
 end
 
 # Dir.glob("content/blacksmith/**/*-crafting.json").each do |path|

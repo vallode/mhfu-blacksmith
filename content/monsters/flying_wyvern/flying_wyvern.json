@@ -1,0 +1,5008 @@
+{
+  "monsters": [
+    {
+      "name": "Remobra",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Remobra Skin",
+              "chance": "56%"
+            },
+            {
+              "name": "Striped Skin",
+              "chance": "40%"
+            },
+            {
+              "name": "Remobra Skull",
+              "chance": "4%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Remobra Skin",
+              "chance": "50%"
+            },
+            {
+              "name": "Remobra Skin+",
+              "chance": "22%"
+            },
+            {
+              "name": "Striped Skin",
+              "chance": "18%"
+            },
+            {
+              "name": "Remobra Skull",
+              "chance": "10%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "SpecRemobraSkin+",
+              "chance": "50%"
+            },
+            {
+              "name": "Remobra Skull",
+              "chance": "20%"
+            },
+            {
+              "name": "Striped Skin",
+              "chance": "20%"
+            },
+            {
+              "name": "Remobra Skin+",
+              "chance": "10%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rathian",
+      "drops": {
+        "1-2 Star": {
+          "Body Carves (x3)": [
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "50%"
+            },
+            {
+              "name": "Rathian Scale",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Shell",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Scale",
+              "chance": "40%"
+            },
+            {
+              "name": "Rathian Shell",
+              "chance": "30%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathian Shell x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Rathian Scale x1",
+              "chance": "35%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw  x1",
+              "chance": "83%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "17%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "20%"
+            },
+            {
+              "name": "Rathian Scale",
+              "chance": "6%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "FireWyvern Fluid x2",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Shell x1",
+              "chance": "55%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Rathian Scale",
+              "chance": "49%"
+            },
+            {
+              "name": "Rathian Shell",
+              "chance": "30%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "10%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "2%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "1%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Rathian Scale",
+              "chance": "59%"
+            },
+            {
+              "name": "Rathian Shell",
+              "chance": "22%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "8%"
+            },
+            {
+              "name": "Monster Bone+",
+              "chance": "6%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "3%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathian Shell x1",
+              "chance": "71%"
+            },
+            {
+              "name": "Rathian Scale x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x1",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Rathian Scale",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "1%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Rathian Scale x2",
+              "chance": "52%"
+            },
+            {
+              "name": "Rathian Shell x1",
+              "chance": "36%"
+            },
+            {
+              "name": "FireWyvrn Marrow x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "2%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Rathian Scale+",
+              "chance": "45%"
+            },
+            {
+              "name": "Rathian Carapace",
+              "chance": "26%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Rathian Scale+",
+              "chance": "48%"
+            },
+            {
+              "name": "Rathian Carapace",
+              "chance": "26%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "12%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathian Scale+ x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Rathian Carapace x1",
+              "chance": "31%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "38%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Rathian Scale+",
+              "chance": "23%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "2%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Rathian Carapace x1",
+              "chance": "58%"
+            },
+            {
+              "name": "Rathian Scale+ x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x1",
+              "chance": "3%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "3%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThckRathianScl",
+              "chance": "45%"
+            },
+            {
+              "name": "HvyRathianShell",
+              "chance": "26%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "Rathian Thorn",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "ThckRathianScl",
+              "chance": "48%"
+            },
+            {
+              "name": "HvyRathianShell",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathian Thorn",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "ThckRathianScl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvyRathianShell x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThckRathianScl",
+              "chance": "23%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "2%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvyRathianShell x1",
+              "chance": "58%"
+            },
+            {
+              "name": "ThckRathianScl x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x1",
+              "chance": "3%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "3%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pink Rathian",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Pnk Rathian Scl",
+              "chance": "49%"
+            },
+            {
+              "name": "Pnk Rathian Shl",
+              "chance": "30%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "10%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "3%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Pnk Rathian Scl",
+              "chance": "56%"
+            },
+            {
+              "name": "Pnk Rathian Shl",
+              "chance": "22%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "7%"
+            },
+            {
+              "name": "Monster Bone+",
+              "chance": "6%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Pnk Rathian Shl x1",
+              "chance": "73%"
+            },
+            {
+              "name": "Pnk Rathian Scl x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "2%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x1",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Pnk Rathian Scl",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "1%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pnk Rathian Scl x2",
+              "chance": "50%"
+            },
+            {
+              "name": "Pnk Rathian Shl x1",
+              "chance": "36%"
+            },
+            {
+              "name": "FireWyvrn Marrow x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "4%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Pnk Rathian Scl+",
+              "chance": "45%"
+            },
+            {
+              "name": "Pnk Rathian Cpc",
+              "chance": "26%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "11%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Pnk Rathian Scl+",
+              "chance": "42%"
+            },
+            {
+              "name": "Pnk Rathian Cpc",
+              "chance": "28%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "12%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "7%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Pnk Rathian Scl+ x1",
+              "chance": "66%"
+            },
+            {
+              "name": "Pnk Rathian Cpc x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "2%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Pnk Rathian Scl+",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "1%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pnk Rathian Cpc x1",
+              "chance": "52%"
+            },
+            {
+              "name": "Pnk Rathian Scl+ x2",
+              "chance": "24%"
+            },
+            {
+              "name": "FireWyvrn Marrow x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathian Spike+ x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "1%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThckPnkRathnScl",
+              "chance": "45%"
+            },
+            {
+              "name": "HvyPnkRathianShl",
+              "chance": "26%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "11%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Thorn",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "ThckPnkRathnScl",
+              "chance": "42%"
+            },
+            {
+              "name": "HvyPnkRathianShl",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathian Thorn",
+              "chance": "12%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "7%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "ThckPnkRathnScl x1",
+              "chance": "52%"
+            },
+            {
+              "name": "ThckPnkRathnScl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Rathian Thorn x1",
+              "chance": "8%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "1%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or got trapped": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "49%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThckPnkRathnScl",
+              "chance": "25%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "1%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvyPnkRathianShl x1",
+              "chance": "52%"
+            },
+            {
+              "name": "ThckPnkRathnScl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathian Thorn x1",
+              "chance": "8%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "1%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Gold Rathian",
+      "drops": {
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Gld Rathian Scl+",
+              "chance": "43%"
+            },
+            {
+              "name": "Gld Rathian Cpc",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Spike",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "10%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "5%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Gld Rathian Scl+",
+              "chance": "45%"
+            },
+            {
+              "name": "Gld Rathian Cpc",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Plate",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "5%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Gld Rathian Cpc x1",
+              "chance": "61%"
+            },
+            {
+              "name": "Gld Rathian Scl+ x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "36%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "35%"
+            },
+            {
+              "name": "Gld Rathian Scl+",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "4%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Gld Rathian Cpc x1",
+              "chance": "48%"
+            },
+            {
+              "name": "Gld Rathian Scl+ x2",
+              "chance": "30%"
+            },
+            {
+              "name": "FireWyvrn Marrow x3",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x2",
+              "chance": "7%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "7%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThckGldRathnScl",
+              "chance": "44%"
+            },
+            {
+              "name": "HvyGldRathianShl",
+              "chance": "26%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "13%"
+            },
+            {
+              "name": "Rathian Spike+",
+              "chance": "8%"
+            },
+            {
+              "name": "GoldRathianThorn",
+              "chance": "5%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "ThckGldRathnScl",
+              "chance": "48%"
+            },
+            {
+              "name": "HvyGldRathianShl",
+              "chance": "32%"
+            },
+            {
+              "name": "GoldRathianThorn",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathian Ruby",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "ThckGldRathnScl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvyGldRathianShl x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThckGldRathnScl",
+              "chance": "23%"
+            },
+            {
+              "name": "HvnlyRathianScl",
+              "chance": "2%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvyGldRathianShl x1",
+              "chance": "58%"
+            },
+            {
+              "name": "ThckGldRathnScl x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathian Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm x2",
+              "chance": "3%"
+            },
+            {
+              "name": "HvnlyRathianScl x1",
+              "chance": "3%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rathalos",
+      "drops": {
+        "1-2 Star": {
+          "Body Carves (x3)": [
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "50%"
+            },
+            {
+              "name": "Rathalos Scale",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathalos Shell",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathalos Scale",
+              "chance": "40%"
+            },
+            {
+              "name": "Rathalos Shell",
+              "chance": "30%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathalos Scale x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Rathalos Shell x1",
+              "chance": "35%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x1",
+              "chance": "83%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "17%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "20%"
+            },
+            {
+              "name": "Rathalos Scale",
+              "chance": "6%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "FireWyvern Fluid x2",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathalos Shell x1",
+              "chance": "55%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Rathalos Scale",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathalos Shell",
+              "chance": "24%"
+            },
+            {
+              "name": "Rathalos Webbing",
+              "chance": "24%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "10%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Rathalos Tail",
+              "chance": "38%"
+            },
+            {
+              "name": "Rathalos Scale",
+              "chance": "35%"
+            },
+            {
+              "name": "Rathalos Shell",
+              "chance": "22%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "3%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathalos Scale x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Rathalos Shell x1",
+              "chance": "31%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x1",
+              "chance": "83%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "17%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Rathalos Scale",
+              "chance": "21%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Rathalos Shell x1",
+              "chance": "52%"
+            },
+            {
+              "name": "Rathalos Webbing x1",
+              "chance": "33%"
+            },
+            {
+              "name": "Rathalos Wing x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Tail x1",
+              "chance": "5%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "2%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Rathalos Scale+",
+              "chance": "38%"
+            },
+            {
+              "name": "Rathalos Carpace",
+              "chance": "24%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathalos Webbing",
+              "chance": "14%"
+            },
+            {
+              "name": "Rathalos Wing",
+              "chance": "5%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Rathalos Scale+",
+              "chance": "35%"
+            },
+            {
+              "name": "Rathalos Tail",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathalos Carpace",
+              "chance": "22%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "12%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Rathalos Scale+ x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Rathalos Carpace x1",
+              "chance": "31%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Rathalos Scale+",
+              "chance": "21%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Rathalos Carpace x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Rathalos Scale+ x2",
+              "chance": "24%"
+            },
+            {
+              "name": "Rathalos Wing x2",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "6%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Hrd Rathalos Scl",
+              "chance": "37%"
+            },
+            {
+              "name": "HvyRathalosShl",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing",
+              "chance": "20%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Rathalos Wing",
+              "chance": "5%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LthrRathalosTail",
+              "chance": "38%"
+            },
+            {
+              "name": "Hrd Rathalos Scl",
+              "chance": "30%"
+            },
+            {
+              "name": "HvyRathalosShl",
+              "chance": "20%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Hrd Rathalos Scl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvyRathalosShl x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "24%"
+            },
+            {
+              "name": "Hrd Rathalos Scl",
+              "chance": "24%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "2%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvyRathalosShl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Hrd Rathalos Scl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing x2",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Azure Rathalos",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Azure Rthlos Scl",
+              "chance": "30%"
+            },
+            {
+              "name": "Azure Rthlos Shl",
+              "chance": "24%"
+            },
+            {
+              "name": "Rathalos Webbing",
+              "chance": "19%"
+            },
+            {
+              "name": "FireWyvern Fluid",
+              "chance": "10%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Azur Rthlos Tail",
+              "chance": "38%"
+            },
+            {
+              "name": "Azure Rthlos Scl",
+              "chance": "35%"
+            },
+            {
+              "name": "Azure Rthlos Shl",
+              "chance": "18%"
+            },
+            {
+              "name": "FireWyvrn Marrow",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Azure Rthlos Scl x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Azure Rthlos Shl x1",
+              "chance": "34%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "1%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x1",
+              "chance": "75%"
+            },
+            {
+              "name": "Wyvern Claw x4",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Azure Rthlos Scl",
+              "chance": "21%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Azure Rthlos Shl x1",
+              "chance": "52%"
+            },
+            {
+              "name": "Rathalos Webbing x1",
+              "chance": "33%"
+            },
+            {
+              "name": "Azur Rthlos Wing x1",
+              "chance": "9%"
+            },
+            {
+              "name": "Azur Rthlos Tail x1",
+              "chance": "5%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "1%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Azre Rthlos Scl+",
+              "chance": "38%"
+            },
+            {
+              "name": "Azure Rthlos Cpc",
+              "chance": "24%"
+            },
+            {
+              "name": "Rathalos Webbing",
+              "chance": "14%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "11%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Azur Rthlos Wing",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Azre Rthlos Scl+",
+              "chance": "35%"
+            },
+            {
+              "name": "Azur Rthlos Tail",
+              "chance": "25%"
+            },
+            {
+              "name": "Azure Rthlos Cpc",
+              "chance": "22%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "7%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Azre Rthlos Scl+ x1",
+              "chance": "66%"
+            },
+            {
+              "name": "Azure Rthlos Cpc x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "2%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Azre Rthlos Scl+",
+              "chance": "21%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Azure Rthlos Cpc x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Azure Rthlos Scl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "Azur Rthlos Wing x2",
+              "chance": "8%"
+            },
+            {
+              "name": "FireWyvrn Marrow x2",
+              "chance": "6%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThckAzurRthlsScl",
+              "chance": "37%"
+            },
+            {
+              "name": "HvyAzurRthlsShl",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing",
+              "chance": "20%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "11%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Azur Rthlos Wing",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LthrAzrRthlsTail",
+              "chance": "38%"
+            },
+            {
+              "name": "ThckAzurRthlsScl",
+              "chance": "30%"
+            },
+            {
+              "name": "HvyAzurRthlsShl",
+              "chance": "20%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "7%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "4%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "1%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "ThckAzurRthlsScl x1",
+              "chance": "56%"
+            },
+            {
+              "name": "HvyAzurRthlsShl x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "10%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "2%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "24%"
+            },
+            {
+              "name": "ThckAzurRthlsScl",
+              "chance": "24%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "2%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvyAzurRthlsShl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "ThckAzurRthlsScl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing x2",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Silver Rathalos",
+      "drops": {
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Slvr Rthlos Scl+",
+              "chance": "43%"
+            },
+            {
+              "name": "Slvr Rthlos Cpc",
+              "chance": "29%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Slvr Rthlos Wing",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathalos Webbing",
+              "chance": "5%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Slvr Rthlos Tail",
+              "chance": "50%"
+            },
+            {
+              "name": "Slvr Rthlos Scl+",
+              "chance": "24%"
+            },
+            {
+              "name": "Slvr Rthlos Cpc",
+              "chance": "11%"
+            },
+            {
+              "name": "Rathalos Plate",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "5%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Slvr Rthlos Scl+ x1",
+              "chance": "61%"
+            },
+            {
+              "name": "Slvr Rthlos Cpc x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "Fire Wyvern Claw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "36%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "35%"
+            },
+            {
+              "name": "Slvr Rthlos Scl+",
+              "chance": "25%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "4%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Slvr Rthlos Cpc x1",
+              "chance": "48%"
+            },
+            {
+              "name": "Slvr Rthlos Scl+ x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Slvr Rthlos Wing x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "7%"
+            },
+            {
+              "name": "Slvr Rthlos Tail x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThckSlvrRthlsScl",
+              "chance": "37%"
+            },
+            {
+              "name": "HvySlvrRthlsShl",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing",
+              "chance": "20%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Slvr Rthlos Wing",
+              "chance": "10%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LthrSlvrRthlsTal",
+              "chance": "38%"
+            },
+            {
+              "name": "ThckSlvrRthlsScl",
+              "chance": "30%"
+            },
+            {
+              "name": "HvySlvrRthlsShl",
+              "chance": "20%"
+            },
+            {
+              "name": "Rathalos Ruby",
+              "chance": "6%"
+            },
+            {
+              "name": "FireWyvrn BrnStm",
+              "chance": "4%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "2%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "ThckSlvrRthlsScl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvySlvrRthlsShl x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "4%"
+            }
+          ],
+          "Break Wing": [
+            {
+              "name": "HrdFireWyvernClw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Wyvern Claw x5",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drop : awoken from sleep or flashed while flying": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "24%"
+            },
+            {
+              "name": "ThckSlvrRthlsScl",
+              "chance": "23%"
+            },
+            {
+              "name": "HvnlyRathalosScl",
+              "chance": "3%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "HvySlvrRthlsShl x1",
+              "chance": "60%"
+            },
+            {
+              "name": "ThckSlvrRthlsScl x2",
+              "chance": "24%"
+            },
+            {
+              "name": "StrRathalosWing x2",
+              "chance": "8%"
+            },
+            {
+              "name": "Rathalos Ruby x1",
+              "chance": "6%"
+            },
+            {
+              "name": "HvnlyRathalosScl x1",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Khezu",
+      "drops": {
+        "1-2 Star": {
+          "Body Carves (x3)": [
+            {
+              "name": "Flabby Hide",
+              "chance": "40%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "35%"
+            },
+            {
+              "name": "Electro Sac",
+              "chance": "5%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "20%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "Pale Extract x1",
+              "chance": "100%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "80%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "20%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Flabby Hide x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Pale Extract x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Med Monster Bone x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Electro Sac x1",
+              "chance": "15%"
+            }
+          ]
+        },
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Flabby Hide",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "35%"
+            },
+            {
+              "name": "Electro Sac",
+              "chance": "15%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "Pale Extract x1",
+              "chance": "92%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Bone",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pale Extract x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Flabby Hide x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Electro Sac x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Khezu Hide - Tan",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "27%"
+            },
+            {
+              "name": "Thunder Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Flabby Hide",
+              "chance": "4%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "4%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "Pale Extract x1",
+              "chance": "77%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "38%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Khezu Steak",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pale Extract x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Khezu Hide - Tan x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Thunder Sac x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "KhezuHide-Cream",
+              "chance": "50%"
+            },
+            {
+              "name": "Lightning Sac",
+              "chance": "20%"
+            },
+            {
+              "name": "Thunder Sac",
+              "chance": "14%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "8%"
+            },
+            {
+              "name": "Khezu Hide - Tan",
+              "chance": "4%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "4%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "KhezuHide-Cream x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "15%"
+            },
+            {
+              "name": "KhezuSpecialCut x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "Pale Khezu Steak",
+              "chance": "10%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "8%"
+            },
+            {
+              "name": "KhezuSpecialCut",
+              "chance": "7%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "KhezuHide-Cream x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Thunder Sac x2",
+              "chance": "25%"
+            },
+            {
+              "name": "Lightning Sac x2",
+              "chance": "17%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "15%"
+            },
+            {
+              "name": "KhezuSpecialCut x1",
+              "chance": "8%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Red Khezu",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Alluring Hide",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "35%"
+            },
+            {
+              "name": "Electro Sac",
+              "chance": "15%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "Pale Extract x1",
+              "chance": "92%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Bone",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pale Extract x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Alluring Hide x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Electro Sac x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Alluring Webbing",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "27%"
+            },
+            {
+              "name": "Thunder Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Alluring Hide",
+              "chance": "4%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "4%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "Pale Extract x1",
+              "chance": "77%"
+            },
+            {
+              "name": "Pale Bone x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "38%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Khezu Steak",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Pale Extract x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Alluring Webbing x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Thunder Sac x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "StrAlluringWing",
+              "chance": "50%"
+            },
+            {
+              "name": "Lightning Sac",
+              "chance": "20%"
+            },
+            {
+              "name": "Thunder Sac",
+              "chance": "14%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "8%"
+            },
+            {
+              "name": "Alluring Webbing",
+              "chance": "4%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "4%"
+            }
+          ],
+          "Break Head/Back": [
+            {
+              "name": "StrAlluringWing x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Pale Extract x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "15%"
+            },
+            {
+              "name": "KhezuSpecialCut x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : drip acid from ceiling": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "Pale Khezu Steak",
+              "chance": "10%"
+            },
+            {
+              "name": "Pale Extract",
+              "chance": "8%"
+            },
+            {
+              "name": "KhezuSpecialCut",
+              "chance": "7%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "StrAlluringWing x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Thunder Sac x2",
+              "chance": "25%"
+            },
+            {
+              "name": "Lightning Sac x2",
+              "chance": "17%"
+            },
+            {
+              "name": "Pale Khezu Steak x1",
+              "chance": "15%"
+            },
+            {
+              "name": "KhezuSpecialCut x1",
+              "chance": "8%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Basarios",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Basarios Shell",
+              "chance": "37%"
+            },
+            {
+              "name": "Machalite Ore",
+              "chance": "34%"
+            },
+            {
+              "name": "Poison Sac",
+              "chance": "18%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "8%"
+            },
+            {
+              "name": "Basarios Wing",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Machalite Ore",
+              "chance": "55%"
+            },
+            {
+              "name": "Basarios Shell",
+              "chance": "45%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Machalite Ore x1",
+              "chance": "55%"
+            },
+            {
+              "name": "Poison Sac x1",
+              "chance": "45%"
+            }
+          ],
+          "Shiny Drop : awoken from rock mimic or awoken from sleep": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "80%"
+            },
+            {
+              "name": "Machalite Ore",
+              "chance": "20%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Machalite Ore x2",
+              "chance": "59%"
+            },
+            {
+              "name": "Basarios Shell x1",
+              "chance": "36%"
+            },
+            {
+              "name": "Basarios Wing x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Basarios Carpace",
+              "chance": "33%"
+            },
+            {
+              "name": "Carbalite Ore",
+              "chance": "25%"
+            },
+            {
+              "name": "Toxin Sac",
+              "chance": "15%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "12%"
+            },
+            {
+              "name": "Basarios Wing",
+              "chance": "7%"
+            },
+            {
+              "name": "Basarios Tears",
+              "chance": "5%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Basarios Carpace",
+              "chance": "40%"
+            },
+            {
+              "name": "Carbalite Ore",
+              "chance": "40%"
+            },
+            {
+              "name": "Dragonite Ore",
+              "chance": "20%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Toxin Sac x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Carbalite Ore x1",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from rock mimic or awoken from sleep": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "40%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "40%"
+            },
+            {
+              "name": "Carbalite Ore",
+              "chance": "20%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Carbalite Ore x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Basarios Carpace x1",
+              "chance": "34%"
+            },
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "16%"
+            },
+            {
+              "name": "Basarios Wing x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Basarios Tears x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "HvyBasariosShell",
+              "chance": "33%"
+            },
+            {
+              "name": "Eltalite Ore",
+              "chance": "25%"
+            },
+            {
+              "name": "DeadlyPoisonSac",
+              "chance": "15%"
+            },
+            {
+              "name": "Hvy Monster Bone",
+              "chance": "12%"
+            },
+            {
+              "name": "Basarios Tears",
+              "chance": "7%"
+            },
+            {
+              "name": "StrBasariosWing",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "HvyBasariosShell",
+              "chance": "40%"
+            },
+            {
+              "name": "Eltalite Ore",
+              "chance": "40%"
+            },
+            {
+              "name": "Union Ore",
+              "chance": "20%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "DeadlyPoisonSac x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Union Ore x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Eltalite Ore x1",
+              "chance": "25%"
+            }
+          ],
+          "Shiny Drop : awoken from rock mimic or awoken from sleep": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "55%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "Eltalite Ore",
+              "chance": "20%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Eltalite Ore x1",
+              "chance": "35%"
+            },
+            {
+              "name": "HvyBasariosShell x1",
+              "chance": "34%"
+            },
+            {
+              "name": "Union Ore x1",
+              "chance": "16%"
+            },
+            {
+              "name": "Basarios Tears x1",
+              "chance": "10%"
+            },
+            {
+              "name": "StrBasariosWing x1",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Gravios",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Gravios Shell",
+              "chance": "63%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "12%"
+            },
+            {
+              "name": "Gravios Skl Shl",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Gravios Shell",
+              "chance": "73%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "23%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "4%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Gravios Shell x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Sleep Sac x1",
+              "chance": "21%"
+            },
+            {
+              "name": "Flame Sac x2",
+              "chance": "41%"
+            },
+            {
+              "name": "Firestone x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "94%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "6%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Gravios Shell x1",
+              "chance": "90%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "10%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Gravios Shell",
+              "chance": "18%"
+            },
+            {
+              "name": "Gravios Carapace",
+              "chance": "50%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Gravios Skl Shl",
+              "chance": "5%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Gravios Carapace",
+              "chance": "66%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "20%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "2%"
+            },
+            {
+              "name": "Gravios BrainStm",
+              "chance": "12%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Gravios Carapace x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Sleep Sac x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Inferno Sac x1",
+              "chance": "34%"
+            },
+            {
+              "name": "Firestone x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "47%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "47%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "6%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Gravios Shell x1",
+              "chance": "33%"
+            },
+            {
+              "name": "Gravios Carapace x1",
+              "chance": "57%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "10%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "HvyGraviosShell",
+              "chance": "50%"
+            },
+            {
+              "name": "Coma Sac",
+              "chance": "17%"
+            },
+            {
+              "name": "Gravios Carapace",
+              "chance": "10%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "7%"
+            },
+            {
+              "name": "HvnlyGraviosShl",
+              "chance": "6%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "HvyGraviosShell",
+              "chance": "66%"
+            },
+            {
+              "name": "Hvy Monster Bone",
+              "chance": "20%"
+            },
+            {
+              "name": "Gravios BrainStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "6%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "HvyGraviosShell x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Coma Sac x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Blazing Fire Sac x1",
+              "chance": "16%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "14%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "60%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "30%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "10%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "HvyGraviosShell x1",
+              "chance": "57%"
+            },
+            {
+              "name": "Gravios Carapace x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Coma Sac x2",
+              "chance": "15%"
+            },
+            {
+              "name": "HvyGraviosShell x1",
+              "chance": "10%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Black Gravios",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Blk Gravios Shl",
+              "chance": "58%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac",
+              "chance": "12%"
+            },
+            {
+              "name": "Blk Gravios Skl",
+              "chance": "10%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Blk Gravios Shl",
+              "chance": "72%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "3%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Blk Gravios Shl x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Sleep Sac x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac x3",
+              "chance": "41%"
+            },
+            {
+              "name": "Firestone x1",
+              "chance": "7%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "94%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "6%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Blk Gravios Shl x1",
+              "chance": "90%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "10%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Blk Gravios Shl",
+              "chance": "13%"
+            },
+            {
+              "name": "Blk Gravios Cpc",
+              "chance": "50%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Inferno Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Blk Gravios Skl",
+              "chance": "10%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Blk Gravios Cpc",
+              "chance": "58%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "9%"
+            },
+            {
+              "name": "Gravios BrainStm",
+              "chance": "8%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Blk Gravios Cpc x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Sleep Sac x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Inferno Sac x1",
+              "chance": "34%"
+            },
+            {
+              "name": "Firestone x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "47%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "47%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "6%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "Blk Gravios Shl x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Blk Gravios Cpc x1",
+              "chance": "57%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "HvyBlkGraviosShl",
+              "chance": "50%"
+            },
+            {
+              "name": "Coma Sac",
+              "chance": "17%"
+            },
+            {
+              "name": "Blk Gravios Cpc",
+              "chance": "10%"
+            },
+            {
+              "name": "Blazing Fire Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "7%"
+            },
+            {
+              "name": "HvnlyBlkGraviShl",
+              "chance": "6%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "HvyBlkGraviosShl",
+              "chance": "66%"
+            },
+            {
+              "name": "Hvy Monster Bone",
+              "chance": "20%"
+            },
+            {
+              "name": "Gravios BrainStm",
+              "chance": "8%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "6%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "HvyBlkGraviosShl x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Coma Sac x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Blazing Fire Sac x1",
+              "chance": "16%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "14%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "60%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "30%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "10%"
+            }
+          ],
+          "Break Stomach": [
+            {
+              "name": "HvyBlkGraviosShl x1",
+              "chance": "57%"
+            },
+            {
+              "name": "Blk Gravios Cpc x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Coma Sac x2",
+              "chance": "15%"
+            },
+            {
+              "name": "HvyBlkGraviosShl x1",
+              "chance": "10%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Monoblos",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Monoblos Shell",
+              "chance": "55%"
+            },
+            {
+              "name": "Monoblos Spine",
+              "chance": "23%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "20%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Monoblos Shell",
+              "chance": "80%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "20%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Monoblos Shell x1",
+              "chance": "67%"
+            },
+            {
+              "name": "Monoblos Spine x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Monoblos Heart x1",
+              "chance": "4%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "98%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "2%"
+            }
+          ],
+          "Break Horn": [
+            {
+              "name": "Blood Red Horn",
+              "chance": "100%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "MonoblosCarapace",
+              "chance": "55%"
+            },
+            {
+              "name": "MonoblosThoracic",
+              "chance": "20%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "16%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "5%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "MonoblosCarapace",
+              "chance": "70%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "20%"
+            },
+            {
+              "name": "Monoblos Shell",
+              "chance": "10%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "MonoblosCarapace x1",
+              "chance": "65%"
+            },
+            {
+              "name": "MonoblosThoracic x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Monoblos Heart x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "48%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "48%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "4%"
+            }
+          ],
+          "Break Horn": [
+            {
+              "name": "Top-GrdRedHorn x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Blood Red Horn x1",
+              "chance": "40%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "White Monoblos",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Wht Monoblos Shl",
+              "chance": "55%"
+            },
+            {
+              "name": "Wht Monoblos Spn",
+              "chance": "23%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "20%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Wht Monoblos Shl",
+              "chance": "80%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "20%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Wht Monoblos Shl x1",
+              "chance": "67%"
+            },
+            {
+              "name": "Wht Monoblos Spn x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Monoblos Heart x1",
+              "chance": "4%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "98%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "2%"
+            }
+          ],
+          "Break Horn": [
+            {
+              "name": "Wht Monoblos Hrn",
+              "chance": "100%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Wht Monoblos Cpc",
+              "chance": "55%"
+            },
+            {
+              "name": "WhtMonoblosThora",
+              "chance": "20%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "16%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "5%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "4%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Wht Monoblos Cpc",
+              "chance": "70%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "20%"
+            },
+            {
+              "name": "Wht Monoblos Shl",
+              "chance": "10%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Wht Monoblos Cpc x1",
+              "chance": "65%"
+            },
+            {
+              "name": "WhtMonoblosThora x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Monoblos Heart x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "48%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "48%"
+            },
+            {
+              "name": "Monoblos Heart",
+              "chance": "4%"
+            }
+          ],
+          "Break Horn": [
+            {
+              "name": "Top-GrdPlatHorn x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Wht Monoblos Hrn x1",
+              "chance": "40%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Diablos",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Diablos Shell",
+              "chance": "63%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "30%"
+            },
+            {
+              "name": "Diablos Spine",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Diablos Shell",
+              "chance": "60%"
+            },
+            {
+              "name": "Diablos Tail",
+              "chance": "40%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Diablos Shell x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Blos Fang x3",
+              "chance": "39%"
+            },
+            {
+              "name": "Diablos Spine x1",
+              "chance": "11%"
+            },
+            {
+              "name": "Diablos Tail x1",
+              "chance": "10%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "95%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "Twisted Horn x1",
+              "chance": "92%"
+            },
+            {
+              "name": "Majestic Horn x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Diablos Carapace",
+              "chance": "56%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "22%"
+            },
+            {
+              "name": "Diablos Shell",
+              "chance": "10%"
+            },
+            {
+              "name": "Diablos Thoracic",
+              "chance": "7%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Diablos Tail",
+              "chance": "64%"
+            },
+            {
+              "name": "Diablos Carapace",
+              "chance": "26%"
+            },
+            {
+              "name": "Diablos Shell",
+              "chance": "10%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Diablos Carapace x1",
+              "chance": "57%"
+            },
+            {
+              "name": "Blos Fang x3",
+              "chance": "27%"
+            },
+            {
+              "name": "Diablos Thoracic x1",
+              "chance": "11%"
+            },
+            {
+              "name": "Diablos Tail x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "48%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "47%"
+            },
+            {
+              "name": "Diablos Thoracic",
+              "chance": "5%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "Twisted Horn x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Majestic Horn x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "HvyDiablosShell",
+              "chance": "63%"
+            },
+            {
+              "name": "HvyDiablosSpine",
+              "chance": "17%"
+            },
+            {
+              "name": "Diablos Carapace",
+              "chance": "10%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "5%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LthrDiablosTail",
+              "chance": "64%"
+            },
+            {
+              "name": "HvyDiablosShell",
+              "chance": "26%"
+            },
+            {
+              "name": "Diablos Carapace",
+              "chance": "10%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "HvyDiablosShell x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvyDiablosSpine x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Blos Fang x4",
+              "chance": "15%"
+            },
+            {
+              "name": "LthrDiablosTail",
+              "chance": "10%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "65%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "35%"
+            },
+            {
+              "name": "HvyDiablosSpine",
+              "chance": "5%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "Majestic Horn x1",
+              "chance": "60%"
+            },
+            {
+              "name": "StoutWarpedHorn x1",
+              "chance": "40%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Black Diablos",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Black Blos Shell",
+              "chance": "63%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "30%"
+            },
+            {
+              "name": "Black Blos Spine",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Black Blos Shell",
+              "chance": "60%"
+            },
+            {
+              "name": "Black Blos Tail",
+              "chance": "40%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Black Blos Shell x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Blos Fang x3",
+              "chance": "39%"
+            },
+            {
+              "name": "Black Blos Spine x1",
+              "chance": "11%"
+            },
+            {
+              "name": "Black Blos Tail x1",
+              "chance": "10%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "95%"
+            },
+            {
+              "name": "Diablos Spine",
+              "chance": "5%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "TwstBlkBlosHrn x1",
+              "chance": "69%"
+            },
+            {
+              "name": "Twisted Horn x2",
+              "chance": "16%"
+            },
+            {
+              "name": "Majestic Horn x1",
+              "chance": "15%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Black Blos Shell",
+              "chance": "63%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "30%"
+            },
+            {
+              "name": "Black Blos Spine",
+              "chance": "7%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Black Blos Tail",
+              "chance": "60%"
+            },
+            {
+              "name": "Black Blos Shell",
+              "chance": "40%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Black Blos Shell x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Blos Fang x3",
+              "chance": "39%"
+            },
+            {
+              "name": "Black Blos Spine x1",
+              "chance": "11%"
+            },
+            {
+              "name": "Black Blos Tail x1",
+              "chance": "10%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "95%"
+            },
+            {
+              "name": "Black Blos Spine",
+              "chance": "5%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "TwstBlkBlosHrn x1",
+              "chance": "69%"
+            },
+            {
+              "name": "Twisted Horn x2",
+              "chance": "16%"
+            },
+            {
+              "name": "Majestic Horn x1",
+              "chance": "15%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "HvyBlkBlosShell",
+              "chance": "63%"
+            },
+            {
+              "name": "HvyBlkBlosSpine",
+              "chance": "17%"
+            },
+            {
+              "name": "Black Blos Cpc",
+              "chance": "8%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "7%"
+            },
+            {
+              "name": "Blos Fang",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LthrBlkBlosTail",
+              "chance": "64%"
+            },
+            {
+              "name": "HvyBlkBlosShell",
+              "chance": "26%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "6%"
+            },
+            {
+              "name": "Black Blos Cpc",
+              "chance": "4%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "HvyBlkBlosShell x1",
+              "chance": "60%"
+            },
+            {
+              "name": "HvyBlkBlosSpine x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Blos Fang x4",
+              "chance": "15%"
+            },
+            {
+              "name": "LthrBlkBlosTail",
+              "chance": "10%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "65%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "35%"
+            },
+            {
+              "name": "HvyBlkBlosSpine",
+              "chance": "5%"
+            }
+          ],
+          "Break Horns": [
+            {
+              "name": "StoutBlkTwstdHrn x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Twisted Horn x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Majestic Horn x1",
+              "chance": "20%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tigrex",
+      "drops": {
+        "1-2 Star": {
+          "Body Carves (x3)": [
+            {
+              "name": "Tigrex Scale",
+              "chance": "60%"
+            },
+            {
+              "name": "Tigrex Shell",
+              "chance": "40%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Tigrex Scale",
+              "chance": "100%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Tigrex Shell x1",
+              "chance": "70%"
+            },
+            {
+              "name": "Tigrex Scale x1",
+              "chance": "30%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Tigrex Scale",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Claw",
+              "chance": "5%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Tigrex Shell x1",
+              "chance": "100%"
+            }
+          ],
+          "Break Claw": [
+            {
+              "name": "Tigrex Claw x1",
+              "chance": "100%"
+            }
+          ]
+        },
+        "Low-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Tigrex Scale",
+              "chance": "40%"
+            },
+            {
+              "name": "Tigrex Claw",
+              "chance": "37%"
+            },
+            {
+              "name": "Tigrex Shell",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Skull Shl",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Tigrex Tail",
+              "chance": "80%"
+            },
+            {
+              "name": "Tigrex Scale",
+              "chance": "20%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Tigrex Shell x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Tigrex Fang x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Tigrex Scale x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Tail x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Tigrex Skull Shl x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Tigrex Scale",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Claw",
+              "chance": "5%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Tigrex Fang x2",
+              "chance": "50%"
+            },
+            {
+              "name": "Tigrex Shell x1",
+              "chance": "42%"
+            },
+            {
+              "name": "Tigrex Skull Shl x1",
+              "chance": "8%"
+            }
+          ],
+          "Break Claw": [
+            {
+              "name": "Tigrex Claw x2",
+              "chance": "80%"
+            },
+            {
+              "name": "Tigrex Claw x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Tigrex Scale+",
+              "chance": "38%"
+            },
+            {
+              "name": "Tigrex Claw+",
+              "chance": "30%"
+            },
+            {
+              "name": "Tigrex Carapace",
+              "chance": "17%"
+            },
+            {
+              "name": "Tigrex Scale",
+              "chance": "10%"
+            },
+            {
+              "name": "Tigrex Skull Shl",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "Tigrex Tail",
+              "chance": "60%"
+            },
+            {
+              "name": "Tigrex Scale+",
+              "chance": "40%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Tigrex Carapace x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Tigrex Fang+ x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Tigrex Scale+ x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Shell x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Tigrex Tail x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Tigrex Skull Shl x1",
+              "chance": "7%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "38%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Tigrex Scale+",
+              "chance": "20%"
+            },
+            {
+              "name": "Tigrex Claw+",
+              "chance": "5%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Tigrex Fang+ x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Tigrex Carapace x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Tigrex Fang x3",
+              "chance": "15%"
+            },
+            {
+              "name": "Tigrex Skull Shl x1",
+              "chance": "12%"
+            }
+          ],
+          "Break Claw": [
+            {
+              "name": "Tigrex Claw+ x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Tigrex Claw x3",
+              "chance": "20%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThickTigrexScale",
+              "chance": "38%"
+            },
+            {
+              "name": "Hard Tigrex Claw",
+              "chance": "30%"
+            },
+            {
+              "name": "Hvy Tigrex Shell",
+              "chance": "19%"
+            },
+            {
+              "name": "Tigrex Scale+",
+              "chance": "10%"
+            },
+            {
+              "name": "HvnlyTigrexScale",
+              "chance": "3%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LeathrTigrexTail",
+              "chance": "80%"
+            },
+            {
+              "name": "ThickTigrexScale",
+              "chance": "20%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Hvy Tigrex Shell x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Hvy Tigrex Fang x1",
+              "chance": "25%"
+            },
+            {
+              "name": "ThickTigrexScale x2",
+              "chance": "20%"
+            },
+            {
+              "name": "LeathrTigrexTail x1",
+              "chance": "10%"
+            },
+            {
+              "name": "HvnlyTigrexScale x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThickTigrexScale",
+              "chance": "15%"
+            },
+            {
+              "name": "Hard Tigrex Claw",
+              "chance": "10%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Hvy Tigrex Fang x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Hvy Tigrex Fang x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Hvy Tigrex Shell x1",
+              "chance": "17%"
+            },
+            {
+              "name": "Tigrex Fang+ x3",
+              "chance": "15%"
+            },
+            {
+              "name": "Tigrex Skull Shl x1",
+              "chance": "10%"
+            },
+            {
+              "name": "HvnlyTigrexScale x1",
+              "chance": "8%"
+            }
+          ],
+          "Break Claw": [
+            {
+              "name": "Hard Tigrex Claw x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Tigrex Claw+ x3",
+              "chance": "20%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Nargacuga",
+      "drops": {
+        "High-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Narga Scale+",
+              "chance": "45%"
+            },
+            {
+              "name": "Black Narga Pelt",
+              "chance": "25%"
+            },
+            {
+              "name": "Nargacuga Fang+",
+              "chance": "15%"
+            },
+            {
+              "name": "NargaCuttingWing",
+              "chance": "10%"
+            },
+            {
+              "name": "Nargacuga Tail",
+              "chance": "5%"
+            }
+          ],
+          "Body Carves (x1)": [
+            {
+              "name": "Nargacuga Tail",
+              "chance": "82%"
+            },
+            {
+              "name": "Narga Tail Spike",
+              "chance": "10%"
+            },
+            {
+              "name": "Narga Brain Stem",
+              "chance": "8%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "Black Narga Pelt x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Nargacuga Fang+ x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Nargacuga Tail x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Narga Scale+ x2",
+              "chance": "16%"
+            },
+            {
+              "name": "Narga Brain Stem x1",
+              "chance": "4%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "38%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Narga Scale+",
+              "chance": "25%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "Nargacuga Fang+ x2",
+              "chance": "70%"
+            },
+            {
+              "name": "Narga Scale+ x2",
+              "chance": "30%"
+            }
+          ],
+          "Break Wings": [
+            {
+              "name": "NargaCuttingWing x2",
+              "chance": "60%"
+            },
+            {
+              "name": "NargaCuttingWing x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Black Narga Pelt x2",
+              "chance": "15%"
+            }
+          ],
+          "Break Tail": [
+            {
+              "name": "Narga Tail Spike x2",
+              "chance": "75%"
+            },
+            {
+              "name": "Black Narga Pelt x1",
+              "chance": "17%"
+            },
+            {
+              "name": "Narga Brain Stem x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "ThickNargaScale",
+              "chance": "40%"
+            },
+            {
+              "name": "BlackNargaPelt+",
+              "chance": "20%"
+            },
+            {
+              "name": "Narga Scale+",
+              "chance": "13%"
+            },
+            {
+              "name": "HvyNargacugaFang",
+              "chance": "12%"
+            },
+            {
+              "name": "StrNargaCttngWng",
+              "chance": "8%"
+            },
+            {
+              "name": "LeatherNargaTail",
+              "chance": "5%"
+            },
+            {
+              "name": "HvnlyNargaScale",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x1)": [
+            {
+              "name": "LeatherNargaTail",
+              "chance": "75%"
+            },
+            {
+              "name": "Narga Brain Stem",
+              "chance": "10%"
+            },
+            {
+              "name": "HvyNargaTailSpik",
+              "chance": "8%"
+            },
+            {
+              "name": "Nargacuga Tail",
+              "chance": "7%"
+            }
+          ],
+          "Capture Rewards": [
+            {
+              "name": "BlackNargaPelt+ x1",
+              "chance": "35%"
+            },
+            {
+              "name": "HvyNargacugaFang x2",
+              "chance": "18%"
+            },
+            {
+              "name": "ThickNargaScale x2",
+              "chance": "16%"
+            },
+            {
+              "name": "LeatherNargaTail x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Black Narga Pelt x2",
+              "chance": "10%"
+            },
+            {
+              "name": "Narga Brain Stem x1",
+              "chance": "6%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThickNargaScale",
+              "chance": "21%"
+            },
+            {
+              "name": "HvnlyNargaScale",
+              "chance": "4%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "HvyNargacugaFang x2",
+              "chance": "65%"
+            },
+            {
+              "name": "ThickNargaScale x2",
+              "chance": "20%"
+            },
+            {
+              "name": "HvnlyNargaScale x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Nargacuga Fang+ x4",
+              "chance": "7%"
+            }
+          ],
+          "Break Wings": [
+            {
+              "name": "StrNargaCttngWng x2",
+              "chance": "60%"
+            },
+            {
+              "name": "StrNargaCttngWng x1",
+              "chance": "20%"
+            },
+            {
+              "name": "BlackNargaPelt+ x2",
+              "chance": "12%"
+            },
+            {
+              "name": "NargaCuttingWing x3",
+              "chance": "8%"
+            }
+          ],
+          "Break Tail": [
+            {
+              "name": "HvyNargaTailSpik x2",
+              "chance": "70%"
+            },
+            {
+              "name": "Narga Tail Spike x4",
+              "chance": "12%"
+            },
+            {
+              "name": "Narga Brain Stem x1",
+              "chance": "10%"
+            },
+            {
+              "name": "BlackNargaPelt+ x1",
+              "chance": "8%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Akantor",
+      "drops": {
+        "High Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Akantor Scale",
+              "chance": "40%"
+            },
+            {
+              "name": "Akantor Shell",
+              "chance": "35%"
+            },
+            {
+              "name": "Akantor Claw",
+              "chance": "10%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "10%"
+            },
+            {
+              "name": "Akantor Fang",
+              "chance": "5%"
+            }
+          ],
+          "Tail Carves (x2)": [
+            {
+              "name": "Akantor Tail",
+              "chance": "80%"
+            },
+            {
+              "name": "Akantor Scale",
+              "chance": "20%"
+            }
+          ],
+          "Shiny Drops": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "50%"
+            },
+            {
+              "name": "Akantor Shell",
+              "chance": "20%"
+            },
+            {
+              "name": "Akantor Spike",
+              "chance": "15%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "15%"
+            }
+          ],
+          "Break Fangs": [
+            {
+              "name": "Akantor Fang x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Akantor Scale x1",
+              "chance": "20%"
+            }
+          ],
+          "Break Claws": [
+            {
+              "name": "Akantor Claw x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Akantor Claw x2",
+              "chance": "10%"
+            },
+            {
+              "name": "Akantor Shell x1",
+              "chance": "10%"
+            }
+          ],
+          "Break Chest": [
+            {
+              "name": "Akantor Scale x1",
+              "chance": "60%"
+            },
+            {
+              "name": "Akantor Shell x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "10%"
+            }
+          ],
+          "Break Spikes - Back": [
+            {
+              "name": "Akantor Spike x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Akantor Shell x1",
+              "chance": "20%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ukanlos",
+      "drops": {
+        "G Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "HvyUkanlosShell",
+              "chance": "40%"
+            },
+            {
+              "name": "UkanlosUnderscl",
+              "chance": "28%"
+            },
+            {
+              "name": "StrongUkanlosFin",
+              "chance": "12%"
+            },
+            {
+              "name": "UkanlosShovelJaw",
+              "chance": "8%"
+            },
+            {
+              "name": "Ukanlos Stone",
+              "chance": "2%"
+            }
+          ],
+          "Tail Carves (x2) - Cut when HP < 25%": [
+            {
+              "name": "Hvy Ukanlos Tail",
+              "chance": "90%"
+            },
+            {
+              "name": "HvyUkanlosShell",
+              "chance": "10%"
+            }
+          ],
+          "Break Head": [
+            {
+              "name": "UkanlosShovelJaw",
+              "chance": "85%"
+            },
+            {
+              "name": "UkanlosUnderscl",
+              "chance": "11%"
+            },
+            {
+              "name": "Ukanlos Stone",
+              "chance": "4%"
+            }
+          ],
+          "Break Dorsal Fin": [
+            {
+              "name": "StrongUkanlosFin x2",
+              "chance": "50%"
+            },
+            {
+              "name": "StrongUkanlosFin x1",
+              "chance": "35%"
+            },
+            {
+              "name": "HvyUkanlosShell x1",
+              "chance": "15%"
+            }
+          ],
+          "Break Chest - Requires fire element": [
+            {
+              "name": "UkanlosUnderscl",
+              "chance": "70%"
+            },
+            {
+              "name": "HvyUkanlosShell",
+              "chance": "24%"
+            },
+            {
+              "name": "Ukanlos Stone",
+              "chance": "6%"
+            }
+          ],
+          "Break Claws": [
+            {
+              "name": "UkanlosDiggngClw",
+              "chance": "80%"
+            },
+            {
+              "name": "UkanlosDiggngClw",
+              "chance": "10%"
+            },
+            {
+              "name": "HvyUkanlosShell",
+              "chance": "10%"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

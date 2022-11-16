@@ -1,0 +1,386 @@
+{
+  "monsters": [
+    {
+      "name": "Anteka",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Anteka Antlers",
+              "chance": "45%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "2%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "18%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "12%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Anteka Antlers",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "28%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "15%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "12%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "10%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "High Qualty Pelt",
+              "chance": "50%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "23%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "10%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "10%"
+            },
+            {
+              "name": "Anteka Antlers",
+              "chance": "7%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Popo",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "42%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "38%"
+            },
+            {
+              "name": "Bone",
+              "chance": "20%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "35%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Brute Bone",
+              "chance": "10%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "35%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Giant Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Stout Bone",
+              "chance": "10%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Kelbi",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "50%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "32%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "25%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "22%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "35%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "17%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "10%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Mosswine",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "45%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "5%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "42%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "20%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "10%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "33%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "20%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "15%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "12%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Aptonoth",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Apceros",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "47%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "45%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "8%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "43%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "40%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "15%"
+            },
+            {
+              "name": "Monster Bone+",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "43%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "40%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "15%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
