@@ -1,0 +1,153 @@
+☆ Shogun Ceanataur - MHFU 1-2 Star
+
+1. Body Carves (x3)
+-  Ceanataur Shell (40%)
+-  Sm Ceanataur Shl (30%)
+-  Sharp Claw (20%)
+-  Med Monster Bone (10%)
+
+2. Break Shell - Gravios Skull
+-  Ceanataur Shell x1 (40%)
+-  Med Monster Bone x2 (40%)
+-  Lg Monster Bone x1 (20%)
+
+2. Break Shell - Brown Skull
+-  Ceanataur Shell x1 (50%)
+-  Med Monster Bone x2 (50%)
+
+2. Break Shell - White Skull
+-  Ceanataur Shell x1 (40%)
+-  Giant Bone x2 (60%)
+
+3. Break Claw
+-  Sharp Claw x1 (50%)
+-  Sm Ceanataur Shl x3 (50%)
+
+4. Shiny Drop : replacing shell or finishes eating without noticing hunter
+-  Crab Pearl (75%)
+-  Black Pearl (25%)
+
+5. Capture
+-  Ceanataur Shell x1 (57%)
+-  Sm Ceanataur Shl x3 (31%)
+-  Sharp Claw x3 (12%)
+
+
+
+☆ Shogun Ceanataur - MHFU Low Rank
+
+1. Body Carves (x3)
+- Ceanataur Shell (60%)
+- Ceanataur Leg (28%)
+- Black Pearl (10%)
+- Ceanataur Pincer (2%)
+
+2. Break Shell - Gravios Skull
+- Gravios Skl Shl x1 (70%)
+- Ceanataur Shell x1 (22%)
+- Wyvern Skull Shl x1 (8%)
+
+2. Break Shell - Brown Skull
+- Ceanataur Shell x1 (50%)
+- Wyvern Skull Shl x1 (50%)
+
+2. Break Shell - White Skull
+- Wyvern Skull Shl x1 (97%)
+- Ceanataur Shell x1 (3%)
+        
+3. Break Claw
+- Ceanataur Claw x1 (82%)
+- Ceanataur Pincer x1 (18%)
+       
+4. Shiny Drop : replacing shell or finishes eating without noticing hunter
+- Crab Pearl (75%)
+- Black Pearl (25%)
+        
+5. Capture
+- Ceanataur Leg x1 (46%)
+- Ceanataur Shell x2 (30%)
+- Ceanataur Pincer x1 (24%)
+
+
+
+☆ Shogun Ceanataur - MHFU High Rank
+
+1. Body Carves (x3)
+- Ceanataur Carpce (50%)
+- Ceanataur Leg (15%)
+- Ceanataur Pincer (15%)
+- Black Pearl (10%)
+- Ceanataur Shell (5%)
+- Ceanataur Claw+ (5%)
+
+2. Break Shell - Gravios Skull
+- Gravios Skl Shl x1 (70%)
+- Ceanataur Carpce x1 (22%)
+- Wyvern Skull Shl x1 (8%)
+
+2. Break Shell - Brown Skull
+- Ceanataur Carpce x1 (70%)
+- Wyvern Skull Shl x1 (30%)
+
+2. Break Shell - White Skull
+- Wyvern Skull Shl x1 (63%)
+- Ceanataur Carpce x1 (37%)
+        
+3. Break Claw
+- Ceanataur Claw+ x1 (70%)
+- Ceanataur Pincer x1 (20%)
+- Ceanataur Claw x1 (10%)
+       
+4. Shiny Drop : replacing shell or finishes eating without noticing hunter
+- Crab Pearl (38%)
+- Crab Pearl+ (37%)
+- Black Pearl (25%)
+        
+5. Capture
+- Ceanataur Carpce x2 (60%)
+- Ceanataur Leg x1 (22%)
+- Ceanataur Pincer x1 (18%)
+
+
+
+
+☆ Shogun Ceanataur - MHFU G Rank
+
+1. Body Carves (x3)
+- HvyCeanataurShl (50%)
+- HvyCeanataurLeg (25%)
+- Giant Blk Pearl (10%)
+- HrdCeanataurClaw (5%)
+- Ceanataur Pincer (5%)
+- Ceanataur Carpce (5%)
+        
+
+2. Break Shell - Gravios Skull
+- Gravios Skl Shl x1 (70%)
+- HvyCeanataurShl x1 (22%)
+- Wyvern Skull Shl x1 (8%)
+
+2. Break Shell - Brown Skull
+- HvyCeanataurShl x1 (70%)
+- Wyvern Skull Shl x1 (30%)
+
+2. Break Shell - White Skull
+- Wyvern Skull Shl x1 (63%)
+- HvyCeanataurShl x1 (37%)
+        
+3. Break Claw
+- HrdCeanataurClaw x1 (55%)
+- Ceanataur Pincer x2 (20%)
+- HrdCeanataurClaw x2 (15%)
+- Ceanataur Claw+ x2 (10%)
+       
+4. Shiny Drop : replacing shell or finishes eating without noticing hunter
+- Crab Pearl+ (50%)
+- Crab Pearl (25%)
+- Giant Blk Pearl (15%)
+- Black Pearl (10%)
+        
+5. Capture
+- HvyCeanataurShl x2 (60%)
+- HvyCeanataurLeg x1 (30%)
+- Ceanataur Pincer x1 (10%)

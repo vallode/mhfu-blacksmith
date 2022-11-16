@@ -1,0 +1,98 @@
+☆ Basarios - MHFU Low Rank
+
+1. Body Carves (x3)
+- Basarios Shell (37%)
+- Machalite Ore (34%)
+- Poison Sac (18%)
+- Lg Monster Bone (8%)
+- Basarios Wing (3%)
+        
+2. Tail Carves (x1)
+- Machalite Ore (55%)
+- Basarios Shell (45%)
+        
+3. Break Stomach
+- Machalite Ore x1 (55%)
+- Poison Sac x1 (45%)
+        
+4. Shiny Drop : awoken from rock mimic or awoken from sleep
+- Wyvern Tears (80%)
+- Machalite Ore (20%)
+        
+5. Capture
+- Machalite Ore x2 (59%)
+- Basarios Shell x1 (36%)
+- Basarios Wing x1 (5%)
+
+
+
+
+
+☆ Basarios - MHFU High Rank
+
+1. Body Carves (x3)
+- Basarios Carpace (33%)
+- Carbalite Ore (25%)
+- Toxin Sac (15%)
+- Hrd Monster Bone (12%)
+- Basarios Wing (7%)
+- Basarios Tears (5%)
+- Wyvern Stone (3%)
+        
+2. Tail Carves (x1)
+- Basarios Carpace (40%)
+- Carbalite Ore (40%)
+- Dragonite Ore (20%)
+        
+3. Break Stomach
+- Toxin Sac x1 (45%)
+- Dragonite Ore x1 (30%)
+- Carbalite Ore x1 (25%)
+        
+4. Shiny Drop : awoken from rock mimic or awoken from sleep
+- Wyvern Tears (40%)
+- Wyvern Sobs (40%)
+- Carbalite Ore (20%)
+        
+5. Capture
+- Carbalite Ore x1 (35%)
+- Basarios Carpace x1 (34%)
+- Dragonite Ore x1 (16%)
+- Basarios Wing x1 (10%)
+- Basarios Tears x1 (5%)
+
+
+
+
+
+☆ Basarios - MHFU G Rank
+
+1. Body Carves (x3)
+- HvyBasariosShell (33%)
+- Eltalite Ore (25%)
+- DeadlyPoisonSac (15%)
+- Hvy Monster Bone (12%)
+- Basarios Tears (7%)
+- StrBasariosWing (5%)
+        
+2. Tail Carves (x1)
+- HvyBasariosShell (40%)
+- Eltalite Ore (40%)
+- Union Ore (20%)
+        
+3. Break Stomach
+- DeadlyPoisonSac x1 (45%)
+- Union Ore x1 (30%)
+- Eltalite Ore x1 (25%)
+        
+4. Shiny Drop : awoken from rock mimic or awoken from sleep
+- Wyvern Sobs (55%)
+- Wyvern Tears (25%)
+- Eltalite Ore (20%)
+        
+5. Capture
+- Eltalite Ore x1 (35%)
+- HvyBasariosShell x1 (34%)
+- Union Ore x1 (16%)
+- Basarios Tears x1 (10%)
+- StrBasariosWing x1 (5%)

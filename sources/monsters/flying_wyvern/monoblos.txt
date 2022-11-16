@@ -1,0 +1,52 @@
+☆ Monoblos - MHFU Low-Rank
+
+1. Body Carves (x4)
+-  Monoblos Shell (55%)
+-  Monoblos Spine (23%)
+-  Blos Fang (20%)
+-  Monoblos Heart (2%)
+
+2. Tail Carves (x2)
+-  Monoblos Shell (80%)
+-  Lg Monster Bone (20%)
+
+3. Capture Rewards
+-  Monoblos Shell x1 (67%)
+-  Monoblos Spine x1 (29%)
+-  Monoblos Heart x1 (4%)
+
+4. Shiny Drops
+-  Wyvern Tears (98%)
+-  Monoblos Heart (2%)
+ 
+5. Break Horn
+-  Blood Red Horn (100%)
+
+☆ Monoblos - MHFU High-Rank
+
+1. Body Carves (x4)
+-  MonoblosCarapace (55%)
+-  MonoblosThoracic (20%)
+-  Blos Fang (16%)
+-  Wyvern Stone (5%)
+-  Monoblos Heart (4%)
+
+2. Tail Carves (x2)
+-  MonoblosCarapace (70%)
+-  Hrd Monster Bone (20%)
+-  Monoblos Shell (10%)
+
+3. Capture Rewards
+-  MonoblosCarapace x1 (65%)
+-  MonoblosThoracic x1 (29%)
+-  Monoblos Heart x1 (6%)
+
+4. Shiny Drops
+-  Wyvern Sobs (48%)
+-  Wyvern Tears (48%)
+-  Monoblos Heart (4%)
+
+5. Break Horn
+-  Top-GrdRedHorn x1 (60%)
+-  Blood Red Horn x1 (40%)
+ 

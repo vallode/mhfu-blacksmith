@@ -1,0 +1,112 @@
+☆ Gypceros - MHFU 1-2 Star Guild
+
+1. Body Carve (x3)
+-  Power Extract (20%)
+-  Rubbery Hide (60%)
+-  Poison Sac (10%)
+-  Med Monster Bone (10%)
+
+2. Shiny Drop : When playing dead
+-  Wyvern Tears (75%)
+-  Power Extract (25%)
+
+3. Break Head
+-  Lightcrystal x1 (29%)
+-  Stone x5 (71%)
+
+4. Capture
+-  Rubbery Hide x1 (20%)
+-  Poison Sac x1 (46%)
+-  Power Extract x1 (34%)
+
+
+
+
+
+☆ Gypceros - MHFU Low-Rank
+
+1. Body Carve (x3)
+- Rubbery Hide (61%)
+- Power Extract (20%)
+- Poison Sac (10%)
+- Lightcrystal (8%)
+- Gypceros Head (1%)
+
+2. Shiny Drop : When playing dead
+-  Wyvern Tears (74%)
+-  Power Extract (20%)
+-  Lightcrystal (6%)
+
+3. Break Head
+- Iron Ore x1 (66%)
+- Lightcrystal x1 (29%)
+- Gypceros Head x1 (5%)
+
+4. Capture
+- Poison Sac x2 (46%)
+- Power Extract x2 (34%)
+- Rubbery Hide x1 (20%)
+
+
+
+☆ Gypceros - MHFU High-Rank
+
+1. Body Carve (x3)
+- Rubbery Hide+ (43%)
+- Power Extract (23%)
+- Toxin Sac (18%)
+- Novacrystal (8%)
+- Gypceros Head (5%)
+- Lightcrystal (3%)
+
+2. Live Carving : When playing dead (x3)
+- Rubbery Hide+ (60%)
+- Wyvern Sobs (30%)
+- Toxin Sac (10%)
+
+3. Break Head
+- Dragonite Ore x1 (68%)
+- Lightcrystal x1 (20%)
+- Novacrystal x1 (7%)
+- Gypceros Head x1 (5%)
+        
+4. Capture
+- Toxin Sac x2 (42%)
+- Power Extract x2 (30%)
+- Rubbery Hide+ (18%)
+- Rubbery Hide x1 (10%)
+
+
+
+
+☆ Gypceros - MHFU G-Rank
+
+1. Body Carve (x3)
+- SpecRubberyHide+ (43%)
+- DeadlyPoisonSac (23%)
+- Power Extract (18%)
+- Novacrystal (8%)
+- HardGypcerosHead (5%)
+- Purecrystal (3%)
+
+2. Live Carving : When playing dead (x3)
+- SpecRubberyHide+ (30%)
+- Wyvern Sobs (25%)
+- Power Extract (15%)
+- DeadlyPoisonSac (13%)
+- Wyvern Tears (10%)
+- HardGypcerosHead (7%)
+
+3. Break Head
+- Dragonite Ore x1 (58%)
+- Novacrystal x1 (20%)
+- Gypceros Head x1 (10%)
+- Purecrystal x1 (7%)
+- HardGypcerosHead x1 (5%)
+        
+4. Capture
+- DeadlyPoisonSac x2 (42%)
+- SpecRubberyHide+ x1 (18%)
+- Toxin Sac x2 (15%)
+- Power Extract x2 (15%)
+- Rubbery Hide+ x1 (10%)

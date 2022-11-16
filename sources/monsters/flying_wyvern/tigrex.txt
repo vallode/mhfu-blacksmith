@@ -1,0 +1,137 @@
+☆ Tigrex - MHFU 1-2 Star
+
+1. Body Carves (x3)
+-  Tigrex Scale (60%)
+-  Tigrex Shell (40%)
+
+2. Tail Carves (x1)
+-  Tigrex Scale (100%)
+
+3. Capture Rewards
+-  Tigrex Shell x1 (70%)
+-  Tigrex Scale x1 (30%)
+
+4. Shiny Drops
+-  Wyvern Tears (75%)
+-  Tigrex Scale (20%)
+-  Tigrex Claw (5%)
+
+5. Break Head
+-  Tigrex Shell x1 (100%)
+
+6. Break Claw
+-  Tigrex Claw x1 (100%)
+
+
+
+☆ Tigrex - MHFU Low-Rank
+
+1. Body Carves (x3)
+-  Tigrex Scale (40%)
+-  Tigrex Claw (37%)
+-  Tigrex Shell (20%)
+-  Tigrex Skull Shl (3%)
+
+2. Tail Carves (x1)
+-  Tigrex Tail (80%)
+-  Tigrex Scale (20%)
+
+3. Capture Rewards
+-  Tigrex Shell x1 (35%)
+-  Tigrex Fang x2 (30%)
+-  Tigrex Scale x2 (20%)
+-  Tigrex Tail x1 (10%)
+-  Tigrex Skull Shl x1 (5%)
+
+4. Shiny Drops
+-  Wyvern Tears (75%)
+-  Tigrex Scale (20%)
+-  Tigrex Claw (5%)
+
+5. Break Head
+-  Tigrex Fang x2 (50%)
+-  Tigrex Shell x1 (42%)
+-  Tigrex Skull Shl x1 (8%)
+
+6. Break Claw
+-  Tigrex Claw x2 (80%)
+-  Tigrex Claw x1 (20%)
+ 
+
+ 
+☆ Tigrex - MHFU High-Rank
+
+1. Body Carves (x3)
+-  Tigrex Scale+ (38%)
+-  Tigrex Claw+ (30%)
+-  Tigrex Carapace (17%)
+-  Tigrex Scale (10%)
+-  Tigrex Skull Shl (5%)
+
+2. Tail Carves (x1)
+-  Tigrex Tail (60%)
+-  Tigrex Scale+ (40%)
+
+3. Capture Rewards
+-  Tigrex Carapace x1 (30%)
+-  Tigrex Fang+ x1 (25%)
+-  Tigrex Scale+ x2 (20%)
+-  Tigrex Shell x1 (10%)
+-  Tigrex Tail x1 (8%)
+-  Tigrex Skull Shl x1 (7%)
+
+4. Shiny Drops
+-  Wyvern Tears (38%)
+-  Wyvern Sobs (37%)
+-  Tigrex Scale+ (20%)
+-  Tigrex Claw+ (5%)
+
+5. Break Head
+-  Tigrex Fang+ x1 (45%)
+-  Tigrex Carapace x1 (25%)
+-  Tigrex Fang x3 (15%)
+-  Tigrex Skull Shl x1 (12%)
+
+6. Break Claw
+-  Tigrex Claw+ x1 (80%)
+-  Tigrex Claw x3 (20%)
+
+
+
+☆ Tigrex - MHFU G-Rank
+
+1. Body Carves (x3)
+-  ThickTigrexScale (38%)
+-  Hard Tigrex Claw (30%)
+-  Hvy Tigrex Shell (19%)
+-  Tigrex Scale+ (10%)
+-  HvnlyTigrexScale (3%)
+
+2. Tail Carves (x1)
+-  LeathrTigrexTail (80%)
+-  ThickTigrexScale (20%)
+
+3. Capture Rewards
+-  Hvy Tigrex Shell x1 (30%)
+-  Hvy Tigrex Fang x1 (25%)
+-  ThickTigrexScale x2 (20%)
+-  LeathrTigrexTail x1 (10%)
+-  HvnlyTigrexScale x1 (5%)
+
+4. Shiny Drops
+-  Wyvern Sobs (50%)
+-  Wyvern Tears (25%)
+-  ThickTigrexScale (15%)
+-  Hard Tigrex Claw (10%)
+
+5. Break Head
+-  Hvy Tigrex Fang x1 (30%)
+-  Hvy Tigrex Fang x2 (20%)
+-  Hvy Tigrex Shell x1 (17%)
+-  Tigrex Fang+ x3 (15%)
+-  Tigrex Skull Shl x1 (10%)
+-  HvnlyTigrexScale x1 (8%)
+
+6. Break Claw
+-  Hard Tigrex Claw x1 (80%)
+-  Tigrex Claw+ x3 (20%)

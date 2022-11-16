@@ -1,0 +1,160 @@
+☆ Rathalos - MHFU 1-2 Star
+
+1. Body Carves (x3)
+-  FireWyvern Fluid (50%)
+-  Rathalos Scale (25%)
+-  Rathalos Shell (20%)
+-  Flame Sac (5%)
+
+2. Tail Carves (x1)
+-  FireWyvern Fluid (30%)
+-  Rathalos Scale (40%)
+-  Rathalos Shell (30%)
+
+3. Break Head
+-  Rathalos Scale x1 (65%)
+-  Rathalos Shell x1 (35%)
+
+4. Break Wing
+-  Fire Wyvern Claw x1 (83%)
+-  Wyvern Claw x4 (17%)
+
+5. Shiny Drop : awoken from sleep or flashed while flying
+-  Wyvern Tears (74%)
+-  FireWyvern Fluid (20%)
+-  Rathalos Scale (6%)
+
+6. Capture
+-  FireWyvern Fluid x2 (25%)
+-  Rathalos Shell x1 (55%)
+-  Flame Sac x1 (20%)
+
+
+
+
+☆ Rathalos - MHFU Low Rank
+
+1. Body Carves (x3)
+- Rathalos Scale (30%)
+- Rathalos Shell (24%)
+- Rathalos Webbing (24%)
+- FireWyvern Fluid (10%)
+- Flame Sac (8%)
+- FireWyvrn Marrow (4%)
+        
+2. Tail Carves (x1)
+- Rathalos Tail (38%)
+- Rathalos Scale (35%)
+- Rathalos Shell (22%)
+- Rathalos Plate (3%)
+- FireWyvrn Marrow (2%)
+        
+3. Break Head
+- Rathalos Scale x1 (65%)
+- Rathalos Shell x1 (31%)
+- Rathalos Plate x1 (4%)
+        
+4. Break Wing
+- Fire Wyvern Claw x1 (83%)
+- Wyvern Claw x4 (17%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Tears (74%)
+- Rathalos Scale (21%)
+- Rathalos Plate (5%)
+        
+6. Capture
+- Rathalos Shell x1 (52%)
+- Rathalos Webbing x1 (33%)
+- Rathalos Wing x1 (8%)
+- Rathalos Tail x1 (5%)
+- Rathalos Plate x1 (2%)
+
+
+
+
+
+☆ Rathalos - MHFU High Rank
+
+1. Body Carves (x3)
+- Rathalos Scale+ (38%)
+- Rathalos Carpace (24%)
+- Inferno Sac (15%)
+- Rathalos Webbing (14%)
+- Rathalos Wing (5%)
+- FireWyvrn BrnStm (4%)
+        
+2. Tail Carves (x1)
+- Rathalos Scale+ (35%)
+- Rathalos Tail (25%)
+- Rathalos Carpace (22%)
+- Rathalos Plate (12%)
+- FireWyvrn BrnStm (4%)
+- Rathalos Ruby (2%)
+        
+3. Break Head
+- Rathalos Scale+ x1 (65%)
+- Rathalos Carpace x1 (31%)
+- Rathalos Ruby x1 (4%)
+        
+4. Break Wing
+- Fire Wyvern Claw x2 (80%)
+- Wyvern Claw x5 (20%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Tears (37%)
+- Wyvern Sobs (37%)
+- Rathalos Scale+ (21%)
+- Rathalos Ruby (5%)
+        
+6. Capture
+- Rathalos Carpace x1 (60%)
+- Rathalos Scale+ x2 (24%)
+- Rathalos Wing x2 (8%)
+- Rathalos Plate x1 (6%)
+- Rathalos Ruby x1 (2%)
+
+
+
+
+
+☆ Rathalos - MHFU G Rank
+
+1. Body Carves (x3)
+- Hrd Rathalos Scl (37%)
+- HvyRathalosShl (24%)
+- StrRathalosWing (20%)
+- Blazing Fire Sac (15%)
+- Rathalos Wing (5%)
+- FireWyvrn BrnStm (4%)
+        
+2. Tail Carves (x1)
+- LthrRathalosTail (38%)
+- Hrd Rathalos Scl (30%)
+- HvyRathalosShl (20%)
+- Rathalos Ruby (6%)
+- FireWyvrn BrnStm (4%)
+- HvnlyRathalosScl (2%)
+        
+3. Break Head
+- Hrd Rathalos Scl x1 (60%)
+- HvyRathalosShl x1 (30%)
+- Rathalos Ruby x1 (6%)
+- HvnlyRathalosScl x1 (4%) 
+        
+4. Break Wing
+- HrdFireWyvernClw x2 (80%)
+- Wyvern Claw x5 (20%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Sobs (50%)
+- Wyvern Tears (24%)
+- Hrd Rathalos Scl (24%)
+- HvnlyRathalosScl (2%)
+        
+6. Capture
+- HvyRathalosShl x1 (60%)
+- Hrd Rathalos Scl x2 (24%)
+- StrRathalosWing x2 (8%)
+- Rathalos Ruby x1 (6%)
+- HvnlyRathalosScl x1 (2%)

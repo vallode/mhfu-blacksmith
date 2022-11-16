@@ -1,0 +1,127 @@
+☆ Azure Rathalos - MHFU Low Rank
+
+1. Body Carves (x3)
+- Azure Rthlos Scl (30%)
+- Azure Rthlos Shl (24%)
+- Rathalos Webbing (19%)
+- FireWyvern Fluid (10%)
+- Flame Sac (10%)
+- FireWyvrn Marrow (7%)
+        
+2. Tail Carves (x1)
+- Azur Rthlos Tail (38%)
+- Azure Rthlos Scl (35%)
+- Azure Rthlos Shl (18%)
+- FireWyvrn Marrow (8%)
+- Rathalos Plate (1%)
+        
+3. Break Head
+- Azure Rthlos Scl x1 (65%)
+- Azure Rthlos Shl x1 (34%)
+- Rathalos Plate x1 (1%)
+        
+4. Break Wing
+- Fire Wyvern Claw x1 (75%)
+- Wyvern Claw x4 (25%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Tears (74%)
+- Azure Rthlos Scl (21%)
+- Rathalos Plate (5%)
+        
+6. Capture
+- Azure Rthlos Shl x1 (52%)
+- Rathalos Webbing x1 (33%)
+- Azur Rthlos Wing x1 (9%)
+- Azur Rthlos Tail x1 (5%)
+- Rathalos Plate x1 (1%)
+
+
+
+
+
+☆ Azure Rathalos - MHFU High Rank
+
+1. Body Carves (x3)
+- Azre Rthlos Scl+ (38%)
+- Azure Rthlos Cpc (24%)
+- Rathalos Webbing (14%)
+- Inferno Sac (11%)
+- FireWyvrn BrnStm (8%)
+- Azur Rthlos Wing (5%)
+        
+2. Tail Carves (x1)
+- Azre Rthlos Scl+ (35%)
+- Azur Rthlos Tail (25%)
+- Azure Rthlos Cpc (22%)
+- FireWyvrn BrnStm (10%)
+- Rathalos Plate (7%)
+- Rathalos Ruby (1%)
+        
+3. Break Head
+- Azre Rthlos Scl+ x1 (66%)
+- Azure Rthlos Cpc x1 (32%)
+- Rathalos Ruby x1 (2%)
+        
+4. Break Wing
+- Fire Wyvern Claw x2 (80%)
+- Wyvern Claw x5 (20%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Tears (37%)
+- Wyvern Sobs (37%)
+- Azre Rthlos Scl+ (21%)
+- Rathalos Ruby (5%)
+        
+6. Capture
+- Azure Rthlos Cpc x1 (60%)
+- Azure Rthlos Scl x2 (24%)
+- Azur Rthlos Wing x2 (8%)
+- FireWyvrn Marrow x2 (6%)
+- Rathalos Ruby x1 (2%)
+
+
+
+
+
+☆ Azure Rathalos - MHFU G Rank
+
+1. Body Carves (x3)
+- ThckAzurRthlsScl (37%)
+- HvyAzurRthlsShl (24%)
+- StrRathalosWing (20%)
+- Blazing Fire Sac (11%)
+- FireWyvrn BrnStm (8%)
+- Azur Rthlos Wing (5%)
+        
+2. Tail Carves (x1)
+- LthrAzrRthlsTail (38%)
+- ThckAzurRthlsScl (30%)
+- HvyAzurRthlsShl (20%)
+- FireWyvrn BrnStm (7%)
+- Rathalos Ruby (4%)
+- HvnlyRathalosScl (1%)
+        
+3. Break Head
+- ThckAzurRthlsScl x1 (56%)
+- HvyAzurRthlsShl x1 (32%)
+- Rathalos Plate x1 (10%)
+- HvnlyRathalosScl x1 (2%)
+        
+4. Break Wing
+- HrdFireWyvernClw x2 (80%)
+- Wyvern Claw x5 (20%)
+        
+5. Shiny Drop : awoken from sleep or flashed while flying
+- Wyvern Sobs (50%)
+- Wyvern Tears (24%)
+- ThckAzurRthlsScl (24%)
+- HvnlyRathalosScl (2%)
+        
+6. Capture
+- HvyAzurRthlsShl x1 (60%)
+- ThckAzurRthlsScl x2 (24%)
+- StrRathalosWing x2 (8%)
+- Rathalos Ruby x1 (6%)
+- HvnlyRathalosScl x1 (2%)
+

@@ -1,0 +1,158 @@
+☆ Rathian - MHFU 1-2 Star
+
+1. Body Carves (x3)
+-  FireWyvern Fluid (50%)
+-  Rathian Scale (25%)
+-  Rathian Shell (20%)
+-  Flame Sac (5%)
+
+2. Tail Carves (x1)
+-  FireWyvern Fluid (30%)
+-  Rathian Scale (40%)
+-  Rathian Shell (30%)
+
+3. Break Head
+-  Rathian Shell x1 (65%)
+-  Rathian Scale x1 (35%)
+
+4. Break Wing
+-  Fire Wyvern Claw  x1 (83%)
+-  Wyvern Claw x4 (17%)
+
+5. Shiny Drop : awoken from sleep or got trapped
+-  Wyvern Tears (74%)
+-  FireWyvern Fluid (20%)
+-  Rathian Scale (6%)
+
+6. Capture
+-  FireWyvern Fluid x2 (25%)
+-  Rathian Shell x1 (55%)
+-  Flame Sac x1 (20%)
+
+
+
+☆ Rathian - MHFU Low Rank
+
+1. Body Carves (x3)
+- Rathian Scale (49%)
+- Rathian Shell (30%)
+- FireWyvern Fluid (10%)
+- Flame Sac (8%)
+- Rathian Spike (2%)
+- FireWyvrn Marrow (1%)
+        
+2. Tail Carves (x1)
+- Rathian Scale (59%)
+- Rathian Shell (22%)
+- Rathian Spike (8%)
+- Monster Bone+ (6%)
+- Rathian Plate (3%)
+- FireWyvrn Marrow (2%)
+        
+3. Break Head
+- Rathian Shell x1 (71%)
+- Rathian Scale x1 (25%)
+- Rathian Plate x1 (4%)
+        
+4. Break Wing
+- Fire Wyvern Claw x1 (75%)
+- Wyvern Claw x4 (25%)
+        
+5. Shiny Drop : awoken from sleep or got trapped
+- Wyvern Tears (74%)
+- Rathian Scale (25%)
+- Rathian Plate (1%)
+        
+6. Capture
+- Rathian Scale x2 (52%)
+- Rathian Shell x1 (36%)
+- FireWyvrn Marrow x1 (10%)
+- Rathian Plate x1 (2%)
+
+
+
+
+☆ Rathian - MHFU High Rank
+
+1. Body Carves (x3)
+- Rathian Scale+ (45%)
+- Rathian Carapace (26%)
+- Inferno Sac (15%)
+- Rathian Spike (8%)
+- FireWyvrn BrnStm (4%)
+- Rathian Spike+ (2%)
+        
+2. Tail Carves (x1)
+- Rathian Scale+ (48%)
+- Rathian Carapace (26%)
+- Rathian Plate (12%)
+- Rathian Spike+ (8%)
+- FireWyvrn BrnStm (4%)
+- Rathian Ruby (2%)
+        
+3. Break Head
+- Rathian Scale+ x1 (65%)
+- Rathian Carapace x1 (31%)
+- Rathian Ruby x1 (4%)
+        
+4. Break Wing
+- Fire Wyvern Claw x2 (75%)
+- Wyvern Claw x5 (25%)
+        
+5. Shiny Drop : awoken from sleep or got trapped
+- Wyvern Sobs (38%)
+- Wyvern Tears (37%)
+- Rathian Scale+ (23%)
+- Rathian Ruby (2%)
+        
+6. Capture
+- Rathian Carapace x1 (58%)
+- Rathian Scale+ x2 (30%)
+- Rathian Plate x1 (6%)
+- FireWyvrn BrnStm x1 (3%)
+- Rathian Ruby x1 (3%)
+
+
+
+
+
+☆ Rathian - MHFU G Rank
+
+1. Body Carves (x3)
+- ThckRathianScl (45%)
+- HvyRathianShell (26%)
+- Blazing Fire Sac (15%)
+- Rathian Spike+ (8%)
+- FireWyvrn BrnStm (4%)
+- Rathian Thorn (2%)
+        
+2. Tail Carves (x1)
+- ThckRathianScl (48%)
+- HvyRathianShell (32%)
+- Rathian Thorn (8%)
+- Rathian Ruby (6%)
+- FireWyvrn BrnStm (4%)
+- HvnlyRathianScl (2%)
+        
+3. Break Head
+- ThckRathianScl x1 (60%)
+- HvyRathianShell x1 (30%)
+- Rathian Ruby x1 (6%)
+- HvnlyRathianScl x1 (4%)
+        
+4. Break Wing
+- HrdFireWyvernClw x2 (80%)
+- Wyvern Claw x5 (20%)
+        
+5. Shiny Drop : awoken from sleep or got trapped
+- Wyvern Sobs (50%)
+- Wyvern Tears (25%)
+- ThckRathianScl (23%)
+- HvnlyRathianScl (2%)
+        
+6. Capture
+- HvyRathianShell x1 (58%)
+- ThckRathianScl x1 (30%)
+- Rathian Ruby x1 (6%)
+- FireWyvrn BrnStm x1 (3%)
+- HvnlyRathianScl x1 (3%)

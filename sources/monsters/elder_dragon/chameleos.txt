@@ -1,0 +1,85 @@
+☆ Chameleos - MHFU Low Rank
+
+1. Body Carves (x4)
+- Chameleos Hide (39%)
+- ChameleosWebbing (24%)
+- Chameleos Claw (19%)
+- Dragonite Ore (13%)
+- ElderDragonBlood (5%)
+        
+2. Tail Carves (x1)
+- Chameleos Tail (60%)
+- Dragonite Ore (22%)
+- ElderDragonBlood (18%)
+        
+3. Break Horn
+- Chameleos Horn x1 (90%)
+- Dragonite Ore x1 (10%)
+        
+4. Shiny Drop : sonic during its attacks
+- Dragon Treasure (75%)
+- Dragonite Ore (25%)
+
+
+
+
+
+☆ Chameleos - MHFU High Rank
+
+1. Body Carves (x4)
+- Chameleos Hide (35%)
+- ChameleosWebbing (24%)
+- Chameleos Hide+ (20%)
+- Union Ore (10%)
+- ElderDragonBlood (6%)
+- Chameleos Jewel (5%)
+        
+2. Tail Carves (x1)
+- Chameleos Tail (60%)
+- Union Ore (17%)
+- ElderDragonBlood (15%)
+- Chameleos Jewel (8%)
+        
+3. Break Horn
+- Chameleos Horn x1 (50%)
+- Chameleos Spike x1 (40%)
+- Union Ore x1 (10%)
+        
+4. Shiny Drop : sonic during its attacks
+- Dragon Treasure (43%)
+- Anc Drgn Treasre (42%)
+- Union Ore (15%)
+
+
+
+
+
+☆ Chameleos - MHFU G Rank
+
+1. Body Carves (x4)
+- SpecChameleHide+ (35%)
+- StrChameleosWing (28%)
+- Mellanje Ore (13%)
+- Chameleos Hide+ (10%)
+- ElderDragonBlood (6%)
+- Chameleos Jewel (6%)
+- BigEDragonJewel (2%)
+        
+2. Tail Carves (x1)
+- LthrChameleoTail (60%)
+- Mellanje Ore (17%)
+- ElderDragonBlood (12%)
+- Chameleos Jewel (8%)
+- BigEDragonJewel (3%)
+        
+3. Break Horn
+- HrdChameleosHorn x1 (70%)
+- Chameleos Spike x1 (20%)
+- Mellanje Ore x1 (10%)
+        
+4. Shiny Drop : sonic during its attacks
+- Anc Drgn Treasre (50%)
+- Dragon Treasure (24%)
+- Mellanje Ore (18%)
+- Chameleos Jewel (7%)
+- BigEDragonJewel (1%)
