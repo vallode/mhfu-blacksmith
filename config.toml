@@ -54,3 +54,15 @@ armor_types = [
   "waist",
   "leggings"
 ]
+
+monster_types = [
+  "bird-wyvern",
+  "carapaceon",
+  "elder-dragon",
+  "flying-wyvern",
+  "herbivore",
+  "lynian",
+  "neopteron",
+  "pelagus",
+  "piscine-wyvern",
+]
