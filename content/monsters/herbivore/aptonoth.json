@@ -1,0 +1,41 @@
+{
+  "name": "Aptonoth",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "75%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "25%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "75%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "25%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Raw Meat",
+          "chance": "75%"
+        },
+        {
+          "name": "Med Monster Bone",
+          "chance": "25%"
+        }
+      ]
+    }
+  }
+}

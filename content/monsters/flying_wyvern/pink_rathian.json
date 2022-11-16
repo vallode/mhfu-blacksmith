@@ -1,0 +1,359 @@
+{
+  "name": "Pink Rathian",
+  "drops": {
+    "Low Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Pnk Rathian Scl",
+          "chance": "49%"
+        },
+        {
+          "name": "Pnk Rathian Shl",
+          "chance": "30%"
+        },
+        {
+          "name": "FireWyvern Fluid",
+          "chance": "10%"
+        },
+        {
+          "name": "Flame Sac",
+          "chance": "6%"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "chance": "3%"
+        },
+        {
+          "name": "Rathian Spike",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Pnk Rathian Scl",
+          "chance": "56%"
+        },
+        {
+          "name": "Pnk Rathian Shl",
+          "chance": "22%"
+        },
+        {
+          "name": "Rathian Spike",
+          "chance": "8%"
+        },
+        {
+          "name": "FireWyvrn Marrow",
+          "chance": "7%"
+        },
+        {
+          "name": "Monster Bone+",
+          "chance": "6%"
+        },
+        {
+          "name": "Rathian Plate",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Pnk Rathian Shl x1",
+          "chance": "73%"
+        },
+        {
+          "name": "Pnk Rathian Scl x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Rathian Plate x1",
+          "chance": "2%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Fire Wyvern Claw x1",
+          "chance": "75%"
+        },
+        {
+          "name": "Wyvern Claw x4",
+          "chance": "25%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or got trapped": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "74%"
+        },
+        {
+          "name": "Pnk Rathian Scl",
+          "chance": "25%"
+        },
+        {
+          "name": "Rathian Plate",
+          "chance": "1%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Pnk Rathian Scl x2",
+          "chance": "50%"
+        },
+        {
+          "name": "Pnk Rathian Shl x1",
+          "chance": "36%"
+        },
+        {
+          "name": "FireWyvrn Marrow x1",
+          "chance": "10%"
+        },
+        {
+          "name": "Rathian Plate x1",
+          "chance": "4%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Pnk Rathian Scl+",
+          "chance": "45%"
+        },
+        {
+          "name": "Pnk Rathian Cpc",
+          "chance": "26%"
+        },
+        {
+          "name": "Inferno Sac",
+          "chance": "11%"
+        },
+        {
+          "name": "Rathian Spike",
+          "chance": "8%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "8%"
+        },
+        {
+          "name": "Rathian Spike+",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Pnk Rathian Scl+",
+          "chance": "42%"
+        },
+        {
+          "name": "Pnk Rathian Cpc",
+          "chance": "28%"
+        },
+        {
+          "name": "Rathian Spike+",
+          "chance": "12%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "10%"
+        },
+        {
+          "name": "Rathian Plate",
+          "chance": "7%"
+        },
+        {
+          "name": "Rathian Ruby",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Pnk Rathian Scl+ x1",
+          "chance": "66%"
+        },
+        {
+          "name": "Pnk Rathian Cpc x1",
+          "chance": "32%"
+        },
+        {
+          "name": "Rathian Ruby x1",
+          "chance": "2%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "Fire Wyvern Claw x2",
+          "chance": "75%"
+        },
+        {
+          "name": "Wyvern Claw x5",
+          "chance": "25%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or got trapped": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "37%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "37%"
+        },
+        {
+          "name": "Pnk Rathian Scl+",
+          "chance": "25%"
+        },
+        {
+          "name": "Rathian Ruby",
+          "chance": "1%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Pnk Rathian Cpc x1",
+          "chance": "52%"
+        },
+        {
+          "name": "Pnk Rathian Scl+ x2",
+          "chance": "24%"
+        },
+        {
+          "name": "FireWyvrn Marrow x2",
+          "chance": "15%"
+        },
+        {
+          "name": "Rathian Spike+ x1",
+          "chance": "8%"
+        },
+        {
+          "name": "Rathian Ruby x1",
+          "chance": "1%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "ThckPnkRathnScl",
+          "chance": "45%"
+        },
+        {
+          "name": "HvyPnkRathianShl",
+          "chance": "26%"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "chance": "11%"
+        },
+        {
+          "name": "Rathian Spike+",
+          "chance": "8%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "8%"
+        },
+        {
+          "name": "Rathian Thorn",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "ThckPnkRathnScl",
+          "chance": "42%"
+        },
+        {
+          "name": "HvyPnkRathianShl",
+          "chance": "32%"
+        },
+        {
+          "name": "Rathian Thorn",
+          "chance": "12%"
+        },
+        {
+          "name": "FireWyvrn BrnStm",
+          "chance": "7%"
+        },
+        {
+          "name": "Rathian Ruby",
+          "chance": "6%"
+        },
+        {
+          "name": "HvnlyRathianScl",
+          "chance": "1%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "ThckPnkRathnScl x1",
+          "chance": "52%"
+        },
+        {
+          "name": "ThckPnkRathnScl x2",
+          "chance": "24%"
+        },
+        {
+          "name": "FireWyvrn BrnStm x1",
+          "chance": "18%"
+        },
+        {
+          "name": "Rathian Thorn x1",
+          "chance": "8%"
+        },
+        {
+          "name": "HvnlyRathianScl x1",
+          "chance": "1%"
+        }
+      ],
+      "Break Wing": [
+        {
+          "name": "HrdFireWyvernClw x2",
+          "chance": "80%"
+        },
+        {
+          "name": "Wyvern Claw x5",
+          "chance": "20%"
+        }
+      ],
+      "Shiny Drop : awoken from sleep or got trapped": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "49%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "25%"
+        },
+        {
+          "name": "ThckPnkRathnScl",
+          "chance": "25%"
+        },
+        {
+          "name": "HvnlyRathianScl",
+          "chance": "1%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "HvyPnkRathianShl x1",
+          "chance": "52%"
+        },
+        {
+          "name": "ThckPnkRathnScl x2",
+          "chance": "24%"
+        },
+        {
+          "name": "FireWyvrn BrnStm x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Rathian Thorn x1",
+          "chance": "8%"
+        },
+        {
+          "name": "HvnlyRathianScl x1",
+          "chance": "1%"
+        }
+      ]
+    }
+  }
+}

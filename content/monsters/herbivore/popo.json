@@ -1,0 +1,61 @@
+{
+  "name": "Popo",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Popo Tongue",
+          "chance": "42%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "38%"
+        },
+        {
+          "name": "Bone",
+          "chance": "20%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Popo Tongue",
+          "chance": "35%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "30%"
+        },
+        {
+          "name": "Bone",
+          "chance": "25%"
+        },
+        {
+          "name": "Brute Bone",
+          "chance": "10%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Popo Tongue",
+          "chance": "35%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "30%"
+        },
+        {
+          "name": "Giant Bone",
+          "chance": "25%"
+        },
+        {
+          "name": "Stout Bone",
+          "chance": "10%"
+        }
+      ]
+    }
+  }
+}

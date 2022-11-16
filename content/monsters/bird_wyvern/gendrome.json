@@ -1,0 +1,111 @@
+{
+  "name": "Gendrome",
+  "drops": {
+    "1-2 Star": {
+      "Body Carves (x2)": [
+        {
+          "name": "Genprey Scale",
+          "chance": "40%"
+        },
+        {
+          "name": "Gendrome Hide",
+          "chance": "30%"
+        },
+        {
+          "name": "Paralysis Sac",
+          "chance": "30%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Gendrome Hide x1",
+          "chance": "45%"
+        },
+        {
+          "name": "Paralysis Sac x1",
+          "chance": "35%"
+        },
+        {
+          "name": "Genprey Fang x2",
+          "chance": "20%"
+        }
+      ]
+    },
+    "Low Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Gendrome Hide",
+          "chance": "48%"
+        },
+        {
+          "name": "Paralysis Sac",
+          "chance": "35%"
+        },
+        {
+          "name": "Genprey Scale",
+          "chance": "15%"
+        },
+        {
+          "name": "Gendrome Skull",
+          "chance": "2%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Gendrome Hide x1",
+          "chance": "56%"
+        },
+        {
+          "name": "Paralysis Sac x2",
+          "chance": "39%"
+        },
+        {
+          "name": "Gendrome Skull x1",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x2)": [
+        {
+          "name": "Gendrome Tail",
+          "chance": "30%"
+        },
+        {
+          "name": "Paralysis Sac",
+          "chance": "23%"
+        },
+        {
+          "name": "Genprey Scale+",
+          "chance": "20%"
+        },
+        {
+          "name": "Genprey Hide+",
+          "chance": "15%"
+        },
+        {
+          "name": "Gendrome Skull",
+          "chance": "7%"
+        },
+        {
+          "name": "Gendrome Hide",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Genprey Hide+ x2",
+          "chance": "40%"
+        },
+        {
+          "name": "Paralysis Sac x2",
+          "chance": "36%"
+        },
+        {
+          "name": "Genprey Scale+ x2",
+          "chance": "24%"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "name": "Gravios",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "Gravios Shell",
+          "chance": "63%"
+        },
+        {
+          "name": "Sleep Sac",
+          "chance": "20%"
+        },
+        {
+          "name": "Flame Sac",
+          "chance": "12%"
+        },
+        {
+          "name": "Gravios Skl Shl",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "Gravios Shell",
+          "chance": "73%"
+        },
+        {
+          "name": "Lg Monster Bone",
+          "chance": "23%"
+        },
+        {
+          "name": "Firestone",
+          "chance": "4%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Gravios Shell x1",
+          "chance": "32%"
+        },
+        {
+          "name": "Sleep Sac x1",
+          "chance": "21%"
+        },
+        {
+          "name": "Flame Sac x2",
+          "chance": "41%"
+        },
+        {
+          "name": "Firestone x1",
+          "chance": "6%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "94%"
+        },
+        {
+          "name": "Firestone",
+          "chance": "6%"
+        }
+      ],
+      "Break Stomach": [
+        {
+          "name": "Gravios Shell x1",
+          "chance": "90%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "10%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "Gravios Shell",
+          "chance": "18%"
+        },
+        {
+          "name": "Gravios Carapace",
+          "chance": "50%"
+        },
+        {
+          "name": "Sleep Sac",
+          "chance": "10%"
+        },
+        {
+          "name": "Inferno Sac",
+          "chance": "10%"
+        },
+        {
+          "name": "Gravios Skl Shl",
+          "chance": "5%"
+        },
+        {
+          "name": "Wyvern Stone",
+          "chance": "7%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "Gravios Carapace",
+          "chance": "66%"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "chance": "20%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "2%"
+        },
+        {
+          "name": "Gravios BrainStm",
+          "chance": "12%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Gravios Carapace x1",
+          "chance": "32%"
+        },
+        {
+          "name": "Sleep Sac x1",
+          "chance": "20%"
+        },
+        {
+          "name": "Inferno Sac x1",
+          "chance": "34%"
+        },
+        {
+          "name": "Firestone x1",
+          "chance": "8%"
+        },
+        {
+          "name": "Firecell Stone x1",
+          "chance": "6%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "47%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "47%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "6%"
+        }
+      ],
+      "Break Stomach": [
+        {
+          "name": "Gravios Shell x1",
+          "chance": "33%"
+        },
+        {
+          "name": "Gravios Carapace x1",
+          "chance": "57%"
+        },
+        {
+          "name": "Sleep Sac x2",
+          "chance": "10%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "HvyGraviosShell",
+          "chance": "50%"
+        },
+        {
+          "name": "Coma Sac",
+          "chance": "17%"
+        },
+        {
+          "name": "Gravios Carapace",
+          "chance": "10%"
+        },
+        {
+          "name": "Blazing Fire Sac",
+          "chance": "10%"
+        },
+        {
+          "name": "Big Wyvern Stone",
+          "chance": "7%"
+        },
+        {
+          "name": "HvnlyGraviosShl",
+          "chance": "6%"
+        }
+      ],
+      "Tail Carves (x2)": [
+        {
+          "name": "HvyGraviosShell",
+          "chance": "66%"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "chance": "20%"
+        },
+        {
+          "name": "Gravios BrainStm",
+          "chance": "8%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "6%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "HvyGraviosShell x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Coma Sac x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Blazing Fire Sac x1",
+          "chance": "16%"
+        },
+        {
+          "name": "Firecell Stone x1",
+          "chance": "14%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "60%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "30%"
+        },
+        {
+          "name": "Firecell Stone",
+          "chance": "10%"
+        }
+      ],
+      "Break Stomach": [
+        {
+          "name": "HvyGraviosShell x1",
+          "chance": "57%"
+        },
+        {
+          "name": "Gravios Carapace x1",
+          "chance": "18%"
+        },
+        {
+          "name": "Coma Sac x2",
+          "chance": "15%"
+        },
+        {
+          "name": "HvyGraviosShell x1",
+          "chance": "10%"
+        }
+      ]
+    }
+  }
+}

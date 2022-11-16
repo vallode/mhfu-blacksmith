@@ -1,0 +1,177 @@
+{
+  "name": "Lunastra",
+  "drops": {
+    "Low Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "Lunastra Shell",
+          "chance": "28%"
+        },
+        {
+          "name": "Fire Dragon Scl",
+          "chance": "24%"
+        },
+        {
+          "name": "Fire Dragon Claw",
+          "chance": "21%"
+        },
+        {
+          "name": "Lunastra Mane",
+          "chance": "12%"
+        },
+        {
+          "name": "Fire Drgn Webbng",
+          "chance": "10%"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Lunastra Tail",
+          "chance": "59%"
+        },
+        {
+          "name": "Eldr Dragon Bone",
+          "chance": "23%"
+        },
+        {
+          "name": "Lunastra Shell",
+          "chance": "18%"
+        }
+      ],
+      "Break Horn": [
+        {
+          "name": "Lunastra Horn x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Wings": [
+        {
+          "name": "Fire Drgn Webbng x1",
+          "chance": "72%"
+        },
+        {
+          "name": "Fire Dragon Claw x1",
+          "chance": "28%"
+        }
+      ],
+      "Shiny Drop : force it into rage mode or reactivating fire aura": [
+        {
+          "name": "Dragon Treasure",
+          "chance": "75%"
+        },
+        {
+          "name": "Fire Dragon Scl",
+          "chance": "15%"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "chance": "10%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x4)": [
+        {
+          "name": "LunastraCarapace",
+          "chance": "28%"
+        },
+        {
+          "name": "Fire Dragon Scl",
+          "chance": "24%"
+        },
+        {
+          "name": "Fire Dragon Claw",
+          "chance": "21%"
+        },
+        {
+          "name": "Lunastra Mane",
+          "chance": "12%"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "chance": "10%"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "chance": "5%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "Lunastra Tail",
+          "chance": "34%"
+        },
+        {
+          "name": "Eldr Dragon Bone",
+          "chance": "32%"
+        },
+        {
+          "name": "Lunastra Shell",
+          "chance": "20%"
+        },
+        {
+          "name": "LunastraCarapace",
+          "chance": "12%"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "chance": "2%"
+        }
+      ],
+      "Break Horn": [
+        {
+          "name": "Lunastra Spike x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Lunastra Horn x1",
+          "chance": "20%"
+        }
+      ],
+      "Break Wings": [
+        {
+          "name": "Fire Dragon Pwdr x1",
+          "chance": "50%"
+        },
+        {
+          "name": "Fire Drgn Webbng x1",
+          "chance": "20%"
+        },
+        {
+          "name": "Fire Dragon Claw x1",
+          "chance": "20%"
+        },
+        {
+          "name": "Fire Drgn Webbng x2",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drop : force it into rage mode or reactivating fire aura": [
+        {
+          "name": "Dragon Treasure",
+          "chance": "38%"
+        },
+        {
+          "name": "Anc Drgn Treasre",
+          "chance": "37%"
+        },
+        {
+          "name": "Fire Drgn Scl+",
+          "chance": "12%"
+        },
+        {
+          "name": "ElderDragonBlood",
+          "chance": "10%"
+        },
+        {
+          "name": "Fire Drgn Jwl",
+          "chance": "3%"
+        }
+      ]
+    }
+  }
+}

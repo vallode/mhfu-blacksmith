@@ -1,0 +1,57 @@
+{
+  "name": "Ioprey",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Ioprey Fang",
+          "chance": "47%"
+        },
+        {
+          "name": "Ioprey Scale",
+          "chance": "38%"
+        },
+        {
+          "name": "Ioprey Hide",
+          "chance": "15%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Ioprey Fang",
+          "chance": "35%"
+        },
+        {
+          "name": "Ioprey Scale+",
+          "chance": "35%"
+        },
+        {
+          "name": "Ioprey Hide+",
+          "chance": "35%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "RobustWyvernBone",
+          "chance": "50%"
+        },
+        {
+          "name": "Ioprey Scale+",
+          "chance": "25%"
+        },
+        {
+          "name": "Ioprey Hide+",
+          "chance": "20%"
+        },
+        {
+          "name": "Ioprey Fang",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

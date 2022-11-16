@@ -1,0 +1,277 @@
+{
+  "name": "Yian Kut-Ku",
+  "drops": {
+    "1-2 Star": {
+      "Body Carves (x3)": [
+        {
+          "name": "Kut-Ku Shell",
+          "chance": "55%"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "chance": "25%"
+        },
+        {
+          "name": "Sm Monster Bone",
+          "chance": "10%"
+        },
+        {
+          "name": "Med Monster Bone",
+          "chance": "10%"
+        }
+      ],
+      "Break Ears": [
+        {
+          "name": "Kut-Ku Scale x1",
+          "chance": "75%"
+        }
+      ],
+      "Shiny Drop : sonic, doesn't work when rage": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "75%"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "chance": "25%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Kut-Ku Shell x1",
+          "chance": "36%"
+        },
+        {
+          "name": "Screamer x1",
+          "chance": "24%"
+        },
+        {
+          "name": "Med Monster Bone x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Flame Sac x1",
+          "chance": "10%"
+        }
+      ]
+    },
+    "Low Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Kut-Ku Shell",
+          "chance": "50%"
+        },
+        {
+          "name": "Kut-Ku Webbing",
+          "chance": "32%"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "chance": "13%"
+        },
+        {
+          "name": "Giant Beak",
+          "chance": "5%"
+        }
+      ],
+      "Break Ears": [
+        {
+          "name": "Kut-Ku Ear x1",
+          "chance": "50%"
+        },
+        {
+          "name": "Kut-Ku Scale x3",
+          "chance": "50%"
+        }
+      ],
+      "Shiny Drop : sonic, doesn't work when rage": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "74%"
+        },
+        {
+          "name": "Kut-Ku Scale",
+          "chance": "16%"
+        },
+        {
+          "name": "Kut-Ku Ear",
+          "chance": "10%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Kut-Ku Shell x1",
+          "chance": "33%"
+        },
+        {
+          "name": "Screamer",
+          "chance": "24%"
+        },
+        {
+          "name": "Med Monster Bone x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Flame Sac x1",
+          "chance": "20%"
+        },
+        {
+          "name": "Giant Beak x1",
+          "chance": "3%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Kut-Ku Scale+",
+          "chance": "50%"
+        },
+        {
+          "name": "Kut-Ku Carapace",
+          "chance": "25%"
+        },
+        {
+          "name": "Kut-Ku Webbing",
+          "chance": "10%"
+        },
+        {
+          "name": "Giant Beak",
+          "chance": "10%"
+        },
+        {
+          "name": "Splendid Beak",
+          "chance": "5%"
+        }
+      ],
+      "Break Ears": [
+        {
+          "name": "Kut-Ku Ear x1",
+          "chance": "50%"
+        },
+        {
+          "name": "Long Kut-Ku Ear x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Kut-Ku Scale+ x3",
+          "chance": "25%"
+        }
+      ],
+      "Shiny Drop : sonic, doesn't work when rage": [
+        {
+          "name": "Wyvern Tears",
+          "chance": "37%"
+        },
+        {
+          "name": "Wyvern Sobs",
+          "chance": "37%"
+        },
+        {
+          "name": "Kut-Ku Scale+",
+          "chance": "16%"
+        },
+        {
+          "name": "Long Kut-Ku Ear",
+          "chance": "10%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Kut-Ku Carapace",
+          "chance": "43%"
+        },
+        {
+          "name": "Monster Bone+ x1",
+          "chance": "27%"
+        },
+        {
+          "name": "Screamer x2",
+          "chance": "17%"
+        },
+        {
+          "name": "Flame Sac x1",
+          "chance": "10%"
+        },
+        {
+          "name": "Splendid Beak x1",
+          "chance": "3%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Thick Kut-Ku Scl",
+          "chance": "33%"
+        },
+        {
+          "name": "Str Kut-Ku Wing",
+          "chance": "32%"
+        },
+        {
+          "name": "Hvy Kut-Ku Shell",
+          "chance": "25%"
+        },
+        {
+          "name": "Splendid Beak",
+          "chance": "10%"
+        }
+      ],
+      "Break Ears": [
+        {
+          "name": "Long Kut-Ku Ear x1",
+          "chance": "45%"
+        },
+        {
+          "name": "Lucky Kut-Ku Ear x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Thick Kut-Ku Scl x3",
+          "chance": "25%"
+        }
+      ],
+      "Shiny Drop : sonic, doesn't work when rage": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "49%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "25%"
+        },
+        {
+          "name": "Thick Kut-Ku Scl",
+          "chance": "16%"
+        },
+        {
+          "name": "Lucky Kut-Ku Ear",
+          "chance": "10%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Hvy Kut-Ku Shell x1",
+          "chance": "47%"
+        },
+        {
+          "name": "Hvy Monster Bone x1",
+          "chance": "23%"
+        },
+        {
+          "name": "Blazing Fire Sac x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Screamer x4",
+          "chance": "10%"
+        },
+        {
+          "name": "Splendid Beak x1",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

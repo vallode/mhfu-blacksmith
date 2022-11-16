@@ -1,0 +1,73 @@
+{
+  "name": "Mosswine",
+  "drops": {
+    "Low-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Blue Mushroom",
+          "chance": "45%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "30%"
+        },
+        {
+          "name": "Special Mushroom",
+          "chance": "20%"
+        },
+        {
+          "name": "Mosswine Hide",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Blue Mushroom",
+          "chance": "42%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "20%"
+        },
+        {
+          "name": "Special Mushroom",
+          "chance": "20%"
+        },
+        {
+          "name": "Select Mushroom",
+          "chance": "10%"
+        },
+        {
+          "name": "Mosswine Hide",
+          "chance": "8%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x1)": [
+        {
+          "name": "Blue Mushroom",
+          "chance": "33%"
+        },
+        {
+          "name": "Special Mushroom",
+          "chance": "20%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "20%"
+        },
+        {
+          "name": "Select Mushroom",
+          "chance": "15%"
+        },
+        {
+          "name": "Mosswine Hide",
+          "chance": "12%"
+        }
+      ]
+    }
+  }
+}

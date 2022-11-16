@@ -1,0 +1,85 @@
+{
+  "name": "Melynx",
+  "drops": {
+    "1-2 Star Guild": {
+      "Shiny Drop": [
+        {
+          "name": "Secret Pouch",
+          "chance": "72%"
+        },
+        {
+          "name": "Glutton Tuna",
+          "chance": "18%"
+        },
+        {
+          "name": "Felvine",
+          "chance": "10%"
+        }
+      ]
+    },
+    "Low-Rank": {
+      "Shiny Drop": [
+        {
+          "name": "Secret Pouch",
+          "chance": "72%"
+        },
+        {
+          "name": "Glutton Tuna",
+          "chance": "15%"
+        },
+        {
+          "name": "Felvine",
+          "chance": "8%"
+        },
+        {
+          "name": "Pawprint Stamp",
+          "chance": "5%"
+        }
+      ]
+    },
+    "High-Rank": {
+      "Shiny Drop": [
+        {
+          "name": "Secret Pouch",
+          "chance": "64%"
+        },
+        {
+          "name": "Felvine",
+          "chance": "16%"
+        },
+        {
+          "name": "Gastronome Tuna",
+          "chance": "12%"
+        },
+        {
+          "name": "Pawprint Stamp",
+          "chance": "8%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Shiny Drop": [
+        {
+          "name": "Secret Pouch",
+          "chance": "60%"
+        },
+        {
+          "name": "Felvine",
+          "chance": "13%"
+        },
+        {
+          "name": "Gastronome Tuna",
+          "chance": "12%"
+        },
+        {
+          "name": "Pawprint Stamp",
+          "chance": "10%"
+        },
+        {
+          "name": "Felyne Fur Ruby",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

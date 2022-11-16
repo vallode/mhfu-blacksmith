@@ -16,7 +16,7 @@
 
         <ul>
           <li>
-            <a class="row {% if section_data.subsections %}row--external{% endif %}" {% if not section_data.subsections %}href="{{section.path}}{{ section_data.extra.type }}/"{% endif %}>
+            <a class="row {% if section_data.subsections %}row--external{% endif %}" {% if not section_data.subsections %}href="{{ section_data.path }}"{% endif %}>
               <div class="icon"><img src="/images/{{ section_data.extra.type }}.png" alt=""></div>
               <p>{{ section_data.title }}</p>
             </a>
@@ -26,7 +26,7 @@
               {% for s in section_data.subsections %}
                 {% set s_data = get_section(path=s, metadata_only=true) %}
   
-                <a class="row" href="{{s_data.path}}">
+                <a class="row" href="{{ s_data.path }}">
                   <div class="icon"><img src="/images/{{ s_data.extra.type }}.png" alt=""></div>
                   <p>{{ s_data.title }}</p>
                 </a>

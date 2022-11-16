@@ -1,0 +1,301 @@
+{
+  "name": "Blangonga",
+  "drops": {
+    "1-2 Star Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Blangonga Pelt",
+          "chance": "50%"
+        },
+        {
+          "name": "Sharp Claw",
+          "chance": "12%"
+        },
+        {
+          "name": "Brute Bone",
+          "chance": "38%"
+        }
+      ],
+      "Break Fang": [
+        {
+          "name": "Giant Bone x2",
+          "chance": "75%"
+        },
+        {
+          "name": "Bone x2",
+          "chance": "25%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "Blangonga Pelt x1",
+          "chance": "100%"
+        }
+      ],
+      "Shiny Drop : Finishes eating without noticing hunter": [
+        {
+          "name": "Territorial Dung",
+          "chance": "80%"
+        },
+        {
+          "name": "Dung",
+          "chance": "5%"
+        },
+        {
+          "name": "Raw Meat",
+          "chance": "15%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Blangonga Pelt x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Sharp Claw x1",
+          "chance": "50%"
+        },
+        {
+          "name": "Brute Bone x4",
+          "chance": "20%"
+        }
+      ]
+    },
+    "Low Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Blangonga Pelt",
+          "chance": "63%"
+        },
+        {
+          "name": "Blangonga Whiskr",
+          "chance": "21%"
+        },
+        {
+          "name": "Giant Bone",
+          "chance": "8%"
+        },
+        {
+          "name": "Blangonga Fang",
+          "chance": "8%"
+        }
+      ],
+      "Break Fang": [
+        {
+          "name": "Blangonga Fang x1",
+          "chance": "100%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "Blangonga Tail x1",
+          "chance": "65%"
+        },
+        {
+          "name": "Blangonga Pelt x1",
+          "chance": "35%"
+        }
+      ],
+      "Shiny Drop : Finishes eating without noticing hunter": [
+        {
+          "name": "Territorial Dung",
+          "chance": "75%"
+        },
+        {
+          "name": "Blangonga Pelt",
+          "chance": "20%"
+        },
+        {
+          "name": "Dung",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Blangonga Whiskr x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Blangonga Pelt x1",
+          "chance": "35%"
+        },
+        {
+          "name": "Giant Bone x2",
+          "chance": "15%"
+        },
+        {
+          "name": "Blangonga Tail x1",
+          "chance": "10%"
+        }
+      ]
+    },
+    "High Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Blangonga Pelt+",
+          "chance": "60%"
+        },
+        {
+          "name": "Stout Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Blangonga Whiskr",
+          "chance": "10%"
+        },
+        {
+          "name": "Blangonga Fang",
+          "chance": "10%"
+        },
+        {
+          "name": "Blangonga Pelt",
+          "chance": "5%"
+        }
+      ],
+      "Break Fang": [
+        {
+          "name": "Blangonga Fang+ x1",
+          "chance": "80%"
+        },
+        {
+          "name": "Blangonga Fang x1",
+          "chance": "20%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "Blangonga Tail x1",
+          "chance": "65%"
+        },
+        {
+          "name": "Blangonga Pelt x1",
+          "chance": "35%"
+        }
+      ],
+      "Shiny Drop : Finishes eating without noticing hunter": [
+        {
+          "name": "Territorial Dung",
+          "chance": "38%"
+        },
+        {
+          "name": "TerritorialDung+",
+          "chance": "37%"
+        },
+        {
+          "name": "Blangonga Pelt+",
+          "chance": "20%"
+        },
+        {
+          "name": "Dung",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "Blangonga Pelt+ x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Blangonga Whiskr x2",
+          "chance": "30%"
+        },
+        {
+          "name": "Stout Bone x4",
+          "chance": "25%"
+        },
+        {
+          "name": "Blangonga Tail x1",
+          "chance": "5%"
+        }
+      ]
+    },
+    "G Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "HrdBlangongaPlt+",
+          "chance": "60%"
+        },
+        {
+          "name": "Massive Bone",
+          "chance": "15%"
+        },
+        {
+          "name": "Lthr Pelagus Plt",
+          "chance": "10%"
+        },
+        {
+          "name": "HvyBlangongaFang",
+          "chance": "10%"
+        },
+        {
+          "name": "Blangonga Pelt+",
+          "chance": "5%"
+        }
+      ],
+      "Break Fang": [
+        {
+          "name": "HvyBlangongaFang x1",
+          "chance": "60%"
+        },
+        {
+          "name": "HvyBlangongaFang x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Blangonga Fang+ x2",
+          "chance": "20%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "LeathrBlangoTail x1",
+          "chance": "60%"
+        },
+        {
+          "name": "HrdBlangongaPlt+ x1",
+          "chance": "30%"
+        },
+        {
+          "name": "Blangonga Tail x1",
+          "chance": "10%"
+        }
+      ],
+      "Shiny Drop : Finishes eating without noticing hunter": [
+        {
+          "name": "TerritorialDung+",
+          "chance": "50%"
+        },
+        {
+          "name": "Territorial Dung",
+          "chance": "25%"
+        },
+        {
+          "name": "HrdBlangongaPlt+",
+          "chance": "20%"
+        },
+        {
+          "name": "Dung",
+          "chance": "5%"
+        }
+      ],
+      "Capture": [
+        {
+          "name": "HrdBlangongaPlt+ x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Lthr Pelagus Plt x2",
+          "chance": "30%"
+        },
+        {
+          "name": "Massive Bone x4",
+          "chance": "25%"
+        },
+        {
+          "name": "LeathrBlangoTail x1",
+          "chance": "5%"
+        }
+      ]
+    }
+  }
+}

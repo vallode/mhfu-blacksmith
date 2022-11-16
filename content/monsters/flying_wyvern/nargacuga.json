@@ -1,0 +1,265 @@
+{
+  "name": "Nargacuga",
+  "drops": {
+    "High-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "Narga Scale+",
+          "chance": "45%"
+        },
+        {
+          "name": "Black Narga Pelt",
+          "chance": "25%"
+        },
+        {
+          "name": "Nargacuga Fang+",
+          "chance": "15%"
+        },
+        {
+          "name": "NargaCuttingWing",
+          "chance": "10%"
+        },
+        {
+          "name": "Nargacuga Tail",
+          "chance": "5%"
+        }
+      ],
+      "Body Carves (x1)": [
+        {
+          "name": "Nargacuga Tail",
+          "chance": "82%"
+        },
+        {
+          "name": "Narga Tail Spike",
+          "chance": "10%"
+        },
+        {
+          "name": "Narga Brain Stem",
+          "chance": "8%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "Black Narga Pelt x1",
+          "chance": "40%"
+        },
+        {
+          "name": "Nargacuga Fang+ x2",
+          "chance": "20%"
+        },
+        {
+          "name": "Nargacuga Tail x1",
+          "chance": "20%"
+        },
+        {
+          "name": "Narga Scale+ x2",
+          "chance": "16%"
+        },
+        {
+          "name": "Narga Brain Stem x1",
+          "chance": "4%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "38%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "37%"
+        },
+        {
+          "name": "Narga Scale+",
+          "chance": "25%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "Nargacuga Fang+ x2",
+          "chance": "70%"
+        },
+        {
+          "name": "Narga Scale+ x2",
+          "chance": "30%"
+        }
+      ],
+      "Break Wings": [
+        {
+          "name": "NargaCuttingWing x2",
+          "chance": "60%"
+        },
+        {
+          "name": "NargaCuttingWing x1",
+          "chance": "25%"
+        },
+        {
+          "name": "Black Narga Pelt x2",
+          "chance": "15%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "Narga Tail Spike x2",
+          "chance": "75%"
+        },
+        {
+          "name": "Black Narga Pelt x1",
+          "chance": "17%"
+        },
+        {
+          "name": "Narga Brain Stem x1",
+          "chance": "8%"
+        }
+      ]
+    },
+    "G-Rank": {
+      "Body Carves (x3)": [
+        {
+          "name": "ThickNargaScale",
+          "chance": "40%"
+        },
+        {
+          "name": "BlackNargaPelt+",
+          "chance": "20%"
+        },
+        {
+          "name": "Narga Scale+",
+          "chance": "13%"
+        },
+        {
+          "name": "HvyNargacugaFang",
+          "chance": "12%"
+        },
+        {
+          "name": "StrNargaCttngWng",
+          "chance": "8%"
+        },
+        {
+          "name": "LeatherNargaTail",
+          "chance": "5%"
+        },
+        {
+          "name": "HvnlyNargaScale",
+          "chance": "2%"
+        }
+      ],
+      "Tail Carves (x1)": [
+        {
+          "name": "LeatherNargaTail",
+          "chance": "75%"
+        },
+        {
+          "name": "Narga Brain Stem",
+          "chance": "10%"
+        },
+        {
+          "name": "HvyNargaTailSpik",
+          "chance": "8%"
+        },
+        {
+          "name": "Nargacuga Tail",
+          "chance": "7%"
+        }
+      ],
+      "Capture Rewards": [
+        {
+          "name": "BlackNargaPelt+ x1",
+          "chance": "35%"
+        },
+        {
+          "name": "HvyNargacugaFang x2",
+          "chance": "18%"
+        },
+        {
+          "name": "ThickNargaScale x2",
+          "chance": "16%"
+        },
+        {
+          "name": "LeatherNargaTail x1",
+          "chance": "15%"
+        },
+        {
+          "name": "Black Narga Pelt x2",
+          "chance": "10%"
+        },
+        {
+          "name": "Narga Brain Stem x1",
+          "chance": "6%"
+        }
+      ],
+      "Shiny Drops": [
+        {
+          "name": "Wyvern Sobs",
+          "chance": "50%"
+        },
+        {
+          "name": "Wyvern Tears",
+          "chance": "25%"
+        },
+        {
+          "name": "ThickNargaScale",
+          "chance": "21%"
+        },
+        {
+          "name": "HvnlyNargaScale",
+          "chance": "4%"
+        }
+      ],
+      "Break Head": [
+        {
+          "name": "HvyNargacugaFang x2",
+          "chance": "65%"
+        },
+        {
+          "name": "ThickNargaScale x2",
+          "chance": "20%"
+        },
+        {
+          "name": "HvnlyNargaScale x1",
+          "chance": "8%"
+        },
+        {
+          "name": "Nargacuga Fang+ x4",
+          "chance": "7%"
+        }
+      ],
+      "Break Wings": [
+        {
+          "name": "StrNargaCttngWng x2",
+          "chance": "60%"
+        },
+        {
+          "name": "StrNargaCttngWng x1",
+          "chance": "20%"
+        },
+        {
+          "name": "BlackNargaPelt+ x2",
+          "chance": "12%"
+        },
+        {
+          "name": "NargaCuttingWing x3",
+          "chance": "8%"
+        }
+      ],
+      "Break Tail": [
+        {
+          "name": "HvyNargaTailSpik x2",
+          "chance": "70%"
+        },
+        {
+          "name": "Narga Tail Spike x4",
+          "chance": "12%"
+        },
+        {
+          "name": "Narga Brain Stem x1",
+          "chance": "10%"
+        },
+        {
+          "name": "BlackNargaPelt+ x1",
+          "chance": "8%"
+        }
+      ]
+    }
+  }
+}
