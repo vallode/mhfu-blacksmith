@@ -2,14 +2,16 @@
   "monsters": [
     {
       "name": "Felyne",
+      "type": "Lynian",
       "drops": {
       }
     },
     {
       "name": "Melynx",
+      "type": "Lynian",
       "drops": {
-        "1-2 Star Guild": {
-          "Shiny Drop": [
+        "1-2 star guild": {
+          "shiny drop": [
             {
               "name": "Secret Pouch",
               "chance": "72%"
@@ -24,8 +26,8 @@
             }
           ]
         },
-        "Low-Rank": {
-          "Shiny Drop": [
+        "low-rank": {
+          "shiny drop": [
             {
               "name": "Secret Pouch",
               "chance": "72%"
@@ -44,8 +46,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Shiny Drop": [
+        "high-rank": {
+          "shiny drop": [
             {
               "name": "Secret Pouch",
               "chance": "64%"
@@ -64,8 +66,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Shiny Drop": [
+        "g-rank": {
+          "shiny drop": [
             {
               "name": "Secret Pouch",
               "chance": "60%"
@@ -92,9 +94,10 @@
     },
     {
       "name": "Shakalaka",
+      "type": "Lynian",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x1)": [
+        "low rank": {
+          "body carves (x1)": [
             {
               "name": "ShakalakaTreasre",
               "chance": "50%"
@@ -120,7 +123,7 @@
               "chance": "2%"
             }
           ],
-          "Shiny Drop": [
+          "shiny drop": [
             {
               "name": "ShakalakaTreasre",
               "chance": "26%"
@@ -167,8 +170,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x1)": [
+        "high rank": {
+          "body carves (x1)": [
             {
               "name": "ShakalakaTreasre",
               "chance": "50%"
@@ -194,7 +197,7 @@
               "chance": "4%"
             }
           ],
-          "Shiny Drop": [
+          "shiny drop": [
             {
               "name": "ShakalakaTreasre",
               "chance": "25%"
@@ -241,8 +244,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x1)": [
+        "g rank": {
+          "body carves (x1)": [
             {
               "name": "ShakalakaTreasre",
               "chance": "37%"
@@ -276,7 +279,7 @@
               "chance": "1%"
             }
           ],
-          "Shiny Drop": [
+          "shiny drop": [
             {
               "name": "ShakalakaTreasre",
               "chance": "20%"
@@ -331,9 +334,10 @@
     },
     {
       "name": "King Shakalaka",
+      "type": "Lynian",
       "drops": {
-        "High Rank": {
-          "Body Carves (x2)": [
+        "high rank": {
+          "body carves (x2)": [
             {
               "name": "ShakalakaTreasre",
               "chance": "38%"
@@ -359,7 +363,7 @@
               "chance": "8%"
             }
           ],
-          "Shiny Drop : Stagger during taunt": [
+          "shiny drop : stagger during taunt": [
             {
               "name": "ShakaInheritance",
               "chance": "25%"
@@ -398,8 +402,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x2)": [
+        "g rank": {
+          "body carves (x2)": [
             {
               "name": "ShakaInheritance",
               "chance": "25%"
@@ -433,7 +437,7 @@
               "chance": "2%"
             }
           ],
-          "Shiny Drop : Stagger during taunt": [
+          "shiny drop : stagger during taunt": [
             {
               "name": "ShakalakaTreasr+",
               "chance": "20%"

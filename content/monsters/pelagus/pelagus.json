@@ -2,9 +2,10 @@
   "monsters": [
     {
       "name": "Bullfango",
+      "type": "Pelagus",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Bullfango Pelt",
               "chance": "59%"
@@ -23,8 +24,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "30%"
@@ -47,8 +48,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "ThkBullfangoPelt",
               "chance": "30%"
@@ -71,9 +72,10 @@
     },
     {
       "name": "Bulldrome",
+      "type": "Pelagus",
       "drops": {
-        "1-2 Star": {
-          "Body Carves (x3)": [
+        "1-2 star": {
+          "body carves (x3)": [
             {
               "name": "Raw Meat",
               "chance": "10%"
@@ -87,7 +89,7 @@
               "chance": "40%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Bulldrome Hide x1",
               "chance": "68%"
@@ -98,8 +100,8 @@
             }
           ]
         },
-        "Low Rank": {
-          "Body Carves (x3)": [
+        "low rank": {
+          "body carves (x3)": [
             {
               "name": "Bulldrome Hide",
               "chance": "50%"
@@ -117,7 +119,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Bulldrome Hide x1",
               "chance": "60%"
@@ -136,8 +138,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x3)": [
+        "high rank": {
+          "body carves (x3)": [
             {
               "name": "Bulldrome Hide+",
               "chance": "30%"
@@ -159,7 +161,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Bulldrome Hide x1",
               "chance": "40%"
@@ -182,8 +184,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "Bulldrome Hide+",
               "chance": "30%"
@@ -205,7 +207,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Bulldrome Hide x1",
               "chance": "40%"
@@ -232,9 +234,10 @@
     },
     {
       "name": "Conga",
+      "type": "Pelagus",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Conga Pelt",
               "chance": "50%"
@@ -249,8 +252,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Conga Pelt+",
               "chance": "50%"
@@ -269,8 +272,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Piercing Claw",
               "chance": "45%"
@@ -293,9 +296,10 @@
     },
     {
       "name": "Congalala",
+      "type": "Pelagus",
       "drops": {
-        "1-2 Star": {
-          "Body Carves (x3)": [
+        "1-2 star": {
+          "body carves (x3)": [
             {
               "name": "Congalala Pelt",
               "chance": "50%"
@@ -309,13 +313,13 @@
               "chance": "38%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "Congalala Pelt x1",
               "chance": "100%"
             }
           ],
-          "Break Claw": [
+          "break claw": [
             {
               "name": "Sharp Claw x2",
               "chance": "50%"
@@ -325,7 +329,7 @@
               "chance": "50%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Bone]": [
+          "shiny drop : stagger the tail [bone]": [
             {
               "name": "Territorial Dung",
               "chance": "75%"
@@ -339,7 +343,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mushroom]": [
+          "shiny drop : stagger the tail [mushroom]": [
             {
               "name": "Territorial Dung",
               "chance": "75%"
@@ -353,7 +357,7 @@
               "chance": "5%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mineral Stone]": [
+          "shiny drop : stagger the tail [mineral stone]": [
             {
               "name": "Territorial Dung",
               "chance": "60%"
@@ -367,7 +371,7 @@
               "chance": "1%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Congalala Pelt x1",
               "chance": "30%"
@@ -382,8 +386,8 @@
             }
           ]
         },
-        "Low Rank": {
-          "Body Carves (x3)": [
+        "low rank": {
+          "body carves (x3)": [
             {
               "name": "Congalala Pelt",
               "chance": "63%"
@@ -397,7 +401,7 @@
               "chance": "8%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "Congalala Pelt x1",
               "chance": "60%"
@@ -407,7 +411,7 @@
               "chance": "40%"
             }
           ],
-          "Break Claw": [
+          "break claw": [
             {
               "name": "Congalala Claw x1",
               "chance": "92%"
@@ -417,7 +421,7 @@
               "chance": "8%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Bone]": [
+          "shiny drop : stagger the tail [bone]": [
             {
               "name": "Territorial Dung",
               "chance": "75%"
@@ -431,7 +435,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mushroom]": [
+          "shiny drop : stagger the tail [mushroom]": [
             {
               "name": "Territorial Dung",
               "chance": "75%"
@@ -445,7 +449,7 @@
               "chance": "5%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mineral Stone]": [
+          "shiny drop : stagger the tail [mineral stone]": [
             {
               "name": "Territorial Dung",
               "chance": "60%"
@@ -459,7 +463,7 @@
               "chance": "1%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Congalala Pelt x1",
               "chance": "40%"
@@ -474,8 +478,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x3)": [
+        "high rank": {
+          "body carves (x3)": [
             {
               "name": "Congalala Pelt+",
               "chance": "60%"
@@ -493,7 +497,7 @@
               "chance": "5%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "Congalala Pelt+ x1",
               "chance": "50%"
@@ -503,7 +507,7 @@
               "chance": "50%"
             }
           ],
-          "Break Claw": [
+          "break claw": [
             {
               "name": "Congalala Claw+ x1",
               "chance": "50%"
@@ -513,7 +517,7 @@
               "chance": "50%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Bone]": [
+          "shiny drop : stagger the tail [bone]": [
             {
               "name": "Territorial Dung",
               "chance": "35%"
@@ -531,7 +535,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mushroom]": [
+          "shiny drop : stagger the tail [mushroom]": [
             {
               "name": "Territorial Dung",
               "chance": "35%"
@@ -549,7 +553,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mineral Stone]": [
+          "shiny drop : stagger the tail [mineral stone]": [
             {
               "name": "Territorial Dung",
               "chance": "35%"
@@ -567,7 +571,7 @@
               "chance": "1%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Congalala Pelt+ x1",
               "chance": "40%"
@@ -582,8 +586,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "HrdCongalalaPlt+",
               "chance": "50%"
@@ -601,7 +605,7 @@
               "chance": "5%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "HrdCongalalaPlt+ x1",
               "chance": "60%"
@@ -611,7 +615,7 @@
               "chance": "40%"
             }
           ],
-          "Break Claw": [
+          "break claw": [
             {
               "name": "HrdCongalalaClw+ x1",
               "chance": "60%"
@@ -625,7 +629,7 @@
               "chance": "20%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Bone]": [
+          "shiny drop : stagger the tail [bone]": [
             {
               "name": "TerritorialDung+",
               "chance": "48%"
@@ -643,7 +647,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mushroom]": [
+          "shiny drop : stagger the tail [mushroom]": [
             {
               "name": "TerritorialDung+",
               "chance": "48%"
@@ -661,7 +665,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Stagger the tail [Mineral Stone]": [
+          "shiny drop : stagger the tail [mineral stone]": [
             {
               "name": "TerritorialDung+",
               "chance": "48%"
@@ -679,7 +683,7 @@
               "chance": "1%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "HrdCongalalaPlt+ x1",
               "chance": "40%"
@@ -698,9 +702,10 @@
     },
     {
       "name": "Emerald Congalala",
+      "type": "Pelagus",
       "drops": {
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "E.CongalalaPelt+",
               "chance": "50%"
@@ -718,7 +723,7 @@
               "chance": "5%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "E.CongalalaPelt+ x1",
               "chance": "60%"
@@ -728,7 +733,7 @@
               "chance": "40%"
             }
           ],
-          "Break Claw": [
+          "break claw": [
             {
               "name": "HrdE.CongaClaw x1",
               "chance": "60%"
@@ -742,7 +747,7 @@
               "chance": "20%"
             }
           ],
-          "Shiny Drop : Stagger the tail": [
+          "shiny drop : stagger the tail": [
             {
               "name": "TerritorialDung+",
               "chance": "48%"
@@ -792,7 +797,7 @@
               "chance": "1%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "E.CongalalaPelt+ x1",
               "chance": "40%"
@@ -811,9 +816,10 @@
     },
     {
       "name": "Blango",
+      "type": "Pelagus",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Blango Pelt",
               "chance": "50%"
@@ -828,8 +834,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Blango Pelt+",
               "chance": "50%"
@@ -848,8 +854,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Piercing Claw",
               "chance": "45%"
@@ -872,9 +878,10 @@
     },
     {
       "name": "Blangonga",
+      "type": "Pelagus",
       "drops": {
-        "1-2 Star Rank": {
-          "Body Carves (x3)": [
+        "1-2 star rank": {
+          "body carves (x3)": [
             {
               "name": "Blangonga Pelt",
               "chance": "50%"
@@ -888,7 +895,7 @@
               "chance": "38%"
             }
           ],
-          "Break Fang": [
+          "break fang": [
             {
               "name": "Giant Bone x2",
               "chance": "75%"
@@ -898,13 +905,13 @@
               "chance": "25%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Blangonga Pelt x1",
               "chance": "100%"
             }
           ],
-          "Shiny Drop : Finishes eating without noticing hunter": [
+          "shiny drop : finishes eating without noticing hunter": [
             {
               "name": "Territorial Dung",
               "chance": "80%"
@@ -918,7 +925,7 @@
               "chance": "15%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blangonga Pelt x1",
               "chance": "30%"
@@ -933,8 +940,8 @@
             }
           ]
         },
-        "Low Rank": {
-          "Body Carves (x3)": [
+        "low rank": {
+          "body carves (x3)": [
             {
               "name": "Blangonga Pelt",
               "chance": "63%"
@@ -952,13 +959,13 @@
               "chance": "8%"
             }
           ],
-          "Break Fang": [
+          "break fang": [
             {
               "name": "Blangonga Fang x1",
               "chance": "100%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Blangonga Tail x1",
               "chance": "65%"
@@ -968,7 +975,7 @@
               "chance": "35%"
             }
           ],
-          "Shiny Drop : Finishes eating without noticing hunter": [
+          "shiny drop : finishes eating without noticing hunter": [
             {
               "name": "Territorial Dung",
               "chance": "75%"
@@ -982,7 +989,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blangonga Whiskr x1",
               "chance": "40%"
@@ -1001,8 +1008,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x3)": [
+        "high rank": {
+          "body carves (x3)": [
             {
               "name": "Blangonga Pelt+",
               "chance": "60%"
@@ -1024,7 +1031,7 @@
               "chance": "5%"
             }
           ],
-          "Break Fang": [
+          "break fang": [
             {
               "name": "Blangonga Fang+ x1",
               "chance": "80%"
@@ -1034,7 +1041,7 @@
               "chance": "20%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Blangonga Tail x1",
               "chance": "65%"
@@ -1044,7 +1051,7 @@
               "chance": "35%"
             }
           ],
-          "Shiny Drop : Finishes eating without noticing hunter": [
+          "shiny drop : finishes eating without noticing hunter": [
             {
               "name": "Territorial Dung",
               "chance": "38%"
@@ -1062,7 +1069,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blangonga Pelt+ x1",
               "chance": "40%"
@@ -1081,8 +1088,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "HrdBlangongaPlt+",
               "chance": "60%"
@@ -1104,7 +1111,7 @@
               "chance": "5%"
             }
           ],
-          "Break Fang": [
+          "break fang": [
             {
               "name": "HvyBlangongaFang x1",
               "chance": "60%"
@@ -1118,7 +1125,7 @@
               "chance": "20%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "LeathrBlangoTail x1",
               "chance": "60%"
@@ -1132,7 +1139,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : Finishes eating without noticing hunter": [
+          "shiny drop : finishes eating without noticing hunter": [
             {
               "name": "TerritorialDung+",
               "chance": "50%"
@@ -1150,7 +1157,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "HrdBlangongaPlt+ x1",
               "chance": "40%"
@@ -1173,9 +1180,10 @@
     },
     {
       "name": "Copper Blangonga",
+      "type": "Pelagus",
       "drops": {
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "C.BlangongaPelt+",
               "chance": "60%"
@@ -1193,7 +1201,7 @@
               "chance": "10%"
             }
           ],
-          "Break Fang": [
+          "break fang": [
             {
               "name": "HvyC.BlangoFang x1",
               "chance": "60%"
@@ -1207,7 +1215,7 @@
               "chance": "20%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "LthrC.BlangoTail x1",
               "chance": "65%"
@@ -1217,7 +1225,7 @@
               "chance": "35%"
             }
           ],
-          "Shiny Drop : Finishes eating without noticing hunter": [
+          "shiny drop : finishes eating without noticing hunter": [
             {
               "name": "TerritorialDung+",
               "chance": "50%"
@@ -1235,7 +1243,7 @@
               "chance": "5%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "C.BlangongaPelt+ x1",
               "chance": "40%"
@@ -1258,9 +1266,10 @@
     },
     {
       "name": "Rajang",
+      "type": "Pelagus",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x3)": [
+        "low rank": {
+          "body carves (x3)": [
             {
               "name": "Blk Rajang Pelt",
               "chance": "27%"
@@ -1278,13 +1287,13 @@
               "chance": "6%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Rajang Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Rajang Tail x1",
               "chance": "91%"
@@ -1294,7 +1303,7 @@
               "chance": "9%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blk Rajang Pelt x1",
               "chance": "44%"
@@ -1313,8 +1322,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x3)": [
+        "high rank": {
+          "body carves (x3)": [
             {
               "name": "Rajang Fang",
               "chance": "46%"
@@ -1332,13 +1341,13 @@
               "chance": "6%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Rajang Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Rajang Tail x1",
               "chance": "91%"
@@ -1348,7 +1357,7 @@
               "chance": "9%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blk Rajang Pelt x1",
               "chance": "44%"
@@ -1367,8 +1376,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x3)": [
+        "g rank": {
+          "body carves (x3)": [
             {
               "name": "Blk Rajang Pelt+",
               "chance": "28%"
@@ -1394,7 +1403,7 @@
               "chance": "3%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Hard Rajang Horn x1",
               "chance": "60%"
@@ -1404,7 +1413,7 @@
               "chance": "40%"
             }
           ],
-          "Break Tail": [
+          "break tail": [
             {
               "name": "Rajang Tail x1",
               "chance": "82%"
@@ -1418,7 +1427,7 @@
               "chance": "8%"
             }
           ],
-          "Capture": [
+          "capture": [
             {
               "name": "Blk Rajang Pelt+ x1",
               "chance": "36%"
@@ -1453,6 +1462,7 @@
     },
     {
       "name": "Golden Rajang",
+      "type": "Pelagus",
       "drops": {
       }
     }

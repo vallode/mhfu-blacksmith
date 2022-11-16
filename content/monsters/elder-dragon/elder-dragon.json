@@ -2,9 +2,10 @@
   "monsters": [
     {
       "name": "Kirin",
+      "type": "Elder Dragon",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x2)": [
+        "low rank": {
+          "body carves (x2)": [
             {
               "name": "Kirin Mane",
               "chance": "39%"
@@ -27,8 +28,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x2)": [
+        "high rank": {
+          "body carves (x2)": [
             {
               "name": "Kirin Thndr Tail",
               "chance": "20%"
@@ -59,8 +60,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x2)": [
+        "g rank": {
+          "body carves (x2)": [
             {
               "name": "Platinum Mane",
               "chance": "34%"
@@ -87,19 +88,22 @@
     },
     {
       "name": "Kushala Daora",
+      "type": "Elder Dragon",
       "drops": {
       }
     },
     {
       "name": "Rusted Kushala Daora",
+      "type": "Elder Dragon",
       "drops": {
       }
     },
     {
       "name": "Chameleos",
+      "type": "Elder Dragon",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x4)": [
+        "low rank": {
+          "body carves (x4)": [
             {
               "name": "Chameleos Hide",
               "chance": "39%"
@@ -121,7 +125,7 @@
               "chance": "5%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Chameleos Tail",
               "chance": "60%"
@@ -135,7 +139,7 @@
               "chance": "18%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Chameleos Horn x1",
               "chance": "90%"
@@ -145,7 +149,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : sonic during its attacks": [
+          "shiny drop : sonic during its attacks": [
             {
               "name": "Dragon Treasure",
               "chance": "75%"
@@ -156,8 +160,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x4)": [
+        "high rank": {
+          "body carves (x4)": [
             {
               "name": "Chameleos Hide",
               "chance": "35%"
@@ -183,7 +187,7 @@
               "chance": "5%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Chameleos Tail",
               "chance": "60%"
@@ -201,7 +205,7 @@
               "chance": "8%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Chameleos Horn x1",
               "chance": "50%"
@@ -215,7 +219,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : sonic during its attacks": [
+          "shiny drop : sonic during its attacks": [
             {
               "name": "Dragon Treasure",
               "chance": "43%"
@@ -230,8 +234,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x4)": [
+        "g rank": {
+          "body carves (x4)": [
             {
               "name": "SpecChameleHide+",
               "chance": "35%"
@@ -261,7 +265,7 @@
               "chance": "2%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "LthrChameleoTail",
               "chance": "60%"
@@ -283,7 +287,7 @@
               "chance": "3%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "HrdChameleosHorn x1",
               "chance": "70%"
@@ -297,7 +301,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : sonic during its attacks": [
+          "shiny drop : sonic during its attacks": [
             {
               "name": "Anc Drgn Treasre",
               "chance": "50%"
@@ -324,9 +328,10 @@
     },
     {
       "name": "Lunastra",
+      "type": "Elder Dragon",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x4)": [
+        "low rank": {
+          "body carves (x4)": [
             {
               "name": "Lunastra Shell",
               "chance": "28%"
@@ -352,7 +357,7 @@
               "chance": "5%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Lunastra Tail",
               "chance": "59%"
@@ -366,13 +371,13 @@
               "chance": "18%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Lunastra Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Wings": [
+          "break wings": [
             {
               "name": "Fire Drgn Webbng x1",
               "chance": "72%"
@@ -382,7 +387,7 @@
               "chance": "28%"
             }
           ],
-          "Shiny Drop : force it into rage mode or reactivating fire aura": [
+          "shiny drop : force it into rage mode or reactivating fire aura": [
             {
               "name": "Dragon Treasure",
               "chance": "75%"
@@ -397,8 +402,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x4)": [
+        "high rank": {
+          "body carves (x4)": [
             {
               "name": "LunastraCarapace",
               "chance": "28%"
@@ -424,7 +429,7 @@
               "chance": "5%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Lunastra Tail",
               "chance": "34%"
@@ -446,7 +451,7 @@
               "chance": "2%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Lunastra Spike x1",
               "chance": "80%"
@@ -456,7 +461,7 @@
               "chance": "20%"
             }
           ],
-          "Break Wings": [
+          "break wings": [
             {
               "name": "Fire Dragon Pwdr x1",
               "chance": "50%"
@@ -474,7 +479,7 @@
               "chance": "10%"
             }
           ],
-          "Shiny Drop : force it into rage mode or reactivating fire aura": [
+          "shiny drop : force it into rage mode or reactivating fire aura": [
             {
               "name": "Dragon Treasure",
               "chance": "38%"
@@ -501,9 +506,10 @@
     },
     {
       "name": "Teostra",
+      "type": "Elder Dragon",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x4)": [
+        "low rank": {
+          "body carves (x4)": [
             {
               "name": "Teostra Shell",
               "chance": "30%"
@@ -529,7 +535,7 @@
               "chance": "6%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Teostra Tail",
               "chance": "59%"
@@ -543,13 +549,13 @@
               "chance": "18%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Teostra Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Wings": [
+          "break wings": [
             {
               "name": "Fire Drgn Webbng x1",
               "chance": "77%"
@@ -559,7 +565,7 @@
               "chance": "23%"
             }
           ],
-          "Shiny Drop : force it into rage mode or reactivating fire aura": [
+          "shiny drop : force it into rage mode or reactivating fire aura": [
             {
               "name": "Dragon Treasure",
               "chance": "75%"
@@ -574,8 +580,8 @@
             }
           ]
         },
-        "High Rank": {
-          "Body Carves (x4)": [
+        "high rank": {
+          "body carves (x4)": [
             {
               "name": "Fire Drgn Scl+",
               "chance": "30%"
@@ -605,7 +611,7 @@
               "chance": "5%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "Teostra Tail",
               "chance": "34%"
@@ -627,7 +633,7 @@
               "chance": "2%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Teostra Horn+ x1",
               "chance": "61%"
@@ -637,7 +643,7 @@
               "chance": "39%"
             }
           ],
-          "Break Wings": [
+          "break wings": [
             {
               "name": "Fire Dragon Pwdr x1",
               "chance": "40%"
@@ -651,7 +657,7 @@
               "chance": "23%"
             }
           ],
-          "Shiny Drop : force it into rage mode or reactivating fire aura": [
+          "shiny drop : force it into rage mode or reactivating fire aura": [
             {
               "name": "Dragon Treasure",
               "chance": "38%"
@@ -674,8 +680,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x4)": [
+        "g rank": {
+          "body carves (x4)": [
             {
               "name": "ThckFireDrgnScl",
               "chance": "33%"
@@ -705,7 +711,7 @@
               "chance": "2%"
             }
           ],
-          "Tail Carves (x1)": [
+          "tail carves (x1)": [
             {
               "name": "LthrTeostraTail",
               "chance": "59%"
@@ -731,13 +737,13 @@
               "chance": "1%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "HardTeostraHorn x1",
               "chance": "80%"
             }
           ],
-          "Break Wings": [
+          "break wings": [
             {
               "name": "Fire Dragon Pwdr x1",
               "chance": "30%"
@@ -755,7 +761,7 @@
               "chance": "20%"
             }
           ],
-          "Shiny Drop : force it into rage mode or reactivating fire aura": [
+          "shiny drop : force it into rage mode or reactivating fire aura": [
             {
               "name": "Anc Drgn Treasre",
               "chance": "48%"
@@ -786,9 +792,10 @@
     },
     {
       "name": "Lao-Shan Lung",
+      "type": "Elder Dragon",
       "drops": {
-        "Low Rank": {
-          "Body Carves (x9)": [
+        "low rank": {
+          "body carves (x9)": [
             {
               "name": "Lao-Shan's Scale",
               "chance": "58%"
@@ -802,7 +809,7 @@
               "chance": "5%"
             }
           ],
-          "Live Carving : jump to its back (x3)": [
+          "live carving : jump to its back (x3)": [
             {
               "name": "Eldr Dragon Bone",
               "chance": "35%"
@@ -820,13 +827,13 @@
               "chance": "12%"
             }
           ],
-          "Break Horn": [
+          "break horn": [
             {
               "name": "Lao-Shan's Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Head": [
+          "break head": [
             {
               "name": "Lao-Shan's Shell x1",
               "chance": "65%"
@@ -852,7 +859,7 @@
               "chance": "7%"
             }
           ],
-          "Break Back": [
+          "break back": [
             {
               "name": "Lao-Shan's Shell x1",
               "chance": "75%"
@@ -878,7 +885,7 @@
               "chance": "5%"
             }
           ],
-          "Break Left Shoulder": [
+          "break left shoulder": [
             {
               "name": "Lao-Shan's Scale x1",
               "chance": "58%"
@@ -888,7 +895,7 @@
               "chance": "42%"
             }
           ],
-          "Break Right Shoulder": [
+          "break right shoulder": [
             {
               "name": "Lao-Shan's Scale x1",
               "chance": "58%"
@@ -903,14 +910,16 @@
     },
     {
       "name": "Ashen Lao-Shan Lung",
+      "type": "Elder Dragon",
       "drops": {
       }
     },
     {
       "name": "Yama Tsukami",
+      "type": "Elder Dragon",
       "drops": {
-        "G Rank": {
-          "Body Carves (x5)": [
+        "g rank": {
+          "body carves (x5)": [
             {
               "name": "YamaTsukamiFluid",
               "chance": "34%"
@@ -932,7 +941,7 @@
               "chance": "8%"
             }
           ],
-          "Live Carving : when falling down w/ enough damage": [
+          "live carving : when falling down w/ enough damage": [
             {
               "name": "Dragon Treasure",
               "chance": "30%"
@@ -962,7 +971,7 @@
               "chance": "5%"
             }
           ],
-          "Break Tentacles": [
+          "break tentacles": [
             {
               "name": "YamaTsukaFillet x1",
               "chance": "70%"
@@ -972,7 +981,7 @@
               "chance": "30%"
             }
           ],
-          "Shiny Drop : throw 2/3 tranqs while it does the succ": [
+          "shiny drop : throw 2/3 tranqs while it does the succ": [
             {
               "name": "Anc Drgn Treasre",
               "chance": "45%"
@@ -995,9 +1004,10 @@
     },
     {
       "name": "Fatalis",
+      "type": "Elder Dragon",
       "drops": {
-        "High Rank": {
-          "Body Carves (x9)": [
+        "high rank": {
+          "body carves (x9)": [
             {
               "name": "Fatalis Scale",
               "chance": "42%"
@@ -1011,31 +1021,31 @@
               "chance": "8%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "Fatalis Horn x1",
               "chance": "100%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "Fatalis Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis Eye x1",
               "chance": "100%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "Fatalis Webbing x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "Fatalis Shell x1",
               "chance": "15%"
@@ -1046,8 +1056,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x9)": [
+        "g rank": {
+          "body carves (x9)": [
             {
               "name": "Hvy Fatalis Shl",
               "chance": "44%"
@@ -1065,7 +1075,7 @@
               "chance": "8%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "HardFatalisHorn x1",
               "chance": "80%"
@@ -1075,7 +1085,7 @@
               "chance": "20%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "HardFatalisHorn x1",
               "chance": "80%"
@@ -1085,7 +1095,7 @@
               "chance": "20%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis Evil Eye x1",
               "chance": "80%"
@@ -1095,13 +1105,13 @@
               "chance": "20%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "Str Fatalis Wng x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "ThckFatalisScale x1",
               "chance": "85%"
@@ -1116,9 +1126,10 @@
     },
     {
       "name": "Crimson Fatalis",
+      "type": "Elder Dragon",
       "drops": {
-        "High Rank": {
-          "Body Carves (x9)": [
+        "high rank": {
+          "body carves (x9)": [
             {
               "name": "Fatalis CrmsnScl",
               "chance": "34%"
@@ -1144,31 +1155,31 @@
               "chance": "3%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "Fatalis CrmsnHrn x1",
               "chance": "100%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "Fatalis Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis DevilEye x1",
               "chance": "100%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "Fatalis CrmsnWng x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "Fatalis CrmsnScl x1",
               "chance": "85%"
@@ -1179,8 +1190,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x9)": [
+        "g rank": {
+          "body carves (x9)": [
             {
               "name": "ThckFatlisCrmScl",
               "chance": "34%"
@@ -1206,7 +1217,7 @@
               "chance": "3%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "HrdFatlisCrmHorn x1",
               "chance": "80%"
@@ -1216,7 +1227,7 @@
               "chance": "20%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "HardFatalisHorn x1",
               "chance": "80%"
@@ -1226,7 +1237,7 @@
               "chance": "20%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis Evil Eye x1",
               "chance": "80%"
@@ -1236,13 +1247,13 @@
               "chance": "20%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "StrFatlisCrmWing x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "ThckFatlisCrmScl x1",
               "chance": "85%"
@@ -1257,9 +1268,10 @@
     },
     {
       "name": "White Fatalis",
+      "type": "Elder Dragon",
       "drops": {
-        "High Rank": {
-          "Body Carves (x9)": [
+        "high rank": {
+          "body carves (x9)": [
             {
               "name": "Wht Fatalis Scl",
               "chance": "31%"
@@ -1285,31 +1297,31 @@
               "chance": "3%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "Wht Fatalis Horn x1",
               "chance": "100%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "Fatalis Horn x1",
               "chance": "100%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis DevilEye x1",
               "chance": "100%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "Wht Fatalis Wbng x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "Wht Fatalis Scl x1",
               "chance": "75%"
@@ -1320,8 +1332,8 @@
             }
           ]
         },
-        "G Rank": {
-          "Body Carves (x9)": [
+        "g rank": {
+          "body carves (x9)": [
             {
               "name": "ThckWhtFatlisScl",
               "chance": "31%"
@@ -1347,7 +1359,7 @@
               "chance": "3%"
             }
           ],
-          "Break 1st Horn": [
+          "break 1st horn": [
             {
               "name": "HrdWhtFatlisHorn x1",
               "chance": "80%"
@@ -1357,7 +1369,7 @@
               "chance": "20%"
             }
           ],
-          "Break 2nd Horn": [
+          "break 2nd horn": [
             {
               "name": "HardFatalisHorn x1",
               "chance": "80%"
@@ -1367,7 +1379,7 @@
               "chance": "20%"
             }
           ],
-          "Break Eye": [
+          "break eye": [
             {
               "name": "Fatalis Evil Eye x1",
               "chance": "80%"
@@ -1377,13 +1389,13 @@
               "chance": "20%"
             }
           ],
-          "Break Wing": [
+          "break wing": [
             {
               "name": "StrWhtFatalisWng x1",
               "chance": "100%"
             }
           ],
-          "Break Chest": [
+          "break chest": [
             {
               "name": "ThckWhtFatlisScl x1",
               "chance": "75%"

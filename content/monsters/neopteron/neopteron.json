@@ -2,9 +2,10 @@
   "monsters": [
     {
       "name": "Vespoid",
+      "type": "Neopteron",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Vespoid Shell",
               "chance": "47%"
@@ -19,8 +20,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Vespoid Carapace",
               "chance": "40%"
@@ -43,8 +44,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Vespoid Carapace",
               "chance": "25%"
@@ -71,14 +72,16 @@
     },
     {
       "name": "Vespoid Queen",
+      "type": "Neopteron",
       "drops": {
       }
     },
     {
       "name": "Hornetaur",
+      "type": "Neopteron",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Hornetaur Shell",
               "chance": "40%"
@@ -97,8 +100,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Hornetaur Crapce",
               "chance": "40%"
@@ -121,8 +124,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Hornetaur Crapce",
               "chance": "20%"
@@ -153,9 +156,10 @@
     },
     {
       "name": "Great Thunderbug",
+      "type": "Neopteron",
       "drops": {
-        "Low-Rank": {
-          "Shiny Drop ( Killed )": [
+        "low-rank": {
+          "shiny drop ( killed )": [
             {
               "name": "Thunderbug Juice",
               "chance": "50%"
@@ -170,8 +174,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Shiny Drop ( Killed )": [
+        "high-rank": {
+          "shiny drop ( killed )": [
             {
               "name": "Thunderbug Juice",
               "chance": "70%"
@@ -186,8 +190,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Shiny Drop ( Killed )": [
+        "g-rank": {
+          "shiny drop ( killed )": [
             {
               "name": "Thunderbug Jelly",
               "chance": "70%"
