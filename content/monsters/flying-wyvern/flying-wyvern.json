@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Remobra",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Small wyverns with outstanding flying abilities, they loiter in the skies waiting to prey upon weakened animals. Known to attack alongside Elder Dragons, they are known as an omen to disaster.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -64,7 +65,8 @@
     },
     {
       "name": "Rathian",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Female version of the Rathalos wyvern. Unlike its male counterpart, it usually patrols its territory from the ground. Its tail spikes are filled with poison.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -502,7 +504,8 @@
     },
     {
       "name": "Pink Rathian",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -862,7 +865,7 @@
     },
     {
       "name": "Gold Rathian",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
       "drops": {
         "high rank": {
           "body carves (x3)": [
@@ -1104,7 +1107,8 @@
     },
     {
       "name": "Rathalos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Male wyvern that keeps a nest and patrols its patch of territory from the air in search of prey. Its claws are filled with a poison that weakens its quarry.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -1542,7 +1546,7 @@
     },
     {
       "name": "Azure Rathalos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -1898,7 +1902,7 @@
     },
     {
       "name": "Silver Rathalos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
       "drops": {
         "high rank": {
           "body carves (x3)": [
@@ -2140,7 +2144,8 @@
     },
     {
       "name": "Khezu",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Loathsome wyverns that live inside caves. Near blind, they detect their prey by smell. They are capable of generating electric shocks, which they use to paralyze their prey.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -2422,7 +2427,8 @@
     },
     {
       "name": "Red Khezu",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Loathsome wyverns that live inside caves. Near blind, they detect their prey by smell. They are capable of generating electric shocks, which they use to paralyze their prey.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -2650,7 +2656,8 @@
     },
     {
       "name": "Basarios",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A large wyvern found in volcanic zones. They are the juvenile form of the Gravios. They have a steel-like carapace that requires powerful items to crack. Emits poison gas.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -2912,7 +2919,8 @@
     },
     {
       "name": "Gravios",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A large wyvern found in volcanic zones. They possess a fiery breath attack and the ability to emit a sleeping gas. They also have extremely hard scales that deflect most weapon attacks.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
@@ -3182,7 +3190,8 @@
     },
     {
       "name": "Black Gravios",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A large wyvern found in volcanic zones. They possess a fiery breath attack and the ability to emit a sleeping gas. They also have extremely hard scales that deflect most weapon attacks.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
@@ -3452,7 +3461,8 @@
     },
     {
       "name": "Monoblos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A large-horned wyvern found in desert zones. Their giant horn makes their attacks very dangerous. While they have no breath attack, their ear-splitting roar is the bane of hunters.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
@@ -3594,7 +3604,8 @@
     },
     {
       "name": "White Monoblos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A large-horned wyvern found in desert zones. Their giant horn makes their attacks very dangerous. While they have no breath attack, their ear-splitting roar is the bane of hunters.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
@@ -3736,7 +3747,8 @@
     },
     {
       "name": "Diablos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "Two-horned wyverns found in desert zones. They are capable of burrowing into sand to attack prey from below. Incredibly violent and proud, they are known to unleash terrible wrath when accosted.",
       "drops": {
         "low-rank": {
           "body carves (x3)": [
@@ -3962,7 +3974,7 @@
     },
     {
       "name": "Black Diablos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -4192,7 +4204,8 @@
     },
     {
       "name": "Tigrex",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A flying wyvern that maintains its primitive origins. Prone to violence, it possesses incredible ferocity thanks to its four limbs, claws, and jaw. Inhabits a wide area, it has even been spotted hunting Popo in the mountains.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -4558,7 +4571,8 @@
     },
     {
       "name": "Nargacuga",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A uniquely-evolved wyvern that calls the forest its home. It hides itself in the shadows and slyly stalks its prey with terrifying speed and tenacity. Its unique tail can take down a medium-sized monster in a single swish.",
       "drops": {
         "high-rank": {
           "body carves (x3)": [
@@ -4824,7 +4838,8 @@
     },
     {
       "name": "Akantor",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A wyvern truly wrapped in mystery. Known to some as the black god and to others as the tyrant of fire, this large and brutal creature is known to the Guild simply as Akantor...",
       "drops": {
         "high rank": {
           "body carves (x4)": [
@@ -4930,7 +4945,8 @@
     },
     {
       "name": "Ukanlos",
-      "type": "Flying Wyvern",
+      "type": "flying-wyvern",
+      "description": "A mysterious wyvern said to only appear after large avalanches deep in the snowy mountains. Often seen crushing ice balls and rock into powder in its stride, it’s known to the Guild as Ukanlos, although there are whisperings that it may be the white god...",
       "drops": {
         "g rank": {
           "body carves (x4)": [

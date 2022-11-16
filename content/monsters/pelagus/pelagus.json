@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Bullfango",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "A large wild boar. Foul tempered, they will charge hunters on sight. They are aggressive and powerful, so beware! They are often hunted for their meat, which many hunters find delicious.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -72,7 +73,8 @@
     },
     {
       "name": "Bulldrome",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "The powerful leader of the wild boars known for its enormous tusks. More aggressive than a Bullfango, it is known to rush into a fight, and is extremely proficient at locating a foe.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -234,7 +236,8 @@
     },
     {
       "name": "Conga",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "Fanged, ape-like Primatius with pink fur. Prefers to live in small groups as opposed to large packs, and particularly enjoys mushroom snacks. If stumbled upon, it will be hostile, so beware of areas like the swamp or jungle.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -296,7 +299,8 @@
     },
     {
       "name": "Congalala",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "A large pelagus sporting pink fur often spotted in the jungle and swamp zones. Fond of mushrooms, its diet affects its breath, which may be poisonous or flaming. One can predict these traits via the food in its local habitat.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -702,7 +706,7 @@
     },
     {
       "name": "Emerald Congalala",
-      "type": "Pelagus",
+      "type": "pelagus",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -816,7 +820,8 @@
     },
     {
       "name": "Blango",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "A Primatius covered entirely in white fur. Known to move in packs and led by a Blangonga. The Blangonga exerts tight control over the group, and any call to gather will be met immediately by the rank and file Blangos.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -878,7 +883,8 @@
     },
     {
       "name": "Blangonga",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "Leader of a Blango pack, it is twice as large and recognized by its giant fangs, whiskers, and head-crown. It sends its pack to attack any trespassers. Its jumping power allows it great mobility in its home range of the snowy mountains.",
       "drops": {
         "1-2 star rank": {
           "body carves (x3)": [
@@ -1180,7 +1186,7 @@
     },
     {
       "name": "Copper Blangonga",
-      "type": "Pelagus",
+      "type": "pelagus",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -1266,7 +1272,8 @@
     },
     {
       "name": "Rajang",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -1462,7 +1469,8 @@
     },
     {
       "name": "Golden Rajang",
-      "type": "Pelagus",
+      "type": "pelagus",
+      "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {
       }
     }

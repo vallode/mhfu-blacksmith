@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Cephalos",
-      "type": "Piscine Wyvern",
+      "type": "piscine-wyvern",
+      "description": "Wyverns found only in the Desert. They resemble a Plesioth, but live and \"swim\" in sand rather than water. They seldom appear above land, but when their hearing is disturbed...",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -76,7 +77,8 @@
     },
     {
       "name": "Cephadrome",
-      "type": "Piscine Wyvern",
+      "type": "piscine-wyvern",
+      "description": "The alpha monster form of the Cephalos. Larger and armored with black scales, they fit the appearance of a leader perfectly. Their fins hold a paralyzing toxin.",
       "drops": {
         "1-2 star guild": {
           "body carves (x3)": [
@@ -260,7 +262,8 @@
     },
     {
       "name": "Plesioth",
-      "type": "Piscine Wyvern",
+      "type": "piscine-wyvern",
+      "description": "An enormous, flightless, aquatic wyvern with wings that have evolved into fins for swimming. Although superficially fish-like, they can move on land as well. They love frogs.",
       "drops": {
         "1-2 star": {
           "body carves (x4)": [
@@ -538,7 +541,8 @@
     },
     {
       "name": "Green Plesioth",
-      "type": "Piscine Wyvern",
+      "type": "piscine-wyvern",
+      "description": "An enormous, flightless, aquatic wyvern with wings that have evolved into fins for swimming. Although superficially fish-like, they can move on land as well. They love frogs.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
@@ -766,7 +770,8 @@
     },
     {
       "name": "Lavasioth",
-      "type": "Piscine Wyvern",
+      "type": "piscine-wyvern",
+      "description": "A piscine wyvern that resides in magma. Its scales are covered by layers of cooled magma, which makes it one hard nut to crack. It swims around in lava, spewing the molten rock it takes in at its prey… Researchers love to study its peculiar way of life.",
       "drops": {
         "g rank": {
           "body carves (x4)": [

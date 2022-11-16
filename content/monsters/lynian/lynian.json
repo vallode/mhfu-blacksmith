@@ -2,13 +2,15 @@
   "monsters": [
     {
       "name": "Felyne",
-      "type": "Lynian",
+      "type": "lynian",
+      "description": "Cat-like humanoids called Lynians that are noted for their white fur. Felynes are quiet and peaceful until angered, in which case they may attack. Capable of speech, they are sometimes found in the employ of human masters.",
       "drops": {
       }
     },
     {
       "name": "Melynx",
-      "type": "Lynian",
+      "type": "lynian",
+      "description": "Cat-like humanoids called Lynians with black fur. Their sticky-fingers never miss a chance to steal things and take them back to their den, forcing victims to seek out their lost items. Distracted by the sight of Felvine.",
       "drops": {
         "1-2 star guild": {
           "shiny drop": [
@@ -94,7 +96,8 @@
     },
     {
       "name": "Shakalaka",
-      "type": "Lynian",
+      "type": "lynian",
+      "description": "A small, four-limbed monster known for always wearing a mask. Their camouflage-like qualities make them difficult to spot, but if you do, you're in trouble! Their leader, the King Shakalaka, is known to wear a crown like object.",
       "drops": {
         "low rank": {
           "body carves (x1)": [
@@ -334,7 +337,8 @@
     },
     {
       "name": "King Shakalaka",
-      "type": "Lynian",
+      "type": "lynian",
+      "description": "This Shakalaka chieftain pulls together the Shakalaka's as one, in order to act. Extremely quick to anger when approached, this hot-head can invoke his fiery wrath with emotion alone. Feared by even the most skilled hunters.",
       "drops": {
         "high rank": {
           "body carves (x2)": [

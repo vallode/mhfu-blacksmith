@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Anteka",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "Herbivorous monsters living in the snowy mountains. Normally docile, but when provoked it will attack with its giant antlers. Its high quality pelt has many uses and its antlers are highly valued by the Guild.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -76,7 +77,8 @@
     },
     {
       "name": "Popo",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "A herbivorous monster known for its giant, bent fangs. Living in herds, it is particularly bold when defending its offspring. Popo meat is quite nutritious, and its tongue is widely admired as a delicacy.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -138,7 +140,8 @@
     },
     {
       "name": "Kelbi",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "Herbivorous, deer-like monsters. Valued for their horns, they tend to run away at the first hint of danger. They are also hunted for their meat, which is chewy but flavorful.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -212,7 +215,8 @@
     },
     {
       "name": "Mosswine",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "Wild pigs covered in moss and fungus. Sometimes you will even find mushrooms growing on them. Their meat is known as a delicacy. Though normally docile, they will charge you if angered!",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -286,7 +290,8 @@
     },
     {
       "name": "Aptonoth",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "Hunted as a food source, these creatures are preyed upon by both hunter and monster alike. Usually timid, in packs they will defend themselves with surprising strength.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -328,7 +333,8 @@
     },
     {
       "name": "Apceros",
-      "type": "Herbivore",
+      "type": "herbivore",
+      "description": "Hunted for their meat, which is buried under a thick, armored hide. Aggressive compared to the Aptonoth, hunting them can be a challenge. Apceros eggs are a valuable guild commodity.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [

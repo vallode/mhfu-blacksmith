@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Giaprey",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A species of small bird-like carnivores known to inhabit the snowy mountains. Their white skin is beautiful, but their temperament is not. They are known to spit ice at hunters, and attack in deadly packs.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -56,7 +57,8 @@
     },
     {
       "name": "Giadrome",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "The alpha leader of a pack of Giaprey, the Giadrome sports a beautiful crest. Larger than a Giaprey, any hunter silly enough to encroach on its turf will be frozen in a hail of ice.",
       "drops": {
         "1-2 star": {
           "body carves (x2)": [
@@ -164,7 +166,8 @@
     },
     {
       "name": "Velociprey",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "Aggressive, carnivorous monsters that often travel in packs. Even a master hunter should take care not to become surrounded! Wide ranging, they are found in many different areas, such as the Jungle or Forest and Hills.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -226,7 +229,8 @@
     },
     {
       "name": "Velocidrome",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads a Velociprey pack. They are larger and have a more prominent crest. Highly territorial, but will retreat to a safe place when injured to recover.",
       "drops": {
         "1-2 star": {
           "body carves (x2)": [
@@ -334,7 +338,8 @@
     },
     {
       "name": "Genprey",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "An orange and green-striped species of small carnivores found mainly in desert zones. Traveling in packs, their large fangs and claws contain a neurotoxin that is used to paralyze prey.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -392,7 +397,8 @@
     },
     {
       "name": "Gendrome",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads a Genprey pack. They are larger and have more prominent crest. Found in the desert, they can paralyze prey using their fangs and claws.",
       "drops": {
         "1-2 star": {
           "body carves (x2)": [
@@ -504,7 +510,8 @@
     },
     {
       "name": "Ioprey",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A vivid red species of small carnivores often found in subtropical zones. Sacs in their throat contain a powerful poison that slowly drains the health of their prey.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -562,7 +569,8 @@
     },
     {
       "name": "Iodrome",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads an Ioprey pack. They are larger and have a more prominent crest. Found in subtropical zones, they spit a poison that can sap the life force of prey.",
       "drops": {
         "low rank": {
           "body carves (x2)": [
@@ -640,7 +648,8 @@
     },
     {
       "name": "Yian Kut-Ku",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -918,7 +927,8 @@
     },
     {
       "name": "Blue Yian Kut-Ku",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -1142,7 +1152,8 @@
     },
     {
       "name": "Yian Garuga",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A breed of Yian Kut-Ku with a hard black shell and a long mane. Known for its trap avoiding slyness and poison loaded tail, it is a particularly evil wyvern, so beware!",
       "drops": {
         "low rank": {
           "body carve (x3)": [
@@ -1454,13 +1465,13 @@
     },
     {
       "name": "Yian Garuga (One Eyed)",
-      "type": "Bird Wyvern",
-      "drops": {
-      }
+      "type": "bird-wyvern",
+      "drops": {}
     },
     {
       "name": "Gypceros",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A wyvern that can generate disorienting flashes of light when its prominent head crest is struck. Its rubbery hide resists damage and can ward off shock traps, while its spit carries a deadly venom. However, they are quite timid.",
       "drops": {
         "1-2 star guild": {
           "body carve (x3)": [
@@ -1762,7 +1773,8 @@
     },
     {
       "name": "Purple Gypceros",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A wyvern that can generate disorienting flashes of light when its prominent head crest is struck. Its rubbery hide resists damage and can ward off shock traps, while its spit carries a deadly venom. However, they are quite timid.",
       "drops": {
         "low rank": {
           "body carve (x3)": [
@@ -2010,7 +2022,8 @@
     },
     {
       "name": "Hypnocatrice",
-      "type": "Bird Wyvern",
+      "type": "bird-wyvern",
+      "description": "A rust-colored bird wyvern with beautiful tail feathers found mainly in forests. A highly pacifistic wyvern by nature, it breathes sleeping gas on its enemies and prey alike. Its strong, developed legs pack a serious punch, so be careful!",
       "drops": {
         "high rank": {
           "body carve (x3)": [
