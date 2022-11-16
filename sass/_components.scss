@@ -210,15 +210,15 @@ $weapon-types: (
 );
 
 $monster-types: (
-  "bird-wyverns",
-  "carapaceons",
-  "elder-dragons",
-  "flying-wyverns",
-  "herbivores",
-  "lynians",
-  "neopterons",
-  "pelaguses",
-  "piscine-wyverns",
+  "bird-wyvern",
+  "carapaceon",
+  "elder-dragon",
+  "flying-wyvern",
+  "herbivore",
+  "lynian",
+  "neopteron",
+  "pelagus",
+  "piscine-wyvern",
 );
 
 $decoration-colors: (
@@ -304,7 +304,7 @@ $ranks: (
       background-color: #bdbdbd;
     }
 
-    &.active,
+    &.active::before,
     &:hover::before {
       background-color: white;
     }
@@ -529,6 +529,12 @@ $ranks: (
       flex-direction: column;
       flex: 1 1 0%;
       gap: 13px;
+    }
+
+    .description {
+      color: white;
+      font-size: 1.6rem;
+      white-space: initial;
     }
 
     .shots {
