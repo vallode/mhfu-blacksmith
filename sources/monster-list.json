@@ -1,0 +1,105 @@
+{
+  "monsters": {
+    "Lynian": [
+      "Felyne",
+      "Melynx",
+      "Shakalaka",
+      "King Shakalaka"
+    ],
+    "Neopteron": [
+      "Vespoid",
+      "Vespoid Queen",
+      "Hornetaur",
+      "Great Thunderbug"
+    ],
+    "Herbivore": [
+      "Anteka",
+      "Popo",
+      "Kelbi",
+      "Mosswine",
+      "Aptonoth",
+      "Apceros"
+    ],
+    "Bird Wyvern": [
+      "Giaprey",
+      "Giadrome",
+      "Velociprey",
+      "Velocidrome",
+      "Genprey",
+      "Gendrome",
+      "Ioprey",
+      "Iodrome",
+      "Yian Kut-Ku",
+      "Blue Yian Kut-Ku",
+      "Yian Garuga",
+      "Yian Garuga (One Eyed)",
+      "Gypceros",
+      "Purple Gypceros",
+      "Hypnocatrice"
+    ],
+    "Flying Wyvern": [
+      "Remobra",
+      "Rathian",
+      "Pink Rathian",
+      "Gold Rathian",
+      "Rathalos",
+      "Azure Rathalos",
+      "Silver Rathalos",
+      "Khezu",
+      "Red Khezu",
+      "Basarios",
+      "Gravios",
+      "Black Gravios",
+      "Monoblos",
+      "White Monoblos",
+      "Diablos",
+      "Black Diablos",
+      "Tigrex",
+      "Nargacuga",
+      "Akantor",
+      "Ukanlos"
+    ],
+    "Piscine Wyvern": [
+      "Cephalos",
+      "Cephadrome",
+      "Plesioth",
+      "Green Plesioth",
+      "Lavasioth"
+    ],
+    "Carapaceon": [
+      "Hermitaur",
+      "Daimyo Hermitaur",
+      "Plum Daimyo Hermitaur",
+      "Ceanataur",
+      "Shogun Ceanataur",
+      "Terra Shogun Ceanataur",
+      "Shen Gaoren"
+    ],
+    "Pelagus": [
+      "Bullfango",
+      "Bulldrome",
+      "Conga",
+      "Congalala",
+      "Emerald Congalala",
+      "Blango",
+      "Blangonga",
+      "Copper Blangonga",
+      "Rajang",
+      "Golden Rajang"
+    ],
+    "Elder Dragon": [
+      "Kirin",
+      "Kushala Daora",
+      "Rusted Kushala Daora",
+      "Chameleos",
+      "Lunastra",
+      "Teostra",
+      "Lao-Shan Lung",
+      "Ashen Lao-Shan Lung",
+      "Yama Tsukami",
+      "Fatalis",
+      "Crimson Fatalis",
+      "White Fatalis"
+    ]
+  }
+}
