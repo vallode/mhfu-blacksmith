@@ -1,0 +1,107 @@
+☆ Plesioth - MHFU 1-2 Star
+
+1. Body Carves (x4)
+-  Plesioth Scale (50%)
+-  Sm Lobstershell (5%)
+-  Piscine Fang (20%)
+-  Lg Monster Bone (25%)
+
+2. Break Back Fin
+-  Plesioth Scale x1 (100%)
+
+3. Shiny Drop : fished out, using frog as bait
+-  Wyvern Tears (75%)
+-  Plesioth Scale (25%)
+
+4. Capture
+-  Plesioth Scale x2 (15%)
+-  Lg Monster Bone x1 (25%)
+-  Wyvern Fang x3 (60%)
+
+
+
+☆ Plesioth - MHFU Low Rank
+
+1. Body Carves (x4)
+- Plesioth Scale (70%)
+- Plesioth Fin (22%)
+- Sm Lobstershell (8%)
+        
+2. Break Back Fin
+- Plesioth Fin x1 (92%)
+- Plesioth Scale x1 (8%)
+        
+3. Shiny Drop : fished out, using frog as bait
+- Wyvern Tears (75%)
+- Plesioth Scale (22%)
+- Plesioth Fin (3%)
+        
+4. Capture
+- Plesioth Scale x2 (39%)
+- Wyvern Fang x3 (33%)
+- Plesioth Fin x1 (18%)
+- Sm Lobstershell x1 (10%)
+
+
+
+
+
+☆ Plesioth - MHFU High Rank
+
+1. Body Carves (x4)
+- Plesioth Scale+ (64%)
+- Plesioth Fin+ (18%)
+- Sm Lobstershell (10%)
+- Wyvern Stone (6%)
+- Lg Lobstershell (2%)
+        
+2. Break Back Fin
+- Plesioth Fin+ x1 (87%)
+- Plesioth Scale+ x1 (8%)
+- Plesioth Fin x1 (5%)
+        
+3. Shiny Drop : fished out, using frog as bait
+- Wyvern Tears (33%)
+- Wyvern Sobs (27%)
+- Plesioth Scale+ (25%)
+- Plesioth Fin (10%)
+        
+4. Capture
+- Wyvern Fang x3 (30%)
+- Plesioth Scale+ x1 (27%)
+- Plesioth Fin+ x1  (18%)
+- Sm Lobstershell x1 (12%)
+- Lg Lobstershell x1 (8%)
+- Plesioth Scale x2 (5%)
+
+
+
+
+
+☆ Plesioth - MHFU G Rank
+
+1. Body Carves (x4)
+- ThckPlesiothScl (60%)
+- SpecPlesiothFin+ (23%)
+- Lg Lobstershell (10%)
+- Big Wyvern Stone (5%)
+- Gt Lobstershell (2%)
+        
+2. Break Back Fin
+- SpecPlesiothFin+ x1 (87%)
+- ThckPlesiothScl x1 (8%)
+- Plesioth Fin+ x1 (5%)
+        
+3. Shiny Drop : fished out, using frog as bait
+- Wyvern Sobs (42%)
+- Wyvern Tears (23%)
+- ThckPlesiothScl (25%)
+- SpecPlesiothFin+ (10%)
+        
+4. Capture
+- ThckPlesiothScl x1 (32%)
+- SpecPlesiothFin+ x1 (23%)
+- HvyPiscineFang x2 (20%)
+- Lg Lobstershell x1 (12%)
+- Gt Lobstershell x1 (8%)
+- Plesioth Scale+ x2 (5%)

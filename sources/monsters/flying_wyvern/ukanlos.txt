@@ -1,0 +1,33 @@
+☆ Ukanlos - MHFU G Rank
+
+1. Body Carves (x4)
+-  HvyUkanlosShell (40%)
+-  UkanlosUnderscl (28%)
+-  StrongUkanlosFin (12%)
+-  UkanlosShovelJaw (8%)
+-  Ukanlos Stone (2%)
+
+2. Tail Carves (x2) - Cut when HP < 25% 
+-  Hvy Ukanlos Tail (90%)
+-  HvyUkanlosShell (10%)
+
+3. Break Head
+-  UkanlosShovelJaw (85%)
+-  UkanlosUnderscl (11%)
+-  Ukanlos Stone (4%)
+
+4. Break Dorsal Fin
+-  StrongUkanlosFin x2 (50%)
+-  StrongUkanlosFin x1 (35%)
+-  HvyUkanlosShell x1 (15%)
+
+5. Break Chest - Requires fire element
+-  UkanlosUnderscl (70%)
+-  HvyUkanlosShell (24%)
+-  Ukanlos Stone (6%)
+
+6. Break Claws
+-  UkanlosDiggngClw (80%)
+-  UkanlosDiggngClw (10%)
+-  HvyUkanlosShell (10%)
+ 

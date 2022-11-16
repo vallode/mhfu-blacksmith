@@ -1,0 +1,84 @@
+☆ Diablos - MHFU Low-Rank
+
+1. Body Carves (x3)
+-  Diablos Shell (63%)
+-  Blos Fang (30%)
+-  Diablos Spine (7%)
+
+2. Tail Carves (x1)
+-  Diablos Shell (60%)
+-  Diablos Tail (40%)
+
+3. Capture Rewards
+-  Diablos Shell x1 (40%)
+-  Blos Fang x3 (39%)
+-  Diablos Spine x1 (11%)
+-  Diablos Tail x1 (10%)
+
+4. Shiny Drops
+-  Wyvern Tears (95%)
+
+5. Break Horns
+-  Twisted Horn x1 (92%)
+-  Majestic Horn x1 (8%)
+
+
+☆ Diablos - MHFU High-Rank
+
+1. Body Carves (x3)
+-  Diablos Carapace (56%)
+-  Blos Fang (22%)
+-  Diablos Shell (10%)
+-  Diablos Thoracic (7%)
+-  Wyvern Stone (5%)
+
+2. Tail Carves (x1)
+-  Diablos Tail (64%)
+-  Diablos Carapace (26%)
+-  Diablos Shell (10%)
+
+3. Capture Rewards
+-  Diablos Carapace x1 (57%)
+-  Blos Fang x3 (27%)
+-  Diablos Thoracic x1 (11%)
+-  Diablos Tail x1 (5%)
+
+4. Shiny Drops
+-  Wyvern Sobs (48%)
+-  Wyvern Tears (47%)
+-  Diablos Thoracic (5%)
+
+5. Break Horns
+-  Twisted Horn x1 (80%)
+-  Majestic Horn x1 (20%)
+
+
+
+☆ Diablos - MHFU G-Rank
+ 
+1. Body Carves (x3)
+-  HvyDiablosShell (63%)
+-  HvyDiablosSpine (17%)
+-  Diablos Carapace (10%)
+-  Blos Fang (5%)
+-  Big Wyvern Stone (5%)
+
+2. Tail Carves (x1)
+-  LthrDiablosTail (64%)
+-  HvyDiablosShell (26%)
+-  Diablos Carapace (10%)
+
+3. Capture Rewards
+-  HvyDiablosShell x1 (60%)
+-  HvyDiablosSpine x1 (15%)
+-  Blos Fang x4 (15%)
+-  LthrDiablosTail (10%)
+
+4. Shiny Drops
+-  Wyvern Sobs (65%)
+-  Wyvern Tears (35%)
+-  HvyDiablosSpine (5%)
+
+5. Break Horns
+-  Majestic Horn x1 (60%)
+-  StoutWarpedHorn x1 (40%)

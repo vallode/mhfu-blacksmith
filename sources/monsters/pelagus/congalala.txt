@@ -1,0 +1,148 @@
+☆ Congalala - MHFU 1-2 Star
+
+1. Body Carves (x3)
+-  Congalala Pelt (50%)
+-  Sharp Claw (12%)
+-  Brute Bone (38%)
+
+2. Break Head
+-  Congalala Pelt x1 (100%)
+
+3. Break Claw
+-  Sharp Claw x2 (50%)
+-  Brute Bone x2 (50%)
+
+4. Shiny Drop : Stagger the tail [Bone]
+-  Territorial Dung (75%)
+-  Sm Monster Bone (15%)
+-  Brute Bone (10%)
+4. Shiny Drop : Stagger the tail [Mushroom]
+-  Territorial Dung (75%)
+-  Blue Mushroom (20%)
+-  Exciteshroom (5%)
+4. Shiny Drop : Stagger the tail [Mineral Stone]
+-  Territorial Dung (60%)
+-  Machalite Ore (39%)
+-  Lightcrystal (1%)
+
+5. Capture
+-  Congalala Pelt x1 (30%)
+-  Sharp Claw x1 (50%)
+-  Brute Bone x4 (20%)
+
+
+
+☆ Congalala - MHFU Low Rank
+
+1. Body Carves (x3)
+- Congalala Pelt (63%)
+- Congalala Fang (29%)
+- Giant Bone (8%)
+	
+2. Break Head
+- Congalala Pelt x1 (60%)
+- Vibrant Pelt x1 (40%)
+	
+3. Break Claw
+- Congalala Claw x1 (92%)
+- Sharp Claw x2 (8%)
+	
+4. Shiny Drop : Stagger the tail [Bone]
+- Territorial Dung (75%)
+- Sm Monster Bone (15%)
+- Brute Bone (10%)
+4. Shiny Drop : Stagger the tail [Mushroom]
+- Territorial Dung (75%)
+- Blue Mushroom (20%)
+- Exciteshroom (5%)
+4. Shiny Drop : Stagger the tail [Mineral Stone]
+- Territorial Dung (60%)
+- Machalite Ore (39%)
+- Lightcrystal (1%)
+        
+5. Capture
+- Congalala Pelt x1 (40%)
+- Congalala Fang x1 (40%)
+- Brute Bone x4 (20%)
+
+
+
+
+☆ Congalala - MHFU High Rank
+
+1. Body Carves (x3)
+- Congalala Pelt+ (60%)
+- Congalala Fang (20%)
+- Stout Bone (15%)
+- Congalala Pelt (5%)
+	
+2. Break Head
+- Congalala Pelt+ x1 (50%)
+- Vibrant Pelt x1 (50%)
+	
+3. Break Claw
+- Congalala Claw+ x1 (50%)
+- Congalala Claw x1 (50%)
+	
+4. Shiny Drop : Stagger the tail [Bone]
+- Territorial Dung (35%)
+- TerritorialDung+ (35%)
+- Monster Bone+ (20%)
+- Hrd Monster Bone (10%)
+4. Shiny Drop : Stagger the tail [Mushroom]
+- Territorial Dung (35%)
+- TerritorialDung+ (35%)
+- Blue Mushroom (20%)
+- Nitroshroom (10%)
+4. Shiny Drop : Stagger the tail [Mineral Stone]
+- Territorial Dung (35%)
+- TerritorialDung+ (35%)
+- Dragonite Ore (29%)
+- Novacrystal (1%)
+        
+5. Capture
+- Congalala Pelt+ x1 (40%)
+- Congalala Fang x2 (35%)
+- Stout Bone x4 (25%)
+
+
+
+
+
+☆ Congalala - MHFU G Rank
+
+1. Body Carves (x3)
+- HrdCongalalaPlt+ (50%)
+- Lg Pelagus Fang (30%)
+- Massive Bone (15%)
+- Congalala Pelt+ (5%)
+	
+2. Break Head
+- HrdCongalalaPlt+ x1 (60%)
+- Vibrant Pelt x1 (40%)
+	
+3. Break Claw
+- HrdCongalalaClw+ x1 (60%)
+- Congalala Claw+ x2 (20%)
+- HrdCongalalaClw+ x2 (20%)
+	
+4. Shiny Drop : Stagger the tail [Bone]
+- TerritorialDung+ (48%)
+- Territorial Dung (22%)
+- Hrd Monster Bone (20%)
+- Hvy Monster Bone (10%)
+4. Shiny Drop : Stagger the tail [Mushroom]
+- TerritorialDung+ (48%)
+- Territorial Dung (22%)
+- Nitroshroom (20%)
+- Dragon Toadstool (10%)
+4. Shiny Drop : Stagger the tail [Mineral Stone]
+- TerritorialDung+ (48%)
+- Territorial Dung (22%)
+- Union Ore (29%)
+- Purecrystal (1%)
+        
+5. Capture
+- HrdCongalalaPlt+ x1 (40%)
+- Lg Pelagus Fang x2 (35%)
+- Massive Bone x4 (25%)

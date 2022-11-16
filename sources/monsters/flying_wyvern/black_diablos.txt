@@ -1,0 +1,86 @@
+☆ Black Diablos - MHFU Low-Rank
+  
+1. Body Carves (x3)
+-  Black Blos Shell (63%)
+-  Blos Fang (30%)
+-  Black Blos Spine (7%)
+ 
+2. Tail Carves (x1)
+-  Black Blos Shell (60%)
+-  Black Blos Tail (40%)
+ 
+3. Capture Rewards
+-  Black Blos Shell x1 (40%)
+-  Blos Fang x3 (39%)
+-  Black Blos Spine x1 (11%)
+-  Black Blos Tail x1 (10%)
+ 
+4. Shiny Drops
+-  Wyvern Tears (95%)
+-  Diablos Spine (5%)
+ 
+5. Break Horns
+-  TwstBlkBlosHrn x1 (69%)
+-  Twisted Horn x2 (16%)
+-  Majestic Horn x1 (15%)
+
+
+
+☆ Black Diablos - MHFU High-Rank
+ 
+1. Body Carves (x3)
+-  Black Blos Shell (63%)
+-  Blos Fang (30%)
+-  Black Blos Spine (7%)
+
+2. Tail Carves (x1)
+-  Black Blos Tail (60%)
+-  Black Blos Shell (40%)
+ 
+3. Capture Rewards
+-  Black Blos Shell x1 (40%)
+-  Blos Fang x3 (39%)
+-  Black Blos Spine x1 (11%)
+-  Black Blos Tail x1 (10%)
+
+4. Shiny Drops
+-  Wyvern Tears (95%)
+-  Black Blos Spine (5%)
+
+5. Break Horns
+-  TwstBlkBlosHrn x1 (69%)
+-  Twisted Horn x2 (16%)
+-  Majestic Horn x1 (15%)
+
+
+
+☆ Black Diablos - MHFU G-Rank
+ 
+1. Body Carves (x3)
+-  HvyBlkBlosShell (63%)
+-  HvyBlkBlosSpine (17%)
+-  Black Blos Cpc (8%)
+-  Big Wyvern Stone (7%)
+-  Blos Fang (5%)
+
+2. Tail Carves (x1)
+-  LthrBlkBlosTail (64%)
+-  HvyBlkBlosShell (26%)
+-  Big Wyvern Stone (6%)
+-  Black Blos Cpc (4%)
+ 
+3. Capture Rewards
+-  HvyBlkBlosShell x1 (60%)
+-  HvyBlkBlosSpine x1 (15%)
+-  Blos Fang x4 (15%)
+-  LthrBlkBlosTail (10%)
+ 
+4. Shiny Drops
+-  Wyvern Sobs (65%)
+-  Wyvern Tears (35%)
+-  HvyBlkBlosSpine (5%)
+ 
+5. Break Horns
+-  StoutBlkTwstdHrn x1 (40%)
+-  Twisted Horn x2 (40%)
+-  Majestic Horn x1 (20%)

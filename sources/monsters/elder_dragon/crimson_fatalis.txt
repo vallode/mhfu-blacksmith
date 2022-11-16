@@ -1,0 +1,57 @@
+☆ Crimson Fatalis - MHFU High Rank
+
+1. Body Carves (x9)
+- Fatalis CrmsnScl (34%)
+- Fatalis CrmsnShl (23%)
+- Fatalis CrmsnHrn (6%)
+- Fatalis Scale (19%)
+- Fatalis Shell (15%)
+- Fatalis Horn (3%)
+
+2. Break 1st Horn
+- Fatalis CrmsnHrn x1 (100%)
+
+3. Break 2nd Horn
+- Fatalis Horn x1 (100%)
+
+4. Break Eye
+- Fatalis DevilEye x1 (100%)
+
+5. Break Wing
+- Fatalis CrmsnWng x1 (100%)
+
+6. Break Chest
+- Fatalis CrmsnScl x1 (85%)
+- Fatalis CrmsnShl x1 (15%)
+
+
+
+
+☆ Crimson Fatalis - MHFU G Rank
+
+1. Body Carves (x9)
+- ThckFatlisCrmScl (34%)
+- HvyFatalisCrmShl (23%)
+- ThckFatalisScale (19%)
+- Hvy Fatalis Shl (15%)
+- Fatalis CrmsnHrn (6%)
+- HardFatalisHorn (3%)
+        
+2. Break 1st Horn
+- HrdFatlisCrmHorn x1 (80%)
+- Fatalis CrmsnHrn x1 (20%)
+        
+3. Break 2nd Horn
+- HardFatalisHorn x1 (80%)
+- Fatalis Horn x1 (20%)
+        
+4. Break Eye
+- Fatalis Evil Eye x1 (80%)
+- Fatalis DevilEye x1 (20%)
+        
+5. Break Wing
+- StrFatlisCrmWing x1 (100%)
+
+6. Break Chest
+- ThckFatlisCrmScl x1 (85%)
+- HvyFatalisCrmShl x1 (15%)

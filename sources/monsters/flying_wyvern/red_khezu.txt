@@ -1,0 +1,85 @@
+☆ Red Khezu - MHFU Low Rank
+
+1. Body Carves (x3)
+- Alluring Hide (50%)
+- Pale Extract (35%)
+- Electro Sac (15%)
+        
+2. Break Head/Back
+- Pale Extract x1 (92%)
+- Pale Bone x1 (8%)
+        
+3. Shiny Drop : drip acid from ceiling
+- Wyvern Tears (75%)
+- Pale Extract (20%)
+- Pale Bone (5%)
+        
+4. Capture
+- Pale Extract x2 (40%)
+- Alluring Hide x1 (32%)
+- Electro Sac x2 (20%)
+- Pale Bone x1 (8%)
+
+
+
+
+
+☆ Red Khezu - MHFU High Rank
+
+1. Body Carves (x3)
+- Alluring Webbing (50%)
+- Pale Extract (27%)
+- Thunder Sac (15%)
+- Alluring Hide (4%)
+- Wyvern Stone (4%)
+        
+2. Break Head/Back
+- Pale Extract x1 (77%)
+- Pale Bone x1 (15%)
+- Pale Khezu Steak x1 (8%)
+        
+3. Shiny Drop : drip acid from ceiling
+- Wyvern Tears (38%)
+- Wyvern Sobs (37%)
+- Pale Extract (20%)
+- Pale Khezu Steak (5%)
+        
+4. Capture
+- Pale Extract x2 (40%)
+- Alluring Webbing x1 (32%)
+- Thunder Sac x2 (20%)
+- Pale Khezu Steak x1 (8%)
+
+
+
+
+
+☆ Red Khezu - MHFU G Rank
+
+1. Body Carves (x3)
+- StrAlluringWing (50%)
+- Lightning Sac (20%)
+- Thunder Sac (14%)
+- Wyvern Stone (8%)
+- Alluring Webbing (4%)
+- Big Wyvern Stone (4%)
+        
+2. Break Head/Back
+- StrAlluringWing x1 (50%)
+- Pale Extract x1 (27%)
+- Pale Khezu Steak x1 (15%)
+- KhezuSpecialCut x1 (8%)
+        
+3. Shiny Drop : drip acid from ceiling
+- Wyvern Sobs (50%)
+- Wyvern Tears (25%)
+- Pale Khezu Steak (10%)
+- Pale Extract (8%)
+- KhezuSpecialCut (7%)
+        
+4. Capture
+- StrAlluringWing x1 (35%)
+- Thunder Sac x2 (25%)
+- Lightning Sac x2 (17%)
+- Pale Khezu Steak x1 (15%)
+- KhezuSpecialCut x1 (8%)

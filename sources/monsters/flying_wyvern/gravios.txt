@@ -1,0 +1,97 @@
+☆ Gravios - MHFU Low-Rank
+
+1. Body Carves (x4)
+-  Gravios Shell (63%)
+-  Sleep Sac (20%)
+-  Flame Sac (12%)
+-  Gravios Skl Shl (5%)
+
+2. Tail Carves (x2)
+-  Gravios Shell (73%)
+-  Lg Monster Bone (23%)
+-  Firestone (4%)
+
+3. Capture Rewards
+-  Gravios Shell x1 (32%)
+-  Sleep Sac x1 (21%)
+-  Flame Sac x2 (41%)
+-  Firestone x1 (6%)
+
+4. Shiny Drops
+-  Wyvern Tears (94%)
+-  Firestone (6%)
+
+5. Break Stomach
+-  Gravios Shell x1 (90%)
+-  Sleep Sac x2 (10%)
+
+
+
+☆ Gravios - MHFU High-Rank
+
+1. Body Carves (x4)
+-  Gravios Shell (18%)
+-  Gravios Carapace (50%)
+-  Sleep Sac (10%)
+-  Inferno Sac (10%)
+-  Gravios Skl Shl (5%)
+-  Wyvern Stone (7%)
+
+2. Tail Carves (x2)
+-  Gravios Carapace (66%)
+-  Hrd Monster Bone (20%)
+-  Firecell Stone (2%)
+-  Gravios BrainStm (12%)
+
+3. Capture Rewards
+-  Gravios Carapace x1 (32%)
+-  Sleep Sac x1 (20%)
+-  Inferno Sac x1 (34%)
+-  Firestone x1 (8%)
+-  Firecell Stone x1 (6%)
+
+4. Shiny Drops
+-  Wyvern Tears (47%)
+-  Wyvern Sobs (47%)
+-  Firecell Stone (6%)
+
+
+5. Break Stomach
+-  Gravios Shell x1 (33%)
+-  Gravios Carapace x1 (57%)
+-  Sleep Sac x2 (10%)
+
+
+
+☆ Gravios - MHFU G-Rank
+
+1. Body Carves (x4)
+-  HvyGraviosShell (50%)
+-  Coma Sac (17%)
+-  Gravios Carapace (10%)
+-  Blazing Fire Sac (10%)
+-  Big Wyvern Stone (7%)
+-  HvnlyGraviosShl (6%)
+
+2. Tail Carves (x2)
+-  HvyGraviosShell (66%)
+-  Hvy Monster Bone (20%)
+-  Gravios BrainStm (8%)
+-  Firecell Stone (6%)
+
+3. Capture Rewards
+-  HvyGraviosShell x1 (40%)
+-  Coma Sac x1 (30%)
+-  Blazing Fire Sac x1 (16%)
+-  Firecell Stone x1 (14%)
+
+4. Shiny Drops
+-  Wyvern Sobs (60%)
+-  Wyvern Tears (30%)
+-  Firecell Stone (10%)
+
+5. Break Stomach
+-  HvyGraviosShell x1 (57%)
+-  Gravios Carapace x1 (18%)
+-  Coma Sac x2 (15%)
+-  HvyGraviosShell x1 (10%)

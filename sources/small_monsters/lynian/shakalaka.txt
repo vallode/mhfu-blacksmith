@@ -1,0 +1,75 @@
+☆ Shakalaka - MHFU Low-Rank
+
+1. Body Carves (x1)
+-  ShakalakaTreasre (50%)
+-  Red Seed (14%)
+-  Green Seed (14%)
+-  Armor Sphere (10%)
+-  Suiko Jewel (10%)
+-  BattlefieldJewel (2%)
+
+2. Shiny Drop
+-  ShakalakaTreasre (26%)
+-  Armor Sphere (25%)
+-  Suiko Jewel (20%)
+-  Armor Stone (10%)
+-  Armor Sphere+ (7%)
+-  Gourmet BBQ Spit (2%)
+-  Silver Egg (2%)
+-  Firestone (2%)
+-  BattlefieldJewel (2%)
+-  Expand Pickaxe (2%)
+-  Commendation (2%)
+
+
+
+☆ Shakalaka - MHFU High-Rank
+
+1. Body Carves (x1)
+-  ShakalakaTreasre (50%)
+-  Select Mushroom (18%)
+-  Armor Sphere (12%)
+-  Armor Sphere+ (8%)
+-  Akito Jewel (8%)
+-  BattlefieldJewel (4%)
+
+2. Shiny Drop
+-  ShakalakaTreasre (25%)
+-  Armor Sphere+ (25%)
+-  Akito Jewel (20%)
+-  Armor Stone (10%)
+-  Firestone (4%)
+-  Expand Pickaxe (4%)
+-  Commendation (4%)
+-  Golden Egg (2%)
+-  Hrd Armor Sphere (2%)
+-  Gourmet BBQ Spit (2%)
+-  LapisLazuliJewel (2%)
+
+
+
+☆ Shakalaka - MHFU G-Rank
+
+1. Body Carves (x1)
+-  ShakalakaTreasre (37%)
+-  Select Mushroom (25%)
+-  Armor Sphere+ (12%)
+-  Hrd Armor Sphere (8%)
+-  BattlefieldJewel (8%)
+-  ShakalakaTreasr+ (5%)
+-  LapisLazuliJewel (4%)
+-  Hvy Armor Sphere (1%)
+
+2. Shiny Drop
+-  ShakalakaTreasre (20%)
+-  BattlefieldJewel (18%)
+-  Armor Stone (12%)
+-  Hrd Armor Sphere (12%)
+-  ShakalakaTreasr+ (7%)
+-  Master's Skull (7%)
+-  Firecell Stone (4%)
+-  Expand Pickaxe (4%)
+-  Commendation G (4%)
+-  Golden Egg (3%)
+-  Gourmet BBQ Spit (2%)
+-  Hvy Armor Sphere (2%)
