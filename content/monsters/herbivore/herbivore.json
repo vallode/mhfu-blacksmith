@@ -2,9 +2,10 @@
   "monsters": [
     {
       "name": "Anteka",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Anteka Antlers",
               "chance": "45%"
@@ -23,8 +24,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Anteka Antlers",
               "chance": "35%"
@@ -47,8 +48,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "High Qualty Pelt",
               "chance": "50%"
@@ -75,9 +76,10 @@
     },
     {
       "name": "Popo",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Popo Tongue",
               "chance": "42%"
@@ -92,8 +94,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Popo Tongue",
               "chance": "35%"
@@ -112,8 +114,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Popo Tongue",
               "chance": "35%"
@@ -136,9 +138,10 @@
     },
     {
       "name": "Kelbi",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Kelbi Horn",
               "chance": "50%"
@@ -157,8 +160,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Kelbi Horn",
               "chance": "35%"
@@ -181,8 +184,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Kelbi Horn",
               "chance": "35%"
@@ -209,9 +212,10 @@
     },
     {
       "name": "Mosswine",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Blue Mushroom",
               "chance": "45%"
@@ -230,8 +234,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Blue Mushroom",
               "chance": "42%"
@@ -254,8 +258,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Blue Mushroom",
               "chance": "33%"
@@ -282,9 +286,10 @@
     },
     {
       "name": "Aptonoth",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "75%"
@@ -295,8 +300,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "75%"
@@ -307,8 +312,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "75%"
@@ -323,9 +328,10 @@
     },
     {
       "name": "Apceros",
+      "type": "Herbivore",
       "drops": {
-        "Low-Rank": {
-          "Body Carves (x1)": [
+        "low-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "47%"
@@ -340,8 +346,8 @@
             }
           ]
         },
-        "High-Rank": {
-          "Body Carves (x1)": [
+        "high-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "43%"
@@ -360,8 +366,8 @@
             }
           ]
         },
-        "G-Rank": {
-          "Body Carves (x1)": [
+        "g-rank": {
+          "body carves (x1)": [
             {
               "name": "Raw Meat",
               "chance": "43%"
