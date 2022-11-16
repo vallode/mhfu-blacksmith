@@ -12,19 +12,24 @@
 {% if section %}
   <meta name="description" content="{{ section.description }}">
   <meta name="og:description" content="{{ section.description }}">
-  <meta property="og:image" content="/images/favicons/{{ section.extra.type }}-favicon.png">
 {% else %}
   <meta name="description" content="Monster Hunter Freedom Unite weapon trees">
   <meta name="og:description" content="Monster Hunter Freedom Unite weapon trees">
   <meta property="og:image" content="/images/favicons/felyne-favicon.png">
 {% endif %}
 
-{% if page %}
-  {% set favicon_name = page.extra.type | default(value="felyne") %}
+{% if page.extra.type %}
+  {% set type = page.extra.type %}
+{% elif section.extra.type %}
+  {% set type = section.extra.type %}
 {% else %}
-  {% set favicon_name = section.extra.type | default(value="felyne") %}
+  {% set type = "felyne" %}
 {% endif %}
 
-<link rel="icon" type="image/png" href="/images/favicons/{{ favicon_name }}-favicon.png">
+{% if type %}
+  <meta property="og:image" content="/images/favicons/{{ type }}-favicon.png">
+  <link rel="icon" type="image/png" href="/images/favicons/{{ type }}-favicon.png">
+{% endif %}
+
 <meta name="theme-color" content="#22281c">
 <meta property="og:site_name" content="MHFU Blacksmith">
