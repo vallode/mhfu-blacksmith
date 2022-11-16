@@ -1,0 +1,486 @@
+{
+  "monsters": [
+    {
+      "name": "Felyne",
+      "drops": {
+      }
+    },
+    {
+      "name": "Melynx",
+      "drops": {
+        "1-2 Star Guild": {
+          "Shiny Drop": [
+            {
+              "name": "Secret Pouch",
+              "chance": "72%"
+            },
+            {
+              "name": "Glutton Tuna",
+              "chance": "18%"
+            },
+            {
+              "name": "Felvine",
+              "chance": "10%"
+            }
+          ]
+        },
+        "Low-Rank": {
+          "Shiny Drop": [
+            {
+              "name": "Secret Pouch",
+              "chance": "72%"
+            },
+            {
+              "name": "Glutton Tuna",
+              "chance": "15%"
+            },
+            {
+              "name": "Felvine",
+              "chance": "8%"
+            },
+            {
+              "name": "Pawprint Stamp",
+              "chance": "5%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Shiny Drop": [
+            {
+              "name": "Secret Pouch",
+              "chance": "64%"
+            },
+            {
+              "name": "Felvine",
+              "chance": "16%"
+            },
+            {
+              "name": "Gastronome Tuna",
+              "chance": "12%"
+            },
+            {
+              "name": "Pawprint Stamp",
+              "chance": "8%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Shiny Drop": [
+            {
+              "name": "Secret Pouch",
+              "chance": "60%"
+            },
+            {
+              "name": "Felvine",
+              "chance": "13%"
+            },
+            {
+              "name": "Gastronome Tuna",
+              "chance": "12%"
+            },
+            {
+              "name": "Pawprint Stamp",
+              "chance": "10%"
+            },
+            {
+              "name": "Felyne Fur Ruby",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Shakalaka",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "50%"
+            },
+            {
+              "name": "Red Seed",
+              "chance": "14%"
+            },
+            {
+              "name": "Green Seed",
+              "chance": "14%"
+            },
+            {
+              "name": "Armor Sphere",
+              "chance": "10%"
+            },
+            {
+              "name": "Suiko Jewel",
+              "chance": "10%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "2%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "26%"
+            },
+            {
+              "name": "Armor Sphere",
+              "chance": "25%"
+            },
+            {
+              "name": "Suiko Jewel",
+              "chance": "20%"
+            },
+            {
+              "name": "Armor Stone",
+              "chance": "10%"
+            },
+            {
+              "name": "Armor Sphere+",
+              "chance": "7%"
+            },
+            {
+              "name": "Gourmet BBQ Spit",
+              "chance": "2%"
+            },
+            {
+              "name": "Silver Egg",
+              "chance": "2%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "2%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "2%"
+            },
+            {
+              "name": "Expand Pickaxe",
+              "chance": "2%"
+            },
+            {
+              "name": "Commendation",
+              "chance": "2%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "50%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "18%"
+            },
+            {
+              "name": "Armor Sphere",
+              "chance": "12%"
+            },
+            {
+              "name": "Armor Sphere+",
+              "chance": "8%"
+            },
+            {
+              "name": "Akito Jewel",
+              "chance": "8%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "4%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "25%"
+            },
+            {
+              "name": "Armor Sphere+",
+              "chance": "25%"
+            },
+            {
+              "name": "Akito Jewel",
+              "chance": "20%"
+            },
+            {
+              "name": "Armor Stone",
+              "chance": "10%"
+            },
+            {
+              "name": "Firestone",
+              "chance": "4%"
+            },
+            {
+              "name": "Expand Pickaxe",
+              "chance": "4%"
+            },
+            {
+              "name": "Commendation",
+              "chance": "4%"
+            },
+            {
+              "name": "Golden Egg",
+              "chance": "2%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "2%"
+            },
+            {
+              "name": "Gourmet BBQ Spit",
+              "chance": "2%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "37%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "25%"
+            },
+            {
+              "name": "Armor Sphere+",
+              "chance": "12%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "8%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "8%"
+            },
+            {
+              "name": "ShakalakaTreasr+",
+              "chance": "5%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "4%"
+            },
+            {
+              "name": "Hvy Armor Sphere",
+              "chance": "1%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "20%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "18%"
+            },
+            {
+              "name": "Armor Stone",
+              "chance": "12%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "12%"
+            },
+            {
+              "name": "ShakalakaTreasr+",
+              "chance": "7%"
+            },
+            {
+              "name": "Master's Skull",
+              "chance": "7%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "4%"
+            },
+            {
+              "name": "Expand Pickaxe",
+              "chance": "4%"
+            },
+            {
+              "name": "Commendation G",
+              "chance": "4%"
+            },
+            {
+              "name": "Golden Egg",
+              "chance": "3%"
+            },
+            {
+              "name": "Gourmet BBQ Spit",
+              "chance": "2%"
+            },
+            {
+              "name": "Hvy Armor Sphere",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "King Shakalaka",
+      "drops": {
+        "High Rank": {
+          "Body Carves (x2)": [
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "38%"
+            },
+            {
+              "name": "ShakaInheritance",
+              "chance": "20%"
+            },
+            {
+              "name": "Armor Sphere+",
+              "chance": "14%"
+            },
+            {
+              "name": "Armor Sphere",
+              "chance": "10%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "10%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : Stagger during taunt": [
+            {
+              "name": "ShakaInheritance",
+              "chance": "25%"
+            },
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "15%"
+            },
+            {
+              "name": "Armor Stone",
+              "chance": "15%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "15%"
+            },
+            {
+              "name": "Silver Egg",
+              "chance": "8%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "6%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "6%"
+            },
+            {
+              "name": "Golden Egg",
+              "chance": "4%"
+            },
+            {
+              "name": "Hvy Armor Sphere",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x2)": [
+            {
+              "name": "ShakaInheritance",
+              "chance": "25%"
+            },
+            {
+              "name": "ShakalakaTreasre",
+              "chance": "20%"
+            },
+            {
+              "name": "ShakalakaTreasr+",
+              "chance": "18%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "12%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "10%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "10%"
+            },
+            {
+              "name": "Hvy Armor Sphere",
+              "chance": "3%"
+            },
+            {
+              "name": "Ryl Armor Sphere",
+              "chance": "2%"
+            }
+          ],
+          "Shiny Drop : Stagger during taunt": [
+            {
+              "name": "ShakalakaTreasr+",
+              "chance": "20%"
+            },
+            {
+              "name": "ShakaInheritance",
+              "chance": "16%"
+            },
+            {
+              "name": "Armor Stone",
+              "chance": "15%"
+            },
+            {
+              "name": "BattlefieldJewel",
+              "chance": "10%"
+            },
+            {
+              "name": "Golden Egg",
+              "chance": "8%"
+            },
+            {
+              "name": "Hrd Armor Sphere",
+              "chance": "8%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "6%"
+            },
+            {
+              "name": "Hvy Armor Sphere",
+              "chance": "4%"
+            },
+            {
+              "name": "Silver Egg",
+              "chance": "4%"
+            },
+            {
+              "name": "Ryl Armor Sphere",
+              "chance": "3%"
+            },
+            {
+              "name": "Tru Armor Sphere",
+              "chance": "2%"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

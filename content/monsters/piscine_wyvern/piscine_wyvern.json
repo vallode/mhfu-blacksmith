@@ -1,0 +1,857 @@
+{
+  "monsters": [
+    {
+      "name": "Cephalos",
+      "drops": {
+        "Low-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Piscine Liver",
+              "chance": "60%"
+            },
+            {
+              "name": "Cephalos Scale",
+              "chance": "23%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "15%"
+            },
+            {
+              "name": "Cephalos Fin",
+              "chance": "2%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "Piscine Liver",
+              "chance": "50%"
+            },
+            {
+              "name": "Cephalos Scale+",
+              "chance": "25%"
+            },
+            {
+              "name": "Coral Cphlos Scl",
+              "chance": "15%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "8%"
+            },
+            {
+              "name": "Cephalos Fin",
+              "chance": "2%"
+            }
+          ]
+        },
+        "G-Rank": {
+          "Body Carves (x1)": [
+            {
+              "name": "HvyPiscineFang",
+              "chance": "40%"
+            },
+            {
+              "name": "Coral Cphlos Scl",
+              "chance": "20%"
+            },
+            {
+              "name": "Coral Cphlos Fin",
+              "chance": "20%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Cephalos Scale+",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cephadrome",
+      "drops": {
+        "1-2 Star Guild": {
+          "Body Carves (x3)": [
+            {
+              "name": "Piscine Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Cephalos Scale",
+              "chance": "65%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "20%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Cephalos Scale x1",
+              "chance": "100%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "25%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Med Monster Bone x2",
+              "chance": "50%"
+            },
+            {
+              "name": "Lg Monster Bone x1",
+              "chance": "40%"
+            },
+            {
+              "name": "Piscine Fang  x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "Low-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Cephalos Scale",
+              "chance": "58%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "20%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "12%"
+            },
+            {
+              "name": "Cephalos Fin",
+              "chance": "10%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Cephalos Fin x1",
+              "chance": "100%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "70%"
+            },
+            {
+              "name": "Cephalos Scale",
+              "chance": "20%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "10%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Cephalos Fin x1",
+              "chance": "65%"
+            },
+            {
+              "name": "Lg Monster Bone x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Piscine Fang x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "High-Rank": {
+          "Body Carves (x3)": [
+            {
+              "name": "Coral Cphlos Scl",
+              "chance": "50%"
+            },
+            {
+              "name": "Cephalos Scale",
+              "chance": "20%"
+            },
+            {
+              "name": "Cephalos Fin+",
+              "chance": "14%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "13%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "3%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Cephalos Fin+ x1",
+              "chance": "85%"
+            },
+            {
+              "name": "Coral Cphlos Fin x1",
+              "chance": "15%"
+            }
+          ],
+          "Shiny Drop": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "35%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "35%"
+            },
+            {
+              "name": "Coral Cphlos Scl",
+              "chance": "15%"
+            },
+            {
+              "name": "Piscine Liver",
+              "chance": "10%"
+            },
+            {
+              "name": "Cephalos Scale",
+              "chance": "5%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Cephalos Fin+ x1",
+              "chance": "55%"
+            },
+            {
+              "name": "Coral Cphlos Fin x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Monster Bone+ x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Piscine Fang x2",
+              "chance": "10%"
+            },
+            {
+              "name": "Hrd Monster Bone x1",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Plesioth",
+      "drops": {
+        "1-2 Star": {
+          "Body Carves (x4)": [
+            {
+              "name": "Plesioth Scale",
+              "chance": "50%"
+            },
+            {
+              "name": "Sm Lobstershell",
+              "chance": "5%"
+            },
+            {
+              "name": "Piscine Fang",
+              "chance": "20%"
+            },
+            {
+              "name": "Lg Monster Bone",
+              "chance": "25%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Plesioth Scale x1",
+              "chance": "100%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Plesioth Scale",
+              "chance": "25%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Plesioth Scale x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Lg Monster Bone x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Wyvern Fang x3",
+              "chance": "60%"
+            }
+          ]
+        },
+        "Low Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Plesioth Scale",
+              "chance": "70%"
+            },
+            {
+              "name": "Plesioth Fin",
+              "chance": "22%"
+            },
+            {
+              "name": "Sm Lobstershell",
+              "chance": "8%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Plesioth Fin x1",
+              "chance": "92%"
+            },
+            {
+              "name": "Plesioth Scale x1",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Plesioth Scale",
+              "chance": "22%"
+            },
+            {
+              "name": "Plesioth Fin",
+              "chance": "3%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Plesioth Scale x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Wyvern Fang x3",
+              "chance": "33%"
+            },
+            {
+              "name": "Plesioth Fin x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Sm Lobstershell x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Plesioth Scale+",
+              "chance": "64%"
+            },
+            {
+              "name": "Plesioth Fin+",
+              "chance": "18%"
+            },
+            {
+              "name": "Sm Lobstershell",
+              "chance": "10%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "6%"
+            },
+            {
+              "name": "Lg Lobstershell",
+              "chance": "2%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Plesioth Fin+ x1",
+              "chance": "87%"
+            },
+            {
+              "name": "Plesioth Scale+ x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Plesioth Fin x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "33%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "27%"
+            },
+            {
+              "name": "Plesioth Scale+",
+              "chance": "25%"
+            },
+            {
+              "name": "Plesioth Fin",
+              "chance": "10%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Wyvern Fang x3",
+              "chance": "30%"
+            },
+            {
+              "name": "Plesioth Scale+ x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Plesioth Fin+ x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Sm Lobstershell x1",
+              "chance": "12%"
+            },
+            {
+              "name": "Lg Lobstershell x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Plesioth Scale x2",
+              "chance": "5%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "ThckPlesiothScl",
+              "chance": "60%"
+            },
+            {
+              "name": "SpecPlesiothFin+",
+              "chance": "23%"
+            },
+            {
+              "name": "Lg Lobstershell",
+              "chance": "10%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "5%"
+            },
+            {
+              "name": "Gt Lobstershell",
+              "chance": "2%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "SpecPlesiothFin+ x1",
+              "chance": "87%"
+            },
+            {
+              "name": "ThckPlesiothScl x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Plesioth Fin+ x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "42%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "23%"
+            },
+            {
+              "name": "ThckPlesiothScl",
+              "chance": "25%"
+            },
+            {
+              "name": "SpecPlesiothFin+",
+              "chance": "10%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "ThckPlesiothScl x1",
+              "chance": "32%"
+            },
+            {
+              "name": "SpecPlesiothFin+ x1",
+              "chance": "23%"
+            },
+            {
+              "name": "HvyPiscineFang x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Lg Lobstershell x1",
+              "chance": "12%"
+            },
+            {
+              "name": "Gt Lobstershell x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Plesioth Scale+ x2",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Green Plesioth",
+      "drops": {
+        "Low Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Grn Plesioth Scl",
+              "chance": "70%"
+            },
+            {
+              "name": "Grn Plesioth Fin",
+              "chance": "22%"
+            },
+            {
+              "name": "Sm Lobstershell",
+              "chance": "8%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Grn Plesioth Fin x1",
+              "chance": "92%"
+            },
+            {
+              "name": "Grn Plesioth Scl x2",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Grn Plesioth Scl",
+              "chance": "22%"
+            },
+            {
+              "name": "Grn Plesioth Fin",
+              "chance": "3%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Grn Plesioth Scl x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Piscine Fang x3",
+              "chance": "35%"
+            },
+            {
+              "name": "Grn Plesioth Fin x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Sm Lobstershell x1",
+              "chance": "8%"
+            }
+          ]
+        },
+        "High Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "Grn Plsioth Scl+",
+              "chance": "60%"
+            },
+            {
+              "name": "Grn Plsioth Fin+",
+              "chance": "22%"
+            },
+            {
+              "name": "Sm Lobstershell",
+              "chance": "10%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "6%"
+            },
+            {
+              "name": "Lg Lobstershell",
+              "chance": "2%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "Grn Plsioth Fin+ x1",
+              "chance": "87%"
+            },
+            {
+              "name": "Grn Plsioth Scl+ x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Grn Plesioth Fin x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "33%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "32%"
+            },
+            {
+              "name": "Grn Plsioth Scl+",
+              "chance": "25%"
+            },
+            {
+              "name": "Grn Plsioth Fin+",
+              "chance": "10%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "Wyvern Fang x3",
+              "chance": "30%"
+            },
+            {
+              "name": "Grn Plsioth Scl+ x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Grn Plsioth Fin+ x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Sm Lobstershell x1",
+              "chance": "12%"
+            },
+            {
+              "name": "Lg Lobstershell x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Grn Plesioth Scl x2",
+              "chance": "5%"
+            }
+          ]
+        },
+        "G Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "ThckGrnPlesioScl",
+              "chance": "60%"
+            },
+            {
+              "name": "SpecGrnPlesioFn+",
+              "chance": "23%"
+            },
+            {
+              "name": "Lg Lobstershell",
+              "chance": "10%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "5%"
+            },
+            {
+              "name": "Gt Lobstershell",
+              "chance": "2%"
+            }
+          ],
+          "Break Back Fin": [
+            {
+              "name": "SpecGrnPlesioFn+ x1",
+              "chance": "87%"
+            },
+            {
+              "name": "ThckGrnPlesioScl x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Grn Plsioth Fin+ x1",
+              "chance": "5%"
+            }
+          ],
+          "Shiny Drop : fished out, using frog as bait": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "42%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "23%"
+            },
+            {
+              "name": "ThckGrnPlesioScl",
+              "chance": "25%"
+            },
+            {
+              "name": "SpecGrnPlesioFn+",
+              "chance": "10%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "ThckGrnPlesioScl x1",
+              "chance": "32%"
+            },
+            {
+              "name": "SpecGrnPlesioFn+ x1",
+              "chance": "23%"
+            },
+            {
+              "name": "HvyPiscineFang x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Lg Lobstershell x1",
+              "chance": "12%"
+            },
+            {
+              "name": "Gt Lobstershell x1",
+              "chance": "8%"
+            },
+            {
+              "name": "Grn Plsioth Scl+ x2",
+              "chance": "5%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Lavasioth",
+      "drops": {
+        "G Rank": {
+          "Body Carves (x4)": [
+            {
+              "name": "ThckLavasiothScl",
+              "chance": "43%"
+            },
+            {
+              "name": "HvyLavasiothShl",
+              "chance": "30%"
+            },
+            {
+              "name": "HvyLavasiothFang",
+              "chance": "8%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "8%"
+            },
+            {
+              "name": "SpecLavasioFin+",
+              "chance": "6%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "5%"
+            }
+          ],
+          "Break Face": [
+            {
+              "name": "HvyLavasiothFang x2",
+              "chance": "73%"
+            },
+            {
+              "name": "HvyLavasiothShl x1",
+              "chance": "21%"
+            },
+            {
+              "name": "Firecell Stone x1",
+              "chance": "6%"
+            }
+          ],
+          "Break Fin": [
+            {
+              "name": "SpecLavasioFin+ x1",
+              "chance": "92%"
+            },
+            {
+              "name": "ThckLavasiothScl x2",
+              "chance": "8%"
+            }
+          ],
+          "Shiny Drop : KO-ed (Hammer, HH, Crag S)": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "55%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThckLavasiothScl",
+              "chance": "16%"
+            },
+            {
+              "name": "Firecell Stone",
+              "chance": "4%"
+            }
+          ],
+          "Capture": [
+            {
+              "name": "ThckLavasiothScl x2",
+              "chance": "43%"
+            },
+            {
+              "name": "HvyLavasiothShl x1",
+              "chance": "27%"
+            },
+            {
+              "name": "SpecLavasioFin+ x1",
+              "chance": "24%"
+            },
+            {
+              "name": "HvyLavasiothFang x1",
+              "chance": "6%"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
