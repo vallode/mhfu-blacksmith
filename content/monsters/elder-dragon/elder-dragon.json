@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Kirin",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "The Kirin is said to glow a faint blue, but so few have seen it that details are scarce. It is apparently capable of calling forth lightning at will. Kirin material is very valuable.",
       "drops": {
         "low rank": {
           "body carves (x2)": [
@@ -88,19 +89,22 @@
     },
     {
       "name": "Kushala Daora",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {
       }
     },
     {
       "name": "Rusted Kushala Daora",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {
       }
     },
     {
       "name": "Chameleos",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "Eyewitness sightings of this Elder Dragon are extremely rare due to its ability to literally vanish; however, details of this are unclear. It is thought that shocking it may make it reappear, but this is unproven.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
@@ -328,7 +332,8 @@
     },
     {
       "name": "Lunastra",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A brutal female Elder Dragon with breath of flame and expert control over fire. It is said that this control comes from the crown-like horns on its head, but this has not been confirmed.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
@@ -506,7 +511,8 @@
     },
     {
       "name": "Teostra",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A brutal male Elder Dragon with breath of flame and expert control over fire. Its vile temperament means anyone who approaches is subject to fire and brimstone. Known to attack towns, the Guild keeps tabs on its movements.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
@@ -792,7 +798,8 @@
     },
     {
       "name": "Lao-Shan Lung",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A giant dragon few have seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The guild has built a fortress to repel the beast, but will it hold?",
       "drops": {
         "low rank": {
           "body carves (x9)": [
@@ -910,13 +917,15 @@
     },
     {
       "name": "Ashen Lao-Shan Lung",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A giant dragon few have seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The guild has built a fortress to repel the beast, but will it hold?",
       "drops": {
       }
     },
     {
       "name": "Yama Tsukami",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "An Elder Dragon that floats through the sky. A bite of earth, a drink of forest, it’s a veritable god of the sky made of the richest soil. Ancient trees grow thick on its back like on a mountain. It’s rumored to live near a forlorn, remote tower.",
       "drops": {
         "g rank": {
           "body carves (x5)": [
@@ -1004,7 +1013,8 @@
     },
     {
       "name": "Fatalis",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
+      "description": "A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...",
       "drops": {
         "high rank": {
           "body carves (x9)": [
@@ -1126,7 +1136,7 @@
     },
     {
       "name": "Crimson Fatalis",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
       "drops": {
         "high rank": {
           "body carves (x9)": [
@@ -1268,7 +1278,7 @@
     },
     {
       "name": "White Fatalis",
-      "type": "Elder Dragon",
+      "type": "elder-dragon",
       "drops": {
         "high rank": {
           "body carves (x9)": [

@@ -16,8 +16,8 @@
 
         <ul>
           <li>
-            <a class="row" href="{{ section_data.path  }}">
-              <div class="icon"><img src="/images/monsters/velocidrome.png" alt=""></div>
+            <a class="row" href="{{ section_data.path }}">
+              <div class="icon"><img src="/images/monsters/{{ section_data.title | slugify }}.png" alt=""></div>
               <p>{{ section_data.title }}</p>
             </a>
           </li>

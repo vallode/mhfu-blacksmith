@@ -5,10 +5,21 @@
 {% endblock %}
 
 {% block content %}
-  {% set section_path = page.components | slice(start=0, end=3) | join(sep='/') %}
+  {% set section_path = page.components | slice(start=0, end=2) | join(sep='/') %}
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
   <nav class="weapon-navigation">
+    {% for monster_type in config.extra.monster_types %}
+      {% set monster_name = monster_type | replace(from='-', to=' ') | capitalize %}
+
+      <div>
+        <a href="/monsters/{{ monster_type }}/" title="{{ monster_name }}">
+          <div class="icon icon--nav icon--monster icon--large icon--{{ monster_type }} {% if monster_type == page.extra.type %}active{% endif %}">
+            <img src="/images/monsters/{{ monster_type }}.png" alt="{{ monster_name }}">
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   </nav>
 
   <hr class="border">
@@ -22,15 +33,21 @@
       <turbo-frame id="weapon_details" data-turbo-action="replace">
         <div class="card weapon-card">
           <div class="weapon-card__header">
+            <div class="icon icon--large">
+              <img src="/images/monsters/{{ page.slug }}.png" alt="?">
+            </div>
+
             <p id="weapon_name">
               {{ page.title }}
             </p>
           </div>
 
           <div class="weapon-card__details">
-            <div class="stats">
-    
-            </div>
+            <p class="description">
+              {% if page.extra.description %}
+              {{page.extra.description}}
+              {% endif %}
+            </p>
 
             <hr>
 

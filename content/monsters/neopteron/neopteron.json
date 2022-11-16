@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Vespoid",
-      "type": "Neopteron",
+      "type": "neopteron",
+      "description": "An enormous, wasp-like insectoid with a poisonous stinger that paralyzes prey. Easily damaged, there are rarely any usable parts left to harvest from them once they are killed.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -72,13 +73,15 @@
     },
     {
       "name": "Vespoid Queen",
-      "type": "Neopteron",
+      "type": "neopteron",
+      "description": "A massive thorax and brilliant, gigantic wings mark the Vespoid Queen. It commands its subjects through unique flight patterns, and will stab any intruders with a poisonous stinger that also causes paralysis. It also spits acidic bodily fluid at its prey.",
       "drops": {
       }
     },
     {
       "name": "Hornetaur",
-      "type": "Neopteron",
+      "type": "neopteron",
+      "description": "A Vespoid-like monster with a thick shell. Easily damaged, there are rarely any usable materials left to harvest from them once killed. But if you could sap their health gradually...",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -156,7 +159,8 @@
     },
     {
       "name": "Great Thunderbug",
-      "type": "Neopteron",
+      "type": "neopteron",
+      "description": "An abnormally large Thunderbug raised inside the body of an elder dragon and known to inhabit the same areas as its former host, its electrical attack is deadly. This bug has various uses as material for crafting weapons and items.",
       "drops": {
         "low-rank": {
           "shiny drop ( killed )": [

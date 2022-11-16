@@ -2,7 +2,8 @@
   "monsters": [
     {
       "name": "Hermitaur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A small Carapaceon with an incredibly hard shell. Known to live in great numbers in the desert, or lurking underground, one must be careful when treading in its domain. Its brains are said to be a true delicacy.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -64,7 +65,8 @@
     },
     {
       "name": "Daimyo Hermitaur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -406,7 +408,8 @@
     },
     {
       "name": "Plum Daimyo Hermitaur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -500,7 +503,8 @@
     },
     {
       "name": "Ceanataur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "An adolescent Carapaceon with an organic shell firmly placed on its back. Once grown, this shell will be replaced by a giant monster's skull. Mainly living in volcanic zones, it is very aggressive, and not to be underestimated.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -574,7 +578,8 @@
     },
     {
       "name": "Shogun Ceanataur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
@@ -972,7 +977,8 @@
     },
     {
       "name": "Terra Shogun Ceanataur",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -1062,7 +1068,8 @@
     },
     {
       "name": "Shen Gaoren",
-      "type": "Carapaceon",
+      "type": "carapaceon",
+      "description": "A giant Carapaceon with an equally giant monster's skull on its back. Prone to roaming and fiercely territorial, any intruders will be met with opposition, so nearby forts or towns must be warned of its presence.",
       "drops": {
       }
     }
