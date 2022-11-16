@@ -74,7 +74,7 @@ Dir.glob("content/monsters/**/*.json").each do |path|
         output = {
           title: monster["name"],
           slug: slugify(monster["name"]),
-          extra: {}
+          extra: monster.select {|key, value| ["name", "drops"].none?(key)},
         }
   
         File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
