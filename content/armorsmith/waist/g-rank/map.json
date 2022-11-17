@@ -1,94 +1,184 @@
 {
   "map": [
   {
-    "slug": "chrome-metal-coat",
+    "slug": "kut-ku-tasset-x",
     "type": "waist",
-    "name": "Chrome Metal Coat",
-    "rarity": "3"
+    "name": "Kut-Ku Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-coil",
+    "slug": "kut-ku-coat-x",
     "type": "waist",
-    "name": "Monoblos Coil",
-    "rarity": "4"
+    "name": "Kut-Ku Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-coat",
+    "slug": "conga-tasset-x",
     "type": "waist",
-    "name": "Monoblos Coat",
-    "rarity": "4"
+    "name": "Conga Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "garuga-tasset",
+    "slug": "conga-coat-x",
     "type": "waist",
-    "name": "Garuga Tasset",
-    "rarity": "4"
+    "name": "Conga Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "garuga-coat",
+    "slug": "gypceros-tasset-x",
     "type": "waist",
-    "name": "Garuga Coat",
-    "rarity": "4"
+    "name": "Gypceros Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "black-spine",
+    "slug": "gypceros-coat-x",
     "type": "waist",
-    "name": "Black Spine",
-    "rarity": "5"
+    "name": "Gypceros Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "black-scale",
+    "slug": "khezu-tasset-x",
     "type": "waist",
-    "name": "Black Scale",
-    "rarity": "5"
+    "name": "Khezu Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-tasset",
+    "slug": "khezu-coat-x",
     "type": "waist",
-    "name": "Empress Tasset",
-    "rarity": "5"
+    "name": "Khezu Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-coat",
+    "slug": "hermitaur-tasset-x",
     "type": "waist",
-    "name": "Empress Coat",
-    "rarity": "5"
+    "name": "Hermitaur Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-coil",
+    "slug": "hermitaur-coat-x",
     "type": "waist",
-    "name": "Monodevil Coil",
-    "rarity": "5"
+    "name": "Hermitaur Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-coat",
+    "slug": "hypnoc-tasset-x",
     "type": "waist",
-    "name": "Monodevil Coat",
-    "rarity": "5"
+    "name": "Hypnoc Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-coil-s",
+    "slug": "hypnoc-coat-x",
     "type": "waist",
-    "name": "Monoblos Coil S",
-    "rarity": "6"
+    "name": "Hypnoc Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-coat-s",
+    "slug": "basarios-tasset-x",
     "type": "waist",
-    "name": "Monoblos Coat S",
-    "rarity": "6"
+    "name": "Basarios Tasset X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-coil-u",
+    "slug": "basarios-coat-x",
     "type": "waist",
-    "name": "Monodevil Coil U",
-    "rarity": "8"
+    "name": "Basarios Coat X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-coat-u",
+    "slug": "plesioth-tasset-x",
     "type": "waist",
-    "name": "Monodevil Coat U",
-    "rarity": "8"
+    "name": "Plesioth Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-coat-x",
+    "type": "waist",
+    "name": "Plesioth Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-coil-x",
+    "type": "waist",
+    "name": "Monoblos Coil X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-coat-x",
+    "type": "waist",
+    "name": "Monoblos Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-tasset-x",
+    "type": "waist",
+    "name": "Garuga Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-coat-x",
+    "type": "waist",
+    "name": "Garuga Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-tasset-x",
+    "type": "waist",
+    "name": "Blango Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-coat-x",
+    "type": "waist",
+    "name": "Blango Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-tasset-x",
+    "type": "waist",
+    "name": "Ceanataur Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-coat-x",
+    "type": "waist",
+    "name": "Ceanataur Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-tasset-x",
+    "type": "waist",
+    "name": "Rathian Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-coat-x",
+    "type": "waist",
+    "name": "Rathian Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-tasset-x",
+    "type": "waist",
+    "name": "Naruga Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-coat-x",
+    "type": "waist",
+    "name": "Naruga Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-tasset-x",
+    "type": "waist",
+    "name": "Volganos Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-coat-x",
+    "type": "waist",
+    "name": "Volganos Coat X",
+    "rarity": "9"
   },
   {
     "slug": "tigrex-tasset-x",
@@ -100,6 +190,18 @@
     "slug": "tigrex-coat-x",
     "type": "waist",
     "name": "Tigrex Coat X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-tasset-x",
+    "type": "waist",
+    "name": "Rathalos Tasset X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-coat-x",
+    "type": "waist",
+    "name": "Rathalos Coat X",
     "rarity": "9"
   },
   {
@@ -127,6 +229,102 @@
     "rarity": "9"
   },
   {
+    "slug": "kut-ku-tasset-z",
+    "type": "waist",
+    "name": "Kut-Ku Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-coat-z",
+    "type": "waist",
+    "name": "Kut-Ku Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-tasset-z",
+    "type": "waist",
+    "name": "Conga Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-coat-z",
+    "type": "waist",
+    "name": "Conga Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-tasset-z",
+    "type": "waist",
+    "name": "Gypceros Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-coat-z",
+    "type": "waist",
+    "name": "Gypceros Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-tasset-z",
+    "type": "waist",
+    "name": "Khezu Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-coat-z",
+    "type": "waist",
+    "name": "Khezu Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-tasset-z",
+    "type": "waist",
+    "name": "Hermitaur Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-coat-z",
+    "type": "waist",
+    "name": "Hermitaur Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-tasset-z",
+    "type": "waist",
+    "name": "Plesioth Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-coat-z",
+    "type": "waist",
+    "name": "Plesioth Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-tasset-z",
+    "type": "waist",
+    "name": "Blango Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-coat-z",
+    "type": "waist",
+    "name": "Blango Coat Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-tasset-z",
+    "type": "waist",
+    "name": "Ceanataur Tasset Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-coat-z",
+    "type": "waist",
+    "name": "Ceanataur Coat Z",
+    "rarity": "9"
+  },
+  {
     "slug": "diablo-coil-z",
     "type": "waist",
     "name": "Diablo Coil Z",
@@ -151,6 +349,12 @@
     "rarity": "9"
   },
   {
+    "slug": "crystal-sash",
+    "type": "waist",
+    "name": "Crystal Sash",
+    "rarity": "10"
+  },
+  {
     "slug": "true-golden-obi",
     "type": "waist",
     "name": "True Golden Obi",
@@ -160,6 +364,42 @@
     "slug": "true-puppetmastr-obi",
     "type": "waist",
     "name": "True PuppetMastr Obi",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-tasset-x",
+    "type": "waist",
+    "name": "Black Belt Tasset X",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-coat-x",
+    "type": "waist",
+    "name": "Black Belt Coat X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-anka-x",
+    "type": "waist",
+    "name": "Obituary Anka X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-cocusa-x",
+    "type": "waist",
+    "name": "Obituary Cocusa X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-anka-x",
+    "type": "waist",
+    "name": "Butterfly Anka X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-cocusa-x",
+    "type": "waist",
+    "name": "Butterfly Cocusa X",
     "rarity": "10"
   },
   {
@@ -268,6 +508,54 @@
     "slug": "ucamulbas-sash",
     "type": "waist",
     "name": "Ucamulbas Sash",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-skirt-z",
+    "type": "waist",
+    "name": "Melahoa Skirt Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-trunk-z",
+    "type": "waist",
+    "name": "Melahoa Trunk Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-coat-z",
+    "type": "waist",
+    "name": "Makluva Coat Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-fin-z",
+    "type": "waist",
+    "name": "Makluva Fin Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathian-heart-coil-z",
+    "type": "waist",
+    "name": "Rathian Heart Coil Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathian-heart-coat-z",
+    "type": "waist",
+    "name": "Rathian Heart Coat Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathalos-soul-coil-z",
+    "type": "waist",
+    "name": "Rathalos Soul Coil Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathalos-soul-coat-z",
+    "type": "waist",
+    "name": "Rathalos Soul Coat Z",
     "rarity": "10"
   },
   {

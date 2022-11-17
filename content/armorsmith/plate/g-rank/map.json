@@ -1,88 +1,184 @@
 {
   "map": [
   {
-    "slug": "monoblos-mail",
+    "slug": "kut-ku-mail-x",
     "type": "plate",
-    "name": "Monoblos Mail",
-    "rarity": "4"
+    "name": "Kut-Ku Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-vest",
+    "slug": "kut-ku-vest-x",
     "type": "plate",
-    "name": "Monoblos Vest",
-    "rarity": "4"
+    "name": "Kut-Ku Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "yian-garuga-mail",
+    "slug": "conga-mail-x",
     "type": "plate",
-    "name": "Yian Garuga Mail",
-    "rarity": "4"
+    "name": "Conga Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "yian-garuga-vest",
+    "slug": "conga-vest-x",
     "type": "plate",
-    "name": "Yian Garuga Vest",
-    "rarity": "4"
+    "name": "Conga Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "black-hide",
+    "slug": "gypceros-mail-x",
     "type": "plate",
-    "name": "Black Hide",
-    "rarity": "5"
+    "name": "Gypceros Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "black-skin",
+    "slug": "gypceros-vest-x",
     "type": "plate",
-    "name": "Black Skin",
-    "rarity": "5"
+    "name": "Gypceros Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-mail",
+    "slug": "khezu-mail-x",
     "type": "plate",
-    "name": "Empress Mail",
-    "rarity": "5"
+    "name": "Khezu Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-vest",
+    "slug": "khezu-vest-x",
     "type": "plate",
-    "name": "Empress Vest",
-    "rarity": "5"
+    "name": "Khezu Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-mail",
+    "slug": "hermitaur-mail-x",
     "type": "plate",
-    "name": "Monodevil Mail",
-    "rarity": "5"
+    "name": "Hermitaur Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-vest",
+    "slug": "hermitaur-vest-x",
     "type": "plate",
-    "name": "Monodevil Vest",
-    "rarity": "5"
+    "name": "Hermitaur Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-mail-s",
+    "slug": "hypnoc-mail-x",
     "type": "plate",
-    "name": "Monoblos Mail S",
-    "rarity": "6"
+    "name": "Hypnoc Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-vest-s",
+    "slug": "hypnoc-vest-x",
     "type": "plate",
-    "name": "Monoblos Vest S",
-    "rarity": "6"
+    "name": "Hypnoc Vest X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-mail-u",
+    "slug": "basarios-mail-x",
     "type": "plate",
-    "name": "Monodevil Mail U",
-    "rarity": "8"
+    "name": "Basarios Mail X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-vest-u",
+    "slug": "basarios-vest-x",
     "type": "plate",
-    "name": "Monodevil Vest U",
-    "rarity": "8"
+    "name": "Basarios Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-mail-x",
+    "type": "plate",
+    "name": "Plesioth Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vest-x",
+    "type": "plate",
+    "name": "Plesioth Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-mail-x",
+    "type": "plate",
+    "name": "Monoblos Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-vest-x",
+    "type": "plate",
+    "name": "Monoblos Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "yian-garuga-mail-x",
+    "type": "plate",
+    "name": "Yian Garuga Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "yian-garuga-vest-x",
+    "type": "plate",
+    "name": "Yian Garuga Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-mail-x",
+    "type": "plate",
+    "name": "Blango Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vest-x",
+    "type": "plate",
+    "name": "Blango Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-mail-x",
+    "type": "plate",
+    "name": "Ceanataur Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-vest-x",
+    "type": "plate",
+    "name": "Ceanataur Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-mail-x",
+    "type": "plate",
+    "name": "Rathian Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-vest-x",
+    "type": "plate",
+    "name": "Rathian Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-mail-x",
+    "type": "plate",
+    "name": "Naruga Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-vest-x",
+    "type": "plate",
+    "name": "Naruga Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-mail-x",
+    "type": "plate",
+    "name": "Volganos Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-vest-x",
+    "type": "plate",
+    "name": "Volganos Vest X",
+    "rarity": "9"
   },
   {
     "slug": "tigrex-mail-x",
@@ -94,6 +190,18 @@
     "slug": "tigrex-vest-x",
     "type": "plate",
     "name": "Tigrex Vest X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-mail-x",
+    "type": "plate",
+    "name": "Rathalos Mail X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-vest-x",
+    "type": "plate",
+    "name": "Rathalos Vest X",
     "rarity": "9"
   },
   {
@@ -121,6 +229,102 @@
     "rarity": "9"
   },
   {
+    "slug": "kut-ku-mail-z",
+    "type": "plate",
+    "name": "Kut-Ku Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-vest-z",
+    "type": "plate",
+    "name": "Kut-Ku Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-mail-z",
+    "type": "plate",
+    "name": "Conga Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-vest-z",
+    "type": "plate",
+    "name": "Conga Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-mail-z",
+    "type": "plate",
+    "name": "Gypceros Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-vest-z",
+    "type": "plate",
+    "name": "Gypceros Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-mail-z",
+    "type": "plate",
+    "name": "Khezu Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-vest-z",
+    "type": "plate",
+    "name": "Khezu Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-mail-z",
+    "type": "plate",
+    "name": "Hermitaur Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-vest-z",
+    "type": "plate",
+    "name": "Hermitaur Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-mail-z",
+    "type": "plate",
+    "name": "Plesioth Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vest-z",
+    "type": "plate",
+    "name": "Plesioth Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-mail-z",
+    "type": "plate",
+    "name": "Blango Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vest-z",
+    "type": "plate",
+    "name": "Blango Vest Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-mail-z",
+    "type": "plate",
+    "name": "Ceanataur Mail Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-vest-z",
+    "type": "plate",
+    "name": "Ceanataur Vest Z",
+    "rarity": "9"
+  },
+  {
     "slug": "diablo-mail-z",
     "type": "plate",
     "name": "Diablo Mail Z",
@@ -145,9 +349,27 @@
     "rarity": "9"
   },
   {
+    "slug": "chakra-necklace",
+    "type": "plate",
+    "name": "Chakra Necklace",
+    "rarity": "10"
+  },
+  {
     "slug": "famitsu-t-shirt-x",
     "type": "plate",
     "name": "Famitsu T-Shirt X",
+    "rarity": "10"
+  },
+  {
+    "slug": "hunter-soul-t-shirt-x",
+    "type": "plate",
+    "name": "Hunter Soul T-Shirt X",
+    "rarity": "10"
+  },
+  {
+    "slug": "hunter-t-shirt-x",
+    "type": "plate",
+    "name": "Hunter T-Shirt X",
     "rarity": "10"
   },
   {
@@ -160,6 +382,42 @@
     "slug": "truepuppetmstrcostume",
     "type": "plate",
     "name": "TruePuppetMstrCostume",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-mail-x",
+    "type": "plate",
+    "name": "Black Belt Mail X",
+    "rarity": "10"
+  },
+  {
+    "slug": "black-belt-vest-x",
+    "type": "plate",
+    "name": "Black Belt Vest X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-petto-x",
+    "type": "plate",
+    "name": "Obituary Petto X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-pectus-x",
+    "type": "plate",
+    "name": "Obituary Pectus X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-petto-x",
+    "type": "plate",
+    "name": "Butterfly Petto X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-pectus-x",
+    "type": "plate",
+    "name": "Butterfly Pectus X",
     "rarity": "10"
   },
   {
@@ -268,6 +526,54 @@
     "slug": "ucamulbas-plate",
     "type": "plate",
     "name": "Ucamulbas Plate",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoaflowerjacketz",
+    "type": "plate",
+    "name": "MelahoaFlowerJacketZ",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-stalk-z",
+    "type": "plate",
+    "name": "Melahoa Stalk Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-cover-z",
+    "type": "plate",
+    "name": "Makluva Cover Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-scale-z",
+    "type": "plate",
+    "name": "Makluva Scale Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathian-heart-mail-z",
+    "type": "plate",
+    "name": "Rathian Heart Mail Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathian-heart-vest-z",
+    "type": "plate",
+    "name": "Rathian Heart Vest Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathalos-soul-mail-z",
+    "type": "plate",
+    "name": "Rathalos Soul Mail Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rathalos-soul-vest-z",
+    "type": "plate",
+    "name": "Rathalos Soul Vest Z",
     "rarity": "10"
   },
   {

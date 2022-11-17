@@ -1,29 +1,878 @@
 {
   "weapons": [
     {
-      "name": "Chrome Metal Coat",
+      "name": "Kut-Ku Tasset X",
       "type": "waist",
-      "hr": "10",
-      "elder": "6",
+      "hr": "7",
+      "elder": "10",
       "defence": null,
       "fire_res": "2",
       "thunder_res": "0",
-      "dragon_res": "0",
+      "dragon_res": "-1",
       "water_res": "-2",
-      "ice_res": "0",
+      "ice_res": "-2",
       "sex": "Male/Female",
-      "hunter_type": "Blade/Gunner",
-      "rarity": "3",
-      "slots": "---",
-      "create_cost": "3630",
-      "skills": null,
-      "create_mats": null
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "12800",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "-2"
+        },
+        {
+          "name": "PsychicVis",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Kut-Ku Thck Scl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kut-Ku Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BirdWyvnStoutBne",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
     },
     {
-      "name": "Monoblos Coil",
+      "name": "Kut-Ku Coat X",
       "type": "waist",
-      "hr": "10",
-      "elder": "4!",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "12800",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "-2"
+        },
+        {
+          "name": "PsychicVis",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Kut-Ku Thck Scl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kut-Ku Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BirdWyvnStoutBne",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Conga Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-3",
+      "thunder_res": "2",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Hunger",
+          "amount": "-2"
+        },
+        {
+          "name": "Attack",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Congalala Pelt G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Fang",
+          "amount": "3",
+          "type": "claw",
+          "color": "pink"
+        },
+        {
+          "name": "Bullfango Pelt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Conga Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-1",
+      "thunder_res": "4",
+      "dragon_res": "1",
+      "water_res": "4",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Hunger",
+          "amount": "-2"
+        },
+        {
+          "name": "Attack",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Congalala Pelt G",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Congalala Fang",
+          "amount": "3",
+          "type": "claw",
+          "color": "pink"
+        },
+        {
+          "name": "Bullfango Pelt+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "2",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Gypceros Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Recovery",
+          "amount": "-3"
+        },
+        {
+          "name": "Carving",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rubbery Hide G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "4",
+          "type": "ore",
+          "color": "pink"
+        }
+      ]
+    },
+    {
+      "name": "Gypceros Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-1",
+      "thunder_res": "6",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Carving",
+          "amount": "4"
+        },
+        {
+          "name": "PoisnCtAdd",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rubbery Hide G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Pure Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "4",
+          "type": "ore",
+          "color": "pink"
+        }
+      ]
+    },
+    {
+      "name": "Khezu Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-3",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "3",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Faint",
+          "amount": "-2"
+        },
+        {
+          "name": "Recovery",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Khezu Hide-Gloss",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "6",
+          "type": "ore",
+          "color": "slate"
+        },
+        {
+          "name": "King Scarab",
+          "amount": "8",
+          "type": "insect",
+          "color": "slate"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "3",
+          "type": "fluid",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Khezu Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-1",
+      "thunder_res": "6",
+      "dragon_res": "0",
+      "water_res": "5",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Faint",
+          "amount": "-2"
+        },
+        {
+          "name": "Rec Speed",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Khezu Hide-Gloss",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Carbalite Ore",
+          "amount": "6",
+          "type": "ore",
+          "color": "slate"
+        },
+        {
+          "name": "King Scarab",
+          "amount": "8",
+          "type": "insect",
+          "color": "slate"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": "3",
+          "type": "fluid",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Hermitaur Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-3",
+      "thunder_res": "-4",
+      "dragon_res": "1",
+      "water_res": "3",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "BombStrUp",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "2"
+        },
+        {
+          "name": "All Resist",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Hermitaur HvyCpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hermitaur Carpce",
+          "amount": "6",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Hermitaur Claw+",
+          "amount": "2",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "15",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Hermitaur Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-1",
+      "thunder_res": "-2",
+      "dragon_res": "2",
+      "water_res": "5",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "CragS Add",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "2"
+        },
+        {
+          "name": "All Resist",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Hermitaur HvyCpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hermitaur Carpce",
+          "amount": "6",
+          "type": "shell",
+          "color": "red"
+        },
+        {
+          "name": "Hermitaur Claw+",
+          "amount": "2",
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Monster Bone+",
+          "amount": "15",
+          "type": "bone",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "name": "Hypnoc Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-2",
+      "thunder_res": "0",
+      "dragon_res": "1",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Sleep",
+          "amount": "4"
+        },
+        {
+          "name": "Technique",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Hypnoc Feather+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Down",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Etherlite Ore",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Hypnoc Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "2",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Sleep",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "6"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Hypnoc Feather+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rainbow Down",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Etherlite Ore",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Monster Broth+",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Basarios Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "2",
+      "dragon_res": "-2",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Defence",
+          "amount": "3"
+        },
+        {
+          "name": "Protection",
+          "amount": "1"
+        },
+        {
+          "name": "Gunnery",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Basarios Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Carpace",
+          "amount": "5",
+          "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "Genprey Hide+",
+          "amount": "6",
+          "type": "pelt",
+          "color": "green"
+        },
+        {
+          "name": "Etherlite Ore",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Basarios Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Defence",
+          "amount": "3"
+        },
+        {
+          "name": "Protection",
+          "amount": "1"
+        },
+        {
+          "name": "Gunnery",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Basarios Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Basarios Carpace",
+          "amount": "5",
+          "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "Genprey Hide+",
+          "amount": "6",
+          "type": "pelt",
+          "color": "green"
+        },
+        {
+          "name": "Etherlite Ore",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Plesioth Tasset X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "-4",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14250",
+      "skills": [
+        {
+          "name": "Technique",
+          "amount": "-1"
+        },
+        {
+          "name": "Trapper",
+          "amount": "2"
+        },
+        {
+          "name": "Observance",
+          "amount": "5"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Plsioth Thck Scl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Scale+",
+          "amount": "3",
+          "type": "scale",
+          "color": "blue"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "2",
+          "type": "ore",
+          "color": "pink"
+        }
+      ]
+    },
+    {
+      "name": "Plesioth Coat X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-2",
+      "thunder_res": "-2",
+      "dragon_res": "1",
+      "water_res": "6",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14250",
+      "skills": [
+        {
+          "name": "Technique",
+          "amount": "-1"
+        },
+        {
+          "name": "Trapper",
+          "amount": "2"
+        },
+        {
+          "name": "Observance",
+          "amount": "5"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Plsioth Thck Scl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Fin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plesioth Scale+",
+          "amount": "3",
+          "type": "scale",
+          "color": "blue"
+        },
+        {
+          "name": "Union Ore",
+          "amount": "2",
+          "type": "ore",
+          "color": "pink"
+        }
+      ]
+    },
+    {
+      "name": "Monoblos Coil X",
+      "type": "waist",
+      "hr": "7!",
+      "elder": "8!",
       "defence": null,
       "fire_res": "2",
       "thunder_res": "-2",
@@ -32,55 +881,55 @@
       "ice_res": "-1",
       "sex": "Male/Female",
       "hunter_type": "Blade",
-      "rarity": "4",
-      "slots": "O--",
-      "create_cost": "4900",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
       "skills": [
-        {
-          "name": "Attack",
-          "amount": "2"
-        },
         {
           "name": "Protection",
           "amount": "-2"
         },
         {
-          "name": "Potential",
+          "name": "PsychicVis",
           "amount": "2"
+        },
+        {
+          "name": "Potential",
+          "amount": "4"
         }
       ],
       "create_mats": [
         {
-          "name": "Monoblos Spine",
+          "name": "Melange Ore",
           "amount": "3",
-          "type": "part",
-          "color": "red"
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Blood Red Horn",
+          "name": "Majestic Red Hrn",
           "amount": "1",
-          "type": "claw",
-          "color": "red"
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Monoblos Shell",
-          "amount": "2",
-          "type": "part",
-          "color": "red"
-        },
-        {
-          "name": "Lg Monster Bone",
+          "name": "Monoblos Thrcic",
           "amount": "4",
           "type": "bone",
-          "color": "yellow"
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "gray"
         }
       ]
     },
     {
-      "name": "Monoblos Coat",
+      "name": "Monoblos Coat X",
       "type": "waist",
-      "hr": "10",
-      "elder": "4!",
+      "hr": "7!",
+      "elder": "8!",
       "defence": null,
       "fire_res": "4",
       "thunder_res": "0",
@@ -89,55 +938,55 @@
       "ice_res": "0",
       "sex": "Male/Female",
       "hunter_type": "Gunner",
-      "rarity": "4",
-      "slots": "O--",
-      "create_cost": "4900",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
       "skills": [
-        {
-          "name": "Attack",
-          "amount": "2"
-        },
         {
           "name": "Protection",
           "amount": "-2"
         },
         {
-          "name": "Potential",
+          "name": "PsychicVis",
           "amount": "2"
+        },
+        {
+          "name": "Potential",
+          "amount": "4"
         }
       ],
       "create_mats": [
         {
-          "name": "Monoblos Spine",
+          "name": "Melange Ore",
           "amount": "3",
-          "type": "part",
-          "color": "red"
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Blood Red Horn",
+          "name": "Majestic Red Hrn",
           "amount": "1",
-          "type": "claw",
-          "color": "red"
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Monoblos Shell",
-          "amount": "2",
-          "type": "part",
-          "color": "red"
-        },
-        {
-          "name": "Lg Monster Bone",
+          "name": "Monoblos Thrcic",
           "amount": "4",
           "type": "bone",
-          "color": "yellow"
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "gray"
         }
       ]
     },
     {
-      "name": "Garuga Tasset",
+      "name": "Garuga Tasset X",
       "type": "waist",
-      "hr": "10",
-      "elder": "4!",
+      "hr": "8",
+      "elder": "10",
       "defence": null,
       "fire_res": "2",
       "thunder_res": "2",
@@ -146,55 +995,55 @@
       "ice_res": "0",
       "sex": "Male/Female",
       "hunter_type": "Blade",
-      "rarity": "4",
+      "rarity": "9",
       "slots": "OO-",
-      "create_cost": "4900",
+      "create_cost": "14750",
       "skills": [
         {
-          "name": "Expert",
-          "amount": "2"
-        },
-        {
-          "name": "HearProtct",
+          "name": "SwdShrpner",
           "amount": "1"
         },
         {
-          "name": "Gathering",
-          "amount": "-2"
+          "name": "Spc Attack",
+          "amount": "4"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
         }
       ],
       "create_mats": [
         {
-          "name": "Garuga Scale",
+          "name": "Garuga Scale G",
           "amount": "4",
-          "type": "scale",
-          "color": "slate"
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Garuga Shell",
-          "amount": "5",
-          "type": "part",
-          "color": "slate"
+          "name": "Garuga Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Killer Beetle",
-          "amount": "2",
-          "type": "insect",
-          "color": "green"
+          "name": "Blaze Sac",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Lg Monster Bone",
+          "name": "Emperor Locust",
           "amount": "2",
           "type": "bone",
-          "color": "yellow"
+          "color": "white"
         }
       ]
     },
     {
-      "name": "Garuga Coat",
+      "name": "Garuga Coat X",
       "type": "waist",
-      "hr": "10",
-      "elder": "4!",
+      "hr": "8",
+      "elder": "10",
       "defence": null,
       "fire_res": "3",
       "thunder_res": "3",
@@ -203,583 +1052,589 @@
       "ice_res": "1",
       "sex": "Male/Female",
       "hunter_type": "Gunner",
-      "rarity": "4",
-      "slots": "O--",
-      "create_cost": "4900",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
+      "skills": [
+        {
+          "name": "Spc Attack",
+          "amount": "4"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        },
+        {
+          "name": "RazorCtAdd",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Garuga Scale G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Garuga Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Locust",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Blango Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "0",
+      "dragon_res": "1",
+      "water_res": "2",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
+      "skills": [
+        {
+          "name": "Heat Res",
+          "amount": "-2"
+        },
+        {
+          "name": "Quake Res",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Blangonga Pelt G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blngnga HrdWhskr",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Hide+",
+          "amount": "2",
+          "type": "pelt",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Blango Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-3",
+      "thunder_res": "1",
+      "dragon_res": "2",
+      "water_res": "4",
+      "ice_res": "5",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
+      "skills": [
+        {
+          "name": "Heat Res",
+          "amount": "-2"
+        },
+        {
+          "name": "Shot Mix",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Blangonga Pelt G",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blngnga HrdWhskr",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Kirin Hide+",
+          "amount": "2",
+          "type": "pelt",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ceanataur Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "1",
+      "thunder_res": "-1",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15100",
+      "skills": [
+        {
+          "name": "Fencing",
+          "amount": "4"
+        },
+        {
+          "name": "Drawn Crit",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "CeanataurHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Ceanataur Carpce",
+          "amount": "4",
+          "type": "shell",
+          "color": "blue"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "4",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ceanataur Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "0",
+      "dragon_res": "2",
+      "water_res": "4",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15100",
       "skills": [
         {
           "name": "PierceSAdd",
           "amount": "2"
         },
         {
-          "name": "HearProtct",
-          "amount": "1"
+          "name": "Loading",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "CeanataurHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Gathering",
+          "name": "Ceanataur Carpce",
+          "amount": "4",
+          "type": "shell",
+          "color": "blue"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "4",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathian Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-4",
+      "water_res": "0",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15600",
+      "skills": [
+        {
+          "name": "SwdShrpner",
+          "amount": "-2"
+        },
+        {
+          "name": "Recovery",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rathian Hvy Cpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrnHrdClaw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathian Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "-2",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15600",
+      "skills": [
+        {
+          "name": "Recovery",
+          "amount": "2"
+        },
+        {
+          "name": "Precision",
           "amount": "-2"
         }
       ],
       "create_mats": [
         {
-          "name": "Garuga Scale",
-          "amount": "4",
-          "type": "scale",
-          "color": "slate"
-        },
-        {
-          "name": "Garuga Shell",
-          "amount": "5",
-          "type": "part",
-          "color": "slate"
-        },
-        {
-          "name": "Killer Beetle",
-          "amount": "2",
-          "type": "insect",
-          "color": "green"
-        },
-        {
-          "name": "Lg Monster Bone",
+          "name": "Rathian Hvy Cpc",
           "amount": "2",
           "type": "bone",
-          "color": "yellow"
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrnHrdClaw",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PhantomButterfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "white"
         }
       ]
     },
     {
-      "name": "Black Spine",
+      "name": "Naruga Tasset X",
       "type": "waist",
-      "hr": "10",
-      "elder": "5!",
+      "hr": "8",
+      "elder": "10",
       "defence": null,
-      "fire_res": "0",
-      "thunder_res": "2",
-      "dragon_res": "-5",
-      "water_res": "2",
+      "fire_res": "-4",
+      "thunder_res": "-3",
+      "dragon_res": "0",
+      "water_res": "3",
       "ice_res": "2",
       "sex": "Male/Female",
       "hunter_type": "Blade",
-      "rarity": "5",
-      "slots": "OOO",
-      "create_cost": "11111",
-      "skills": null,
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15600",
+      "skills": [
+        {
+          "name": "Evade",
+          "amount": "5"
+        },
+        {
+          "name": "Evade Inc",
+          "amount": "2"
+        }
+      ],
       "create_mats": [
         {
-          "name": "Dark Stone",
-          "amount": "1",
-          "type": "egg",
+          "name": "Naruga Thck Scl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Naruga Strng Wng",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "2",
+          "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
-          "amount": "3",
-          "type": "scale",
-          "color": "gray"
-        },
-        {
-          "name": "Ancient Potion",
-          "amount": "1",
-          "type": "sac",
-          "color": "red"
-        },
-        {
-          "name": "FireWyvern Fluid",
-          "amount": "3",
-          "type": "part",
-          "color": "red"
+          "name": "Monster Broth+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
         }
       ]
     },
     {
-      "name": "Black Scale",
+      "name": "Naruga Coat X",
       "type": "waist",
-      "hr": "10",
-      "elder": "5!",
+      "hr": "8",
+      "elder": "10",
       "defence": null,
-      "fire_res": "2",
-      "thunder_res": "4",
-      "dragon_res": "-2",
+      "fire_res": "-2",
+      "thunder_res": "-1",
+      "dragon_res": "1",
       "water_res": "4",
       "ice_res": "3",
       "sex": "Male/Female",
       "hunter_type": "Gunner",
-      "rarity": "5",
-      "slots": "OOO",
-      "create_cost": "11111",
-      "skills": null,
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15600",
+      "skills": [
+        {
+          "name": "Evade",
+          "amount": "2"
+        },
+        {
+          "name": "Evade Inc",
+          "amount": "3"
+        },
+        {
+          "name": "Set Trap",
+          "amount": "2"
+        }
+      ],
       "create_mats": [
         {
-          "name": "Dark Stone",
-          "amount": "1",
-          "type": "egg",
+          "name": "Naruga Thck Scl",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Naruga Strng Wng",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "2",
+          "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
-          "amount": "3",
-          "type": "scale",
-          "color": "gray"
-        },
-        {
-          "name": "Ancient Potion",
-          "amount": "1",
-          "type": "sac",
-          "color": "red"
-        },
-        {
-          "name": "FireWyvern Fluid",
-          "amount": "3",
-          "type": "part",
-          "color": "red"
+          "name": "Monster Broth+",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
         }
       ]
     },
     {
-      "name": "Empress Tasset",
+      "name": "Volganos Tasset X",
       "type": "waist",
-      "hr": "10",
-      "elder": "5!",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "1",
+      "water_res": "-3",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Terrain",
+          "amount": "2"
+        },
+        {
+          "name": "Survival",
+          "amount": "3"
+        },
+        {
+          "name": "Fast Chrge",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Volganos Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Volganos Fin+",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Firecell Stone",
+          "amount": "3",
+          "type": "ore",
+          "color": "orange"
+        },
+        {
+          "name": "Ancient Fish",
+          "amount": "6",
+          "type": "fish",
+          "color": "gray"
+        }
+      ]
+    },
+    {
+      "name": "Volganos Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
       "defence": null,
       "fire_res": "5",
-      "thunder_res": "0",
-      "dragon_res": "-2",
-      "water_res": "-1",
-      "ice_res": "0",
-      "sex": "Male/Female",
-      "hunter_type": "Blade",
-      "rarity": "5",
-      "slots": "O--",
-      "create_cost": "11625",
-      "skills": [
-        {
-          "name": "Guard",
-          "amount": "3"
-        },
-        {
-          "name": "Theft",
-          "amount": "2"
-        },
-        {
-          "name": "Cold Res",
-          "amount": "-2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "Lunastra Horn",
-          "amount": "1",
-          "type": "claw",
-          "color": "blue"
-        },
-        {
-          "name": "Fire Drgn Wbng",
-          "amount": "2",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Fire Dragon Scl",
-          "amount": "4",
-          "type": "scale",
-          "color": "red"
-        },
-        {
-          "name": "Dragonite Ore",
-          "amount": "9",
-          "type": "ore",
-          "color": "green"
-        }
-      ]
-    },
-    {
-      "name": "Empress Coat",
-      "type": "waist",
-      "hr": "10",
-      "elder": "5!",
-      "defence": null,
-      "fire_res": "6",
       "thunder_res": "2",
-      "dragon_res": "-1",
-      "water_res": "1",
-      "ice_res": "0",
+      "dragon_res": "2",
+      "water_res": "-1",
+      "ice_res": "2",
       "sex": "Male/Female",
       "hunter_type": "Gunner",
-      "rarity": "5",
+      "rarity": "9",
       "slots": "OO-",
-      "create_cost": "11625",
+      "create_cost": "16100",
       "skills": [
         {
-          "name": "Guard Up",
-          "amount": "1"
-        },
-        {
-          "name": "Theft",
+          "name": "Terrain",
           "amount": "2"
         },
         {
-          "name": "Cold Res",
-          "amount": "-2"
+          "name": "Survival",
+          "amount": "3"
+        },
+        {
+          "name": "Fast Chrge",
+          "amount": "2"
         }
       ],
       "create_mats": [
         {
-          "name": "Lunastra Horn",
-          "amount": "1",
-          "type": "claw",
-          "color": "blue"
+          "name": "Volganos Hvy Cpc",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
         },
         {
-          "name": "Fire Drgn Wbng",
+          "name": "Volganos Fin+",
           "amount": "2",
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Fire Dragon Scl",
-          "amount": "4",
-          "type": "scale",
-          "color": "red"
-        },
-        {
-          "name": "Dragonite Ore",
-          "amount": "9",
+          "name": "Firecell Stone",
+          "amount": "3",
           "type": "ore",
-          "color": "green"
-        }
-      ]
-    },
-    {
-      "name": "Monodevil Coil",
-      "type": "waist",
-      "hr": "10",
-      "elder": "4!",
-      "defence": null,
-      "fire_res": "2",
-      "thunder_res": "-2",
-      "dragon_res": "-1",
-      "water_res": "-1",
-      "ice_res": "-1",
-      "sex": "Male/Female",
-      "hunter_type": "Blade",
-      "rarity": "5",
-      "slots": "O--",
-      "create_cost": "5900",
-      "skills": [
-        {
-          "name": "Expert",
-          "amount": "1"
-        },
-        {
-          "name": "Protection",
-          "amount": "-3"
-        },
-        {
-          "name": "Potential",
-          "amount": "3"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "Wht Monoblos Hrn",
-          "amount": "1",
-          "type": "claw",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Spn",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Shl",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Monster Bone+",
-          "amount": "4",
-          "type": "bone",
           "color": "orange"
-        }
-      ]
-    },
-    {
-      "name": "Monodevil Coat",
-      "type": "waist",
-      "hr": "10",
-      "elder": "4!",
-      "defence": null,
-      "fire_res": "4",
-      "thunder_res": "0",
-      "dragon_res": "0",
-      "water_res": "2",
-      "ice_res": "0",
-      "sex": "Male/Female",
-      "hunter_type": "Gunner",
-      "rarity": "5",
-      "slots": "O--",
-      "create_cost": "5900",
-      "skills": [
-        {
-          "name": "Protection",
-          "amount": "-4"
         },
         {
-          "name": "Potential",
-          "amount": "2"
-        },
-        {
-          "name": "Loading",
-          "amount": "2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "Wht Monoblos Hrn",
-          "amount": "1",
-          "type": "claw",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Spn",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Shl",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Monster Bone+",
-          "amount": "4",
-          "type": "bone",
-          "color": "orange"
-        }
-      ]
-    },
-    {
-      "name": "Monoblos Coil S",
-      "type": "waist",
-      "hr": "10",
-      "elder": "8!",
-      "defence": null,
-      "fire_res": "2",
-      "thunder_res": "-2",
-      "dragon_res": "-1",
-      "water_res": "-1",
-      "ice_res": "-1",
-      "sex": "Male/Female",
-      "hunter_type": "Blade",
-      "rarity": "6",
-      "slots": "OO-",
-      "create_cost": "9900",
-      "skills": [
-        {
-          "name": "Protection",
-          "amount": "-2"
-        },
-        {
-          "name": "Potential",
-          "amount": "2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "Monoblos Thrcic",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Blood Red Horn",
-          "amount": "1",
-          "type": "claw",
-          "color": "red"
-        },
-        {
-          "name": "Monoblos Carpce",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Hrd Monster Bone",
-          "amount": "4",
-          "type": "bone",
-          "color": "red"
-        }
-      ]
-    },
-    {
-      "name": "Monoblos Coat S",
-      "type": "waist",
-      "hr": "10",
-      "elder": "8!",
-      "defence": null,
-      "fire_res": "4",
-      "thunder_res": "0",
-      "dragon_res": "0",
-      "water_res": "2",
-      "ice_res": "0",
-      "sex": "Male/Female",
-      "hunter_type": "Gunner",
-      "rarity": "6",
-      "slots": "O--",
-      "create_cost": "9900",
-      "skills": [
-        {
-          "name": "Protection",
-          "amount": "-1"
-        },
-        {
-          "name": "Potential",
-          "amount": "2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "Monoblos Thrcic",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Blood Red Horn",
-          "amount": "1",
-          "type": "claw",
-          "color": "red"
-        },
-        {
-          "name": "Monoblos Carpce",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Hrd Monster Bone",
-          "amount": "4",
-          "type": "bone",
-          "color": "red"
-        }
-      ]
-    },
-    {
-      "name": "Monodevil Coil U",
-      "type": "waist",
-      "hr": "10",
-      "elder": "8!",
-      "defence": null,
-      "fire_res": "2",
-      "thunder_res": "-2",
-      "dragon_res": "-1",
-      "water_res": "-1",
-      "ice_res": "-1",
-      "sex": "Male/Female",
-      "hunter_type": "Blade",
-      "rarity": "8",
-      "slots": "OO-",
-      "create_cost": "9900",
-      "skills": [
-        {
-          "name": "Expert",
-          "amount": "1"
-        },
-        {
-          "name": "Protection",
-          "amount": "-2"
-        },
-        {
-          "name": "Potential",
-          "amount": "2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "WhtMnoblosThrcic",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Cpc",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Majestic Wht Hrn",
-          "amount": "1",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Hrd Monster Bone",
-          "amount": "4",
-          "type": "bone",
-          "color": "red"
-        }
-      ]
-    },
-    {
-      "name": "Monodevil Coat U",
-      "type": "waist",
-      "hr": "10",
-      "elder": "8!",
-      "defence": null,
-      "fire_res": "4",
-      "thunder_res": "0",
-      "dragon_res": "0",
-      "water_res": "2",
-      "ice_res": "0",
-      "sex": "Male/Female",
-      "hunter_type": "Gunner",
-      "rarity": "8",
-      "slots": "OO-",
-      "create_cost": "9900",
-      "skills": [
-        {
-          "name": "Protection",
-          "amount": "-2"
-        },
-        {
-          "name": "Potential",
-          "amount": "2"
-        },
-        {
-          "name": "Loading",
-          "amount": "2"
-        }
-      ],
-      "create_mats": [
-        {
-          "name": "WhtMnoblosThrcic",
-          "amount": "3",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Wht Monoblos Cpc",
-          "amount": "3",
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Majestic Wht Hrn",
-          "amount": "1",
-          "type": "bone",
-          "color": "white"
-        },
-        {
-          "name": "Hrd Monster Bone",
-          "amount": "4",
-          "type": "bone",
-          "color": "red"
+          "name": "Ancient Fish",
+          "amount": "6",
+          "type": "fish",
+          "color": "gray"
         }
       ]
     },
@@ -893,6 +1748,112 @@
           "name": "PhantomButterfly",
           "amount": "3",
           "type": "insect",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathalos Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "2",
+      "dragon_res": "-4",
+      "water_res": "-1",
+      "ice_res": "-3",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Drawn Crit",
+          "amount": "2"
+        },
+        {
+          "name": "Fast Chrge",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rathalos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos ThckScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrnHrdClaw",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathalos Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "5",
+      "dragon_res": "-2",
+      "water_res": "0",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "16100",
+      "skills": [
+        {
+          "name": "Attack",
+          "amount": "5"
+        },
+        {
+          "name": "Fast Chrge",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Rathalos Hvy Cpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos ThckScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "FireWyvrnHrdClaw",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
+          "type": "bone",
           "color": "white"
         }
       ]
@@ -1111,6 +2072,874 @@
         },
         {
           "name": "GraviosDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Kut-Ku Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "0",
+      "dragon_res": "-1",
+      "water_res": "-2",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "12800",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "3"
+        },
+        {
+          "name": "WindPress",
+          "amount": "1"
+        },
+        {
+          "name": "Recovery",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "BlueKut-KuThkScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlueKut-KuHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bullfango Pelt+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Kut-Ku Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "12800",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "3"
+        },
+        {
+          "name": "Load",
+          "amount": "1"
+        },
+        {
+          "name": "Recovery",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "BlueKut-KuThkScl",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "BlueKut-KuHvyCpc",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Bullfango Pelt+",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Conga Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "-3",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Guard Up",
+          "amount": "2"
+        },
+        {
+          "name": "Cooking",
+          "amount": "2"
+        },
+        {
+          "name": "Quake Res",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GrnCongalalaPelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ConglalaStrngFng",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Remobra Skin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Locust",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Conga Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "3",
+      "dragon_res": "0",
+      "water_res": "3",
+      "ice_res": "-1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "PelletSAdd",
+          "amount": "3"
+        },
+        {
+          "name": "Cooking",
+          "amount": "2"
+        },
+        {
+          "name": "Fast Chrge",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GrnCongalalaPelt",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ConglalaStrngFng",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Remobra Skin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Locust",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Gypceros Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OOO",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Hunger",
+          "amount": "-3"
+        },
+        {
+          "name": "Stamina",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Pur Gyp StrngWng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Stone",
+          "amount": "8",
+          "type": "ore",
+          "color": "yellow"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "4",
+          "type": "insect",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Gypceros Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-1",
+      "thunder_res": "6",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "Hunger",
+          "amount": "-3"
+        },
+        {
+          "name": "Stamina",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Pur Gyp StrngWng",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Antiseptic Stone",
+          "amount": "8",
+          "type": "ore",
+          "color": "yellow"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "4",
+          "type": "insect",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Khezu Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "4",
+      "dragon_res": "0",
+      "water_res": "-3",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "3"
+        },
+        {
+          "name": "Wide Area",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Alluring Wing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ChoiceKhezuSteak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "2",
+          "type": "stone",
+          "color": "cyan"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Khezu Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "6",
+      "dragon_res": "0",
+      "water_res": "-1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "5"
+        },
+        {
+          "name": "Wide Area",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Alluring Wing",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ChoiceKhezuSteak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Wyvern Stone",
+          "amount": "2",
+          "type": "stone",
+          "color": "cyan"
+        },
+        {
+          "name": "Rare Scarab",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        }
+      ]
+    },
+    {
+      "name": "Hermitaur Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "-2",
+      "dragon_res": "1",
+      "water_res": "3",
+      "ice_res": "-4",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Stamina",
+          "amount": "-3"
+        },
+        {
+          "name": "Survival",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Pur HermitaurShl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "5",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "gray"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Hermitaur Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "1",
+      "thunder_res": "-1",
+      "dragon_res": "2",
+      "water_res": "6",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Recoil",
+          "amount": "1"
+        },
+        {
+          "name": "Survival",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Pur HermitaurShl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl",
+          "amount": "5",
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "Hvy Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "gray"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": "3",
+          "type": "bone",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Plesioth Tasset Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-4",
+      "thunder_res": "-4",
+      "dragon_res": "0",
+      "water_res": "4",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14250",
+      "skills": [
+        {
+          "name": "PsychicVis",
+          "amount": "5"
+        },
+        {
+          "name": "Stamina",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "-1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GrnPlsiothThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GrnPlsioth Fin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Grn Plsioth Scl+",
+          "amount": "3",
+          "type": "scale",
+          "color": "green"
+        },
+        {
+          "name": "Nova Crystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Plesioth Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "-2",
+      "thunder_res": "-2",
+      "dragon_res": "1",
+      "water_res": "6",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14250",
+      "skills": [
+        {
+          "name": "PsychicVis",
+          "amount": "5"
+        },
+        {
+          "name": "Stamina",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "-1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "GrnPlsiothThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "GrnPlsioth Fin G",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Grn Plsioth Scl+",
+          "amount": "3",
+          "type": "scale",
+          "color": "green"
+        },
+        {
+          "name": "Nova Crystal",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Blango Tasset Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "2",
+      "dragon_res": "1",
+      "water_res": "0",
+      "ice_res": "-3",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
+      "skills": [
+        {
+          "name": "Sharpness",
+          "amount": "3"
+        },
+        {
+          "name": "Attack",
+          "amount": "1"
+        },
+        {
+          "name": "Cold Res",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Brwn BlngngaPelt",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blngnga HrdWhskr",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "WhtMnoblosThrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Blango Coat Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "5",
+      "thunder_res": "4",
+      "dragon_res": "2",
+      "water_res": "1",
+      "ice_res": "-2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "14750",
+      "skills": [
+        {
+          "name": "NormalS Up",
+          "amount": "3"
+        },
+        {
+          "name": "Cold Res",
+          "amount": "-2"
+        },
+        {
+          "name": "Speed Fire",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Brwn BlngngaPelt",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blngnga HrdWhskr",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "WhtMnoblosThrcic",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Stout Bone",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ceanataur Tasset Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-1",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15100",
+      "skills": [
+        {
+          "name": "Artisan",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "-4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "RedCeanataurShl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RedCeanataurClaw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl+",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Ceanataur Coat Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "2",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "9",
+      "slots": "OO-",
+      "create_cost": "15100",
+      "skills": [
+        {
+          "name": "PierceS Up",
+          "amount": "2"
+        },
+        {
+          "name": "Defence",
+          "amount": "-3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "RedCeanataurShl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RedCeanataurClaw",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Fire Stone",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Black Pearl+",
           "amount": "1",
           "type": "bone",
           "color": "white"
@@ -1338,6 +3167,44 @@
       ]
     },
     {
+      "name": "Crystal Sash",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "0",
+      "dragon_res": "0",
+      "water_res": "0",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade/Gunner",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "11000",
+      "skills": null,
+      "create_mats": [
+        {
+          "name": "Pure Crystal",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "ChoiceKhezuSteak",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Emperor Locust",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
       "name": "True Golden Obi",
       "type": "waist",
       "hr": "9",
@@ -1448,6 +3315,332 @@
           "amount": "2",
           "type": "bone",
           "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Black Belt Tasset X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "1",
+      "thunder_res": "1",
+      "dragon_res": "1",
+      "water_res": "1",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "19800",
+      "skills": [
+        {
+          "name": "All Resist",
+          "amount": "1"
+        },
+        {
+          "name": "Potential",
+          "amount": "-2"
+        },
+        {
+          "name": "FlyneGuide",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Azure LaoS Claw",
+          "amount": "1",
+          "type": "claw",
+          "color": "blue"
+        },
+        {
+          "name": "Blackbelt Coin G",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Expert Coin G",
+          "amount": "12",
+          "type": "coin",
+          "color": "yellow"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Black Belt Coat X",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "3",
+      "dragon_res": "3",
+      "water_res": "3",
+      "ice_res": "3",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "19800",
+      "skills": [
+        {
+          "name": "All Resist",
+          "amount": "1"
+        },
+        {
+          "name": "Potential",
+          "amount": "-2"
+        },
+        {
+          "name": "FlyneGuide",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Azure LaoS Claw",
+          "amount": "1",
+          "type": "claw",
+          "color": "blue"
+        },
+        {
+          "name": "Blackbelt Coin G",
+          "amount": "12",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Expert Coin G",
+          "amount": "12",
+          "type": "coin",
+          "color": "yellow"
+        },
+        {
+          "name": "Commendation G",
+          "amount": "1",
+          "type": "ticket",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Obituary Anka X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "3",
+      "dragon_res": "2",
+      "water_res": "-5",
+      "ice_res": "-4",
+      "sex": "Male",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Gathering",
+          "amount": "2"
+        },
+        {
+          "name": "Evade",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Ladybug",
+          "amount": "3",
+          "type": "insect",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Obituary Cocusa X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "5",
+      "dragon_res": "2",
+      "water_res": "-4",
+      "ice_res": "-3",
+      "sex": "Male",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Gathering",
+          "amount": "2"
+        },
+        {
+          "name": "Evade",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Ladybug",
+          "amount": "3",
+          "type": "insect",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Butterfly Anka X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "3",
+      "thunder_res": "3",
+      "dragon_res": "2",
+      "water_res": "-5",
+      "ice_res": "-4",
+      "sex": "Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Gathering",
+          "amount": "2"
+        },
+        {
+          "name": "Evade",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Ladybug",
+          "amount": "3",
+          "type": "insect",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "name": "Butterfly Cocusa X",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "5",
+      "dragon_res": "2",
+      "water_res": "-4",
+      "ice_res": "-3",
+      "sex": "Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "13800",
+      "skills": [
+        {
+          "name": "Gathering",
+          "amount": "2"
+        },
+        {
+          "name": "Evade",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PhantomButterfly",
+          "amount": "2",
+          "type": "insect",
+          "color": "white"
+        },
+        {
+          "name": "Great Hornfly",
+          "amount": "3",
+          "type": "insect",
+          "color": "yellow"
+        },
+        {
+          "name": "Venom Sac",
+          "amount": "6",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Great Ladybug",
+          "amount": "3",
+          "type": "insect",
+          "color": "red"
         }
       ]
     },
@@ -2452,6 +4645,442 @@
         {
           "name": "Ucamu Divine Jwl",
           "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Melahoa Skirt Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "11700",
+      "skills": [
+        {
+          "name": "Whim",
+          "amount": "-3"
+        },
+        {
+          "name": "Evade Inc",
+          "amount": "4"
+        },
+        {
+          "name": "Set Trap",
+          "amount": "1"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Emperor Locust",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dosbiscus",
+          "amount": "5",
+          "type": "herb",
+          "color": "red"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "2",
+          "type": "ticket",
+          "color": "pink"
+        },
+        {
+          "name": "Monster Broth",
+          "amount": "6",
+          "type": "fluid",
+          "color": "blue"
+        }
+      ]
+    },
+    {
+      "name": "Melahoa Trunk Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "1",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "11700",
+      "skills": [
+        {
+          "name": "Whim",
+          "amount": "-2"
+        },
+        {
+          "name": "Set Trap",
+          "amount": "2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Emperor Locust",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Dosbiscus",
+          "amount": "5",
+          "type": "herb",
+          "color": "red"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "2",
+          "type": "ticket",
+          "color": "pink"
+        },
+        {
+          "name": "Monster Broth",
+          "amount": "6",
+          "type": "fluid",
+          "color": "blue"
+        }
+      ]
+    },
+    {
+      "name": "Makluva Coat Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "-2",
+      "dragon_res": "0",
+      "water_res": "2",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "3"
+        },
+        {
+          "name": "MixSucRate",
+          "amount": "3"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Etherlite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plsioth Thck Scl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Springnight Carp",
+          "amount": "5",
+          "type": "fish",
+          "color": "pink"
+        },
+        {
+          "name": "Book of Combos 5",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Makluva Fin Z",
+      "type": "waist",
+      "hr": "7",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "0",
+      "thunder_res": "-1",
+      "dragon_res": "0",
+      "water_res": "3",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "13300",
+      "skills": [
+        {
+          "name": "HearProtct",
+          "amount": "2"
+        },
+        {
+          "name": "MixSucRate",
+          "amount": "5"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "Etherlite Ore",
+          "amount": "5",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Plsioth Thck Scl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Springnight Carp",
+          "amount": "5",
+          "type": "fish",
+          "color": "pink"
+        },
+        {
+          "name": "Book of Combos 5",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathian Heart Coil Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "-2",
+      "dragon_res": "-4",
+      "water_res": "0",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OOO",
+      "create_cost": "21000",
+      "skills": [
+        {
+          "name": "Wide Area",
+          "amount": "2"
+        },
+        {
+          "name": "Potential",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PnkRathianThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PnkRathianHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathian Heart Coat Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "0",
+      "dragon_res": "-2",
+      "water_res": "2",
+      "ice_res": "2",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "21000",
+      "skills": [
+        {
+          "name": "Wide Area",
+          "amount": "5"
+        },
+        {
+          "name": "Potential",
+          "amount": "-2"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "PnkRathianThkScl",
+          "amount": "3",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "PnkRathianHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RathianDvnePlate",
+          "amount": "1",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathalos Soul Coil Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "2",
+      "thunder_res": "2",
+      "dragon_res": "-4",
+      "water_res": "-1",
+      "ice_res": "0",
+      "sex": "Male/Female",
+      "hunter_type": "Blade",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "21500",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "2"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "AzrRathlosHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "AzrRathlosThkScl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "amount": "1",
+          "type": "stone",
+          "color": "red"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "name": "Rathalos Soul Coat Z",
+      "type": "waist",
+      "hr": "8",
+      "elder": "10",
+      "defence": null,
+      "fire_res": "4",
+      "thunder_res": "5",
+      "dragon_res": "-2",
+      "water_res": "2",
+      "ice_res": "1",
+      "sex": "Male/Female",
+      "hunter_type": "Gunner",
+      "rarity": "10",
+      "slots": "OO-",
+      "create_cost": "21500",
+      "skills": [
+        {
+          "name": "Expert",
+          "amount": "2"
+        },
+        {
+          "name": "HearProtct",
+          "amount": "1"
+        },
+        {
+          "name": "Technique",
+          "amount": "4"
+        }
+      ],
+      "create_mats": [
+        {
+          "name": "AzrRathlosHvyCpc",
+          "amount": "2",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "AzrRathlosThkScl",
+          "amount": "4",
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "Rathalos Ruby",
+          "amount": "1",
+          "type": "stone",
+          "color": "red"
+        },
+        {
+          "name": "Blaze Sac",
+          "amount": "2",
           "type": "bone",
           "color": "white"
         }

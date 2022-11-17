@@ -1,88 +1,184 @@
 {
   "map": [
   {
-    "slug": "monoblos-vambraces",
+    "slug": "kut-ku-vambraces-x",
     "type": "gauntlets",
-    "name": "Monoblos Vambraces",
-    "rarity": "4"
+    "name": "Kut-Ku Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-guards",
+    "slug": "kut-ku-guards-x",
     "type": "gauntlets",
-    "name": "Monoblos Guards",
-    "rarity": "4"
+    "name": "Kut-Ku Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "garuga-vambraces",
+    "slug": "conga-vambraces-x",
     "type": "gauntlets",
-    "name": "Garuga Vambraces",
-    "rarity": "4"
+    "name": "Conga Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "garuga-guards",
+    "slug": "conga-guards-x",
     "type": "gauntlets",
-    "name": "Garuga Guards",
-    "rarity": "4"
+    "name": "Conga Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "black-claw",
+    "slug": "gypceros-vambraces-x",
     "type": "gauntlets",
-    "name": "Black Claw",
-    "rarity": "5"
+    "name": "Gypceros Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "black-fist",
+    "slug": "gypceros-guards-x",
     "type": "gauntlets",
-    "name": "Black Fist",
-    "rarity": "5"
+    "name": "Gypceros Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-vambraces",
+    "slug": "khezu-vambraces-x",
     "type": "gauntlets",
-    "name": "Empress Vambraces",
-    "rarity": "5"
+    "name": "Khezu Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "empress-guards",
+    "slug": "khezu-guards-x",
     "type": "gauntlets",
-    "name": "Empress Guards",
-    "rarity": "5"
+    "name": "Khezu Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-vambraces",
+    "slug": "hermitaur-braces-x",
     "type": "gauntlets",
-    "name": "Monodevil Vambraces",
-    "rarity": "5"
+    "name": "Hermitaur Braces X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-guards",
+    "slug": "hermitaur-guards-x",
     "type": "gauntlets",
-    "name": "Monodevil Guards",
-    "rarity": "5"
+    "name": "Hermitaur Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-vambraces-s",
+    "slug": "hypnoc-vambraces-x",
     "type": "gauntlets",
-    "name": "Monoblos Vambraces S",
-    "rarity": "6"
+    "name": "Hypnoc Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "monoblos-guards-s",
+    "slug": "hypnoc-guards-x",
     "type": "gauntlets",
-    "name": "Monoblos Guards S",
-    "rarity": "6"
+    "name": "Hypnoc Guards X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-braces-u",
+    "slug": "basarios-vambraces-x",
     "type": "gauntlets",
-    "name": "Monodevil Braces U",
-    "rarity": "8"
+    "name": "Basarios Vambraces X",
+    "rarity": "9"
   },
   {
-    "slug": "monodevil-guards-u",
+    "slug": "basarios-guards-x",
     "type": "gauntlets",
-    "name": "Monodevil Guards U",
-    "rarity": "8"
+    "name": "Basarios Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vambraces-x",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-guards-x",
+    "type": "gauntlets",
+    "name": "Plesioth Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Monoblos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "monoblos-guards-x",
+    "type": "gauntlets",
+    "name": "Monoblos Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-vambraces-x",
+    "type": "gauntlets",
+    "name": "Garuga Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "garuga-guards-x",
+    "type": "gauntlets",
+    "name": "Garuga Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vambraces-x",
+    "type": "gauntlets",
+    "name": "Blango Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-guards-x",
+    "type": "gauntlets",
+    "name": "Blango Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-braces-x",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-guards-x",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-vambraces-x",
+    "type": "gauntlets",
+    "name": "Rathian Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathian-guards-x",
+    "type": "gauntlets",
+    "name": "Rathian Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-vambraces-x",
+    "type": "gauntlets",
+    "name": "Naruga Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "naruga-guards-x",
+    "type": "gauntlets",
+    "name": "Naruga Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Volganos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "volganos-guards-x",
+    "type": "gauntlets",
+    "name": "Volganos Guards X",
+    "rarity": "9"
   },
   {
     "slug": "tigrex-vambraces-x",
@@ -94,6 +190,18 @@
     "slug": "tigrex-guards-x",
     "type": "gauntlets",
     "name": "Tigrex Guards X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-vambraces-x",
+    "type": "gauntlets",
+    "name": "Rathalos Vambraces X",
+    "rarity": "9"
+  },
+  {
+    "slug": "rathalos-guards-x",
+    "type": "gauntlets",
+    "name": "Rathalos Guards X",
     "rarity": "9"
   },
   {
@@ -121,6 +229,102 @@
     "rarity": "9"
   },
   {
+    "slug": "kut-ku-vambraces-z",
+    "type": "gauntlets",
+    "name": "Kut-Ku Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "kut-ku-guards-z",
+    "type": "gauntlets",
+    "name": "Kut-Ku Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-vambraces-z",
+    "type": "gauntlets",
+    "name": "Conga Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "conga-guards-z",
+    "type": "gauntlets",
+    "name": "Conga Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-vambraces-z",
+    "type": "gauntlets",
+    "name": "Gypceros Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "gypceros-guards-z",
+    "type": "gauntlets",
+    "name": "Gypceros Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-vambraces-z",
+    "type": "gauntlets",
+    "name": "Khezu Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "khezu-guards-z",
+    "type": "gauntlets",
+    "name": "Khezu Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-braces-z",
+    "type": "gauntlets",
+    "name": "Hermitaur Braces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "hermitaur-guards-z",
+    "type": "gauntlets",
+    "name": "Hermitaur Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-vambraces-z",
+    "type": "gauntlets",
+    "name": "Plesioth Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "plesioth-guards-z",
+    "type": "gauntlets",
+    "name": "Plesioth Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-vambraces-z",
+    "type": "gauntlets",
+    "name": "Blango Vambraces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "blango-guards-z",
+    "type": "gauntlets",
+    "name": "Blango Guards Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-braces-z",
+    "type": "gauntlets",
+    "name": "Ceanataur Braces Z",
+    "rarity": "9"
+  },
+  {
+    "slug": "ceanataur-guards-z",
+    "type": "gauntlets",
+    "name": "Ceanataur Guards Z",
+    "rarity": "9"
+  },
+  {
     "slug": "diablo-vambraces-z",
     "type": "gauntlets",
     "name": "Diablo Vambraces Z",
@@ -145,6 +349,12 @@
     "rarity": "9"
   },
   {
+    "slug": "crystal-bracelet",
+    "type": "gauntlets",
+    "name": "Crystal Bracelet",
+    "rarity": "10"
+  },
+  {
     "slug": "true-golden-kote",
     "type": "gauntlets",
     "name": "True Golden Kote",
@@ -166,6 +376,30 @@
     "slug": "black-belt-guards-x",
     "type": "gauntlets",
     "name": "Black Belt Guards X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-mano-x",
+    "type": "gauntlets",
+    "name": "Obituary Mano X",
+    "rarity": "10"
+  },
+  {
+    "slug": "obituary-brasso-x",
+    "type": "gauntlets",
+    "name": "Obituary Brasso X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-mano-x",
+    "type": "gauntlets",
+    "name": "Butterfly Mano X",
+    "rarity": "10"
+  },
+  {
+    "slug": "butterfly-brasso-x",
+    "type": "gauntlets",
+    "name": "Butterfly Brasso X",
     "rarity": "10"
   },
   {
@@ -277,6 +511,54 @@
     "rarity": "10"
   },
   {
+    "slug": "melahoa-branch-z",
+    "type": "gauntlets",
+    "name": "Melahoa Branch Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "melahoa-petal-z",
+    "type": "gauntlets",
+    "name": "Melahoa Petal Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-sleeves-z",
+    "type": "gauntlets",
+    "name": "Makluva Sleeves Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "makluva-sucker-z",
+    "type": "gauntlets",
+    "name": "Makluva Sucker Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthan-heart-braces-z",
+    "type": "gauntlets",
+    "name": "Rthan Heart Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthan-heart-guards-z",
+    "type": "gauntlets",
+    "name": "Rthan Heart Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthlos-soul-braces-z",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Braces Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "rthlos-soul-guards-z",
+    "type": "gauntlets",
+    "name": "Rthlos Soul Guards Z",
+    "rarity": "10"
+  },
+  {
     "slug": "golden-moon-braces-z",
     "type": "gauntlets",
     "name": "Golden Moon Braces Z",
@@ -298,6 +580,30 @@
     "slug": "silver-sol-guards-z",
     "type": "gauntlets",
     "name": "Silver Sol Guards Z",
+    "rarity": "10"
+  },
+  {
+    "slug": "aurorosgauntletkyoku",
+    "type": "gauntlets",
+    "name": "AurorosGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "genesisgauntletkyoku",
+    "type": "gauntlets",
+    "name": "GenesisGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "borealisgauntletkyoku",
+    "type": "gauntlets",
+    "name": "BorealisGauntletKyoku",
+    "rarity": "10"
+  },
+  {
+    "slug": "glyph-gauntlets-kyoku",
+    "type": "gauntlets",
+    "name": "Glyph Gauntlets Kyoku",
     "rarity": "10"
   },
   {
