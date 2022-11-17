@@ -37,7 +37,7 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
     File.open(path) do |file|
       json_data = JSON.load(file)
 
-      json_data["weapons"].each do |value|
+      json_data["weapons"].each_with_index do |value, index|
         # Easiest way of handling "category" items in mapping right now.
         next if value.key?("donotrender")
 
@@ -56,6 +56,7 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
         output = {
           title: value["name"],
           slug: slugify(value["name"]),
+          weight: index,
           extra: value.select {|key, value| ["title", "slug"].none?(key)},
         }
 
