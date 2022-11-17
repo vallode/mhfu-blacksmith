@@ -34,8 +34,8 @@
         <div class="card weapon-card">
           <div class="weapon-card__header weapon-card__header--monster">
             <div class="details">
-              <p id="weapon_name">
-                Name: <span>{{ page.title }}</span>
+              <p>
+                Name: <span id="weapon_name">{{ page.title }}</span>
               </p>            
               <p>Type: <span>{{ page.extra.type | replace(from="-", to=" ") | capitalize  }}</span></p>
               {% if page.extra.sizes %}
