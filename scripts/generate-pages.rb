@@ -70,10 +70,11 @@ Dir.glob("content/monsters/**/*.json").each do |path|
     File.open(path) do |file|
       json_data = JSON.load(file)
 
-      json_data["monsters"].each do |monster|
+      json_data["monsters"].each_with_index do |monster, index|
         output = {
           title: monster["name"],
           slug: slugify(monster["name"]),
+          weight: index,
           extra: monster.select {|key, value| ["name", "drops"].none?(key)},
         }
   
