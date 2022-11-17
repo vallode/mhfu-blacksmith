@@ -145,6 +145,12 @@
     "rarity": "3"
   },
   {
+    "slug": "chrome-metal-coat",
+    "type": "waist",
+    "name": "Chrome Metal Coat",
+    "rarity": "3"
+  },
+  {
     "slug": "steel-belt",
     "type": "waist",
     "name": "Steel Belt",
@@ -292,6 +298,30 @@
     "slug": "basarios-coat",
     "type": "waist",
     "name": "Basarios Coat",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-coil",
+    "type": "waist",
+    "name": "Monoblos Coil",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-coat",
+    "type": "waist",
+    "name": "Monoblos Coat",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-tasset",
+    "type": "waist",
+    "name": "Garuga Tasset",
+    "rarity": "4"
+  },
+  {
+    "slug": "garuga-coat",
+    "type": "waist",
+    "name": "Garuga Coat",
     "rarity": "4"
   },
   {
@@ -445,6 +475,12 @@
     "rarity": "5"
   },
   {
+    "slug": "guardian-coil",
+    "type": "waist",
+    "name": "Guardian Coil",
+    "rarity": "5"
+  },
+  {
     "slug": "guardian-coat",
     "type": "waist",
     "name": "Guardian Coat",
@@ -460,6 +496,12 @@
     "slug": "personal-frills",
     "type": "waist",
     "name": "Personal Frills",
+    "rarity": "5"
+  },
+  {
+    "slug": "helper-skirt",
+    "type": "waist",
+    "name": "Helper Skirt",
     "rarity": "5"
   },
   {
@@ -499,6 +541,18 @@
     "rarity": "5"
   },
   {
+    "slug": "hypnoc-tasset",
+    "type": "waist",
+    "name": "Hypnoc Tasset",
+    "rarity": "5"
+  },
+  {
+    "slug": "hypnoc-coat",
+    "type": "waist",
+    "name": "Hypnoc Coat",
+    "rarity": "5"
+  },
+  {
     "slug": "obituary-anka",
     "type": "waist",
     "name": "Obituary Anka",
@@ -523,6 +577,18 @@
     "rarity": "5"
   },
   {
+    "slug": "black-spine",
+    "type": "waist",
+    "name": "Black Spine",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-scale",
+    "type": "waist",
+    "name": "Black Scale",
+    "rarity": "5"
+  },
+  {
     "slug": "death-stench-bowels",
     "type": "waist",
     "name": "Death Stench Bowels",
@@ -532,6 +598,18 @@
     "slug": "death-stench-belly",
     "type": "waist",
     "name": "Death Stench Belly",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-tasset",
+    "type": "waist",
+    "name": "Volganos Tasset",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-coat",
+    "type": "waist",
+    "name": "Volganos Coat",
     "rarity": "5"
   },
   {
@@ -619,6 +697,18 @@
     "rarity": "5"
   },
   {
+    "slug": "empress-tasset",
+    "type": "waist",
+    "name": "Empress Tasset",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-coat",
+    "type": "waist",
+    "name": "Empress Coat",
+    "rarity": "5"
+  },
+  {
     "slug": "indra-wrap",
     "type": "waist",
     "name": "Indra Wrap",
@@ -640,6 +730,30 @@
     "slug": "kaiser-coat",
     "type": "waist",
     "name": "Kaiser Coat",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-tasset",
+    "type": "waist",
+    "name": "Red Lobster Tasset",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-coat",
+    "type": "waist",
+    "name": "Red Lobster Coat",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-coil",
+    "type": "waist",
+    "name": "Monodevil Coil",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-coat",
+    "type": "waist",
+    "name": "Monodevil Coat",
     "rarity": "5"
   },
   {
@@ -665,672 +779,6 @@
     "type": "waist",
     "name": "Rathalos Soul Coat",
     "rarity": "5"
-  },
-  {
-    "slug": "mafumofu-coat-s",
-    "type": "waist",
-    "name": "Mafumofu Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "leather-belt-s",
-    "type": "waist",
-    "name": "Leather Belt S",
-    "rarity": "6"
-  },
-  {
-    "slug": "chain-belt-s",
-    "type": "waist",
-    "name": "Chain Belt S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hunter-tasset-s",
-    "type": "waist",
-    "name": "Hunter Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hunter-coat-s",
-    "type": "waist",
-    "name": "Hunter Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "bone-tasset-s",
-    "type": "waist",
-    "name": "Bone Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "bone-coat-s",
-    "type": "waist",
-    "name": "Bone Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "battle-tasset-s",
-    "type": "waist",
-    "name": "Battle Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "battle-coat-s",
-    "type": "waist",
-    "name": "Battle Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "velociprey-tasset-s",
-    "type": "waist",
-    "name": "Velociprey Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "velociprey-coat-s",
-    "type": "waist",
-    "name": "Velociprey Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "vespoid-tasset-s",
-    "type": "waist",
-    "name": "Vespoid Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "vespoid-coat-s",
-    "type": "waist",
-    "name": "Vespoid Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hi-metal-tasset-s",
-    "type": "waist",
-    "name": "Hi-Metal Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hi-metal-coat-s",
-    "type": "waist",
-    "name": "Hi-Metal Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "steel-belt-s",
-    "type": "waist",
-    "name": "Steel Belt S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hornet-tasset-s",
-    "type": "waist",
-    "name": "Hornet Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hornet-coat-s",
-    "type": "waist",
-    "name": "Hornet Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "genprey-tasset-s",
-    "type": "waist",
-    "name": "Genprey Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "genprey-coat-s",
-    "type": "waist",
-    "name": "Genprey Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ioprey-tasset-s",
-    "type": "waist",
-    "name": "Ioprey Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ioprey-coat-s",
-    "type": "waist",
-    "name": "Ioprey Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "kut-ku-tasset-s",
-    "type": "waist",
-    "name": "Kut-Ku Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "kut-ku-coat-s",
-    "type": "waist",
-    "name": "Kut-Ku Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "cephalos-tasset-s",
-    "type": "waist",
-    "name": "Cephalos Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "cephalos-coat-s",
-    "type": "waist",
-    "name": "Cephalos Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "conga-tasset-s",
-    "type": "waist",
-    "name": "Conga Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "conga-coat-s",
-    "type": "waist",
-    "name": "Conga Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "gypceros-tasset-s",
-    "type": "waist",
-    "name": "Gypceros Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "gypceros-coat-s",
-    "type": "waist",
-    "name": "Gypceros Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "khezu-tasset-s",
-    "type": "waist",
-    "name": "Khezu Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "khezu-coat-s",
-    "type": "waist",
-    "name": "Khezu Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hermitaur-tasset-s",
-    "type": "waist",
-    "name": "Hermitaur Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hermitaur-coat-s",
-    "type": "waist",
-    "name": "Hermitaur Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "basarios-tasset-s",
-    "type": "waist",
-    "name": "Basarios Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "basarios-coat-s",
-    "type": "waist",
-    "name": "Basarios Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "plesioth-tasset-s",
-    "type": "waist",
-    "name": "Plesioth Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "plesioth-coat-s",
-    "type": "waist",
-    "name": "Plesioth Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "blango-tasset-s",
-    "type": "waist",
-    "name": "Blango Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "blango-coat-s",
-    "type": "waist",
-    "name": "Blango Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ceanataur-tasset-s",
-    "type": "waist",
-    "name": "Ceanataur Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ceanataur-coat-s",
-    "type": "waist",
-    "name": "Ceanataur Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathian-tasset-s",
-    "type": "waist",
-    "name": "Rathian Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathian-coat-s",
-    "type": "waist",
-    "name": "Rathian Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathalos-tasset-s",
-    "type": "waist",
-    "name": "Rathalos Tasset S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathalos-coat-s",
-    "type": "waist",
-    "name": "Rathalos Coat S",
-    "rarity": "6"
-  },
-  {
-    "slug": "leather-belt-u",
-    "type": "waist",
-    "name": "Leather Belt U",
-    "rarity": "7"
-  },
-  {
-    "slug": "chain-belt-u",
-    "type": "waist",
-    "name": "Chain Belt U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hunter-tasset-u",
-    "type": "waist",
-    "name": "Hunter Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hunter-coat-u",
-    "type": "waist",
-    "name": "Hunter Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "bone-tasset-u",
-    "type": "waist",
-    "name": "Bone Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "bone-coat-u",
-    "type": "waist",
-    "name": "Bone Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "battle-tasset-u",
-    "type": "waist",
-    "name": "Battle Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "battle-coat-u",
-    "type": "waist",
-    "name": "Battle Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "giaprey-tasset-u",
-    "type": "waist",
-    "name": "Giaprey Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "giaprey-coat-u",
-    "type": "waist",
-    "name": "Giaprey Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "vespoid-tasset-u",
-    "type": "waist",
-    "name": "Vespoid Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "vespoid-coat-u",
-    "type": "waist",
-    "name": "Vespoid Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hi-metal-tasset-u",
-    "type": "waist",
-    "name": "Hi-Metal Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hi-metal-coat-u",
-    "type": "waist",
-    "name": "Hi-Metal Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "steel-belt-u",
-    "type": "waist",
-    "name": "Steel Belt U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hornet-tasset-u",
-    "type": "waist",
-    "name": "Hornet Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hornet-coat-u",
-    "type": "waist",
-    "name": "Hornet Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "genprey-tasset-u",
-    "type": "waist",
-    "name": "Genprey Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "genprey-coat-u",
-    "type": "waist",
-    "name": "Genprey Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ioprey-tasset-u",
-    "type": "waist",
-    "name": "Ioprey Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ioprey-coat-u",
-    "type": "waist",
-    "name": "Ioprey Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "kut-ku-tasset-u",
-    "type": "waist",
-    "name": "Kut-Ku Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "kut-ku-coat-u",
-    "type": "waist",
-    "name": "Kut-Ku Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "cephalos-tasset-u",
-    "type": "waist",
-    "name": "Cephalos Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "cephalos-coat-u",
-    "type": "waist",
-    "name": "Cephalos Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "conga-tasset-u",
-    "type": "waist",
-    "name": "Conga Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "conga-coat-u",
-    "type": "waist",
-    "name": "Conga Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "gypceros-tasset-u",
-    "type": "waist",
-    "name": "Gypceros Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "gypceros-coat-u",
-    "type": "waist",
-    "name": "Gypceros Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "khezu-tasset-u",
-    "type": "waist",
-    "name": "Khezu Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "khezu-coat-u",
-    "type": "waist",
-    "name": "Khezu Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hermitaur-tasset-u",
-    "type": "waist",
-    "name": "Hermitaur Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hermitaur-coat-u",
-    "type": "waist",
-    "name": "Hermitaur Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "basarios-tasset-u",
-    "type": "waist",
-    "name": "Basarios Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "basarios-coat-u",
-    "type": "waist",
-    "name": "Basarios Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "blango-tasset-u",
-    "type": "waist",
-    "name": "Blango Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "blango-coat-u",
-    "type": "waist",
-    "name": "Blango Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ceanataur-tasset-u",
-    "type": "waist",
-    "name": "Ceanataur Tasset U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ceanataur-coat-u",
-    "type": "waist",
-    "name": "Ceanataur Coat U",
-    "rarity": "7"
-  },
-  {
-    "slug": "black-belt-tasset-s",
-    "type": "waist",
-    "name": "Black Belt Tasset S",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-coil",
-    "type": "waist",
-    "name": "Red Guild Guard Coil",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-coat",
-    "type": "waist",
-    "name": "Red Guild Guard Coat",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-coil",
-    "type": "waist",
-    "name": "Blue GuildGuard Coil",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-coat",
-    "type": "waist",
-    "name": "Blue GuildGuard Coat",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-coil",
-    "type": "waist",
-    "name": "Red Guild Guard Coil",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-coat",
-    "type": "waist",
-    "name": "Red Guild Guard Coat",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-coil",
-    "type": "waist",
-    "name": "Blue GuildGuard Coil",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-coat",
-    "type": "waist",
-    "name": "Blue GuildGuard Coat",
-    "rarity": "8"
-  },
-  {
-    "slug": "obituary-anka-s",
-    "type": "waist",
-    "name": "Obituary Anka S",
-    "rarity": "8"
-  },
-  {
-    "slug": "obituary-cocusa-s",
-    "type": "waist",
-    "name": "Obituary Cocusa S",
-    "rarity": "8"
-  },
-  {
-    "slug": "butterfly-anka-s",
-    "type": "waist",
-    "name": "Butterfly Anka S",
-    "rarity": "8"
-  },
-  {
-    "slug": "butterfly-cocusa-s",
-    "type": "waist",
-    "name": "Butterfly Cocusa S",
-    "rarity": "8"
-  },
-  {
-    "slug": "deathstench-bowels-s",
-    "type": "waist",
-    "name": "DeathStench Bowels S",
-    "rarity": "8"
-  },
-  {
-    "slug": "death-stench-belly-s",
-    "type": "waist",
-    "name": "Death Stench Belly S",
-    "rarity": "8"
-  },
-  {
-    "slug": "kirin-hoop-s",
-    "type": "waist",
-    "name": "Kirin Hoop S",
-    "rarity": "8"
-  },
-  {
-    "slug": "kirin-shorts-s",
-    "type": "waist",
-    "name": "Kirin Shorts S",
-    "rarity": "8"
-  },
-  {
-    "slug": "bistro-apron-u",
-    "type": "waist",
-    "name": "Bistro Apron U",
-    "rarity": "8"
-  },
-  {
-    "slug": "guardian-coil-u",
-    "type": "waist",
-    "name": "Guardian Coil U",
-    "rarity": "8"
-  },
-  {
-    "slug": "guardian-coat-u",
-    "type": "waist",
-    "name": "Guardian Coat U",
-    "rarity": "8"
-  },
-  {
-    "slug": "helper-skirt-u",
-    "type": "waist",
-    "name": "Helper Skirt U",
-    "rarity": "8"
-  },
-  {
-    "slug": "healer-frills-u",
-    "type": "waist",
-    "name": "Healer Frills U",
-    "rarity": "8"
-  },
-  {
-    "slug": "melahoa-skirt-u",
-    "type": "waist",
-    "name": "Melahoa Skirt U",
-    "rarity": "8"
-  },
-  {
-    "slug": "melahoa-trunk-u",
-    "type": "waist",
-    "name": "Melahoa Trunk U",
-    "rarity": "8"
-  },
-  {
-    "slug": "makluva-coat-u",
-    "type": "waist",
-    "name": "Makluva Coat U",
-    "rarity": "8"
-  },
-  {
-    "slug": "makluva-fin-u",
-    "type": "waist",
-    "name": "Makluva Fin U",
-    "rarity": "8"
   }
 ]
 }

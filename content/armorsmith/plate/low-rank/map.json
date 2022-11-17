@@ -301,6 +301,30 @@
     "rarity": "4"
   },
   {
+    "slug": "monoblos-mail",
+    "type": "plate",
+    "name": "Monoblos Mail",
+    "rarity": "4"
+  },
+  {
+    "slug": "monoblos-vest",
+    "type": "plate",
+    "name": "Monoblos Vest",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-mail",
+    "type": "plate",
+    "name": "Yian Garuga Mail",
+    "rarity": "4"
+  },
+  {
+    "slug": "yian-garuga-vest",
+    "type": "plate",
+    "name": "Yian Garuga Vest",
+    "rarity": "4"
+  },
+  {
     "slug": "blango-mail",
     "type": "plate",
     "name": "Blango Mail",
@@ -427,6 +451,12 @@
     "rarity": "5"
   },
   {
+    "slug": "famitsu-t-shirt",
+    "type": "plate",
+    "name": "Famitsu T-Shirt",
+    "rarity": "5"
+  },
+  {
     "slug": "hunter-soul-t-shirt",
     "type": "plate",
     "name": "Hunter Soul T-Shirt",
@@ -469,6 +499,12 @@
     "rarity": "5"
   },
   {
+    "slug": "guild-knight-vest",
+    "type": "plate",
+    "name": "Guild Knight Vest",
+    "rarity": "5"
+  },
+  {
     "slug": "guardian-suit",
     "type": "plate",
     "name": "Guardian Suit",
@@ -484,6 +520,12 @@
     "slug": "maiden-s-vest",
     "type": "plate",
     "name": "Maiden's Vest",
+    "rarity": "5"
+  },
+  {
+    "slug": "personal-vest",
+    "type": "plate",
+    "name": "Personal Vest",
     "rarity": "5"
   },
   {
@@ -535,6 +577,18 @@
     "rarity": "5"
   },
   {
+    "slug": "hypnoc-mail",
+    "type": "plate",
+    "name": "Hypnoc Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "hypnoc-vest",
+    "type": "plate",
+    "name": "Hypnoc Vest",
+    "rarity": "5"
+  },
+  {
     "slug": "obituary-petto",
     "type": "plate",
     "name": "Obituary Petto",
@@ -559,6 +613,18 @@
     "rarity": "5"
   },
   {
+    "slug": "black-hide",
+    "type": "plate",
+    "name": "Black Hide",
+    "rarity": "5"
+  },
+  {
+    "slug": "black-skin",
+    "type": "plate",
+    "name": "Black Skin",
+    "rarity": "5"
+  },
+  {
     "slug": "death-stench-muscle",
     "type": "plate",
     "name": "Death Stench Muscle",
@@ -568,6 +634,18 @@
     "slug": "death-stench-heart",
     "type": "plate",
     "name": "Death Stench Heart",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-mail",
+    "type": "plate",
+    "name": "Volganos Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "volganos-vest",
+    "type": "plate",
+    "name": "Volganos Vest",
     "rarity": "5"
   },
   {
@@ -643,6 +721,18 @@
     "rarity": "5"
   },
   {
+    "slug": "empress-mail",
+    "type": "plate",
+    "name": "Empress Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "empress-vest",
+    "type": "plate",
+    "name": "Empress Vest",
+    "rarity": "5"
+  },
+  {
     "slug": "indra-vest",
     "type": "plate",
     "name": "Indra Vest",
@@ -664,6 +754,30 @@
     "slug": "kaiser-vest",
     "type": "plate",
     "name": "Kaiser Vest",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-mail",
+    "type": "plate",
+    "name": "Red Lobster Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "red-lobster-vest",
+    "type": "plate",
+    "name": "Red Lobster Vest",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-mail",
+    "type": "plate",
+    "name": "Monodevil Mail",
+    "rarity": "5"
+  },
+  {
+    "slug": "monodevil-vest",
+    "type": "plate",
+    "name": "Monodevil Vest",
     "rarity": "5"
   },
   {
@@ -689,690 +803,6 @@
     "type": "plate",
     "name": "Rathalos Soul Vest",
     "rarity": "5"
-  },
-  {
-    "slug": "mafumofu-jacket-s",
-    "type": "plate",
-    "name": "Mafumofu Jacket S",
-    "rarity": "6"
-  },
-  {
-    "slug": "leather-armor-s",
-    "type": "plate",
-    "name": "Leather Armor S",
-    "rarity": "6"
-  },
-  {
-    "slug": "chain-mail-s",
-    "type": "plate",
-    "name": "Chain Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hunter-s-mail-s",
-    "type": "plate",
-    "name": "Hunter's Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hunter-s-vest-s",
-    "type": "plate",
-    "name": "Hunter's Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "bone-mail-s",
-    "type": "plate",
-    "name": "Bone Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "bone-vest-s",
-    "type": "plate",
-    "name": "Bone Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "battle-mail-s",
-    "type": "plate",
-    "name": "Battle Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "battle-vest-s",
-    "type": "plate",
-    "name": "Battle Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "velociprey-mail-s",
-    "type": "plate",
-    "name": "Velociprey Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "velociprey-vest-s",
-    "type": "plate",
-    "name": "Velociprey Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "vespoid-mail-s",
-    "type": "plate",
-    "name": "Vespoid Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "vespoid-vest-s",
-    "type": "plate",
-    "name": "Vespoid Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hi-metal-mail-s",
-    "type": "plate",
-    "name": "Hi-Metal Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hi-metal-vest-s",
-    "type": "plate",
-    "name": "Hi-Metal Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "steel-mail-s",
-    "type": "plate",
-    "name": "Steel Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hornet-mail-s",
-    "type": "plate",
-    "name": "Hornet Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hornet-vest-s",
-    "type": "plate",
-    "name": "Hornet Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "genprey-mail-s",
-    "type": "plate",
-    "name": "Genprey Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "genprey-vest-s",
-    "type": "plate",
-    "name": "Genprey Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ioprey-mail-s",
-    "type": "plate",
-    "name": "Ioprey Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ioprey-vest-s",
-    "type": "plate",
-    "name": "Ioprey Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "kut-ku-mail-s",
-    "type": "plate",
-    "name": "Kut-Ku Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "kut-ku-vest-s",
-    "type": "plate",
-    "name": "Kut-Ku Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "cephalos-mail-s",
-    "type": "plate",
-    "name": "Cephalos Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "cephalos-vest-s",
-    "type": "plate",
-    "name": "Cephalos Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "conga-mail-s",
-    "type": "plate",
-    "name": "Conga Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "conga-vest-s",
-    "type": "plate",
-    "name": "Conga Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "gypceros-mail-s",
-    "type": "plate",
-    "name": "Gypceros Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "gypceros-vest-s",
-    "type": "plate",
-    "name": "Gypceros Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "khezu-mail-s",
-    "type": "plate",
-    "name": "Khezu Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "khezu-vest-s",
-    "type": "plate",
-    "name": "Khezu Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hermitaur-mail-s",
-    "type": "plate",
-    "name": "Hermitaur Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "hermitaur-vest-s",
-    "type": "plate",
-    "name": "Hermitaur Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "basarios-mail-s",
-    "type": "plate",
-    "name": "Basarios Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "basarios-vest-s",
-    "type": "plate",
-    "name": "Basarios Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "plesioth-mail-s",
-    "type": "plate",
-    "name": "Plesioth Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "plesioth-vest-s",
-    "type": "plate",
-    "name": "Plesioth Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "blango-mail-s",
-    "type": "plate",
-    "name": "Blango Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "blango-vest-s",
-    "type": "plate",
-    "name": "Blango Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ceanataur-mail-s",
-    "type": "plate",
-    "name": "Ceanataur Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "ceanataur-vest-s",
-    "type": "plate",
-    "name": "Ceanataur Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathian-mail-s",
-    "type": "plate",
-    "name": "Rathian Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathian-vest-s",
-    "type": "plate",
-    "name": "Rathian Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathalos-mail-s",
-    "type": "plate",
-    "name": "Rathalos Mail S",
-    "rarity": "6"
-  },
-  {
-    "slug": "rathalos-vest-s",
-    "type": "plate",
-    "name": "Rathalos Vest S",
-    "rarity": "6"
-  },
-  {
-    "slug": "leather-armor-u",
-    "type": "plate",
-    "name": "Leather Armor U",
-    "rarity": "7"
-  },
-  {
-    "slug": "chain-mail-u",
-    "type": "plate",
-    "name": "Chain Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hunter-s-mail-u",
-    "type": "plate",
-    "name": "Hunter's Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hunter-s-vest-u",
-    "type": "plate",
-    "name": "Hunter's Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "bone-mail-u",
-    "type": "plate",
-    "name": "Bone Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "bone-vest-u",
-    "type": "plate",
-    "name": "Bone Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "battle-mail-u",
-    "type": "plate",
-    "name": "Battle Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "battle-vest-u",
-    "type": "plate",
-    "name": "Battle Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "giaprey-mail-u",
-    "type": "plate",
-    "name": "Giaprey Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "giaprey-vest-u",
-    "type": "plate",
-    "name": "Giaprey Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "vespoid-mail-u",
-    "type": "plate",
-    "name": "Vespoid Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "vespoid-vest-u",
-    "type": "plate",
-    "name": "Vespoid Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hi-metal-mail-u",
-    "type": "plate",
-    "name": "Hi-Metal Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hi-metal-vest-u",
-    "type": "plate",
-    "name": "Hi-Metal Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "steel-mail-u",
-    "type": "plate",
-    "name": "Steel Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hornet-mail-u",
-    "type": "plate",
-    "name": "Hornet Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hornet-vest-u",
-    "type": "plate",
-    "name": "Hornet Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "genprey-mail-u",
-    "type": "plate",
-    "name": "Genprey Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "genprey-vest-u",
-    "type": "plate",
-    "name": "Genprey Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ioprey-mail-u",
-    "type": "plate",
-    "name": "Ioprey Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ioprey-vest-u",
-    "type": "plate",
-    "name": "Ioprey Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "kut-ku-mail-u",
-    "type": "plate",
-    "name": "Kut-Ku Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "kut-ku-vest-u",
-    "type": "plate",
-    "name": "Kut-Ku Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "cephalos-mail-u",
-    "type": "plate",
-    "name": "Cephalos Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "cephalos-vest-u",
-    "type": "plate",
-    "name": "Cephalos Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "conga-mail-u",
-    "type": "plate",
-    "name": "Conga Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "conga-vest-u",
-    "type": "plate",
-    "name": "Conga Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "gypceros-mail-u",
-    "type": "plate",
-    "name": "Gypceros Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "gypceros-vest-u",
-    "type": "plate",
-    "name": "Gypceros Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "khezu-mail-u",
-    "type": "plate",
-    "name": "Khezu Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "khezu-vest-u",
-    "type": "plate",
-    "name": "Khezu Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hermitaur-mail-u",
-    "type": "plate",
-    "name": "Hermitaur Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "hermitaur-vest-u",
-    "type": "plate",
-    "name": "Hermitaur Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "basarios-mail-u",
-    "type": "plate",
-    "name": "Basarios Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "basarios-vest-u",
-    "type": "plate",
-    "name": "Basarios Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "plesioth-mail-u",
-    "type": "plate",
-    "name": "Plesioth Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "plesioth-vest-u",
-    "type": "plate",
-    "name": "Plesioth Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "blango-mail-u",
-    "type": "plate",
-    "name": "Blango Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "blango-vest-u",
-    "type": "plate",
-    "name": "Blango Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ceanataur-mail-u",
-    "type": "plate",
-    "name": "Ceanataur Mail U",
-    "rarity": "7"
-  },
-  {
-    "slug": "ceanataur-vest-u",
-    "type": "plate",
-    "name": "Ceanataur Vest U",
-    "rarity": "7"
-  },
-  {
-    "slug": "red-guild-guard-suit",
-    "type": "plate",
-    "name": "Red Guild Guard Suit",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-vest",
-    "type": "plate",
-    "name": "Red Guild Guard Vest",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-suit",
-    "type": "plate",
-    "name": "Blue GuildGuard Suit",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-vest",
-    "type": "plate",
-    "name": "Blue GuildGuard Vest",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-suit",
-    "type": "plate",
-    "name": "Red Guild Guard Suit",
-    "rarity": "8"
-  },
-  {
-    "slug": "red-guild-guard-vest",
-    "type": "plate",
-    "name": "Red Guild Guard Vest",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-suit",
-    "type": "plate",
-    "name": "Blue GuildGuard Suit",
-    "rarity": "8"
-  },
-  {
-    "slug": "blue-guildguard-vest",
-    "type": "plate",
-    "name": "Blue GuildGuard Vest",
-    "rarity": "8"
-  },
-  {
-    "slug": "obituary-petto-s",
-    "type": "plate",
-    "name": "Obituary Petto S",
-    "rarity": "8"
-  },
-  {
-    "slug": "obituary-pectus-s",
-    "type": "plate",
-    "name": "Obituary Pectus S",
-    "rarity": "8"
-  },
-  {
-    "slug": "butterfly-petto-s",
-    "type": "plate",
-    "name": "Butterfly Petto S",
-    "rarity": "8"
-  },
-  {
-    "slug": "butterfly-pectus-s",
-    "type": "plate",
-    "name": "Butterfly Pectus S",
-    "rarity": "8"
-  },
-  {
-    "slug": "deathstench-muscle-s",
-    "type": "plate",
-    "name": "DeathStench Muscle S",
-    "rarity": "8"
-  },
-  {
-    "slug": "death-stench-heart-s",
-    "type": "plate",
-    "name": "Death Stench Heart S",
-    "rarity": "8"
-  },
-  {
-    "slug": "kirin-jacket-s",
-    "type": "plate",
-    "name": "Kirin Jacket S",
-    "rarity": "8"
-  },
-  {
-    "slug": "kirin-cape-s",
-    "type": "plate",
-    "name": "Kirin Cape S",
-    "rarity": "8"
-  },
-  {
-    "slug": "bistro-jacket-u",
-    "type": "plate",
-    "name": "Bistro Jacket U",
-    "rarity": "8"
-  },
-  {
-    "slug": "guardian-suit-u",
-    "type": "plate",
-    "name": "Guardian Suit U",
-    "rarity": "8"
-  },
-  {
-    "slug": "guardian-vest-u",
-    "type": "plate",
-    "name": "Guardian Vest U",
-    "rarity": "8"
-  },
-  {
-    "slug": "helper-vest-u",
-    "type": "plate",
-    "name": "Helper Vest U",
-    "rarity": "8"
-  },
-  {
-    "slug": "healer-vest-u",
-    "type": "plate",
-    "name": "Healer Vest U",
-    "rarity": "8"
-  },
-  {
-    "slug": "melahoaflowerjacketu",
-    "type": "plate",
-    "name": "MelahoaFlowerJacketU",
-    "rarity": "8"
-  },
-  {
-    "slug": "melahoa-stalk-u",
-    "type": "plate",
-    "name": "Melahoa Stalk U",
-    "rarity": "8"
-  },
-  {
-    "slug": "makluva-cover-u",
-    "type": "plate",
-    "name": "Makluva Cover U",
-    "rarity": "8"
-  },
-  {
-    "slug": "makluva-scale-u",
-    "type": "plate",
-    "name": "Makluva Scale U",
-    "rarity": "8"
-  },
-  {
-    "slug": "auroros-torso-ten",
-    "type": "plate",
-    "name": "Auroros Torso Ten",
-    "rarity": "8"
-  },
-  {
-    "slug": "borealis-chest-ten",
-    "type": "plate",
-    "name": "Borealis Chest Ten",
-    "rarity": "8"
   }
 ]
 }

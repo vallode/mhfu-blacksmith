@@ -1,52 +1,202 @@
 {
   "map": [
   {
-    "slug": "famitsu-cloth-wrap",
+    "slug": "mafumofu-boots-s",
     "type": "leggings",
-    "name": "Famitsu Cloth Wrap",
-    "rarity": "5"
+    "name": "Mafumofu Boots S",
+    "rarity": "6"
   },
   {
-    "slug": "famitsu-pants",
+    "slug": "green-pants-s",
     "type": "leggings",
-    "name": "Famitsu Pants",
-    "rarity": "5"
+    "name": "Green Pants S",
+    "rarity": "6"
   },
   {
-    "slug": "hypnoc-greaves",
+    "slug": "blue-pants-s",
     "type": "leggings",
-    "name": "Hypnoc Greaves",
-    "rarity": "5"
+    "name": "Blue Pants S",
+    "rarity": "6"
   },
   {
-    "slug": "hypnoc-leggings",
+    "slug": "hunter-greaves-s",
     "type": "leggings",
-    "name": "Hypnoc Leggings",
-    "rarity": "5"
+    "name": "Hunter Greaves S",
+    "rarity": "6"
   },
   {
-    "slug": "volganos-greaves",
+    "slug": "hunter-leggings-s",
     "type": "leggings",
-    "name": "Volganos Greaves",
-    "rarity": "5"
+    "name": "Hunter Leggings S",
+    "rarity": "6"
   },
   {
-    "slug": "volganos-leggings",
+    "slug": "bone-greaves-s",
     "type": "leggings",
-    "name": "Volganos Leggings",
-    "rarity": "5"
+    "name": "Bone Greaves S",
+    "rarity": "6"
   },
   {
-    "slug": "red-lobster-greaves",
+    "slug": "bone-leggings-s",
     "type": "leggings",
-    "name": "Red Lobster Greaves",
-    "rarity": "5"
+    "name": "Bone Leggings S",
+    "rarity": "6"
   },
   {
-    "slug": "redlobster-leggings",
+    "slug": "battle-greaves-s",
     "type": "leggings",
-    "name": "RedLobster Leggings",
-    "rarity": "5"
+    "name": "Battle Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "battle-leggings-s",
+    "type": "leggings",
+    "name": "Battle Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-greaves-s",
+    "type": "leggings",
+    "name": "Velociprey Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "velociprey-leggingss",
+    "type": "leggings",
+    "name": "Velociprey LeggingsS",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-greaves-s",
+    "type": "leggings",
+    "name": "Vespoid Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "vespoid-leggings-s",
+    "type": "leggings",
+    "name": "Vespoid Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-greaves-s",
+    "type": "leggings",
+    "name": "Hi-Metal Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hi-metal-leggings-s",
+    "type": "leggings",
+    "name": "Hi-Metal Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornet-greaves-s",
+    "type": "leggings",
+    "name": "Hornet Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hornet-leggings-s",
+    "type": "leggings",
+    "name": "Hornet Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-greaves-s",
+    "type": "leggings",
+    "name": "Genprey Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "genprey-leggings-s",
+    "type": "leggings",
+    "name": "Genprey Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-greaves-s",
+    "type": "leggings",
+    "name": "Ioprey Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ioprey-leggings-s",
+    "type": "leggings",
+    "name": "Ioprey Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-greaves-s",
+    "type": "leggings",
+    "name": "Kut-Ku Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "kut-ku-leggings-s",
+    "type": "leggings",
+    "name": "Kut-Ku Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-greaves-s",
+    "type": "leggings",
+    "name": "Cephalos Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "cephalos-leggings-s",
+    "type": "leggings",
+    "name": "Cephalos Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-greaves-s",
+    "type": "leggings",
+    "name": "Conga Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "conga-leggings-s",
+    "type": "leggings",
+    "name": "Conga Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-greaves-s",
+    "type": "leggings",
+    "name": "Gypceros Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "gypceros-leggings-s",
+    "type": "leggings",
+    "name": "Gypceros Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-greaves-s",
+    "type": "leggings",
+    "name": "Khezu Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "khezu-leggings-s",
+    "type": "leggings",
+    "name": "Khezu Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-greaves-s",
+    "type": "leggings",
+    "name": "Hermitaur Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "hermitaur-leggings-s",
+    "type": "leggings",
+    "name": "Hermitaur Leggings S",
+    "rarity": "6"
   },
   {
     "slug": "hypnoc-greaves-s",
@@ -61,6 +211,42 @@
     "rarity": "6"
   },
   {
+    "slug": "basarios-greaves-s",
+    "type": "leggings",
+    "name": "Basarios Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "basarios-leggings-s",
+    "type": "leggings",
+    "name": "Basarios Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-greaves-s",
+    "type": "leggings",
+    "name": "Plesioth Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "plesioth-leggings-s",
+    "type": "leggings",
+    "name": "Plesioth Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-greaves-s",
+    "type": "leggings",
+    "name": "Monoblos Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "monoblos-leggings-s",
+    "type": "leggings",
+    "name": "Monoblos Leggings S",
+    "rarity": "6"
+  },
+  {
     "slug": "garuga-greaves-s",
     "type": "leggings",
     "name": "Garuga Greaves S",
@@ -70,6 +256,42 @@
     "slug": "garuga-leggings-s",
     "type": "leggings",
     "name": "Garuga Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-greaves-s",
+    "type": "leggings",
+    "name": "Blango Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "blango-leggings-s",
+    "type": "leggings",
+    "name": "Blango Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-greaves-s",
+    "type": "leggings",
+    "name": "Ceanataur Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "ceanataur-leggings-s",
+    "type": "leggings",
+    "name": "Ceanataur Leggings S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-greaves-s",
+    "type": "leggings",
+    "name": "Rathian Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathian-leggings-s",
+    "type": "leggings",
+    "name": "Rathian Leggings S",
     "rarity": "6"
   },
   {
@@ -97,6 +319,18 @@
     "rarity": "6"
   },
   {
+    "slug": "rathalos-greaves-s",
+    "type": "leggings",
+    "name": "Rathalos Greaves S",
+    "rarity": "6"
+  },
+  {
+    "slug": "rathalos-leggings-s",
+    "type": "leggings",
+    "name": "Rathalos Leggings S",
+    "rarity": "6"
+  },
+  {
     "slug": "diablo-greaves-s",
     "type": "leggings",
     "name": "Diablo Greaves S",
@@ -119,6 +353,246 @@
     "type": "leggings",
     "name": "Gravios Leggings S",
     "rarity": "6"
+  },
+  {
+    "slug": "cream-pants",
+    "type": "leggings",
+    "name": "Cream Pants",
+    "rarity": "7"
+  },
+  {
+    "slug": "coffee-pants",
+    "type": "leggings",
+    "name": "Coffee Pants",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-greaves-u",
+    "type": "leggings",
+    "name": "Hunter Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hunter-leggings-u",
+    "type": "leggings",
+    "name": "Hunter Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-greaves-u",
+    "type": "leggings",
+    "name": "Bone Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "bone-leggings-u",
+    "type": "leggings",
+    "name": "Bone Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-greaves-u",
+    "type": "leggings",
+    "name": "Battle Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "battle-leggings-u",
+    "type": "leggings",
+    "name": "Battle Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-greaves-u",
+    "type": "leggings",
+    "name": "Giaprey Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "giaprey-leggings-u",
+    "type": "leggings",
+    "name": "Giaprey Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-greaves-u",
+    "type": "leggings",
+    "name": "Vespoid Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "vespoid-leggings-u",
+    "type": "leggings",
+    "name": "Vespoid Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-greaves-u",
+    "type": "leggings",
+    "name": "Hi-Metal Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hi-metal-leggings-u",
+    "type": "leggings",
+    "name": "Hi-Metal Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornet-greaves-u",
+    "type": "leggings",
+    "name": "Hornet Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hornet-leggings-u",
+    "type": "leggings",
+    "name": "Hornet Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-greaves-u",
+    "type": "leggings",
+    "name": "Genprey Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "genprey-leggings-u",
+    "type": "leggings",
+    "name": "Genprey Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-greaves-u",
+    "type": "leggings",
+    "name": "Ioprey Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ioprey-leggings-u",
+    "type": "leggings",
+    "name": "Ioprey Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-greaves-u",
+    "type": "leggings",
+    "name": "Kut-Ku Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "kut-ku-leggings-u",
+    "type": "leggings",
+    "name": "Kut-Ku Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-greaves-u",
+    "type": "leggings",
+    "name": "Cephalos Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "cephalos-leggings-u",
+    "type": "leggings",
+    "name": "Cephalos Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-greaves-u",
+    "type": "leggings",
+    "name": "Conga Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "conga-leggings-u",
+    "type": "leggings",
+    "name": "Conga Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-greaves-u",
+    "type": "leggings",
+    "name": "Gypceros Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "gypceros-leggings-u",
+    "type": "leggings",
+    "name": "Gypceros Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-greaves-u",
+    "type": "leggings",
+    "name": "Khezu Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "khezu-leggings-u",
+    "type": "leggings",
+    "name": "Khezu Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-greaves-u",
+    "type": "leggings",
+    "name": "Hermitaur Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "hermitaur-leggings-u",
+    "type": "leggings",
+    "name": "Hermitaur Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-greaves-u",
+    "type": "leggings",
+    "name": "Basarios Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "basarios-leggings-u",
+    "type": "leggings",
+    "name": "Basarios Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-greaves-u",
+    "type": "leggings",
+    "name": "Plesioth Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "plesioth-leggings-u",
+    "type": "leggings",
+    "name": "Plesioth Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-greaves-u",
+    "type": "leggings",
+    "name": "Blango Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "blango-leggings-u",
+    "type": "leggings",
+    "name": "Blango Leggings U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-greaves-u",
+    "type": "leggings",
+    "name": "Ceanataur Greaves U",
+    "rarity": "7"
+  },
+  {
+    "slug": "ceanataur-leggings-u",
+    "type": "leggings",
+    "name": "Ceanataur Leggings U",
+    "rarity": "7"
   },
   {
     "slug": "diablo-greaves-u",
@@ -157,6 +631,12 @@
     "rarity": "8"
   },
   {
+    "slug": "black-belt-greaves-s",
+    "type": "leggings",
+    "name": "Black Belt Greaves S",
+    "rarity": "8"
+  },
+  {
     "slug": "shinobibootsheaven",
     "type": "leggings",
     "name": "ShinobiBoots(Heaven)",
@@ -169,9 +649,45 @@
     "rarity": "8"
   },
   {
+    "slug": "red-guildguard-boots",
+    "type": "leggings",
+    "name": "Red GuildGuard Boots",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguard-tights",
+    "type": "leggings",
+    "name": "RedGuildGuard Tights",
+    "rarity": "8"
+  },
+  {
+    "slug": "blueguildguard-boots",
+    "type": "leggings",
+    "name": "BlueGuildGuard Boots",
+    "rarity": "8"
+  },
+  {
     "slug": "blueguildguardtights",
     "type": "leggings",
     "name": "BlueGuildGuardTights",
+    "rarity": "8"
+  },
+  {
+    "slug": "red-guildguard-boots",
+    "type": "leggings",
+    "name": "Red GuildGuard Boots",
+    "rarity": "8"
+  },
+  {
+    "slug": "redguildguard-tights",
+    "type": "leggings",
+    "name": "RedGuildGuard Tights",
+    "rarity": "8"
+  },
+  {
+    "slug": "blueguildguard-boots",
+    "type": "leggings",
+    "name": "BlueGuildGuard Boots",
     "rarity": "8"
   },
   {
@@ -217,6 +733,42 @@
     "rarity": "8"
   },
   {
+    "slug": "obituary-gamba-s",
+    "type": "leggings",
+    "name": "Obituary Gamba S",
+    "rarity": "8"
+  },
+  {
+    "slug": "obituary-femur-s",
+    "type": "leggings",
+    "name": "Obituary Femur S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-gamba-s",
+    "type": "leggings",
+    "name": "Butterfly Gamba S",
+    "rarity": "8"
+  },
+  {
+    "slug": "butterfly-femur-s",
+    "type": "leggings",
+    "name": "Butterfly Femur S",
+    "rarity": "8"
+  },
+  {
+    "slug": "death-stench-heel-s",
+    "type": "leggings",
+    "name": "Death Stench Heel S",
+    "rarity": "8"
+  },
+  {
+    "slug": "death-stench-march-s",
+    "type": "leggings",
+    "name": "Death Stench March S",
+    "rarity": "8"
+  },
+  {
     "slug": "suprememizuhalegwrap",
     "type": "leggings",
     "name": "SupremeMizuhaLegWrap",
@@ -238,6 +790,18 @@
     "slug": "kushala-shank-s",
     "type": "leggings",
     "name": "Kushala Shank S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-leg-guards-s",
+    "type": "leggings",
+    "name": "Kirin Leg Guards S",
+    "rarity": "8"
+  },
+  {
+    "slug": "kirin-boots-s",
+    "type": "leggings",
+    "name": "Kirin Boots S",
     "rarity": "8"
   },
   {
@@ -325,6 +889,66 @@
     "rarity": "8"
   },
   {
+    "slug": "guardian-boots-u",
+    "type": "leggings",
+    "name": "Guardian Boots U",
+    "rarity": "8"
+  },
+  {
+    "slug": "guardian-pants-u",
+    "type": "leggings",
+    "name": "Guardian Pants U",
+    "rarity": "8"
+  },
+  {
+    "slug": "helper-socks-u",
+    "type": "leggings",
+    "name": "Helper Socks U",
+    "rarity": "8"
+  },
+  {
+    "slug": "healer-socks-u",
+    "type": "leggings",
+    "name": "Healer Socks U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-roots-u",
+    "type": "leggings",
+    "name": "Melahoa Roots U",
+    "rarity": "8"
+  },
+  {
+    "slug": "melahoa-taproot-u",
+    "type": "leggings",
+    "name": "Melahoa Taproot U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-pants-u",
+    "type": "leggings",
+    "name": "Makluva Pants U",
+    "rarity": "8"
+  },
+  {
+    "slug": "makluva-leggings-u",
+    "type": "leggings",
+    "name": "Makluva Leggings U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-greaves-u",
+    "type": "leggings",
+    "name": "Monodevil Greaves U",
+    "rarity": "8"
+  },
+  {
+    "slug": "monodevil-leggings-u",
+    "type": "leggings",
+    "name": "Monodevil Leggings U",
+    "rarity": "8"
+  },
+  {
     "slug": "rathianheartgreavesu",
     "type": "leggings",
     "name": "RathianHeartGreavesU",
@@ -373,6 +997,30 @@
     "rarity": "8"
   },
   {
+    "slug": "auroros-pants-ten",
+    "type": "leggings",
+    "name": "Auroros Pants Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "genesis-pants-ten",
+    "type": "leggings",
+    "name": "Genesis Pants Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "borealis-pants-ten",
+    "type": "leggings",
+    "name": "Borealis Pants Ten",
+    "rarity": "8"
+  },
+  {
+    "slug": "glyph-pants-ten",
+    "type": "leggings",
+    "name": "Glyph Pants Ten",
+    "rarity": "8"
+  },
+  {
     "slug": "fatalis-feet",
     "type": "leggings",
     "name": "Fatalis Feet",
@@ -395,402 +1043,6 @@
     "type": "leggings",
     "name": "White Fatalis Legs",
     "rarity": "8"
-  },
-  {
-    "slug": "kut-ku-greaves-x",
-    "type": "leggings",
-    "name": "Kut-Ku Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "kut-ku-leggings-x",
-    "type": "leggings",
-    "name": "Kut-Ku Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "conga-greaves-x",
-    "type": "leggings",
-    "name": "Conga Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "conga-leggings-x",
-    "type": "leggings",
-    "name": "Conga Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "gypceros-greaves-x",
-    "type": "leggings",
-    "name": "Gypceros Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "gypceros-leggings-x",
-    "type": "leggings",
-    "name": "Gypceros Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "khezu-greaves-x",
-    "type": "leggings",
-    "name": "Khezu Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "khezu-leggings-x",
-    "type": "leggings",
-    "name": "Khezu Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "hermitaur-greaves-x",
-    "type": "leggings",
-    "name": "Hermitaur Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "hermitaur-leggings-x",
-    "type": "leggings",
-    "name": "Hermitaur Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "hypnoc-greaves-x",
-    "type": "leggings",
-    "name": "Hypnoc Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "hypnoc-leggings-x",
-    "type": "leggings",
-    "name": "Hypnoc Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "basarios-greaves-x",
-    "type": "leggings",
-    "name": "Basarios Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "basarios-leggings-x",
-    "type": "leggings",
-    "name": "Basarios Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "plesioth-greaves-x",
-    "type": "leggings",
-    "name": "Plesioth Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "plesioth-leggings-x",
-    "type": "leggings",
-    "name": "Plesioth Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "monoblos-greaves-x",
-    "type": "leggings",
-    "name": "Monoblos Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "monoblos-leggings-x",
-    "type": "leggings",
-    "name": "Monoblos Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "garuga-greaves-x",
-    "type": "leggings",
-    "name": "Garuga Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "garuga-leggings-x",
-    "type": "leggings",
-    "name": "Garuga Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "blango-greaves-x",
-    "type": "leggings",
-    "name": "Blango Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "blango-leggings-x",
-    "type": "leggings",
-    "name": "Blango Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "ceanataur-greaves-x",
-    "type": "leggings",
-    "name": "Ceanataur Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "ceanataur-leggings-x",
-    "type": "leggings",
-    "name": "Ceanataur Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "rathian-greaves-x",
-    "type": "leggings",
-    "name": "Rathian Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "rathian-leggings-x",
-    "type": "leggings",
-    "name": "Rathian Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "naruga-greaves-x",
-    "type": "leggings",
-    "name": "Naruga Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "naruga-leggings-x",
-    "type": "leggings",
-    "name": "Naruga Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "volganos-greaves-x",
-    "type": "leggings",
-    "name": "Volganos Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "volganos-leggings-x",
-    "type": "leggings",
-    "name": "Volganos Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "rathalos-greaves-x",
-    "type": "leggings",
-    "name": "Rathalos Greaves X",
-    "rarity": "9"
-  },
-  {
-    "slug": "rathalos-leggings-x",
-    "type": "leggings",
-    "name": "Rathalos Leggings X",
-    "rarity": "9"
-  },
-  {
-    "slug": "kut-ku-greaves-z",
-    "type": "leggings",
-    "name": "Kut-Ku Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "kut-ku-leggings-z",
-    "type": "leggings",
-    "name": "Kut-Ku Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "conga-greaves-z",
-    "type": "leggings",
-    "name": "Conga Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "conga-leggings-z",
-    "type": "leggings",
-    "name": "Conga Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "gypceros-greaves-z",
-    "type": "leggings",
-    "name": "Gypceros Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "gypceros-leggings-z",
-    "type": "leggings",
-    "name": "Gypceros Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "khezu-greaves-z",
-    "type": "leggings",
-    "name": "Khezu Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "khezu-leggings-z",
-    "type": "leggings",
-    "name": "Khezu Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "hermitaur-greaves-z",
-    "type": "leggings",
-    "name": "Hermitaur Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "hermitaur-leggings-z",
-    "type": "leggings",
-    "name": "Hermitaur Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "plesioth-greaves-z",
-    "type": "leggings",
-    "name": "Plesioth Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "plesioth-leggings-z",
-    "type": "leggings",
-    "name": "Plesioth Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "blango-greaves-z",
-    "type": "leggings",
-    "name": "Blango Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "blango-leggings-z",
-    "type": "leggings",
-    "name": "Blango Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "ceanataur-greaves-z",
-    "type": "leggings",
-    "name": "Ceanataur Greaves Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "ceanataur-leggings-z",
-    "type": "leggings",
-    "name": "Ceanataur Leggings Z",
-    "rarity": "9"
-  },
-  {
-    "slug": "chakra-anklet",
-    "type": "leggings",
-    "name": "Chakra Anklet",
-    "rarity": "10"
-  },
-  {
-    "slug": "blackbelt-leggings-x",
-    "type": "leggings",
-    "name": "BlackBelt Leggings X",
-    "rarity": "10"
-  },
-  {
-    "slug": "obituary-gamba-x",
-    "type": "leggings",
-    "name": "Obituary Gamba X",
-    "rarity": "10"
-  },
-  {
-    "slug": "obituary-femur-x",
-    "type": "leggings",
-    "name": "Obituary Femur X",
-    "rarity": "10"
-  },
-  {
-    "slug": "butterfly-gamba-x",
-    "type": "leggings",
-    "name": "Butterfly Gamba X",
-    "rarity": "10"
-  },
-  {
-    "slug": "butterfly-femur-x",
-    "type": "leggings",
-    "name": "Butterfly Femur X",
-    "rarity": "10"
-  },
-  {
-    "slug": "melahoa-roots-z",
-    "type": "leggings",
-    "name": "Melahoa Roots Z",
-    "rarity": "10"
-  },
-  {
-    "slug": "melahoa-taproot-z",
-    "type": "leggings",
-    "name": "Melahoa Taproot Z",
-    "rarity": "10"
-  },
-  {
-    "slug": "makluva-pants-z",
-    "type": "leggings",
-    "name": "Makluva Pants Z",
-    "rarity": "10"
-  },
-  {
-    "slug": "makluva-leggings-z",
-    "type": "leggings",
-    "name": "Makluva Leggings Z",
-    "rarity": "10"
-  },
-  {
-    "slug": "rathianheartgreavesz",
-    "type": "leggings",
-    "name": "RathianHeartGreavesZ",
-    "rarity": "10"
-  },
-  {
-    "slug": "rthianheartleggingsz",
-    "type": "leggings",
-    "name": "RthianHeartLeggingsZ",
-    "rarity": "10"
-  },
-  {
-    "slug": "rathalossoulgreavesz",
-    "type": "leggings",
-    "name": "RathalosSoulGreavesZ",
-    "rarity": "10"
-  },
-  {
-    "slug": "rthalossoulleggingsz",
-    "type": "leggings",
-    "name": "RthalosSoulLeggingsZ",
-    "rarity": "10"
-  },
-  {
-    "slug": "auroros-pants-kyoku",
-    "type": "leggings",
-    "name": "Auroros Pants Kyoku",
-    "rarity": "10"
-  },
-  {
-    "slug": "genesis-pants-kyoku",
-    "type": "leggings",
-    "name": "Genesis Pants Kyoku",
-    "rarity": "10"
-  },
-  {
-    "slug": "borealis-pants-kyoku",
-    "type": "leggings",
-    "name": "Borealis Pants Kyoku",
-    "rarity": "10"
-  },
-  {
-    "slug": "glyph-pants-kyoku",
-    "type": "leggings",
-    "name": "Glyph Pants Kyoku",
-    "rarity": "10"
   }
 ]
 }
