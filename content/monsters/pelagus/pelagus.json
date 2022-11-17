@@ -74,6 +74,7 @@
     {
       "name": "Bulldrome",
       "type": "pelagus",
+      "icon": "bullfango",
       "description": "The powerful leader of the wild boars known for its enormous tusks. More aggressive than a Bullfango, it is known to rush into a fight, and is extremely proficient at locating a foe.",
       "drops": {
         "1-2 star": {
@@ -715,6 +716,7 @@
     {
       "name": "Emerald Congalala",
       "type": "pelagus",
+      "icon": "congalala",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -1203,6 +1205,7 @@
     {
       "name": "Copper Blangonga",
       "type": "pelagus",
+      "icon": "blangonga",
       "drops": {
         "g rank": {
           "body carves (x3)": [
@@ -1494,6 +1497,7 @@
     {
       "name": "Furious Rajang",
       "type": "pelagus",
+      "icon": "rajang",
       "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {
       },
