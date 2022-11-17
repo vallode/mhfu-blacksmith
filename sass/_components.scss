@@ -498,6 +498,70 @@ $ranks: (
       color: #c0c0c0;
     }
 
+    &--monster {
+      color: #f2d250;
+      height: auto;
+      align-items: flex-start;
+      font-size: 2.2rem;
+
+      span {
+        color: white;
+
+      }
+      
+      .details {
+        display: flex;
+        flex-direction: column;
+
+        img {
+          height: 14px;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+          margin-left: 3px;
+          position: relative;
+          top: -2px;
+          width: auto;
+        }
+      }
+
+      p {
+        line-height: 1.25;
+      }
+      
+      .icon {
+        margin-left: auto;
+        margin: 1.2rem 1.2rem 0 auto;
+
+        &::after {
+          background-position: bottom -1px right -1px;
+          background-repeat: no-repeat;
+          bottom: 0;
+          content: '';
+          height: 130%;
+          position: absolute;
+          width: 130%;
+          top: -15%;
+          left: -15%;
+          background-size: cover;
+          z-index: -1;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+        }
+
+        &::after {
+          background-image: url("/images/scroll.png");
+        }
+      }
+
+      .icon,
+      .icon img {
+        width: 9.2rem;
+        height: 9.2rem;
+      }
+    }
+
     @media screen and (max-width: 600px) {
       flex-wrap: wrap;
       height: auto;
@@ -505,7 +569,7 @@ $ranks: (
   }
 
   &__details {
-    color: #EAEA4B;
+    color: #f2d250;
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
@@ -603,7 +667,7 @@ $ranks: (
       }
 
       span {
-        color: #EAEA4B;
+        color: #f2d250;
       }
 
       .material {

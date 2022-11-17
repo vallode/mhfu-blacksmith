@@ -56,13 +56,13 @@ armor_types = [
 ]
 
 monster_types = [
-  "bird-wyvern",
-  "carapaceon",
-  "elder-dragon",
-  "flying-wyvern",
-  "herbivore",
   "lynian",
   "neopteron",
-  "pelagus",
+  "herbivore",
+  "bird-wyvern",
+  "flying-wyvern",
   "piscine-wyvern",
+  "carapaceon",
+  "pelagus",
+  "elder-dragon",
 ]
