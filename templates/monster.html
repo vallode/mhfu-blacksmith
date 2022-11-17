@@ -45,7 +45,7 @@
             </div>
 
             <div class="icon icon--large">
-              <img src="/images/monsters/{{ page.slug }}.png" alt="?">
+              <img src="/images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png" alt="?">
             </div>
           </div>
 

@@ -74,6 +74,7 @@
     {
       "name": "Vespoid Queen",
       "type": "neopteron",
+      "icon": "vespoid",
       "description": "A massive thorax and brilliant, gigantic wings mark the Vespoid Queen. It commands its subjects through unique flight patterns, and will stab any intruders with a poisonous stinger that also causes paralysis. It also spits acidic bodily fluid at its prey.",
       "drops": {
       }

@@ -32,7 +32,7 @@
                 data-turbo-frame="weapon_details" 
               >
                 <div class="icon icon--mini">
-                  <img src="/images/monsters/{{ page.title | slugify }}.png" alt="?">
+                  <img src="/images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png" alt="?">
                 </div>
 
                 <p class="name">{{ page.title }}</p>

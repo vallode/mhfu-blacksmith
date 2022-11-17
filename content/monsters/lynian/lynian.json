@@ -338,6 +338,7 @@
     {
       "name": "King Shakalaka",
       "type": "lynian",
+      "icon": "shakalaka",
       "description": "This Shakalaka chieftain pulls together the Shakalaka's as one, in order to act. Extremely quick to anger when approached, this hot-head can invoke his fiery wrath with emotion alone. Feared by even the most skilled hunters.",
       "drops": {
         "high rank": {

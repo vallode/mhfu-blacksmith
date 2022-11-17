@@ -948,6 +948,7 @@
     {
       "name": "Blue Yian Kut-Ku",
       "type": "bird-wyvern",
+      "icon": "yian-kut-ku",
       "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
       "drops": {
         "low rank": {
@@ -1494,6 +1495,7 @@
     {
       "name": "Scarred Yian Garuga",
       "type": "bird-wyvern",
+      "icon": "yian-garuga",
       "drops": {
       }
     },
@@ -1807,6 +1809,7 @@
     {
       "name": "Purple Gypceros",
       "type": "bird-wyvern",
+      "icon": "gypceros",
       "description": "A wyvern that can generate disorienting flashes of light when its prominent head crest is struck. Its rubbery hide resists damage and can ward off shock traps, while its spit carries a deadly venom. However, they are quite timid.",
       "drops": {
         "low rank": {
