@@ -105,6 +105,7 @@
     {
       "name": "Rusted Kushala Daora",
       "type": "elder-dragon",
+      "icon": "kushala-daora",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {
       },
@@ -942,6 +943,7 @@
     {
       "name": "Ashen Lao-Shan Lung",
       "type": "elder-dragon",
+      "icon": "lao-shan-lung",
       "description": "A giant dragon few have seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The guild has built a fortress to repel the beast, but will it hold?",
       "drops": {
       }
@@ -1165,6 +1167,7 @@
     {
       "name": "Crimson Fatalis",
       "type": "elder-dragon",
+      "icon": "fatalis",
       "drops": {
         "high rank": {
           "body carves (x9)": [
@@ -1307,6 +1310,7 @@
     {
       "name": "White Fatalis",
       "type": "elder-dragon",
+      "icon": "fatalis",
       "drops": {
         "high rank": {
           "body carves (x9)": [

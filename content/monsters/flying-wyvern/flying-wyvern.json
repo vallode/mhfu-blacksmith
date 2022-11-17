@@ -509,6 +509,7 @@
     {
       "name": "Pink Rathian",
       "type": "flying-wyvern",
+      "icon": "rathian",
       "description": "",
       "drops": {
         "low rank": {
@@ -874,6 +875,7 @@
     {
       "name": "Gold Rathian",
       "type": "flying-wyvern",
+      "icon": "rathian",
       "drops": {
         "high rank": {
           "body carves (x3)": [
@@ -1563,6 +1565,7 @@
     {
       "name": "Azure Rathalos",
       "type": "flying-wyvern",
+      "icon": "rathalos",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -1923,6 +1926,7 @@
     {
       "name": "Silver Rathalos",
       "type": "flying-wyvern",
+      "icon": "rathalos",
       "drops": {
         "high rank": {
           "body carves (x3)": [
@@ -2456,6 +2460,7 @@
     {
       "name": "Red Khezu",
       "type": "flying-wyvern",
+      "icon": "khezu",
       "description": "Loathsome wyverns that live inside caves. Near blind, they detect their prey by smell. They are capable of generating electric shocks, which they use to paralyze their prey.",
       "drops": {
         "low rank": {
@@ -3231,6 +3236,7 @@
     {
       "name": "Black Gravios",
       "type": "flying-wyvern",
+      "icon": "gravios",
       "description": "A large wyvern found in volcanic zones. They possess a fiery breath attack and the ability to emit a sleeping gas. They also have extremely hard scales that deflect most weapon attacks.",
       "drops": {
         "low-rank": {
@@ -3653,6 +3659,7 @@
     {
       "name": "White Monoblos",
       "type": "flying-wyvern",
+      "icon": "monoblos",
       "description": "A large-horned wyvern found in desert zones. Their giant horn makes their attacks very dangerous. While they have no breath attack, their ear-splitting roar is the bane of hunters.",
       "drops": {
         "low-rank": {
@@ -4031,6 +4038,7 @@
     {
       "name": "Black Diablos",
       "type": "flying-wyvern",
+      "icon": "diablos",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -4907,6 +4915,7 @@
     {
       "name": "Akantor",
       "type": "flying-wyvern",
+      "icon": "fatalis",
       "description": "A wyvern truly wrapped in mystery. Known to some as the black god and to others as the tyrant of fire, this large and brutal creature is known to the Guild simply as Akantor...",
       "drops": {
         "high rank": {
@@ -5014,6 +5023,7 @@
     {
       "name": "Ukanlos",
       "type": "flying-wyvern",
+      "icon": "fatalis",
       "description": "A mysterious wyvern said to only appear after large avalanches deep in the snowy mountains. Often seen crushing ice balls and rock into powder in its stride, it’s known to the Guild as Ukanlos, although there are whisperings that it may be the white god...",
       "drops": {
         "g rank": {

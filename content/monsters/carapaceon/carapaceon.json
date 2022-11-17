@@ -66,6 +66,7 @@
     {
       "name": "Daimyo Hermitaur",
       "type": "carapaceon",
+      "icon": "hermitaur",
       "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "1-2 star": {
@@ -413,6 +414,7 @@
     {
       "name": "Plum Daimyo Hermitaur",
       "type": "carapaceon",
+      "icon": "hermitaur",
       "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "g rank": {
@@ -587,6 +589,7 @@
     {
       "name": "Shogun Ceanataur",
       "type": "carapaceon",
+      "icon": "ceanataur",
       "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "1-2 star": {
@@ -990,6 +993,7 @@
     {
       "name": "Terra Shogun Ceanataur",
       "type": "carapaceon",
+      "icon": "ceanataur",
       "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "g rank": {
