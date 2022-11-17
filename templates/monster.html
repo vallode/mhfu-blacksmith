@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block head__extra %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ current_url }}">
 
+  <meta property="og:image" content="{{ config.base_url }}images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png">
+  <meta property="og:image:alt" content="Pixel art representation of {{ page.title }}">
 {% endblock %}
 
 {% block content %}
