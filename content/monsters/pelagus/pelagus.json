@@ -232,6 +232,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 509.26,
+        "max": 1188.6
       }
     },
     {
@@ -702,6 +706,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 491.4,
+        "max": 1670.76
       }
     },
     {
@@ -816,6 +824,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 491.4,
+        "max": 1670.76
       }
     },
     {
@@ -1182,6 +1194,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 791.12,
+        "max": 1221.2
       }
     },
     {
@@ -1268,6 +1284,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 799.8,
+        "max": 1221.2
       }
     },
     {
@@ -1465,13 +1485,21 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 729.62,
+        "max": 1631.2
       }
     },
     {
-      "name": "Golden Rajang",
+      "name": "Furious Rajang",
       "type": "pelagus",
       "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {
+      },
+      "sizes": {
+        "min": 869.4,
+        "max": 1188.18
       }
     }
   ]

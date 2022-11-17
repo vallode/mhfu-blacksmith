@@ -85,6 +85,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 371.4,
+        "max": 989.64
       }
     },
     {
@@ -92,6 +96,10 @@
       "type": "elder-dragon",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {
+      },
+      "sizes": {
+        "min": 1261.6,
+        "max": 2391.41
       }
     },
     {
@@ -99,6 +107,10 @@
       "type": "elder-dragon",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {
+      },
+      "sizes": {
+        "min": 1261.6,
+        "max": 2129.0
       }
     },
     {
@@ -328,6 +340,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 1395.2,
+        "max": 2811.32
       }
     },
     {
@@ -507,6 +523,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 1444.2,
+        "max": 2575.2
       }
     },
     {
@@ -794,6 +814,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 1479.0,
+        "max": 2610.0
       }
     },
     {
@@ -1132,6 +1156,10 @@
             }
           ]
         }
+      },
+      "sizes": {
+        "min": 1.0,
+        "max": 4110.6
       }
     },
     {
