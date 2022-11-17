@@ -32,14 +32,19 @@
     {% block weapon__details %}
       <turbo-frame id="weapon_details" data-turbo-action="replace">
         <div class="card weapon-card">
-          <div class="weapon-card__header">
+          <div class="weapon-card__header weapon-card__header--monster">
+            <div class="details">
+              <p id="weapon_name">
+                Name: <span>{{ page.title }}</span>
+              </p>            
+              <p>Type: <span>{{ page.extra.type | replace(from="-", to=" ") | capitalize  }}</span></p>
+              <p>Longest: <span>1037.40</span><img src="/images/max.png" alt=""></p>
+              <p>Shortest: <span>615</span><img src="/images/min.png" alt=""></p>
+            </div>
+
             <div class="icon icon--large">
               <img src="/images/monsters/{{ page.slug }}.png" alt="?">
             </div>
-
-            <p id="weapon_name">
-              {{ page.title }}
-            </p>
           </div>
 
           <div class="weapon-card__details">

@@ -3,7 +3,7 @@ title = "Carapaceons"
 description = ""
 template = "monster-list.html"
 page_template = "monster.html"
-weight = 1
+weight = 6
 [extra]
 type = "carapaceon"
 +++
