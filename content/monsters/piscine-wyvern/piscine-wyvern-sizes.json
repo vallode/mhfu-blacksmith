@@ -1,0 +1,32 @@
+{
+  "monsters": [
+    {
+      "name": "Cephadrome",
+      "sizes": {
+        "min": 889.13,
+        "max": 2097.0
+      }
+    },
+    {
+      "name": "Plesioth",
+      "sizes": {
+        "min": 1991.11,
+        "max": 3877.9
+      }
+    },
+    {
+      "name": "Green Plesioth",
+      "sizes": {
+        "min": 2125.3,
+        "max": 3877.9
+      }
+    },
+    {
+      "name": "Lavasioth",
+      "sizes": {
+        "min": 1581.57,
+        "max": 3476.6
+      }
+    }
+  ]
+}

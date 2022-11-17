@@ -1,0 +1,74 @@
+{
+  "monsters": [
+    {
+      "name": "Giadrome",
+      "sizes": {
+        "min": 649.8,
+        "max": 1048.77
+      }
+    },
+    {
+      "name": "Velocidrome",
+      "sizes": {
+        "min": 590.7,
+        "max": 1736.4
+      }
+    },
+    {
+      "name": "Gendrome",
+      "sizes": {
+        "min": 615.0,
+        "max": 1037.4
+      }
+    },
+    {
+      "name": "Iodrome",
+      "sizes": {
+        "min": 619.7,
+        "max": 1641.06
+      }
+    },
+    {
+      "name": "Yian Kut-Ku",
+      "sizes": {
+        "min": 449.3,
+        "max": 1204.9
+      }
+    },
+    {
+      "name": "Blue Yian Kut-Ku",
+      "sizes": {
+        "min": 449.3,
+        "max": 1195.7
+      }
+    },
+    {
+      "name": "Yian Garuga",
+      "sizes": {
+        "min": 887.3,
+        "max": 1744.5
+      }
+    },
+    {
+      "name": "Gypceros",
+      "sizes": {
+        "min": 811.0,
+        "max": 1348.2
+      }
+    },
+    {
+      "name": "Purple Gypceros",
+      "sizes": {
+        "min": 912.3,
+        "max": 1348.2
+      }
+    },
+    {
+      "name": "Hypnocatrice",
+      "sizes": {
+        "min": 751.4,
+        "max": 1485.8
+      }
+    }
+  ]
+}
