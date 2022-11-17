@@ -1,0 +1,53 @@
+{
+  "monsters": [
+    {
+      "name": "Bulldrome",
+      "sizes": {
+        "min": 509.26,
+        "max": 1188.6
+      }
+    },
+    {
+      "name": "Congalala",
+      "sizes": {
+        "min": 491.4,
+        "max": 1670.76
+      }
+    },
+    {
+      "name": "Emerald Congalala",
+      "sizes": {
+        "min": 491.4,
+        "max": 1670.76
+      }
+    },
+    {
+      "name": "Blangonga",
+      "sizes": {
+        "min": 791.12,
+        "max": 1221.2
+      }
+    },
+    {
+      "name": "Copper Blangonga",
+      "sizes": {
+        "min": 799.8,
+        "max": 1221.2
+      }
+    },
+    {
+      "name": "Rajang",
+      "sizes": {
+        "min": 729.62,
+        "max": 1631.2
+      }
+    },
+    {
+      "name": "Furious Rajang",
+      "sizes": {
+        "min": 869.4,
+        "max": 1188.18
+      }
+    }
+  ]
+}
