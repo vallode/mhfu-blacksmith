@@ -24,21 +24,23 @@
     <turbo-frame id="weapon_tree" data-turbo-action="replace">
       <div class="card card--weapon-tree">
         <div class="weapon-tree">
-          {% for page in section.pages %}
-            <li>
-              <a
-                href="{{ page.path }}"
-                class="weapon-tree__row"
-                data-turbo-frame="weapon_details" 
-              >
-                <div class="icon icon--mini">
-                  <img src="/images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png" alt="?">
-                </div>
-
-                <p class="name">{{ page.title }}</p>
-              </a>
-            </li>
-          {% endfor %}
+          <ul>
+            {% for page in section.pages %}
+              <li>
+                <a
+                  href="{{ page.path }}"
+                  class="weapon-tree__row"
+                  data-turbo-frame="weapon_details" 
+                >
+                  <div class="icon icon--mini">
+                    <img src="/images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png" alt="?">
+                  </div>
+  
+                  <p class="name">{{ page.title }}</p>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
     </turbo-frame>
