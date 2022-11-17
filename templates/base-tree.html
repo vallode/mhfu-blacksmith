@@ -12,13 +12,15 @@
     <turbo-frame id="weapon_tree" data-turbo-action="replace">
       <div class="card card--weapon-tree">
         <div class="weapon-tree">
-          {% set data = load_data(path=current_path ~ "map.json" ) %}
+          {% block tree %}
+            {% set data = load_data(path=current_path ~ "map.json" ) %}
 
-          {%- for weapon in data.map %}
-            <ul>
-              {{ macros::weapon_tree_row(weapon=weapon) }}
-            </ul>
-          {% endfor %}
+            {%- for weapon in data.map %}
+              <ul>
+                {{ macros::weapon_tree_row(weapon=weapon) }}
+              </ul>
+            {% endfor %}
+          {% endblock tree %}
         </div>
       </div>
     </turbo-frame>
