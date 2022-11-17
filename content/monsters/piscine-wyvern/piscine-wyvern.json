@@ -78,6 +78,7 @@
     {
       "name": "Cephadrome",
       "type": "piscine-wyvern",
+      "icon": "cephalos",
       "description": "The alpha monster form of the Cephalos. Larger and armored with black scales, they fit the appearance of a leader perfectly. Their fins hold a paralyzing toxin.",
       "drops": {
         "1-2 star guild": {
@@ -550,6 +551,7 @@
     {
       "name": "Green Plesioth",
       "type": "piscine-wyvern",
+      "icon": "plesioth",
       "description": "An enormous, flightless, aquatic wyvern with wings that have evolved into fins for swimming. Although superficially fish-like, they can move on land as well. They love frogs.",
       "drops": {
         "low rank": {
