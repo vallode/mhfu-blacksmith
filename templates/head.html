@@ -9,14 +9,17 @@
 <title>{{ title }} | MFHU</title>
 <meta property="og:title" content="{{ title }}">
 
-{% if section %}
-  <meta name="description" content="{{ section.description }}">
-  <meta name="og:description" content="{{ section.description }}">
+{% if page.extra.description %}
+  {% set description = page.extra.description %}
+{% elif section.description %}
+  {% set description = section.description %}
 {% else %}
-  <meta name="description" content="Monster Hunter Freedom Unite weapon trees">
-  <meta name="og:description" content="Monster Hunter Freedom Unite weapon trees">
-  <meta property="og:image" content="/images/favicons/felyne-favicon.png">
+  {% set description = "Monster Hunter Freedom Unite knowledge base" %}
 {% endif %}
+
+<meta name="description" content="{{ description }}">
+<meta name="og:description" content="{{ description }}">
+<meta property="og:image" content="/images/favicons/felyne-favicon.png">
 
 {% if page.extra.type %}
   {% set type = page.extra.type %}
