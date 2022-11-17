@@ -26,7 +26,9 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 * kushala
 * lirkas
 * rafaellum
+* Shiro
 * Vid (Firaga)
+* WillTheHunter
 * Yaas
 * Zack
 
