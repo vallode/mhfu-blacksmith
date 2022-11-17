@@ -38,8 +38,10 @@
                 Name: <span>{{ page.title }}</span>
               </p>            
               <p>Type: <span>{{ page.extra.type | replace(from="-", to=" ") | capitalize  }}</span></p>
-              <p>Longest: <span>1037.40</span><img src="/images/max.png" alt=""></p>
-              <p>Shortest: <span>615</span><img src="/images/min.png" alt=""></p>
+              {% if page.extra.sizes %}
+                <p>Longest: <span>{{ page.extra.sizes.max  }}</span><img src="/images/max.png" alt=""></p>
+                <p>Shortest: <span>{{ page.extra.sizes.min }}</span><img src="/images/min.png" alt=""></p>
+              {% endif %}
             </div>
 
             <div class="icon icon--large">
