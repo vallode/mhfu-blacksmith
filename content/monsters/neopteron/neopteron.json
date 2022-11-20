@@ -69,6 +69,19 @@
             }
           ]
         }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "120",
+          "bash": "130",
+          "shot": "110",
+          "fir": "100",
+          "wat": "50",
+          "thn": "10",
+          "ice": "50",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -77,6 +90,19 @@
       "icon": "vespoid",
       "description": "A massive thorax and brilliant, gigantic wings mark the Vespoid Queen. It commands its subjects through unique flight patterns, and will stab any intruders with a poisonous stinger that also causes paralysis. It also spits acidic bodily fluid at its prey.",
       "drops": {
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "100",
+          "shot": "100",
+          "fir": "60",
+          "wat": "40",
+          "thn": "10",
+          "ice": "40",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -156,6 +182,19 @@
             }
           ]
         }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "120",
+          "shot": "100",
+          "fir": "100",
+          "wat": "20",
+          "thn": "60",
+          "ice": "100",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -210,6 +249,19 @@
               "chance": "10%"
             }
           ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "90",
+          "bash": "90",
+          "shot": "90",
+          "fir": "20",
+          "wat": "35",
+          "thn": "0",
+          "ice": "20",
+          "drg": "20",
+          "ko": "0"
         }
       }
     }

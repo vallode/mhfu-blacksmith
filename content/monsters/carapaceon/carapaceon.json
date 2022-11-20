@@ -61,6 +61,19 @@
             }
           ]
         }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "80",
+          "bash": "110",
+          "shot": "50",
+          "fir": "30",
+          "wtr": "5",
+          "thn": "60",
+          "ice": "20",
+          "drg": "0",
+          "ko": "200"
+        }
       }
     },
     {
@@ -409,6 +422,74 @@
       "sizes": {
         "min": 450.45,
         "max": 1451.2
+      },
+      "hitzones": {
+        "head": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "40",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "35",
+          "ice": "20",
+          "drg": "0",
+          "ko": "100"
+        },
+        "body": {
+          "cut": "40",
+          "bash": "50",
+          "shot": "30",
+          "fir": "15",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "shell": {
+          "cut": "25",
+          "bash": "40",
+          "shot": "25",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "25",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "35",
+          "bash": "40",
+          "shot": "30",
+          "fir": "15",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "claw": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "15",
+          "fir": "35",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "arm": {
+          "cut": "40",
+          "bash": "45",
+          "shot": "30",
+          "fir": "15",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -509,6 +590,74 @@
       "sizes": {
         "min": 247.5,
         "max": 1346.8
+      },
+      "hitzones": {
+        "head": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "40",
+          "fir": "20",
+          "wtr": "10",
+          "thn": "25",
+          "ice": "35",
+          "drg": "0",
+          "ko": "100"
+        },
+        "body": {
+          "cut": "40",
+          "bash": "50",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "10",
+          "ice": "20",
+          "drg": "0",
+          "ko": "0"
+        },
+        "shell": {
+          "cut": "25",
+          "bash": "40",
+          "shot": "25",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "25",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "35",
+          "bash": "40",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "10",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "claw": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "15",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "35",
+          "drg": "0",
+          "ko": "0"
+        },
+        "arm": {
+          "cut": "40",
+          "bash": "45",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "10",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -583,6 +732,19 @@
               "chance": "10%"
             }
           ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "70",
+          "bash": "90",
+          "shot": "50",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "30",
+          "ice": "40",
+          "drg": "0",
+          "ko": "200"
         }
       }
     },
@@ -988,6 +1150,74 @@
       "sizes": {
         "min": 586.03,
         "max": 1294.5
+      },
+      "hitzones": {
+        "head": {
+          "cut": "45",
+          "bash": "55",
+          "shot": "35",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "35",
+          "ice": "20",
+          "drg": "0",
+          "ko": "100"
+        },
+        "body": {
+          "cut": "35",
+          "bash": "40",
+          "shot": "25",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "shell": {
+          "cut": "25",
+          "bash": "40",
+          "shot": "20",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "25",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "25",
+          "shot": "30",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "pincer": {
+          "cut": "20",
+          "bash": "30",
+          "shot": "15",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "arm": {
+          "cut": "20",
+          "bash": "35",
+          "shot": "25",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -1084,6 +1314,74 @@
       "sizes": {
         "min": 742.2,
         "max": 1294.5
+      },
+      "hitzones": {
+        "head": {
+          "cut": "45",
+          "bash": "55",
+          "shot": "35",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "35",
+          "ice": "20",
+          "drg": "0",
+          "ko": "100"
+        },
+        "body": {
+          "cut": "35",
+          "bash": "40",
+          "shot": "25",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "shell": {
+          "cut": "20",
+          "bash": "25",
+          "shot": "25",
+          "fir": "0",
+          "wtr": "40",
+          "thn": "5",
+          "ice": "0",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "25",
+          "shot": "30",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "pincer": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "20",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        },
+        "arm": {
+          "cut": "25",
+          "bash": "35",
+          "shot": "25",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "10",
+          "drg": "0",
+          "ko": "0"
+        }
       }
     },
     {
@@ -1091,6 +1389,85 @@
       "type": "carapaceon",
       "description": "A giant Carapaceon with an equally giant monster's skull on its back. Prone to roaming and fiercely territorial, any intruders will be met with opposition, so nearby forts or towns must be warned of its presence.",
       "drops": {
+      },
+      "hitzones": {
+        "head": {
+          "cut": "38",
+          "bash": "40",
+          "shot": "40",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "20",
+          "ice": "5",
+          "drg": "20",
+          "ko": "100"
+        },
+        "body": {
+          "cut": "40",
+          "bash": "45",
+          "shot": "30",
+          "fir": "15",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "30",
+          "ko": "0"
+        },
+        "shell": {
+          "cut": "10",
+          "bash": "20",
+          "shot": "20",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "20",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "32",
+          "bash": "37",
+          "shot": "25",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "20",
+          "ko": "0"
+        },
+        "claw": {
+          "cut": "10",
+          "bash": "20",
+          "shot": "20",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "20",
+          "ko": "0"
+        },
+        "arm": {
+          "cut": "20",
+          "bash": "20",
+          "shot": "20",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "20",
+          "ko": "0"
+        },
+        "weak-point": {
+          "cut": "80",
+          "bash": "90",
+          "shot": "80",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "70",
+          "ko": "0"
+        }
       }
     }
   ]
