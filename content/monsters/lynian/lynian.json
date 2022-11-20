@@ -5,6 +5,19 @@
       "type": "lynian",
       "description": "Cat-like humanoids called Lynians that are noted for their white fur. Felynes are quiet and peaceful until angered, in which case they may attack. Capable of speech, they are sometimes found in the employ of human masters.",
       "drops": {
+      },
+      "hitzones": {
+        "all": {
+          "cut": "120",
+          "bash": "120",
+          "shot": "120",
+          "fir": "100",
+          "wat": "100",
+          "thn": "100",
+          "ice": "100",
+          "drg": "10",
+          "ko": "100"
+        }
       }
     },
     {
@@ -91,6 +104,19 @@
               "chance": "5%"
             }
           ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "110",
+          "bash": "100",
+          "shot": "100",
+          "fir": "100",
+          "wat": "100",
+          "thn": "100",
+          "ice": "100",
+          "drg": "10",
+          "ko": "100"
         }
       }
     },
@@ -333,6 +359,19 @@
             }
           ]
         }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "70",
+          "bash": "70",
+          "shot": "70",
+          "fir": "20",
+          "wat": "20",
+          "thn": "20",
+          "ice": "40",
+          "drg": "20",
+          "ko": "100"
+        }
       }
     },
     {
@@ -488,6 +527,19 @@
               "chance": "2%"
             }
           ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "40",
+          "bash": "40",
+          "shot": "35",
+          "fir": "5",
+          "wat": "10",
+          "thn": "10",
+          "ice": "20",
+          "drg": "5",
+          "ko": "100"
         }
       }
     }
