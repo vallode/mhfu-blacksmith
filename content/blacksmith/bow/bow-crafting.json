@@ -16,10 +16,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Rapid 1",
-        "Rapid 2",
-        "Scatter 2"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 550,
@@ -67,10 +79,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Rapid 2",
-        "Rapid 3",
-        "Scatter 2"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -118,10 +142,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Scatter 1",
-        "Rapid 3",
-        "Scatter 3"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 1650,
@@ -208,10 +244,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Scatter 2",
-        "Rapid 3",
-        "Scatter 4"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -258,10 +306,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Rapid 2",
-        "Rapid 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 4400,
@@ -333,10 +393,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Rapid 2",
-        "Rapid 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -383,10 +455,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Rapid 3",
-        "Rapid 4",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -434,10 +518,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 4",
-        "Rapid 5",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -489,10 +585,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Scatter 4",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 34650,
@@ -576,10 +684,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Scatter 5",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -635,10 +755,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 1",
-        "Pierce 1",
-        "Pierce 3",
-        "Rapid 3"
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 2200,
@@ -699,10 +831,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 1",
-        "Pierce 2",
-        "Pierce 3",
-        "Rapid 3"
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -749,10 +893,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 1",
-        "Rapid 2",
-        "Pierce 3",
-        "Rapid 3"
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 5250,
@@ -824,10 +980,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 1",
-        "Rapid 2",
-        "Pierce 3",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -874,10 +1042,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Rapid 2",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 8950,
@@ -949,10 +1129,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Rapid 3",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -999,10 +1191,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 3",
-        "Scatter 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 49500,
@@ -1080,10 +1284,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 4",
-        "Scatter 5",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1134,10 +1350,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Scatter 1",
-        "Rapid 2",
-        "Scatter 2"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 770,
@@ -1189,10 +1417,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Pierce 1",
-        "Rapid 3",
-        "Scatter 3"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1244,10 +1484,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Pierce 2",
-        "Rapid 3",
-        "Scatter 4"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 3850,
@@ -1318,10 +1570,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 2",
-        "Rapid 3",
-        "Scatter 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1373,10 +1637,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 3",
-        "Rapid 4",
-        "Scatter 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1428,10 +1704,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Pierce 4",
-        "Rapid 4",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1487,10 +1775,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 1",
-        "Scatter 2",
-        "Scatter 3",
-        "Pierce 2"
+        {
+          "name": "Scatter",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 1500,
@@ -1548,10 +1848,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Rapid 2",
-        "Scatter 3",
-        "Pierce 3"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1603,10 +1915,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Rapid 2",
-        "Scatter 4",
-        "Pierce 3"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1659,10 +1983,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Rapid 3",
-        "Scatter 4",
-        "Pierce 3"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 7350,
@@ -1741,10 +2077,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Rapid 3",
-        "Scatter 5",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1803,10 +2151,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Rapid 4",
-        "Scatter 5",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1861,10 +2221,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 4",
-        "Rapid 4",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 83150,
@@ -1941,10 +2313,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 4",
-        "Rapid 5",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -1994,10 +2378,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 3",
-        "Rapid 3",
-        "Pierce 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 11100,
@@ -2054,10 +2450,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 4",
-        "Rapid 4",
-        "Pierce 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2108,10 +2516,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Rapid 4",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 53450,
@@ -2193,10 +2613,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 5",
-        "Rapid 5",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2252,10 +2684,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Scatter 2",
-        "Scatter 3",
-        "Rapid 2"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 1250,
@@ -2313,10 +2757,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 3",
-        "Scatter 4",
-        "Rapid 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2374,10 +2830,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Scatter 5",
-        "Rapid 4"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2433,10 +2901,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 1",
-        "Pierce 2",
-        "Pierce 3",
-        "Rapid 2"
+        {
+          "name": "Scatter",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 2300,
@@ -2494,10 +2974,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 2",
-        "Pierce 3",
-        "Rapid 3"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2549,10 +3041,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 3",
-        "Pierce 3",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2604,10 +3108,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 3",
-        "Pierce 3",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 7350,
@@ -2684,10 +3200,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Rapid 4",
-        "Pierce 5"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 52000,
@@ -2764,10 +3292,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Scatter 4",
-        "Rapid 4",
-        "Pierce 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2823,10 +3363,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 2",
-        "Pierce 3",
-        "Pierce 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 7700,
@@ -2879,10 +3431,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 3",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -2929,10 +3493,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Pierce 3",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 90100,
@@ -3005,10 +3581,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Pierce 4",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3052,10 +3640,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Rapid 3",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3106,10 +3706,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Rapid 4",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3158,10 +3770,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Rapid 2",
-        "Rapid 2",
-        "Scatter 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 2300,
@@ -3218,10 +3842,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 2",
-        "Rapid 3",
-        "Scatter 3"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3272,10 +3908,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 3",
-        "Rapid 4",
-        "Scatter 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 7350,
@@ -3352,10 +4000,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Pierce 3",
-        "Scatter 4",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 52000,
@@ -3413,10 +4073,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Pierce 4",
-        "Scatter 5",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3470,10 +4142,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 2",
-        "Scatter 3",
-        "Rapid 3"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 5500,
@@ -3529,10 +4213,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Pierce 2",
-        "Scatter 4",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3583,10 +4279,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Pierce 3",
-        "Scatter 4",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 16500,
@@ -3661,10 +4369,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Pierce 3",
-        "Scatter 5",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3720,10 +4440,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Pierce 3",
-        "Scatter 5",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3771,10 +4503,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 2",
-        "Pierce 3",
-        "Scatter 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 13450,
@@ -3844,10 +4588,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 3",
-        "Pierce 3",
-        "Scatter 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3892,10 +4648,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 3",
-        "Pierce 4",
-        "Scatter 5"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -3938,10 +4706,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 1",
-        "Scatter 2",
-        "Pierce 2",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 6850,
@@ -3997,10 +4777,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 2",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4050,10 +4842,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 3",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4103,10 +4907,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 3",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 61900,
@@ -4181,10 +4997,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4233,10 +5061,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Scatter 2",
-        "Rapid 3",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 16800,
@@ -4293,10 +5133,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Scatter 3",
-        "Rapid 3",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4347,10 +5199,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Scatter 4",
-        "Rapid 4",
-        "Rapid 5"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4403,10 +5267,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Pierce 2",
-        "Pierce 3",
-        "Scatter 2"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 10250,
@@ -4456,10 +5332,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Pierce 3",
-        "Pierce 4",
-        "Scatter 3"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4503,10 +5391,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Pierce 3",
-        "Pierce 4",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 90100,
@@ -4575,10 +5475,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Pierce 4",
-        "Pierce 5",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4626,10 +5538,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Pierce 4",
-        "Pierce 5",
-        "Scatter 5"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 690,
@@ -4683,10 +5607,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 2",
-        "Rapid 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 8550,
@@ -4737,10 +5673,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 3",
-        "Rapid 3",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4786,10 +5734,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 2",
-        "Pierce 3",
-        "Rapid 4",
-        "Pierce 4"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 25700,
@@ -4859,10 +5819,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 3",
-        "Pierce 4",
-        "Rapid 5",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -4914,10 +5886,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Rapid 4",
-        "Pierce 4",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 27750,
@@ -4990,10 +5974,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Rapid 5",
-        "Pierce 5",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 103950,
@@ -5067,10 +6063,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 3",
-        "Rapid 2",
-        "Rapid 1",
-        "Pierce 3"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 50000,
@@ -5126,10 +6134,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 4",
-        "Rapid 2",
-        "Rapid 1",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5179,10 +6199,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 5",
-        "Rapid 2",
-        "Rapid 1",
-        "Pierce 5"
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5238,10 +6270,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 3",
-        "Pierce 2",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 7900,
@@ -5299,10 +6343,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 3",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5354,10 +6410,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Pierce 5",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 115800,
@@ -5443,10 +6511,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 1",
-        "Pierce 2",
-        "Scatter 3",
-        "Rapid 2"
+        {
+          "name": "Pierce",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        }
       ],
       "type": "bow",
       "create_cost": 7900,
@@ -5505,10 +6585,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Pierce 2",
-        "Scatter 4",
-        "Rapid 3"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5561,10 +6653,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Pierce 3",
-        "Scatter 5",
-        "Rapid 4"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5618,10 +6722,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Rapid 3",
-        "Rapid 4",
-        "Pierce 5"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 95000,
@@ -5677,10 +6793,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 3",
-        "Rapid 4",
-        "Rapid 5",
-        "Pierce 5"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5735,10 +6863,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Pierce 4",
-        "Rapid 4"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 84150,
@@ -5795,10 +6935,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Pierce 5",
-        "Rapid 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5852,10 +7004,18 @@
         "power"
       ],
       "shots": [
-        "Scatter 3",
-        "Pierce 3",
-        "Rapid 4",
-        "-"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 80000,
@@ -5911,10 +7071,18 @@
         "power"
       ],
       "shots": [
-        "Scatter 4",
-        "Pierce 4",
-        "Rapid 5",
-        "-"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -5968,10 +7136,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Pierce 2",
-        "Pierce 3",
-        "Scatter 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 7500,
@@ -6021,10 +7201,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Pierce 3",
-        "Pierce 4",
-        "Scatter 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -6074,10 +7266,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Scatter 3",
-        "Rapid 3",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 80000,
@@ -6140,10 +7344,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Rapid 4",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -6190,10 +7406,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 1",
-        "Pierce 2",
-        "Rapid 2",
-        "Rapid 3"
+        {
+          "name": "Scatter",
+          "level": "1"
+        },
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        }
       ],
       "type": "bow",
       "create_cost": 80000,
@@ -6260,10 +7488,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 2",
-        "Pierce 3",
-        "Rapid 3",
-        "Rapid 4"
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": null,
@@ -6317,10 +7557,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Rapid 2",
-        "Scatter 2",
-        "Rapid 5"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 150000,
@@ -6377,10 +7629,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Rapid 5",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6431,10 +7695,22 @@
         "paint"
       ],
       "shots": [
-        "Pierce 2",
-        "Rapid 3",
-        "Pierce 4",
-        "Rapid 5"
+        {
+          "name": "Pierce",
+          "level": "2"
+        },
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6485,10 +7761,22 @@
         "paint"
       ],
       "shots": [
-        "Rapid 3",
-        "Rapid 4",
-        "Pierce 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6539,10 +7827,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 2",
-        "Scatter 3",
-        "Rapid 4",
-        "Pierce 5"
+        {
+          "name": "Rapid",
+          "level": "2"
+        },
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6598,10 +7898,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 3",
-        "Scatter 4",
-        "Scatter 5",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6657,10 +7969,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 4",
-        "Scatter 4",
-        "Pierce 4",
-        "Rapid 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6715,10 +8039,22 @@
         "power"
       ],
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Rapid 5",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6771,10 +8107,22 @@
         "power"
       ],
       "shots": [
-        "Pierce 3",
-        "Pierce 4",
-        "Pierce 5",
-        "Scatter 4"
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6825,10 +8173,22 @@
         "power"
       ],
       "shots": [
-        "Scatter 4",
-        "Scatter 5",
-        "Pierce 3",
-        "Pierce 4"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        },
+        {
+          "name": "Pierce",
+          "level": "3"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6882,10 +8242,22 @@
         "paint"
       ],
       "shots": [
-        "Scatter 4",
-        "Pierce 4",
-        "Pierce 5",
-        "Scatter 5"
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "4"
+        },
+        {
+          "name": "Pierce",
+          "level": "5"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "type": "bow",
       "create_cost": 75000,
@@ -6934,10 +8306,22 @@
       "bonus": null,
       "rarity": 9,
       "shots": [
-        "Rapid 3",
-        "Scatter 4",
-        "Rapid 4",
-        "Scatter 5"
+        {
+          "name": "Rapid",
+          "level": "3"
+        },
+        {
+          "name": "Scatter",
+          "level": "4"
+        },
+        {
+          "name": "Rapid",
+          "level": "4"
+        },
+        {
+          "name": "Scatter",
+          "level": "5"
+        }
       ],
       "coatings": [
         "close range",
