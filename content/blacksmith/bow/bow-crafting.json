@@ -17,19 +17,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         }
       ],
@@ -80,19 +80,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         }
       ],
@@ -143,19 +143,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         }
       ],
@@ -245,19 +245,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -307,19 +307,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -394,19 +394,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -456,19 +456,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -519,19 +519,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -586,19 +586,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -685,19 +685,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -756,19 +756,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -832,19 +832,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -894,19 +894,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -981,19 +981,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -1043,19 +1043,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -1130,19 +1130,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -1192,19 +1192,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -1285,19 +1285,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -1351,19 +1351,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         }
       ],
@@ -1418,19 +1418,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         }
       ],
@@ -1485,19 +1485,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -1571,19 +1571,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -1638,19 +1638,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -1705,19 +1705,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -1776,19 +1776,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         }
       ],
@@ -1849,19 +1849,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -1916,19 +1916,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -1984,19 +1984,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -2078,19 +2078,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -2152,19 +2152,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -2222,19 +2222,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -2314,19 +2314,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -2379,19 +2379,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -2451,19 +2451,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -2517,19 +2517,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -2614,19 +2614,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -2685,19 +2685,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         }
       ],
@@ -2758,19 +2758,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -2831,19 +2831,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -2902,19 +2902,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         }
       ],
@@ -2975,19 +2975,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -3042,19 +3042,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -3109,19 +3109,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -3201,19 +3201,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3293,19 +3293,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3364,19 +3364,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -3432,19 +3432,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -3494,19 +3494,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3582,19 +3582,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3641,19 +3641,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3707,19 +3707,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -3771,19 +3771,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         }
       ],
@@ -3843,19 +3843,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         }
       ],
@@ -3909,19 +3909,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -4001,19 +4001,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -4074,19 +4074,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -4143,19 +4143,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -4214,19 +4214,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -4280,19 +4280,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -4370,19 +4370,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -4441,19 +4441,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -4504,19 +4504,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -4589,19 +4589,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -4649,19 +4649,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -4707,19 +4707,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -4778,19 +4778,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -4843,19 +4843,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -4908,19 +4908,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -4998,19 +4998,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -5062,19 +5062,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -5134,19 +5134,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -5200,19 +5200,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -5268,19 +5268,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         }
       ],
@@ -5333,19 +5333,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         }
       ],
@@ -5392,19 +5392,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -5476,19 +5476,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -5539,19 +5539,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -5608,19 +5608,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -5674,19 +5674,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -5735,19 +5735,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -5820,19 +5820,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -5887,19 +5887,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -5975,19 +5975,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -6064,19 +6064,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         }
       ],
@@ -6135,19 +6135,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -6200,19 +6200,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -6271,19 +6271,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -6344,19 +6344,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -6411,19 +6411,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -6512,19 +6512,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         }
       ],
@@ -6586,19 +6586,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -6654,19 +6654,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -6723,19 +6723,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -6794,19 +6794,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -6864,19 +6864,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -6936,19 +6936,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -7005,15 +7005,15 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -7072,15 +7072,15 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -7137,19 +7137,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -7202,19 +7202,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -7267,19 +7267,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -7345,19 +7345,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -7407,19 +7407,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "1"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         }
       ],
@@ -7489,19 +7489,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         }
       ],
@@ -7558,19 +7558,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -7630,19 +7630,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -7696,19 +7696,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "2"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -7762,19 +7762,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -7828,19 +7828,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "2"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         }
       ],
@@ -7899,19 +7899,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -7970,19 +7970,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         }
       ],
@@ -8040,19 +8040,19 @@
       ],
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -8108,19 +8108,19 @@
       ],
       "shots": [
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         }
       ],
@@ -8174,19 +8174,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "3"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         }
       ],
@@ -8243,19 +8243,19 @@
       ],
       "shots": [
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "4"
         },
         {
-          "name": "Pierce",
+          "name": "Prce",
           "level": "5"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
@@ -8307,19 +8307,19 @@
       "rarity": 9,
       "shots": [
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "3"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "4"
         },
         {
-          "name": "Rapid",
+          "name": "Rapd",
           "level": "4"
         },
         {
-          "name": "Scatter",
+          "name": "Sctr",
           "level": "5"
         }
       ],
