@@ -602,8 +602,14 @@ $ranks: (
     }
 
     .shots {
-      .orange {
+      span.orange,
+      .orange span {
         color: #FF9661;
+      }
+
+      .green,
+      .green .orange {
+        color: #52F152;
       }
     }
 

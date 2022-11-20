@@ -248,15 +248,11 @@
                     <div class="shots">
                       <p><span>[Charge Attack]</span></p>
                       {% for shot in page.extra.shots %}
-                        {% if loop.index == 1 %}
-                        <p>
-                          <span class="orange">Lvl {{ loop.index }}:</span> {{ shot }}
+                        <p {% if loop.last %}class="green"{% endif %}>
+                          <span class="orange">
+                            <span {% if loop.index != 1 %}style="visibility: hidden;"{% endif %}>Lvl</span> {{ loop.index }}:
+                          </span> {{ shot.name }} Lv{{ shot.level }}
                         </p>
-                        {% else %}
-                        <p>
-                          <span class="orange"><span style="visibility: hidden;">Lvl</span> {{ loop.index }}:</span> {{ shot }}
-                        </p>
-                        {% endif %}
                       {% endfor %}
                     </div>
                   {% endif %}
