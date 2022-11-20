@@ -39,12 +39,16 @@
           <div class="weapon-card__header weapon-card__header--monster">
             <div class="details">
               <p>
-                Name: <span id="weapon_name">{{ page.title }}</span>
-              </p>            
-              <p>Type: <span>{{ page.extra.type | replace(from="-", to=" ") | capitalize  }}</span></p>
+                Name : <span id="weapon_name">{{ page.title }}</span>
+              </p>
+     
+              <p>
+                Type : <span>{{ page.extra.type | replace(from="-", to=" ") | capitalize  }}</span>
+              </p>
+
               {% if page.extra.sizes %}
-                <p>Longest: <span>{{ page.extra.sizes.max  }}</span><img src="/images/max.png" alt=""></p>
-                <p>Shortest: <span>{{ page.extra.sizes.min }}</span><img src="/images/min.png" alt=""></p>
+                <p>Longest : <span>{{ page.extra.sizes.max  }}</span><img src="/images/max.png" alt=""></p>
+                <p>Shortest : <span>{{ page.extra.sizes.min }}</span><img src="/images/min.png" alt=""></p>
               {% endif %}
             </div>
 
@@ -54,12 +58,6 @@
           </div>
 
           <div class="weapon-card__details">
-            <p class="description">
-              {% if page.extra.description %}
-              {{page.extra.description}}
-              {% endif %}
-            </p>
-
             <hr>
 
             <div
@@ -68,8 +66,47 @@
               class="requirements"
             >
               <div id="page-1" class="active">
-                
+                <p class="description">
+                  {% if page.extra.description %}
+                    {{ page.extra.description }}
+                  {% endif %}
+                </p>
+
+                <!-- <p>Fire <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
+                <p>Thunder <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
+                <p>Poison <div class="icon"><img src="/images/star.png"></div></p> -->
               </div>
+
+              {% if page.extra.hitzones %}
+              <div id="page-2">
+                <table>
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Cut</th>
+                          <th>Bash</th>
+                          <th>Shot</th>
+                          <th>Fire</th>
+                          <th>Water</th>
+                          <th>Thunder</th>
+                          <th>Ice</th>
+                          <th>Dragon</th>
+                          <th>K/O</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for key,value in page.extra.hitzones %}
+                      <tr>
+                        <td>{{ key }}</td>
+                        {% for k,v in value %}
+                          <td {% if v == "0" %}class="gray"{% endif %}>{{ v }}</td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+              </div>
+              {% endif %}
 
               <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
                 <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
