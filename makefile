@@ -5,10 +5,10 @@ serve: clean generate-pages
 	zola serve
 
 generate-pages: clean
-	ruby scripts/generate-pages.rb
+	bundle exec ruby scripts/generate-pages.rb
 
 generate-maps:
-	ruby scripts/generate-maps.rb
+	bundle exec ruby scripts/generate-maps.rb
 
 debug: generate-pages
 	TERA_DEBUG=true zola serve
