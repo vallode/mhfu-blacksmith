@@ -801,6 +801,20 @@ $sharpness-colors: (
   }
 }
 
+table {
+  font-size: 1.4rem;
+  width: 100%;
+  height: min-content;
+
+  tr th {
+    text-align: left;
+  }
+
+  .gray {
+    color: gray;
+  }
+}
+
 @keyframes opacity-alternate {
   from {
     opacity: 1;
