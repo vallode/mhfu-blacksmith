@@ -811,9 +811,49 @@ table {
   font-size: 1.4rem;
   width: 100%;
   height: min-content;
+  table-layout: fixed;
+  border-collapse: collapse;
 
-  tr th {
+  
+  th:first-of-type {
+    color: #f2d250;
+    width: auto;
     text-align: left;
+  }
+  
+  tr th {
+    text-align: center;
+  }
+
+  td:first-of-type {
+    text-align: left;
+  }
+
+  td {
+    position: relative;
+    text-align: right;
+    padding-right: 0.8rem;
+  }
+
+  td::after {
+    background: gray;
+    content: '';
+    height: 60%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    position: absolute;
+    right: 1px;
+    width: 1px;
+  }
+  
+  .icon {
+    margin: 0 auto;
+  }
+  .icon,
+  .icon img {
+    height: 22px;
+    width: 22px;
   }
 
   .gray {

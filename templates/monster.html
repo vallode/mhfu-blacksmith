@@ -65,7 +65,46 @@
               data-weapon-page-page-value="1"
               class="requirements"
             >
-              <div id="page-1" class="active">
+              {% if page.extra.hitzones %}
+                <div id="page-1" class="active">
+                  <div class="card">
+                    <table>
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Cut</th>
+                              <th>Bash</th>
+                              <th>Shot</th>
+                              <th><div class="icon"><img src="/images/fire.png"></div></th>
+                              <th><div class="icon"><img src="/images/water.png"></div></th>
+                              <th><div class="icon"><img src="/images/thunder.png"></div></th>
+                              <th><div class="icon"><img src="/images/ice.png"></div></th>
+                              <th><div class="icon"><img src="/images/dragon.png"></div></th>
+                              <th><div class="icon"><img src="/images/ko.png"></div></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for key, value in page.extra.hitzones %}
+                          <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value["cut"] }}</td>
+                            <td>{{ value["bash"] }}</td>
+                            <td>{{ value["shot"] }}</td>
+                            <td>{{ value["fir"] }}</td>
+                            <td>{{ value["wtr"] }}</td>
+                            <td>{{ value["thn"] }}</td>
+                            <td>{{ value["ice"] }}</td>
+                            <td>{{ value["drg"] }}</td>
+                            <td>{{ value["ko"] }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              {% endif %}
+
+              <div id="page-2">
                 <p class="description">
                   {% if page.extra.description %}
                     {{ page.extra.description }}
@@ -76,37 +115,6 @@
                 <p>Thunder <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
                 <p>Poison <div class="icon"><img src="/images/star.png"></div></p> -->
               </div>
-
-              {% if page.extra.hitzones %}
-              <div id="page-2">
-                <table>
-                  <thead>
-                      <tr>
-                          <th>Name</th>
-                          <th>Cut</th>
-                          <th>Bash</th>
-                          <th>Shot</th>
-                          <th>Fire</th>
-                          <th>Water</th>
-                          <th>Thunder</th>
-                          <th>Ice</th>
-                          <th>Dragon</th>
-                          <th>K/O</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    {% for key,value in page.extra.hitzones %}
-                      <tr>
-                        <td>{{ key }}</td>
-                        {% for k,v in value %}
-                          <td {% if v == "0" %}class="gray"{% endif %}>{{ v }}</td>
-                        {% endfor %}
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-              </table>
-              </div>
-              {% endif %}
 
               <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
                 <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
