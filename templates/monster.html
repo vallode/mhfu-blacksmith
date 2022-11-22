@@ -86,7 +86,7 @@
                       <tbody>
                         {% for key, value in page.extra.hitzones %}
                           <tr>
-                            <td>{{ key }}</td>
+                            <td>{{ key | capitalize }}</td>
                             <td>{{ value["cut"] }}</td>
                             <td>{{ value["bash"] }}</td>
                             <td>{{ value["shot"] }}</td>
