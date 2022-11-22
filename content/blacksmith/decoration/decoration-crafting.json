@@ -2623,7 +2623,7 @@
     {
       "name": "Cont. Fire Jewel",
       "skills": [
-        "Speed Fire +1",
+        "Autoreload +1",
         "Protection -1"
       ],
       "create_mats": [
@@ -2669,7 +2669,7 @@
     {
       "name": "Barrage Jewel",
       "skills": [
-        "Speed Fire +4",
+        "Autoreload +4",
         "Protection -2"
       ],
       "create_mats": [
@@ -3349,7 +3349,7 @@
       "name": "Sniper Jewel",
       "skills": [
         "Precision +1",
-        "Speed Fire -1"
+        "Autoreload -1"
       ],
       "create_mats": [
         {
@@ -4500,7 +4500,7 @@
       "type": "decoration"
     },
     {
-      "name": "Comb Suc up",
+      "name": "Combine Success Up",
       "improve_to": [
         "Professor Jewel"
       ],
@@ -5052,7 +5052,7 @@
       "type": "decoration"
     },
     {
-      "name": "Immunity to Snowman",
+      "name": "Snow Res",
       "improve_to": [
         "Snowblower Jewel",
         "Snowplow Jewel",
@@ -5145,7 +5145,7 @@
       "type": "decoration"
     },
     {
-      "name": "Immunity to Quake",
+      "name": "Quake Resistance",
       "improve_to": [
         "Anchor Jewel",
         "Tectonic Jewel"
@@ -5799,7 +5799,7 @@
       "type": "decoration"
     },
     {
-      "name": "Immunity to territorial dung",
+      "name": "Antiseptic",
       "improve_to": [
         "Retroviral Jewel",
         "Antiviral Jewel"
