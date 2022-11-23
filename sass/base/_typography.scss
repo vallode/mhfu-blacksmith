@@ -13,11 +13,17 @@ html {
 
 body {
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.6rem;
+  font-size: 16px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 320px) {
   body {
-    font-size: 1rem;
+    font-size: calc(14px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: 22px;
   }
 }
