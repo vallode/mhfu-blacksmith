@@ -20,10 +20,12 @@
 <meta name="description" content="{{ description }}">
 <meta name="og:description" content="{{ description }}">
 
-{% if page.extra.type %}
-  {% set type = page.extra.type %}
-{% elif section.extra.type %}
+{% if section.extra.type %}
   {% set type = section.extra.type %}
+{% elif page.path and page.path is containing("/monsters/") %}
+  {% set type = false %}
+{% elif page.extra.type %}
+  {% set type = page.extra.type %}
 {% else %}
   {% set type = "felyne" %}
 {% endif %}
