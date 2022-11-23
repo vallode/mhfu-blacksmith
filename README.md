@@ -1,3 +1,5 @@
+![Monster hunter freedom unite blacksmith](/static/images/blacksmith-scaled.png)
+
 # MHFU - Blacksmith
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/92498c7e-45eb-449e-861f-764c6e6cf57c/deploy-status)](https://app.netlify.com/sites/mhfu-blacksmith/deploys)
@@ -21,6 +23,7 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 * Darkcola
 * Emanon
 * Hunsterverse contributors
+* Ice Cream
 * Jely
 * kpworthi
 * kushala
