@@ -4,8 +4,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ current_url }}">
 
-  <meta property="og:image" content="{{ config.base_url }}images/monsters/{{ page.extra.icon | default(value=page.slug) }}.png">
+  <meta property="og:image" content="{{ config.base_url }}images/monsters/{{ page.extra.icon | default(value=page.slug) }}-favicon.png">
   <meta property="og:image:alt" content="Pixel art representation of {{ page.title }}">
+
+  <meta name="description" content="{{ page.extra.description }}">
+  <meta name="og:description" content="{{ page.extra.description }}">
 {% endblock %}
 
 {% block content %}
