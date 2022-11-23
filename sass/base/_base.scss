@@ -26,8 +26,8 @@ body {
   }
 
   @media screen and (max-width: 600px) {
-    min-height: 100%;
     height: auto;
+    min-height: 100%;
   }
 }
 
@@ -49,14 +49,15 @@ img {
   color: transparent;
 
   &:before {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
     background-image: url("/images/ukwn.png");
+    background-position: center;
     background-repeat: no-repeat;
     content: ' ';
     display: block;
     height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
     position: absolute;
     width: 100%;
   }
@@ -74,10 +75,10 @@ hr {
 hr.border {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
   background-repeat: repeat-x;
-  background-size: 32px 16px;
+  background-size: 3.2rem 1.6rem;
   background-color: transparent;
   border: 0;
-  height: 16px;
+  height: 1.6rem;
   // This applies to the background-image.
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
