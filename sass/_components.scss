@@ -499,10 +499,12 @@ $ranks: (
     }
 
     &--monster {
-      color: #f2d250;
-      height: auto;
       align-items: flex-start;
+      color: #f2d250;
+      flex: 0 0 11rem;
+      height: 11rem;
       font-size: 2.2rem;
+      height: auto;
 
       span {
         color: white;
@@ -531,34 +533,35 @@ $ranks: (
       
       .icon {
         margin-left: auto;
-        margin: 1.2rem 1.2rem 0 auto;
+        margin: 1.2rem calc((16.8rem - 9rem) / 2) 0 auto;
 
         &::after {
-          background-position: bottom -1px right -1px;
+          background-position: 0px 0px;
           background-repeat: no-repeat;
+          background-size: contain;
           bottom: 0;
           content: '';
-          height: 130%;
-          position: absolute;
-          width: 130%;
-          top: -15%;
-          left: -15%;
-          background-size: cover;
-          z-index: -1;
+          height: 11.2rem;
           image-rendering: -webkit-optimize-contrast;
           image-rendering: crisp-edges;
           image-rendering: pixelated;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 16.8rem;
+          z-index: -1;
         }
 
         &::after {
-          background-image: url("/images/scroll.png");
+          background-image: url("/images/scroll-long.png");
         }
       }
 
       .icon,
       .icon img {
-        width: 9.2rem;
-        height: 9.2rem;
+        height: 9rem;
+        width: 9rem;
       }
     }
 

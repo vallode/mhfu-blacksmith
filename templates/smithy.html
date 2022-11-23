@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body__attr %}
+  class="smithy-page"
+{% endblock body__attr %}
+
+{% block head__extra %}
+<meta name="google-site-verification" content="vpr1qEiroZBHdcIDLWOYmKYWXAWVL2dUdv3qWOplsPs"/>
+{% endblock %}
+
+{% block content %}
+  <img class="blacksmith__title" src="/images/blacksmith.png" alt="Blacksmith">
+
+  <hr class="border">
+
+  <div class="smithy-page__menu">
+    <a class="card" href="/blacksmith/">
+      <p>1 Blacksmith</p>
+      <p>WEAPON TREES</p>
+    </a>
+    <a class="card" href="/armorsmith/">
+      <p>2 Armorsmith</p>
+      <p>ARMOR LISTS</p>
+    </a>
+    <a class="card" href="/monsters/">
+      <p>3 Monsters</p>
+      <p>MONSTER LISTS</p>
+    </a>
+  </div>
+{% endblock content %}

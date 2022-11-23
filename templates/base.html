@@ -24,18 +24,8 @@
     ></script>
   {% endif %}
 </head>
-<body {% block body__attr -%}{% endblock body__attr -%}>
+<body {% block body__attr %}{% endblock body__attr %}>
   {% block content %}{% endblock content %}
-
-  {% if get_env(name="TERA_DEBUG", default="") != "" -%}
-    {{ __tera_context }}
-
-    <script>
-      if (window.Stimulus) {
-        Stimulus.debug = true
-      }
-    </script>
-  {% endif -%}
 
   <script id="console-info" data-turbo-permanent="">
     console.log(
@@ -56,5 +46,15 @@
   </script>
 
   {% block scripts %}{% endblock scripts %}
+
+  {% if get_env(name="TERA_DEBUG", default="") != "" %}
+    {{ __tera_context }}
+
+    <script>
+      if (window.Stimulus) {
+        Stimulus.debug = true
+      }
+    </script>
+  {% endif %}
 </body>
 </html>
