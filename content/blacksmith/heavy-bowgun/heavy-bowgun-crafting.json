@@ -55,10 +55,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -146,10 +170,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -263,10 +311,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -380,10 +452,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -485,10 +581,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -582,10 +702,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -685,10 +829,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -788,10 +956,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -891,10 +1083,34 @@
         }
       ],
       "status_ammo": [
-        "0/3",
-        "3/1",
-        "0/1",
-        "0/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -994,10 +1210,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -1097,10 +1337,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -1200,10 +1464,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -1303,10 +1591,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -1406,10 +1718,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -1509,10 +1845,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -1612,10 +1972,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "Flame S:  0",
@@ -1715,10 +2099,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -1818,10 +2226,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -1921,10 +2353,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -2024,10 +2480,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -2127,10 +2607,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -2230,10 +2734,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -2333,10 +2861,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -2436,10 +2988,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -2539,10 +3115,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -2642,10 +3242,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -2759,10 +3383,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -2850,10 +3498,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -2953,10 +3625,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -3056,10 +3752,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3159,10 +3879,34 @@
         }
       ],
       "status_ammo": [
-        "0/3",
-        "3/1",
-        "0/1",
-        "0/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -3262,10 +4006,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3365,10 +4133,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -3468,10 +4260,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3571,10 +4387,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3674,10 +4514,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3777,10 +4641,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/0",
-        "0/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -3880,10 +4768,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -3983,10 +4895,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -4086,10 +5022,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -4189,10 +5149,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -4292,10 +5276,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -4395,10 +5403,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -4498,10 +5530,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -4601,10 +5657,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -4704,10 +5784,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -4807,10 +5911,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -4910,10 +6038,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -5013,10 +6165,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -5116,10 +6292,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -5219,10 +6419,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5322,10 +6546,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5425,10 +6673,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5528,10 +6800,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -5631,10 +6927,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5734,10 +7054,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5837,10 +7181,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -5940,10 +7308,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -6043,10 +7435,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -6146,10 +7562,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -6249,10 +7689,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -6352,10 +7816,34 @@
         }
       ],
       "status_ammo": [
-        "0/3",
-        "3/1",
-        "0/1",
-        "0/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -6455,10 +7943,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -6558,10 +8070,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -6661,10 +8197,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -6764,10 +8324,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "12",
@@ -6867,10 +8451,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -6970,10 +8578,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/0",
-        "0/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -7073,10 +8705,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -7176,10 +8832,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -7279,10 +8959,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -7382,10 +9086,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -7485,10 +9213,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -7588,10 +9340,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -7691,10 +9467,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -7794,10 +9594,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -7897,10 +9721,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -8000,10 +9848,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -8103,10 +9975,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -8206,10 +10102,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -8309,10 +10229,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "4/2",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            4,
+            2
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -8412,10 +10356,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -8515,10 +10483,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -8618,10 +10610,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -8721,10 +10737,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -8824,10 +10864,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -8927,10 +10991,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -9030,10 +11118,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -9133,10 +11245,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -9236,10 +11372,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -9339,10 +11499,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -9442,10 +11626,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -9545,10 +11753,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -9648,10 +11880,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "3/1",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -9751,10 +12007,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "3/1",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -9854,10 +12134,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -9957,10 +12261,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "4",
@@ -10060,10 +12388,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -10163,10 +12515,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/0",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -10266,10 +12642,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "3/1",
-        "3/1",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            1
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "0",
@@ -10369,10 +12769,34 @@
         }
       ],
       "status_ammo": [
-        "3/0",
-        "3/0",
-        "3/0",
-        "3/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            3,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
@@ -10472,10 +12896,34 @@
         }
       ],
       "status_ammo": [
-        "3/3",
-        "0/0",
-        "0/0",
-        "3/1"
+        {
+          "name": "RecovS",
+          "capacity": [
+            3,
+            3
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            3,
+            1
+          ]
+        }
       ],
       "element_ammo": [
         "6",
@@ -10575,10 +13023,34 @@
         }
       ],
       "status_ammo": [
-        "0/0",
-        "0/1",
-        "0/0",
-        "0/0"
+        {
+          "name": "RecovS",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "PoisnS",
+          "capacity": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Para S",
+          "capacity": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "SleepS",
+          "capacity": [
+            0,
+            0
+          ]
+        }
       ],
       "element_ammo": [
         "3",
