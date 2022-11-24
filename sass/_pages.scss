@@ -152,16 +152,23 @@
 .weapon-tree-page,
 .weapon-details-page {
   display: flex;
+  height: 100%;
   justify-content: center;
   overflow: hidden;
   width: 100%;
-  height: 100%;
 
   #weapon_tree {
-    overflow: hidden;
     flex: 1 1 0%;
     height: 100%;
+    overflow: hidden;
     width: 100%;
+  }
+
+  #monster_list {
+    flex: 0 1 30%;
+    height: 100%;
+    overflow: hidden;
+    width: 30%;
   }
 
   #weapon_details {
@@ -194,9 +201,14 @@
   .weapon-details-page {
     flex-direction: column;
 
+    #monster_list,
     #weapon_tree {
       flex: 1 1 60vh;
       height: 60vh;
+    }
+
+    #monster_list {
+      width: 100%;
     }
 
     #weapon_details {
