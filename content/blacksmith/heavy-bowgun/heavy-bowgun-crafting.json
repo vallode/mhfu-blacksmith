@@ -13,11 +13,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/3/0",
-        "4/4/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -69,11 +104,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/4/4",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -151,11 +221,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -233,11 +338,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "4/4/4",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -303,11 +443,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "6/6/6",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -365,11 +540,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "3/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -433,11 +643,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -501,11 +746,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "0/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -569,11 +849,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/0/0",
-        "2/2/2",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "0/3",
@@ -637,11 +952,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -705,11 +1055,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/2/0",
-        "2/2/0",
-        "1/1/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -773,11 +1158,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -841,11 +1261,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "4/4/4",
-        "2/0/0",
-        "1/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -909,11 +1364,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -977,11 +1467,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -1045,11 +1570,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "2/2/2",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -1113,11 +1673,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1181,11 +1776,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1249,11 +1879,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -1317,11 +1982,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1385,11 +2085,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1453,11 +2188,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1521,11 +2291,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/3",
-        "0/0/4",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1589,11 +2394,46 @@
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
-        "6/6/9",
-        "4/0/4",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -1657,11 +2497,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "0/6/9",
-        "0/0/3",
-        "0/0/4",
-        "0/0/1",
-        "0/0/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            0,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -1725,11 +2600,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1807,11 +2717,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/3/0",
-        "4/4/4",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1863,11 +2808,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "3/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -1931,11 +2911,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -1999,11 +3014,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/2/0",
-        "2/2/0",
-        "1/1/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2067,11 +3117,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/0/0",
-        "2/2/2",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "0/3",
@@ -2135,11 +3220,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "0/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -2203,11 +3323,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "0/3/3",
-        "0/3/3",
-        "0/1/1",
-        "0/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2271,11 +3426,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "4/4/4",
-        "2/0/0",
-        "1/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -2339,11 +3529,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2407,11 +3632,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "2/2/2",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2475,11 +3735,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/9",
-        "6/6/6",
-        "0/0/3",
-        "1/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2543,11 +3838,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "6/6/6",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -2611,11 +3941,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "0/4/4",
-        "0/4/4",
-        "0/1/1",
-        "0/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2679,11 +4044,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2747,11 +4147,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -2815,11 +4250,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -2883,11 +4353,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -2951,11 +4456,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "4/0/0",
-        "1/0/0",
-        "1/0/00"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3019,11 +4559,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -3087,11 +4662,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3155,11 +4765,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/3",
-        "0/0/4",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3223,11 +4868,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "6/6/6",
-        "0/0/0",
-        "2/2/2",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -3291,11 +4971,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3359,11 +5074,46 @@
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
-        "6/6/9",
-        "4/0/4",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -3427,11 +5177,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "0/6/9",
-        "0/0/3",
-        "0/0/4",
-        "0/0/1",
-        "0/0/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            0,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -3495,11 +5280,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "0/6/9",
-        "0/0/3",
-        "0/0/4",
-        "0/0/1",
-        "0/0/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            0,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -3563,11 +5383,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/3/0",
-        "4/4/0",
-        "1/1/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -3631,11 +5486,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/3/0",
-        "4/4/4",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3699,11 +5589,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "6/6/6",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3767,11 +5692,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/4",
-        "3/3/0",
-        "0/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3835,11 +5795,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/2/2",
-        "2/2/2",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3903,11 +5898,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "4/0/0",
-        "0/0/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -3971,11 +6001,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4039,11 +6104,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4107,11 +6207,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4175,11 +6310,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/0/0",
-        "2/2/2",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "0/3",
@@ -4243,11 +6413,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "3/2/2",
-        "4/2/2",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4311,11 +6516,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "4/4/4",
-        "2/0/0",
-        "1/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4379,11 +6619,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "0/3/3",
-        "0/3/3",
-        "0/1/1",
-        "0/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4447,11 +6722,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/3",
-        "0/0/4",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4515,11 +6825,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/2/2",
-        "3/3/0",
-        "2/2/0",
-        "2/2/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4583,11 +6928,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/9",
-        "6/6/6",
-        "0/0/3",
-        "1/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -4651,11 +7031,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4719,11 +7134,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4787,11 +7237,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4855,11 +7340,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "4/4/4",
-        "2/0/0",
-        "2/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4923,11 +7443,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -4991,11 +7546,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "6/6/6",
-        "0/0/0",
-        "2/2/2",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -5059,11 +7649,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "0/4/4",
-        "0/4/4",
-        "0/1/1",
-        "0/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5127,11 +7752,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "0/3/3",
-        "0/0/4",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -5195,11 +7855,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/3/4",
-        "0/0/0",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5263,11 +7958,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -5331,11 +8061,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "2/2/2",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5399,11 +8164,46 @@
       "reload": "VerySlow",
       "recoil": "VeryWeak",
       "ammo": [
-        "6/6/9",
-        "4/0/4",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5467,11 +8267,46 @@
       "reload": "Slow",
       "recoil": "Light",
       "ammo": [
-        "6/6/9",
-        "0/0/0",
-        "6/6/6",
-        "3/3/3",
-        "3/3/3"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -5535,11 +8370,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "0/6/9",
-        "0/0/3",
-        "0/0/4",
-        "0/0/1",
-        "0/0/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            0,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5603,11 +8473,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "5/5/12",
-        "2/2/6",
-        "2/2/6",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            5,
+            5,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            6
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5671,11 +8576,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -5739,11 +8679,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -5807,11 +8782,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "4/4/4",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -5875,11 +8885,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/2/0",
-        "2/2/0",
-        "1/1/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -5943,11 +8988,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/3/0",
-        "4/4/4",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6011,11 +9091,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "3/0/0",
-        "6/6/6",
-        "1/0/0",
-        "1/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6079,11 +9194,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/0/0",
-        "3/0/0",
-        "1/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6147,11 +9297,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/4",
-        "3/3/0",
-        "0/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6215,11 +9400,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "0/0/0",
-        "1/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6283,11 +9503,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "4/4/4",
-        "0/0/0",
-        "1/1/1",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            4,
+            4,
+            4
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6351,11 +9606,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/0",
-        "2/2/2",
-        "2/2/2",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            0
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6419,11 +9709,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "4/0/0",
-        "0/0/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6487,11 +9812,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6555,11 +9915,46 @@
       "reload": "VerySlow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/3/0",
-        "0/4/0",
-        "0/1/0",
-        "0/1/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            1,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6623,11 +10018,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6691,11 +10121,46 @@
       "reload": "VeryFast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/6",
-        "2/2/2",
-        "0/0/0",
-        "0/0/0",
-        "0/0/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6759,11 +10224,46 @@
       "reload": "Slow",
       "recoil": "Moderate",
       "ammo": [
-        "9/9/12",
-        "0/2/2",
-        "3/3/0",
-        "2/2/0",
-        "2/2/0"
+        {
+          "name": "Normal S",
+          "capacity": [
+            9,
+            9,
+            12
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            2,
+            2
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            0
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
@@ -6827,11 +10327,46 @@
       "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/3",
-        "0/0/0",
-        "1/1/1",
-        "1/1/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            1,
+            1,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "3/0",
@@ -6895,11 +10430,46 @@
       "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
-        "6/6/9",
-        "3/3/0",
-        "4/0/0",
-        "3/3/3",
-        "2/2/2"
+        {
+          "name": "Normal S",
+          "capacity": [
+            6,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            4,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            2,
+            2,
+            2
+          ]
+        }
       ],
       "status_ammo": [
         "3/3",
@@ -6963,11 +10533,46 @@
       "reload": "VerySlow",
       "recoil": "Weak",
       "ammo": [
-        "0/6/9",
-        "0/0/3",
-        "0/0/4",
-        "0/0/1",
-        "0/0/1"
+        {
+          "name": "Normal S",
+          "capacity": [
+            0,
+            6,
+            9
+          ]
+        },
+        {
+          "name": "Pierce S",
+          "capacity": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "name": "Pellet S",
+          "capacity": [
+            0,
+            0,
+            4
+          ]
+        },
+        {
+          "name": "Crag S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "name": "Clust S",
+          "capacity": [
+            0,
+            0,
+            1
+          ]
+        }
       ],
       "status_ammo": [
         "0/0",
