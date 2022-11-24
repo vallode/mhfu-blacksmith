@@ -16,6 +16,14 @@
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
 
   <nav class="weapon-navigation">
+    <div>
+      <a href="/monsters/">
+        <div class="icon icon--nav">
+          <img src="/images/arrow.png">
+        </div>
+      </a>
+    </div>
+
     {% for monster_type in config.extra.monster_types %}
       {% set monster_name = monster_type | replace(from='-', to=' ') | capitalize %}
 

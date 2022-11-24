@@ -4,6 +4,14 @@
 {% block content -%}
   <nav class="weapon-navigation">
     {% block navigation %}
+      <div>
+        <a href="/monsters/">
+          <div class="icon icon--nav">
+            <img src="/images/arrow.png">
+          </div>
+        </a>
+      </div>
+
       {% for monster_type in config.extra.monster_types %}
         {% set monster_name = monster_type | replace(from='-', to=' ') | capitalize %}
 
