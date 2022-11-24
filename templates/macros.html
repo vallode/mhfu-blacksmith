@@ -13,7 +13,9 @@
     class="weapon-tree__row" 
     data-turbo-frame="weapon_details"
     {% endif %}
-    {% if weapon.rarity %}
+    {% if weapon.rarity and weapon.type != section.extra.type %}
+    href="/{{ section.components[0] }}/{{ weapon.type }}/{{ weapon.slug }}/"
+    {% elif weapon.rarity %}
     href="{{ section.path }}{{ weapon.slug }}/"
     {% endif %}
   >
