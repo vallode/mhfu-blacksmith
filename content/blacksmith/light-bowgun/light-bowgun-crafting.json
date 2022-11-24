@@ -117,10 +117,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 450,
       "improve_mats": null,
@@ -257,10 +277,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 600,
       "improve_mats": null,
@@ -405,10 +445,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 550,
       "improve_mats": null,
@@ -571,10 +631,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1000,
       "improve_mats": null,
@@ -723,10 +803,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 750,
       "improve_mats": null,
@@ -875,10 +975,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1100,
       "improve_mats": null,
@@ -1041,10 +1161,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1150,
       "improve_mats": null,
@@ -1193,10 +1333,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 900,
       "improve_mats": null,
@@ -1345,10 +1505,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1150,
       "improve_mats": null,
@@ -1497,10 +1677,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1250,
       "improve_mats": null,
@@ -1649,10 +1849,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1375,
       "improve_mats": null,
@@ -1801,10 +2021,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1150,
       "improve_mats": null,
@@ -1947,10 +2187,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1200,
       "improve_mats": null,
@@ -2099,10 +2359,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1200,
       "improve_mats": null,
@@ -2251,10 +2531,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1425,
       "improve_mats": null,
@@ -2403,10 +2703,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1575,
       "improve_mats": null,
@@ -2555,10 +2875,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1975,
       "improve_mats": null,
@@ -2707,10 +3047,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1425,
       "improve_mats": null,
@@ -2859,10 +3219,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1725,
       "improve_mats": null,
@@ -3011,10 +3391,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1875,
       "improve_mats": null,
@@ -3163,10 +3563,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1950,
       "improve_mats": null,
@@ -3315,10 +3735,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1950,
       "improve_mats": null,
@@ -3467,10 +3907,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2325,
       "improve_mats": null,
@@ -3619,10 +4079,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1950,
       "improve_mats": null,
@@ -3771,10 +4251,30 @@
         }
       ],
       "misc_ammo": [
-        "Tranq S (2)",
-        "Paint S (2)",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1000,
       "improve_mats": null,
@@ -3905,10 +4405,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1375,
       "improve_mats": null,
@@ -4057,10 +4577,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1375,
       "improve_mats": null,
@@ -4209,10 +4749,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1375,
       "improve_mats": null,
@@ -4355,10 +4915,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2250,
       "improve_mats": null,
@@ -4507,10 +5087,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1875,
       "improve_mats": null,
@@ -4659,10 +5259,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3000,
       "improve_mats": null,
@@ -4811,10 +5431,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 1725,
       "improve_mats": null,
@@ -4963,10 +5603,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2250,
       "improve_mats": null,
@@ -5115,10 +5775,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2700,
       "improve_mats": null,
@@ -5267,10 +5947,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2325,
       "improve_mats": null,
@@ -5413,10 +6113,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1200,
       "improve_mats": null,
@@ -5565,10 +6285,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2525,
       "improve_mats": null,
@@ -5717,10 +6457,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1650,
       "improve_mats": null,
@@ -5869,10 +6629,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2300,
       "improve_mats": null,
@@ -6021,10 +6801,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2400,
       "improve_mats": null,
@@ -6173,10 +6973,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2450,
       "improve_mats": null,
@@ -6325,10 +7145,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1975,
       "improve_mats": null,
@@ -6477,10 +7317,30 @@
         }
       ],
       "misc_ammo": [
-        "3",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2525,
       "improve_mats": null,
@@ -6629,10 +7489,30 @@
         }
       ],
       "misc_ammo": [
-        "3",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2750,
       "improve_mats": null,
@@ -6781,10 +7661,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2450,
       "improve_mats": null,
@@ -6947,10 +7847,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2900,
       "improve_mats": null,
@@ -7099,10 +8019,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2850,
       "improve_mats": null,
@@ -7251,10 +8191,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2525,
       "improve_mats": null,
@@ -7403,10 +8363,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2850,
       "improve_mats": null,
@@ -7555,10 +8535,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2850,
       "improve_mats": null,
@@ -7707,10 +8707,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 3750,
       "improve_mats": null,
@@ -7859,10 +8879,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "Armor S (1)"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 2625,
       "improve_mats": null,
@@ -8011,10 +9051,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3025,
       "improve_mats": null,
@@ -8163,10 +9223,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2900,
       "improve_mats": null,
@@ -8315,10 +9395,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3150,
       "improve_mats": null,
@@ -8467,10 +9567,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 3425,
       "improve_mats": null,
@@ -8619,10 +9739,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 1000,
       "improve_mats": null,
@@ -8753,10 +9893,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3025,
       "improve_mats": null,
@@ -8905,10 +10065,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3025,
       "improve_mats": null,
@@ -9057,10 +10237,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3025,
       "improve_mats": null,
@@ -9209,10 +10409,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 2750,
       "improve_mats": null,
@@ -9361,10 +10581,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3300,
       "improve_mats": null,
@@ -9513,10 +10753,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3300,
       "improve_mats": null,
@@ -9665,10 +10925,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3300,
       "improve_mats": null,
@@ -9817,10 +11097,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3425,
       "improve_mats": null,
@@ -9969,10 +11269,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3950,
       "improve_mats": null,
@@ -10121,10 +11441,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3950,
       "improve_mats": null,
@@ -10273,10 +11613,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 3800,
       "improve_mats": null,
@@ -10425,10 +11785,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4100,
       "improve_mats": null,
@@ -10577,10 +11957,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -10729,10 +12129,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4400,
       "improve_mats": null,
@@ -10881,10 +12301,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4600,
       "improve_mats": null,
@@ -11033,10 +12473,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -11185,10 +12645,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3000,
       "improve_mats": null,
@@ -11337,10 +12817,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3500,
       "improve_mats": null,
@@ -11489,10 +12989,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4000,
       "improve_mats": null,
@@ -11641,10 +13161,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3750,
       "improve_mats": null,
@@ -11793,10 +13333,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 3750,
       "improve_mats": null,
@@ -11945,10 +13505,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "Armor S (1)"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4250,
       "improve_mats": null,
@@ -12097,10 +13677,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4000,
       "improve_mats": null,
@@ -12249,10 +13849,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 3500,
       "improve_mats": null,
@@ -12401,10 +14021,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4000,
       "improve_mats": null,
@@ -12553,10 +14193,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4500,
       "improve_mats": null,
@@ -12705,10 +14365,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 3500,
       "improve_mats": null,
@@ -12857,10 +14537,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4000,
       "improve_mats": null,
@@ -13009,10 +14709,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4500,
       "improve_mats": null,
@@ -13161,10 +14881,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4000,
       "improve_mats": null,
@@ -13313,10 +15053,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -13465,10 +15225,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5500,
       "improve_mats": null,
@@ -13617,10 +15397,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5500,
       "improve_mats": null,
@@ -13769,10 +15569,30 @@
         }
       ],
       "misc_ammo": [
-        "3",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -13921,10 +15741,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5500,
       "improve_mats": null,
@@ -14073,10 +15913,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 4500,
       "improve_mats": null,
@@ -14225,10 +16085,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 6000,
       "improve_mats": null,
@@ -14377,10 +16257,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 4250,
       "improve_mats": null,
@@ -14529,10 +16429,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5500,
       "improve_mats": null,
@@ -14681,10 +16601,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 6500,
       "improve_mats": null,
@@ -14833,10 +16773,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 8000,
       "improve_mats": null,
@@ -14985,10 +16945,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -15137,10 +17117,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 6000,
       "improve_mats": null,
@@ -15289,10 +17289,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 6500,
       "improve_mats": null,
@@ -15441,10 +17461,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 7500,
       "improve_mats": null,
@@ -15593,10 +17633,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 7000,
       "improve_mats": null,
@@ -15745,10 +17805,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 6000,
       "improve_mats": null,
@@ -15897,10 +17977,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 7000,
       "improve_mats": null,
@@ -16049,10 +18149,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 7500,
       "improve_mats": null,
@@ -16201,10 +18321,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 10000,
       "improve_mats": null,
@@ -16353,10 +18493,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5500,
       "improve_mats": null,
@@ -16505,10 +18665,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 10000,
       "improve_mats": null,
@@ -16657,10 +18837,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -16809,10 +19009,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -16961,10 +19181,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17113,10 +19353,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17265,10 +19525,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17417,10 +19697,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17569,10 +19869,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17721,10 +20041,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -17873,10 +20213,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18025,10 +20385,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18177,10 +20557,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18329,10 +20729,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18481,10 +20901,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18633,10 +21073,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18785,10 +21245,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -18937,10 +21417,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19085,10 +21585,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19237,10 +21757,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19389,10 +21929,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19541,10 +22101,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19693,10 +22273,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19845,10 +22445,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "0"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -19997,10 +22617,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
@@ -20149,10 +22789,30 @@
         }
       ],
       "misc_ammo": [
-        "2",
-        "2",
-        "1",
-        "1"
+        {
+          "name": "Tranq S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Paint S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Demon S",
+          "capacity": [
+            1
+          ]
+        },
+        {
+          "name": "Armor S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "create_cost": 5000,
       "improve_mats": null,
