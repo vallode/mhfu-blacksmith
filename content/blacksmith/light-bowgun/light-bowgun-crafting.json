@@ -85,11 +85,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -200,11 +225,36 @@
         }
       ],
       "element_ammo": [
-        "2",
-        "0",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -323,11 +373,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -464,11 +539,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -591,11 +691,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -718,11 +843,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -859,11 +1009,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "2",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -986,11 +1161,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1113,11 +1313,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1240,11 +1465,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1367,11 +1617,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1494,11 +1769,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1615,11 +1915,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1742,11 +2067,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1869,11 +2219,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -1996,11 +2371,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2123,11 +2523,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "4",
-        "4",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2250,11 +2675,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2377,11 +2827,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2504,11 +2979,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2631,11 +3131,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2758,11 +3283,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -2885,11 +3435,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3012,11 +3587,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3139,11 +3739,36 @@
         }
       ],
       "element_ammo": [
-        "Flame S (3)",
-        "Water S (0)",
-        "Thundr S (0)",
-        "Freeze S (0)",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "Tranq S (2)",
@@ -3248,11 +3873,36 @@
         }
       ],
       "element_ammo": [
-        "5",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            5
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3375,11 +4025,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3502,11 +4177,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3623,11 +4323,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3750,11 +4475,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -3877,11 +4627,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4004,11 +4779,36 @@
         }
       ],
       "element_ammo": [
-        "5",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            5
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4131,11 +4931,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4258,11 +5083,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4385,11 +5235,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4506,11 +5381,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4633,11 +5533,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "2",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4760,11 +5685,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -4887,11 +5837,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5014,11 +5989,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5141,11 +6141,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5268,11 +6293,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5395,11 +6445,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "3",
@@ -5522,11 +6597,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "3",
@@ -5649,11 +6749,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5790,11 +6915,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -5917,11 +7067,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6044,11 +7219,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6171,11 +7371,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6298,11 +7523,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6425,11 +7675,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6552,11 +7827,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "6",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6679,11 +7979,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6806,11 +8131,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "4",
-        "4",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -6933,11 +8283,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7060,11 +8435,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7187,11 +8587,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "Thundr S:",
-        "0 Freeze S (0)",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7296,11 +8721,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7423,11 +8873,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "Water S (0)",
-        "0",
-        "0",
-        "Dragon S (0)"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7550,11 +9025,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7677,11 +9177,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7804,11 +9329,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -7931,11 +9481,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8058,11 +9633,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8185,11 +9785,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8312,11 +9937,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8439,11 +10089,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8566,11 +10241,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8693,11 +10393,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8820,11 +10545,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -8947,11 +10697,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9074,11 +10849,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9201,11 +11001,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9328,11 +11153,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9455,11 +11305,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "2",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9582,11 +11457,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9709,11 +11609,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9836,11 +11761,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -9963,11 +11913,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10090,11 +12065,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "4",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10217,11 +12217,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10344,11 +12369,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10471,11 +12521,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10598,11 +12673,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10725,11 +12825,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10852,11 +12977,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -10979,11 +13129,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11106,11 +13281,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11233,11 +13433,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11360,11 +13585,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11487,11 +13737,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "3",
@@ -11614,11 +13889,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11741,11 +14041,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11868,11 +14193,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -11995,11 +14345,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "2",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12122,11 +14497,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12249,11 +14649,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12376,11 +14801,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "4",
-        "4",
-        "4",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12503,11 +14953,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12630,11 +15105,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12757,11 +15257,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -12884,11 +15409,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13011,11 +15561,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13138,11 +15713,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13265,11 +15865,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13392,11 +16017,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13519,11 +16169,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13646,11 +16321,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13773,11 +16473,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "4",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -13900,11 +16625,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14027,11 +16777,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14154,11 +16929,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14281,11 +17081,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14408,11 +17233,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14535,11 +17385,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14662,11 +17537,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14789,11 +17689,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "4",
-        "4",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -14916,11 +17841,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "2",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            2
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15043,11 +17993,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15170,11 +18145,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "0",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15297,11 +18297,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15424,11 +18449,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "0",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15551,11 +18601,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15678,11 +18753,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "3",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15805,11 +18905,36 @@
         }
       ],
       "element_ammo": [
-        "0",
-        "3",
-        "4",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -15928,11 +19053,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16055,11 +19205,36 @@
         }
       ],
       "element_ammo": [
-        "4",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            4
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16182,11 +19357,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16309,11 +19509,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16436,11 +19661,36 @@
         }
       ],
       "element_ammo": [
-        "6",
-        "0",
-        "0",
-        "0",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            6
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16563,11 +19813,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16690,11 +19965,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "3",
-        "3",
-        "3",
-        "0"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            0
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
@@ -16817,11 +20117,36 @@
         }
       ],
       "element_ammo": [
-        "3",
-        "0",
-        "0",
-        "0",
-        "1"
+        {
+          "name": "Flame S",
+          "capacity": [
+            3
+          ]
+        },
+        {
+          "name": "Water S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "ThunderS",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Freeze S",
+          "capacity": [
+            0
+          ]
+        },
+        {
+          "name": "Dragon S",
+          "capacity": [
+            1
+          ]
+        }
       ],
       "misc_ammo": [
         "2",
