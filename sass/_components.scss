@@ -630,6 +630,10 @@ $ranks: (
       p {
         width: calc(50% - 13px);
       }
+
+      .gray {
+        color: gray;
+      }
     }
 
     .stats {
@@ -699,7 +703,7 @@ $ranks: (
         display: block;
       }
 
-      [id*=page] {
+      .page {
         display: none;
         flex-flow: row wrap;
         flex: 1 1 0%;
@@ -716,6 +720,12 @@ $ranks: (
         display: flex;
       }
       &[data-weapon-page-page-value="3"] #page-3 {
+        display: flex;
+      }
+      &[data-weapon-page-page-value="4"] #page-4 {
+        display: flex;
+      }
+      &[data-weapon-page-page-value="5"] #page-5 {
         display: flex;
       }
     }
@@ -810,7 +820,7 @@ $sharpness-colors: (
   }
 }
 
-table {
+table.monster-hz {
   font-size: 1.4rem;
   width: 100%;
   height: min-content;
@@ -861,6 +871,49 @@ table {
 
   .gray {
     color: gray;
+  }
+}
+
+table.min {
+  font-size: 2.6rem;
+  height: min-content;
+  line-height: 1.25;
+  font-weight: 500;
+  flex: 1 1 0%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    text-align: left;
+    white-space: nowrap;
+    font-weight: 500;
+    width: min-content;
+    padding-right: 1rem;
+  }
+
+  th {
+    color: #FF9661;
+    padding-right: 1rem;
+  }
+
+  th:first-of-type {
+    color: #f2d250;
+  }
+  
+  th:last-of-type {
+    width: 100%;
+  }
+  
+  td:nth-of-type(2) {
+    text-align: center;
+  }
+
+  .gray {
+    color: gray;
+  }
+  
+  .rapid {
+    color: #52F152;
   }
 }
 

@@ -163,6 +163,9 @@ Stimulus.register(
     }
 
     connect() {
+      this.element.querySelectorAll(".page").forEach((div, index) => {
+        div.id = `page-${index + 1}`;
+      });
       this.pages = Array.from(this.element.querySelectorAll("[id*=page]"));
 
       if (this.pages.length == 1) {
