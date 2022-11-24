@@ -95,6 +95,11 @@ hr.border {
   width: 100%;
   max-width: 51rem;
   height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 600px) {
