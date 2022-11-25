@@ -135,7 +135,7 @@
               data-weapon-page-page-value="1"
               class="requirements"
             >
-              <div id="page-1" class="active">
+              <div class="page active">
                 {% if page.extra.improve_mats %}
                   <div class="improve_mats">
                     <p>
@@ -167,7 +167,7 @@
               </div>
 
               {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
-                <div id="page-2">
+                <div class="page">
                   {%- if page.extra.alternative_create_mats %}
                     <div class="create_mats">
                       <p>
@@ -219,7 +219,7 @@
               {% endif %}
 
               {% if page.extra.element_ammo or page.extra.coatings %}
-                <div id="page-3">
+                <div class="page">
                   {% if page.extra.element_ammo %}
                     <div class="element_ammo">
                       <p>Flame S: {{ page.extra.element_ammo[0] }}</p>

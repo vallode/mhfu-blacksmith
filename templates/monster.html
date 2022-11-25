@@ -74,10 +74,10 @@
             <div
               data-controller="weapon-page"
               data-weapon-page-page-value="1"
-              class="requirements"
+              class="requirements requirements--monster"
             >
               {% if page.extra.hitzones %}
-                <div id="page-1" class="active">
+                <div class="page active">
                   <div class="card">
                     <table class="monster-hz">
                       <thead>
@@ -115,7 +115,7 @@
                 </div>
               {% endif %}
 
-              <div id="page-2">
+              <div class="page">
                 <p class="description">
                   {% if page.extra.description %}
                     {{ page.extra.description }}
