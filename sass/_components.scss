@@ -563,6 +563,16 @@ $ranks: (
         height: 9rem;
         width: 9rem;
       }
+
+      @media screen and (max-width: 600px) {
+        flex-wrap: wrap;
+        height: auto;
+        flex-direction: column-reverse;
+
+        .icon {
+          margin: 0 auto 1.6rem auto;
+        }
+      }
     }
 
     @media screen and (max-width: 600px) {
@@ -727,6 +737,16 @@ $ranks: (
       }
       &[data-weapon-page-page-value="5"] #page-5 {
         display: flex;
+      }
+
+      &--monster {
+        .card {
+          margin-bottom: 4.2rem;
+        }
+
+        table {
+          overflow: auto;
+        }
       }
     }
     
