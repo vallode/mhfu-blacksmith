@@ -1,6 +1,11 @@
 # The URL the site will be built for
 base_url = "https://mhfu.vallode.com/"
 
+description = """\
+MHFU Blacksmith is a database for all your Freedom Unite/P2G needs. \
+Advanced weapon trees, armor lists, and monster information can be found here.\
+"""
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
@@ -13,7 +18,7 @@ compile_sass = true
 # copied over to the `public` directory.
 # Example:
 #     ignored_content = ["*.{graphml,xlsx}", "temp.*", "**/build_folder"]
-ignored_content = ["*-crafting.json"]
+ignored_content = ["*-crafting.json", "*-source.json"]
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
