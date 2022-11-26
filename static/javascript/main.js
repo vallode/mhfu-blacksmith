@@ -12,7 +12,7 @@ window.addEventListener("turbo:render", (event) => {
   if (event.target.querySelector("#weapon_name")) {
     document.title = `${
       event.target.querySelector("#weapon_name").innerText
-    } | MHFU`;
+    } - MHFU`;
   }
 });
 

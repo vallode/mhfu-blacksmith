@@ -14,7 +14,7 @@ debug: generate-pages
 	TERA_DEBUG=true zola serve
 
 clean:
-	find content -name '*.md' ! \( -name '_index.md' -o -name 'smithy.md' \) -exec rm {} +
+	find content -name '*.md' ! \( -name '_index.md' -o -name 'smithy.md' -o -name 'calculator.md' \) -exec rm {} +
 
 build: clean generate-pages
 	TERA_PRODUCTION=true zola build

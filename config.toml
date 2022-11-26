@@ -1,6 +1,7 @@
 # The URL the site will be built for
 base_url = "https://mhfu.vallode.com/"
 
+title = "Monster Hunter Freedom Unite Blacksmith"
 description = """\
 MHFU Blacksmith is a database for all your Freedom Unite/P2G needs. \
 Advanced weapon trees, armor lists, and monster information can be found here.\
