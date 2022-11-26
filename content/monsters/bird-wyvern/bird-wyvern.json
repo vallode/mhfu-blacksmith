@@ -1131,7 +1131,6 @@
     {
       "name": "Blue Yian Kut-Ku",
       "type": "bird-wyvern",
-      "icon": "yian-kut-ku",
       "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
       "drops": {
         "low rank": {
