@@ -623,7 +623,6 @@
     {
       "name": "Pink Rathian",
       "type": "flying-wyvern",
-      "icon": "rathian",
       "description": "",
       "drops": {
         "low rank": {
@@ -1068,7 +1067,6 @@
     {
       "name": "Gold Rathian",
       "type": "flying-wyvern",
-      "icon": "rathian",
       "drops": {
         "high rank": {
           "body carves (x3)": [
