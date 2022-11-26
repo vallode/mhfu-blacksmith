@@ -1,12 +1,12 @@
 {% if page.title %}
-  {% set title = page.title %}
+  {% set title = page.title ~ " | MHFU" %}
 {% elif section.title %}
-  {% set title = section.title %}
+  {% set title = section.title ~ " | MHFU" %}
 {% else %}
-  {% set title = "Blacksmith" %}
+  {% set title = config.title %}
 {% endif %}
 
-<title>{{ title }} | MFHU</title>
+<title>{{ title }}</title>
 <meta property="og:title" content="{{ title }}">
 
 {% if page.extra.description %}
