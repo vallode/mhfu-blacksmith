@@ -119,19 +119,40 @@
               {% endif %}
 
               <div class="page">
+                <div class="card locations">
+                  <p>Known Habitats</p>
+
+                  <div class="list">
+                    <div>
+                      <div class="icon icon--large">
+                        <img src="/images/swamp.png" alt="">
+                      </div>
+                      <p>Swamp</p>
+                    </div>
+
+                    <div>
+                      <div class="icon icon--large">
+                        <img src="/images/desert.png" alt="">
+                      </div>
+                      <p>Desert</p>
+                    </div>
+
+                    <div>
+                      <div class="icon icon--large">
+                        <img src="/images/old_swamp.png" alt="">
+                      </div>
+                      <p>Old Swamp</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="page">
                 <p class="description">
                   {% if page.extra.description %}
                     {{ page.extra.description }}
                   {% endif %}
                 </p>
-
-                <div class="card">
-                  <h2>known habitats</h2>
-                </div>
-
-                <!-- <p>Fire <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
-                <p>Thunder <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
-                <p>Poison <div class="icon"><img src="/images/star.png"></div></p> -->
               </div>
 
               <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">

@@ -749,6 +749,27 @@ $ranks: (
         }
       }
     }
+
+    .locations {
+      & > p {
+        background-color: rgba(255, 255, 255, 0.2);
+        text-align: center;
+        margin: -1.4rem 0 1.4rem 0;
+      }
+
+      .list {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        gap: 0 0.6rem;
+      }
+
+      .list > div {
+        align-items: center;
+        display: flex;
+        flex: 1 1 45%;
+      }
+    }
     
     hr {
       margin: 0;
