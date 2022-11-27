@@ -623,7 +623,7 @@
     {
       "name": "Pink Rathian",
       "type": "flying-wyvern",
-      "description": "",
+      "description": "A subspecies of Rathian with vibrant pink scales. Pink Rathian wield their toxic tails more skillfully than normal Rathian, using a wide variety of attacks to weaken their prey before eventually moving in for the kill.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
@@ -1067,6 +1067,7 @@
     {
       "name": "Gold Rathian",
       "type": "flying-wyvern",
+      "description": "A rare variant of Rathian with a beautiful golden body reminiscent of the moon. Little is known about their behavior or physiology--including the source of their rich golden sheen.",
       "drops": {
         "high rank": {
           "body carves (x3)": [
@@ -1914,6 +1915,7 @@
     {
       "name": "Azure Rathalos",
       "type": "flying-wyvern",
+      "description": "An azure-colored subspecies of Rathalos. More mobile than their standard cousin, they locate prey from the air and quickly swoop in for the kill. Once these master hunters select a target, there is little hope of escape.",
       "icon": "rathalos",
       "drops": {
         "low rank": {
@@ -2354,6 +2356,7 @@
     {
       "name": "Silver Rathalos",
       "type": "flying-wyvern",
+      "description": "A rare variant of Rathalos with a beautiful silver body reminiscent of the sun. Little is known about their behavior or physiology--including the source of their rich silver sheen.",
       "icon": "rathalos",
       "drops": {
         "high rank": {
