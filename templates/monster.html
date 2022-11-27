@@ -4,6 +4,9 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ current_url }}">
 
+  <link rel="icon" type="image/png" href="/images/favicons/{{ page.extra.type }}-favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicons/{{ page.extra.type }}-favicon.png">
+
   <meta property="og:image" content="{{ config.base_url }}images/monsters/{{ page.extra.icon | default(value=page.slug) }}-favicon.png">
   <meta property="og:image:alt" content="Pixel art representation of {{ page.title }}">
 
@@ -121,6 +124,10 @@
                     {{ page.extra.description }}
                   {% endif %}
                 </p>
+
+                <div class="card">
+                  <h2>known habitats</h2>
+                </div>
 
                 <!-- <p>Fire <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
                 <p>Thunder <div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div><div class="icon"><img src="/images/star.png"></div></p>
