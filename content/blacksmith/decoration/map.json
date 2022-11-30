@@ -1271,9 +1271,9 @@
     ]
   },
   {
-    "slug": "comb-suc-up",
+    "slug": "combine-success-up",
     "type": "",
-    "name": "Comb Suc up",
+    "name": "Combine Success Up",
     "rarity": null,
     "children": [
       {
@@ -1447,9 +1447,9 @@
     ]
   },
   {
-    "slug": "immunity-to-snowman",
+    "slug": "snow-res",
     "type": "",
-    "name": "Immunity to Snowman",
+    "name": "Snow Res",
     "rarity": null,
     "children": [
       {
@@ -1476,9 +1476,9 @@
     ]
   },
   {
-    "slug": "immunity-to-quake",
+    "slug": "quake-resistance",
     "type": "",
-    "name": "Immunity to Quake",
+    "name": "Quake Resistance",
     "rarity": null,
     "children": [
       {
@@ -1644,9 +1644,9 @@
     ]
   },
   {
-    "slug": "immunity-to-territorial-dung",
+    "slug": "antiseptic",
     "type": "",
-    "name": "Immunity to territorial dung",
+    "name": "Antiseptic",
     "rarity": null,
     "children": [
       {
