@@ -118,34 +118,24 @@
                 </div>
               {% endif %}
 
+              {% if page.extra.habitats %}
               <div class="page">
                 <div class="card locations">
                   <p>Known Habitats</p>
 
                   <div class="list">
+                    {% for habitat in page.extra.habitats %}
                     <div>
                       <div class="icon icon--large">
-                        <img src="/images/swamp.png" alt="">
+                        <img src="/images/{{ habitat | slugify }}.png" alt="">
                       </div>
-                      <p>Swamp</p>
+                      <p>{{ habitat }}</p>
                     </div>
-
-                    <div>
-                      <div class="icon icon--large">
-                        <img src="/images/desert.png" alt="">
-                      </div>
-                      <p>Desert</p>
-                    </div>
-
-                    <div>
-                      <div class="icon icon--large">
-                        <img src="/images/old_swamp.png" alt="">
-                      </div>
-                      <p>Old Swamp</p>
-                    </div>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
+              {% endif %}
 
               <div class="page">
                 <p class="description">
