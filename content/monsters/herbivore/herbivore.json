@@ -92,6 +92,9 @@
       "name": "Popo",
       "type": "herbivore",
       "description": "A herbivorous monster known for its giant, bent fangs. Living in herds, it is particularly bold when defending its offspring. Popo meat is quite nutritious, and its tongue is widely admired as a delicacy.",
+      "habitats": [
+        "SnwyMntains"
+      ],
       "drops": {
         "low-rank": {
           "body carves (x1)": [

@@ -4,6 +4,9 @@
       "name": "Giaprey",
       "type": "bird-wyvern",
       "description": "A species of small bird-like carnivores known to inhabit the snowy mountains. Their white skin is beautiful, but their temperament is not. They are known to spit ice at hunters, and attack in deadly packs.",
+      "habitats": [
+        "SnwyMntains"
+      ],
       "drops": {
         "low-rank": {
           "body carves (x1)": [
