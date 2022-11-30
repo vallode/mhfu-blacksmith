@@ -16,6 +16,14 @@ WEAPON_CLASS_MULTIPLIER = {
   "bow":  1.2,
 }
 
+def createDescription(value)
+  if value["attack"]
+    return "#{value["name"]}. Attack: #{value["attack"]}. Affinity: #{value["affinity"]} Slots: #{value["slots"]}. Rarity: #{value["rarity"]}."
+  end
+
+  return nil
+end
+
 # TODO: Take inspiration from `parameterize` in rails and clean this up.
 def slugify(value)
   value = value.downcase.strip
@@ -57,6 +65,7 @@ Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
           title: value["name"],
           slug: slugify(value["name"]),
           weight: index,
+          description: createDescription(value),
           extra: value.select {|key, value| ["title", "slug"].none?(key)},
         }
 
