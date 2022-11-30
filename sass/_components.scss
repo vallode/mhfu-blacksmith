@@ -508,7 +508,6 @@ $ranks: (
 
       span {
         color: white;
-
       }
       
       .details {
@@ -653,6 +652,23 @@ $ranks: (
       @media screen and (max-width: 600px) {
         height: auto;
       }
+    }
+
+    .stats > div {
+      display: block;
+      line-height: 1;
+    }
+
+    .stats h3 {
+      display: inline-block;
+      margin: 0;
+      line-height: 1;
+      font-weight: normal;
+      font-size: inherit;
+    }
+
+    .stats p {
+      display: inline-block;
     }
 
     .stats span {

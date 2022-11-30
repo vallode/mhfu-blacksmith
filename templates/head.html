@@ -11,6 +11,8 @@
 
 {% if page.extra.description %}
   {% set description = page.extra.description %}
+{% elif page.description %}
+  {% set description = page.description %}
 {% elif section.description %}
   {% set description = section.description %}
 {% else %}

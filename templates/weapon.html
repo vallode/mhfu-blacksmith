@@ -92,15 +92,21 @@
           <div class="weapon-card__details">
             <div class="stats">
               {% if page.extra.attack %}
+              <div>
+                <h3>Attack:</h3>
                 <p>
-                  Attack: <span>{{ page.extra.attack }}</span>
+                  <span>{{ page.extra.attack }}</span>
                   <span class="raw">{% if page.extra.raw_attack %}[ {{ page.extra.raw_attack }} ]{% endif %}</span>
                   {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
                 </p>
+              </div>
               {% endif %}
 
               {% if page.extra.max_attack %}
-                <p>Max attack: <span>{{ page.extra.max_attack }}</span></p>
+                <div>
+                  <h3>Max attack:</h3>
+                  <p><span>{{ page.extra.max_attack }}</span></p>
+                </div>
               {% endif %}
               
               {% if page.extra.recoil %}
@@ -112,23 +118,28 @@
               {% endif %}
 
               {% if page.extra.affinity %}
-                <p>
-                  Affinity:
-                  <span
-                    class="
-                    {% if page.extra.affinity is starting_with('-') %}
-                      negative
-                    {% elif page.extra.affinity is not starting_with('0')%}
-                      positive
-                    {% endif %}
-                    "
-                  >
-                    {{ page.extra.affinity }}
-                  </span>
-                </p>
+                <div>
+                  <h3>Affinity:</h3>
+                  <p>
+                    <span
+                      class="
+                      {% if page.extra.affinity is starting_with('-') %}
+                        negative
+                      {% elif page.extra.affinity is not starting_with('0')%}
+                        positive
+                      {% endif %}
+                      "
+                    >
+                      {{ page.extra.affinity }}
+                    </span>
+                  </p>
+                </div>
               {% endif %}
 
-              <p>Slots: <span id="weaponSlots">{{ page.extra.slots }}</span></p>
+              <div>
+                <h3>Slots:</h3>
+                <p><span id="weaponSlots">{{ page.extra.slots }}</span></p>
+              </div>
 
               {% if page.extra.rapid_fire %}
                 <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
