@@ -687,9 +687,9 @@
       "elements": null
     },
     {
-      "name": "Shotgun (Emerald)",
+      "name": "Shotgun (Green)",
       "attack": 120,
-      "max_attack": "180",
+      "max_attack": 180,
       "rapid_fire": null,
       "affinity": "0%",
       "slots": "OOO",
