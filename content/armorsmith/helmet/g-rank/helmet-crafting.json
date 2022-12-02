@@ -4331,16 +4331,16 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonmoss G",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamatsukamiFluid",
@@ -4384,16 +4384,16 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonmoss G",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamatsukamiFluid",
