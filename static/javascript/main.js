@@ -174,13 +174,25 @@ Stimulus.register(
       } else {
         document.addEventListener("keyup", (event) => {
           if (event.code == "ArrowRight" || event.code == "KeyD") {
-            this.toggle();
+            this.next();
+          }
+
+          if (event.code == "ArrowLeft" || event.code == "KeyA") {
+            this.previous()
           }
         });
       }
     }
 
-    toggle() {
+    previous() {
+      if (this.pageValue > 1) {
+        this.pageValue = this.pageValue - 1;
+      } else {
+        this.pageValue = this.pages.length;
+      }
+    }
+
+    next() {
       if (this.pageValue < this.pages.length) {
         this.pageValue = this.pageValue + 1;
       } else {
