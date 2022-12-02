@@ -171,9 +171,36 @@
                 {% endif %}
               </div>
 
-              {% if page.extra.alternative_create_mats or page.extra.ammo or page.extra.shots %}
+              {% if page.extra.slots or page.extra.skills or page.extra.bonus %}
                 <div class="page">
-                  {%- if page.extra.alternative_create_mats %}
+                  <div class="skills">
+                    <h2><span>[Skill Tree:Skill Points]</span></h2>
+                      {% if page.extra.skills %}
+                        {% for skill in page.extra.skills %}
+                          <div>
+                            <h3>{{ skill.name }}<span>:</span></h3>
+                            <p>
+                              {% if skill.amount is starting_with('-') or skill.amount is starting_with('+') %}
+                                {{ skill.amount }}
+                              {% else %}
+                                +{{ skill.amount }}
+                              {% endif %}
+                            </p>
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <p>No Skill Effects</p>
+                      {% endif %}
+                    </div>
+
+                  <!-- {% if page.extra.slots %}
+                  <div>
+                    <h3>Slots:</h3>
+                    <p><span id="weaponSlots">{{ page.extra.slots }}</span></p>
+                  </div>
+                  {% endif %} -->
+
+                  {% if page.extra.alternative_create_mats %}
                     <div class="create_mats">
                       <p>
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
@@ -181,74 +208,6 @@
       
                       {% for material in page.extra.alternative_create_mats %}
                         <p>{{ material }}</p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-    
-                  {% if page.extra.ammo %}
-                    <div class="ammo">
-                      <p>Normal: {{ page.extra.ammo[0] }}</p>
-                      <p>Pierce: {{ page.extra.ammo[1] }}</p>
-                      <p>Pellet: {{ page.extra.ammo[2] }}</p>
-                      <p>Crag: {{ page.extra.ammo[3] }}</p>
-                      <p>Cluster: {{ page.extra.ammo[4] }}</p>
-                    </div>
-                  {% endif %}
-    
-                  {% if page.extra.status_ammo %}
-                    <div class="status_ammo">
-                      <p>RecovS: {{ page.extra.status_ammo[0] }}</p>
-                      <p>PoisonS: {{ page.extra.status_ammo[1] }}</p>
-                      <p>Para S: {{ page.extra.status_ammo[2] }}</p>
-                      <p>Sleep S: {{ page.extra.status_ammo[3] }}</p>
-                    </div>
-                  {% endif %}
-
-                  {% if page.extra.shots %}
-                    <div class="shots">
-                      <p><span>[Charge Attack]</span></p>
-                      {% for shot in page.extra.shots %}
-                        {% if loop.index == 1 %}
-                        <p>
-                          <span class="orange">Lvl {{ loop.index }}:</span> {{ shot }}
-                        </p>
-                        {% else %}
-                        <p>
-                          <span class="orange"><span style="visibility: hidden;">Lvl</span> {{ loop.index }}:</span> {{ shot }}
-                        </p>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              {% if page.extra.element_ammo or page.extra.coatings %}
-                <div class="page">
-                  {% if page.extra.element_ammo %}
-                    <div class="element_ammo">
-                      <p>Flame S: {{ page.extra.element_ammo[0] }}</p>
-                      <p>Water S: {{ page.extra.element_ammo[1] }}</p>
-                      <p>Thundr S: {{ page.extra.element_ammo[2] }}</p>
-                      <p>Freeze S: {{ page.extra.element_ammo[3] }}</p>
-                      <p>Dragon S: {{ page.extra.element_ammo[4] }}</p>
-                    </div>
-                  {% endif %}
-    
-                  {% if page.extra.misc_ammo %}
-                    <div class="misc_ammo">
-                      <p>Tranq S: {{ page.extra.misc_ammo[0] }}</p>
-                      <p>Paint S: {{ page.extra.misc_ammo[1] }}</p>
-                      <p>Demon S: {{ page.extra.misc_ammo[2] }}</p>
-                      <p>Armor S: {{ page.extra.misc_ammo[3] }}</p>
-                    </div>
-                  {% endif %}
-
-                  {% if page.extra.coatings %}
-                    <div class="coatings">
-                      <p><span>[Usable Coating]</span></p>
-                      {% for coating in page.extra.coatings %}
-                        <p>{{ coating | capitalize }} Coating</p>
                       {% endfor %}
                     </div>
                   {% endif %}
