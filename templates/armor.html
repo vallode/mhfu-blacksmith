@@ -85,37 +85,42 @@
           </div>
 
           <div class="weapon-card__details">
-            <div class="stats">
+            <div class="stats stats--armor">
               {% if page.extra.defence %}
-                <p>
-                  Defense: <span>{{ page.extra.defence }}</span>
-                  <!-- {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %} -->
-                </p>
+                <div>
+                  <h3>Defense<span>:</span></h3>
+                  <p>{{ page.extra.defence }}</p>
+                </div>
               {% endif %}
 
-              <p>
-                Fire Res: <span>{{ page.extra.fire_res }}</span>
-              </p>
+              <div>
+                <h3>Fire Res<span>:</span></h3>
+                <p>{{ page.extra.fire_res }}</p>
+              </div>
 
-              <p>
-                Thundr Res: <span>{{ page.extra.thunder_res }}</span>
-              </p>
+              <div>
+                <h3>Thundr Res<span>:</span></h3>
+                <p>{{ page.extra.thunder_res }}</p>
+              </div>
 
-              <p>
-                Dragon Res: <span>{{ page.extra.dragon_res }}</span>
-              </p>
+              <div>
+                <h3>Dragon Res<span>:</span></h3>
+                <p>{{ page.extra.dragon_res }}</p>
+              </div>
 
-              <p>
-                Water Res: <span>{{ page.extra.water_res }}</span>
-              </p>
+              <div>
+                <h3>Water Res<span>:</span></h3>
+                <p>{{ page.extra.water_res }}</p>
+              </div>
 
-              <p>
-                Ice Res: <span>{{ page.extra.ice_res }}</span>
-              </p>
+              <div>
+                <h3>Ice Res<span>:</span></h3>
+                <p>{{ page.extra.ice_res }}</p>
+              </div>
 
-              <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p>
+              <!-- <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p> -->
 
-              {% if page.extra.skills %}
+              <!-- {% if page.extra.skills %}
                 {% for skill in page.extra.skills %}
                   <p class="element">
                     {{ skill.name }} {{ skill.amount }}
@@ -125,7 +130,7 @@
 
               {% if page.extra.bonus %}
                 <p class="element">Defense {{ page.extra.bonus }}</p>
-              {% endif %}
+              {% endif %} -->
             </div>
 
             <hr>

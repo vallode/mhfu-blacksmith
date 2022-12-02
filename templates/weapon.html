@@ -110,11 +110,17 @@
               {% endif %}
               
               {% if page.extra.recoil %}
-                <p>Recoil: <span>{{ page.extra.recoil }}</span></p>
+                <div>
+                  <h3>Recoil:</h3>
+                  <p><span>{{ page.extra.recoil }}</span></p>
+                </div>
               {% endif %}
 
               {% if page.extra.reload %}
-                <p>Reload: <span>{{ page.extra.reload }}</span></p>
+                <div>
+                  <h1>Reload:</h1>
+                  <p><span>{{ page.extra.reload }}</span></p>
+                </div>
               {% endif %}
 
               {% if page.extra.affinity %}
