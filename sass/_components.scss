@@ -581,7 +581,7 @@ $ranks: (
   }
 
   &__details {
-    color: #f2d250;
+    color: #ffff50;
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
@@ -649,46 +649,71 @@ $ranks: (
       flex-flow: column wrap;
       height: 11rem;
 
+      > div {
+        display: block;
+        line-height: 1;
+      }
+
+      h3 {
+        display: inline-block;
+        margin: 0;
+        line-height: 1;
+        font-weight: normal;
+        font-size: inherit;
+      }
+
+      p {
+        display: inline-block;
+      }
+
+      span {
+        color: white;
+      }
+
+      .raw {
+        opacity: 0.2;
+      }
+
+      .element {
+        color: #56FBFA;
+      }
+
+      .notes {
+        display: flex;
+        color: white;
+
+        .icon:first-of-type {
+          margin-left: 26px;
+        }
+      }
+
+      &--armor {
+        > div {
+          display: flex;
+          padding-right: 1.6rem;
+          line-height: 1;
+        }
+  
+        h3 {
+          display: inline-flex;
+          color: #ffff50;
+          width: 10ch;
+        }
+  
+        h3 ~ p:last-child {
+          color: white;
+          width: 4ch;
+          text-align: right;
+        }
+  
+        h3 span {
+          color: inherit;
+          margin-left: auto;
+        }
+      }
+
       @media screen and (max-width: 600px) {
         height: auto;
-      }
-    }
-
-    .stats > div {
-      display: block;
-      line-height: 1;
-    }
-
-    .stats h3 {
-      display: inline-block;
-      margin: 0;
-      line-height: 1;
-      font-weight: normal;
-      font-size: inherit;
-    }
-
-    .stats p {
-      display: inline-block;
-    }
-
-    .stats span {
-      color: white;
-    }
-
-    .stats .raw {
-      opacity: 0.2;
-    }
-
-    .stats .element {
-      color: #56FBFA;
-    }
-
-    .stats .notes {
-      display: flex;
-      color: white;
-
-      .icon:first-of-type {
-        margin-left: 26px;
       }
     }
 
@@ -706,7 +731,7 @@ $ranks: (
       }
 
       span {
-        color: #f2d250;
+        color: #ffff50;
       }
 
       .material {
