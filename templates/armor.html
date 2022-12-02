@@ -140,36 +140,38 @@
               data-weapon-page-page-value="1"
               class="requirements"
             >
-              <div class="page active">
-                {% if page.extra.improve_mats %}
-                  <div class="improve_mats">
-                    <p>
-                      <span>Improve cost: </span>{{ page.extra.improve_cost }}z
-                    </p>
-  
-                    {%- for material in page.extra.improve_mats %}
-                      <p>{{ material }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-  
-                {%- if page.extra.create_mats %}
-                  <div class="create_mats">
-                    <p>
-                      <span>Create cost: </span>{{ page.extra.create_cost }}z
-                    </p>
+              {% if page.extra.improve_mats or page.extra.create_mats %}
+                <div class="page active">
+                  {% if page.extra.improve_mats %}
+                    <div class="improve_mats">
+                      <p>
+                        <span>Improve cost: </span>{{ page.extra.improve_cost }}z
+                      </p>
     
-                    {% for material in page.extra.create_mats %}
-                      <div class="material">
-                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
-                          <img src="/images/{{ material.type }}.png">
+                      {%- for material in page.extra.improve_mats %}
+                        <p>{{ material }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+    
+                  {%- if page.extra.create_mats %}
+                    <div class="create_mats">
+                      <p>
+                        <span>Create cost: </span>{{ page.extra.create_cost }}z
+                      </p>
+      
+                      {% for material in page.extra.create_mats %}
+                        <div class="material">
+                          <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                            <img src="/images/{{ material.type }}.png">
+                          </div>
+                          <p>{{ material.name }}: {{ material.amount }}</p>
                         </div>
-                        <p>{{ material.name }}: {{ material.amount }}</p>
-                      </div>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
 
               {% if page.extra.slots or page.extra.skills or page.extra.bonus %}
                 <div class="page">
