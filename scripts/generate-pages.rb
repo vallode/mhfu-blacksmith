@@ -40,7 +40,7 @@ threads = []
 
 # Iterate over crafting JSON data in all content directories to generate
 # individual markdown files.
-Dir.glob("content/{blacksmith,armorsmith}/**/*-crafting.json").each do |path|
+Dir.glob("content/{blacksmith,armorsmith,decorations}/**/*-crafting.json").each do |path|
   threads << Thread.new {
     File.open(path) do |file|
       json_data = JSON.load(file)
