@@ -18,6 +18,10 @@
       "create_cost": "12800",
       "skills": [
         {
+          "name": "Rec Speed",
+          "amount": "1"
+        },
+        {
           "name": "Attack",
           "amount": "2"
         },
@@ -74,6 +78,10 @@
       "slots": "OO-",
       "create_cost": "12800",
       "skills": [
+        {
+          "name": "Rec Speed",
+          "amount": "1"
+        },
         {
           "name": "Attack",
           "amount": "2"
@@ -132,6 +140,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Spc Attack",
+          "amount": "3"
+        },
+        {
           "name": "Hunger",
           "amount": "-2"
         },
@@ -188,6 +200,10 @@
       "slots": "O--",
       "create_cost": "13300",
       "skills": [
+        {
+          "name": "PierceS Up",
+          "amount": "3"
+        },
         {
           "name": "Hunger",
           "amount": "-2"
@@ -246,6 +262,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Poison",
+          "amount": "2"
+        },
+        {
           "name": "Recovery",
           "amount": "-3"
         },
@@ -299,6 +319,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Recovery",
+          "amount": "-3"
+        },
+        {
           "name": "Carving",
           "amount": "4"
         },
@@ -351,6 +375,10 @@
       "slots": "O--",
       "create_cost": "13800",
       "skills": [
+        {
+          "name": "Paralysis",
+          "amount": "3"
+        },
         {
           "name": "Faint",
           "amount": "-2"
@@ -409,6 +437,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Paralysis",
+          "amount": "3"
+        },
+        {
           "name": "Faint",
           "amount": "-2"
         },
@@ -466,6 +498,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Guard Up",
+          "amount": "3"
+        },
+        {
           "name": "Defence",
           "amount": "2"
         },
@@ -518,6 +554,10 @@
       "slots": "OO-",
       "create_cost": "13800",
       "skills": [
+        {
+          "name": "Guard Up",
+          "amount": "3"
+        },
         {
           "name": "Defence",
           "amount": "2"
@@ -572,6 +612,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Paralysis",
+          "amount": "-2"
+        },
+        {
           "name": "Sleep",
           "amount": "2"
         },
@@ -625,6 +669,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Paralysis",
+          "amount": "-2"
+        },
+        {
           "name": "Sleep",
           "amount": "2"
         },
@@ -677,6 +725,10 @@
       "slots": "O--",
       "create_cost": "13800",
       "skills": [
+        {
+          "name": "Attack",
+          "amount": "-2"
+        },
         {
           "name": "Defence",
           "amount": "3"
@@ -735,6 +787,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Attack",
+          "amount": "-2"
+        },
+        {
           "name": "Defence",
           "amount": "3"
         },
@@ -792,6 +848,10 @@
       "create_cost": "14250",
       "skills": [
         {
+          "name": "Stamina",
+          "amount": "2"
+        },
+        {
           "name": "Technique",
           "amount": "-2"
         },
@@ -845,6 +905,10 @@
       "create_cost": "14250",
       "skills": [
         {
+          "name": "Stamina",
+          "amount": "2"
+        },
+        {
           "name": "Technique",
           "amount": "-2"
         },
@@ -897,6 +961,10 @@
       "slots": "O--",
       "create_cost": "14750",
       "skills": [
+        {
+          "name": "Expert",
+          "amount": "1"
+        },
         {
           "name": "Protection",
           "amount": "-2"
@@ -955,6 +1023,10 @@
       "create_cost": "14750",
       "skills": [
         {
+          "name": "Expert",
+          "amount": "1"
+        },
+        {
           "name": "Protection",
           "amount": "-2"
         },
@@ -1012,6 +1084,10 @@
       "create_cost": "14750",
       "skills": [
         {
+          "name": "Rec Speed",
+          "amount": "-3"
+        },
+        {
           "name": "Spc Attack",
           "amount": "2"
         },
@@ -1064,6 +1140,10 @@
       "slots": "OO-",
       "create_cost": "14750",
       "skills": [
+        {
+          "name": "Rec Speed",
+          "amount": "-3"
+        },
         {
           "name": "Spc Attack",
           "amount": "2"
@@ -1118,6 +1198,10 @@
       "create_cost": "14750",
       "skills": [
         {
+          "name": "ElementAtk",
+          "amount": "2"
+        },
+        {
           "name": "Heat Res",
           "amount": "-3"
         },
@@ -1170,6 +1254,10 @@
       "slots": "OO-",
       "create_cost": "14750",
       "skills": [
+        {
+          "name": "ElementAtk",
+          "amount": "2"
+        },
         {
           "name": "Heat Res",
           "amount": "-3"
@@ -1224,6 +1312,10 @@
       "create_cost": "15100",
       "skills": [
         {
+          "name": "Health",
+          "amount": "-4"
+        },
+        {
           "name": "Fencing",
           "amount": "2"
         },
@@ -1276,6 +1368,10 @@
       "slots": "OO-",
       "create_cost": "15100",
       "skills": [
+        {
+          "name": "Health",
+          "amount": "-3"
+        },
         {
           "name": "PierceSAdd",
           "amount": "2"
@@ -1330,6 +1426,10 @@
       "create_cost": "15600",
       "skills": [
         {
+          "name": "Health",
+          "amount": "3"
+        },
+        {
           "name": "SwdShrpner",
           "amount": "-2"
         },
@@ -1382,6 +1482,10 @@
       "slots": "OO-",
       "create_cost": "15600",
       "skills": [
+        {
+          "name": "Health",
+          "amount": "3"
+        },
         {
           "name": "Recovery",
           "amount": "2"
@@ -1436,6 +1540,10 @@
       "create_cost": "15600",
       "skills": [
         {
+          "name": "Attack",
+          "amount": "-2"
+        },
+        {
           "name": "Evade",
           "amount": "4"
         },
@@ -1488,6 +1596,10 @@
       "slots": "OO-",
       "create_cost": "15600",
       "skills": [
+        {
+          "name": "Attack",
+          "amount": "-2"
+        },
         {
           "name": "Evade",
           "amount": "4"
@@ -1542,6 +1654,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "MixSucRate",
+          "amount": "-2"
+        },
+        {
           "name": "Terrain",
           "amount": "1"
         },
@@ -1595,6 +1711,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "MixSucRate",
+          "amount": "-2"
+        },
+        {
           "name": "Terrain",
           "amount": "1"
         },
@@ -1647,6 +1767,10 @@
       "slots": "OO-",
       "create_cost": "16100",
       "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
         {
           "name": "HearProtct",
           "amount": "2"
@@ -1705,6 +1829,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
           "name": "HearProtct",
           "amount": "2"
         },
@@ -1762,6 +1890,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Attack",
+          "amount": "1"
+        },
+        {
           "name": "Drawn Crit",
           "amount": "1"
         },
@@ -1814,6 +1946,10 @@
       "slots": "OOO",
       "create_cost": "16100",
       "skills": [
+        {
+          "name": "NormalS Up",
+          "amount": "1"
+        },
         {
           "name": "Attack",
           "amount": "1"
@@ -1868,6 +2004,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Attack",
+          "amount": "2"
+        },
+        {
           "name": "WindPress",
           "amount": "5"
         },
@@ -1921,6 +2061,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Attack",
+          "amount": "2"
+        },
+        {
           "name": "WindPress",
           "amount": "5"
         },
@@ -1973,6 +2117,10 @@
       "slots": "O--",
       "create_cost": "16100",
       "skills": [
+        {
+          "name": "Health",
+          "amount": "3"
+        },
         {
           "name": "Guard",
           "amount": "1"
@@ -2031,6 +2179,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Health",
+          "amount": "3"
+        },
+        {
           "name": "Guard Up",
           "amount": "3"
         },
@@ -2087,6 +2239,10 @@
       "slots": "OO-",
       "create_cost": "12800",
       "skills": [
+        {
+          "name": "Health",
+          "amount": "-2"
+        },
         {
           "name": "Expert",
           "amount": "2"
@@ -2145,6 +2301,10 @@
       "create_cost": "12800",
       "skills": [
         {
+          "name": "Health",
+          "amount": "-2"
+        },
+        {
           "name": "Expert",
           "amount": "2"
         },
@@ -2202,6 +2362,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Sharpness",
+          "amount": "-2"
+        },
+        {
           "name": "Expert",
           "amount": "4"
         },
@@ -2254,6 +2418,10 @@
       "slots": "OO-",
       "create_cost": "13300",
       "skills": [
+        {
+          "name": "PelletS Up",
+          "amount": "4"
+        },
         {
           "name": "Cooking",
           "amount": "1"
@@ -2308,6 +2476,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Faint",
+          "amount": "3"
+        },
+        {
           "name": "Hunger",
           "amount": "-2"
         },
@@ -2360,6 +2532,10 @@
       "slots": "OO-",
       "create_cost": "13300",
       "skills": [
+        {
+          "name": "Faint",
+          "amount": "3"
+        },
         {
           "name": "Hunger",
           "amount": "-2"
@@ -2414,6 +2590,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
           "name": "HearProtct",
           "amount": "2"
         },
@@ -2467,6 +2647,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
           "name": "HearProtct",
           "amount": "2"
         },
@@ -2519,6 +2703,10 @@
       "slots": "OO-",
       "create_cost": "13800",
       "skills": [
+        {
+          "name": "Guard",
+          "amount": "2"
+        },
         {
           "name": "Attack",
           "amount": "1"
@@ -2577,6 +2765,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Load",
+          "amount": "-2"
+        },
+        {
           "name": "Recoil",
           "amount": "2"
         },
@@ -2634,6 +2826,10 @@
       "create_cost": "14250",
       "skills": [
         {
+          "name": "Hunger",
+          "amount": "3"
+        },
+        {
           "name": "Stamina",
           "amount": "2"
         },
@@ -2687,6 +2883,10 @@
       "create_cost": "14250",
       "skills": [
         {
+          "name": "Hunger",
+          "amount": "3"
+        },
+        {
           "name": "Stamina",
           "amount": "2"
         },
@@ -2739,6 +2939,10 @@
       "slots": "OO-",
       "create_cost": "14750",
       "skills": [
+        {
+          "name": "Faint",
+          "amount": "1"
+        },
         {
           "name": "Sharpness",
           "amount": "2"
@@ -2797,6 +3001,10 @@
       "create_cost": "14750",
       "skills": [
         {
+          "name": "Faint",
+          "amount": "1"
+        },
+        {
           "name": "NormalS Up",
           "amount": "2"
         },
@@ -2854,6 +3062,10 @@
       "create_cost": "15100",
       "skills": [
         {
+          "name": "Sharpness",
+          "amount": "1"
+        },
+        {
           "name": "Artisan",
           "amount": "2"
         },
@@ -2907,6 +3119,10 @@
       "create_cost": "15100",
       "skills": [
         {
+          "name": "Load",
+          "amount": "2"
+        },
+        {
           "name": "PierceS Up",
           "amount": "2"
         },
@@ -2959,6 +3175,10 @@
       "slots": "OO-",
       "create_cost": "16100",
       "skills": [
+        {
+          "name": "Sharpness",
+          "amount": "1"
+        },
         {
           "name": "Expert",
           "amount": "2"
@@ -3017,6 +3237,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "Expert",
+          "amount": "2"
+        },
+        {
           "name": "Load",
           "amount": "1"
         },
@@ -3074,6 +3298,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "ElementAtk",
+          "amount": "1"
+        },
+        {
           "name": "Defence",
           "amount": "2"
         },
@@ -3127,6 +3355,10 @@
       "create_cost": "16100",
       "skills": [
         {
+          "name": "ElementAtk",
+          "amount": "1"
+        },
+        {
           "name": "Defence",
           "amount": "2"
         },
@@ -3178,7 +3410,9 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": null,
+      "skills": [
+
+      ],
       "create_mats": [
         {
           "name": "Pure Crystal",
@@ -3217,6 +3451,10 @@
       "slots": "---",
       "create_cost": "5600",
       "skills": [
+        {
+          "name": "Sneak",
+          "amount": "-5"
+        },
         {
           "name": "Carving",
           "amount": "6"
@@ -3265,7 +3503,12 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "5600",
-      "skills": null,
+      "skills": [
+        {
+          "name": "Set Trap",
+          "amount": "10"
+        }
+      ],
       "create_mats": [
         {
           "name": "Puppet Ticket+",
@@ -3309,7 +3552,12 @@
       "rarity": "10",
       "slots": "---",
       "create_cost": "5600",
-      "skills": null,
+      "skills": [
+        {
+          "name": "Observance",
+          "amount": "10"
+        }
+      ],
       "create_mats": [
         {
           "name": "Puppet Ticket+",
@@ -3354,6 +3602,10 @@
       "slots": "OO-",
       "create_cost": "23700",
       "skills": [
+        {
+          "name": "Sneak",
+          "amount": "-2"
+        },
         {
           "name": "Artisan",
           "amount": "1"
@@ -3412,6 +3664,10 @@
       "create_cost": "23700",
       "skills": [
         {
+          "name": "Sneak",
+          "amount": "2"
+        },
+        {
           "name": "NormalS Up",
           "amount": "1"
         },
@@ -3468,6 +3724,10 @@
       "slots": "OO-",
       "create_cost": "19800",
       "skills": [
+        {
+          "name": "Artisan",
+          "amount": "2"
+        },
         {
           "name": "All Resist",
           "amount": "2"
@@ -3526,6 +3786,10 @@
       "create_cost": "19800",
       "skills": [
         {
+          "name": "NormalS Up",
+          "amount": "2"
+        },
+        {
           "name": "All Resist",
           "amount": "2"
         },
@@ -3583,6 +3847,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": "-2"
+        },
+        {
           "name": "Gathering",
           "amount": "2"
         },
@@ -3635,6 +3903,10 @@
       "slots": "OO-",
       "create_cost": "13800",
       "skills": [
+        {
+          "name": "Cold Res",
+          "amount": "-2"
+        },
         {
           "name": "Gathering",
           "amount": "2"
@@ -3689,6 +3961,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": "-2"
+        },
+        {
           "name": "Gathering",
           "amount": "2"
         },
@@ -3742,6 +4018,10 @@
       "create_cost": "13800",
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": "-2"
+        },
+        {
           "name": "Gathering",
           "amount": "2"
         },
@@ -3794,6 +4074,10 @@
       "slots": "O--",
       "create_cost": "21000",
       "skills": [
+        {
+          "name": "Sneak",
+          "amount": "4"
+        },
         {
           "name": "HearProtct",
           "amount": "1"
@@ -3852,6 +4136,10 @@
       "create_cost": "21000",
       "skills": [
         {
+          "name": "Sneak",
+          "amount": "4"
+        },
+        {
           "name": "HearProtct",
           "amount": "1"
         },
@@ -3909,6 +4197,10 @@
       "create_cost": "24000",
       "skills": [
         {
+          "name": "Poison",
+          "amount": "-3"
+        },
+        {
           "name": "Sharpness",
           "amount": "2"
         },
@@ -3962,6 +4254,10 @@
       "create_cost": "24000",
       "skills": [
         {
+          "name": "Poison",
+          "amount": "-3"
+        },
+        {
           "name": "Recoil",
           "amount": "2"
         },
@@ -4014,6 +4310,10 @@
       "slots": "O--",
       "create_cost": "24000",
       "skills": [
+        {
+          "name": "ElementAtk",
+          "amount": "2"
+        },
         {
           "name": "Protection",
           "amount": "2"
@@ -4072,6 +4372,10 @@
       "create_cost": "24000",
       "skills": [
         {
+          "name": "ElementAtk",
+          "amount": "2"
+        },
+        {
           "name": "Protection",
           "amount": "2"
         },
@@ -4128,6 +4432,10 @@
       "slots": "O--",
       "create_cost": "27000",
       "skills": [
+        {
+          "name": "Wide Area",
+          "amount": "1"
+        },
         {
           "name": "Recovery",
           "amount": "4"
@@ -4186,6 +4494,10 @@
       "create_cost": "27000",
       "skills": [
         {
+          "name": "Wide Area",
+          "amount": "1"
+        },
+        {
           "name": "Recovery",
           "amount": "4"
         },
@@ -4242,6 +4554,10 @@
       "slots": "O--",
       "create_cost": "31500",
       "skills": [
+        {
+          "name": "Guard",
+          "amount": "2"
+        },
         {
           "name": "Cooking",
           "amount": "-2"
@@ -4300,6 +4616,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Recoil",
+          "amount": "2"
+        },
+        {
           "name": "Cooking",
           "amount": "-2"
         },
@@ -4357,6 +4677,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Expert",
+          "amount": "5"
+        },
+        {
           "name": "Everlastng",
           "amount": "-2"
         },
@@ -4410,6 +4734,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Expert",
+          "amount": "5"
+        },
+        {
           "name": "Everlastng",
           "amount": "-2"
         },
@@ -4462,6 +4790,10 @@
       "slots": "OO-",
       "create_cost": "31500",
       "skills": [
+        {
+          "name": "Paralysis",
+          "amount": "1"
+        },
         {
           "name": "Fencing",
           "amount": "2"
@@ -4520,6 +4852,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Hunger",
+          "amount": "-2"
+        },
+        {
           "name": "Loading",
           "amount": "2"
         },
@@ -4576,6 +4912,10 @@
       "slots": "O--",
       "create_cost": "44444",
       "skills": [
+        {
+          "name": "Sharpness",
+          "amount": "2"
+        },
         {
           "name": "Dragon Res",
           "amount": "-3"
@@ -4634,6 +4974,10 @@
       "create_cost": "44444",
       "skills": [
         {
+          "name": "PierceS Up",
+          "amount": "2"
+        },
+        {
           "name": "Dragon Res",
           "amount": "-3"
         },
@@ -4691,6 +5035,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Artisan",
+          "amount": "2"
+        },
+        {
           "name": "Fencing",
           "amount": "2"
         },
@@ -4743,6 +5091,10 @@
       "slots": "OO-",
       "create_cost": "31500",
       "skills": [
+        {
+          "name": "Load",
+          "amount": "2"
+        },
         {
           "name": "Protection",
           "amount": "-3"
@@ -4797,6 +5149,10 @@
       "create_cost": "11700",
       "skills": [
         {
+          "name": "HiSpdGathr",
+          "amount": "2"
+        },
+        {
           "name": "Whim",
           "amount": "-2"
         },
@@ -4849,6 +5205,10 @@
       "slots": "OOO",
       "create_cost": "11700",
       "skills": [
+        {
+          "name": "HiSpdGathr",
+          "amount": "2"
+        },
         {
           "name": "Whim",
           "amount": "-2"
@@ -4903,6 +5263,10 @@
       "create_cost": "13300",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "-2"
+        },
+        {
           "name": "HearProtct",
           "amount": "2"
         },
@@ -4955,6 +5319,10 @@
       "slots": "OO-",
       "create_cost": "13300",
       "skills": [
+        {
+          "name": "Protection",
+          "amount": "-2"
+        },
         {
           "name": "HearProtct",
           "amount": "2"
@@ -5009,6 +5377,10 @@
       "create_cost": "21000",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "2"
+        },
+        {
           "name": "Wide Area",
           "amount": "3"
         },
@@ -5062,6 +5434,10 @@
       "create_cost": "21000",
       "skills": [
         {
+          "name": "Protection",
+          "amount": "2"
+        },
+        {
           "name": "Wide Area",
           "amount": "3"
         },
@@ -5114,6 +5490,10 @@
       "slots": "OO-",
       "create_cost": "21500",
       "skills": [
+        {
+          "name": "Health",
+          "amount": "-2"
+        },
         {
           "name": "Expert",
           "amount": "2"
@@ -5172,6 +5552,10 @@
       "create_cost": "21500",
       "skills": [
         {
+          "name": "Health",
+          "amount": "-2"
+        },
+        {
           "name": "Expert",
           "amount": "2"
         },
@@ -5229,6 +5613,10 @@
       "create_cost": "24000",
       "skills": [
         {
+          "name": "Whim",
+          "amount": "-2"
+        },
+        {
           "name": "Fate",
           "amount": "2"
         },
@@ -5281,6 +5669,10 @@
       "slots": "OOO",
       "create_cost": "24000",
       "skills": [
+        {
+          "name": "Whim",
+          "amount": "-2"
+        },
         {
           "name": "Fate",
           "amount": "2"
@@ -5335,6 +5727,10 @@
       "create_cost": "24500",
       "skills": [
         {
+          "name": "Fencing",
+          "amount": "2"
+        },
+        {
           "name": "Attack",
           "amount": "3"
         },
@@ -5387,6 +5783,10 @@
       "slots": "OO-",
       "create_cost": "24500",
       "skills": [
+        {
+          "name": "PierceS Up",
+          "amount": "2"
+        },
         {
           "name": "Attack",
           "amount": "3"
@@ -5441,6 +5841,10 @@
       "create_cost": "35500",
       "skills": [
         {
+          "name": "Faint",
+          "amount": "-2"
+        },
+        {
           "name": "Rec Speed",
           "amount": "4"
         },
@@ -5493,6 +5897,10 @@
       "slots": "OO-",
       "create_cost": "35500",
       "skills": [
+        {
+          "name": "Faint",
+          "amount": "-2"
+        },
         {
           "name": "Rec Speed",
           "amount": "4"
@@ -5547,6 +5955,10 @@
       "create_cost": "35500",
       "skills": [
         {
+          "name": "Faint",
+          "amount": "-2"
+        },
+        {
           "name": "Rec Speed",
           "amount": "4"
         },
@@ -5600,6 +6012,10 @@
       "create_cost": "35500",
       "skills": [
         {
+          "name": "Faint",
+          "amount": "-2"
+        },
+        {
           "name": "Rec Speed",
           "amount": "4"
         },
@@ -5652,6 +6068,10 @@
       "slots": "OO-",
       "create_cost": "55555",
       "skills": [
+        {
+          "name": "Rec Speed",
+          "amount": "-3"
+        },
         {
           "name": "Artisan",
           "amount": "1"
@@ -5710,6 +6130,10 @@
       "create_cost": "55555",
       "skills": [
         {
+          "name": "Rec Speed",
+          "amount": "-3"
+        },
+        {
           "name": "Evade",
           "amount": "1"
         },
@@ -5767,6 +6191,10 @@
       "create_cost": "66666",
       "skills": [
         {
+          "name": "Rec Speed",
+          "amount": "2"
+        },
+        {
           "name": "Fate",
           "amount": "-3"
         },
@@ -5819,6 +6247,10 @@
       "slots": "OO-",
       "create_cost": "66666",
       "skills": [
+        {
+          "name": "Rec Speed",
+          "amount": "2"
+        },
         {
           "name": "Fate",
           "amount": "-3"

@@ -1,6 +1,7 @@
 require 'json'
 require 'find'
 require 'erb'
+require 'csv'
 
 FILE_TEMPLATE = %{<%= JSON.pretty_generate(json_data) %>}.gsub(/^  /, '')
 
@@ -11,6 +12,14 @@ WEAPON_PAIRS = [
   ["waist"],
   ["leggings"],
 ]
+
+ARMOR_FILES = {
+  "head": "helmet",
+  "body": "plate",
+  "arms": "gauntlets",
+  "waist": "waist",
+  "legs": "leggings"
+}
 
 WEAPON_ABBR = {
   "great-sword": "gs",
@@ -41,7 +50,7 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/{armorsmith}/{#{array.join(",")}}/*-source.json")
+  weapon_files = Dir.glob("content/{armorsmith}/{#{array.join(",")}}/g-rank/*-crafting.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 
@@ -52,22 +61,28 @@ WEAPON_PAIRS.each do |array|
 
   weapon_map = []
 
-  lr = weapons.select {|weapon| weapon["hr"].to_i <= 5 }
-  hr = weapons.select {|weapon| weapon["hr"].to_i > 5 and weapon["hr"].to_i <= 8 }
-  gr = weapons.select {|weapon| weapon["hr"].to_i > 8 }
-
-  json_data = {weapons: lr}
-  # Dir.mkdir("#{File.dirname(file.path)}/low-rank")
-  File.write("#{File.dirname(file.path)}/low-rank/#{array[0]}-crafting.json", output.result(binding))
-  json_data = {weapons: hr}
-  File.write("#{File.dirname(file.path)}/high-rank/#{array[0]}-crafting.json", output.result(binding))
-  json_data = {weapons: gr}
-  File.write("#{File.dirname(file.path)}/g-rank/#{array[0]}-crafting.json", output.result(binding))
+  csv_file = CSV.open("sources/#{ARMOR_FILES.key(array[0])}.csv", "r:bom|utf-8", headers: true, skip_blanks: true)
+  csv_data = csv_file.read
 
   weapons.each do |weapon|
+    csv_weapon = csv_data.find {|row| row["Name"] == weapon["name"] }
+
+    if not csv_weapon 
+      raise "No data found for #{weapon["name"]} probably a wrong name?"
+    end
+
+    weapon["skills"] = []
+    csv_weapon.fields(22...32).each_slice(2) do |skill, point|
+      if skill and point
+        weapon["skills"].push({name: skill, amount: point})
+      end
+    end
+    
     weapon_map.push(weapon)
   end
 
-  # File.write(file.path, output.result(binding))
+  data = {"weapons": weapon_map}
+
+  File.write(file.path, JSON.pretty_generate(data))
 end
   
