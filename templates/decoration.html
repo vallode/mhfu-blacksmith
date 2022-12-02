@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+
+{% block head__extra %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ current_url }}">
+
+  {% if image_metadata %}
+  <meta property="og:image" content="{{ config.base_url }}images/weapons/{{ page.slug }}.png">
+  <meta property="og:image:alt" content="In-game render of {{ page.title }}">
+  {% else %}
+  <meta property="og:image" content="/images/{{ page.extra.type }}.png">
+  {% endif %}
+
+  {% if page.extra.create_mats %}
+    <meta name="description" content="{% for material in page.extra.create_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+  {% elif page.extra.improve_mats %}
+    <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material.name }}: {{ material.amount }} {% endfor %}">
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
+
+  <nav class="weapon-navigation">
+    <div>
+      <a href="/smithy/">
+        <div class="icon icon--nav">
+          <img src="/images/arrow.png">
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="/decorations/" title="Decorations">
+        <div class="icon icon--nav icon--large icon--decoration icon--rarity-4">
+          <img src="/images/decoration.png" alt="Decorations icon" aria-label="Decoration list">
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <hr class="border">
+
+  <div class="weapon-details-page">
+    <turbo-frame id="weapon_tree" src="/decorations/" data-turbo-action="replace">
+      <div class="card card--weapon-tree">
+        <img class="loading" src="/images/loading.gif" alt="Loading">
+      </div>
+    </turbo-frame>
+  
+    {% block weapon__details %}
+      <turbo-frame id="weapon_details" data-turbo-action="replace">
+        <div class="card weapon-card">
+          <div class="weapon-card__header">
+            <div class="
+              icon
+              icon--{{ page.extra.type }}
+              icon--rarity-{{ page.extra.rarity }}
+              {% if page.extra.color %}
+              icon--{{ page.extra.color }}
+              {% endif %}
+              icon--large
+              "
+            >
+              <img src="/images/decoration.png" alt="?">
+            </div>
+
+            <p id="weapon_name">
+              {{ page.extra.name }}
+            </p>
+            
+            {% if page.extra.sharpness %}
+            <div tabindex="0" class="sharpness">
+              {% for sharp in page.extra.sharpness %}
+                <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
+              {% endfor %}
+
+              {% if page.extra.sharpness_plus %}
+                {% for sharp in page.extra.sharpness_plus %}
+                  <span class="sharp-{{ loop.index }} sharp--plus" style="width: {{ sharp | int * 4 }}px;"></span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="weapon-card__details">
+            <div class="stats">
+              {% if page.extra.attack %}
+              <div>
+                <h3>Attack:</h3>
+                <p>
+                  <span>{{ page.extra.attack }}</span>
+                  <span class="raw">{% if page.extra.raw_attack %}[ {{ page.extra.raw_attack }} ]{% endif %}</span>
+                  {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
+                </p>
+              </div>
+              {% endif %}
+
+              {% if page.extra.max_attack %}
+                <div>
+                  <h3>Max attack:</h3>
+                  <p><span>{{ page.extra.max_attack }}</span></p>
+                </div>
+              {% endif %}
+              
+              {% if page.extra.recoil %}
+                <div>
+                  <h3>Recoil:</h3>
+                  <p><span>{{ page.extra.recoil }}</span></p>
+                </div>
+              {% endif %}
+
+              {% if page.extra.reload %}
+                <div>
+                  <h1>Reload:</h1>
+                  <p><span>{{ page.extra.reload }}</span></p>
+                </div>
+              {% endif %}
+
+              {% if page.extra.affinity %}
+                <div>
+                  <h3>Affinity:</h3>
+                  <p>
+                    <span
+                      class="
+                      {% if page.extra.affinity is starting_with('-') %}
+                        negative
+                      {% elif page.extra.affinity is not starting_with('0')%}
+                        positive
+                      {% endif %}
+                      "
+                    >
+                      {{ page.extra.affinity }}
+                    </span>
+                  </p>
+                </div>
+              {% endif %}
+
+              <div>
+                <h3>Slots:</h3>
+                <p><span id="weaponSlots">{{ page.extra.slots }}</span></p>
+              </div>
+
+              {% if page.extra.rapid_fire %}
+                <p>Rapid fire: <span>{{ page.extra.rapid_fire }}</span></p>
+              {% endif %}
+
+              {% if page.extra.shelling %}
+                <p><span class="positive">Shelling Lv{{ page.extra.shelling.level }}</span></p>
+              {% endif %}
+
+              {% if page.extra.notes %}
+                <div class="notes">
+                  [Note:
+                  {% for note in page.extra.notes %}
+                  <div class="icon icon--note icon--note-{{ note }}">
+                    <img src="/images/note.png">
+                  </div>
+                  {% endfor %}
+                  ]
+                </div>
+              {% endif %}
+
+              {% if page.extra.elements %}
+                {% for element in page.extra.elements %}
+                  <p class="element">
+                    {{ element.name }} Attrib: {{ element.attack }}
+                  </p>
+                {% endfor %}
+              {% endif %}
+
+              {% if page.extra.skills %}
+                {% for skill in page.extra.skills %}
+                  <p class="element">
+                    {{ skill }}
+                  </p>
+                {% endfor %}
+              {% endif %}
+
+              {% if page.extra.bonus %}
+                <p class="element">Defense {{ page.extra.bonus }}</p>
+              {% endif %}
+            </div>
+
+            <hr>
+
+            <div
+              data-controller="weapon-page"
+              data-weapon-page-page-value="1"
+              class="requirements"
+            >
+              <div class="page active">
+                {% if page.extra.improve_mats %}
+                  <div class="improve_mats">
+                    <p>
+                      <span>Improve cost: </span>{{ page.extra.improve_cost }}z
+                    </p>                    
+
+                    {% for material in page.extra.improve_mats %}
+                      <div class="material">
+                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                          <img src="/images/{{ material.type }}.png">
+                        </div>
+                        <p>{{ material.name }}: {{ material.amount }}</p>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+  
+                {%- if page.extra.create_mats %}
+                  <div class="create_mats">
+                    <p>
+                      <span>Create cost: </span>{{ page.extra.create_cost }}z
+                    </p>
+    
+                    {% for material in page.extra.create_mats %}
+                      <div class="material">
+                        <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                          <img src="/images/{{ material.type }}.png">
+                        </div>
+                        <p>{{ material.name }}: {{ material.amount }}</p>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              {% if page.extra.alternative_create_mats or page.extra.shots %}
+                <div class="page">
+                  {%- if page.extra.alternative_create_mats %}
+                    <div class="create_mats">
+                      <p>
+                        <span>Create cost: </span>{{ page.extra.create_cost }}z
+                      </p>
+      
+                      {% for material in page.extra.alternative_create_mats %}
+                        <div class="material">
+                          <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
+                            <img src="/images/{{ material.type }}.png">
+                          </div>
+                          <p>{{ material.name }}: {{ material.amount }}</p>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  {% if page.extra.shots %}
+                    <div class="shots">
+                      <p><span>[Charge Attack]</span></p>
+                      {% for shot in page.extra.shots %}
+                        <p {% if loop.last %}class="green"{% endif %}>
+                          <span class="orange">
+                            <span {% if loop.index != 1 %}style="visibility: hidden;"{% endif %}>Lvl</span> {{ loop.index }}:
+                          </span> {{ shot.name }}Lv{{ shot.level }}
+                        </p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              
+              {% if page.extra.ammo %}
+                <div class="page">
+                  <table class="min">
+                    <thead>
+                      <tr>
+                        <th>Cap.:</th>
+                        <th>LV</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ammo in page.extra.ammo  %}
+                      <tr {% if ammo.capacity | join(sep="") == "000" %}class="gray"{% endif %}>
+                        <td>{{ ammo.name }}</td>
+                        <td>:</td>
+                        {% for cap in ammo.capacity %}
+                          <td {% if cap == 0 %}class="gray"{% endif %}>{{ cap }}{% if not loop.last %}/{% endif %}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                  <table class="min">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>LV</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ammo in page.extra.status_ammo  %}
+                      <tr {% if ammo.capacity | join(sep="") == "000" %}class="gray"{% endif %}>
+                        <td>{{ ammo.name }}</td>
+                        <td>:</td>
+                        {% for cap in ammo.capacity %}
+                          <td {% if cap == 0 %}class="gray"{% endif %}>{{ cap }}{% if not loop.last %}/{% endif %}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              {% endif %}
+              
+              {% if page.extra.element_ammo %}
+                <div class="page">
+                  <table class="min">
+                    <thead>
+                      <tr>
+                        <th>Cap.:</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ammo in page.extra.element_ammo  %}
+                      <tr {% if ammo.capacity | join(sep="") == "0" %}class="gray"{% endif %}>
+                        <td>{{ ammo.name }}</td>
+                        <td>:</td>
+                        {% for cap in ammo.capacity %}
+                          <td {% if cap == 0 %}class="gray"{% endif %}>{{ cap }}{% if not loop.last %}/{% endif %}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                  <table class="min">
+                    <thead>
+                      <tr>
+                        <th>&#8203</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ammo in page.extra.misc_ammo  %}
+                      <tr {% if ammo.capacity | join(sep="") == "0" %}class="gray"{% endif %}>
+                        <td>{{ ammo.name }}</td>
+                        <td>:</td>
+                        {% for cap in ammo.capacity %}
+                          <td {% if cap == 0 %}class="gray"{% endif %}>{{ cap }}{% if not loop.last %}/{% endif %}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              {% endif %}
+
+              {% if page.extra.coatings %}
+                <div class="page">
+                  <div class="coatings">
+                    <p><span>[Usable Coating]</span></p>
+                    {% for coating in ["Power Coating", "Poison Coating", "CloseRngCoating", "ParalysisCoating", "Paint Coating", "Sleep Coating"] %}
+                      <p {% if not coating | lower | trim_end_matches(pat="coating") | trim in page.extra.coatings %}class="gray"{% endif %}>{{ coating }}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+
+              <div class="weapon-card__navigation" data-action="click->weapon-page#toggle">
+                <img src="/images/arrow.png" alt="Next page" class="next" draggable="false">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if image_metadata %}
+          <div data-controller="image-position" class="card weapon-card__preview" id="weapon_preview">
+            <div class="weapon-card__preview__container">
+              <img
+                draggable="false"
+                src="/images/weapons/{{ page.slug }}.png"
+                alt="In-game render of weapon"
+                height="400"
+                width="300"
+                data-controller="image-zoom"
+                data-image-position-target="image"
+                data-action="wheel->image-zoom#zoom"
+              >
+            </div>
+          </div>
+        {% endif %}
+      </turbo-frame>
+    {% endblock weapon__details %}
+  </div>
+{% endblock content %}
