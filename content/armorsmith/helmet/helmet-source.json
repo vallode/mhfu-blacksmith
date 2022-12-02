@@ -21384,7 +21384,7 @@
       ]
     },
     {
-      "name": "TrueGuardianSpritMask",
+      "name": "GuardianSprtMaskShin",
       "type": "helmet",
       "hr": "9",
       "elder": "10",
@@ -21401,6 +21401,10 @@
       "create_cost": "31500",
       "skills": [
         {
+          "name": "Fencing",
+          "amount": "+2"
+        },
+        {
           "name": "Hunger",
           "amount": "-3"
         },
@@ -21411,16 +21415,16 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonmoss G",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamatsukamiFluid",
@@ -21464,16 +21468,16 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonmoss G",
+          "name": "AncientDrgnmoss",
           "amount": "3",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "1",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "YamatsukamiFluid",

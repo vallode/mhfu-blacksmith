@@ -20947,10 +20947,10 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Yamatsukami Skin",
@@ -21004,10 +21004,10 @@
       ],
       "create_mats": [
         {
-          "name": "Dragonwood G",
+          "name": "AncientDrgnwood",
           "amount": "2",
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "green"
         },
         {
           "name": "Yamatsukami Skin",
