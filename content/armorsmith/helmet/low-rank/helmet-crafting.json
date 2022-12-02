@@ -7765,7 +7765,12 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": null,
-      "skills": null,
+      "skills": [
+        {
+          "name": "Fencing",
+          "amount": "10"
+        }
+      ],
       "create_mats": null
     },
     {
@@ -7784,7 +7789,12 @@
       "rarity": "5",
       "slots": "---",
       "create_cost": null,
-      "skills": null,
+      "skills": [
+        {
+          "name": "Loading",
+          "amount": "10"
+        }
+      ],
       "create_mats": null
     }
   ]
