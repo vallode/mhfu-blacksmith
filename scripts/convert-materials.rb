@@ -71,25 +71,9 @@ WEAPON_PAIRS.each do |array|
       raise "No data found for #{weapon["name"]} probably a wrong name?"
     end
 
-    weapon["skills"] = []
-    csv_weapon.fields(22...32).each_slice(2) do |skill, point|
-      if skill == "Torso Inc" 
-        point = "0"
-      end
-
-      if skill and point
-        weapon["skills"].push({name: skill, amount: point})
-      end
-    end
-
-    if weapon["skills"].length == 0
-      weapon["skills"] = nil
-    end
-
-    if weapon["name"] == "Black Hide"
-      p "eewowoowow"
-      p weapon["skills"]
-    end
+    p csv_weapon
+    p csv_weapon[10]
+    weapon["defence"] = csv_weapon[10]
 
     weapon_map.push(weapon)
   end
