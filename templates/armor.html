@@ -88,12 +88,15 @@
 
           <div class="weapon-card__details">
             <div class="stats stats--armor">
-              {% if page.extra.defence %}
                 <div>
                   <h3>Defense<span>:</span></h3>
                   <p>{{ page.extra.defence }}</p>
                 </div>
-              {% endif %}
+
+              <div>
+                <h3>Slots<span>:</span></h3>
+                <p id="weaponSlots">{{ page.extra.slots }}</p>
+              </div>
 
               <div>
                 <h3>Fire Res<span>:</span></h3>
@@ -119,20 +122,6 @@
                 <h3>Ice Res<span>:</span></h3>
                 <p>{{ page.extra.ice_res }}</p>
               </div>
-
-              <!-- <p>Slots: <span id="weaponSlots">{{ page.extra["slots"] }}</span></p> -->
-
-              <!-- {% if page.extra.skills %}
-                {% for skill in page.extra.skills %}
-                  <p class="element">
-                    {{ skill.name }} {{ skill.amount }}
-                  </p>
-                {% endfor %}
-              {% endif %}
-
-              {% if page.extra.bonus %}
-                <p class="element">Defense {{ page.extra.bonus }}</p>
-              {% endif %} -->
             </div>
 
             <hr>
@@ -179,30 +168,24 @@
                 <div class="page">
                   <div class="skills">
                     <h2><span>[Skill Tree:Skill Points]</span></h2>
-                      {% if page.extra.skills %}
-                        {% for skill in page.extra.skills %}
-                          <div>
-                            <h3>{{ skill.name }}<span>:</span></h3>
-                            <p>
-                              {% if skill.amount is starting_with('-') or skill.amount is starting_with('+') %}
-                                {{ skill.amount }}
-                              {% else %}
-                                +{{ skill.amount }}
-                              {% endif %}
-                            </p>
-                          </div>
-                        {% endfor %}
-                      {% else %}
-                        <p>No Skill Effects</p>
-                      {% endif %}
-                    </div>
 
-                  <!-- {% if page.extra.slots %}
-                  <div>
-                    <h3>Slots:</h3>
-                    <p><span id="weaponSlots">{{ page.extra.slots }}</span></p>
+                    {% if page.extra.skills %}
+                      {% for skill in page.extra.skills %}
+                        <div>
+                          <h3>{{ skill.name }}<span>:</span></h3>
+                          <p>
+                            {% if skill.amount is starting_with('-') or skill.amount is starting_with('+') %}
+                              {{ skill.amount }}
+                            {% else %}
+                              +{{ skill.amount }}
+                            {% endif %}
+                          </p>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p>No Skill Effects</p>
+                    {% endif %}
                   </div>
-                  {% endif %} -->
 
                   {% if page.extra.alternative_create_mats %}
                     <div class="create_mats">
