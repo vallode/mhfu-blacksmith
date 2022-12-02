@@ -468,7 +468,10 @@
       "slots": "---",
       "create_cost": "750",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {
@@ -508,7 +511,10 @@
       "slots": "---",
       "create_cost": "750",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {
@@ -1293,7 +1299,10 @@
       "slots": "---",
       "create_cost": "3630",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": null
     },
@@ -4870,7 +4879,10 @@
       "slots": "---",
       "create_cost": "1650",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {
@@ -5533,9 +5545,7 @@
       "rarity": "5",
       "slots": "OOO",
       "create_cost": "11111",
-      "skills": [
-
-      ],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",
@@ -5579,9 +5589,7 @@
       "rarity": "5",
       "slots": "OOO",
       "create_cost": "11111",
-      "skills": [
-
-      ],
+      "skills": null,
       "create_mats": [
         {
           "name": "Dark Stone",

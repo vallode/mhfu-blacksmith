@@ -3414,9 +3414,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [
-
-      ],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",

@@ -1126,7 +1126,10 @@
       "slots": "---",
       "create_cost": "8950",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {
@@ -1172,7 +1175,10 @@
       "slots": "---",
       "create_cost": "8950",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {

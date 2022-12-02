@@ -57,7 +57,7 @@ CSV.foreach(ARMOR_PATH, "r:bom|utf-8", headers: true, skip_blanks: true) do |row
   end
 
   skills = []
-  row.fields(24...34).each_slice(2) do |skill, point|
+  row.fields(23...33).each_slice(2) do |skill, point|
     if skill and point
       skills.push("#{skill} #{point}")
     end

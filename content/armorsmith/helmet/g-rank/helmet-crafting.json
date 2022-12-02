@@ -3398,9 +3398,7 @@
       "rarity": "10",
       "slots": "OOO",
       "create_cost": "11000",
-      "skills": [
-
-      ],
+      "skills": null,
       "create_mats": [
         {
           "name": "Pure Crystal",
@@ -3610,7 +3608,10 @@
       "slots": "---",
       "create_cost": "19800",
       "skills": [
-
+        {
+          "name": "Torso Inc",
+          "amount": "0"
+        }
       ],
       "create_mats": [
         {
