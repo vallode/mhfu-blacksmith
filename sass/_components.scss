@@ -645,6 +645,44 @@ $ranks: (
       }
     }
 
+    .skills {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      gap: 13px;
+
+      & > :first-child {
+        width: 100%;
+        font-size: inherit;
+        margin: 0;
+        line-height: 1;
+        font-weight: normal;
+      }
+
+      > div {
+        display: flex;
+
+        h3 {
+          display: flex;
+          width: 10ch;
+          margin: 0;
+          line-height: 1;
+          font-weight: normal;
+          font-size: inherit;
+        }
+
+        p {
+          width: 3ch;
+          text-align: right;
+        }
+
+        span {
+          color: inherit;
+          margin-left: auto;
+        }
+      }
+    }
+
     .stats {
       flex-flow: column wrap;
       height: 11rem;
