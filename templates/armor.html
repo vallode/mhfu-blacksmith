@@ -53,7 +53,9 @@
 
   <div class="weapon-details-page">
     <turbo-frame id="weapon_tree" src="/{{ section_path }}/" data-turbo-action="replace">
-      <div class="card card--weapon-tree"></div>
+      <div class="card card--weapon-tree">
+        <img class="loading" src="/images/loading.gif" alt="Loading">
+      </div>
     </turbo-frame>
   
     {% block weapon__details %}

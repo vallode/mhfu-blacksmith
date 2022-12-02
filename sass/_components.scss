@@ -940,6 +940,15 @@ $sharpness-colors: (
   }
 }
 
+.loading {
+  height: auto;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+}
+
 table.monster-hz {
   font-size: 1.4rem;
   width: 100%;
