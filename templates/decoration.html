@@ -26,30 +26,26 @@
 
   <nav class="weapon-navigation">
     <div>
-      <a href="/blacksmith/">
+      <a href="/smithy/">
         <div class="icon icon--nav">
           <img src="/images/arrow.png">
         </div>
       </a>
     </div>
 
-    {% for weapon_type in config.extra.weapon_types %}
-      {%- set weapon_name = weapon_type | replace(from='-', to=' ') | capitalize -%}
-
-      <div>
-        <a href="/blacksmith/{{ weapon_type }}/" title="{{ weapon_name }}">
-          <div class="icon icon--nav icon--large icon--{{ weapon_type }} {% if weapon_type == page.extra.type %}icon--rarity-4{% endif %}">
-            <img src="/images/{{ weapon_type }}.png" alt="{{ weapon_name }}">
-          </div>
-        </a>
-      </div>
-    {% endfor %}
+    <div>
+      <a href="/decorations/" title="Decorations">
+        <div class="icon icon--nav icon--large icon--decoration icon--rarity-4">
+          <img src="/images/decoration.png" alt="Decorations icon" aria-label="Decoration list">
+        </div>
+      </a>
+    </div>
   </nav>
 
   <hr class="border">
 
   <div class="weapon-details-page">
-    <turbo-frame id="weapon_tree" src="/blacksmith/{{ page.extra['type'] }}" data-turbo-action="replace">
+    <turbo-frame id="weapon_tree" src="/decorations/" data-turbo-action="replace">
       <div class="card card--weapon-tree">
         <img class="loading" src="/images/loading.gif" alt="Loading">
       </div>
@@ -69,7 +65,7 @@
               icon--large
               "
             >
-              <img src="/images/{{ page.components[1] }}.png" alt="?">
+              <img src="/images/decoration.png" alt="?">
             </div>
 
             <p id="weapon_name">
@@ -120,7 +116,7 @@
 
               {% if page.extra.reload %}
                 <div>
-                  <h3>Reload:</h3>
+                  <h1>Reload:</h1>
                   <p><span>{{ page.extra.reload }}</span></p>
                 </div>
               {% endif %}
