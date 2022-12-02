@@ -5,6 +5,8 @@ content/armorsmith/**/*.md
 !content/armorsmith/**/_index.md
 content/monsters/**/*.md
 !content/monsters/**/_index.md
+content/decorations/**/*.md
+!content/decorations/**/_index.md
 
 # zola build directory
 public
