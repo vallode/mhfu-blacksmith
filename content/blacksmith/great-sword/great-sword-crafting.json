@@ -327,7 +327,7 @@
           "name": "Sharp Claw",
           "amount": "5",
           "type": "claw",
-          "color": "red"
+          "color": "gray"
         },
         {
           "name": "Daora Claw",
@@ -5629,7 +5629,7 @@
           "name": "Sharp Claw",
           "amount": "2",
           "type": "claw",
-          "color": "red"
+          "color": "gray"
         },
         {
           "name": "FireWyvern Fluid",
@@ -5718,7 +5718,7 @@
           "name": "Sharp Claw",
           "amount": "5",
           "type": "claw",
-          "color": "red"
+          "color": "gray"
         }
       ],
       "improve_to": null,
@@ -10177,7 +10177,7 @@
           "name": "Sharp Claw",
           "amount": "25",
           "type": "claw",
-          "color": "red"
+          "color": "gray"
         }
       ],
       "improve_mats": null,
