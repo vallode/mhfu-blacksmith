@@ -94,14 +94,14 @@
           <div class="weapon-card__details">
             <div class="stats">
               {% if page.extra.attack %}
-              <div>
-                <h3>Attack:</h3>
-                <p>
-                  <span>{{ page.extra.attack }}</span>
-                  <span class="raw">{% if page.extra.raw_attack %}[ {{ page.extra.raw_attack }} ]{% endif %}</span>
-                  {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
-                </p>
-              </div>
+                <div>
+                  <h3>Attack:</h3>
+                  <p>
+                    <span>{{ page.extra.attack }}</span>
+                    <span class="raw">{% if page.extra.raw_attack %}[ {{ page.extra.raw_attack }} ]{% endif %}</span>
+                    {% if page.extra.shelling %}<span>[{{ page.extra.shelling.type }} Type]</span>{% endif %}
+                  </p>
+                </div>
               {% endif %}
 
               {% if page.extra.max_attack %}
