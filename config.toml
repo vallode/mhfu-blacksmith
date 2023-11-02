@@ -49,8 +49,7 @@ weapon_types = [
   "gunlance",
   "light-bowgun",
   "heavy-bowgun",
-  "bow",
-  "decoration"
+  "bow"
 ]
 
 armor_types = [
