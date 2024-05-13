@@ -7548,7 +7548,7 @@
       "name": "Ukanlos Bow",
       "attack": 432,
       "affinity": "-40%",
-      "slots": "O--",
+      "slots": "---",
       "bonus": "+10",
       "rarity": 10,
       "coatings": [
