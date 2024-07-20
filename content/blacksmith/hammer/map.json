@@ -40,7 +40,7 @@
                             "slug": "onslaught-hammer",
                             "type": "hammer",
                             "name": "Onslaught Hammer",
-                            "rarity": 5,
+                            "rarity": 6,
                             "children": [
                               {
                                 "slug": "blacksmith",
