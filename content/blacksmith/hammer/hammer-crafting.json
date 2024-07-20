@@ -344,7 +344,7 @@
       "affinity": "0%",
       "slots": "O--",
       "bonus": "+6",
-      "rarity": 5,
+      "rarity": 6,
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 60000,
