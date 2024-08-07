@@ -173,6 +173,10 @@
                 {% for element in page.extra.elements %}
                   <p class="element">
                     {{ element.name }} Attrib: {{ element.attack }}
+
+                    {% if element.attack is number %}
+                      <span class="raw">[ {{ element.attack / 10 }} ]</span>
+                    {% endif %}
                   </p>
                 {% endfor %}
               {% endif %}
