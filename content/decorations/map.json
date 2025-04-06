@@ -1677,13 +1677,6 @@
         "name": "Tireless Jewel",
         "rarity": 4,
         "color": "green"
-      },
-      {
-        "slug": "antiviral-jewel",
-        "type": "decoration",
-        "name": "Antiviral Jewel",
-        "rarity": 4,
-        "color": "green"
       }
     ]
   },
