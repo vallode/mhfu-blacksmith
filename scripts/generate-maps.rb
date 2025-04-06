@@ -19,7 +19,7 @@ WEAPON_PAIRS = [
   ["light-bowgun"],
   ["heavy-bowgun"],
   ["bow"],
-  ["decoration"],
+  ["decorations"],
   ["helmet"],
   ["plate"],
   ["gauntlets"],
@@ -76,7 +76,7 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/{blacksmith,armorsmith}/{#{array.join(",")}}/*-{crafting,source}.json")
+  weapon_files = Dir.glob("content/**/{#{array.join(",")}}-{crafting,source}.json")
   file = File.open(weapon_files[0])
   weapons = JSON.load(file)["weapons"]
 
