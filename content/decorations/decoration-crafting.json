@@ -5887,8 +5887,7 @@
     {
       "name": "Fatigue duration halved/negated",
       "improve_to": [
-        "Tireless Jewel",
-        "Antiviral Jewel"
+        "Tireless Jewel"
       ],
       "donotrender": true,
       "type": ""
