@@ -383,6 +383,73 @@
     ]
   },
   {
+    "slug": "rusted-great-sword",
+    "type": "great-sword",
+    "name": "Rusted Great Sword",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "tarnished-great-swd",
+        "type": "great-sword",
+        "name": "Tarnished Great Swd",
+        "rarity": 1,
+        "children": [
+          {
+            "slug": "ancient-blade",
+            "type": "great-sword",
+            "name": "Ancient Blade",
+            "rarity": 5,
+            "element": "dragon"
+          },
+          {
+            "slug": "steel-ice-blade",
+            "type": "great-sword",
+            "name": "Steel Ice Blade",
+            "rarity": 5,
+            "element": "ice",
+            "children": [
+              {
+                "slug": "steel-ice-blade-plus",
+                "type": "great-sword",
+                "name": "Steel Ice Blade+",
+                "rarity": 5,
+                "element": "ice",
+                "children": [
+                  {
+                    "slug": "daora-s-decimator",
+                    "type": "great-sword",
+                    "name": "Daora's Decimator",
+                    "rarity": 8,
+                    "element": "ice",
+                    "children": [
+                      {
+                        "slug": "daora-s-tughril-beg",
+                        "type": "great-sword",
+                        "name": "Daora's Tughril Beg",
+                        "rarity": 10,
+                        "element": "ice"
+                      }
+                    ]
+                  },
+                  {
+                    "slug": "icesteel-blade",
+                    "type": "long-sword",
+                    "name": "Icesteel Blade",
+                    "rarity": 8,
+                    "element": "ice",
+                    "children": [
+
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "bone-blade",
     "type": "great-sword",
     "name": "Bone Blade",
@@ -975,73 +1042,6 @@
             "rarity": 1,
             "children": [
 
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "rusted-great-sword",
-    "type": "great-sword",
-    "name": "Rusted Great Sword",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "tarnished-great-swd",
-        "type": "great-sword",
-        "name": "Tarnished Great Swd",
-        "rarity": 1,
-        "children": [
-          {
-            "slug": "ancient-blade",
-            "type": "great-sword",
-            "name": "Ancient Blade",
-            "rarity": 5,
-            "element": "dragon"
-          },
-          {
-            "slug": "steel-ice-blade",
-            "type": "great-sword",
-            "name": "Steel Ice Blade",
-            "rarity": 5,
-            "element": "ice",
-            "children": [
-              {
-                "slug": "steel-ice-blade-plus",
-                "type": "great-sword",
-                "name": "Steel Ice Blade+",
-                "rarity": 5,
-                "element": "ice",
-                "children": [
-                  {
-                    "slug": "daora-s-decimator",
-                    "type": "great-sword",
-                    "name": "Daora's Decimator",
-                    "rarity": 8,
-                    "element": "ice",
-                    "children": [
-                      {
-                        "slug": "daora-s-tughril-beg",
-                        "type": "great-sword",
-                        "name": "Daora's Tughril Beg",
-                        "rarity": 10,
-                        "element": "ice"
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "icesteel-blade",
-                    "type": "long-sword",
-                    "name": "Icesteel Blade",
-                    "rarity": 8,
-                    "element": "ice",
-                    "children": [
-
-                    ]
-                  }
-                ]
-              }
             ]
           }
         ]

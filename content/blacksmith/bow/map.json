@@ -79,68 +79,6 @@
     ]
   },
   {
-    "slug": "wild-bow-i",
-    "type": "bow",
-    "name": "Wild Bow I",
-    "rarity": 2,
-    "children": [
-      {
-        "slug": "wild-bow-ii",
-        "type": "bow",
-        "name": "Wild Bow II",
-        "rarity": 3,
-        "children": [
-          {
-            "slug": "wild-bow-iii",
-            "type": "bow",
-            "name": "Wild Bow III",
-            "rarity": 4,
-            "children": [
-              {
-                "slug": "wild-bow-iv",
-                "type": "bow",
-                "name": "Wild Bow IV",
-                "rarity": 4,
-                "children": [
-                  {
-                    "slug": "wild-power-bow-i",
-                    "type": "bow",
-                    "name": "Wild Power Bow I",
-                    "rarity": 6,
-                    "children": [
-                      {
-                        "slug": "wild-power-bow-ii",
-                        "type": "bow",
-                        "name": "Wild Power Bow II",
-                        "rarity": 6,
-                        "children": [
-                          {
-                            "slug": "jungle-bow-i",
-                            "type": "bow",
-                            "name": "Jungle Bow I",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "jungle-bow-ii",
-                                "type": "bow",
-                                "name": "Jungle Bow II",
-                                "rarity": 9
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "blango-fur-bow-i",
     "type": "bow",
     "name": "Blango Fur Bow I",
@@ -259,6 +197,68 @@
     ]
   },
   {
+    "slug": "wild-bow-i",
+    "type": "bow",
+    "name": "Wild Bow I",
+    "rarity": 2,
+    "children": [
+      {
+        "slug": "wild-bow-ii",
+        "type": "bow",
+        "name": "Wild Bow II",
+        "rarity": 3,
+        "children": [
+          {
+            "slug": "wild-bow-iii",
+            "type": "bow",
+            "name": "Wild Bow III",
+            "rarity": 4,
+            "children": [
+              {
+                "slug": "wild-bow-iv",
+                "type": "bow",
+                "name": "Wild Bow IV",
+                "rarity": 4,
+                "children": [
+                  {
+                    "slug": "wild-power-bow-i",
+                    "type": "bow",
+                    "name": "Wild Power Bow I",
+                    "rarity": 6,
+                    "children": [
+                      {
+                        "slug": "wild-power-bow-ii",
+                        "type": "bow",
+                        "name": "Wild Power Bow II",
+                        "rarity": 6,
+                        "children": [
+                          {
+                            "slug": "jungle-bow-i",
+                            "type": "bow",
+                            "name": "Jungle Bow I",
+                            "rarity": 9,
+                            "children": [
+                              {
+                                "slug": "jungle-bow-ii",
+                                "type": "bow",
+                                "name": "Jungle Bow II",
+                                "rarity": 9
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "daimyo-s-warbow-i",
     "type": "bow",
     "name": "Daimyo's Warbow I",
@@ -337,6 +337,93 @@
                 "name": "Sonic Bow IV",
                 "rarity": 9,
                 "element": "thunder"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "tiger-arrow-i",
+    "type": "bow",
+    "name": "Tiger Arrow I",
+    "rarity": 4,
+    "children": [
+      {
+        "slug": "tiger-arrow-ii",
+        "type": "bow",
+        "name": "Tiger Arrow II",
+        "rarity": 4,
+        "children": [
+          {
+            "slug": "tigrex-whisker",
+            "type": "bow",
+            "name": "Tigrex Whisker",
+            "rarity": 6,
+            "children": [
+              {
+                "slug": "tigrex-whisker-plus",
+                "type": "bow",
+                "name": "Tigrex Whisker+",
+                "rarity": 10
+              }
+            ]
+          },
+          {
+            "slug": "hidden-bow",
+            "type": "bow",
+            "name": "Hidden Bow",
+            "rarity": 7,
+            "children": [
+              {
+                "slug": "midnight-bow",
+                "type": "bow",
+                "name": "Midnight Bow",
+                "rarity": 10
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "prominence-bow-i",
+    "type": "bow",
+    "name": "Prominence Bow I",
+    "rarity": 4,
+    "element": "fire",
+    "children": [
+      {
+        "slug": "prominence-bow-ii",
+        "type": "bow",
+        "name": "Prominence Bow II",
+        "rarity": 4,
+        "element": "fire",
+        "children": [
+          {
+            "slug": "prominence-bow-iii",
+            "type": "bow",
+            "name": "Prominence Bow III",
+            "rarity": 8,
+            "element": "fire",
+            "children": [
+              {
+                "slug": "prominence-bow-iv",
+                "type": "bow",
+                "name": "Prominence Bow IV",
+                "rarity": 9,
+                "element": "fire",
+                "children": [
+                  {
+                    "slug": "prominence-bow-v",
+                    "type": "bow",
+                    "name": "Prominence Bow V",
+                    "rarity": 10,
+                    "element": "fire"
+                  }
+                ]
               }
             ]
           }
@@ -456,87 +543,25 @@
     ]
   },
   {
-    "slug": "prominence-bow-i",
+    "slug": "dragon-bow-halo",
     "type": "bow",
-    "name": "Prominence Bow I",
-    "rarity": 4,
-    "element": "fire",
+    "name": "Dragon Bow Halo",
+    "rarity": 5,
+    "element": "thunder",
     "children": [
       {
-        "slug": "prominence-bow-ii",
+        "slug": "dragon-bow-solar",
         "type": "bow",
-        "name": "Prominence Bow II",
-        "rarity": 4,
-        "element": "fire",
+        "name": "Dragon Bow Solar",
+        "rarity": 8,
+        "element": "thunder",
         "children": [
           {
-            "slug": "prominence-bow-iii",
+            "slug": "ancient-dragonwood-bow",
             "type": "bow",
-            "name": "Prominence Bow III",
-            "rarity": 8,
-            "element": "fire",
-            "children": [
-              {
-                "slug": "prominence-bow-iv",
-                "type": "bow",
-                "name": "Prominence Bow IV",
-                "rarity": 9,
-                "element": "fire",
-                "children": [
-                  {
-                    "slug": "prominence-bow-v",
-                    "type": "bow",
-                    "name": "Prominence Bow V",
-                    "rarity": 10,
-                    "element": "fire"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "tiger-arrow-i",
-    "type": "bow",
-    "name": "Tiger Arrow I",
-    "rarity": 4,
-    "children": [
-      {
-        "slug": "tiger-arrow-ii",
-        "type": "bow",
-        "name": "Tiger Arrow II",
-        "rarity": 4,
-        "children": [
-          {
-            "slug": "tigrex-whisker",
-            "type": "bow",
-            "name": "Tigrex Whisker",
-            "rarity": 6,
-            "children": [
-              {
-                "slug": "tigrex-whisker-plus",
-                "type": "bow",
-                "name": "Tigrex Whisker+",
-                "rarity": 10
-              }
-            ]
-          },
-          {
-            "slug": "hidden-bow",
-            "type": "bow",
-            "name": "Hidden Bow",
-            "rarity": 7,
-            "children": [
-              {
-                "slug": "midnight-bow",
-                "type": "bow",
-                "name": "Midnight Bow",
-                "rarity": 10
-              }
-            ]
+            "name": "Ancient Dragonwood Bow",
+            "rarity": 10,
+            "element": "thunder"
           }
         ]
       }
@@ -562,31 +587,6 @@
             "name": "Perfect Swordfish Bow",
             "rarity": 10,
             "element": "paralysis"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "dragon-bow-halo",
-    "type": "bow",
-    "name": "Dragon Bow Halo",
-    "rarity": 5,
-    "element": "thunder",
-    "children": [
-      {
-        "slug": "dragon-bow-solar",
-        "type": "bow",
-        "name": "Dragon Bow Solar",
-        "rarity": 8,
-        "element": "thunder",
-        "children": [
-          {
-            "slug": "ancient-dragonwood-bow",
-            "type": "bow",
-            "name": "Ancient Dragonwood Bow",
-            "rarity": 10,
-            "element": "thunder"
           }
         ]
       }
@@ -755,6 +755,22 @@
     ]
   },
   {
+    "slug": "akantor-bow",
+    "type": "bow",
+    "name": "Akantor Bow",
+    "rarity": 8,
+    "element": "dragon",
+    "children": [
+      {
+        "slug": "akantor-chaos-bow",
+        "type": "bow",
+        "name": "Akantor Chaos Bow",
+        "rarity": 10,
+        "element": "dragon"
+      }
+    ]
+  },
+  {
     "slug": "dragonhead-harp-i",
     "type": "bow",
     "name": "Dragonhead Harp I",
@@ -780,22 +796,6 @@
     ]
   },
   {
-    "slug": "akantor-bow",
-    "type": "bow",
-    "name": "Akantor Bow",
-    "rarity": 8,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "akantor-chaos-bow",
-        "type": "bow",
-        "name": "Akantor Chaos Bow",
-        "rarity": 10,
-        "element": "dragon"
-      }
-    ]
-  },
-  {
     "slug": "khezu-bow-i",
     "type": "bow",
     "name": "Khezu Bow I",
@@ -807,22 +807,6 @@
         "type": "bow",
         "name": "Khezu Bow II",
         "rarity": 9,
-        "element": "thunder"
-      }
-    ]
-  },
-  {
-    "slug": "beast-thunderbow",
-    "type": "bow",
-    "name": "Beast Thunderbow",
-    "rarity": 10,
-    "element": "thunder",
-    "children": [
-      {
-        "slug": "beastkingthunderbow",
-        "type": "bow",
-        "name": "BeastKingThunderbow",
-        "rarity": 10,
         "element": "thunder"
       }
     ]
@@ -840,6 +824,22 @@
         "name": "Daora's Sagittarii",
         "rarity": 10,
         "element": "ice"
+      }
+    ]
+  },
+  {
+    "slug": "beast-thunderbow",
+    "type": "bow",
+    "name": "Beast Thunderbow",
+    "rarity": 10,
+    "element": "thunder",
+    "children": [
+      {
+        "slug": "beastkingthunderbow",
+        "type": "bow",
+        "name": "BeastKingThunderbow",
+        "rarity": 10,
+        "element": "thunder"
       }
     ]
   },

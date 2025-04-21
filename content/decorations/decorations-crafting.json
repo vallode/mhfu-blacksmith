@@ -3500,6 +3500,7 @@
           "color": "white"
         }
       ],
+      "color": "yellow",
       "slots": "O--",
       "rarity": 4,
       "create_cost": 200,
@@ -3537,6 +3538,7 @@
           "color": "white"
         }
       ],
+      "color": "yellow",
       "slots": "OO-",
       "rarity": 5,
       "create_cost": 375,
@@ -5558,7 +5560,7 @@
     {
       "name": "Heat Cancel",
       "improve_to": [
-        "ColdBreeze Jewel",
+        "CoolBreeze Jewel",
         "Cold Wind Jewel",
         "ColdBreezeJewel"
       ],
@@ -5566,7 +5568,7 @@
       "type": ""
     },
     {
-      "name": "ColdBreeze Jewel",
+      "name": "CoolBreeze Jewel",
       "skills": [
         "Heat Res +1",
         "Cold Res -1"

@@ -1,146 +1,6 @@
 {
   "map": [
   {
-    "slug": "bone-gunlance",
-    "type": "gunlance",
-    "name": "Bone Gunlance",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "great-bone-gunlance",
-        "type": "gunlance",
-        "name": "Great Bone Gunlance",
-        "rarity": 2,
-        "children": [
-          {
-            "slug": "wyvern-bone-gunlance",
-            "type": "gunlance",
-            "name": "Wyvern Bone Gunlance",
-            "rarity": 1,
-            "children": [
-              {
-                "slug": "hellsting",
-                "type": "gunlance",
-                "name": "Hellsting",
-                "rarity": 4,
-                "element": "ice",
-                "children": [
-                  {
-                    "slug": "hellsting-plus",
-                    "type": "gunlance",
-                    "name": "Hellsting+",
-                    "rarity": 5,
-                    "element": "ice",
-                    "children": [
-                      {
-                        "slug": "hellstinger",
-                        "type": "gunlance",
-                        "name": "Hellstinger",
-                        "rarity": 7,
-                        "element": "ice",
-                        "children": [
-                          {
-                            "slug": "demonic-blizzard",
-                            "type": "gunlance",
-                            "name": "Demonic Blizzard",
-                            "rarity": 10,
-                            "element": "ice"
-                          },
-                          {
-                            "slug": "desert-slingshot",
-                            "type": "gunlance",
-                            "name": "Desert Slingshot",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "desert-slingshoter",
-                                "type": "gunlance",
-                                "name": "Desert Slingshoter",
-                                "rarity": 10
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "slug": "average-hitter",
-            "type": "gunlance",
-            "name": "Average Hitter",
-            "rarity": 3,
-            "element": "poison",
-            "children": [
-              {
-                "slug": "grand-slam",
-                "type": "gunlance",
-                "name": "Grand Slam",
-                "rarity": 4,
-                "element": "poison",
-                "children": [
-                  {
-                    "slug": "hard-hitter",
-                    "type": "gunlance",
-                    "name": "Hard Hitter",
-                    "rarity": 6,
-                    "element": "poison",
-                    "children": [
-                      {
-                        "slug": "big-slugger",
-                        "type": "gunlance",
-                        "name": "Big Slugger",
-                        "rarity": 7,
-                        "element": "poison",
-                        "children": [
-                          {
-                            "slug": "triple-crown",
-                            "type": "gunlance",
-                            "name": "Triple Crown",
-                            "rarity": 9,
-                            "element": "poison"
-                          },
-                          {
-                            "slug": "venomous-cologne",
-                            "type": "gunlance",
-                            "name": "Venomous Cologne",
-                            "rarity": 8,
-                            "element": "poison",
-                            "children": [
-                              {
-                                "slug": "venomous-attar",
-                                "type": "gunlance",
-                                "name": "Venomous Attar",
-                                "rarity": 9,
-                                "element": "poison",
-                                "children": [
-                                  {
-                                    "slug": "venomous-perfume",
-                                    "type": "gunlance",
-                                    "name": "Venomous Perfume",
-                                    "rarity": 10,
-                                    "element": "poison"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "iron-lance",
     "type": "lance",
     "name": "Iron Lance",
@@ -427,6 +287,146 @@
     ]
   },
   {
+    "slug": "bone-gunlance",
+    "type": "gunlance",
+    "name": "Bone Gunlance",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "great-bone-gunlance",
+        "type": "gunlance",
+        "name": "Great Bone Gunlance",
+        "rarity": 2,
+        "children": [
+          {
+            "slug": "wyvern-bone-gunlance",
+            "type": "gunlance",
+            "name": "Wyvern Bone Gunlance",
+            "rarity": 1,
+            "children": [
+              {
+                "slug": "hellsting",
+                "type": "gunlance",
+                "name": "Hellsting",
+                "rarity": 4,
+                "element": "ice",
+                "children": [
+                  {
+                    "slug": "hellsting-plus",
+                    "type": "gunlance",
+                    "name": "Hellsting+",
+                    "rarity": 5,
+                    "element": "ice",
+                    "children": [
+                      {
+                        "slug": "hellstinger",
+                        "type": "gunlance",
+                        "name": "Hellstinger",
+                        "rarity": 7,
+                        "element": "ice",
+                        "children": [
+                          {
+                            "slug": "demonic-blizzard",
+                            "type": "gunlance",
+                            "name": "Demonic Blizzard",
+                            "rarity": 10,
+                            "element": "ice"
+                          },
+                          {
+                            "slug": "desert-slingshot",
+                            "type": "gunlance",
+                            "name": "Desert Slingshot",
+                            "rarity": 9,
+                            "children": [
+                              {
+                                "slug": "desert-slingshoter",
+                                "type": "gunlance",
+                                "name": "Desert Slingshoter",
+                                "rarity": 10
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slug": "average-hitter",
+            "type": "gunlance",
+            "name": "Average Hitter",
+            "rarity": 3,
+            "element": "poison",
+            "children": [
+              {
+                "slug": "grand-slam",
+                "type": "gunlance",
+                "name": "Grand Slam",
+                "rarity": 4,
+                "element": "poison",
+                "children": [
+                  {
+                    "slug": "hard-hitter",
+                    "type": "gunlance",
+                    "name": "Hard Hitter",
+                    "rarity": 6,
+                    "element": "poison",
+                    "children": [
+                      {
+                        "slug": "big-slugger",
+                        "type": "gunlance",
+                        "name": "Big Slugger",
+                        "rarity": 7,
+                        "element": "poison",
+                        "children": [
+                          {
+                            "slug": "triple-crown",
+                            "type": "gunlance",
+                            "name": "Triple Crown",
+                            "rarity": 9,
+                            "element": "poison"
+                          },
+                          {
+                            "slug": "venomous-cologne",
+                            "type": "gunlance",
+                            "name": "Venomous Cologne",
+                            "rarity": 8,
+                            "element": "poison",
+                            "children": [
+                              {
+                                "slug": "venomous-attar",
+                                "type": "gunlance",
+                                "name": "Venomous Attar",
+                                "rarity": 9,
+                                "element": "poison",
+                                "children": [
+                                  {
+                                    "slug": "venomous-perfume",
+                                    "type": "gunlance",
+                                    "name": "Venomous Perfume",
+                                    "rarity": 10,
+                                    "element": "poison"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "longhorn-plus",
     "type": "lance",
     "name": "Longhorn+",
@@ -614,6 +614,42 @@
     ]
   },
   {
+    "slug": "rex-blast",
+    "type": "gunlance",
+    "name": "Rex Blast",
+    "rarity": 5,
+    "children": [
+      {
+        "slug": "tigrex-gunlance",
+        "type": "gunlance",
+        "name": "Tigrex Gunlance",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "greattigrexgunlance",
+            "type": "gunlance",
+            "name": "GreatTigrexGunlance",
+            "rarity": 10
+          }
+        ]
+      },
+      {
+        "slug": "hidden-gunlance",
+        "type": "gunlance",
+        "name": "Hidden Gunlance",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "wanningmoondarklance",
+            "type": "gunlance",
+            "name": "WanningMoonDarklance",
+            "rarity": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "black-smoke-gunlance",
     "type": "gunlance",
     "name": "Black Smoke Gunlance",
@@ -673,42 +709,6 @@
     ]
   },
   {
-    "slug": "rex-blast",
-    "type": "gunlance",
-    "name": "Rex Blast",
-    "rarity": 5,
-    "children": [
-      {
-        "slug": "tigrex-gunlance",
-        "type": "gunlance",
-        "name": "Tigrex Gunlance",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "greattigrexgunlance",
-            "type": "gunlance",
-            "name": "GreatTigrexGunlance",
-            "rarity": 10
-          }
-        ]
-      },
-      {
-        "slug": "hidden-gunlance",
-        "type": "gunlance",
-        "name": "Hidden Gunlance",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "wanningmoondarklance",
-            "type": "gunlance",
-            "name": "WanningMoonDarklance",
-            "rarity": 10
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "pop-corn",
     "type": "gunlance",
     "name": "Pop Corn",
@@ -719,39 +719,6 @@
         "type": "gunlance",
         "name": "Large Pop Corn",
         "rarity": 9
-      }
-    ]
-  },
-  {
-    "slug": "knight-lance",
-    "type": "lance",
-    "name": "Knight Lance",
-    "rarity": 6,
-    "children": [
-      {
-        "slug": "feather-gunlance",
-        "type": "gunlance",
-        "name": "Feather Gunlance",
-        "rarity": 6,
-        "element": "sleep",
-        "children": [
-          {
-            "slug": "feather-gunlance-plus",
-            "type": "gunlance",
-            "name": "Feather Gunlance+",
-            "rarity": 9,
-            "element": "sleep",
-            "children": [
-              {
-                "slug": "hypno-cannon",
-                "type": "gunlance",
-                "name": "Hypno Cannon",
-                "rarity": 9,
-                "element": "sleep"
-              }
-            ]
-          }
-        ]
       }
     ]
   },
@@ -781,6 +748,39 @@
                 "name": "High Volt Gunlance",
                 "rarity": 9,
                 "element": "thunder"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "knight-lance",
+    "type": "lance",
+    "name": "Knight Lance",
+    "rarity": 6,
+    "children": [
+      {
+        "slug": "feather-gunlance",
+        "type": "gunlance",
+        "name": "Feather Gunlance",
+        "rarity": 6,
+        "element": "sleep",
+        "children": [
+          {
+            "slug": "feather-gunlance-plus",
+            "type": "gunlance",
+            "name": "Feather Gunlance+",
+            "rarity": 9,
+            "element": "sleep",
+            "children": [
+              {
+                "slug": "hypno-cannon",
+                "type": "gunlance",
+                "name": "Hypno Cannon",
+                "rarity": 9,
+                "element": "sleep"
               }
             ]
           }

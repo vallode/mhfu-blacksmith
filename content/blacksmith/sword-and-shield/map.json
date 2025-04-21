@@ -1,6 +1,364 @@
 {
   "map": [
   {
+    "slug": "bone-kris",
+    "type": "sword-and-shield",
+    "name": "Bone Kris",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "bone-kris-plus",
+        "type": "sword-and-shield",
+        "name": "Bone Kris+",
+        "rarity": 1,
+        "children": [
+          {
+            "slug": "chief-kris",
+            "type": "sword-and-shield",
+            "name": "Chief Kris",
+            "rarity": 1,
+            "children": [
+              {
+                "slug": "crimson-club",
+                "type": "sword-and-shield",
+                "name": "Crimson Club",
+                "rarity": 2,
+                "children": [
+                  {
+                    "slug": "monoblos-club",
+                    "type": "sword-and-shield",
+                    "name": "Monoblos Club",
+                    "rarity": 3,
+                    "children": [
+                      {
+                        "slug": "studded-club",
+                        "type": "sword-and-shield",
+                        "name": "Studded Club",
+                        "rarity": 4,
+                        "children": [
+                          {
+                            "slug": "spiked-bat",
+                            "type": "sword-and-shield",
+                            "name": "Spiked Bat",
+                            "rarity": 5,
+                            "children": [
+                              {
+                                "slug": "cursed-spirit",
+                                "type": "sword-and-shield",
+                                "name": "Cursed Spirit",
+                                "rarity": 7,
+                                "children": [
+                                  {
+                                    "slug": "black-curse",
+                                    "type": "sword-and-shield",
+                                    "name": "Black Curse",
+                                    "rarity": 10
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "slug": "dual-diablo",
+                            "type": "dual-blades",
+                            "name": "Dual Diablo",
+                            "rarity": 5,
+                            "children": [
+
+                            ]
+                          },
+                          {
+                            "slug": "osteon-pick",
+                            "type": "sword-and-shield",
+                            "name": "Osteon Pick",
+                            "rarity": 6,
+                            "children": [
+                              {
+                                "slug": "osteon-pick-plus",
+                                "type": "sword-and-shield",
+                                "name": "Osteon Pick+",
+                                "rarity": 6,
+                                "children": [
+                                  {
+                                    "slug": "melting-wail",
+                                    "type": "dual-blades",
+                                    "name": "Melting Wail",
+                                    "rarity": 6,
+                                    "element": "fire",
+                                    "children": [
+
+                                    ]
+                                  },
+                                  {
+                                    "slug": "rajang-club",
+                                    "type": "sword-and-shield",
+                                    "name": "Rajang Club",
+                                    "rarity": 7,
+                                    "element": "thunder",
+                                    "children": [
+                                      {
+                                        "slug": "taboo-rajang-club",
+                                        "type": "sword-and-shield",
+                                        "name": "Taboo Rajang Club",
+                                        "rarity": 8,
+                                        "element": "thunder",
+                                        "children": [
+                                          {
+                                            "slug": "forbiddenrajangclub",
+                                            "type": "sword-and-shield",
+                                            "name": "ForbiddenRajangClub",
+                                            "rarity": 10,
+                                            "element": "thunder"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "slug": "binding-blade",
+                                    "type": "sword-and-shield",
+                                    "name": "Binding Blade",
+                                    "rarity": 9,
+                                    "children": [
+                                      {
+                                        "slug": "binding-blade-plus",
+                                        "type": "sword-and-shield",
+                                        "name": "Binding Blade+",
+                                        "rarity": 9,
+                                        "children": [
+                                          {
+                                            "slug": "great-kris",
+                                            "type": "sword-and-shield",
+                                            "name": "Great Kris",
+                                            "rarity": 10
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "slug": "feather-knife",
+                                "type": "sword-and-shield",
+                                "name": "Feather Knife",
+                                "rarity": 6,
+                                "element": "sleep",
+                                "children": [
+                                  {
+                                    "slug": "feather-sword",
+                                    "type": "sword-and-shield",
+                                    "name": "Feather Sword",
+                                    "rarity": 9,
+                                    "element": "sleep",
+                                    "children": [
+                                      {
+                                        "slug": "hi-feather-sword",
+                                        "type": "sword-and-shield",
+                                        "name": "Hi Feather Sword",
+                                        "rarity": 9,
+                                        "element": "sleep"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "slug": "kirin-bolt",
+                        "type": "sword-and-shield",
+                        "name": "Kirin Bolt",
+                        "rarity": 5,
+                        "element": "thunder",
+                        "children": [
+                          {
+                            "slug": "kirin-bolt-plus",
+                            "type": "sword-and-shield",
+                            "name": "Kirin Bolt+",
+                            "rarity": 5,
+                            "element": "thunder",
+                            "children": [
+                              {
+                                "slug": "kirin-bolt-ultimus",
+                                "type": "sword-and-shield",
+                                "name": "Kirin Bolt Ultimus",
+                                "rarity": 7,
+                                "element": "thunder",
+                                "children": [
+                                  {
+                                    "slug": "thor-s-dagger",
+                                    "type": "sword-and-shield",
+                                    "name": "Thor's Dagger",
+                                    "rarity": 8,
+                                    "element": "thunder"
+                                  }
+                                ]
+                              },
+                              {
+                                "slug": "kirin-bolts",
+                                "type": "dual-blades",
+                                "name": "Kirin Bolts",
+                                "rarity": 5,
+                                "element": "thunder",
+                                "children": [
+
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "slug": "weary-finsword",
+                "type": "sword-and-shield",
+                "name": "Weary Finsword",
+                "rarity": 3,
+                "element": "sleep",
+                "children": [
+                  {
+                    "slug": "sandman-finsword",
+                    "type": "sword-and-shield",
+                    "name": "Sandman Finsword",
+                    "rarity": 4,
+                    "element": "sleep",
+                    "children": [
+                      {
+                        "slug": "sandman-spike",
+                        "type": "sword-and-shield",
+                        "name": "Sandman Spike",
+                        "rarity": 5,
+                        "element": "sleep",
+                        "children": [
+                          {
+                            "slug": "high-sandman-spike",
+                            "type": "sword-and-shield",
+                            "name": "High Sandman Spike",
+                            "rarity": 7,
+                            "element": "sleep"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "slug": "red-saber",
+                "type": "sword-and-shield",
+                "name": "Red Saber",
+                "rarity": 3,
+                "element": "fire",
+                "children": [
+                  {
+                    "slug": "djinn",
+                    "type": "sword-and-shield",
+                    "name": "Djinn",
+                    "rarity": 4,
+                    "element": "fire",
+                    "children": [
+                      {
+                        "slug": "blazing-falchion",
+                        "type": "sword-and-shield",
+                        "name": "Blazing Falchion",
+                        "rarity": 5,
+                        "element": "fire"
+                      }
+                    ]
+                  },
+                  {
+                    "slug": "corona",
+                    "type": "sword-and-shield",
+                    "name": "Corona",
+                    "rarity": 5,
+                    "element": "fire",
+                    "children": [
+                      {
+                        "slug": "golden-falchion",
+                        "type": "sword-and-shield",
+                        "name": "Golden Falchion",
+                        "rarity": 8,
+                        "element": "fire",
+                        "children": [
+                          {
+                            "slug": "golden-falchion-plus",
+                            "type": "sword-and-shield",
+                            "name": "Golden Falchion+",
+                            "rarity": 9,
+                            "element": "fire",
+                            "children": [
+                              {
+                                "slug": "golden-eclipse",
+                                "type": "sword-and-shield",
+                                "name": "Golden Eclipse",
+                                "rarity": 10,
+                                "element": "fire"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "slug": "twin-flames",
+                    "type": "dual-blades",
+                    "name": "Twin Flames",
+                    "rarity": 4,
+                    "element": "fire",
+                    "children": [
+
+                    ]
+                  },
+                  {
+                    "slug": "flame-syphos",
+                    "type": "sword-and-shield",
+                    "name": "Flame Syphos",
+                    "rarity": 5,
+                    "element": "fire",
+                    "children": [
+                      {
+                        "slug": "black-doom-flame",
+                        "type": "sword-and-shield",
+                        "name": "Black Doom Flame",
+                        "rarity": 7,
+                        "element": "fire",
+                        "children": [
+                          {
+                            "slug": "red-divine-flame",
+                            "type": "sword-and-shield",
+                            "name": "Red Divine Flame",
+                            "rarity": 10,
+                            "element": "fire"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slug": "bone-scythe",
+            "type": "dual-blades",
+            "name": "Bone Scythe",
+            "rarity": 1,
+            "children": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "hunter-s-dagger",
     "type": "sword-and-shield",
     "name": "Hunter's Dagger",
@@ -422,364 +780,6 @@
     ]
   },
   {
-    "slug": "bone-kris",
-    "type": "sword-and-shield",
-    "name": "Bone Kris",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "bone-kris-plus",
-        "type": "sword-and-shield",
-        "name": "Bone Kris+",
-        "rarity": 1,
-        "children": [
-          {
-            "slug": "chief-kris",
-            "type": "sword-and-shield",
-            "name": "Chief Kris",
-            "rarity": 1,
-            "children": [
-              {
-                "slug": "crimson-club",
-                "type": "sword-and-shield",
-                "name": "Crimson Club",
-                "rarity": 2,
-                "children": [
-                  {
-                    "slug": "monoblos-club",
-                    "type": "sword-and-shield",
-                    "name": "Monoblos Club",
-                    "rarity": 3,
-                    "children": [
-                      {
-                        "slug": "studded-club",
-                        "type": "sword-and-shield",
-                        "name": "Studded Club",
-                        "rarity": 4,
-                        "children": [
-                          {
-                            "slug": "spiked-bat",
-                            "type": "sword-and-shield",
-                            "name": "Spiked Bat",
-                            "rarity": 5,
-                            "children": [
-                              {
-                                "slug": "cursed-spirit",
-                                "type": "sword-and-shield",
-                                "name": "Cursed Spirit",
-                                "rarity": 7,
-                                "children": [
-                                  {
-                                    "slug": "black-curse",
-                                    "type": "sword-and-shield",
-                                    "name": "Black Curse",
-                                    "rarity": 10
-                                  }
-                                ]
-                              }
-                            ]
-                          },
-                          {
-                            "slug": "dual-diablo",
-                            "type": "dual-blades",
-                            "name": "Dual Diablo",
-                            "rarity": 5,
-                            "children": [
-
-                            ]
-                          },
-                          {
-                            "slug": "osteon-pick",
-                            "type": "sword-and-shield",
-                            "name": "Osteon Pick",
-                            "rarity": 6,
-                            "children": [
-                              {
-                                "slug": "osteon-pick-plus",
-                                "type": "sword-and-shield",
-                                "name": "Osteon Pick+",
-                                "rarity": 6,
-                                "children": [
-                                  {
-                                    "slug": "melting-wail",
-                                    "type": "dual-blades",
-                                    "name": "Melting Wail",
-                                    "rarity": 6,
-                                    "element": "fire",
-                                    "children": [
-
-                                    ]
-                                  },
-                                  {
-                                    "slug": "rajang-club",
-                                    "type": "sword-and-shield",
-                                    "name": "Rajang Club",
-                                    "rarity": 7,
-                                    "element": "thunder",
-                                    "children": [
-                                      {
-                                        "slug": "taboo-rajang-club",
-                                        "type": "sword-and-shield",
-                                        "name": "Taboo Rajang Club",
-                                        "rarity": 8,
-                                        "element": "thunder",
-                                        "children": [
-                                          {
-                                            "slug": "forbiddenrajangclub",
-                                            "type": "sword-and-shield",
-                                            "name": "ForbiddenRajangClub",
-                                            "rarity": 10,
-                                            "element": "thunder"
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "slug": "binding-blade",
-                                    "type": "sword-and-shield",
-                                    "name": "Binding Blade",
-                                    "rarity": 9,
-                                    "children": [
-                                      {
-                                        "slug": "binding-blade-plus",
-                                        "type": "sword-and-shield",
-                                        "name": "Binding Blade+",
-                                        "rarity": 9,
-                                        "children": [
-                                          {
-                                            "slug": "great-kris",
-                                            "type": "sword-and-shield",
-                                            "name": "Great Kris",
-                                            "rarity": 10
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "slug": "feather-knife",
-                                "type": "sword-and-shield",
-                                "name": "Feather Knife",
-                                "rarity": 6,
-                                "element": "sleep",
-                                "children": [
-                                  {
-                                    "slug": "feather-sword",
-                                    "type": "sword-and-shield",
-                                    "name": "Feather Sword",
-                                    "rarity": 9,
-                                    "element": "sleep",
-                                    "children": [
-                                      {
-                                        "slug": "hi-feather-sword",
-                                        "type": "sword-and-shield",
-                                        "name": "Hi Feather Sword",
-                                        "rarity": 9,
-                                        "element": "sleep"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "slug": "kirin-bolt",
-                        "type": "sword-and-shield",
-                        "name": "Kirin Bolt",
-                        "rarity": 5,
-                        "element": "thunder",
-                        "children": [
-                          {
-                            "slug": "kirin-bolt-plus",
-                            "type": "sword-and-shield",
-                            "name": "Kirin Bolt+",
-                            "rarity": 5,
-                            "element": "thunder",
-                            "children": [
-                              {
-                                "slug": "kirin-bolt-ultimus",
-                                "type": "sword-and-shield",
-                                "name": "Kirin Bolt Ultimus",
-                                "rarity": 7,
-                                "element": "thunder",
-                                "children": [
-                                  {
-                                    "slug": "thor-s-dagger",
-                                    "type": "sword-and-shield",
-                                    "name": "Thor's Dagger",
-                                    "rarity": 8,
-                                    "element": "thunder"
-                                  }
-                                ]
-                              },
-                              {
-                                "slug": "kirin-bolts",
-                                "type": "dual-blades",
-                                "name": "Kirin Bolts",
-                                "rarity": 5,
-                                "element": "thunder",
-                                "children": [
-
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "slug": "weary-finsword",
-                "type": "sword-and-shield",
-                "name": "Weary Finsword",
-                "rarity": 3,
-                "element": "sleep",
-                "children": [
-                  {
-                    "slug": "sandman-finsword",
-                    "type": "sword-and-shield",
-                    "name": "Sandman Finsword",
-                    "rarity": 4,
-                    "element": "sleep",
-                    "children": [
-                      {
-                        "slug": "sandman-spike",
-                        "type": "sword-and-shield",
-                        "name": "Sandman Spike",
-                        "rarity": 5,
-                        "element": "sleep",
-                        "children": [
-                          {
-                            "slug": "high-sandman-spike",
-                            "type": "sword-and-shield",
-                            "name": "High Sandman Spike",
-                            "rarity": 7,
-                            "element": "sleep"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "slug": "red-saber",
-                "type": "sword-and-shield",
-                "name": "Red Saber",
-                "rarity": 3,
-                "element": "fire",
-                "children": [
-                  {
-                    "slug": "djinn",
-                    "type": "sword-and-shield",
-                    "name": "Djinn",
-                    "rarity": 4,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "blazing-falchion",
-                        "type": "sword-and-shield",
-                        "name": "Blazing Falchion",
-                        "rarity": 5,
-                        "element": "fire"
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "corona",
-                    "type": "sword-and-shield",
-                    "name": "Corona",
-                    "rarity": 5,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "golden-falchion",
-                        "type": "sword-and-shield",
-                        "name": "Golden Falchion",
-                        "rarity": 8,
-                        "element": "fire",
-                        "children": [
-                          {
-                            "slug": "golden-falchion-plus",
-                            "type": "sword-and-shield",
-                            "name": "Golden Falchion+",
-                            "rarity": 9,
-                            "element": "fire",
-                            "children": [
-                              {
-                                "slug": "golden-eclipse",
-                                "type": "sword-and-shield",
-                                "name": "Golden Eclipse",
-                                "rarity": 10,
-                                "element": "fire"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "twin-flames",
-                    "type": "dual-blades",
-                    "name": "Twin Flames",
-                    "rarity": 4,
-                    "element": "fire",
-                    "children": [
-
-                    ]
-                  },
-                  {
-                    "slug": "flame-syphos",
-                    "type": "sword-and-shield",
-                    "name": "Flame Syphos",
-                    "rarity": 5,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "black-doom-flame",
-                        "type": "sword-and-shield",
-                        "name": "Black Doom Flame",
-                        "rarity": 7,
-                        "element": "fire",
-                        "children": [
-                          {
-                            "slug": "red-divine-flame",
-                            "type": "sword-and-shield",
-                            "name": "Red Divine Flame",
-                            "rarity": 10,
-                            "element": "fire"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "slug": "bone-scythe",
-            "type": "dual-blades",
-            "name": "Bone Scythe",
-            "rarity": 1,
-            "children": [
-
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "rusted-sword",
     "type": "sword-and-shield",
     "name": "Rusted Sword",
@@ -913,6 +913,53 @@
     ]
   },
   {
+    "slug": "holy-saber",
+    "type": "dual-blades",
+    "name": "Holy Saber",
+    "rarity": 4,
+    "element": "water",
+    "children": [
+      {
+        "slug": "ninja-sword",
+        "type": "sword-and-shield",
+        "name": "Ninja Sword",
+        "rarity": 5,
+        "children": [
+          {
+            "slug": "hi-ninja-sword",
+            "type": "sword-and-shield",
+            "name": "Hi Ninja Sword",
+            "rarity": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "black-belt-sword",
+    "type": "sword-and-shield",
+    "name": "Black Belt Sword",
+    "rarity": 4,
+    "children": [
+      {
+        "slug": "expert-sword",
+        "type": "sword-and-shield",
+        "name": "Expert Sword",
+        "rarity": 8,
+        "element": "paralysis",
+        "children": [
+          {
+            "slug": "warrior-s-sword",
+            "type": "sword-and-shield",
+            "name": "Warrior's Sword",
+            "rarity": 10,
+            "element": "paralysis"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "hero-s-blade-replica",
     "type": "sword-and-shield",
     "name": "Hero's Blade Replica",
@@ -944,140 +991,6 @@
         "name": "Eternal Replica",
         "rarity": 5,
         "element": "dragon"
-      }
-    ]
-  },
-  {
-    "slug": "black-belt-sword",
-    "type": "sword-and-shield",
-    "name": "Black Belt Sword",
-    "rarity": 4,
-    "children": [
-      {
-        "slug": "expert-sword",
-        "type": "sword-and-shield",
-        "name": "Expert Sword",
-        "rarity": 8,
-        "element": "paralysis",
-        "children": [
-          {
-            "slug": "warrior-s-sword",
-            "type": "sword-and-shield",
-            "name": "Warrior's Sword",
-            "rarity": 10,
-            "element": "paralysis"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "holy-saber",
-    "type": "dual-blades",
-    "name": "Holy Saber",
-    "rarity": 4,
-    "element": "water",
-    "children": [
-      {
-        "slug": "ninja-sword",
-        "type": "sword-and-shield",
-        "name": "Ninja Sword",
-        "rarity": 5,
-        "children": [
-          {
-            "slug": "hi-ninja-sword",
-            "type": "sword-and-shield",
-            "name": "Hi Ninja Sword",
-            "rarity": 8
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "black-sword",
-    "type": "sword-and-shield",
-    "name": "Black Sword",
-    "rarity": 5,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "double-dragon",
-        "type": "dual-blades",
-        "name": "Double Dragon",
-        "rarity": 5,
-        "element": "dragon",
-        "children": [
-
-        ]
-      },
-      {
-        "slug": "black-dragon-sword",
-        "type": "sword-and-shield",
-        "name": "Black Dragon Sword",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "true-blk-dragon-swd",
-            "type": "sword-and-shield",
-            "name": "True Blk Dragon Swd",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      },
-      {
-        "slug": "black-ruiner-sword",
-        "type": "sword-and-shield",
-        "name": "Black Ruiner Sword",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "true-blk-ruiner-swd",
-            "type": "sword-and-shield",
-            "name": "True Blk Ruiner Swd",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "rex-talon",
-    "type": "sword-and-shield",
-    "name": "Rex Talon",
-    "rarity": 5,
-    "children": [
-      {
-        "slug": "tigrex-sword",
-        "type": "sword-and-shield",
-        "name": "Tigrex Sword",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "tigrex-sword-plus",
-            "type": "sword-and-shield",
-            "name": "Tigrex Sword+",
-            "rarity": 10
-          }
-        ]
-      },
-      {
-        "slug": "hidden-edge",
-        "type": "sword-and-shield",
-        "name": "Hidden Edge",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "midnight-blades",
-            "type": "sword-and-shield",
-            "name": "Midnight Blades",
-            "rarity": 10
-          }
-        ]
       }
     ]
   },
@@ -1129,6 +1042,42 @@
     ]
   },
   {
+    "slug": "rex-talon",
+    "type": "sword-and-shield",
+    "name": "Rex Talon",
+    "rarity": 5,
+    "children": [
+      {
+        "slug": "tigrex-sword",
+        "type": "sword-and-shield",
+        "name": "Tigrex Sword",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "tigrex-sword-plus",
+            "type": "sword-and-shield",
+            "name": "Tigrex Sword+",
+            "rarity": 10
+          }
+        ]
+      },
+      {
+        "slug": "hidden-edge",
+        "type": "sword-and-shield",
+        "name": "Hidden Edge",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "midnight-blades",
+            "type": "sword-and-shield",
+            "name": "Midnight Blades",
+            "rarity": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "flaming-pair",
     "type": "dual-blades",
     "name": "Flaming Pair",
@@ -1157,6 +1106,57 @@
                 "element": "dragon"
               }
             ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "black-sword",
+    "type": "sword-and-shield",
+    "name": "Black Sword",
+    "rarity": 5,
+    "element": "dragon",
+    "children": [
+      {
+        "slug": "double-dragon",
+        "type": "dual-blades",
+        "name": "Double Dragon",
+        "rarity": 5,
+        "element": "dragon",
+        "children": [
+
+        ]
+      },
+      {
+        "slug": "black-dragon-sword",
+        "type": "sword-and-shield",
+        "name": "Black Dragon Sword",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "true-blk-dragon-swd",
+            "type": "sword-and-shield",
+            "name": "True Blk Dragon Swd",
+            "rarity": 10,
+            "element": "dragon"
+          }
+        ]
+      },
+      {
+        "slug": "black-ruiner-sword",
+        "type": "sword-and-shield",
+        "name": "Black Ruiner Sword",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "true-blk-ruiner-swd",
+            "type": "sword-and-shield",
+            "name": "True Blk Ruiner Swd",
+            "rarity": 10,
+            "element": "dragon"
           }
         ]
       }

@@ -174,86 +174,6 @@
     ]
   },
   {
-    "slug": "hunter-s-dagger",
-    "type": "sword-and-shield",
-    "name": "Hunter's Dagger",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "giaprey-claws",
-        "type": "dual-blades",
-        "name": "Giaprey Claws",
-        "rarity": 2,
-        "element": "ice",
-        "children": [
-          {
-            "slug": "giaprey-claws-plus",
-            "type": "dual-blades",
-            "name": "Giaprey Claws+",
-            "rarity": 2,
-            "element": "ice",
-            "children": [
-              {
-                "slug": "white-death",
-                "type": "dual-blades",
-                "name": "White Death",
-                "rarity": 6,
-                "element": "ice"
-              },
-              {
-                "slug": "velociprey-claws",
-                "type": "dual-blades",
-                "name": "Velociprey Claws",
-                "rarity": 3,
-                "children": [
-                  {
-                    "slug": "velociprey-claws-plus",
-                    "type": "dual-blades",
-                    "name": "Velociprey Claws+",
-                    "rarity": 4,
-                    "children": [
-                      {
-                        "slug": "hi-velociprey-claws",
-                        "type": "dual-blades",
-                        "name": "Hi Velociprey Claws",
-                        "rarity": 6
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "slug": "snow-venom",
-                "type": "dual-blades",
-                "name": "Snow Venom",
-                "rarity": 4,
-                "element": "ice",
-                "children": [
-                  {
-                    "slug": "snow-venom-plus",
-                    "type": "dual-blades",
-                    "name": "Snow Venom+",
-                    "rarity": 6,
-                    "element": "ice",
-                    "children": [
-                      {
-                        "slug": "glacial-medusa",
-                        "type": "dual-blades",
-                        "name": "Glacial Medusa",
-                        "rarity": 9,
-                        "element": "ice"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "hunter-s-dagger-plus",
     "type": "sword-and-shield",
     "name": "Hunter's Dagger+",
@@ -392,6 +312,86 @@
                     "type": "dual-blades",
                     "name": "Dual Tomahawk+",
                     "rarity": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "hunter-s-dagger",
+    "type": "sword-and-shield",
+    "name": "Hunter's Dagger",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "giaprey-claws",
+        "type": "dual-blades",
+        "name": "Giaprey Claws",
+        "rarity": 2,
+        "element": "ice",
+        "children": [
+          {
+            "slug": "giaprey-claws-plus",
+            "type": "dual-blades",
+            "name": "Giaprey Claws+",
+            "rarity": 2,
+            "element": "ice",
+            "children": [
+              {
+                "slug": "white-death",
+                "type": "dual-blades",
+                "name": "White Death",
+                "rarity": 6,
+                "element": "ice"
+              },
+              {
+                "slug": "velociprey-claws",
+                "type": "dual-blades",
+                "name": "Velociprey Claws",
+                "rarity": 3,
+                "children": [
+                  {
+                    "slug": "velociprey-claws-plus",
+                    "type": "dual-blades",
+                    "name": "Velociprey Claws+",
+                    "rarity": 4,
+                    "children": [
+                      {
+                        "slug": "hi-velociprey-claws",
+                        "type": "dual-blades",
+                        "name": "Hi Velociprey Claws",
+                        "rarity": 6
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "slug": "snow-venom",
+                "type": "dual-blades",
+                "name": "Snow Venom",
+                "rarity": 4,
+                "element": "ice",
+                "children": [
+                  {
+                    "slug": "snow-venom-plus",
+                    "type": "dual-blades",
+                    "name": "Snow Venom+",
+                    "rarity": 6,
+                    "element": "ice",
+                    "children": [
+                      {
+                        "slug": "glacial-medusa",
+                        "type": "dual-blades",
+                        "name": "Glacial Medusa",
+                        "rarity": 9,
+                        "element": "ice"
+                      }
+                    ]
                   }
                 ]
               }
@@ -665,6 +665,74 @@
     ]
   },
   {
+    "slug": "hero-s-blade-replica",
+    "type": "sword-and-shield",
+    "name": "Hero's Blade Replica",
+    "rarity": 4,
+    "children": [
+      {
+        "slug": "legendary-replica",
+        "type": "dual-blades",
+        "name": "Legendary Replica",
+        "rarity": 5
+      }
+    ]
+  },
+  {
+    "slug": "felyne-and-melynx",
+    "type": "dual-blades",
+    "name": "Felyne and Melynx",
+    "rarity": 4,
+    "element": "paralysis",
+    "children": [
+      {
+        "slug": "felyne-and-melynx-plus",
+        "type": "dual-blades",
+        "name": "Felyne and Melynx+",
+        "rarity": 9,
+        "element": "paralysis"
+      }
+    ]
+  },
+  {
+    "slug": "studded-club",
+    "type": "sword-and-shield",
+    "name": "Studded Club",
+    "rarity": 4,
+    "children": [
+      {
+        "slug": "dual-diablo",
+        "type": "dual-blades",
+        "name": "Dual Diablo",
+        "rarity": 5,
+        "children": [
+          {
+            "slug": "dual-diablo-plus",
+            "type": "dual-blades",
+            "name": "Dual Diablo+",
+            "rarity": 7,
+            "children": [
+              {
+                "slug": "blos-doppelganger",
+                "type": "dual-blades",
+                "name": "Blos Doppelganger",
+                "rarity": 9,
+                "children": [
+                  {
+                    "slug": "grand-blos",
+                    "type": "dual-blades",
+                    "name": "Grand Blos",
+                    "rarity": 10
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "dummy-dual-tessen-gavas",
     "type": "dual-blades",
     "name": "dummy (Dual Tessen \"Gavas\")",
@@ -688,46 +756,30 @@
     ]
   },
   {
-    "slug": "felyne-and-melynx",
-    "type": "dual-blades",
-    "name": "Felyne and Melynx",
-    "rarity": 4,
-    "element": "paralysis",
-    "children": [
-      {
-        "slug": "felyne-and-melynx-plus",
-        "type": "dual-blades",
-        "name": "Felyne and Melynx+",
-        "rarity": 9,
-        "element": "paralysis"
-      }
-    ]
-  },
-  {
-    "slug": "upper-battleaxe",
+    "slug": "deadly-poison",
     "type": "sword-and-shield",
-    "name": "Upper Battleaxe",
+    "name": "Deadly Poison",
     "rarity": 4,
     "element": "poison",
     "children": [
       {
-        "slug": "dual-battleaxe",
+        "slug": "rouge-flames",
         "type": "dual-blades",
-        "name": "Dual Battleaxe",
-        "rarity": 6,
+        "name": "Rouge Flames",
+        "rarity": 5,
         "element": "poison",
         "children": [
           {
-            "slug": "dual-battleaxe-plus",
+            "slug": "dual-chameleos",
             "type": "dual-blades",
-            "name": "Dual Battleaxe+",
-            "rarity": 9,
+            "name": "Dual Chameleos",
+            "rarity": 8,
             "element": "poison",
             "children": [
               {
-                "slug": "final-battleaxe",
+                "slug": "chameleosdualblades",
                 "type": "dual-blades",
-                "name": "Final Battleaxe",
+                "name": "ChameleosDualBlades",
                 "rarity": 10,
                 "element": "poison"
               }
@@ -772,30 +824,30 @@
     ]
   },
   {
-    "slug": "deadly-poison",
+    "slug": "upper-battleaxe",
     "type": "sword-and-shield",
-    "name": "Deadly Poison",
+    "name": "Upper Battleaxe",
     "rarity": 4,
     "element": "poison",
     "children": [
       {
-        "slug": "rouge-flames",
+        "slug": "dual-battleaxe",
         "type": "dual-blades",
-        "name": "Rouge Flames",
-        "rarity": 5,
+        "name": "Dual Battleaxe",
+        "rarity": 6,
         "element": "poison",
         "children": [
           {
-            "slug": "dual-chameleos",
+            "slug": "dual-battleaxe-plus",
             "type": "dual-blades",
-            "name": "Dual Chameleos",
-            "rarity": 8,
+            "name": "Dual Battleaxe+",
+            "rarity": 9,
             "element": "poison",
             "children": [
               {
-                "slug": "chameleosdualblades",
+                "slug": "final-battleaxe",
                 "type": "dual-blades",
-                "name": "ChameleosDualBlades",
+                "name": "Final Battleaxe",
                 "rarity": 10,
                 "element": "poison"
               }
@@ -806,54 +858,38 @@
     ]
   },
   {
-    "slug": "studded-club",
-    "type": "sword-and-shield",
-    "name": "Studded Club",
-    "rarity": 4,
+    "slug": "rex-slicers",
+    "type": "dual-blades",
+    "name": "Rex Slicers",
+    "rarity": 5,
     "children": [
       {
-        "slug": "dual-diablo",
+        "slug": "tigrex-claws",
         "type": "dual-blades",
-        "name": "Dual Diablo",
-        "rarity": 5,
+        "name": "Tigrex Claws",
+        "rarity": 7,
         "children": [
           {
-            "slug": "dual-diablo-plus",
+            "slug": "tigrex-claws-plus",
             "type": "dual-blades",
-            "name": "Dual Diablo+",
-            "rarity": 7,
-            "children": [
-              {
-                "slug": "blos-doppelganger",
-                "type": "dual-blades",
-                "name": "Blos Doppelganger",
-                "rarity": 9,
-                "children": [
-                  {
-                    "slug": "grand-blos",
-                    "type": "dual-blades",
-                    "name": "Grand Blos",
-                    "rarity": 10
-                  }
-                ]
-              }
-            ]
+            "name": "Tigrex Claws+",
+            "rarity": 10
           }
         ]
-      }
-    ]
-  },
-  {
-    "slug": "hero-s-blade-replica",
-    "type": "sword-and-shield",
-    "name": "Hero's Blade Replica",
-    "rarity": 4,
-    "children": [
+      },
       {
-        "slug": "legendary-replica",
+        "slug": "hidden-ones",
         "type": "dual-blades",
-        "name": "Legendary Replica",
-        "rarity": 5
+        "name": "Hidden Ones",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "ebony-wings",
+            "type": "dual-blades",
+            "name": "Ebony Wings",
+            "rarity": 10
+          }
+        ]
       }
     ]
   },
@@ -938,42 +974,6 @@
         "element": "dragon",
         "children": [
 
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "rex-slicers",
-    "type": "dual-blades",
-    "name": "Rex Slicers",
-    "rarity": 5,
-    "children": [
-      {
-        "slug": "tigrex-claws",
-        "type": "dual-blades",
-        "name": "Tigrex Claws",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "tigrex-claws-plus",
-            "type": "dual-blades",
-            "name": "Tigrex Claws+",
-            "rarity": 10
-          }
-        ]
-      },
-      {
-        "slug": "hidden-ones",
-        "type": "dual-blades",
-        "name": "Hidden Ones",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "ebony-wings",
-            "type": "dual-blades",
-            "name": "Ebony Wings",
-            "rarity": 10
-          }
         ]
       }
     ]
@@ -1148,6 +1148,39 @@
     ]
   },
   {
+    "slug": "osteon-pick-plus",
+    "type": "sword-and-shield",
+    "name": "Osteon Pick+",
+    "rarity": 6,
+    "children": [
+      {
+        "slug": "melting-wail",
+        "type": "dual-blades",
+        "name": "Melting Wail",
+        "rarity": 6,
+        "element": "fire",
+        "children": [
+          {
+            "slug": "melting-wail-plus",
+            "type": "dual-blades",
+            "name": "Melting Wail+",
+            "rarity": 7,
+            "element": "fire",
+            "children": [
+              {
+                "slug": "melting-blazer",
+                "type": "dual-blades",
+                "name": "Melting Blazer",
+                "rarity": 10,
+                "element": "fire"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "odyssey",
     "type": "sword-and-shield",
     "name": "Odyssey",
@@ -1228,39 +1261,6 @@
                     "element": "thunder"
                   }
                 ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "osteon-pick-plus",
-    "type": "sword-and-shield",
-    "name": "Osteon Pick+",
-    "rarity": 6,
-    "children": [
-      {
-        "slug": "melting-wail",
-        "type": "dual-blades",
-        "name": "Melting Wail",
-        "rarity": 6,
-        "element": "fire",
-        "children": [
-          {
-            "slug": "melting-wail-plus",
-            "type": "dual-blades",
-            "name": "Melting Wail+",
-            "rarity": 7,
-            "element": "fire",
-            "children": [
-              {
-                "slug": "melting-blazer",
-                "type": "dual-blades",
-                "name": "Melting Blazer",
-                "rarity": 10,
-                "element": "fire"
               }
             ]
           }
