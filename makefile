@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile
 .PHONY: serve
 
-serve: clean generate-pages
+serve: clean generate-pages generate-maps
 	zola serve
 
 generate-pages: clean
@@ -16,7 +16,7 @@ debug: generate-pages
 clean:
 	find content -name '*.md' ! \( -name '_index.md' -o -name 'smithy.md' -o -name 'calculator.md' \) -exec rm {} +
 
-build: clean generate-pages
+build: clean generate-pages generate-maps
 	TERA_PRODUCTION=true zola build
 
 deploy: build

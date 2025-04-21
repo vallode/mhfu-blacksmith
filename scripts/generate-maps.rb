@@ -76,12 +76,13 @@ end
 
 WEAPON_PAIRS.each do |array|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_files = Dir.glob("content/**/{#{array.join(",")}}-{crafting,source}.json")
-  file = File.open(weapon_files[0])
+  weapon_file = Dir.glob("content/**/#{array[0]}-crafting.json")
+  sibling_weapon_file = Dir.glob("content/**/#{array[1]}-crafting.json")
+  file = File.open(weapon_file[0])
   weapons = JSON.load(file)["weapons"]
 
-  if weapon_files.length > 1
-    sibling_file = File.open(weapon_files[1])
+  if sibling_weapon_file.length > 0
+    sibling_file = File.open(sibling_weapon_file[0])
     sibling_weapons = JSON.load(sibling_file)["weapons"]
   end
 

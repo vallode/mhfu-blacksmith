@@ -1,6 +1,62 @@
 {
   "map": [
   {
+    "slug": "rusted-hammer",
+    "type": "hammer",
+    "name": "Rusted Hammer",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "tarnished-hammer",
+        "type": "hammer",
+        "name": "Tarnished Hammer",
+        "rarity": 1,
+        "children": [
+          {
+            "slug": "breath-core-hammer",
+            "type": "hammer",
+            "name": "Breath Core Hammer",
+            "rarity": 5
+          },
+          {
+            "slug": "jadite-mace",
+            "type": "hammer",
+            "name": "Jadite Mace",
+            "rarity": 5,
+            "element": "fire",
+            "children": [
+              {
+                "slug": "jade-mace",
+                "type": "hammer",
+                "name": "Jade Mace",
+                "rarity": 5,
+                "element": "fire",
+                "children": [
+                  {
+                    "slug": "lunastra-s-crown",
+                    "type": "hammer",
+                    "name": "Lunastra's Crown",
+                    "rarity": 8,
+                    "element": "fire",
+                    "children": [
+                      {
+                        "slug": "luna-s-skirt",
+                        "type": "hammer",
+                        "name": "Luna's Skirt",
+                        "rarity": 10,
+                        "element": "fire"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "war-hammer",
     "type": "hammer",
     "name": "War Hammer",
@@ -907,62 +963,6 @@
     ]
   },
   {
-    "slug": "rusted-hammer",
-    "type": "hammer",
-    "name": "Rusted Hammer",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "tarnished-hammer",
-        "type": "hammer",
-        "name": "Tarnished Hammer",
-        "rarity": 1,
-        "children": [
-          {
-            "slug": "breath-core-hammer",
-            "type": "hammer",
-            "name": "Breath Core Hammer",
-            "rarity": 5
-          },
-          {
-            "slug": "jadite-mace",
-            "type": "hammer",
-            "name": "Jadite Mace",
-            "rarity": 5,
-            "element": "fire",
-            "children": [
-              {
-                "slug": "jade-mace",
-                "type": "hammer",
-                "name": "Jade Mace",
-                "rarity": 5,
-                "element": "fire",
-                "children": [
-                  {
-                    "slug": "lunastra-s-crown",
-                    "type": "hammer",
-                    "name": "Lunastra's Crown",
-                    "rarity": 8,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "luna-s-skirt",
-                        "type": "hammer",
-                        "name": "Luna's Skirt",
-                        "rarity": 10,
-                        "element": "fire"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "white-cat-stamp",
     "type": "hammer",
     "name": "White Cat Stamp",
@@ -1056,31 +1056,6 @@
     ]
   },
   {
-    "slug": "dummy-polytan",
-    "type": "hammer",
-    "name": "dummy (Polytan)",
-    "rarity": 4,
-    "element": "thunder",
-    "children": [
-      {
-        "slug": "dummy-polytan-g",
-        "type": "hammer",
-        "name": "dummy (Polytan G)",
-        "rarity": 6,
-        "element": "thunder",
-        "children": [
-          {
-            "slug": "dummy-true-polytan-g",
-            "type": "hammer",
-            "name": "dummy (True Polytan G)",
-            "rarity": 9,
-            "element": "thunder"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "dummy-amezari-hammer",
     "type": "hammer",
     "name": "dummy (Amezari Hammer)",
@@ -1134,6 +1109,67 @@
                 "element": "thunder"
               }
             ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dummy-polytan",
+    "type": "hammer",
+    "name": "dummy (Polytan)",
+    "rarity": 4,
+    "element": "thunder",
+    "children": [
+      {
+        "slug": "dummy-polytan-g",
+        "type": "hammer",
+        "name": "dummy (Polytan G)",
+        "rarity": 6,
+        "element": "thunder",
+        "children": [
+          {
+            "slug": "dummy-true-polytan-g",
+            "type": "hammer",
+            "name": "dummy (True Polytan G)",
+            "rarity": 9,
+            "element": "thunder"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "striped-striker",
+    "type": "hammer",
+    "name": "Striped Striker",
+    "rarity": 5,
+    "children": [
+      {
+        "slug": "tigrex-hammer",
+        "type": "hammer",
+        "name": "Tigrex Hammer",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "tigrex-hammer-plus",
+            "type": "hammer",
+            "name": "Tigrex Hammer+",
+            "rarity": 10
+          }
+        ]
+      },
+      {
+        "slug": "hidden-breaker",
+        "type": "hammer",
+        "name": "Hidden Breaker",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "deep-darkhammer",
+            "type": "hammer",
+            "name": "Deep Darkhammer",
+            "rarity": 10
           }
         ]
       }
@@ -1209,42 +1245,6 @@
                 "element": "dragon"
               }
             ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "striped-striker",
-    "type": "hammer",
-    "name": "Striped Striker",
-    "rarity": 5,
-    "children": [
-      {
-        "slug": "tigrex-hammer",
-        "type": "hammer",
-        "name": "Tigrex Hammer",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "tigrex-hammer-plus",
-            "type": "hammer",
-            "name": "Tigrex Hammer+",
-            "rarity": 10
-          }
-        ]
-      },
-      {
-        "slug": "hidden-breaker",
-        "type": "hammer",
-        "name": "Hidden Breaker",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "deep-darkhammer",
-            "type": "hammer",
-            "name": "Deep Darkhammer",
-            "rarity": 10
           }
         ]
       }

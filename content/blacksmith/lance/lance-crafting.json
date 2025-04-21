@@ -2230,7 +2230,7 @@
       ],
       "improve_to": [
         "Lullaby Spear",
-        "Paralysisr"
+        "Paralyzer"
       ],
       "sharpness_plus": [
         "3",
@@ -2376,7 +2376,7 @@
       ]
     },
     {
-      "name": "Paralysisr",
+      "name": "Paralyzer",
       "attack": 276,
       "sharpness": [
         "11",
@@ -2447,7 +2447,7 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": "Paralysisr",
+      "improve_from": "Paralyzer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2500,7 +2500,7 @@
       "type": "lance",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": "Paralysisr",
+      "improve_from": "Paralyzer",
       "create_mats": [
         {
           "name": "Basarios Wing",
@@ -2983,7 +2983,7 @@
       "type": "lance",
       "create_cost": 20000,
       "improve_cost": 20000,
-      "improve_from": "Paralysisr",
+      "improve_from": "Paralyzer",
       "create_mats": [
         {
           "name": "Kirin Horn",
