@@ -5962,16 +5962,16 @@
       "name": "Midnight Bow",
       "attack": 324,
       "affinity": "50%",
-      "slots": "O--",
+      "slots": "---",
       "bonus": null,
       "rarity": 10,
       "coatings": [
+        "power",
+        "poison",
         "closerng",
         "paralysis",
-        "poison",
-        "sleep",
-        "power",
-        "paint"
+        "paint",
+        "sleep"
       ],
       "shots": [
         {
@@ -5984,10 +5984,6 @@
         },
         {
           "name": "Prce",
-          "level": "5"
-        },
-        {
-          "name": "Rapd",
           "level": "5"
         }
       ],
