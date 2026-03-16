@@ -32,11 +32,6 @@ include_description = false
 include_path = false
 include_content = false
 
-[markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = false
-
 [extra]
 weapon_types = [
   "great-sword",
