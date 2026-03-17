@@ -23,8 +23,6 @@ monster_list.each do |category, list|
   list.each do |monster|
     monster_data = {name: monster, drops: {}}
 
-    p monster
-
     Dir.glob("sources/{monsters,small_monsters}/**/#{slugify(monster)}.txt").each do |path|
       File.open(path) do |file|
 
@@ -39,18 +37,15 @@ monster_list.each do |category, list|
             }
           end
 
-          if line[0].to_i.is_a? Numeric
+          if line[0] =~ /\d/
             line.scan(/^\d.(.*)$/) {|match|
-              p match[0]
-              current_reward = match[0].strip.to_s  
+              current_reward = match[0].strip.to_s
               monster_data[:drops][current_rank][current_reward] = []
             }
           end
 
           if line[0] == "-"
-            p line
             line.scan(/^-(.*)\((.*)\).*$/) {|match|
-              p match
               monster_data[:drops][current_rank][current_reward].push({
                 name: match[0].strip,
                 chance: match[1].strip

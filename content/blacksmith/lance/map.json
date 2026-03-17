@@ -114,9 +114,7 @@
                                         "type": "gunlance",
                                         "name": "Ancient Destroyer",
                                         "rarity": 9,
-                                        "children": [
-
-                                        ]
+                                        "children": []
                                       },
                                       {
                                         "slug": "spark-plug",
@@ -216,9 +214,7 @@
                                 "name": "Feather Gunlance",
                                 "rarity": 6,
                                 "element": "sleep",
-                                "children": [
-
-                                ]
+                                "children": []
                               }
                             ]
                           }
@@ -460,9 +456,7 @@
         "type": "gunlance",
         "name": "Iron Gunlance",
         "rarity": 1,
-        "children": [
-
-        ]
+        "children": []
       },
       {
         "slug": "snow-gunlance",
@@ -470,9 +464,7 @@
         "name": "Snow Gunlance",
         "rarity": 2,
         "element": "ice",
-        "children": [
-
-        ]
+        "children": []
       }
     ]
   },
@@ -549,9 +541,7 @@
                                     "type": "gunlance",
                                     "name": "Heavy Bone Gunlance",
                                     "rarity": 9,
-                                    "children": [
-
-                                    ]
+                                    "children": []
                                   }
                                 ]
                               },
@@ -586,9 +576,7 @@
                                 "name": "Full Voltage",
                                 "rarity": 7,
                                 "element": "thunder",
-                                "children": [
-
-                                ]
+                                "children": []
                               }
                             ]
                           }
@@ -729,9 +717,7 @@
                         "type": "gunlance",
                         "name": "Scissor Gunlance",
                         "rarity": 6,
-                        "children": [
-
-                        ]
+                        "children": []
                       },
                       {
                         "slug": "ceanataur-piercer",
@@ -866,9 +852,7 @@
             "type": "gunlance",
             "name": "Great Bone Gunlance",
             "rarity": 2,
-            "children": [
-
-            ]
+            "children": []
           }
         ]
       },
@@ -1016,22 +1000,6 @@
     ]
   },
   {
-    "slug": "vacuum-striker",
-    "type": "lance",
-    "name": "Vacuum Striker",
-    "rarity": 3,
-    "element": "water",
-    "children": [
-      {
-        "slug": "hyper-vacuum",
-        "type": "lance",
-        "name": "Hyper Vacuum",
-        "rarity": 6,
-        "element": "water"
-      }
-    ]
-  },
-  {
     "slug": "native-spear",
     "type": "lance",
     "name": "Native Spear",
@@ -1044,6 +1012,22 @@
         "name": "Primal Spear",
         "rarity": 6,
         "element": "poison"
+      }
+    ]
+  },
+  {
+    "slug": "vacuum-striker",
+    "type": "lance",
+    "name": "Vacuum Striker",
+    "rarity": 3,
+    "element": "water",
+    "children": [
+      {
+        "slug": "hyper-vacuum",
+        "type": "lance",
+        "name": "Hyper Vacuum",
+        "rarity": 6,
+        "element": "water"
       }
     ]
   },
@@ -1066,6 +1050,47 @@
             "name": "Warrior's Lance",
             "rarity": 10,
             "element": "poison"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "black-lance",
+    "type": "lance",
+    "name": "Black Lance",
+    "rarity": 5,
+    "element": "dragon",
+    "children": [
+      {
+        "slug": "black-dragon-spear",
+        "type": "lance",
+        "name": "Black Dragon Spear",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "true-blk-dragon-spr",
+            "type": "lance",
+            "name": "True Blk Dragon Spr",
+            "rarity": 10,
+            "element": "dragon"
+          }
+        ]
+      },
+      {
+        "slug": "black-ruiner-lance",
+        "type": "lance",
+        "name": "Black Ruiner Lance",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "true-blk-dragon-spr-plus",
+            "type": "lance",
+            "name": "True Blk Dragon Spr+",
+            "rarity": 10,
+            "element": "dragon"
           }
         ]
       }
@@ -1145,47 +1170,6 @@
                 ]
               }
             ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "black-lance",
-    "type": "lance",
-    "name": "Black Lance",
-    "rarity": 5,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "black-dragon-spear",
-        "type": "lance",
-        "name": "Black Dragon Spear",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "true-blk-dragon-spr",
-            "type": "lance",
-            "name": "True Blk Dragon Spr",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      },
-      {
-        "slug": "black-ruiner-lance",
-        "type": "lance",
-        "name": "Black Ruiner Lance",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "true-blk-dragon-spr-plus",
-            "type": "lance",
-            "name": "True Blk Dragon Spr+",
-            "rarity": 10,
-            "element": "dragon"
           }
         ]
       }

@@ -1,6 +1,7 @@
 require 'json'
 require 'find'
 require 'erb'
+require_relative 'lib/slug'
 
 FILE_TEMPLATE = %{{
     "weapons": <%= JSON.pretty_generate(weapon_map) %>
@@ -18,17 +19,6 @@ WEAPON_PAIRS = [
 WEAPON_ABBR = {
   "helmet": "helmet"
 }
-
-def slugify(value)
-  value = value.downcase.strip
-  value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
-  value = value.gsub(/\s\&\s/, " ")
-  value = value.gsub(/[\'\"\(\)]/, "")
-  value = value.gsub(/\.\s/, "-")
-  value = value.gsub(/[\s\,\.\&]{1}/, '-')
-  value = value.gsub("ä", "a").gsub("ö", "o").gsub("ü", "u").gsub("á", "a")
-  value = value.gsub("+", "-plus")
-end
 
 materials = JSON.load(File.open(Dir.glob("test.json")[0]))["materials"]
 

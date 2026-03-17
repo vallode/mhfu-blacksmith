@@ -1,7 +1,7 @@
 require 'json'
 require 'find'
-require 'erb'
 require 'csv'
+require_relative 'lib/slug'
 
 FILE_TEMPLATE = %{<%= JSON.pretty_generate(json_data) %>}.gsub(/^  /, '')
 
@@ -71,8 +71,6 @@ WEAPON_PAIRS.each do |array|
       raise "No data found for #{weapon["name"]} probably a wrong name?"
     end
 
-    p csv_weapon
-    p csv_weapon[10]
     weapon["defence"] = csv_weapon[10]
 
     weapon_map.push(weapon)
