@@ -1,17 +1,31 @@
 {
   "map": [
   {
-    "slug": "comrade-defense-up",
+    "slug": "attack-up",
     "type": "",
-    "name": "Comrade Defense Up",
+    "name": "Attack up",
     "rarity": null,
     "children": [
       {
-        "slug": "catdefensejewel",
+        "slug": "attack-jewel",
         "type": "decoration",
-        "name": "CatDefenseJewel",
+        "name": "Attack Jewel",
         "rarity": 4,
-        "color": "blue"
+        "color": "red"
+      },
+      {
+        "slug": "fierce-jewel",
+        "type": "decoration",
+        "name": "Fierce Jewel",
+        "rarity": 5,
+        "color": "red"
+      },
+      {
+        "slug": "strongest-jewel",
+        "type": "decoration",
+        "name": "Strongest Jewel",
+        "rarity": 5,
+        "color": "red"
       }
     ]
   },
@@ -1862,31 +1876,17 @@
     ]
   },
   {
-    "slug": "attack-up",
+    "slug": "comrade-defense-up",
     "type": "",
-    "name": "Attack up",
+    "name": "Comrade Defense Up",
     "rarity": null,
     "children": [
       {
-        "slug": "attack-jewel",
+        "slug": "catdefensejewel",
         "type": "decoration",
-        "name": "Attack Jewel",
+        "name": "CatDefenseJewel",
         "rarity": 4,
-        "color": "red"
-      },
-      {
-        "slug": "fierce-jewel",
-        "type": "decoration",
-        "name": "Fierce Jewel",
-        "rarity": 5,
-        "color": "red"
-      },
-      {
-        "slug": "strongest-jewel",
-        "type": "decoration",
-        "name": "Strongest Jewel",
-        "rarity": 5,
-        "color": "red"
+        "color": "blue"
       }
     ]
   }

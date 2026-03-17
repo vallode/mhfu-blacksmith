@@ -1,5 +1,6 @@
 require 'json'
 require 'toml'
+require_relative 'lib/slug'
 
 # TODO: Raw damage can be embedded directly into the dataset, no need for this?
 WEAPON_CLASS_MULTIPLIER = {
@@ -24,18 +25,6 @@ def createDescription(value)
   return nil
 end
 
-# TODO: Take inspiration from `parameterize` in rails and clean this up.
-def slugify(value)
-  value = value.downcase.strip
-  value = value.gsub(/(?<!\s)(?!\w)'(?=\w)/, "-")
-  value = value.gsub(/\s\&\s/, " ")
-  value = value.gsub(/[\'\"\(\)]/, "")
-  value = value.gsub(/\.\s/, "-")
-  value = value.gsub(/[\s\,\.]{1}/, '-')
-  value = value.gsub("ä", "a").gsub("ö", "o").gsub("ü", "u").gsub("á", "a")
-  value = value.gsub("+", "-plus")
-end
-
 threads = []
 
 # Iterate over crafting JSON data in all content directories to generate
@@ -57,7 +46,7 @@ Dir.glob("content/{blacksmith,armorsmith,decorations}/**/*-crafting.json").each 
           value["rank"] = "low-rank"
         elsif value["hr"].to_i > 5 and value["hr"].to_i <= 8
           value["rank"] = "high-rank"
-        elsif value["hr"] and value["elder"]
+        elsif value["hr"].to_i > 8 && value["elder"]
           value["rank"] = "g-rank"
         end
 
@@ -66,7 +55,7 @@ Dir.glob("content/{blacksmith,armorsmith,decorations}/**/*-crafting.json").each 
           slug: slugify(value["name"]),
           weight: index,
           description: createDescription(value),
-          extra: value.select {|key, value| ["title", "slug"].none?(key)},
+          extra: value.select {|key, val| ["title", "slug"].none?(key)},
         }
 
         File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")

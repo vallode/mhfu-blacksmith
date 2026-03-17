@@ -1,292 +1,6 @@
 {
   "map": [
   {
-    "slug": "iron-lance",
-    "type": "lance",
-    "name": "Iron Lance",
-    "rarity": 1,
-    "children": [
-      {
-        "slug": "iron-gunlance",
-        "type": "gunlance",
-        "name": "Iron Gunlance",
-        "rarity": 1,
-        "children": [
-          {
-            "slug": "iron-gunlance-plus",
-            "type": "gunlance",
-            "name": "Iron Gunlance+",
-            "rarity": 2,
-            "children": [
-              {
-                "slug": "steel-gunlance",
-                "type": "gunlance",
-                "name": "Steel Gunlance",
-                "rarity": 2,
-                "children": [
-                  {
-                    "slug": "special-ops-gunlance",
-                    "type": "gunlance",
-                    "name": "Special Ops Gunlance",
-                    "rarity": 3,
-                    "children": [
-                      {
-                        "slug": "imperial-gunlance",
-                        "type": "gunlance",
-                        "name": "Imperial Gunlance",
-                        "rarity": 4,
-                        "children": [
-                          {
-                            "slug": "silver-rook",
-                            "type": "gunlance",
-                            "name": "Silver Rook",
-                            "rarity": 7,
-                            "element": "dragon",
-                            "children": [
-                              {
-                                "slug": "gun-chariot",
-                                "type": "gunlance",
-                                "name": "Gun Chariot",
-                                "rarity": 8,
-                                "element": "dragon",
-                                "children": [
-                                  {
-                                    "slug": "gun-chariot-plus",
-                                    "type": "gunlance",
-                                    "name": "Gun Chariot+",
-                                    "rarity": 9,
-                                    "element": "dragon",
-                                    "children": [
-                                      {
-                                        "slug": "world-s-end",
-                                        "type": "gunlance",
-                                        "name": "World's End",
-                                        "rarity": 10,
-                                        "element": "dragon"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "luna-s-howl",
-                    "type": "gunlance",
-                    "name": "Luna's Howl",
-                    "rarity": 5,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "luna-s-roar",
-                        "type": "gunlance",
-                        "name": "Luna's Roar",
-                        "rarity": 5,
-                        "element": "fire",
-                        "children": [
-                          {
-                            "slug": "luna-s-flare",
-                            "type": "gunlance",
-                            "name": "Luna's Flare",
-                            "rarity": 8,
-                            "element": "fire",
-                            "children": [
-                              {
-                                "slug": "luna-s-sun",
-                                "type": "gunlance",
-                                "name": "Luna's Sun",
-                                "rarity": 10,
-                                "element": "fire"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "white-gunlance",
-                    "type": "gunlance",
-                    "name": "White Gunlance",
-                    "rarity": 4,
-                    "children": [
-                      {
-                        "slug": "white-cannon",
-                        "type": "gunlance",
-                        "name": "White Cannon",
-                        "rarity": 5,
-                        "children": [
-                          {
-                            "slug": "black-gunlance",
-                            "type": "gunlance",
-                            "name": "Black Gunlance",
-                            "rarity": 6,
-                            "children": [
-                              {
-                                "slug": "black-gore-cannon",
-                                "type": "gunlance",
-                                "name": "Black Gore Cannon",
-                                "rarity": 7,
-                                "children": [
-                                  {
-                                    "slug": "black-gore-buster",
-                                    "type": "gunlance",
-                                    "name": "Black Gore Buster",
-                                    "rarity": 10
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "slug": "snow-gunlance",
-        "type": "gunlance",
-        "name": "Snow Gunlance",
-        "rarity": 2,
-        "element": "ice",
-        "children": [
-          {
-            "slug": "snow-gunlance-mk-ii",
-            "type": "gunlance",
-            "name": "Snow Gunlance Mk. II",
-            "rarity": 3,
-            "element": "ice",
-            "children": [
-              {
-                "slug": "blizzard-gunlance",
-                "type": "gunlance",
-                "name": "Blizzard Gunlance",
-                "rarity": 6,
-                "element": "ice"
-              },
-              {
-                "slug": "marine-fisher",
-                "type": "gunlance",
-                "name": "Marine Fisher",
-                "rarity": 3,
-                "element": "water",
-                "children": [
-                  {
-                    "slug": "deep-fisher",
-                    "type": "gunlance",
-                    "name": "Deep Fisher",
-                    "rarity": 4,
-                    "element": "water",
-                    "children": [
-                      {
-                        "slug": "deep-ocean",
-                        "type": "gunlance",
-                        "name": "Deep Ocean",
-                        "rarity": 6,
-                        "element": "water",
-                        "children": [
-                          {
-                            "slug": "sea-king-gunlance",
-                            "type": "gunlance",
-                            "name": "Sea King Gunlance",
-                            "rarity": 7,
-                            "element": "water",
-                            "children": [
-                              {
-                                "slug": "sea-god-leviathan",
-                                "type": "gunlance",
-                                "name": "Sea God Leviathan",
-                                "rarity": 9,
-                                "element": "water",
-                                "children": [
-                                  {
-                                    "slug": "sea-abyss",
-                                    "type": "gunlance",
-                                    "name": "Sea Abyss",
-                                    "rarity": 10,
-                                    "element": "water"
-                                  }
-                                ]
-                              },
-                              {
-                                "slug": "volcano-gunlance",
-                                "type": "gunlance",
-                                "name": "Volcano Gunlance",
-                                "rarity": 9,
-                                "element": "fire",
-                                "children": [
-                                  {
-                                    "slug": "lavasioth-gunlance",
-                                    "type": "gunlance",
-                                    "name": "Lavasioth Gunlance",
-                                    "rarity": 10,
-                                    "element": "fire"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "slug": "scissor-gunlance",
-                "type": "gunlance",
-                "name": "Scissor Gunlance",
-                "rarity": 6,
-                "children": [
-                  {
-                    "slug": "scissor-cannon",
-                    "type": "gunlance",
-                    "name": "Scissor Cannon",
-                    "rarity": 7,
-                    "children": [
-                      {
-                        "slug": "violet-cannon",
-                        "type": "gunlance",
-                        "name": "Violet Cannon",
-                        "rarity": 9,
-                        "children": [
-                          {
-                            "slug": "violet-buster",
-                            "type": "gunlance",
-                            "name": "Violet Buster",
-                            "rarity": 9
-                          }
-                        ]
-                      },
-                      {
-                        "slug": "shell-claw-lance",
-                        "type": "lance",
-                        "name": "Shell Claw Lance",
-                        "rarity": 9,
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "bone-gunlance",
     "type": "gunlance",
     "name": "Bone Gunlance",
@@ -567,6 +281,290 @@
     ]
   },
   {
+    "slug": "iron-lance",
+    "type": "lance",
+    "name": "Iron Lance",
+    "rarity": 1,
+    "children": [
+      {
+        "slug": "iron-gunlance",
+        "type": "gunlance",
+        "name": "Iron Gunlance",
+        "rarity": 1,
+        "children": [
+          {
+            "slug": "iron-gunlance-plus",
+            "type": "gunlance",
+            "name": "Iron Gunlance+",
+            "rarity": 2,
+            "children": [
+              {
+                "slug": "steel-gunlance",
+                "type": "gunlance",
+                "name": "Steel Gunlance",
+                "rarity": 2,
+                "children": [
+                  {
+                    "slug": "special-ops-gunlance",
+                    "type": "gunlance",
+                    "name": "Special Ops Gunlance",
+                    "rarity": 3,
+                    "children": [
+                      {
+                        "slug": "imperial-gunlance",
+                        "type": "gunlance",
+                        "name": "Imperial Gunlance",
+                        "rarity": 4,
+                        "children": [
+                          {
+                            "slug": "silver-rook",
+                            "type": "gunlance",
+                            "name": "Silver Rook",
+                            "rarity": 7,
+                            "element": "dragon",
+                            "children": [
+                              {
+                                "slug": "gun-chariot",
+                                "type": "gunlance",
+                                "name": "Gun Chariot",
+                                "rarity": 8,
+                                "element": "dragon",
+                                "children": [
+                                  {
+                                    "slug": "gun-chariot-plus",
+                                    "type": "gunlance",
+                                    "name": "Gun Chariot+",
+                                    "rarity": 9,
+                                    "element": "dragon",
+                                    "children": [
+                                      {
+                                        "slug": "world-s-end",
+                                        "type": "gunlance",
+                                        "name": "World's End",
+                                        "rarity": 10,
+                                        "element": "dragon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "slug": "luna-s-howl",
+                    "type": "gunlance",
+                    "name": "Luna's Howl",
+                    "rarity": 5,
+                    "element": "fire",
+                    "children": [
+                      {
+                        "slug": "luna-s-roar",
+                        "type": "gunlance",
+                        "name": "Luna's Roar",
+                        "rarity": 5,
+                        "element": "fire",
+                        "children": [
+                          {
+                            "slug": "luna-s-flare",
+                            "type": "gunlance",
+                            "name": "Luna's Flare",
+                            "rarity": 8,
+                            "element": "fire",
+                            "children": [
+                              {
+                                "slug": "luna-s-sun",
+                                "type": "gunlance",
+                                "name": "Luna's Sun",
+                                "rarity": 10,
+                                "element": "fire"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "slug": "white-gunlance",
+                    "type": "gunlance",
+                    "name": "White Gunlance",
+                    "rarity": 4,
+                    "children": [
+                      {
+                        "slug": "white-cannon",
+                        "type": "gunlance",
+                        "name": "White Cannon",
+                        "rarity": 5,
+                        "children": [
+                          {
+                            "slug": "black-gunlance",
+                            "type": "gunlance",
+                            "name": "Black Gunlance",
+                            "rarity": 6,
+                            "children": [
+                              {
+                                "slug": "black-gore-cannon",
+                                "type": "gunlance",
+                                "name": "Black Gore Cannon",
+                                "rarity": 7,
+                                "children": [
+                                  {
+                                    "slug": "black-gore-buster",
+                                    "type": "gunlance",
+                                    "name": "Black Gore Buster",
+                                    "rarity": 10
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "snow-gunlance",
+        "type": "gunlance",
+        "name": "Snow Gunlance",
+        "rarity": 2,
+        "element": "ice",
+        "children": [
+          {
+            "slug": "snow-gunlance-mk-ii",
+            "type": "gunlance",
+            "name": "Snow Gunlance Mk. II",
+            "rarity": 3,
+            "element": "ice",
+            "children": [
+              {
+                "slug": "blizzard-gunlance",
+                "type": "gunlance",
+                "name": "Blizzard Gunlance",
+                "rarity": 6,
+                "element": "ice"
+              },
+              {
+                "slug": "marine-fisher",
+                "type": "gunlance",
+                "name": "Marine Fisher",
+                "rarity": 3,
+                "element": "water",
+                "children": [
+                  {
+                    "slug": "deep-fisher",
+                    "type": "gunlance",
+                    "name": "Deep Fisher",
+                    "rarity": 4,
+                    "element": "water",
+                    "children": [
+                      {
+                        "slug": "deep-ocean",
+                        "type": "gunlance",
+                        "name": "Deep Ocean",
+                        "rarity": 6,
+                        "element": "water",
+                        "children": [
+                          {
+                            "slug": "sea-king-gunlance",
+                            "type": "gunlance",
+                            "name": "Sea King Gunlance",
+                            "rarity": 7,
+                            "element": "water",
+                            "children": [
+                              {
+                                "slug": "sea-god-leviathan",
+                                "type": "gunlance",
+                                "name": "Sea God Leviathan",
+                                "rarity": 9,
+                                "element": "water",
+                                "children": [
+                                  {
+                                    "slug": "sea-abyss",
+                                    "type": "gunlance",
+                                    "name": "Sea Abyss",
+                                    "rarity": 10,
+                                    "element": "water"
+                                  }
+                                ]
+                              },
+                              {
+                                "slug": "volcano-gunlance",
+                                "type": "gunlance",
+                                "name": "Volcano Gunlance",
+                                "rarity": 9,
+                                "element": "fire",
+                                "children": [
+                                  {
+                                    "slug": "lavasioth-gunlance",
+                                    "type": "gunlance",
+                                    "name": "Lavasioth Gunlance",
+                                    "rarity": 10,
+                                    "element": "fire"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "slug": "scissor-gunlance",
+                "type": "gunlance",
+                "name": "Scissor Gunlance",
+                "rarity": 6,
+                "children": [
+                  {
+                    "slug": "scissor-cannon",
+                    "type": "gunlance",
+                    "name": "Scissor Cannon",
+                    "rarity": 7,
+                    "children": [
+                      {
+                        "slug": "violet-cannon",
+                        "type": "gunlance",
+                        "name": "Violet Cannon",
+                        "rarity": 9,
+                        "children": [
+                          {
+                            "slug": "violet-buster",
+                            "type": "gunlance",
+                            "name": "Violet Buster",
+                            "rarity": 9
+                          }
+                        ]
+                      },
+                      {
+                        "slug": "shell-claw-lance",
+                        "type": "lance",
+                        "name": "Shell Claw Lance",
+                        "rarity": 9,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "bone-claw-lance-plus",
     "type": "lance",
     "name": "Bone Claw Lance+",
@@ -603,11 +601,34 @@
                 "type": "lance",
                 "name": "Shell Claw Lance",
                 "rarity": 9,
-                "children": [
-
-                ]
+                "children": []
               }
             ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "black-smoke-gunlance",
+    "type": "gunlance",
+    "name": "Black Smoke Gunlance",
+    "rarity": 5,
+    "element": "dragon",
+    "children": [
+      {
+        "slug": "blackdragongunlance",
+        "type": "gunlance",
+        "name": "BlackDragonGunlance",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "trueblkdrgngunlance",
+            "type": "gunlance",
+            "name": "TrueBlkDrgnGunlance",
+            "rarity": 10,
+            "element": "dragon"
           }
         ]
       }
@@ -650,31 +671,6 @@
     ]
   },
   {
-    "slug": "black-smoke-gunlance",
-    "type": "gunlance",
-    "name": "Black Smoke Gunlance",
-    "rarity": 5,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "blackdragongunlance",
-        "type": "gunlance",
-        "name": "BlackDragonGunlance",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "trueblkdrgngunlance",
-            "type": "gunlance",
-            "name": "TrueBlkDrgnGunlance",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "slug": "dragonwood-gunlance",
     "type": "gunlance",
     "name": "Dragonwood Gunlance",
@@ -705,20 +701,6 @@
             ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "slug": "pop-corn",
-    "type": "gunlance",
-    "name": "Pop Corn",
-    "rarity": 6,
-    "children": [
-      {
-        "slug": "large-pop-corn",
-        "type": "gunlance",
-        "name": "Large Pop Corn",
-        "rarity": 9
       }
     ]
   },
@@ -789,24 +771,16 @@
     ]
   },
   {
-    "slug": "babel-spear",
-    "type": "lance",
-    "name": "Babel Spear",
-    "rarity": 7,
+    "slug": "pop-corn",
+    "type": "gunlance",
+    "name": "Pop Corn",
+    "rarity": 6,
     "children": [
       {
-        "slug": "ancient-destroyer",
+        "slug": "large-pop-corn",
         "type": "gunlance",
-        "name": "Ancient Destroyer",
-        "rarity": 9,
-        "children": [
-          {
-            "slug": "genesis",
-            "type": "gunlance",
-            "name": "Genesis",
-            "rarity": 10
-          }
-        ]
+        "name": "Large Pop Corn",
+        "rarity": 9
       }
     ]
   },
@@ -827,6 +801,28 @@
             "type": "gunlance",
             "name": "Hard Bone Cannon",
             "rarity": 9
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "babel-spear",
+    "type": "lance",
+    "name": "Babel Spear",
+    "rarity": 7,
+    "children": [
+      {
+        "slug": "ancient-destroyer",
+        "type": "gunlance",
+        "name": "Ancient Destroyer",
+        "rarity": 9,
+        "children": [
+          {
+            "slug": "genesis",
+            "type": "gunlance",
+            "name": "Genesis",
+            "rarity": 10
           }
         ]
       }

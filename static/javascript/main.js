@@ -86,7 +86,7 @@ Stimulus.register(
       this.boundHandleMouseMove = this.handleMouseMove.bind(this);
       this.boundHandleMouseUp = this.handleMouseUp.bind(this);
 
-      this.pos1, this.pos2, this.pos3, (this.pos4 = 0);
+      this.pos1 = 0; this.pos2 = 0; this.pos3 = 0; this.pos4 = 0;
     }
 
     connect() {
@@ -123,7 +123,7 @@ Stimulus.register(
     }
 
     handleMouseMove(event) {
-      if (event.touches) {
+      if (event.touches && event.touches.length > 0) {
         this.pos1 = this.pos3 - event.touches[0].clientX;
         this.pos2 = this.pos4 - event.touches[0].clientY;
         this.pos3 = event.touches[0].clientX;
@@ -160,6 +160,7 @@ Stimulus.register(
 
     initialize() {
       this.pages = [];
+      this.boundHandleKeyUp = this.handleKeyUp.bind(this);
     }
 
     connect() {
@@ -172,15 +173,21 @@ Stimulus.register(
         this.element.querySelector(".weapon-card__navigation").style.display =
           "none";
       } else {
-        document.addEventListener("keyup", (event) => {
-          if (event.code == "ArrowRight" || event.code == "KeyD") {
-            this.next();
-          }
+        document.addEventListener("keyup", this.boundHandleKeyUp);
+      }
+    }
 
-          if (event.code == "ArrowLeft" || event.code == "KeyA") {
-            this.previous()
-          }
-        });
+    disconnect() {
+      document.removeEventListener("keyup", this.boundHandleKeyUp);
+    }
+
+    handleKeyUp(event) {
+      if (event.code == "ArrowRight" || event.code == "KeyD") {
+        this.next();
+      }
+
+      if (event.code == "ArrowLeft" || event.code == "KeyA") {
+        this.previous();
       }
     }
 

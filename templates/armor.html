@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block head__extra %}
   {% set image_metadata =  get_image_metadata(path="/images/weapons/" ~ page.slug ~ ".png", allow_missing=true) %}
@@ -14,10 +15,10 @@
 
   {% if page.extra.create_mats %}
     <meta name="description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
+    <meta property="og:description" content="{% for material in page.extra.create_mats %}{{ material }} {% endfor %}">
   {% elif page.extra.improve_mats %}
     <meta name="description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
-    <meta name="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
+    <meta property="og:description" content="{% for material in page.extra.improve_mats %}{{ material }} {% endfor %}">
   {% endif %}
 {% endblock %}
 
@@ -72,7 +73,7 @@
               icon--large
               "
             >
-              <img src="/images/{{ page.components[1] }}.png" alt="?">
+              <img src="/images/{{ page.components[1] }}.png" alt="{{ page.extra.type | replace(from='-', to=' ') | capitalize }} armor icon">
             </div>
 
             <p id="weapon_name">
@@ -95,7 +96,7 @@
 
               <div>
                 <h3>Slots<span>:</span></h3>
-                <p id="weaponSlots">{{ page.extra.slots }}</p>
+                <p id="armorSlots">{{ page.extra.slots }}</p>
               </div>
 
               <div>
@@ -138,9 +139,9 @@
                       <p>
                         <span>Improve cost: </span>{{ page.extra.improve_cost }}z
                       </p>
-    
+
                       {%- for material in page.extra.improve_mats %}
-                        <p>{{ material }}</p>
+                        {{ macros::material_row(material=material) }}
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -150,14 +151,9 @@
                       <p>
                         <span>Create cost: </span>{{ page.extra.create_cost }}z
                       </p>
-      
+
                       {% for material in page.extra.create_mats %}
-                        <div class="material">
-                          <div class="icon icon--{{ material.type }} icon--{{ material.color }}">
-                            <img src="/images/{{ material.type }}.png">
-                          </div>
-                          <p>{{ material.name }}: {{ material.amount }}</p>
-                        </div>
+                        {{ macros::material_row(material=material) }}
                       {% endfor %}
                     </div>
                   {% endif %}
