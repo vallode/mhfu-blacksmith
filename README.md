@@ -19,12 +19,14 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 - Danzell
 - Darkcola
 - Emanon
+- Hay_AJ
 - Hunsterverse contributors
 - Ice Cream
 - Jely
 - kpworthi
 - kushala
 - lirkas
+- Mustard
 - rafaellum
 - Shiro
 - Vid (Firaga)
