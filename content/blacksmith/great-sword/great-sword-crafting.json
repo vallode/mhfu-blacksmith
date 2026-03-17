@@ -5626,10 +5626,10 @@
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "name": "Fire Wyvern Claw",
           "amount": "2",
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         },
         {
           "name": "FireWyvern Fluid",
@@ -5715,10 +5715,10 @@
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "name": "Fire Wyvern Claw",
           "amount": "5",
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         }
       ],
       "improve_to": null,
