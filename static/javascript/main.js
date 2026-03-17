@@ -363,7 +363,7 @@ Stimulus.register(
       const rarity = item.rarity || 1;
       switch (item.category) {
         case "weapon":
-          return `icon icon--mini icon--${item.type} icon--rarity-${rarity}`;
+          return `icon icon--mini icon--${item.type} icon--rarity-${rarity} icon--${item.elements.toLowerCase().replace(/ /g, "")}`;
         case "armor":
           return `icon icon--${item.type} icon--rarity-${rarity}`;
         case "decoration":
