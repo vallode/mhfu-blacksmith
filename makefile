@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile
 .PHONY: serve
 
-serve: clean generate-pages generate-maps
+serve: clean generate-pages generate-maps generate-search-index
 	zola serve
 
 generate-pages: clean
@@ -10,13 +10,16 @@ generate-pages: clean
 generate-maps:
 	bundle exec ruby scripts/generate-maps.rb
 
+generate-search-index:
+	bundle exec ruby scripts/generate-search-index.rb
+
 debug: generate-pages
 	TERA_DEBUG=true zola serve
 
 clean:
 	find content -name '*.md' ! \( -name '_index.md' -o -name 'smithy.md' -o -name 'calculator.md' \) -exec rm {} +
 
-build: clean generate-pages generate-maps
+build: clean generate-pages generate-maps generate-search-index
 	TERA_PRODUCTION=true zola build
 
 deploy: build

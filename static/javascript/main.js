@@ -1,4 +1,5 @@
 import { Application, Controller } from "/vendor/javascript/stimulus.js";
+import Fuse from "/vendor/javascript/fuse.js";
 
 if (!window.Stimulus) {
   window.Stimulus = Application.start();
@@ -204,6 +205,208 @@ Stimulus.register(
         this.pageValue = this.pageValue + 1;
       } else {
         this.pageValue = 1;
+      }
+    }
+  }
+);
+
+Stimulus.register(
+  "global-search",
+  class extends Controller {
+    static targets = ["input", "results", "modal"];
+
+    initialize() {
+      this.fuse = null;
+      this.items = [];
+      this.selectedIndex = -1;
+      this.boundHandleGlobalKeydown = this.handleGlobalKeydown.bind(this);
+      this.boundHandleTriggerClick = this.handleTriggerClick.bind(this);
+    }
+
+    connect() {
+      document.addEventListener("keydown", this.boundHandleGlobalKeydown);
+      document.addEventListener("click", this.boundHandleTriggerClick);
+    }
+
+    disconnect() {
+      document.removeEventListener("keydown", this.boundHandleGlobalKeydown);
+      document.removeEventListener("click", this.boundHandleTriggerClick);
+    }
+
+    handleTriggerClick(event) {
+      if (event.target.closest(".search-trigger")) {
+        this.open();
+      }
+    }
+
+    async open() {
+      if (!this.fuse) {
+        await this.loadIndex();
+      }
+      this.modalTarget.removeAttribute("aria-hidden");
+      this.modalTarget.classList.add("is-open");
+      this.inputTarget.focus();
+    }
+
+    close() {
+      this.modalTarget.setAttribute("aria-hidden", "true");
+      this.modalTarget.classList.remove("is-open");
+      this.inputTarget.value = "";
+      this.resultsTarget.innerHTML = "";
+      this.items = [];
+      this.selectedIndex = -1;
+    }
+
+    async loadIndex() {
+      try {
+        const response = await fetch("/search-data.json");
+        const data = await response.json();
+        this.fuse = new Fuse(data, {
+          keys: [
+            { name: "name", weight: 1.0 },
+            { name: "skills", weight: 0.5 },
+            { name: "elements", weight: 0.3 },
+            { name: "type", weight: 0.3 },
+          ],
+          threshold: 0.35,
+          minMatchCharLength: 2,
+          includeScore: true,
+        });
+      } catch (e) {
+        console.warn("Failed to load search index", e);
+      }
+    }
+
+    handleGlobalKeydown(event) {
+      const isOpen = this.modalTarget.classList.contains("is-open");
+
+      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+        event.preventDefault();
+        isOpen ? this.close() : this.open();
+        return;
+      }
+
+      if (
+        !isOpen &&
+        event.key === "/" &&
+        !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+      ) {
+        event.preventDefault();
+        this.open();
+        return;
+      }
+
+      if (isOpen && event.key === "Escape") {
+        this.close();
+      }
+    }
+
+    onInputKeydown(event) {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        this.moveSelection(1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        this.moveSelection(-1);
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        this.navigateToSelected();
+      }
+    }
+
+    search() {
+      const query = this.inputTarget.value.trim();
+      this.selectedIndex = -1;
+
+      if (!this.fuse || query.length < 2) {
+        this.resultsTarget.innerHTML = "";
+        this.items = [];
+        return;
+      }
+
+      this.items = this.fuse.search(query, { limit: 10 });
+      this.renderResults();
+    }
+
+    renderResults() {
+      if (this.items.length === 0) {
+        this.resultsTarget.innerHTML = `<p class="search-results__empty">No results found</p>`;
+        return;
+      }
+
+      this.resultsTarget.innerHTML = this.items
+        .map((result, index) => {
+          const item = result.item;
+          const selected = index === this.selectedIndex;
+          const iconClass = this.iconClassFor(item);
+          const iconSrc = this.iconSrcFor(item);
+
+          return `<a
+          href="${item.url}"
+          class="weapon-tree__row${selected ? " search-result--selected" : ""}"
+          role="option"
+          aria-selected="${selected}"
+          data-action="click->global-search#close"
+        >
+          <div class="${iconClass}">
+            <img src="${iconSrc}" alt="" onerror="this.parentElement.style.opacity='0'">
+          </div>
+          <div class="search-result__text">
+            <p class="search-result__name">${item.name}</p>
+          </div>
+        </a>`;
+        })
+        .join("");
+    }
+
+    iconClassFor(item) {
+      const rarity = item.rarity || 1;
+      switch (item.category) {
+        case "weapon":
+          return `icon icon--mini icon--${item.type} icon--rarity-${rarity}`;
+        case "armor":
+          return `icon icon--${item.type} icon--rarity-${rarity}`;
+        case "decoration":
+          return `icon icon--decoration icon--rarity-${rarity}`;
+        default:
+          return `icon icon--monster icon--${item.type}`;
+      }
+    }
+
+    iconSrcFor(item) {
+      switch (item.category) {
+        case "weapon":
+          return `/images/${item.type}-mini.png`;
+        case "armor":
+          return `/images/${item.type}-mini.png`;
+        case "decoration":
+          return `/images/decoration-mini.png`;
+        case "monster":
+          return `/images/monsters/${item.slug}.png`;
+        default:
+          return "/images/unknown.png";
+      }
+    }
+
+    moveSelection(delta) {
+      const count = this.items.length;
+      if (count === 0) return;
+
+      this.selectedIndex =
+        ((this.selectedIndex + delta) % count + count) % count;
+      this.renderResults();
+
+      const selected = this.resultsTarget.querySelector(
+        ".search-result--selected"
+      );
+      if (selected) selected.scrollIntoView({ block: "nearest" });
+    }
+
+    navigateToSelected() {
+      if (this.selectedIndex >= 0 && this.items[this.selectedIndex]) {
+        const url = this.items[this.selectedIndex].item.url;
+        this.close();
+        Turbo.visit(url);
       }
     }
   }
