@@ -27,6 +27,40 @@
 <body {% block body__attr %}{% endblock body__attr %}>
   {% block content %}{% endblock content %}
 
+  <div data-controller="global-search" data-turbo-permanent="">
+    <div
+      class="search-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+      aria-hidden="true"
+      data-global-search-target="modal"
+    >
+      <div class="search-modal__backdrop" data-action="click->global-search#close"></div>
+      <div class="search-modal__panel card card--weapon-tree">
+        <div class="search-modal__header">
+          <input
+            type="text"
+            class="search-modal__input"
+            placeholder="Search..."
+            autocomplete="off"
+            spellcheck="false"
+            data-global-search-target="input"
+            data-action="input->global-search#search keydown->global-search#onInputKeydown"
+          >
+        </div>
+
+        <hr>
+
+        <div
+          class="search-modal__results"
+          data-global-search-target="results"
+          role="listbox"
+        ></div>
+      </div>
+    </div>
+  </div>
+
   <script id="console-info" data-turbo-permanent="">
     console.log(
 			"%cIf you're looking for the weapon data, you can find everything here: https://github.com/vallode/mhfu-blacksmith",
