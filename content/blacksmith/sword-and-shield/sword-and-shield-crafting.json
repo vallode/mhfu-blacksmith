@@ -152,7 +152,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": "O--",
       "bonus": null,
       "rarity": 2,
       "type": "sword-and-shield",
@@ -228,7 +228,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": "O--",
       "bonus": null,
       "rarity": 2,
       "type": "sword-and-shield",
@@ -303,15 +303,15 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Velociprey Hide+",
-          "amount": "15",
-          "type": "pelt",
+          "name": "Velocidrome Clw+",
+          "amount": "7",
+          "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Velocidrome Clw+",
-          "amount": "8",
-          "type": "claw",
+          "name": "Velociprey Hide+",
+          "amount": "15",
+          "type": "pelt",
           "color": "blue"
         },
         {

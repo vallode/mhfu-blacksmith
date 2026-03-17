@@ -7311,6 +7311,12 @@
           "color": "red"
         },
         {
+          "name": "Fatalis CrmsnShl",
+          "amount": "5",
+          "type": "part",
+          "color": "red"
+        },
+        {
           "name": "Chameleos Jewel",
           "amount": "2",
           "type": "stone",
@@ -7927,6 +7933,12 @@
           "amount": "2",
           "type": "part",
           "color": "green"
+        },
+        {
+          "name": "FlynMealPassPlus",
+          "amount": "3",
+          "type": "ticket",
+          "color": "pink"
         }
       ],
       "improve_to": null,
