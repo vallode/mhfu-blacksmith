@@ -17,12 +17,20 @@ WEAPON_CLASS_MULTIPLIER = {
   "bow":  1.2,
 }
 
+# TODO: Add description for other weapon types, armor, and decorations.
 def createDescription(value)
+  description = []
+
   if value["attack"]
-    return "#{value["name"]}. Attack: #{value["attack"]}. Affinity: #{value["affinity"]} Slots: #{value["slots"]}. Rarity: #{value["rarity"]}."
+    description.push("Attack: #{value["attack"]}")
+    description.push("Raw Attack: #{value["raw_attack"]}")
   end
 
-  return nil
+  description.push("Affinity: #{value["affinity"]}") if value["affinity"]
+  description.push("Slots: #{value["slots"]}") if value["slots"]
+  description.push("Rarity: #{value["rarity"]}") if value["rarity"]
+
+  return description.join(" | ")
 end
 
 threads = []
