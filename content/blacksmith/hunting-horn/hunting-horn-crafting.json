@@ -11,7 +11,7 @@
         "2"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -99,7 +99,7 @@
         "3"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -165,7 +165,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+24",
       "rarity": 5,
       "notes": [
@@ -246,7 +246,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+34",
       "rarity": 8,
       "notes": [
@@ -304,7 +304,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+36",
       "rarity": 10,
       "notes": [
@@ -365,7 +365,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -450,7 +450,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -511,7 +511,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "notes": [
@@ -573,7 +573,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -642,7 +642,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -701,7 +701,7 @@
         "15"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 2,
       "notes": [
@@ -780,7 +780,7 @@
         "3"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+15",
       "rarity": 4,
       "notes": [
@@ -834,7 +834,7 @@
         "8"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 6,
       "notes": [
@@ -890,7 +890,7 @@
         "1"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 7,
       "notes": [
@@ -947,7 +947,7 @@
         "2"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 9,
       "notes": [
@@ -1005,7 +1005,7 @@
         "2"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 9,
       "notes": [
@@ -1060,7 +1060,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "notes": [
@@ -1144,7 +1144,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -1205,7 +1205,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -1268,7 +1268,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -1334,7 +1334,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+5",
       "rarity": 6,
       "notes": [
@@ -1420,7 +1420,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 9,
       "notes": [
@@ -1514,7 +1514,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 9,
       "notes": [
@@ -1581,7 +1581,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -1675,7 +1675,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -1741,7 +1741,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "notes": [
@@ -1825,7 +1825,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "notes": [
@@ -1888,7 +1888,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -1947,7 +1947,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -2008,7 +2008,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -2071,7 +2071,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -2141,7 +2141,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -2202,7 +2202,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 7,
       "notes": [
@@ -2291,7 +2291,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+15",
       "rarity": 9,
       "notes": [
@@ -2361,7 +2361,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+20",
       "rarity": 10,
       "notes": [
@@ -2430,7 +2430,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+28",
       "rarity": 9,
       "notes": [
@@ -2490,7 +2490,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+34",
       "rarity": 10,
       "notes": [
@@ -2551,7 +2551,7 @@
         "11"
       ],
       "affinity": "5%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "notes": [
@@ -2631,7 +2631,7 @@
         "2"
       ],
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "notes": [
@@ -2689,7 +2689,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -2749,7 +2749,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -2839,7 +2839,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -2904,7 +2904,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "notes": [
@@ -3000,7 +3000,7 @@
         "15"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "notes": [
@@ -3061,7 +3061,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -3120,7 +3120,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -3181,7 +3181,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -3243,7 +3243,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -3307,7 +3307,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -3367,7 +3367,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "notes": [
@@ -3415,7 +3415,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+5",
       "rarity": 2,
       "notes": [
@@ -3480,7 +3480,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 4,
       "notes": [
@@ -3534,7 +3534,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 6,
       "notes": [
@@ -3590,7 +3590,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+12",
       "rarity": 9,
       "notes": [
@@ -3654,7 +3654,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 9,
       "notes": [
@@ -3715,7 +3715,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -3800,7 +3800,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "notes": [
@@ -3869,7 +3869,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -3934,7 +3934,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "notes": [
@@ -4007,7 +4007,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "notes": [
@@ -4081,7 +4081,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -4175,7 +4175,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -4237,7 +4237,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -4297,7 +4297,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -4380,7 +4380,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -4441,7 +4441,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -4502,7 +4502,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "notes": [
@@ -4570,7 +4570,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -4630,7 +4630,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 8,
       "notes": [
@@ -4699,7 +4699,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 10,
       "notes": [
@@ -4765,7 +4765,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -4832,7 +4832,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "notes": [
@@ -4895,7 +4895,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -4984,7 +4984,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -5050,7 +5050,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "notes": [
@@ -5111,7 +5111,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -5177,7 +5177,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "notes": [
@@ -5242,7 +5242,7 @@
         "3"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -5302,7 +5302,7 @@
         "3"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -5365,7 +5365,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "notes": [
@@ -5450,7 +5450,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -5536,7 +5536,7 @@
         "1"
       ],
       "affinity": "40%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "notes": [
@@ -5596,7 +5596,7 @@
         "6"
       ],
       "affinity": "40%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -5656,7 +5656,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "notes": [
@@ -5723,7 +5723,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 9,
       "notes": [
@@ -5786,7 +5786,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -5849,7 +5849,7 @@
         "2"
       ],
       "affinity": "-5%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+15",
       "rarity": 9,
       "notes": [
@@ -5912,7 +5912,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -5980,7 +5980,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -6049,7 +6049,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -6112,7 +6112,7 @@
         "2"
       ],
       "affinity": "-5%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+20",
       "rarity": 9,
       "notes": [
@@ -6175,7 +6175,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -6238,7 +6238,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "notes": [
@@ -6306,7 +6306,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [
@@ -6374,7 +6374,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "notes": [

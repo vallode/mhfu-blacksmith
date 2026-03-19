@@ -4,7 +4,7 @@
       "name": "Hunter's Bow I",
       "attack": 96,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "coatings": [
@@ -67,7 +67,7 @@
       "name": "Hunter's Bow II",
       "attack": 120,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "coatings": [
@@ -130,7 +130,7 @@
       "name": "Hunter's Bow III",
       "attack": 144,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -232,7 +232,7 @@
       "name": "Hunter's Bow IV",
       "attack": 168,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -295,7 +295,7 @@
       "name": "Hunter's Power Bow I",
       "attack": 192,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 4,
       "coatings": [
@@ -382,7 +382,7 @@
       "name": "Hunter's Power Bow II",
       "attack": 204,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+20",
       "rarity": 4,
       "coatings": [
@@ -444,7 +444,7 @@
       "name": "Hunter's Power Bow III",
       "attack": 216,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+20",
       "rarity": 6,
       "coatings": [
@@ -507,7 +507,7 @@
       "name": "Hunter's Power Bow IV",
       "attack": 324,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+30",
       "rarity": 9,
       "coatings": [
@@ -573,7 +573,7 @@
       "name": "Icicle Bow I",
       "attack": 228,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -672,7 +672,7 @@
       "name": "Icicle Bow II",
       "attack": 264,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -744,7 +744,7 @@
       "name": "Wild Bow I",
       "attack": 168,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 2,
       "coatings": [
@@ -820,7 +820,7 @@
       "name": "Wild Bow II",
       "attack": 192,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -882,7 +882,7 @@
       "name": "Wild Bow III",
       "attack": 216,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -969,7 +969,7 @@
       "name": "Wild Bow IV",
       "attack": 228,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -1031,7 +1031,7 @@
       "name": "Wild Power Bow I",
       "attack": 240,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -1118,7 +1118,7 @@
       "name": "Wild Power Bow II",
       "attack": 252,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -1180,7 +1180,7 @@
       "name": "Jungle Bow I",
       "attack": 324,
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -1273,7 +1273,7 @@
       "name": "Jungle Bow II",
       "attack": 360,
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -1339,7 +1339,7 @@
       "name": "Blango Fur Bow I",
       "attack": 96,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 2,
       "coatings": [
@@ -1406,7 +1406,7 @@
       "name": "Blango Fur Bow II",
       "attack": 120,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -1473,7 +1473,7 @@
       "name": "Blango Fur Bow III",
       "attack": 168,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -1559,7 +1559,7 @@
       "name": "Blango Fur Bow IV",
       "attack": 180,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -1626,7 +1626,7 @@
       "name": "Abominable Bow I",
       "attack": 192,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -1693,7 +1693,7 @@
       "name": "Abominable Bow II",
       "attack": 288,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -1764,7 +1764,7 @@
       "name": "Kut-Ku Stave I",
       "attack": 120,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 2,
       "coatings": [
@@ -1837,7 +1837,7 @@
       "name": "Kut-Ku Stave II",
       "attack": 144,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -1904,7 +1904,7 @@
       "name": "Kut-Ku Stave III",
       "attack": 180,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -1971,7 +1971,7 @@
       "name": "Blue Kut-Ku Stave I",
       "attack": 192,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "coatings": [
@@ -2065,7 +2065,7 @@
       "name": "Blue Kut-Ku Stave II",
       "attack": 240,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -2139,7 +2139,7 @@
       "name": "Blue Kut-Ku Stave III",
       "attack": 276,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -2211,7 +2211,7 @@
       "name": "Wolf Bow",
       "attack": 348,
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -2303,7 +2303,7 @@
       "name": "Crow Bow",
       "attack": 360,
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -2368,7 +2368,7 @@
       "name": "Wing Bow I",
       "attack": 228,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -2440,7 +2440,7 @@
       "name": "Wing Bow II",
       "attack": 240,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -2506,7 +2506,7 @@
       "name": "Wing Bow III",
       "attack": 312,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -2603,7 +2603,7 @@
       "name": "Wing Bow IV",
       "attack": 348,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -2673,7 +2673,7 @@
       "name": "Defect Swordfish Bow",
       "attack": 132,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 5,
       "coatings": [
@@ -2746,7 +2746,7 @@
       "name": "Whole Swordfish Bow",
       "attack": 204,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -2819,7 +2819,7 @@
       "name": "Perfect Swordfish Bow",
       "attack": 288,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -2890,7 +2890,7 @@
       "name": "Daimyo's Warbow I",
       "attack": 144,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -2963,7 +2963,7 @@
       "name": "Daimyo's Warbow II",
       "attack": 168,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -3030,7 +3030,7 @@
       "name": "Daimyo's Warbow III",
       "attack": 180,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -3097,7 +3097,7 @@
       "name": "Daimyo's Warbow IV",
       "attack": 192,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -3189,7 +3189,7 @@
       "name": "Great Purple Emperor I",
       "attack": 252,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -3281,7 +3281,7 @@
       "name": "Great Purple Emperor II",
       "attack": 300,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -3352,7 +3352,7 @@
       "name": "Blue Blade Bow I",
       "attack": 204,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -3420,7 +3420,7 @@
       "name": "Blue Blade Bow II",
       "attack": 264,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -3482,7 +3482,7 @@
       "name": "Blue Blade Bow III",
       "attack": 360,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -3570,7 +3570,7 @@
       "name": "Showroom Model",
       "attack": 372,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -3630,7 +3630,7 @@
       "name": "Carmine Bow",
       "attack": 312,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -3696,7 +3696,7 @@
       "name": "Eraser",
       "attack": 324,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -3760,7 +3760,7 @@
       "name": "Sonic Bow I",
       "attack": 144,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "coatings": [
@@ -3832,7 +3832,7 @@
       "name": "Sonic Bow II",
       "attack": 180,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -3898,7 +3898,7 @@
       "name": "Sonic Bow III",
       "attack": 192,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -3989,7 +3989,7 @@
       "name": "Khezu Bow I",
       "attack": 252,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -4062,7 +4062,7 @@
       "name": "Khezu Bow II",
       "attack": 288,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -4133,7 +4133,7 @@
       "name": "Queen Blaster I",
       "attack": 204,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -4204,7 +4204,7 @@
       "name": "Queen Blaster II",
       "attack": 216,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -4270,7 +4270,7 @@
       "name": "Queen Blaster III",
       "attack": 264,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -4360,7 +4360,7 @@
       "name": "Queen Blaster IV",
       "attack": 336,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -4431,7 +4431,7 @@
       "name": "Queen Blaster V",
       "attack": 360,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -4494,7 +4494,7 @@
       "name": "Heartshot Bow I",
       "attack": 240,
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "coatings": [
@@ -4579,7 +4579,7 @@
       "name": "Heartshot Bow II",
       "attack": 264,
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -4639,7 +4639,7 @@
       "name": "Heartshot Bow III",
       "attack": 336,
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -4697,7 +4697,7 @@
       "name": "Prominence Bow I",
       "attack": 204,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -4768,7 +4768,7 @@
       "name": "Prominence Bow II",
       "attack": 216,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -4833,7 +4833,7 @@
       "name": "Prominence Bow III",
       "attack": 252,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -4898,7 +4898,7 @@
       "name": "Prominence Bow IV",
       "attack": 288,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -4988,7 +4988,7 @@
       "name": "Prominence Bow V",
       "attack": 300,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -5051,7 +5051,7 @@
       "name": "Courageous Hope",
       "attack": 240,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -5123,7 +5123,7 @@
       "name": "Courageous Wish",
       "attack": 264,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -5189,7 +5189,7 @@
       "name": "Courageous Dream",
       "attack": 336,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -5259,7 +5259,7 @@
       "name": "Diablos Horn Bow I",
       "attack": 216,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 6,
       "coatings": [
@@ -5324,7 +5324,7 @@
       "name": "Diablos Horn Bow II",
       "attack": 276,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 6,
       "coatings": [
@@ -5383,7 +5383,7 @@
       "name": "Gale Horn Bow",
       "attack": 336,
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+30",
       "rarity": 9,
       "coatings": [
@@ -5467,7 +5467,7 @@
       "name": "DiablosKingHornBow",
       "attack": 372,
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+30",
       "rarity": 10,
       "coatings": [
@@ -5530,7 +5530,7 @@
       "name": "dummy (Diasorute Arrow)",
       "attack": 324,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "10",
       "rarity": 9,
       "coatings": [
@@ -5598,7 +5598,7 @@
       "name": "Tiger Arrow I",
       "attack": 264,
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -5664,7 +5664,7 @@
       "name": "Tiger Arrow II",
       "attack": 276,
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -5725,7 +5725,7 @@
       "name": "Tigrex Whisker",
       "attack": 312,
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "coatings": [
@@ -5810,7 +5810,7 @@
       "name": "Tigrex Whisker+",
       "attack": 384,
       "affinity": "-30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -5874,7 +5874,7 @@
       "name": "Hidden Bow",
       "attack": 252,
       "affinity": "50%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "coatings": [
@@ -5962,7 +5962,7 @@
       "name": "Midnight Bow",
       "attack": 324,
       "affinity": "50%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6050,7 +6050,7 @@
       "name": "Dragonhead Harp I",
       "attack": 156,
       "affinity": "30%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+10",
       "rarity": 8,
       "coatings": [
@@ -6121,7 +6121,7 @@
       "name": "Dragonhead Harp II",
       "attack": 204,
       "affinity": "30%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+15",
       "rarity": 9,
       "coatings": [
@@ -6186,7 +6186,7 @@
       "name": "Dragonhead Harp III",
       "attack": 240,
       "affinity": "30%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+20",
       "rarity": 10,
       "coatings": [
@@ -6255,7 +6255,7 @@
       "name": "Dragon Bow Halo",
       "attack": 192,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "coatings": [
@@ -6328,7 +6328,7 @@
       "name": "Dragon Bow Solar",
       "attack": 240,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -6395,7 +6395,7 @@
       "name": "Ancient Dragonwood Bow",
       "attack": 300,
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6495,7 +6495,7 @@
       "name": "Dragon Bow Earth",
       "attack": 192,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "coatings": [
@@ -6569,7 +6569,7 @@
       "name": "Dragon Bow Mountain",
       "attack": 288,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -6637,7 +6637,7 @@
       "name": "Dragon Bow Chaos",
       "attack": 360,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6709,7 +6709,7 @@
       "name": "Beast Thunderbow",
       "attack": 300,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6780,7 +6780,7 @@
       "name": "BeastKingThunderbow",
       "attack": 336,
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6849,7 +6849,7 @@
       "name": "Icy Steel Bow",
       "attack": 264,
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6921,7 +6921,7 @@
       "name": "Daora's Sagittarii",
       "attack": 300,
       "affinity": "30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -6991,7 +6991,7 @@
       "name": "Akantor Bow",
       "attack": 252,
       "affinity": "40%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -7058,7 +7058,7 @@
       "name": "Akantor Chaos Bow",
       "attack": 312,
       "affinity": "40%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -7123,7 +7123,7 @@
       "name": "Black Bow I",
       "attack": 180,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "coatings": [
@@ -7188,7 +7188,7 @@
       "name": "Black Bow II",
       "attack": 192,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -7254,7 +7254,7 @@
       "name": "Exterminator Bow I",
       "attack": 312,
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+15",
       "rarity": 8,
       "coatings": [
@@ -7332,7 +7332,7 @@
       "name": "Exterminator Bow II",
       "attack": 384,
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 10,
       "coatings": [
@@ -7395,7 +7395,7 @@
       "name": "Glorious Victory I",
       "attack": 276,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "coatings": [
@@ -7477,7 +7477,7 @@
       "name": "Glorious Victory II",
       "attack": 336,
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -7544,7 +7544,7 @@
       "name": "Ukanlos Bow",
       "attack": 432,
       "affinity": "-40%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "coatings": [
@@ -7613,7 +7613,7 @@
       "name": "Hunter's Bow G",
       "attack": 276,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -7680,7 +7680,7 @@
       "name": "Wild Bow G",
       "attack": 336,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -7746,7 +7746,7 @@
       "name": "Wild Power Bow G",
       "attack": 360,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -7812,7 +7812,7 @@
       "name": "Blango Fur Bow G",
       "attack": 276,
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -7883,7 +7883,7 @@
       "name": "Kut-Ku Stave G",
       "attack": 276,
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -7954,7 +7954,7 @@
       "name": "Daimyo's Warbow G",
       "attack": 276,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -8025,7 +8025,7 @@
       "name": "Sonic Bow G",
       "attack": 276,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "coatings": [
@@ -8095,7 +8095,7 @@
       "name": "Diablos Horn Bow G",
       "attack": 372,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 9,
       "coatings": [
@@ -8158,7 +8158,7 @@
       "name": "Dragon Bow Solar G",
       "attack": 288,
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -8229,7 +8229,7 @@
       "name": "Black Bow G",
       "attack": 300,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "coatings": [
@@ -8298,7 +8298,7 @@
       "name": "Sonic Bow IV",
       "attack": 240,
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "shots": [

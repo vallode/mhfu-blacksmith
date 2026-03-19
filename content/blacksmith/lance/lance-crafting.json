@@ -9,7 +9,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -48,7 +48,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -95,7 +95,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -141,7 +141,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+4",
       "rarity": 2,
       "type": "lance",
@@ -209,7 +209,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+6",
       "rarity": 3,
       "type": "lance",
@@ -260,7 +260,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 4,
       "type": "lance",
@@ -330,7 +330,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+16",
       "rarity": 7,
       "type": "lance",
@@ -381,7 +381,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -465,7 +465,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -521,7 +521,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -613,7 +613,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -662,7 +662,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+20",
       "rarity": 7,
       "type": "lance",
@@ -717,7 +717,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+28",
       "rarity": 10,
       "type": "lance",
@@ -768,7 +768,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -851,7 +851,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -910,7 +910,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -966,7 +966,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -1049,7 +1049,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -1110,7 +1110,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1189,7 +1189,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1245,7 +1245,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -1299,7 +1299,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 7,
       "type": "lance",
@@ -1350,7 +1350,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+12",
       "rarity": 8,
       "type": "lance",
@@ -1403,7 +1403,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+12",
       "rarity": 10,
       "type": "lance",
@@ -1459,7 +1459,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1545,7 +1545,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1609,7 +1609,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -1664,7 +1664,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+12",
       "rarity": 4,
       "type": "lance",
@@ -1743,7 +1743,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+16",
       "rarity": 5,
       "type": "lance",
@@ -1799,7 +1799,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1853,7 +1853,7 @@
         "6"
       ],
       "affinity": "5%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -1934,7 +1934,7 @@
         "1"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -1992,7 +1992,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -2053,7 +2053,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+8",
       "rarity": 2,
       "type": "lance",
@@ -2104,7 +2104,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+12",
       "rarity": 4,
       "type": "lance",
@@ -2151,7 +2151,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -2200,7 +2200,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -2250,7 +2250,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -2331,7 +2331,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -2385,7 +2385,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -2441,7 +2441,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -2494,7 +2494,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -2573,7 +2573,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -2628,7 +2628,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+5",
       "rarity": 5,
       "type": "lance",
@@ -2684,7 +2684,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+6",
       "rarity": 7,
       "type": "lance",
@@ -2742,7 +2742,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 9,
       "type": "lance",
@@ -2810,7 +2810,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 10,
       "type": "lance",
@@ -2865,7 +2865,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -2921,7 +2921,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+12",
       "rarity": 7,
       "type": "lance",
@@ -2977,7 +2977,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -3058,7 +3058,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -3116,7 +3116,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -3172,7 +3172,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+40",
       "rarity": 9,
       "type": "lance",
@@ -3253,7 +3253,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+40",
       "rarity": 9,
       "type": "lance",
@@ -3308,7 +3308,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -3350,7 +3350,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -3395,7 +3395,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -3460,7 +3460,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -3535,7 +3535,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -3606,7 +3606,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -3655,7 +3655,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -3737,7 +3737,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -3790,7 +3790,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -3843,7 +3843,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -3896,7 +3896,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -3946,7 +3946,7 @@
         "7"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4027,7 +4027,7 @@
         "2"
       ],
       "affinity": "25%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -4085,7 +4085,7 @@
         "2"
       ],
       "affinity": "30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -4146,7 +4146,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -4227,7 +4227,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4285,7 +4285,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -4346,7 +4346,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -4427,7 +4427,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -4483,7 +4483,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4537,7 +4537,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -4591,7 +4591,7 @@
         "6"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -4647,7 +4647,7 @@
         "4"
       ],
       "affinity": "15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4704,7 +4704,7 @@
         "5"
       ],
       "affinity": "15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4758,7 +4758,7 @@
         "6"
       ],
       "affinity": "-5%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -4807,7 +4807,7 @@
         "7"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -4858,7 +4858,7 @@
         "3"
       ],
       "affinity": "-30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -4911,7 +4911,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -4966,7 +4966,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+15",
       "rarity": 3,
       "type": "lance",
@@ -5040,7 +5040,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 4,
       "type": "lance",
@@ -5092,7 +5092,7 @@
         "5"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -5150,7 +5150,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -5230,7 +5230,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -5286,7 +5286,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "link": "https://monsterhunter.fandom.com/wiki/Blade_Stinger",
@@ -5337,7 +5337,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "link": "https://monsterhunter.fandom.com/wiki/Ceanataur_Stinger",
@@ -5388,7 +5388,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -5442,7 +5442,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -5499,7 +5499,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -5559,7 +5559,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -5619,7 +5619,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -5707,7 +5707,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -5756,7 +5756,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -5804,7 +5804,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -5884,7 +5884,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -5937,7 +5937,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -5993,7 +5993,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -6051,7 +6051,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -6106,7 +6106,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 2,
       "type": "lance",
@@ -6180,7 +6180,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -6231,7 +6231,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -6277,7 +6277,7 @@
         "15"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -6310,7 +6310,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "lance",
@@ -6347,7 +6347,7 @@
         "5"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -6389,7 +6389,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+4",
       "rarity": 5,
       "type": "lance",
@@ -6443,7 +6443,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+6",
       "rarity": 5,
       "type": "lance",
@@ -6499,7 +6499,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 8,
       "type": "lance",
@@ -6557,7 +6557,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "type": "lance",
@@ -6616,7 +6616,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -6651,7 +6651,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -6690,7 +6690,7 @@
         "1"
       ],
       "affinity": "-20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -6737,7 +6737,7 @@
         "2"
       ],
       "affinity": "-15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -6787,7 +6787,7 @@
         "6"
       ],
       "affinity": "5%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -6843,7 +6843,7 @@
         "3"
       ],
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -6901,7 +6901,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -6956,7 +6956,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "lance",
@@ -7011,7 +7011,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -7068,7 +7068,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -7129,7 +7129,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -7184,7 +7184,7 @@
         "6"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -7240,7 +7240,7 @@
         "3"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -7295,7 +7295,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -7353,7 +7353,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -7408,7 +7408,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -7469,7 +7469,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -7524,7 +7524,7 @@
         "1"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -7584,7 +7584,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -7639,7 +7639,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -7697,7 +7697,7 @@
         "3"
       ],
       "affinity": "50%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -7777,7 +7777,7 @@
         "3"
       ],
       "affinity": "50%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -7858,7 +7858,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "type": "lance",
@@ -7913,7 +7913,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "lance",
@@ -7967,7 +7967,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -8027,7 +8027,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "lance",
@@ -8083,7 +8083,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "lance",
@@ -8141,7 +8141,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8200,7 +8200,7 @@
         "3"
       ],
       "affinity": "25%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -8262,7 +8262,7 @@
         "1"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "type": "lance",
@@ -8324,7 +8324,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8382,7 +8382,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8437,7 +8437,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8480,7 +8480,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8538,7 +8538,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+6",
       "rarity": 9,
       "type": "lance",
@@ -8596,7 +8596,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+12",
       "rarity": 9,
       "type": "lance",
@@ -8653,7 +8653,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8710,7 +8710,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8774,7 +8774,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8836,7 +8836,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -8893,7 +8893,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+20",
       "rarity": 9,
       "type": "lance",
@@ -8951,7 +8951,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9014,7 +9014,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+16",
       "rarity": 9,
       "type": "lance",
@@ -9077,7 +9077,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9140,7 +9140,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9203,7 +9203,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9262,7 +9262,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9325,7 +9325,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9383,7 +9383,7 @@
         "2"
       ],
       "affinity": "-20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9441,7 +9441,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9498,7 +9498,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9555,7 +9555,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 9,
       "type": "lance",
@@ -9618,7 +9618,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9676,7 +9676,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9734,7 +9734,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9793,7 +9793,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9856,7 +9856,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9919,7 +9919,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "lance",
@@ -9982,7 +9982,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 10,
       "type": "lance",
@@ -10040,7 +10040,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -10104,7 +10104,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -10162,7 +10162,7 @@
         "4"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -10225,7 +10225,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+6",
       "rarity": 10,
       "type": "lance",
@@ -10288,7 +10288,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+12",
       "rarity": 10,
       "type": "lance",
@@ -10351,7 +10351,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "lance",
@@ -10414,7 +10414,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "lance",

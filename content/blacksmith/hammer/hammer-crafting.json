@@ -9,7 +9,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -50,7 +50,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -102,7 +102,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -150,7 +150,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -221,7 +221,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -285,7 +285,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+4",
       "rarity": 5,
       "type": "hammer",
@@ -342,7 +342,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+6",
       "rarity": 6,
       "type": "hammer",
@@ -397,7 +397,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 9,
       "type": "hammer",
@@ -479,7 +479,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 9,
       "type": "hammer",
@@ -531,7 +531,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -584,7 +584,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+8",
       "rarity": 7,
       "type": "hammer",
@@ -633,7 +633,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -718,7 +718,7 @@
         "7"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -770,7 +770,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -828,7 +828,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -888,7 +888,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -943,7 +943,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -997,7 +997,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -1055,7 +1055,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -1146,7 +1146,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -1209,7 +1209,7 @@
         "1"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -1260,7 +1260,7 @@
         "4"
       ],
       "affinity": "-20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -1312,7 +1312,7 @@
         "8"
       ],
       "affinity": "-20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -1362,7 +1362,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -1441,7 +1441,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -1497,7 +1497,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -1561,7 +1561,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -1645,7 +1645,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -1706,7 +1706,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -1760,7 +1760,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -1816,7 +1816,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -1869,7 +1869,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -1938,7 +1938,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -1986,7 +1986,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -2038,7 +2038,7 @@
         "5"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -2086,7 +2086,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -2135,7 +2135,7 @@
         "1"
       ],
       "affinity": "5%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -2184,7 +2184,7 @@
         "4"
       ],
       "affinity": "5%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -2241,7 +2241,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -2327,7 +2327,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -2385,7 +2385,7 @@
         "5"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -2470,7 +2470,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -2531,7 +2531,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -2582,7 +2582,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -2635,7 +2635,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -2711,7 +2711,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -2763,7 +2763,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -2821,7 +2821,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -2882,7 +2882,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 4,
       "type": "hammer",
@@ -2931,7 +2931,7 @@
         "3"
       ],
       "affinity": "-15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 5,
       "type": "hammer",
@@ -2978,7 +2978,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+8",
       "rarity": 4,
       "type": "hammer",
@@ -3057,7 +3057,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 5,
       "type": "hammer",
@@ -3114,7 +3114,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -3172,7 +3172,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -3237,7 +3237,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -3298,7 +3298,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -3354,7 +3354,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -3406,7 +3406,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -3444,7 +3444,7 @@
         "5"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -3487,7 +3487,7 @@
         "1"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -3536,7 +3536,7 @@
         "1"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -3582,7 +3582,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -3641,7 +3641,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -3688,7 +3688,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -3765,7 +3765,7 @@
         "6"
       ],
       "affinity": "10%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -3837,7 +3837,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -3928,7 +3928,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -3980,7 +3980,7 @@
         "16"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 6,
       "type": "hammer",
@@ -4033,7 +4033,7 @@
         "4"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 7,
       "type": "hammer",
@@ -4086,7 +4086,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+20",
       "rarity": 10,
       "type": "hammer",
@@ -4142,7 +4142,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -4198,7 +4198,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -4256,7 +4256,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -4312,7 +4312,7 @@
         "6"
       ],
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -4382,7 +4382,7 @@
         "4"
       ],
       "affinity": "30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -4438,7 +4438,7 @@
         "5"
       ],
       "affinity": "40%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -4496,7 +4496,7 @@
         "4"
       ],
       "affinity": "5%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -4546,7 +4546,7 @@
         "7"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -4598,7 +4598,7 @@
         "3"
       ],
       "affinity": "30%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -4654,7 +4654,7 @@
         "6"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -4710,7 +4710,7 @@
         "2"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -4768,7 +4768,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -4829,7 +4829,7 @@
         "4"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -4890,7 +4890,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -4944,7 +4944,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -4998,7 +4998,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -5087,7 +5087,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -5146,7 +5146,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -5206,7 +5206,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -5253,7 +5253,7 @@
         "15"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -5306,7 +5306,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+4",
       "rarity": 4,
       "type": "hammer",
@@ -5382,7 +5382,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 5,
       "type": "hammer",
@@ -5432,7 +5432,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -5508,7 +5508,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -5560,7 +5560,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+24",
       "rarity": 4,
       "type": "hammer",
@@ -5611,7 +5611,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+36",
       "rarity": 7,
       "type": "hammer",
@@ -5659,7 +5659,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -5712,7 +5712,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -5768,7 +5768,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -5826,7 +5826,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -5905,7 +5905,7 @@
         "3"
       ],
       "affinity": "-15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -5960,7 +5960,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -6047,7 +6047,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -6096,7 +6096,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -6140,7 +6140,7 @@
         "15"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -6174,7 +6174,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "hammer",
@@ -6214,7 +6214,7 @@
         "4"
       ],
       "affinity": "-20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -6258,7 +6258,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -6314,7 +6314,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -6372,7 +6372,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -6430,7 +6430,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -6489,7 +6489,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -6524,7 +6524,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -6563,7 +6563,7 @@
         "2"
       ],
       "affinity": "-20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -6610,7 +6610,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -6660,7 +6660,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -6716,7 +6716,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -6774,7 +6774,7 @@
         "4"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -6835,7 +6835,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -6890,7 +6890,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+12",
       "rarity": 8,
       "type": "hammer",
@@ -6942,7 +6942,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+22",
       "rarity": 10,
       "type": "hammer",
@@ -6998,7 +6998,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -7055,7 +7055,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -7112,7 +7112,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -7173,7 +7173,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 8,
       "type": "hammer",
@@ -7231,7 +7231,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+8",
       "rarity": 10,
       "type": "hammer",
@@ -7291,7 +7291,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "hammer",
@@ -7345,7 +7345,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -7399,7 +7399,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "link": "https://monsterhunter.fandom.com/wiki/Dragon_Destroyer",
@@ -7454,7 +7454,7 @@
         "12"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -7510,7 +7510,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -7568,7 +7568,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -7630,7 +7630,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "hammer",
@@ -7690,7 +7690,7 @@
         "3"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -7745,7 +7745,7 @@
         "3"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -7803,7 +7803,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "hammer",
@@ -7883,7 +7883,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -7964,7 +7964,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "hammer",
@@ -8021,7 +8021,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -8075,7 +8075,7 @@
         "16"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -8132,7 +8132,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -8186,7 +8186,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "type": "hammer",
@@ -8265,7 +8265,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8323,7 +8323,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -8392,7 +8392,7 @@
         "11"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -8434,7 +8434,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -8490,7 +8490,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8545,7 +8545,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 4,
       "type": "hammer",
@@ -8599,7 +8599,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "type": "hammer",
@@ -8660,7 +8660,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8721,7 +8721,7 @@
         "2"
       ],
       "affinity": "-30%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "type": "hammer",
@@ -8781,7 +8781,7 @@
         "8"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8837,7 +8837,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8892,7 +8892,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8935,7 +8935,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -8993,7 +8993,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9051,7 +9051,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9108,7 +9108,7 @@
         "5"
       ],
       "affinity": "10%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9164,7 +9164,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9221,7 +9221,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9279,7 +9279,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9337,7 +9337,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9400,7 +9400,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9458,7 +9458,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9521,7 +9521,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9584,7 +9584,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9647,7 +9647,7 @@
         "4"
       ],
       "affinity": "20%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9705,7 +9705,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9763,7 +9763,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+36",
       "rarity": 9,
       "type": "hammer",
@@ -9820,7 +9820,7 @@
         "2"
       ],
       "affinity": "-15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 9,
       "type": "hammer",
@@ -9877,7 +9877,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 9,
       "type": "hammer",
@@ -9935,7 +9935,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -9991,7 +9991,7 @@
         "16"
       ],
       "affinity": "-20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10045,7 +10045,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10107,7 +10107,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10169,7 +10169,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10231,7 +10231,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10294,7 +10294,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10352,7 +10352,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10408,7 +10408,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10468,7 +10468,7 @@
         "4"
       ],
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10526,7 +10526,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10585,7 +10585,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10643,7 +10643,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "hammer",
@@ -10706,7 +10706,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+6",
       "rarity": 10,
       "type": "hammer",
@@ -10764,7 +10764,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+8",
       "rarity": 10,
       "type": "hammer",
@@ -10822,7 +10822,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -10885,7 +10885,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 10,
       "type": "hammer",
@@ -10948,7 +10948,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
@@ -11011,7 +11011,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "hammer",
