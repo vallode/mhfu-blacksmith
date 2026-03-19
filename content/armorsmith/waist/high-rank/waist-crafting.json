@@ -14,7 +14,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "1150",
       "skills": [
         {
@@ -65,7 +65,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "6",
-      "slots": "---",
+      "slots": 0,
       "create_cost": "1350",
       "skills": [
         {
@@ -118,7 +118,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "1650",
       "skills": [
         {
@@ -173,7 +173,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "5350",
       "skills": [
         {
@@ -234,7 +234,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "5350",
       "skills": [
         {
@@ -295,7 +295,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "7200",
       "skills": [
         {
@@ -356,7 +356,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "7200",
       "skills": [
         {
@@ -417,7 +417,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7500",
       "skills": [
         {
@@ -478,7 +478,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "7500",
       "skills": [
         {
@@ -539,7 +539,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "---",
+      "slots": 0,
       "create_cost": "7800",
       "skills": [
         {
@@ -588,7 +588,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "---",
+      "slots": 0,
       "create_cost": "7800",
       "skills": [
         {
@@ -637,7 +637,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -694,7 +694,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -751,7 +751,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -808,7 +808,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -865,7 +865,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "8950",
       "skills": [
         {
@@ -922,7 +922,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8800",
       "skills": [
         {
@@ -979,7 +979,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8800",
       "skills": [
         {
@@ -1036,7 +1036,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8800",
       "skills": [
         {
@@ -1093,7 +1093,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8800",
       "skills": [
         {
@@ -1150,7 +1150,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -1207,7 +1207,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -1264,7 +1264,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -1315,7 +1315,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -1366,7 +1366,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -1423,7 +1423,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -1480,7 +1480,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9000",
       "skills": [
         {
@@ -1541,7 +1541,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9000",
       "skills": [
         {
@@ -1602,7 +1602,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -1659,7 +1659,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -1716,7 +1716,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -1773,7 +1773,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9100",
       "skills": [
         {
@@ -1830,7 +1830,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -1891,7 +1891,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -1952,7 +1952,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -2009,7 +2009,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9100",
       "skills": [
         {
@@ -2066,7 +2066,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -2127,7 +2127,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -2188,7 +2188,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9500",
       "skills": [
         {
@@ -2249,7 +2249,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9500",
       "skills": [
         {
@@ -2310,7 +2310,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -2367,7 +2367,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9900",
       "skills": [
         {
@@ -2424,7 +2424,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9900",
       "skills": [
         {
@@ -2485,7 +2485,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9900",
       "skills": [
         {
@@ -2546,7 +2546,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -2607,7 +2607,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -2668,7 +2668,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10050",
       "skills": [
         {
@@ -2729,7 +2729,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10050",
       "skills": [
         {
@@ -2786,7 +2786,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10250",
       "skills": [
         {
@@ -2843,7 +2843,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10250",
       "skills": [
         {
@@ -2900,7 +2900,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10250",
       "skills": [
         {
@@ -2957,7 +2957,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10250",
       "skills": [
         {
@@ -3014,7 +3014,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "10750",
       "skills": [
         {
@@ -3075,7 +3075,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "10750",
       "skills": [
         {
@@ -3136,7 +3136,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -3193,7 +3193,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "10750",
       "skills": [
         {
@@ -3250,7 +3250,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -3307,7 +3307,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -3364,7 +3364,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "6",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -3421,7 +3421,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "6",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "10750",
       "skills": [
         {
@@ -3478,7 +3478,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "1350",
       "skills": [
         {
@@ -3535,7 +3535,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "1650",
       "skills": [
         {
@@ -3592,7 +3592,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "5350",
       "skills": [
         {
@@ -3649,7 +3649,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "5350",
       "skills": [
         {
@@ -3706,7 +3706,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7200",
       "skills": [
         {
@@ -3767,7 +3767,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7200",
       "skills": [
         {
@@ -3824,7 +3824,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "7500",
       "skills": [
         {
@@ -3881,7 +3881,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7500",
       "skills": [
         {
@@ -3938,7 +3938,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "7500",
       "skills": [
         {
@@ -3995,7 +3995,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7500",
       "skills": [
         {
@@ -4052,7 +4052,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -4109,7 +4109,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -4166,7 +4166,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "7800",
       "skills": [
         {
@@ -4223,7 +4223,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -4280,7 +4280,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -4337,7 +4337,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "8800",
       "skills": [
         {
@@ -4394,7 +4394,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "8800",
       "skills": [
         {
@@ -4451,7 +4451,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "8800",
       "skills": [
         {
@@ -4508,7 +4508,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8800",
       "skills": [
         {
@@ -4565,7 +4565,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "8950",
       "skills": [
         {
@@ -4622,7 +4622,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -4679,7 +4679,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -4736,7 +4736,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "8950",
       "skills": [
         {
@@ -4793,7 +4793,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "9000",
       "skills": [
         {
@@ -4850,7 +4850,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -4907,7 +4907,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -4964,7 +4964,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -5021,7 +5021,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OOO",
+      "slots": 3,
       "create_cost": "9000",
       "skills": [
         {
@@ -5078,7 +5078,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -5135,7 +5135,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5192,7 +5192,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5249,7 +5249,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5306,7 +5306,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5363,7 +5363,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5420,7 +5420,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -5477,7 +5477,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -5534,7 +5534,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -5591,7 +5591,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10050",
       "skills": [
         {
@@ -5648,7 +5648,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10050",
       "skills": [
         {
@@ -5705,7 +5705,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -5762,7 +5762,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -5819,7 +5819,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -5876,7 +5876,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "7",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -5933,7 +5933,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "5250",
       "skills": [
         {
@@ -5994,7 +5994,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -6051,7 +6051,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -6108,7 +6108,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6169,7 +6169,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6230,7 +6230,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6287,7 +6287,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6344,7 +6344,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6405,7 +6405,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6466,7 +6466,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6523,7 +6523,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -6580,7 +6580,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "5800",
       "skills": [
         {
@@ -6641,7 +6641,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "5800",
       "skills": [
         {
@@ -6702,7 +6702,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "---",
+      "slots": 0,
       "create_cost": "13500",
       "skills": [
         {
@@ -6763,7 +6763,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "---",
+      "slots": 0,
       "create_cost": "13500",
       "skills": [
         {
@@ -6824,7 +6824,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "15500",
       "skills": [
         {
@@ -6879,7 +6879,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "15500",
       "skills": [
         {
@@ -6940,7 +6940,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -6997,7 +6997,7 @@
       "sex": "Male",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9100",
       "skills": [
         {
@@ -7054,7 +7054,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9100",
       "skills": [
         {
@@ -7111,7 +7111,7 @@
       "sex": "Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "9100",
       "skills": [
         {
@@ -7168,7 +7168,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -7225,7 +7225,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "10750",
       "skills": [
         {
@@ -7282,7 +7282,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "14000",
       "skills": [
         {
@@ -7339,7 +7339,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "14000",
       "skills": [
         {
@@ -7396,7 +7396,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -7453,7 +7453,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "16000",
       "skills": [
         {
@@ -7510,7 +7510,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7567,7 +7567,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7624,7 +7624,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7685,7 +7685,7 @@
       "sex": "Male",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7742,7 +7742,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7803,7 +7803,7 @@
       "sex": "Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -7860,7 +7860,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "21000",
       "skills": [
         {
@@ -7917,7 +7917,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "21000",
       "skills": [
         {
@@ -7978,7 +7978,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "21000",
       "skills": [
         {
@@ -8035,7 +8035,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "21000",
       "skills": [
         {
@@ -8092,7 +8092,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "22222",
       "skills": [
         {
@@ -8153,7 +8153,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "22222",
       "skills": [
         {
@@ -8214,7 +8214,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "21000",
       "skills": [
         {
@@ -8275,7 +8275,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "21000",
       "skills": [
         {
@@ -8336,7 +8336,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "3000",
       "skills": [
         {
@@ -8383,7 +8383,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8440,7 +8440,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8497,7 +8497,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8554,7 +8554,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8611,7 +8611,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8668,7 +8668,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -8725,7 +8725,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -8786,7 +8786,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "7800",
       "skills": [
         {
@@ -8847,7 +8847,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -8904,7 +8904,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9000",
       "skills": [
         {
@@ -8961,7 +8961,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -9022,7 +9022,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "9900",
       "skills": [
         {
@@ -9083,7 +9083,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "13950",
       "skills": [
         {
@@ -9144,7 +9144,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "13950",
       "skills": [
         {
@@ -9205,7 +9205,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "14500",
       "skills": [
         {
@@ -9262,7 +9262,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "14500",
       "skills": [
         {
@@ -9319,7 +9319,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "15100",
       "skills": [
         {
@@ -9376,7 +9376,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "15100",
       "skills": [
         {
@@ -9433,7 +9433,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -9490,7 +9490,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "16000",
       "skills": [
         {
@@ -9551,7 +9551,7 @@
       "sex": "Male",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "32500",
       "skills": [
         {
@@ -9608,7 +9608,7 @@
       "sex": "Male",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "32500",
       "skills": [
         {
@@ -9665,7 +9665,7 @@
       "sex": "Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "32500",
       "skills": [
         {
@@ -9722,7 +9722,7 @@
       "sex": "Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "OO-",
+      "slots": 2,
       "create_cost": "32500",
       "skills": [
         {
@@ -9779,7 +9779,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "33333",
       "skills": [
         {
@@ -9840,7 +9840,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "33333",
       "skills": [
         {
@@ -9901,7 +9901,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "44444",
       "skills": [
         {
@@ -9962,7 +9962,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": "8",
-      "slots": "O--",
+      "slots": 1,
       "create_cost": "44444",
       "skills": [
         {

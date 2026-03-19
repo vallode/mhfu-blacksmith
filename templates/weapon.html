@@ -153,7 +153,14 @@
 
               <div>
                 <h3>Slots:</h3>
-                <p><span id="weaponSlots">{{ page.extra.slots }}</span></p>
+                <p>
+                  <span id="weaponSlots">
+                    {%- set slots = page.extra.slots | int -%}
+                    {%- for i in range(end=3) -%}
+                      {%- if i < slots -%}O{%- else -%}-{%- endif -%}
+                    {%- endfor -%}
+                  </span>
+                </p>
               </div>
 
               {% if page.extra.rapid_fire %}

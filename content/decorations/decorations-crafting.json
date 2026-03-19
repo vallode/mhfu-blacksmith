@@ -36,7 +36,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -68,7 +68,7 @@
         }
       ],
       "color": "red",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -106,7 +106,7 @@
         }
       ],
       "color": "red",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -161,7 +161,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -199,7 +199,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -240,7 +240,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -278,7 +278,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -320,7 +320,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -366,7 +366,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -404,7 +404,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -443,7 +443,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -498,7 +498,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -530,7 +530,7 @@
         }
       ],
       "color": "red",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -571,7 +571,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -603,7 +603,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -650,7 +650,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -688,7 +688,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -727,7 +727,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -788,7 +788,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -826,7 +826,7 @@
         }
       ],
       "color": "orange",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -867,7 +867,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -905,7 +905,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -939,7 +939,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -985,7 +985,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1020,7 +1020,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1045,7 +1045,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1080,7 +1080,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1105,7 +1105,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1140,7 +1140,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1165,7 +1165,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1200,7 +1200,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1225,7 +1225,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1266,7 +1266,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1298,7 +1298,7 @@
         }
       ],
       "color": "slate",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1334,7 +1334,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1366,7 +1366,7 @@
         }
       ],
       "color": "green",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1404,7 +1404,7 @@
         }
       ],
       "color": "green",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -1445,7 +1445,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1497,7 +1497,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1533,7 +1533,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1571,7 +1571,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -1603,7 +1603,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1642,7 +1642,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1675,7 +1675,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1716,7 +1716,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1774,7 +1774,7 @@
         }
       ],
       "color": "green",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1816,7 +1816,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1848,7 +1848,7 @@
         }
       ],
       "color": "green",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1886,7 +1886,7 @@
         }
       ],
       "color": "green",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -1928,7 +1928,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -1966,7 +1966,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -2004,7 +2004,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2044,7 +2044,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2075,7 +2075,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2116,7 +2116,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2174,7 +2174,7 @@
         }
       ],
       "color": "white",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -2216,7 +2216,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2254,7 +2254,7 @@
         }
       ],
       "color": "white",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -2291,7 +2291,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2330,7 +2330,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2371,7 +2371,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2409,7 +2409,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -2456,7 +2456,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2494,7 +2494,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2533,7 +2533,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2574,7 +2574,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2606,7 +2606,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -2661,7 +2661,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2699,7 +2699,7 @@
         }
       ],
       "color": "slate",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2760,7 +2760,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2798,7 +2798,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2839,7 +2839,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2878,7 +2878,7 @@
         }
       ],
       "color": "white",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2919,7 +2919,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -2958,7 +2958,7 @@
         }
       ],
       "color": "white",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -2999,7 +2999,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3037,7 +3037,7 @@
         }
       ],
       "color": "white",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -3076,7 +3076,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3115,7 +3115,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3154,7 +3154,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3193,7 +3193,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3232,7 +3232,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3293,7 +3293,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3331,7 +3331,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -3372,7 +3372,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3409,7 +3409,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3454,7 +3454,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3501,7 +3501,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3539,7 +3539,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -3584,7 +3584,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3631,7 +3631,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3669,7 +3669,7 @@
         }
       ],
       "color": "red",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -3714,7 +3714,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3759,7 +3759,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3814,7 +3814,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3852,7 +3852,7 @@
         }
       ],
       "color": "slate",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -3893,7 +3893,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3918,7 +3918,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -3979,7 +3979,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4011,7 +4011,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -4072,7 +4072,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4110,7 +4110,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -4152,7 +4152,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4190,7 +4190,7 @@
         }
       ],
       "color": "red",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -4228,7 +4228,7 @@
         }
       ],
       "color": "red",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -4267,7 +4267,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4306,7 +4306,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4345,7 +4345,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4384,7 +4384,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4426,7 +4426,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4458,7 +4458,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -4496,7 +4496,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -4535,7 +4535,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4580,7 +4580,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4621,7 +4621,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4652,7 +4652,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4691,7 +4691,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4727,7 +4727,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4759,7 +4759,7 @@
         }
       ],
       "color": "blue",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -4790,7 +4790,7 @@
         }
       ],
       "color": "blue",
-      "slots": "---",
+      "slots": 0,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4826,7 +4826,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4852,7 +4852,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -4883,7 +4883,7 @@
         }
       ],
       "color": "yellow",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4918,7 +4918,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4949,7 +4949,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -4985,7 +4985,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5017,7 +5017,7 @@
         }
       ],
       "color": "slate",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5048,7 +5048,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5084,7 +5084,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5110,7 +5110,7 @@
         }
       ],
       "color": "white",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5141,7 +5141,7 @@
         }
       ],
       "color": "white",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5182,7 +5182,7 @@
         }
       ],
       "color": "slate",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5228,7 +5228,7 @@
         }
       ],
       "color": "slate",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5283,7 +5283,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5341,7 +5341,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -5383,7 +5383,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5415,7 +5415,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5453,7 +5453,7 @@
         }
       ],
       "color": "gray",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -5489,7 +5489,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5521,7 +5521,7 @@
         }
       ],
       "color": "orange",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5552,7 +5552,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5588,7 +5588,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5620,7 +5620,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5651,7 +5651,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5692,7 +5692,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5756,7 +5756,7 @@
         }
       ],
       "color": "pink",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -5795,7 +5795,7 @@
         }
       ],
       "color": "gray",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5836,7 +5836,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5881,7 +5881,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5940,7 +5940,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -5979,7 +5979,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6018,7 +6018,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6057,7 +6057,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6103,7 +6103,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6140,7 +6140,7 @@
         }
       ],
       "color": "pink",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6201,7 +6201,7 @@
         }
       ],
       "color": "orange",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6239,7 +6239,7 @@
         }
       ],
       "color": "orange",
-      "slots": "OOO",
+      "slots": 3,
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration"
@@ -6274,7 +6274,7 @@
         }
       ],
       "color": "red",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6300,7 +6300,7 @@
         }
       ],
       "color": "red",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -6339,7 +6339,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6386,7 +6386,7 @@
         }
       ],
       "color": "green",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6424,7 +6424,7 @@
         }
       ],
       "color": "green",
-      "slots": "OO-",
+      "slots": 2,
       "rarity": 5,
       "create_cost": 375,
       "type": "decoration"
@@ -6463,7 +6463,7 @@
         }
       ],
       "color": "cyan",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6522,7 +6522,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6567,7 +6567,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"
@@ -6612,7 +6612,7 @@
         }
       ],
       "color": "blue",
-      "slots": "O--",
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration"

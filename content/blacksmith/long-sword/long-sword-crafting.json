@@ -10,7 +10,7 @@
         "6"
       ],
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -91,7 +91,7 @@
         "1"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -149,7 +149,7 @@
         "2"
       ],
       "affinity": "25%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -211,7 +211,7 @@
         "1"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -297,7 +297,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -358,7 +358,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 6,
       "type": "long-sword",
@@ -420,7 +420,7 @@
         "14"
       ],
       "affinity": "10%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -471,7 +471,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -561,7 +561,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -623,7 +623,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -687,7 +687,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -741,7 +741,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "long-sword",
@@ -834,7 +834,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -889,7 +889,7 @@
         "10"
       ],
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "long-sword",
@@ -945,7 +945,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -1003,7 +1003,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -1057,7 +1057,7 @@
         "3"
       ],
       "affinity": "-20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -1113,7 +1113,7 @@
         "8"
       ],
       "affinity": "10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": "+10",
       "rarity": 6,
       "type": "long-sword",
@@ -1162,7 +1162,7 @@
         "13"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+12",
       "rarity": 7,
       "type": "long-sword",
@@ -1213,7 +1213,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+14",
       "rarity": 8,
       "type": "long-sword",
@@ -1266,7 +1266,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+16",
       "rarity": 10,
       "type": "long-sword",
@@ -1323,7 +1323,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -1381,7 +1381,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -1442,7 +1442,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+28",
       "rarity": 6,
       "type": "long-sword",
@@ -1521,7 +1521,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+36",
       "rarity": 7,
       "type": "long-sword",
@@ -1575,7 +1575,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+40",
       "rarity": 9,
       "type": "long-sword",
@@ -1628,7 +1628,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+40",
       "rarity": 9,
       "type": "long-sword",
@@ -1687,7 +1687,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -1745,7 +1745,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -1800,7 +1800,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "long-sword",
@@ -1874,7 +1874,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -1957,7 +1957,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -2017,7 +2017,7 @@
         "7"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "long-sword",
@@ -2105,7 +2105,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "long-sword",
@@ -2155,7 +2155,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "long-sword",
@@ -2206,7 +2206,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -2260,7 +2260,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "long-sword",
@@ -2322,7 +2322,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -2385,7 +2385,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -2450,7 +2450,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -2511,7 +2511,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -2590,7 +2590,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -2646,7 +2646,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -2703,7 +2703,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -2764,7 +2764,7 @@
         "8"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 5,
       "type": "long-sword",
@@ -2840,7 +2840,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+8",
       "rarity": 8,
       "type": "long-sword",
@@ -2893,7 +2893,7 @@
         "3"
       ],
       "affinity": "30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 10,
       "type": "long-sword",
@@ -2949,7 +2949,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -3025,7 +3025,7 @@
         "3"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "long-sword",
@@ -3090,7 +3090,7 @@
         "3"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "long-sword",
@@ -3147,7 +3147,7 @@
         "2"
       ],
       "affinity": "-10%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -3208,7 +3208,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -3263,7 +3263,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "long-sword",
@@ -3319,7 +3319,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -3373,7 +3373,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 4,
       "type": "long-sword",
@@ -3429,7 +3429,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -3486,7 +3486,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -3539,7 +3539,7 @@
         "1"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "long-sword",
@@ -3574,7 +3574,7 @@
         "6"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 1,
       "type": "long-sword",
@@ -3617,7 +3617,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "long-sword",
@@ -3668,7 +3668,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 2,
       "type": "long-sword",
@@ -3718,7 +3718,7 @@
         "8"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -3769,7 +3769,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -3822,7 +3822,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -3878,7 +3878,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -3957,7 +3957,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -4013,7 +4013,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -4071,7 +4071,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -4132,7 +4132,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -4211,7 +4211,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -4267,7 +4267,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -4325,7 +4325,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -4418,7 +4418,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -4479,7 +4479,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "long-sword",
@@ -4552,7 +4552,7 @@
         "10"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -4608,7 +4608,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -4664,7 +4664,7 @@
         "13"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+2",
       "rarity": 3,
       "type": "long-sword",
@@ -4715,7 +4715,7 @@
         "4"
       ],
       "affinity": "10%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+6",
       "rarity": 4,
       "type": "long-sword",
@@ -4768,7 +4768,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 6,
       "type": "long-sword",
@@ -4823,7 +4823,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 9,
       "type": "long-sword",
@@ -4903,7 +4903,7 @@
         "4"
       ],
       "affinity": "25%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+10",
       "rarity": 9,
       "type": "long-sword",
@@ -4960,7 +4960,7 @@
         "1"
       ],
       "affinity": "-25%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -5020,7 +5020,7 @@
         "2"
       ],
       "affinity": "-25%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -5075,7 +5075,7 @@
         "3"
       ],
       "affinity": "-25%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -5127,7 +5127,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
@@ -5207,7 +5207,7 @@
         "2"
       ],
       "affinity": "50%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -5288,7 +5288,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -5350,7 +5350,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -5408,7 +5408,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -5492,7 +5492,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -5553,7 +5553,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -5608,7 +5608,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -5666,7 +5666,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -5721,7 +5721,7 @@
         "6"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
@@ -5777,7 +5777,7 @@
         "4"
       ],
       "affinity": "15%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -5832,7 +5832,7 @@
         "5"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+20",
       "rarity": 6,
       "type": "long-sword",
@@ -5891,7 +5891,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": "+20",
       "rarity": 9,
       "type": "long-sword",
@@ -5947,7 +5947,7 @@
         "9"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 6,
       "type": "long-sword",
@@ -6011,7 +6011,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6072,7 +6072,7 @@
         "1"
       ],
       "affinity": "40%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 8,
       "type": "long-sword",
@@ -6127,7 +6127,7 @@
         "6"
       ],
       "affinity": "40%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -6183,7 +6183,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6240,7 +6240,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6297,7 +6297,7 @@
         "1"
       ],
       "affinity": "-30%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": "+10",
       "rarity": 10,
       "type": "long-sword",
@@ -6358,7 +6358,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6415,7 +6415,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6473,7 +6473,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6531,7 +6531,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6595,7 +6595,7 @@
         "3"
       ],
       "affinity": "15%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+10",
       "rarity": 9,
       "type": "long-sword",
@@ -6653,7 +6653,7 @@
         "2"
       ],
       "affinity": "15%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6715,7 +6715,7 @@
         "1"
       ],
       "affinity": "-10%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6772,7 +6772,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6835,7 +6835,7 @@
         "2"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6898,7 +6898,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "OOO",
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -6956,7 +6956,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": "+36",
       "rarity": 9,
       "type": "long-sword",
@@ -7014,7 +7014,7 @@
         "2"
       ],
       "affinity": "20%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
@@ -7077,7 +7077,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -7140,7 +7140,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -7203,7 +7203,7 @@
         "4"
       ],
       "affinity": "0%",
-      "slots": "OO-",
+      "slots": 2,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -7266,7 +7266,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "---",
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -7329,7 +7329,7 @@
         "3"
       ],
       "affinity": "20%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
@@ -7392,7 +7392,7 @@
         "3"
       ],
       "affinity": "0%",
-      "slots": "O--",
+      "slots": 1,
       "bonus": null,
       "rarity": 10,
       "type": "long-sword",
