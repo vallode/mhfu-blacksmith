@@ -1234,7 +1234,8 @@
       "name": "Dragon Res up",
       "improve_to": [
         "Slayer Jewel",
-        "Extinction Jewel"
+        "Extinction Jewel",
+        "DragonslyrJewel"
       ],
       "donotrender": true,
       "type": ""
@@ -1263,6 +1264,37 @@
           "amount": "1",
           "type": "seed",
           "color": "red"
+        }
+      ],
+      "color": "slate",
+      "slots": 1,
+      "rarity": 4,
+      "create_cost": 200,
+      "type": "decoration"
+    },
+    {
+      "name": "DragonslyrJewel",
+      "skills": [
+        "Dragon Res +2"
+      ],
+      "create_mats": [
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "deco",
+          "color": "yellow"
+        },
+        {
+          "name": "Hornet Razorwing",
+          "amount": "3",
+          "type": "webbing",
+          "color": "gray"
+        },
+        {
+          "name": "Rajang Tail",
+          "amount": "1",
+          "type": "part",
+          "color": "yellow"
         }
       ],
       "color": "slate",
@@ -2339,7 +2371,8 @@
       "name": "Quick Eating",
       "improve_to": [
         "QuickEaterJewel",
-        "Fast Food Jewel"
+        "Fast Food Jewel",
+        "Scarfing Jewel"
       ],
       "donotrender": true,
       "type": ""
@@ -2412,6 +2445,44 @@
       "slots": 2,
       "rarity": 5,
       "create_cost": 375,
+      "type": "decoration"
+    },
+    {
+      "name": "Scarfing Jewel",
+      "skills": [
+        "Cooking +4",
+        "Recovery -2"
+      ],
+      "create_mats": [
+        {
+          "name": "LapisLazuliJewel",
+          "amount": "1",
+          "type": "deco",
+          "color": "yellow"
+        },
+        {
+          "name": "YamaTsukamiHide",
+          "amount": "3",
+          "type": "pelt",
+          "color": "green"
+        },
+        {
+          "name": "Vibrant Comb",
+          "amount": "2",
+          "type": "pelt",
+          "color": "orange"
+        },
+        {
+          "name": "Tigrex Skull Shl",
+          "amount": "1",
+          "type": "part",
+          "color": "yellow"
+        }
+      ],
+      "color": "yellow",
+      "slots": 3,
+      "rarity": 5,
+      "create_cost": 450,
       "type": "decoration"
     },
     {
