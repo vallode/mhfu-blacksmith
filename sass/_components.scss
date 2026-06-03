@@ -460,7 +460,25 @@ $ranks: (
     color: white;
     text-decoration: none;
 
+    .sharpness-container {
+      position: relative;
+      margin-left: auto;
+    }
+
     .sharpness {
+      display: flex;
+      height: 2.4rem;
+      padding: 6px 8px;
+      position: relative;
+      margin-left: auto;
+      width: 19.6rem;
+
+      @media screen and (max-width: 600px) {
+        margin: 0 auto;
+      }
+    }
+
+    .sharpness-plus {
       display: flex;
       height: 2.4rem;
       padding: 6px 8px;
@@ -488,9 +506,19 @@ $ranks: (
       z-index: 10;
     }
 
-    .sharpness:focus-within::after,
-    .sharpness:hover::after {
+    .sharpness-plus::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
       background-image: url("/images/sharpness-plus.png");
+      background-size: cover;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      z-index: 10;
     }
 
     .hunter_type,
@@ -912,20 +940,20 @@ $sharpness-colors: (
     display: inline-block;
     height: 100%;
     z-index: 1;
+  }
 
-    &.sharp--plus {
-      display: none;
+  @each $value, $color in $sharpness-colors {
+    [class*=sharp-#{$value}] {
+      background-color: $color;
     }
   }
+}
 
-  &:focus-within span,
-  &:hover span {
-    display: none;
-  }
-
-  &:focus-within span.sharp--plus,
-  &:hover span.sharp--plus {
-    display: block;
+.sharpness-plus {
+  span {
+    display: inline-block;
+    height: 100%;
+    z-index: 1;
   }
 
   @each $value, $color in $sharpness-colors {
