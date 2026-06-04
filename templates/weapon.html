@@ -78,24 +78,27 @@
             >
               <img src="/images/{{ page.components[1] }}.png" alt="{{ page.extra.type | replace(from='-', to=' ') | capitalize }} weapon icon">
             </div>
+              <p id="weapon_name">
+                {{ page.extra.name }}
+              </p>
 
-            <p id="weapon_name">
-              {{ page.extra.name }}
-            </p>
-            
-            {% if page.extra.sharpness %}
-            <div tabindex="0" class="sharpness">
-              {% for sharp in page.extra.sharpness %}
-                <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
-              {% endfor %}
+              <div class="sharpness-container">
+              {% if page.extra.sharpness %}
+                <div title="Sharpness" tabindex="0" class="sharpness">
+                  {% for sharp in page.extra.sharpness %}
+                    <span class="sharp-{{ loop.index }}" style="width: {{ sharp | int * 4 }}px;"></span>
+                  {% endfor %}
+                </div>
+              {% endif %}
 
               {% if page.extra.sharpness_plus %}
+              <div title="Sharpness +1" tabindex="1" class="sharpness-plus">
                 {% for sharp in page.extra.sharpness_plus %}
                   <span class="sharp-{{ loop.index }} sharp--plus" style="width: {{ sharp | int * 4 }}px;"></span>
                 {% endfor %}
+              </div>
               {% endif %}
-            </div>
-            {% endif %}
+              </div>
           </div>
 
           <div class="weapon-card__details">
