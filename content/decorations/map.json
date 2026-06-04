@@ -366,17 +366,17 @@
         "color": "slate"
       },
       {
-        "slug": "extinction-jewel",
-        "type": "decoration",
-        "name": "Extinction Jewel",
-        "rarity": 5,
-        "color": "slate"
-      },
-      {
         "slug": "dragonslyrjewel",
         "type": "decoration",
         "name": "DragonslyrJewel",
         "rarity": 4,
+        "color": "slate"
+      },
+      {
+        "slug": "extinction-jewel",
+        "type": "decoration",
+        "name": "Extinction Jewel",
+        "rarity": 5,
         "color": "slate"
       }
     ]

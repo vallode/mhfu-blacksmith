@@ -4,7 +4,10 @@
 serve: clean generate-pages generate-maps generate-search-index
 	zola serve
 
-generate-pages: clean
+validate:
+	bundle exec ruby scripts/validate.rb
+
+generate-pages: validate
 	bundle exec ruby scripts/generate-pages.rb
 
 generate-maps:
@@ -28,5 +31,5 @@ deploy: build
 
 release-json:
 	mkdir -p mhfu_weapon_information
-	find content/blacksmith -name '*-crafting.json' -exec cp {} mhfu_weapon_information \;
+	find data/weapons -name '*.json' -exec cp {} mhfu_weapon_information \;
 	zip mhfu_weapon_information.zip -m -9 -r mhfu_weapon_information

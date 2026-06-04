@@ -1,0 +1,2893 @@
+{
+  "monsters": [
+    {
+      "name": "Giaprey",
+      "type": "bird-wyvern",
+      "description": "A species of small bird-like carnivores known to inhabit the snowy mountains. Their white skin is beautiful, but their temperament is not. They are known to spit ice at hunters, and attack in deadly packs.",
+      "habitats": [
+        "SnwyMntains"
+      ],
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Giaprey Scale",
+              "chance": "52%"
+            },
+            {
+              "name": "Giaprey Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "18%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Giaprey Scale+",
+              "chance": "50%"
+            },
+            {
+              "name": "Giaprey Hide+",
+              "chance": "40%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "RobustWyvernBone",
+              "chance": "50%"
+            },
+            {
+              "name": "Giaprey Scale+",
+              "chance": "30%"
+            },
+            {
+              "name": "Giaprey Hide+",
+              "chance": "20%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "80",
+          "bash": "80",
+          "shot": "80",
+          "fir": "50",
+          "wtr": "15",
+          "thn": "30",
+          "ice": "5",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Giadrome",
+      "type": "bird-wyvern",
+      "description": "The alpha leader of a pack of Giaprey, the Giadrome sports a beautiful crest. Larger than a Giaprey, any hunter silly enough to encroach on its turf will be frozen in a hail of ice.",
+      "drops": {
+        "1-2 star": {
+          "body carves (x2)": [
+            {
+              "name": "Giaprey Scale",
+              "chance": "17%"
+            },
+            {
+              "name": "Giadrome Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Giadrome Claw",
+              "chance": "53%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Giadrome Hide x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Screamer x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Giaprey Scale x2",
+              "chance": "20%"
+            }
+          ]
+        },
+        "low rank": {
+          "body carves (x2)": [
+            {
+              "name": "Giadrome Claw",
+              "chance": "53%"
+            },
+            {
+              "name": "Giadrome Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Giaprey Scale",
+              "chance": "15%"
+            },
+            {
+              "name": "Giadrome Skull",
+              "chance": "2%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Giadrome Hide x1",
+              "chance": "56%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Giadrome Skull x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x2)": [
+            {
+              "name": "Giadrome Claw+",
+              "chance": "40%"
+            },
+            {
+              "name": "Giaprey Scale+",
+              "chance": "23%"
+            },
+            {
+              "name": "Giaprey Hide+",
+              "chance": "20%"
+            },
+            {
+              "name": "Giadrome Hide",
+              "chance": "10%"
+            },
+            {
+              "name": "Giadrome Skull",
+              "chance": "7%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Giaprey Hide+ x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "36%"
+            },
+            {
+              "name": "Giaprey Scale+",
+              "chance": "24%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 649.8,
+        "max": 1048.77
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "100",
+          "shot": "100",
+          "fir": "60",
+          "wtr": "30",
+          "thn": "30",
+          "ice": "10",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Velociprey",
+      "type": "bird-wyvern",
+      "description": "Aggressive, carnivorous monsters that often travel in packs. Even a master hunter should take care not to become surrounded! Wide ranging, they are found in many different areas, such as the Jungle or Forest and Hills.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Velociprey Fang",
+              "chance": "40%"
+            },
+            {
+              "name": "Velociprey Scale",
+              "chance": "29%"
+            },
+            {
+              "name": "Velociprey Hide",
+              "chance": "23%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "8%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Velociprey Fang",
+              "chance": "35%"
+            },
+            {
+              "name": "Velociprey Scle+",
+              "chance": "35%"
+            },
+            {
+              "name": "Velociprey Hide+",
+              "chance": "30%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "RobustWyvernBone",
+              "chance": "50%"
+            },
+            {
+              "name": "Velociprey Scle+",
+              "chance": "25%"
+            },
+            {
+              "name": "Velociprey Hide+",
+              "chance": "20%"
+            },
+            {
+              "name": "Velociprey Fang",
+              "chance": "5%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "120",
+          "bash": "120",
+          "shot": "120",
+          "fir": "50",
+          "wtr": "50",
+          "thn": "50",
+          "ice": "50",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Velocidrome",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads a Velociprey pack. They are larger and have a more prominent crest. Highly territorial, but will retreat to a safe place when injured to recover.",
+      "drops": {
+        "1-2 star": {
+          "body carves (x2)": [
+            {
+              "name": "Velociprey Scale",
+              "chance": "17%"
+            },
+            {
+              "name": "Velocidrome Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Velocidrome Claw",
+              "chance": "53%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Velocidrome Hide x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Screamer x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Velociprey Fang x2",
+              "chance": "20%"
+            }
+          ]
+        },
+        "low rank": {
+          "body carves (x2)": [
+            {
+              "name": "Velocidrome Claw",
+              "chance": "53%"
+            },
+            {
+              "name": "Velocidrome Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Velociprey Scale",
+              "chance": "15%"
+            },
+            {
+              "name": "Velocidrome Head",
+              "chance": "2%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Velocidrome Hide x1",
+              "chance": "56%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Velocidrome Head x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x2)": [
+            {
+              "name": "Velocidrome Clw+",
+              "chance": "40%"
+            },
+            {
+              "name": "Velociprey Scle+",
+              "chance": "23%"
+            },
+            {
+              "name": "Velociprey Hide+",
+              "chance": "20%"
+            },
+            {
+              "name": "Velocidrome Hide",
+              "chance": "10%"
+            },
+            {
+              "name": "Velocidrome Head",
+              "chance": "7%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Velociprey Hide+ x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "36%"
+            },
+            {
+              "name": "Velociprey Scle+ x2",
+              "chance": "24%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 590.7,
+        "max": 1736.4
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "100",
+          "shot": "100",
+          "fir": "50",
+          "wtr": "50",
+          "thn": "50",
+          "ice": "60",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Genprey",
+      "type": "bird-wyvern",
+      "description": "An orange and green-striped species of small carnivores found mainly in desert zones. Traveling in packs, their large fangs and claws contain a neurotoxin that is used to paralyze prey.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Genprey Fang",
+              "chance": "42%"
+            },
+            {
+              "name": "Genprey Scale",
+              "chance": "33%"
+            },
+            {
+              "name": "Genprey Hide",
+              "chance": "25%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Genprey Fang",
+              "chance": "35%"
+            },
+            {
+              "name": "Genprey Scale+",
+              "chance": "35%"
+            },
+            {
+              "name": "Genprey Hide",
+              "chance": "30%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "RobustWyvernBone",
+              "chance": "40%"
+            },
+            {
+              "name": "Genprey Scale+",
+              "chance": "25%"
+            },
+            {
+              "name": "Genprey Hide+",
+              "chance": "20%"
+            },
+            {
+              "name": "Genprey Fang",
+              "chance": "15%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "100",
+          "shot": "100",
+          "fir": "30",
+          "wtr": "20",
+          "thn": "20",
+          "ice": "60",
+          "drg": "0",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Gendrome",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads a Genprey pack. They are larger and have more prominent crest. Found in the desert, they can paralyze prey using their fangs and claws.",
+      "drops": {
+        "1-2 star": {
+          "body carves (x2)": [
+            {
+              "name": "Genprey Scale",
+              "chance": "40%"
+            },
+            {
+              "name": "Gendrome Hide",
+              "chance": "30%"
+            },
+            {
+              "name": "Paralysis Sac",
+              "chance": "30%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Gendrome Hide x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Paralysis Sac x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Genprey Fang x2",
+              "chance": "20%"
+            }
+          ]
+        },
+        "low rank": {
+          "body carves (x2)": [
+            {
+              "name": "Gendrome Hide",
+              "chance": "48%"
+            },
+            {
+              "name": "Paralysis Sac",
+              "chance": "35%"
+            },
+            {
+              "name": "Genprey Scale",
+              "chance": "15%"
+            },
+            {
+              "name": "Gendrome Skull",
+              "chance": "2%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Gendrome Hide x1",
+              "chance": "56%"
+            },
+            {
+              "name": "Paralysis Sac x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Gendrome Skull x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x2)": [
+            {
+              "name": "Gendrome Tail",
+              "chance": "30%"
+            },
+            {
+              "name": "Paralysis Sac",
+              "chance": "23%"
+            },
+            {
+              "name": "Genprey Scale+",
+              "chance": "20%"
+            },
+            {
+              "name": "Genprey Hide+",
+              "chance": "15%"
+            },
+            {
+              "name": "Gendrome Skull",
+              "chance": "7%"
+            },
+            {
+              "name": "Gendrome Hide",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Genprey Hide+ x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Paralysis Sac x2",
+              "chance": "36%"
+            },
+            {
+              "name": "Genprey Scale+ x2",
+              "chance": "24%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 615.0,
+        "max": 1037.4
+      },
+      "hitzones": {
+        "all": {
+          "cut": "90",
+          "bash": "90",
+          "shot": "100",
+          "fir": "35",
+          "wtr": "10",
+          "thn": "40",
+          "ice": "50",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Ioprey",
+      "type": "bird-wyvern",
+      "description": "A vivid red species of small carnivores often found in subtropical zones. Sacs in their throat contain a powerful poison that slowly drains the health of their prey.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Ioprey Fang",
+              "chance": "47%"
+            },
+            {
+              "name": "Ioprey Scale",
+              "chance": "38%"
+            },
+            {
+              "name": "Ioprey Hide",
+              "chance": "15%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Ioprey Fang",
+              "chance": "35%"
+            },
+            {
+              "name": "Ioprey Scale+",
+              "chance": "35%"
+            },
+            {
+              "name": "Ioprey Hide+",
+              "chance": "35%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "RobustWyvernBone",
+              "chance": "50%"
+            },
+            {
+              "name": "Ioprey Scale+",
+              "chance": "25%"
+            },
+            {
+              "name": "Ioprey Hide+",
+              "chance": "20%"
+            },
+            {
+              "name": "Ioprey Fang",
+              "chance": "5%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "90",
+          "bash": "90",
+          "shot": "90",
+          "fir": "20",
+          "wtr": "30",
+          "thn": "50",
+          "ice": "20",
+          "drg": "0",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Iodrome",
+      "type": "bird-wyvern",
+      "description": "The alpha monster that leads an Ioprey pack. They are larger and have a more prominent crest. Found in subtropical zones, they spit a poison that can sap the life force of prey.",
+      "drops": {
+        "low rank": {
+          "body carves (x2)": [
+            {
+              "name": "Iodrome Hide",
+              "chance": "48%"
+            },
+            {
+              "name": "Poison Sac",
+              "chance": "35%"
+            },
+            {
+              "name": "Ioprey Scale",
+              "chance": "15%"
+            },
+            {
+              "name": "Iodrome Skull",
+              "chance": "2%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Iodrome Hide x1",
+              "chance": "56%"
+            },
+            {
+              "name": "Poison Sac x2",
+              "chance": "39%"
+            },
+            {
+              "name": "Iodrome Skull",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x2)": [
+            {
+              "name": "Toxin Sac",
+              "chance": "30%"
+            },
+            {
+              "name": "Ioprey Scale+",
+              "chance": "28%"
+            },
+            {
+              "name": "Ioprey Hide+",
+              "chance": "25%"
+            },
+            {
+              "name": "Iodrome Hide",
+              "chance": "10%"
+            },
+            {
+              "name": "Iodrome Skull",
+              "chance": "7%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Ioprey Hide+ x2",
+              "chance": "40%"
+            },
+            {
+              "name": "Toxin Sac x2",
+              "chance": "36%"
+            },
+            {
+              "name": "Ioprey Scale+ x2",
+              "chance": "24%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 619.7,
+        "max": 1641.06
+      },
+      "hitzones": {
+        "all": {
+          "cut": "80",
+          "bash": "80",
+          "shot": "90",
+          "fir": "20",
+          "wtr": "30",
+          "thn": "30",
+          "ice": "10",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Yian Kut-Ku",
+      "type": "bird-wyvern",
+      "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
+      "drops": {
+        "1-2 star": {
+          "body carves (x3)": [
+            {
+              "name": "Kut-Ku Shell",
+              "chance": "55%"
+            },
+            {
+              "name": "Kut-Ku Scale",
+              "chance": "25%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "10%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "10%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Kut-Ku Scale x1",
+              "chance": "75%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Kut-Ku Scale",
+              "chance": "25%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Kut-Ku Shell x1",
+              "chance": "36%"
+            },
+            {
+              "name": "Screamer x1",
+              "chance": "24%"
+            },
+            {
+              "name": "Med Monster Bone x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "low rank": {
+          "body carves (x3)": [
+            {
+              "name": "Kut-Ku Shell",
+              "chance": "50%"
+            },
+            {
+              "name": "Kut-Ku Webbing",
+              "chance": "32%"
+            },
+            {
+              "name": "Kut-Ku Scale",
+              "chance": "13%"
+            },
+            {
+              "name": "Giant Beak",
+              "chance": "5%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Kut-Ku Ear x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Kut-Ku Scale x3",
+              "chance": "50%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Kut-Ku Scale",
+              "chance": "16%"
+            },
+            {
+              "name": "Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Kut-Ku Shell x1",
+              "chance": "33%"
+            },
+            {
+              "name": "Screamer",
+              "chance": "24%"
+            },
+            {
+              "name": "Med Monster Bone x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Giant Beak x1",
+              "chance": "3%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x3)": [
+            {
+              "name": "Kut-Ku Scale+",
+              "chance": "50%"
+            },
+            {
+              "name": "Kut-Ku Carapace",
+              "chance": "25%"
+            },
+            {
+              "name": "Kut-Ku Webbing",
+              "chance": "10%"
+            },
+            {
+              "name": "Giant Beak",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak",
+              "chance": "5%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Kut-Ku Ear x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Long Kut-Ku Ear x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Kut-Ku Scale+ x3",
+              "chance": "25%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Kut-Ku Scale+",
+              "chance": "16%"
+            },
+            {
+              "name": "Long Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Kut-Ku Carapace",
+              "chance": "43%"
+            },
+            {
+              "name": "Monster Bone+ x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "17%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak x1",
+              "chance": "3%"
+            }
+          ]
+        },
+        "g rank": {
+          "body carves (x3)": [
+            {
+              "name": "Thick Kut-Ku Scl",
+              "chance": "33%"
+            },
+            {
+              "name": "Str Kut-Ku Wing",
+              "chance": "32%"
+            },
+            {
+              "name": "Hvy Kut-Ku Shell",
+              "chance": "25%"
+            },
+            {
+              "name": "Splendid Beak",
+              "chance": "10%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Long Kut-Ku Ear x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Lucky Kut-Ku Ear x1",
+              "chance": "30%"
+            },
+            {
+              "name": "Thick Kut-Ku Scl x3",
+              "chance": "25%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "49%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "Thick Kut-Ku Scl",
+              "chance": "16%"
+            },
+            {
+              "name": "Lucky Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Hvy Kut-Ku Shell x1",
+              "chance": "47%"
+            },
+            {
+              "name": "Hvy Monster Bone x1",
+              "chance": "23%"
+            },
+            {
+              "name": "Blazing Fire Sac x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Screamer x4",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak x1",
+              "chance": "5%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 449.3,
+        "max": 1204.9
+      },
+      "hitzones": {
+        "head": {
+          "cut": "50",
+          "bash": "80",
+          "shot": "100",
+          "fir": "10",
+          "wtr": "30",
+          "thn": "30",
+          "ice": "40",
+          "drg": "0",
+          "ko": "100"
+        },
+        "neck": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "50",
+          "fir": "10",
+          "wtr": "80",
+          "thn": "50",
+          "ice": "50",
+          "drg": "20",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "40",
+          "bash": "50",
+          "shot": "40",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "belly": {
+          "cut": "80",
+          "bash": "70",
+          "shot": "80",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "75",
+          "bash": "70",
+          "shot": "70",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "25",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "30",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "5",
+          "ice": "5",
+          "drg": "0",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Blue Yian Kut-Ku",
+      "type": "bird-wyvern",
+      "description": "A bird-like wyvern with a huge beak and large ears that splay open when it is angered. With its sensitive hearing it dislikes loud noises. It is smaller but faster than other wyverns.",
+      "drops": {
+        "low rank": {
+          "body carves (x3)": [
+            {
+              "name": "Blue Kut-Ku Scl",
+              "chance": "47%"
+            },
+            {
+              "name": "Blue Kut-Ku Shl",
+              "chance": "35%"
+            },
+            {
+              "name": "Kut-Ku Webbing",
+              "chance": "15%"
+            },
+            {
+              "name": "Giant Beak",
+              "chance": "5%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Kut-Ku Ear x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Blue Kut-Ku Scl x3",
+              "chance": "50%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Blue Kut-Ku Scl",
+              "chance": "16%"
+            },
+            {
+              "name": "Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Blue Kut-Ku Shl x1",
+              "chance": "36%"
+            },
+            {
+              "name": "Med Monster Bone x2",
+              "chance": "27%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "24%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Giant Beak x1",
+              "chance": "3%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carves (x3)": [
+            {
+              "name": "Blue Kut-Ku Scl+",
+              "chance": "50%"
+            },
+            {
+              "name": "Blue Kut-Ku Cpc",
+              "chance": "25%"
+            },
+            {
+              "name": "Kut-Ku Webbing",
+              "chance": "10%"
+            },
+            {
+              "name": "Giant Beak",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak",
+              "chance": "5%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Kut-Ku Ear x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Long Kut-Ku Ear x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Blue Kut-Ku Scl+",
+              "chance": "25%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "37%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "37%"
+            },
+            {
+              "name": "Blue Kut-Ku Scl+",
+              "chance": "16%"
+            },
+            {
+              "name": "Long Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Blue Kut-Ku Cpc",
+              "chance": "43%"
+            },
+            {
+              "name": "Monster Bone+ x1",
+              "chance": "27%"
+            },
+            {
+              "name": "Screamer x2",
+              "chance": "17%"
+            },
+            {
+              "name": "Flame Sac x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak x1",
+              "chance": "3%"
+            }
+          ]
+        },
+        "g rank": {
+          "body carves (x3)": [
+            {
+              "name": "ThkBlueKut-KuScl",
+              "chance": "33%"
+            },
+            {
+              "name": "Str Kut-Ku Wing",
+              "chance": "32%"
+            },
+            {
+              "name": "HvyBlueKut-KuShl",
+              "chance": "25%"
+            },
+            {
+              "name": "Splendid Beak",
+              "chance": "10%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Long Kut-Ku Ear x1",
+              "chance": "45%"
+            },
+            {
+              "name": "Lucky Kut-Ku Ear x1",
+              "chance": "30%"
+            },
+            {
+              "name": "ThkBlueKut-KuScl x3",
+              "chance": "25%"
+            }
+          ],
+          "shiny drop : sonic, doesn't work when rage": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "49%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "ThkBlueKut-KuScl",
+              "chance": "16%"
+            },
+            {
+              "name": "Lucky Kut-Ku Ear",
+              "chance": "10%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "HvyBlueKut-KuShl x1",
+              "chance": "47%"
+            },
+            {
+              "name": "Hvy Monster Bone x1",
+              "chance": "23%"
+            },
+            {
+              "name": "Blazing Fire Sac x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Screamer x4",
+              "chance": "10%"
+            },
+            {
+              "name": "Splendid Beak x1",
+              "chance": "5%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 449.3,
+        "max": 1195.7
+      },
+      "hitzones": {
+        "head": {
+          "cut": "50",
+          "bash": "80",
+          "shot": "100",
+          "fir": "10",
+          "wtr": "30",
+          "thn": "30",
+          "ice": "40",
+          "drg": "0",
+          "ko": "100"
+        },
+        "neck": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "50",
+          "fir": "10",
+          "wtr": "80",
+          "thn": "50",
+          "ice": "50",
+          "drg": "20",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "40",
+          "bash": "50",
+          "shot": "40",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "belly": {
+          "cut": "80",
+          "bash": "70",
+          "shot": "80",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "50",
+          "bash": "60",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "20",
+          "thn": "15",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "75",
+          "bash": "70",
+          "shot": "70",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "25",
+          "ice": "15",
+          "drg": "0",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "30",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "5",
+          "ice": "5",
+          "drg": "0",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Yian Garuga",
+      "type": "bird-wyvern",
+      "description": "A breed of Yian Kut-Ku with a hard black shell and a long mane. Known for its trap avoiding slyness and poison loaded tail, it is a particularly evil wyvern, so beware!",
+      "drops": {
+        "low rank": {
+          "body carve (x3)": [
+            {
+              "name": "Garuga Scale",
+              "chance": "64%"
+            },
+            {
+              "name": "Garuga Shell",
+              "chance": "28%"
+            },
+            {
+              "name": "Garuga Mane",
+              "chance": "7%"
+            },
+            {
+              "name": "Garuga Wing",
+              "chance": "1%"
+            }
+          ],
+          "tail carve (x1)": [
+            {
+              "name": "Garuga Tail",
+              "chance": "80%"
+            },
+            {
+              "name": "Garuga Scale",
+              "chance": "20%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Garuga Ear x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Garuga Scale x3",
+              "chance": "20%"
+            }
+          ],
+          "break beak": [
+            {
+              "name": "Sharpened Beak x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Garuga Scale x3",
+              "chance": "20%"
+            }
+          ],
+          "break wings": [
+            {
+              "name": "Garuga Wing x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Garuga Shell x2",
+              "chance": "20%"
+            }
+          ],
+          "break back": [
+            {
+              "name": "Garuga Mane x1",
+              "chance": "80%"
+            },
+            {
+              "name": "Garuga Shell x2",
+              "chance": "20%"
+            }
+          ],
+          "shiny drop : pitfall trapped in rage mode": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Garuga Scale",
+              "chance": "25%"
+            },
+            {
+              "name": "Garuga Wing",
+              "chance": "1%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Garuga Shell x2",
+              "chance": "90%"
+            },
+            {
+              "name": "Sharpened Beak x1",
+              "chance": "5%"
+            },
+            {
+              "name": "Garuga Ear x1",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high rank": {
+          "break ears": [
+            {
+              "name": "Long Garuga Ear x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Garuga Ear x2",
+              "chance": "50%"
+            },
+            {
+              "name": "Garuga Scale+ x2",
+              "chance": "15%"
+            }
+          ],
+          "break beak": [
+            {
+              "name": "Rejuvenated Beak x1",
+              "chance": "35%"
+            },
+            {
+              "name": "Sharpened Beak x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Garuga Scale+ x2",
+              "chance": "15%"
+            }
+          ],
+          "break wings": [
+            {
+              "name": "Garuga Wing x1",
+              "chance": "70%"
+            },
+            {
+              "name": "Garuga Wing x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Garuga Shell x2",
+              "chance": "10%"
+            },
+            {
+              "name": "Garuga Carapace x1",
+              "chance": "5%"
+            }
+          ],
+          "break back": [
+            {
+              "name": "Garuga Mane x2",
+              "chance": "50%"
+            },
+            {
+              "name": "Garuga Shell x4",
+              "chance": "40%"
+            },
+            {
+              "name": "Garuga Carapace x2",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g rank": {
+          "body carve (x3)": [
+            {
+              "name": "ThickGarugaScale",
+              "chance": "53%"
+            },
+            {
+              "name": "Hvy Garuga Shell",
+              "chance": "25%"
+            },
+            {
+              "name": "Garuga Carapace",
+              "chance": "16%"
+            },
+            {
+              "name": "Garuga Mane",
+              "chance": "5%"
+            },
+            {
+              "name": "Str Garuga Wing",
+              "chance": "1%"
+            }
+          ],
+          "tail carve (x1)": [
+            {
+              "name": "LethrGarugaTail",
+              "chance": "50%"
+            },
+            {
+              "name": "Garuga Tail",
+              "chance": "30%"
+            },
+            {
+              "name": "Garuga Scale+",
+              "chance": "15%"
+            },
+            {
+              "name": "ThickGarugaScale",
+              "chance": "5%"
+            }
+          ],
+          "break ears": [
+            {
+              "name": "Long Garuga Ear x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Garuga Ear x2",
+              "chance": "40%"
+            },
+            {
+              "name": "ThickGarugaScale x2",
+              "chance": "10%"
+            }
+          ],
+          "break beak": [
+            {
+              "name": "Rejuvenated Beak x1",
+              "chance": "55%"
+            },
+            {
+              "name": "Sharpened Beak x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Garuga Scale+ x3",
+              "chance": "15%"
+            },
+            {
+              "name": "ThickGarugaScale x2",
+              "chance": "10%"
+            }
+          ],
+          "break wings": [
+            {
+              "name": "Garuga Wing x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Str Garuga Wing x1",
+              "chance": "50%"
+            },
+            {
+              "name": "Hvy Garuga Shell x1",
+              "chance": "20%"
+            }
+          ],
+          "break back": [
+            {
+              "name": "Garuga Mane x4",
+              "chance": "40%"
+            },
+            {
+              "name": "SilverGarugaPelt x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Garuga Carapace x4",
+              "chance": "25%"
+            },
+            {
+              "name": "Hvy Garuga Shell x2",
+              "chance": "15%"
+            }
+          ],
+          "shiny drop : pitfall trapped in rage mode": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "25%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "49%"
+            },
+            {
+              "name": "Garuga Scale+",
+              "chance": "20%"
+            },
+            {
+              "name": "ThickGarugaScale",
+              "chance": "5%"
+            },
+            {
+              "name": "Str Garuga Wing",
+              "chance": "1%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Hvy Garuga Shell x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Garuga Carapace x2",
+              "chance": "56%"
+            },
+            {
+              "name": "Rejuvenated Beak x1",
+              "chance": "7%"
+            },
+            {
+              "name": "Long Garuga Ear x1",
+              "chance": "7%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 887.3,
+        "max": 1744.5
+      },
+      "hitzones": {
+        "head": {
+          "cut": "65",
+          "bash": "60",
+          "shot": "60",
+          "fir": "0",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "150"
+        },
+        "neck": {
+          "cut": "40",
+          "bash": "40",
+          "shot": "40",
+          "fir": "0",
+          "wtr": "30",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "10",
+          "bash": "10",
+          "shot": "10",
+          "fir": "5",
+          "wtr": "70",
+          "thn": "5",
+          "ice": "15",
+          "drg": "15",
+          "ko": "0"
+        },
+        "torso": {
+          "cut": "10",
+          "bash": "10",
+          "shot": "60",
+          "fir": "15",
+          "wtr": "40",
+          "thn": "15",
+          "ice": "30",
+          "drg": "30",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "45",
+          "bash": "25",
+          "shot": "10",
+          "fir": "5",
+          "wtr": "30",
+          "thn": "5",
+          "ice": "20",
+          "drg": "15",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "25",
+          "bash": "45",
+          "shot": "10",
+          "fir": "0",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "25",
+          "shot": "35",
+          "fir": "0",
+          "wtr": "15",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Scarred Yian Garuga",
+      "type": "bird-wyvern",
+      "icon": "yian-garuga",
+      "drops": {},
+      "hitzones": {
+        "head": {
+          "cut": "65",
+          "bash": "60",
+          "shot": "60",
+          "fir": "0",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "150"
+        },
+        "neck": {
+          "cut": "40",
+          "bash": "40",
+          "shot": "40",
+          "fir": "0",
+          "wtr": "30",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "10",
+          "bash": "10",
+          "shot": "10",
+          "fir": "5",
+          "wtr": "70",
+          "thn": "5",
+          "ice": "15",
+          "drg": "15",
+          "ko": "0"
+        },
+        "torso": {
+          "cut": "10",
+          "bash": "10",
+          "shot": "60",
+          "fir": "15",
+          "wtr": "40",
+          "thn": "15",
+          "ice": "30",
+          "drg": "30",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "45",
+          "bash": "25",
+          "shot": "10",
+          "fir": "5",
+          "wtr": "30",
+          "thn": "5",
+          "ice": "20",
+          "drg": "15",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "25",
+          "bash": "45",
+          "shot": "10",
+          "fir": "0",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "25",
+          "bash": "25",
+          "shot": "35",
+          "fir": "0",
+          "wtr": "15",
+          "thn": "0",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Gypceros",
+      "type": "bird-wyvern",
+      "description": "A wyvern that can generate disorienting flashes of light when its prominent head crest is struck. Its rubbery hide resists damage and can ward off shock traps, while its spit carries a deadly venom. However, they are quite timid.",
+      "drops": {
+        "1-2 star guild": {
+          "body carve (x3)": [
+            {
+              "name": "Power Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Rubbery Hide",
+              "chance": "60%"
+            },
+            {
+              "name": "Poison Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "10%"
+            }
+          ],
+          "shiny drop : when playing dead": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "75%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "25%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Lightcrystal x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Stone x5",
+              "chance": "71%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Rubbery Hide x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Poison Sac x1",
+              "chance": "46%"
+            },
+            {
+              "name": "Power Extract x1",
+              "chance": "34%"
+            }
+          ]
+        },
+        "low-rank": {
+          "body carve (x3)": [
+            {
+              "name": "Rubbery Hide",
+              "chance": "61%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Poison Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "Gypceros Head",
+              "chance": "1%"
+            }
+          ],
+          "shiny drop : when playing dead": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "6%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Iron Ore x1",
+              "chance": "66%"
+            },
+            {
+              "name": "Lightcrystal x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Poison Sac x2",
+              "chance": "46%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "34%"
+            },
+            {
+              "name": "Rubbery Hide x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carve (x3)": [
+            {
+              "name": "Rubbery Hide+",
+              "chance": "43%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "23%"
+            },
+            {
+              "name": "Toxin Sac",
+              "chance": "18%"
+            },
+            {
+              "name": "Novacrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "Gypceros Head",
+              "chance": "5%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "name": "Rubbery Hide+",
+              "chance": "60%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "30%"
+            },
+            {
+              "name": "Toxin Sac",
+              "chance": "10%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "68%"
+            },
+            {
+              "name": "Lightcrystal x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Novacrystal x1",
+              "chance": "7%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Toxin Sac x2",
+              "chance": "42%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Rubbery Hide+",
+              "chance": "18%"
+            },
+            {
+              "name": "Rubbery Hide x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carve (x3)": [
+            {
+              "name": "SpecRubberyHide+",
+              "chance": "43%"
+            },
+            {
+              "name": "DeadlyPoisonSac",
+              "chance": "23%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "18%"
+            },
+            {
+              "name": "Novacrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "HardGypcerosHead",
+              "chance": "5%"
+            },
+            {
+              "name": "Purecrystal",
+              "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "name": "SpecRubberyHide+",
+              "chance": "30%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "25%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "15%"
+            },
+            {
+              "name": "DeadlyPoisonSac",
+              "chance": "13%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "10%"
+            },
+            {
+              "name": "HardGypcerosHead",
+              "chance": "7%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "58%"
+            },
+            {
+              "name": "Novacrystal x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Purecrystal x1",
+              "chance": "7%"
+            },
+            {
+              "name": "HardGypcerosHead x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "DeadlyPoisonSac x2",
+              "chance": "42%"
+            },
+            {
+              "name": "SpecRubberyHide+ x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Toxin Sac x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Rubbery Hide+ x1",
+              "chance": "10%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 811.0,
+        "max": 1348.2
+      },
+      "hitzones": {
+        "head": {
+          "cut": "30",
+          "bash": "80",
+          "shot": "70",
+          "fir": "50",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "20",
+          "drg": "10",
+          "ko": "100"
+        },
+        "neck": {
+          "cut": "50",
+          "bash": "25",
+          "shot": "40",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "70",
+          "bash": "30",
+          "shot": "20",
+          "fir": "20",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "belly": {
+          "cut": "80",
+          "bash": "30",
+          "shot": "20",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "90",
+          "bash": "40",
+          "shot": "80",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "50",
+          "bash": "30",
+          "shot": "30",
+          "fir": "30",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "20",
+          "drg": "10",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "20",
+          "bash": "20",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Purple Gypceros",
+      "type": "bird-wyvern",
+      "icon": "gypceros",
+      "description": "A wyvern that can generate disorienting flashes of light when its prominent head crest is struck. Its rubbery hide resists damage and can ward off shock traps, while its spit carries a deadly venom. However, they are quite timid.",
+      "drops": {
+        "low rank": {
+          "body carve (x3)": [
+            {
+              "name": "Pur Rubbery Hide",
+              "chance": "61%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Poison Sac",
+              "chance": "10%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "Gypceros Head",
+              "chance": "1%"
+            }
+          ],
+          "shiny drop : when playing dead": [
+            {
+              "name": "Wyvern Tears",
+              "chance": "74%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "20%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "6%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Iron Ore x2",
+              "chance": "66%"
+            },
+            {
+              "name": "Lightcrystal x1",
+              "chance": "29%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Poison Sac x2",
+              "chance": "46%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "34%"
+            },
+            {
+              "name": "Pur Rubbery Hide x1",
+              "chance": "20%"
+            }
+          ]
+        },
+        "high rank": {
+          "body carve (x3)": [
+            {
+              "name": "Pur Gypceros Wng",
+              "chance": "43%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "23%"
+            },
+            {
+              "name": "Toxin Sac",
+              "chance": "18%"
+            },
+            {
+              "name": "Lightcrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "Pur Rubbery Hide",
+              "chance": "5%"
+            },
+            {
+              "name": "Novacrystal",
+              "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "name": "Pur Gypceros Wng",
+              "chance": "60%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "30%"
+            },
+            {
+              "name": "Toxin Sac",
+              "chance": "10%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "68%"
+            },
+            {
+              "name": "Lightcrystal x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Novacrystal x1",
+              "chance": "7%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "Toxin Sac x2",
+              "chance": "42%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "30%"
+            },
+            {
+              "name": "Pur Gypceros Wng x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Pur Rubbery Hide x1",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g rank": {
+          "body carve (x3)": [
+            {
+              "name": "HrdPuGypcerosWng",
+              "chance": "43%"
+            },
+            {
+              "name": "DeadlyPoisonSac",
+              "chance": "23%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "18%"
+            },
+            {
+              "name": "Novacrystal",
+              "chance": "8%"
+            },
+            {
+              "name": "HardGypcerosHead",
+              "chance": "5%"
+            },
+            {
+              "name": "Purecrystal",
+              "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "name": "HrdPuGypcerosWng",
+              "chance": "30%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "25%"
+            },
+            {
+              "name": "Power Extract",
+              "chance": "15%"
+            },
+            {
+              "name": "DeadlyPoisonSac",
+              "chance": "13%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "10%"
+            },
+            {
+              "name": "HardGypcerosHead",
+              "chance": "7%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Dragonite Ore x1",
+              "chance": "58%"
+            },
+            {
+              "name": "Novacrystal x1",
+              "chance": "20%"
+            },
+            {
+              "name": "Gypceros Head x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Purecrystal x1",
+              "chance": "7%"
+            },
+            {
+              "name": "HardGypcerosHead x1",
+              "chance": "5%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "DeadlyPoisonSac x2",
+              "chance": "42%"
+            },
+            {
+              "name": "HrdPuGypcerosWng x1",
+              "chance": "18%"
+            },
+            {
+              "name": "Toxin Sac x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Power Extract x2",
+              "chance": "15%"
+            },
+            {
+              "name": "Pur Gypceros Wng x1",
+              "chance": "10%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 912.3,
+        "max": 1348.2
+      },
+      "hitzones": {
+        "head": {
+          "cut": "30",
+          "bash": "80",
+          "shot": "70",
+          "fir": "50",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "20",
+          "drg": "10",
+          "ko": "100"
+        },
+        "neck": {
+          "cut": "50",
+          "bash": "25",
+          "shot": "40",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "70",
+          "bash": "30",
+          "shot": "20",
+          "fir": "20",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "belly": {
+          "cut": "80",
+          "bash": "30",
+          "shot": "20",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "90",
+          "bash": "40",
+          "shot": "80",
+          "fir": "30",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "50",
+          "bash": "30",
+          "shot": "30",
+          "fir": "30",
+          "wtr": "20",
+          "thn": "0",
+          "ice": "20",
+          "drg": "10",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "20",
+          "bash": "20",
+          "shot": "30",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "0",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Hypnocatrice",
+      "type": "bird-wyvern",
+      "description": "A rust-colored bird wyvern with beautiful tail feathers found mainly in forests. A highly pacifistic wyvern by nature, it breathes sleeping gas on its enemies and prey alike. Its strong, developed legs pack a serious punch, so be careful!",
+      "drops": {
+        "high rank": {
+          "body carve (x3)": [
+            {
+              "name": "Top-GrdHypnoClaw",
+              "chance": "40%"
+            },
+            {
+              "name": "OrangeHypnoPelt",
+              "chance": "32%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "24%"
+            },
+            {
+              "name": "Hypno Bezoar",
+              "chance": "4%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Hypno Beak x1",
+              "chance": "90%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "10%"
+            }
+          ],
+          "shiny drop : put hypnoc to sleep": [
+            {
+              "name": "OrangeHypnoPelt",
+              "chance": "32%"
+            },
+            {
+              "name": "Wyvern Sobs",
+              "chance": "30%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "30%"
+            },
+            {
+              "name": "Hypno Bezoar",
+              "chance": "8%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "RainbowTailFeath x1",
+              "chance": "36%"
+            },
+            {
+              "name": "OrangeHypnoPelt x2",
+              "chance": "28%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "24%"
+            },
+            {
+              "name": "Sleepyfish x2",
+              "chance": "6%"
+            }
+          ]
+        },
+        "g rank": {
+          "body carve (x3)": [
+            {
+              "name": "Hypno Claw+",
+              "chance": "30%"
+            },
+            {
+              "name": "OrangeHypnoPelt+",
+              "chance": "28%"
+            },
+            {
+              "name": "OrangeHypnoPelt",
+              "chance": "12%"
+            },
+            {
+              "name": "Top-GrdHypnoClaw",
+              "chance": "10%"
+            },
+            {
+              "name": "Hypno Bezoar",
+              "chance": "8%"
+            },
+            {
+              "name": "Sleep Sac",
+              "chance": "8%"
+            },
+            {
+              "name": "Hypno Bezoar+",
+              "chance": "4%"
+            }
+          ],
+          "break head": [
+            {
+              "name": "Hypno Fang x1",
+              "chance": "85%"
+            },
+            {
+              "name": "Hypno Beak x1",
+              "chance": "10%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "5%"
+            }
+          ],
+          "shiny drop : put hypnoc to sleep": [
+            {
+              "name": "Wyvern Sobs",
+              "chance": "40%"
+            },
+            {
+              "name": "OrangeHypnoPelt+",
+              "chance": "32%"
+            },
+            {
+              "name": "Wyvern Tears",
+              "chance": "20%"
+            },
+            {
+              "name": "Hypno Bezoar+",
+              "chance": "8%"
+            }
+          ],
+          "capture": [
+            {
+              "name": "OrangeHypnoPelt+ x1",
+              "chance": "28%"
+            },
+            {
+              "name": "RainbowTailFeath x1",
+              "chance": "25%"
+            },
+            {
+              "name": "Hypno Claw+ x1",
+              "chance": "15%"
+            },
+            {
+              "name": "Hypno Bezoar x1",
+              "chance": "12%"
+            },
+            {
+              "name": "Sleep Sac x2",
+              "chance": "10%"
+            },
+            {
+              "name": "Hypno Bezoar+ x1",
+              "chance": "6%"
+            },
+            {
+              "name": "OrangeHypnoPelt x2",
+              "chance": "4%"
+            }
+          ]
+        }
+      },
+      "sizes": {
+        "min": 751.4,
+        "max": 1485.8
+      },
+      "hitzones": {
+        "head": {
+          "cut": "65",
+          "bash": "50",
+          "shot": "60",
+          "fir": "20",
+          "wtr": "5",
+          "thn": "10",
+          "ice": "10",
+          "drg": "5",
+          "ko": "100"
+        },
+        "neck": {
+          "cut": "40",
+          "bash": "40",
+          "shot": "40",
+          "fir": "10",
+          "wtr": "10",
+          "thn": "10",
+          "ice": "15",
+          "drg": "5",
+          "ko": "0"
+        },
+        "back": {
+          "cut": "25",
+          "bash": "30",
+          "shot": "40",
+          "fir": "15",
+          "wtr": "5",
+          "thn": "5",
+          "ice": "15",
+          "drg": "5",
+          "ko": "0"
+        },
+        "belly": {
+          "cut": "50",
+          "bash": "40",
+          "shot": "30",
+          "fir": "25",
+          "wtr": "5",
+          "thn": "10",
+          "ice": "5",
+          "drg": "5",
+          "ko": "0"
+        },
+        "tail": {
+          "cut": "40",
+          "bash": "40",
+          "shot": "25",
+          "fir": "10",
+          "wtr": "5",
+          "thn": "15",
+          "ice": "5",
+          "drg": "5",
+          "ko": "0"
+        },
+        "wing": {
+          "cut": "25",
+          "bash": "20",
+          "shot": "25",
+          "fir": "15",
+          "wtr": "10",
+          "thn": "20",
+          "ice": "10",
+          "drg": "5",
+          "ko": "0"
+        },
+        "leg": {
+          "cut": "35",
+          "bash": "40",
+          "shot": "25",
+          "fir": "5",
+          "wtr": "5",
+          "thn": "5",
+          "ice": "5",
+          "drg": "5",
+          "ko": "0"
+        }
+      }
+    }
+  ]
+}
