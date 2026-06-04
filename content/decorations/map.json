@@ -371,6 +371,13 @@
         "name": "Extinction Jewel",
         "rarity": 5,
         "color": "slate"
+      },
+      {
+        "slug": "dragonslyrjewel",
+        "type": "decoration",
+        "name": "DragonslyrJewel",
+        "rarity": 4,
+        "color": "slate"
       }
     ]
   },
@@ -669,6 +676,13 @@
         "slug": "fast-food-jewel",
         "type": "decoration",
         "name": "Fast Food Jewel",
+        "rarity": 5,
+        "color": "yellow"
+      },
+      {
+        "slug": "scarfing-jewel",
+        "type": "decoration",
+        "name": "Scarfing Jewel",
         "rarity": 5,
         "color": "yellow"
       }
