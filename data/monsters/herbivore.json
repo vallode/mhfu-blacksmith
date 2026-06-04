@@ -1,0 +1,490 @@
+{
+  "monsters": [
+    {
+      "name": "Anteka",
+      "type": "herbivore",
+      "description": "Herbivorous monsters living in the snowy mountains. Normally docile, but when provoked it will attack with its giant antlers. Its high quality pelt has many uses and its antlers are highly valued by the Guild.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Anteka Antlers",
+              "chance": "45%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "2%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "18%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "12%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Anteka Antlers",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "28%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "15%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "12%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "High Qualty Pelt",
+              "chance": "50%"
+            },
+            {
+              "name": "Anteka Pelt",
+              "chance": "23%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "10%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "10%"
+            },
+            {
+              "name": "Anteka Antlers",
+              "chance": "7%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "90",
+          "shot": "90",
+          "fir": "100",
+          "wtr": "50",
+          "thn": "80",
+          "ice": "5",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Popo",
+      "type": "herbivore",
+      "description": "A herbivorous monster known for its giant, bent fangs. Living in herds, it is particularly bold when defending its offspring. Popo meat is quite nutritious, and its tongue is widely admired as a delicacy.",
+      "habitats": [
+        "SnwyMntains"
+      ],
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "42%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "38%"
+            },
+            {
+              "name": "Bone",
+              "chance": "20%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "35%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Brute Bone",
+              "chance": "10%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Popo Tongue",
+              "chance": "35%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Giant Bone",
+              "chance": "25%"
+            },
+            {
+              "name": "Stout Bone",
+              "chance": "10%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "100",
+          "bash": "100",
+          "shot": "100",
+          "fir": "50",
+          "wtr": "10",
+          "thn": "10",
+          "ice": "10",
+          "drg": "10",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Kelbi",
+      "type": "herbivore",
+      "description": "Herbivorous, deer-like monsters. Valued for their horns, they tend to run away at the first hint of danger. They are also hunted for their meat, which is chewy but flavorful.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "50%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "32%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "25%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "22%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "15%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Kelbi Horn",
+              "chance": "35%"
+            },
+            {
+              "name": "High Qualty Pelt",
+              "chance": "35%"
+            },
+            {
+              "name": "Kelbi Hide",
+              "chance": "17%"
+            },
+            {
+              "name": "White Liver",
+              "chance": "10%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "3%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "140",
+          "bash": "150",
+          "shot": "150",
+          "fir": "100",
+          "wtr": "100",
+          "thn": "100",
+          "ice": "100",
+          "drg": "10",
+          "ko": "100"
+        }
+      }
+    },
+    {
+      "name": "Mosswine",
+      "type": "herbivore",
+      "description": "Wild pigs covered in moss and fungus. Sometimes you will even find mushrooms growing on them. Their meat is known as a delicacy. Though normally docile, they will charge you if angered!",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "45%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "30%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "5%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "42%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "20%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "10%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "8%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Blue Mushroom",
+              "chance": "33%"
+            },
+            {
+              "name": "Special Mushroom",
+              "chance": "20%"
+            },
+            {
+              "name": "Raw Meat",
+              "chance": "20%"
+            },
+            {
+              "name": "Select Mushroom",
+              "chance": "15%"
+            },
+            {
+              "name": "Mosswine Hide",
+              "chance": "12%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "150",
+          "bash": "150",
+          "shot": "120",
+          "fir": "100",
+          "wtr": "100",
+          "thn": "100",
+          "ice": "100",
+          "drg": "10",
+          "ko": "0"
+        }
+      }
+    },
+    {
+      "name": "Aptonoth",
+      "type": "herbivore",
+      "description": "Hunted as a food source, these creatures are preyed upon by both hunter and monster alike. Usually timid, in packs they will defend themselves with surprising strength.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "75%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "25%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "all": {
+          "cut": "110",
+          "bash": "110",
+          "shot": "110",
+          "fir": "50",
+          "wtr": "50",
+          "thn": "50",
+          "ice": "50",
+          "drg": "90",
+          "ko": "20"
+        }
+      }
+    },
+    {
+      "name": "Apceros",
+      "type": "herbivore",
+      "description": "Hunted for their meat, which is buried under a thick, armored hide. Aggressive compared to the Aptonoth, hunting them can be a challenge. Apceros eggs are a valuable guild commodity.",
+      "drops": {
+        "low-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "47%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "45%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "8%"
+            }
+          ]
+        },
+        "high-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "43%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "40%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "15%"
+            },
+            {
+              "name": "Monster Bone+",
+              "chance": "2%"
+            }
+          ]
+        },
+        "g-rank": {
+          "body carves (x1)": [
+            {
+              "name": "Raw Meat",
+              "chance": "43%"
+            },
+            {
+              "name": "Sm Monster Bone",
+              "chance": "40%"
+            },
+            {
+              "name": "Med Monster Bone",
+              "chance": "15%"
+            },
+            {
+              "name": "Hrd Monster Bone",
+              "chance": "2%"
+            }
+          ]
+        }
+      },
+      "hitzones": {
+        "head": {
+          "cut": "80",
+          "bash": "100",
+          "shot": "90",
+          "fir": "40",
+          "wtr": "20",
+          "thn": "40",
+          "ice": "30",
+          "drg": "10",
+          "ko": "0"
+        },
+        "body": {
+          "cut": "70",
+          "bash": "100",
+          "shot": "70",
+          "fir": "40",
+          "wtr": "20",
+          "thn": "40",
+          "ice": "30",
+          "drg": "10",
+          "ko": "0"
+        }
+      }
+    }
+  ]
+}

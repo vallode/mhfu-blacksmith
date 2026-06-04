@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Weapons file",
+  "type": "object",
+  "required": ["weapons"],
+  "additionalProperties": false,
+  "properties": {
+    "weapons": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/weapon" }
+    }
+  },
+  "definitions": {
+    "material": {
+      "type": "object",
+      "required": ["name", "amount", "type", "color"],
+      "additionalProperties": false,
+      "properties": {
+        "name":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer", "minimum": 1 },
+        "type":   { "type": "string", "minLength": 1 },
+        "color":  { "type": "string", "minLength": 1 }
+      }
+    },
+    "element": {
+      "type": "object",
+      "required": ["name", "attack"],
+      "properties": {
+        "name":   { "type": "string" },
+        "attack": { "type": ["string", "integer"] }
+      }
+    },
+    "weapon": {
+      "type": "object",
+      "required": ["name", "type", "rarity"],
+      "additionalProperties": true,
+      "properties": {
+        "name":         { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": [
+            "great-sword", "long-sword", "sword-and-shield", "dual-blades",
+            "hammer", "hunting-horn", "lance", "gunlance",
+            "light-bowgun", "heavy-bowgun", "bow"
+          ]
+        },
+        "attack":       { "type": "integer", "minimum": 0 },
+        "rarity":       { "type": "integer", "minimum": 1, "maximum": 10 },
+        "slots":        { "type": "integer", "minimum": 0, "maximum": 3 },
+        "affinity":     { "type": ["string", "null"] },
+        "bonus":        { "type": ["string", "null"] },
+        "create_cost":  { "type": ["integer", "null"], "minimum": 0 },
+        "improve_cost": { "type": ["integer", "null"], "minimum": 0 },
+        "improve_from": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } },
+            { "type": "null" }
+          ]
+        },
+        "improve_to":   {
+          "oneOf": [
+            { "type": "array", "items": { "type": "string" } },
+            { "type": "null" }
+          ]
+        },
+        "sharpness":      { "type": "array", "items": { "type": "integer" } },
+        "sharpness_plus": { "type": "array", "items": { "type": "integer" } },
+        "elements": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/element" } },
+            { "type": "null" }
+          ]
+        },
+        "create_mats":  {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        },
+        "improve_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        },
+        "alternative_create_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        },
+        "link": { "type": "string", "format": "uri" },
+        "shelling": {
+          "type": "object",
+          "properties": {
+            "type":  { "type": "string" },
+            "level": { "type": "string" }
+          }
+        },
+        "notes":    { "type": ["string", "array", "null"] },
+        "coatings": { "type": ["array", "null"] },
+        "shots":    { "type": ["object", "array", "null"] },
+        "reload":   { "type": ["string", "null"] },
+        "recoil":   { "type": ["string", "null"] },
+        "max_attack": { "type": ["integer", "null"] },
+        "rapid_fire":   { "type": ["string", "object", "array", "null"] },
+        "ammo":         { "type": ["object", "array", "null"] },
+        "status_ammo":  { "type": ["object", "array", "null"] },
+        "element_ammo": { "type": ["object", "array", "null"] },
+        "misc_ammo":    { "type": ["object", "array", "null"] }
+      }
+    }
+  }
+}
