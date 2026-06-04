@@ -1,4 +1,6 @@
-# Generated weapon pages (to avoid polluting the repository)
+.DS_Store
+
+# Generated weapon/armor/monster/decoration pages
 content/blacksmith/**/*.md
 !content/blacksmith/**/_index.md
 content/armorsmith/**/*.md
