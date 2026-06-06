@@ -19,6 +19,13 @@
     href="{{ section.path }}{{ weapon.slug }}/"
     {% endif %}
   >
+    {% if weapon.craftable %}
+      <div  title="Craftable" class="icon icon--mini icon--small icon--hammer icon--rarity-6 icon--craftable">
+        <img src="/images/scroll-short.png" alt="craftable-background" style="position: absolute;z-index: 90;transform: rotate(-45deg);">
+        <img src="/images/hammer-mini.png" alt="craftable", style="z-index: 95;">
+      </div>
+    {% endif %}
+
     {% if weapon.rarity %}
       <div class="
         icon

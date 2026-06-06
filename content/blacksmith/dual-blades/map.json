@@ -5,6 +5,7 @@
     "type": "dual-blades",
     "name": "Bone Scythe",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "bone-scythe-plus",
@@ -23,6 +24,7 @@
                 "type": "dual-blades",
                 "name": "Bladed Edge",
                 "rarity": 4,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "bladed-edge-plus",
@@ -41,6 +43,7 @@
                             "type": "dual-blades",
                             "name": "Carmine Edge",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "red-rippers",
@@ -58,6 +61,7 @@
                         "name": "Dual Carapace",
                         "rarity": 7,
                         "element": "water",
+                        "craftable": true,
                         "children": []
                       }
                     ]
@@ -86,6 +90,7 @@
                 "name": "Twin Kut-Ku",
                 "rarity": 2,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "pink-maracas",
@@ -110,6 +115,7 @@
                                 "type": "dual-blades",
                                 "name": "Jungle Maracas",
                                 "rarity": 9,
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "evergreen",
@@ -146,6 +152,7 @@
                     "type": "dual-blades",
                     "name": "Raven Tessen",
                     "rarity": 5,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wolf-tessen",
@@ -182,6 +189,7 @@
         "type": "dual-blades",
         "name": "Bone Scythe",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "bone-scythe-plus",
@@ -200,6 +208,7 @@
                     "type": "dual-blades",
                     "name": "Bladed Edge",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "bladed-edge-plus",
@@ -218,6 +227,7 @@
                                 "type": "dual-blades",
                                 "name": "Carmine Edge",
                                 "rarity": 9,
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "red-rippers",
@@ -235,6 +245,7 @@
                             "name": "Dual Carapace",
                             "rarity": 7,
                             "element": "water",
+                            "craftable": true,
                             "children": []
                           }
                         ]
@@ -263,6 +274,7 @@
                     "name": "Twin Kut-Ku",
                     "rarity": 2,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "pink-maracas",
@@ -287,6 +299,7 @@
                                     "type": "dual-blades",
                                     "name": "Jungle Maracas",
                                     "rarity": 9,
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "evergreen",
@@ -323,6 +336,7 @@
                         "type": "dual-blades",
                         "name": "Raven Tessen",
                         "rarity": 5,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "wolf-tessen",
@@ -355,12 +369,14 @@
     "type": "sword-and-shield",
     "name": "Hunter's Dagger+",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "twin-dagger",
         "type": "dual-blades",
         "name": "Twin Dagger",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "twin-dagger-plus",
@@ -373,6 +389,7 @@
                 "type": "dual-blades",
                 "name": "Glutton's Set",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "spatula-set",
@@ -438,6 +455,7 @@
                     "name": "Order Rapier",
                     "rarity": 3,
                     "element": "water",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "holy-saber",
@@ -476,6 +494,7 @@
                             "type": "sword-and-shield",
                             "name": "Ninja Sword",
                             "rarity": 5,
+                            "craftable": true,
                             "children": []
                           }
                         ]
@@ -501,6 +520,7 @@
     "type": "sword-and-shield",
     "name": "Hunter's Dagger",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "giaprey-claws",
@@ -508,6 +528,7 @@
         "name": "Giaprey Claws",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "giaprey-claws-plus",
@@ -534,6 +555,7 @@
                     "type": "dual-blades",
                     "name": "Velociprey Claws+",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "hi-velociprey-claws",
@@ -551,6 +573,7 @@
                 "name": "Snow Venom",
                 "rarity": 4,
                 "element": "ice",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "snow-venom-plus",
@@ -581,6 +604,7 @@
     "type": "sword-and-shield",
     "name": "Velocidrome Bite",
     "rarity": 2,
+    "craftable": true,
     "children": [
       {
         "slug": "velociprey-claws",
@@ -593,6 +617,7 @@
             "type": "dual-blades",
             "name": "Velociprey Claws+",
             "rarity": 4,
+            "craftable": true,
             "children": [
               {
                 "slug": "hi-velociprey-claws",
@@ -612,6 +637,7 @@
     "name": "Red Saber",
     "rarity": 3,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "twin-flames",
@@ -663,6 +689,7 @@
     "type": "dual-blades",
     "name": "dummy (Dual Tessen \"Gavas\")",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "dummy-dualtessen-100gavas",
@@ -686,6 +713,7 @@
     "type": "sword-and-shield",
     "name": "Hero's Blade Replica",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "legendary-replica",
@@ -701,6 +729,7 @@
     "name": "Felyne and Melynx",
     "rarity": 4,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "felyne-and-melynx-plus",
@@ -716,6 +745,7 @@
     "type": "sword-and-shield",
     "name": "Studded Club",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "dual-diablo",
@@ -796,6 +826,7 @@
         "name": "Freezing Daggers",
         "rarity": 4,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "icicle-daggers",
@@ -830,6 +861,7 @@
         "name": "Dual Battleaxe",
         "rarity": 6,
         "element": "poison",
+        "craftable": true,
         "children": [
           {
             "slug": "dual-battleaxe-plus",
@@ -864,6 +896,7 @@
         "name": "Twin Nails",
         "rarity": 5,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "twin-nails-plus",
@@ -891,6 +924,7 @@
     "name": "Black Sword",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "double-dragon",
@@ -956,6 +990,7 @@
             "name": "Festive Fall Typhoon",
             "rarity": 8,
             "element": "thunder",
+            "craftable": true,
             "children": [
               {
                 "slug": "festiverustlingrain",
@@ -976,6 +1011,7 @@
     "name": "Black Twin Daggers",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "fatalis-dual-blades",
@@ -1017,6 +1053,7 @@
     "name": "Flaming Pair",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "crimson-lotus-blades",
@@ -1049,6 +1086,7 @@
         "name": "Blue Ogre Sword",
         "rarity": 8,
         "element": "dragon",
+        "craftable": true,
         "children": []
       }
     ]
@@ -1058,6 +1096,7 @@
     "type": "dual-blades",
     "name": "Rex Slicers",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-claws",
@@ -1078,12 +1117,14 @@
         "type": "dual-blades",
         "name": "Hidden Ones",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "ebony-wings",
             "type": "dual-blades",
             "name": "Ebony Wings",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -1094,6 +1135,7 @@
     "type": "dual-blades",
     "name": "Worn Blades",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "weathered-blades",
@@ -1175,12 +1217,14 @@
     "type": "sword-and-shield",
     "name": "Odyssey",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "hurricane",
         "type": "dual-blades",
         "name": "Hurricane",
         "rarity": 6,
+        "craftable": true,
         "children": [
           {
             "slug": "cyclone",
@@ -1193,6 +1237,7 @@
                 "type": "dual-blades",
                 "name": "Tornado Tomahawks",
                 "rarity": 9,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "typhoon",
@@ -1206,6 +1251,7 @@
                     "name": "Firestorm",
                     "rarity": 9,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "volcanic-storm",
@@ -1228,6 +1274,7 @@
         "name": "Prototype Saw-Slicer",
         "rarity": 6,
         "element": "thunder",
+        "craftable": true,
         "children": [
           {
             "slug": "sanctioned-blades",
@@ -1263,6 +1310,7 @@
     "type": "dual-blades",
     "name": "Akantor Blades",
     "rarity": 8,
+    "craftable": true,
     "children": [
       {
         "slug": "akantor-shadow-claws",
@@ -1277,156 +1325,180 @@
     "type": "dual-blades",
     "name": "UkanlosRuinerBlades",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "dummy-amezari-claws",
     "type": "dual-blades",
     "name": "dummy (Amezari Claws)",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "bone-scythe-g",
     "type": "dual-blades",
     "name": "Bone Scythe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "worn-blades-g",
     "type": "dual-blades",
     "name": "Worn Blades G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "velociprey-claws-g",
     "type": "dual-blades",
     "name": "Velociprey Claws G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "white-death-g",
     "type": "dual-blades",
     "name": "White Death G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "dual-tomahawk-g",
     "type": "dual-blades",
     "name": "Dual Tomahawk G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "insector-g",
     "type": "dual-blades",
     "name": "Insector G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "glutton-s-set-g",
     "type": "dual-blades",
     "name": "Glutton's Set G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "spatula-set-g",
     "type": "dual-blades",
     "name": "Spatula Set G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "holy-saber-g",
     "type": "dual-blades",
     "name": "Holy Saber G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "cyclone-g",
     "type": "dual-blades",
     "name": "Cyclone G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "dual-kut-ku-g",
     "type": "dual-blades",
     "name": "Dual Kut-Ku G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "funky-maracas-g",
     "type": "dual-blades",
     "name": "Funky Maracas G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "prototypesaw-slicr-g",
     "type": "dual-blades",
     "name": "PrototypeSaw-Slicr G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "cutlass-g",
     "type": "dual-blades",
     "name": "Cutlass G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "limb-cutter-g",
     "type": "dual-blades",
     "name": "Limb Cutter G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "dual-diablo-g",
     "type": "dual-blades",
     "name": "Dual Diablo G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "silhouette-sabers-g",
     "type": "dual-blades",
     "name": "Silhouette Sabers G",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "gradios-ultimus-g",
     "type": "dual-blades",
     "name": "Gradios Ultimus G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "kirin-bolts-g",
     "type": "dual-blades",
     "name": "Kirin Bolts G",
     "rarity": 10,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "crimsonlotusblades-g",
     "type": "dual-blades",
     "name": "CrimsonLotusBlades G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "dualdragonultimus-g",
     "type": "dual-blades",
     "name": "DualDragonUltimus G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "legendary-blades-g",
     "type": "dual-blades",
     "name": "Legendary Blades G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   }
 ]
 }

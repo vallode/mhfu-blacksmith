@@ -5,6 +5,7 @@
     "type": "long-sword",
     "name": "Bone",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "large-bone",
@@ -17,6 +18,7 @@
             "type": "long-sword",
             "name": "Bone Katana \"Wolf\"",
             "rarity": 1,
+            "craftable": true,
             "children": [
               {
                 "slug": "bone-katana-shark",
@@ -58,6 +60,7 @@
                         "name": "Fire Dragonsword",
                         "rarity": 5,
                         "element": "dragon",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "red-dragonsword",
@@ -94,6 +97,7 @@
                     "name": "Wyvern Blade \"Fall\"",
                     "rarity": 3,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wyvern-blade-blood",
@@ -115,6 +119,7 @@
                                 "name": "WyvernBlade\"Silver\"",
                                 "rarity": 9,
                                 "element": "fire",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "wyvrnbladecamellia",
@@ -137,6 +142,7 @@
                     "name": "Wyvern Blade \"Leaf\"",
                     "rarity": 3,
                     "element": "poison",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wyvern-blade-verde",
@@ -158,6 +164,7 @@
                                 "name": "WyvernBlade\"Silver\"",
                                 "rarity": 9,
                                 "element": "fire",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "wyvrnbladecamellia",
@@ -201,6 +208,7 @@
                         "type": "long-sword",
                         "name": "Lost Black Katana",
                         "rarity": 9,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "final-black-katana",
@@ -231,6 +239,7 @@
         "type": "long-sword",
         "name": "Bone Katana \"Wolf\"",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "bone-katana-shark",
@@ -272,6 +281,7 @@
                     "name": "Fire Dragonsword",
                     "rarity": 5,
                     "element": "dragon",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "red-dragonsword",
@@ -308,6 +318,7 @@
                 "name": "Wyvern Blade \"Fall\"",
                 "rarity": 3,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "wyvern-blade-blood",
@@ -329,6 +340,7 @@
                             "name": "WyvernBlade\"Silver\"",
                             "rarity": 9,
                             "element": "fire",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "wyvrnbladecamellia",
@@ -351,6 +363,7 @@
                 "name": "Wyvern Blade \"Leaf\"",
                 "rarity": 3,
                 "element": "poison",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "wyvern-blade-verde",
@@ -372,6 +385,7 @@
                             "name": "WyvernBlade\"Silver\"",
                             "rarity": 9,
                             "element": "fire",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "wyvrnbladecamellia",
@@ -399,12 +413,14 @@
     "type": "great-sword",
     "name": "Buster Sword+",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "iron-katana",
         "type": "long-sword",
         "name": "Iron Katana",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "iron-katana-grace",
@@ -467,6 +483,7 @@
                     "name": "Saber",
                     "rarity": 5,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "lion-dance-saber",
@@ -500,6 +517,7 @@
                     "type": "long-sword",
                     "name": "Mirage Finsword",
                     "rarity": 5,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "mirage-finsword-plus",
@@ -524,12 +542,14 @@
                 "type": "long-sword",
                 "name": "Dark Scythe",
                 "rarity": 3,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "tormentor",
                     "type": "long-sword",
                     "name": "Tormentor",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "scythe-of-menace",
@@ -552,6 +572,7 @@
                         "type": "long-sword",
                         "name": "Crab Cutter",
                         "rarity": 6,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "daimyo-cutter",
@@ -592,6 +613,7 @@
                                 "type": "great-sword",
                                 "name": "Violet Pincer",
                                 "rarity": 9,
+                                "craftable": true,
                                 "children": []
                               }
                             ]
@@ -663,6 +685,7 @@
     "type": "great-sword",
     "name": "Buster Sword",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "blango-destroyer",
@@ -670,6 +693,7 @@
         "name": "Blango Destroyer",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "blango-destroyer-plus",
@@ -727,6 +751,7 @@
         "type": "long-sword",
         "name": "Crab Cutter",
         "rarity": 6,
+        "craftable": true,
         "children": [
           {
             "slug": "daimyo-cutter",
@@ -767,6 +792,7 @@
                 "type": "great-sword",
                 "name": "Violet Pincer",
                 "rarity": 9,
+                "craftable": true,
                 "children": []
               }
             ]
@@ -788,6 +814,7 @@
         "name": "Icesteel Blade",
         "rarity": 8,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "daora-s-raid",
@@ -805,6 +832,7 @@
     "type": "long-sword",
     "name": "Tigrex Tooth",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-katana",
@@ -825,12 +853,14 @@
         "type": "long-sword",
         "name": "Hidden Saber",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "shadow-of-the-moon",
             "type": "long-sword",
             "name": "Shadow of the Moon",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -842,6 +872,7 @@
     "name": "Dragonwood L.Sword",
     "rarity": 5,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "fanatic-dragonwd-ls",
@@ -856,6 +887,7 @@
             "name": "AncientDragonwoodLS",
             "rarity": 9,
             "element": "paralysis",
+            "craftable": true,
             "children": [
               {
                 "slug": "ancientslayrdrgnwdls",
@@ -876,6 +908,7 @@
     "name": "Black Scythe",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "fatalis-sickle",
@@ -901,6 +934,7 @@
     "name": "Centenarian Dagger",
     "rarity": 5,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "susano-blade",
@@ -938,6 +972,7 @@
     "type": "great-sword",
     "name": "Agito",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "rusty-claymore",
@@ -983,6 +1018,7 @@
         "name": "Demon Halberd",
         "rarity": 7,
         "element": "thunder",
+        "craftable": true,
         "children": [
           {
             "slug": "great-demon-halberd",
@@ -1009,12 +1045,14 @@
     "type": "great-sword",
     "name": "Carbalite Sword",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "guardian-sword",
         "type": "long-sword",
         "name": "Guardian Sword",
         "rarity": 6,
+        "craftable": true,
         "children": [
           {
             "slug": "imperial-sword",
@@ -1028,6 +1066,7 @@
                 "name": "Aqua Guardian",
                 "rarity": 9,
                 "element": "water",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "atlantica",
@@ -1065,6 +1104,7 @@
     "type": "long-sword",
     "name": "Great Hornfly Saber",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "exceptnlhornflysaber",
@@ -1080,6 +1120,7 @@
     "name": "dummy (LS Fan \"Gavas\")",
     "rarity": 6,
     "element": "ice",
+    "craftable": true,
     "children": [
       {
         "slug": "dummy-ls-fan-10k-gavas",
@@ -1119,6 +1160,7 @@
     "type": "long-sword",
     "name": "Akantor Katana",
     "rarity": 8,
+    "craftable": true,
     "children": [
       {
         "slug": "akantor-broadswrd-s",
@@ -1134,6 +1176,7 @@
     "name": "Igneous Blade",
     "rarity": 9,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "liquid-fire-blade",
@@ -1141,6 +1184,7 @@
         "name": "Liquid Fire Blade",
         "rarity": 9,
         "element": "fire",
+        "craftable": true,
         "children": [
           {
             "slug": "divine-fire-blade",
@@ -1158,6 +1202,7 @@
     "type": "great-sword",
     "name": "Decider",
     "rarity": 9,
+    "craftable": true,
     "children": [
       {
         "slug": "liquid-fire-blade",
@@ -1165,6 +1210,7 @@
         "name": "Liquid Fire Blade",
         "rarity": 9,
         "element": "fire",
+        "craftable": true,
         "children": [
           {
             "slug": "divine-fire-blade",
@@ -1182,139 +1228,160 @@
     "type": "long-sword",
     "name": "dummy (Amezari Blade)",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "dummy-pirate-sword-j",
     "type": "long-sword",
     "name": "dummy (Pirate Sword J)",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ukanlos-slicer",
     "type": "long-sword",
     "name": "Ukanlos Slicer",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "bone-g",
     "type": "long-sword",
     "name": "Bone G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "iron-katana-g",
     "type": "long-sword",
     "name": "Iron Katana G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bonekatandragon-g",
     "type": "long-sword",
     "name": "BoneKatan\"Dragon\" G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "eager-cleaver-g",
     "type": "long-sword",
     "name": "Eager Cleaver G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "black-katana-g",
     "type": "long-sword",
     "name": "Black Katana G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "blango-destroyer-g",
     "type": "long-sword",
     "name": "Blango Destroyer G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "tormentor-g",
     "type": "long-sword",
     "name": "Tormentor G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "crimson-scythe-g",
     "type": "long-sword",
     "name": "Crimson Scythe G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "frost-ripper-g",
     "type": "long-sword",
     "name": "Frost Ripper G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "imperial-sword-g",
     "type": "long-sword",
     "name": "Imperial Sword G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "daimyo-cutter-g",
     "type": "long-sword",
     "name": "Daimyo Cutter G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "blango-destructor-g",
     "type": "long-sword",
     "name": "Blango Destructor G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "wyvernblademapleg",
     "type": "long-sword",
     "name": "WyvernBlade\"Maple\"G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "wyvernbladehollyg",
     "type": "long-sword",
     "name": "WyvernBlade\"Holly\"G",
     "rarity": 10,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "fanaticdragonwdls-g",
     "type": "long-sword",
     "name": "FanaticDragonwdLS G",
     "rarity": 10,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "saber-g",
     "type": "long-sword",
     "name": "Saber G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "susano-blade-g",
     "type": "long-sword",
     "name": "Susano Blade G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "red-dragonsword-g",
     "type": "long-sword",
     "name": "Red Dragonsword G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   }
 ]
 }

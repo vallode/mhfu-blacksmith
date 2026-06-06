@@ -5,12 +5,14 @@
     "type": "lance",
     "name": "Iron Lance",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "iron-lance-plus",
         "type": "lance",
         "name": "Iron Lance+",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "steel-lance",
@@ -23,6 +25,7 @@
                 "type": "lance",
                 "name": "Paladin Lance",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "rampart",
@@ -36,6 +39,7 @@
                         "name": "Growling Wyvern",
                         "rarity": 4,
                         "element": "dragon",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "roaring-wyvern",
@@ -49,6 +53,7 @@
                                 "type": "lance",
                                 "name": "SanctionedDrillLance",
                                 "rarity": 9,
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "gravedigger",
@@ -65,6 +70,7 @@
                             "type": "lance",
                             "name": "Knight Lance",
                             "rarity": 6,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "knight-spear",
@@ -84,6 +90,7 @@
                                         "name": "Sadalsuud",
                                         "rarity": 9,
                                         "element": "water",
+                                        "craftable": true,
                                         "children": [
                                           {
                                             "slug": "sadalmelek",
@@ -114,6 +121,7 @@
                                         "type": "gunlance",
                                         "name": "Ancient Destroyer",
                                         "rarity": 9,
+                                        "craftable": true,
                                         "children": []
                                       },
                                       {
@@ -122,6 +130,7 @@
                                         "name": "Spark Plug",
                                         "rarity": 9,
                                         "element": "thunder",
+                                        "craftable": true,
                                         "children": [
                                           {
                                             "slug": "thunderbugshocklance",
@@ -142,6 +151,7 @@
                                 "name": "Aqua Spear",
                                 "rarity": 6,
                                 "element": "water",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "aqua-spear-plus",
@@ -189,6 +199,7 @@
                                 "name": "Cold Icicle",
                                 "rarity": 6,
                                 "element": "ice",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "frost-icicle",
@@ -214,6 +225,7 @@
                                 "name": "Feather Gunlance",
                                 "rarity": 6,
                                 "element": "sleep",
+                                "craftable": true,
                                 "children": []
                               }
                             ]
@@ -226,6 +238,7 @@
                         "name": "Gatling Lance",
                         "rarity": 4,
                         "element": "fire",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "gatling-lance-plus",
@@ -251,6 +264,7 @@
                         "name": "Naag Serpentblade",
                         "rarity": 4,
                         "element": "poison",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "devta-serpentblade",
@@ -308,6 +322,7 @@
                     "name": "Lullaby Spear",
                     "rarity": 3,
                     "element": "sleep",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "requiem-spear",
@@ -338,6 +353,7 @@
                         "name": "Venom Lance",
                         "rarity": 4,
                         "element": "poison",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "basarios-venom-spear",
@@ -424,6 +440,7 @@
                         "name": "Thunderspear",
                         "rarity": 5,
                         "element": "thunder",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "thunderlance",
@@ -456,6 +473,7 @@
         "type": "gunlance",
         "name": "Iron Gunlance",
         "rarity": 1,
+        "craftable": true,
         "children": []
       },
       {
@@ -464,6 +482,7 @@
         "name": "Snow Gunlance",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": []
       }
     ]
@@ -473,6 +492,7 @@
     "type": "lance",
     "name": "Longhorn",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "longhorn-plus",
@@ -485,18 +505,21 @@
             "type": "lance",
             "name": "Long Tusk",
             "rarity": 1,
+            "craftable": true,
             "children": [
               {
                 "slug": "barbaroi-tusk",
                 "type": "lance",
                 "name": "Barbaroi Tusk",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "ogre-tusk",
                     "type": "lance",
                     "name": "Ogre Tusk",
                     "rarity": 3,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "great-ogre-tusk",
@@ -509,6 +532,7 @@
                         "type": "lance",
                         "name": "Hard Bone Lance",
                         "rarity": 6,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "hard-bone-lance-plus",
@@ -541,6 +565,7 @@
                                     "type": "gunlance",
                                     "name": "Heavy Bone Gunlance",
                                     "rarity": 9,
+                                    "craftable": true,
                                     "children": []
                                   }
                                 ]
@@ -551,6 +576,7 @@
                                 "name": "Demon Lance",
                                 "rarity": 7,
                                 "element": "thunder",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "great-demon-lance",
@@ -576,6 +602,7 @@
                                 "name": "Full Voltage",
                                 "rarity": 7,
                                 "element": "thunder",
+                                "craftable": true,
                                 "children": []
                               }
                             ]
@@ -590,6 +617,7 @@
                     "name": "Incessant Raven",
                     "rarity": 5,
                     "element": "poison",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "incessant-wolf",
@@ -617,6 +645,7 @@
                 "name": "Crimson Lance",
                 "rarity": 3,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "crimson-war-pike",
@@ -705,6 +734,7 @@
                 "type": "lance",
                 "name": "Bone Claw Lance",
                 "rarity": 3,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "bone-claw-lance-plus",
@@ -717,6 +747,7 @@
                         "type": "gunlance",
                         "name": "Scissor Gunlance",
                         "rarity": 6,
+                        "craftable": true,
                         "children": []
                       },
                       {
@@ -730,6 +761,7 @@
                             "type": "lance",
                             "name": "Carmine Stinger",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "shish-kabob-stick",
@@ -744,6 +776,7 @@
                             "type": "lance",
                             "name": "Shell Claw Lance",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "gianthermitaurlance",
@@ -782,6 +815,7 @@
                             "type": "lance",
                             "name": "Carmine Stinger",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "shish-kabob-stick",
@@ -796,6 +830,7 @@
                             "type": "lance",
                             "name": "Shell Claw Lance",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "gianthermitaurlance",
@@ -861,6 +896,7 @@
         "type": "lance",
         "name": "Wild Bone Lance",
         "rarity": 2,
+        "craftable": true,
         "children": [
           {
             "slug": "wild-bone-lance-plus",
@@ -880,6 +916,7 @@
                 "name": "Red Tail",
                 "rarity": 3,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "spear-of-prominence",
@@ -922,6 +959,7 @@
             "type": "lance",
             "name": "Fragrance",
             "rarity": 2,
+            "craftable": true,
             "children": [
               {
                 "slug": "fragrance-plus",
@@ -948,6 +986,7 @@
     "type": "lance",
     "name": "Rusted Lance",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "tarnished-lance",
@@ -1005,6 +1044,7 @@
     "name": "Native Spear",
     "rarity": 3,
     "element": "poison",
+    "craftable": true,
     "children": [
       {
         "slug": "primal-spear",
@@ -1021,6 +1061,7 @@
     "name": "Vacuum Striker",
     "rarity": 3,
     "element": "water",
+    "craftable": true,
     "children": [
       {
         "slug": "hyper-vacuum",
@@ -1036,6 +1077,7 @@
     "type": "lance",
     "name": "Black Belt Lance",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "expert-lance",
@@ -1061,6 +1103,7 @@
     "name": "Black Lance",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "black-dragon-spear",
@@ -1101,6 +1144,7 @@
     "type": "lance",
     "name": "Tiger Stinger",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-lance",
@@ -1121,12 +1165,14 @@
         "type": "lance",
         "name": "Hidden Stinger",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "black-rain-darklance",
             "type": "lance",
             "name": "Black Rain Darklance",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -1138,6 +1184,7 @@
     "name": "Vermillion Rim",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "dragonic-rim",
@@ -1180,6 +1227,7 @@
     "type": "lance",
     "name": "Worn Spear",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "weathered-spear",
@@ -1241,6 +1289,7 @@
         "type": "lance",
         "name": "Shell Claw Lance",
         "rarity": 9,
+        "craftable": true,
         "children": [
           {
             "slug": "gianthermitaurlance",
@@ -1257,240 +1306,277 @@
     "type": "lance",
     "name": "Ukanlos Calamity",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "iron-lance-g",
     "type": "lance",
     "name": "Iron Lance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "long-tusk-g",
     "type": "lance",
     "name": "Long Tusk G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tarnished-lance-g",
     "type": "lance",
     "name": "Tarnished Lance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "spiked-spear-g",
     "type": "lance",
     "name": "Spiked Spear G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "rampart-g",
     "type": "lance",
     "name": "Rampart G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "valhalla-g",
     "type": "lance",
     "name": "Valhalla G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "fragrance-g",
     "type": "lance",
     "name": "Fragrance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "requiem-spear-g",
     "type": "lance",
     "name": "Requiem Spear G",
     "rarity": 9,
-    "element": "sleep"
+    "element": "sleep",
+    "craftable": true
   },
   {
     "slug": "dark-spear-g",
     "type": "lance",
     "name": "Dark Spear G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "bulldrome-spear-g",
     "type": "lance",
     "name": "Bulldrome Spear G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bone-claw-lance-g",
     "type": "lance",
     "name": "Bone Claw Lance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "trident-g",
     "type": "lance",
     "name": "Trident G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "gatling-lance-g",
     "type": "lance",
     "name": "Gatling Lance G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "venom-lance-g",
     "type": "lance",
     "name": "Venom Lance G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "crimson-war-pike-g",
     "type": "lance",
     "name": "Crimson War Pike G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "diablo-spear-g",
     "type": "lance",
     "name": "Diablo Spear G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "native-spear-g",
     "type": "lance",
     "name": "Native Spear G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "black-belt-lance-g",
     "type": "lance",
     "name": "Black Belt Lance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "undertaker-g",
     "type": "lance",
     "name": "Undertaker G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "knight-spear-g",
     "type": "lance",
     "name": "Knight Spear G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hard-bone-lance-g",
     "type": "lance",
     "name": "Hard Bone Lance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "roaring-wyvern-g",
     "type": "lance",
     "name": "Roaring Wyvern G",
     "rarity": 9,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "great-ogre-tusk-g",
     "type": "lance",
     "name": "Great Ogre Tusk G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "barbarian-tusk-g",
     "type": "lance",
     "name": "Barbarian Tusk G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "noble-fragrance-g",
     "type": "lance",
     "name": "Noble Fragrance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hyper-vacuum-g",
     "type": "lance",
     "name": "Hyper Vacuum G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "aqua-spear-g",
     "type": "lance",
     "name": "Aqua Spear G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "emerald-spear-g",
     "type": "lance",
     "name": "Emerald Spear G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "grayburg-javelin-g",
     "type": "lance",
     "name": "Grayburg Javelin G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "sanctioned-gunlance-g",
     "type": "lance",
     "name": "Sanctioned Gunlance G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "ceanataur-piercer-g",
     "type": "lance",
     "name": "Ceanataur Piercer G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ceramic-blos-lance-g",
     "type": "lance",
     "name": "Ceramic Blos Lance G",
     "rarity": 10,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "gravios-spear-g",
     "type": "lance",
     "name": "Gravios Spear G",
     "rarity": 10,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "blackgraviousspear-g",
     "type": "lance",
     "name": "BlackGraviousSpear G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "spear-of-prominence-g",
     "type": "lance",
     "name": "Spear of Prominence G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "sealed-dragonlance-g",
     "type": "lance",
     "name": "Sealed Dragonlance G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   }
 ]
 }

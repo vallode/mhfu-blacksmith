@@ -42,6 +42,10 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
     array.last[:element] = weapon["elements"][0]["name"].downcase
   end
 
+  if weapon.key?("create_cost") and weapon["create_cost"]
+    array.last[:craftable] = true
+  end
+
   if weapon.key?("improve_to") and weapon["improve_to"]
     array.last[:children] = []
 
