@@ -1,0 +1,132 @@
+// ─── Typography ───────────────────────────────────────────────────────────────
+
+@font-face {
+  font-family: "Roboto Condensed";
+  src: local("Roboto Condensed"),
+    url("/fonts/roboto-condensed-regular.woff2") format("woff2"),
+    url("/fonts/roboto-condensed-regular.woff") format("woff"),
+    url("/fonts/roboto-condensed-regular.ttf") format("truetype");
+}
+
+html {
+  color: white;
+  font-size: 62.5%;
+  height: 100%;
+  line-height: 1.5;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  height: 100%;
+  margin: 0;
+  padding: 1.4rem 1.4rem 2.5rem;
+
+  // Fixed full-viewport background image
+  &::before {
+    background: center / cover no-repeat url("/images/bg.png");
+    background-attachment: fixed;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  body {
+    font-size: calc(14px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+// ─── Base element resets ──────────────────────────────────────────────────────
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+// Game sprites look best with crisp pixel rendering
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  color: transparent;
+
+  // Broken images replaced with the in-game unknown item icon
+  &::before {
+    background-image: url("/images/ukwn.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    content: ' ';
+    display: block;
+    height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+hr {
+  background-color: #6E905F;
+  border: none;
+  flex: 0 0 auto;
+  height: 6px;
+  margin: 1.3rem 0 2.2rem 0;
+  width: 100%;
+}
+
+hr.border {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
+  background-repeat: repeat-x;
+  background-size: 3.2rem 1.6rem;
+  background-color: transparent;
+  border: 0;
+  height: 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: calc(100% + 2.8rem);
+}
+
+// ─── Shared animations ────────────────────────────────────────────────────────
+
+@keyframes opacity-alternate {
+  from { opacity: 1; }
+  to   { opacity: 0.6; }
+}
+
+// ─── Layout helpers ───────────────────────────────────────────────────────────
+
+.blacksmith__title {
+  flex: 0 0 0%;
+  height: auto;
+  max-height: 5.2rem;
+  max-width: 51rem;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

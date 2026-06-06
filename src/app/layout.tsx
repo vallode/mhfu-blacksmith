@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "modern-normalize/modern-normalize.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "MHFU Blacksmith",
