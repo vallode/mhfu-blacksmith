@@ -1,0 +1,63 @@
+import { notFound } from "next/navigation";
+import { getWeaponTypes, getWeaponTree } from "@/lib/weapons";
+import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
+import WeaponNav from "@/components/WeaponNav";
+import WeaponTreeRow from "@/components/WeaponTreeRow";
+import Card from "@/components/Card";
+import styles from "@/styles/weapon-tree.module.scss";
+import type { Metadata } from "next";
+
+interface Props {
+  params: Promise<{ type: string }>;
+}
+
+export async function generateStaticParams() {
+  return getWeaponTypes().map((type) => ({ type }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { type } = await params;
+  const name = type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return {
+    title: `${name} tree — MHFU Blacksmith`,
+  };
+}
+
+export default async function WeaponTreePage({ params }: Props) {
+  const { type } = await params;
+
+  if (!WEAPON_TYPES.includes(type as WeaponType)) {
+    notFound();
+  }
+
+  const weaponType = type as WeaponType;
+  const tree = getWeaponTree(weaponType);
+  const basePath = `/blacksmith/${type}/`;
+
+  return (
+    <>
+      <WeaponNav activeType={weaponType} />
+      <hr className="border" />
+
+      <div className="weapon-tree-page">
+        <Card variant="weapon-tree">
+          <div className={styles["weapon-tree"]}>
+            {tree.map.map((node) => (
+              <ul key={node.slug}>
+                <WeaponTreeRow
+                  node={node}
+                  sectionType={type}
+                  basePath={basePath}
+                />
+              </ul>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="weapon-card">
+          <p>Select a weapon from the tree.</p>
+        </Card>
+      </div>
+    </>
+  );
+}

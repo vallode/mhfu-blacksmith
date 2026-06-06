@@ -1,0 +1,405 @@
+import { notFound } from "next/navigation";
+import { getWeapons, getWeapon, getWeaponTree } from "@/lib/weapons";
+import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
+import WeaponNav from "@/components/WeaponNav";
+import WeaponTreeRow from "@/components/WeaponTreeRow";
+import SharpnessBar from "@/components/SharpnessBar";
+import MaterialRow from "@/components/MaterialRow";
+import Card from "@/components/Card";
+import styles from "@/styles/weapon-tree.module.scss";
+import cardStyles from "@/styles/weapon-card.module.scss";
+import sharpStyles from "@/styles/sharpness.module.scss";
+import type { Metadata } from "next";
+
+interface Props {
+  params: Promise<{ type: string; slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const params: { type: string; slug: string }[] = [];
+  for (const type of WEAPON_TYPES) {
+    const weapons = getWeapons(type);
+    for (const w of weapons) {
+      params.push({ type, slug: w.slug });
+    }
+  }
+  return params;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { type, slug } = await params;
+  const weapon = getWeapon(type as WeaponType, slug);
+  if (!weapon) return {};
+
+  const matList = (weapon.create_mats ?? weapon.improve_mats ?? [])
+    .map((m) => `${m.name}: ${m.amount}`)
+    .join(" | ");
+
+  return {
+    title: `${weapon.name} — MHFU Blacksmith`,
+    description: matList || undefined,
+    openGraph: {
+      images: [`/images/${type}.png`],
+    },
+  };
+}
+
+function affinityClass(affinity: string | undefined): string {
+  if (!affinity) return "";
+  if (affinity.startsWith("-")) return "negative";
+  if (!affinity.startsWith("0")) return "positive";
+  return "";
+}
+
+export default async function WeaponDetailPage({ params }: Props) {
+  const { type, slug } = await params;
+
+  if (!WEAPON_TYPES.includes(type as WeaponType)) notFound();
+
+  const weaponType = type as WeaponType;
+  const weapon = getWeapon(weaponType, slug);
+  if (!weapon) notFound();
+
+  const tree = getWeaponTree(weaponType);
+  const basePath = `/blacksmith/${type}/`;
+
+  const COATINGS = [
+    "Power Coating",
+    "Poison Coating",
+    "CloseRngCoating",
+    "ParalysisCoating",
+    "Paint Coating",
+    "Sleep Coating",
+  ];
+
+  return (
+    <>
+      <WeaponNav activeType={weaponType} />
+      <hr className="border" />
+
+      <div className="weapon-details-page">
+        {/* Weapon tree sidebar */}
+        <Card variant="weapon-tree">
+          <div className={styles["weapon-tree"]}>
+            {tree.map.map((node) => (
+              <ul key={node.slug}>
+                <WeaponTreeRow
+                  node={node}
+                  sectionType={type}
+                  basePath={basePath}
+                />
+              </ul>
+            ))}
+          </div>
+        </Card>
+
+        {/* Detail panel */}
+        <Card className="weapon-card">
+          {/* Header: icon + name + sharpness */}
+          <div className={cardStyles["weapon-card__header"]}>
+            <div
+              className={[
+                "icon icon--large",
+                `icon--${weapon.type}`,
+                `icon--rarity-${weapon.rarity}`,
+                weapon.color ? `icon--${weapon.color}` : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <img src={`/images/${type}.png`} alt={weapon.name} />
+            </div>
+
+            <p id="weapon_name">{weapon.name}</p>
+
+            {(weapon.sharpness || weapon.sharpness_plus) && (
+              <div className={sharpStyles["sharpness-container"]}>
+                {weapon.sharpness && (
+                  <SharpnessBar values={weapon.sharpness} />
+                )}
+                {weapon.sharpness_plus && (
+                  <SharpnessBar values={weapon.sharpness_plus} plus />
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Stats + requirements */}
+          <div className={cardStyles["weapon-card__details"]}>
+            <div className="stats">
+              {weapon.attack && (
+                <div>
+                  <h3>Attack:</h3>
+                  <p>
+                    <span>{weapon.attack}</span>
+                    {weapon.raw_attack && (
+                      <span className="raw">[ {weapon.raw_attack} ]</span>
+                    )}
+                    {weapon.shelling && (
+                      <span>[{weapon.shelling.type} Type]</span>
+                    )}
+                  </p>
+                </div>
+              )}
+
+              {weapon.max_attack && (
+                <div>
+                  <h3>Max attack:</h3>
+                  <p><span>{weapon.max_attack}</span></p>
+                </div>
+              )}
+
+              {weapon.recoil && (
+                <div>
+                  <h3>Recoil:</h3>
+                  <p><span>{weapon.recoil}</span></p>
+                </div>
+              )}
+
+              {weapon.reload && (
+                <div>
+                  <h3>Reload:</h3>
+                  <p><span>{weapon.reload}</span></p>
+                </div>
+              )}
+
+              {weapon.affinity && (
+                <div>
+                  <h3>Affinity:</h3>
+                  <p>
+                    <span className={affinityClass(weapon.affinity)}>
+                      {weapon.affinity}
+                    </span>
+                  </p>
+                </div>
+              )}
+
+              <div>
+                <h3>Slots:</h3>
+                <p>
+                  <span id="weaponSlots">
+                    {Array.from({ length: 3 }, (_, i) =>
+                      i < (weapon.slots ?? 0) ? "O" : "-"
+                    ).join("")}
+                  </span>
+                </p>
+              </div>
+
+              {weapon.shelling && (
+                <p>
+                  <span className="positive">
+                    Shelling Lv{weapon.shelling.level}
+                  </span>
+                </p>
+              )}
+
+              {weapon.notes && (
+                <div className="notes">
+                  [Note:
+                  {weapon.notes.map((note, i) => (
+                    <div key={i} className={`icon icon--note icon--note-${note}`}>
+                      <img src="/images/note.png" alt={note} />
+                    </div>
+                  ))}
+                  ]
+                </div>
+              )}
+
+              {weapon.elements?.map((el, i) => (
+                <p key={i} className="element">
+                  {el.name} Attrib: {el.attack}
+                  {typeof el.attack === "number" && (
+                    <span className="raw"> [ {el.attack / 10} ]</span>
+                  )}
+                </p>
+              ))}
+
+              {weapon.skills?.map((skill, i) => (
+                <p key={i} className="element">{skill}</p>
+              ))}
+
+              {weapon.bonus && (
+                <p className="element">Defense {weapon.bonus}</p>
+              )}
+            </div>
+
+            <hr />
+
+            {/* Requirements section */}
+            <div className="requirements">
+              <div className="page active">
+                {weapon.improve_mats && (
+                  <div className="improve_mats">
+                    <p>
+                      <span>Improve cost: </span>
+                      {weapon.improve_cost}z
+                    </p>
+                    {weapon.improve_mats.map((m, i) => (
+                      <MaterialRow key={i} material={m} />
+                    ))}
+                  </div>
+                )}
+
+                {weapon.create_mats && (
+                  <div className="create_mats">
+                    <p>
+                      <span>Create cost: </span>
+                      {weapon.create_cost}z
+                    </p>
+                    {weapon.create_mats.map((m, i) => (
+                      <MaterialRow key={i} material={m} />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {weapon.alternative_create_mats && (
+                <div className="page">
+                  <div className="create_mats">
+                    <p>
+                      <span>Create cost: </span>
+                      {weapon.create_cost}z
+                    </p>
+                    {weapon.alternative_create_mats.map((m, i) => (
+                      <MaterialRow key={i} material={m} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {weapon.shots && (
+                <div className="page">
+                  <div className="shots">
+                    <p><span>[Charge Attack]</span></p>
+                    {weapon.shots.map((shot, i) => (
+                      <p key={i} className={i === weapon.shots!.length - 1 ? "green" : ""}>
+                        <span className="orange">
+                          <span style={{ visibility: i === 0 ? "visible" : "hidden" }}>
+                            Lvl
+                          </span>{" "}
+                          {i + 1}:
+                        </span>{" "}
+                        {shot.name}Lv{shot.level}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {weapon.ammo && (
+                <div className="page">
+                  <table className="min">
+                    <thead>
+                      <tr>
+                        <th>Cap.:</th><th>LV</th><th>1</th><th>2</th><th>3</th><th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {weapon.ammo.map((ammo, i) => (
+                        <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                          <td>{ammo.name}</td>
+                          <td>:</td>
+                          {ammo.capacity.map((cap, j) => (
+                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                              {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {weapon.status_ammo && (
+                    <table className="min">
+                      <thead>
+                        <tr>
+                          <th></th><th>LV</th><th>1</th><th>2</th><th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {weapon.status_ammo.map((ammo, i) => (
+                          <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                            <td>{ammo.name}</td>
+                            <td>:</td>
+                            {ammo.capacity.map((cap, j) => (
+                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                                {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              )}
+
+              {weapon.element_ammo && (
+                <div className="page">
+                  <table className="min">
+                    <thead>
+                      <tr><th>Cap.:</th><th></th><th></th></tr>
+                    </thead>
+                    <tbody>
+                      {weapon.element_ammo.map((ammo, i) => (
+                        <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                          <td>{ammo.name}</td>
+                          <td>:</td>
+                          {ammo.capacity.map((cap, j) => (
+                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                              {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {weapon.misc_ammo && (
+                    <table className="min">
+                      <thead>
+                        <tr><th></th><th></th><th></th></tr>
+                      </thead>
+                      <tbody>
+                        {weapon.misc_ammo.map((ammo, i) => (
+                          <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                            <td>{ammo.name}</td>
+                            <td>:</td>
+                            {ammo.capacity.map((cap, j) => (
+                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                                {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              )}
+
+              {weapon.coatings && (
+                <div className="page">
+                  <div className="coatings">
+                    <p><span>[Usable Coating]</span></p>
+                    {COATINGS.map((coating) => {
+                      const key = coating.toLowerCase().replace(" coating", "").trim();
+                      const usable = weapon.coatings!.some((c) =>
+                        c.toLowerCase().includes(key)
+                      );
+                      return (
+                        <p key={coating} className={usable ? "" : "gray"}>
+                          {coating}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </Card>
+      </div>
+    </>
+  );
+}
