@@ -5,12 +5,14 @@
     "type": "hunting-horn",
     "name": "Ivory Horn",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "bone-horn",
         "type": "hunting-horn",
         "name": "Bone Horn",
         "rarity": 2,
+        "craftable": true,
         "children": [
           {
             "slug": "bone-horn-plus",
@@ -48,6 +50,7 @@
             "name": "Blessed Ocarina",
             "rarity": 5,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "cursed-ocarina",
@@ -74,18 +77,21 @@
         "type": "hunting-horn",
         "name": "War Drum",
         "rarity": 3,
+        "craftable": true,
         "children": [
           {
             "slug": "war-drum-plus",
             "type": "hunting-horn",
             "name": "War Drum+",
             "rarity": 4,
+            "craftable": true,
             "children": [
               {
                 "slug": "war-bongo",
                 "type": "hunting-horn",
                 "name": "War Bongo",
                 "rarity": 6,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "war-conga",
@@ -104,6 +110,7 @@
                         "type": "hunting-horn",
                         "name": "Jungle Bongo",
                         "rarity": 9,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "jungle-conga",
@@ -128,12 +135,14 @@
     "type": "hammer",
     "name": "Cyclo-Hammer",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "bone-horn",
         "type": "hunting-horn",
         "name": "Bone Horn",
         "rarity": 2,
+        "craftable": true,
         "children": [
           {
             "slug": "bone-horn-plus",
@@ -171,6 +180,7 @@
             "name": "Blessed Ocarina",
             "rarity": 5,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "cursed-ocarina",
@@ -199,6 +209,7 @@
     "type": "hammer",
     "name": "Bone Club",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "giaprey-balloon",
@@ -206,6 +217,7 @@
         "name": "Giaprey Balloon",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "giaprey-balloon-plus",
@@ -268,6 +280,7 @@
         "type": "hunting-horn",
         "name": "Metal Bagpipe",
         "rarity": 2,
+        "craftable": true,
         "children": [
           {
             "slug": "great-bagpipe",
@@ -322,6 +335,7 @@
         "type": "hunting-horn",
         "name": "Sonic Glass",
         "rarity": 3,
+        "craftable": true,
         "children": [
           {
             "slug": "sonic-glass-plus",
@@ -341,6 +355,7 @@
                     "name": "Glass Royale",
                     "rarity": 9,
                     "element": "ice",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "queen-s-flute",
@@ -371,6 +386,7 @@
         "name": "Khezu Horn",
         "rarity": 3,
         "element": "thunder",
+        "craftable": true,
         "children": [
           {
             "slug": "khezu-horn-plus",
@@ -426,6 +442,7 @@
                 "name": "Purse Bop",
                 "rarity": 7,
                 "element": "thunder",
+                "craftable": true,
                 "children": []
               }
             ]
@@ -446,6 +463,7 @@
         "name": "Basarios Rock",
         "rarity": 4,
         "element": "fire",
+        "craftable": true,
         "children": [
           {
             "slug": "basarios-rock-mk-ii",
@@ -481,6 +499,7 @@
     "type": "hammer",
     "name": "Kut-Ku Pick",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "feather-whistle",
@@ -488,6 +507,7 @@
         "name": "Feather Whistle",
         "rarity": 6,
         "element": "sleep",
+        "craftable": true,
         "children": [
           {
             "slug": "hypno-whistle",
@@ -495,6 +515,7 @@
             "name": "Hypno Whistle",
             "rarity": 9,
             "element": "sleep",
+            "craftable": true,
             "children": [
               {
                 "slug": "hypno-slide-whistle",
@@ -521,6 +542,7 @@
         "name": "Shell Castanet",
         "rarity": 7,
         "element": "water",
+        "craftable": true,
         "children": [
           {
             "slug": "shell-castanet-plus",
@@ -567,6 +589,7 @@
         "type": "hunting-horn",
         "name": "Bronze Bell",
         "rarity": 5,
+        "craftable": true,
         "children": [
           {
             "slug": "gaoren-bell",
@@ -590,6 +613,7 @@
         "name": "Sakura Recorder",
         "rarity": 5,
         "element": "dragon",
+        "craftable": true,
         "children": [
           {
             "slug": "sakura-recorder-plus",
@@ -635,6 +659,7 @@
     "name": "Black Lute",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "fatalis-menace",
@@ -676,6 +701,7 @@
     "name": "Dragonwood Horn",
     "rarity": 5,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "spirit-dragonwd-horn",
@@ -690,6 +716,7 @@
             "name": "AncientDrgnwoodFlute",
             "rarity": 9,
             "element": "paralysis",
+            "craftable": true,
             "children": [
               {
                 "slug": "divineancdrgnwdflute",
@@ -709,6 +736,7 @@
     "type": "hunting-horn",
     "name": "Striped Dragonga",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-horn",
@@ -729,12 +757,14 @@
         "type": "hunting-horn",
         "name": "Hidden Tone",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "demon-s-darkflute",
             "type": "hunting-horn",
             "name": "Demon's Darkflute",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -746,6 +776,7 @@
     "name": "Handmade Frog",
     "rarity": 6,
     "element": "water",
+    "craftable": true,
     "children": [
       {
         "slug": "handcrafted-frog",
@@ -768,6 +799,7 @@
         "name": "Wolf Shamisen",
         "rarity": 7,
         "element": "poison",
+        "craftable": true,
         "children": [
           {
             "slug": "crow-shamisen",
@@ -785,6 +817,7 @@
     "type": "hunting-horn",
     "name": "Akantor Horn",
     "rarity": 8,
+    "craftable": true,
     "children": [
       {
         "slug": "akantor-dark-melody",
@@ -799,6 +832,7 @@
     "type": "hammer",
     "name": "Blacksmith",
     "rarity": 9,
+    "craftable": true,
     "children": [
       {
         "slug": "lava-alphorn",
@@ -806,6 +840,7 @@
         "name": "Lava Alphorn",
         "rarity": 9,
         "element": "fire",
+        "craftable": true,
         "children": [
           {
             "slug": "volcano-alphorn",
@@ -823,78 +858,90 @@
     "type": "hunting-horn",
     "name": "Ukanlos Horned Flute",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "bone-horn-g",
     "type": "hunting-horn",
     "name": "Bone Horn G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "war-drum-g",
     "type": "hunting-horn",
     "name": "War Drum G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "great-bagpipe-g",
     "type": "hunting-horn",
     "name": "Great Bagpipe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "khezu-flute-g",
     "type": "hunting-horn",
     "name": "Khezu Flute G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "basarios-rock-g",
     "type": "hunting-horn",
     "name": "Basarios Rock G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "glass-queen-g",
     "type": "hunting-horn",
     "name": "Glass Queen G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "heavy-bagpipe-g",
     "type": "hunting-horn",
     "name": "Heavy Bagpipe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "velociprey-balloon-g",
     "type": "hunting-horn",
     "name": "Velociprey Balloon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "giadrome-balloon-g",
     "type": "hunting-horn",
     "name": "Giadrome Balloon G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "sakura-recorder-g",
     "type": "hunting-horn",
     "name": "Sakura Recorder G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "spirit-dragonwd-horn-g",
     "type": "hunting-horn",
     "name": "Spirit Dragonwd Horn G",
     "rarity": 10,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   }
 ]
 }

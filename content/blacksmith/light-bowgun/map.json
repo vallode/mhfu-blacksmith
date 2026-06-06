@@ -4,799 +4,932 @@
     "slug": "shooter-s-barrel",
     "type": "light-bowgun",
     "name": "Shooter's Barrel",
-    "rarity": 1
+    "rarity": 1,
+    "craftable": true
   },
   {
     "slug": "chain-blitz",
     "type": "light-bowgun",
     "name": "Chain Blitz",
-    "rarity": 1
+    "rarity": 1,
+    "craftable": true
   },
   {
     "slug": "shotgun-azure",
     "type": "light-bowgun",
     "name": "Shotgun (Azure)",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "shotgun-white",
     "type": "light-bowgun",
     "name": "Shotgun (White)",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "shotgun-green",
     "type": "light-bowgun",
     "name": "Shotgun (Green)",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "desert-storm",
     "type": "light-bowgun",
     "name": "Desert Storm",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "maelstrom",
     "type": "light-bowgun",
     "name": "Maelstrom",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "shotgun-blood",
     "type": "light-bowgun",
     "name": "Shotgun (Blood)",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "tail-string",
     "type": "light-bowgun",
     "name": "Tail String",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "assault-conga",
     "type": "light-bowgun",
     "name": "Assault Conga",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "jade-storm",
     "type": "light-bowgun",
     "name": "Jade Storm",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "lobster-gun",
     "type": "light-bowgun",
     "name": "Lobster Gun",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "angel-parasol",
     "type": "light-bowgun",
     "name": "Angel Parasol",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "kut-ku-anger",
     "type": "light-bowgun",
     "name": "Kut-Ku Anger",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "kut-ku-rage",
     "type": "light-bowgun",
     "name": "Kut-Ku Rage",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "grenade-launcher",
     "type": "light-bowgun",
     "name": "Grenade Launcher",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "sandfall",
     "type": "light-bowgun",
     "name": "Sandfall",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "sakura-parasol",
     "type": "light-bowgun",
     "name": "Sakura Parasol",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "tail-string-plus",
     "type": "light-bowgun",
     "name": "Tail String+",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "valkyrie-fire",
     "type": "light-bowgun",
     "name": "Valkyrie Fire",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "spartacus-fire",
     "type": "light-bowgun",
     "name": "Spartacus Fire",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "titan-launcher",
     "type": "light-bowgun",
     "name": "Titan Launcher",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "uranos-grenade",
     "type": "light-bowgun",
     "name": "Uranos Grenade",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "tigrex-tank",
     "type": "light-bowgun",
     "name": "Tigrex Tank",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "demonlock",
     "type": "light-bowgun",
     "name": "Demonlock",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "felyne-ragdoll",
     "type": "light-bowgun",
     "name": "Felyne Ragdoll",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "melynx-ragdoll",
     "type": "light-bowgun",
     "name": "Melynx Ragdoll",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "dummy-amezari-bowgun",
     "type": "light-bowgun",
     "name": "dummy (Amezari Bowgun)",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "blessed-lamp",
     "type": "light-bowgun",
     "name": "Blessed Lamp",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "black-belt-bowgun",
     "type": "light-bowgun",
     "name": "Black Belt Bowgun",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "black-parasol",
     "type": "light-bowgun",
     "name": "Black Parasol",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "raven-do",
     "type": "light-bowgun",
     "name": "Raven Do",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "valkyrie-heart",
     "type": "light-bowgun",
     "name": "Valkyrie Heart",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "azure-sakura",
     "type": "light-bowgun",
     "name": "Azure Sakura",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "spartacus-soul",
     "type": "light-bowgun",
     "name": "Spartacus Soul",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "aqua-blade-shower",
     "type": "light-bowgun",
     "name": "Aqua Blade Shower",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "maelstrom-plus",
     "type": "light-bowgun",
     "name": "Maelstrom+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "green-blade-shower",
     "type": "light-bowgun",
     "name": "Green Blade Shower",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "grenade-launcher-plus",
     "type": "light-bowgun",
     "name": "Grenade Launcher+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "desert-tempest",
     "type": "light-bowgun",
     "name": "Desert Tempest",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "hornet-gun",
     "type": "light-bowgun",
     "name": "HorNet Gun",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "crimson-blade-shower",
     "type": "light-bowgun",
     "name": "Crimson Blade Shower",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "king-lobster-gun",
     "type": "light-bowgun",
     "name": "King Lobster Gun",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "valkyrie-blaze",
     "type": "light-bowgun",
     "name": "Valkyrie Blaze",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "great-crossbow-gun",
     "type": "light-bowgun",
     "name": "Great Crossbow Gun",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "assault-conga-plus",
     "type": "light-bowgun",
     "name": "Assault Conga+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "spartacus-blaze",
     "type": "light-bowgun",
     "name": "Spartacus Blaze",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "tail-catapult-plus",
     "type": "light-bowgun",
     "name": "Tail Catapult+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "titan-launcher-plus",
     "type": "light-bowgun",
     "name": "Titan Launcher+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "tigrex-wargun",
     "type": "light-bowgun",
     "name": "Tigrex Wargun",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "hidden-gaze",
     "type": "light-bowgun",
     "name": "Hidden Gaze",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "bullet-storm",
     "type": "light-bowgun",
     "name": "Bullet Storm",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "jade-tempest",
     "type": "light-bowgun",
     "name": "Jade Tempest",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "sandfall-plus",
     "type": "light-bowgun",
     "name": "Sandfall+",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "peach-parasol",
     "type": "light-bowgun",
     "name": "Peach Parasol",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "chronos-grenade",
     "type": "light-bowgun",
     "name": "Chronos Grenade",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "island-of-the-gods",
     "type": "light-bowgun",
     "name": "Island of the Gods",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "felyne-helldoll",
     "type": "light-bowgun",
     "name": "Felyne Helldoll",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "melynx-helldoll",
     "type": "light-bowgun",
     "name": "Melynx Helldoll",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "shakalaka-prized-bow",
     "type": "light-bowgun",
     "name": "Shakalaka Prized Bow",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "expert-bowgun",
     "type": "light-bowgun",
     "name": "Expert Bowgun",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "valkyrie-heart-plus",
     "type": "light-bowgun",
     "name": "Valkyrie Heart+",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "crimson-blue",
     "type": "light-bowgun",
     "name": "Crimson Blue",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "cursed-lamp",
     "type": "light-bowgun",
     "name": "Cursed Lamp",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "spartacus-soul-plus",
     "type": "light-bowgun",
     "name": "Spartacus Soul+",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "supreme-azure-sakura",
     "type": "light-bowgun",
     "name": "Supreme Azure Sakura",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "gold-valkyrie",
     "type": "light-bowgun",
     "name": "Gold Valkyrie",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "wolf-do",
     "type": "light-bowgun",
     "name": "Wolf Do",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "silver-spartacus",
     "type": "light-bowgun",
     "name": "Silver Spartacus",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "profusion",
     "type": "light-bowgun",
     "name": "Profusion",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "dark-parasol",
     "type": "light-bowgun",
     "name": "Dark Parasol",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "fire-wrath",
     "type": "light-bowgun",
     "name": "Fire Wrath",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "rajang-barrage",
     "type": "light-bowgun",
     "name": "Rajang Barrage",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "hi-chain-blitz",
     "type": "light-bowgun",
     "name": "Hi Chain Blitz",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "nebula-storm",
     "type": "light-bowgun",
     "name": "Nebula Storm",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "jade-typhoon",
     "type": "light-bowgun",
     "name": "Jade Typhoon",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "royal-lobster-gun",
     "type": "light-bowgun",
     "name": "Royal Lobster Gun",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "combat-conga",
     "type": "light-bowgun",
     "name": "Combat Conga",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "jungle-assault",
     "type": "light-bowgun",
     "name": "Jungle Assault",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "heartfelt-cast",
     "type": "light-bowgun",
     "name": "Heartfelt Cast",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "kut-ku-counterattack",
     "type": "light-bowgun",
     "name": "Kut-Ku Counterattack",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "kut-ku-barrage",
     "type": "light-bowgun",
     "name": "Kut-Ku Barrage",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "shotgun-snake",
     "type": "light-bowgun",
     "name": "Shotgun (Snake)",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "grenade-revolver",
     "type": "light-bowgun",
     "name": "Grenade Revolver",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "fierce-moss-green",
     "type": "light-bowgun",
     "name": "Fierce Moss Green",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "fierce-wine-red",
     "type": "light-bowgun",
     "name": "Fierce Wine Red",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tail-launcher",
     "type": "light-bowgun",
     "name": "Tail Launcher",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "sakura-semi-auto",
     "type": "light-bowgun",
     "name": "Sakura Semi-Auto",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "azure-semi-auto",
     "type": "light-bowgun",
     "name": "Azure Semi-Auto",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "lava-storm",
     "type": "light-bowgun",
     "name": "Lava Storm",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "desert-tail",
     "type": "light-bowgun",
     "name": "Desert Tail",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "titan-panzer",
     "type": "light-bowgun",
     "name": "Titan Panzer",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hexed-shaka-bow",
     "type": "light-bowgun",
     "name": "Hexed Shaka Bow",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "owl-s-eye-darkbow",
     "type": "light-bowgun",
     "name": "Owl's Eye Darkbow",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "warrior-s-bowgun",
     "type": "light-bowgun",
     "name": "Warrior's Bowgun",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "promenade",
     "type": "light-bowgun",
     "name": "Promenade",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "pollination",
     "type": "light-bowgun",
     "name": "Pollination",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "mythical-three-horn",
     "type": "light-bowgun",
     "name": "Mythical Three-Horn",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "crow-do",
     "type": "light-bowgun",
     "name": "Crow Do",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "gold-semi-auto",
     "type": "light-bowgun",
     "name": "Gold Semi-Auto ",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "silver-semi-auto",
     "type": "light-bowgun",
     "name": "Silver Semi-Auto",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "prosperity",
     "type": "light-bowgun",
     "name": "Prosperity",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "genie-s-lamp",
     "type": "light-bowgun",
     "name": "Genie's Lamp",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "chronos-panzer",
     "type": "light-bowgun",
     "name": "Chronos Panzer",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "engravedfirewyvnbow",
     "type": "light-bowgun",
     "name": "EngravedFireWyvnBow",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ten-thousand-volts",
     "type": "light-bowgun",
     "name": "Ten-Thousand Volts",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "absolute-bow",
     "type": "light-bowgun",
     "name": "Absolute Bow",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "tigrex-wargun-plus",
     "type": "light-bowgun",
     "name": "Tigrex Wargun+",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ukanlos-flame-bow",
     "type": "light-bowgun",
     "name": "Ukanlos Flame Bow",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "crossbow-gun-g",
     "type": "light-bowgun",
     "name": "Crossbow Gun G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hornet-gun-g",
     "type": "light-bowgun",
     "name": "HorNet Gun G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "shotgun-white-g",
     "type": "light-bowgun",
     "name": "Shotgun (White) G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "shotgun-azure-g",
     "type": "light-bowgun",
     "name": "Shotgun (Azure) G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "shotgun-emerald-g",
     "type": "light-bowgun",
     "name": "Shotgun (Emerald) G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "shotgun-blood-g",
     "type": "light-bowgun",
     "name": "Shotgun (Blood) G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "desert-tempest-g",
     "type": "light-bowgun",
     "name": "Desert Tempest G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "sandfall-g",
     "type": "light-bowgun",
     "name": "Sandfall G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "maelstrom-g",
     "type": "light-bowgun",
     "name": "Maelstrom G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "jade-typhoon-g",
     "type": "light-bowgun",
     "name": "Jade Typhoon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "king-lobster-gun-g",
     "type": "light-bowgun",
     "name": "King Lobster Gun G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "angel-parasol-g",
     "type": "light-bowgun",
     "name": "Angel Parasol G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "peach-parasol-g",
     "type": "light-bowgun",
     "name": "Peach Parasol G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "combat-conga-g",
     "type": "light-bowgun",
     "name": "Combat Conga G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "jungle-assault-g",
     "type": "light-bowgun",
     "name": "Jungle Assault G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "heartfelt-cast-g",
     "type": "light-bowgun",
     "name": "Heartfelt Cast G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "kut-ku-counteratk-g",
     "type": "light-bowgun",
     "name": "Kut-Ku Counteratk G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "kut-ku-barrage-g",
     "type": "light-bowgun",
     "name": "Kut-Ku Barrage G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "island-of-the-gods-g",
     "type": "light-bowgun",
     "name": "Island of the Gods G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "felyne-helldoll-g",
     "type": "light-bowgun",
     "name": "Felyne Helldoll G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "melynx-helldoll-g",
     "type": "light-bowgun",
     "name": "Melynx Helldoll G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "hexed-shaka-bow-g",
     "type": "light-bowgun",
     "name": "Hexed Shaka Bow G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "dummy-amezari-bowgun-g",
     "type": "light-bowgun",
     "name": "dummy (Amezari Bowgun G)",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "dark-parasol-g",
     "type": "light-bowgun",
     "name": "Dark Parasol G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   }
 ]
 }

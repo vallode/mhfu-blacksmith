@@ -5,12 +5,14 @@
     "type": "great-sword",
     "name": "Buster Sword",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "buster-sword-plus",
         "type": "great-sword",
         "name": "Buster Sword+",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "buster-blade",
@@ -23,12 +25,14 @@
                 "type": "great-sword",
                 "name": "Ravager Blade",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "ravager-blade-plus",
                     "type": "great-sword",
                     "name": "Ravager Blade+",
                     "rarity": 3,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "tactical-blade",
@@ -63,6 +67,7 @@
                             "type": "great-sword",
                             "name": "Carbalite Sword",
                             "rarity": 6,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "carbalite-sword-plus",
@@ -90,6 +95,7 @@
                                     "name": "Demon Halberd",
                                     "rarity": 7,
                                     "element": "thunder",
+                                    "craftable": true,
                                     "children": []
                                   },
                                   {
@@ -97,6 +103,7 @@
                                     "type": "great-sword",
                                     "name": "Decider",
                                     "rarity": 9,
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "punisher",
@@ -110,6 +117,7 @@
                                         "name": "Igneous Blade",
                                         "rarity": 9,
                                         "element": "fire",
+                                        "craftable": true,
                                         "children": [
                                           {
                                             "slug": "igneous-sword",
@@ -124,6 +132,7 @@
                                             "name": "Liquid Fire Blade",
                                             "rarity": 9,
                                             "element": "fire",
+                                            "craftable": true,
                                             "children": []
                                           }
                                         ]
@@ -134,6 +143,7 @@
                                         "name": "Liquid Fire Blade",
                                         "rarity": 9,
                                         "element": "fire",
+                                        "craftable": true,
                                         "children": []
                                       }
                                     ]
@@ -145,6 +155,7 @@
                                 "type": "great-sword",
                                 "name": "Bronze Coin",
                                 "rarity": 5,
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "gaoren-coin",
@@ -167,6 +178,7 @@
                                 "type": "long-sword",
                                 "name": "Guardian Sword",
                                 "rarity": 6,
+                                "craftable": true,
                                 "children": []
                               }
                             ]
@@ -181,6 +193,7 @@
                     "name": "Khezu Shock Sword",
                     "rarity": 3,
                     "element": "thunder",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "khezu-shock-blade",
@@ -238,6 +251,7 @@
                             "name": "Cat of Venus",
                             "rarity": 9,
                             "element": "paralysis",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "cat-of-gold",
@@ -274,6 +288,7 @@
                     "name": "Barbaroi Blade",
                     "rarity": 3,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "crimson-goat",
@@ -289,6 +304,7 @@
                     "type": "great-sword",
                     "name": "Halberd",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "judgment",
@@ -307,6 +323,7 @@
             "type": "long-sword",
             "name": "Iron Katana",
             "rarity": 1,
+            "craftable": true,
             "children": []
           }
         ]
@@ -317,6 +334,7 @@
         "name": "White Serpentblade",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "silver-serpentblade",
@@ -366,6 +384,7 @@
         "name": "Blango Destroyer",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": []
       }
     ]
@@ -375,6 +394,7 @@
     "type": "great-sword",
     "name": "Bone Blade",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "bone-blade-plus",
@@ -387,12 +407,14 @@
             "type": "great-sword",
             "name": "Bone Slasher",
             "rarity": 1,
+            "craftable": true,
             "children": [
               {
                 "slug": "golem-blade",
                 "type": "great-sword",
                 "name": "Golem Blade",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "golem-blade-plus",
@@ -405,6 +427,7 @@
                         "type": "great-sword",
                         "name": "Valkyrie Blade",
                         "rarity": 3,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "sieglinde",
@@ -501,6 +524,7 @@
                         "type": "great-sword",
                         "name": "Executioner",
                         "rarity": 4,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "executioner-plus",
@@ -521,6 +545,7 @@
                             "type": "great-sword",
                             "name": "Agito",
                             "rarity": 6,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "wyvern-agito",
@@ -540,6 +565,7 @@
                                     "name": "Demon Rod",
                                     "rarity": 7,
                                     "element": "thunder",
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "great-demon-rod",
@@ -576,6 +602,7 @@
                             "name": "Kirin Thundersword",
                             "rarity": 5,
                             "element": "thunder",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "king-thundersword",
@@ -629,6 +656,7 @@
                 "name": "Finblade",
                 "rarity": 2,
                 "element": "water",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "plesioth-watersword",
@@ -699,6 +727,7 @@
                             "name": "Pickaxe Blade",
                             "rarity": 6,
                             "element": "sleep",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "pickaxe-blade-plus",
@@ -706,6 +735,7 @@
                                 "name": "Pickaxe Blade+",
                                 "rarity": 9,
                                 "element": "sleep",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "sleep-sword-zantoma",
@@ -724,6 +754,7 @@
                             "name": "Slaughter",
                             "rarity": 6,
                             "element": "poison",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "slaughter-plus",
@@ -752,6 +783,7 @@
                     "type": "great-sword",
                     "name": "Sentoryu Raven",
                     "rarity": 5,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "sentoryu-wolf",
@@ -785,6 +817,7 @@
                 "name": "Red Wing",
                 "rarity": 3,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "rathalos-firesword",
@@ -818,6 +851,7 @@
             "type": "great-sword",
             "name": "Red Stripe",
             "rarity": 2,
+            "craftable": true,
             "children": [
               {
                 "slug": "red-pincer",
@@ -836,6 +870,7 @@
                         "type": "long-sword",
                         "name": "Crab Cutter",
                         "rarity": 6,
+                        "craftable": true,
                         "children": []
                       },
                       {
@@ -856,6 +891,7 @@
                             "type": "great-sword",
                             "name": "Carmine Blade",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "killer-s-carver",
@@ -870,6 +906,7 @@
                             "type": "great-sword",
                             "name": "Violet Pincer",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "grand-pincer",
@@ -915,6 +952,7 @@
                             "type": "great-sword",
                             "name": "Carmine Blade",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "killer-s-carver",
@@ -929,6 +967,7 @@
                             "type": "great-sword",
                             "name": "Violet Pincer",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "grand-pincer",
@@ -951,6 +990,7 @@
             "type": "long-sword",
             "name": "Bone Katana \"Wolf\"",
             "rarity": 1,
+            "craftable": true,
             "children": []
           }
         ]
@@ -962,6 +1002,7 @@
     "type": "great-sword",
     "name": "Rusted Great Sword",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "tarnished-great-swd",
@@ -1012,6 +1053,7 @@
                     "name": "Icesteel Blade",
                     "rarity": 8,
                     "element": "ice",
+                    "craftable": true,
                     "children": []
                   }
                 ]
@@ -1028,6 +1070,7 @@
     "name": "Frozen Tuna",
     "rarity": 3,
     "element": "ice",
+    "craftable": true,
     "children": [
       {
         "slug": "crystallized-tuna",
@@ -1043,6 +1086,7 @@
     "type": "great-sword",
     "name": "Black Belt Blade",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "expert-blade",
@@ -1065,6 +1109,7 @@
     "type": "great-sword",
     "name": "Tiger Agito",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-great-sword",
@@ -1085,12 +1130,14 @@
         "type": "great-sword",
         "name": "Hidden Blaze",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "darkness-darkblade",
             "type": "great-sword",
             "name": "Darkness Darkblade",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -1102,6 +1149,7 @@
     "name": "Dragonslayer",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "eternal-annihilator",
@@ -1136,6 +1184,7 @@
     "name": "Black Blade",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "fatalis-blade",
@@ -1176,6 +1225,7 @@
     "type": "great-sword",
     "name": "Worn Great Sword",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "weathered-grt-sword",
@@ -1239,6 +1289,7 @@
         "type": "great-sword",
         "name": "Violet Pincer",
         "rarity": 9,
+        "craftable": true,
         "children": [
           {
             "slug": "grand-pincer",
@@ -1255,6 +1306,7 @@
     "type": "great-sword",
     "name": "Akantor Broadsword",
     "rarity": 8,
+    "craftable": true,
     "children": [
       {
         "slug": "akantor-broadsword-plus",
@@ -1268,244 +1320,282 @@
     "slug": "dummy-roaringdecisionsword",
     "type": "great-sword",
     "name": "dummy (RoaringDecisionSword)",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "g-blade",
     "type": "great-sword",
     "name": "G Blade",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ukanlos-destructor",
     "type": "great-sword",
     "name": "Ukanlos Destructor",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "buster-blade-g",
     "type": "great-sword",
     "name": "Buster Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bone-blade-g",
     "type": "great-sword",
     "name": "Bone Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tarnishdgreatswd-g",
     "type": "great-sword",
     "name": "TarnishdGreatSwd G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ravager-blade-g",
     "type": "great-sword",
     "name": "Ravager Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "golem-blade-g",
     "type": "great-sword",
     "name": "Golem Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "sentinel-g",
     "type": "great-sword",
     "name": "Sentinel G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "red-stripe-g",
     "type": "great-sword",
     "name": "Red Stripe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "goldnserpentblade-g",
     "type": "great-sword",
     "name": "GoldnSerpentblade G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "great-serpentblade-g",
     "type": "great-sword",
     "name": "Great Serpentblade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "cat-s-soul-g",
     "type": "great-sword",
     "name": "Cat's Soul G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "poisnserpentblade-g",
     "type": "great-sword",
     "name": "PoisnSerpentblade G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "decapitator-g",
     "type": "great-sword",
     "name": "Decapitator G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "great-pincer-g",
     "type": "great-sword",
     "name": "Great Pincer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "executioner-g",
     "type": "great-sword",
     "name": "Executioner G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "barbaroi-blade-g",
     "type": "great-sword",
     "name": "Barbaroi Blade G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "chrome-razor-g",
     "type": "great-sword",
     "name": "Chrome Razor G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "plesioth-waterswd-g",
     "type": "great-sword",
     "name": "Plesioth Waterswd G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "plesioth-crystaswd-g",
     "type": "great-sword",
     "name": "Plesioth Crystaswd G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "killer-s-scythe-g",
     "type": "great-sword",
     "name": "Killer's Scythe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "black-belt-blade-g",
     "type": "great-sword",
     "name": "Black Belt Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ancient-p-g",
     "type": "great-sword",
     "name": "Ancient P G",
     "rarity": 9,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "carbalite-sword-g",
     "type": "great-sword",
     "name": "Carbalite Sword G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "wyvern-agito-g",
     "type": "great-sword",
     "name": "Wyvern Agito G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "crystallized-tuna-g",
     "type": "great-sword",
     "name": "Crystallized Tuna G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "judgment-g",
     "type": "great-sword",
     "name": "Judgment G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "true-dragon-s-jaw-g",
     "type": "great-sword",
     "name": "True Dragon's Jaw G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tactical-blade-g",
     "type": "great-sword",
     "name": "Tactical Blade G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "rathalos-firesword-g",
     "type": "great-sword",
     "name": "Rathalos Firesword G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "shinyrathalosswd-g",
     "type": "great-sword",
     "name": "ShinyRathalosSwd G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "enforcer-s-axe-g",
     "type": "great-sword",
     "name": "Enforcer's Axe G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "siegmund-g",
     "type": "great-sword",
     "name": "Siegmund G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "sieglinde-g",
     "type": "great-sword",
     "name": "Sieglinde G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "pael-keizah-g",
     "type": "great-sword",
     "name": "Pael Keizah G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "blushing-dame-g",
     "type": "great-sword",
     "name": "Blushing Dame G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "eternlannihilator-g",
     "type": "great-sword",
     "name": "EternlAnnihilator G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   }
 ]
 }

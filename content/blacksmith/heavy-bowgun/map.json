@@ -4,619 +4,722 @@
     "slug": "bone-shooter",
     "type": "heavy-bowgun",
     "name": "Bone Shooter",
-    "rarity": 1
+    "rarity": 1,
+    "craftable": true
   },
   {
     "slug": "injector-cannon",
     "type": "heavy-bowgun",
     "name": "Injector Cannon",
-    "rarity": 2
+    "rarity": 2,
+    "craftable": true
   },
   {
     "slug": "rapidcaster",
     "type": "heavy-bowgun",
     "name": "Rapidcaster",
-    "rarity": 2
+    "rarity": 2,
+    "craftable": true
   },
   {
     "slug": "tankmage",
     "type": "heavy-bowgun",
     "name": "Tankmage",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "bastionmage",
     "type": "heavy-bowgun",
     "name": "Bastionmage",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "sand-driver",
     "type": "heavy-bowgun",
     "name": "Sand Driver",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "yian-kut-ku-cannon",
     "type": "heavy-bowgun",
     "name": "Yian Kut-Ku Cannon",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "crab-buster",
     "type": "heavy-bowgun",
     "name": "Crab Buster",
-    "rarity": 3
+    "rarity": 3,
+    "craftable": true
   },
   {
     "slug": "rock-eater",
     "type": "heavy-bowgun",
     "name": "Rock Eater",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "meteor-cannon",
     "type": "heavy-bowgun",
     "name": "Meteor Cannon",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "flechette-gun",
     "type": "heavy-bowgun",
     "name": "Flechette Gun",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "monodevilcaster",
     "type": "heavy-bowgun",
     "name": "Monodevilcaster",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "piercing-crab",
     "type": "heavy-bowgun",
     "name": "Piercing Crab",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "blue-kut-ku-cannon",
     "type": "heavy-bowgun",
     "name": "Blue Kut-Ku Cannon",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "duelcaster",
     "type": "heavy-bowgun",
     "name": "Duelcaster",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "tigrex-howl",
     "type": "heavy-bowgun",
     "name": "Tigrex Howl",
-    "rarity": 4
+    "rarity": 4,
+    "craftable": true
   },
   {
     "slug": "seven-nova",
     "type": "heavy-bowgun",
     "name": "Seven Nova",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "quickcaster",
     "type": "heavy-bowgun",
     "name": "Quickcaster",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "black-cannon",
     "type": "heavy-bowgun",
     "name": "Black Cannon",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "raven-heirloom",
     "type": "heavy-bowgun",
     "name": "Raven Heirloom",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "daora-s-delphinidae",
     "type": "heavy-bowgun",
     "name": "Daora's Delphinidae",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "lunastra-s-cannon",
     "type": "heavy-bowgun",
     "name": "Lunastra's Cannon",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "teostra-s-artillery",
     "type": "heavy-bowgun",
     "name": "Teostra's Artillery",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "bronze-fire",
     "type": "heavy-bowgun",
     "name": "Bronze Fire",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "lao-shan-lung-cannon",
     "type": "heavy-bowgun",
     "name": "Lao-Shan Lung Cannon",
-    "rarity": 5
+    "rarity": 5,
+    "craftable": true
   },
   {
     "slug": "great-arbalest",
     "type": "heavy-bowgun",
     "name": "Great Arbalest",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "tankmage-plus",
     "type": "heavy-bowgun",
     "name": "Tankmage+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "desert-diver",
     "type": "heavy-bowgun",
     "name": "Desert Diver",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "meteor-buster",
     "type": "heavy-bowgun",
     "name": "Meteor Buster",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "honeycomber",
     "type": "heavy-bowgun",
     "name": "Honeycomber",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "earth-eater",
     "type": "heavy-bowgun",
     "name": "Earth Eater",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "heavy-buster-crab",
     "type": "heavy-bowgun",
     "name": "Heavy Buster Crab",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "gravios-howl",
     "type": "heavy-bowgun",
     "name": "Gravios Howl",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "heavy-piercing-crab",
     "type": "heavy-bowgun",
     "name": "Heavy Piercing Crab",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "duelcaster-plus",
     "type": "heavy-bowgun",
     "name": "Duelcaster+",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "tigrex-skull",
     "type": "heavy-bowgun",
     "name": "Tigrex Skull",
-    "rarity": 6
+    "rarity": 6,
+    "craftable": true
   },
   {
     "slug": "hidden-sniper",
     "type": "heavy-bowgun",
     "name": "Hidden Sniper",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "bastion-cannon",
     "type": "heavy-bowgun",
     "name": "Bastion Cannon",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "gravios-roar",
     "type": "heavy-bowgun",
     "name": "Gravios Roar",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "mega-kut-ku-cannon",
     "type": "heavy-bowgun",
     "name": "Mega Kut-Ku Cannon",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "monodevilcaster-plus",
     "type": "heavy-bowgun",
     "name": "Monodevilcaster+",
-    "rarity": 7
+    "rarity": 7,
+    "craftable": true
   },
   {
     "slug": "seven-stars",
     "type": "heavy-bowgun",
     "name": "Seven Stars",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "quickcaster-plus",
     "type": "heavy-bowgun",
     "name": "Quickcaster+",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "grande-daora",
     "type": "heavy-bowgun",
     "name": "Grande Daora",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "vor-cannon",
     "type": "heavy-bowgun",
     "name": "Vor Cannon",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "lunastra-s-flames",
     "type": "heavy-bowgun",
     "name": "Lunastra's Flames",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "teostra-s-flames",
     "type": "heavy-bowgun",
     "name": "Teostra's Flames",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "destiny-s-hands",
     "type": "heavy-bowgun",
     "name": "Destiny's Hands",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "wolf-heirloom",
     "type": "heavy-bowgun",
     "name": "Wolf Heirloom",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "gaoren-s-fire",
     "type": "heavy-bowgun",
     "name": "Gaoren's Fire",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "suprm-lao-shan-cannon",
     "type": "heavy-bowgun",
     "name": "Suprm Lao-Shan Cannon",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "empr-lao-shan-cannon",
     "type": "heavy-bowgun",
     "name": "Empr Lao-Shan Cannon",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "great-arbalest-plus",
     "type": "heavy-bowgun",
     "name": "Great Arbalest+",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tanksorcerer",
     "type": "heavy-bowgun",
     "name": "Tanksorcerer",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bastionwitch",
     "type": "heavy-bowgun",
     "name": "Bastionwitch",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "power-stinger",
     "type": "heavy-bowgun",
     "name": "Power Stinger",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "pressurized-plesioth",
     "type": "heavy-bowgun",
     "name": "Pressurized Plesioth",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "violet-punisher",
     "type": "heavy-bowgun",
     "name": "Violet Punisher",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "super-kut-ku-cannon",
     "type": "heavy-bowgun",
     "name": "Super Kut-Ku Cannon",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ultra-kut-ku-cannon",
     "type": "heavy-bowgun",
     "name": "Ultra Kut-Ku Cannon",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "meteor-shower",
     "type": "heavy-bowgun",
     "name": "Meteor Shower",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "gaia-eater",
     "type": "heavy-bowgun",
     "name": "Gaia Eater",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "icethrower",
     "type": "heavy-bowgun",
     "name": "Icethrower",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ceanataur-blaster",
     "type": "heavy-bowgun",
     "name": "Ceanataur Blaster",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "gravios-gigahowl",
     "type": "heavy-bowgun",
     "name": "Gravios gigahowl",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "dummy-pirate-j-cannon",
     "type": "heavy-bowgun",
     "name": "dummy (Pirate J Cannon)",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "queen-needle",
     "type": "heavy-bowgun",
     "name": "Queen Needle",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "evil-wind-darkcannon",
     "type": "heavy-bowgun",
     "name": "Evil Wind Darkcannon",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "greatladybugcannon-plus",
     "type": "heavy-bowgun",
     "name": "GreatLadybugCannon+",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "quick-quiver",
     "type": "heavy-bowgun",
     "name": "Quick Quiver",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "crow-heirloom",
     "type": "heavy-bowgun",
     "name": "Crow Heirloom",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "terra-c-blaster",
     "type": "heavy-bowgun",
     "name": "Terra C Blaster",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "daora-s-ceti",
     "type": "heavy-bowgun",
     "name": "Daora's Ceti",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "destiny-s-arm",
     "type": "heavy-bowgun",
     "name": "Destiny's Arm",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "gravios-gigaroar",
     "type": "heavy-bowgun",
     "name": "Gravios Gigaroar",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "teostra-flamethrower",
     "type": "heavy-bowgun",
     "name": "Teostra Flamethrower",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "dark-duelcaster",
     "type": "heavy-bowgun",
     "name": "Dark Duelcaster",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "vor-buster",
     "type": "heavy-bowgun",
     "name": "Vor Buster",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "tigrex-skull-plus",
     "type": "heavy-bowgun",
     "name": "Tigrex Skull+",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "gaoren-orb",
     "type": "heavy-bowgun",
     "name": "Gaoren Orb",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ancientdrgnwoodcan",
     "type": "heavy-bowgun",
     "name": "AncientDrgnwoodCan",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ultimatelao-shaocan",
     "type": "heavy-bowgun",
     "name": "UltimateLao-ShaoCan",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "ukanlos-cannon",
     "type": "heavy-bowgun",
     "name": "Ukanlos Cannon",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "arbalest-g",
     "type": "heavy-bowgun",
     "name": "Arbalest G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "rapidcaster-g",
     "type": "heavy-bowgun",
     "name": "Rapidcaster G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "injector-cannon-g",
     "type": "heavy-bowgun",
     "name": "Injector Cannon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "honeycomber-g",
     "type": "heavy-bowgun",
     "name": "Honeycomber G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tanksorcerer-g",
     "type": "heavy-bowgun",
     "name": "Tanksorcerer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bastionwitch-g",
     "type": "heavy-bowgun",
     "name": "Bastionwitch G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "desert-diver-g",
     "type": "heavy-bowgun",
     "name": "Desert Diver G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "power-stinger-g",
     "type": "heavy-bowgun",
     "name": "Power Stinger G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "crab-buster-g",
     "type": "heavy-bowgun",
     "name": "Crab Buster G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "meteor-cannon-g",
     "type": "heavy-bowgun",
     "name": "Meteor Cannon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "pressurizedplesiothg",
     "type": "heavy-bowgun",
     "name": "PressurizedPlesiothG",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "violet-punisher-g",
     "type": "heavy-bowgun",
     "name": "Violet Punisher G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "superkut-kucannon-g",
     "type": "heavy-bowgun",
     "name": "SuperKut-KuCannon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ultrakut-kucannon-g",
     "type": "heavy-bowgun",
     "name": "UltraKut-KuCannon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "monodevilcaster-g",
     "type": "heavy-bowgun",
     "name": "Monodevilcaster G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "duelcaster-g",
     "type": "heavy-bowgun",
     "name": "Duelcaster G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "queen-needle-g",
     "type": "heavy-bowgun",
     "name": "Queen Needle G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "black-cannon-g",
     "type": "heavy-bowgun",
     "name": "Black Cannon G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "lunastra-s-flames-g",
     "type": "heavy-bowgun",
     "name": "Lunastra's Flames G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "lao-shanlungcannon-g",
     "type": "heavy-bowgun",
     "name": "Lao-ShanLungCannon G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   }
 ]
 }

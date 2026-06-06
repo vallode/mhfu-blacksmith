@@ -5,6 +5,7 @@
     "type": "bow",
     "name": "Hunter's Bow I",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "hunter-s-bow-ii",
@@ -17,6 +18,7 @@
             "type": "bow",
             "name": "Hunter's Bow III",
             "rarity": 3,
+            "craftable": true,
             "children": [
               {
                 "slug": "hunter-s-bow-iv",
@@ -29,6 +31,7 @@
                     "type": "bow",
                     "name": "Hunter's Power Bow I",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "hunter-s-power-bow-ii",
@@ -54,6 +57,7 @@
                                 "name": "Icicle Bow I",
                                 "rarity": 9,
                                 "element": "ice",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "icicle-bow-ii",
@@ -83,6 +87,7 @@
     "type": "bow",
     "name": "Wild Bow I",
     "rarity": 2,
+    "craftable": true,
     "children": [
       {
         "slug": "wild-bow-ii",
@@ -95,6 +100,7 @@
             "type": "bow",
             "name": "Wild Bow III",
             "rarity": 4,
+            "craftable": true,
             "children": [
               {
                 "slug": "wild-bow-iv",
@@ -107,6 +113,7 @@
                     "type": "bow",
                     "name": "Wild Power Bow I",
                     "rarity": 6,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wild-power-bow-ii",
@@ -119,6 +126,7 @@
                             "type": "bow",
                             "name": "Jungle Bow I",
                             "rarity": 9,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "jungle-bow-ii",
@@ -146,6 +154,7 @@
     "name": "Blango Fur Bow I",
     "rarity": 2,
     "element": "ice",
+    "craftable": true,
     "children": [
       {
         "slug": "blango-fur-bow-ii",
@@ -160,6 +169,7 @@
             "name": "Blango Fur Bow III",
             "rarity": 4,
             "element": "ice",
+            "craftable": true,
             "children": [
               {
                 "slug": "blango-fur-bow-iv",
@@ -198,6 +208,7 @@
     "name": "Kut-Ku Stave I",
     "rarity": 2,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "kut-ku-stave-ii",
@@ -219,6 +230,7 @@
                 "name": "Blue Kut-Ku Stave I",
                 "rarity": 7,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "blue-kut-ku-stave-ii",
@@ -241,6 +253,7 @@
                     "type": "bow",
                     "name": "Wolf Bow",
                     "rarity": 9,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "crow-bow",
@@ -264,6 +277,7 @@
     "name": "Daimyo's Warbow I",
     "rarity": 3,
     "element": "water",
+    "craftable": true,
     "children": [
       {
         "slug": "daimyo-s-warbow-ii",
@@ -285,6 +299,7 @@
                 "name": "Daimyo's Warbow IV",
                 "rarity": 6,
                 "element": "water",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "great-purple-emperor-i",
@@ -292,6 +307,7 @@
                     "name": "Great Purple Emperor I",
                     "rarity": 9,
                     "element": "water",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "great-purple-emperor-ii",
@@ -316,6 +332,7 @@
     "name": "Sonic Bow I",
     "rarity": 3,
     "element": "thunder",
+    "craftable": true,
     "children": [
       {
         "slug": "sonic-bow-ii",
@@ -330,6 +347,7 @@
             "name": "Sonic Bow III",
             "rarity": 6,
             "element": "thunder",
+            "craftable": true,
             "children": [
               {
                 "slug": "sonic-bow-iv",
@@ -349,6 +367,7 @@
     "type": "bow",
     "name": "Blue Blade Bow I",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "blue-blade-bow-ii",
@@ -361,6 +380,7 @@
             "type": "bow",
             "name": "Blue Blade Bow III",
             "rarity": 9,
+            "craftable": true,
             "children": [
               {
                 "slug": "showroom-model",
@@ -396,6 +416,7 @@
     "name": "Queen Blaster I",
     "rarity": 4,
     "element": "poison",
+    "craftable": true,
     "children": [
       {
         "slug": "queen-blaster-ii",
@@ -410,6 +431,7 @@
             "name": "Queen Blaster III",
             "rarity": 6,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "queen-blaster-iv",
@@ -434,6 +456,7 @@
             "type": "bow",
             "name": "Heartshot Bow I",
             "rarity": 7,
+            "craftable": true,
             "children": [
               {
                 "slug": "heartshot-bow-ii",
@@ -461,6 +484,7 @@
     "name": "Prominence Bow I",
     "rarity": 4,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "prominence-bow-ii",
@@ -482,6 +506,7 @@
                 "name": "Prominence Bow IV",
                 "rarity": 9,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "prominence-bow-v",
@@ -503,6 +528,7 @@
     "type": "bow",
     "name": "Tiger Arrow I",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "tiger-arrow-ii",
@@ -515,6 +541,7 @@
             "type": "bow",
             "name": "Tigrex Whisker",
             "rarity": 6,
+            "craftable": true,
             "children": [
               {
                 "slug": "tigrex-whisker-plus",
@@ -529,12 +556,14 @@
             "type": "bow",
             "name": "Hidden Bow",
             "rarity": 7,
+            "craftable": true,
             "children": [
               {
                 "slug": "midnight-bow",
                 "type": "bow",
                 "name": "Midnight Bow",
-                "rarity": 10
+                "rarity": 10,
+                "craftable": true
               }
             ]
           }
@@ -548,6 +577,7 @@
     "name": "Black Bow I",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "black-bow-ii",
@@ -561,6 +591,7 @@
             "type": "bow",
             "name": "Exterminator Bow I",
             "rarity": 8,
+            "craftable": true,
             "children": [
               {
                 "slug": "exterminator-bow-ii",
@@ -576,6 +607,7 @@
             "name": "Glorious Victory I",
             "rarity": 8,
             "element": "dragon",
+            "craftable": true,
             "children": [
               {
                 "slug": "glorious-victory-ii",
@@ -596,6 +628,7 @@
     "name": "Dragon Bow Earth",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "dragon-bow-mountain",
@@ -621,6 +654,7 @@
     "name": "Dragon Bow Halo",
     "rarity": 5,
     "element": "thunder",
+    "craftable": true,
     "children": [
       {
         "slug": "dragon-bow-solar",
@@ -634,7 +668,8 @@
             "type": "bow",
             "name": "Ancient Dragonwood Bow",
             "rarity": 10,
-            "element": "thunder"
+            "element": "thunder",
+            "craftable": true
           }
         ]
       }
@@ -646,6 +681,7 @@
     "name": "Defect Swordfish Bow",
     "rarity": 5,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "whole-swordfish-bow",
@@ -671,6 +707,7 @@
     "name": "Wing Bow I",
     "rarity": 6,
     "element": "sleep",
+    "craftable": true,
     "children": [
       {
         "slug": "wing-bow-ii",
@@ -685,6 +722,7 @@
             "name": "Wing Bow III",
             "rarity": 9,
             "element": "sleep",
+            "craftable": true,
             "children": [
               {
                 "slug": "wing-bow-iv",
@@ -704,6 +742,7 @@
     "type": "bow",
     "name": "Diablos Horn Bow I",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "diablos-horn-bow-ii",
@@ -716,6 +755,7 @@
             "type": "bow",
             "name": "Gale Horn Bow",
             "rarity": 9,
+            "craftable": true,
             "children": [
               {
                 "slug": "diabloskinghornbow",
@@ -735,6 +775,7 @@
     "name": "Courageous Hope",
     "rarity": 8,
     "element": "fire",
+    "craftable": true,
     "children": [
       {
         "slug": "courageous-wish",
@@ -760,6 +801,7 @@
     "name": "Dragonhead Harp I",
     "rarity": 8,
     "element": "water",
+    "craftable": true,
     "children": [
       {
         "slug": "dragonhead-harp-ii",
@@ -785,6 +827,7 @@
     "name": "Akantor Bow",
     "rarity": 8,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "akantor-chaos-bow",
@@ -801,6 +844,7 @@
     "name": "Khezu Bow I",
     "rarity": 9,
     "element": "thunder",
+    "craftable": true,
     "children": [
       {
         "slug": "khezu-bow-ii",
@@ -817,6 +861,7 @@
     "name": "Icy Steel Bow",
     "rarity": 10,
     "element": "ice",
+    "craftable": true,
     "children": [
       {
         "slug": "daora-s-sagittarii",
@@ -833,6 +878,7 @@
     "name": "Beast Thunderbow",
     "rarity": 10,
     "element": "thunder",
+    "craftable": true,
     "children": [
       {
         "slug": "beastkingthunderbow",
@@ -848,80 +894,92 @@
     "type": "bow",
     "name": "dummy (Diasorute Arrow)",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "ukanlos-bow",
     "type": "bow",
     "name": "Ukanlos Bow",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "hunter-s-bow-g",
     "type": "bow",
     "name": "Hunter's Bow G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "wild-bow-g",
     "type": "bow",
     "name": "Wild Bow G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "wild-power-bow-g",
     "type": "bow",
     "name": "Wild Power Bow G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "blango-fur-bow-g",
     "type": "bow",
     "name": "Blango Fur Bow G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "kut-ku-stave-g",
     "type": "bow",
     "name": "Kut-Ku Stave G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "daimyo-s-warbow-g",
     "type": "bow",
     "name": "Daimyo's Warbow G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "sonic-bow-g",
     "type": "bow",
     "name": "Sonic Bow G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "diablos-horn-bow-g",
     "type": "bow",
     "name": "Diablos Horn Bow G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "dragon-bow-solar-g",
     "type": "bow",
     "name": "Dragon Bow Solar G",
     "rarity": 10,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "black-bow-g",
     "type": "bow",
     "name": "Black Bow G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   }
 ]
 }

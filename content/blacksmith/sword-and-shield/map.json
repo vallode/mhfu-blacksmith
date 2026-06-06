@@ -5,12 +5,14 @@
     "type": "sword-and-shield",
     "name": "Hunter's Dagger",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "hunter-s-dagger-plus",
         "type": "sword-and-shield",
         "name": "Hunter's Dagger+",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "assassin-s-dagger",
@@ -23,12 +25,14 @@
                 "type": "sword-and-shield",
                 "name": "Velocidrome Bite",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "velocidrome-bite-plus",
                     "type": "sword-and-shield",
                     "name": "Velocidrome Bite+",
                     "rarity": 2,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "dos-fang-dagger",
@@ -41,6 +45,7 @@
                         "type": "sword-and-shield",
                         "name": "Odyssey",
                         "rarity": 6,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "odyssey-plus",
@@ -68,6 +73,7 @@
                                     "type": "sword-and-shield",
                                     "name": "Heavy Bang",
                                     "rarity": 9,
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "master-bang",
@@ -83,6 +89,7 @@
                                     "name": "Thunderblade Vajra",
                                     "rarity": 9,
                                     "element": "thunder",
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "thunderblade-vajra-plus",
@@ -116,6 +123,7 @@
                             "type": "dual-blades",
                             "name": "Hurricane",
                             "rarity": 6,
+                            "craftable": true,
                             "children": []
                           },
                           {
@@ -124,6 +132,7 @@
                             "name": "Prototype Saw-Slicer",
                             "rarity": 6,
                             "element": "thunder",
+                            "craftable": true,
                             "children": []
                           }
                         ]
@@ -135,6 +144,7 @@
                     "type": "sword-and-shield",
                     "name": "Raven Blade",
                     "rarity": 5,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wolf-blade",
@@ -213,6 +223,7 @@
                         "name": "Dual Battleaxe",
                         "rarity": 6,
                         "element": "poison",
+                        "craftable": true,
                         "children": []
                       }
                     ]
@@ -224,6 +235,7 @@
                 "type": "sword-and-shield",
                 "name": "Kitchen Knife",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "iron-chefblade",
@@ -249,6 +261,7 @@
             "name": "Frost Edge",
             "rarity": 2,
             "element": "ice",
+            "craftable": true,
             "children": [
               {
                 "slug": "frost-edge-plus",
@@ -279,6 +292,7 @@
                     "name": "Freezing Daggers",
                     "rarity": 4,
                     "element": "ice",
+                    "craftable": true,
                     "children": []
                   }
                 ]
@@ -290,6 +304,7 @@
             "type": "dual-blades",
             "name": "Twin Dagger",
             "rarity": 1,
+            "craftable": true,
             "children": []
           }
         ]
@@ -299,6 +314,7 @@
         "type": "sword-and-shield",
         "name": "Snake Bite",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "snake-bite-plus",
@@ -328,6 +344,7 @@
                 "name": "Hydra Bite",
                 "rarity": 3,
                 "element": "poison",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "deadly-poison",
@@ -363,6 +380,7 @@
                                     "name": "Queen's Rose",
                                     "rarity": 9,
                                     "element": "poison",
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "royal-rose",
@@ -401,6 +419,7 @@
         "name": "Giaprey Claws",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": []
       }
     ]
@@ -410,6 +429,7 @@
     "type": "sword-and-shield",
     "name": "Bone Kris",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "bone-kris-plus",
@@ -422,12 +442,14 @@
             "type": "sword-and-shield",
             "name": "Chief Kris",
             "rarity": 1,
+            "craftable": true,
             "children": [
               {
                 "slug": "crimson-club",
                 "type": "sword-and-shield",
                 "name": "Crimson Club",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "monoblos-club",
@@ -440,6 +462,7 @@
                         "type": "sword-and-shield",
                         "name": "Studded Club",
                         "rarity": 4,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "spiked-bat",
@@ -475,6 +498,7 @@
                             "type": "sword-and-shield",
                             "name": "Osteon Pick",
                             "rarity": 6,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "osteon-pick-plus",
@@ -496,6 +520,7 @@
                                     "name": "Rajang Club",
                                     "rarity": 7,
                                     "element": "thunder",
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "taboo-rajang-club",
@@ -520,6 +545,7 @@
                                     "type": "sword-and-shield",
                                     "name": "Binding Blade",
                                     "rarity": 9,
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "binding-blade-plus",
@@ -545,6 +571,7 @@
                                 "name": "Feather Knife",
                                 "rarity": 6,
                                 "element": "sleep",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "feather-sword",
@@ -552,6 +579,7 @@
                                     "name": "Feather Sword",
                                     "rarity": 9,
                                     "element": "sleep",
+                                    "craftable": true,
                                     "children": [
                                       {
                                         "slug": "hi-feather-sword",
@@ -574,6 +602,7 @@
                         "name": "Kirin Bolt",
                         "rarity": 5,
                         "element": "thunder",
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "kirin-bolt-plus",
@@ -654,6 +683,7 @@
                 "name": "Red Saber",
                 "rarity": 3,
                 "element": "fire",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "djinn",
@@ -747,6 +777,7 @@
             "type": "dual-blades",
             "name": "Bone Scythe",
             "rarity": 1,
+            "craftable": true,
             "children": []
           }
         ]
@@ -758,6 +789,7 @@
     "type": "sword-and-shield",
     "name": "Rusted Sword",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "tarnished-sword",
@@ -808,6 +840,7 @@
                     "name": "Twin Nails",
                     "rarity": 5,
                     "element": "ice",
+                    "craftable": true,
                     "children": []
                   }
                 ]
@@ -824,6 +857,7 @@
     "name": "Catspaw",
     "rarity": 2,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "catburglar",
@@ -852,6 +886,7 @@
             "name": "Shaka Poison Bite",
             "rarity": 4,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "shakalaka-saber",
@@ -889,6 +924,7 @@
     "type": "sword-and-shield",
     "name": "Hero's Blade Replica",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "master-s-replica",
@@ -909,6 +945,7 @@
     "type": "sword-and-shield",
     "name": "Rusted Replica",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "eternal-replica",
@@ -924,6 +961,7 @@
     "type": "sword-and-shield",
     "name": "Black Belt Sword",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "expert-sword",
@@ -955,6 +993,7 @@
         "type": "sword-and-shield",
         "name": "Ninja Sword",
         "rarity": 5,
+        "craftable": true,
         "children": [
           {
             "slug": "hi-ninja-sword",
@@ -972,6 +1011,7 @@
     "name": "Flaming Pair",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "blue-ogre-sword",
@@ -979,6 +1019,7 @@
         "name": "Blue Ogre Sword",
         "rarity": 8,
         "element": "dragon",
+        "craftable": true,
         "children": [
           {
             "slug": "azure-ogre-sword",
@@ -1012,6 +1053,7 @@
         "name": "Dual Carapace",
         "rarity": 7,
         "element": "water",
+        "craftable": true,
         "children": [
           {
             "slug": "dual-carapace-plus",
@@ -1053,6 +1095,7 @@
     "name": "Black Sword",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "double-dragon",
@@ -1101,6 +1144,7 @@
     "type": "sword-and-shield",
     "name": "Rex Talon",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-sword",
@@ -1121,12 +1165,14 @@
         "type": "sword-and-shield",
         "name": "Hidden Edge",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "midnight-blades",
             "type": "sword-and-shield",
             "name": "Midnight Blades",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -1161,253 +1207,291 @@
     "slug": "shining-wyvern-blade",
     "type": "sword-and-shield",
     "name": "Shining Wyvern Blade",
-    "rarity": 8
+    "rarity": 8,
+    "craftable": true
   },
   {
     "slug": "ms-m-h-puppet",
     "type": "sword-and-shield",
     "name": "Ms. M.H. Puppet",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "ukanlos-soul-hatchet",
     "type": "sword-and-shield",
     "name": "Ukanlos Soul Hatchet",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "hunter-s-dagger-g",
     "type": "sword-and-shield",
     "name": "Hunter's Dagger G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "chief-kris-g",
     "type": "sword-and-shield",
     "name": "Chief Kris G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tarnished-sword-g",
     "type": "sword-and-shield",
     "name": "Tarnished Sword G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "snake-bite-g",
     "type": "sword-and-shield",
     "name": "Snake Bite G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "deathprize-g",
     "type": "sword-and-shield",
     "name": "Deathprize G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "deadly-poison-g",
     "type": "sword-and-shield",
     "name": "Deadly Poison G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "velocidrome-bite-g",
     "type": "sword-and-shield",
     "name": "Velocidrome Bite G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "poison-battleaxe-g",
     "type": "sword-and-shield",
     "name": "Poison Battleaxe G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "thunderbane-g",
     "type": "sword-and-shield",
     "name": "Thunderbane G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "sandman-finsword-g",
     "type": "sword-and-shield",
     "name": "Sandman Finsword G",
     "rarity": 9,
-    "element": "sleep"
+    "element": "sleep",
+    "craftable": true
   },
   {
     "slug": "monoblos-club-g",
     "type": "sword-and-shield",
     "name": "Monoblos Club G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "spiked-bat-g",
     "type": "sword-and-shield",
     "name": "Spiked Bat G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "kirin-bolt-g",
     "type": "sword-and-shield",
     "name": "Kirin Bolt G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "kirin-bolt-plus-g",
     "type": "sword-and-shield",
     "name": "Kirin Bolt+ G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "kirin-bolt-indora-g",
     "type": "sword-and-shield",
     "name": "Kirin Bolt Indora G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "djinn-g",
     "type": "sword-and-shield",
     "name": "Djinn G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "catburglar-g",
     "type": "sword-and-shield",
     "name": "Catburglar G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "eternal-strife-g",
     "type": "sword-and-shield",
     "name": "Eternal Strife G",
     "rarity": 9,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "odyssey-g",
     "type": "sword-and-shield",
     "name": "Odyssey G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "osteon-pick-g",
     "type": "sword-and-shield",
     "name": "Osteon Pick G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "serpent-bite-g",
     "type": "sword-and-shield",
     "name": "Serpent Bite G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "millennium-knife-g",
     "type": "sword-and-shield",
     "name": "Millennium Knife G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hi-frost-edge-g",
     "type": "sword-and-shield",
     "name": "Hi Frost Edge G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "deadly-battleaxe-g",
     "type": "sword-and-shield",
     "name": "Deadly Battleaxe G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "high-sandman-spike-g",
     "type": "sword-and-shield",
     "name": "High Sandman Spike G",
     "rarity": 9,
-    "element": "sleep"
+    "element": "sleep",
+    "craftable": true
   },
   {
     "slug": "blazing-falchion-g",
     "type": "sword-and-shield",
     "name": "Blazing Falchion G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "corona-g",
     "type": "sword-and-shield",
     "name": "Corona G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "queen-rapier-g",
     "type": "sword-and-shield",
     "name": "Queen Rapier G",
     "rarity": 10,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "hi-ninja-sword-g",
     "type": "sword-and-shield",
     "name": "Hi Ninja Sword G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "thor-s-dagger-g",
     "type": "sword-and-shield",
     "name": "Thor's Dagger G",
     "rarity": 10,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "melynx-tool-g",
     "type": "sword-and-shield",
     "name": "Melynx Tool G",
     "rarity": 10,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "shakalaka-saber-g",
     "type": "sword-and-shield",
     "name": "Shakalaka Saber G",
     "rarity": 10,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "master-s-blade-g",
     "type": "sword-and-shield",
     "name": "Master's Blade G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "eternal-treasure-g",
     "type": "sword-and-shield",
     "name": "Eternal Treasure G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   },
   {
     "slug": "shiningwyvernblade-g",
     "type": "sword-and-shield",
     "name": "ShiningWyvernBlade G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   }
 ]
 }

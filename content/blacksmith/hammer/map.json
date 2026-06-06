@@ -5,12 +5,14 @@
     "type": "hammer",
     "name": "War Hammer",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "war-hammer-plus",
         "type": "hammer",
         "name": "War Hammer+",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "war-mace",
@@ -23,12 +25,14 @@
                 "type": "hammer",
                 "name": "Iron Striker",
                 "rarity": 2,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "iron-striker-plus",
                     "type": "hammer",
                     "name": "Iron Striker+",
                     "rarity": 2,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "anvil-hammer",
@@ -47,6 +51,7 @@
                                 "type": "hammer",
                                 "name": "Blacksmith",
                                 "rarity": 9,
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "juggernaut",
@@ -60,6 +65,7 @@
                                     "name": "Lava Alphorn",
                                     "rarity": 9,
                                     "element": "fire",
+                                    "craftable": true,
                                     "children": []
                                   }
                                 ]
@@ -85,6 +91,7 @@
                             "type": "hunting-horn",
                             "name": "Bronze Bell",
                             "rarity": 5,
+                            "craftable": true,
                             "children": []
                           },
                           {
@@ -93,6 +100,7 @@
                             "name": "Sakura Recorder",
                             "rarity": 5,
                             "element": "dragon",
+                            "craftable": true,
                             "children": []
                           },
                           {
@@ -100,6 +108,7 @@
                             "type": "hammer",
                             "name": "Iron Devil",
                             "rarity": 6,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "great-demon-hammer",
@@ -150,6 +159,7 @@
                                         "name": "Icy Impact",
                                         "rarity": 9,
                                         "element": "ice",
+                                        "craftable": true,
                                         "children": [
                                           {
                                             "slug": "axion",
@@ -198,6 +208,7 @@
                     "name": "Gunhammer Prototype",
                     "rarity": 3,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "dead-revolver",
@@ -219,6 +230,7 @@
                                 "name": "Regulation GunHammer",
                                 "rarity": 9,
                                 "element": "fire",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "imperialgunhmmrspark",
@@ -267,6 +279,7 @@
                 "type": "hammer",
                 "name": "Black Cauldron",
                 "rarity": 3,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "true-black-cauldron",
@@ -313,6 +326,7 @@
                             "type": "hammer",
                             "name": "Ceanataur Head Axe",
                             "rarity": 7,
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "big-blue-chopper",
@@ -326,6 +340,7 @@
                                 "name": "Carmine Axe",
                                 "rarity": 9,
                                 "element": "water",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "the-great-divider",
@@ -349,6 +364,7 @@
                 "type": "hunting-horn",
                 "name": "Metal Bagpipe",
                 "rarity": 2,
+                "craftable": true,
                 "children": []
               }
             ]
@@ -370,6 +386,7 @@
                     "type": "hammer",
                     "name": "Crystal Hammer",
                     "rarity": 3,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "crystal-nova",
@@ -417,6 +434,7 @@
                     "name": "Shell Hammer",
                     "rarity": 4,
                     "element": "poison",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "graviton-hammer",
@@ -476,6 +494,7 @@
                     "name": "Basarios Rock",
                     "rarity": 4,
                     "element": "fire",
+                    "craftable": true,
                     "children": []
                   }
                 ]
@@ -491,6 +510,7 @@
     "type": "hammer",
     "name": "Bone Club",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "large-bone-club",
@@ -519,6 +539,7 @@
         "type": "hammer",
         "name": "Cyclo-Hammer",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "atlas-hammer",
@@ -531,18 +552,21 @@
                 "type": "hammer",
                 "name": "Kut-Ku Jaw",
                 "rarity": 3,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "kut-ku-pick",
                     "type": "hammer",
                     "name": "Kut-Ku Pick",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "hard-bone-hammer",
                         "type": "hammer",
                         "name": "Hard Bone Hammer",
                         "rarity": 6,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "hard-bone-hammer-plus",
@@ -607,6 +631,7 @@
                         "name": "Feather Whistle",
                         "rarity": 6,
                         "element": "sleep",
+                        "craftable": true,
                         "children": []
                       }
                     ]
@@ -616,6 +641,7 @@
                     "type": "hammer",
                     "name": "Raven Torrent",
                     "rarity": 5,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "wolf-torrent",
@@ -635,6 +661,7 @@
                             "name": "Wolf Shamisen",
                             "rarity": 7,
                             "element": "poison",
+                            "craftable": true,
                             "children": []
                           }
                         ]
@@ -721,6 +748,7 @@
                 "name": "Khezu Horn",
                 "rarity": 3,
                 "element": "thunder",
+                "craftable": true,
                 "children": []
               }
             ]
@@ -742,6 +770,7 @@
                     "type": "hammer",
                     "name": "Diablos Maul",
                     "rarity": 4,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "finishing-hammer",
@@ -756,6 +785,7 @@
                     "type": "hammer",
                     "name": "Dragonhead Hammer",
                     "rarity": 3,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "ancient-relic",
@@ -769,6 +799,7 @@
                             "name": "Shell Castanet",
                             "rarity": 7,
                             "element": "water",
+                            "craftable": true,
                             "children": []
                           }
                         ]
@@ -794,6 +825,7 @@
                     "type": "hunting-horn",
                     "name": "Sonic Glass",
                     "rarity": 3,
+                    "craftable": true,
                     "children": []
                   }
                 ]
@@ -826,6 +858,7 @@
                         "type": "hammer",
                         "name": "Desert Cone",
                         "rarity": 9,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "magnitude",
@@ -846,6 +879,7 @@
             "type": "hunting-horn",
             "name": "Bone Horn",
             "rarity": 2,
+            "craftable": true,
             "children": []
           }
         ]
@@ -855,6 +889,7 @@
         "type": "hammer",
         "name": "Bull Hammer",
         "rarity": 2,
+        "craftable": true,
         "children": [
           {
             "slug": "bull-head-hammer",
@@ -878,6 +913,7 @@
         "name": "Giaprey Balloon",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": []
       }
     ]
@@ -887,6 +923,7 @@
     "type": "hammer",
     "name": "Rusted Hammer",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "tarnished-hammer",
@@ -944,6 +981,7 @@
     "name": "White Cat Stamp",
     "rarity": 2,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "white-cat-hammer",
@@ -972,6 +1010,7 @@
             "name": "Gold Cat Hammer",
             "rarity": 8,
             "element": "paralysis",
+            "craftable": true,
             "children": [
               {
                 "slug": "gold-cat-crusher",
@@ -989,7 +1028,8 @@
         "type": "hammer",
         "name": "Teddybear",
         "rarity": 4,
-        "element": "sleep"
+        "element": "sleep",
+        "craftable": true
       }
     ]
   },
@@ -999,6 +1039,7 @@
     "name": "Cactus Creamer",
     "rarity": 3,
     "element": "poison",
+    "craftable": true,
     "children": [
       {
         "slug": "green-monster",
@@ -1022,6 +1063,7 @@
         "name": "Purse Bop",
         "rarity": 7,
         "element": "thunder",
+        "craftable": true,
         "children": [
           {
             "slug": "purse-bop-plus",
@@ -1049,6 +1091,7 @@
     "name": "dummy (Amezari Hammer)",
     "rarity": 4,
     "element": "water",
+    "craftable": true,
     "children": [
       {
         "slug": "dummy-amezari-hammer-plus",
@@ -1074,6 +1117,7 @@
     "name": "dummy (Polytan)",
     "rarity": 4,
     "element": "thunder",
+    "craftable": true,
     "children": [
       {
         "slug": "dummy-polytan-g",
@@ -1098,6 +1142,7 @@
     "type": "hammer",
     "name": "Black Belt Hammer",
     "rarity": 4,
+    "craftable": true,
     "children": [
       {
         "slug": "expert-hammer",
@@ -1120,6 +1165,7 @@
     "type": "hammer",
     "name": "Striped Striker",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-hammer",
@@ -1140,12 +1186,14 @@
         "type": "hammer",
         "name": "Hidden Breaker",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "deep-darkhammer",
             "type": "hammer",
             "name": "Deep Darkhammer",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -1157,6 +1205,7 @@
     "name": "Dragon Destroyer",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "dragonbreaker",
@@ -1191,6 +1240,7 @@
     "name": "Black Hammer",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "fatalis-buster",
@@ -1231,6 +1281,7 @@
     "type": "hammer",
     "name": "Worn Hammer",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "weathered-hammer",
@@ -1286,255 +1337,295 @@
     "type": "hammer",
     "name": "Ukanlos Trampler",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "bone-club-g",
     "type": "hammer",
     "name": "Bone Club G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "war-hammer-g",
     "type": "hammer",
     "name": "War Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "tarnished-hammer-g",
     "type": "hammer",
     "name": "Tarnished Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "spiked-hammer-g",
     "type": "hammer",
     "name": "Spiked Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "iron-striker-g",
     "type": "hammer",
     "name": "Iron Striker G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "atlas-hammer-g",
     "type": "hammer",
     "name": "Atlas Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bone-axe-g",
     "type": "hammer",
     "name": "Bone Axe G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "skullcrusher-g",
     "type": "hammer",
     "name": "Skullcrusher G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "bull-tusk-hammer-g",
     "type": "hammer",
     "name": "Bull Tusk Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "crystal-nova-g",
     "type": "hammer",
     "name": "Crystal Nova G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "binder-mace-g",
     "type": "hammer",
     "name": "Binder Mace G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "kut-ku-jaw-g",
     "type": "hammer",
     "name": "Kut-Ku Jaw G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "venom-monster-g",
     "type": "hammer",
     "name": "Venom Monster G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "dead-revolver-g",
     "type": "hammer",
     "name": "Dead Revolver G",
     "rarity": 9,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "anchor-crusher-g",
     "type": "hammer",
     "name": "Anchor Crusher G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "kut-ku-pick-g",
     "type": "hammer",
     "name": "Kut-Ku Pick G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "dragonhead-hammer-g",
     "type": "hammer",
     "name": "Dragonhead Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "basarios-bash-g",
     "type": "hammer",
     "name": "Basarios Bash G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "titan-hammer-g",
     "type": "hammer",
     "name": "Titan Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "finishing-hammer-g",
     "type": "hammer",
     "name": "Finishing Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "trueblackcauldron-g",
     "type": "hammer",
     "name": "TrueBlackCauldron G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "enormous-ham-g",
     "type": "hammer",
     "name": "Enormous Ham G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "teddybear-g",
     "type": "hammer",
     "name": "Teddybear G",
     "rarity": 9,
-    "element": "sleep"
+    "element": "sleep",
+    "craftable": true
   },
   {
     "slug": "cactus-creamer-g",
     "type": "hammer",
     "name": "Cactus Creamer G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "white-cat-hammer-g",
     "type": "hammer",
     "name": "White Cat Hammer G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "black-cat-hammer-g",
     "type": "hammer",
     "name": "Black Cat Hammer G",
     "rarity": 9,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   },
   {
     "slug": "black-belt-hammer-g",
     "type": "hammer",
     "name": "Black Belt Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "breath-core-hammer-g",
     "type": "hammer",
     "name": "Breath Core Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "polytan-g",
     "type": "hammer",
     "name": "Polytan G",
     "rarity": 9,
-    "element": "thunder"
+    "element": "thunder",
+    "craftable": true
   },
   {
     "slug": "great-demon-hammer-g",
     "type": "hammer",
     "name": "Great Demon Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "hard-bone-hammer-g",
     "type": "hammer",
     "name": "Hard Bone Hammer G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "twostarsilverpot-g",
     "type": "hammer",
     "name": "TwoStarSilverPot G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "great-cone-g",
     "type": "hammer",
     "name": "Great Cone G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "onslaught-hammer-g",
     "type": "hammer",
     "name": "Onslaught Hammer G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "war-basher-g",
     "type": "hammer",
     "name": "War Basher G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "sanctionedgunhammr-g",
     "type": "hammer",
     "name": "SanctionedGunHammr G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "crater-maker-g",
     "type": "hammer",
     "name": "Crater Maker G",
     "rarity": 10,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "tormentpurgatory-g",
     "type": "hammer",
     "name": "Torment(Purgatory) G",
     "rarity": 10,
-    "element": "fire"
+    "element": "fire",
+    "craftable": true
   },
   {
     "slug": "dragonbreaker-g",
     "type": "hammer",
     "name": "Dragonbreaker G",
     "rarity": 10,
-    "element": "dragon"
+    "element": "dragon",
+    "craftable": true
   }
 ]
 }

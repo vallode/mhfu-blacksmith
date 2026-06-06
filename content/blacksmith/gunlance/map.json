@@ -5,6 +5,7 @@
     "type": "gunlance",
     "name": "Bone Gunlance",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "great-bone-gunlance",
@@ -24,6 +25,7 @@
                 "name": "Hellsting",
                 "rarity": 4,
                 "element": "ice",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "hellsting-plus",
@@ -74,6 +76,7 @@
             "name": "Average Hitter",
             "rarity": 3,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "grand-slam",
@@ -109,6 +112,7 @@
                             "name": "Venomous Cologne",
                             "rarity": 8,
                             "element": "poison",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "venomous-attar",
@@ -164,6 +168,7 @@
                 "name": "Hellsting",
                 "rarity": 4,
                 "element": "ice",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "hellsting-plus",
@@ -214,6 +219,7 @@
             "name": "Average Hitter",
             "rarity": 3,
             "element": "poison",
+            "craftable": true,
             "children": [
               {
                 "slug": "grand-slam",
@@ -249,6 +255,7 @@
                             "name": "Venomous Cologne",
                             "rarity": 8,
                             "element": "poison",
+                            "craftable": true,
                             "children": [
                               {
                                 "slug": "venomous-attar",
@@ -285,12 +292,14 @@
     "type": "lance",
     "name": "Iron Lance",
     "rarity": 1,
+    "craftable": true,
     "children": [
       {
         "slug": "iron-gunlance",
         "type": "gunlance",
         "name": "Iron Gunlance",
         "rarity": 1,
+        "craftable": true,
         "children": [
           {
             "slug": "iron-gunlance-plus",
@@ -309,6 +318,7 @@
                     "type": "gunlance",
                     "name": "Special Ops Gunlance",
                     "rarity": 3,
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "imperial-gunlance",
@@ -360,6 +370,7 @@
                     "name": "Luna's Howl",
                     "rarity": 5,
                     "element": "fire",
+                    "craftable": true,
                     "children": [
                       {
                         "slug": "luna-s-roar",
@@ -438,6 +449,7 @@
         "name": "Snow Gunlance",
         "rarity": 2,
         "element": "ice",
+        "craftable": true,
         "children": [
           {
             "slug": "snow-gunlance-mk-ii",
@@ -459,6 +471,7 @@
                 "name": "Marine Fisher",
                 "rarity": 3,
                 "element": "water",
+                "craftable": true,
                 "children": [
                   {
                     "slug": "deep-fisher",
@@ -503,6 +516,7 @@
                                 "name": "Volcano Gunlance",
                                 "rarity": 9,
                                 "element": "fire",
+                                "craftable": true,
                                 "children": [
                                   {
                                     "slug": "lavasioth-gunlance",
@@ -526,6 +540,7 @@
                 "type": "gunlance",
                 "name": "Scissor Gunlance",
                 "rarity": 6,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "scissor-cannon",
@@ -538,6 +553,7 @@
                         "type": "gunlance",
                         "name": "Violet Cannon",
                         "rarity": 9,
+                        "craftable": true,
                         "children": [
                           {
                             "slug": "violet-buster",
@@ -552,6 +568,7 @@
                         "type": "lance",
                         "name": "Shell Claw Lance",
                         "rarity": 9,
+                        "craftable": true,
                         "children": []
                       }
                     ]
@@ -575,6 +592,7 @@
         "type": "gunlance",
         "name": "Scissor Gunlance",
         "rarity": 6,
+        "craftable": true,
         "children": [
           {
             "slug": "scissor-cannon",
@@ -587,6 +605,7 @@
                 "type": "gunlance",
                 "name": "Violet Cannon",
                 "rarity": 9,
+                "craftable": true,
                 "children": [
                   {
                     "slug": "violet-buster",
@@ -601,6 +620,7 @@
                 "type": "lance",
                 "name": "Shell Claw Lance",
                 "rarity": 9,
+                "craftable": true,
                 "children": []
               }
             ]
@@ -615,6 +635,7 @@
     "name": "Black Smoke Gunlance",
     "rarity": 5,
     "element": "dragon",
+    "craftable": true,
     "children": [
       {
         "slug": "blackdragongunlance",
@@ -639,6 +660,7 @@
     "type": "gunlance",
     "name": "Rex Blast",
     "rarity": 5,
+    "craftable": true,
     "children": [
       {
         "slug": "tigrex-gunlance",
@@ -659,12 +681,14 @@
         "type": "gunlance",
         "name": "Hidden Gunlance",
         "rarity": 7,
+        "craftable": true,
         "children": [
           {
             "slug": "wanningmoondarklance",
             "type": "gunlance",
             "name": "WanningMoonDarklance",
-            "rarity": 10
+            "rarity": 10,
+            "craftable": true
           }
         ]
       }
@@ -676,6 +700,7 @@
     "name": "Dragonwood Gunlance",
     "rarity": 5,
     "element": "paralysis",
+    "craftable": true,
     "children": [
       {
         "slug": "gld-dragonwd-glance",
@@ -690,6 +715,7 @@
             "name": "AncientDrgnwoodLance",
             "rarity": 9,
             "element": "paralysis",
+            "craftable": true,
             "children": [
               {
                 "slug": "ancientdrgnwoodlanc-plus",
@@ -716,6 +742,7 @@
         "name": "Full Voltage",
         "rarity": 7,
         "element": "thunder",
+        "craftable": true,
         "children": [
           {
             "slug": "full-generator",
@@ -742,6 +769,7 @@
     "type": "lance",
     "name": "Knight Lance",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "feather-gunlance",
@@ -749,6 +777,7 @@
         "name": "Feather Gunlance",
         "rarity": 6,
         "element": "sleep",
+        "craftable": true,
         "children": [
           {
             "slug": "feather-gunlance-plus",
@@ -756,6 +785,7 @@
             "name": "Feather Gunlance+",
             "rarity": 9,
             "element": "sleep",
+            "craftable": true,
             "children": [
               {
                 "slug": "hypno-cannon",
@@ -775,6 +805,7 @@
     "type": "gunlance",
     "name": "Pop Corn",
     "rarity": 6,
+    "craftable": true,
     "children": [
       {
         "slug": "large-pop-corn",
@@ -795,6 +826,7 @@
         "type": "gunlance",
         "name": "Heavy Bone Gunlance",
         "rarity": 9,
+        "craftable": true,
         "children": [
           {
             "slug": "hard-bone-cannon",
@@ -817,6 +849,7 @@
         "type": "gunlance",
         "name": "Ancient Destroyer",
         "rarity": 9,
+        "craftable": true,
         "children": [
           {
             "slug": "genesis",
@@ -833,6 +866,7 @@
     "type": "gunlance",
     "name": "Akantor Gunlance",
     "rarity": 8,
+    "craftable": true,
     "children": [
       {
         "slug": "akantornoirgunlance",
@@ -846,72 +880,83 @@
     "slug": "dummy-eldrdrgglanceemblem",
     "type": "gunlance",
     "name": "dummy (EldrDrgGLance\"Emblem\")",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "ukanlosblazegunlance",
     "type": "gunlance",
     "name": "UkanlosBlazeGunlance",
     "rarity": 10,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "iron-gunlance-g",
     "type": "gunlance",
     "name": "Iron Gunlance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "wyvernbone-gunlance-g",
     "type": "gunlance",
     "name": "WyvernBone Gunlance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "blizzard-gunlance-g",
     "type": "gunlance",
     "name": "Blizzard Gunlance G",
     "rarity": 9,
-    "element": "ice"
+    "element": "ice",
+    "craftable": true
   },
   {
     "slug": "imperial-gunlance-g",
     "type": "gunlance",
     "name": "Imperial Gunlance G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "scissor-cannon-g",
     "type": "gunlance",
     "name": "Scissor Cannon G",
-    "rarity": 9
+    "rarity": 9,
+    "craftable": true
   },
   {
     "slug": "grand-slam-g",
     "type": "gunlance",
     "name": "Grand Slam G",
     "rarity": 9,
-    "element": "poison"
+    "element": "poison",
+    "craftable": true
   },
   {
     "slug": "marine-fisher-g",
     "type": "gunlance",
     "name": "Marine Fisher G",
     "rarity": 9,
-    "element": "water"
+    "element": "water",
+    "craftable": true
   },
   {
     "slug": "white-cannon-g",
     "type": "gunlance",
     "name": "White Cannon G",
-    "rarity": 10
+    "rarity": 10,
+    "craftable": true
   },
   {
     "slug": "gld-dragonwd-glance-g",
     "type": "gunlance",
     "name": "Gld Dragonwd GLance G",
     "rarity": 10,
-    "element": "paralysis"
+    "element": "paralysis",
+    "craftable": true
   }
 ]
 }
