@@ -1,0 +1,12 @@
+// The animated green gradient used for hover highlights on rows, cards, search results
+@mixin green-hover-gradient {
+  animation: opacity-alternate 1s ease-in-out 0s infinite alternate;
+  background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(3, 119, 3, 0.84), rgba(0, 0, 0, 0));
+}
+
+// Pixel-perfect rendering for game sprite assets
+@mixin pixelated {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}

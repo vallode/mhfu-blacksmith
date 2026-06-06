@@ -1,0 +1,117 @@
+// Weapon / item icon types
+$weapon-types: (
+  "great-sword",
+  "long-sword",
+  "sword-and-shield",
+  "dual-blades",
+  "hammer",
+  "hunting-horn",
+  "lance",
+  "gunlance",
+  "light-bowgun",
+  "heavy-bowgun",
+  "bow",
+  "decoration",
+  "deco",
+  "herb",
+  "seed",
+  "meat",
+  "note",
+  "bone",
+  "ore",
+  "fish",
+  "hide",
+  "sac",
+  "claw",
+  "scale",
+  "pelt",
+  "insect",
+  "fluid",
+  "part",
+  "egg",
+  "ticket",
+  "bait",
+  "webbing",
+  "mushroom",
+  "shell",
+  "heavenly",
+  "stone",
+  "coin",
+  "ukwn",
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "leggings"
+);
+
+$monster-types: (
+  "bird-wyvern",
+  "carapaceon",
+  "elder-dragon",
+  "flying-wyvern",
+  "herbivore",
+  "lynian",
+  "neopteron",
+  "pelagus",
+  "piscine-wyvern",
+);
+
+$decoration-colors: (
+  "blue": #80C2FC,
+  "cyan": #97E0EF,
+  "gray": #A0A0A0,
+  "green": #86BF8D,
+  "orange": #FF9661,
+  "pink": #EA9AA4,
+  "red": #FD6960,
+  "slate": #AFA0C5,
+  "white": #FFFFFF,
+  "yellow": #FFC762,
+);
+
+$rarity-colors: (
+  4: #52F152,
+  5: #FD9DC8,
+  6: #83C3FC,
+  7: #FF9661,
+  8: #FD6960,
+  9: #FFC762,
+  10: #BB84FB,
+);
+
+$note-colors: (
+  "a": #6CC8FE,
+  "b": #7175FD,
+  "g": #7BE61F,
+  "p": #E176EE,
+  "r": #FD3B1F,
+  "w": white,
+  "y": #FFEB2B,
+);
+
+$element-types: (
+  "fire",
+  "thunder",
+  "poison",
+  "water",
+  "ice",
+  "sleep",
+  "dragon",
+  "paralysis",
+);
+
+$ranks: (
+  "high-rank",
+  "g-rank",
+);
+
+$sharpness-colors: (
+  1: #C3333C,
+  2: #EF5A26,
+  3: #FFC03C,
+  4: #84C11C,
+  5: #5A8AED,
+  6: #F7F7F7,
+  7: #DF78F6,
+);
