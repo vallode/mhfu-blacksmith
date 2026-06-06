@@ -289,6 +289,14 @@ $ranks: (
     image-rendering: pixelated;
   }
 
+  &--small {
+    width: 16px;
+    height: 16px;
+  }
+  &--small img {
+    width: 16px;
+    height: 16px;
+  }
   &--large,
   &--large img {
     width: 52px;
