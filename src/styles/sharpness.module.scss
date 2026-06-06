@@ -1,0 +1,77 @@
+@use 'variables' as *;
+
+// Shared layout for both .sharpness and .sharpness-plus bars
+%sharpness-bar {
+  display: flex;
+  height: 2.4rem;
+  margin-left: auto;
+  padding: 6px 8px;
+  position: relative;
+  width: 19.6rem;
+
+  @media screen and (max-width: 600px) {
+    margin: 0 auto;
+  }
+
+  span {
+    display: inline-block;
+    height: 100%;
+    z-index: 1;
+  }
+
+  @each $value, $color in $sharpness-colors {
+    [class*="sharp-#{$value}"] {
+      background-color: $color;
+    }
+  }
+}
+
+.sharpness {
+  @extend %sharpness-bar;
+
+  &::after {
+    background-image: url("/images/sharpness.png");
+    background-size: cover;
+    content: '';
+    height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+.sharpness-plus {
+  @extend %sharpness-bar;
+
+  &::after {
+    background-image: url("/images/sharpness-plus.png");
+    background-size: cover;
+    content: '';
+    height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+.sharpness-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 0 auto;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    margin: 1rem auto 0 0;
+  }
+}

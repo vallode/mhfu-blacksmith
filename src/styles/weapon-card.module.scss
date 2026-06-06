@@ -1,0 +1,431 @@
+@use 'mixins' as *;
+
+.weapon-card {
+  flex: 1 1 50%;
+
+  &__preview {
+    display: none;
+    flex: 1 1 30%;
+    padding: 8px;
+
+    &__container {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      left: 50%;
+      position: relative;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+    }
+
+    @media screen and (min-width: 1800px) {
+      display: block;
+    }
+  }
+
+  &__header {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex: 0 0 38px;
+    flex-direction: row;
+    height: 38px;
+    position: relative;
+    text-decoration: none;
+
+    .hunter_type,
+    .sex {
+      color: #c0c0c0;
+      margin-left: 1.3rem;
+    }
+
+    &--monster {
+      align-items: flex-start;
+      color: #f2d250;
+      flex: 0 0 11rem;
+      font-size: 2.2rem;
+      height: auto;
+
+      span {
+        color: white;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+
+        img {
+          height: 14px;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+          margin-left: 3px;
+          position: relative;
+          top: -2px;
+          width: auto;
+        }
+      }
+
+      p {
+        line-height: 1.25;
+      }
+
+      .icon {
+        margin: 1.2rem calc((16.8rem - 9rem) / 2) 0 auto;
+
+        &::after {
+          background-image: url("/images/scroll.png");
+          background-position: 0px 0px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          bottom: 0;
+          content: '';
+          height: 11.2rem;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 16.8rem;
+          z-index: -1;
+        }
+      }
+
+      .icon,
+      .icon img {
+        height: 9rem;
+        width: 9rem;
+      }
+
+      @media screen and (max-width: 600px) {
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        height: auto;
+
+        .icon {
+          margin: 0 auto 1.6rem auto;
+        }
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      flex-wrap: wrap;
+      height: auto;
+    }
+  }
+
+  &__details {
+    color: #ffff50;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    height: 100%;
+    margin: 2rem 0 0;
+
+    .stats,
+    .improve_mats,
+    .create_mats {
+      display: flex;
+      flex-direction: column;
+      gap: 13px 0;
+    }
+
+    .ammo,
+    .status_ammo,
+    .element_ammo,
+    .misc_ammo,
+    .shots {
+      display: flex;
+      flex: 1 1 0%;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .description {
+      color: white;
+      font-size: 1.6rem;
+      white-space: initial;
+    }
+
+    .shots {
+      span.orange,
+      .orange span {
+        color: #FF9661;
+      }
+
+      .green,
+      .green .orange {
+        color: #52F152;
+      }
+    }
+
+    .coatings {
+      align-content: flex-start;
+      display: flex;
+      flex: 1 1 0%;
+      flex-flow: row wrap;
+      gap: 13px;
+
+      & :first-child {
+        width: 100%;
+      }
+
+      p {
+        width: calc(50% - 13px);
+      }
+
+      .gray {
+        color: gray;
+      }
+    }
+
+    .skills {
+      display: flex;
+      flex: 1 1 0%;
+      flex-direction: column;
+      gap: 13px;
+
+      & > :first-child {
+        font-size: inherit;
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+        width: 100%;
+      }
+
+      > div {
+        display: flex;
+
+        h3 {
+          display: flex;
+          font-size: inherit;
+          font-weight: normal;
+          line-height: 1;
+          margin: 0;
+          width: 10ch;
+        }
+
+        p {
+          text-align: right;
+          width: 4ch;
+        }
+
+        span {
+          color: inherit;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .stats {
+      flex-flow: column wrap;
+      height: 11rem;
+
+      > div {
+        display: flex;
+        gap: 0.5rem;
+        line-height: 1;
+      }
+
+      h3 {
+        display: inline-block;
+        font-size: inherit;
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+      }
+
+      p {
+        display: inline-block;
+      }
+
+      span {
+        color: white;
+      }
+
+      .raw {
+        opacity: 0.2;
+      }
+
+      .element {
+        color: #56FBFA;
+      }
+
+      .notes {
+        color: white;
+        display: flex;
+
+        .icon:first-of-type {
+          margin-left: 26px;
+        }
+      }
+
+      &--armor {
+        > div {
+          display: flex;
+          line-height: 1;
+          padding-right: 1.6rem;
+        }
+
+        h3 {
+          color: #ffff50;
+          display: inline-flex;
+          width: 10ch;
+
+          span {
+            color: inherit;
+            margin-left: auto;
+          }
+        }
+
+        h3 ~ p:last-child {
+          color: white;
+          text-align: right;
+          width: 4ch;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        height: auto;
+      }
+    }
+
+    .requirements {
+      color: white;
+      display: flex;
+      flex: 1 1 0%;
+      flex-flow: row wrap;
+      gap: 32px;
+
+      .improve_mats,
+      .create_mats {
+        display: flex;
+        flex: 1 1 0%;
+      }
+
+      span {
+        color: #ffff50;
+      }
+
+      .material {
+        align-items: center;
+        display: flex;
+      }
+
+      &.improve_mats .create_mats,
+      &.create_mats .improve_mats {
+        display: none;
+      }
+
+      &.improve_mats .weapon-card__navigation::before {
+        content: 'Improve';
+        display: block;
+      }
+
+      &.create_mats .weapon-card__navigation::before {
+        content: 'Create';
+        display: block;
+      }
+
+      .page {
+        display: none;
+        flex: 1 1 0%;
+        flex-flow: row wrap;
+
+        @media screen and (max-width: 600px) {
+          gap: 16px;
+        }
+      }
+
+      // Stimulus data-attribute page selectors — replaced by React state in migration
+      &[data-weapon-page-page-value="1"] #page-1 { display: flex; }
+      &[data-weapon-page-page-value="2"] #page-2 { display: flex; }
+      &[data-weapon-page-page-value="3"] #page-3 { display: flex; }
+      &[data-weapon-page-page-value="4"] #page-4 { display: flex; }
+      &[data-weapon-page-page-value="5"] #page-5 { display: flex; }
+
+      &--monster {
+        .card {
+          margin-bottom: 4.2rem;
+        }
+
+        table {
+          overflow: auto;
+        }
+      }
+    }
+
+    .locations {
+      > p {
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: -1.4rem 0 1.4rem 0;
+        text-align: center;
+      }
+
+      .list {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 0 0.6rem;
+        width: 100%;
+      }
+
+      .list > div {
+        align-items: center;
+        display: flex;
+        flex: 1 1 45%;
+      }
+    }
+
+    hr {
+      margin: 0;
+    }
+
+    #weaponSlots {
+      font-family: monospace;
+      opacity: 0.5;
+    }
+
+    span.negative {
+      color: #F9455C;
+    }
+
+    span.positive {
+      color: #52F152;
+    }
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+  }
+
+  &__navigation {
+    align-items: center;
+    align-self: flex-end;
+    bottom: 4px;
+    display: flex;
+    gap: 9px;
+    margin-top: auto;
+    padding: 18px;
+    position: absolute;
+    right: 4px;
+    z-index: 20;
+
+    .next {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.loading {
+  height: auto;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+}
