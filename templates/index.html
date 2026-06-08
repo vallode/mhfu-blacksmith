@@ -1,30 +1,26 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block body__attr %} class="landing-page" {%
+endblock body__attr %} {% block head__extra %}
+<meta
+  name="google-site-verification"
+  content="1eKTUDEEVLFrrA5V4W990Lg3fnq9HaGOZDxqcVoWxAk"
+/>
+{% endblock %} {% block content %}
+<a class="blacksmith__title" href="/">
+  <img src="/images/blacksmith.png" alt="Blacksmith" />
+</a>
 
-{% block body__attr %}
-  class="landing-page"
-{% endblock body__attr %}
+<hr class="border" />
 
-{% block head__extra %}
-<meta name="google-site-verification" content="1eKTUDEEVLFrrA5V4W990Lg3fnq9HaGOZDxqcVoWxAk">
-{% endblock %}
-
-{% block content %}
-  <a class="blacksmith__title" href="/">
-    <img src="/images/blacksmith.png" alt="Blacksmith">
-  </a>
-
-  <hr class="border">
-
-  <div class="landing-page__menu-wrapper">
-    <div class="landing-page__menu">
-      <ul>
-        <li class="disabled">New Game</li>
-        <li><a href="/smithy">Smithy</a></li>
-        <li><a href="/monsters">Monster List</a></li>
-        <li class="disabled">Options</li>
-        <li class="disabled">Download</li>
-        <li><a href="//github.com/vallode/mhfu-blacksmith">Source Code</a></li>
-      </ul>
-    </div>
+<div class="landing-page__menu-wrapper">
+  <div class="landing-page__menu">
+    <ul>
+      <li class="disabled">New Game</li>
+      <li><a href="/smithy">Smithy</a></li>
+      <li><a href="/monsters">Monster List</a></li>
+      <li class="disabled">Options</li>
+      <li class="disabled">Download</li>
+      <li><a href="//github.com/vallode/mhfu-blacksmith">Source Code</a></li>
+    </ul>
   </div>
+</div>
 {% endblock content %}
