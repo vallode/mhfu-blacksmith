@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "@/styles/weapon-tree.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
@@ -26,33 +27,45 @@ export default function WeaponTreeRow({
     .filter(Boolean)
     .join(" ");
 
+  const inner = (
+    <>
+      {node.rarity && (
+        <div
+          className={[
+            "icon icon--mini",
+            `icon--${node.type}`,
+            `icon--rarity-${node.rarity}`,
+            node.color ? `icon--${node.color}` : "",
+            node.element ? `icon--${node.element}` : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          <img src={`/images/${node.type}-mini.png`} alt="" />
+        </div>
+      )}
+      <p className="name">{node.name}</p>
+      {node.children && (
+        <p className={styles["weapon-tree__row__toggle"]}>[-]</p>
+      )}
+    </>
+  );
+
   return (
     <li>
-      <a
-        id={node.slug}
-        className={rowClass}
-        href={href}
-      >
-        {node.rarity && (
-          <div
-            className={[
-              "icon icon--mini",
-              `icon--${node.type}`,
-              `icon--rarity-${node.rarity}`,
-              node.color ? `icon--${node.color}` : "",
-              node.element ? `icon--${node.element}` : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <img src={`/images/${node.type}-mini.png`} alt="" />
-          </div>
-        )}
-        <p className="name">{node.name}</p>
-        {node.children && (
-          <p className={styles["weapon-tree__row__toggle"]}>[-]</p>
-        )}
-      </a>
+      {href ? (
+        <Link
+          id={node.slug}
+          className={rowClass}
+          href={href}
+        >
+          {inner}
+        </Link>
+      ) : (
+        <span id={node.slug} className={rowClass}>
+          {inner}
+        </span>
+      )}
 
       {node.children && (
         <ul className={node.children.length > 1 ? "multiple-children" : undefined}>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArmorParams, getArmorTree } from "@/lib/armor";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "@/lib/constants";
@@ -36,11 +37,11 @@ export default async function ArmorTreePage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/armorsmith/">
+          <Link href="/armorsmith/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">

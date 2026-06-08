@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "@/styles/card.module.scss";
 
 interface CardProps {
@@ -5,9 +6,12 @@ interface CardProps {
   variant?: "weapon-tree";
   className?: string;
   href?: string;
+  onDragOver?: React.DragEventHandler;
+  onDragLeave?: React.DragEventHandler;
+  onDrop?: React.DragEventHandler;
 }
 
-export default function Card({ children, variant, className, href }: CardProps) {
+export default function Card({ children, variant, className, href, onDragOver, onDragLeave, onDrop }: CardProps) {
   const classes = [
     styles.card,
     variant === "weapon-tree" ? styles["card--weapon-tree"] : null,
@@ -18,11 +22,15 @@ export default function Card({ children, variant, className, href }: CardProps) 
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <Link href={href} className={classes}>
         {children}
-      </a>
+      </Link>
     );
   }
 
-  return <div className={classes}>{children}</div>;
+  return (
+    <div className={classes} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
+      {children}
+    </div>
+  );
 }

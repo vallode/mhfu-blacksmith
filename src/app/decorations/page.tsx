@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDecorationTree } from "@/lib/decorations";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import Card from "@/components/Card";
@@ -15,11 +16,11 @@ export default function DecorationsPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/">
+          <Link href="/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">

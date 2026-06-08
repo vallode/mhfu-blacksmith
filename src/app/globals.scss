@@ -118,6 +118,15 @@ hr.border {
 
 // ─── Layout helpers ───────────────────────────────────────────────────────────
 
+// ─── View Transitions ─────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 120ms;
+  }
+}
+
 .blacksmith__title {
   flex: 0 0 0%;
   height: auto;

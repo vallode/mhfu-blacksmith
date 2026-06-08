@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MONSTER_CATEGORIES } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -14,11 +15,11 @@ export default function BestiaryPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/">
+          <Link href="/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">
@@ -31,7 +32,7 @@ export default function BestiaryPage() {
       <div className="blacksmith-page">
         <div className="card blacksmith-page__table">
           {MONSTER_CATEGORIES.map((category) => (
-            <a
+            <Link
               key={category}
               href={`/monsters/${category}/`}
               className="row"
@@ -40,7 +41,7 @@ export default function BestiaryPage() {
                 <img src={`/images/monsters/${category}.png`} alt={category} />
               </div>
               <p>{formatLabel(category)}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
