@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ARMOR_SLOTS, ARMOR_RANKS } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -14,11 +15,11 @@ export default function ArmorsmithPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/">
+          <Link href="/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">
@@ -35,12 +36,12 @@ export default function ArmorsmithPage() {
             <div className="card blacksmith-page__table">
               <p>{formatLabel(slot)}</p>
               {ARMOR_RANKS.map((rank) => (
-                <a key={rank} href={`/armorsmith/${slot}/${rank}/`} className="row">
+                <Link key={rank} href={`/armorsmith/${slot}/${rank}/`} className="row">
                   <div className={`icon icon--large icon--${slot}`}>
                     <img src={`/images/${slot}.png`} alt={slot} />
                   </div>
                   <p>{formatLabel(rank)}</p>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

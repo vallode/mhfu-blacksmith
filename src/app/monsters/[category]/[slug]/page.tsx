@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
@@ -58,11 +59,11 @@ export default async function MonsterDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href={`/monsters/${category}/`}>
+          <Link href={`/monsters/${category}/`}>
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
       </nav>
       <hr className="border" />

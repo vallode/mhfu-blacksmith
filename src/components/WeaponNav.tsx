@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import styles from "@/styles/weapon-tree.module.scss";
 
@@ -13,18 +14,18 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
   return (
     <nav className={styles["weapon-navigation"]}>
       <div>
-        <a href="/blacksmith/">
+        <Link href="/blacksmith/">
           <div className="icon icon--nav">
             <img src="/images/arrow.png" alt="Back" />
           </div>
-        </a>
+        </Link>
       </div>
 
       {WEAPON_TYPES.map((type) => {
         const name = formatWeaponName(type);
         return (
           <div key={type}>
-            <a href={`/blacksmith/${type}/`} title={name}>
+            <Link href={`/blacksmith/${type}/`} title={name}>
               <div
                 className={[
                   "icon icon--nav icon--large",
@@ -36,7 +37,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
               >
                 <img src={`/images/${type}.png`} alt={name} />
               </div>
-            </a>
+            </Link>
           </div>
         );
       })}

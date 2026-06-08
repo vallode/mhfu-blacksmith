@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDecorations, getDecoration, getDecorationTree } from "@/lib/decorations";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
@@ -32,11 +33,11 @@ export default async function DecorationDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/decorations/">
+          <Link href="/decorations/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
       </nav>
       <hr className="border" />

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArmorParams, getArmorPiece, getArmorTree } from "@/lib/armor";
 import { getArmorPieces } from "@/lib/armor";
@@ -46,11 +47,11 @@ export default async function ArmorDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/armorsmith/">
+          <Link href="/armorsmith/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
       </nav>
       <hr className="border" />

@@ -15,8 +15,6 @@ const eslintConfig = [
     rules: {
       // Game sprites require image-rendering: pixelated — next/image interferes with that
       "@next/next/no-img-element": "off",
-      // Static export: prefetching difference is negligible; <a> is fine for pixel-art nav
-      "@next/next/no-html-link-for-pages": "off",
     },
   },
 ];

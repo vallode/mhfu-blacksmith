@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { WEAPON_TYPES } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -16,11 +17,11 @@ export default function BlacksmithPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/">
+          <Link href="/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">
@@ -36,14 +37,14 @@ export default function BlacksmithPage() {
           {WEAPON_TYPES.map((type) => {
             const name = formatWeaponName(type);
             return (
-              <a key={type} href={`/blacksmith/${type}/`} className="row">
+              <Link key={type} href={`/blacksmith/${type}/`} className="row">
                 <div
                   className={`icon icon--large icon--${type} icon--rarity-4`}
                 >
                   <img src={`/images/${type}.png`} alt={name} />
                 </div>
                 <p>{name}</p>
-              </a>
+              </Link>
             );
           })}
         </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMonsterCategories, getMonsters } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
@@ -29,11 +30,11 @@ export default async function MonsterListPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <a href="/monsters/">
+          <Link href="/monsters/">
             <div className="icon icon--nav">
               <img src="/images/arrow.png" alt="Back" />
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-trigger-wrap">
           <button className="search-trigger" aria-label="Search">
@@ -47,7 +48,7 @@ export default async function MonsterListPage({ params }: Props) {
         <div className="card blacksmith-page__table">
           <p>{name}</p>
           {monsters.map((monster) => (
-            <a
+            <Link
               key={monster.slug}
               href={`/monsters/${category}/${monster.slug}/`}
               className="row"
@@ -56,7 +57,7 @@ export default async function MonsterListPage({ params }: Props) {
                 <img src={`/images/monsters/${category}.png`} alt={monster.name} />
               </div>
               <p>{monster.name}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
