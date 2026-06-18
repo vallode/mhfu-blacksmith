@@ -25,6 +25,15 @@ export interface ShotEntry {
   level: number;
 }
 
+export interface Melody {
+  combo: string[];
+  effect: string;
+  description: string | null;
+  duration: string | null;
+  extended_effect: string | null;
+  extended_duration: string | null;
+}
+
 export interface Weapon {
   name: string;
   slug: string;

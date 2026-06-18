@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getWeapons, getWeapon, getWeaponTree } from "@/lib/weapons";
+import { getWeapons, getWeapon, getWeaponTree, getHornMelodies } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
@@ -62,6 +62,7 @@ export default async function WeaponDetailPage({ params }: Props) {
 
   const tree = getWeaponTree(weaponType);
   const basePath = `/blacksmith/${type}/`;
+  const melodies = weapon.notes ? getHornMelodies(weapon.notes) : null;
 
   const COATINGS = [
     "Power Coating",
@@ -394,6 +395,35 @@ export default async function WeaponDetailPage({ params }: Props) {
                       );
                     })}
                   </div>
+                </div>
+              )}
+
+              {melodies && (
+                <div className="page">
+                  <table className="min">
+                    <thead>
+                      <tr>
+                        <th>Combo</th>
+                        <th>Effect</th>
+                        <th>Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {melodies.map((melody, i) => (
+                        <tr key={i}>
+                          <td className="notes">
+                            {melody.combo.map((note, j) => (
+                              <div key={j} className={`icon icon--note icon--note-${note}`}>
+                                <img src="/images/note.png" alt={note} />
+                              </div>
+                            ))}
+                          </td>
+                          <td>{melody.effect}</td>
+                          <td>{melody.duration}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </div>

@@ -1,0 +1,153 @@
+{
+  "w-b-r": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "b"], "effect": "No Stamina Loss [Lo]", "description": null, "duration": "1 min 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "1 min 30 s" },
+    { "combo": ["b", "b", "r"], "effect": "Wind Reduce", "description": null, "duration": "3 mins", "extended_effect": "Wind Cancel", "extended_duration": "2 mins" },
+    { "combo": ["w", "r"], "effect": "Attack Up [Lo]", "description": "Attack +10%", "duration": "2 mins", "extended_effect": "Attack +15%", "extended_duration": "1 min" },
+    { "combo": ["r", "b", "w"], "effect": "Health Inc [Lo]", "description": "Health +20", "duration": "3 mins", "extended_effect": null, "extended_duration": null }
+  ],
+  "w-b-y": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "b"], "effect": "No Stamina Loss [Lo]", "description": null, "duration": "1 min 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "y"], "effect": "Dragon Res Up [Lo]", "description": "Dragon Resistance +10", "duration": "1 min", "extended_effect": "Dragon Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "b"], "effect": "Thunder Res Up [Hi]", "description": "Thunder Resistance +15", "duration": "1 min", "extended_effect": "Thunder Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "b", "w"], "effect": "Fire Res Up [Hi]", "description": "Fire Resistance +15", "duration": "1 min", "extended_effect": "Fire Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "b", "b", "w"], "effect": "Water Res Up [Hi]", "description": "Water Resistance +15", "duration": "1 min", "extended_effect": "Water Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "b", "y", "w"], "effect": "Element Attack Up", "description": "Adds 15% to element", "duration": "1 min 30 s", "extended_effect": "Adds 20% to element", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "w-g-a": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["a", "g", "a"], "effect": "No Heat", "description": null, "duration": "4 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["w", "g"], "effect": "HealthRec[Lo]&Antidote", "description": "20 hp + Antidote effect", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "w", "a"], "effect": "HealthRec[Mid]&Deodorant", "description": "30 hp + Deodorant effect", "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "w-y-r": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "y"], "effect": "Dragon Res Up [Lo]", "description": "Dragon Resistance +10", "duration": "1 min", "extended_effect": "Dragon Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "r"], "effect": "Fire Res Up [Lo]", "description": "Fire Resistance +10", "duration": "1 min", "extended_effect": "Fire Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["w", "r"], "effect": "Attack Up [Lo]", "description": "Attack +10%", "duration": "2 mins", "extended_effect": "Attack +15%", "extended_duration": "1 min" },
+    { "combo": ["r", "y"], "effect": "Defense Up [Lo]", "description": "Defense +15%", "duration": "2 mins", "extended_effect": "Defense +20%", "extended_duration": "1 min 30 s" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "w-g-y": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "g"], "effect": "HealthRec[Lo]&Antidote", "description": "20 hp + Antidote effect", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "g", "y"], "effect": "Recover Spd Up [Lo]", "description": null, "duration": "2 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["w", "y"], "effect": "Dragon Res Up [Lo]", "description": "Dragon Resistance +10", "duration": "1 min", "extended_effect": "Dragon Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "g", "w"], "effect": "Ice Res Up [Lo]", "description": "Ice Resistance +10", "duration": "1 min", "extended_effect": "Ice Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "w-y-a": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "y"], "effect": "Dragon Res Up [Lo]", "description": "Dragon Resistance +10", "duration": "1 min", "extended_effect": "Dragon Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "w", "a"], "effect": "Ice Res Up [Lo]", "description": "Ice Resistance +10", "duration": "1 min", "extended_effect": "Ice Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["a", "a", "y"], "effect": "No Cold & Snow Res", "description": null, "duration": "4 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["a", "y", "a"], "effect": "No Quakes", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["a", "y", "y"], "effect": "No Paralysis", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "w-g-r": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "g"], "effect": "HealthRec[Lo]&Antidote", "description": "20 hp + Antidote effect", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["w", "r"], "effect": "Attack Up [Lo]", "description": "Attack +10%", "duration": "2 mins", "extended_effect": "Attack +15%", "extended_duration": "1 min" },
+    { "combo": ["r", "g", "r"], "effect": "Defense Up [Hi]", "description": "Defense +20%", "duration": "1 min 30 s", "extended_effect": "Defense +30%", "extended_duration": "1 min" }
+  ],
+  "w-g-b": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "g"], "effect": "HealthRec[Lo]&Antidote", "description": "20 hp + Antidote effect", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["w", "b"], "effect": "No Stamina Loss [Lo]", "description": null, "duration": "1 min 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "1 min 30 s" },
+    { "combo": ["b", "b", "g"], "effect": "Wind Cancel", "description": null, "duration": "3 mins", "extended_effect": "Wind All Cancel", "extended_duration": "2 mins" }
+  ],
+  "w-a-b": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["w", "b"], "effect": "No Stamina Loss [Lo]", "description": null, "duration": "1 min 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "1 min 30 s" },
+    { "combo": ["b", "b", "a"], "effect": "Clairvoyance", "description": null, "duration": "30 s", "extended_effect": null, "extended_duration": null },
+    { "combo": ["b", "a", "b"], "effect": "Wind Cancel", "description": null, "duration": "3 mins", "extended_effect": "Wind All Cancel", "extended_duration": "2 mins" }
+  ],
+  "w-a-r": [
+    { "combo": ["w", "w"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["a", "a", "r"], "effect": "Hear Protect [Lo]", "description": null, "duration": "3 mins", "extended_effect": "Hear Protect [Hi]", "extended_duration": "2 mins" },
+    { "combo": ["w", "r"], "effect": "Attack Up [Lo]", "description": "Attack +10%", "duration": "2 mins", "extended_effect": "Attack +15%", "extended_duration": "1 min" },
+    { "combo": ["r", "r", "a"], "effect": "Health Inc [Mid]", "description": "Health +30", "duration": "3 mins", "extended_effect": null, "extended_duration": null }
+  ],
+  "p-b-y": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "b", "b"], "effect": "No Stamina Loss [Hi]", "description": null, "duration": "2 mins 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "2 mins 30 s" },
+    { "combo": ["b", "b", "y", "p"], "effect": "Wind All Cancel", "description": null, "duration": "3 mins", "extended_effect": "Wind All Cancel", "extended_duration": "3 mins" },
+    { "combo": ["p", "y", "y"], "effect": "Dragon Res Up [Hi]", "description": "Dragon Resistance +15", "duration": "1 min", "extended_effect": "Dragon Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "b"], "effect": "Thunder Res Up [Hi]", "description": "Thunder Resistance +15", "duration": "1 min", "extended_effect": "Thunder Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "b", "p"], "effect": "Water Res Up [Lo]", "description": "Water Resistance +10", "duration": "1 min", "extended_effect": "Water Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "p-y-a": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "y", "y"], "effect": "Dragon Res Up [Hi]", "description": "Dragon Resistance +15", "duration": "1 min", "extended_effect": "Dragon Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "p", "a"], "effect": "Ice Res Up [Hi]", "description": "Ice Resistance +15", "duration": "1 min", "extended_effect": "Ice Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "a", "p"], "effect": "Thunder Res Up [Lo]", "description": "Thunder Resistance +10", "duration": "1 min", "extended_effect": "Thunder Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["a", "a", "y"], "effect": "No Cold & Snow Res", "description": null, "duration": "4 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["a", "y", "a"], "effect": "No Quakes", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["a", "y", "y"], "effect": "No Paralysis", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "p-b-r": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "b", "b"], "effect": "No Stamina Loss [Hi]", "description": null, "duration": "2 mins 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "2 mins 30 s" },
+    { "combo": ["b", "b", "r"], "effect": "Wind Reduce", "description": null, "duration": "3 mins", "extended_effect": "Wind Cancel", "extended_duration": "2 mins" },
+    { "combo": ["p", "p", "r"], "effect": "Attack Up [Hi]", "description": "Attack +15%", "duration": "1 min 30 s", "extended_effect": "Attack +20%", "extended_duration": "1 min" },
+    { "combo": ["r", "b", "r", "p"], "effect": "Health Inc [Hi]", "description": "Health +50", "duration": "3 mins", "extended_effect": null, "extended_duration": null }
+  ],
+  "p-g-y": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "g"], "effect": "Health Rec [Lo]", "description": "20 hp", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "p", "y"], "effect": "Health Rec [Mid]", "description": "30 hp", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "g", "y"], "effect": "Recover Spd Up [Lo]", "description": null, "duration": "2 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "y", "p", "y"], "effect": "Heavenly Protection", "description": "50% chance of negating 30% damage", "duration": "2 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["p", "y", "y"], "effect": "Dragon Res Up [Hi]", "description": "Dragon Resistance +15", "duration": "1 min", "extended_effect": "Dragon Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "g", "p"], "effect": "Ice Res Up [Hi]", "description": "Ice Resistance +15", "duration": "1 min", "extended_effect": "Ice Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "p-a-b": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["a", "b", "p"], "effect": "No Faint", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["p", "b", "b"], "effect": "No Stamina Loss [Hi]", "description": null, "duration": "2 mins 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "2 mins 30 s" },
+    { "combo": ["b", "b", "a"], "effect": "Clairvoyance", "description": null, "duration": "30 s", "extended_effect": null, "extended_duration": null },
+    { "combo": ["b", "a", "b"], "effect": "Wind Cancel", "description": null, "duration": "3 mins", "extended_effect": "Wind All Cancel", "extended_duration": "2 mins" }
+  ],
+  "p-y-r": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "y", "y"], "effect": "Dragon Res Up [Hi]", "description": "Dragon Resistance +15", "duration": "1 min", "extended_effect": "Dragon Resistance +20", "extended_duration": "1 min" },
+    { "combo": ["y", "r"], "effect": "Fire Res Up [Lo]", "description": "Fire Resistance +10", "duration": "1 min", "extended_effect": "Fire Resistance +15", "extended_duration": "1 min" },
+    { "combo": ["p", "r", "r"], "effect": "Attack Up [Hi]", "description": "Attack +15%", "duration": "1 min 30 s", "extended_effect": "Attack +20%", "extended_duration": "1 min" },
+    { "combo": ["r", "y"], "effect": "Defense Up [Lo]", "description": "Defense +15%", "duration": "2 mins", "extended_effect": "Defense +20%", "extended_duration": "1 min 30 s" },
+    { "combo": ["y", "y", "y"], "effect": "High-Frequency", "description": null, "duration": null, "extended_effect": null, "extended_duration": null }
+  ],
+  "p-g-b": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "g"], "effect": "Health Rec [Lo]", "description": "20 hp", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "b", "p", "b"], "effect": "HealthRec[Mid]&Antidote", "description": "30 hp + Antidote effect", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["p", "b", "b"], "effect": "No Stamina Loss [Hi]", "description": null, "duration": "2 mins 30 s", "extended_effect": "No Stamina Loss Extnd", "extended_duration": "2 mins 30 s" },
+    { "combo": ["b", "b", "g"], "effect": "Wind Cancel", "description": null, "duration": "3 mins", "extended_effect": "Wind All Cancel", "extended_duration": "2 mins" }
+  ],
+  "p-a-r": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["a", "a", "r"], "effect": "Hear Protect [Lo]", "description": null, "duration": "3 mins", "extended_effect": "Hear Protect [Hi]", "extended_duration": "2 mins" },
+    { "combo": ["p", "r", "r"], "effect": "Attack Up [Hi]", "description": "Attack +15%", "duration": "1 min 30 s", "extended_effect": "Attack +20%", "extended_duration": "1 min" },
+    { "combo": ["r", "r", "a"], "effect": "Health Inc [Mid]", "description": "Health +30", "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["r", "a", "a", "p"], "effect": "Defense Up [Hi]", "description": "Defense +20%", "duration": "1 min 30 s", "extended_effect": "Defense +30%", "extended_duration": "1 min" }
+  ],
+  "p-g-r": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["p", "g"], "effect": "Health Rec [Lo]", "description": "20 hp", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "r", "g", "p"], "effect": "Recover Spd Up [Hi]", "description": null, "duration": "2 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["p", "r", "r"], "effect": "Attack Up [Hi]", "description": "Attack +15%", "duration": "1 min 30 s", "extended_effect": "Attack +20%", "extended_duration": "1 min" },
+    { "combo": ["r", "g", "r"], "effect": "Defense Up [Hi]", "description": "Defense +20%", "duration": "1 min 30 s", "extended_effect": "Defense +30%", "extended_duration": "1 min" }
+  ],
+  "p-g-a": [
+    { "combo": ["p", "p"], "effect": "Movement Speed Up", "description": null, "duration": "3 mins", "extended_effect": "Attacks Harder To Break", "extended_duration": "1 min 30 s" },
+    { "combo": ["a", "a", "g", "a"], "effect": "Hear Protect [Hi]", "description": null, "duration": "3 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["a", "g", "a"], "effect": "No Heat", "description": null, "duration": "4 mins", "extended_effect": null, "extended_duration": null },
+    { "combo": ["p", "g"], "effect": "Health Rec [Lo]", "description": "20 hp", "duration": null, "extended_effect": null, "extended_duration": null },
+    { "combo": ["g", "g", "p", "a"], "effect": "Health Rec [High]", "description": "40 hp", "duration": null, "extended_effect": null, "extended_duration": null }
+  ]
+}
