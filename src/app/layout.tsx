@@ -7,9 +7,9 @@ import { PreferencesProvider } from "@/context/PreferencesContext";
 
 export const metadata: Metadata = {
   title: "MHFU Blacksmith",
-  description: "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  description:
+    "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
   manifest: "/manifest.json",
-  themeColor: "#1a1f14",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
