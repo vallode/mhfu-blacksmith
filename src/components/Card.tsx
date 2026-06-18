@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/styles/card.module.scss";
+import styles from "./Card.module.scss";
 
 interface CardProps {
   children: React.ReactNode;
@@ -11,10 +11,18 @@ interface CardProps {
   onDrop?: React.DragEventHandler;
 }
 
-export default function Card({ children, variant, className, href, onDragOver, onDragLeave, onDrop }: CardProps) {
+export default function Card({
+  children,
+  variant,
+  className,
+  href,
+  onDragOver,
+  onDragLeave,
+  onDrop,
+}: CardProps) {
   const classes = [
     styles.card,
-    variant === "weapon-tree" ? styles["card--weapon-tree"] : null,
+    variant === "weapon-tree" ? styles["weaponTree"] : null,
     className ?? null,
   ]
     .filter(Boolean)
@@ -29,7 +37,12 @@ export default function Card({ children, variant, className, href, onDragOver, o
   }
 
   return (
-    <div className={classes} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
+    <div
+      className={classes}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+    >
       {children}
     </div>
   );
