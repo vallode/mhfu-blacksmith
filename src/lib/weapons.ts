@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { WEAPON_TYPES, type WeaponType, WEAPON_CLASS_MULTIPLIER } from "./constants";
 import { slugify } from "./slug";
-import type { Weapon, WeaponTree } from "./types";
+import type { Weapon, WeaponTree, Melody } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
 
@@ -42,4 +42,15 @@ export function getWeapon(type: WeaponType, slug: string): Weapon | undefined {
 export function getWeaponTree(type: WeaponType): WeaponTree {
   const filePath = path.join(contentDir, "blacksmith", type, "map.json");
   return JSON.parse(fs.readFileSync(filePath, "utf-8")) as WeaponTree;
+}
+
+export function getHornMelodies(notes: string[]): Melody[] | null {
+  const filePath = path.join(
+    contentDir,
+    "blacksmith",
+    "hunting-horn",
+    "hunting-horn-melodies.json"
+  );
+  const data = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Record<string, Melody[]>;
+  return data[notes.join("-")] ?? null;
 }
