@@ -1117,6 +1117,10 @@
             {
               "name": "HardTeostraHorn x1",
               "chance": "80%"
+            },
+            {
+              "name": "Teostra Horn+ x1",
+              "chance": "20%"
             }
           ],
           "break wings": [
