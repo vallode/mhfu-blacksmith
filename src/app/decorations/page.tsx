@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getDecorationTree } from "@/lib/decorations";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,10 +16,8 @@ export default function DecorationsPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -32,7 +30,7 @@ export default function DecorationsPage() {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className={styles["weapon-tree"]}>
+          <div className="weapon-tree">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -44,7 +42,7 @@ export default function DecorationsPage() {
             ))}
           </div>
         </Card>
-        <Card className="weapon-card">
+        <Card>
           <p>Select a decoration from the tree.</p>
         </Card>
       </div>

@@ -1,5 +1,7 @@
 @use 'variables' as *;
 
+// Icons are referenced as plain global class strings (e.g. "icon icon--nav
+// icon--great-sword") across many pages, so this is a plain global stylesheet.
 .icon {
   display: flex;
   flex: 0 0 3.2rem;

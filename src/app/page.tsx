@@ -1,11 +1,12 @@
+import Link from "next/link";
 import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <a className={styles.title} href="/">
+      <Link className={styles.title} href="/">
         <img src="/images/blacksmith.png" alt="Blacksmith" />
-      </a>
+      </Link>
 
       <hr className="border" />
 
@@ -13,21 +14,21 @@ export default function Home() {
         <div className={styles.menu}>
           <ul>
             <li>
-              <a href="/blacksmith/">Weapons</a>
+              <Link href="/blacksmith/">Weapons</Link>
             </li>
             <li>
-              <a href="/armorsmith/">Armor</a>
+              <Link href="/armorsmith/">Armor</Link>
             </li>
             <li>
-              <a href="/decorations/">Decorations</a>
+              <Link href="/decorations/">Decorations</Link>
             </li>
             <li>
-              <a href="/monsters/">Monsters</a>
+              <Link href="/monsters/">Monsters</Link>
+            </li>
+            <li>
+              <Link href="/hunter/">Hunter Profile</Link>
             </li>
             <li aria-disabled="true">Options</li>
-            {/* <li>
-              <a href="//github.com/vallode/mhfu-blacksmith">Source Code</a>
-            </li> */}
           </ul>
         </div>
       </div>

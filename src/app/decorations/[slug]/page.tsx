@@ -4,7 +4,7 @@ import { getDecorations, getDecoration, getDecorationTree } from "@/lib/decorati
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import type { Metadata } from "next";
 
@@ -33,10 +33,8 @@ export default async function DecorationDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/decorations/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/decorations/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
       </nav>
@@ -44,7 +42,7 @@ export default async function DecorationDetailPage({ params }: Props) {
 
       <div className="weapon-details-page">
         <Card variant="weapon-tree">
-          <div className={styles["weapon-tree"]}>
+          <div className="weapon-tree">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -57,18 +55,14 @@ export default async function DecorationDetailPage({ params }: Props) {
           </div>
         </Card>
 
-        <Card className="weapon-card">
+        <Card className={cardStyles["weapon-card"]}>
           <div className={cardStyles["weapon-card__header"]}>
-            <div
-              className={[
-                "icon icon--large icon--decoration",
-                deco.color ? `icon--${deco.color}` : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <img src="/images/decoration.png" alt={deco.name} />
-            </div>
+            <Icon
+              type="decoration"
+              size="large"
+              color={deco.color}
+              alt={deco.name}
+            />
             <p>{deco.name}</p>
           </div>
 

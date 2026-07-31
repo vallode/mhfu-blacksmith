@@ -4,7 +4,6 @@ import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
 import type { Metadata } from "next";
 
 interface Props {
@@ -41,7 +40,7 @@ export default async function WeaponTreePage({ params }: Props) {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className={styles["weapon-tree"]}>
+          <div className="weapon-tree">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -54,7 +53,7 @@ export default async function WeaponTreePage({ params }: Props) {
           </div>
         </Card>
 
-        <Card className="weapon-card">
+        <Card>
           <p>Select a weapon from the tree.</p>
         </Card>
       </div>

@@ -1,5 +1,7 @@
 @use 'mixins' as *;
 
+// Weapon/armor/decoration tree markup is shared across many pages and uses
+// plain global class strings, so this is a plain global stylesheet.
 .weapon-tree {
   height: 100%;
   overflow: auto;
@@ -53,6 +55,12 @@
       padding: 0 3px;
       z-index: 10000;
     }
+  }
+
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   ul {

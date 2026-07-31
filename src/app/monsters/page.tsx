@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { MONSTER_CATEGORIES } from "@/lib/constants";
 import type { Metadata } from "next";
+import Card from "@/components/Card";
+import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Bestiary — MHFU Blacksmith",
@@ -15,10 +17,8 @@ export default function BestiaryPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -30,20 +30,18 @@ export default function BestiaryPage() {
       <hr className="border" />
 
       <div className="blacksmith-page">
-        <div className="card blacksmith-page__table">
+        <Card className="blacksmith-page__table">
           {MONSTER_CATEGORIES.map((category) => (
             <Link
               key={category}
               href={`/monsters/${category}/`}
               className="row"
             >
-              <div className={`icon icon--large icon--${category}`}>
-                <img src={`/images/monsters/${category}.png`} alt={category} />
-              </div>
+              <Icon type={category} size="large" monster alt={category} />
               <p>{formatLabel(category)}</p>
             </Link>
           ))}
-        </div>
+        </Card>
       </div>
     </>
   );

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMonsterCategories, getMonsters } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
+import Card from "@/components/Card";
+import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 
 interface Props {
@@ -30,10 +32,8 @@ export default async function MonsterListPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/monsters/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/monsters/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -45,7 +45,7 @@ export default async function MonsterListPage({ params }: Props) {
       <hr className="border" />
 
       <div className="blacksmith-page">
-        <div className="card blacksmith-page__table">
+        <Card className="blacksmith-page__table">
           <p>{name}</p>
           {monsters.map((monster) => (
             <Link
@@ -53,13 +53,11 @@ export default async function MonsterListPage({ params }: Props) {
               href={`/monsters/${category}/${monster.slug}/`}
               className="row"
             >
-              <div className={`icon icon--large icon--monster icon--${category}`}>
-                <img src={`/images/monsters/${category}.png`} alt={monster.name} />
-              </div>
+              <Icon type={category} size="large" monster alt={monster.name} />
               <p>{monster.name}</p>
             </Link>
           ))}
-        </div>
+        </Card>
       </div>
     </>
   );

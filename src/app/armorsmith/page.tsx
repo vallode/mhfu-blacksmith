@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ARMOR_SLOTS, ARMOR_RANKS } from "@/lib/constants";
 import type { Metadata } from "next";
+import Card from "@/components/Card";
+import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Armor — MHFU Blacksmith",
@@ -15,10 +17,8 @@ export default function ArmorsmithPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -33,17 +33,15 @@ export default function ArmorsmithPage() {
       <div className="blacksmith-page">
         {ARMOR_SLOTS.map((slot) => (
           <div key={slot}>
-            <div className="card blacksmith-page__table">
+            <Card className="blacksmith-page__table">
               <p>{formatLabel(slot)}</p>
               {ARMOR_RANKS.map((rank) => (
                 <Link key={rank} href={`/armorsmith/${slot}/${rank}/`} className="row">
-                  <div className={`icon icon--large icon--${slot}`}>
-                    <img src={`/images/${slot}.png`} alt={slot} />
-                  </div>
+                  <Icon type={slot} size="large" alt={slot} />
                   <p>{formatLabel(rank)}</p>
                 </Link>
               ))}
-            </div>
+            </Card>
           </div>
         ))}
       </div>
