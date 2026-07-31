@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WEAPON_TYPES } from "@/lib/constants";
 import type { Metadata } from "next";
 import Card from "@/components/Card";
+import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Weapon Trees — MHFU Blacksmith",
@@ -18,10 +19,8 @@ export default function BlacksmithPage() {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -34,20 +33,16 @@ export default function BlacksmithPage() {
       <hr className="border" />
 
       <div className="blacksmith-page">
-        <Card variant="weapon-tree">
+        <Card className="blacksmith-page__table">
           {WEAPON_TYPES.map((type) => {
             const name = formatWeaponName(type);
             return (
               <Link
                 key={type}
                 href={`/blacksmith/${type}/`}
-                className="weaponTreeRow"
+                className="row"
               >
-                <div
-                  className={`icon icon--large icon--${type} icon--rarity-4`}
-                >
-                  <img src={`/images/${type}.png`} alt={name} />
-                </div>
+                <Icon type={type} size="large" rarity={4} alt={name} />
                 <p>{name}</p>
               </Link>
             );

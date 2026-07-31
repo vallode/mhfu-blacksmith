@@ -6,7 +6,7 @@ import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "@/lib/
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import type { Metadata } from "next";
 
@@ -47,10 +47,8 @@ export default async function ArmorDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/armorsmith/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/armorsmith/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
       </nav>
@@ -59,7 +57,7 @@ export default async function ArmorDetailPage({ params }: Props) {
       <div className="weapon-details-page">
         {tree && (
           <Card variant="weapon-tree">
-            <div className={styles["weapon-tree"]}>
+            <div className="weapon-tree">
               {tree.map.map((node) => (
                 <ul key={node.slug}>
                   <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} />
@@ -69,11 +67,9 @@ export default async function ArmorDetailPage({ params }: Props) {
           </Card>
         )}
 
-        <Card className="weapon-card">
+        <Card className={cardStyles["weapon-card"]}>
           <div className={cardStyles["weapon-card__header"]}>
-            <div className={`icon icon--large icon--${slot}`}>
-              <img src={`/images/${slot}.png`} alt={piece.name} />
-            </div>
+            <Icon type={slot} size="large" alt={piece.name} />
             <p>{piece.name}</p>
             {piece.sex && <span className="sex">{piece.sex}</span>}
             {piece.hunter_type && <span className="hunter_type">{piece.hunter_type}</span>}

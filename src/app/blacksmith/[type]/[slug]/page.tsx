@@ -6,7 +6,7 @@ import WeaponTreeRow from "@/components/WeaponTreeRow";
 import SharpnessBar from "@/components/SharpnessBar";
 import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import sharpStyles from "@/styles/sharpness.module.scss";
 import type { Metadata } from "next";
@@ -81,7 +81,7 @@ export default async function WeaponDetailPage({ params }: Props) {
       <div className="weapon-details-page">
         {/* Weapon tree sidebar */}
         <Card variant="weapon-tree">
-          <div className={styles["weapon-tree"]}>
+          <div className="weapon-tree">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -95,21 +95,16 @@ export default async function WeaponDetailPage({ params }: Props) {
         </Card>
 
         {/* Detail panel */}
-        <Card className="weapon-card">
+        <Card className={cardStyles["weapon-card"]}>
           {/* Header: icon + name + sharpness */}
           <div className={cardStyles["weapon-card__header"]}>
-            <div
-              className={[
-                "icon icon--large",
-                `icon--${weapon.type}`,
-                `icon--rarity-${weapon.rarity}`,
-                weapon.color ? `icon--${weapon.color}` : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <img src={`/images/${type}.png`} alt={weapon.name} />
-            </div>
+            <Icon
+              type={weapon.type}
+              size="large"
+              rarity={weapon.rarity}
+              color={weapon.color}
+              alt={weapon.name}
+            />
 
             <p id="weapon_name">{weapon.name}</p>
 
@@ -198,9 +193,7 @@ export default async function WeaponDetailPage({ params }: Props) {
                 <div className="notes">
                   [Note:
                   {weapon.notes.map((note, i) => (
-                    <div key={i} className={`icon icon--note icon--note-${note}`}>
-                      <img src="/images/note.png" alt={note} />
-                    </div>
+                    <Icon key={i} type="note" color={`note-${note}`} alt={note} />
                   ))}
                   ]
                 </div>
@@ -413,9 +406,7 @@ export default async function WeaponDetailPage({ params }: Props) {
                         <tr key={i}>
                           <td className="notes">
                             {melody.combo.map((note, j) => (
-                              <div key={j} className={`icon icon--note icon--note-${note}`}>
-                                <img src="/images/note.png" alt={note} />
-                              </div>
+                              <Icon key={j} type="note" color={`note-${note}`} alt={note} />
                             ))}
                           </td>
                           <td>{melody.effect}</td>

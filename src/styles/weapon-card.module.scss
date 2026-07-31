@@ -36,12 +36,6 @@
     position: relative;
     text-decoration: none;
 
-    .hunter_type,
-    .sex {
-      color: #c0c0c0;
-      margin-left: 1.3rem;
-    }
-
     &--monster {
       align-items: flex-start;
       color: #f2d250;
@@ -49,11 +43,7 @@
       font-size: 2.2rem;
       height: auto;
 
-      span {
-        color: white;
-      }
-
-      .details {
+      :global(.details) {
         display: flex;
         flex-direction: column;
 
@@ -126,6 +116,41 @@
     gap: 1.3rem;
     height: 100%;
     margin: 2rem 0 0;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+  }
+
+  &__navigation {
+    align-items: center;
+    align-self: flex-end;
+    bottom: 4px;
+    display: flex;
+    gap: 9px;
+    margin-top: auto;
+    padding: 18px;
+    position: absolute;
+    right: 4px;
+    z-index: 20;
+
+    .next {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+// ─── Shared detail-card content ──────────────────────────────────────────────
+// These classes are used as plain global strings inside the weapon / armor /
+// decoration / monster detail pages, so they must stay global. They are
+// nested under the (scoped) details container to preserve specificity.
+.weapon-card__details {
+  :global {
+    .hunter_type,
+    .sex {
+      color: #c0c0c0;
+      margin-left: 1.3rem;
+    }
 
     .stats,
     .improve_mats,
@@ -322,32 +347,19 @@
         display: none;
       }
 
-      &.improve_mats .weapon-card__navigation::before {
-        content: 'Improve';
-        display: block;
-      }
-
-      &.create_mats .weapon-card__navigation::before {
-        content: 'Create';
-        display: block;
-      }
-
       .page {
         display: none;
         flex: 1 1 0%;
         flex-flow: row wrap;
 
+        &.active {
+          display: flex;
+        }
+
         @media screen and (max-width: 600px) {
           gap: 16px;
         }
       }
-
-      // Stimulus data-attribute page selectors — replaced by React state in migration
-      &[data-weapon-page-page-value="1"] #page-1 { display: flex; }
-      &[data-weapon-page-page-value="2"] #page-2 { display: flex; }
-      &[data-weapon-page-page-value="3"] #page-3 { display: flex; }
-      &[data-weapon-page-page-value="4"] #page-4 { display: flex; }
-      &[data-weapon-page-page-value="5"] #page-5 { display: flex; }
 
       &--monster {
         .card {
@@ -390,33 +402,14 @@
       opacity: 0.5;
     }
 
-    span.negative {
+    span.negative,
+    .negative {
       color: #F9455C;
     }
 
-    span.positive {
+    span.positive,
+    .positive {
       color: #52F152;
-    }
-
-    @media screen and (max-width: 600px) {
-      flex-direction: column;
-    }
-  }
-
-  &__navigation {
-    align-items: center;
-    align-self: flex-end;
-    bottom: 4px;
-    display: flex;
-    gap: 9px;
-    margin-top: auto;
-    padding: 18px;
-    position: absolute;
-    right: 4px;
-    z-index: 20;
-
-    .next {
-      transform: scaleX(-1);
     }
   }
 }

@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import Card from "@/components/Card";
+import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
 import type { Metadata } from "next";
 
 interface Props {
@@ -59,10 +59,8 @@ export default async function MonsterDetailPage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href={`/monsters/${category}/`}>
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href={`/monsters/${category}/`} aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
       </nav>
@@ -71,18 +69,17 @@ export default async function MonsterDetailPage({ params }: Props) {
       <div className="weapon-details-page">
         {/* Monster list sidebar */}
         <Card variant="weapon-tree">
-          <div className={`icon icon--large icon--monster icon--${category}`}>
-            <img
-              src={`/images/monsters/${slug}.png`}
-              alt={monster.name}
-              width={90}
-              height={90}
-            />
-          </div>
+          <Icon
+            type={category}
+            size="large"
+            monster
+            imgSrc={`/images/monsters/${slug}.png`}
+            alt={monster.name}
+          />
         </Card>
 
         {/* Detail panel */}
-        <Card className="weapon-card">
+        <Card className={cardStyles["weapon-card"]}>
           <div className={`${cardStyles["weapon-card__header"]} ${cardStyles["weapon-card__header--monster"]}`}>
             <div className="details">
               <p>{monster.name}</p>
@@ -92,14 +89,12 @@ export default async function MonsterDetailPage({ params }: Props) {
                 </p>
               )}
             </div>
-            <div className={`icon icon--monster icon--${category}`}>
-              <img
-                src={`/images/monsters/${slug}.png`}
-                alt={monster.name}
-                width={90}
-                height={90}
-              />
-            </div>
+            <Icon
+              type={category}
+              monster
+              imgSrc={`/images/monsters/${slug}.png`}
+              alt={monster.name}
+            />
           </div>
 
           <div className={cardStyles["weapon-card__details"]}>
@@ -110,7 +105,7 @@ export default async function MonsterDetailPage({ params }: Props) {
             <hr />
 
             {hitzoneEntries.length > 0 && (
-              <table className={tableStyles["monster-hz"]}>
+              <table className="monster-hz">
                 <thead>
                   <tr>
                     <th>Part</th>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "./Icon";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -21,8 +21,8 @@ export default function WeaponTreeRow({
     : undefined;
 
   const rowClass = [
-    styles["weapon-tree__row"],
-    isExternal ? styles["weapon-tree__row--external"] : null,
+    "weapon-tree__row",
+    isExternal ? "weapon-tree__row--external" : null,
   ]
     .filter(Boolean)
     .join(" ");
@@ -30,35 +30,23 @@ export default function WeaponTreeRow({
   const inner = (
     <>
       {node.rarity && (
-        <div
-          className={[
-            "icon icon--mini",
-            `icon--${node.type}`,
-            `icon--rarity-${node.rarity}`,
-            node.color ? `icon--${node.color}` : "",
-            node.element ? `icon--${node.element}` : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-        >
-          <img src={`/images/${node.type}-mini.png`} alt="" />
-        </div>
+        <Icon
+          type={node.type}
+          size="mini"
+          rarity={node.rarity}
+          color={node.color}
+          element={node.element}
+        />
       )}
       <p className="name">{node.name}</p>
-      {node.children && (
-        <p className={styles["weapon-tree__row__toggle"]}>[-]</p>
-      )}
+      {node.children && <p className="weapon-tree__row__toggle">[-]</p>}
     </>
   );
 
   return (
     <li>
       {href ? (
-        <Link
-          id={node.slug}
-          className={rowClass}
-          href={href}
-        >
+        <Link id={node.slug} className={rowClass} href={href}>
           {inner}
         </Link>
       ) : (

@@ -4,7 +4,7 @@ import { getArmorParams, getArmorTree } from "@/lib/armor";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "@/lib/constants";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import Card from "@/components/Card";
-import styles from "@/styles/weapon-tree.module.scss";
+import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 
 interface Props {
@@ -37,10 +37,8 @@ export default async function ArmorTreePage({ params }: Props) {
     <>
       <nav className="weapon-navigation">
         <div>
-          <Link href="/armorsmith/">
-            <div className="icon icon--nav">
-              <img src="/images/arrow.png" alt="Back" />
-            </div>
+          <Link href="/armorsmith/" aria-label="Back">
+            <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
         <div className="search-trigger-wrap">
@@ -53,7 +51,7 @@ export default async function ArmorTreePage({ params }: Props) {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className={styles["weapon-tree"]}>
+          <div className="weapon-tree">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} />
@@ -61,7 +59,7 @@ export default async function ArmorTreePage({ params }: Props) {
             ))}
           </div>
         </Card>
-        <Card className="weapon-card">
+        <Card>
           <p>Select a piece of armor from the tree.</p>
         </Card>
       </div>

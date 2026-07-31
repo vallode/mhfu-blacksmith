@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePreferences } from "@/context/PreferencesContext";
 import SharpnessBar from "@/components/SharpnessBar";
+import Icon from "@/components/Icon";
 import styles from "@/styles/calculator.module.scss";
 
 interface WeaponElement {
@@ -140,9 +141,7 @@ export default function Calculator() {
                 onClick={() => handleTypeChange(type)}
                 title={formatType(type)}
               >
-                <div className={`icon icon--nav icon--large icon--${type}`}>
-                  <img src={`/images/${type}.png`} alt={formatType(type)} />
-                </div>
+                <Icon type={type} size="large" nav alt={formatType(type)} />
               </button>
             ))}
           </div>
