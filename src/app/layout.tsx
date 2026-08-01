@@ -9,6 +9,9 @@ import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mhfu-blacksmith.netlify.app",
+  ),
   title: "MHFU Blacksmith",
   description:
     "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",

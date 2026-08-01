@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/generate-search-index.ts && tsx scripts/generate-weapon-data.ts && next build",
+    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-weapon-data.ts && next build",
     "start": "next start",
     "lint": "eslint src",
+    "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
     "generate-weapons": "tsx scripts/generate-weapon-data.ts",
     "validate": "tsx scripts/validate.ts"

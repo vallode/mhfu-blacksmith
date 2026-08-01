@@ -38,6 +38,11 @@
       @include green-hover-gradient;
     }
 
+    &--active::before {
+      background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(3, 119, 3, 0.84), rgba(0, 0, 0, 0));
+      animation: none;
+    }
+
     &--external {
       color: #c0c0c0;
     }

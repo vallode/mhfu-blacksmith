@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getDecorationTree } from "@/lib/decorations";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
+import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import type { Metadata } from "next";
@@ -30,7 +31,7 @@ export default function DecorationsPage() {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className="weapon-tree">
+          <TreeScroll treeKey="decorations">
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -40,7 +41,7 @@ export default function DecorationsPage() {
                 />
               </ul>
             ))}
-          </div>
+          </TreeScroll>
         </Card>
         <Card>
           <p>Select a decoration from the tree.</p>
