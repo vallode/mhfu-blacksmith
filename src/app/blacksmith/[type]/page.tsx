@@ -3,6 +3,7 @@ import { getWeaponTypes, getWeaponTree } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
+import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
 import type { Metadata } from "next";
 
@@ -40,7 +41,7 @@ export default async function WeaponTreePage({ params }: Props) {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className="weapon-tree">
+          <TreeScroll treeKey={`weapon-${type}`}>
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
@@ -50,7 +51,7 @@ export default async function WeaponTreePage({ params }: Props) {
                 />
               </ul>
             ))}
-          </div>
+          </TreeScroll>
         </Card>
 
         <Card>

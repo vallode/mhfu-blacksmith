@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getArmorParams, getArmorTree } from "@/lib/armor";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "@/lib/constants";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
+import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import type { Metadata } from "next";
@@ -51,13 +52,13 @@ export default async function ArmorTreePage({ params }: Props) {
 
       <div className="weapon-tree-page">
         <Card variant="weapon-tree">
-          <div className="weapon-tree">
+          <TreeScroll treeKey={`armor-${slot}-${rank}`}>
             {tree.map.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} />
               </ul>
             ))}
-          </div>
+          </TreeScroll>
         </Card>
         <Card>
           <p>Select a piece of armor from the tree.</p>
