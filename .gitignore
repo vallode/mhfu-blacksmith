@@ -10,8 +10,17 @@ content/monsters/**/*.md
 content/decorations/**/*.md
 !content/decorations/**/_index.md
 
-# zola build directory
-public
+# Next.js build-time generated files under public/ (source assets like
+# public/images, public/fonts, public/manifest.json, public/javascript are
+# tracked and must NOT be ignored — this used to be a blanket "public" rule
+# left over from the old Zola build, which silently dropped those source
+# assets from the repo).
+/public/data
+/public/search-data.json
+/public/weapon-data.json
+/public/sw.js
+/public/workbox-*.js
+/public/swe-worker-*.js
 
 # vim temporary files
 **/.*.sw*
