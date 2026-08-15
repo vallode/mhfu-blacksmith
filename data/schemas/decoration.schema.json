@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Decorations file",
+  "type": "object",
+  "required": ["decorations"],
+  "additionalProperties": false,
+  "properties": {
+    "decorations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/decoration" }
+    }
+  },
+  "definitions": {
+    "material": {
+      "type": "object",
+      "required": ["name", "amount", "type", "color"],
+      "additionalProperties": false,
+      "properties": {
+        "name":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer", "minimum": 1 },
+        "type":   { "type": "string", "minLength": 1 },
+        "color":  { "type": "string", "minLength": 1 }
+      }
+    },
+    "decoration": {
+      "type": "object",
+      "required": ["name", "type", "rarity", "slots", "skills", "category"],
+      "additionalProperties": false,
+      "properties": {
+        "name":     { "type": "string", "minLength": 1 },
+        "type":     { "type": "string" },
+        "rarity":   { "type": "integer", "minimum": 1, "maximum": 10 },
+        "slots":    { "type": "integer", "minimum": 0, "maximum": 3 },
+        "color":    { "type": "string" },
+        "category": { "type": "string", "minLength": 1 },
+        "skills": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "create_cost": { "type": "integer", "minimum": 0 },
+        "create_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        },
+        "alternative_create_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -20,13 +20,10 @@ WEAPON_PAIRS = [
   ["light-bowgun"],
   ["heavy-bowgun"],
   ["bow"],
-  ["decorations"],
-  ["helmet"],
-  ["plate"],
-  ["gauntlets"],
-  ["waist"],
-  ["leggings"],
 ]
+
+ARMOR_SLOTS = %w[helmet plate gauntlets waist leggings]
+ARMOR_RANKS = %w[low-rank high-rank g-rank]
 
 def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapons_data)
   array.push({
@@ -64,56 +61,104 @@ def push_weapon(weapon, parent_weapon = nil, array, weapons_data, sibling_weapon
   end
 end
 
-WEAPON_PAIRS.each do |array|
+# ---------------------------------------------------------------------------
+# Weapon trees
+# ---------------------------------------------------------------------------
+WEAPON_PAIRS.each do |pair|
   output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
-  weapon_file = Dir.glob("content/**/#{array[0]}-crafting.json")
-  sibling_weapon_file = Dir.glob("content/**/#{array[1]}-crafting.json")
-  file = File.open(weapon_file[0])
-  weapons = JSON.load(file)["weapons"]
+  type = pair[0]
+  sibling_type = pair[1]
 
-  if sibling_weapon_file.length > 0
-    sibling_file = File.open(sibling_weapon_file[0])
-    sibling_weapons = JSON.load(sibling_file)["weapons"]
-  end
+  weapons = JSON.parse(File.read("data/weapons/#{type}.json"))["weapons"]
+  sibling_weapons = sibling_type ? JSON.parse(File.read("data/weapons/#{sibling_type}.json"))["weapons"] : nil
 
   weapon_map = []
 
-  if file.path.include?("decoration")
-    root_weapons = weapons.select {|element| element.key?("donotrender")}
-  else
-    root_weapons = weapons.select {|element| not element["improve_from"]}
+  root_weapons = weapons.select {|element| not element["improve_from"]}
 
-    if sibling_weapons
-      root_sibling_weapons = sibling_weapons.select {|element| element["improve_to"]}
+  if sibling_weapons
+    root_sibling_weapons = sibling_weapons.select {|element| element["improve_to"]}
 
-      root_sibling_weapons = root_sibling_weapons.select do |element|
-        has_sibling_child = false
-
-        element["improve_to"].each do |child|
-          child_weapon = weapons.select {|element| element["name"] == child}
-
-          if child_weapon.length > 0
-            has_sibling_child = true
-          end
-        end
-
-        next(has_sibling_child)
-      end
-
-      root_weapons = root_weapons + root_sibling_weapons
+    root_sibling_weapons = root_sibling_weapons.select do |element|
+      element["improve_to"].any? {|child| weapons.any? {|w| w["name"] == child}}
     end
+
+    root_weapons = root_weapons + root_sibling_weapons
   end
 
   dead_end_weapons = root_weapons.select {|element| not element["improve_from"] and not element["improve_to"]}
 
   root_weapons = root_weapons.sort_by {|s| s["rarity"].to_i}
-
   root_weapons = root_weapons - dead_end_weapons + dead_end_weapons
 
-  root_weapons.each_with_index do |weapon, index|
+  root_weapons.each do |weapon|
     push_weapon(weapon, nil, weapon_map, weapons, sibling_weapons)
   end
 
-  File.write("#{File.dirname(file.path)}/map.json", output.result(binding))
+  File.write("content/blacksmith/#{type}/map.json", output.result(binding))
 end
-  
+
+# ---------------------------------------------------------------------------
+# Armor trees — one map.json per slot per rank
+# ---------------------------------------------------------------------------
+ARMOR_SLOTS.each do |slot|
+  all_armor = JSON.parse(File.read("data/armor/#{slot}.json"))["armor"]
+
+  ARMOR_RANKS.each do |rank|
+    output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
+    rank_armor = all_armor.select {|a| a["rank"] == rank}
+
+    weapon_map = rank_armor
+      .sort_by {|a| a["rarity"].to_i}
+      .map do |a|
+        entry = {
+          slug: slugify(a["name"]),
+          type: a["type"],
+          name: a["name"],
+          rarity: a["rarity"]
+        }
+        entry
+      end
+
+    File.write("content/armorsmith/#{slot}/#{rank}/map.json", output.result(binding))
+  end
+end
+
+# ---------------------------------------------------------------------------
+# Decoration tree — grouped by category
+# ---------------------------------------------------------------------------
+output = ERB.new(FILE_TEMPLATE, trim_mode: "<>")
+decorations = JSON.parse(File.read("data/decorations.json"))["decorations"]
+
+categories_seen = []
+categories_map = {}
+
+decorations.each do |d|
+  cat = d["category"]
+  next unless cat
+
+  unless categories_seen.include?(cat)
+    categories_seen << cat
+    categories_map[cat] = []
+  end
+
+  categories_map[cat] << {
+    slug: slugify(d["name"]),
+    type: d["type"],
+    name: d["name"],
+    rarity: d["rarity"],
+    color: d["color"]
+  }.compact
+end
+
+weapon_map = categories_seen.map do |cat|
+  {
+    slug: slugify(cat),
+    type: "",
+    name: cat,
+    rarity: nil,
+    children: categories_map[cat]
+  }
+end
+
+File.write("content/decorations/map.json", output.result(binding))
