@@ -3,5 +3,7 @@
 .table {
   flex-direction: column;
   overflow: auto;
-  padding: 0;
+  // Match the card 9-slice (20px/22px) plus a small inner gap so rows sit
+  // inside the frame instead of under the jagged border.
+  padding: 2.8rem 2rem;
 }

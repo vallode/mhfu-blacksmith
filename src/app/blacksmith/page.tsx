@@ -46,7 +46,7 @@ export default function BlacksmithPage() {
                 href={`/blacksmith/${type}/`}
                 className="list-row"
               >
-                <Icon type={type} size="large" rarity={4} alt={name} />
+                <Icon type={type} alt={name} />
                 <p>{name}</p>
               </Link>
             );

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
-import OfflineDownload from "@/components/OfflineDownload";
 
 export default function Home() {
   return (
@@ -33,8 +32,6 @@ export default function Home() {
           </ul>
         </div>
       </div>
-
-      <OfflineDownload />
     </main>
   );
 }

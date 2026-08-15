@@ -155,8 +155,9 @@ hr.border {
     align-items: center;
     display: flex;
     flex: 0 0 38px;
+    gap: 10px;
     height: 38px;
-    padding-left: 6px;
+    padding: 0 16px;
 
     &:hover {
       @include green-hover-gradient;

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
 import GlobalSearch from "@/components/GlobalSearch";
+import OfflineDownload from "@/components/OfflineDownload";
 import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
+import { ToastProvider } from "@/context/ToastContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -30,8 +32,11 @@ export default function RootLayout({
       <body>
         <PreferencesProvider>
           <SaveProvider>
-            {children}
-            <GlobalSearch />
+            <ToastProvider>
+              {children}
+              <GlobalSearch />
+              <OfflineDownload />
+            </ToastProvider>
           </SaveProvider>
         </PreferencesProvider>
       </body>

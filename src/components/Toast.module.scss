@@ -1,0 +1,123 @@
+@use "../styles/mixins" as *;
+
+.viewport {
+  bottom: 1.4rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.8rem;
+  left: 50%;
+  max-width: min(42rem, calc(100vw - 2.8rem));
+  pointer-events: none;
+  position: fixed;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 900;
+}
+
+.toast {
+  @include card-border;
+  animation: toast-in 180ms ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 2.2rem 2.4rem 1.8rem;
+  pointer-events: auto;
+  position: relative;
+}
+
+.title {
+  color: #c3be9f;
+  font-size: 1.6rem;
+  letter-spacing: 0.15ch;
+  line-height: 1.2;
+  margin: 0;
+  padding-right: 2rem;
+  text-shadow: 0.15rem 0.15rem black;
+  text-transform: uppercase;
+}
+
+.message {
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.progress {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid #6e905f;
+  height: 0.8rem;
+  width: 100%;
+
+  &::-webkit-progress-bar {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  &::-webkit-progress-value {
+    background: #037703;
+  }
+
+  &::-moz-progress-bar {
+    background: #037703;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.action {
+  background: none;
+  border: 1px solid #6e905f;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.4rem;
+  padding: 0.25rem 0.8rem;
+
+  &:hover,
+  &:focus-visible {
+    color: white;
+    @include green-hover-gradient;
+  }
+}
+
+.close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.8rem;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  position: absolute;
+  right: 1.8rem;
+  top: 1.2rem;
+
+  &:hover,
+  &:focus-visible {
+    color: white;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
