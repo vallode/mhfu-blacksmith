@@ -4,12 +4,13 @@ import { slugify } from "./slug";
 import type { Decoration, WeaponTree } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
+const dataDir = path.join(process.cwd(), "data");
 
 export function getDecorations(): Decoration[] {
-  const filePath = path.join(contentDir, "decorations", "decorations-crafting.json");
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { weapons: Decoration[] };
+  const filePath = path.join(dataDir, "decorations.json");
+  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { decorations: Decoration[] };
 
-  return raw.weapons
+  return raw.decorations
     .filter((d) => !("donotrender" in d))
     .map((d) => ({
       ...d,

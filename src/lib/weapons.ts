@@ -5,6 +5,7 @@ import { slugify } from "./slug";
 import type { Weapon, WeaponTree, Melody } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
+const dataDir = path.join(process.cwd(), "data");
 
 function computeRank(hr: string | number | undefined, elder: string | number | undefined): string {
   const hrNum = Number(hr ?? 0);
@@ -19,7 +20,7 @@ export function getWeaponTypes(): WeaponType[] {
 }
 
 export function getWeapons(type: WeaponType): Weapon[] {
-  const filePath = path.join(contentDir, "blacksmith", type, `${type}-crafting.json`);
+  const filePath = path.join(dataDir, "weapons", `${type}.json`);
   const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { weapons: Weapon[] };
 
   return raw.weapons

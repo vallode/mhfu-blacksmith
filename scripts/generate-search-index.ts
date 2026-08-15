@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const root = process.cwd();
-const contentDir = path.join(root, "content");
+const dataDir = path.join(root, "data");
 
 function slugify(name: string): string {
   return name
@@ -27,10 +27,10 @@ interface SearchEntry {
 const entries: SearchEntry[] = [];
 
 // Weapons
-const weaponDir = path.join(contentDir, "blacksmith");
-for (const type of fs.readdirSync(weaponDir)) {
-  const craftingFile = path.join(weaponDir, type, `${type}-crafting.json`);
-  if (!fs.existsSync(craftingFile)) continue;
+const weaponDir = path.join(dataDir, "weapons");
+for (const file of fs.readdirSync(weaponDir)) {
+  const type = file.replace(/\.json$/, "");
+  const craftingFile = path.join(weaponDir, file);
 
   const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
     weapons: Record<string, unknown>[];
@@ -73,54 +73,51 @@ for (const type of fs.readdirSync(weaponDir)) {
   }
 }
 
-// Armor
-const armorDir = path.join(contentDir, "armorsmith");
-for (const slot of fs.readdirSync(armorDir)) {
-  const slotDir = path.join(armorDir, slot);
-  if (!fs.statSync(slotDir).isDirectory()) continue;
+// Armor — data/armor/<slot>.json holds every rank in one file; each piece
+// carries its own "rank" field.
+const armorDir = path.join(dataDir, "armor");
+for (const file of fs.readdirSync(armorDir)) {
+  const slot = file.replace(/\.json$/, "");
+  const craftingFile = path.join(armorDir, file);
 
-  for (const rank of fs.readdirSync(slotDir)) {
-    const craftingFile = path.join(slotDir, rank, `${slot}-crafting.json`);
-    if (!fs.existsSync(craftingFile)) continue;
+  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+    armor: Record<string, unknown>[];
+  };
 
-    const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
-      weapons: Record<string, unknown>[];
-    };
+  for (const a of data.armor) {
+    if ("donotrender" in a || !a.name) continue;
 
-    for (const a of data.weapons) {
-      if ("donotrender" in a || !a.name) continue;
+    const name = a.name as string;
+    const slug = slugify(name);
+    const rank = (a.rank as string) || "low-rank";
+    const skillNames = Array.isArray(a.skills)
+      ? (a.skills as ({ name: string } | string)[])
+          .map((s) => (typeof s === "object" ? s.name : s))
+          .join(" ")
+      : "";
 
-      const name = a.name as string;
-      const slug = slugify(name);
-      const skillNames = Array.isArray(a.skills)
-        ? (a.skills as ({ name: string } | string)[])
-            .map((s) => (typeof s === "object" ? s.name : s))
-            .join(" ")
-        : "";
-
-      entries.push({
-        name,
-        slug,
-        url: `/armorsmith/${slot}/${rank}/${slug}`,
-        category: "armor",
-        type: (a.type as string) || slot,
-        rank,
-        rarity: Number(a.rarity ?? 0),
-        elements: "",
-        skills: skillNames,
-      });
-    }
+    entries.push({
+      name,
+      slug,
+      url: `/armorsmith/${slot}/${rank}/${slug}`,
+      category: "armor",
+      type: (a.type as string) || slot,
+      rank,
+      rarity: Number(a.rarity ?? 0),
+      elements: "",
+      skills: skillNames,
+    });
   }
 }
 
 // Decorations
-const decoFile = path.join(contentDir, "decorations", "decorations-crafting.json");
+const decoFile = path.join(dataDir, "decorations.json");
 if (fs.existsSync(decoFile)) {
   const data = JSON.parse(fs.readFileSync(decoFile, "utf-8")) as {
-    weapons: Record<string, unknown>[];
+    decorations: Record<string, unknown>[];
   };
 
-  for (const d of data.weapons) {
+  for (const d of data.decorations) {
     if ("donotrender" in d || !d.name) continue;
 
     const name = d.name as string;
@@ -144,10 +141,10 @@ if (fs.existsSync(decoFile)) {
 }
 
 // Monsters
-const monsterDir = path.join(contentDir, "monsters");
-for (const category of fs.readdirSync(monsterDir)) {
-  const jsonFile = path.join(monsterDir, category, `${category}.json`);
-  if (!fs.existsSync(jsonFile)) continue;
+const monsterDir = path.join(dataDir, "monsters");
+for (const file of fs.readdirSync(monsterDir)) {
+  const category = file.replace(/\.json$/, "");
+  const jsonFile = path.join(monsterDir, file);
 
   const data = JSON.parse(fs.readFileSync(jsonFile, "utf-8")) as {
     monsters: Record<string, unknown>[];

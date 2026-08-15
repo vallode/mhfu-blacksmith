@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 
 const root = process.cwd();
-const contentDir = path.join(root, "content");
+const dataDir = path.join(root, "data");
 
 function slugify(name: string): string {
   return name
@@ -47,10 +47,10 @@ interface WeaponEntry {
 
 const weapons: WeaponEntry[] = [];
 
-const weaponDir = path.join(contentDir, "blacksmith");
-for (const type of fs.readdirSync(weaponDir)) {
-  const craftingFile = path.join(weaponDir, type, `${type}-crafting.json`);
-  if (!fs.existsSync(craftingFile)) continue;
+const weaponDir = path.join(dataDir, "weapons");
+for (const file of fs.readdirSync(weaponDir)) {
+  const type = file.replace(/\.json$/, "");
+  const craftingFile = path.join(weaponDir, file);
 
   const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
     weapons: Record<string, unknown>[];

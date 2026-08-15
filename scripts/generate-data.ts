@@ -1,5 +1,6 @@
 /**
- * Transforms content/*.json into compact per-category bundles in public/data:
+ * Transforms data/*.json (raw items) and content/*.json (crafting trees) into
+ * compact per-category bundles in public/data:
  *   - dictionaries.json          (shared materials/enums/strings/melodies)
  *   - weapon-<type>.json         (11)
  *   - armor-<slot>-<rank>.json
@@ -44,6 +45,7 @@ import type {
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
+const dataDir = path.join(root, "data");
 const outDir = path.join(root, "public", "data");
 
 const RANKS = ["low-rank", "high-rank", "g-rank"];
@@ -291,7 +293,7 @@ const melodies = readJson<Record<string, Melody[]>>(
 
 for (const type of WEAPON_TYPES) {
   const crafting = readJson<{ weapons: Weapon[] }>(
-    path.join(contentDir, "blacksmith", type, `${type}-crafting.json`)
+    path.join(dataDir, "weapons", `${type}.json`)
   );
   const tree = readJson<{ map: WeaponTreeNode[] }>(
     path.join(contentDir, "blacksmith", type, "map.json")
@@ -312,19 +314,23 @@ for (const type of WEAPON_TYPES) {
   for (const w of items) pageManifest.push(`/blacksmith/${type}/${w.s}/`);
 }
 
-// Armor
+// Armor — data/armor/<slot>.json holds every rank in one file (each piece
+// carries its own "rank"), while the crafting tree is still split per rank
+// under content/armorsmith/<slot>/<rank>/map.json.
 for (const slot of ARMOR_SLOTS) {
+  const allPieces = readJson<{ armor: ArmorPiece[] }>(
+    path.join(dataDir, "armor", `${slot}.json`)
+  ).armor;
   for (const rank of ARMOR_RANKS) {
-    const craftingPath = path.join(contentDir, "armorsmith", slot, rank, `${slot}-crafting.json`);
-    if (!fs.existsSync(craftingPath)) continue;
-    const crafting = readJson<{ weapons: ArmorPiece[] }>(craftingPath);
+    const pieces = allPieces.filter((p) => (p.rank ?? computeRank(p.hr, p.elder)) === rank);
+    if (pieces.length === 0) continue;
     const treePath = path.join(contentDir, "armorsmith", slot, rank, "map.json");
     const tree = fs.existsSync(treePath)
       ? readJson<{ map: WeaponTreeNode[] }>(treePath)
       : { map: [] };
-    const items = crafting.weapons
+    const items = pieces
       .filter((p) => !("donotrender" in p))
-      .map((p) => encodeArmor({ ...p, slug: slugify(p.name), rank: computeRank(p.hr, p.elder) }));
+      .map((p) => encodeArmor({ ...p, slug: slugify(p.name), rank: p.rank ?? computeRank(p.hr, p.elder) }));
     totalItems += items.length;
     push(`armor-${slot}-${rank}.json`, {
       kind: "armor",
@@ -340,7 +346,7 @@ for (const slot of ARMOR_SLOTS) {
 
 // Monsters
 for (const category of MONSTER_CATEGORIES) {
-  const p = path.join(contentDir, "monsters", category, `${category}.json`);
+  const p = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
   const data = readJson<{ monsters: Monster[] }>(p);
   const items = data.monsters.map((m) => encodeMonster({ ...m, slug: slugify(m.name) }));
@@ -352,13 +358,13 @@ for (const category of MONSTER_CATEGORIES) {
 
 // Decorations
 {
-  const crafting = readJson<{ weapons: Decoration[] }>(
-    path.join(contentDir, "decorations", "decorations-crafting.json")
+  const crafting = readJson<{ decorations: Decoration[] }>(
+    path.join(dataDir, "decorations.json")
   );
   const tree = readJson<{ map: WeaponTreeNode[] }>(
     path.join(contentDir, "decorations", "map.json")
   );
-  const items = crafting.weapons
+  const items = crafting.decorations
     .filter((d) => !("donotrender" in d))
     .map((d) => encodeDecoration({ ...d, slug: slugify(d.name) }));
   totalItems += items.length;

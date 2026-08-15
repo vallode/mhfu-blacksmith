@@ -8,10 +8,7 @@ import { slugify } from "../src/lib/slug";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
-
-function isDir(p: string): boolean {
-  return fs.statSync(p).isDirectory();
-}
+const dataDir = path.join(root, "data");
 
 let errors = 0;
 let warnings = 0;
@@ -34,13 +31,18 @@ function section(title: string) {
 
 section("Validating weapons…");
 
-const weaponDir = path.join(contentDir, "blacksmith");
-const weaponTypes = fs.readdirSync(weaponDir).sort().filter((e) => isDir(path.join(weaponDir, e)));
+const weaponDataDir = path.join(dataDir, "weapons");
+const weaponContentDir = path.join(contentDir, "blacksmith");
+const weaponTypes = fs
+  .readdirSync(weaponDataDir)
+  .filter((e) => e.endsWith(".json"))
+  .map((e) => e.replace(/\.json$/, ""))
+  .sort();
 
 // First pass: collect all slugs across all weapon types
 const allWeaponSlugs = new Map<string, Set<string>>(); // type → slugs
 for (const type of weaponTypes) {
-  const craftingFile = path.join(weaponDir, type, `${type}-crafting.json`);
+  const craftingFile = path.join(weaponDataDir, `${type}.json`);
   if (!fs.existsSync(craftingFile)) continue;
   const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as { weapons: Record<string, unknown>[] };
   const slugs = new Set<string>();
@@ -53,11 +55,11 @@ for (const type of weaponTypes) {
 
 // Second pass: validate each type
 for (const type of weaponTypes) {
-  const craftingFile = path.join(weaponDir, type, `${type}-crafting.json`);
-  const mapFile = path.join(weaponDir, type, "map.json");
+  const craftingFile = path.join(weaponDataDir, `${type}.json`);
+  const mapFile = path.join(weaponContentDir, type, "map.json");
 
   if (!fs.existsSync(craftingFile)) {
-    error(`${type}: missing ${type}-crafting.json`);
+    error(`${type}: missing data/weapons/${type}.json`);
     continue;
   }
 
@@ -143,33 +145,34 @@ for (const type of weaponTypes) {
 
 section("Validating armor…");
 
-const armorDir = path.join(contentDir, "armorsmith");
-for (const slot of fs.readdirSync(armorDir).sort().filter((e) => isDir(path.join(armorDir, e)))) {
-  const slotDir = path.join(armorDir, slot);
+const armorDataDir = path.join(dataDir, "armor");
+for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(".json"))) {
+  const slot = file.replace(/\.json$/, "");
+  const craftingFile = path.join(armorDataDir, file);
 
-  for (const rank of fs.readdirSync(slotDir).sort().filter((e) => isDir(path.join(slotDir, e)))) {
-    const craftingFile = path.join(slotDir, rank, `${slot}-crafting.json`);
-    if (!fs.existsSync(craftingFile)) continue;
+  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+    armor: Record<string, unknown>[];
+  };
 
-    const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
-      weapons: Record<string, unknown>[];
-    };
+  const countByRank = new Map<string, number>();
+  const slugsByRank = new Map<string, Set<string>>();
 
-    let count = 0;
-    const slugs = new Set<string>();
+  for (const a of data.armor) {
+    if ("donotrender" in a) continue;
+    const name = a.name as string | undefined;
+    const rank = (a.rank as string) || "low-rank";
+    if (!name) { error(`${slot}/${rank}: armor missing name`); continue; }
 
-    for (const a of data.weapons) {
-      if ("donotrender" in a) continue;
-      const name = a.name as string | undefined;
-      if (!name) { error(`${slot}/${rank}: armor missing name`); continue; }
+    const slug = slugify(name);
+    const slugs = slugsByRank.get(rank) ?? new Set<string>();
+    if (slugs.has(slug)) error(`${slot}/${rank}: duplicate slug "${slug}"`);
+    slugs.add(slug);
+    slugsByRank.set(rank, slugs);
+    countByRank.set(rank, (countByRank.get(rank) ?? 0) + 1);
+  }
 
-      const slug = slugify(name);
-      if (slugs.has(slug)) error(`${slot}/${rank}: duplicate slug "${slug}"`);
-      slugs.add(slug);
-      count++;
-    }
-
-    console.log(`  ${slot}/${rank}: ${count} pieces`);
+  for (const rank of ["low-rank", "high-rank", "g-rank"]) {
+    console.log(`  ${slot}/${rank}: ${countByRank.get(rank) ?? 0} pieces`);
   }
 }
 
@@ -177,17 +180,17 @@ for (const slot of fs.readdirSync(armorDir).sort().filter((e) => isDir(path.join
 
 section("Validating decorations…");
 
-const decoFile = path.join(contentDir, "decorations", "decorations-crafting.json");
+const decoFile = path.join(dataDir, "decorations.json");
 if (!fs.existsSync(decoFile)) {
-  error("Missing decorations/decorations-crafting.json");
+  error("Missing data/decorations.json");
 } else {
   const data = JSON.parse(fs.readFileSync(decoFile, "utf-8")) as {
-    weapons: Record<string, unknown>[];
+    decorations: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
   let count = 0;
 
-  for (const d of data.weapons) {
+  for (const d of data.decorations) {
     if ("donotrender" in d) continue;
     const name = d.name as string | undefined;
     if (!name) { error("decoration missing name"); continue; }
@@ -205,13 +208,10 @@ if (!fs.existsSync(decoFile)) {
 
 section("Validating monsters…");
 
-const monsterDir = path.join(contentDir, "monsters");
-for (const category of fs.readdirSync(monsterDir).sort().filter((e) => isDir(path.join(monsterDir, e)))) {
-  const jsonFile = path.join(monsterDir, category, `${category}.json`);
-  if (!fs.existsSync(jsonFile)) {
-    warn(`monsters/${category}: missing ${category}.json`);
-    continue;
-  }
+const monsterDataDir = path.join(dataDir, "monsters");
+for (const file of fs.readdirSync(monsterDataDir).sort().filter((e) => e.endsWith(".json"))) {
+  const category = file.replace(/\.json$/, "");
+  const jsonFile = path.join(monsterDataDir, file);
 
   const data = JSON.parse(fs.readFileSync(jsonFile, "utf-8")) as {
     monsters: Record<string, unknown>[];
