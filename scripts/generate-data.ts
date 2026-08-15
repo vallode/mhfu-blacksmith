@@ -284,6 +284,7 @@ const pageManifest: string[] = [
   "/monsters/",
   "/calculator/",
   "/hunter/",
+  "/options/",
 ];
 
 // Weapons
