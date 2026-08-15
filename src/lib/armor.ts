@@ -5,6 +5,7 @@ import { slugify } from "./slug";
 import type { ArmorPiece, WeaponTree } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
+const dataDir = path.join(process.cwd(), "data");
 
 function computeRank(hr: string | number | undefined, elder: string | number | undefined): string {
   const hrNum = Number(hr ?? 0);
@@ -22,19 +23,25 @@ export function getArmorRanks(): ArmorRank[] {
   return [...ARMOR_RANKS];
 }
 
-export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
-  const filePath = path.join(contentDir, "armorsmith", slot, rank, `${slot}-crafting.json`);
+// data/armor/<slot>.json holds every rank in one file; each piece carries
+// its own "rank" field.
+function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
+  const filePath = path.join(dataDir, "armor", `${slot}.json`);
   if (!fs.existsSync(filePath)) return [];
 
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { weapons: ArmorPiece[] };
+  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { armor: ArmorPiece[] };
 
-  return raw.weapons
+  return raw.armor
     .filter((p) => !("donotrender" in p))
     .map((p) => ({
       ...p,
       slug: slugify(p.name),
-      rank: computeRank(p.hr, p.elder),
+      rank: p.rank ?? computeRank(p.hr, p.elder),
     }));
+}
+
+export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
+  return getAllArmorPieces(slot).filter((p) => p.rank === rank);
 }
 
 export function getArmorPiece(slot: ArmorSlot, rank: ArmorRank, slug: string): ArmorPiece | undefined {
@@ -47,13 +54,13 @@ export function getArmorTree(slot: ArmorSlot, rank: ArmorRank): WeaponTree | nul
   return JSON.parse(fs.readFileSync(filePath, "utf-8")) as WeaponTree;
 }
 
-/** All valid slot+rank combinations that actually have data files. */
+/** All valid slot+rank combinations that actually have pieces. */
 export function getArmorParams(): { slot: ArmorSlot; rank: ArmorRank }[] {
   const params: { slot: ArmorSlot; rank: ArmorRank }[] = [];
   for (const slot of ARMOR_SLOTS) {
+    const pieces = getAllArmorPieces(slot);
     for (const rank of ARMOR_RANKS) {
-      const filePath = path.join(contentDir, "armorsmith", slot, rank, `${slot}-crafting.json`);
-      if (fs.existsSync(filePath)) {
+      if (pieces.some((p) => p.rank === rank)) {
         params.push({ slot, rank });
       }
     }
