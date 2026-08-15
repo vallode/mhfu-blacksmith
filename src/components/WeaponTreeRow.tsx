@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
@@ -33,6 +34,8 @@ export default function WeaponTreeRow({
   basePath,
   activeSlug,
 }: WeaponTreeRowProps) {
+  const [collapsed, setCollapsed] = useState(false);
+
   const isExternal = node.type !== sectionType && (WEAPON_TYPES as readonly string[]).includes(node.type);
   const href = node.rarity
     ? isExternal
@@ -40,6 +43,14 @@ export default function WeaponTreeRow({
       : `${basePath}${node.slug}/`
     : undefined;
   const isActive = activeSlug === node.slug;
+
+  const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
+    // Rows can be links (a parent weapon still has its own page), so stop
+    // the click from also triggering navigation.
+    event.preventDefault();
+    event.stopPropagation();
+    setCollapsed((value) => !value);
+  };
 
   const onPointerEnter = href
     ? () => {
@@ -66,7 +77,20 @@ export default function WeaponTreeRow({
         />
       )}
       <p className={styles.name}>{node.name}</p>
-      {node.children && <p className={styles.toggle}>[-]</p>}
+      {node.children && (
+        <p
+          className={styles.toggle}
+          role="button"
+          tabIndex={0}
+          aria-label={collapsed ? "Expand" : "Collapse"}
+          onClick={onToggleClick}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") onToggleClick(event);
+          }}
+        >
+          {collapsed ? "[+]" : "[-]"}
+        </p>
+      )}
     </>
   );
 
@@ -88,7 +112,7 @@ export default function WeaponTreeRow({
         </span>
       )}
 
-      {node.children && (
+      {node.children && !collapsed && (
         <ul className={node.children.length > 1 ? styles["multiple-children"] : undefined}>
           {node.children.map((child) => (
             <WeaponTreeRow
