@@ -270,6 +270,20 @@ function push(name: string, obj: unknown) {
   files.push({ name, json: JSON.stringify(obj) });
 }
 
+// Every real page route in the site (list + detail pages), used by the
+// "Download for offline" control to precache page documents alongside data,
+// so navigating between pages works fully offline right after downloading
+// instead of only for pages the visitor happens to have already opened.
+const pageManifest: string[] = [
+  "/",
+  "/blacksmith/",
+  "/armorsmith/",
+  "/decorations/",
+  "/monsters/",
+  "/calculator/",
+  "/hunter/",
+];
+
 // Weapons
 const melodies = readJson<Record<string, Melody[]>>(
   path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json")
@@ -294,6 +308,8 @@ for (const type of WEAPON_TYPES) {
     tree: compactTree(tree.map, type),
     items,
   });
+  pageManifest.push(`/blacksmith/${type}/`);
+  for (const w of items) pageManifest.push(`/blacksmith/${type}/${w.s}/`);
 }
 
 // Armor
@@ -317,6 +333,8 @@ for (const slot of ARMOR_SLOTS) {
       tree: compactTree(tree.map, slot),
       items,
     });
+    pageManifest.push(`/armorsmith/${slot}/${rank}/`);
+    for (const a of items) pageManifest.push(`/armorsmith/${slot}/${rank}/${a.s}/`);
   }
 }
 
@@ -328,6 +346,8 @@ for (const category of MONSTER_CATEGORIES) {
   const items = data.monsters.map((m) => encodeMonster({ ...m, slug: slugify(m.name) }));
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
+  pageManifest.push(`/monsters/${category}/`);
+  for (const m of items) pageManifest.push(`/monsters/${category}/${m.s}/`);
 }
 
 // Decorations
@@ -347,6 +367,7 @@ for (const category of MONSTER_CATEGORIES) {
     tree: compactTree(tree.map, "decoration"),
     items,
   });
+  for (const d of items) pageManifest.push(`/decorations/${d.s}/`);
 }
 
 // ---------------------------------------------------------------------------
@@ -419,6 +440,10 @@ const walkImages = (dir: string) => {
 walkImages(imagesDir);
 imageUrls.sort();
 fs.writeFileSync(path.join(outDir, "image-manifest.json"), JSON.stringify(imageUrls));
+
+// Page manifest for the offline-download UI: every real route in the site,
+// so "Download for offline" can precache page documents, not just data.
+fs.writeFileSync(path.join(outDir, "page-manifest.json"), JSON.stringify(pageManifest));
 
 const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;
