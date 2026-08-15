@@ -1,7 +1,10 @@
 @use 'mixins' as *;
 
 .weapon-card {
-  flex: 1 1 50%;
+  // The detail panel's width is governed by the .weapon-details-page flex
+  // container (both cards get flex: 1 1 0% for an equal split).
+  flex: 1 1 0%;
+  min-width: 0;
 
   &__preview {
     display: none;
@@ -63,43 +66,13 @@
         line-height: 1.25;
       }
 
-      .icon {
-        margin: 1.2rem calc((16.8rem - 9rem) / 2) 0 auto;
-
-        &::after {
-          background-image: url("/images/scroll.png");
-          background-position: 0px 0px;
-          background-repeat: no-repeat;
-          background-size: contain;
-          bottom: 0;
-          content: '';
-          height: 11.2rem;
-          image-rendering: -webkit-optimize-contrast;
-          image-rendering: crisp-edges;
-          image-rendering: pixelated;
-          left: 50%;
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 16.8rem;
-          z-index: -1;
-        }
-      }
-
-      .icon,
-      .icon img {
-        height: 9rem;
-        width: 9rem;
-      }
+      // The monster portrait icon is styled in Icon.module.scss (.monsterIcon)
+      // and applied directly to the <Icon> in MonsterDetailClient.
 
       @media screen and (max-width: 600px) {
         flex-direction: column-reverse;
         flex-wrap: wrap;
         height: auto;
-
-        .icon {
-          margin: 0 auto 1.6rem auto;
-        }
       }
     }
 
@@ -285,7 +258,8 @@
         color: white;
         display: flex;
 
-        .icon:first-of-type {
+        // Hunting-horn melody notes are <Icon> elements; indent the first one.
+        .note-icon:first-of-type {
           margin-left: 26px;
         }
       }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 import styles from "./Card.module.scss";
 
 interface CardProps {
@@ -20,13 +21,11 @@ export default function Card({
   onDragLeave,
   onDrop,
 }: CardProps) {
-  const classes = [
+  const classes = cn(
     styles.card,
-    variant === "weapon-tree" ? styles["weaponTree"] : null,
-    className ?? null,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    variant === "weapon-tree" && styles["weaponTree"],
+    className
+  );
 
   if (href) {
     return (

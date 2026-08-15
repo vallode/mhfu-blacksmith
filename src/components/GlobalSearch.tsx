@@ -5,6 +5,7 @@ import Fuse from "fuse.js";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/search.module.scss";
+import iconStyles from "./Icon.module.scss";
 
 interface SearchEntry {
   name: string;
@@ -20,22 +21,24 @@ interface SearchEntry {
 
 function iconClassFor(item: SearchEntry): string {
   const rarity = item.rarity || 1;
+  const i = (name: string) => iconStyles[`icon--${name}`] ?? "";
   switch (item.category) {
     case "weapon":
       return [
-        "icon icon--mini",
-        `icon--${item.type}`,
-        `icon--rarity-${rarity}`,
-        item.elements ? `icon--${item.elements.toLowerCase().replace(/ /g, "")}` : "",
+        iconStyles.icon,
+        iconStyles["icon--mini"],
+        i(item.type),
+        i(`rarity-${rarity}`),
+        item.elements ? i(item.elements.toLowerCase().replace(/ /g, "")) : "",
       ]
         .filter(Boolean)
         .join(" ");
     case "armor":
-      return `icon icon--${item.type} icon--rarity-${rarity}`;
+      return [iconStyles.icon, i(item.type), i(`rarity-${rarity}`)].filter(Boolean).join(" ");
     case "decoration":
-      return `icon icon--decoration icon--rarity-${rarity}`;
+      return [iconStyles.icon, i("decoration"), i(`rarity-${rarity}`)].filter(Boolean).join(" ");
     default:
-      return `icon icon--monster icon--${item.type}`;
+      return [iconStyles.icon, iconStyles["icon--monster"], i(item.type)].filter(Boolean).join(" ");
   }
 }
 

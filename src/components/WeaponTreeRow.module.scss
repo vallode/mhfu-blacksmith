@@ -1,0 +1,126 @@
+@use '../styles/mixins' as *;
+
+// Scroll container for the weapon/armor/decoration tree sidebar.
+.weapon-tree {
+  height: 100%;
+  overflow: auto;
+  padding: 0 0 0 13px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    // Deeply-nested branches must never be clipped: rows size to their
+    // content and the container scrolls horizontally instead of cutting
+    // the tree off.
+    width: max-content;
+    min-width: 100%;
+  }
+
+  // Tree connectors — vertical and horizontal lines between parent/child nodes
+  li ul {
+    padding-left: 26px;
+
+    > li {
+      position: relative;
+    }
+
+    &:first-of-type > li::before {
+      background-color: #2a3423;
+      content: '';
+      display: block;
+      height: 19px;
+      left: -16px;
+      position: absolute;
+      top: 0px;
+      width: 3px;
+      z-index: -1;
+    }
+
+    &:first-of-type > li::after {
+      background-color: #2a3423;
+      content: '';
+      display: block;
+      height: 3px;
+      left: -16px;
+      position: absolute;
+      top: 19px;
+      width: 16px;
+      z-index: -1;
+    }
+
+    &.multiple-children > li:not(:last-child)::before {
+      height: 100%;
+    }
+  }
+}
+
+.row {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 38px;
+  position: relative;
+  width: 100%;
+  min-width: max-content;
+  padding-right: 0.9rem;
+
+  &::before {
+    background: transparent;
+    content: '';
+    display: block;
+    height: 100%;
+    left: calc(100% - 50vw + 2.3rem + 0.65rem);
+    position: absolute;
+    top: 0;
+    width: calc(50vw - 2.3rem - 0.65rem);
+    z-index: 0;
+
+    @media screen and (max-width: 600px) {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  &:focus::before,
+  &:hover::before {
+    @include green-hover-gradient;
+  }
+
+  &--active::before {
+    background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(3, 119, 3, 0.84), rgba(0, 0, 0, 0));
+    animation: none;
+  }
+
+  &--external {
+    color: #c0c0c0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.toggle {
+  color: white;
+  cursor: pointer;
+  font-family: monospace;
+  margin-left: 1.6rem;
+  opacity: 0.2;
+  padding: 0 3px;
+  z-index: 10000;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Fixed-size slot for the mini weapon icon inside a tree row. Targets the
+// global .icon base class (applied via Icon's className prop).
+.rowIcon {
+  flex: 0 0 26px;
+  width: 26px;
+}

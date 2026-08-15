@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Icon from "./Icon";
+import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
 import { WEAPON_TYPES } from "@/lib/constants";
+import styles from "./WeaponTreeRow.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -46,13 +48,10 @@ export default function WeaponTreeRow({
       }
     : undefined;
 
-  const rowClass = [
-    "weapon-tree__row",
-    isExternal ? "weapon-tree__row--external" : null,
-    isActive ? "weapon-tree__row--active" : null,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const rowClass = cn(styles.row, {
+    [styles["row--external"]]: isExternal,
+    [styles["row--active"]]: isActive,
+  });
 
   const inner = (
     <>
@@ -63,10 +62,11 @@ export default function WeaponTreeRow({
           rarity={node.rarity}
           color={node.color}
           element={node.element}
+          className={styles.rowIcon}
         />
       )}
-      <p className="name">{node.name}</p>
-      {node.children && <p className="weapon-tree__row__toggle">[-]</p>}
+      <p className={styles.name}>{node.name}</p>
+      {node.children && <p className={styles.toggle}>[-]</p>}
     </>
   );
 
@@ -89,7 +89,7 @@ export default function WeaponTreeRow({
       )}
 
       {node.children && (
-        <ul className={node.children.length > 1 ? "multiple-children" : undefined}>
+        <ul className={node.children.length > 1 ? styles["multiple-children"] : undefined}>
           {node.children.map((child) => (
             <WeaponTreeRow
               key={child.slug}

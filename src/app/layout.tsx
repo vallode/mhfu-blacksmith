@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
-import "@/styles/icon.scss";
-import "@/styles/weapon-tree.scss";
-import "@/styles/tables.scss";
 import GlobalSearch from "@/components/GlobalSearch";
 import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";

@@ -1,0 +1,7 @@
+// Shared layout for the "index" pages that render a single card containing a
+// vertical list of linked rows (weapon types, armor slots/ranks, monsters).
+.table {
+  flex-direction: column;
+  overflow: auto;
+  padding: 0;
+}

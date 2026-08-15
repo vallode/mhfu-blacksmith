@@ -1,28 +1,7 @@
 @use 'mixins' as *;
 
-.search-trigger-wrap {
-  margin-left: auto;
-}
-
-.search-trigger {
-  align-items: center;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  display: flex;
-  height: 52px;
-  padding: 0;
-  width: 52px;
-
-  &:hover {
-    color: white;
-  }
-
-  img {
-    height: 100%;
-  }
-}
+// The .search-trigger button is styled with Tailwind utilities in the markup;
+// its class is kept only as a delegated-click hook for GlobalSearch.
 
 .search-modal {
   display: none;
