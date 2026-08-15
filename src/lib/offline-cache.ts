@@ -86,6 +86,10 @@ export async function downloadOffline(
   return countCached(urls);
 }
 
+export async function clearOffline(): Promise<void> {
+  await Promise.all([caches.delete(RUNTIME_CACHE), caches.delete(PAGES_CACHE)]);
+}
+
 export function cachesSupported(): boolean {
   return (
     typeof window !== "undefined" &&
