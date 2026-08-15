@@ -6,6 +6,7 @@ import OfflineDownload from "@/components/OfflineDownload";
 import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { ToastProvider } from "@/context/ToastContext";
+import { OfflineProvider } from "@/context/OfflineContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -33,9 +34,11 @@ export default function RootLayout({
         <PreferencesProvider>
           <SaveProvider>
             <ToastProvider>
-              {children}
-              <GlobalSearch />
-              <OfflineDownload />
+              <OfflineProvider>
+                {children}
+                <GlobalSearch />
+                <OfflineDownload />
+              </OfflineProvider>
             </ToastProvider>
           </SaveProvider>
         </PreferencesProvider>
