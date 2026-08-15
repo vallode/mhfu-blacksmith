@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import withPWA from "@ducanh2912/next-pwa";
+import withPWA, { runtimeCaching as defaultRuntimeCaching } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
@@ -113,6 +113,17 @@ export default withPWA({
           expiration: { maxEntries: 1000, maxAgeSeconds: 30 * 24 * 60 * 60 },
         },
       },
+      // Supplying a custom `runtimeCaching` array replaces next-pwa's default
+      // one entirely (it doesn't merge). That default list is what caches
+      // page documents and RSC navigation payloads ("pages", "pages-rsc",
+      // "pages-rsc-prefetch"), which `cacheOnFrontEndNav` depends on to make
+      // client-side navigation work offline. Without it, only the current
+      // page (already in memory) works offline — any other page fetch fails
+      // with a plain network error ("you are offline"), even though the
+      // data/image caches populated by "Download for offline" are intact.
+      // Append the defaults after our more specific rules above so data/image
+      // requests keep hitting our custom caches first.
+      ...defaultRuntimeCaching,
     ],
   },
 })(nextConfig);
