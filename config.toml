@@ -19,7 +19,7 @@ compile_sass = true
 # copied over to the `public` directory.
 # Example:
 #     ignored_content = ["*.{graphml,xlsx}", "temp.*", "**/build_folder"]
-ignored_content = ["*-crafting.json", "*-source.json"]
+ignored_content = ["*-source.json"]
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true

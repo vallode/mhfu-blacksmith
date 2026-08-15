@@ -176,7 +176,7 @@
                         <div>
                           <h3>{{ skill.name }}<span>:</span></h3>
                           <p>
-                            {% if skill.amount is starting_with('-') or skill.amount is starting_with('+') %}
+                            {% if skill.amount < 0 %}
                               {{ skill.amount }}
                             {% else %}
                               +{{ skill.amount }}

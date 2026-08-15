@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Armor file",
+  "type": "object",
+  "required": ["armor"],
+  "additionalProperties": false,
+  "properties": {
+    "armor": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/armor_piece" }
+    }
+  },
+  "definitions": {
+    "material": {
+      "type": "object",
+      "required": ["name", "amount", "type", "color"],
+      "additionalProperties": false,
+      "properties": {
+        "name":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer", "minimum": 1 },
+        "type":   { "type": "string", "minLength": 1 },
+        "color":  { "type": "string", "minLength": 1 }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["name", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "name":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer" }
+      }
+    },
+    "armor_piece": {
+      "type": "object",
+      "required": ["name", "type", "rank", "rarity", "defence", "slots"],
+      "additionalProperties": false,
+      "properties": {
+        "name":         { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": ["helmet", "plate", "gauntlets", "waist", "leggings"]
+        },
+        "rank": {
+          "type": "string",
+          "enum": ["low-rank", "high-rank", "g-rank"]
+        },
+        "rarity":       { "type": "integer", "minimum": 1, "maximum": 10 },
+        "slots":        { "type": "integer", "minimum": 0, "maximum": 3 },
+        "defence":      { "type": "integer", "minimum": 0 },
+        "fire_res":     { "type": "integer" },
+        "thunder_res":  { "type": "integer" },
+        "dragon_res":   { "type": "integer" },
+        "water_res":    { "type": "integer" },
+        "ice_res":      { "type": "integer" },
+        "sex":          { "type": "string" },
+        "hunter_type":  { "type": "string" },
+        "hr":           { "type": ["string", "integer"] },
+        "elder":        { "type": ["string", "integer"] },
+        "create_cost":  { "type": ["integer", "null"], "minimum": 0 },
+        "skills": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/skill" } },
+            { "type": "null" }
+          ]
+        },
+        "create_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

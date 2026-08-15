@@ -35,27 +35,17 @@ end
 
 threads = []
 
-# Iterate over crafting JSON data in all content directories to generate
-# individual markdown files.
-Dir.glob("content/{blacksmith,armorsmith,decorations}/**/*-crafting.json").each do |path|
+# Weapons — data/weapons/<type>.json → content/blacksmith/<type>/<slug>.md
+Dir.glob("data/weapons/*.json").each do |path|
   threads << Thread.new {
     File.open(path) do |file|
       json_data = JSON.load(file)
+      type = File.basename(path, ".json")
+      output_dir = "content/blacksmith/#{type}"
 
       json_data["weapons"].each_with_index do |value, index|
-        # Easiest way of handling "category" items in mapping right now.
-        next if value.key?("donotrender")
-
         if WEAPON_CLASS_MULTIPLIER.key?(value["type"].to_sym)
           value["raw_attack"] = (value["attack"].to_i / WEAPON_CLASS_MULTIPLIER[value["type"].to_sym]).floor
-        end
-
-        if value["hr"].to_i <= 5
-          value["rank"] = "low-rank"
-        elsif value["hr"].to_i > 5 and value["hr"].to_i <= 8
-          value["rank"] = "high-rank"
-        elsif value["hr"].to_i > 8 && value["elder"]
-          value["rank"] = "g-rank"
         end
 
         output = {
@@ -66,16 +56,63 @@ Dir.glob("content/{blacksmith,armorsmith,decorations}/**/*-crafting.json").each 
           extra: value.select {|key, val| ["title", "slug"].none?(key)},
         }
 
-        File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+        File.write("#{output_dir}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
       end
     end
   }
 end
 
-Dir.glob("content/monsters/**/*.json").each do |path|
+# Armor — data/armor/<slot>.json → content/armorsmith/<slot>/<rank>/<slug>.md
+Dir.glob("data/armor/*.json").each do |path|
   threads << Thread.new {
     File.open(path) do |file|
       json_data = JSON.load(file)
+      slot = File.basename(path, ".json")
+
+      json_data["armor"].each_with_index do |value, index|
+        rank = value["rank"]
+        output_dir = "content/armorsmith/#{slot}/#{rank}"
+
+        output = {
+          title: value["name"],
+          slug: slugify(value["name"]),
+          weight: index,
+          description: createDescription(value),
+          extra: value.select {|key, val| ["title", "slug"].none?(key)},
+        }
+
+        File.write("#{output_dir}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+      end
+    end
+  }
+end
+
+# Decorations — data/decorations.json → content/decorations/<slug>.md
+threads << Thread.new {
+  File.open("data/decorations.json") do |file|
+    json_data = JSON.load(file)
+
+    json_data["decorations"].each_with_index do |value, index|
+      output = {
+        title: value["name"],
+        slug: slugify(value["name"]),
+        weight: index,
+        description: createDescription(value),
+        extra: value.select {|key, val| ["title", "slug"].none?(key)},
+      }
+
+      File.write("content/decorations/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+    end
+  end
+}
+
+# Monsters — data/monsters/<category>.json → content/monsters/<category>/<slug>.md
+Dir.glob("data/monsters/*.json").each do |path|
+  threads << Thread.new {
+    File.open(path) do |file|
+      json_data = JSON.load(file)
+      category = File.basename(path, ".json")
+      output_dir = "content/monsters/#{category}"
 
       json_data["monsters"].each_with_index do |monster, index|
         output = {
@@ -84,8 +121,8 @@ Dir.glob("content/monsters/**/*.json").each do |path|
           weight: index,
           extra: monster.select {|key, value| ["name", "drops"].none?(key)},
         }
-  
-        File.write("#{File.dirname(path)}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
+
+        File.write("#{output_dir}/#{output[:slug]}.md", "+++\n#{TOML::Generator.new(output).body}+++\n")
       end
     end
   }
