@@ -28,7 +28,9 @@ export default function Home() {
             <li>
               <Link href="/hunter/">Hunter Profile</Link>
             </li>
-            <li aria-disabled="true">Options</li>
+            <li>
+              <Link href="/options/">Options</Link>
+            </li>
           </ul>
         </div>
       </div>

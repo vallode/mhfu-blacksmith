@@ -1,0 +1,119 @@
+@use "mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.3rem 4rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  width: 100%;
+  max-width: 72rem;
+}
+
+.heading {
+  color: #c3be9f;
+  font-size: 1.8rem;
+  letter-spacing: 0.1ch;
+  margin: 0;
+  text-shadow: 0.15rem 0.15rem black;
+  text-transform: uppercase;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 1.3rem;
+}
+
+.note {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.error {
+  color: #f9455c;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.statusLabel {
+  color: white;
+  font-size: 1.6rem;
+}
+
+.progress {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid #6e905f;
+  height: 0.8rem;
+  width: 100%;
+
+  &::-webkit-progress-bar {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  &::-webkit-progress-value {
+    background: #037703;
+  }
+
+  &::-moz-progress-bar {
+    background: #037703;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.button {
+  background: none;
+  border: 1px solid #6e905f;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding: 0.6rem 1.4rem;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    color: white;
+    @include green-hover-gradient;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+}
+
+.buttonSecondary {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding: 0.6rem 1.4rem;
+
+  &:hover,
+  &:focus-visible {
+    border-color: #f9455c;
+    color: #f9455c;
+  }
+}
