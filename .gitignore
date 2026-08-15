@@ -19,6 +19,10 @@ public
 
 node_modules
 packages
+.pnpm-store
+
+# Cursor IDE local metadata
+.cursor
 
 # Next.js
 .next

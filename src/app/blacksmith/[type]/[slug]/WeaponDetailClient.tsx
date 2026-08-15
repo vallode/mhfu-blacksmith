@@ -9,6 +9,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import sharpStyles from "@/styles/sharpness.module.scss";
+import tableStyles from "@/styles/tables.module.scss";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 
@@ -63,7 +64,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
       <WeaponNav activeType={type} />
       <hr className="border" />
 
-      <div className="weapon-details-page">
+      <div className="split-page">
         {/* Weapon tree sidebar */}
         <Card variant="weapon-tree">
           <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
@@ -179,7 +180,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 <div className="notes">
                   [Note:
                   {weapon.notes.map((note, i) => (
-                    <Icon key={i} type="note" color={`note-${note}`} alt={note} />
+                    <Icon key={i} type="note" color={`note-${note}`} alt={note} className={cardStyles["note-icon"]} />
                   ))}
                   ]
                 </div>
@@ -268,7 +269,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.ammo && (
                 <div className="page">
-                  <table className="min">
+                  <table className={tableStyles.min}>
                     <thead>
                       <tr>
                         <th>Cap.:</th><th>LV</th><th>1</th><th>2</th><th>3</th><th></th>
@@ -290,7 +291,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.status_ammo && (
-                    <table className="min">
+                    <table className={tableStyles.min}>
                       <thead>
                         <tr>
                           <th></th><th>LV</th><th>1</th><th>2</th><th></th>
@@ -316,7 +317,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.element_ammo && (
                 <div className="page">
-                  <table className="min">
+                  <table className={tableStyles.min}>
                     <thead>
                       <tr><th>Cap.:</th><th></th><th></th></tr>
                     </thead>
@@ -336,7 +337,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.misc_ammo && (
-                    <table className="min">
+                    <table className={tableStyles.min}>
                       <thead>
                         <tr><th></th><th></th><th></th></tr>
                       </thead>
@@ -379,7 +380,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {melodies && (
                 <div className="page">
-                  <table className="min">
+                  <table className={tableStyles.min}>
                     <thead>
                       <tr>
                         <th>Combo</th>

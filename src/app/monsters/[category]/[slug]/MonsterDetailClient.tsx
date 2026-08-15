@@ -3,7 +3,10 @@
 import Link from "next/link";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import { cn } from "@/lib/cn";
 import cardStyles from "@/styles/weapon-card.module.scss";
+import iconStyles from "@/components/Icon.module.scss";
+import tableStyles from "@/styles/tables.module.scss";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
 
@@ -31,7 +34,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (loading) {
     return (
       <>
-        <nav className="weapon-navigation">
+        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
           <div>
             <Link href={`/monsters/${category}/`} aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -46,7 +49,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (!monster) {
     return (
       <>
-        <nav className="weapon-navigation">
+        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
           <div>
             <Link href={`/monsters/${category}/`} aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -65,7 +68,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
   return (
     <>
-      <nav className="weapon-navigation">
+      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
         <div>
           <Link href={`/monsters/${category}/`} aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -74,7 +77,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       </nav>
       <hr className="border" />
 
-      <div className="weapon-details-page">
+      <div className="split-page">
         {/* Monster list sidebar */}
         <Card variant="weapon-tree">
           <Icon
@@ -88,7 +91,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
         {/* Detail panel */}
         <Card className={cardStyles["weapon-card"]}>
-          <div className={`${cardStyles["weapon-card__header"]} ${cardStyles["weapon-card__header--monster"]}`}>
+          <div className={cn(cardStyles["weapon-card__header"], cardStyles["weapon-card__header--monster"])}>
             <div className="details">
               <p>{monster.name}</p>
               {monster.habitats && (
@@ -102,6 +105,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               monster
               imgSrc={`/images/monsters/${slug}.png`}
               alt={monster.name}
+              className={iconStyles.monsterIcon}
             />
           </div>
 
@@ -113,7 +117,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             <hr />
 
             {hitzoneEntries.length > 0 && (
-              <table className="monster-hz">
+              <table className={tableStyles["monster-hz"]}>
                 <thead>
                   <tr>
                     <th>Part</th>

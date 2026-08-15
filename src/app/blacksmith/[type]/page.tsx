@@ -39,7 +39,7 @@ export default async function WeaponTreePage({ params }: Props) {
       <WeaponNav activeType={weaponType} />
       <hr className="border" />
 
-      <div className="weapon-tree-page">
+      <div className="split-page">
         <Card variant="weapon-tree">
           <TreeScroll treeKey={`weapon-${type}`}>
             {tree.map.map((node) => (

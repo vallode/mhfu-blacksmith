@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import styles from "./WeaponTreeRow.module.scss";
 
 /**
  * Persistent-scroll wrapper for the weapon/armor/decoration tree sidebar.
@@ -99,7 +100,7 @@ export default function TreeScroll({
   }, [treeKey, activeSlug]);
 
   return (
-    <div className="weapon-tree" ref={ref}>
+    <div className={styles["weapon-tree"]} ref={ref}>
       {children}
     </div>
   );

@@ -36,21 +36,24 @@ export default async function ArmorTreePage({ params }: Props) {
 
   return (
     <>
-      <nav className="weapon-navigation">
+      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
         <div>
           <Link href="/armorsmith/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
-        <div className="search-trigger-wrap">
-          <button className="search-trigger" aria-label="Search">
+        <div className="ml-auto">
+          <button
+            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-none p-0 text-white/60 hover:text-white [&>img]:h-full"
+            aria-label="Search"
+          >
             <img src="/images/binoculars.png" alt="Search" />
           </button>
         </div>
       </nav>
       <hr className="border" />
 
-      <div className="weapon-tree-page">
+      <div className="split-page">
         <Card variant="weapon-tree">
           <TreeScroll treeKey={`armor-${slot}-${rank}`}>
             {tree.map.map((node) => (
@@ -60,6 +63,7 @@ export default async function ArmorTreePage({ params }: Props) {
             ))}
           </TreeScroll>
         </Card>
+
         <Card>
           <p>Select a piece of armor from the tree.</p>
         </Card>

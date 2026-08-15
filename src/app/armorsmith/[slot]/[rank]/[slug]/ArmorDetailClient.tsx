@@ -24,7 +24,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   if (loading) {
     return (
       <>
-        <nav className="weapon-navigation">
+        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
           <div>
             <Link href="/armorsmith/" aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -39,7 +39,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   if (!piece) {
     return (
       <>
-        <nav className="weapon-navigation">
+        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
           <div>
             <Link href="/armorsmith/" aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -54,7 +54,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
   return (
     <>
-      <nav className="weapon-navigation">
+      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
         <div>
           <Link href="/armorsmith/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -63,7 +63,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
       </nav>
       <hr className="border" />
 
-      <div className="weapon-details-page">
+      <div className="split-page">
         {tree && (
           <Card variant="weapon-tree">
             <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>

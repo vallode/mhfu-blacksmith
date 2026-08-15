@@ -4,6 +4,7 @@ import { getMonsterCategories, getMonsters } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import listStyles from "@/styles/list-page.module.scss";
 import type { Metadata } from "next";
 
 interface Props {
@@ -30,28 +31,31 @@ export default async function MonsterListPage({ params }: Props) {
 
   return (
     <>
-      <nav className="weapon-navigation">
+      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
         <div>
           <Link href="/monsters/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
           </Link>
         </div>
-        <div className="search-trigger-wrap">
-          <button className="search-trigger" aria-label="Search">
+        <div className="ml-auto">
+          <button
+            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-none p-0 text-white/60 hover:text-white [&>img]:h-full"
+            aria-label="Search"
+          >
             <img src="/images/binoculars.png" alt="Search" />
           </button>
         </div>
       </nav>
       <hr className="border" />
 
-      <div className="blacksmith-page">
-        <Card className="blacksmith-page__table">
+      <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
+        <Card className={listStyles.table}>
           <p>{name}</p>
           {monsters.map((monster) => (
             <Link
               key={monster.slug}
               href={`/monsters/${category}/${monster.slug}/`}
-              className="row"
+              className="list-row"
             >
               <Icon type={category} size="large" monster alt={monster.name} />
               <p>{monster.name}</p>

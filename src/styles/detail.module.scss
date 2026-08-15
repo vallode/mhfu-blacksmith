@@ -1,0 +1,27 @@
+// Small scoped helpers shared by the detail-card content (weapon-card module)
+// and the tables module. Kept separate so both can compose/apply the same
+// hashed classes.
+
+.gray {
+  color: gray;
+}
+
+.rapid {
+  color: #52f152;
+}
+
+.positive {
+  color: #52f152;
+}
+
+.negative {
+  color: #f9455c;
+}
+
+.raw {
+  opacity: 0.2;
+}
+
+.element {
+  color: #56fbfa;
+}

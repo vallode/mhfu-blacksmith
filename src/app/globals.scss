@@ -1,5 +1,27 @@
 @use "../styles/mixins" as *;
 
+// ─── Tailwind ─────────────────────────────────────────────────────────────────
+// Utilities are layered below the base styles so component CSS keeps winning
+// over utilities of equal specificity, and over the preflight reset.
+@import "tailwindcss" layer(utilities);
+
+// Design tokens exposed to Tailwind as utility classes (bg-accent, text-muted,
+// border-hr, …). Keep in sync with src/styles/_variables.scss.
+@theme {
+  --color-accent: #037703;
+  --color-hr: #6e905f;
+  --color-line: #2a3423;
+  --color-muted: #c0c0c0;
+  --color-gold: #f2d250;
+  --color-stat: #ffff50;
+  --color-positive: #52f152;
+  --color-negative: #f9455c;
+  --color-element: #56fbfa;
+  --color-warm: #ff9661;
+
+  --breakpoint-mobile: 600px;
+}
+
 // ─── Typography ───────────────────────────────────────────────────────────────
 
 @font-face {
@@ -123,93 +145,41 @@ hr.border {
   }
 }
 
-// ─── Page layout ──────────────────────────────────────────────────────────────
-// These classes are used as plain global strings across pages, so they live
-// here as true globals rather than in CSS modules.
+// ─── Reusable components ──────────────────────────────────────────────────────
+// Shared building blocks used as plain class strings across pages. Layout
+// (flex/spacing) is done with Tailwind utilities directly in the markup.
 
-.weapon-tree-page,
-.weapon-details-page {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  overflow: hidden;
-  width: 100%;
+@layer components {
+  // A full-width row in a linked list table (weapon-type lists, armor lists).
+  .list-row {
+    align-items: center;
+    display: flex;
+    flex: 0 0 38px;
+    height: 38px;
+    padding-left: 6px;
 
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-  }
-}
-
-.weapon-navigation {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-
-  @media screen and (max-width: 600px) {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-.blacksmith-page {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.3rem;
-  height: 100%;
-  justify-content: center;
-  overflow: auto;
-  width: 100%;
-
-  .card {
-    width: 100%;
-  }
-
-  &__table {
-    flex-direction: column;
-    overflow: auto;
-    padding: 0;
-
-    a {
-      align-items: center;
-      display: flex;
-      flex: 0 0 38px;
-      height: 38px;
-
-      &:hover {
-        @include green-hover-gradient;
-      }
+    &:hover {
+      @include green-hover-gradient;
     }
   }
 
-  .row {
-    padding-left: 6px;
-  }
-}
-
-// ─── Search trigger ───────────────────────────────────────────────────────────
-
-.search-trigger-wrap {
-  margin-left: auto;
-}
-
-.search-trigger {
-  align-items: center;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  display: flex;
-  height: 52px;
-  padding: 0;
-  width: 52px;
-
-  &:hover {
-    color: white;
-  }
-
-  img {
+  // Two-panel layout: tree sidebar + detail panel split the space equally.
+  .split-page {
+    display: flex;
+    gap: 1.3rem;
     height: 100%;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+
+    > .card {
+      flex: 1 1 0%;
+      min-width: 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 }
 

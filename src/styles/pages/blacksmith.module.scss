@@ -1,36 +1,7 @@
 @use '../mixins' as *;
 
-.blacksmith-page {
-  .card {
-    width: 100%;
-
-    .row {
-      padding-left: 6px;
-
-      &--external {
-        color: gray;
-        cursor: default;
-      }
-    }
-  }
-
-  &__table {
-    flex-direction: column;
-    overflow: auto;
-    padding: 0;
-
-    a {
-      align-items: center;
-      display: flex;
-      flex: 0 0 38px;
-      height: 38px;
-
-      &:hover {
-        @include green-hover-gradient;
-      }
-    }
-  }
-}
+// The old .blacksmith-page list layout moved to the reusable .list-row
+// component (globals.scss) plus Tailwind utilities in the page markup.
 
 .smithy-page {
   &__menu {
