@@ -22,8 +22,12 @@ below.
   algorithm and TOC layout are ported from [svanheulen/mhef](https://github.com/svanheulen/mhef)
   (`mhef/psp.py`, GPL-3.0) and [svanheulen/mhff](https://github.com/svanheulen/mhff)
   (`psp/data.py`, GPL-3.0).
-- **`src/quests/mib.ts`** — the `QuestCipher` constants (for downloaded/event
-  quests) are likewise ported from `svanheulen/mhef`.
+- **`src/quests/mib.ts`** — the `QuestCipher` constants are likewise ported
+  from `svanheulen/mhef`. mhef documents this cipher as being for quests
+  downloaded from Capcom's (now-defunct) DLC websites, but every on-disc
+  retail quest under `mission_jpn/*.mib` is wrapped in it too, on top of the
+  disc-wide `DataCipher` — confirmed against a real JP disc quest (SHA1
+  header match + correct `quest.hexpat` magic after both cipher layers).
 - **Region rebase constants** (`US = JP + 0x2C24`, `EU = JP + 0x2B04`) were
   cross-derived against [GReinoso96/MHEdit](https://github.com/GReinoso96/MHEdit)
   and independently verified against the structural invariants in

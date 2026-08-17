@@ -88,6 +88,18 @@ JP and EU EBOOTs: `pspdecrypt -o out.elf EBOOT.BIN` produces a valid ELF.
 ported from `mhef`) and is decrypted fully in-process; no external tool
 needed.
 
+### Quests (`.mib`)
+
+Every quest file under `mission_jpn/*.mib` needs a **second** decryption
+pass after `DataCipher`: mhef's `QuestCipher` (`src/quests/mib.ts`), which
+mhef documents as being for DLC-downloaded quests only. Empirically, on-disc
+retail quests are wrapped in it too — confirmed against a real JP disc quest
+(filelist.csv index 4759, `mission_jpn/m00001.mib`): after `DataCipher`
+alone the bytes are indistinguishable from noise, but decrypting with
+`QuestCipher` (JP salt) yields a matching SHA1 header, the exact
+`quest.hexpat` magic, and a plausible `questHeader` (rank 0, 1-star, fee
+100z, reward 1200z, quest ID 1 — sensible for the very first quest).
+
 ## Overlay data
 
 `src/overlay/*.json` holds the small set of fields that cannot be derived
