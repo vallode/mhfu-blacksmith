@@ -9,6 +9,7 @@
  */
 import { readDecorationSkills, readDecorationValues, resolveDecorationSkill } from "../tables/decorations.js";
 import { readEquipmentCreate } from "../tables/recipes.js";
+import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveDecorationCategory } from "../overlay/decoration-categories.js";
 import { resolveMaterialStyle } from "../overlay/materials.js";
@@ -38,10 +39,10 @@ export interface EmittedDecoration {
 /** DecorationValues -> ItemID index offset (see tables/decorations.ts). */
 const DECORATION_ITEM_ID_OFFSET = 948;
 
-export function emitDecorations(reader: BinaryReader): EmittedDecoration[] {
-  const decoValues = readDecorationValues(reader);
-  const decoSkillTable = readDecorationSkills(reader);
-  const create = readEquipmentCreate(reader);
+export function emitDecorations(reader: BinaryReader, resolver?: TableAddressResolver): EmittedDecoration[] {
+  const decoValues = readDecorationValues(reader, resolver);
+  const decoSkillTable = readDecorationSkills(reader, resolver);
+  const create = readEquipmentCreate(reader, resolver);
   const createByEquipId = groupEquipCreateByEquipId(create.decoration);
   const names = getNameResolver();
 

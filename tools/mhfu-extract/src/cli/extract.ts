@@ -10,10 +10,12 @@ import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitQuestsFile } from "../emit/quests.js";
+import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
 import { verifyOffsets, type OffsetVerificationResult } from "../tables/offsets.js";
+import { verifyResolverCoverage, type ResolverCoverageResult } from "../tables/resolver.js";
 import type { UnpackManifest } from "./unpack.js";
 
 export interface ExtractOptions {
@@ -71,24 +73,44 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
 
-  if (manifest.region !== "jp") {
-    throw new Error(
-      `extract only supports the JP disc for now (unpacked region is "${manifest.region}") — see README's "Region support" section.`
-    );
-  }
-
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));
   const reader = new BinaryReader(ebootBuf);
 
-  const offsetResult = verifyOffsets(reader);
-  if (!offsetResult.ok) {
-    const failed = offsetResult.checks.filter((c) => !c.ok).map((c) => `  - ${c.name}: ${c.detail}`);
-    throw new Error(`EBOOT offset verification failed — this EBOOT doesn't look like a real JP MHP2G dump:\n${failed.join("\n")}`);
+  // JP keeps its original, unchanged fast path: static addresses +
+  // JP-specific structural self-checks (verifyOffsets(), offsets.ts).
+  // Every other region MHP2G_PROFILE knows about goes through its
+  // TableAddressResolver instead — see README's "Region support" section
+  // for exactly which tables that covers per region. A region the profile
+  // has no resolver for at all (e.g. "us" — no disc to derive one from)
+  // fails fast here rather than emitting partial/garbage equipment data.
+  let offsetResult: OffsetVerificationResult | ResolverCoverageResult;
+  let output: EmitOutput;
+  if (manifest.region === "jp") {
+    offsetResult = verifyOffsets(reader);
+    if (!offsetResult.ok) {
+      const failed = offsetResult.checks.filter((c) => !c.ok).map((c) => `  - ${c.name}: ${c.detail}`);
+      throw new Error(`EBOOT offset verification failed — this EBOOT doesn't look like a real JP MHP2G dump:\n${failed.join("\n")}`);
+    }
+    console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
+    output = emitAll(reader);
+  } else {
+    const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
+    if (!resolver) {
+      throw new Error(
+        `extract has no table address resolver for region "${manifest.region}" yet — see README's "Region support" section.`
+      );
+    }
+    offsetResult = verifyResolverCoverage(resolver, MHP2G_EMIT_TABLES, ebootBuf);
+    if (!offsetResult.ok) {
+      const failed = offsetResult.checks.filter((c) => !c.ok).map((c) => `  - ${c.name}: ${c.detail}`);
+      throw new Error(
+        `Table resolution failed for region "${manifest.region}" — this EBOOT doesn't look like a real "${manifest.region}" MHP2G/MHFU dump, or that region's resolver coverage has a gap:\n${failed.join("\n")}`
+      );
+    }
+    console.log(`Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`);
+    output = emitAll(reader, resolver);
   }
-  console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
-
-  const output: EmitOutput = emitAll(reader);
 
   console.log("Reading and parsing quest files...");
   const { quests, skipped } = await readQuestsFromUnpackedDir(options.unpacked, manifest.region);

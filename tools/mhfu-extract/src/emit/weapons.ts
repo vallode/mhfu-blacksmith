@@ -31,6 +31,7 @@ import {
 } from "../tables/weapons.js";
 import { readSharpnessTable, sharpnessStepWidths } from "../tables/sharpness.js";
 import { readEquipmentCreate, readEquipmentUpgrade, invertUpgradeTree, type EquipUpgradeEntry } from "../tables/recipes.js";
+import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
 import {
@@ -123,13 +124,13 @@ export interface EmittedWeapon {
   coatings?: string[];
 }
 
-export function emitBlademasterWeapons(reader: BinaryReader): EmittedWeapon[] {
-  const weapons = readBlademasterWeapons(reader);
-  const modelToType = readModelToWeaponType(reader);
-  const classMods = readWeaponClassModifiers(reader);
-  const sharpnessTable = readSharpnessTable(reader);
-  const create = readEquipmentCreate(reader);
-  const upgrade = readEquipmentUpgrade(reader);
+export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAddressResolver): EmittedWeapon[] {
+  const weapons = readBlademasterWeapons(reader, resolver);
+  const modelToType = readModelToWeaponType(reader, resolver);
+  const classMods = readWeaponClassModifiers(reader, resolver);
+  const sharpnessTable = readSharpnessTable(reader, resolver);
+  const create = readEquipmentCreate(reader, resolver);
+  const upgrade = readEquipmentUpgrade(reader, resolver);
   const names = getNameResolver();
 
   const createByEquipId = groupEquipCreateByEquipId([
@@ -192,12 +193,12 @@ export function emitBlademasterWeapons(reader: BinaryReader): EmittedWeapon[] {
   return out;
 }
 
-export function emitGunnerWeapons(reader: BinaryReader): EmittedWeapon[] {
-  const weapons = readGunnerWeapons(reader);
-  const modelToType = readModelToWeaponType(reader);
-  const classMods = readWeaponClassModifiers(reader);
-  const create = readEquipmentCreate(reader);
-  const upgrade = readEquipmentUpgrade(reader);
+export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressResolver): EmittedWeapon[] {
+  const weapons = readGunnerWeapons(reader, resolver);
+  const modelToType = readModelToWeaponType(reader, resolver);
+  const classMods = readWeaponClassModifiers(reader, resolver);
+  const create = readEquipmentCreate(reader, resolver);
+  const upgrade = readEquipmentUpgrade(reader, resolver);
   const names = getNameResolver();
 
   const createByEquipId = groupEquipCreateByEquipId([

@@ -20,7 +20,7 @@
  * table-address coverage doesn't block English output either way.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { StaticOffsetResolver } from "./resolver.js";
+import { StaticOffsetResolver, type TableAddressResolver } from "./resolver.js";
 
 export const JP_BASE_ADDRESS = 0x08801a4c;
 
@@ -93,6 +93,20 @@ export function tableOffset(table: TableName): number {
 /** Resolves an arbitrary JP-space virtual address (not just a table base) to a file offset. */
 export function jpVaddrToOffset(vaddr: number): number {
   return vaddr - JP_BASE_ADDRESS;
+}
+
+/**
+ * Resolves `table`'s file offset in `reader`'s buffer, optionally through an
+ * explicit `resolver` (e.g. `MHP2G_PROFILE.resolverForRegion("eu")`) instead
+ * of the JP-only `tableOffset()` default. Every `tables/*.ts` reader that
+ * takes an optional trailing `resolver` parameter goes through this, so
+ * passing no resolver reproduces the exact pre-existing JP-only behavior
+ * (byte-for-byte — `tableOffset()` itself is unchanged), while passing one
+ * (e.g. `MHP2G_EU_RESOLVER`) reads the same struct layout from wherever that
+ * resolver locates the table instead.
+ */
+export function resolveTableOffset(table: TableName, reader: BinaryReader, resolver?: TableAddressResolver): number {
+  return resolver ? resolver.resolve(table, reader.buf) : tableOffset(table);
 }
 
 export interface OffsetVerificationResult {

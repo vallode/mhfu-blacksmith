@@ -53,19 +53,19 @@ pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../.
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 
-### Region support: JP fully working; EU has a validated proof of concept
+### Region support: JP and EU equipment both fully wired into `extract`
 
 `unpack`'s `DATA.BIN`/`PARAM.SFO` layer can detect all three known discs
-(`jp` `ULJM05500`, `us` `ULUS10391`, `eu` `ULES01213`), and **`extract`'s
-EBOOT table reader still only wires up the JP disc (MHP2G, `ULJM05500`)
-end-to-end** — but the table-address lookup underneath it is no longer a
-JP-only hardcoded assumption. It now goes through a pluggable
+(`jp` `ULJM05500`, `us` `ULUS10391`, `eu` `ULES01213`), and **`extract` now
+runs its full equipment pipeline (weapons/armor/decorations/recipes) for
+both JP and EU** — the table-address lookup underneath it is no longer a
+JP-only hardcoded assumption. It goes through a pluggable
 **table address resolution strategy** (`src/tables/resolver.ts`) and a
 **game profile** (`src/tables/profile.ts` + `src/games/mhp2g.ts`), so a
 region/game can supply either a static offset table (the JP fast path) or a
 signature-based resolver (the mechanism EU needs), and a future game could
 supply its own profile entirely. This section describes that architecture,
-exactly what's validated for EU today, and what's left.
+exactly what's validated and wired for EU today, and what's left.
 
 #### Why a static offset table doesn't work for EU
 
@@ -118,118 +118,181 @@ coverage for a region doesn't block English output either way.
   TableAddressResolver | null`. `null` means "no support at all for this
   region yet" (e.g. MHP2G + `us`, since no US disc is available to derive
   anything from); a non-null resolver that throws per-table (like
-  `SignatureResolver` does for anything outside `EU_TABLE_SIGNATURES`) means
+  `SignatureResolver` does for anything outside `EU_ALL_SIGNATURES`) means
   "partial support — some tables work, ask for one you haven't validated
   and you'll get a clear error, not a wrong answer."
 - **`src/games/mhp2g.ts`** is the one real profile today: `MHP2G_PROFILE`.
   `resolverForRegion("jp")` returns a `StaticOffsetResolver` built from
   `JP_BASE_ADDRESS`/`JP_TABLE_ADDRESSES` (identical behavior to before this
   work); `resolverForRegion("eu")` returns a `SignatureResolver` built from
-  `src/tables/eu-signatures.ts`; `resolverForRegion("us")` returns `null`.
+  `src/tables/eu-signatures.ts`'s `EU_ALL_SIGNATURES`; `resolverForRegion("us")`
+  returns `null`. `MHP2G_EMIT_TABLES` lists exactly the tables `emit/*.ts`
+  needs — `cli/extract.ts` checks a region's resolver covers all of them
+  (`verifyResolverCoverage()`, `resolver.ts`) before trusting it for real
+  output.
 - This intentionally mirrors the existing "region-aware but game-agnostic"
   pattern already proven by `DataCipher`/`QuestCipher`
   (`container/databin.ts`, `quests/mib.ts`): a plain `Region` parameter into
   otherwise-stateless logic, not a heavier class hierarchy or plugin
   registry.
 - **Directory layout**: existing `src/tables/*.ts` struct readers
-  (`weapons.ts`, `armor.ts`, etc.) are unchanged and still call
-  `tableOffset()` directly — they're MHP2G's struct-reading code, just not
-  namespaced as such yet (there's only ever been one game). The new
-  `src/games/` directory is where a second game's profile would live (e.g.
-  a hypothetical `src/games/mh1.ts`) without needing `resolver.ts` or
-  `profile.ts` to change shape — see "What a future MH1/MHF1 profile would
-  need" below.
+  (`weapons.ts`, `armor.ts`, `sharpness.ts`, `decorations.ts`, `items.ts`,
+  `recipes.ts`) each take an optional trailing `resolver?: TableAddressResolver`
+  parameter now. Omitted (the default everywhere in the codebase that
+  doesn't explicitly pass one, e.g. every existing test), a reader
+  reproduces its exact original JP-only behavior byte-for-byte (still via
+  `tableOffset()`); passed (e.g. `MHP2G_EU_RESOLVER`), it reads the same
+  struct layout from wherever that resolver locates the table instead. This
+  is MHP2G's struct-reading code, just not namespaced as such yet (there's
+  only ever been one game). The `src/games/` directory is where a second
+  game's profile would live (e.g. a hypothetical `src/games/mh1.ts`)
+  without needing `resolver.ts` or `profile.ts` to change shape — see "What
+  a future MH1/MHF1 profile would need" below.
 
-#### What was validated for real against the EU disc
+#### What's validated and wired into `extract` for EU today
 
-Two tables, chosen as easy-to-fingerprint examples (per the original task
-scoping — this is a proof of concept, not full EU coverage):
+**Every table `emit/*.ts` needs for equipment output** (weapons, armor,
+decorations, crafting/upgrade recipes) is validated and wired — `extract`
+runs the exact same emit pipeline for EU as for JP, just through
+`MHP2G_EU_RESOLVER` instead of JP's static table:
 
-- **`weaponClassModifiers`** (11 u32s, `tables/weapons.ts`) — the full
-  44-byte table used as its own signature. Found at exactly one location in
-  the real decrypted EU EBOOT, `0x139170`, a `+0x2ab8` shift from JP's
-  `0x1366b8` — exactly the shift documented above (this mechanically
-  reproduces what was previously found by hand).
-- **`itemTable`** (`tables/items.ts`) — just its first 24-byte entry (the
-  dummy "None" item) as the signature; already unique across the whole
-  ~1.9MB EBOOT in both JP and EU, no need for a longer run. Found at exactly
-  one location in the real EU EBOOT, `0x19b74c`, a `+0x2f60` shift from JP's
-  `0x1987ec` — a *different* shift than `weaponClassModifiers`, which is the
-  core finding this mechanism exists to handle (proving the resolver doesn't
-  need to know the shift ahead of time, unlike a static offset table).
+- `weaponClassModifiers`, `itemTable` (validated first, as the original
+  proof of concept), `weaponsBlademaster`, `weaponsGunner`,
+  `modelToWeaponType`, `sharpnessTable`, `equipmentCreate`,
+  `equipmentUpgrade`, `decorationValues`, `decorationSkills` — each
+  validated by taking a whole number of real entries' worth of bytes from
+  JP's known-good static offset, confirming the exact same bytes occur
+  **exactly once** in the real decrypted EU EBOOT, *and* (new rigor beyond
+  the original 2-table proof of concept) diffing each table's **entire**
+  real content — not just the signature bytes — between JP and the resolved
+  EU offset. Every single one came back byte-for-byte identical across the
+  whole table, in every table checked, which is strong independent
+  confirmation both that the resolved offset is exactly right and that JP
+  and EU share identical equipment stat data (as expected: two
+  localizations of the same game). See `eu-signatures.ts`'s module doc
+  comment for the full methodology and every table's exact real offset/shift.
+- `armorValuePointers` — genuinely harder than the rest, and **solved**:
+  its own bytes are 5 *pointers* (absolute vaddrs), not raw values, so
+  unlike everything else they are NOT region-independent (confirmed: a
+  literal-content search found 0 EU matches). The fix: skip resolving the
+  pointer table itself for EU, and instead resolve each slot's *target*
+  `ArmorValue` array directly — real per-slot addresses were found by
+  dereferencing JP's own pointer table once to get each slot's known-good
+  JP array address, then applying the exact same signature-and-full-diff
+  process as every other table. Wired via `tables/armor.ts`'s
+  `ARMOR_SLOT_TABLE_NAMES` (`armorValuesHead`/`armorValuesChest`/
+  `armorValuesArm`/`armorValuesWaist`/`armorValuesLeg`), which
+  `readArmorValues(reader, resolver)` resolves directly instead of
+  dereferencing a pointer table when a `resolver` is passed — see that
+  module's doc comment for the full writeup. All 5 slots' entire real
+  arrays diffed byte-for-byte identical between JP and EU too.
+- `bowgunModTable` — same underlying problem as `armorValuePointers` (its
+  declared address is also a table of pointers — `BGModLevel *ModType1[5] :
+  u32`, confirmed against real JP bytes: the first 4 values are plausible
+  nearby vaddrs, not gameplay data — which is exactly why the original 0
+  EU matches happened), and **solved the same way**: signature-match the
+  pointed-to `BGModLevel` data pool directly instead of the pointer table's
+  own address. No reader/consumer exists for this table in `tables/*.ts`
+  today, so this is a validated reference example (proving the technique
+  generalizes), not something `MHP2G_EMIT_TABLES`/`extract` depends on.
+- `bowgunShotTable`, `bowChargeTable`, `dualAttributeWeapons` — validated
+  the same way as the main batch above (real bytes, confirmed unique in
+  EU). Also have no reader/consumer in `tables/*.ts` today (see
+  `emit/weapons.ts`'s doc comment on what's out of scope), so — like
+  `itemTable` — these are validated reference examples ready for whenever a
+  reader is written, not currently exercised by `extract`.
 
-Both were derived and confirmed using a real EU disc image
-(`Monster Hunter Freedom Unite (Europe)`) decrypted via `pspdecrypt` (see
-"EBOOT decryption" above) — not fabricated or assumed. The exact signature
-bytes and offsets are locked in as regression tests
-(`test/game-profile.test.ts`), following the same pattern as
-`test/ovl.test.ts`'s "known real hitzone/reward bytes" tests: the real bytes
-are embedded in a small synthetic buffer at the real file offset, so the
-test exercises genuine validated data without needing the actual (much
-larger, disc-specific, un-committable) EBOOT dump.
+All of the above were derived and confirmed using real disc images
+(`Monster Hunter Freedom Unite (Europe)`/`Monster Hunter Portable 2nd G
+(Japan)`) decrypted via `pspdecrypt` (see "EBOOT decryption" below) — not
+fabricated or assumed. Every signature and its resulting offset is locked
+in as a regression test (`test/game-profile.test.ts`, plus a
+resolver-based `readArmorValues` test in `test/armor.test.ts`), following
+the same pattern as `test/ovl.test.ts`'s "known real hitzone/reward bytes"
+tests: the real bytes are embedded in a small synthetic buffer at the real
+file offset, so tests exercise genuine validated data without needing the
+actual (much larger, disc-specific, un-committable) EBOOT dump.
 
-**What this does *not* mean**: `extract`'s CLI still refuses non-JP input
-(see `cli/extract.ts`) — no `data/*.json` output has been produced or
-diffed for EU, and the other 13 declared EBOOT tables have no EU signature
-yet. This is a validated *mechanism* plus 2 real examples, not EU table
-support.
+**What's still not covered**: only 2 tables from the original 15-table
+`JP_TABLE_ADDRESSES` list have no EU resolution at all — neither is needed
+by `emit/*.ts` (see above): none, actually — every declared table now has
+*either* a direct signature *or* (for the two pointer tables) an indirect
+one. What's genuinely still missing is **US** (`null` — no US disc
+available to derive anything from at all) and, within EU itself, **quest
+extraction is not the same kind of "solved"**: it runs (see next section)
+but with real, DATA.BIN-layout-driven gaps, not table-address gaps.
 
-#### TODO: finishing EU table support, table by table
+#### Real end-to-end `extract` run against the EU disc
 
-Every table below was probed with the same technique used for the two
-validated tables (copy a chunk of the table's real JP bytes, search for it
-in the real EU EBOOT via `findAllOccurrences`) as part of this session's
-investigation. All found **exactly one match** in the real EU EBOOT except
-where noted — meaning most of the remaining work is likely mechanical
-(build the signature, confirm uniqueness again independently, add it to
-`eu-signatures.ts`, add a `game-profile.test.ts` regression test), not new
-research, but each one still needs its *own* independent confirmation
-before being trusted (a single coincidental unique match isn't the same as
-a validated one — cross-check the resulting offset's decoded values look
-plausible, the way `verifyOffsets()` does for JP):
+Ran `unpack` (reusing a cached decrypted EU EBOOT + the real EU ISO) then
+`extract` against the real EU disc. Both completed successfully:
 
-1. `weaponsBlademaster`, `weaponsGunner`, `decorationSkills`,
-   `sharpnessTable`, `modelToWeaponType`, `equipmentCreate`,
-   `equipmentUpgrade`, `bowgunShotTable`, `bowChargeTable`,
-   `dualAttributeWeapons` — all found a single unique match at a real
-   `+0x2b04` shift from their JP offset. Likely the easiest batch: same
-   shift for all of them suggests one contiguous region of the EU binary
-   moved as a block.
-2. `decorationValues` — single unique match at `+0x2f60` (same shift as the
-   already-validated `itemTable`; unsurprising, since `decorationValues` is
-   `itemTable`'s own tail past index 947 — see `tables/items.ts`).
-3. `bowgunModTable` — **no match found** with the signature lengths tried
-   in this session; needs more investigation (possibly this table's content
-   isn't as region-independent as assumed, or a shorter/differently-placed
-   signature is needed). Note this table has no reader/consumer in
-   `tables/*.ts` today regardless.
-4. `armorValuePointers` — genuinely harder than the rest: it's a table of 5
-   *pointers* (absolute vaddrs), not raw values, so its own bytes are NOT
-   region-independent (the pointed-to arrays' addresses differ by region).
-   The right approach is almost certainly: signature-match each slot's
-   target `ArmorValue` array directly (region-independent struct content,
-   same technique as everything else), then either (a) skip resolving the
-   pointer table itself and read each slot's array straight from its
-   signature-found address, or (b) locate the pointer table by searching
-   for a run of 5 plausible-looking vaddrs whose targets match the
-   independently-found array addresses. Not attempted in this session.
-5. Once several tables are validated, wire `SignatureResolver`'s coverage
-   into an actual EU `extract` path: thread a `GameProfile`/resolver through
-   the `tables/*.ts` readers (today they all call the JP-only `tableOffset()`
-   directly, which was deliberately left unchanged in this task to keep the
-   diff minimal and JP behavior provably identical), relax `cli/extract.ts`'s
-   `region !== "jp"` guard, and run a real `unpack`/`extract`/`diff` pass
-   against the EU disc once enough tables are covered to be useful — the
-   English committed `data/` files won't match EU's own (non-English)
-   in-disc text for name/flavor fields the same way JP's enum-bootstrap
-   currently supplies English names regardless of disc region, so `diff`
-   output should be interpreted the same way it already is for JP: a tool
-   for surfacing *stat* mismatches, not text.
-6. US: **no US disc is available** to derive anything from — `us` is
+```
+Detected region: eu (ULES01213)
+...
+Table resolution passed (14 checks) for region "eu".
+Reading and parsing quest files...
+Parsed 519 quests, skipped 32.
+Wrote 21 data file(s) + EXTRACTION.json
+```
+
+- **Equipment**: identical set of 21 `data/*.json`-shaped files as JP
+  (5 armor slots, 11 weapon types, decorations). Diffed the **entire**
+  output, every field, of every one of those 21 files against a fresh real
+  JP `extract` run (equal entry counts too, e.g. 176 great swords both
+  sides) — **byte-for-byte identical, zero divergences**, exactly as
+  expected for two localizations sharing the same underlying stat data
+  (e.g. "Carbalite Sword" attack 912/rarity 6/same crafting recipe on both
+  sides). No JP/EU balance differences or resolver bugs surfaced by this
+  comparison; nothing to flag.
+- **Quests**: not blocked by table-address resolution at all (a completely
+  separate `DataCipher`/`QuestCipher` path, already region-aware from
+  before this task) — 519 of 551 real quest files parsed successfully, 32
+  skipped. This is *better* than the "very likely still fail/need skipping
+  entirely" expectation, but genuinely incomplete: the skips are real
+  `DATA.BIN` file-index/layout differences between JP and EU (some quest
+  files land at a shifted index the JP-derived `listQuestFiles()` doesn't
+  account for — see `EXTRACTION.json`'s `questsSkipped` reasons, e.g. "quest
+  header declares size 2834403050, but only 2016 bytes follow"), not a
+  table-address problem this task's scope covers. Left as-is per this
+  task's explicit scope (region/table-address plumbing only, not
+  DATA.BIN-layout/quest-index fixes) — a real gap, honestly reported rather
+  than silently ignored or hidden by a blanket "quests unsupported for EU"
+  claim.
+- `cli/extract.ts` no longer hardcodes "JP only": it now asks
+  `MHP2G_PROFILE.resolverForRegion(region)` for any region and fails fast
+  with a clear error only if that returns `null` (today: only `us`). A
+  region whose resolver exists but doesn't cover a required table (checked
+  via `verifyResolverCoverage(resolver, MHP2G_EMIT_TABLES, buf)`, the
+  region-agnostic analog of JP's `verifyOffsets()`) also fails fast, naming
+  exactly which table's resolution failed, rather than emitting partial or
+  garbage equipment data silently. **Design choice**: extraction either
+  runs in full for a region's equipment or refuses outright — no
+  degrade-some-fields-and-omit-others middle ground — because every table
+  above is needed by every equipment file (e.g. `equipmentCreate` feeds
+  crafting costs on weapons *and* armor *and* decorations), so a
+  half-covered resolver would mean partially-wrong-looking output across
+  nearly every file rather than one cleanly-omitted field; today this is
+  moot in practice since EU's resolver already covers everything required.
+
+#### TODO
+
+1. **US**: no US disc is available to derive anything from — `us` is
    `null` in `MHP2G_PROFILE.resolverForRegion()` today. If a US disc ever
    becomes available, the workflow is identical to EU's: decrypt a real US
-   EBOOT, derive signatures the same way, confirm uniqueness, add to a new
-   `us-signatures.ts`, wire into `mhp2g.ts`.
+   EBOOT, derive signatures the same way, confirm uniqueness, diff full
+   table content against JP, add to a new `us-signatures.ts`, wire into
+   `mhp2g.ts`.
+2. **EU quest extraction's 32 skipped files**: needs its own
+   DATA.BIN-layout investigation (why do these specific ~32 real quest
+   files, across village/guild/training hubs, land at a shifted or
+   differently-sized location in EU's `DATA.BIN` vs. JP's) — out of scope
+   for this task (table-address/region plumbing only), but a clear next
+   step for whoever picks up quest-side EU work.
+3. **`diff`'s English-name caveat still applies to EU** the same way it
+   already applied to JP: names are bootstrapped from the `mhp2g-patterns`
+   enums (English), not disc strings, so `diff` output should be read as a
+   *stat*-mismatch tool, not a text/translation one, for either region.
 
 #### What a future MH1/MHF1 game profile would need
 
@@ -521,10 +584,13 @@ not automated in CI) — see git history for the specific findings, notably:
 
 `test/resolver.test.ts` and `test/game-profile.test.ts` cover the table
 address resolution architecture (see "Region support" above):
-`StaticOffsetResolver`/`SignatureResolver` behavior against synthetic
-fixtures, and `MHP2G_PROFILE`'s JP path staying identical to the pre-existing
-`tableOffset()` plus its EU path resolving the two real, disc-validated
-signatures (`weaponClassModifiers`, `itemTable`) at their real found offsets
-— same "embed the real bytes in a small synthetic buffer" pattern as
-`test/ovl.test.ts`'s known-real-bytes tests, so no real EBOOT dump needs to
-ship with the repo.
+`StaticOffsetResolver`/`SignatureResolver`/`verifyResolverCoverage()`
+behavior against synthetic fixtures, and `MHP2G_PROFILE`'s JP path staying
+identical to the pre-existing `tableOffset()` plus its EU path resolving
+every one of `EU_ALL_SIGNATURES`' real, disc-validated signatures at their
+real found offsets — same "embed the real bytes in a small synthetic
+buffer" pattern as `test/ovl.test.ts`'s known-real-bytes tests, so no real
+EBOOT dump needs to ship with the repo. `test/armor.test.ts` additionally
+covers `readArmorValues(reader, resolver)`'s direct-array EU path (bypassing
+`armorValuePointers`' pointer indirection entirely) against a synthetic
+fixture.

@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
-import { ARMOR_SLOTS, readArmorValues } from "../src/tables/armor.js";
+import { ARMOR_SLOT_TABLE_NAMES, ARMOR_SLOTS, readArmorValues } from "../src/tables/armor.js";
+import { SignatureResolver } from "../src/tables/resolver.js";
 import { fixtureReader } from "./helpers.js";
 
 test("readArmorValues dereferences each slot's single base pointer, not per-entry pointers", () => {
@@ -49,4 +50,46 @@ test("readArmorValues dereferences each slot's single base pointer, not per-entr
   assert.deepEqual(head1.resistances, { fire: 1, water: -1, thunder: 0, dragon: 0, ice: 0 });
   assert.equal(head1.slots, 1);
   assert.deepEqual(head1.skills[0], { skill: 10, amount: 3 });
+});
+
+test("readArmorValues(reader, resolver) resolves each slot's array directly via ARMOR_SLOT_TABLE_NAMES, bypassing the pointer table entirely", () => {
+  // Put each slot's array at a distinct, resolver-only-known location — no
+  // armorValuePointers pointer table is written into this fixture at all,
+  // proving the resolver path never dereferences one. A distinct marker
+  // u32 at each slot's base (used only as the signature to search for)
+  // keeps the 5 slots from being ambiguous with each other.
+  // Spaced far enough apart that even the largest real slot count (head,
+  // 436 entries * 40 bytes ~= 0x4420) can't spill into the next slot's base.
+  const slotBases: Record<string, number> = {
+    head: 0x10000,
+    chest: 0x20000,
+    arm: 0x30000,
+    waist: 0x40000,
+    leg: 0x50000,
+  };
+  const { buf, reader } = fixtureReader(0x60000);
+  const markers: Record<string, number> = { head: 0xaaaa0001, chest: 0xbbbb0002, arm: 0xcccc0003, waist: 0xdddd0004, leg: 0xeeee0005 };
+  for (const [slot, base] of Object.entries(slotBases)) buf.writeUInt32LE(markers[slot]!, base);
+
+  const off = slotBases.chest! + 1 * 40; // second chest armor piece
+  buf.writeUInt16LE(7, off + 0); // maleId
+  buf.writeUInt8(0, off + 5); // rarity
+  buf.writeUInt32LE(600, off + 8); // price
+  buf.writeInt8(4, off + 12); // defense
+
+  const resolver = new SignatureResolver(
+    Object.fromEntries(
+      Object.entries(slotBases).map(([slot, base]) => [
+        ARMOR_SLOT_TABLE_NAMES[slot as keyof typeof ARMOR_SLOT_TABLE_NAMES],
+        { signature: buf.subarray(base, base + 4), signatureOffset: 0 },
+      ])
+    )
+  );
+
+  const armor = readArmorValues(reader, resolver);
+  assert.deepEqual(Object.keys(armor), [...ARMOR_SLOTS]);
+  const chest1 = armor.chest[1]!;
+  assert.equal(chest1.maleId, 7);
+  assert.equal(chest1.price, 600);
+  assert.equal(chest1.defense, 4);
 });

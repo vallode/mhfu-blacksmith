@@ -9,7 +9,8 @@
  * cumulative values here since that's the literal on-disk layout.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { SHARPNESS_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "./offsets.js";
+import { SHARPNESS_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
+import type { TableAddressResolver } from "./resolver.js";
 
 export const SHARPNESS_COLORS = ["red", "orange", "yellow", "green", "blue", "white", "purple"] as const;
 export type SharpnessColor = (typeof SHARPNESS_COLORS)[number];
@@ -21,9 +22,13 @@ export interface SharpnessEntry {
   cumulative: Record<SharpnessColor, number>;
 }
 
-/** SharpnessTable.Sharpness[40] @ 0x08976508 — 14 bytes/entry (7x u16). */
-export function readSharpnessTable(reader: BinaryReader): SharpnessEntry[] {
-  const base = tableOffset("sharpnessTable");
+/**
+ * SharpnessTable.Sharpness[40] @ 0x08976508 — 14 bytes/entry (7x u16).
+ * `resolver` defaults to JP's static table — pass e.g. `MHP2G_EU_RESOLVER`
+ * (games/mhp2g.ts) to read from a different region.
+ */
+export function readSharpnessTable(reader: BinaryReader, resolver?: TableAddressResolver): SharpnessEntry[] {
+  const base = resolveTableOffset("sharpnessTable", reader, resolver);
   const out: SharpnessEntry[] = [];
   for (let i = 0; i < TABLE_COUNTS.sharpnessEntries; i++) {
     const off = base + i * SHARPNESS_ENTRY_SIZE;
