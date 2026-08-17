@@ -14,7 +14,6 @@ import {
   collectOfflineUrls,
   countCached,
   downloadOffline,
-  totalUrls,
 } from "@/lib/offline-cache";
 
 export type OfflineDownloadStatus =
@@ -75,7 +74,7 @@ export function OfflineProvider({ children }: { children: React.ReactNode }) {
     setState((s) => ({ ...s, status: "checking" }));
     try {
       const urls = await collectOfflineUrls();
-      const total = totalUrls(urls);
+      const total = urls.length;
       const cached = await countCached(urls);
       if (!mounted.current) return;
       setState({ status: cached >= total ? "complete" : "idle", cached, total, progress: 0 });
@@ -89,7 +88,7 @@ export function OfflineProvider({ children }: { children: React.ReactNode }) {
     setState((s) => ({ ...s, status: "downloading", progress: 0 }));
     try {
       const urls = await collectOfflineUrls();
-      const total = totalUrls(urls);
+      const total = urls.length;
       const cached = await downloadOffline(urls, (done, jobTotal) => {
         if (!mounted.current) return;
         setState((s) => ({

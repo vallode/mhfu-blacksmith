@@ -24,12 +24,12 @@ function remembered(): string | null {
 }
 
 /**
- * Prompts (once) to download data + pages for offline use, via a toast rather
- * than an always-on homepage control. Sticky until the user downloads or
- * dismisses; not shown again after either. A persistent, non-dismissable
+ * Prompts (once) to download the site's data for offline use, via a toast
+ * rather than an always-on homepage control. Sticky until the user downloads
+ * or dismisses; not shown again after either. A persistent, non-dismissable
  * equivalent lives on the options page (OfflineSettings) for anyone who
  * dismissed this or wants to re-download later — both share the caching
- * logic via useOfflineDownload so they never disagree about what's cached.
+ * logic via OfflineContext so they never disagree about what's cached.
  */
 export default function OfflineDownload() {
   const { toast, update, dismiss } = useToast();
@@ -55,7 +55,7 @@ export default function OfflineDownload() {
       message:
         offline.cached > 0
           ? `Partially cached (${offline.cached}/${offline.total}). Finish downloading so the smithy works without a connection.`
-          : "Save weapons, armor, monsters, and pages so the smithy works without a connection.",
+          : "Save weapon, armor, and monster data so search, the calculator, and browsing work without a connection.",
       duration: null,
       actions: [
         { label: "Download", onClick: () => offline.download() },

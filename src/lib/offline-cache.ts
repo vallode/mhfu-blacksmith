@@ -1,93 +1,83 @@
 const RUNTIME_CACHE = "mhfu-offline-v1";
-// Matches the cacheName next-pwa's default "pages" runtime-caching rule uses
-// for plain document navigations, so pages we precache here are found by it.
-const PAGES_CACHE = "pages";
 
 interface Manifest {
   version?: string;
   files?: string[];
 }
 
-export interface OfflineUrlSet {
-  data: string[];
-  pages: string[];
-}
-
-export async function collectOfflineUrls(): Promise<OfflineUrlSet> {
+/**
+ * Offline downloads only cover the compact data bundles + images — the raw
+ * material every page renders from client-side (see src/lib/client-data.ts).
+ * We deliberately don't precache individual page documents here: with ~3800
+ * weapon/armor/monster/decoration routes, that meant thousands of near-
+ * identical HTML/RSC fetches for pages whose actual content is just this
+ * same data rendered client-side, which was slow and mostly redundant bytes.
+ * Pages you actually visit still get cached for offline reuse automatically
+ * by next-pwa's normal runtime caching (the "pages"/"pages-rsc" rules in
+ * next.config.ts) — this button just guarantees the underlying data is there
+ * up front so search, the calculator, and any page you do open work offline.
+ */
+export async function collectOfflineUrls(): Promise<string[]> {
   const manifest: Manifest = await fetch("/data/data-manifest.json").then((r) =>
     r.json()
   );
-  const data = (manifest.files ?? []).map((f) => `/data/${f}`);
-  // images manifest — generated alongside the data manifest
+  const urls = (manifest.files ?? []).map((f) => `/data/${f}`);
   try {
     const images: string[] = await fetch("/data/image-manifest.json").then((r) =>
       r.json()
     );
-    data.push(...images);
+    urls.push(...images);
   } catch {
     // image manifest missing; data-only offline is still useful
   }
-  data.push("/search-data.json", "/weapon-data.json");
-
-  let pages: string[] = [];
-  try {
-    pages = await fetch("/data/page-manifest.json").then((r) => r.json());
-  } catch {
-    // page manifest missing (e.g. older build); data-only offline still works
-  }
-
-  return { data, pages };
+  urls.push("/search-data.json", "/weapon-data.json");
+  return urls;
 }
 
-export function totalUrls({ data, pages }: OfflineUrlSet): number {
-  return data.length + pages.length;
-}
-
-export async function countCached({ data, pages }: OfflineUrlSet): Promise<number> {
+export async function countCached(urls: string[]): Promise<number> {
   try {
-    const dataCache = await caches.open(RUNTIME_CACHE);
-    const pagesCache = await caches.open(PAGES_CACHE);
+    const cache = await caches.open(RUNTIME_CACHE);
     let n = 0;
-    for (const u of data) if (await dataCache.match(u)) n++;
-    for (const u of pages) if (await pagesCache.match(u)) n++;
+    for (const u of urls) if (await cache.match(u)) n++;
     return n;
   } catch {
     return 0;
   }
 }
 
+const FETCH_TIMEOUT_MS = 15000;
+
 export async function downloadOffline(
-  urls: OfflineUrlSet,
+  urls: string[],
   onProgress: (done: number, total: number) => void
 ): Promise<number> {
-  const dataCache = await caches.open(RUNTIME_CACHE);
-  const pagesCache = await caches.open(PAGES_CACHE);
-  const jobs = [
-    ...urls.data.map((u) => ({ u, cache: dataCache })),
-    ...urls.pages.map((u) => ({ u, cache: pagesCache })),
-  ];
+  const cache = await caches.open(RUNTIME_CACHE);
 
   // Download in small batches for progress without hammering the server.
+  // Each fetch is time-boxed so one stalled request can't freeze the whole
+  // download — it just counts as failed and the batch moves on.
   const BATCH = 20;
-  const fetchInto = async (u: string, cache: Cache) => {
+  const fetchInto = async (u: string) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
     try {
-      const res = await fetch(u, { cache: "no-cache" });
+      const res = await fetch(u, { cache: "no-cache", signal: controller.signal });
       if (res.ok) await cache.put(u, res);
     } catch {
-      // individual file failed; keep going
+      // individual file failed or timed out; keep going
+    } finally {
+      clearTimeout(timer);
     }
   };
-  for (let i = 0; i < jobs.length; i += BATCH) {
-    await Promise.all(
-      jobs.slice(i, i + BATCH).map(({ u, cache }) => fetchInto(u, cache))
-    );
-    onProgress(Math.min(i + BATCH, jobs.length), jobs.length);
+  for (let i = 0; i < urls.length; i += BATCH) {
+    await Promise.all(urls.slice(i, i + BATCH).map(fetchInto));
+    onProgress(Math.min(i + BATCH, urls.length), urls.length);
   }
   return countCached(urls);
 }
 
 export async function clearOffline(): Promise<void> {
-  await Promise.all([caches.delete(RUNTIME_CACHE), caches.delete(PAGES_CACHE)]);
+  await caches.delete(RUNTIME_CACHE);
 }
 
 export function cachesSupported(): boolean {
