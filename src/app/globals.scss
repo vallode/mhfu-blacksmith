@@ -1,9 +1,13 @@
 @use "../styles/mixins" as *;
 
 // ─── Tailwind ─────────────────────────────────────────────────────────────────
-// Utilities are layered below the base styles so component CSS keeps winning
-// over utilities of equal specificity, and over the preflight reset.
-@import "tailwindcss" layer(utilities);
+// Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
+// here. Next.js's webpack CSS pipeline has a longstanding bug where any
+// `@import <url> layer(name);` gets mis-rewritten as `@media layer(name) {}`
+// in the compiled output, which is invalid CSS and silently drops the entire
+// block (every Tailwind utility class, including `.flex`, stopped applying
+// site-wide because of this). See vercel/next.js#55763 and #66321.
+@import "tailwindcss";
 
 // Design tokens exposed to Tailwind as utility classes (bg-accent, text-muted,
 // border-hr, …). Keep in sync with src/styles/_variables.scss.
@@ -148,39 +152,45 @@ hr.border {
 // ─── Reusable components ──────────────────────────────────────────────────────
 // Shared building blocks used as plain class strings across pages. Layout
 // (flex/spacing) is done with Tailwind utilities directly in the markup.
+//
+// Deliberately left unlayered (not wrapped in `@layer components`): Tailwind
+// itself declares an internal layer named "components" as part of `@layer
+// theme, base, components, utilities;`, which ranks below its own "utilities"
+// layer. Reusing that same layer name here would merge our rules into
+// Tailwind's lower-priority layer instead of overriding it. Unlayered rules
+// always win over any layered rule regardless of order, which is what we want
+// (component classes like .split-page should beat conflicting utilities).
 
-@layer components {
-  // A full-width row in a linked list table (weapon-type lists, armor lists).
-  .list-row {
-    align-items: center;
-    display: flex;
-    flex: 0 0 38px;
-    gap: 10px;
-    height: 38px;
-    padding: 0 16px;
+// A full-width row in a linked list table (weapon-type lists, armor lists).
+.list-row {
+  align-items: center;
+  display: flex;
+  flex: 0 0 38px;
+  gap: 10px;
+  height: 38px;
+  padding: 0 16px;
 
-    &:hover {
-      @include green-hover-gradient;
-    }
+  &:hover {
+    @include green-hover-gradient;
+  }
+}
+
+// Two-panel layout: tree sidebar + detail panel split the space equally.
+.split-page {
+  display: flex;
+  gap: 1.3rem;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+
+  > .card {
+    flex: 1 1 0%;
+    min-width: 0;
   }
 
-  // Two-panel layout: tree sidebar + detail panel split the space equally.
-  .split-page {
-    display: flex;
-    gap: 1.3rem;
-    height: 100%;
-    justify-content: center;
-    overflow: hidden;
-    width: 100%;
-
-    > .card {
-      flex: 1 1 0%;
-      min-width: 0;
-    }
-
-    @media screen and (max-width: 600px) {
-      flex-direction: column;
-    }
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
   }
 }
 
