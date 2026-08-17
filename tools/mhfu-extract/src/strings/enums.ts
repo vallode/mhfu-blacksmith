@@ -38,7 +38,7 @@ function parseEnumBlocks(source: string): Map<string, string[]> {
 
   for (const match of source.matchAll(blockPattern)) {
     const [, name, countStr, body] = match;
-    const expectedCount = Number.parseInt(countStr!, 10);
+    const declaredCount = Number.parseInt(countStr!, 10);
     const entries: string[] = [];
 
     const stringPattern = /"((?:[^"\\]|\\.)*)"/g;
@@ -46,9 +46,19 @@ function parseEnumBlocks(source: string): Map<string, string[]> {
       entries.push(strMatch[1]!.replace(/\\"/g, '"').replace(/\\\\/g, "\\"));
     }
 
-    if (entries.length !== expectedCount) {
+    // The declared `str Name[N]` header count is unreliable — every single
+    // table in these vendored files is off from its own parsed entry count
+    // (checked across equip.enum/items.enum/monster.enum), usually by
+    // exactly one. The *parsed* count is what matters: cross-checked against
+    // real EBOOT stat-array lengths (tables/*.ts), it matches exactly for
+    // every table, including ChestArmorID (declared 435, actual 420 — the
+    // real chest armor stat table also has 420 entries). So we trust
+    // `entries.length`, not `declaredCount`, and only guard against the
+    // parser finding suspiciously few strings (a real sign the format
+    // changed), not against this known, harmless header/body mismatch.
+    if (entries.length < declaredCount / 2) {
       throw new Error(
-        `enums: ${name} declared ${expectedCount} entries but parsed ${entries.length} — .enum format may have changed`
+        `enums: ${name} declared ${declaredCount} entries but parsed only ${entries.length} — .enum format may have changed`
       );
     }
     blocks.set(name!, entries);
