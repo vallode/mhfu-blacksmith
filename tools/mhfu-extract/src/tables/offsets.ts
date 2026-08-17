@@ -5,19 +5,22 @@
  * Addresses below are virtual memory addresses (matching the pattern's
  * `#pragma base_address 0x08801A4C`), i.e. `fileOffset = vaddr - JP_BASE_ADDRESS`.
  *
- * JP-only, deliberately. We validated against real JP and EU EBOOTs and
- * found that a single per-region rebase constant does NOT hold — different
- * tables shift by different amounts in the EU binary (localized string data
- * inserted at different points pushes some tables further than others), so
- * a naive `REGION_REBASE` constant silently misreads some tables. Supporting
- * US/EU properly needs per-table signature-based address discovery (find
- * each table's real address by searching for its region-independent stat
- * bytes), which is real work we're deferring. Until then this whole pipeline
- * only supports the JP disc (ULJM-05500 / MHP2G) — see README for tracking.
- * English names still come from the mhp2g-patterns enums bootstrap, not disc
- * strings, so the JP-only restriction here doesn't block English output.
+ * This is JP's `StaticOffsetResolver` data (see resolver.ts) — a fixed,
+ * pre-known table -> address map, which only works because JP's addresses
+ * are stable and were fully transcribed from the vendored pattern. We
+ * validated against real JP and EU EBOOTs and found that a single
+ * per-region rebase constant does NOT hold for EU — different tables shift
+ * by different amounts in the EU binary (localized string data inserted at
+ * different points pushes some tables further than others) — so EU instead
+ * uses a `SignatureResolver` (tables/eu-signatures.ts), currently covering 2
+ * tables as a proof of concept. See README's "Region support" section for
+ * the full writeup and per-table TODO list, and games/mhp2g.ts for how both
+ * resolvers are wired together into one `GameProfile`. English names still
+ * come from the mhp2g-patterns enums bootstrap, not disc strings, so JP/EU
+ * table-address coverage doesn't block English output either way.
  */
 import { BinaryReader } from "../binary/reader.js";
+import { StaticOffsetResolver } from "./resolver.js";
 
 export const JP_BASE_ADDRESS = 0x08801a4c;
 
@@ -72,9 +75,19 @@ export const SHARPNESS_ENTRY_SIZE = 14;
 export const EQUIP_CREATE_ENTRY_SIZE = 26;
 export const EQUIP_UPGRADE_ENTRY_SIZE = 28;
 
+/**
+ * JP's resolver, expressed via the resolution-strategy abstraction
+ * (resolver.ts). Kept private here — games/mhp2g.ts re-exports the same
+ * construction as `MHP2G_JP_RESOLVER` for the `GameProfile`-based path;
+ * this module's own `tableOffset()`/`jpVaddrToOffset()` exist so every
+ * existing tables/*.ts reader can keep calling them exactly as before,
+ * without needing a `Buffer`/resolver threaded through every call site.
+ */
+const JP_RESOLVER = new StaticOffsetResolver(JP_BASE_ADDRESS, JP_TABLE_ADDRESSES);
+
 /** Resolves a JP table address to a JP EBOOT file offset. */
 export function tableOffset(table: TableName): number {
-  return JP_TABLE_ADDRESSES[table] - JP_BASE_ADDRESS;
+  return JP_RESOLVER.resolve(table);
 }
 
 /** Resolves an arbitrary JP-space virtual address (not just a table base) to a file offset. */
