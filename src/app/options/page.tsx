@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
+import SaveSyncSettings from "@/components/SaveSyncSettings";
 import styles from "@/styles/options.module.scss";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function OptionsPage() {
       <hr className="border" />
 
       <div className={styles.content}>
+        <SaveSyncSettings />
         <OfflineSettings />
       </div>
     </div>
