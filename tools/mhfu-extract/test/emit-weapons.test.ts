@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { emitBlademasterWeapons } from "../src/emit/weapons.js";
-import { EQUIP_CREATE_ENTRY_SIZE, WEAPON_BM_ENTRY_SIZE, tableOffset } from "../src/tables/offsets.js";
+import { emitBlademasterWeapons, emitGunnerWeapons } from "../src/emit/weapons.js";
+import { EQUIP_CREATE_ENTRY_SIZE, WEAPON_BM_ENTRY_SIZE, WEAPON_GUN_ENTRY_SIZE, tableOffset } from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
 // head(437) + chest(435) + arm(426) + waist(424) + leg(434) entries, plus the
@@ -62,4 +62,40 @@ test("emitBlademasterWeapons reproduces the real Carbalite Sword entry end-to-en
   assert.equal(sword!.elements, null);
   assert.equal(sword!.create_cost, 25000); // 50000 / 2
   assert.deepEqual(sword!.create_mats, [{ name: "Carbalite Ore", amount: 5, type: "ore", color: "slate" }]);
+});
+
+/**
+ * Reproduces real `WepGunValue[1]` bytes for "Iron Bow I" with a real bow
+ * `shotCoatings` value (66 = bits 1+6, real "Exterminator Bow II" bytes —
+ * see `test/weapons.test.ts`'s `decodeBowCoatings` fixtures for the
+ * correlation) to confirm `emitGunnerWeapons` routes bow coatings through
+ * `decodeBowCoatings()` (fix-plan.md issue #7), not the bowgun-ammo-flag
+ * `decodeShotCoat()` — before the fix this same raw value decoded as
+ * bowgun ammo flags (semantically meaningless for a bow) instead of
+ * `["power", "paint"]`.
+ */
+function buildBowCoatingsFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const wOff = tableOffset("weaponsGunner") + 1 * WEAPON_GUN_ENTRY_SIZE;
+  buf.writeUInt16LE(20, wOff + 0); // ModelID
+  buf.writeUInt32LE(1000, wOff + 4); // Price
+  buf.writeUInt16LE(80, wOff + 8); // Attack
+  buf.writeUInt32LE(66, wOff + 24); // ShotCoatings: power (bit 1) + paint (bit 6)
+
+  // Mod2WepType[20] = 10 ("bow", last entry in WEAPON_TYPE_NAMES).
+  buf.writeUInt8(10, tableOffset("modelToWeaponType") + 20);
+
+  return reader;
+}
+
+test("emitGunnerWeapons decodes a real bow's coatings via decodeBowCoatings, not decodeShotCoat", () => {
+  const reader = buildBowCoatingsFixture();
+  const weapons = emitGunnerWeapons(reader);
+  // WepGunID[1] is real, unrelated vendored enum data ("Shooter's Barrel");
+  // only its raw shotCoatings/modelId bytes here are the fixture under test.
+  const bow = weapons.find((w) => w.name === "Shooter's Barrel");
+  assert.ok(bow, "the fixture bow entry should be emitted");
+  assert.equal(bow!.type, "bow");
+  assert.deepEqual(bow!.coatings, ["power", "paint"]);
 });

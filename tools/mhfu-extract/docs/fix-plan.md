@@ -124,6 +124,61 @@ higher-risk/exploratory (needs real disc-byte access this planning session
 didn't have), so it shouldn't block shipping the confident, fast fixes
 first.
 
+**Update (executed against a real unpacked JP EBOOT):**
+
+Approach 1 (hidden index field) is **disproven**. Dumped `unkn1`/`unkn2`/
+`unkn3` for all 420 real `chestArmor` entries: `unkn1` and `unkn2` are `0`
+for every single entry (not an index field at all); `unkn3` does have 420
+distinct values across a 0-435 range, making it superficially plausible,
+but testing it directly as the name-table index (both directly and
+inverted) against real committed stats gave a **0% match rate** — worse
+than the current raw-position baseline. `unkn3` is something else (possibly
+a display-sort key or an unrelated table reference), not a name-table link.
+
+Approach 2 (fingerprint matching) **partially works and is now wired in**
+(`src/overlay/armor-index-corrections.{ts,json}`, consumed by
+`emit/armor.ts`'s `emitSlot()`). Method: fingerprint every raw
+`ArmorValueEntry` on `(defense, fireRes, waterRes, thunderRes, dragonRes,
+rarity, slots, halvedPrice)` and match 1:1 against the same fingerprint
+computed from each committed `data/armor/*.json` entry; a correction is
+only recorded when *both* the raw fingerprint and the committed name are
+unique within the slot (`scripts/generate-armor-corrections.ts`, a one-off
+dev tool, not run at pipeline runtime). Critically, a raw position whose
+*own* index was claimed as some other entry's correction target is
+**suppressed** (emits nothing) rather than falling back to a now-known-wrong
+name — an early version without this produced ~77 spurious duplicate names
+per slot before this was added; confirmed fixed (down to the same 4
+legitimate duplicate names already present in committed data).
+
+**Coverage** (fingerprint-confirmed, i.e. correction + already-correct
+combined, per slot / out of total raw entries): head 194/437 (44%), chest
+117/420 (28%), arm 148/419 (35%), waist 231/419 (55%), leg 219/418 (52%).
+The remainder (45-72% depending on slot) has an ambiguous or absent
+fingerprint match (mostly low-rarity starter gear sharing near-identical
+stats) and still falls back to unconfirmed raw-position naming — this is a
+**partial fix**, not a complete one.
+
+**Measured impact** (real JP `unpack`/`extract`/`diff`, this fix only,
+holding all other fixes constant): armor `fieldMismatches` across all 5
+files dropped from **13,463 to 5,958** (-55.7%); combined with
+`itemsOnlyIn*`, total armor mismatches dropped from 13,991 to 6,685.
+Per-field breakdown confirms the fix is real and targeted, not noise:
+`defence` 1362→402, `fire_res` 1272→393, `water_res` 1294→399, `thunder_res`
+1340→398, `dragon_res` 1084→344, `ice_res` 1301→401, `rarity` 700→208,
+`rank` 371→109, `create_cost` 1320→391, `slots` 894→427 — every purely
+stat-derived field dropped ~65-75%. `skills` dropped much less (1808→1501,
+-17%) and `create_mats` actually rose slightly (717→985); see issue #2's
+update below for why.
+
+Confirmed with a hand-verified example (also now a regression test,
+`test/armor-index-corrections.test.ts` + `emit-armor.test.ts`): raw
+`head[12]`'s real bytes (defense 20, fire -6/water -5/thunder 2/dragon 2,
+slots 1, price 2300) exactly match committed **"Vespoid Helm"** (name-table
+index 11) — not "Vespoid Cap" (name-table index 12, what raw position would
+naively suggest). Raw `head[11]`'s own bytes (defense 18) don't match
+"Vespoid Cap" (defense 10) either, so it's correctly suppressed rather than
+guessed.
+
 ---
 
 ## 2. Armor `skills` decode wrong even on stat-aligned entries (265/276)
@@ -188,6 +243,32 @@ if not.
 
 **Priority:** Investigate immediately alongside #1 (cheap: it's a data
 question, not a design question) before assuming it needs its own fix.
+
+**Update (executed against real EBOOT bytes, after #1's fix landed):**
+**Confirmed: this is #1's drift, not a separate bug** — for the exact
+"Leather Armor"/`head[1]` case this issue was originally reported against,
+#1's fingerprint correction found **no match** (ambiguous: too many
+low-rarity starter helms share an identical `(defense, resistances, rarity,
+slots, price)` fingerprint to disambiguate on stats alone), so `head[1]`
+still falls back to unconfirmed raw-position naming post-fix, and its raw
+skill bytes (`Gathering:3, Throw:2, Backpackng:2, Alchemy:2`) still don't
+match committed "Leather Helm" (`Throw:2, Backpackng:1, Gathering:2,
+ShotMix:2, Cooking:-2`) — despite `Throw:2` agreeing exactly, which rules
+out a byte-offset/decode bug in the skill reader itself (a real decode bug
+would corrupt every field, not leave one of five skill pairs exactly
+correct). This is consistent with "wrong armor piece due to unresolved
+index drift," not "skills field decoded wrong." Broader evidence: across
+all 5 slots, `skills` mismatches dropped only 17% (1808→1501) post-#1-fix
+versus ~65-75% for every purely-numeric stat field — skills weren't
+included in the fingerprint (deliberately, per the investigation notes
+below), so entries #1 couldn't disambiguate are exactly the entries still
+showing wrong skills. **No separate skills-decode bug found or fixed**;
+the residual is #1's known, documented coverage gap (see #1's update).
+Including skills in the fingerprint was tried during the investigation but
+made matching *worse*, not better (skill-ID resolution itself has enough
+independent noise that it hurt rather than helped disambiguation) — not
+pursued further given #1's fingerprint already achieves meaningful coverage
+without it.
 
 ---
 
@@ -406,6 +487,47 @@ committing to any code change.
 **Priority:** Low — do the cheap sampling/triage step early (it's fast and
 determines whether this needs any engineering time at all), but don't plan
 real fix work until that returns a confirmed pattern.
+
+**Update (executed against real EBOOT bytes + the real diff):** The cheap
+triage step **overturns this issue's own "Low confidence" framing** — this
+is very likely a real, systematic extraction bug, not stale committed data.
+Of the 113 real (non-formatting) affinity disagreements, **108 (96%) have a
+delta (`committed - extracted`) of exactly `+5` or `+10`** (37 at `+5`, 73 at
+`+10`), with only 3 outliers (`Heartshot Bow III` at `-10` — matching the
+original plan's own flagged suspicious case, `Bone Axe` at `-5`, `Blango
+Destroyer G` at `+15`). A clean, bimodal "always exactly +5 or +10, never
++3 or +7 or +12" distribution across 108 independent weapons is not
+consistent with wiki transcription noise (which would be scattered/random)
+— it strongly implies extraction is systematically missing a real,
+discrete affinity-modifying mechanic on a subset of weapons (roughly a
+quarter of all blademaster weapons).
+
+**What was ruled out:** tested every other unmapped/candidate field on
+`BlademasterWeapon` for a single-field correlation with the delta (or
+delta/5): `unkn1` (always 0 for every mismatched weapon — not it),
+`unkn2` (0 or occasionally 2/7, but not consistently 1 for delta=5 and 2
+for delta=10 — e.g. `Black Katana Mk.III` has `unkn2=0` but `delta=10`
+while `Limb Cutter` has `unkn2=2` but `delta=5`), `unkn3`/`noteGlType`/
+`sortOrder` (no pattern), `rarity`/`eleType`/`statusType`/`sharpnessId`/
+`attack`/`slots` (no clean threshold or correlation), and upgrade-tree
+depth via `invertUpgradeTree` (no correlation — same depth appears at both
+delta=5 and delta=10). Anecdotally "G"-suffixed (upgraded) weapon variants
+skew toward `delta=10` and their base variants toward `delta=5` (e.g.
+`Limb Cutter`→5, `Limb Cutter G`→10; `Siegmund`→5, `Siegmund G`→10), which
+hints this may correlate with something in the *upgrade relationship*
+itself (a per-tier bonus not captured by simple graph depth) or a lookup
+this pipeline doesn't have a table for at all — but this was not confirmed
+before running out of time-boxed budget for this sub-investigation.
+
+**Status: investigated, not fixed.** No code change made (a wrong guess at
+the mechanism would be worse than the current honest gap). This is the
+single most promising unexplored lead in this document for a future
+session — unlike `bonus` (#5, no candidate field even close) or armor
+index drift (#1, structurally different two-list problem), this looks like
+a bounded, likely-discoverable single mechanic given the extremely clean
++5/+10 signal. No `diff`-level change was expected or observed
+(`fieldMismatches` for `affinity` unchanged at 188 before/after this
+session's other fixes, since none of them touch weapon stat decoding).
 
 ---
 

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { tableOffset, TABLE_COUNTS, WEAPON_BM_ENTRY_SIZE, WEAPON_GUN_ENTRY_SIZE } from "../src/tables/offsets.js";
 import {
+  decodeBowCoatings,
   decodeShotCoat,
   readBlademasterWeapons,
   readGunnerWeapons,
@@ -122,6 +123,42 @@ test("decodeShotCoat maps every declared bit independently", () => {
 
   const noneSet = decodeShotCoat(0);
   for (const field of Object.values(noneSet)) assert.equal(field, false);
+});
+
+/**
+ * Real `shotCoatings` values from real bows in a decrypted JP EBOOT
+ * (`fix-plan.md` issue #7) — pinned as regression fixtures. `Glorious
+ * Victory II` (raw 64 = only bit 6 set) confirms the `paint` bit in
+ * isolation; `Exterminator Bow II` (raw 66 = bits 1+6) confirms `power` and
+ * `paint` combine correctly and every other flag stays false, matching
+ * their real committed `data/weapons/bow.json` coating lists exactly.
+ */
+test("decodeBowCoatings decodes real single-coating bow bytes (paint only)", () => {
+  const flags = decodeBowCoatings(64);
+  assert.equal(flags.paint, true);
+  assert.equal(flags.closerng, false);
+  assert.equal(flags.paralysis, false);
+  assert.equal(flags.poison, false);
+  assert.equal(flags.sleep, false);
+  assert.equal(flags.power, false);
+});
+
+test("decodeBowCoatings decodes real multi-coating bow bytes (power + paint)", () => {
+  const flags = decodeBowCoatings(66);
+  assert.equal(flags.power, true);
+  assert.equal(flags.paint, true);
+  assert.equal(flags.closerng, false);
+  assert.equal(flags.paralysis, false);
+  assert.equal(flags.poison, false);
+  assert.equal(flags.sleep, false);
+});
+
+test("decodeBowCoatings never sets a flag for the bowgun-ammo-flag bit range it doesn't use", () => {
+  // Every real bow observed has bits 7-31 (the bowgun ammo-flag territory
+  // decodeShotCoat covers) always zero — a value using only those high bits
+  // should decode to all 6 named coatings false.
+  const flags = decodeBowCoatings(0b1111111 << 7);
+  for (const enabled of Object.values(flags)) assert.equal(enabled, false);
 });
 
 test("readModelToWeaponType maps raw bytes to WEAPON_TYPE_NAMES", () => {

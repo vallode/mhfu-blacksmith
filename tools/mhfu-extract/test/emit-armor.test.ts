@@ -52,6 +52,65 @@ function buildLeatherHelmFixture() {
   return reader;
 }
 
+/**
+ * Reproduces real head[11]/head[12] bytes (see
+ * `test/armor-index-corrections.test.ts` for the fingerprint verification
+ * that established these are the correct real values) to exercise the
+ * armor-index-correction overlay end-to-end through `emitArmor()`: raw
+ * position 12's stats should surface as "Vespoid Helm" (the corrected name,
+ * index 11) rather than "Vespoid Cap" (its own raw position's name), and
+ * raw position 11 — whose own stats don't match "Vespoid Cap" either —
+ * should be suppressed (not emitted under a name known to be wrong).
+ */
+function buildVespoidFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[11] — real bytes, does NOT match "Vespoid Cap"'s stats.
+  const off11 = HEAD_ARRAY_OFFSET + 11 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(1, off11 + 5); // Rarity (raw) -> display rarity 2
+  buf.writeUInt32LE(3800, off11 + 8); // Price
+  buf.writeInt8(18, off11 + 12); // Defense
+  buf.writeUInt8(2, off11 + 18); // Slots
+
+  // ArmorValues.head[12] — real bytes, exactly match committed
+  // "Vespoid Helm" (name index 11), not "Vespoid Cap" (name index 12).
+  const off12 = HEAD_ARRAY_OFFSET + 12 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off12 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2300, off12 + 8); // Price
+  buf.writeInt8(20, off12 + 12); // Defense
+  buf.writeInt8(-6, off12 + 13); // Fire resistance
+  buf.writeInt8(-5, off12 + 14); // Water resistance
+  buf.writeInt8(2, off12 + 15); // Thunder resistance
+  buf.writeInt8(2, off12 + 16); // Dragon resistance
+  buf.writeInt8(-4, off12 + 17); // Ice resistance
+  buf.writeUInt8(1, off12 + 18); // Slots
+
+  return reader;
+}
+
+test("emitArmor applies the fingerprint-based index correction and suppression", () => {
+  const reader = buildVespoidFixture();
+  const armor = emitArmor(reader);
+
+  const vespoidHelm = armor.head.find((a) => a.name === "Vespoid Helm");
+  assert.ok(vespoidHelm, "raw head[12]'s stats should surface as 'Vespoid Helm' via the correction");
+  assert.equal(vespoidHelm!.defence, 20);
+  assert.equal(vespoidHelm!.fire_res, -6);
+  assert.equal(vespoidHelm!.rarity, 3);
+
+  assert.ok(
+    !armor.head.some((a) => a.defence === 18 && a.rarity === 2),
+    "raw head[11]'s stats must not be emitted under any name — it should be suppressed"
+  );
+});
+
 test("emitArmor reproduces the real Leather Helm entry end-to-end", () => {
   const reader = buildLeatherHelmFixture();
   const armor = emitArmor(reader);
