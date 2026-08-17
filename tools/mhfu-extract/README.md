@@ -100,6 +100,23 @@ alone the bytes are indistinguishable from noise, but decrypting with
 `quest.hexpat` magic, and a plausible `questHeader` (rank 0, 1-star, fee
 100z, reward 1200z, quest ID 1 — sensible for the very first quest).
 
+Once decrypted, `src/quests/parser.ts` reads the struct layout itself
+(header, supplies, rewards, large/small monster spawn tables, and quest
+text). Two things worth flagging for anyone extending it:
+
+- Every pointer field in a `.mib` is **file-relative**, unlike EBOOT.BIN/
+  `.ovl` virtual addresses — no base-address rebase needed.
+- Quest text is **UTF-8**, even on the JP disc — not Shift-JIS, which would
+  have been the safer assumption. Confirmed by decoding a real quest's
+  strings into coherent Japanese (title "強敵、ドスギアノス現る！",
+  goal "Hunt 1 Giadrome", client "An energetic young boy"), which also
+  cross-validates against the same quest's monster/reward/supply data (all
+  about hunting a Giadrome and its Giaprey pack).
+
+Not implemented (out of scope for now): `QuestScript` (opcodes are marked
+"TBD" even in the upstream pattern), gathering node locations/items, and
+arena sets.
+
 ## Overlay data
 
 `src/overlay/*.json` holds the small set of fields that cannot be derived
