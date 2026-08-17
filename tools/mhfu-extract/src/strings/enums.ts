@@ -84,11 +84,20 @@ export function isPlaceholderName(name: string): boolean {
   return PLACEHOLDER_NAME.test(name);
 }
 
-/** Looks up `enums[table][index]`, returning null for out-of-range/placeholder entries. */
+/**
+ * Looks up `enums[table][index]`, returning null for out-of-range/placeholder
+ * entries. Trims the resolved name: the vendored `.enum` files carry at
+ * least one known transcription typo with stray leading/trailing whitespace
+ * baked into the string literal itself (e.g. `"Diablo Guards "`,
+ * `equip.enum:908`, confirmed against sibling variants like
+ * `"Diablo Guards U"` that are correctly spaced) — trimming is safe and
+ * zero-risk since no real equipment name is intentionally
+ * leading/trailing-whitespace-padded.
+ */
 export function lookupName(enums: Map<string, string[]>, table: string, index: number): string | null {
   const entries = enums.get(table);
   if (!entries) throw new Error(`enums: unknown table "${table}"`);
   const name = entries[index];
   if (name === undefined || isPlaceholderName(name)) return null;
-  return name;
+  return name.trim();
 }

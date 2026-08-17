@@ -22,6 +22,7 @@
  * loosely-typed weapon schema (`additionalProperties: true`) allows.
  */
 import {
+  decodeBowCoatings,
   decodeShotCoat,
   readBlademasterWeapons,
   readGunnerWeapons,
@@ -29,7 +30,7 @@ import {
   readWeaponClassModifiers,
   type WeaponTypeName,
 } from "../tables/weapons.js";
-import { readSharpnessTable, sharpnessStepWidths } from "../tables/sharpness.js";
+import { readSharpnessTable, SHARPNESS_COLORS } from "../tables/sharpness.js";
 import { readEquipmentCreate, readEquipmentUpgrade, invertUpgradeTree, type EquipUpgradeEntry } from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
@@ -63,25 +64,58 @@ function emitElements(eleType: number, eleValue: number, statusType: number, sta
 }
 
 /**
- * Sharpness display width per color, scaled from the raw cumulative table
- * by `/10` (matches the `attack`-style scaling seen elsewhere) and sliced
- * to `sharpnessAmount + 3` visible colors (`SharpnessAmount` is documented
- * in eboot.hexpat as "Visible Sharpness Steps (0-6)"; empirically, real
- * committed sharpness array lengths cluster tightly around
- * `sharpnessAmount + 3`, e.g. amount=0 -> length 3, amount=6 -> length 7).
+ * Sharpness display width per color, derived from a real-data-correlated
+ * "reach threshold" model rather than the old fixed-slice-count heuristic.
  *
- * Known approximation: the *last* visible color's width sometimes differs
- * slightly from the committed value (the true rule for exactly where a
- * weapon's displayed bar gets cut off inside its last color isn't nailed
- * down yet) — earlier colors have matched exactly in every real sample
- * checked. Good enough to ship; flagged here for follow-up.
+ * Old approach (superseded): scale every raw cumulative step by `/10` and
+ * slice the first `sharpnessAmount + 3` colors, always starting the *last*
+ * visible color at its own full raw width. That's wrong on two counts,
+ * confirmed by direct correlation against real weapons sharing one
+ * `sharpnessId` across multiple `sharpnessAmount` values (e.g. `Great Demon
+ * Rod` amount=4 vs `Great Demon Hot Rod` amount=5, same underlying
+ * cumulative curve): (1) `sharpnessAmount` isn't a *count* of visible
+ * colors, it's a *reach threshold* in raw cumulative units — the true bar
+ * length is `50 * (sharpnessAmount + 3)` raw units (`sharpness`) or
+ * `50 * (sharpnessAmount + 4)` (`sharpness_plus`, always exactly one
+ * 5-display-unit "notch" longer) — confirmed exactly across every
+ * cross-checked amount value (0,1,3,4,5) on two independent cumulative
+ * curves; (2) the *last* visible color is genuinely a **partial** width cut
+ * off wherever that reach threshold lands inside it, not its full raw
+ * width — computing `min(cumulative[i], threshold) - min(cumulative[i-1],
+ * threshold)` per color (stopping once a color's own cumulative reaches the
+ * threshold) reproduces every color's width exactly, including the partial
+ * last one, on every cross-checked sample.
+ *
+ * Residual known approximation: a small minority of real weapons (~10%,
+ * concentrated in `data/weapons/long-sword.json` in samples checked, e.g.
+ * `Imperial Sword`/`Aqua Guardian`/`Atlantica`) show every committed width
+ * shifted by exactly \u00b11 raw-scaled unit between the first and last
+ * visible color (the *sum* of all widths still matches this model exactly —
+ * only the internal split differs), which looks like either a secondary
+ * rendering rule this derivation hasn't isolated yet, or committed-data
+ * transcription noise local to those specific entries (same weapon+amount+
+ * sharpnessId combination as *other* unaffected weapons that *do* match
+ * exactly, which argues against a code-level formula error). Flagged here
+ * for follow-up rather than blocking on it.
  */
-function emitSharpness(cumulative: ReturnType<typeof readSharpnessTable>[number], sharpnessAmount: number): { sharpness: number[]; sharpnessPlus: number[] } {
-  const widths = sharpnessStepWidths(cumulative);
-  const scaled = Object.values(widths).map((w) => Math.round(w / ELEMENT_VALUE_SCALE));
-  const visibleCount = Math.min(Math.max(sharpnessAmount + 3, 1), scaled.length);
-  const plusCount = Math.min(visibleCount + 1, scaled.length);
-  return { sharpness: scaled.slice(0, visibleCount), sharpnessPlus: scaled.slice(0, plusCount) };
+function emitSharpness(entry: ReturnType<typeof readSharpnessTable>[number], sharpnessAmount: number): { sharpness: number[]; sharpnessPlus: number[] } {
+  const reach = (steps: number) => ELEMENT_VALUE_SCALE * 5 * steps;
+  const widthsToReach = (threshold: number): number[] => {
+    const out: number[] = [];
+    let prevScaled = 0;
+    for (const color of SHARPNESS_COLORS) {
+      const raw = entry.cumulative[color];
+      const currScaled = Math.round(Math.min(raw, threshold) / ELEMENT_VALUE_SCALE);
+      out.push(currScaled - prevScaled);
+      if (raw >= threshold) break;
+      prevScaled = currScaled;
+    }
+    return out;
+  };
+  return {
+    sharpness: widthsToReach(reach(sharpnessAmount + 3)),
+    sharpnessPlus: widthsToReach(reach(sharpnessAmount + 4)),
+  };
 }
 
 interface UpgradeGraph {
@@ -89,11 +123,25 @@ interface UpgradeGraph {
   inverted: Map<number, number[]>;
 }
 
-function resolveImproveFrom(graph: UpgradeGraph, index: number, idTable: NameTable, names: ReturnType<typeof getNameResolver>): string[] | null {
+/**
+ * `data/`'s committed convention uses a bare string when a weapon has
+ * exactly one upgrade source, and an array only for 2+ (confirmed directly,
+ * e.g. `data/weapons/great-sword.json`'s `"Buster Sword+"` ->
+ * `improve_from: "Buster Sword"`); the schema's `oneOf` permits both
+ * shapes. Matching this convention exactly eliminates format-only `diff`
+ * noise without changing any actual data.
+ */
+function resolveImproveFrom(
+  graph: UpgradeGraph,
+  index: number,
+  idTable: NameTable,
+  names: ReturnType<typeof getNameResolver>
+): string | string[] | null {
   const sources = graph.inverted.get(index);
   if (!sources || sources.length === 0) return null;
   const resolved = sources.map((i) => names.resolve(idTable, i)).filter((n): n is string => n !== null);
-  return resolved.length > 0 ? resolved : null;
+  if (resolved.length === 0) return null;
+  return resolved.length === 1 ? resolved[0]! : resolved;
 }
 
 function resolveImproveTo(entry: EquipUpgradeEntry | undefined, idTable: NameTable, names: ReturnType<typeof getNameResolver>): string[] | null {
@@ -115,7 +163,7 @@ export interface EmittedWeapon {
   type: WeaponTypeName | null;
   create_cost: number | null;
   improve_cost: number | null;
-  improve_from: string[] | null;
+  improve_from: string | string[] | null;
   create_mats: ReturnType<typeof resolveMaterials> | null;
   improve_mats: ReturnType<typeof resolveMaterials> | null;
   improve_to: string[] | null;
@@ -193,6 +241,36 @@ export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAdd
   return out;
 }
 
+/**
+ * `decodeShotCoat`'s `SHOT_COAT_FIELDS` is the bowgun 32-bit ammo-type
+ * bitfield (norm1/pierce1/pellet1/...) — semantically meaningless for a
+ * bow, which uses a completely different, much smaller vocabulary (close-
+ * range/power/paralysis/poison/sleep/paint, confirmed against every
+ * committed `data/weapons/bow.json` entry). `WepGunValue`'s `ShotCoatings`
+ * field is shared by both sub-types (eboot.hexpat's own comment on the
+ * neighboring `Reload` field already notes other shared fields have
+ * different bow semantics), so decoding it as bowgun ammo flags for a bow
+ * produced 100%-wrong coatings (106/106 real bows). Gate to bowgun types
+ * only, and use `decodeBowCoatings()`'s independently-derived 6-flag bit
+ * layout for bows (see that function's doc comment for the correlation
+ * methodology and confidence level).
+ */
+function coatingsForType(type: WeaponTypeName | null, shotCoatings: number): string[] | undefined {
+  if (type === "light-bowgun" || type === "heavy-bowgun") {
+    return Object.entries(decodeShotCoat(shotCoatings))
+      .filter(([, enabled]) => enabled)
+      .map(([flag]) => flag);
+  }
+  if (type === "bow") {
+    const decoded = decodeBowCoatings(shotCoatings);
+    if (!decoded) return undefined;
+    return Object.entries(decoded)
+      .filter(([, enabled]) => enabled)
+      .map(([flag]) => flag);
+  }
+  return undefined;
+}
+
 export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressResolver): EmittedWeapon[] {
   const weapons = readGunnerWeapons(reader, resolver);
   const modelToType = readModelToWeaponType(reader, resolver);
@@ -224,9 +302,16 @@ export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressR
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(w.index) ?? [];
     const upgradeEntry = upgradeGraph.entries[w.index];
-    const coatings = Object.entries(decodeShotCoat(w.shotCoatings))
-      .filter(([, enabled]) => enabled)
-      .map(([flag]) => flag);
+    // decodeShotCoat()'s SHOT_COAT_FIELDS is the bowgun 32-bit ammo-type
+    // bitfield (norm1/pierce1/pellet1/...) — semantically meaningless for
+    // bows, which use a completely different, much smaller vocabulary
+    // (close-range/power/paralysis/poison/sleep/paint). WepGunValue's
+    // ShotCoatings field is shared by both sub-types (confirmed via
+    // eboot.hexpat's own comment noting other shared fields like Reload
+    // already have different bow semantics), so decoding it as bowgun ammo
+    // flags for a bow produced 100%-wrong coatings. Gate it to bowgun types
+    // only until bow's own bit layout is decoded (see decodeBowCoatings()).
+    const coatings = coatingsForType(type, w.shotCoatings);
 
     out.push({
       name,

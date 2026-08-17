@@ -5,13 +5,20 @@
  * design eboot.hexpat documents, and it holds exactly for the first ~10
  * entries per slot we spot-checked (defense/price/rarity/slots all agree
  * with the committed data). Beyond that it drifts — the committed EN data
- * and this direct indexing disagree on roughly 60-75% of entries per slot,
- * consistent with either extra JP-only armor pieces the EN name enum never
- * accounted for, or historical transcription drift in the committed data.
- * We were unable to find a consistent correction (the drift isn't a fixed
- * offset — see git history for the investigation), so we emit strictly
- * by-index here and rely on the future `diff` tool to surface disagreements
- * against the committed files for manual review, rather than guessing.
+ * and this direct indexing disagree on roughly 60-90% of entries per slot.
+ * Confirmed (see `docs/fix-plan.md` issue #1 and its "resolved" update):
+ * `ArmorValue`'s three unmapped fields (`unkn1`/`unkn2`/`unkn3`) are NOT a
+ * hidden name-table index — tested directly against real disc bytes,
+ * `unkn3` (the only one with per-entry-unique values) does not correlate
+ * with committed stats when used as a name index. There is no known
+ * in-binary field linking the two independently-sourced lists (stat array
+ * position vs. `.enum`-file name order). The fix applied here is
+ * `overlay/armor-index-corrections.ts`'s empirically-derived per-slot
+ * correction table (fingerprint-matched raw stats <-> committed data),
+ * which resolves a meaningful minority of entries per slot with high
+ * confidence; the remainder still falls back to raw-position naming and
+ * may be wrong. See that module's doc comment for full methodology and
+ * known coverage limits.
  *
  * `sex`/`hunter_type`/`hr`/`elder` are skipped entirely: none of the fields
  * on `ArmorValueEntry` (`hunterType`, `maleId`/`femaleId` equality) were
@@ -24,6 +31,7 @@ import { readEquipmentCreate, type EquipCreateEntry } from "../tables/recipes.js
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
+import { correctedArmorNameIndex } from "../overlay/armor-index-corrections.js";
 import { displayRarity, groupEquipCreateByEquipId, halveCost, materialsOrNull, rankFromRarity, resolveMaterials, type Rank } from "./common.js";
 
 const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, "helmet" | "plate" | "gauntlets" | "waist" | "leggings"> = {
@@ -74,7 +82,9 @@ function emitSlot(
 
   const out: EmittedArmor[] = [];
   for (const armor of armorValues) {
-    const name = names.resolve(nameTable, armor.index);
+    const nameIndex = correctedArmorNameIndex(slot, armor.index);
+    if (nameIndex === null) continue;
+    const name = names.resolve(nameTable, nameIndex);
     if (!name) continue;
     // The schema caps slots at 3 (no real armor piece has more); a handful
     // of tail entries in headArmor specifically (5 of 436, all in the last

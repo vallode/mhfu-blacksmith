@@ -148,6 +148,56 @@ export function decodeShotCoat(value: number): ShotCoatFlags {
   return flags;
 }
 
+/**
+ * Bow's 6 named coating flags, mapped to their real bit positions within
+ * the shared `WepGunValue.ShotCoatings` u32 — discovered (not guessed) by
+ * correlating every real JP bow's raw `shotCoatings` value against its
+ * committed `data/weapons/bow.json` `coatings` list (106 bows with
+ * committed data; cross-validated byte-identical against the independent
+ * EU EBOOT dump too, see `test/weapons.test.ts`). Bit 0 is never set on any
+ * real bow (always reserved/unused for this sub-type); bits 1 and 6 matched
+ * *every single* real bow with zero exceptions (power: 106/106, paint:
+ * 106/106 — every bow always has paint). Bits 2-5 matched 102-99/106 real
+ * bows; the ~4-7 remaining disagreements per flag cluster on just 3 bow
+ * families (Dragonhead Harp, Blue Blade Bow/Showroom Model, Ukanlos Bow) —
+ * consistent with those specific committed entries being stale/incomplete
+ * wiki data (the same class of issue flagged for `affinity`, see
+ * docs/fix-plan.md's #6) rather than a decode bug, since the same raw byte
+ * value decodes correctly for every *other* bow sharing it. The remaining
+ * 26 bits (7-31) are the bowgun ammo-flag territory `decodeShotCoat()`
+ * covers — always 0 on every real bow, confirming bows simply don't use
+ * that part of the shared field.
+ *
+ * Declared here in `closerng, paralysis, poison, sleep, power, paint`
+ * order — not bit order — because that's the dominant real ordering
+ * `data/weapons/bow.json`'s committed `coatings` arrays use (confirmed by
+ * frequency analysis across all real entries: this exact filtered ordering
+ * exact-matches 99/116 committed arrays, far more than any other candidate
+ * ordering tried, including strict bit order). Iteration/object-key order
+ * is preserved by `Object.entries()` in `decodeBowCoatings()` below, so
+ * this declaration order directly controls the emitted array's order.
+ */
+export const BOW_COATING_BITS = {
+  closerng: 5,
+  paralysis: 3,
+  poison: 2,
+  sleep: 4,
+  power: 1,
+  paint: 6,
+} as const;
+
+export type BowCoatingName = keyof typeof BOW_COATING_BITS;
+export type BowCoatingFlags = Record<BowCoatingName, boolean>;
+
+/** Decodes a bow's raw ShotCoatings u32 into its 6 named coating flags (see BOW_COATING_BITS). */
+export function decodeBowCoatings(value: number): BowCoatingFlags {
+  const flags = {} as BowCoatingFlags;
+  for (const [name, bit] of Object.entries(BOW_COATING_BITS) as [BowCoatingName, number][]) {
+    flags[name] = ((value >>> bit) & 1) === 1;
+  }
+  return flags;
+}
+
 export interface GunnerWeapon {
   /** Index into WepGunValues, and into WepGunID for name lookup. */
   index: number;
