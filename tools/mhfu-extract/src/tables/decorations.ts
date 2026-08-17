@@ -6,7 +6,13 @@ import { BinaryReader } from "../binary/reader.js";
 import { DECO_SKILL_ENTRY_SIZE, ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "./offsets.js";
 
 export interface DecorationValue {
-  /** Index into DecorationValues, and into ItemID[index + 948] for name lookup. */
+  /**
+   * Index into DecorationValues, and into ItemID[index + 948] for name
+   * lookup — confirmed against a real EBOOT: dereferencing ItemID[i + 948]
+   * for every DecorationValues[i] resolves to real, sensibly-progressing
+   * decoration names (rarity/price/name all line up against real committed
+   * decoration data, e.g. index 0 -> "Paralysis Jewel").
+   */
   index: number;
   unkn1: number;
   rarity: number;
@@ -93,4 +99,23 @@ export function readDecorationSkills(reader: BinaryReader): DecorationSkill[] {
     });
   }
   return out;
+}
+
+/**
+ * Resolves `DecorationValue.skillTblId` against the array returned by
+ * `readDecorationSkills()`. Confirmed against a real EBOOT: `skillTblId`
+ * values are 2-based against the *undropped* raw table (dummy slot at real
+ * position 0), i.e. one *further* dummy/reserved slot than
+ * `readDecorationSkills()` skips — empirically, `skillTblId=2` (the first
+ * value seen in practice, for decoration index 0) must land on
+ * `readDecorationSkills()`'s own index 0 for the decoded skills to match a
+ * real disc's known decorations (e.g. "Paralysis Jewel" -> Paralysis+1/
+ * Poison-1), hence the `- 2` here rather than the `- 1` you'd expect from
+ * `readDecorationSkills()` skipping only one slot.
+ */
+export function resolveDecorationSkill(
+  skills: DecorationSkill[],
+  skillTblId: number
+): DecorationSkill | undefined {
+  return skills[skillTblId - 2];
 }
