@@ -32,6 +32,11 @@ import {
   decodeTree,
 } from "./schema";
 
+export interface MonsterListItem {
+  slug: string;
+  name: string;
+}
+
 // ---------------------------------------------------------------------------
 // Module-level caches
 // ---------------------------------------------------------------------------
@@ -105,37 +110,27 @@ function useBundle<I>(
   file: string,
   pick: (bundle: Bundle, dict: Dictionaries) => { item: I | null; tree: WeaponTreeNode[] | null }
 ): DetailState<I> {
-  // Initialize synchronously from cache when the bundle is already loaded,
-  // so client-side navigations between cached items never show a loading frame.
-  const [state, setState] = useState<DetailState<I>>(
-    () => resolveFromCache(file, pick) ?? { item: null, tree: null, loading: true }
-  );
+  // Force a re-render once a not-yet-cached bundle/dictionaries finish
+  // loading; doesn't otherwise drive the returned state (see below).
+  const [, forceUpdate] = useState(0);
 
   useEffect(() => {
-    // Fast path: already cached — set state synchronously, no loading flash.
-    const cached = resolveFromCache(file, pick);
-    if (cached) {
-      setState(cached);
-      return;
-    }
+    if (bundleCache.has(file) && dictionariesCache) return;
     let cancelled = false;
-    setState({ item: null, tree: null, loading: true });
-    Promise.all([getBundle(file), getDictionaries()])
-      .then(([bundle, dict]) => {
-        if (cancelled) return;
-        const { item, tree } = pick(bundle, dict);
-        setState({ item, tree, loading: false });
-      })
-      .catch(() => {
-        if (!cancelled) setState({ item: null, tree: null, loading: false });
-      });
+    Promise.all([getBundle(file), getDictionaries()]).then(() => {
+      if (!cancelled) forceUpdate((n) => n + 1);
+    });
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
-  return state;
+  // Recomputed every render (not just when `file` changes) so switching
+  // between two items backed by the *same* bundle — e.g. sibling weapons in
+  // a tree, which share one weapon-{type}.json file — always reflects the
+  // latest `pick` (closing over the current slug/etc.) instead of stale
+  // state left over from the previously rendered item.
+  return resolveFromCache(file, pick) ?? { item: null, tree: null, loading: true };
 }
 
 // ---------------------------------------------------------------------------
@@ -178,6 +173,71 @@ export function useDecoration(slug: string): DetailState<Decoration> {
     return {
       item: cd ? decodeDecoration(dict, cd) : null,
       tree: decodeTree(b.tree, "decoration"),
+    };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Tree/list-only hooks — for the [type]/[slot+rank]/[category] tree/list
+// pages, which only need the tree structure (or item names), not a single
+// decoded item. Reuses the same bundle fetch/cache as the detail hooks, so
+// visiting a list page after a detail page (or vice versa) is instant.
+// ---------------------------------------------------------------------------
+interface ListState<I> {
+  tree: WeaponTreeNode[] | null;
+  items: I[] | null;
+  loading: boolean;
+}
+
+function useBundleList<I>(
+  file: string,
+  pick: (bundle: Bundle) => { tree: WeaponTreeNode[] | null; items: I[] | null }
+): ListState<I> {
+  const [, forceUpdate] = useState(0);
+
+  useEffect(() => {
+    if (bundleCache.has(file)) return;
+    let cancelled = false;
+    getBundle(file).then(() => {
+      if (!cancelled) forceUpdate((n) => n + 1);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [file]);
+
+  const bundle = bundleCache.get(file);
+  if (!bundle) return { tree: null, items: null, loading: true };
+  return { ...pick(bundle), loading: false };
+}
+
+export function useWeaponTree(type: string): ListState<never> {
+  return useBundleList(`weapon-${type}`, (bundle) => {
+    const b = bundle as WeaponBundle;
+    return { tree: decodeTree(b.tree, b.type), items: null };
+  });
+}
+
+export function useArmorTree(slot: string, rank: string): ListState<never> {
+  return useBundleList(`armor-${slot}-${rank}`, (bundle) => {
+    const b = bundle as ArmorBundle;
+    return { tree: decodeTree(b.tree, b.slot), items: null };
+  });
+}
+
+export function useDecorationTree(): ListState<never> {
+  return useBundleList("decorations", (bundle) => {
+    const b = bundle as DecorationBundle;
+    return { tree: decodeTree(b.tree, "decoration"), items: null };
+  });
+}
+
+export function useMonsterList(category: string): ListState<MonsterListItem> {
+  return useBundleList<MonsterListItem>(`monster-${category}`, (bundle) => {
+    const b = bundle as MonsterBundle;
+    return {
+      tree: null,
+      items: b.items.map((m) => ({ slug: m.s, name: m.n })),
     };
   });
 }

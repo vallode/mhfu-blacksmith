@@ -1,0 +1,39 @@
+import Link from "next/link";
+import styles from "./page.module.scss";
+
+export default function HomeContent() {
+  return (
+    <main className={styles.main}>
+      <Link className={styles.title} href="/">
+        <img src="/images/blacksmith.png" alt="Blacksmith" />
+      </Link>
+
+      <hr className="border" />
+
+      <div className={styles.menuWrapper}>
+        <div className={styles.menu}>
+          <ul>
+            <li>
+              <Link href="/blacksmith/">Weapons</Link>
+            </li>
+            <li>
+              <Link href="/armorsmith/">Armor</Link>
+            </li>
+            <li>
+              <Link href="/decorations/">Decorations</Link>
+            </li>
+            <li>
+              <Link href="/monsters/">Monsters</Link>
+            </li>
+            <li>
+              <Link href="/hunter/">Hunter Profile</Link>
+            </li>
+            <li>
+              <Link href="/options/">Options</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  );
+}

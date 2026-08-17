@@ -1,11 +1,8 @@
 import { notFound } from "next/navigation";
-import { getWeaponTypes, getWeaponTree } from "@/lib/weapons";
+import { getWeaponTypes } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
-import WeaponNav from "@/components/WeaponNav";
-import WeaponTreeRow from "@/components/WeaponTreeRow";
-import TreeScroll from "@/components/TreeScroll";
-import Card from "@/components/Card";
 import type { Metadata } from "next";
+import WeaponTreeListClient from "./WeaponTreeListClient";
 
 interface Props {
   params: Promise<{ type: string }>;
@@ -30,34 +27,5 @@ export default async function WeaponTreePage({ params }: Props) {
     notFound();
   }
 
-  const weaponType = type as WeaponType;
-  const tree = getWeaponTree(weaponType);
-  const basePath = `/blacksmith/${type}/`;
-
-  return (
-    <>
-      <WeaponNav activeType={weaponType} />
-      <hr className="border" />
-
-      <div className="split-page">
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`weapon-${type}`}>
-            {tree.map.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType={type}
-                  basePath={basePath}
-                />
-              </ul>
-            ))}
-          </TreeScroll>
-        </Card>
-
-        <Card>
-          <p>Select a weapon from the tree.</p>
-        </Card>
-      </div>
-    </>
-  );
+  return <WeaponTreeListClient type={type as WeaponType} />;
 }

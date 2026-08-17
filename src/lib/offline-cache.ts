@@ -1,4 +1,15 @@
+import {
+  WEAPON_TYPES,
+  ARMOR_SLOTS,
+  ARMOR_RANKS,
+  MONSTER_CATEGORIES,
+} from "./constants";
+
 const RUNTIME_CACHE = "mhfu-offline-v1";
+// Matches the `cacheName: "pages"` runtime-caching rule in next.config.ts —
+// writing directly into it means these documents are indistinguishable from
+// ones next-pwa cached itself by ordinary browsing.
+const PAGES_CACHE = "pages";
 
 interface Manifest {
   version?: string;
@@ -31,6 +42,32 @@ export async function collectOfflineUrls(): Promise<string[]> {
     // image manifest missing; data-only offline is still useful
   }
   urls.push("/search-data.json", "/weapon-data.json");
+  return urls;
+}
+
+/**
+ * The finite set of list/tree pages (weapon types, armor slot+rank, monster
+ * categories, top-level nav) — unlike the ~3800 individual weapon/armor/
+ * monster/decoration pages, there are only a few dozen of these, so we just
+ * cache the real documents instead of relying on the generic offline shell.
+ * Detail pages still fall back to src/app/offline at runtime.
+ */
+export function collectStaticPageUrls(): string[] {
+  const urls = [
+    "/",
+    "/blacksmith/",
+    "/armorsmith/",
+    "/monsters/",
+    "/decorations/",
+    "/calculator/",
+    "/hunter/",
+    "/options/",
+  ];
+  for (const type of WEAPON_TYPES) urls.push(`/blacksmith/${type}/`);
+  for (const slot of ARMOR_SLOTS) {
+    for (const rank of ARMOR_RANKS) urls.push(`/armorsmith/${slot}/${rank}/`);
+  }
+  for (const category of MONSTER_CATEGORIES) urls.push(`/monsters/${category}/`);
   return urls;
 }
 
@@ -73,11 +110,35 @@ export async function downloadOffline(
     await Promise.all(urls.slice(i, i + BATCH).map(fetchInto));
     onProgress(Math.min(i + BATCH, urls.length), urls.length);
   }
+
+  // Bonus: also grab the handful of static list/tree pages so they work
+  // offline regardless of browsing history. Doesn't count towards the
+  // reported total/progress above — those track the data bundles.
+  try {
+    const pagesCache = await caches.open(PAGES_CACHE);
+    await Promise.all(
+      collectStaticPageUrls().map(async (u) => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+        try {
+          const res = await fetch(u, { cache: "no-cache", signal: controller.signal });
+          if (res.ok) await pagesCache.put(u, res);
+        } catch {
+          // best-effort; the offline shell fallback still covers navigation
+        } finally {
+          clearTimeout(timer);
+        }
+      })
+    );
+  } catch {
+    // caches API hiccup; data/images above are the important part
+  }
+
   return countCached(urls);
 }
 
 export async function clearOffline(): Promise<void> {
-  await caches.delete(RUNTIME_CACHE);
+  await Promise.all([caches.delete(RUNTIME_CACHE), caches.delete(PAGES_CACHE)]);
 }
 
 export function cachesSupported(): boolean {
