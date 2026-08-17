@@ -104,5 +104,10 @@ priority when both exist.
 pnpm --filter mhfu-extract test
 ```
 
-Tests exercise the binary readers, cipher, and struct decoders against
-small hand-built fixture buffers (no game files needed/included).
+Tests exercise the binary readers, cipher, EBOOT decryption strategy chain,
+and struct decoders against small hand-built fixture buffers (no game files
+needed/included). Every table reader's byte offsets have additionally been
+validated by hand against a real decrypted JP EBOOT (not part of this repo,
+not automated in CI) — see git history for the specific findings, notably
+that `ArmorValuePTR` is five *single* pointers to per-slot arrays, not one
+pointer per armor piece as the ImHex syntax might suggest at a glance.
