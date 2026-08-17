@@ -113,16 +113,55 @@ export default withPWA({
           expiration: { maxEntries: 1000, maxAgeSeconds: 30 * 24 * 60 * 60 },
         },
       },
+      // Every weapon/armor/monster/decoration is its own statically-exported
+      // route (~3800 of them) — App Router client navigation needs that
+      // specific route's RSC payload (and the "pages" cache for a plain
+      // document load/refresh) to exist offline, even though the visible
+      // content is rendered from the already-cached compact JSON bundles
+      // (src/lib/client-data.ts). We don't proactively download all ~3800
+      // pages (see src/lib/offline-cache.ts) — instead, raise next-pwa's
+      // default 32-entry cap on these three so pages you've actually
+      // browsed (or that were auto-prefetched by <Link>) stay cached instead
+      // of getting evicted almost immediately, which previously made
+      // offline navigation to anything but the last few visited pages 404.
+      {
+        urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+          request.headers.get("RSC") === "1" &&
+          request.headers.get("Next-Router-Prefetch") === "1" &&
+          sameOrigin &&
+          !pathname.startsWith("/api/"),
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "pages-rsc-prefetch",
+          expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
+        },
+      },
+      {
+        urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+          request.headers.get("RSC") === "1" &&
+          sameOrigin &&
+          !pathname.startsWith("/api/"),
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "pages-rsc",
+          expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
+        },
+      },
+      {
+        urlPattern: ({ url: { pathname }, sameOrigin }) =>
+          sameOrigin && !pathname.startsWith("/api/"),
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "pages",
+          expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
+        },
+      },
       // Supplying a custom `runtimeCaching` array replaces next-pwa's default
-      // one entirely (it doesn't merge). That default list is what caches
-      // page documents and RSC navigation payloads ("pages", "pages-rsc",
-      // "pages-rsc-prefetch"), which `cacheOnFrontEndNav` depends on to make
-      // client-side navigation work offline. Without it, only the current
-      // page (already in memory) works offline — any other page fetch fails
-      // with a plain network error ("you are offline"), even though the
-      // data/image caches populated by "Download for offline" are intact.
-      // Append the defaults after our more specific rules above so data/image
-      // requests keep hitting our custom caches first.
+      // one entirely (it doesn't merge). Append the defaults after our own
+      // rules above (data/image caches, and the higher-capacity page caches)
+      // so those take precedence and only truly uncovered request types
+      // (cross-origin assets, fonts, etc.) fall through to next-pwa's stock
+      // behavior.
       ...defaultRuntimeCaching,
     ],
   },
