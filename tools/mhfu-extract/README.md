@@ -117,15 +117,70 @@ Not implemented (out of scope for now): `QuestScript` (opcodes are marked
 "TBD" even in the upstream pattern), gathering node locations/items, and
 arena sets.
 
+## Emit layer
+
+`src/emit/*.ts` maps the raw structs from `src/tables/` onto the exact
+`data/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s
+`emitAll(reader)` runs every module and returns a `{ "<path relative to
+data/>": <schema-shaped content> }` map; `writeEmitOutput(outDir, output)`
+persists that to disk. (Wiring this into the `extract` CLI subcommand is not
+done yet — `src/cli.ts` doesn't exist; call `emitAll`/`writeEmitOutput`
+directly for now.)
+
+Derived-value rules confirmed against a real decrypted JP EBOOT + the
+committed `data/` files (see `src/emit/common.ts` and each module's own
+derivation notes for specifics):
+
+- Display rarity = raw rarity + 1; low/high/g-rank buckets at rarity 5/8.
+- Create/improve cost = raw sell price ÷ 2 (rounded), only set when a real
+  `EquipCreate`/`EquipUpgrade` recipe exists for that item.
+- `EquipCreate.equipId` (not the entry's own array position) is the item's
+  true index — recipes are grouped by `equipId` before lookup; a second entry
+  for the same `equipId` is an alternative recipe.
+- Weapon attack = raw attack × that weapon class's modifier ÷ 100; element/
+  status values are raw × 10.
+- Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
+  aren't derivable from the disc at all — they're presentation metadata,
+  supplied by the `src/overlay/materials.json` and
+  `src/overlay/decoration-categories.json` overlays (generated once from the
+  committed `data/` files; see git history).
+
+Known gaps/approximations, deliberately deferred rather than guessed at:
+
+- **Armor name alignment drifts** beyond the first ~10 entries per slot:
+  direct array-index-into-enum (what `eboot.hexpat` documents) matches the
+  committed `data/armor/*.json` closely for early entries, but diverges for
+  roughly 60-75% of entries further into each slot's table, and the drift
+  isn't a fixed offset we could find and correct for. We emit strictly
+  by-index and rely on a future `diff` tool to surface disagreements for
+  manual review. A handful of tail entries in `headArmor` specifically (5 of
+  436) read obviously-corrupt slot counts (10-65, schema max is 3) and are
+  skipped outright rather than emitted as garbage.
+- **`sex`/`hunter_type`/`hr`/`elder`** armor fields are omitted entirely: no
+  raw field was found to correlate with the committed data's values for the
+  first two, and the latter two (quest-unlock requirements) aren't present in
+  `ArmorValue` at all. All four are optional in the schema.
+- **Weapon `sharpness`/`sharpness_plus`** bar lengths are an approximation
+  (`sharpnessAmount + 3` visible steps) — the exact formula for the last
+  visible color's partial width wasn't fully reverse-engineered.
+- **Gunner ammo/coating details** (rapid fire, clip size, recoil/reload
+  tiers) and **Hunting Horn/Gunlance bonus fields** are not emitted — the
+  `NoteGLType` byte's dual purpose for these two weapon classes needs more
+  reverse-engineering than we've done so far.
+
 ## Overlay data
 
-`src/overlay/*.json` holds the small set of fields that cannot be derived
-from the disc: monster HP/attack/defense multipliers, monster flavor text,
-the presentation-only monster category grouping (`bird-wyvern`, `pelagus`,
-...), and hunting horn melody effect descriptions. `emit/` merges these in by
-slug/name and records provenance (`"source": "overlay"` vs `"source":
-"extracted"`) per field in `EXTRACTION.json` — extracted data always takes
-priority when both exist.
+`src/overlay/*.json` holds fields that cannot be derived from the disc at
+all. Currently: `materials.json` (crafting-material `type`/`color`, e.g.
+"Iron Ore" -> `{ type: "ore", color: "gray" }`) and
+`decoration-categories.json` (the presentation-only decoration grouping,
+e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
+`data/` files (see git history) and consumed by `src/emit/*.ts`.
+
+Monster HP/attack/defense multipliers, monster flavor text, the monster
+category grouping, and hunting horn melody effect descriptions will need
+the same treatment once monster/quest emit is implemented (not done yet —
+tracked separately from the equipment emit layer above).
 
 ## Tests
 
@@ -134,8 +189,12 @@ pnpm --filter mhfu-extract test
 ```
 
 Tests exercise the binary readers, cipher, EBOOT decryption strategy chain,
-and struct decoders against small hand-built fixture buffers (no game files
-needed/included). Every table reader's byte offsets have additionally been
+struct decoders, and the `emit/` layer against small hand-built fixture
+buffers (no game files needed/included) — the `emit/*.test.ts` fixtures in
+particular reproduce exact real byte values from a decrypted JP EBOOT
+(e.g. the real "Carbalite Sword"/"Leather Helm"/"Paralysis Jewel" entries),
+so they double as a regression check that those disc values keep producing
+the same output. Every table reader's byte offsets have additionally been
 validated by hand against a real decrypted JP EBOOT (not part of this repo,
 not automated in CI) — see git history for the specific findings, notably:
 
