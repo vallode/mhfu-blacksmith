@@ -13,6 +13,13 @@
  * numeric ID to a display name, so swapping the bootstrap source for a real
  * disc-extracted string table later is a one-function change — everything
  * else in tables/ works with raw IDs and calls into this module.
+ *
+ * Every enum table's *declared* `str Name[N]` header count disagrees with
+ * its actual entry count (an authoring quirk in the vendored file, not a
+ * real data gap — see enums.ts). The parsed entry count is what's trusted,
+ * and cross-checked against real EBOOT stat-array lengths it lines up
+ * exactly for every table, including ChestArmorID (both are 420) — so
+ * direct index lookup here is reliable.
  */
 import { loadEnums, lookupName } from "./enums.js";
 

@@ -108,6 +108,16 @@ Tests exercise the binary readers, cipher, EBOOT decryption strategy chain,
 and struct decoders against small hand-built fixture buffers (no game files
 needed/included). Every table reader's byte offsets have additionally been
 validated by hand against a real decrypted JP EBOOT (not part of this repo,
-not automated in CI) — see git history for the specific findings, notably
-that `ArmorValuePTR` is five *single* pointers to per-slot arrays, not one
-pointer per armor piece as the ImHex syntax might suggest at a glance.
+not automated in CI) — see git history for the specific findings, notably:
+
+- `ArmorValuePTR` is five *single* pointers to per-slot arrays, not one
+  pointer per armor piece as the ImHex syntax might suggest at a glance.
+- `EquipmentCreateTable`/`EquipUpgradeTable`'s section counts (transcribed
+  from `eboot.hexpat`) are correct: the computed end-of-table byte offset for
+  each matches the real gap to the next declared table's address exactly.
+- The vendored `.enum` files' declared `str Name[N]` header counts are
+  unreliable (off from the actual parsed string count for *every* table, not
+  just an isolated one-off) — `src/strings/enums.ts` trusts the parsed count,
+  which matches real stat-table lengths exactly, including `ChestArmorID`
+  (420 names, 420 stat entries) once you stop trusting its header's claimed
+  435.
