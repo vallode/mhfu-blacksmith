@@ -15,7 +15,8 @@
  * right.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { EQUIP_CREATE_ENTRY_SIZE, EQUIP_UPGRADE_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "./offsets.js";
+import { EQUIP_CREATE_ENTRY_SIZE, EQUIP_UPGRADE_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
+import type { TableAddressResolver } from "./resolver.js";
 
 export interface CraftMaterial {
   itemId: number;
@@ -81,9 +82,14 @@ export interface EquipmentCreateTables {
   decoration: EquipCreateEntry[];
 }
 
-/** EquipmentCreate (EquipmentCreateTable) @ 0x08938D14. */
-export function readEquipmentCreate(reader: BinaryReader): EquipmentCreateTables {
-  let offset = tableOffset("equipmentCreate");
+/**
+ * EquipmentCreate (EquipmentCreateTable) @ 0x08938D14. `resolver` defaults
+ * to JP's static table — pass e.g. `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to
+ * read from a different region (only the starting address changes; every
+ * section's count is the same game data regardless of region).
+ */
+export function readEquipmentCreate(reader: BinaryReader, resolver?: TableAddressResolver): EquipmentCreateTables {
+  let offset = resolveTableOffset("equipmentCreate", reader, resolver);
   const next = (count: number): EquipCreateEntry[] => {
     const { entries, nextOffset } = readEquipCreateSection(reader, offset, count);
     offset = nextOffset;
@@ -153,9 +159,9 @@ export interface EquipmentUpgradeTables {
   armorSphere: EquipUpgradeEntry[];
 }
 
-/** EquipmentUpgrade (EquipUpgradeTable) @ 0x0894CEA4. */
-export function readEquipmentUpgrade(reader: BinaryReader): EquipmentUpgradeTables {
-  let offset = tableOffset("equipmentUpgrade");
+/** EquipmentUpgrade (EquipUpgradeTable) @ 0x0894CEA4. See readEquipmentCreate() for `resolver`. */
+export function readEquipmentUpgrade(reader: BinaryReader, resolver?: TableAddressResolver): EquipmentUpgradeTables {
+  let offset = resolveTableOffset("equipmentUpgrade", reader, resolver);
   offset += EQUIP_UPGRADE_ENTRY_SIZE; // hidden EquipUpgrade<1> NullUpgrade[1]
 
   const blademaster: EquipUpgradeEntry[] = [];

@@ -21,7 +21,8 @@
  * layer to interpret rather than guessing further here.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "./offsets.js";
+import { ITEM_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
+import type { TableAddressResolver } from "./resolver.js";
 
 export interface ItemEntry {
   /** Index into itemTable, and into ItemID for name lookup. */
@@ -42,9 +43,13 @@ export interface ItemEntry {
   skillTblId: number;
 }
 
-/** itemTable[948] @ 0x0899A238 — 24 bytes/entry, same layout as DecorationValue. */
-export function readItemTable(reader: BinaryReader): ItemEntry[] {
-  const base = tableOffset("itemTable");
+/**
+ * itemTable[948] @ 0x0899A238 — 24 bytes/entry, same layout as
+ * DecorationValue. `resolver` defaults to JP's static table — pass e.g.
+ * `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to read from a different region.
+ */
+export function readItemTable(reader: BinaryReader, resolver?: TableAddressResolver): ItemEntry[] {
+  const base = resolveTableOffset("itemTable", reader, resolver);
   const out: ItemEntry[] = [];
   for (let i = 0; i < TABLE_COUNTS.regularItems; i++) {
     const off = base + i * ITEM_ENTRY_SIZE;

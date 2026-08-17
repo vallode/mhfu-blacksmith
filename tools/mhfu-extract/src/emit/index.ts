@@ -9,6 +9,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { BinaryReader } from "../binary/reader.js";
 import { ARMOR_SLOTS, type ArmorSlot } from "../tables/armor.js";
+import type { TableAddressResolver } from "../tables/resolver.js";
 import { WEAPON_TYPE_NAMES, type WeaponTypeName } from "../tables/weapons.js";
 import { emitArmor } from "./armor.js";
 import { emitDecorations } from "./decorations.js";
@@ -52,18 +53,25 @@ function groupWeaponsByType(weapons: EmittedWeapon[]): Map<WeaponTypeName, Emitt
   return byType;
 }
 
-/** Runs every emit/* module against one decrypted JP EBOOT and returns the full data/*.json-shaped output. */
-export function emitAll(reader: BinaryReader): EmitOutput {
+/**
+ * Runs every emit/* module against one decrypted EBOOT and returns the full
+ * data/*.json-shaped output (equipment only — quest emit is separate, see
+ * cli/extract.ts). `resolver` is optional and defaults to JP's static
+ * addresses (`tableOffset()`, unchanged pre-existing behavior); pass e.g.
+ * `MHP2G_PROFILE.resolverForRegion("eu")` (games/mhp2g.ts) to read the same
+ * struct layouts from a different region's EBOOT instead.
+ */
+export function emitAll(reader: BinaryReader, resolver?: TableAddressResolver): EmitOutput {
   const output: EmitOutput = {};
 
-  output["decorations.json"] = { decorations: emitDecorations(reader) };
+  output["decorations.json"] = { decorations: emitDecorations(reader, resolver) };
 
-  const armor = emitArmor(reader);
+  const armor = emitArmor(reader, resolver);
   for (const slot of ARMOR_SLOTS) {
     output[ARMOR_SLOT_TO_FILE[slot]] = { armor: armor[slot] };
   }
 
-  const weaponsByType = groupWeaponsByType([...emitBlademasterWeapons(reader), ...emitGunnerWeapons(reader)]);
+  const weaponsByType = groupWeaponsByType([...emitBlademasterWeapons(reader, resolver), ...emitGunnerWeapons(reader, resolver)]);
   for (const type of WEAPON_TYPE_NAMES) {
     output[WEAPON_TYPE_TO_FILE[type]] = { weapons: weaponsByType.get(type) ?? [] };
   }

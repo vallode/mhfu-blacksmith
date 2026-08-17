@@ -6,6 +6,7 @@ import {
   SignatureResolver,
   StaticOffsetResolver,
   TableResolutionError,
+  verifyResolverCoverage,
 } from "../src/tables/resolver.js";
 
 test("StaticOffsetResolver rebases a table's virtual address against baseAddress", () => {
@@ -102,6 +103,26 @@ test("extractSignature derives a signature from a known-good buffer via an exist
   const otherBuf = Buffer.concat([Buffer.alloc(200, 0xff), Buffer.from("cafef00dbaadf00d", "hex")]);
   const resolver = new SignatureResolver({ myTable: sig });
   assert.equal(resolver.resolve("myTable", otherBuf), 200);
+});
+
+test("verifyResolverCoverage reports ok:true with per-table offsets when every table resolves", () => {
+  const resolver = new StaticOffsetResolver(0x1000, { foo: 0x1040, bar: 0x2000 });
+  const result = verifyResolverCoverage(resolver, ["foo", "bar"], Buffer.alloc(1));
+  assert.equal(result.ok, true);
+  assert.deepEqual(
+    result.checks.map((c) => c.ok),
+    [true, true]
+  );
+  assert.match(result.checks[0]!.detail, /^0x40$/);
+});
+
+test("verifyResolverCoverage reports ok:false and includes the underlying error when a table fails to resolve", () => {
+  const resolver = new StaticOffsetResolver(0x1000, { foo: 0x1040 });
+  const result = verifyResolverCoverage(resolver, ["foo", "missing"], Buffer.alloc(1));
+  assert.equal(result.ok, false);
+  assert.equal(result.checks[0]!.ok, true);
+  assert.equal(result.checks[1]!.ok, false);
+  assert.match(result.checks[1]!.detail, /no known address/);
 });
 
 test("extractSignature supports a non-zero signatureOffset", () => {

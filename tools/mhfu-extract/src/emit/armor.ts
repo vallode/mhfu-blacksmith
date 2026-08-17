@@ -21,6 +21,7 @@
  */
 import { ARMOR_SLOTS, readArmorValues, type ArmorSlot, type ArmorValueEntry } from "../tables/armor.js";
 import { readEquipmentCreate, type EquipCreateEntry } from "../tables/recipes.js";
+import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
 import { displayRarity, groupEquipCreateByEquipId, halveCost, materialsOrNull, rankFromRarity, resolveMaterials, type Rank } from "./common.js";
@@ -109,9 +110,9 @@ function emitSlot(
   return out;
 }
 
-export function emitArmor(reader: BinaryReader): Record<ArmorSlot, EmittedArmor[]> {
-  const armorValues = readArmorValues(reader);
-  const create = readEquipmentCreate(reader);
+export function emitArmor(reader: BinaryReader, resolver?: TableAddressResolver): Record<ArmorSlot, EmittedArmor[]> {
+  const armorValues = readArmorValues(reader, resolver);
+  const create = readEquipmentCreate(reader, resolver);
   const createByEquipId: Record<ArmorSlot, Map<number, EquipCreateEntry[]>> = {
     head: groupEquipCreateByEquipId(create.head),
     chest: groupEquipCreateByEquipId(create.chest),

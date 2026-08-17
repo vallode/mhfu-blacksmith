@@ -12,7 +12,7 @@
  * support it. See README for what such a profile would need to supply.
  */
 import type { Region } from "../container/sfo.js";
-import { EU_TABLE_SIGNATURES } from "../tables/eu-signatures.js";
+import { EU_ALL_SIGNATURES } from "../tables/eu-signatures.js";
 import {
   DECO_SKILL_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
@@ -69,11 +69,43 @@ const MHP2G_TABLES: readonly TableDescriptor[] = Object.keys(JP_TABLE_ADDRESSES)
 export const MHP2G_JP_RESOLVER: TableAddressResolver = new StaticOffsetResolver(JP_BASE_ADDRESS, JP_TABLE_ADDRESSES);
 
 /**
- * EU's signature-based resolver — a proof of concept, not full coverage.
- * Only the tables in `EU_TABLE_SIGNATURES` resolve; every other table throws
- * a clear "not validated yet" error. See README for the per-table TODO list.
+ * EU's signature-based resolver. Covers every equipment table `emit/*.ts`
+ * actually reads (weapons, armor via `ARMOR_SLOT_TABLE_NAMES`, decorations,
+ * recipes) plus a few validated-but-currently-unread tables kept as
+ * reference examples — see `eu-signatures.ts` for the full list and
+ * README's "Region support" section for exactly what's wired into `extract`
+ * vs. still TODO. Every other table throws a clear "not validated yet"
+ * error rather than guessing.
  */
-export const MHP2G_EU_RESOLVER: TableAddressResolver = new SignatureResolver(EU_TABLE_SIGNATURES);
+export const MHP2G_EU_RESOLVER: TableAddressResolver = new SignatureResolver(EU_ALL_SIGNATURES);
+
+/**
+ * Every table `emit/*.ts` actually reads to produce `data/*.json`'s
+ * equipment output (weapons/armor/decorations/recipes) — i.e. exactly what
+ * a region's resolver needs to cover before `cli/extract.ts` trusts it for
+ * real output. `armorValuesHead`/etc are `tables/armor.ts`'s
+ * `ARMOR_SLOT_TABLE_NAMES`, not `armorValuePointers` itself (see that
+ * module's doc comment for why). Doesn't include quest tables (an entirely
+ * separate DataCipher/QuestCipher path, not table-address-resolved at all)
+ * or tables no emit/*.ts module reads yet (`itemTable`, `bowgunShotTable`,
+ * `bowChargeTable`, `bowgunModTable`, `dualAttributeWeapons`).
+ */
+export const MHP2G_EMIT_TABLES: readonly string[] = [
+  "weaponClassModifiers",
+  "weaponsBlademaster",
+  "weaponsGunner",
+  "modelToWeaponType",
+  "sharpnessTable",
+  "equipmentCreate",
+  "equipmentUpgrade",
+  "decorationValues",
+  "decorationSkills",
+  "armorValuesHead",
+  "armorValuesChest",
+  "armorValuesArm",
+  "armorValuesWaist",
+  "armorValuesLeg",
+];
 
 export const MHP2G_PROFILE: GameProfile = {
   id: "mhp2g",

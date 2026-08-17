@@ -11,9 +11,22 @@
  * and dereferencing each as an array base yields a clean, plausible
  * defense/price progression (dummy armor 0, then a starter piece at
  * price=300/defense=2, then price=600/defense=4, ...).
+ *
+ * `armorValuePointers` is the one table in this pipeline `SignatureResolver`
+ * can't resolve directly for a new region: its own bytes are 5 *pointers*
+ * (absolute vaddrs), and pointer values are NOT region-independent (unlike
+ * every other table's raw stat/id content) — the exact same problem
+ * documented for `bowgunModTable` (also a pointer table) in README's
+ * "Region support" section. The fix used here: skip resolving the pointer
+ * table itself for a signature-based region, and instead resolve each
+ * slot's *target* `ArmorValue` array directly (its content — defense,
+ * price, skills — absolutely is region-independent, so the same signature
+ * technique works once you point it at the right bytes). See
+ * `ARMOR_SLOT_TABLE_NAMES` and `readArmorValues()`'s `resolver` parameter.
  */
 import { BinaryReader, readPointer } from "../binary/reader.js";
 import { ARMOR_ENTRY_SIZE, JP_BASE_ADDRESS, TABLE_COUNTS, tableOffset } from "./offsets.js";
+import type { TableAddressResolver } from "./resolver.js";
 
 export const ARMOR_SLOTS = ["head", "chest", "arm", "waist", "leg"] as const;
 export type ArmorSlot = (typeof ARMOR_SLOTS)[number];
@@ -25,6 +38,22 @@ const ARMOR_SLOT_COUNTS: Record<ArmorSlot, number> = {
   arm: TABLE_COUNTS.armArmor,
   waist: TABLE_COUNTS.waistArmor,
   leg: TABLE_COUNTS.legArmor,
+};
+
+/**
+ * Synthetic per-slot "table" names for `TableAddressResolver`s that resolve
+ * each slot's `ArmorValue` array directly, bypassing `armorValuePointers`'
+ * pointer indirection entirely (see module doc comment above). Only
+ * meaningful to a signature-based resolver (e.g. `MHP2G_EU_RESOLVER`,
+ * games/mhp2g.ts) — JP's default path (no `resolver` passed to
+ * `readArmorValues()`) never looks these up.
+ */
+export const ARMOR_SLOT_TABLE_NAMES: Record<ArmorSlot, string> = {
+  head: "armorValuesHead",
+  chest: "armorValuesChest",
+  arm: "armorValuesArm",
+  waist: "armorValuesWaist",
+  leg: "armorValuesLeg",
 };
 
 export interface ArmorResistances {
@@ -107,13 +136,26 @@ function readArmorValueEntry(reader: BinaryReader, off: number, index: number): 
   };
 }
 
-/** ArmorValues (ArmorValuePTR) @ 0x08975970 — five single pointers, one per armor slot. */
-export function readArmorValues(reader: BinaryReader): Record<ArmorSlot, ArmorValueEntry[]> {
+/**
+ * ArmorValues (ArmorValuePTR) @ 0x08975970 — five single pointers, one per
+ * armor slot.
+ *
+ * `resolver` is optional and changes *how* each slot's array base is found:
+ * - Omitted (JP default): exactly the original behavior — dereference
+ *   `armorValuePointers`' pointer table via JP's static offset + `JP_BASE_ADDRESS`.
+ * - Provided (e.g. `MHP2G_EU_RESOLVER`): resolves each slot's array
+ *   *directly* via `ARMOR_SLOT_TABLE_NAMES`, bypassing the pointer table —
+ *   see module doc comment above for why armor needs this different
+ *   strategy from every other table.
+ */
+export function readArmorValues(reader: BinaryReader, resolver?: TableAddressResolver): Record<ArmorSlot, ArmorValueEntry[]> {
   const result = {} as Record<ArmorSlot, ArmorValueEntry[]>;
-  const ptrTableOffset = tableOffset("armorValuePointers");
+  const ptrTableOffset = resolver ? undefined : tableOffset("armorValuePointers");
   ARMOR_SLOTS.forEach((slot, slotIndex) => {
     const count = ARMOR_SLOT_COUNTS[slot];
-    const arrayBase = readPointer(reader, ptrTableOffset + slotIndex * 4, JP_BASE_ADDRESS);
+    const arrayBase = resolver
+      ? resolver.resolve(ARMOR_SLOT_TABLE_NAMES[slot], reader.buf)
+      : readPointer(reader, ptrTableOffset! + slotIndex * 4, JP_BASE_ADDRESS);
     const entries: ArmorValueEntry[] = [];
     for (let i = 0; i < count; i++) {
       entries.push(readArmorValueEntry(reader, arrayBase + i * ARMOR_ENTRY_SIZE, i));
