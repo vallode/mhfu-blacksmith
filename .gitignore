@@ -46,3 +46,12 @@ tsconfig.tsbuildinfo
 
 # Python tools / local research directories
 mhef/
+
+# Game disc images and unpacked/extracted dumps — never commit copyrighted
+# game data. See tools/mhfu-extract/README.md.
+*.iso
+*.cso
+*.pbp
+tools/mhfu-extract/.cache/
+tools/mhfu-extract/**/*.iso
+tools/mhfu-extract/**/*.cso
