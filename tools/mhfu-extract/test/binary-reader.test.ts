@@ -31,6 +31,13 @@ test("BinaryReader.cString reads until NUL or maxLength", () => {
   assert.equal(r.cString(6), "world");
 });
 
+test("BinaryReader.cString decodes UTF-8 when requested", () => {
+  const text = "強敵、ドスギアノス現る！";
+  const buf = Buffer.concat([Buffer.from(text, "utf8"), Buffer.from([0])]);
+  const r = new BinaryReader(buf);
+  assert.equal(r.cString(0, 4096, "utf8"), text);
+});
+
 test("vaddrToOffset and readPointer resolve against a base address", () => {
   const base = 0x08801a4c;
   assert.equal(vaddrToOffset(0x08804000, base), 0x25b4);
