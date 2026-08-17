@@ -81,6 +81,16 @@ export default withPWA({
   aggressiveFrontEndNavCaching: true,
   reloadOnOnline: true,
   disable: process.env.NODE_ENV === "development",
+  // When a navigation (full page load, or the hard-navigation Next.js falls
+  // back to when a client-side RSC fetch fails offline) misses every cache,
+  // serve this precached shell instead of a network error. It reads the
+  // *actual* requested URL client-side and renders the right weapon/armor/
+  // monster/decoration detail view from the already-cached data bundles —
+  // see src/app/offline. This is what lets any of the ~3800 detail pages
+  // work offline without precaching every single one of them.
+  fallbacks: {
+    document: "/offline/",
+  },
   workboxOptions: {
     disableDevLogs: true,
     cacheId,

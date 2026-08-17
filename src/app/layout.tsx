@@ -3,6 +3,7 @@ import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
 import GlobalSearch from "@/components/GlobalSearch";
 import OfflineDownload from "@/components/OfflineDownload";
+import OfflineNavGuard from "@/components/OfflineNavGuard";
 import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { ToastProvider } from "@/context/ToastContext";
@@ -35,7 +36,7 @@ export default function RootLayout({
           <SaveProvider>
             <ToastProvider>
               <OfflineProvider>
-                {children}
+                <OfflineNavGuard>{children}</OfflineNavGuard>
                 <GlobalSearch />
                 <OfflineDownload />
               </OfflineProvider>
