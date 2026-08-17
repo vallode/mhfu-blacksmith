@@ -189,9 +189,8 @@ community wikis into a new overlay file.
 `data/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s
 `emitAll(reader)` runs every module and returns a `{ "<path relative to
 data/>": <schema-shaped content> }` map; `writeEmitOutput(outDir, output)`
-persists that to disk. (Wiring this into the `extract` CLI subcommand is not
-done yet — `src/cli.ts` doesn't exist; call `emitAll`/`writeEmitOutput`
-directly for now.)
+persists that to disk. `src/cli.ts`'s `extract` subcommand runs this (plus
+`emit/quests.ts`, see "Quests" above) end-to-end — see "Usage".
 
 Derived-value rules confirmed against a real decrypted JP EBOOT + the
 committed `data/` files (see `src/emit/common.ts` and each module's own
@@ -301,10 +300,15 @@ all. Currently: `materials.json` (crafting-material `type`/`color`, e.g.
 e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.
 
-Monster HP/attack/defense multipliers, monster flavor text, the monster
-category grouping, and hunting horn melody effect descriptions will need
-the same treatment once monster/quest emit is implemented (not done yet —
-tracked separately from the equipment emit layer above).
+Monster HP/attack/defense multipliers, monster flavor text, and the monster
+category grouping will need the same treatment once monster emit is
+implemented (not done yet — blocked on the hitzone/reward addressing gap,
+see "Monster overlays" above). Quest board text (title/goal/client/etc,
+see "Quests" above) is a good candidate for this same treatment too — an
+English translation overlay, keyed by quest ID, would be a reasonable
+follow-up once someone wants to translate the 548 emitted quests' Japanese
+text. Hunting horn melody effect descriptions are a separate, still-open
+gap not yet investigated at all.
 
 ## Tests
 
