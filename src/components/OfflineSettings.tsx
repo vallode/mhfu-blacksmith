@@ -49,9 +49,10 @@ export default function OfflineSettings() {
     <Card className={styles.section}>
       <h2 className={styles.heading}>Offline Data</h2>
       <p className={styles.note}>
-        Save weapons, armor, monsters, and pages to this device so the smithy
-        works without a connection. This stays here whenever you want to
-        (re)download or clear it — unlike the one-time popup.
+        Save weapon, armor, monster, and decoration data to this device so
+        search, the calculator, and browsing work without a connection. This
+        stays here whenever you want to (re)download or clear it — unlike the
+        one-time popup.
       </p>
 
       <div className={styles.status}>
