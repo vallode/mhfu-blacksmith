@@ -18,17 +18,23 @@ root excludes common disc image extensions; double check before committing.
 
 Nearly all equipment data (weapons, armor, items, decorations, crafting
 recipes, and the entire weapon upgrade tree) is stored as static, fixed-size
-arrays inside the game's main executable (`EBOOT.BIN`). Monster hitzones and
-carve/capture/break rewards live in two overlay files inside `DATA.BIN`
-(`game_task.ovl`, `game_sub.ovl`). Quests are individual `.mib` files, also
-inside `DATA.BIN`. See `NOTICE.md` for the reverse-engineering sources this
-is built on, and the plan doc this shipped from for the full research
-writeup.
+arrays inside the game's main executable (`EBOOT.BIN`). Monster hitzone and
+carve/capture/break reward *data* does exist, verbatim, inside two overlay
+files in `DATA.BIN` (`game_task.ovl`, `game_sub.ovl`) — but the monster-ID →
+data-block *linkage* for both could not be recovered by static byte
+scanning; see "Monster overlays: hitzones and rewards" below. Quests are
+individual `.mib` files, also inside `DATA.BIN`. See `NOTICE.md` for the
+reverse-engineering sources this is built on, and the plan doc this shipped
+from for the full research writeup.
 
-**Not extractable this way:** monster HP/attack/defense (believed to live in
-undocumented per-monster `emXX.ovl` overlays), flavor text, and a few
-cosmetic groupings. These are supplied by hand-authored files under
-`src/overlay/` and merged in at emit time — see "Overlay data" below.
+**Not extractable this way:** monster hitzones, carve/capture/break rewards,
+and HP/attack/defense multipliers (real per-monster data confirmed to exist
+in `game_task.ovl`/`game_sub.ovl`/per-monster `emXX.ovl` overlays, but not
+statically linkable to a monster ID — see below), flavor text, and a few
+cosmetic groupings. Equipment-side gaps of this kind are supplied by
+hand-authored files under `src/overlay/` and merged in at emit time — see
+"Overlay data" below; no such overlay exists yet for monster data since none
+of it is emitted at all currently.
 
 ## Usage
 
@@ -116,6 +122,66 @@ text). Two things worth flagging for anyone extending it:
 Not implemented (out of scope for now): `QuestScript` (opcodes are marked
 "TBD" even in the upstream pattern), gathering node locations/items, and
 arena sets.
+
+### Monster overlays: hitzones and rewards (parked, not implemented)
+
+`game_task.ovl` and `game_sub.ovl` (and 17 per-monster `emXX.ovl` files —
+`em01.ovl`..`em17.ovl`, one per "flagship"-tier monster, e.g. `em01.ovl` is
+Rathian) all use a shared container format, `src/container/ovl.ts`'s `MWo3`
+wrapper: a fixed header (magic, `loadBase`/`loadEnd` virtual addresses, a
+name field) followed by the mapped data image, with `OvlFile.vaddrToOffset`
+translating an in-file pointer/`@`-address to a byte offset the same way
+`BinaryReader`'s EBOOT helpers do. This part is solid — validated against
+real JP disc bytes by resolving self-contained fixed-layout tables
+(`game_task.ovl`'s `VeggieTradeTable`, `game_sub.ovl`'s `FishCasterTable`)
+to real item names, and by locating real, hand-verified per-monster data
+(next paragraph) at their expected virtual addresses.
+
+**The data is genuinely there.** Both hitzones and rewards were confirmed
+present, byte-for-byte, by searching the decrypted overlay for a monster's
+real values (sourced from published guides) and finding a match:
+
+- **Hitzones** — `game_task.ovl` has a fixed 464-byte-stride array of
+  `EnemyData` structs (one per monster ID, per the `tclamb/mhp2g-decomp`
+  ground-truth struct), each with a `hitPtr` field at `+0x10C`. But
+  `hitPtr` doesn't point at the actual per-part cut/impact/shot/element
+  damage table — searching for Felyne's (monster ID 9) and Mosswine's
+  (ID 4) documented hitzone bytes found them at fixed offsets in a
+  separate flat data pool (file offsets `0x165f19` and `0x165d89`,
+  vaddrs `0x9bc0419`/`0x9bc0289`), unrelated to `hitPtr`'s value for
+  those IDs. Additionally, `hitPtr` only resolves into `game_task.ovl`'s
+  own address range for 43 of the 90 monster IDs — the other 47 resolve
+  into whichever `emXX.ovl` happens to be loaded into a shared VRAM slot at
+  runtime, which a static file can't disambiguate.
+- **Rewards** — `game_sub.ovl` has a documented `bodytailshiny`/
+  `capbreakindex` (carve/capture/break) layout in the vendored
+  `game_sub.hexpat`. Giaprey's (monster ID 35) real, published low-rank
+  body carve table (52% Giaprey Scale / `ItemID` 340, 30% Giaprey Hide /
+  342, 18% Sm Monster Bone / 281, `0xffff` terminator) was found intact at
+  file offset `0xbb458` (vaddr `0x9ccf658`), immediately followed by what
+  looks like the next monster's table in the same pool.
+
+**What's blocking extraction:** in both cases, exhaustively scanning the
+*entire* overlay file for a raw little-endian pointer or index-table entry
+referencing the confirmed data's address turned up nothing. There's no
+static structure mapping "monster ID N" → "byte offset of N's hitzone/
+reward block" for this pipeline to follow — the linkage is almost certainly
+computed by the game's MIPS code itself (e.g. an immediate `base + id *
+stride` computation, or a jump table living in `EBOOT.BIN`'s code segment,
+which this pipeline never disassembles). Recovering it would require MIPS
+disassembly of the relevant EBOOT functions or dynamic/emulator memory
+tracing — a different skillset than the static byte/structure reverse
+engineering this pipeline otherwise relies on.
+
+**Status:** parked here. `data/monsters/*.json` hitzone and reward fields
+are not populated by this pipeline. The confirmed byte-exact evidence above
+is locked in as regression fixtures in `test/ovl.test.ts` (`known real
+hitzone/reward bytes` tests) so future work has verified ground truth to
+resume from without repeating this investigation. Options for whoever picks
+this up next: MIPS disassembly of the address-computation code, dynamic
+tracing under an emulator, or (as a stopgap, equivalent to the existing
+`src/overlay/*.json` mechanism) hand-transcribing hitzone/reward data from
+community wikis into a new overlay file.
 
 ## Emit layer
 
