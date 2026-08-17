@@ -74,3 +74,28 @@ export function useSaveWorker(): UseSaveWorkerReturn {
 
   return { parse, result, error, loading };
 }
+
+/**
+ * One-off, promise-based parse for callers that aren't React components
+ * (e.g. a background sync running from a context on tab focus) and don't
+ * need the persistent worker + streaming state that useSaveWorker provides.
+ */
+export function parseSaveBuffer(
+  buffer: ArrayBuffer,
+  region: Region
+): Promise<WorkerResult> {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker("/javascript/save-worker.js", { type: "module" });
+    worker.onmessage = (e: MessageEvent<WorkerMessage>) => {
+      worker.terminate();
+      const msg = e.data;
+      if (msg.ok) resolve(msg);
+      else reject(new Error(msg.error));
+    };
+    worker.onerror = (e) => {
+      worker.terminate();
+      reject(new Error(e.message ?? "Worker error"));
+    };
+    worker.postMessage({ buffer, region }, [buffer]);
+  });
+}
