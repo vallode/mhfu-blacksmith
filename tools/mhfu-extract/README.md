@@ -234,6 +234,64 @@ Known gaps/approximations, deliberately deferred rather than guessed at:
   `NoteGLType` byte's dual purpose for these two weapon classes needs more
   reverse-engineering than we've done so far.
 
+## Quests
+
+`src/quests/discovery.ts`'s `readAllQuests(dataBinFiles, region)` decrypts
+and parses every real quest file (`listQuestFiles()` filters `DATA.BIN`'s
+564 `mission_jpn/*.mib` entries down to the 551 real `m#####.mib` quests,
+excluding 13 `level*.mib` files confirmed to be a different, non-quest
+format). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
+them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
+(schema: `data/schemas/quest.schema.json`) — the first `data/` category this
+pipeline designed from scratch, since (unlike weapons/armor/monsters/
+decorations) no such schema existed before this. Verified end-to-end against
+every real quest on the JP disc: 551 parse cleanly, 3 are unused/disabled
+slots (`m50001`-`m50003`: 0 zenny fee, 1 zenny reward, every text field the
+literal string `"**********"`) and are dropped, leaving 548 emitted across
+village (39) / guild (473) / training-school (29) / treasure-hunting (7).
+
+**The `hub`/`rank` split** comes from `questHeader.Rank` (0-5), confirmed
+against real data rather than assumed: rank 3's `client` string is always
+"トレジィ" ("Treshi", the real Treasure Hunting NPC per community guides)
+and rank 4's is always "教官" ("Instructor", the Training School NPC) with
+every title ending in "討伐訓練" ("... Subjugation Training"); ranks 0/1/2/5's
+star ranges (1-5,8,10 / 1-6 / mostly 6-9 / 9-11) line up with
+community-documented Village / Guild-Low-Rank / Guild-High-Rank /
+Guild-G-Rank star bands. `map` is resolved through a small hand-transcribed
+table (`src/tables/quest-maps.ts`) sourced from `quest.hexpat`'s own inline
+comments — the only place any vendored source names these IDs.
+
+**Known gap: quest board text is Japanese-only.** `title`/`goal`/`fail`/
+`details`/`client` are extracted verbatim from the disc, but every
+`LangPTRs` slot on the JP disc aliases the same Japanese-text pointer — the
+JP disc never populated distinct English strings for retail quests. This
+isn't a simple "read the EU disc instead" fix, either: real EU disc
+(`Monster Hunter Freedom Unite (Europe)`) `mission_jpn/*.mib` files don't
+decrypt at the JP disc's filelist.csv indices at all (`QuestCipher` SHA1
+mismatches / garbage declared sizes), meaning the EU `DATA.BIN`'s file
+count/order genuinely differs from JP's, not just its content — the same
+class of per-region structural difference already documented for EBOOT
+tables above. Every other quest field (rewards, supplies, monsters, target,
+map, fee/reward/penalty zenny, time limit) is fully in English already,
+resolved through the same ItemID/emID enum bootstrap the equipment emit
+modules use, so this only affects the five free-text fields.
+
+**Other derivations:** `time_limit_minutes = timeLimit / 1800` (confirmed
+exact — no remainder — against every real sample checked, e.g. quest ID 1's
+raw `90000` -> 50 minutes). `target` is null when there's no single hunt/
+capture objective (`targetNum === 0`, or `targetId` doesn't resolve to a
+real monster — e.g. Treasure Hunting quests reuse this field for something
+else entirely, with real values like 928 far outside `emID`'s 90-entry
+range). `small_monsters` is deduplicated to one row per species with the
+max quantity seen across every zone, since `SmallMonIndex` frequently
+repeats an entire zone list verbatim (confirmed on real data); `large_monsters`
+is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
+rows.
+
+Not implemented (out of scope for now, same as the underlying parser —
+see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
+and arena sets.
+
 ## Overlay data
 
 `src/overlay/*.json` holds fields that cannot be derived from the disc at
