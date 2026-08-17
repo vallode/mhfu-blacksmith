@@ -60,6 +60,8 @@ export const WEAPON_BM_ENTRY_SIZE = 24;
 export const WEAPON_GUN_ENTRY_SIZE = 28;
 export const ARMOR_ENTRY_SIZE = 40;
 export const ITEM_ENTRY_SIZE = 24;
+export const DECO_SKILL_ENTRY_SIZE = 16;
+export const SHARPNESS_ENTRY_SIZE = 14;
 
 /** Resolves a JP table address to a JP EBOOT file offset. */
 export function tableOffset(table: TableName): number {
