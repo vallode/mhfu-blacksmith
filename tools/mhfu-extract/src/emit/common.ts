@@ -8,6 +8,7 @@
 import type { CraftMaterial, EquipCreateEntry } from "../tables/recipes.js";
 import type { NameResolver } from "../strings/names.js";
 import { resolveMaterialStyle } from "../overlay/materials.js";
+import { correctedItemName, type MaterialContext } from "../overlay/item-name-corrections.js";
 
 export type Rank = "low-rank" | "high-rank" | "g-rank";
 
@@ -59,20 +60,26 @@ export interface EmittedMaterial {
  * shape, or `null` for an unused craft slot (`itemId === 0` — every
  * `EquipCreate`/`EquipUpgrade` craft list is a fixed-size array with unused
  * trailing slots zeroed, not a length-prefixed list).
+ *
+ * `context` (which kind of recipe this material is for) is required because
+ * `item-name-corrections.json`'s `armor`-scoped corrections must NOT be
+ * applied to weapon/decoration recipes sharing the same `ItemID` — see that
+ * module's doc comment for why a single global rename isn't safe here.
  */
-export function resolveMaterial(material: CraftMaterial, names: NameResolver): EmittedMaterial | null {
+export function resolveMaterial(material: CraftMaterial, names: NameResolver, context: MaterialContext): EmittedMaterial | null {
   if (material.itemId === 0 || material.quantity === 0) return null;
-  const name = names.resolve("ItemID", material.itemId);
-  if (!name) return null;
+  const rawName = names.resolve("ItemID", material.itemId);
+  if (!rawName) return null;
+  const name = correctedItemName(rawName, context);
   const style = resolveMaterialStyle(name);
   return { name, amount: material.quantity, type: style.type, color: style.color };
 }
 
 /** Resolves a fixed-size `CraftMaterial[]` (from readCraftItems), dropping unused slots. */
-export function resolveMaterials(materials: CraftMaterial[], names: NameResolver): EmittedMaterial[] {
+export function resolveMaterials(materials: CraftMaterial[], names: NameResolver, context: MaterialContext): EmittedMaterial[] {
   const out: EmittedMaterial[] = [];
   for (const m of materials) {
-    const resolved = resolveMaterial(m, names);
+    const resolved = resolveMaterial(m, names, context);
     if (resolved) out.push(resolved);
   }
   return out;
