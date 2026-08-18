@@ -35,7 +35,12 @@ export default function DecorationsListClient() {
             {!loading &&
               tree?.map((node) => (
                 <ul key={node.slug}>
-                  <WeaponTreeRow node={node} sectionType="decoration" basePath="/decorations/" />
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType="decoration"
+                    basePath="/decorations/"
+                    treeKey="decorations"
+                  />
                 </ul>
               ))}
           </TreeScroll>

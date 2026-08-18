@@ -74,6 +74,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   node={node}
                   sectionType={type}
                   basePath={basePath}
+                  treeKey={`weapon-${type}`}
                   activeSlug={slug}
                 />
               </ul>
