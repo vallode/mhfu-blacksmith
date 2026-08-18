@@ -333,6 +333,45 @@ specifically at recipe/name pairing.
   code ever gets decompiled, it could finally confirm (or refute) the "the
   `.enum` transcription order is simply wrong" hypothesis directly.
 
+**Update 3 (`create_mats`/`create_cost` lookup-key fix):** Fixed the
+`create_mats`-rose/`create_cost`-untouched trade-off flagged in Update 2
+above. Root cause: `emit/armor.ts`'s `emitSlot()` resolved a piece's
+*name* via the corrected `nameIndex` (this issue's overlay) but still
+looked up its crafting recipe via the raw, uncorrected `armor.index` —
+`createByEquipId.get(armor.index)` instead of `createByEquipId.get(nameIndex)`.
+This was always wrong once `nameIndex !== armor.index`, since
+`groupEquipCreateByEquipId` (`emit/common.ts`) keys strictly on
+`EquipCreate.equipId`, which is documented and confirmed to be a
+name-table-index-space key, not a raw-stat-array-position key. The fix is
+a one-line change:
+
+```diff
+-    const [primaryRecipe] = createByEquipId.get(armor.index) ?? [];
++    const [primaryRecipe] = createByEquipId.get(nameIndex) ?? [];
+```
+
+**Measured impact** (real JP `unpack`/`extract`/`diff`, this fix only,
+holding all other fixes constant, freshly re-run against the real ISO):
+armor `create_mats` field mismatches dropped from **1,344 to 683**
+(-49.2%); `create_cost` dropped from **88 to 77** (-12.5%). Every other
+armor field (`defence`, `fire_res`/`water_res`/`thunder_res`/`dragon_res`/
+`ice_res`, `rarity`, `rank`, `slots`, `skills`) was byte-for-byte unchanged,
+as expected — this fix only touches the recipe lookup key. **Zero
+regressions**: cross-checked every armor item's per-field mismatch set
+before vs. after (restricted to items present, i.e. not only-in-one-side,
+on both sides) — no field that previously matched became mismatched.
+`itemsOnlyInExtracted`/`itemsOnlyInCommitted` were unaffected (104/392
+both before and after), since this fix doesn't change which items are
+emitted, only which recipe a given emitted item resolves. JP and EU armor
+JSON output remain byte-identical after this fix (re-verified via a fresh
+`unpack`/`extract` of both regions' real ISOs).
+
+The residual 683 `create_mats` / 77 `create_cost` mismatches are a
+separate, not-yet-investigated gap in `groupEquipCreateByEquipId`'s
+recipe-matching itself (e.g. entries with no `EquipCreate` row at all for
+their `equipId`, or genuine recipe-data disagreements) — out of scope for
+this fix, which only addressed the wrong-lookup-key bug.
+
 ---
 
 ## 2. Armor `skills` decode wrong even on stat-aligned entries (265/276)

@@ -99,7 +99,7 @@ function emitSlot(
       .filter((s) => s.skill !== 0)
       .map((s) => ({ name: names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`, amount: s.amount }));
 
-    const [primaryRecipe] = createByEquipId.get(armor.index) ?? [];
+    const [primaryRecipe] = createByEquipId.get(nameIndex) ?? [];
     const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names) : [];
 
     out.push({

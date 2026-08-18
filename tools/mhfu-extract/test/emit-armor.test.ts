@@ -131,6 +131,70 @@ function buildGenpreyHelmFixture() {
   return reader;
 }
 
+/**
+ * Reproduces real head[12] bytes (same "Vespoid Helm" correction as
+ * `buildVespoidFixture` above — raw position 12 -> name index 11), but adds
+ * two `EquipCreate` entries to exercise the `create_mats`/`create_cost`
+ * lookup key bug: one keyed on `equipId=11` (`nameIndex`, the corrected —
+ * and per `groupEquipCreateByEquipId`'s doc comment, actually correct —
+ * lookup key) with a real recipe, and a decoy keyed on `equipId=12`
+ * (`armor.index`, the raw/uncorrected array position the old buggy code
+ * looked up instead) with a *different* recipe. Asserts the emitted
+ * "Vespoid Helm" resolves its recipe via `nameIndex` (11), not via the raw
+ * `armor.index` (12) — i.e. the fix from `emit/armor.ts`'s `emitSlot()`
+ * (`createByEquipId.get(nameIndex)` instead of `createByEquipId.get(armor.index)`).
+ */
+function buildVespoidWithRecipeFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[12] — real bytes, matches committed "Vespoid Helm"
+  // (name index 11), not "Vespoid Cap" (name index 12).
+  const off12 = HEAD_ARRAY_OFFSET + 12 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off12 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2300, off12 + 8); // Price
+  buf.writeInt8(20, off12 + 12); // Defense
+  buf.writeInt8(-6, off12 + 13); // Fire resistance
+  buf.writeInt8(-5, off12 + 14); // Water resistance
+  buf.writeInt8(2, off12 + 15); // Thunder resistance
+  buf.writeInt8(2, off12 + 16); // Dragon resistance
+  buf.writeInt8(-4, off12 + 17); // Ice resistance
+  buf.writeUInt8(1, off12 + 18); // Slots
+
+  // EquipmentCreateTable.head[0] — keyed on equipId=11 (nameIndex): the
+  // *correct* recipe per emit/common.ts's groupEquipCreateByEquipId doc.
+  const correctOff = tableOffset("equipmentCreate") + 0 * EQUIP_CREATE_ENTRY_SIZE;
+  buf.writeUInt16LE(11, correctOff + 2); // EquipID = nameIndex
+  buf.writeUInt16LE(201, correctOff + 4); // Craft[0].Item = "Disk Stone"
+  buf.writeUInt16LE(1, correctOff + 6); // Craft[0].Quantity
+
+  // EquipmentCreateTable.head[1] — decoy keyed on equipId=12 (armor.index):
+  // the *wrong* recipe the pre-fix code would have resolved via the raw,
+  // uncorrected index instead.
+  const decoyOff = tableOffset("equipmentCreate") + 1 * EQUIP_CREATE_ENTRY_SIZE;
+  buf.writeUInt16LE(12, decoyOff + 2); // EquipID = armor.index
+  buf.writeUInt16LE(200, decoyOff + 4); // Craft[0].Item = "Stone"
+  buf.writeUInt16LE(5, decoyOff + 6); // Craft[0].Quantity
+
+  return reader;
+}
+
+test("emitArmor resolves the crafting recipe via the corrected name index, not the raw index", () => {
+  const reader = buildVespoidWithRecipeFixture();
+  const armor = emitArmor(reader);
+
+  const vespoidHelm = armor.head.find((a) => a.name === "Vespoid Helm");
+  assert.ok(vespoidHelm, "raw head[12]'s stats should surface as 'Vespoid Helm' via the correction");
+  assert.equal(vespoidHelm!.create_cost, 1150); // 2300 / 2 — only set when a recipe resolves
+  assert.deepEqual(vespoidHelm!.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
+});
+
 test("emitArmor resolves the correct name even when raw slots disagrees with committed data", () => {
   const reader = buildGenpreyHelmFixture();
   const armor = emitArmor(reader);
