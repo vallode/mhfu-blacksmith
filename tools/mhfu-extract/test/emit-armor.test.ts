@@ -95,6 +95,56 @@ function buildVespoidFixture() {
   return reader;
 }
 
+/**
+ * Reproduces real head[19] bytes (see
+ * `test/armor-index-corrections.test.ts` for the fingerprint verification):
+ * defense/resistances/rarity/price exactly match committed "Genprey Helm"
+ * (name index 17), but raw `slots` (0) disagrees with committed `slots` (1)
+ * — one of many male/female-paired entries with a transposed `slots` value
+ * (see `scripts/generate-armor-corrections.ts`'s module doc comment). The
+ * correction must still fire on the non-slots fields even though `slots`
+ * itself doesn't match (and remains unfixed — emitted `slots` reflects the
+ * raw, not the committed, value; this is a documented, separate known gap).
+ */
+function buildGenpreyHelmFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[19] — real bytes; slots (0) disagrees with committed
+  // "Genprey Helm" (1), every other field agrees exactly.
+  const off19 = HEAD_ARRAY_OFFSET + 19 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off19 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2700, off19 + 8); // Price
+  buf.writeInt8(22, off19 + 12); // Defense
+  buf.writeInt8(2, off19 + 13); // Fire resistance
+  buf.writeInt8(-2, off19 + 14); // Water resistance
+  buf.writeInt8(3, off19 + 15); // Thunder resistance
+  buf.writeInt8(-1, off19 + 16); // Dragon resistance
+  buf.writeUInt8(0, off19 + 18); // Slots — deliberately NOT 1 (committed value)
+
+  return reader;
+}
+
+test("emitArmor resolves the correct name even when raw slots disagrees with committed data", () => {
+  const reader = buildGenpreyHelmFixture();
+  const armor = emitArmor(reader);
+
+  const genpreyHelm = armor.head.find((a) => a.name === "Genprey Helm");
+  assert.ok(genpreyHelm, "raw head[19]'s stats should surface as 'Genprey Helm' despite the slots mismatch");
+  assert.equal(genpreyHelm!.defence, 22);
+  assert.equal(genpreyHelm!.fire_res, 2);
+  assert.equal(genpreyHelm!.rarity, 3);
+  // Known, separate gap: slots is emitted from the raw entry as-is, so it
+  // still reflects the (wrong, transposed) raw value here, not committed.
+  assert.equal(genpreyHelm!.slots, 0);
+});
+
 test("emitArmor applies the fingerprint-based index correction and suppression", () => {
   const reader = buildVespoidFixture();
   const armor = emitArmor(reader);

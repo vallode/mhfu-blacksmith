@@ -9,27 +9,42 @@
  * `unkn3`).
  *
  * This table is the fix-plan's proposed **approach 2**: empirically-derived
- * via fingerprint matching, not a formula. `scripts/generate-armor-
+ * via fingerprint matching, not a formula (a structural root cause — a real
+ * in-binary index/permutation table, or a simple sort-order rule — was
+ * searched for and not found; see `docs/fix-plan.md` issue #1's second
+ * "Update" for the full investigation, including why a promising near-
+ * monotonic raw-index/name-index correlation *didn't* pan out into a
+ * position-based interpolation scheme). `scripts/generate-armor-
  * corrections.ts` (not shipped/run at runtime) builds it by fingerprinting
- * every raw `ArmorValueEntry` on (defense, 4 resistances, rarity, slots,
- * halved price) and matching that fingerprint 1:1 against the same
- * fingerprint computed from the committed `data/armor/*.json` entry the
- * name belongs to. A correction is only recorded when *both* the raw
- * fingerprint and the committed name are unique within their slot (no
- * ambiguous fingerprint collisions are guessed at), and only when it
- * actually differs from the raw-position assumption (so this table is
+ * every raw `ArmorValueEntry` against the committed `data/armor/*.json`
+ * entry the name belongs to, in two confidence tiers — see that script's
+ * module doc comment for the full methodology (in short: a "core"
+ * fingerprint deliberately excludes `slots`, since it's independently
+ * unreliable for a large, structured subset of entries, with `slots` used
+ * only as a tiebreaker when the core fingerprint alone is ambiguous). A
+ * correction is only recorded when both the raw fingerprint and the
+ * committed name are unique within the slot *and* the result survives a
+ * global monotonicity check (raw index and name index are empirically
+ * almost-perfectly rank-correlated; any resolved pair that breaks that
+ * trend is treated as a coincidental collision and dropped), and only when
+ * it actually differs from the raw-position assumption (so this table is
  * sparse — most entries need no override).
  *
- * **Known limitation**: only ~37-45% of entries per slot have a unique,
- * confident fingerprint match (the rest share a fingerprint with at least
- * one other armor piece in the same slot, most commonly dummy/near-
- * identical low-rarity pieces, or have no committed counterpart at all) —
- * see `docs/fix-plan.md` issue #1 for the measured per-slot coverage. Raw
- * positions with no entry here fall back to the original raw-index
+ * **Known limitation**: ~68-73% of entries per slot have a unique,
+ * confident fingerprint match (up from ~28-55% under the original
+ * slots-inclusive fingerprint) — the rest share a fingerprint with at
+ * least one other armor piece in the same slot (most commonly dummy/
+ * near-identical low-rarity pieces), or have no committed counterpart at
+ * all — see `docs/fix-plan.md` issue #1 for the measured per-slot coverage.
+ * Raw positions with no entry here fall back to the original raw-index
  * assumption, which may still be wrong; this table only *improves* the
- * match rate, it doesn't claim full coverage. Regenerate if `data/armor/`
- * changes (e.g. wiki corrections) using `scripts/generate-armor-
- * corrections.ts` against a real unpacked EBOOT.
+ * match rate, it doesn't claim full coverage. Note also that a confirmed
+ * name/stat match does **not** imply every stat field on that entry is
+ * correct — `slots` specifically is known-unreliable for many entries even
+ * once correctly named (see `generate-armor-corrections.ts`'s doc comment)
+ * and is emitted as-is from the raw struct, uncorrected. Regenerate if
+ * `data/armor/` changes (e.g. wiki corrections) using `scripts/generate-
+ * armor-corrections.ts` against a real unpacked EBOOT.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
