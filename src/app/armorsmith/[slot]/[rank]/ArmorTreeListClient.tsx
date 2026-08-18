@@ -42,7 +42,12 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
             {!loading &&
               tree?.map((node) => (
                 <ul key={node.slug}>
-                  <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} />
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType={slot}
+                    basePath={basePath}
+                    treeKey={`armor-${slot}-${rank}`}
+                  />
                 </ul>
               ))}
           </TreeScroll>
