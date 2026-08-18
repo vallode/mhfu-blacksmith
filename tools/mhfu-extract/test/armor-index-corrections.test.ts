@@ -27,3 +27,22 @@ test("correctedArmorNameIndex falls back to raw index when no correction or supp
   // by fingerprint matching (no committed counterpart to match against).
   assert.equal(correctedArmorNameIndex("head", 0), 0);
 });
+
+/**
+ * Pins the coverage improvement from excluding `slots` from the required
+ * fingerprint (see `scripts/generate-armor-corrections.ts`'s module doc
+ * comment). Real bytes: raw `head[19]`'s stats (defense 22, fire 2/water -2/
+ * thunder 3/dragon -1, rarity 3, price 2700) exactly match committed
+ * "Genprey Helm" on every field *except* `slots` (raw reads 0, committed
+ * says 1) — one of many male/female-paired entries where `slots` is
+ * transposed between the two variants relative to committed data. The old
+ * fingerprint (which required an exact `slots` match) rejected this as "no
+ * match" and left `head[19]` on unconfirmed raw-position naming (which
+ * would have wrongly resolved to name index 19, not 17); the core
+ * fingerprint (defense/resistances/rarity/price only) still uniquely
+ * identifies it.
+ */
+test("correctedArmorNameIndex resolves an entry whose only mismatching field is slots", () => {
+  assert.equal(correctedArmorNameIndex("head", 19), 17);
+  assert.equal(correctedArmorNameIndex("head", 20), 18);
+});

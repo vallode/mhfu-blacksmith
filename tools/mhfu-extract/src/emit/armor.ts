@@ -12,12 +12,14 @@
  * `unkn3` (the only one with per-entry-unique values) does not correlate
  * with committed stats when used as a name index. There is no known
  * in-binary field linking the two independently-sourced lists (stat array
- * position vs. `.enum`-file name order). The fix applied here is
+ * position vs. `.enum`-file name order). A structural root cause (a real
+ * permutation table, or a derivable sort-order rule) was searched for and
+ * not found — see `docs/fix-plan.md` issue #1. The fix applied here is
  * `overlay/armor-index-corrections.ts`'s empirically-derived per-slot
  * correction table (fingerprint-matched raw stats <-> committed data),
- * which resolves a meaningful minority of entries per slot with high
- * confidence; the remainder still falls back to raw-position naming and
- * may be wrong. See that module's doc comment for full methodology and
+ * which now resolves a solid majority (~68-73%) of entries per slot with
+ * high confidence; the remainder still falls back to raw-position naming
+ * and may be wrong. See that module's doc comment for full methodology and
  * known coverage limits.
  *
  * `sex`/`hunter_type`/`hr`/`elder` are skipped entirely: none of the fields

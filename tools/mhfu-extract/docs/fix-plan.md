@@ -179,6 +179,160 @@ naively suggest). Raw `head[11]`'s own bytes (defense 18) don't match
 "Vespoid Cap" (defense 10) either, so it's correctly suppressed rather than
 guessed.
 
+**Update 2 (dedicated follow-up session — root-cause search + coverage
+improvement):**
+
+**No structural root cause was found.** Three concrete avenues were tried
+against the real, unpacked JP EBOOT before falling back to improving the
+fingerprint heuristic:
+
+1. **Searched for a real in-binary index/permutation table.** No evidence
+   of one was found near the `ArmorValue` arrays or the name-resolution
+   path; `unkn1`/`unkn2`/`unkn3` were already ruled out in the prior
+   session (see Update 1 above) and no other candidate field surfaced.
+2. **Tested whether raw stat order and name order are simply sorted
+   differently** (e.g. one by internal ID, the other by display/menu
+   order). This is **partially true but not usably so**: computed every
+   confidently fingerprint-matched `(rawIndex, nameIndex)` pair per slot,
+   sorted by `rawIndex`, and checked how often `nameIndex` also increases
+   for adjacent pairs — **97-99% of adjacent pairs increase** (191/193 for
+   `head`, 226/230 for `waist`, etc.), i.e. the two lists are overwhelmingly
+   the *same order* with only sparse local drift, not an independently-sorted
+   or shuffled pair of lists. This looked like a strong lead — a classic
+   "sequence alignment with local insertions/deletions" structure — but
+   **directly interpolating** the name index for not-yet-matched raw
+   entries using their position between two confirmed neighbors (either by
+   linear offset across "same-length" gaps, or by forcing a 1:1 pairing in
+   single-entry gaps) was tested and **failed validation** against
+   committed data in the large majority of cases (e.g. only 14/134
+   "same-length-gap" interpolated `head` entries actually matched committed
+   stats; single-entry forced-position pairs matched close to 0% of the
+   time). Conclusion: the *global* order is preserved, but *local* order
+   within each small run between confirmed anchors is not simply positional
+   — there's a local permutation (not a shift) at a finer grain than
+   anchor-to-anchor interpolation can recover. This monotonicity property
+   was still put to good use as a **safety filter** (see below), just not
+   as a positive interpolation source.
+3. **Re-examined per-entry raw fields as a possible join key** (`unkn1`,
+   `unkn2`, `unkn3`, `maleId`, `femaleId`, `colorSeries`, `hunterType`)
+   against the now-larger set of confidently-matched pairs: none showed
+   any exact or near-exact correlation with `nameIndex` (checked exact
+   match rate and most-common offset per field; all near 0%). This
+   reconfirms Update 1's finding rather than finding a new candidate.
+4. **Checked `tclamb/mhp2g-decomp`** (a real, in-progress, byte-matching
+   MHP2G decompilation on GitHub, CC0) for a decompiled `equip_manager`/
+   armor-table struct that might reveal the true internal ordering.
+   `EquipManager` isn't decompiled yet (empty stub) as of this session, but
+   the sibling `ItemManager`/`ItemDefinition` struct **is** decompiled and
+   confirms the general pattern this pipeline already assumes: item structs
+   are indexed directly by ID with **no embedded name pointer** — names
+   live in a separate, identically-indexed table. This is consistent with
+   armor working the same way *in the real game*; it implies the drift is
+   most likely an artifact of the vendored `.enum` file's hand transcription
+   order (see `src/strings/names.ts`'s doc comment — it's third-party,
+   hand-transcribed, not disc-extracted) rather than a genuine dual-list
+   design in the game itself. This doesn't yield a fix (we can't
+   re-transcribe the vendor file), but it does rule out "the game engine
+   itself uses two independently-ordered lists" as the explanation, and
+   points at "the `.enum` author's transcription order doesn't match
+   internal ID order" as the most likely real-world cause — worth
+   revisiting if `EquipManager`/armor tables ever get decompiled upstream.
+
+**Coverage improvement (shipped this session):** while investigating
+avenue 2 above, a byproduct discovery drove a large, real coverage win.
+Dropping `slots` from the required fingerprint (keeping defense + 4
+resistances + rarity + halved price — still 7 independent, high-cardinality
+fields) roughly **doubled** the number of unique fingerprint matches per
+slot (e.g. `head` 194 -> 308 raw matches). Investigating *why* revealed a
+clear, structured pattern: for a large number of male/female-paired armor
+pieces (e.g. "Genprey Helm"/"Genprey Cap"), **raw `slots` is transposed
+between the two variants relative to committed data** (`head[19]`
+"Genprey Helm" reads raw `slots=0` while committed says `1`; its "Cap"
+counterpart shows the opposite skew) while every other field — including
+skill-adjacent high-cardinality fields — agrees exactly. Requiring an exact
+`slots` match (the original fingerprint) silently rejected these as
+"no match" and left them on unconfirmed, sometimes-wrong raw-position
+naming. The revised generator (`scripts/generate-armor-corrections.ts`)
+now matches in two tiers: (1) **`fingerprint-core`** — unique match on the
+7-field core fingerprint alone (used regardless of whether `slots` agrees);
+(2) **`fingerprint-slots-tiebreak`** — only when the core fingerprint alone
+is ambiguous, narrow using an exact `slots` match too (recovers cases where
+`slots` genuinely is the discriminating field). A **global monotonicity
+cleanup pass** (longest-increasing-subsequence of `nameIndex` over raw-
+sorted confirmed pairs — motivated directly by avenue 2's finding) then
+drops any resolved pair that breaks the near-universal raw/name rank
+correlation, catching coincidental fingerprint collisions (typically
+all-zero-stat dummy entries) that the original per-slot uniqueness check
+alone let through — several of the previous overlay's largest, most
+implausible corrections (e.g. shifts of -187 to -248 or +193/+202) were
+exactly this kind of false positive and are gone from the regenerated
+table.
+
+**New coverage** (fingerprint-confirmed / out of total raw entries): head
+308/436 (71%), chest 307/420 (73%), arm 299/411 (73%), waist 297/409 (73%),
+leg 285/420 (68%) — up from the prior 28-55%.
+
+**New measured impact** (real JP `unpack`/`extract`/`diff`, holding all
+other fixes constant): armor `fieldMismatches` across all 5 files dropped
+from **5,958 to 4,441** (-25.5% further; **-67.0% from the original 13,463
+baseline**). Per purely-stat-derived field, the improvement is stark:
+`defence` 402→88, `dragon_res` 344→88, `fire_res` 393→94, `water_res`
+399→99, `thunder_res` 398→89, `ice_res` 401→103, `rarity` 208→44, `rank`
+109→30, `create_cost` 391→88 — all down ~75-80% *again* on top of the prior
+fix's already-large drop. `itemsOnlyInExtracted`/`itemsOnlyInCommitted`
+across the 5 armor files also both improved (174→104, 553→392) — more
+entries are now correctly named instead of being silently suppressed.
+
+**Verified zero regressions**: cross-checked every armor item's per-field
+mismatch set before vs. after this change — **0 items** that were
+previously fully correct (all fields matching) became mismatched. Every
+newly-appearing mismatch belongs to an item that was previously entirely
+unemitted (`itemsOnlyInCommitted`, i.e. suppressed under the old, stricter
+overlay) and is now correctly named with correct core stats, just still
+wrong on one of the fields this fix doesn't touch (see below).
+
+**Known trade-off, not a regression:** `slots` (427→716), `skills`
+(1501→1658), and `create_mats` (985→1344) field-mismatch counts went *up*.
+This is the expected, verified-benign flip side of the coverage win above:
+previously-suppressed entries are now correctly named (a strict
+improvement — right item identified with right defense/resistances/rarity/
+price), which *surfaces* pre-existing, separate bugs in those three fields
+that were previously hidden by non-emission rather than fixed. `slots`
+itself is the newly-discovered "transposed on male/female pairs" issue
+described above (not fixed here — fixing the *value* would need reliably
+identifying which raw entries are paired, which is a distinct problem from
+naming them correctly, and is out of scope for the index-drift issue this
+document tracks). `skills` is issue #2's already-documented gap (decode is
+fine; entries needing this fix were exactly the ones previously suppressed
+because the old fingerprint couldn't place them). `create_mats` mismatches
+on newly-named entries reflect the equipment-recipe-matching pipeline
+(`groupEquipCreateByEquipId`) applied to newly-visible items — not
+investigated this session, out of scope, but worth a future look
+specifically at recipe/name pairing.
+
+**New leads for a future session:**
+- The `slots`-transposition-on-gendered-pairs pattern is well-characterized
+  (raw `1<->2` and `2<->3` swaps dominate, ~180-190 occurrences each just
+  for `head`) and looks tractable: if male/female pairs can be reliably
+  identified (candidates: adjacent post-correction name index with
+  matching name minus "Helm"/"Cap" or similar suffix, or via `maleId`/
+  `femaleId` cross-referencing), a targeted "detect + swap" fix is plausible
+  as a follow-up, but is a distinct bug from index drift and was
+  deliberately left out of scope here.
+- ~27-32% of entries per slot remain unresolved (ambiguous core fingerprint
+  even after the slots tiebreaker, mostly repeated/near-identical
+  low-rarity starter pieces). A further pass restricting fingerprint
+  matching to *local* candidate pools (only raw/name entries between two
+  already-confirmed neighboring anchors, shrinking the collision space) was
+  prototyped and found a small number of additional high-confidence matches
+  (single digits per slot) with good validated accuracy where it did apply
+  — a real but small further win, not pursued to completion this session
+  given the much larger gain already banked; worth revisiting.
+- `tclamb/mhp2g-decomp`'s `EquipManager`/`ItemManager` decompilation is
+  active and incomplete — re-check it periodically; if armor-table-adjacent
+  code ever gets decompiled, it could finally confirm (or refute) the "the
+  `.enum` transcription order is simply wrong" hypothesis directly.
+
 ---
 
 ## 2. Armor `skills` decode wrong even on stat-aligned entries (265/276)
@@ -269,6 +423,19 @@ made matching *worse*, not better (skill-ID resolution itself has enough
 independent noise that it hurt rather than helped disambiguation) — not
 pursued further given #1's fingerprint already achieves meaningful coverage
 without it.
+
+**Update 2 (after #1's coverage-improvement follow-up session):** consistent
+with the above, `skills` mismatches went *up* slightly (1501→1658) when #1's
+fingerprint coverage was later improved from ~28-55% to ~68-73% per slot —
+this is the expected, verified-benign flip side of that fix, not a
+regression: entries that used to be silently suppressed (no name emitted at
+all, so no `skills` mismatch was even measurable) are now correctly named,
+which surfaces this issue's already-known, already-documented skills gap on
+exactly the entries #1 newly resolved. See issue #1's "Update 2" for the
+full before/after breakdown and regression check (0 previously-fully-correct
+items were affected). Still **no separate skills-decode bug found**; the
+residual remains #1's coverage gap, just measured against a larger,
+more-correctly-named denominator now.
 
 ---
 
