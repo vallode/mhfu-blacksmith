@@ -195,6 +195,60 @@ test("emitArmor resolves the crafting recipe via the corrected name index, not t
   assert.deepEqual(vespoidHelm!.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
 });
 
+/**
+ * Reproduces real head[27]/head[28] bytes (see `armor-slots-corrections.ts`
+ * / `scripts/generate-armor-slots-corrections.ts` for the full pairing +
+ * verification methodology): raw `head[27]` resolves (via the index-drift
+ * correction) to "Cephalos Helm" with raw `slots=2`, and raw `head[28]`
+ * resolves to "Cephalos Cap" with raw `slots=1` — but committed data expects
+ * exactly the opposite (Helm=1, Cap=2), a confirmed clean transposition.
+ * Exercises `correctedArmorSlots` end-to-end through `emitArmor()`.
+ */
+function buildCephalosFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[27] — real "Cephalos Helm" bytes; raw slots (2)
+  // disagrees with committed (1) — the transposed value.
+  const off27 = HEAD_ARRAY_OFFSET + 27 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off27 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(4700, off27 + 8); // Price
+  buf.writeInt8(28, off27 + 12); // Defense
+  buf.writeUInt8(2, off27 + 18); // Slots — raw, transposed
+
+  // ArmorValues.head[28] — real "Cephalos Cap" bytes; raw slots (1)
+  // disagrees with committed (2) — the transposed value.
+  const off28 = HEAD_ARRAY_OFFSET + 28 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off28 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(4700, off28 + 8); // Price
+  buf.writeInt8(16, off28 + 12); // Defense
+  buf.writeUInt8(1, off28 + 18); // Slots — raw, transposed
+
+  return reader;
+}
+
+test("emitArmor swaps a confirmed male/female slots transposition", () => {
+  const reader = buildCephalosFixture();
+  const armor = emitArmor(reader);
+
+  const helm = armor.head.find((a) => a.name === "Cephalos Helm");
+  const cap = armor.head.find((a) => a.name === "Cephalos Cap");
+  assert.ok(helm, "Cephalos Helm should be emitted");
+  assert.ok(cap, "Cephalos Cap should be emitted");
+  assert.equal(helm!.slots, 1, "Cephalos Helm's transposed raw slots (2) should be corrected to 1");
+  assert.equal(cap!.slots, 2, "Cephalos Cap's transposed raw slots (1) should be corrected to 2");
+  // Every other field is emitted from the raw entry, unaffected by the
+  // slots-only correction.
+  assert.equal(helm!.defence, 28);
+  assert.equal(cap!.defence, 16);
+});
+
 test("emitArmor resolves the correct name even when raw slots disagrees with committed data", () => {
   const reader = buildGenpreyHelmFixture();
   const armor = emitArmor(reader);

@@ -22,6 +22,14 @@
  * and may be wrong. See that module's doc comment for full methodology and
  * known coverage limits.
  *
+ * `slots` additionally goes through `overlay/armor-slots-corrections.ts`:
+ * a small, separate bug where raw `slots` is transposed between certain
+ * male/female armor pairs (e.g. "X Helm"/"X Cap") even though every other
+ * field is already correctly identified via the name-index correction
+ * above. Only 8 pairs (16 items) across all 5 slots are confirmed-clean
+ * transpositions and corrected; see that module's doc comment for the
+ * pairing/verification methodology and why the fix is deliberately narrow.
+ *
  * `sex`/`hunter_type`/`hr`/`elder` are skipped entirely: none of the fields
  * on `ArmorValueEntry` (`hunterType`, `maleId`/`femaleId` equality) were
  * found to correlate with the committed data's `sex`/`hunter_type` values
@@ -34,6 +42,7 @@ import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
 import { correctedArmorNameIndex } from "../overlay/armor-index-corrections.js";
+import { correctedArmorSlots } from "../overlay/armor-slots-corrections.js";
 import { displayRarity, groupEquipCreateByEquipId, halveCost, materialsOrNull, rankFromRarity, resolveMaterials, type Rank } from "./common.js";
 
 const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, "helmet" | "plate" | "gauntlets" | "waist" | "leggings"> = {
@@ -88,26 +97,27 @@ function emitSlot(
     if (nameIndex === null) continue;
     const name = names.resolve(nameTable, nameIndex);
     if (!name) continue;
+    const slots = correctedArmorSlots(slot, armor.index, armor.slots);
     // The schema caps slots at 3 (no real armor piece has more); a handful
     // of tail entries in headArmor specifically (5 of 436, all in the last
     // ~15 slots) read absurd slot counts (seen: 10-65), which looks like
     // reused/repurposed bytes rather than a real armor piece — skip rather
     // than emit obviously-corrupt data.
-    if (armor.slots > 3) continue;
+    if (slots > 3) continue;
 
     const skills = armor.skills
       .filter((s) => s.skill !== 0)
       .map((s) => ({ name: names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`, amount: s.amount }));
 
     const [primaryRecipe] = createByEquipId.get(nameIndex) ?? [];
-    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names) : [];
+    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "armor") : [];
 
     out.push({
       name,
       type: SLOT_TO_ARMOR_TYPE[slot],
       rank: rankFromRarity(displayRarity(armor.rarity)),
       rarity: displayRarity(armor.rarity),
-      slots: armor.slots,
+      slots,
       defence: armor.defense,
       fire_res: armor.resistances.fire,
       thunder_res: armor.resistances.thunder,

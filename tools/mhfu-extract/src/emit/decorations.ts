@@ -63,8 +63,8 @@ export function emitDecorations(reader: BinaryReader, resolver?: TableAddressRes
       .map((s) => `${names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`} ${formatSignedAmount(s.amount)}`);
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(itemId) ?? [];
-    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names) : [];
-    const altMats = altRecipe ? resolveMaterials(altRecipe.craft, names) : [];
+    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "decoration") : [];
+    const altMats = altRecipe ? resolveMaterials(altRecipe.craft, names, "decoration") : [];
 
     out.push({
       name,

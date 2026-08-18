@@ -228,14 +228,14 @@ export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAdd
       create_cost: primaryRecipe ? halveCost(w.price) : null,
       improve_cost: upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepBMID", names),
-      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names)) : null,
+      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon")) : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
-          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names))
+          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepBMID", names),
       elements: emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
-      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names)) : null,
+      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon")) : null,
     });
   }
   return out;
@@ -326,14 +326,14 @@ export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressR
       create_cost: primaryRecipe ? halveCost(w.price) : null,
       improve_cost: upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepGunID", names),
-      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names)) : null,
+      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon")) : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
-          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names))
+          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepGunID", names),
       elements: emitElements(w.eleType, w.eleValue, 0, 0),
-      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names)) : null,
+      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon")) : null,
       coatings,
     });
   }
