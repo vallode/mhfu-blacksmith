@@ -2,7 +2,6 @@ import Link from "next/link";
 import { WEAPON_TYPES } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import listStyles from "@/styles/list-page.module.scss";
 
 function formatWeaponName(type: string): string {
   return type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -11,7 +10,7 @@ function formatWeaponName(type: string): string {
 export default function BlacksmithListContent() {
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -30,7 +29,7 @@ export default function BlacksmithListContent() {
       <hr className="border" />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-        <Card className={listStyles.table}>
+        <Card className="overflow-auto py-7">
           {WEAPON_TYPES.map((type) => {
             const name = formatWeaponName(type);
             return (

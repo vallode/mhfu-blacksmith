@@ -72,8 +72,6 @@
   --color-sharpness-6: #f7f7f7;
   --color-sharpness-7: #df78f6;
 
-  --breakpoint-mobile: 600px;
-
   // Pulsing green highlight behind hovered rows, cards and search results.
   // Use the `hover-glow` utility, or in a CSS module:
   //   animation: var(--animate-hover-glow); background: var(--gradient-hover-glow);
@@ -90,9 +88,15 @@
   }
 }
 
+// ─── Custom variants ──────────────────────────────────────────────────────────
+
+// Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
+// the `@media screen and (max-width: 600px)` queries in the CSS modules.
+@custom-variant mobile (@media screen and (max-width: 600px));
+
 // ─── Custom utilities ─────────────────────────────────────────────────────────
 // Effects that are awkward as utility class strings. They work with variants
-// like any other utility (hover:hover-glow, max-mobile:pixelated).
+// like any other utility (hover:hover-glow, mobile:pixelated).
 
 // Crisp rendering for pixel-art game sprites
 @utility pixelated {
