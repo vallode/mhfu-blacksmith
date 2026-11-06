@@ -19,6 +19,7 @@ import {
 } from "@/lib/file-handle-store";
 import { parseSaveBuffer, type Region, type WorkerResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { saveFromCharacter } from "@/lib/save-store";
 
 export interface FileSyncState {
   isSupported: boolean;
@@ -106,11 +107,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
         }));
         return;
       }
-      load({
-        name: character.name,
-        region: record.region,
-        items: [...character.itemChest, ...character.itemPouch],
-      });
+      load(saveFromCharacter(character, record.region));
     },
     [load]
   );

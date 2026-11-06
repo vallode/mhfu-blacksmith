@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import SaveUpload from "@/components/SaveUpload";
+import EquipmentBox from "@/components/EquipmentBox";
 import styles from "@/styles/hunter.module.scss";
 
 export const metadata: Metadata = {
@@ -17,6 +18,10 @@ export default function HunterPage() {
       <hr className="border" />
 
       <SaveUpload />
+
+      <div className={styles["hunter-page__upload"]}>
+        <EquipmentBox />
+      </div>
     </div>
   );
 }
