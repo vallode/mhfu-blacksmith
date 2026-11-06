@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import styles from "./Icon.module.scss";
+import { iconStyle } from "@/lib/icon-style";
 
 interface IconProps {
   type: string;
@@ -18,11 +18,6 @@ interface IconProps {
   className?: string;
 }
 
-// The icon base class is scoped via Icon.module.scss (styles.icon); modifiers
-// are scoped too. Components that build an icon by hand (GlobalSearch) reuse
-// the same hashed base via `iconBaseClass`.
-export const iconBaseClass = styles.icon;
-
 export default function Icon({
   type,
   rarity,
@@ -39,20 +34,17 @@ export default function Icon({
 }: IconProps) {
   const isNote = color?.startsWith("note-") ?? false;
 
-  const classes = cn(
-    iconBaseClass,
-    size === "large" && styles["icon--large"],
-    size === "mini" && styles["icon--mini"],
-    nav && styles["icon--nav"],
-    active && styles["icon--rarity-4"],
-    monster && styles["icon--monster"],
-    type && type !== "arrow" && styles[`icon--${type}`],
-    rarity && styles[`icon--rarity-${rarity}`],
-    color && styles[`icon--${color}`],
-    element && styles[`icon--${element}`],
-    rank && styles[`icon--${rank}`],
-    className
-  );
+  const { className: iconClassName, style } = iconStyle({
+    type,
+    rarity,
+    color,
+    element,
+    rank,
+    size,
+    nav,
+    active,
+    monster,
+  });
 
   // Note icons share a single base image; the note colour is a mask overlay.
   // Monster category icons live under /images/monsters/.
@@ -67,7 +59,7 @@ export default function Icon({
           : `/images/${type}.png`);
 
   return (
-    <div className={classes}>
+    <div className={cn(iconClassName, className)} style={style}>
       <img src={src} alt={alt} />
     </div>
   );

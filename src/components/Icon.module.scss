@@ -1,5 +1,3 @@
-@use '../styles/variables' as *;
-
 // Icon styles. The base .icon and all variant modifiers are scoped/hashed by
 // CSS Modules; Icon.tsx reads them via `styles`. The few cross-module
 // references (hitzone table, horn notes) receive the hashed base through
@@ -39,126 +37,67 @@
   mask-size: 52px;
 }
 
-// mini variant uses smaller mask images (see weapon-type loops below)
+// mini variant uses smaller mask images (see iconStyle in src/lib/icon-style.ts)
 .icon--mini {
-}
-
-.icon--nav {
-  &::before {
-    background-color: #bdbdbd;
-  }
-
-  &.active::before,
-  &:hover::before {
-    background-color: white;
-  }
 }
 
 .icon--monster img {
   padding: 4px;
 }
 
-// Rarity colour tints
-@each $value, $color in $rarity-colors {
-  .icon--rarity-#{$value}::before {
-    background: $color;
-  }
+// Colour tint: a mask shaped like the sprite, filled with the tint colour and
+// multiplied over it. iconStyle() (src/lib/icon-style.ts) sets --icon-mask
+// and --icon-tint as inline styles; the colours come from the @theme tokens.
+.masked::before {
+  background: var(--icon-tint);
+  content: '';
+  display: block;
+  height: 100%;
+  -webkit-mask-image: var(--icon-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-image: var(--icon-mask);
+  mask-size: 100% 100%;
+  mix-blend-mode: multiply;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
 }
 
-// Decoration gem colours
-@each $value, $color in $decoration-colors {
-  .icon--#{$value}::before {
-    background: $color;
-  }
+// Nav icons are grey until hovered, unless a tint (e.g. `active`) is set.
+.icon--nav::before {
+  background-color: var(--icon-tint, #bdbdbd);
 }
 
-// Hunting-horn note colours
-@each $value, $color in $note-colors {
-  .icon--note-#{$value}::before {
-    background: $color;
-  }
+.icon--nav:hover::before {
+  background-color: white;
 }
 
-// Weapon / item type mask overlays
-@each $weapon-name in $weapon-types {
-  .icon--#{$weapon-name}::before {
-    content: '';
-    display: block;
-    height: 100%;
-    -webkit-mask-image: url("/images/#{$weapon-name}.png");
-    -webkit-mask-size: 100% 100%;
-    mask-image: url("/images/#{$weapon-name}.png");
-    mask-size: 100% 100%;
-    mix-blend-mode: multiply;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-  }
-
-  .icon--#{$weapon-name}.icon--mini::before {
-    -webkit-mask-image: url("/images/#{$weapon-name}-mini.png");
-    mask-image: url("/images/#{$weapon-name}-mini.png");
-  }
+// Corner badges (element or rank), image set via --icon-badge.
+.elementBadge::after,
+.rankBadge::after {
+  background-image: var(--icon-badge);
+  background-repeat: no-repeat;
+  bottom: 0;
+  content: '';
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
 }
 
-// Monster category mask overlays
-@each $monster-name in $monster-types {
-  .icon--#{$monster-name}::before {
-    content: '';
-    display: block;
-    height: 100%;
-    -webkit-mask-image: url("/images/monsters/#{$monster-name}.png");
-    -webkit-mask-size: 100% 100%;
-    mask-image: url("/images/monsters/#{$monster-name}.png");
-    mask-size: 100% 100%;
-    mix-blend-mode: multiply;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-  }
+.elementBadge::after {
+  background-position: bottom -1px right -1px;
 }
 
-// Element badge overlays (bottom-right corner)
-@each $element-name in $element-types {
-  .icon--#{$element-name}::after {
-    background-image: url("/images/#{$element-name}.png");
-    background-position: bottom -1px right -1px;
-    background-repeat: no-repeat;
-    bottom: 0;
-    content: '';
-    height: 100%;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-  }
-}
-
-// Rank badge overlays (bottom-right corner)
-@each $rank-name in $ranks {
-  .icon--#{$rank-name}::after {
-    background-image: url("/images/#{$rank-name}.png");
-    background-position: bottom 0px right 0px;
-    background-repeat: no-repeat;
-    background-size: 37.5px 39px;
-    bottom: 0;
-    content: '';
-    height: 100%;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-  }
+.rankBadge::after {
+  background-position: bottom 0px right 0px;
+  background-size: 37.5px 39px;
 }
 
 // Large monster portrait shown in the detail header, with a parchment scroll
