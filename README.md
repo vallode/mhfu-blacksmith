@@ -1,4 +1,4 @@
-![Monster hunter freedom unite blacksmith](/static/images/blacksmith-scaled.png)
+![Monster hunter freedom unite blacksmith](/public/images/blacksmith-scaled.png)
 
 # MHFU - Blacksmith
 
@@ -6,7 +6,7 @@
 
 Detailed weapon trees, armor lists, and monster information for Monster Hunter Freedom Unite / P2G in the style of the in-game UI!
 
-![Screenshot of the website](/static/images/screenshot.png)
+![Screenshot of the website](/public/images/screenshot.png)
 
 ## Credits
 
@@ -42,6 +42,7 @@ Dependencies:
 
 - [Node.js](https://nodejs.org/) 22+
 - [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
+- [Ruby](https://www.ruby-lang.org/) (version in `.ruby-version`, then `bundle install`; only for `pnpm generate-maps` and `pnpm validate-schema`)
 - [ImageMagick](https://imagemagick.org/) (optional, for `scripts/crop-images.sh`)
 
 ```sh
@@ -55,8 +56,11 @@ pnpm dev       # local dev server on http://localhost:3000
 pnpm build     # regenerate data + static export to out/
 pnpm lint      # ESLint
 pnpm validate  # sanity-check data/ and content/
+pnpm validate-schema  # check data/ against data/schemas/ (Ruby)
 ```
 
 Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
 
-The legacy Ruby/Zola scripts (`makefile`, `scripts/*.rb`) are kept for data conversion work and need Ruby with `bundle install`.
+The crafting trees in `content/**/map.json` are generated from `data/` with `pnpm generate-maps`. Rerun it after adding or re-parenting weapons, armor, or decorations.
+
+The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.
