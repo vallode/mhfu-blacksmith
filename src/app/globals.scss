@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 // ─── Tailwind ─────────────────────────────────────────────────────────────────
 // Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
 // here. Next.js's webpack CSS pipeline has a longstanding bug where any
@@ -6,6 +8,16 @@
 // block (every Tailwind utility class, including `.flex`, stopped applying
 // site-wide because of this). See vercel/next.js#55763 and #66321.
 @import "tailwindcss";
+
+// modern-normalize, inlined by Sass into Tailwind's `base` layer (after
+// Tailwind's own preflight, so it still wins over preflight as before).
+// Being layered lets utilities override it: unlayered, its button/input
+// font-size, line-height and margin beat every Tailwind class. Inlined via
+// meta.load-css rather than `@import … layer(base)` because of the Next.js
+// bug described above.
+@layer base {
+  @include meta.load-css("modern-normalize/modern-normalize");
+}
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 // This is the single source of truth for colours, spacing, breakpoints and
