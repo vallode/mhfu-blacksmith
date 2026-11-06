@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getMonsterCategories } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
+import { faviconMetadata } from "@/lib/favicon";
 import MonsterListClient from "./MonsterListClient";
 
 interface Props {
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const name = category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  return { title: `${name} — MHFU Blacksmith` };
+  return { ...faviconMetadata(category), title: `${name} — MHFU Blacksmith` };
 }
 
 export default async function MonsterListPage({ params }: Props) {
