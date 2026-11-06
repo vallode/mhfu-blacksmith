@@ -125,21 +125,14 @@
   width: 26px;
 }
 
-// Loaded-hunter markers (see HunterProgressContext).
-.owned,
-.upgrade {
-  flex: 0 0 auto;
-  font-size: 1.8rem;
-  line-height: 1;
-  margin-left: 0.8rem;
-  position: relative; // above the row's hover gradient
-  z-index: 1;
-}
-
-.owned {
+// Loaded-hunter cues (see HunterProgressContext), in the game's style of
+// text colour and row highlighting rather than icons: owned pieces get gold
+// names, and weapons the hunter can upgrade into right now get a resting
+// highlight (hover and the active row still take precedence).
+.row--owned .name {
   color: #f2d250;
 }
 
-.upgrade {
-  color: #7be07b;
+.row--upgrade:not(:hover):not(:focus):not(.row--active)::before {
+  background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(110, 200, 110, 0.35), rgba(0, 0, 0, 0));
 }
