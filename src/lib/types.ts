@@ -68,7 +68,7 @@ export interface Weapon {
   shots?: ShotEntry[] | null;
   skills?: string[] | null;
   color?: string | null;
-  // set by generate-pages.rb based on hr field
+  // derived from hr/elder by computeRank() in src/lib/weapons.ts
   rank?: string;
   hr?: string | number;
   elder?: string | number;
