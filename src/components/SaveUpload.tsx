@@ -124,7 +124,7 @@ export default function SaveUpload() {
   const occupied = result?.characters.filter(Boolean) as CharacterResult[] | undefined;
   const showUseButton = (occupied?.length ?? 0) > 1;
 
-  const useCharacter = useCallback(
+  const selectCharacter = useCallback(
     (index: number) => {
       const character = result?.characters[index];
       if (!character) return;
@@ -141,7 +141,7 @@ export default function SaveUpload() {
 
   const handleUseSingle = () => {
     if (!occupied || occupied.length !== 1) return;
-    useCharacter(result!.characters.indexOf(occupied[0]));
+    selectCharacter(result!.characters.indexOf(occupied[0]));
   };
 
   return (
@@ -245,7 +245,7 @@ export default function SaveUpload() {
               index={result!.characters.indexOf(occupied[0])}
               showUseButton={false}
               decrypted={result!.decrypted}
-              onUse={useCharacter}
+              onUse={selectCharacter}
             />
             <button
               className={styles["hunter-profile__use-btn"]}
@@ -266,7 +266,7 @@ export default function SaveUpload() {
                 index={index}
                 showUseButton={showUseButton}
                 decrypted={result!.decrypted}
-                onUse={useCharacter}
+                onUse={selectCharacter}
               />
             );
           })}
