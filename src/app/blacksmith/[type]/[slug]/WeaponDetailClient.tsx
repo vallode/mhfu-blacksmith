@@ -8,7 +8,6 @@ import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
-import sharpStyles from "@/styles/sharpness.module.scss";
 import tableStyles from "@/styles/tables.module.scss";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
@@ -97,7 +96,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             <p id="weapon_name">{weapon.name}</p>
 
             {(weapon.sharpness || weapon.sharpness_plus) && (
-              <div className={sharpStyles["sharpness-container"]}>
+              <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
                 {weapon.sharpness && (
                   <SharpnessBar values={weapon.sharpness} />
                 )}
