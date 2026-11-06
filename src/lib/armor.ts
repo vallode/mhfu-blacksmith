@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "./constants";
-import { slugify } from "./slug";
+import { armorSlugs } from "./slug";
 import type { ArmorPiece, WeaponTree } from "./types";
 
 const contentDir = path.join(process.cwd(), "content");
@@ -33,15 +33,13 @@ function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
 
   return raw.armor
     .filter((p) => !("donotrender" in p))
-    .map((p) => ({
-      ...p,
-      slug: slugify(p.name),
-      rank: p.rank ?? computeRank(p.hr, p.elder),
-    }));
+    .map((p) => ({ ...p, rank: p.rank ?? computeRank(p.hr, p.elder) }));
 }
 
 export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
-  return getAllArmorPieces(slot).filter((p) => p.rank === rank);
+  const pieces = getAllArmorPieces(slot).filter((p) => p.rank === rank);
+  const slugs = armorSlugs(pieces);
+  return pieces.map((p, i) => ({ ...p, slug: slugs[i] }));
 }
 
 export function getArmorPiece(slot: ArmorSlot, rank: ArmorRank, slug: string): ArmorPiece | undefined {
