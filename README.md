@@ -36,13 +36,27 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 
 ## Development
 
+The site is a statically exported [Next.js](https://nextjs.org/) app.
+
 Dependencies:
 
-- [zola](https://github.com/getzola/zola/)
-- [Ruby](https://www.ruby-lang.org/)
-  - [toml](https://github.com/jm/toml)
-- [ImageMagick](https://imagemagick.org/) (optional)
+- [Node.js](https://nodejs.org/) 22+
+- [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
+- [ImageMagick](https://imagemagick.org/) (optional, for `scripts/crop-images.sh`)
 
-Before running the first build you need to run `make generate-maps` to generate weapons maps.
+```sh
+pnpm install
 
-The makefile has everything covered: develop locally using `make`, test build output with `make build`, and deploy to netlify with `make deploy`.
+# Generate the client data bundles in public/ (needed once before `pnpm dev`,
+# and again whenever data/ or content/ changes)
+pnpm generate-data && pnpm generate-search && pnpm generate-weapons
+
+pnpm dev       # local dev server on http://localhost:3000
+pnpm build     # regenerate data + static export to out/
+pnpm lint      # ESLint
+pnpm validate  # sanity-check data/ and content/
+```
+
+Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
+
+The legacy Ruby/Zola scripts (`makefile`, `scripts/*.rb`) are kept for data conversion work and need Ruby with `bundle install`.
