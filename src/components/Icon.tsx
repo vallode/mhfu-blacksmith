@@ -60,7 +60,7 @@ export default function Icon({
 
   return (
     <div className={cn(iconClassName, className)} style={style}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} decoding="sync" />
     </div>
   );
 }
