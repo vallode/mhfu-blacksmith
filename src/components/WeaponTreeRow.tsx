@@ -38,9 +38,13 @@ export default function WeaponTreeRow({
   treeKey,
   activeSlug,
 }: WeaponTreeRowProps) {
-  const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
+  const [collapsed, setCollapsed] = useState(() =>
+    isNodeCollapsed(treeKey, node.slug),
+  );
 
-  const isExternal = node.type !== sectionType && (WEAPON_TYPES as readonly string[]).includes(node.type);
+  const isExternal =
+    node.type !== sectionType &&
+    (WEAPON_TYPES as readonly string[]).includes(node.type);
   const href = node.rarity
     ? isExternal
       ? `/blacksmith/${node.type}/${node.slug}/`
@@ -48,7 +52,10 @@ export default function WeaponTreeRow({
     : undefined;
   const isActive = activeSlug === node.slug;
 
-  const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
+  const onToggleClick = (event: {
+    preventDefault(): void;
+    stopPropagation(): void;
+  }) => {
     // Rows can be links (a parent weapon still has its own page), so stop
     // the click from also triggering navigation.
     event.preventDefault();
@@ -62,7 +69,10 @@ export default function WeaponTreeRow({
 
   const onPointerEnter = href
     ? () => {
-        const file = bundleForHref(node, isExternal ? `/blacksmith/${node.type}/` : basePath);
+        const file = bundleForHref(
+          node,
+          isExternal ? `/blacksmith/${node.type}/` : basePath,
+        );
         if (file) prefetchBundle(file);
       }
     : undefined;
@@ -93,7 +103,8 @@ export default function WeaponTreeRow({
           aria-label={collapsed ? "Expand" : "Collapse"}
           onClick={onToggleClick}
           onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") onToggleClick(event);
+            if (event.key === "Enter" || event.key === " ")
+              onToggleClick(event);
           }}
         >
           {collapsed ? "[+]" : "[-]"}
@@ -121,7 +132,11 @@ export default function WeaponTreeRow({
       )}
 
       {node.children && !collapsed && (
-        <ul className={node.children.length > 1 ? styles["multiple-children"] : undefined}>
+        <ul
+          className={
+            node.children.length > 1 ? styles["multiple-children"] : undefined
+          }
+        >
           {node.children.map((child) => (
             <WeaponTreeRow
               key={child.slug}
