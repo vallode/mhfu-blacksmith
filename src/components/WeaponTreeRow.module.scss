@@ -1,19 +1,13 @@
 @use '../styles/mixins' as *;
 
-// Scroll container for the weapon/armor/decoration tree sidebar. On wide
-// screens it fills the card's padding box (the card is position: relative and
-// gets its height from the .split-page row) and scrolls, so the tree's height
-// never affects the card's. On narrow screens the card has no fixed height:
-// the tree stays in flow and the page scrolls instead.
+// Scroll container for the weapon/armor/decoration tree sidebar. Fills the
+// card (a flex column) and scrolls; on narrow screens, where the card has no
+// fixed height, it simply grows to its content.
 .weapon-tree {
-  inset: 0.8rem 0.9rem;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: auto;
   padding: 0 0 0 13px;
-  position: absolute;
-
-  @media screen and (max-width: 600px) {
-    position: static;
-  }
 
   ul {
     list-style-type: none;
