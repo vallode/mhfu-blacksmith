@@ -123,13 +123,6 @@
   white-space: nowrap;
 }
 
-// Fixed-size slot for the mini weapon icon inside a tree row. Targets the
-// global .icon base class (applied via Icon's className prop).
-.rowIcon {
-  flex: 0 0 26px;
-  width: 26px;
-}
-
 // Loaded-hunter cues (see HunterProgressContext), in the game's style of
 // text colour and row highlighting rather than icons: owned pieces get gold
 // names, and weapons the hunter can upgrade into right now get a resting
