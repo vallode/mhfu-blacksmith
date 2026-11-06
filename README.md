@@ -65,4 +65,6 @@ The crafting trees in `content/**/map.json` are generated from `data/` with `pnp
 
 `data/equipment-ids.json` maps the game's equipment IDs (the ones stored in a save file's equipment box) to the weapons and armor in `data/`. It is generated with `pnpm generate-equipment-ids` from the `equip.enum` name tables in [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) (MIT, vendored under `tools/mhfu-extract/vendor/`), plus the hand-checked aliases in `scripts/equipment-id-aliases.json` for names that differ between MHP2G and MHFU. Rerun it after renaming or adding weapons or armor; `pnpm validate` fails if it's stale.
 
+`data/item-ids.json` does the same for items: it maps the material names used in recipes to the game's item IDs (from the same project's `items.enum`), so the hunter page can check upgrades against a save's item box. Generate it with `pnpm generate-item-ids`; aliases and deliberately unmapped names live in `scripts/item-id-aliases.json`.
+
 The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.

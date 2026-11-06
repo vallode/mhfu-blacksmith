@@ -46,9 +46,9 @@
  */
 import fs from "fs";
 import path from "path";
+import { isPlaceholder, loose, readEnumFile } from "./lib/mhp2g-enum";
 
 const root = process.cwd();
-const ENUM_FILE = path.join(root, "tools/mhfu-extract/vendor/mhp2g-patterns/includes/equip.enum");
 const ALIAS_FILE = path.join(root, "scripts/equipment-id-aliases.json");
 const OUT_FILE = path.join(root, "data/equipment-ids.json");
 
@@ -92,19 +92,6 @@ function fail(msg: string) {
   console.error(`  ✗ ${msg}`);
   failures++;
 }
-
-/** Parses `str Name[N] = { "a", "b", ... };` blocks. Only the strings are trusted; the declared N is often off by one. */
-function parseEnum(source: string): Map<string, string[]> {
-  const tables = new Map<string, string[]>();
-  for (const block of source.matchAll(/str\s+(\w+)\s*\[\s*\d+\s*\]\s*=\s*\{([\s\S]*?)\};/g)) {
-    const names = [...block[2].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((m) => m[1].replace(/\\(.)/g, "$1").trim());
-    tables.set(block[1], names);
-  }
-  return tables;
-}
-
-const isPlaceholder = (name: string) => name === "" || /^[－\-]+$/u.test(name);
-const loose = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 function readItems(file: string, key: "weapons" | "armor"): Record<string, unknown>[] {
   const data = JSON.parse(fs.readFileSync(path.join(root, "data", file), "utf-8"));
@@ -181,7 +168,7 @@ function serialize(slots: Record<Slot, Entry[]>): string {
   return `{\n${sections.join(",\n")}\n}\n`;
 }
 
-const tables = parseEnum(fs.readFileSync(ENUM_FILE, "utf-8"));
+const tables = readEnumFile("equip.enum");
 const aliases = JSON.parse(fs.readFileSync(ALIAS_FILE, "utf-8")) as Record<Slot, Record<string, Alias>>;
 
 console.log("Mapping equipment IDs…");

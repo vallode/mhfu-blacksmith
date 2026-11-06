@@ -14,7 +14,11 @@ export interface EquipSlot {
 export interface SaveData {
   name: string;
   region: string;
+  /** Item box and pouch together. */
   items: ItemSlot[];
+  /** Item box only (what the smithy draws on). Missing on older stored saves. */
+  chest?: ItemSlot[];
+  zenny?: number;
   /** Missing on saves stored before the equipment box was read. */
   equipment?: EquipSlot[];
   savedAt: number;
@@ -22,13 +26,15 @@ export interface SaveData {
 
 /** The parts of a parsed hunter that get stored. */
 export function saveFromCharacter(
-  character: { name: string; itemChest: ItemSlot[]; itemPouch: ItemSlot[]; equipBox: EquipSlot[] },
+  character: { name: string; zenny: number; itemChest: ItemSlot[]; itemPouch: ItemSlot[]; equipBox: EquipSlot[] },
   region: string
 ): Omit<SaveData, "savedAt"> {
   return {
     name: character.name,
     region,
     items: [...character.itemChest, ...character.itemPouch],
+    chest: character.itemChest,
+    zenny: character.zenny,
     equipment: character.equipBox,
   };
 }

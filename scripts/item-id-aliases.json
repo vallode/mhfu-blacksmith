@@ -1,0 +1,90 @@
+{
+  "aliases": {
+    "ParaylsisCoating": {
+      "id": 132,
+      "enum": "ParalysisCoating"
+    },
+    "Knife Mackarel": {
+      "id": 229,
+      "enum": "Knife Mackerel"
+    },
+    "HrdGypcerosHead": {
+      "id": 405,
+      "enum": "HardGypcerosHead"
+    },
+    "Green Plesioth Scale+": {
+      "id": 477,
+      "enum": "Grn Plsioth Scl+"
+    },
+    "Grn Plesioth Fin+": {
+      "id": 480,
+      "enum": "Grn Plsioth Fin+"
+    },
+    "PlumD.HermitrClaw": {
+      "id": 502,
+      "enum": "PlumD.HermitrClw"
+    },
+    "Fire Wyvern BrnStm": {
+      "id": 547,
+      "enum": "FireWyvrn BrnStm"
+    },
+    "Basarios Carapace": {
+      "id": 588,
+      "enum": "Basarios Carpace"
+    },
+    "StrNargaCttngWing": {
+      "id": 619,
+      "enum": "StrNargaCttngWng"
+    },
+    "Vespoid InnrWing": {
+      "id": 661,
+      "enum": "Vespoid InnrWng"
+    },
+    "Vespoid RazorWing": {
+      "id": 662,
+      "enum": "Vspoid Razorwing"
+    },
+    "Vespoid Razorwing": {
+      "id": 662,
+      "enum": "Vspoid Razorwing"
+    },
+    "Lao-Shan's Scale+": {
+      "id": 694,
+      "enum": "Lao-Shan Scale+"
+    },
+    "Lao-Shan's Thick Scale": {
+      "id": 695,
+      "enum": "Lao-Shan'sThkScl"
+    },
+    "Commedation S": {
+      "id": 905,
+      "enum": "Commendation S"
+    },
+    "Plus Class Ticket": {
+      "id": 911,
+      "enum": "Plus Class Tcket"
+    },
+    "Elder Thank You+": {
+      "id": 915,
+      "enum": "Elder Thnk You+"
+    },
+    "Dengeki Ticket G": {
+      "id": 934,
+      "enum": "Dengeki G Ticket"
+    },
+    "Pirate Tckt J G": {
+      "id": 938,
+      "enum": "Pirate J Tckt G"
+    }
+  },
+  "unmapped": {
+    "Famitsu PO": "Only in dummy (unobtainable) weapon recipes; no confident match among the Famitsu tickets.",
+    "SpecFamitsuTckt": "Only in a dummy weapon recipe; possibly FamitsuCustomTkt (932), unconfirmed.",
+    "Gt Amezari Shell": "Only in a dummy weapon recipe; no Gt Amezari item in the enum.",
+    "SlvrRthlosHrdTail": "Silver Semi-Auto. Weapon recipes already use LthrSlvrRthlsTal (576) elsewhere, so this may be a different item.",
+    "Brwn Blngnga Tail": "Desert Slingshoter. Brown (Copper) Blangonga items aren't clearly identifiable in the enum.",
+    "Brwn Blngnga Pelt": "Desert Slingshoter. Could be C.BlangongaPelt+ (439), unconfirmed.",
+    "Blngnga Hrd Whskr": "Desert Slingshoter. The enum has only Blangonga Whiskr (435).",
+    "Dengeki Ticket+": "Polytan G line. Could be Dengeki G Ticket (934) or Dengeki 2G Tckt (935), unconfirmed."
+  }
+}

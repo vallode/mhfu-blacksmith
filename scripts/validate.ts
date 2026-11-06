@@ -282,6 +282,41 @@ if (!fs.existsSync(equipmentIdsFile)) {
   }
 }
 
+// ─── Item IDs ─────────────────────────────────────────────────────────────────
+
+section("Validating item IDs…");
+
+const itemIdsFile = path.join(dataDir, "item-ids.json");
+if (!fs.existsSync(itemIdsFile)) {
+  error("Missing data/item-ids.json (run `pnpm generate-item-ids`)");
+} else {
+  const itemIds = JSON.parse(fs.readFileSync(itemIdsFile, "utf-8")) as Record<string, number>;
+  const { unmapped } = JSON.parse(fs.readFileSync(path.join(root, "scripts/item-id-aliases.json"), "utf-8")) as {
+    unmapped: Record<string, string>;
+  };
+  // Every weapon/decoration material needs an item ID (or a stated reason it has none).
+  const recipes: [string, Record<string, unknown>[], string[]][] = [
+    ...weaponTypes.map((t): [string, Record<string, unknown>[], string[]] => [
+      t,
+      JSON.parse(fs.readFileSync(path.join(weaponDataDir, `${t}.json`), "utf-8")).weapons,
+      ["create_mats", "improve_mats", "alternative_create_mats"],
+    ]),
+    ["decorations", JSON.parse(fs.readFileSync(decoFile, "utf-8")).decorations, ["create_mats"]],
+  ];
+  const missing = new Set<string>();
+  for (const [, entries, fields] of recipes) {
+    for (const entry of entries) {
+      for (const field of fields) {
+        for (const m of (entry[field] as { name?: string }[] | null | undefined) ?? []) {
+          if (m.name && itemIds[m.name] === undefined && unmapped[m.name] === undefined) missing.add(m.name);
+        }
+      }
+    }
+  }
+  for (const name of missing) error(`item-ids: material "${name}" has no item ID (rerun \`pnpm generate-item-ids\`)`);
+  console.log(`  ${Object.keys(itemIds).length} material names mapped`);
+}
+
 // ─── Summary ──────────────────────────────────────────────────────────────────
 
 console.log(`\n${errors === 0 ? "✓" : "✗"} Validation complete — ${errors} error(s), ${warnings} warning(s)`);

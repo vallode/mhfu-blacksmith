@@ -124,3 +124,22 @@
   flex: 0 0 26px;
   width: 26px;
 }
+
+// Loaded-hunter markers (see HunterProgressContext).
+.owned,
+.upgrade {
+  flex: 0 0 auto;
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-left: 0.8rem;
+  position: relative; // above the row's hover gradient
+  z-index: 1;
+}
+
+.owned {
+  color: #f2d250;
+}
+
+.upgrade {
+  color: #7be07b;
+}

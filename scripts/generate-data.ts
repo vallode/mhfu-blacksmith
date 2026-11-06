@@ -409,9 +409,11 @@ for (const [name] of [...materialIndex.entries()].sort((a, b) => a[1] - b[1])) {
   orderedMaterials[name] = materialsDict[name];
 }
 
+const itemIds = readJson<Record<string, number>>(path.join(dataDir, "item-ids.json"));
 const dictionaries: Dictionaries = {
   materials: orderedMaterials,
   material_ids: Object.keys(orderedMaterials),
+  material_item_ids: Object.keys(orderedMaterials).map((name) => itemIds[name] ?? null),
   types: fromIndex(typeIndex),
   colors: fromIndex(colorIndex),
   elements: fromIndex(elementIndex),

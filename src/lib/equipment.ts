@@ -42,12 +42,12 @@ export function getEquipmentIds(): Promise<EquipmentIds> {
   return idsPromise;
 }
 
-/** The equipment ID table, or null while it loads (or if it failed to). */
-export function useEquipmentIds(): { ids: EquipmentIds | null; error: boolean } {
+/** The equipment ID table, or null while it loads (or if it failed to). Fetches nothing while `enabled` is false. */
+export function useEquipmentIds(enabled = true): { ids: EquipmentIds | null; error: boolean } {
   const [ids, setIds] = useState<EquipmentIds | null>(idsCache);
   const [error, setError] = useState(false);
   useEffect(() => {
-    if (ids) return;
+    if (ids || !enabled) return;
     let cancelled = false;
     getEquipmentIds().then(
       (v) => !cancelled && setIds(v),
@@ -56,7 +56,7 @@ export function useEquipmentIds(): { ids: EquipmentIds | null; error: boolean } 
     return () => {
       cancelled = true;
     };
-  }, [ids]);
+  }, [ids, enabled]);
   return { ids, error };
 }
 
