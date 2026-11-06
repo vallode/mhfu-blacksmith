@@ -140,6 +140,9 @@ html {
   font-size: 62.5%;
   height: 100%;
   line-height: 1.5;
+  // Full-bleed elements (BorderRule) are 100vw wide, which includes the
+  // scrollbar; clip rather than let that scroll sideways.
+  overflow-x: clip;
 }
 
 body {
