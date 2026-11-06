@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getWeapons, getWeapon } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import type { Metadata } from "next";
+import { faviconMetadata } from "@/lib/favicon";
 import WeaponDetailClient from "./WeaponDetailClient";
 
 interface Props {
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .join(" | ");
 
   return {
+    ...faviconMetadata(type),
     title: `${weapon.name} — MHFU Blacksmith`,
     description: matList || undefined,
     openGraph: {
