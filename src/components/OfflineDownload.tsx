@@ -55,7 +55,7 @@ export default function OfflineDownload() {
       message:
         offline.cached > 0
           ? `Partially cached (${offline.cached}/${offline.total}). Finish downloading so the smithy works without a connection.`
-          : "Save weapon, armor, and monster data so search, the calculator, and browsing work without a connection.",
+          : "Save weapon, armor, and monster data so search and browsing work without a connection.",
       duration: null,
       actions: [
         { label: "Download", onClick: () => offline.download() },

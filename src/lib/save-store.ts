@@ -16,8 +16,7 @@ export interface SaveData {
   region: string;
   /** Item box and pouch together. */
   items: ItemSlot[];
-  /** Item box only (what the smithy draws on). Missing on older stored saves. */
-  chest?: ItemSlot[];
+  /** Missing on saves stored before zenny was kept. */
   zenny?: number;
   /** Missing on saves stored before the equipment box was read. */
   equipment?: EquipSlot[];
@@ -33,7 +32,6 @@ export function saveFromCharacter(
     name: character.name,
     region,
     items: [...character.itemChest, ...character.itemPouch],
-    chest: character.itemChest,
     zenny: character.zenny,
     equipment: character.equipBox,
   };

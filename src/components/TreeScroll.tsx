@@ -19,6 +19,19 @@ import styles from "./WeaponTreeRow.module.scss";
  * applied. If the data bundle resolves later, a MutationObserver finishes the
  * restore as soon as rows appear. SSR HTML stays visible for no-JS robustness.
  */
+/**
+ * The element that actually scrolls the tree: the wrapper itself if it is a
+ * scroll container, otherwise its nearest scrolling ancestor (the tree card,
+ * which scrolls instead so Safari keeps painting the card's frame).
+ */
+function scrollContainer(el: HTMLElement): HTMLElement {
+  for (let node: HTMLElement | null = el; node; node = node.parentElement) {
+    const { overflowY } = getComputedStyle(node);
+    if (overflowY === "auto" || overflowY === "scroll") return node;
+  }
+  return el;
+}
+
 export default function TreeScroll({
   treeKey,
   activeSlug,
@@ -33,6 +46,7 @@ export default function TreeScroll({
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const scroller = scrollContainer(el);
 
     // Only hide if there's a position to restore or an active item to reveal;
     // a plain first visit with neither needs no work and stays visible.
@@ -41,10 +55,10 @@ export default function TreeScroll({
     if (!needsRestore) {
       // Still track scrolling so later visits restore correctly.
       const onScrollPassive = () => {
-        sessionStorage.setItem(`tree-scroll:${treeKey}`, String(el.scrollTop));
+        sessionStorage.setItem(`tree-scroll:${treeKey}`, String(scroller.scrollTop));
       };
-      el.addEventListener("scroll", onScrollPassive, { passive: true });
-      return () => el.removeEventListener("scroll", onScrollPassive);
+      scroller.addEventListener("scroll", onScrollPassive, { passive: true });
+      return () => scroller.removeEventListener("scroll", onScrollPassive);
     }
 
     // Hide before paint; everything below either reveals in this same frame
@@ -53,9 +67,9 @@ export default function TreeScroll({
 
     // Save the scroll position continuously.
     const onScroll = () => {
-      sessionStorage.setItem(`tree-scroll:${treeKey}`, String(el.scrollTop));
+      sessionStorage.setItem(`tree-scroll:${treeKey}`, String(scroller.scrollTop));
     };
-    el.addEventListener("scroll", onScroll, { passive: true });
+    scroller.addEventListener("scroll", onScroll, { passive: true });
 
     const reveal = () => {
       el.style.visibility = "";
@@ -70,7 +84,7 @@ export default function TreeScroll({
 
       const saved = sessionStorage.getItem(`tree-scroll:${treeKey}`);
       if (saved !== null) {
-        el.scrollTop = Number(saved);
+        scroller.scrollTop = Number(saved);
       } else if (activeSlug) {
         // First visit to this tree: bring the active item into view.
         const active = el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`);
@@ -94,7 +108,7 @@ export default function TreeScroll({
     return () => {
       observer?.disconnect();
       window.clearTimeout(failsafe);
-      el.removeEventListener("scroll", onScroll);
+      scroller.removeEventListener("scroll", onScroll);
       reveal();
     };
   }, [treeKey, activeSlug]);

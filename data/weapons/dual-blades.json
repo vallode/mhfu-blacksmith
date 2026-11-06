@@ -1846,7 +1846,7 @@
           "color": "gray"
         },
         {
-          "name": "Vespoid Razorwing",
+          "name": "Vspoid Razorwing",
           "amount": 5,
           "type": "webbing",
           "color": "yellow"
@@ -1902,7 +1902,7 @@
           "color": "gray"
         },
         {
-          "name": "Vespoid RazorWing",
+          "name": "Vspoid Razorwing",
           "amount": 8,
           "type": "webbing",
           "color": "yellow"
@@ -4373,7 +4373,7 @@
           "color": "cyan"
         },
         {
-          "name": "Knife Mackarel",
+          "name": "Knife Mackerel",
           "amount": 4,
           "type": "fish",
           "color": "yellow"
@@ -5198,7 +5198,7 @@
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Scale+",
+          "name": "Lao-Shan Scale+",
           "amount": 7,
           "type": "scale",
           "color": "red"
@@ -5808,7 +5808,7 @@
           "color": "blue"
         },
         {
-          "name": "Lao-Shan's Thick Scale",
+          "name": "Lao-Shan'sThkScl",
           "amount": 4,
           "type": "scale",
           "color": "red"
@@ -7477,7 +7477,7 @@
           "color": "white"
         },
         {
-          "name": "Vespoid Razorwing",
+          "name": "Vspoid Razorwing",
           "amount": 8,
           "type": "webbing",
           "color": "yellow"

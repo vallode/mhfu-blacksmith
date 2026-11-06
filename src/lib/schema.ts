@@ -30,11 +30,6 @@ export interface Dictionaries {
   materials: Record<string, [number, number]>;
   /** material id -> name (id is the interning insertion order) */
   material_ids: string[];
-  /**
-   * material id -> the game's item ID (as stored in a save's item box), or
-   * null when unknown. From data/item-ids.json.
-   */
-  material_item_ids: (number | null)[];
   /** material type strings (icon types) */
   types: string[];
   /** material color strings */
@@ -192,6 +187,29 @@ export type EquipRef = [group: number, name: string, rarity: number | null, slug
 export type EquipmentIds = (EquipRef | null)[][];
 
 export const EQUIP_TYPE_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"] as const;
+
+/** One in-game item. Icon type/colour come from the linked recipe material. */
+export interface CompactItem {
+  /** NA name */
+  n: string;
+  /** rarity (only when sources agree) */
+  r?: number;
+  /** icon type index into Dictionaries.types */
+  t?: number;
+  /** icon colour index into Dictionaries.colors */
+  c?: number;
+  /** 1 = not a real item (placeholder / padding) */
+  p?: 1;
+}
+
+/** items.json: in-game item ID -> item, plus material name -> item ID links. */
+export interface ItemsBundle {
+  kind: "items";
+  /** indexed by in-game item ID; unused IDs (incl. 0) are null */
+  items: (CompactItem | null)[];
+  /** recipe/drop material name (as used in Dictionaries.material_ids) -> item ID */
+  materials: Record<string, number>;
+}
 
 // ---------------------------------------------------------------------------
 // Decoder
