@@ -21,9 +21,8 @@ export default function MaterialRow({ material }: MaterialRowProps) {
     return (
       <div className="material">
         <Icon type={material.type} color={material.color} />
-        <p>
-          {material.name}: {material.amount}
-        </p>
+        <p className="material-name">{material.name}:</p>
+        <p className="material-amount">{material.amount}</p>
       </div>
     );
   }
@@ -34,8 +33,9 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   return (
     <div className="material" title={`You have ${shown} in your item box and pouch`}>
       <Icon type={material.type} color={material.color} />
-      <p>
-        {material.name}: {short ? <span className="negative">{shown}</span> : shown}/{required}
+      <p className="material-name">{material.name}:</p>
+      <p className="material-amount">
+        {short ? <span className="negative">{shown}</span> : shown}/{required}
       </p>
     </div>
   );

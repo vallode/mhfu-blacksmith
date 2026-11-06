@@ -637,51 +637,51 @@
     "rarity": 8
   },
   {
-    "slug": "red-guild-guard-coil",
+    "slug": "red-guild-guard-coil-male",
     "type": "waist",
-    "name": "Red Guild Guard Coil",
+    "name": "Red Guild Guard Coil (Male)",
     "rarity": 8
   },
   {
-    "slug": "red-guild-guard-coat",
+    "slug": "red-guild-guard-coat-male",
     "type": "waist",
-    "name": "Red Guild Guard Coat",
+    "name": "Red Guild Guard Coat (Male)",
     "rarity": 8
   },
   {
-    "slug": "blue-guildguard-coil",
+    "slug": "blue-guildguard-coil-male",
     "type": "waist",
-    "name": "Blue GuildGuard Coil",
+    "name": "Blue GuildGuard Coil (Male)",
     "rarity": 8
   },
   {
-    "slug": "blue-guildguard-coat",
+    "slug": "blue-guildguard-coat-male",
     "type": "waist",
-    "name": "Blue GuildGuard Coat",
+    "name": "Blue GuildGuard Coat (Male)",
     "rarity": 8
   },
   {
-    "slug": "red-guild-guard-coil",
+    "slug": "red-guild-guard-coil-female",
     "type": "waist",
-    "name": "Red Guild Guard Coil",
+    "name": "Red Guild Guard Coil (Female)",
     "rarity": 8
   },
   {
-    "slug": "red-guild-guard-coat",
+    "slug": "red-guild-guard-coat-female",
     "type": "waist",
-    "name": "Red Guild Guard Coat",
+    "name": "Red Guild Guard Coat (Female)",
     "rarity": 8
   },
   {
-    "slug": "blue-guildguard-coil",
+    "slug": "blue-guildguard-coil-female",
     "type": "waist",
-    "name": "Blue GuildGuard Coil",
+    "name": "Blue GuildGuard Coil (Female)",
     "rarity": 8
   },
   {
-    "slug": "blue-guildguard-coat",
+    "slug": "blue-guildguard-coat-female",
     "type": "waist",
-    "name": "Blue GuildGuard Coat",
+    "name": "Blue GuildGuard Coat (Female)",
     "rarity": 8
   },
   {

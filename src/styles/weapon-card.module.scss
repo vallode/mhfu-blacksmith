@@ -314,6 +314,19 @@
       .material {
         align-items: center;
         display: flex;
+
+        // Name fills the row; amount sits in a fixed-width column,
+        // right-aligned so digits line up like the in-game list.
+        .material-name {
+          flex: 1 1 auto;
+        }
+
+        .material-amount {
+          flex: 0 0 auto;
+          font-variant-numeric: tabular-nums;
+          min-width: 2.5ch;
+          text-align: right;
+        }
       }
 
       &.improve_mats .create_mats,

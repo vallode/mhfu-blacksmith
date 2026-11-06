@@ -649,51 +649,51 @@
     "rarity": 8
   },
   {
-    "slug": "red-guildguard-boots",
+    "slug": "red-guildguard-boots-male",
     "type": "leggings",
-    "name": "Red GuildGuard Boots",
+    "name": "Red GuildGuard Boots (Male)",
     "rarity": 8
   },
   {
-    "slug": "redguildguard-tights",
+    "slug": "redguildguard-tights-male",
     "type": "leggings",
-    "name": "RedGuildGuard Tights",
+    "name": "RedGuildGuard Tights (Male)",
     "rarity": 8
   },
   {
-    "slug": "blueguildguard-boots",
+    "slug": "blueguildguard-boots-male",
     "type": "leggings",
-    "name": "BlueGuildGuard Boots",
+    "name": "BlueGuildGuard Boots (Male)",
     "rarity": 8
   },
   {
-    "slug": "blueguildguardtights",
+    "slug": "blueguildguardtights-male",
     "type": "leggings",
-    "name": "BlueGuildGuardTights",
+    "name": "BlueGuildGuardTights (Male)",
     "rarity": 8
   },
   {
-    "slug": "red-guildguard-boots",
+    "slug": "red-guildguard-boots-female",
     "type": "leggings",
-    "name": "Red GuildGuard Boots",
+    "name": "Red GuildGuard Boots (Female)",
     "rarity": 8
   },
   {
-    "slug": "redguildguard-tights",
+    "slug": "redguildguard-tights-female",
     "type": "leggings",
-    "name": "RedGuildGuard Tights",
+    "name": "RedGuildGuard Tights (Female)",
     "rarity": 8
   },
   {
-    "slug": "blueguildguard-boots",
+    "slug": "blueguildguard-boots-female",
     "type": "leggings",
-    "name": "BlueGuildGuard Boots",
+    "name": "BlueGuildGuard Boots (Female)",
     "rarity": 8
   },
   {
-    "slug": "blueguildguardtights",
+    "slug": "blueguildguardtights-female",
     "type": "leggings",
-    "name": "BlueGuildGuardTights",
+    "name": "BlueGuildGuardTights (Female)",
     "rarity": 8
   },
   {

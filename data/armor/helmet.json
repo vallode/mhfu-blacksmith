@@ -4970,39 +4970,15 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
-    },
-    {
-      "name": "Felyne Piercing",
-      "type": "helmet",
-      "hr": "7",
-      "elder": "7",
-      "defence": 20,
-      "fire_res": 0,
-      "thunder_res": 0,
-      "dragon_res": 0,
-      "water_res": 0,
-      "ice_res": 0,
-      "sex": "Male/Female",
-      "hunter_type": "Blademaster/Gunner",
-      "rarity": 5,
-      "slots": 0,
-      "create_cost": 1150,
-      "skills": [
-        {
-          "name": "FlyneGuide",
-          "amount": 15
-        }
-      ],
-      "create_mats": [
+      "rank": "low-rank",
+      "alternative_create_mats": [
         {
           "name": "FlynFighterPass",
           "amount": 8,
           "type": "bone",
           "color": "white"
         }
-      ],
-      "rank": "low-rank"
+      ]
     },
     {
       "name": "Garuga Mask",

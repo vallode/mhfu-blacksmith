@@ -4,7 +4,7 @@
  */
 import fs from "fs";
 import path from "path";
-import { slugify } from "../src/lib/slug";
+import { slugify, armorSlugs } from "../src/lib/slug";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 
 const root = process.cwd();
@@ -155,8 +155,7 @@ for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(
     armor: Record<string, unknown>[];
   };
 
-  const countByRank = new Map<string, number>();
-  const slugsByRank = new Map<string, Set<string>>();
+  const piecesByRank = new Map<string, { name: string; sex?: string }[]>();
 
   for (const a of data.armor) {
     if ("donotrender" in a) continue;
@@ -164,16 +163,33 @@ for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(
     const rank = (a.rank as string) || "low-rank";
     if (!name) { error(`${slot}/${rank}: armor missing name`); continue; }
 
-    const slug = slugify(name);
-    const slugs = slugsByRank.get(rank) ?? new Set<string>();
-    if (slugs.has(slug)) error(`${slot}/${rank}: duplicate slug "${slug}"`);
-    slugs.add(slug);
-    slugsByRank.set(rank, slugs);
-    countByRank.set(rank, (countByRank.get(rank) ?? 0) + 1);
+    const pieces = piecesByRank.get(rank) ?? [];
+    pieces.push({ name, sex: a.sex as string | undefined });
+    piecesByRank.set(rank, pieces);
   }
 
   for (const rank of ["low-rank", "high-rank", "g-rank"]) {
-    console.log(`  ${slot}/${rank}: ${countByRank.get(rank) ?? 0} pieces`);
+    const pieces = piecesByRank.get(rank) ?? [];
+    const slugs = new Set<string>();
+    for (const slug of armorSlugs(pieces)) {
+      if (slugs.has(slug)) error(`${slot}/${rank}: duplicate slug "${slug}"`);
+      slugs.add(slug);
+    }
+
+    // Every linked node in the crafting tree must point at a real piece.
+    const mapFile = path.join(contentDir, "armorsmith", slot, rank, "map.json");
+    if (fs.existsSync(mapFile)) {
+      type Node = { slug: string; name: string; rarity?: unknown; children?: Node[] };
+      const visit = (node: Node) => {
+        if (node.rarity && !slugs.has(node.slug)) {
+          error(`${slot}/${rank}/map.json: node "${node.name}" (slug: ${node.slug}) not found in armor data`);
+        }
+        node.children?.forEach(visit);
+      };
+      (JSON.parse(fs.readFileSync(mapFile, "utf-8")) as { map?: Node[] }).map?.forEach(visit);
+    }
+
+    console.log(`  ${slot}/${rank}: ${pieces.length} pieces`);
   }
 }
 
