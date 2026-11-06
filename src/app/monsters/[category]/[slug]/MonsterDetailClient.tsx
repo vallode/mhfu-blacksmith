@@ -9,6 +9,7 @@ import iconStyles from "@/components/Icon.module.scss";
 import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   category: MonsterCategory;
@@ -41,7 +42,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Loading…</p>
       </>
     );
@@ -56,7 +57,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Not found.</p>
       </>
     );
@@ -75,7 +76,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           </Link>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         {/* Monster list sidebar */}

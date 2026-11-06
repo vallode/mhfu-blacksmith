@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BorderRule from "@/components/BorderRule";
 
 const MENU = [
   { href: "/blacksmith/", label: "Weapons" },
@@ -25,7 +26,7 @@ export default function HomeContent() {
         <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
 
-      <hr className="border" />
+      <BorderRule />
 
       <div className="flex h-full w-full">
         <div className="mx-auto flex h-full w-full max-w-[66vw] flex-1 flex-col justify-center gap-[1.3rem] self-start">

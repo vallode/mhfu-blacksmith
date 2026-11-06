@@ -8,6 +8,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import { useDecoration } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   slug: string;
@@ -28,7 +29,7 @@ export default function DecorationDetailClient({ slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
+        <BorderRule />
         <div className="split-page">
           <Card variant="weapon-tree">
             <TreeScroll treeKey={"decorations"} activeSlug={slug}>
@@ -52,7 +53,7 @@ export default function DecorationDetailClient({ slug }: Props) {
           </Link>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         <Card variant="weapon-tree">
