@@ -342,3 +342,10 @@
     margin: 0.6rem 0 0;
   }
 }
+
+// "Use hunter" button once that hunter is the active one.
+.hunter-profile__use-btn.is-active {
+  border-color: rgba(242, 210, 80, 0.6);
+  color: #f2d250;
+  cursor: default;
+}
