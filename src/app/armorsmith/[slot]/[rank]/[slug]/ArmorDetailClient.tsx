@@ -24,7 +24,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   if (loading) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
           <div>
             <Link href="/armorsmith/" aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -39,7 +39,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   if (!piece) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
           <div>
             <Link href="/armorsmith/" aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -54,7 +54,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/armorsmith/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />

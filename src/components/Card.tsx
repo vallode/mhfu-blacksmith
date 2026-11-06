@@ -21,10 +21,12 @@ export default function Card({
   onDragLeave,
   onDrop,
 }: CardProps) {
+  // Defaults first, caller's className last: cn() lets later utilities
+  // override earlier ones (e.g. <Card className="overflow-auto py-7">).
   const classes = cn(
     styles.card,
-    "card-frame",
-    variant === "weapon-tree" && styles["weaponTree"],
+    "card-frame relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
+    variant === "weapon-tree" && "h-full overflow-auto px-[0.9rem] py-[0.8rem]",
     className
   );
 

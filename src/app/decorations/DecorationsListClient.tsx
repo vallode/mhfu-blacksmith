@@ -12,7 +12,7 @@ export default function DecorationsListClient() {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />

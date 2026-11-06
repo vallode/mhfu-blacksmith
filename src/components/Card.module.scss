@@ -1,13 +1,6 @@
+// The card's box (frame, layout, padding, font size) is Tailwind utilities in
+// Card.tsx. Only the link hover overlay and the paragraph reset remain here.
 .card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0%;
-  font-size: 2.6rem;
-  overflow: hidden;
-  padding: 2.6rem 2rem;
-  position: relative;
-  z-index: 1;
-
   &[href]::after {
     display: block;
     visibility: hidden;
@@ -26,11 +19,6 @@
     visibility: visible;
   }
 
-  &--weapon-tree {
-    height: 100%;
-    padding: 0.8rem 0.9rem;
-  }
-
   p {
     color: inherit;
     line-height: 1;
@@ -39,16 +27,4 @@
     z-index: 10;
     white-space: nowrap;
   }
-
-  @media screen and (max-width: 600px) {
-    font-size: 2rem;
-  }
-}
-
-// weapon-tree variant: tighter padding so the tree fills the card. The tree's
-// own row/connector styles come from the global weapon-tree.scss stylesheet.
-.weaponTree {
-  height: 100%;
-  overflow: auto;
-  padding: 0.8rem 0.9rem;
 }
