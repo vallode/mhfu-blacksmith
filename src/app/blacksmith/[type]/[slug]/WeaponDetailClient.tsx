@@ -11,6 +11,7 @@ import cardStyles from "@/styles/weapon-card.module.scss";
 import tableStyles from "@/styles/tables.module.scss";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   type: WeaponType;
@@ -43,7 +44,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     return (
       <>
         <WeaponNav activeType={type} />
-        <hr className="border" />
+        <BorderRule />
         <div className="split-page">
           <Card variant="weapon-tree">
             <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
@@ -63,7 +64,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   return (
     <>
       <WeaponNav activeType={type} />
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         {/* Weapon tree sidebar */}
