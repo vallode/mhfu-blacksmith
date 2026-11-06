@@ -94,13 +94,12 @@ interface CharacterCardProps {
   character: CharacterResult;
   index: number;
   showUseButton: boolean;
-  decrypted: boolean;
   onUse: (index: number) => void;
   /** This hunter is the one currently stored as active. */
   active: boolean;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted, onUse, active }: CharacterCardProps) {
+function CharacterCard({ character, index, showUseButton, onUse, active }: CharacterCardProps) {
   return (
     <Card>
       <div className={styles["hunter-profile"]}>
@@ -114,12 +113,6 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse, acti
           equipment={character.equipBox}
           itemCount={character.itemChest.length + character.itemPouch.length}
         />
-
-        {decrypted && (
-          <p className={styles["save-upload__source"]}>
-            Game-layer decryption applied.
-          </p>
-        )}
 
         {showUseButton && (
           <button
@@ -320,7 +313,6 @@ export default function SaveUpload() {
               character={occupied[0]}
               index={result!.characters.indexOf(occupied[0])}
               showUseButton={false}
-              decrypted={result!.decrypted}
               onUse={selectCharacter}
               active={singleActive}
             />
@@ -343,7 +335,6 @@ export default function SaveUpload() {
                 character={c}
                 index={index}
                 showUseButton={showUseButton}
-                decrypted={result!.decrypted}
                 onUse={selectCharacter}
                 active={isActiveHunter(save, c)}
               />
