@@ -50,7 +50,7 @@ export default function OfflineSettings() {
       <h2 className={styles.heading}>Offline Data</h2>
       <p className={styles.note}>
         Save weapon, armor, monster, and decoration data to this device so
-        search, the calculator, and browsing work without a connection. This
+        search and browsing work without a connection. This
         stays here whenever you want to (re)download or clear it — unlike the
         one-time popup.
       </p>
