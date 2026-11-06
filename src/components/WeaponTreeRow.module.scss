@@ -122,10 +122,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-// Fixed-size slot for the mini weapon icon inside a tree row. Targets the
-// global .icon base class (applied via Icon's className prop).
-.rowIcon {
-  flex: 0 0 26px;
-  width: 26px;
-}
