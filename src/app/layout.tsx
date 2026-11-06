@@ -4,7 +4,7 @@ import "./globals.scss";
 import { faviconMetadata } from "@/lib/favicon";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
-import OfflineDownload from "@/components/OfflineDownload";
+// import OfflineDownload from "@/components/OfflineDownload"; // banner hidden for now
 import OfflineNavGuard from "@/components/OfflineNavGuard";
 import SaveSyncReconnect from "@/components/SaveSyncReconnect";
 import { SaveProvider } from "@/context/SaveContext";
@@ -47,7 +47,8 @@ export default function RootLayout({
                   <FileSyncProvider>
                     <OfflineNavGuard>{children}</OfflineNavGuard>
                     <GlobalSearch />
-                    <OfflineDownload />
+                    {/* Offline download banner hidden for now.
+                    <OfflineDownload /> */}
                     <SaveSyncReconnect />
                   </FileSyncProvider>
                 </OfflineProvider>
