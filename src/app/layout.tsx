@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
+import { faviconMetadata } from "@/lib/favicon";
 import GlobalSearch from "@/components/GlobalSearch";
 import OfflineDownload from "@/components/OfflineDownload";
 import OfflineNavGuard from "@/components/OfflineNavGuard";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
   title: "MHFU Blacksmith",
   description:
     "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  ...faviconMetadata(),
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

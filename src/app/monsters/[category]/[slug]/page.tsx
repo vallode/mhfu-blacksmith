@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
+import { faviconMetadata } from "@/lib/favicon";
 import MonsterDetailClient from "./MonsterDetailClient";
 
 interface Props {
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const monster = getMonster(category as MonsterCategory, slug);
   return {
+    ...faviconMetadata(category),
     title: monster ? `${monster.name} — MHFU Blacksmith` : "Monster",
     description: monster?.description,
   };
