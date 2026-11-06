@@ -7,11 +7,10 @@ import { saveFromCharacter } from "@/lib/save-store";
 import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
-import HunterInventory from "@/components/HunterInventory";
-import type { SaveData } from "@/lib/save-store";
+import type { EquipSlot, SaveData } from "@/lib/save-store";
 import styles from "@/styles/hunter.module.scss";
 
-function formatZenny(n: number): string {
+function formatNumber(n: number): string {
   return n.toLocaleString();
 }
 
@@ -23,6 +22,33 @@ function formatTimeAgo(ts: number): string {
   const hours = Math.round(minutes / 60);
   if (hours < 24) return `${hours}h ago`;
   return `${Math.round(hours / 24)}d ago`;
+}
+
+/** Equip type codes 5 (melee) and 6 (ranged) are weapons; 0–4 are armor pieces. */
+const isWeapon = (slot: EquipSlot) => slot.type >= 5;
+
+/** Zenny, weapon/armor counts and item stack count for a hunter. */
+function HunterStats({ zenny, equipment, itemCount }: { zenny?: number; equipment?: EquipSlot[]; itemCount: number }) {
+  const weapons = equipment?.filter(isWeapon).length;
+  const armor = equipment && equipment.length - (weapons ?? 0);
+  const stats: [string, number | undefined][] = [
+    ["Zenny", zenny],
+    ["Weapons", weapons],
+    ["Armor", armor],
+    ["Items", itemCount],
+  ];
+  return (
+    <div className={styles["hunter-profile__stats"]}>
+      {stats.map(([label, value]) => (
+        <div key={label} className={styles["hunter-profile__stat"]}>
+          <span className={styles["hunter-profile__label"]}>{label}</span>
+          <span className={styles["hunter-profile__value"]}>
+            {value === undefined ? "—" : formatNumber(value)}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 const REGION_LABELS: Record<string, string> = { us: "US", eu: "EU", jp: "JP" };
@@ -55,9 +81,7 @@ function ActiveHunterCard({ save, onClear }: { save: SaveData; onClear: () => vo
         <p className={styles["save-upload__note"]}>
           Weapon and armor recipes show how many of each material this hunter owns.
         </p>
-        <HunterInventory
-          sections={[{ title: "Items (box + pouch)", slots: save.items, open: false }]}
-        />
+        <HunterStats zenny={save.zenny} equipment={save.equipment} itemCount={save.items.length} />
         <button className={styles["hunter-profile__use-btn"]} onClick={onClear}>
           Stop using this hunter
         </button>
@@ -72,13 +96,11 @@ interface CharacterCardProps {
   showUseButton: boolean;
   decrypted: boolean;
   onUse: (index: number) => void;
-  /** Expand the item box by default (only when a single hunter is shown). */
-  boxOpen: boolean;
   /** This hunter is the one currently stored as active. */
   active: boolean;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxOpen, active }: CharacterCardProps) {
+function CharacterCard({ character, index, showUseButton, decrypted, onUse, active }: CharacterCardProps) {
   return (
     <Card>
       <div className={styles["hunter-profile"]}>
@@ -87,32 +109,10 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxO
           <span className={styles["hunter-profile__sex"]}>{character.sex}</span>
         </div>
 
-        <div className={styles["hunter-profile__stats"]}>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Zenny</span>
-            <span className={styles["hunter-profile__value"]}>
-              {formatZenny(character.zenny)}
-            </span>
-          </div>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Equipment</span>
-            <span className={styles["hunter-profile__value"]}>
-              {character.equipBox.length}
-            </span>
-          </div>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Items (chest)</span>
-            <span className={styles["hunter-profile__value"]}>
-              {character.itemChest.length}
-            </span>
-          </div>
-        </div>
-
-        <HunterInventory
-          sections={[
-            { title: "Item Pouch", slots: character.itemPouch, max: 24, open: true },
-            { title: "Item Box", slots: character.itemChest, max: 1000, open: boxOpen },
-          ]}
+        <HunterStats
+          zenny={character.zenny}
+          equipment={character.equipBox}
+          itemCount={character.itemChest.length + character.itemPouch.length}
         />
 
         {decrypted && (
@@ -322,7 +322,6 @@ export default function SaveUpload() {
               showUseButton={false}
               decrypted={result!.decrypted}
               onUse={selectCharacter}
-              boxOpen
               active={singleActive}
             />
             <button
@@ -346,7 +345,6 @@ export default function SaveUpload() {
                 showUseButton={showUseButton}
                 decrypted={result!.decrypted}
                 onUse={selectCharacter}
-                boxOpen={false}
                 active={isActiveHunter(save, c)}
               />
             );
