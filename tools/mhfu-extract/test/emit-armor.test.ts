@@ -1,0 +1,300 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { emitArmor } from "../src/emit/armor.js";
+import { ARMOR_ENTRY_SIZE, EQUIP_CREATE_ENTRY_SIZE, JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
+import { fixtureReader } from "./helpers.js";
+
+const HEAD_ARRAY_OFFSET = 0x180000;
+const CHEST_ARRAY_OFFSET = 0x190000;
+const ARM_ARRAY_OFFSET = 0x1a0000;
+const WAIST_ARRAY_OFFSET = 0x1b0000;
+const LEG_ARRAY_OFFSET = 0x1c0000;
+
+/**
+ * Reproduces the real byte layout for head armor index 1 ("Leather Helm")
+ * against a real decrypted JP EBOOT — see emit/armor.ts's derivation notes —
+ * as a regression fixture. Only exercises the transform pipeline (raw bytes
+ * -> schema shape); the committed data/armor/helmet.json entry for this name
+ * disagrees on skills specifically (see emit/armor.ts's module doc), so this
+ * fixture asserts against the *raw* values, not the committed file.
+ */
+function buildLeatherHelmFixture() {
+  // emitArmor() eagerly reads every armor slot's full array plus the whole
+  // EquipCreate table, so the buffer needs to cover everything it touches.
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[1] — real "Leather Helm" bytes.
+  const aOff = HEAD_ARRAY_OFFSET + 1 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(0, aOff + 5); // Rarity (raw) -> display rarity 1
+  buf.writeUInt32LE(300, aOff + 8); // Price
+  buf.writeInt8(2, aOff + 12); // Defense
+  buf.writeInt8(2, aOff + 13); // Fire resistance
+  buf.writeUInt8(1, aOff + 18); // Slots
+  buf.writeUInt8(52, aOff + 30); // Skill[0] = Gathering
+  buf.writeInt8(3, aOff + 31); // Skill[0].amount
+  buf.writeUInt8(19, aOff + 32); // Skill[1] = Throw
+  buf.writeInt8(2, aOff + 33); // Skill[1].amount
+
+  // EquipmentCreateTable.head — real "Leather Helm" recipe (equipId=1
+  // identifies the armor piece; array position doesn't need to match).
+  const cOff = tableOffset("equipmentCreate") + 0 * EQUIP_CREATE_ENTRY_SIZE;
+  buf.writeUInt16LE(1, cOff + 2); // EquipID
+  buf.writeUInt16LE(201, cOff + 4); // Craft[0].Item = "Disk Stone"
+  buf.writeUInt16LE(1, cOff + 6); // Craft[0].Quantity
+
+  return reader;
+}
+
+/**
+ * Reproduces real head[11]/head[12] bytes (see
+ * `test/armor-index-corrections.test.ts` for the fingerprint verification
+ * that established these are the correct real values) to exercise the
+ * armor-index-correction overlay end-to-end through `emitArmor()`: raw
+ * position 12's stats should surface as "Vespoid Helm" (the corrected name,
+ * index 11) rather than "Vespoid Cap" (its own raw position's name), and
+ * raw position 11 — whose own stats don't match "Vespoid Cap" either —
+ * should be suppressed (not emitted under a name known to be wrong).
+ */
+function buildVespoidFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[11] — real bytes, does NOT match "Vespoid Cap"'s stats.
+  const off11 = HEAD_ARRAY_OFFSET + 11 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(1, off11 + 5); // Rarity (raw) -> display rarity 2
+  buf.writeUInt32LE(3800, off11 + 8); // Price
+  buf.writeInt8(18, off11 + 12); // Defense
+  buf.writeUInt8(2, off11 + 18); // Slots
+
+  // ArmorValues.head[12] — real bytes, exactly match committed
+  // "Vespoid Helm" (name index 11), not "Vespoid Cap" (name index 12).
+  const off12 = HEAD_ARRAY_OFFSET + 12 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off12 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2300, off12 + 8); // Price
+  buf.writeInt8(20, off12 + 12); // Defense
+  buf.writeInt8(-6, off12 + 13); // Fire resistance
+  buf.writeInt8(-5, off12 + 14); // Water resistance
+  buf.writeInt8(2, off12 + 15); // Thunder resistance
+  buf.writeInt8(2, off12 + 16); // Dragon resistance
+  buf.writeInt8(-4, off12 + 17); // Ice resistance
+  buf.writeUInt8(1, off12 + 18); // Slots
+
+  return reader;
+}
+
+/**
+ * Reproduces real head[19] bytes (see
+ * `test/armor-index-corrections.test.ts` for the fingerprint verification):
+ * defense/resistances/rarity/price exactly match committed "Genprey Helm"
+ * (name index 17), but raw `slots` (0) disagrees with committed `slots` (1)
+ * — one of many male/female-paired entries with a transposed `slots` value
+ * (see `scripts/generate-armor-corrections.ts`'s module doc comment). The
+ * correction must still fire on the non-slots fields even though `slots`
+ * itself doesn't match (and remains unfixed — emitted `slots` reflects the
+ * raw, not the committed, value; this is a documented, separate known gap).
+ */
+function buildGenpreyHelmFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[19] — real bytes; slots (0) disagrees with committed
+  // "Genprey Helm" (1), every other field agrees exactly.
+  const off19 = HEAD_ARRAY_OFFSET + 19 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off19 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2700, off19 + 8); // Price
+  buf.writeInt8(22, off19 + 12); // Defense
+  buf.writeInt8(2, off19 + 13); // Fire resistance
+  buf.writeInt8(-2, off19 + 14); // Water resistance
+  buf.writeInt8(3, off19 + 15); // Thunder resistance
+  buf.writeInt8(-1, off19 + 16); // Dragon resistance
+  buf.writeUInt8(0, off19 + 18); // Slots — deliberately NOT 1 (committed value)
+
+  return reader;
+}
+
+/**
+ * Reproduces real head[12] bytes (same "Vespoid Helm" correction as
+ * `buildVespoidFixture` above — raw position 12 -> name index 11), but adds
+ * two `EquipCreate` entries to exercise the `create_mats`/`create_cost`
+ * lookup key bug: one keyed on `equipId=11` (`nameIndex`, the corrected —
+ * and per `groupEquipCreateByEquipId`'s doc comment, actually correct —
+ * lookup key) with a real recipe, and a decoy keyed on `equipId=12`
+ * (`armor.index`, the raw/uncorrected array position the old buggy code
+ * looked up instead) with a *different* recipe. Asserts the emitted
+ * "Vespoid Helm" resolves its recipe via `nameIndex` (11), not via the raw
+ * `armor.index` (12) — i.e. the fix from `emit/armor.ts`'s `emitSlot()`
+ * (`createByEquipId.get(nameIndex)` instead of `createByEquipId.get(armor.index)`).
+ */
+function buildVespoidWithRecipeFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[12] — real bytes, matches committed "Vespoid Helm"
+  // (name index 11), not "Vespoid Cap" (name index 12).
+  const off12 = HEAD_ARRAY_OFFSET + 12 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off12 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(2300, off12 + 8); // Price
+  buf.writeInt8(20, off12 + 12); // Defense
+  buf.writeInt8(-6, off12 + 13); // Fire resistance
+  buf.writeInt8(-5, off12 + 14); // Water resistance
+  buf.writeInt8(2, off12 + 15); // Thunder resistance
+  buf.writeInt8(2, off12 + 16); // Dragon resistance
+  buf.writeInt8(-4, off12 + 17); // Ice resistance
+  buf.writeUInt8(1, off12 + 18); // Slots
+
+  // EquipmentCreateTable.head[0] — keyed on equipId=11 (nameIndex): the
+  // *correct* recipe per emit/common.ts's groupEquipCreateByEquipId doc.
+  const correctOff = tableOffset("equipmentCreate") + 0 * EQUIP_CREATE_ENTRY_SIZE;
+  buf.writeUInt16LE(11, correctOff + 2); // EquipID = nameIndex
+  buf.writeUInt16LE(201, correctOff + 4); // Craft[0].Item = "Disk Stone"
+  buf.writeUInt16LE(1, correctOff + 6); // Craft[0].Quantity
+
+  // EquipmentCreateTable.head[1] — decoy keyed on equipId=12 (armor.index):
+  // the *wrong* recipe the pre-fix code would have resolved via the raw,
+  // uncorrected index instead.
+  const decoyOff = tableOffset("equipmentCreate") + 1 * EQUIP_CREATE_ENTRY_SIZE;
+  buf.writeUInt16LE(12, decoyOff + 2); // EquipID = armor.index
+  buf.writeUInt16LE(200, decoyOff + 4); // Craft[0].Item = "Stone"
+  buf.writeUInt16LE(5, decoyOff + 6); // Craft[0].Quantity
+
+  return reader;
+}
+
+test("emitArmor resolves the crafting recipe via the corrected name index, not the raw index", () => {
+  const reader = buildVespoidWithRecipeFixture();
+  const armor = emitArmor(reader);
+
+  const vespoidHelm = armor.head.find((a) => a.name === "Vespoid Helm");
+  assert.ok(vespoidHelm, "raw head[12]'s stats should surface as 'Vespoid Helm' via the correction");
+  assert.equal(vespoidHelm!.create_cost, 1150); // 2300 / 2 — only set when a recipe resolves
+  assert.deepEqual(vespoidHelm!.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
+});
+
+/**
+ * Reproduces real head[27]/head[28] bytes (see `armor-slots-corrections.ts`
+ * / `scripts/generate-armor-slots-corrections.ts` for the full pairing +
+ * verification methodology): raw `head[27]` resolves (via the index-drift
+ * correction) to "Cephalos Helm" with raw `slots=2`, and raw `head[28]`
+ * resolves to "Cephalos Cap" with raw `slots=1` — but committed data expects
+ * exactly the opposite (Helm=1, Cap=2), a confirmed clean transposition.
+ * Exercises `correctedArmorSlots` end-to-end through `emitArmor()`.
+ */
+function buildCephalosFixture() {
+  const { buf, reader } = fixtureReader(0x200000);
+
+  const ptrBase = tableOffset("armorValuePointers");
+  buf.writeUInt32LE(JP_BASE_ADDRESS + HEAD_ARRAY_OFFSET, ptrBase + 0);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + CHEST_ARRAY_OFFSET, ptrBase + 4);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + ARM_ARRAY_OFFSET, ptrBase + 8);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + WAIST_ARRAY_OFFSET, ptrBase + 12);
+  buf.writeUInt32LE(JP_BASE_ADDRESS + LEG_ARRAY_OFFSET, ptrBase + 16);
+
+  // ArmorValues.head[27] — real "Cephalos Helm" bytes; raw slots (2)
+  // disagrees with committed (1) — the transposed value.
+  const off27 = HEAD_ARRAY_OFFSET + 27 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off27 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(4700, off27 + 8); // Price
+  buf.writeInt8(28, off27 + 12); // Defense
+  buf.writeUInt8(2, off27 + 18); // Slots — raw, transposed
+
+  // ArmorValues.head[28] — real "Cephalos Cap" bytes; raw slots (1)
+  // disagrees with committed (2) — the transposed value.
+  const off28 = HEAD_ARRAY_OFFSET + 28 * ARMOR_ENTRY_SIZE;
+  buf.writeUInt8(2, off28 + 5); // Rarity (raw) -> display rarity 3
+  buf.writeUInt32LE(4700, off28 + 8); // Price
+  buf.writeInt8(16, off28 + 12); // Defense
+  buf.writeUInt8(1, off28 + 18); // Slots — raw, transposed
+
+  return reader;
+}
+
+test("emitArmor swaps a confirmed male/female slots transposition", () => {
+  const reader = buildCephalosFixture();
+  const armor = emitArmor(reader);
+
+  const helm = armor.head.find((a) => a.name === "Cephalos Helm");
+  const cap = armor.head.find((a) => a.name === "Cephalos Cap");
+  assert.ok(helm, "Cephalos Helm should be emitted");
+  assert.ok(cap, "Cephalos Cap should be emitted");
+  assert.equal(helm!.slots, 1, "Cephalos Helm's transposed raw slots (2) should be corrected to 1");
+  assert.equal(cap!.slots, 2, "Cephalos Cap's transposed raw slots (1) should be corrected to 2");
+  // Every other field is emitted from the raw entry, unaffected by the
+  // slots-only correction.
+  assert.equal(helm!.defence, 28);
+  assert.equal(cap!.defence, 16);
+});
+
+test("emitArmor resolves the correct name even when raw slots disagrees with committed data", () => {
+  const reader = buildGenpreyHelmFixture();
+  const armor = emitArmor(reader);
+
+  const genpreyHelm = armor.head.find((a) => a.name === "Genprey Helm");
+  assert.ok(genpreyHelm, "raw head[19]'s stats should surface as 'Genprey Helm' despite the slots mismatch");
+  assert.equal(genpreyHelm!.defence, 22);
+  assert.equal(genpreyHelm!.fire_res, 2);
+  assert.equal(genpreyHelm!.rarity, 3);
+  // Known, separate gap: slots is emitted from the raw entry as-is, so it
+  // still reflects the (wrong, transposed) raw value here, not committed.
+  assert.equal(genpreyHelm!.slots, 0);
+});
+
+test("emitArmor applies the fingerprint-based index correction and suppression", () => {
+  const reader = buildVespoidFixture();
+  const armor = emitArmor(reader);
+
+  const vespoidHelm = armor.head.find((a) => a.name === "Vespoid Helm");
+  assert.ok(vespoidHelm, "raw head[12]'s stats should surface as 'Vespoid Helm' via the correction");
+  assert.equal(vespoidHelm!.defence, 20);
+  assert.equal(vespoidHelm!.fire_res, -6);
+  assert.equal(vespoidHelm!.rarity, 3);
+
+  assert.ok(
+    !armor.head.some((a) => a.defence === 18 && a.rarity === 2),
+    "raw head[11]'s stats must not be emitted under any name — it should be suppressed"
+  );
+});
+
+test("emitArmor reproduces the real Leather Helm entry end-to-end", () => {
+  const reader = buildLeatherHelmFixture();
+  const armor = emitArmor(reader);
+  const helm = armor.head.find((a) => a.name === "Leather Helm");
+  assert.ok(helm, "Leather Helm should be emitted");
+  assert.equal(helm!.type, "helmet");
+  assert.equal(helm!.rank, "low-rank");
+  assert.equal(helm!.rarity, 1);
+  assert.equal(helm!.slots, 1);
+  assert.equal(helm!.defence, 2);
+  assert.equal(helm!.fire_res, 2);
+  assert.equal(helm!.water_res, 0);
+  assert.equal(helm!.create_cost, 150); // 300 / 2
+  assert.deepEqual(helm!.skills, [
+    { name: "Gathering", amount: 3 },
+    { name: "Throw", amount: 2 },
+  ]);
+  assert.deepEqual(helm!.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
+});

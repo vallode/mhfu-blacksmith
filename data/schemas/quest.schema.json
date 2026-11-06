@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quests file",
+  "type": "object",
+  "required": ["quests"],
+  "additionalProperties": false,
+  "properties": {
+    "quests": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/quest" }
+    }
+  },
+  "definitions": {
+    "supply": {
+      "type": "object",
+      "required": ["item", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "item":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "reward_item": {
+      "type": "object",
+      "required": ["chance", "item", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "chance": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "item":   { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "reward_table": {
+      "type": "object",
+      "required": ["items"],
+      "additionalProperties": false,
+      "properties": {
+        "items": { "type": "array", "items": { "$ref": "#/definitions/reward_item" } }
+      }
+    },
+    "monster_spawn": {
+      "type": "object",
+      "required": ["monster", "quantity", "power"],
+      "additionalProperties": false,
+      "properties": {
+        "monster":  { "type": "string", "minLength": 1 },
+        "quantity": { "type": "integer", "minimum": 0 },
+        "power":    { "type": "integer", "minimum": 0 }
+      }
+    },
+    "small_monster_spawn": {
+      "type": "object",
+      "required": ["monster", "max_quantity"],
+      "additionalProperties": false,
+      "properties": {
+        "monster":      { "type": "string", "minLength": 1 },
+        "max_quantity": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["monster", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "monster": { "type": "string", "minLength": 1 },
+        "amount":  { "type": "integer", "minimum": 1 }
+      }
+    },
+    "quest": {
+      "type": "object",
+      "required": ["id", "hub", "stars", "fee", "reward", "penalty", "time_limit_minutes"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "integer" },
+        "hub": {
+          "type": "string",
+          "enum": ["village", "guild", "training-school", "treasure-hunting"]
+        },
+        "rank": {
+          "type": ["string", "null"],
+          "enum": ["low-rank", "high-rank", "g-rank", null]
+        },
+        "stars":               { "type": "integer", "minimum": 1 },
+        "map":                 { "type": ["string", "null"] },
+        "fee":                 { "type": "integer", "minimum": 0 },
+        "reward":              { "type": "integer", "minimum": 0 },
+        "penalty":             { "type": "integer", "minimum": 0 },
+        "time_limit_minutes":  { "type": "integer", "minimum": 0 },
+        "target": {
+          "oneOf": [{ "$ref": "#/definitions/target" }, { "type": "null" }]
+        },
+        "supplies":       { "type": "array", "items": { "$ref": "#/definitions/supply" } },
+        "reward_tables":  { "type": "array", "items": { "$ref": "#/definitions/reward_table" } },
+        "large_monsters": { "type": "array", "items": { "$ref": "#/definitions/monster_spawn" } },
+        "small_monsters": { "type": "array", "items": { "$ref": "#/definitions/small_monster_spawn" } },
+        "title":   { "type": ["string", "null"], "$comment": "Japanese-only, extracted verbatim from the JP disc — see mhfu-extract's README." },
+        "goal":    { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
+        "details": { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
+        "fail":    { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
+        "client":  { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." }
+      }
+    }
+  }
+}
