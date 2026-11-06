@@ -40,10 +40,10 @@ interface FileSyncContextValue extends FileSyncState {
   pickFile: (region: Region) => Promise<FilePickResult | null>;
   /**
    * Remembers which character slot of the stored handle's file to auto-load on
-   * future syncs. Only call it for a result parsed from that file (pickFile).
-   * No-op if no handle is stored.
+   * future syncs, and the region it was loaded with. Only call it for a result
+   * parsed from that file (pickFile). No-op if no handle is stored.
    */
-  confirmSelection: (characterIndex: number) => Promise<void>;
+  confirmSelection: (characterIndex: number, region: Region) => Promise<void>;
   /** Re-reads the file if it changed and auto-loads the previously selected character. */
   syncNow: () => Promise<void>;
   /** Re-requests read permission from a user gesture (e.g. a toast/button click). */
@@ -221,8 +221,10 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
-  const confirmSelection = useCallback(async (characterIndex: number) => {
-    await patchHandleRecord({ characterIndex });
+  const confirmSelection = useCallback(async (characterIndex: number, region: Region) => {
+    // Store the region the hunter was actually loaded with: the select may
+    // have changed since the file was picked.
+    await patchHandleRecord({ characterIndex, region });
   }, []);
 
   const requestReconnect = useCallback(async () => {
