@@ -126,7 +126,7 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxO
             onClick={() => onUse(index)}
             disabled={active}
           >
-            {active ? "✓ Active hunter" : `Use hunter ${index + 1}`}
+            {active ? "Active hunter" : `Use hunter ${index + 1}`}
           </button>
         )}
       </div>
@@ -333,7 +333,7 @@ export default function SaveUpload() {
               onClick={handleUseSingle}
               disabled={singleActive}
             >
-              {singleActive ? "✓ Active hunter" : "Use this hunter"}
+              {singleActive ? "Active hunter" : "Use this hunter"}
             </button>
           </>
         )}
