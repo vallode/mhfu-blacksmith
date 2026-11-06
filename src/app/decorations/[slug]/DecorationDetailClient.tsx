@@ -67,6 +67,7 @@ export default function DecorationDetailClient({ slug }: Props) {
                   node={node}
                   sectionType="decoration"
                   basePath="/decorations/"
+                  treeKey="decorations"
                   activeSlug={slug}
                 />
               </ul>

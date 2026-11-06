@@ -30,10 +30,15 @@
 
   &__label {
     align-items: center;
+    background: none;
+    border: none;
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    font-family: inherit;
     gap: 0.8rem;
+    padding: 0;
+    width: 100%;
   }
 
   &__input {
@@ -100,6 +105,39 @@
 
     &--error {
       color: #f9455c;
+    }
+  }
+
+  &__sync {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.3rem;
+    justify-content: space-between;
+  }
+
+  &__sync-status {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.3rem;
+  }
+
+  &__sync-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.3rem;
+    padding: 0.3rem 0.9rem;
+
+    &:hover:not(:disabled) {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: white;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.6;
     }
   }
 }
