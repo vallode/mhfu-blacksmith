@@ -113,6 +113,8 @@ export interface ArmorPiece {
   create_cost?: string | number | null;
   skills?: ArmorSkill[];
   create_mats?: Material[];
+  /** A second recipe for the same piece (e.g. Felyne Piercing). */
+  alternative_create_mats?: Material[];
 }
 
 export interface HitzoneValues {

@@ -117,6 +117,7 @@ export interface CompactArmor {
   ht?: number; // hunter_type stringIdx
   sk?: [number, number][]; // skills [nameStringIdx, amount]
   cm?: MatTuple[];
+  am?: MatTuple[]; // alternative_create_mats
 }
 
 export interface CompactMonster {
@@ -275,6 +276,7 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
     hunter_type: a.ht !== undefined ? str(d, a.ht) : undefined,
     skills: a.sk ? a.sk.map(([ni, amt]) => ({ name: str(d, ni), amount: amt })) : undefined,
     create_mats: decodeMats(d, a.cm),
+    alternative_create_mats: decodeMats(d, a.am),
     rank: a.rk !== undefined ? RANKS[a.rk] : undefined,
   };
 }
