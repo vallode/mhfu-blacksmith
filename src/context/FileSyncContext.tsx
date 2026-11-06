@@ -38,7 +38,11 @@ export interface FilePickResult {
 interface FileSyncContextValue extends FileSyncState {
   /** Opens the native file picker, remembers the handle, and returns the file to parse. */
   pickFile: (region: Region) => Promise<FilePickResult | null>;
-  /** Remembers which character slot to auto-load on future syncs. No-op if no handle is stored. */
+  /**
+   * Remembers which character slot of the stored handle's file to auto-load on
+   * future syncs. Only call it for a result parsed from that file (pickFile).
+   * No-op if no handle is stored.
+   */
   confirmSelection: (characterIndex: number) => Promise<void>;
   /** Re-reads the file if it changed and auto-loads the previously selected character. */
   syncNow: () => Promise<void>;

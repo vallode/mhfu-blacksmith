@@ -86,9 +86,13 @@ export default function SaveUpload() {
   const [isDragOver, setIsDragOver] = useState(false);
   const regionRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Whether the parsed result came from the file picker (i.e. the stored
+  // handle). Dropped or uploaded files must not overwrite the handle's slot.
+  const fromPickerRef = useRef(false);
 
   const processFile = useCallback(
-    async (file: File) => {
+    async (file: File, fromPicker: boolean) => {
+      fromPickerRef.current = fromPicker;
       const region = (regionRef.current?.value ?? "us") as Region;
       const buffer = await file.arrayBuffer();
       parse(buffer, region);
@@ -98,13 +102,13 @@ export default function SaveUpload() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) processFile(file);
+    if (file) processFile(file, false);
   };
 
   const handlePick = useCallback(async () => {
     const region = (regionRef.current?.value ?? "us") as Region;
     const picked = await fileSync.pickFile(region);
-    if (picked) processFile(picked.file);
+    if (picked) processFile(picked.file, true);
   }, [fileSync, processFile]);
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -118,7 +122,7 @@ export default function SaveUpload() {
     e.preventDefault();
     setIsDragOver(false);
     const file = e.dataTransfer.files[0];
-    if (file) processFile(file);
+    if (file) processFile(file, false);
   };
 
   const occupied = result?.characters.filter(Boolean) as CharacterResult[] | undefined;
@@ -133,8 +137,9 @@ export default function SaveUpload() {
         region: regionRef.current?.value ?? "us",
         items: [...character.itemChest, ...character.itemPouch],
       });
-      // No-op if this file wasn't opened via the file picker (no handle stored).
-      fileSync.confirmSelection(index);
+      // Only remember the slot against the stored handle when this result is
+      // that handle's file; a dropped/uploaded file may be a different save.
+      if (fromPickerRef.current) fileSync.confirmSelection(index);
     },
     [result, load, fileSync]
   );
