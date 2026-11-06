@@ -197,3 +197,63 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
     for (const piece of set) assert.ok(armor.includes(piece), `Gideon's box should include ${piece}`);
   }
 });
+
+// Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
+const decorationSlots = new Map(
+  (JSON.parse(fs.readFileSync(path.join(root, "data/decorations.json"), "utf-8")).decorations as {
+    name: string;
+    slots: number;
+  }[]).map((d) => [d.name, Number(d.slots)])
+);
+/** Slot count of an equipment box piece, from data/weapons or data/armor. */
+const pieceSlots = (() => {
+  const bySlot = new Map<string, Map<string, number>>();
+  const add = (key: string, entries: { name: string; slots?: number | string }[]) => {
+    const m = bySlot.get(key) ?? new Map<string, number>();
+    for (const e of entries) m.set(e.name, Number(e.slots ?? 0));
+    bySlot.set(key, m);
+  };
+  for (const f of fs.readdirSync(path.join(root, "data/weapons"))) {
+    const weapons = JSON.parse(fs.readFileSync(path.join(root, "data/weapons", f), "utf-8")).weapons;
+    add("melee", weapons);
+    add("ranged", weapons);
+  }
+  for (const slot of ["leggings", "helmet", "plate", "gauntlets", "waist"]) {
+    add(slot, JSON.parse(fs.readFileSync(path.join(root, "data/armor", `${slot}.json`), "utf-8")).armor);
+  }
+  return (s: { type: number; id: number }) => bySlot.get(EQUIP_SLOTS[s.type])?.get(equipName(s)!);
+})();
+
+test("decorations decode as jewel item IDs", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  // This save's only decorations: two Grinder Jewels in each 2-slot Ucamulbas
+  // blademaster piece and in Master's Blade G.
+  const decorated = gideon.equipBox
+    .filter((s) => s.decorations?.length)
+    .map((s) => [equipName(s), s.decorations!.map(name)]);
+  assert.deepEqual(decorated, [
+    ["Ucamulbas Mask", ["Grinder Jewel", "Grinder Jewel"]],
+    ["Ucamulbas Aegis", ["Grinder Jewel", "Grinder Jewel"]],
+    ["Ucamulbas Claw", ["Grinder Jewel", "Grinder Jewel"]],
+    ["Ucamulbas Cincture", ["Grinder Jewel", "Grinder Jewel"]],
+    ["Ucamulbas Hessian", ["Grinder Jewel", "Grinder Jewel"]],
+    ["Master's Blade G", ["Grinder Jewel", "Grinder Jewel"]],
+  ]);
+  assert.ok(mearo.equipBox.every((s) => s.decorations?.length === 0), "MEARO's gear has no decorations");
+});
+
+test("every decoration is a known jewel and the jewels fit the piece's slots", async () => {
+  for (const h of ok(await parse("us")).characters) {
+    for (const s of h?.equipBox ?? []) {
+      let used = 0;
+      for (const id of s.decorations ?? []) {
+        const jewel = name(id);
+        assert.ok(jewel && decorationSlots.has(jewel), `${h!.name}: ${equipName(s)} holds item ${id} (${jewel}), not a decoration`);
+        used += decorationSlots.get(jewel)!;
+      }
+      const slots = pieceSlots(s);
+      assert.ok(slots !== undefined, `${equipName(s)}: slot count not found`);
+      assert.ok(used <= slots, `${h!.name}: ${equipName(s)} has ${slots} slots but ${used} slots of jewels`);
+    }
+  }
+});
