@@ -9,6 +9,8 @@ export interface ItemSlot {
 export interface EquipSlot {
   type: number;
   id: number;
+  /** Item IDs (data/items.json) of the attached decorations. Missing on saves stored before they were read. */
+  decorations?: number[];
 }
 
 export interface SaveData {
