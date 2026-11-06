@@ -5,6 +5,7 @@
 import fs from "fs";
 import path from "path";
 import { slugify } from "../src/lib/slug";
+import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -230,6 +231,102 @@ for (const file of fs.readdirSync(monsterDataDir).sort().filter((e) => e.endsWit
   }
 
   console.log(`  ${category}: ${count} monsters`);
+}
+
+// ─── Items (in-game item IDs) ─────────────────────────────────────────────────
+
+section("Validating items…");
+
+const itemsFile = path.join(dataDir, "items.json");
+if (!fs.existsSync(itemsFile)) {
+  error("Missing data/items.json");
+} else {
+  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as { items: ItemRecord[] };
+  const ITEM_KEYS = new Set(["id", "name", "name_jp", "aliases", "rarity", "regions", "placeholder"]);
+  const REGIONS = new Set(["jp", "us", "eu"]);
+  const ids = new Set<number>();
+
+  if (!Array.isArray(data.items)) {
+    error('items.json: "items" is not an array');
+    data.items = [];
+  }
+
+  // Structural checks mirroring data/schemas/item.schema.json.
+  for (const it of data.items) {
+    const label = `items/${it.id ?? "?"}`;
+    for (const k of Object.keys(it)) if (!ITEM_KEYS.has(k)) error(`${label}: unknown key "${k}"`);
+    if (!Number.isInteger(it.id) || it.id < 1 || it.id > 65534) error(`${label}: id must be an integer 1–65534`);
+    else if (ids.has(it.id)) error(`${label}: duplicate id`);
+    ids.add(it.id);
+    if (typeof it.name !== "string" || !it.name.trim()) error(`${label}: missing name`);
+    else if (it.name !== it.name.trim()) error(`${label}: name has surrounding whitespace`);
+    if (typeof it.name_jp !== "string" || !it.name_jp) error(`${label}: missing name_jp`);
+    if (it.aliases !== undefined) {
+      if (!Array.isArray(it.aliases) || it.aliases.some((a) => typeof a !== "string" || !a.trim())) {
+        error(`${label}: aliases must be non-empty strings`);
+      } else if (new Set(it.aliases).size !== it.aliases.length) {
+        error(`${label}: duplicate alias`);
+      }
+    }
+    if (it.rarity !== undefined && (!Number.isInteger(it.rarity) || it.rarity < 1 || it.rarity > 10)) {
+      error(`${label}: rarity must be an integer 1–10`);
+    }
+    if (it.regions !== undefined && (!Array.isArray(it.regions) || it.regions.some((r) => !REGIONS.has(r)))) {
+      error(`${label}: regions must be a subset of jp/us/eu`);
+    }
+    if (it.placeholder !== undefined && it.placeholder !== true) error(`${label}: placeholder must be true`);
+  }
+
+  // Every name/alias must identify exactly one item.
+  const { index, collisions } = buildItemNameIndex(data.items);
+  for (const [name, owners] of collisions) {
+    error(`items: name "${name}" is claimed by ids ${owners.join(", ")}`);
+  }
+
+  // Every material used by recipes and monster drops must link to an item, so
+  // the same item is one entity across recipes and the save loader. Fix a miss
+  // by correcting the spelling in the recipe data or adding an alias.
+  const unresolved = new Map<string, Set<string>>(); // name -> where used
+  const note = (name: unknown, where: string) => {
+    if (typeof name !== "string" || index.has(normalizeItemName(name))) return;
+    const set = unresolved.get(name) ?? new Set<string>();
+    set.add(where);
+    unresolved.set(name, set);
+  };
+  const walk = (file: string) => {
+    const doc = JSON.parse(fs.readFileSync(file, "utf-8")) as Record<string, unknown>;
+    const rel = path.relative(dataDir, file);
+    for (const list of Object.values(doc)) {
+      if (!Array.isArray(list)) continue;
+      for (const entry of list as Record<string, unknown>[]) {
+        if (!entry || typeof entry !== "object") continue;
+        for (const [key, val] of Object.entries(entry)) {
+          if (key.endsWith("_mats") && Array.isArray(val)) {
+            for (const m of val as { name?: unknown }[]) note(m?.name, `${rel} ${entry.name}`);
+          }
+        }
+        const drops = entry.drops as Record<string, Record<string, { name?: unknown }[]>> | undefined;
+        if (drops && typeof drops === "object") {
+          for (const sources of Object.values(drops)) {
+            for (const list2 of Object.values(sources ?? {})) {
+              for (const d of list2 ?? []) note(d?.name, `${rel} ${entry.name} (drop)`);
+            }
+          }
+        }
+      }
+    }
+  };
+  for (const sub of ["weapons", "armor", "monsters"]) {
+    const dir = path.join(dataDir, sub);
+    for (const f of fs.readdirSync(dir).filter((e) => e.endsWith(".json")).sort()) walk(path.join(dir, f));
+  }
+  walk(path.join(dataDir, "decorations.json"));
+
+  for (const [name, where] of unresolved) {
+    error(`items: material "${name}" matches no item name or alias (used in ${[...where].slice(0, 2).join("; ")})`);
+  }
+
+  console.log(`  items: ${data.items.length} ids, ${index.size} names/aliases, ${unresolved.size} unlinked materials`);
 }
 
 // ─── Summary ──────────────────────────────────────────────────────────────────

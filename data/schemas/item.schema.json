@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Items file (in-game item ID -> name)",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$comment": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/item" }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["id", "name", "name_jp"],
+      "additionalProperties": false,
+      "properties": {
+        "id":      { "type": "integer", "minimum": 1, "maximum": 65534, "description": "u16 item ID as stored in the save's item box / pouch" },
+        "name":    { "type": "string", "minLength": 1, "description": "NA (ULUS-10391) English name" },
+        "name_jp": { "type": "string", "minLength": 1, "description": "JP (ULJM-05500) name" },
+        "aliases": {
+          "type": "array",
+          "description": "Other English spellings of the same item (EU, MHP2G fan patch, FUComplete, datamine enum, and spellings used in this repo's recipe data)",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "rarity":  { "type": "integer", "minimum": 1, "maximum": 10, "description": "Only present when two sources agree" },
+        "regions": {
+          "type": "array",
+          "description": "Releases that carry a real name for this ID. Omitted when present in all of jp, us, eu.",
+          "items": { "enum": ["jp", "us", "eu"] },
+          "uniqueItems": true
+        },
+        "placeholder": { "const": true, "description": "Not a real item (UI placeholder / developer padding)" }
+      }
+    }
+  }
+}
