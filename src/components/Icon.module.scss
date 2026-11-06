@@ -28,6 +28,12 @@
   width: 52px;
 }
 
+// The base .icon sets flex-basis to 3.2rem, which wins over `width` in a flex
+// row and squashes the large icon horizontally; keep it square.
+.icon--large {
+  flex-basis: 52px;
+}
+
 .icon--large::before {
   -webkit-mask-size: 52px;
   mask-size: 52px;
