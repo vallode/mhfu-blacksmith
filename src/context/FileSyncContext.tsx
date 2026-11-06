@@ -81,7 +81,9 @@ const FileSyncContext = createContext<FileSyncContextValue>({
 export function FileSyncProvider({ children }: { children: React.ReactNode }) {
   const { load } = useSave();
   const [state, setState] = useState<FileSyncState>(DEFAULT_STATE);
-  const syncingRef = useRef(false);
+  const inFlightRef = useRef<Promise<void> | null>(null);
+  const rerunRef = useRef(false);
+  const pickingRef = useRef(false);
 
   const applyResult = useCallback(
     (record: FileHandleRecord, result: WorkerResult) => {
@@ -103,8 +105,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     [load]
   );
 
-  const runSync = useCallback(async () => {
-    if (syncingRef.current) return;
+  const syncOnce = useCallback(async () => {
     const record = await getHandleRecord();
     if (!record) {
       setState((s) => ({ ...s, hasHandle: false, permission: null, fileName: null }));
@@ -120,7 +121,6 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     setState((s) => ({ ...s, hasHandle: true, fileName: record.handle.name, permission }));
     if (permission !== "granted") return;
 
-    syncingRef.current = true;
     setState((s) => ({ ...s, syncing: true, error: null }));
     try {
       const file = await record.handle.getFile();
@@ -139,16 +139,45 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
         syncing: false,
         error: err instanceof Error ? err.message : "Sync failed",
       }));
-    } finally {
-      syncingRef.current = false;
     }
   }, [applyResult]);
+
+  /**
+   * Serialized entry point for syncing. Tab return fires both `focus` and
+   * `visibilitychange`, and a permission prompt closing fires `focus` while
+   * requestReconnect is about to sync too, so calls overlap. Overlapping
+   * calls join the in-flight run and schedule one more pass after it (cheap:
+   * an unchanged file is skipped by lastModified), so a request made after
+   * permission changed is never dropped. Skipped entirely while the picker is
+   * replacing the stored handle, so a sync can't act on the old record.
+   */
+  const runSync = useCallback((): Promise<void> => {
+    if (pickingRef.current) return Promise.resolve();
+    if (inFlightRef.current) {
+      rerunRef.current = true;
+      return inFlightRef.current;
+    }
+    const run = (async () => {
+      try {
+        do {
+          rerunRef.current = false;
+          await syncOnce();
+        } while (rerunRef.current && !pickingRef.current);
+      } finally {
+        inFlightRef.current = null;
+      }
+    })();
+    inFlightRef.current = run;
+    return run;
+  }, [syncOnce]);
 
   const pickFile = useCallback(
     async (region: Region): Promise<FilePickResult | null> => {
       if (typeof window === "undefined" || !window.showOpenFilePicker) return null;
       setState((s) => ({ ...s, error: null }));
+      pickingRef.current = true;
       try {
+        // Call the picker first, while the click's user activation is fresh.
         const [handle] = await window.showOpenFilePicker({
           types: [
             {
@@ -160,6 +189,9 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
           multiple: false,
         });
         const file = await handle.getFile();
+        // A sync that started before the click is still working on the old
+        // record; let it finish before the record is replaced.
+        await inFlightRef.current;
         await setHandleRecord({
           handle,
           region,
@@ -182,6 +214,8 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
           error: err instanceof Error ? err.message : "Could not open file",
         }));
         return null;
+      } finally {
+        pickingRef.current = false;
       }
     },
     []
