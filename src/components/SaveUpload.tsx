@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { saveFromCharacter } from "@/lib/save-store";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
 import styles from "@/styles/hunter.module.scss";
@@ -49,7 +50,7 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
           <div className={styles["hunter-profile__stat"]}>
             <span className={styles["hunter-profile__label"]}>Equipment</span>
             <span className={styles["hunter-profile__value"]}>
-              {character.equipTotal}
+              {character.equipBox.length}
             </span>
           </div>
           <div className={styles["hunter-profile__stat"]}>
@@ -133,11 +134,7 @@ export default function SaveUpload() {
       const character = result?.characters[index];
       if (!character) return;
       const region = (regionRef.current?.value ?? "us") as Region;
-      load({
-        name: character.name,
-        region,
-        items: [...character.itemChest, ...character.itemPouch],
-      });
+      load(saveFromCharacter(character, region));
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
       if (fromPickerRef.current) fileSync.confirmSelection(index, region);
