@@ -36,20 +36,30 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 
 ## Development
 
+The site is a statically exported [Next.js](https://nextjs.org/) app.
+
 Dependencies:
 
-- [Node.js](https://nodejs.org/) 22
-- [pnpm](https://pnpm.io/) (version pinned in `packageManager` in `package.json`)
-- [Ruby](https://www.ruby-lang.org/) (optional, only for regenerating crafting-tree maps)
-- [ImageMagick](https://imagemagick.org/) (optional, for the image scripts in `scripts/`)
+- [Node.js](https://nodejs.org/) 22+
+- [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
+- [Ruby](https://www.ruby-lang.org/) (optional, only for `make generate-maps`)
+- [ImageMagick](https://imagemagick.org/) (optional, for `scripts/crop-images.sh`)
 
 ```sh
 pnpm install
-pnpm dev        # local dev server
-pnpm build      # generate data + static export to out/
-pnpm validate   # check data/ against the crafting-tree maps
+
+# Generate the client data bundles in public/ (needed once before `pnpm dev`,
+# and again whenever data/ or content/ changes)
+pnpm generate-data && pnpm generate-search && pnpm generate-weapons
+
+pnpm dev       # local dev server on http://localhost:3000
+pnpm build     # regenerate data + static export to out/
+pnpm lint      # ESLint
+pnpm validate  # sanity-check data/ and content/
 ```
 
-Game data lives in `data/`. The crafting-tree maps in `content/**/map.json` are generated from it with `make generate-maps`; rerun that after adding or re-parenting weapons, armor, or decorations.
+Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
+
+The crafting trees in `content/**/map.json` are generated from `data/` with `make generate-maps` (needs Ruby, standard library only). Rerun it after adding or re-parenting weapons, armor, or decorations.
 
 The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.
