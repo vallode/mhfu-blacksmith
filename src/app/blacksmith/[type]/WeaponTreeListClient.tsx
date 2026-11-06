@@ -26,7 +26,12 @@ export default function WeaponTreeListClient({ type }: Props) {
             {!loading &&
               tree?.map((node) => (
                 <ul key={node.slug}>
-                  <WeaponTreeRow node={node} sectionType={type} basePath={basePath} />
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType={type}
+                    basePath={basePath}
+                    treeKey={`weapon-${type}`}
+                  />
                 </ul>
               ))}
           </TreeScroll>

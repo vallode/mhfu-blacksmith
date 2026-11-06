@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
 import styles from "@/styles/hunter.module.scss";
 
@@ -10,25 +11,25 @@ function formatZenny(n: number): string {
   return n.toLocaleString();
 }
 
+function formatTimeAgo(ts: number): string {
+  const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
+  if (seconds < 60) return "just now";
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  return `${Math.round(hours / 24)}d ago`;
+}
+
 interface CharacterCardProps {
   character: CharacterResult;
   index: number;
   showUseButton: boolean;
   decrypted: boolean;
+  onUse: (index: number) => void;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted }: CharacterCardProps) {
-  const { load } = useSave();
-
-  const handleUse = () => {
-    const allItems = [...character.itemChest, ...character.itemPouch];
-    load({
-      name: character.name,
-      region: "us",
-      items: allItems,
-    });
-  };
-
+function CharacterCard({ character, index, showUseButton, decrypted, onUse }: CharacterCardProps) {
   return (
     <Card>
       <div className={styles["hunter-profile"]}>
@@ -68,7 +69,7 @@ function CharacterCard({ character, index, showUseButton, decrypted }: Character
         {showUseButton && (
           <button
             className={styles["hunter-profile__use-btn"]}
-            onClick={handleUse}
+            onClick={() => onUse(index)}
           >
             Use hunter {index + 1}
           </button>
@@ -81,12 +82,17 @@ function CharacterCard({ character, index, showUseButton, decrypted }: Character
 export default function SaveUpload() {
   const { parse, result, error, loading } = useSaveWorker();
   const { load } = useSave();
+  const fileSync = useFileSync();
   const [isDragOver, setIsDragOver] = useState(false);
   const regionRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Whether the parsed result came from the file picker (i.e. the stored
+  // handle). Dropped or uploaded files must not overwrite the handle's slot.
+  const fromPickerRef = useRef(false);
 
   const processFile = useCallback(
-    async (file: File) => {
+    async (file: File, fromPicker: boolean) => {
+      fromPickerRef.current = fromPicker;
       const region = (regionRef.current?.value ?? "us") as Region;
       const buffer = await file.arrayBuffer();
       parse(buffer, region);
@@ -96,8 +102,14 @@ export default function SaveUpload() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) processFile(file);
+    if (file) processFile(file, false);
   };
+
+  const handlePick = useCallback(async () => {
+    const region = (regionRef.current?.value ?? "us") as Region;
+    const picked = await fileSync.pickFile(region);
+    if (picked) processFile(picked.file, true);
+  }, [fileSync, processFile]);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -110,20 +122,32 @@ export default function SaveUpload() {
     e.preventDefault();
     setIsDragOver(false);
     const file = e.dataTransfer.files[0];
-    if (file) processFile(file);
+    if (file) processFile(file, false);
   };
 
   const occupied = result?.characters.filter(Boolean) as CharacterResult[] | undefined;
   const showUseButton = (occupied?.length ?? 0) > 1;
 
+  const selectCharacter = useCallback(
+    (index: number) => {
+      const character = result?.characters[index];
+      if (!character) return;
+      const region = (regionRef.current?.value ?? "us") as Region;
+      load({
+        name: character.name,
+        region,
+        items: [...character.itemChest, ...character.itemPouch],
+      });
+      // Only remember the slot against the stored handle when this result is
+      // that handle's file; a dropped/uploaded file may be a different save.
+      if (fromPickerRef.current) fileSync.confirmSelection(index, region);
+    },
+    [result, load, fileSync]
+  );
+
   const handleUseSingle = () => {
     if (!occupied || occupied.length !== 1) return;
-    const c = occupied[0];
-    load({
-      name: c.name,
-      region: regionRef.current?.value ?? "us",
-      items: [...c.itemChest, ...c.itemPouch],
-    });
+    selectCharacter(result!.characters.indexOf(occupied[0]));
   };
 
   return (
@@ -136,18 +160,30 @@ export default function SaveUpload() {
       >
         <p>Hunter Profile</p>
 
-        <label className={styles["save-upload__label"]}>
-          <input
-            ref={inputRef}
-            type="file"
-            accept=".bin,.BIN"
-            className={styles["save-upload__input"]}
-            onChange={handleFileChange}
-          />
-          <span className={styles["save-upload__cta"]}>
-            Drop MHP2NDG.BIN here or click to browse
-          </span>
-        </label>
+        {fileSync.isSupported ? (
+          <button
+            type="button"
+            className={styles["save-upload__label"]}
+            onClick={handlePick}
+          >
+            <span className={styles["save-upload__cta"]}>
+              Drop MHP2NDG.BIN here or click to browse
+            </span>
+          </button>
+        ) : (
+          <label className={styles["save-upload__label"]}>
+            <input
+              ref={inputRef}
+              type="file"
+              accept=".bin,.BIN"
+              className={styles["save-upload__input"]}
+              onChange={handleFileChange}
+            />
+            <span className={styles["save-upload__cta"]}>
+              Drop MHP2NDG.BIN here or click to browse
+            </span>
+          </label>
+        )}
 
         <select ref={regionRef} className={styles["save-upload__region"]}>
           <option value="us">US (ULUS-10391)</option>
@@ -159,6 +195,38 @@ export default function SaveUpload() {
           Supports PPSSPP saves (both default and decrypted exports).{" "}
           <em>The file never leaves your device.</em>
         </p>
+
+        {fileSync.isSupported && fileSync.hasHandle && (
+          <div className={styles["save-upload__sync"]}>
+            <span className={styles["save-upload__sync-status"]}>
+              {fileSync.syncing
+                ? "Syncing…"
+                : fileSync.permission !== "granted"
+                  ? "Reconnect needed to keep syncing"
+                  : fileSync.lastSynced
+                    ? `Synced with ${fileSync.fileName} · ${formatTimeAgo(fileSync.lastSynced)}`
+                    : `Connected to ${fileSync.fileName}`}
+            </span>
+            {fileSync.permission === "granted" ? (
+              <button
+                type="button"
+                className={styles["save-upload__sync-btn"]}
+                onClick={() => fileSync.syncNow()}
+                disabled={fileSync.syncing}
+              >
+                Sync now
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={styles["save-upload__sync-btn"]}
+                onClick={() => fileSync.requestReconnect()}
+              >
+                Reconnect
+              </button>
+            )}
+          </div>
+        )}
       </Card>
 
       <div className={styles["hunter-page__results"]}>
@@ -180,9 +248,10 @@ export default function SaveUpload() {
           <>
             <CharacterCard
               character={occupied[0]}
-              index={0}
+              index={result!.characters.indexOf(occupied[0])}
               showUseButton={false}
               decrypted={result!.decrypted}
+              onUse={selectCharacter}
             />
             <button
               className={styles["hunter-profile__use-btn"]}
@@ -194,15 +263,19 @@ export default function SaveUpload() {
         )}
 
         {occupied && occupied.length > 1 &&
-          occupied.map((c, i) => (
-            <CharacterCard
-              key={i}
-              character={c}
-              index={i}
-              showUseButton={showUseButton}
-              decrypted={result!.decrypted}
-            />
-          ))}
+          occupied.map((c) => {
+            const index = result!.characters.indexOf(c);
+            return (
+              <CharacterCard
+                key={index}
+                character={c}
+                index={index}
+                showUseButton={showUseButton}
+                decrypted={result!.decrypted}
+                onUse={selectCharacter}
+              />
+            );
+          })}
       </div>
     </div>
   );

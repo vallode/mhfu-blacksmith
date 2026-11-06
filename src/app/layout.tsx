@@ -4,10 +4,12 @@ import "./globals.scss";
 import GlobalSearch from "@/components/GlobalSearch";
 import OfflineDownload from "@/components/OfflineDownload";
 import OfflineNavGuard from "@/components/OfflineNavGuard";
+import SaveSyncReconnect from "@/components/SaveSyncReconnect";
 import { SaveProvider } from "@/context/SaveContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { OfflineProvider } from "@/context/OfflineContext";
+import { FileSyncProvider } from "@/context/FileSyncContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -36,9 +38,12 @@ export default function RootLayout({
           <SaveProvider>
             <ToastProvider>
               <OfflineProvider>
-                <OfflineNavGuard>{children}</OfflineNavGuard>
-                <GlobalSearch />
-                <OfflineDownload />
+                <FileSyncProvider>
+                  <OfflineNavGuard>{children}</OfflineNavGuard>
+                  <GlobalSearch />
+                  <OfflineDownload />
+                  <SaveSyncReconnect />
+                </FileSyncProvider>
               </OfflineProvider>
             </ToastProvider>
           </SaveProvider>
