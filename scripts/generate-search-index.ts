@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { armorSlugs } from "../src/lib/slug";
 
 const root = process.cwd();
 const dataDir = path.join(root, "data");
@@ -84,11 +85,20 @@ for (const file of fs.readdirSync(armorDir)) {
     armor: Record<string, unknown>[];
   };
 
-  for (const a of data.armor) {
-    if ("donotrender" in a || !a.name) continue;
+  const pieces = data.armor.filter((a) => !("donotrender" in a) && a.name) as (Record<string, unknown> & {
+    name: string;
+    sex?: string;
+  })[];
+  // Slugs are unique per slot + rank, so compute them per rank.
+  const slugByPiece = new Map<object, string>();
+  for (const rank of new Set(pieces.map((a) => (a.rank as string) || "low-rank"))) {
+    const inRank = pieces.filter((a) => ((a.rank as string) || "low-rank") === rank);
+    armorSlugs(inRank).forEach((slug, i) => slugByPiece.set(inRank[i], slug));
+  }
 
-    const name = a.name as string;
-    const slug = slugify(name);
+  for (const a of pieces) {
+    const name = a.name;
+    const slug = slugByPiece.get(a)!;
     const rank = (a.rank as string) || "low-rank";
     const skillNames = Array.isArray(a.skills)
       ? (a.skills as ({ name: string } | string)[])
