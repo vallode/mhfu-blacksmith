@@ -204,7 +204,9 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
 
   const forget = useCallback(async () => {
     await clearHandleRecord();
-    setState(DEFAULT_STATE);
+    // Browser support doesn't change by forgetting the file; keep it so the
+    // picker UI and focus listener stay active.
+    setState((s) => ({ ...DEFAULT_STATE, isSupported: s.isSupported }));
   }, []);
 
   useEffect(() => {
