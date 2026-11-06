@@ -372,7 +372,7 @@
       "improve_from": "Carbalite Sword",
       "create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -3080,7 +3080,7 @@
       "improve_from": "Dark Scythe",
       "create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -5946,7 +5946,7 @@
           "color": "yellow"
         },
         {
-          "name": "Vespoid InnrWing",
+          "name": "Vespoid InnrWng",
           "amount": 5,
           "type": "webbing",
           "color": "yellow"
@@ -7520,9 +7520,9 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commedation S",
+          "name": "Commendation S",
           "amount": 1,
-          "type": "bone",
+          "type": "ticket",
           "color": "white"
         },
         {

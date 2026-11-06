@@ -171,6 +171,29 @@ export interface DecorationBundle {
 }
 export type Bundle = WeaponBundle | ArmorBundle | MonsterBundle | DecorationBundle;
 
+/** One in-game item. Icon type/colour come from the linked recipe material. */
+export interface CompactItem {
+  /** NA name */
+  n: string;
+  /** rarity (only when sources agree) */
+  r?: number;
+  /** icon type index into Dictionaries.types */
+  t?: number;
+  /** icon colour index into Dictionaries.colors */
+  c?: number;
+  /** 1 = not a real item (placeholder / padding) */
+  p?: 1;
+}
+
+/** items.json: in-game item ID -> item, plus material name -> item ID links. */
+export interface ItemsBundle {
+  kind: "items";
+  /** indexed by in-game item ID; unused IDs (incl. 0) are null */
+  items: (CompactItem | null)[];
+  /** recipe/drop material name (as used in Dictionaries.material_ids) -> item ID */
+  materials: Record<string, number>;
+}
+
 // ---------------------------------------------------------------------------
 // Decoder
 // ---------------------------------------------------------------------------

@@ -24,7 +24,7 @@ export default function Card({
   const classes = cn(
     styles.card,
     variant === "weapon-tree" && styles["weaponTree"],
-    className
+    className,
   );
 
   if (href) {

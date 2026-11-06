@@ -6,6 +6,7 @@
  *   - armor-<slot>-<rank>.json
  *   - monster-<category>.json    (9)
  *   - decorations.json
+ *   - items.json                 (in-game item ID -> name, linked to materials)
  *   - data-manifest.json         ({ files, version })
  *
  * Reuses the transform logic from src/lib (slugify, computeRank, raw_attack
@@ -41,7 +42,10 @@ import type {
   CompactDecoration,
   CompactTreeNode,
   MatTuple,
+  CompactItem,
+  ItemsBundle,
 } from "../src/lib/schema";
+import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -354,6 +358,47 @@ for (const category of MONSTER_CATEGORIES) {
     tree: compactTree(tree.map, "decoration"),
     items,
   });
+}
+
+// Items (in-game item ID -> name). Runs after every bundle above so that all
+// recipe/drop material names are interned and can be linked to an item ID.
+{
+  const { items: records } = readJson<{ items: ItemRecord[] }>(path.join(dataDir, "items.json"));
+  const { index } = buildItemNameIndex(records);
+
+  // material name -> item ID, for every interned material that resolves.
+  const materials: Record<string, number> = {};
+  for (const name of materialIndex.keys()) {
+    const id = index.get(normalizeItemName(name));
+    if (id !== undefined) materials[name] = id;
+  }
+
+  // Pick an icon for each item from its linked materials: prefer the material
+  // spelled exactly like the item, then any linked material with a known type.
+  const iconFor = new Map<number, [string, string]>();
+  const byName = new Map(records.map((r) => [r.id, r.name]));
+  for (const [name, id] of Object.entries(materials)) {
+    const [type, color] = materialTC.get(name) ?? ["", ""];
+    if (!type) continue;
+    if (!iconFor.has(id) || name === byName.get(id)) iconFor.set(id, [type, color]);
+  }
+
+  const maxId = Math.max(...records.map((r) => r.id));
+  const items: (CompactItem | null)[] = new Array(maxId + 1).fill(null);
+  for (const r of records) {
+    const out: CompactItem = { n: r.name };
+    if (r.rarity !== undefined) out.r = r.rarity;
+    const icon = iconFor.get(r.id);
+    if (icon) {
+      out.t = intern(typeIndex, icon[0]);
+      out.c = intern(colorIndex, icon[1]);
+    }
+    if (r.placeholder) out.p = 1;
+    items[r.id] = out;
+  }
+  totalItems += records.length;
+  const bundle: ItemsBundle = { kind: "items", items, materials };
+  push("items.json", bundle);
 }
 
 // ---------------------------------------------------------------------------

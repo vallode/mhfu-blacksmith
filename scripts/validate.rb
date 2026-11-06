@@ -27,6 +27,7 @@ weapon_schema     = load_schema("weapon")
 armor_schema      = load_schema("armor")
 decoration_schema = load_schema("decoration")
 monster_schema    = load_schema("monster")
+item_schema       = load_schema("item")
 
 puts "Validating weapons..."
 Dir.glob("data/weapons/*.json").sort.each do |path|
@@ -45,6 +46,9 @@ puts "Validating monsters..."
 Dir.glob("data/monsters/*.json").sort.each do |path|
   errors_found |= validate_file(path, monster_schema, "monster")
 end
+
+puts "Validating items..."
+errors_found |= validate_file("data/items.json", item_schema, "item")
 
 if errors_found
   puts "\nValidation failed. Fix the errors above before building."

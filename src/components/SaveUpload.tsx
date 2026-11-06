@@ -3,8 +3,11 @@
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
+import HunterInventory from "@/components/HunterInventory";
+import type { SaveData } from "@/lib/save-store";
 import styles from "@/styles/hunter.module.scss";
 
 function formatZenny(n: number): string {
@@ -21,15 +24,60 @@ function formatTimeAgo(ts: number): string {
   return `${Math.round(hours / 24)}d ago`;
 }
 
+const REGION_LABELS: Record<string, string> = { us: "US", eu: "EU", jp: "JP" };
+
+/** The stored hunter's items, in the order "Use hunter" saved them (box, then pouch). */
+const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
+
+/** Whether `character` is the hunter currently stored as active. */
+function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
+  if (!save || save.name !== c.name) return false;
+  const items = hunterItems(c);
+  return (
+    save.items.length === items.length &&
+    save.items.every((s, i) => s.id === items[i].id && s.qty === items[i].qty)
+  );
+}
+
+/** The hunter whose items the site currently uses, shown even after a reload. */
+function ActiveHunterCard({ save, onClear }: { save: SaveData; onClear: () => void }) {
+  return (
+    <Card>
+      <div className={styles["hunter-profile"]}>
+        <span className={styles["hunter-profile__label"]}>Active hunter</span>
+        <div className={styles["hunter-profile__header"]}>
+          <span className={styles["hunter-profile__name"]}>{save.name}</span>
+          <span className={styles["hunter-profile__sex"]}>
+            {REGION_LABELS[save.region] ?? save.region} · selected {formatTimeAgo(save.savedAt)}
+          </span>
+        </div>
+        <p className={styles["save-upload__note"]}>
+          Weapon and armor recipes show how many of each material this hunter owns.
+        </p>
+        <HunterInventory
+          sections={[{ title: "Items (box + pouch)", slots: save.items, open: false }]}
+        />
+        <button className={styles["hunter-profile__use-btn"]} onClick={onClear}>
+          Stop using this hunter
+        </button>
+      </div>
+    </Card>
+  );
+}
+
 interface CharacterCardProps {
   character: CharacterResult;
   index: number;
   showUseButton: boolean;
   decrypted: boolean;
   onUse: (index: number) => void;
+  /** Expand the item box by default (only when a single hunter is shown). */
+  boxOpen: boolean;
+  /** This hunter is the one currently stored as active. */
+  active: boolean;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted, onUse }: CharacterCardProps) {
+function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxOpen, active }: CharacterCardProps) {
   return (
     <Card>
       <div className={styles["hunter-profile"]}>
@@ -59,6 +107,13 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
           </div>
         </div>
 
+        <HunterInventory
+          sections={[
+            { title: "Item Pouch", slots: character.itemPouch, max: 24, open: true },
+            { title: "Item Box", slots: character.itemChest, max: 1000, open: boxOpen },
+          ]}
+        />
+
         {decrypted && (
           <p className={styles["save-upload__source"]}>
             Game-layer decryption applied.
@@ -67,10 +122,11 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
 
         {showUseButton && (
           <button
-            className={styles["hunter-profile__use-btn"]}
+            className={`${styles["hunter-profile__use-btn"]}${active ? ` ${styles["is-active"]}` : ""}`}
             onClick={() => onUse(index)}
+            disabled={active}
           >
-            Use hunter {index + 1}
+            {active ? "Active hunter" : `Use hunter ${index + 1}`}
           </button>
         )}
       </div>
@@ -80,7 +136,8 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
 
 export default function SaveUpload() {
   const { parse, result, error, loading } = useSaveWorker();
-  const { load } = useSave();
+  const { save, load, clear } = useSave();
+  const { toast } = useToast();
   const fileSync = useFileSync();
   const [isDragOver, setIsDragOver] = useState(false);
   const regionRef = useRef<HTMLSelectElement>(null);
@@ -135,14 +192,29 @@ export default function SaveUpload() {
       load({
         name: character.name,
         region,
-        items: [...character.itemChest, ...character.itemPouch],
+        items: hunterItems(character),
+      });
+      toast({
+        id: "hunter-selected",
+        title: "Hunter selected",
+        message: `${character.name} is now your active hunter. Weapon and armor recipes show how many of each material you own.`,
       });
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
       if (fromPickerRef.current) fileSync.confirmSelection(index, region);
     },
-    [result, load, fileSync]
+    [result, load, fileSync, toast]
   );
+
+  const singleActive = occupied?.length === 1 && isActiveHunter(save, occupied[0]);
+
+  const handleClear = () => {
+    clear();
+    toast({
+      id: "hunter-selected",
+      message: "No active hunter. Recipes show required amounts only.",
+    });
+  };
 
   const handleUseSingle = () => {
     if (!occupied || occupied.length !== 1) return;
@@ -229,6 +301,8 @@ export default function SaveUpload() {
       </Card>
 
       <div className={styles["hunter-page__results"]}>
+        {save && <ActiveHunterCard save={save} onClear={handleClear} />}
+
         {loading && (
           <p className={styles["save-upload__notice"]}>Reading save file…</p>
         )}
@@ -251,12 +325,15 @@ export default function SaveUpload() {
               showUseButton={false}
               decrypted={result!.decrypted}
               onUse={selectCharacter}
+              boxOpen
+              active={singleActive}
             />
             <button
-              className={styles["hunter-profile__use-btn"]}
+              className={`${styles["hunter-profile__use-btn"]}${singleActive ? ` ${styles["is-active"]}` : ""}`}
               onClick={handleUseSingle}
+              disabled={singleActive}
             >
-              Use this hunter
+              {singleActive ? "Active hunter" : "Use this hunter"}
             </button>
           </>
         )}
@@ -272,6 +349,8 @@ export default function SaveUpload() {
                 showUseButton={showUseButton}
                 decrypted={result!.decrypted}
                 onUse={selectCharacter}
+                boxOpen={false}
+                active={isActiveHunter(save, c)}
               />
             );
           })}
