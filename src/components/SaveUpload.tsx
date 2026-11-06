@@ -132,14 +132,15 @@ export default function SaveUpload() {
     (index: number) => {
       const character = result?.characters[index];
       if (!character) return;
+      const region = (regionRef.current?.value ?? "us") as Region;
       load({
         name: character.name,
-        region: regionRef.current?.value ?? "us",
+        region,
         items: [...character.itemChest, ...character.itemPouch],
       });
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
-      if (fromPickerRef.current) fileSync.confirmSelection(index);
+      if (fromPickerRef.current) fileSync.confirmSelection(index, region);
     },
     [result, load, fileSync]
   );
