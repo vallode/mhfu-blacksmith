@@ -14,8 +14,10 @@ export default function SharpnessBar({ values, plus }: SharpnessBarProps) {
       {values.map((v, i) => (
         <span
           key={i}
-          className={styles[`sharp-${i + 1}`]}
-          style={{ width: `${Number(v) * 4}px` }}
+          style={{
+            backgroundColor: `var(--color-sharpness-${i + 1})`,
+            width: `${Number(v) * 4}px`,
+          }}
         />
       ))}
     </div>

@@ -1,7 +1,7 @@
-@use 'variables' as *;
-
-// Shared layout for both .sharpness and .sharpness-plus bars
-%sharpness-bar {
+// Shared layout for both bars. Segment colours are set inline by SharpnessBar
+// from the --color-sharpness-* tokens.
+.sharpness,
+.sharpness-plus {
   display: flex;
   height: 2.4rem;
   margin-left: auto;
@@ -19,20 +19,8 @@
     z-index: 1;
   }
 
-  // Colour segments — match the module-scoped sharp-N classes emitted by
-  // SharpnessBar (e.g. "sharpness_sharp-3__x").
-  @each $value, $color in $sharpness-colors {
-    span[class*="sharp-#{$value}"] {
-      background-color: $color;
-    }
-  }
-}
-
-.sharpness {
-  @extend %sharpness-bar;
-
+  // The bar frame overlay
   &::after {
-    background-image: url("/images/sharpness.png");
     background-size: cover;
     content: '';
     height: 100%;
@@ -47,23 +35,12 @@
   }
 }
 
-.sharpness-plus {
-  @extend %sharpness-bar;
+.sharpness::after {
+  background-image: url("/images/sharpness.png");
+}
 
-  &::after {
-    background-image: url("/images/sharpness-plus.png");
-    background-size: cover;
-    content: '';
-    height: 100%;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-  }
+.sharpness-plus::after {
+  background-image: url("/images/sharpness-plus.png");
 }
 
 .sharpness-container {

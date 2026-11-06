@@ -23,6 +23,7 @@ export default function Card({
 }: CardProps) {
   const classes = cn(
     styles.card,
+    "card-frame",
     variant === "weapon-tree" && styles["weaponTree"],
     className
   );

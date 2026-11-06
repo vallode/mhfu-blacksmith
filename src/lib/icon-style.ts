@@ -1,0 +1,108 @@
+import type { CSSProperties } from "react";
+import { cn } from "@/lib/cn";
+import styles from "@/components/Icon.module.scss";
+
+// Which icon types have a tintable mask / badge image under public/images.
+// The colours themselves live in the @theme block in src/app/globals.scss
+// (--color-rarity-*, --color-gem-*, --color-note-*); this file only says
+// which names exist. To add a type, drop the PNG(s) in public/images and add
+// the name here.
+
+/** Item, weapon and armor types with a mask at /images/<type>.png (and <type>-mini.png). */
+const ITEM_MASKS = new Set([
+  "great-sword", "long-sword", "sword-and-shield", "dual-blades", "hammer",
+  "hunting-horn", "lance", "gunlance", "light-bowgun", "heavy-bowgun", "bow",
+  "decoration", "deco", "herb", "seed", "meat", "note", "bone", "ore", "fish",
+  "hide", "sac", "claw", "scale", "pelt", "insect", "fluid", "part", "egg",
+  "ticket", "bait", "webbing", "mushroom", "shell", "heavenly", "stone", "coin",
+  "ukwn", "helmet", "plate", "gauntlets", "waist", "leggings",
+]);
+
+/** Monster categories with a mask at /images/monsters/<type>.png. */
+const MONSTER_MASKS = new Set([
+  "bird-wyvern", "carapaceon", "elder-dragon", "flying-wyvern", "herbivore",
+  "lynian", "neopteron", "pelagus", "piscine-wyvern",
+]);
+
+/** Element badges drawn in the bottom-right corner, from /images/<element>.png. */
+const ELEMENT_BADGES = new Set([
+  "fire", "thunder", "poison", "water", "ice", "sleep", "dragon", "paralysis",
+]);
+
+/** Rank badges drawn in the bottom-right corner, from /images/<rank>.png. */
+const RANK_BADGES = new Set(["high-rank", "g-rank"]);
+
+/** Names that have a --color-gem-* token. */
+const GEM_COLORS = new Set([
+  "blue", "cyan", "gray", "green", "orange", "pink", "red", "slate", "white", "yellow",
+]);
+
+/** Names that have a --color-note-* token (passed as color="note-a" etc.). */
+const NOTE_COLORS = new Set(["a", "b", "g", "p", "r", "w", "y"]);
+
+export interface IconStyleOptions {
+  type: string;
+  rarity?: number | null;
+  color?: string | null;
+  element?: string | null;
+  rank?: string | null;
+  /** Size of the mask image; "mini" uses the -mini.png mask. */
+  size?: "default" | "large" | "mini";
+  nav?: boolean;
+  /** Highlights the icon with the rarity-4 green (used by nav icons). */
+  active?: boolean;
+  monster?: boolean;
+}
+
+function tintFor({ rarity, color, active }: IconStyleOptions): string | undefined {
+  if (color?.startsWith("note-")) {
+    const note = color.slice("note-".length);
+    if (NOTE_COLORS.has(note)) return `var(--color-note-${note})`;
+  } else if (color && GEM_COLORS.has(color)) {
+    return `var(--color-gem-${color})`;
+  }
+  if (rarity && rarity >= 4 && rarity <= 10) return `var(--color-rarity-${rarity})`;
+  if (active) return "var(--color-rarity-4)";
+  return undefined;
+}
+
+function maskFor({ type, size }: IconStyleOptions): string | undefined {
+  if (ITEM_MASKS.has(type)) {
+    return `url("/images/${type}${size === "mini" ? "-mini" : ""}.png")`;
+  }
+  if (MONSTER_MASKS.has(type)) return `url("/images/monsters/${type}.png")`;
+  return undefined;
+}
+
+/**
+ * Class names and inline CSS variables for an icon wrapper. The icon is a
+ * sprite <img> with an optional colour tint (a mask over the sprite, filled
+ * with the rarity/gem/note colour) and an optional corner badge.
+ */
+export function iconStyle(opts: IconStyleOptions): { className: string; style: CSSProperties } {
+  const { element, rank, size, nav, monster } = opts;
+  const mask = maskFor(opts);
+  const tint = tintFor(opts);
+  // Only one corner badge fits; rank wins over element.
+  const badge =
+    rank && RANK_BADGES.has(rank) ? "rank" : element && ELEMENT_BADGES.has(element) ? "element" : null;
+
+  const style: Record<string, string> = {};
+  if (mask) style["--icon-mask"] = mask;
+  if (tint) style["--icon-tint"] = tint;
+  if (badge) style["--icon-badge"] = `url("/images/${badge === "element" ? element : rank}.png")`;
+
+  return {
+    className: cn(
+      styles.icon,
+      size === "large" && styles["icon--large"],
+      size === "mini" && styles["icon--mini"],
+      nav && styles["icon--nav"],
+      monster && styles["icon--monster"],
+      mask && styles.masked,
+      badge === "element" && styles.elementBadge,
+      badge === "rank" && styles.rankBadge
+    ),
+    style: style as CSSProperties,
+  };
+}
