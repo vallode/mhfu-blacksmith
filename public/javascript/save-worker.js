@@ -81,35 +81,74 @@ const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)
 const DECRYPTED_SIZE   = 0x16A0E8; // plaintext (pre-decrypted export)
 const PSP_HARDWARE_SIZE = 0x16A110; // PSP hardware layer still present
 
+// US and EU share every key; JP has its own PSP key and SHA-1 salt. So there
+// are only two key sets to try, and a mismatch with one usually means the save
+// is from the other release.
+const REGION_NAMES = { us: "US", eu: "EU", jp: "JP" };
+const OTHER_KEYSET = { us: "jp", eu: "jp", jp: "us" };
+const KEYSET_LABEL = { us: "US or EU", eu: "US or EU", jp: "JP" };
+
+/**
+ * Decrypt an encrypted save (PSP layer optional, game layer required) with one
+ * region's keys. Returns the plaintext, or null when the game layer's SHA-1
+ * doesn't match (wrong keys). Other errors are thrown.
+ */
+async function decryptWith(buffer, region) {
+  let game = buffer;
+  if (buffer.byteLength === PSP_HARDWARE_SIZE) game = await decryptPSPLayer(buffer, region);
+  try {
+    return await decryptGameLayer(game, region);
+  } catch (e) {
+    if (e.message === "SHA-1 mismatch") return null;
+    throw e;
+  }
+}
+
 self.onmessage = async ({ data: { buffer, region } }) => {
   try {
-    let plaintext = buffer;
-    let decrypted = false;
+    region = region ?? "us";
+    const size = buffer.byteLength;
 
-    if (buffer.byteLength === PSP_HARDWARE_SIZE) {
-      buffer = await decryptPSPLayer(buffer, region ?? "na");
+    if (size === DECRYPTED_SIZE) {
+      // Already-decrypted export: parse as-is.
+      postCharacters(buffer, false);
+      return;
     }
 
-    if (buffer.byteLength !== ENCRYPTED_SIZE && buffer.byteLength !== DECRYPTED_SIZE) {
+    if (size !== ENCRYPTED_SIZE && size !== PSP_HARDWARE_SIZE) {
       throw new Error(
-        `Unexpected file size (${buffer.byteLength} bytes). ` +
-        `Expected ${ENCRYPTED_SIZE} (encrypted) or ${DECRYPTED_SIZE} (decrypted).`
+        `Unexpected file size (${size} bytes). Expected ${PSP_HARDWARE_SIZE} or ` +
+        `${ENCRYPTED_SIZE} (encrypted) or ${DECRYPTED_SIZE} (decrypted).`
       );
     }
 
-    try {
-      plaintext = await decryptGameLayer(buffer, region ?? "na");
-      decrypted = true;
-    } catch (e) {
-      if (e.message !== "SHA-1 mismatch") throw e;
-      // SHA-1 mismatch means no game-layer encryption present — treat as
-      // pre-decrypted (e.g. PPSSPP export) and parse as-is.
+    // An encrypted save always carries the game layer, so a SHA-1 mismatch
+    // means the selected region's keys are wrong; never parse the bytes anyway.
+    const plaintext = await decryptWith(buffer, region);
+    if (plaintext) {
+      postCharacters(plaintext, true);
+      return;
     }
 
-    const view = new DataView(plaintext);
-    const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
-    self.postMessage({ ok: true, characters, decrypted });
+    const other = OTHER_KEYSET[region] ?? "jp";
+    const selected = REGION_NAMES[region] ?? region;
+    if (await decryptWith(buffer, other)) {
+      throw new Error(
+        `This save is from the ${KEYSET_LABEL[other]} release, but ${selected} is selected. ` +
+        `Pick ${KEYSET_LABEL[other]} in the region list and load the file again.`
+      );
+    }
+    throw new Error(
+      "This save couldn't be decrypted with any region's keys. " +
+      "It may be damaged, or not a Monster Hunter Freedom Unite / P2G save."
+    );
   } catch (err) {
     self.postMessage({ ok: false, error: err.message });
   }
 };
+
+function postCharacters(plaintext, decrypted) {
+  const view = new DataView(plaintext);
+  const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
+  self.postMessage({ ok: true, characters, decrypted });
+}
