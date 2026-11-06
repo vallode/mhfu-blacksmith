@@ -3,6 +3,7 @@ import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
 import { faviconMetadata } from "@/lib/favicon";
 import GlobalSearch from "@/components/GlobalSearch";
+import PreloadIcons from "@/components/PreloadIcons";
 import OfflineDownload from "@/components/OfflineDownload";
 import OfflineNavGuard from "@/components/OfflineNavGuard";
 import SaveSyncReconnect from "@/components/SaveSyncReconnect";
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <PreloadIcons />
         <PreferencesProvider>
           <SaveProvider>
             <HunterProgressProvider>
