@@ -91,6 +91,8 @@
   //   animation: var(--animate-hover-glow); background: var(--gradient-hover-glow);
   --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
   --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
+  // Resting highlight on tree rows the loaded hunter can upgrade into now
+  --gradient-upgrade-glow: linear-gradient(0.25turn, transparent, rgb(110 200 110 / 0.35), transparent);
 
   @keyframes opacity-alternate {
     from {
@@ -214,9 +216,12 @@ body {
 
 // ─── Base element resets ──────────────────────────────────────────────────────
 
-a {
-  color: inherit;
-  text-decoration: inherit;
+// In the base layer so a colour utility on a link (text-gold) can win.
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
 
 // Game sprites look best with crisp pixel rendering
