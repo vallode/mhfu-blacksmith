@@ -807,7 +807,7 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -8461,7 +8461,7 @@
           "color": "yellow"
         },
         {
-          "name": "Vespoid Razorwing",
+          "name": "Vspoid Razorwing",
           "amount": 6,
           "type": "webbing",
           "color": "yellow"

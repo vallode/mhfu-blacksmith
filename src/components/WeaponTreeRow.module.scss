@@ -1,7 +1,7 @@
 // Scroll container for the weapon/armor/decoration tree sidebar.
 .weapon-tree {
   height: 100%;
-  overflow: auto;
+  inset: 0.8rem 0.9rem;
   padding: 0 0 0 13px;
 
   ul {
@@ -25,7 +25,7 @@
 
     &:first-of-type > li::before {
       background-color: #2a3423;
-      content: '';
+      content: "";
       display: block;
       height: 19px;
       left: -16px;
@@ -37,7 +37,7 @@
 
     &:first-of-type > li::after {
       background-color: #2a3423;
-      content: '';
+      content: "";
       display: block;
       height: 3px;
       left: -16px;
@@ -66,7 +66,7 @@
 
   &::before {
     background: transparent;
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     left: calc(100% - 50vw + 2.3rem + 0.65rem);
@@ -117,9 +117,14 @@
   white-space: nowrap;
 }
 
-// Fixed-size slot for the mini weapon icon inside a tree row. Targets the
-// global .icon base class (applied via Icon's className prop).
-.rowIcon {
-  flex: 0 0 26px;
-  width: 26px;
+// Loaded-hunter cues (see HunterProgressContext), in the game's style of
+// text colour and row highlighting rather than icons: owned pieces get gold
+// names, and weapons the hunter can upgrade into right now get a resting
+// highlight (hover and the active row still take precedence).
+.row--owned .name {
+  color: #f2d250;
+}
+
+.row--upgrade:not(:hover):not(:focus):not(.row--active)::before {
+  background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(110, 200, 110, 0.35), rgba(0, 0, 0, 0));
 }

@@ -25,6 +25,7 @@ import {
   type ArmorBundle,
   type MonsterBundle,
   type DecorationBundle,
+  type ItemsBundle,
   decodeWeapon,
   decodeArmor,
   decodeMonster,
@@ -74,6 +75,14 @@ export function getBundle(file: string): Promise<Bundle> {
     bundlePromises.set(file, p);
   }
   return p;
+}
+
+/** A bundle or the dictionaries if already loaded, without fetching. */
+export function peekBundle(file: string): Bundle | null {
+  return bundleCache.get(file) ?? null;
+}
+export function peekDictionaries(): Dictionaries | null {
+  return dictionariesCache;
 }
 
 /**
@@ -259,4 +268,83 @@ export function useMelodies(notes: string[] | null | undefined) {
     };
   }, [notes]);
   return melodies;
+}
+
+// ---------------------------------------------------------------------------
+// In-game items (save loader)
+// ---------------------------------------------------------------------------
+export interface ResolvedItem {
+  id: number;
+  name: string;
+  /** icon type (falls back to "ukwn" for items with no linked material) */
+  type: string;
+  color: string;
+  rarity?: number;
+  known: boolean;
+}
+
+export interface ItemLookup {
+  get(id: number): ResolvedItem;
+  /** recipe/drop material name -> in-game item ID */
+  materials: Record<string, number>;
+}
+
+let itemsPromise: Promise<ItemLookup> | null = null;
+let itemsCache: ItemLookup | null = null;
+
+function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
+  return {
+    materials: bundle.materials,
+    get(id: number): ResolvedItem {
+      const it = bundle.items[id];
+      if (!it || it.p) {
+        return { id, name: `Unknown item #${id}`, type: "ukwn", color: "gray", known: false };
+      }
+      return {
+        id,
+        name: it.n,
+        type: it.t !== undefined ? d.types[it.t] || "ukwn" : "ukwn",
+        color: it.c !== undefined ? d.colors[it.c] || "gray" : "gray",
+        rarity: it.r,
+        known: true,
+      };
+    },
+  };
+}
+
+export function getItems(): Promise<ItemLookup> {
+  if (itemsCache) return Promise.resolve(itemsCache);
+  if (!itemsPromise) {
+    itemsPromise = Promise.all([fetchJson<ItemsBundle>("/data/items.json"), getDictionaries()])
+      .then(([b, d]) => {
+        itemsCache = buildItemLookup(b, d);
+        return itemsCache;
+      })
+      .catch((e) => {
+        itemsPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return itemsPromise;
+}
+
+/**
+ * Item ID -> name lookup. `items` is null while loading or if the bundle could
+ * not be fetched (`error` set); callers should still render raw IDs then.
+ */
+export function useItems(): { items: ItemLookup | null; error: boolean } {
+  const [items, setItems] = useState<ItemLookup | null>(itemsCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemsCache) return;
+    let cancelled = false;
+    getItems().then(
+      (l) => !cancelled && setItems(l),
+      () => !cancelled && setError(true)
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { items, error };
 }

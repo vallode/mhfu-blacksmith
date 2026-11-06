@@ -171,6 +171,46 @@ export interface DecorationBundle {
 }
 export type Bundle = WeaponBundle | ArmorBundle | MonsterBundle | DecorationBundle;
 
+/**
+ * One equipment ID's page: [group, name, rarity, slug?, sex?]. `group`
+ * indexes WEAPON_TYPES for weapons (types 5 and 6) or ARMOR_RANKS for armor.
+ * `slug` and `sex` are only present for armor sold as separate Male and
+ * Female pieces under one name, whose slugs carry the sex.
+ */
+export type EquipRef = [group: number, name: string, rarity: number | null, slug?: string, sex?: string];
+
+/**
+ * equipment-ids.json: indexed by equip type code (0 leggings, 1 helmet,
+ * 2 plate, 3 gauntlets, 4 waist, 5 melee, 6 ranged), then by equipment ID.
+ * null = an ID with no page.
+ */
+export type EquipmentIds = (EquipRef | null)[][];
+
+export const EQUIP_TYPE_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"] as const;
+
+/** One in-game item. Icon type/colour come from the linked recipe material. */
+export interface CompactItem {
+  /** NA name */
+  n: string;
+  /** rarity (only when sources agree) */
+  r?: number;
+  /** icon type index into Dictionaries.types */
+  t?: number;
+  /** icon colour index into Dictionaries.colors */
+  c?: number;
+  /** 1 = not a real item (placeholder / padding) */
+  p?: 1;
+}
+
+/** items.json: in-game item ID -> item, plus material name -> item ID links. */
+export interface ItemsBundle {
+  kind: "items";
+  /** indexed by in-game item ID; unused IDs (incl. 0) are null */
+  items: (CompactItem | null)[];
+  /** recipe/drop material name (as used in Dictionaries.material_ids) -> item ID */
+  materials: Record<string, number>;
+}
+
 // ---------------------------------------------------------------------------
 // Decoder
 // ---------------------------------------------------------------------------

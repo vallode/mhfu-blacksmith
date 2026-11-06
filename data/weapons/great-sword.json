@@ -561,7 +561,7 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -2277,7 +2277,7 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -3523,7 +3523,7 @@
       ],
       "create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -3543,7 +3543,7 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -3740,7 +3740,7 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Ticket",
+          "name": "Plus Class Tcket",
           "amount": 1,
           "type": "ticket",
           "color": "blue"

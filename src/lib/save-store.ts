@@ -5,11 +5,36 @@ export interface ItemSlot {
   qty: number;
 }
 
+/** One used equipment box slot: `type` is the equip type code (0–6), `id` the equipment ID. */
+export interface EquipSlot {
+  type: number;
+  id: number;
+}
+
 export interface SaveData {
   name: string;
   region: string;
+  /** Item box and pouch together. */
   items: ItemSlot[];
+  /** Missing on saves stored before zenny was kept. */
+  zenny?: number;
+  /** Missing on saves stored before the equipment box was read. */
+  equipment?: EquipSlot[];
   savedAt: number;
+}
+
+/** The parts of a parsed hunter that get stored. */
+export function saveFromCharacter(
+  character: { name: string; zenny: number; itemChest: ItemSlot[]; itemPouch: ItemSlot[]; equipBox: EquipSlot[] },
+  region: string
+): Omit<SaveData, "savedAt"> {
+  return {
+    name: character.name,
+    region,
+    items: [...character.itemChest, ...character.itemPouch],
+    zenny: character.zenny,
+    equipment: character.equipBox,
+  };
 }
 
 export function setSave(data: Omit<SaveData, "savedAt">): void {
