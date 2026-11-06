@@ -131,8 +131,10 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
       const buffer = await file.arrayBuffer();
       const result = await parseSaveBuffer(buffer, record.region as Region);
       await patchHandleRecord({ lastModified: file.lastModified });
+      // error was already cleared when syncing started; applyResult may set a
+      // new one, so it must run after this update or the message is lost.
+      setState((s) => ({ ...s, syncing: false, lastSynced: Date.now() }));
       applyResult(record, result);
-      setState((s) => ({ ...s, syncing: false, lastSynced: Date.now(), error: null }));
     } catch (err) {
       setState((s) => ({
         ...s,
