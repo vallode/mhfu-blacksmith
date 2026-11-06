@@ -8,7 +8,6 @@ import { prefetchBundle } from "@/lib/client-data";
 import { WEAPON_TYPES } from "@/lib/constants";
 import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import styles from "./WeaponTreeRow.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -20,7 +19,30 @@ interface WeaponTreeRowProps {
   activeSlug?: string;
   /** The enclosing row's page, if any: the weapon this one is upgraded from. */
   parentHref?: string;
+  /** Rendered inside another row's branch (draws the connector lines). */
+  nested?: boolean;
+  /** A later sibling follows, so the vertical connector runs on past this row. */
+  hasNextSibling?: boolean;
 }
+
+// Each row is a full-width line with a highlight strip drawn by ::before.
+// On desktop the strip spans the whole tree card regardless of indentation:
+// it is anchored to the row's right edge and is as wide as the card
+// (half the viewport, minus the page gutter and the gap between cards).
+const rowBase = [
+  "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
+  "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
+  "mobile:before:left-0 mobile:before:w-full",
+  "hover:before:hover-glow focus:before:hover-glow",
+].join(" ");
+
+// Tree connectors from the parent's toggle down to this row: a vertical line
+// (::before) and a horizontal stub (::after) in the card's line colour.
+const connector = [
+  "relative",
+  "before:absolute before:top-0 before:-left-4 before:-z-1 before:block before:h-[19px] before:w-[3px] before:bg-line",
+  "after:absolute after:top-[19px] after:-left-4 after:-z-1 after:block after:h-[3px] after:w-4 after:bg-line",
+].join(" ");
 
 /** Map a tree-row href to its data bundle, so we can warm the cache on hover. */
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
@@ -41,6 +63,8 @@ export default function WeaponTreeRow({
   treeKey,
   activeSlug,
   parentHref,
+  nested = false,
+  hasNextSibling = false,
 }: WeaponTreeRowProps) {
   const [collapsed, setCollapsed] = useState(() =>
     isNodeCollapsed(treeKey, node.slug),
@@ -91,12 +115,17 @@ export default function WeaponTreeRow({
       }
     : undefined;
 
-  const rowClass = cn(styles.row, {
-    [styles["row--external"]]: isExternal,
-    [styles["row--active"]]: isActive,
-    [styles["row--owned"]]: owned,
-    [styles["row--upgrade"]]: canUpgrade,
-  });
+  const rowClass = cn(
+    rowBase,
+    // Weapons from another tree (e.g. a cross-type upgrade) are dimmed.
+    isExternal && "text-muted",
+    // The current page's row keeps a steady (non-pulsing) highlight.
+    isActive && "before:animate-none before:[background:var(--gradient-hover-glow)]",
+    // Weapons the hunter can make right now get a softer resting highlight.
+    canUpgrade &&
+      !isActive &&
+      "[&:not(:hover):not(:focus)]:before:[background:var(--gradient-upgrade-glow)]",
+  );
 
   const inner = (
     <>
@@ -107,15 +136,17 @@ export default function WeaponTreeRow({
           rarity={node.rarity}
           color={node.color}
           element={node.element}
-          className={styles.rowIcon}
         />
       )}
-      <p className={styles.name}>{node.name}</p>
+      {/* Owned pieces get gold names, as in the game's lists. Needs `!`
+          to beat Card's `.card p { color: inherit }` reset (Card.module.scss);
+          drop it once that reset becomes a utility. */}
+      <p className={cn("truncate", owned && "text-gold!")}>{node.name}</p>
       {owned && <span className="sr-only"> (owned)</span>}
       {canUpgrade && <span className="sr-only"> (you can make this upgrade now)</span>}
       {node.children && (
         <p
-          className={styles.toggle}
+          className="z-[10000] ml-[1.6rem] cursor-pointer px-[3px] font-[monospace] text-white opacity-20"
           role="button"
           tabIndex={0}
           aria-label={collapsed ? "Expand" : "Collapse"}
@@ -132,7 +163,7 @@ export default function WeaponTreeRow({
   );
 
   return (
-    <li>
+    <li className={nested ? cn(connector, hasNextSibling && "before:h-full") : undefined}>
       {href ? (
         <Link
           id={node.slug}
@@ -157,12 +188,8 @@ export default function WeaponTreeRow({
       )}
 
       {node.children && !collapsed && (
-        <ul
-          className={
-            node.children.length > 1 ? styles["multiple-children"] : undefined
-          }
-        >
-          {node.children.map((child) => (
+        <ul>
+          {node.children.map((child, i) => (
             <WeaponTreeRow
               key={child.slug}
               node={child}
@@ -171,6 +198,8 @@ export default function WeaponTreeRow({
               treeKey={treeKey}
               activeSlug={activeSlug}
               parentHref={href}
+              nested
+              hasNextSibling={i < node.children!.length - 1}
             />
           ))}
         </ul>

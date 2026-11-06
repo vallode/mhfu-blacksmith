@@ -1,6 +1,5 @@
 .weapon-card {
-  // The detail panel's width is governed by the .weapon-details-page flex
-  // container (both cards get flex: 1 1 0% for an equal split).
+  // Detail panel: shares the row equally with the tree card.
   flex: 1 1 0%;
   min-width: 0;
 
