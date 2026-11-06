@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
+import BorderRule from "@/components/BorderRule";
 
 export default function HomeContent() {
   return (
@@ -8,7 +9,7 @@ export default function HomeContent() {
         <img src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
 
-      <hr className="border" />
+      <BorderRule />
 
       <div className={styles.menuWrapper}>
         <div className={styles.menu}>

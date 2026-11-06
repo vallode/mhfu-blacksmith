@@ -140,6 +140,9 @@ html {
   font-size: 62.5%;
   height: 100%;
   line-height: 1.5;
+  // Full-bleed elements (BorderRule) are 100vw wide, which includes the
+  // scrollbar; clip rather than let that scroll sideways.
+  overflow-x: clip;
 }
 
 body {
@@ -221,19 +224,6 @@ hr {
   height: 6px;
   margin: 1.3rem 0 2.2rem 0;
   width: 100%;
-}
-
-hr.border {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
-  background-repeat: repeat-x;
-  background-size: 3.2rem 1.6rem;
-  background-color: transparent;
-  border: 0;
-  height: 1.6rem;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  width: calc(100% + 2.8rem);
 }
 
 // ─── Reusable components ──────────────────────────────────────────────────────

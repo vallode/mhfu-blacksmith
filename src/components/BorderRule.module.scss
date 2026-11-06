@@ -1,0 +1,20 @@
+// Decorative tiled divider that bleeds out to both edges of the window,
+// whatever padding its ancestors have. The percentage margin resolves against
+// the container width, so the 100vw box is re-centered on the container.
+// 100vw includes the scrollbar width, so `html` clips horizontal overflow
+// (see globals.scss) to keep the page from scrolling sideways.
+.rule {
+  background-color: transparent;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 3.2rem 1.6rem;
+  border: 0;
+  height: 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  flex: 0 0 auto;
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
