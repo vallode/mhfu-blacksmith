@@ -37,21 +37,23 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, tree, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
 
-  if (loading) {
+  if (loading || !weapon) {
+    // Keep the split layout (and the tree card frame) in place while the data
+    // bundle loads so the sidebar doesn't flash in once it resolves.
     return (
       <>
         <WeaponNav activeType={type} />
         <hr className="border" />
-        <p style={{ padding: "2rem" }}>Loading…</p>
-      </>
-    );
-  }
-  if (!weapon) {
-    return (
-      <>
-        <WeaponNav activeType={type} />
-        <hr className="border" />
-        <p style={{ padding: "2rem" }}>Not found.</p>
+        <div className="split-page">
+          <Card variant="weapon-tree">
+            <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
+              {null}
+            </TreeScroll>
+          </Card>
+          <Card>
+            <p>{loading ? "Loading…" : "Not found."}</p>
+          </Card>
+        </div>
       </>
     );
   }
