@@ -26,7 +26,7 @@ interface Manifest {
  * Pages you actually visit still get cached for offline reuse automatically
  * by next-pwa's normal runtime caching (the "pages"/"pages-rsc" rules in
  * next.config.ts) — this button just guarantees the underlying data is there
- * up front so search, the calculator, and any page you do open work offline.
+ * up front so search and any page you do open work offline.
  */
 export async function collectOfflineUrls(): Promise<string[]> {
   const manifest: Manifest = await fetch("/data/data-manifest.json").then((r) =>
@@ -59,7 +59,6 @@ export function collectStaticPageUrls(): string[] {
     "/armorsmith/",
     "/monsters/",
     "/decorations/",
-    "/calculator/",
     "/hunter/",
     "/options/",
   ];
