@@ -69,6 +69,12 @@
             { "type": "array", "items": { "$ref": "#/definitions/material" } },
             { "type": "null" }
           ]
+        },
+        "alternative_create_mats": {
+          "oneOf": [
+            { "type": "array", "items": { "$ref": "#/definitions/material" } },
+            { "type": "null" }
+          ]
         }
       }
     }

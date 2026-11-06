@@ -24,7 +24,7 @@ import {
   MONSTER_CATEGORIES,
   WEAPON_CLASS_MULTIPLIER,
 } from "../src/lib/constants";
-import { slugify } from "../src/lib/slug";
+import { slugify, armorSlugs } from "../src/lib/slug";
 import type {
   Weapon,
   ArmorPiece,
@@ -215,6 +215,7 @@ function encodeArmor(a: ArmorPiece): CompactArmor {
     out.sk = a.skills.map((s) => [intern(stringIndex, s.name), toNum(s.amount) ?? 0]);
   }
   const cm = matTuples(a.create_mats); if (cm) out.cm = cm;
+  const am = matTuples(a.alternative_create_mats); if (am) out.am = am;
   return out;
 }
 
@@ -316,9 +317,9 @@ for (const slot of ARMOR_SLOTS) {
     const tree = fs.existsSync(treePath)
       ? readJson<{ map: WeaponTreeNode[] }>(treePath)
       : { map: [] };
-    const items = pieces
-      .filter((p) => !("donotrender" in p))
-      .map((p) => encodeArmor({ ...p, slug: slugify(p.name), rank: p.rank ?? computeRank(p.hr, p.elder) }));
+    const rendered = pieces.filter((p) => !("donotrender" in p));
+    const slugs = armorSlugs(rendered);
+    const items = rendered.map((p, i) => encodeArmor({ ...p, slug: slugs[i], rank }));
     totalItems += items.length;
     push(`armor-${slot}-${rank}.json`, {
       kind: "armor",
