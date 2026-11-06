@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getWeaponTypes } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import type { Metadata } from "next";
+import { faviconMetadata } from "@/lib/favicon";
 import WeaponTreeListClient from "./WeaponTreeListClient";
 
 interface Props {
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { type } = await params;
   const name = type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
+    ...faviconMetadata(type),
     title: `${name} tree — MHFU Blacksmith`,
   };
 }
