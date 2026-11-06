@@ -769,7 +769,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Grn Plesioth Fin+",
+          "name": "Grn Plsioth Fin+",
           "amount": 3,
           "type": "part",
           "color": "green"
@@ -836,10 +836,10 @@
           "color": "cyan"
         },
         {
-          "name": "Green Plesioth Scale+",
+          "name": "Grn Plsioth Scl+",
           "amount": 10,
-          "type": "bone",
-          "color": "white"
+          "type": "scale",
+          "color": "green"
         },
         {
           "name": "Union Ore",
@@ -1351,10 +1351,10 @@
           "color": "gray"
         },
         {
-          "name": "Fire Wyvern BrnStm",
+          "name": "FireWyvrn BrnStm",
           "amount": 2,
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "red"
         }
       ],
       "improve_mats": [
@@ -3462,22 +3462,22 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Brwn Blngnga Tail",
+          "name": "LthrC.BlangoTail",
           "amount": 2,
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "orange"
         },
         {
-          "name": "Blngnga Hrd Whskr",
+          "name": "Lthr Pelagus Plt",
           "amount": 5,
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "yellow"
         },
         {
-          "name": "Brwn Blngnga Pelt",
+          "name": "C.BlangongaPelt+",
           "amount": 10,
-          "type": "bone",
-          "color": "white"
+          "type": "pelt",
+          "color": "orange"
         },
         {
           "name": "Hard Rajang Claw",
@@ -3792,10 +3792,10 @@
           "color": "blue"
         },
         {
-          "name": "HrdGypcerosHead",
+          "name": "HardGypcerosHead",
           "amount": 1,
-          "type": "bone",
-          "color": "white"
+          "type": "part",
+          "color": "blue"
         },
         {
           "name": "DeadlyPoisonSac",

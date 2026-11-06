@@ -3312,7 +3312,7 @@
           "color": "yellow"
         },
         {
-          "name": "ParaylsisCoating",
+          "name": "ParalysisCoating",
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -3352,7 +3352,7 @@
           "color": "yellow"
         },
         {
-          "name": "ParaylsisCoating",
+          "name": "ParalysisCoating",
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -3832,7 +3832,7 @@
           "color": "yellow"
         },
         {
-          "name": "StrNargaCttngWing",
+          "name": "StrNargaCttngWng",
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -4225,7 +4225,7 @@
           "color": "green"
         },
         {
-          "name": "Vespoid Razorwing",
+          "name": "Vspoid Razorwing",
           "amount": 1,
           "type": "webbing",
           "color": "yellow"

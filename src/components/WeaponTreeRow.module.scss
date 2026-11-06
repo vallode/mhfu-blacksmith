@@ -1,9 +1,9 @@
-@use '../styles/mixins' as *;
+@use "../styles/mixins" as *;
 
 // Scroll container for the weapon/armor/decoration tree sidebar.
 .weapon-tree {
   height: 100%;
-  overflow: auto;
+  inset: 0.8rem 0.9rem;
   padding: 0 0 0 13px;
 
   ul {
@@ -27,7 +27,7 @@
 
     &:first-of-type > li::before {
       background-color: #2a3423;
-      content: '';
+      content: "";
       display: block;
       height: 19px;
       left: -16px;
@@ -39,7 +39,7 @@
 
     &:first-of-type > li::after {
       background-color: #2a3423;
-      content: '';
+      content: "";
       display: block;
       height: 3px;
       left: -16px;
@@ -68,7 +68,7 @@
 
   &::before {
     background: transparent;
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     left: calc(100% - 50vw + 2.3rem + 0.65rem);
@@ -89,7 +89,12 @@
   }
 
   &--active::before {
-    background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(3, 119, 3, 0.84), rgba(0, 0, 0, 0));
+    background: linear-gradient(
+      0.25turn,
+      rgba(0, 0, 0, 0),
+      rgba(3, 119, 3, 0.84),
+      rgba(0, 0, 0, 0)
+    );
     animation: none;
   }
 

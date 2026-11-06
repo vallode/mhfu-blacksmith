@@ -1,25 +1,30 @@
-"use client";
-
 /**
  * What the loaded hunter owns and which weapon upgrades they can make right
- * now, from the save's equipment box, item box and zenny.
+ * now, from the save's equipment box, items and zenny.
  *
- * An upgrade is "ready" when every improve material is in the item box in
- * the needed amount and the hunter has the zenny. It is "unknown" (and never
- * shown as ready) when a material has no known item ID, an amount isn't a
- * plain number, or the save predates item box/zenny tracking.
+ * An upgrade is "ready" when every improve material is owned in the needed
+ * amount and the hunter has the zenny. It is "unknown" (and never shown as
+ * ready) when a material doesn't link to an in-game item, an amount isn't a
+ * plain number, or the save was stored before zenny was kept.
  */
-import { getBundle, getDictionaries } from "./client-data";
 import { resolveEquip } from "./equipment";
-import type { CompactTreeNode, CompactWeapon, Dictionaries, EquipmentIds, WeaponBundle } from "./schema";
+import type { CompactWeapon, Dictionaries, EquipmentIds } from "./schema";
 import type { SaveData } from "./save-store";
 
-export type UpgradeCheck =
-  | { status: "ready"; cost: number }
-  | { status: "short"; missing: { name: string; need: number; have: number }[]; zennyShort: number }
-  | { status: "unknown" };
+export type UpgradeCheck = { status: "ready"; cost: number } | { status: "short" } | { status: "unknown" };
 
-export const weaponHref = (type: string, slug: string) => `/blacksmith/${type}/${slug}/`;
+/** The game stores 255 for the one infinite-stack item (Normal S Lv1). */
+const INFINITE_STACK = 255;
+
+/** Owned quantity per in-game item ID, item box and pouch together. */
+export function ownedItemCounts(save: SaveData | null): Map<number, number> | null {
+  if (!save) return null;
+  const counts = new Map<number, number>();
+  for (const { id, qty } of save.items) {
+    counts.set(id, (counts.get(id) ?? 0) + (qty === INFINITE_STACK ? Infinity : qty));
+  }
+  return counts;
+}
 
 /** Hrefs of every item page the hunter owns. */
 export function ownedHrefs(ids: EquipmentIds, save: SaveData | null): Set<string> {
@@ -31,92 +36,21 @@ export function ownedHrefs(ids: EquipmentIds, save: SaveData | null): Set<string
   return owned;
 }
 
-/** Item box quantities by item ID, or null for saves stored before the item box was kept separately. */
-export function itemBoxCounts(save: SaveData | null): Map<number, number> | null {
-  if (!save?.chest) return null;
-  const counts = new Map<number, number>();
-  for (const { id, qty } of save.chest) counts.set(id, (counts.get(id) ?? 0) + qty);
-  return counts;
-}
-
 export function checkUpgrade(
   dict: Dictionaries,
+  /** recipe material name -> in-game item ID (ItemLookup.materials) */
+  materials: Record<string, number>,
   weapon: CompactWeapon,
   counts: Map<number, number> | null,
   zenny: number | undefined
 ): UpgradeCheck {
   if (!counts || zenny === undefined || !weapon.im?.length) return { status: "unknown" };
-  const missing: { name: string; need: number; have: number }[] = [];
+  let short = false;
   for (const [materialId, amount] of weapon.im) {
-    const itemId = dict.material_item_ids?.[materialId];
-    if (itemId == null || typeof amount !== "number") return { status: "unknown" };
-    const have = counts.get(itemId) ?? 0;
-    if (have < amount) missing.push({ name: dict.material_ids[materialId], need: amount, have });
+    const itemId = materials[dict.material_ids[materialId]];
+    if (itemId === undefined || typeof amount !== "number") return { status: "unknown" };
+    if ((counts.get(itemId) ?? 0) < amount) short = true;
   }
   const cost = weapon.ic ?? 0;
-  const zennyShort = Math.max(0, cost - zenny);
-  return missing.length === 0 && zennyShort === 0 ? { status: "ready", cost } : { status: "short", missing, zennyShort };
-}
-
-export interface ReadyUpgrade {
-  from: { name: string; type: string; href: string };
-  to: { name: string; type: string; href: string; rarity: number | null };
-  cost: number;
-}
-
-/** Every upgrade the hunter can make now: owned weapon -> a tree child they don't own yet. */
-export async function findReadyUpgrades(
-  owned: Set<string>,
-  counts: Map<number, number> | null,
-  zenny: number | undefined
-): Promise<ReadyUpgrade[]> {
-  if (!counts || zenny === undefined) return [];
-  const ownedTypes = new Set(
-    [...owned].filter((h) => h.startsWith("/blacksmith/")).map((h) => h.split("/")[2])
-  );
-  if (ownedTypes.size === 0) return [];
-
-  const [dict, ...bundles] = await Promise.all([
-    getDictionaries(),
-    ...[...ownedTypes].map((t) => getBundle(`weapon-${t}`) as Promise<WeaponBundle>),
-  ]);
-
-  // Owned parent -> child edges, from each owned type's own tree.
-  const edges: { parent: CompactTreeNode; parentType: string; child: CompactTreeNode; childType: string }[] = [];
-  const walk = (nodes: CompactTreeNode[], bundleType: string, parent?: CompactTreeNode) => {
-    for (const node of nodes) {
-      const type = node.t ?? bundleType;
-      if (parent && owned.has(weaponHref(bundleType, parent.s)) && !owned.has(weaponHref(type, node.s)) && node.r) {
-        edges.push({ parent, parentType: bundleType, child: node, childType: type });
-      }
-      // External nodes are leaves in another type's tree; their own subtree lives in their bundle.
-      if (node.k && type === bundleType) walk(node.k, bundleType, node);
-    }
-  };
-  bundles.forEach((b) => walk(b.tree, b.type));
-
-  const childBundles = new Map<string, WeaponBundle>();
-  await Promise.all(
-    [...new Set(edges.map((e) => e.childType))].map(async (t) => {
-      childBundles.set(t, (await getBundle(`weapon-${t}`)) as WeaponBundle);
-    })
-  );
-
-  const seen = new Set<string>();
-  const ready: ReadyUpgrade[] = [];
-  for (const { parent, parentType, child, childType } of edges) {
-    const key = `${weaponHref(parentType, parent.s)}>${weaponHref(childType, child.s)}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    const weapon = childBundles.get(childType)?.items.find((w) => w.s === child.s);
-    if (!weapon) continue;
-    const check = checkUpgrade(dict, weapon, counts, zenny);
-    if (check.status !== "ready") continue;
-    ready.push({
-      from: { name: parent.n, type: parentType, href: weaponHref(parentType, parent.s) },
-      to: { name: child.n, type: childType, href: weaponHref(childType, child.s), rarity: weapon.r ?? null },
-      cost: check.cost,
-    });
-  }
-  return ready;
+  return short || cost > zenny ? { status: "short" } : { status: "ready", cost };
 }
