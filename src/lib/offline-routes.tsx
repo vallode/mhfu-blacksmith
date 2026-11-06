@@ -41,7 +41,7 @@ export type RouteMatch =
 /**
  * Matches a pathname against every route this app can fully render from
  * client-side cached data (see src/lib/client-data.ts) — i.e. everything
- * except the calculator/hunter/options pages, which aren't worth
+ * except the hunter/options pages, which aren't worth
  * reconstructing this way. Shared by the offline click-interceptor
  * (src/components/OfflineNavGuard.tsx) and the SW navigation-fallback shell
  * (src/app/offline).
