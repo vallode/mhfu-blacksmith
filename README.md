@@ -1,4 +1,4 @@
-![Monster hunter freedom unite blacksmith](/static/images/blacksmith-scaled.png)
+![Monster hunter freedom unite blacksmith](/public/images/blacksmith-scaled.png)
 
 # MHFU - Blacksmith
 
@@ -6,7 +6,7 @@
 
 Detailed weapon trees, armor lists, and monster information for Monster Hunter Freedom Unite / P2G in the style of the in-game UI!
 
-![Screenshot of the website](/static/images/screenshot.png)
+![Screenshot of the website](/public/images/screenshot.png)
 
 ## Credits
 
@@ -38,11 +38,18 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 
 Dependencies:
 
-- [zola](https://github.com/getzola/zola/)
-- [Ruby](https://www.ruby-lang.org/)
-  - [toml](https://github.com/jm/toml)
-- [ImageMagick](https://imagemagick.org/) (optional)
+- [Node.js](https://nodejs.org/) 22
+- [pnpm](https://pnpm.io/) (version pinned in `packageManager` in `package.json`)
+- [Ruby](https://www.ruby-lang.org/) (optional, only for regenerating crafting-tree maps)
+- [ImageMagick](https://imagemagick.org/) (optional, for the image scripts in `scripts/`)
 
-Before running the first build you need to run `make generate-maps` to generate weapons maps.
+```sh
+pnpm install
+pnpm dev        # local dev server
+pnpm build      # generate data + static export to out/
+pnpm validate   # check data/ against the crafting-tree maps
+```
 
-The makefile has everything covered: develop locally using `make`, test build output with `make build`, and deploy to netlify with `make deploy`.
+Game data lives in `data/`. The crafting-tree maps in `content/**/map.json` are generated from it with `make generate-maps`; rerun that after adding or re-parenting weapons, armor, or decorations.
+
+The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.
