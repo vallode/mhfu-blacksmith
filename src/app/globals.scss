@@ -223,19 +223,6 @@ hr {
   width: 100%;
 }
 
-hr.border {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
-  background-repeat: repeat-x;
-  background-size: 3.2rem 1.6rem;
-  background-color: transparent;
-  border: 0;
-  height: 1.6rem;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  width: calc(100% + 2.8rem);
-}
-
 // ─── Reusable components ──────────────────────────────────────────────────────
 // Shared building blocks used as plain class strings across pages. Layout
 // (flex/spacing) is done with Tailwind utilities directly in the markup.

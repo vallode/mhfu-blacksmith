@@ -11,6 +11,7 @@ import cardStyles from "@/styles/weapon-card.module.scss";
 import tableStyles from "@/styles/tables.module.scss";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   type: WeaponType;
@@ -41,7 +42,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     return (
       <>
         <WeaponNav activeType={type} />
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Loading…</p>
       </>
     );
@@ -50,7 +51,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     return (
       <>
         <WeaponNav activeType={type} />
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Not found.</p>
       </>
     );
@@ -61,7 +62,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   return (
     <>
       <WeaponNav activeType={type} />
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         {/* Weapon tree sidebar */}
