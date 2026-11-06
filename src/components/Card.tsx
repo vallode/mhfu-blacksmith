@@ -12,6 +12,10 @@ interface CardProps {
   onDrop?: React.DragEventHandler;
 }
 
+// Link cards show the green highlight inside the frame on hover/focus.
+const linkGlow =
+  "after:absolute after:top-2 after:left-[10px] after:z-1 after:block after:h-[calc(100%-16px)] after:w-[calc(100%-20px)] after:bg-(image:--gradient-hover-glow) after:invisible hover:after:visible focus:after:visible";
+
 export default function Card({
   children,
   variant,
@@ -27,6 +31,7 @@ export default function Card({
     styles.card,
     "card-frame relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
     variant === "weapon-tree" && "h-full overflow-auto px-[0.9rem] py-[0.8rem]",
+    href && linkGlow,
     className
   );
 
