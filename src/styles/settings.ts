@@ -19,10 +19,7 @@ export const status = "flex flex-col gap-[0.6rem]";
 
 export const statusLabel = "text-[1.6rem] text-white";
 
-export const progress = [
-  "h-[0.8rem] w-full appearance-none border border-hr bg-black/45",
-  "[&::-webkit-progress-bar]:bg-black/45 [&::-webkit-progress-value]:bg-accent [&::-moz-progress-bar]:bg-accent",
-].join(" ");
+export { progressBar as progress } from "./progress";
 
 export const actions = "flex flex-wrap gap-[0.8rem]";
 
