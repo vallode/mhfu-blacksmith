@@ -80,6 +80,11 @@
       "enum": "Amezari Crossbow",
       "name": "dummy (Amezari Bowgun)"
     },
+    "46": {
+      "enum": "Tail Catapult",
+      "name": "Tail Catapult+",
+      "note": "The only Tail Catapult in either list (rarity 6, no upgrade path); data/ spells it with a +."
+    },
     "77": {
       "enum": "Ladybug Cannon",
       "name": "Seven Nova",

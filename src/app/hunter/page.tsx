@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import SaveUpload from "@/components/SaveUpload";
 import EquipmentBox from "@/components/EquipmentBox";
+import ReadyUpgrades from "@/components/ReadyUpgrades";
 import styles from "@/styles/hunter.module.scss";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function HunterPage() {
       <SaveUpload />
 
       <div className={styles["hunter-page__upload"]}>
+        <ReadyUpgrades />
         <EquipmentBox />
       </div>
     </div>

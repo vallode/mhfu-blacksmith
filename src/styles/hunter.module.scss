@@ -318,6 +318,12 @@
     white-space: nowrap;
   }
 
+  &__from {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.4rem;
+    margin-left: 0.8rem;
+  }
+
   &__note {
     color: rgba(255, 255, 255, 0.6);
     font-size: 1.6rem;

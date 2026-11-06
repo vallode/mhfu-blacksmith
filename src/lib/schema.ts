@@ -30,6 +30,11 @@ export interface Dictionaries {
   materials: Record<string, [number, number]>;
   /** material id -> name (id is the interning insertion order) */
   material_ids: string[];
+  /**
+   * material id -> the game's item ID (as stored in a save's item box), or
+   * null when unknown. From data/item-ids.json.
+   */
+  material_item_ids: (number | null)[];
   /** material type strings (icon types) */
   types: string[];
   /** material color strings */
