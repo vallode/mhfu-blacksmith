@@ -1,0 +1,30 @@
+{
+  "name": "MHFU Blacksmith",
+  "short_name": "MHFU Blacksmith",
+  "description": "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#6e905f",
+  "theme_color": "#6e905f",
+  "icons": [
+    {
+      "src": "/images/favicons/felyne-favicon.png",
+      "sizes": "60x60",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/favicons/felyne-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/favicons/felyne-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
