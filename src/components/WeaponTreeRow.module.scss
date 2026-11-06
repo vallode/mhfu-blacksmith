@@ -1,11 +1,8 @@
 @use '../styles/mixins' as *;
 
-// Scroll container for the weapon/armor/decoration tree sidebar. Fills the
-// card (a flex column) and scrolls; on narrow screens, where the card has no
-// fixed height, it simply grows to its content.
+// Scroll container for the weapon/armor/decoration tree sidebar.
 .weapon-tree {
-  flex: 1 1 auto;
-  min-height: 0;
+  height: 100%;
   overflow: auto;
   padding: 0 0 0 13px;
 
