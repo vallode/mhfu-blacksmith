@@ -3561,10 +3561,10 @@
           "color": "white"
         },
         {
-          "name": "Well Done Steak",
+          "name": "Well-Done Steak",
           "amount": 10,
-          "type": "bone",
-          "color": "white"
+          "type": "meat",
+          "color": "orange"
         },
         {
           "name": "FlynMealPassReg",
@@ -5714,7 +5714,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Basarios Carapace",
+          "name": "Basarios Carpace",
           "amount": 12,
           "type": "part",
           "color": "gray"
@@ -7836,7 +7836,7 @@
           "color": "yellow"
         },
         {
-          "name": "Tigrex Scale +",
+          "name": "Tigrex Scale+",
           "amount": 5,
           "type": "scale",
           "color": "yellow"

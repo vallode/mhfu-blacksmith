@@ -290,9 +290,6 @@
       "id": 48,
       "name": "Well-Done Steak",
       "name_jp": "こんがり肉",
-      "aliases": [
-        "Well Done Steak"
-      ],
       "rarity": 2
     },
     {
@@ -821,8 +818,7 @@
       "name": "ParalysisCoating",
       "name_jp": "麻痺ビン",
       "aliases": [
-        "Para Coating",
-        "Paraylsiscoating"
+        "Para Coating"
       ],
       "rarity": 3
     },
@@ -1437,9 +1433,6 @@
       "id": 229,
       "name": "Knife Mackerel",
       "name_jp": "キレアジ",
-      "aliases": [
-        "Knife Mackarel"
-      ],
       "rarity": 1
     },
     {
@@ -2578,8 +2571,7 @@
       "name": "HardGypcerosHead",
       "name_jp": "毒怪鳥の石頭",
       "aliases": [
-        "Gypceros HrdHead",
-        "HrdGypcerosHead"
+        "Gypceros HrdHead"
       ],
       "rarity": 5
     },
@@ -2804,8 +2796,7 @@
       "name": "Lthr Pelagus Plt",
       "name_jp": "強靭な牙獣髭",
       "aliases": [
-        "Blngnga HrdWhskr",
-        "Blngnga Hrd Whskr"
+        "Blngnga HrdWhskr"
       ],
       "rarity": 5
     },
@@ -2829,8 +2820,7 @@
       "name": "C.BlangongaPelt+",
       "name_jp": "砂獅子の豪剛毛",
       "aliases": [
-        "Brwn BlngngaPelt",
-        "Brwn Blngnga Pelt"
+        "Brwn BlngngaPelt"
       ],
       "rarity": 5
     },
@@ -2848,8 +2838,7 @@
       "name": "LthrC.BlangoTail",
       "name_jp": "砂獅子の靭尾",
       "aliases": [
-        "Brwn BlngngaTail",
-        "Brwn Blngnga Tail"
+        "Brwn BlngngaTail"
       ],
       "rarity": 5
     },
@@ -3112,9 +3101,6 @@
       "id": 477,
       "name": "Grn Plsioth Scl+",
       "name_jp": "翠水竜の上鱗",
-      "aliases": [
-        "Green Plesioth Scale+"
-      ],
       "rarity": 5
     },
     {
@@ -3136,9 +3122,6 @@
       "id": 480,
       "name": "Grn Plsioth Fin+",
       "name_jp": "翠水竜の上ビレ",
-      "aliases": [
-        "Grn Plesioth Fin+"
-      ],
       "rarity": 5
     },
     {
@@ -3299,8 +3282,7 @@
       "name": "PlumD.HermitrClw",
       "name_jp": "盾蟹の紫爪",
       "aliases": [
-        "Pur HermitaurClw",
-        "PlumD.HermitrClaw"
+        "Pur HermitaurClw"
       ]
     },
     {
@@ -3639,9 +3621,6 @@
       "id": 547,
       "name": "FireWyvrn BrnStm",
       "name_jp": "火竜の延髄",
-      "aliases": [
-        "Fire Wyvern BrnStm"
-      ],
       "rarity": 5
     },
     {
@@ -3874,8 +3853,7 @@
       "name": "LthrSlvrRthlsTal",
       "name_jp": "銀火竜の靭尾",
       "aliases": [
-        "SlvRthlosHrdTail",
-        "SlvrRthlosHrdTail"
+        "SlvRthlosHrdTail"
       ],
       "rarity": 5
     },
@@ -3961,9 +3939,6 @@
       "id": 588,
       "name": "Basarios Carpace",
       "name_jp": "岩竜の堅殻",
-      "aliases": [
-        "Basarios Carapace"
-      ],
       "rarity": 5
     },
     {
@@ -4006,9 +3981,6 @@
       "id": 594,
       "name": "Tigrex Scale+",
       "name_jp": "轟竜の上鱗",
-      "aliases": [
-        "Tigrex Scale +"
-      ],
       "rarity": 5
     },
     {
@@ -4208,8 +4180,7 @@
       "name": "StrNargaCttngWng",
       "name_jp": "迅竜の剛刃翼",
       "aliases": [
-        "Naruga Strng Wng",
-        "StrNargaCttngWing"
+        "Naruga Strng Wng"
       ],
       "rarity": 5
     },
@@ -4514,9 +4485,6 @@
       "id": 661,
       "name": "Vespoid InnrWng",
       "name_jp": "ランゴスタの薄羽",
-      "aliases": [
-        "Vespoid InnrWing"
-      ],
       "rarity": 5
     },
     {
@@ -4524,8 +4492,7 @@
       "name": "Vspoid Razorwing",
       "name_jp": "ランゴスタの斬羽",
       "aliases": [
-        "Vespoid RazrWng",
-        "Vespoid RazorWing"
+        "Vespoid RazrWng"
       ],
       "rarity": 5
     },
@@ -4749,9 +4716,6 @@
       "id": 694,
       "name": "Lao-Shan Scale+",
       "name_jp": "老山龍の上鱗",
-      "aliases": [
-        "Lao-Shan's Scale+"
-      ],
       "rarity": 5
     },
     {
@@ -4759,9 +4723,7 @@
       "name": "Lao-Shan'sThkScl",
       "name_jp": "老山龍の厚鱗",
       "aliases": [
-        "Lao-ShanThckScl",
-        "Lao Shan'sThkScl",
-        "Lao-Shan's Thick Scale"
+        "Lao-ShanThckScl"
       ],
       "rarity": 5
     },
@@ -4769,9 +4731,6 @@
       "id": 696,
       "name": "Lao-Shan's Ruby",
       "name_jp": "老山龍の紅玉",
-      "aliases": [
-        "Lao Shan's Ruby"
-      ],
       "rarity": 5
     },
     {
@@ -6199,9 +6158,6 @@
       "id": 905,
       "name": "Commendation S",
       "name_jp": "勇気の証Ｓ",
-      "aliases": [
-        "Commedation S"
-      ],
       "rarity": 5
     },
     {
@@ -6242,8 +6198,7 @@
       "name": "Plus Class Tcket",
       "name_jp": "Ｇクラスチケット",
       "aliases": [
-        "G Class Ticket",
-        "Plus Class Ticket"
+        "G Class Ticket"
       ],
       "rarity": 5
     },

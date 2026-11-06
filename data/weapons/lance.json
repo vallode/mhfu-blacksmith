@@ -3241,7 +3241,7 @@
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrClaw",
+          "name": "PlumD.HermitrClw",
           "amount": 2,
           "type": "claw",
           "color": "slate"
@@ -5665,7 +5665,7 @@
           "color": "gray"
         },
         {
-          "name": "Vespoid RazorWing",
+          "name": "Vspoid Razorwing",
           "amount": 5,
           "type": "webbing",
           "color": "yellow"
@@ -7325,7 +7325,7 @@
           "color": "yellow"
         },
         {
-          "name": "Lao Shan's Ruby",
+          "name": "Lao-Shan's Ruby",
           "amount": 1,
           "type": "stone",
           "color": "red"
@@ -7921,7 +7921,7 @@
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWing",
+          "name": "StrNargaCttngWng",
           "amount": 7,
           "type": "part",
           "color": "gray"
@@ -7947,7 +7947,7 @@
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWing",
+          "name": "StrNargaCttngWng",
           "amount": 5,
           "type": "part",
           "color": "gray"
@@ -8292,7 +8292,7 @@
           "color": "red"
         },
         {
-          "name": "Lao Shan'sThkScl",
+          "name": "Lao-Shan'sThkScl",
           "amount": 6,
           "type": "scale",
           "color": "red"
@@ -10111,7 +10111,7 @@
           "color": "green"
         },
         {
-          "name": "Grn Plesioth Fin+",
+          "name": "Grn Plsioth Fin+",
           "amount": 15,
           "type": "part",
           "color": "green"

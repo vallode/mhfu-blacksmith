@@ -3115,6 +3115,10 @@
     "type": "decoration",
     "color": "yellow"
   },
+  "ParalysisCoating": {
+    "type": "bone",
+    "color": "white"
+  },
   "Parashroom": {
     "type": "bone",
     "color": "white"

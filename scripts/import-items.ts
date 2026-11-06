@@ -44,34 +44,6 @@ const JP_ONLY_RENAMES = new Set([92, 465, 519, 930, 931, 932, 934, 935, 936, 937
 // IDs that are not real items (UI placeholder / developer padding).
 const PLACEHOLDERS = new Set([128, 465, 875]);
 
-// Spellings used in this repo's recipe data (create/improve/alternative mats in
-// data/weapons, data/armor) that match no upstream name. Mapped by hand after checking each recipe; kept as
-// aliases so the recipe material and the save item resolve to the same entity.
-const SITE_ALIASES: Record<number, string[]> = {
-  48: ["Well Done Steak"], // Well-done Steak
-  132: ["Paraylsiscoating"], // ParalysisCoating
-  229: ["Knife Mackarel"], // Knife Mackerel
-  405: ["HrdGypcerosHead"], // HardGypcerosHead
-  436: ["Blngnga Hrd Whskr"], // Blngnga HrdWhskr
-  439: ["Brwn Blngnga Pelt"], // Brwn BlngngaPelt
-  441: ["Brwn Blngnga Tail"], // Brwn BlngngaTail
-  477: ["Green Plesioth Scale+"], // Grn Plsioth Scl+
-  588: ["Basarios Carapace"], // Basarios Carpace
-  594: ["Tigrex Scale +"], // Tigrex Scale+
-  694: ["Lao-Shan's Scale+"], // Lao-Shan Scale+
-  695: ["Lao Shan'sThkScl", "Lao-Shan's Thick Scale"], // Lao-Shan'sThkScl
-  696: ["Lao Shan's Ruby"], // Lao-Shan's Ruby
-  480: ["Grn Plesioth Fin+"], // Grn Plsioth Fin+
-  502: ["PlumD.HermitrClaw"], // PlumD.HermitrClw
-  547: ["Fire Wyvern BrnStm"], // FireWyvrn BrnStm
-  576: ["SlvrRthlosHrdTail"], // LthrSlvrRthlsTal / SlvRthlosHrdTail
-  619: ["StrNargaCttngWing"], // StrNargaCttngWng
-  661: ["Vespoid InnrWing"], // Vespoid InnrWng
-  662: ["Vespoid RazorWing"], // Vspoid Razorwing
-  905: ["Commedation S"], // Commendation S
-  911: ["Plus Class Ticket"], // Plus Class Tcket
-};
-
 interface Item {
   id: number;
   name: string;
@@ -116,7 +88,7 @@ for (const r of rows) {
 
   const name = isDummy(na) ? en : na;
   const aliases = new Set<string>();
-  for (const s of [r.name_ULES, r.name_ENGPATCH, r.name_COMPLETE, en, ...(SITE_ALIASES[id] ?? [])]) {
+  for (const s of [r.name_ULES, r.name_ENGPATCH, r.name_COMPLETE, en]) {
     const t = (s ?? "").trim();
     if (!isDummy(t) && t !== name) aliases.add(t);
   }
