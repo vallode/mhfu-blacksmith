@@ -160,6 +160,19 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 </div>
               </div>
             )}
+
+            {piece.alternative_create_mats && piece.alternative_create_mats.length > 0 && (
+              <div className="requirements">
+                <div className="create_mats">
+                  <p>
+                    <span>Create cost: </span>{piece.create_cost}z
+                  </p>
+                  {piece.alternative_create_mats.map((m, i) => (
+                    <MaterialRow key={i} material={m} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </Card>
       </div>
