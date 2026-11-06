@@ -343,9 +343,11 @@
   }
 }
 
-// "Use hunter" button once that hunter is the active one.
-.hunter-profile__use-btn.is-active {
-  border-color: rgba(242, 210, 80, 0.6);
-  color: #f2d250;
+// "Use hunter" button once that hunter is the active one: like the game's
+// lists, the current entry is marked by yellow text, not an icon.
+.hunter-profile__use-btn.is-active,
+.hunter-profile__use-btn.is-active:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffff50;
   cursor: default;
 }
