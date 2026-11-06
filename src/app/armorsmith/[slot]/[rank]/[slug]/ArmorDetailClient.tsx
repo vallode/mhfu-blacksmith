@@ -69,7 +69,13 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
             <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>
               {tree.map((node) => (
                 <ul key={node.slug}>
-                  <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} activeSlug={slug} />
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType={slot}
+                    basePath={basePath}
+                    treeKey={`armor-${slot}-${rank}`}
+                    activeSlug={slug}
+                  />
                 </ul>
               ))}
             </TreeScroll>

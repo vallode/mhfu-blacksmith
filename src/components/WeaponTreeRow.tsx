@@ -6,6 +6,7 @@ import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
 import { WEAPON_TYPES } from "@/lib/constants";
+import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import styles from "./WeaponTreeRow.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
@@ -13,6 +14,8 @@ interface WeaponTreeRowProps {
   node: WeaponTreeNode;
   sectionType: string;
   basePath: string;
+  /** Same key TreeScroll uses for this tree; persists collapse state across navigation. */
+  treeKey: string;
   activeSlug?: string;
 }
 
@@ -32,9 +35,10 @@ export default function WeaponTreeRow({
   node,
   sectionType,
   basePath,
+  treeKey,
   activeSlug,
 }: WeaponTreeRowProps) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
 
   const isExternal = node.type !== sectionType && (WEAPON_TYPES as readonly string[]).includes(node.type);
   const href = node.rarity
@@ -49,7 +53,11 @@ export default function WeaponTreeRow({
     // the click from also triggering navigation.
     event.preventDefault();
     event.stopPropagation();
-    setCollapsed((value) => !value);
+    setCollapsed((value) => {
+      const next = !value;
+      setNodeCollapsed(treeKey, node.slug, next);
+      return next;
+    });
   };
 
   const onPointerEnter = href
@@ -120,6 +128,7 @@ export default function WeaponTreeRow({
               node={child}
               sectionType={sectionType}
               basePath={basePath}
+              treeKey={treeKey}
               activeSlug={activeSlug}
             />
           ))}
