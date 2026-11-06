@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Fuse from "fuse.js";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import styles from "@/styles/search.module.scss";
+import { cn } from "@/lib/cn";
 import { iconStyle } from "@/lib/icon-style";
 
 interface SearchEntry {
@@ -18,6 +18,15 @@ interface SearchEntry {
   elements: string;
   skills: string;
 }
+
+// A result row with a highlight strip (::before) that spans the panel on
+// desktop; it glows on hover/focus and for the keyboard-selected row.
+const resultRow = [
+  "relative flex items-center gap-[1.2rem] text-white no-underline",
+  "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem)] before:-z-1 before:block before:h-full before:w-[calc(50vw-2.3rem)] before:bg-transparent",
+  "mobile:before:left-0 mobile:before:w-full",
+  "hover:before:hover-glow focus:before:hover-glow",
+].join(" ");
 
 function iconStyleFor(item: SearchEntry) {
   switch (item.category) {
@@ -158,23 +167,26 @@ export default function GlobalSearch() {
 
   return (
     <div
-        className={`${styles["search-modal"]}${isOpen ? ` ${styles["is-open"]}` : ""}`}
+        className={cn(
+          "fixed inset-0 z-1000 hidden h-full",
+          isOpen && "flex items-start justify-center pt-[8vh] mobile:items-stretch mobile:pt-0",
+        )}
         role="dialog"
         aria-modal="true"
         aria-label="Search"
         aria-hidden={isOpen ? undefined : "true"}
       >
-        <div className={styles["search-modal__backdrop"]} onClick={close} />
+        <div className="absolute inset-0 bg-black/70" onClick={close} />
 
-        <div className={styles["search-modal__panel"]}>
-          <div className={styles["search-modal__header"]}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <div className="relative z-1 mx-[1.4rem] h-[80%] flex-[0_1_62rem] overflow-visible mobile:mx-0 mobile:flex-auto">
+          <div className="flex items-center gap-[1rem] pt-[1.3rem]">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0 opacity-60">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <input
               ref={inputRef}
-              className={styles["search-modal__input"]}
+              className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-[2.2rem] text-white outline-none placeholder:text-white/35"
               type="search"
               placeholder="Search weapons, armor, monsters…"
               value={query}
@@ -183,16 +195,19 @@ export default function GlobalSearch() {
               autoComplete="off"
               spellCheck={false}
             />
-            <button className={styles["search-modal__close"]} onClick={close}>
+            <button
+              className="shrink-0 cursor-pointer border border-hr bg-transparent px-[0.7rem] py-[0.4rem] font-[inherit] text-[1.6rem] leading-none text-white/70 hover:text-white"
+              onClick={close}
+            >
               esc
             </button>
           </div>
 
-          <hr />
+          <hr className="mt-[1.3rem] mb-0" />
 
-          <div className={styles["search-modal__results"]} role="listbox">
+          <div className="h-full overflow-y-auto px-[1.6rem] mobile:max-h-[calc(100dvh-9rem)]" role="listbox">
             {results.length === 0 && query.trim().length >= 2 && (
-              <p className={styles["search-results__empty"]}>No results found</p>
+              <p className="px-[1.6rem] py-[2rem] text-center text-[1.8rem] text-white/40">No results found</p>
             )}
 
             {results.map((result, index) => {
@@ -202,7 +217,7 @@ export default function GlobalSearch() {
                 <Link
                   key={`${item.category}-${item.slug}-${index}`}
                   href={item.url}
-                  className={`${styles["search-result"]}${selected ? ` ${styles["search-result--selected"]}` : ""}`}
+                  className={cn(resultRow, selected && "before:hover-glow")}
                   role="option"
                   aria-selected={selected}
                   onClick={close}
@@ -216,10 +231,10 @@ export default function GlobalSearch() {
                       }}
                     />
                   </div>
-                  <div className={styles["search-result__text"]}>
-                    <p className={styles["search-result__name"]}>{item.name}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="m-0 truncate">{item.name}</p>
                     {item.rank && (
-                      <p className={styles["search-result__meta"]}>{item.rank}</p>
+                      <p className="m-0 text-[1.4rem] text-white/50 capitalize">{item.rank}</p>
                     )}
                   </div>
                 </Link>
@@ -227,7 +242,7 @@ export default function GlobalSearch() {
             })}
           </div>
 
-          <div className={styles["search-modal__footer"]}>
+          <div className="flex gap-[1.6rem] border-t-2 border-hr/40 px-[1.6rem] py-[0.8rem] text-[1.3rem] text-white/40 mobile:hidden">
             <span>↑↓ navigate</span>
             <span>↵ open</span>
             <span>esc close</span>

@@ -247,13 +247,18 @@ img {
   }
 }
 
-hr {
-  background-color: #6e905f;
-  border: none;
-  flex: 0 0 auto;
-  height: 6px;
-  margin: 1.3rem 0 2.2rem 0;
-  width: 100%;
+// Default divider. In the base layer so utilities can adjust it (e.g. the
+// search overlay's tighter margins). hr.border below stays unlayered: it must
+// beat Tailwind's own `border` utility, which shares its class name.
+@layer base {
+  hr {
+    background-color: var(--color-hr);
+    border: none;
+    flex: 0 0 auto;
+    height: 6px;
+    margin: 1.3rem 0 2.2rem 0;
+    width: 100%;
+  }
 }
 
 hr.border {
