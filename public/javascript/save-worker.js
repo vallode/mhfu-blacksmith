@@ -19,8 +19,14 @@ const OFFSETS = {
 // scripts/generate-equipment-ids.ts):
 //   0 leggings, 1 helmet, 2 plate, 3 gauntlets, 4 waist,
 //   5 melee (every blademaster class), 6 ranged (bowguns and bows)
-// The remaining 8 bytes of each 12-byte slot aren't decoded yet.
+//
+// Bytes 4–5 are 0 on every weapon and nonzero on upgraded armor (likely the
+// armor's upgrade level; not decoded yet). Bytes 6–11 are the attached
+// decorations: three u16 LE item IDs (data/items.json), 0 for an empty slot.
+// Checked against the real save in test/fixtures: two Grinder Jewels (968,
+// 1 slot each) sit in each of six 2-slot pieces, and every other slot is 0.
 const EQUIP_SLOT_SIZE = 12;
+const DECORATION_OFFSETS = [6, 8, 10];
 const EQUIP_SLOT_COUNT = 400;
 
 function readName(view, base) {
@@ -35,7 +41,8 @@ function parseEquipSlot(view, offset) {
   if (view.getUint16(offset, false) === 0x0000) return null;
   const type = view.getUint8(offset + 1);
   const id   = view.getUint16(offset + 2, true);
-  return { type, id };
+  const decorations = DECORATION_OFFSETS.map((d) => view.getUint16(offset + d, true)).filter((d) => d !== 0);
+  return { type, id, decorations };
 }
 
 function parseItemSlot(view, offset) {
