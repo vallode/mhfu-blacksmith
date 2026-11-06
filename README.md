@@ -34,6 +34,8 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 - Yaas
 - Zack
 
+In-game item IDs (`data/items.json`, used by the save loader on `/hunter`) come from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer), [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) and [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini). See `scripts/import-items.ts`.
+
 ## Development
 
 The site is a statically exported [Next.js](https://nextjs.org/) app.
@@ -62,5 +64,7 @@ pnpm validate-schema  # check data/ against data/schemas/ (Ruby)
 Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
 
 The crafting trees in `content/**/map.json` are generated from `data/` with `pnpm generate-maps`. Rerun it after adding or re-parenting weapons, armor, or decorations.
+
+`data/equipment-ids.json` maps the game's equipment IDs (the ones stored in a save file's equipment box) to the weapons and armor in `data/`. It is generated with `pnpm generate-equipment-ids` from the `equip.enum` name tables in [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) (MIT, vendored under `tools/mhfu-extract/vendor/`), plus the hand-checked aliases in `scripts/equipment-id-aliases.json` for names that differ between MHP2G and MHFU. Rerun it after renaming or adding weapons or armor; `pnpm validate` fails if it's stale.
 
 The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.
