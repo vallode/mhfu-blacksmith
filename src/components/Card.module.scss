@@ -1,30 +1,15 @@
-// The card's box (frame, layout, padding, font size) is Tailwind utilities in
-// Card.tsx. Only the link hover overlay and the paragraph reset remain here.
-.card {
-  &[href]::after {
-    display: block;
-    visibility: hidden;
-    content: "";
-    height: calc(100% - 16px);
-    width: calc(100% - 20px);
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    z-index: 1;
-    background: var(--gradient-hover-glow);
-  }
-
-  &[href]:focus::after,
-  &[href]:hover::after {
-    visibility: visible;
-  }
-
-  p {
-    color: inherit;
-    line-height: 1;
-    margin: 0;
-    position: relative;
-    z-index: 10;
-    white-space: nowrap;
-  }
+// Paragraph reset for everything inside a Card.
+//
+// This stays an un-layered CSS module rule on purpose. Several modules style
+// paragraphs inside cards (options/hunter sections, weapon-tree rows, …) and
+// currently lose to this rule. As a Tailwind utility (`[&_p]:…`) it would
+// live in a cascade layer and lose to them instead, changing those pages.
+// Move it into Card.tsx once those modules are migrated.
+.card p {
+  color: inherit;
+  line-height: 1;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+  white-space: nowrap;
 }
