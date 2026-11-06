@@ -1,5 +1,3 @@
-@use "../styles/mixins" as *;
-
 // ─── Tailwind ─────────────────────────────────────────────────────────────────
 // Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
 // here. Next.js's webpack CSS pipeline has a longstanding bug where any
@@ -9,9 +7,21 @@
 // site-wide because of this). See vercel/next.js#55763 and #66321.
 @import "tailwindcss";
 
-// Design tokens exposed to Tailwind as utility classes (bg-accent, text-muted,
-// border-hr, …). Keep in sync with src/styles/_variables.scss.
-@theme {
+// ─── Design tokens ────────────────────────────────────────────────────────────
+// This is the single source of truth for colours, spacing, breakpoints and
+// animations. Each token becomes a Tailwind utility (bg-accent, text-rarity-7,
+// animate-hover-glow, …) and a CSS variable (var(--color-accent)) that CSS
+// modules and inline styles can use. Don't hardcode these values elsewhere.
+//
+// `static` makes Tailwind emit every variable even when no utility class uses
+// it, because some are only referenced from TS (Icon, SharpnessBar) via var().
+@theme static {
+  // The root font-size is 62.5% (1rem = 10px), so Tailwind's default spacing
+  // unit of 0.25rem would be 2.5px. 0.4rem restores the usual 4px scale:
+  // p-4 = 16px, gap-2 = 8px, and so on.
+  --spacing: 0.4rem;
+
+  // UI palette
   --color-accent: #037703;
   --color-hr: #6e905f;
   --color-line: #2a3423;
@@ -23,7 +33,95 @@
   --color-element: #56fbfa;
   --color-warm: #ff9661;
 
-  --breakpoint-mobile: 600px;
+  // Item rarity tints (rarities 1–3 are untinted)
+  --color-rarity-4: #52f152;
+  --color-rarity-5: #fd9dc8;
+  --color-rarity-6: #83c3fc;
+  --color-rarity-7: #ff9661;
+  --color-rarity-8: #fd6960;
+  --color-rarity-9: #ffc762;
+  --color-rarity-10: #bb84fb;
+
+  // Decoration / material colours (the `color` field in the game data)
+  --color-gem-blue: #80c2fc;
+  --color-gem-cyan: #97e0ef;
+  --color-gem-gray: #a0a0a0;
+  --color-gem-green: #86bf8d;
+  --color-gem-orange: #ff9661;
+  --color-gem-pink: #ea9aa4;
+  --color-gem-red: #fd6960;
+  --color-gem-slate: #afa0c5;
+  --color-gem-white: #ffffff;
+  --color-gem-yellow: #ffc762;
+
+  // Hunting horn notes
+  --color-note-a: #6cc8fe;
+  --color-note-b: #7175fd;
+  --color-note-g: #7be61f;
+  --color-note-p: #e176ee;
+  --color-note-r: #fd3b1f;
+  --color-note-w: #ffffff;
+  --color-note-y: #ffeb2b;
+
+  // Sharpness levels, red (1) through purple (7)
+  --color-sharpness-1: #c3333c;
+  --color-sharpness-2: #ef5a26;
+  --color-sharpness-3: #ffc03c;
+  --color-sharpness-4: #84c11c;
+  --color-sharpness-5: #5a8aed;
+  --color-sharpness-6: #f7f7f7;
+  --color-sharpness-7: #df78f6;
+
+  // Pulsing green highlight behind hovered rows, cards and search results.
+  // Use the `hover-glow` utility, or in a CSS module:
+  //   animation: var(--animate-hover-glow); background: var(--gradient-hover-glow);
+  --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
+  --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
+
+  @keyframes opacity-alternate {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.6;
+    }
+  }
+}
+
+// ─── Custom variants ──────────────────────────────────────────────────────────
+
+// Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
+// the `@media screen and (max-width: 600px)` queries in the CSS modules.
+@custom-variant mobile (@media screen and (max-width: 600px));
+
+// ─── Custom utilities ─────────────────────────────────────────────────────────
+// Effects that are awkward as utility class strings. They work with variants
+// like any other utility (hover:hover-glow, mobile:pixelated).
+
+// Crisp rendering for pixel-art game sprites
+@utility pixelated {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+// Pulsing green highlight (see --animate-hover-glow above)
+@utility hover-glow {
+  animation: var(--animate-hover-glow);
+  background: var(--gradient-hover-glow);
+}
+
+// Decorative in-game 9-slice frame used by cards and toasts
+@utility card-frame {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 21 22 20 22 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAAA+CAYAAAABIgi3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJoSURBVHgB7d1BTjJBEIbhGkLyJz87484Yd1zEA+hJXHoIl55ED+BF2BnDzugKt2MkAZvJfDQN1djTvM9GBdLdCZWqnmJsGjNr7XBN5Pmcc+Qae4hrdp1jZIBAcEAah38831/brm4eXmwfOefINfYQ1+wxB5kDEsEBaaye6EthW9KTx+47JuccucYubs0p7yuZAxLBAWlsDlJ2wyWMm3PsUta875VNiMwBSWaOlCi9e5rNDKWZ9j2Y8r6SOSARHJB+Ptk7+Fr8anpJWSnM6+xtagcic0AiOCB1bxhZl5jJZLL8eX5xRsmo0Pv8Y1l2FotF+PBGPJA5IBEckLbdh7gsMavy8oMSM2ziCkbGgMtnKynatv2/+r1pmi/7I6wjjrICKZo5wt3suZ0ZhivcInSuUnplKythukx5zS6pNSUVs479UVYgdTMHTbCKbbyXc1s1wcLP1jauXLKVlTC97ZJS+9KhRypOWYdKyTWtIwVlBRLBAekoTTCPHfQuaTk2D+tI0w2O9YZkvVGZ/96LyOZ02Kptn6dsxnL2BmpdRx/2HJBon5+QqtrnOXslTdv+W78mMlZN60hBWYFE+/yEDKp97tFSTlpTkMKjz4v5alpHDGUFEsEBqZj2ea40uVG6Yi8ejT4tk1LWkeLoHVKUIexzrC4+ur0Pygqkk8ocpdz6X9q/ICgcwVApjmBAVgQHpKMfjI/j42B8uCM4ILkcjP94Oz14ZwxfNw9v4nEOxocDlyZY7d96NPRvatoXmQMSwQHJ5WB8M75XNmHc3GNvnYOD8eGC4IDk8qmsUVZSxs09ttscZA5IBAekb1eiZU9JPLoUAAAAAElFTkSuQmCC");
+  border-image-width: 20px 22px 20px 22px;
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 // ─── Typography ───────────────────────────────────────────────────────────────
@@ -138,17 +236,6 @@ hr.border {
   width: calc(100% + 2.8rem);
 }
 
-// ─── Shared animations ────────────────────────────────────────────────────────
-
-@keyframes opacity-alternate {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.6;
-  }
-}
-
 // ─── Reusable components ──────────────────────────────────────────────────────
 // Shared building blocks used as plain class strings across pages. Layout
 // (flex/spacing) is done with Tailwind utilities directly in the markup.
@@ -171,7 +258,8 @@ hr.border {
   padding: 0 16px;
 
   &:hover {
-    @include green-hover-gradient;
+    animation: var(--animate-hover-glow);
+    background: var(--gradient-hover-glow);
   }
 }
 

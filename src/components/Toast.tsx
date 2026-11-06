@@ -26,7 +26,7 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
   return (
     <div className={styles.viewport} aria-live="polite" aria-relevant="additions">
       {toasts.map((t) => (
-        <div key={t.id} className={styles.toast} role="status">
+        <div key={t.id} className={`${styles.toast} card-frame`} role="status">
           <button
             type="button"
             className={styles.close}

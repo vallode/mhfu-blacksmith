@@ -1,5 +1,3 @@
-@use "mixins" as *;
-
 .page {
   display: flex;
   flex-direction: column;
@@ -93,7 +91,8 @@
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
     color: white;
-    @include green-hover-gradient;
+    animation: var(--animate-hover-glow);
+    background: var(--gradient-hover-glow);
   }
 
   &:disabled {

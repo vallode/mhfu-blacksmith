@@ -2,7 +2,6 @@ import Link from "next/link";
 import { MONSTER_CATEGORIES } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import listStyles from "@/styles/list-page.module.scss";
 
 function formatLabel(s: string): string {
   return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -11,7 +10,7 @@ function formatLabel(s: string): string {
 export default function BestiaryListContent() {
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -29,7 +28,7 @@ export default function BestiaryListContent() {
       <hr className="border" />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-        <Card className={listStyles.table}>
+        <Card className="overflow-auto py-7">
           {MONSTER_CATEGORIES.map((category) => (
             <Link key={category} href={`/monsters/${category}/`} className="list-row">
               <Icon type={category} size="large" monster alt={category} />

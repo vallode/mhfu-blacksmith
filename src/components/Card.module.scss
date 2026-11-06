@@ -1,76 +1,15 @@
-@use "../styles/mixins" as *;
-
-.card {
-  @include card-border;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0%;
-  font-size: 2.6rem;
-  overflow: hidden;
-  padding: 2.6rem 2rem;
+// Paragraph reset for everything inside a Card.
+//
+// This stays an un-layered CSS module rule on purpose. Several modules style
+// paragraphs inside cards (options/hunter sections, weapon-tree rows, …) and
+// currently lose to this rule. As a Tailwind utility (`[&_p]:…`) it would
+// live in a cascade layer and lose to them instead, changing those pages.
+// Move it into Card.tsx once those modules are migrated.
+.card p {
+  color: inherit;
+  line-height: 1;
+  margin: 0;
   position: relative;
-  z-index: 1;
-
-  &[href]::after {
-    display: block;
-    visibility: hidden;
-    content: "";
-    height: calc(100% - 16px);
-    width: calc(100% - 20px);
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    z-index: 1;
-    background: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(rgba(0, 0, 0, 0)),
-      color-stop(rgba(3, 119, 3, 0.84)),
-      to(rgba(0, 0, 0, 0))
-    );
-    background: -o-linear-gradient(
-      left,
-      rgba(0, 0, 0, 0),
-      rgba(3, 119, 3, 0.84),
-      rgba(0, 0, 0, 0)
-    );
-    background: linear-gradient(
-      0.25turn,
-      rgba(0, 0, 0, 0),
-      rgba(3, 119, 3, 0.84),
-      rgba(0, 0, 0, 0)
-    );
-  }
-
-  &[href]:focus::after,
-  &[href]:hover::after {
-    visibility: visible;
-  }
-
-  &--weapon-tree {
-    height: 100%;
-    padding: 0.8rem 0.9rem;
-  }
-
-  p {
-    color: inherit;
-    line-height: 1;
-    margin: 0;
-    position: relative;
-    z-index: 10;
-    white-space: nowrap;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 2rem;
-  }
-}
-
-// weapon-tree variant: tighter padding so the tree fills the card. The tree's
-// own row/connector styles come from the global weapon-tree.scss stylesheet.
-.weaponTree {
-  height: 100%;
-  overflow: auto;
-  padding: 0.8rem 0.9rem;
+  z-index: 10;
+  white-space: nowrap;
 }

@@ -34,7 +34,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (loading) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
           <div>
             <Link href={`/monsters/${category}/`} aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -49,7 +49,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (!monster) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
           <div>
             <Link href={`/monsters/${category}/`} aria-label="Back">
               <Icon type="arrow" nav alt="Back" />
@@ -68,7 +68,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href={`/monsters/${category}/`} aria-label="Back">
             <Icon type="arrow" nav alt="Back" />

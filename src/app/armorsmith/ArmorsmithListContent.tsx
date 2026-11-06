@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ARMOR_SLOTS, ARMOR_RANKS } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import listStyles from "@/styles/list-page.module.scss";
 
 function formatLabel(s: string): string {
   return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -11,7 +10,7 @@ function formatLabel(s: string): string {
 export default function ArmorsmithListContent() {
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -32,7 +31,7 @@ export default function ArmorsmithListContent() {
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
         {ARMOR_SLOTS.map((slot) => (
           <div key={slot}>
-            <Card className={listStyles.table}>
+            <Card className="overflow-auto py-7">
               <p>{formatLabel(slot)}</p>
               {ARMOR_RANKS.map((rank) => (
                 <Link key={rank} href={`/armorsmith/${slot}/${rank}/`} className="list-row">

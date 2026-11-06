@@ -1,5 +1,3 @@
-@use 'mixins' as *;
-
 // The .search-trigger button is styled with Tailwind utilities in the markup;
 // its class is kept only as a delegated-click hook for GlobalSearch.
 
@@ -142,7 +140,8 @@
   &:focus::before,
   &:hover::before,
   &--selected::before {
-    @include green-hover-gradient;
+    animation: var(--animate-hover-glow);
+    background: var(--gradient-hover-glow);
   }
 
   &__text {

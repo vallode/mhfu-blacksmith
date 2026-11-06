@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import listStyles from "@/styles/list-page.module.scss";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonsterList } from "@/lib/client-data";
 
@@ -21,7 +20,7 @@ export default function MonsterListClient({ category }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start max-[600px]:flex-wrap max-[600px]:justify-center">
+      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
         <div>
           <Link href="/monsters/" aria-label="Back">
             <Icon type="arrow" nav alt="Back" />
@@ -39,7 +38,7 @@ export default function MonsterListClient({ category }: Props) {
       <hr className="border" />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-        <Card className={listStyles.table}>
+        <Card className="overflow-auto py-7">
           <p>{name}</p>
           {!loading &&
             items?.map((monster) => (
