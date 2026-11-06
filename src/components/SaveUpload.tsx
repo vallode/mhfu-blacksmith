@@ -42,7 +42,6 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
           <div className={styles["hunter-profile__stat"]}>
             <span className={styles["hunter-profile__label"]}>Zenny</span>
             <span className={styles["hunter-profile__value"]}>
-              <img src="/images/zenny.png" alt="" />
               {formatZenny(character.zenny)}
             </span>
           </div>
