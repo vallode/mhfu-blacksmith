@@ -21,6 +21,11 @@ type Handler = (e: { data: { buffer: ArrayBuffer; region: string } }) => Promise
 
 let onmessage: Handler;
 let lastMessage: Message | null = null;
+/** The worker's last result (read through a function so TS doesn't narrow it to null). */
+const message = (): Message => {
+  assert.ok(lastMessage, "worker posted no result");
+  return lastMessage;
+};
 
 before(async () => {
   (globalThis as unknown as { self: object }).self = {
@@ -118,4 +123,42 @@ test("the only unnamed IDs are the known placeholders", async () => {
   }
   // This save has every item at x99, so the three padding IDs are in it too.
   assert.deepEqual([...placeholders].sort((x, y) => x - y), [128, 465, 875]);
+});
+
+test("wrong region gives an error naming the right one, not garbage", async () => {
+  const r = await parse("jp");
+  assert.equal(r.ok, false, "JP keys must not 'succeed' on a US/EU save");
+  assert.match((r as { error: string }).error, /from the US or EU release, but JP is selected/);
+});
+
+test("wrong region is also caught when only the game layer is left", async () => {
+  // Strip the PSP hardware layer first (as PPSSPP's default export does).
+  const { decryptPSPLayer } = await import("../public/javascript/save-cipher.js");
+  const buf = fs.readFileSync(SAVE);
+  const gameOnly: ArrayBuffer = await decryptPSPLayer(
+    buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength),
+    "na"
+  );
+  assert.equal(gameOnly.byteLength, 0x16a100);
+
+  lastMessage = null;
+  await onmessage({ data: { buffer: gameOnly.slice(0), region: "us" } });
+  assert.deepEqual(
+    ok(message()).characters.map((h) => h?.name ?? null),
+    ["Gideon", "MEARO", null]
+  );
+
+  lastMessage = null;
+  await onmessage({ data: { buffer: gameOnly.slice(0), region: "jp" } });
+  assert.equal(message().ok, false);
+  assert.match((message() as { error: string }).error, /US or EU release/);
+});
+
+test("a file no region can decrypt says so", async () => {
+  const junk = new Uint8Array(0x16a110);
+  for (let i = 0; i < junk.length; i++) junk[i] = (i * 2654435761) >>> 24;
+  lastMessage = null;
+  await onmessage({ data: { buffer: junk.buffer, region: "us" } });
+  assert.equal(message().ok, false);
+  assert.match((message() as { error: string }).error, /couldn't be decrypted with any region's keys/);
 });
