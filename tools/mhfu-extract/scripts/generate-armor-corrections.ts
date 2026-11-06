@@ -5,8 +5,8 @@
  * automatically — a dev-time tool, output committed as
  * src/overlay/armor-index-corrections.json.
  *
- * Matching happens in three confidence tiers (see `docs/fix-plan.md` issue
- * #1 for the full investigation writeup and measured coverage):
+ * Matching happens in three confidence tiers (see vallode/mhfu-blacksmith#30
+ * for the full investigation writeup and measured coverage):
  *
  * 1. **`fingerprint-core`** (highest volume): match on (defense, 4
  *    resistances, rarity, halved price) alone — deliberately *excluding*
@@ -31,7 +31,7 @@
  * 3. Global monotonicity cleanup: raw array position and name-table index
  *    are, empirically, almost perfectly rank-correlated (>97% of adjacent
  *    confirmed pairs sorted by raw index also increase in name index — see
- *    fix-plan.md) — i.e. the two lists are *mostly* the same order with
+ *    vallode/mhfu-blacksmith#30) — i.e. the two lists are *mostly* the same order with
  *    localized drift, not an unrelated shuffle. Any resolved pair that
  *    breaks this monotonic trend (computed via longest-increasing-
  *    subsequence over name-index, sorted by raw index) is a near-certain

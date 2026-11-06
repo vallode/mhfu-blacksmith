@@ -69,7 +69,7 @@ test("emitBlademasterWeapons reproduces the real Carbalite Sword entry end-to-en
  * `shotCoatings` value (66 = bits 1+6, real "Exterminator Bow II" bytes —
  * see `test/weapons.test.ts`'s `decodeBowCoatings` fixtures for the
  * correlation) to confirm `emitGunnerWeapons` routes bow coatings through
- * `decodeBowCoatings()` (fix-plan.md issue #7), not the bowgun-ammo-flag
+ * `decodeBowCoatings()` (vallode/mhfu-blacksmith#38), not the bowgun-ammo-flag
  * `decodeShotCoat()` — before the fix this same raw value decoded as
  * bowgun ammo flags (semantically meaningless for a bow) instead of
  * `["power", "paint"]`.

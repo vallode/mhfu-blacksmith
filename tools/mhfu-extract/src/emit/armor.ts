@@ -6,7 +6,7 @@
  * entries per slot we spot-checked (defense/price/rarity/slots all agree
  * with the committed data). Beyond that it drifts — the committed EN data
  * and this direct indexing disagree on roughly 60-90% of entries per slot.
- * Confirmed (see `docs/fix-plan.md` issue #1 and its "resolved" update):
+ * Confirmed (see vallode/mhfu-blacksmith#30 and its "resolved" update):
  * `ArmorValue`'s three unmapped fields (`unkn1`/`unkn2`/`unkn3`) are NOT a
  * hidden name-table index — tested directly against real disc bytes,
  * `unkn3` (the only one with per-entry-unique values) does not correlate
@@ -14,7 +14,7 @@
  * in-binary field linking the two independently-sourced lists (stat array
  * position vs. `.enum`-file name order). A structural root cause (a real
  * permutation table, or a derivable sort-order rule) was searched for and
- * not found — see `docs/fix-plan.md` issue #1. The fix applied here is
+ * not found — see vallode/mhfu-blacksmith#30. The fix applied here is
  * `overlay/armor-index-corrections.ts`'s empirically-derived per-slot
  * correction table (fingerprint-matched raw stats <-> committed data),
  * which now resolves a solid majority (~68-73%) of entries per slot with

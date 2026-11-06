@@ -1,6 +1,6 @@
 /**
- * `ItemID` (material) name-transcription correction table. Fixes fix-plan.md
- * issue #2 ("`create_mats` material-name transcription noise"): the game's
+ * `ItemID` (material) name-transcription correction table. Fixes
+ * vallode/mhfu-blacksmith#34 ("`create_mats` material-name transcription noise"): the game's
  * `.enum`-sourced `ItemID` name table has a long tail of typos/abbreviation
  * inconsistencies (e.g. `"Firestone"` vs. `"Fire Stone"`, `"Eldr Dragon
  * Bone"` vs. `"Elder Drgn Bone"`) relative to the committed `data/`
@@ -11,7 +11,7 @@
  *
  * Built by a one-off analysis (not shipped as a script, since — unlike
  * `generate-armor-corrections.ts` — it needed several rounds of hand review;
- * see fix-plan.md issue #2 for the full methodology) that diffed extracted
+ * see vallode/mhfu-blacksmith#34 for the full methodology) that diffed extracted
  * vs. committed `create_mats` entries at matching array position + quantity
  * to find name-only mismatches, scored candidates by normalized edit-
  * distance/token-set similarity, then hand-reviewed borderline cases to drop
@@ -40,7 +40,7 @@
  * already in legitimate concurrent use within the *same* category (e.g.
  * `"Blue Kut-Ku Scl"` and `"Kut-Ku Scale"` both already appear correctly in
  * armor *and* weapons recipes) — too ambiguous to safely correct without
- * risking a regression; see fix-plan.md issue #2 for the full list.
+ * risking a regression; see vallode/mhfu-blacksmith#34 for the full list.
  *
  * Regenerate/re-review if `data/` material names change (e.g. wiki
  * corrections) — the collision analysis is only valid as of this snapshot.
