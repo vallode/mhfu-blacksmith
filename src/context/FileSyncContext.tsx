@@ -85,6 +85,16 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
   const rerunRef = useRef(false);
   const pickingRef = useRef(false);
 
+  // Merges a partial update, returning the same object when nothing changed so
+  // routine focus/visibility checks don't re-render every consumer.
+  const patchState = useCallback((patch: Partial<FileSyncState>) => {
+    setState((s) =>
+      (Object.keys(patch) as (keyof FileSyncState)[]).every((k) => s[k] === patch[k])
+        ? s
+        : { ...s, ...patch }
+    );
+  }, []);
+
   const applyResult = useCallback(
     (record: FileHandleRecord, result: WorkerResult) => {
       if (record.characterIndex == null) return;
@@ -108,7 +118,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
   const syncOnce = useCallback(async () => {
     const record = await getHandleRecord();
     if (!record) {
-      setState((s) => ({ ...s, hasHandle: false, permission: null, fileName: null }));
+      patchState({ hasHandle: false, permission: null, fileName: null });
       return;
     }
 
@@ -118,16 +128,18 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     } catch {
       permission = "denied";
     }
-    setState((s) => ({ ...s, hasHandle: true, fileName: record.handle.name, permission }));
+    patchState({ hasHandle: true, fileName: record.handle.name, permission });
     if (permission !== "granted") return;
 
-    setState((s) => ({ ...s, syncing: true, error: null }));
     try {
       const file = await record.handle.getFile();
       if (file.lastModified === record.lastModified) {
-        setState((s) => ({ ...s, syncing: false, lastSynced: Date.now() }));
+        // Unchanged file: only the "last synced" time moves. No syncing flag
+        // flip for this cheap check, so it's a single update.
+        patchState({ lastSynced: Date.now() });
         return;
       }
+      patchState({ syncing: true, error: null });
       const buffer = await file.arrayBuffer();
       const result = await parseSaveBuffer(buffer, record.region as Region);
       await patchHandleRecord({ lastModified: file.lastModified });
@@ -142,7 +154,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
         error: err instanceof Error ? err.message : "Sync failed",
       }));
     }
-  }, [applyResult]);
+  }, [applyResult, patchState]);
 
   /**
    * Serialized entry point for syncing. Tab return fires both `focus` and
