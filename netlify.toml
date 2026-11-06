@@ -1,0 +1,8 @@
+# Build the Next.js static export. Overrides the build settings in the
+# Netlify UI, which predate the migration from Zola.
+[build]
+  command = "pnpm build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
