@@ -3,9 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSave } from "@/context/SaveContext";
 import { getItems, type ItemLookup } from "@/lib/client-data";
-
-/** The game stores 255 for the one infinite-stack item (Normal S Lv1). */
-const INFINITE_STACK = 255;
+import { ownedItemCounts } from "@/lib/hunter-progress";
 
 /**
  * How many of a recipe material the loaded hunter owns, summed across the item
@@ -31,15 +29,7 @@ export function useOwnedMaterials(): (materialName: string) => number | null {
     };
   }, [save, items]);
 
-  const owned = useMemo(() => {
-    if (!save) return null;
-    const byId = new Map<number, number>();
-    for (const { id, qty } of save.items) {
-      const n = qty === INFINITE_STACK ? Infinity : qty;
-      byId.set(id, (byId.get(id) ?? 0) + n);
-    }
-    return byId;
-  }, [save]);
+  const owned = useMemo(() => ownedItemCounts(save), [save]);
 
   return (materialName: string) => {
     if (!owned || !items) return null;

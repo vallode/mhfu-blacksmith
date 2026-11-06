@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { EquipSlot } from "@/lib/save-store";
 
 export interface CharacterResult {
   name: string;
   sex: "Male" | "Female";
   zenny: number;
-  equipTotal: number;
-  equipCounts: Record<string, number>;
+  /** Used equipment box slots, in box order. */
+  equipBox: EquipSlot[];
   itemChest: { id: number; qty: number }[];
   itemPouch: { id: number; qty: number }[];
 }
