@@ -10,7 +10,10 @@
     "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
     "generate-weapons": "tsx scripts/generate-weapon-data.ts",
-    "validate": "tsx scripts/validate.ts"
+    "validate": "tsx scripts/validate.ts",
+    "validate-schema": "bundle exec ruby scripts/validate.rb",
+    "generate-maps": "ruby scripts/generate-maps.rb",
+    "release-json": "mkdir -p mhfu_weapon_information && cp data/weapons/*.json mhfu_weapon_information/ && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
