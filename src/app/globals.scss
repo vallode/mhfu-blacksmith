@@ -141,6 +141,17 @@
   background: var(--gradient-hover-glow);
 }
 
+// Tiled in-game divider pattern, centred so both ends crop evenly (BorderRule)
+@utility divider-tile {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 3.2rem 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
 // Decorative in-game 9-slice frame used by cards and toasts
 @utility card-frame {
   border-image-outset: 0;
