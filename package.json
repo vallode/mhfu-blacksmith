@@ -13,6 +13,7 @@
     "validate": "tsx scripts/validate.ts",
     "validate-schema": "bundle exec ruby scripts/validate.rb",
     "generate-maps": "ruby scripts/generate-maps.rb",
+    "generate-equipment-ids": "tsx scripts/generate-equipment-ids.ts",
     "release-json": "mkdir -p mhfu_weapon_information && cp data/weapons/*.json mhfu_weapon_information/ && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information"
   },
   "dependencies": {
