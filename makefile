@@ -1,33 +1,10 @@
-# https://stackoverflow.com/questions/2145590/what-is-the-purpose-of-phony-in-a-makefile
-.PHONY: serve
+# Data tooling only. The site is built with `pnpm build` and deployed by
+# Netlify; see README.md.
+.PHONY: generate-maps release-json
 
-serve: clean generate-pages generate-maps generate-search-index
-	zola serve
-
-validate:
-	bundle exec ruby scripts/validate.rb
-
-generate-pages: validate
-	bundle exec ruby scripts/generate-pages.rb
-
+# Regenerate the crafting-tree maps (content/**/map.json) from data/.
 generate-maps:
-	bundle exec ruby scripts/generate-maps.rb
-
-generate-search-index:
-	bundle exec ruby scripts/generate-search-index.rb
-
-debug: generate-pages
-	TERA_DEBUG=true zola serve
-
-clean:
-	find content -name '*.md' ! \( -name '_index.md' -o -name 'smithy.md' -o -name 'calculator.md' \) -exec rm {} +
-
-build: clean generate-pages generate-maps generate-search-index
-	TERA_PRODUCTION=true zola build
-
-deploy: build
-	MHFU_PRODUCTION=true netlify deploy --site mhfu-blacksmith --prod --message \
-		"`git log --oneline --format=%s -n 1`" --dir public
+	ruby scripts/generate-maps.rb
 
 release-json:
 	mkdir -p mhfu_weapon_information

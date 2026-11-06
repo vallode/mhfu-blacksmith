@@ -1,15 +1,5 @@
 .DS_Store
 
-# Generated weapon/armor/monster/decoration pages
-content/blacksmith/**/*.md
-!content/blacksmith/**/_index.md
-content/armorsmith/**/*.md
-!content/armorsmith/**/_index.md
-content/monsters/**/*.md
-!content/monsters/**/_index.md
-content/decorations/**/*.md
-!content/decorations/**/_index.md
-
 # Next.js build-time generated files under public/ (source assets like
 # public/images, public/fonts, public/manifest.json, public/javascript are
 # tracked and must NOT be ignored — this used to be a blanket "public" rule
