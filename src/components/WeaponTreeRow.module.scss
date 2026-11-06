@@ -7,10 +7,6 @@
 // the tree stays in flow and the page scrolls instead.
 .weapon-tree {
   inset: 0.8rem 0.9rem;
-  // Own stacking context: the tree connectors below use z-index: -1. Without
-  // this they belong to the card's stacking context, and Safari then stops
-  // painting the card's frame and fill behind the scrolling tree.
-  isolation: isolate;
   overflow: auto;
   padding: 0 0 0 13px;
   position: absolute;
