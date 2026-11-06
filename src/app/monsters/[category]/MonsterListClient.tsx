@@ -5,6 +5,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonsterList } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   category: MonsterCategory;
@@ -35,7 +36,7 @@ export default function MonsterListClient({ category }: Props) {
           </button>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
         <Card className="overflow-auto py-7">

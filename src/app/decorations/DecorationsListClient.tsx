@@ -6,6 +6,7 @@ import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { useDecorationTree } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 export default function DecorationsListClient() {
   const { tree, loading } = useDecorationTree();
@@ -27,7 +28,7 @@ export default function DecorationsListClient() {
           </button>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         <Card variant="weapon-tree">

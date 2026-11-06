@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BorderRule from "@/components/BorderRule";
 import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
 import SaveSyncSettings from "@/components/SaveSyncSettings";
@@ -14,7 +15,7 @@ export default function OptionsPage() {
         <img src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
 
-      <hr className="border" />
+      <BorderRule />
 
       <div className="flex w-full max-w-[72rem] flex-col gap-[1.3rem]">
         <SaveSyncSettings />
