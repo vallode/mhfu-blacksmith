@@ -1,6 +1,6 @@
 /**
  * Per-slot raw-`ArmorValue`-array-position -> name-table-index correction
- * map. Fixes fix-plan.md issue #1 ("armor name<->stat index drift"):
+ * map. Fixes vallode/mhfu-blacksmith#30 ("armor name<->stat index drift"):
  * `ArmorValue`'s stat array and the `.enum`-sourced name array
  * (`src/strings/names.ts`) are two independently-ordered lists this
  * pipeline can't otherwise line up — no in-binary field links them (see
@@ -8,10 +8,10 @@
  * disproven "hidden index field" hypothesis tested against `unkn1`/`unkn2`/
  * `unkn3`).
  *
- * This table is the fix-plan's proposed **approach 2**: empirically-derived
+ * This table is the proposed **approach 2** from vallode/mhfu-blacksmith#30: empirically-derived
  * via fingerprint matching, not a formula (a structural root cause — a real
  * in-binary index/permutation table, or a simple sort-order rule — was
- * searched for and not found; see `docs/fix-plan.md` issue #1's second
+ * searched for and not found; see vallode/mhfu-blacksmith#30's second
  * "Update" for the full investigation, including why a promising near-
  * monotonic raw-index/name-index correlation *didn't* pan out into a
  * position-based interpolation scheme). `scripts/generate-armor-
@@ -35,7 +35,7 @@
  * slots-inclusive fingerprint) — the rest share a fingerprint with at
  * least one other armor piece in the same slot (most commonly dummy/
  * near-identical low-rarity pieces), or have no committed counterpart at
- * all — see `docs/fix-plan.md` issue #1 for the measured per-slot coverage.
+ * all — see vallode/mhfu-blacksmith#30 for the measured per-slot coverage.
  * Raw positions with no entry here fall back to the original raw-index
  * assumption, which may still be wrong; this table only *improves* the
  * match rate, it doesn't claim full coverage. Note also that a confirmed

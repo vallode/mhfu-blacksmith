@@ -1,7 +1,7 @@
 /**
  * Per-slot raw-`ArmorValue`-array-position -> corrected `slots` value
  * override. Fixes the male/female armor-pair `slots`-transposition bug
- * documented in `docs/fix-plan.md` issue #1's "Update 2": raw `slots` is
+ * documented in vallode/mhfu-blacksmith#30's "Update 2": raw `slots` is
  * swapped between certain paired armor pieces (e.g. "X Helm"/"X Cap") even
  * though every other stat field on both entries is correctly identified via
  * `armor-index-corrections.json`.

@@ -1,7 +1,7 @@
 /**
  * One-off generator: builds a per-slot raw-index -> corrected-`slots`-value
  * override map, fixing the male/female armor-pair `slots`-transposition bug
- * documented in `docs/fix-plan.md` issue #1's "Update 2" (the byproduct
+ * documented in vallode/mhfu-blacksmith#30's "Update 2" (the byproduct
  * discovery that motivated dropping `slots` from the index-drift fingerprint
  * in the first place). Not run automatically — a dev-time tool, output
  * committed as `src/overlay/armor-slots-corrections.json`, consumed by
@@ -52,7 +52,7 @@
  * against already-extracted output; full non-adjacent pairwise base+suffix
  * matching as implemented here) — all three found the exact same 8 pairs
  * (6 head, 2 waist; 0 chest/arm/leg) with the current `armor-index-
- * corrections.json` coverage. See `docs/fix-plan.md` issue #1's slots-
+ * corrections.json` coverage. See vallode/mhfu-blacksmith#30's slots-
  * transposition update for the full writeup.
  */
 import { readFile, writeFile } from "node:fs/promises";

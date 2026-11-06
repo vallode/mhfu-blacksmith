@@ -127,7 +127,7 @@ test("decodeShotCoat maps every declared bit independently", () => {
 
 /**
  * Real `shotCoatings` values from real bows in a decrypted JP EBOOT
- * (`fix-plan.md` issue #7) — pinned as regression fixtures. `Glorious
+ * (vallode/mhfu-blacksmith#38) — pinned as regression fixtures. `Glorious
  * Victory II` (raw 64 = only bit 6 set) confirms the `paint` bit in
  * isolation; `Exterminator Bow II` (raw 66 = bits 1+6) confirms `power` and
  * `paint` combine correctly and every other flag stays false, matching
