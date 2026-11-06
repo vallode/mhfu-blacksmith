@@ -10,11 +10,17 @@ interface Slot {
   qty: number;
 }
 
+export interface InventorySection {
+  title: string;
+  slots: Slot[];
+  /** Slot capacity, shown as "used/max" next to the title. */
+  max?: number;
+  /** Expanded by default. */
+  open?: boolean;
+}
+
 interface HunterInventoryProps {
-  pouch: Slot[];
-  box: Slot[];
-  /** Open the item box by default (pouch is always open). */
-  boxOpen?: boolean;
+  sections: InventorySection[];
 }
 
 /** The game stores 255 for the one infinite-stack item (Normal S Lv1). */
@@ -51,10 +57,11 @@ function ItemGrid({ slots, items, filter }: { slots: Slot[]; items: ItemLookup |
   );
 }
 
-export default function HunterInventory({ pouch, box, boxOpen = true }: HunterInventoryProps) {
+export default function HunterInventory({ sections }: HunterInventoryProps) {
   const { items, error } = useItems();
   const [query, setQuery] = useState("");
   const filter = query.trim().toLowerCase();
+  const total = sections.reduce((n, s) => n + s.slots.length, 0);
 
   return (
     <div className={styles["inventory"]}>
@@ -62,7 +69,7 @@ export default function HunterInventory({ pouch, box, boxOpen = true }: HunterIn
         <p className={styles["inventory__empty"]}>Item names could not be loaded; showing raw item IDs.</p>
       )}
 
-      {box.length + pouch.length > 0 && (
+      {total > 0 && (
         <input
           type="search"
           className={styles["inventory__filter"]}
@@ -73,19 +80,14 @@ export default function HunterInventory({ pouch, box, boxOpen = true }: HunterIn
         />
       )}
 
-      <details className={styles["inventory__section"]} open>
-        <summary className={styles["inventory__summary"]}>
-          Item Pouch <span>{pouch.length}/24</span>
-        </summary>
-        <ItemGrid slots={pouch} items={items} filter={filter} />
-      </details>
-
-      <details className={styles["inventory__section"]} open={boxOpen}>
-        <summary className={styles["inventory__summary"]}>
-          Item Box <span>{box.length}/1000</span>
-        </summary>
-        <ItemGrid slots={box} items={items} filter={filter} />
-      </details>
+      {sections.map((s) => (
+        <details key={s.title} className={styles["inventory__section"]} open={s.open}>
+          <summary className={styles["inventory__summary"]}>
+            {s.title} <span>{s.max ? `${s.slots.length}/${s.max}` : s.slots.length}</span>
+          </summary>
+          <ItemGrid slots={s.slots} items={items} filter={filter} />
+        </details>
+      ))}
     </div>
   );
 }
