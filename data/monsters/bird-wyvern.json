@@ -797,6 +797,10 @@
             {
               "name": "Kut-Ku Scale x1",
               "chance": "75%"
+            },
+            {
+              "name": "Kut-Ku Scale x3",
+              "chance": "25%"
             }
           ],
           "shiny drop : sonic, doesn't work when rage": [
