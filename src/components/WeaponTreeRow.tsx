@@ -60,6 +60,7 @@ export default function WeaponTreeRow({
     progress.active && href?.startsWith("/blacksmith/") && !owned && parentHref && progress.isOwned(parentHref)
       ? progress.upgradeCheck(node.type, node.slug)
       : null;
+  const canUpgrade = upgrade?.status === "ready";
 
   const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
     // Rows can be links (a parent weapon still has its own page), so stop
@@ -83,6 +84,8 @@ export default function WeaponTreeRow({
   const rowClass = cn(styles.row, {
     [styles["row--external"]]: isExternal,
     [styles["row--active"]]: isActive,
+    [styles["row--owned"]]: owned,
+    [styles["row--upgrade"]]: canUpgrade,
   });
 
   const inner = (
@@ -98,20 +101,8 @@ export default function WeaponTreeRow({
         />
       )}
       <p className={styles.name}>{node.name}</p>
-      {owned && (
-        <span className={styles.owned} title="In your equipment box" aria-label="Owned">
-          ✓
-        </span>
-      )}
-      {upgrade?.status === "ready" && (
-        <span
-          className={styles.upgrade}
-          title={`You can make this upgrade now (${upgrade.cost.toLocaleString()}z, materials in your item box)`}
-          aria-label="Upgrade available"
-        >
-          ▲
-        </span>
-      )}
+      {owned && <span className="sr-only"> (owned)</span>}
+      {canUpgrade && <span className="sr-only"> (you can make this upgrade now)</span>}
       {node.children && (
         <p
           className={styles.toggle}
@@ -136,6 +127,13 @@ export default function WeaponTreeRow({
           id={node.slug}
           className={rowClass}
           href={href}
+          title={
+            canUpgrade && upgrade?.status === "ready"
+              ? `You can make this upgrade now (${upgrade.cost.toLocaleString()}z, materials in your item box)`
+              : owned
+                ? "In your equipment box"
+                : undefined
+          }
           onPointerEnter={onPointerEnter}
           onFocus={onPointerEnter}
         >
