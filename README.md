@@ -34,6 +34,8 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 - Yaas
 - Zack
 
+In-game item IDs (`data/items.json`, used by the save loader on `/hunter`) come from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer), [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) and [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini). See `scripts/import-items.ts`.
+
 ## Development
 
 The site is a statically exported [Next.js](https://nextjs.org/) app.

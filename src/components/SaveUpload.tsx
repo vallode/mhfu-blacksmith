@@ -5,6 +5,7 @@ import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSav
 import { useSave } from "@/context/SaveContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
+import HunterInventory from "@/components/HunterInventory";
 import styles from "@/styles/hunter.module.scss";
 
 function formatZenny(n: number): string {
@@ -27,9 +28,11 @@ interface CharacterCardProps {
   showUseButton: boolean;
   decrypted: boolean;
   onUse: (index: number) => void;
+  /** Expand the item box by default (only when a single hunter is shown). */
+  boxOpen: boolean;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted, onUse }: CharacterCardProps) {
+function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxOpen }: CharacterCardProps) {
   return (
     <Card>
       <div className={styles["hunter-profile"]}>
@@ -42,7 +45,6 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
           <div className={styles["hunter-profile__stat"]}>
             <span className={styles["hunter-profile__label"]}>Zenny</span>
             <span className={styles["hunter-profile__value"]}>
-              <img src="/images/zenny.png" alt="" />
               {formatZenny(character.zenny)}
             </span>
           </div>
@@ -59,6 +61,8 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse }: Ch
             </span>
           </div>
         </div>
+
+        <HunterInventory pouch={character.itemPouch} box={character.itemChest} boxOpen={boxOpen} />
 
         {decrypted && (
           <p className={styles["save-upload__source"]}>
@@ -252,6 +256,7 @@ export default function SaveUpload() {
               showUseButton={false}
               decrypted={result!.decrypted}
               onUse={selectCharacter}
+              boxOpen
             />
             <button
               className={styles["hunter-profile__use-btn"]}
@@ -273,6 +278,7 @@ export default function SaveUpload() {
                 showUseButton={showUseButton}
                 decrypted={result!.decrypted}
                 onUse={selectCharacter}
+                boxOpen={false}
               />
             );
           })}
