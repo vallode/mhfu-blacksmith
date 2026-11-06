@@ -7,6 +7,7 @@ import OfflineDownload from "@/components/OfflineDownload";
 import OfflineNavGuard from "@/components/OfflineNavGuard";
 import SaveSyncReconnect from "@/components/SaveSyncReconnect";
 import { SaveProvider } from "@/context/SaveContext";
+import { HunterProgressProvider } from "@/context/HunterProgressContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { OfflineProvider } from "@/context/OfflineContext";
@@ -38,16 +39,18 @@ export default function RootLayout({
       <body>
         <PreferencesProvider>
           <SaveProvider>
-            <ToastProvider>
-              <OfflineProvider>
-                <FileSyncProvider>
-                  <OfflineNavGuard>{children}</OfflineNavGuard>
-                  <GlobalSearch />
-                  <OfflineDownload />
-                  <SaveSyncReconnect />
-                </FileSyncProvider>
-              </OfflineProvider>
-            </ToastProvider>
+            <HunterProgressProvider>
+              <ToastProvider>
+                <OfflineProvider>
+                  <FileSyncProvider>
+                    <OfflineNavGuard>{children}</OfflineNavGuard>
+                    <GlobalSearch />
+                    <OfflineDownload />
+                    <SaveSyncReconnect />
+                  </FileSyncProvider>
+                </OfflineProvider>
+              </ToastProvider>
+            </HunterProgressProvider>
           </SaveProvider>
         </PreferencesProvider>
       </body>

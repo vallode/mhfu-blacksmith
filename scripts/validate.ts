@@ -249,6 +249,40 @@ for (const file of fs.readdirSync(monsterDataDir).sort().filter((e) => e.endsWit
   console.log(`  ${category}: ${count} monsters`);
 }
 
+// ─── Equipment IDs ────────────────────────────────────────────────────────────
+
+section("Validating equipment IDs…");
+
+const equipmentIdsFile = path.join(dataDir, "equipment-ids.json");
+if (!fs.existsSync(equipmentIdsFile)) {
+  error("Missing data/equipment-ids.json (run `pnpm generate-equipment-ids`)");
+} else {
+  type IdEntry = { name: string; type?: string; sex?: string } | null;
+  const ids = JSON.parse(fs.readFileSync(equipmentIdsFile, "utf-8")) as Record<string, IdEntry[]>;
+
+  const readNames = (file: string, key: string) =>
+    new Set(
+      (JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"))[key] as Record<string, unknown>[])
+        .filter((i) => !("donotrender" in i))
+        .map((i) => i.name as string)
+    );
+  const weaponNames = new Map(weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]));
+
+  for (const [slot, entries] of Object.entries(ids)) {
+    const armorNames = slot === "melee" || slot === "ranged" ? null : readNames(`armor/${slot}.json`, "armor");
+    let mapped = 0;
+    entries.forEach((entry, id) => {
+      if (!entry) return;
+      mapped++;
+      const names = armorNames ?? weaponNames.get(entry.type ?? "");
+      if (!names?.has(entry.name)) {
+        error(`equipment-ids ${slot}[${id}]: "${entry.name}"${entry.type ? ` (${entry.type})` : ""} not found in data/ (rerun \`pnpm generate-equipment-ids\`)`);
+      }
+    });
+    console.log(`  ${slot}: ${mapped} IDs mapped`);
+  }
+}
+
 // ─── Items (in-game item IDs) ─────────────────────────────────────────────────
 
 section("Validating items…");

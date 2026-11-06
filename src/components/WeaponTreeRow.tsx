@@ -7,6 +7,7 @@ import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
 import { WEAPON_TYPES } from "@/lib/constants";
 import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
+import { useHunterProgress } from "@/context/HunterProgressContext";
 import styles from "./WeaponTreeRow.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
@@ -17,6 +18,8 @@ interface WeaponTreeRowProps {
   /** Same key TreeScroll uses for this tree; persists collapse state across navigation. */
   treeKey: string;
   activeSlug?: string;
+  /** The enclosing row's page, if any: the weapon this one is upgraded from. */
+  parentHref?: string;
 }
 
 /** Map a tree-row href to its data bundle, so we can warm the cache on hover. */
@@ -37,6 +40,7 @@ export default function WeaponTreeRow({
   basePath,
   treeKey,
   activeSlug,
+  parentHref,
 }: WeaponTreeRowProps) {
   const [collapsed, setCollapsed] = useState(() =>
     isNodeCollapsed(treeKey, node.slug),
@@ -51,6 +55,16 @@ export default function WeaponTreeRow({
       : `${basePath}${node.slug}/`
     : undefined;
   const isActive = activeSlug === node.slug;
+
+  // Markers for the loaded hunter: owned pieces, and weapons they can make
+  // from an owned parent with what's in their item box right now.
+  const progress = useHunterProgress();
+  const owned = href ? progress.isOwned(href) : false;
+  const upgrade =
+    progress.active && href?.startsWith("/blacksmith/") && !owned && parentHref && progress.isOwned(parentHref)
+      ? progress.upgradeCheck(node.type, node.slug)
+      : null;
+  const canUpgrade = upgrade?.status === "ready";
 
   const onToggleClick = (event: {
     preventDefault(): void;
@@ -80,6 +94,8 @@ export default function WeaponTreeRow({
   const rowClass = cn(styles.row, {
     [styles["row--external"]]: isExternal,
     [styles["row--active"]]: isActive,
+    [styles["row--owned"]]: owned,
+    [styles["row--upgrade"]]: canUpgrade,
   });
 
   const inner = (
@@ -95,6 +111,8 @@ export default function WeaponTreeRow({
         />
       )}
       <p className={styles.name}>{node.name}</p>
+      {owned && <span className="sr-only"> (owned)</span>}
+      {canUpgrade && <span className="sr-only"> (you can make this upgrade now)</span>}
       {node.children && (
         <p
           className={styles.toggle}
@@ -120,6 +138,13 @@ export default function WeaponTreeRow({
           id={node.slug}
           className={rowClass}
           href={href}
+          title={
+            canUpgrade && upgrade?.status === "ready"
+              ? `You can make this upgrade now (${upgrade.cost.toLocaleString()}z, materials in your item box)`
+              : owned
+                ? "In your equipment box"
+                : undefined
+          }
           onPointerEnter={onPointerEnter}
           onFocus={onPointerEnter}
         >
@@ -145,6 +170,7 @@ export default function WeaponTreeRow({
               basePath={basePath}
               treeKey={treeKey}
               activeSlug={activeSlug}
+              parentHref={href}
             />
           ))}
         </ul>

@@ -64,7 +64,7 @@ test("decrypts both layers and finds the two hunters", async () => {
   const [a, b, c] = r.characters;
   assert.equal(c, null, "slot 3 is empty");
   assert.deepEqual(
-    [a, b].map((h) => h && [h.name, h.sex, h.zenny, h.equipTotal, h.itemChest.length, h.itemPouch.length]),
+    [a, b].map((h) => h && [h.name, h.sex, h.zenny, h.equipBox.length, h.itemChest.length, h.itemPouch.length]),
     [
       ["Gideon", "Female", 1223209, 79, 914, 15],
       ["MEARO", "Female", 9999999, 16, 999, 14],
@@ -161,4 +161,39 @@ test("a file no region can decrypt says so", async () => {
   await onmessage({ data: { buffer: junk.buffer, region: "us" } });
   assert.equal(message().ok, false);
   assert.match((message() as { error: string }).error, /couldn't be decrypted with any region's keys/);
+});
+
+// Equipment box slots resolve through data/equipment-ids.json (by equip type code).
+const equipmentIds = JSON.parse(fs.readFileSync(path.join(root, "data/equipment-ids.json"), "utf-8")) as Record<
+  string,
+  ({ name: string; type?: string } | null)[]
+>;
+const EQUIP_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"];
+const equipName = (s: { type: number; id: number }) => equipmentIds[EQUIP_SLOTS[s.type]]?.[s.id]?.name;
+
+test("every equipment box slot resolves to an item", async () => {
+  for (const h of ok(await parse("us")).characters) {
+    for (const s of h?.equipBox ?? []) {
+      assert.ok(equipName(s), `${h!.name}: equip type ${s.type} ID ${s.id} has no item`);
+    }
+  }
+});
+
+test("equipment IDs line up: a starter kit, and whole armor sets across all five slots", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  // A fresh hunter's box: one bone weapon per class plus the Mafumofu set.
+  assert.deepEqual(mearo.equipBox.map(equipName), [
+    "Bone Blade", "Large Bone", "Bone Club", "Ivory Horn", "Longhorn", "Bone Gunlance", "Bone Kris",
+    "Bone Scythe", "Shooter's Barrel", "Bone Shooter", "Hunter's Bow I",
+    "Mafumofu Hood", "Mafumofu Jacket", "Mafumofu Mittens", "Mafumofu Coat", "Mafumofu Boots",
+  ]);
+  // Each slot's ID table is separate, so a misaligned table would break these sets up.
+  const armor = gideon.equipBox.filter((s) => s.type <= 4).map(equipName);
+  for (const set of [
+    ["Ucamulbas Mask", "Ucamulbas Aegis", "Ucamulbas Claw", "Ucamulbas Cincture", "Ucamulbas Hessian"],
+    ["Empress Crown X", "Empress Mail X", "Empress Vambraces X", "Empress Tasset X", "Empress Greaves X"],
+    ["Dark Akantor Mask", "Dark Akantor Aegis", "Dark Akantor Claw", "DarkAkantor Cincture", "Dark Akantor Hessian"],
+  ]) {
+    for (const piece of set) assert.ok(armor.includes(piece), `Gideon's box should include ${piece}`);
+  }
 });

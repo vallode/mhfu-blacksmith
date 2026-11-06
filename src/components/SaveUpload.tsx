@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { saveFromCharacter } from "@/lib/save-store";
 import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
@@ -96,7 +97,7 @@ function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxO
           <div className={styles["hunter-profile__stat"]}>
             <span className={styles["hunter-profile__label"]}>Equipment</span>
             <span className={styles["hunter-profile__value"]}>
-              {character.equipTotal}
+              {character.equipBox.length}
             </span>
           </div>
           <div className={styles["hunter-profile__stat"]}>
@@ -189,11 +190,7 @@ export default function SaveUpload() {
       const character = result?.characters[index];
       if (!character) return;
       const region = (regionRef.current?.value ?? "us") as Region;
-      load({
-        name: character.name,
-        region,
-        items: hunterItems(character),
-      });
+      load(saveFromCharacter(character, region));
       toast({
         id: "hunter-selected",
         title: "Hunter selected",

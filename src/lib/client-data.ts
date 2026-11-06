@@ -77,6 +77,14 @@ export function getBundle(file: string): Promise<Bundle> {
   return p;
 }
 
+/** A bundle or the dictionaries if already loaded, without fetching. */
+export function peekBundle(file: string): Bundle | null {
+  return bundleCache.get(file) ?? null;
+}
+export function peekDictionaries(): Dictionaries | null {
+  return dictionariesCache;
+}
+
 /**
  * Warm the cache for a bundle (and the dictionaries) ahead of navigation,
  * e.g. on link hover/focus. No-op if already loading/loaded.
