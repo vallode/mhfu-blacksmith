@@ -13,9 +13,9 @@ import { cn } from "@/lib/cn";
 // Small grey caption (stat labels, "Active hunter").
 const label = "text-[1.4rem] leading-none text-white/50";
 
-// Explanatory text inside the upload/active-hunter cards. Card's paragraph
-// reset still overrides the colour and line height (see Card.module.scss).
-const note = "m-0 text-[1.4rem] leading-[1.4] text-white/40";
+// Explanatory text inside the upload/active-hunter cards; wraps, unlike the
+// one-line card paragraph default.
+const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/40";
 
 // Status line under the cards (reading, errors, no hunters found).
 const notice = "m-0 py-[1.3rem] text-center text-[1.8rem] text-white/60";
