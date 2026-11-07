@@ -273,13 +273,26 @@ Status:
 
 `export-site` writes the models the site shows into `public/models/` and
 lists them in `public/models/manifest.json`, which the site's `ModelViewer`
-reads. Monsters map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
-vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
-aliases for the two names that differ), and written as
-`public/models/monsters/emNN.glb`. Entries without a monster page (Veggie
-Elder, Poogie, ...) are skipped. Weapons and armor aren't exported yet: the
-weapon/armor -> model-file link is in EBOOT tables (`modelId`,
-`MaleID`/`FemaleID`), so it needs a decrypted EBOOT.
+reads. The manifest is keyed by the site's own names (monster name,
+`<type>/<weapon name>`, `<slot>/<armor name>`):
+
+- **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
+  vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
+  aliases for the two names that differ). IDs without a monster page
+  (Veggie Elder, Poogie, ...) are skipped.
+- **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
+  by the equipment ID that `data/equipment-ids.json` names, holds the model
+  ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
+  with a page get a model whose `modelToWeaponType` matches the page's type,
+  and renders match the site's weapon images.
+- **Armor** needs `eboot.bin` too: each armor entry holds a male and a female
+  model ID into `player/{m,f}/<folder>/`. See `src/tables/armor-models.ts`:
+  the `ArmorValuePTR` arrays hold the *next* slot's armor compared with the
+  labels in `src/tables/armor.ts` (helmets are in the array labeled
+  "chest", and so on), confirmed by both stats and model-folder ranges.
+
+Each run replaces the categories it could export and keeps the rest of the
+previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 
 ## Emit layer
 
@@ -311,6 +324,12 @@ derivation notes for specifics):
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):
 
+- **Armor slots are rotated**: `src/tables/armor.ts` labels the five
+  `ArmorValuePTR` arrays head/chest/arm/waist/leg, but each holds the next
+  slot's armor (helmets are in the "chest" array, legs in "head"), with the
+  counts rotated too. Found while mapping armor models; see
+  `src/tables/armor-models.ts`. `emit/armor.ts` hasn't been corrected yet,
+  which likely explains the next item.
 - **Armor name alignment**: the stat array and the name list drift apart.
   `src/overlay/armor-index-corrections.json` fixes 68–73% of entries per slot;
   the rest fall back to raw position ([#30](https://github.com/vallode/mhfu-blacksmith/issues/30)). A handful of tail
