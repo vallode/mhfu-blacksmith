@@ -241,7 +241,11 @@ notes and options: [#35](https://github.com/vallode/mhfu-blacksmith/issues/35).
 ## 3D models (experimental)
 
 ```bash
+# any .pac file or directory of them -> .glb files, for inspection
 pnpm --filter mhfu-extract models --in .cache/mhfu/data-bin --out .cache/mhfu/glb
+
+# the models the website shows -> ../../public/models/ + manifest.json
+pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 ```
 
 `models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
@@ -261,14 +265,23 @@ Status:
 - Output is the static bind pose: mesh pieces are already in model space, so
   no skeleton is needed to assemble them, but skinning weights are dropped
   and there's no animation (`motion/*.bin` isn't decoded).
-- Large monsters' bounding boxes are much bigger than the visible model, so
-  framing a viewer on the box leaves them small; not yet investigated.
-- A package's second PMO (large monsters have one) isn't converted yet.
+- A package's second PMO isn't converted. On large monsters it's a few
+  small flat quads (probably shadow or effect planes).
 - Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
   dump unpacked before that existed has wrong names (e.g. its
   `weapon/we000.pac` is male waist armor); unpack it again.
 
+`export-site` writes the models the site shows into `public/models/` and
+lists them in `public/models/manifest.json`, which the site's `ModelViewer`
+reads. Monsters map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
+vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
+aliases for the two names that differ), and written as
+`public/models/monsters/emNN.glb`. Entries without a monster page (Veggie
+Elder, Poogie, ...) are skipped. Weapons and armor aren't exported yet: the
+weapon/armor -> model-file link is in EBOOT tables (`modelId`,
+`MaleID`/`FemaleID`), so it needs a decrypted EBOOT.
 
+## Emit layer
 
 `src/emit/*.ts` maps the raw structs from `src/tables/` onto the exact
 `data/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s

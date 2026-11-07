@@ -10,6 +10,8 @@ import tableStyles from "@/styles/tables.module.scss";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ModelViewer from "@/components/ModelViewer";
+import { useMonsterModel } from "@/lib/models";
 
 interface Props {
   category: MonsterCategory;
@@ -31,6 +33,7 @@ const HITZONE_LABELS: Record<string, string> = {
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
+  const modelUrl = useMonsterModel(monster?.name);
 
   if (loading) {
     return (
@@ -113,6 +116,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           <div className={cardStyles["weapon-card__details"]}>
             {monster.description && (
               <p className="description">{monster.description}</p>
+            )}
+
+            {modelUrl && (
+              <>
+                <hr />
+                <ModelViewer src={modelUrl} label={monster.name} />
+              </>
             )}
 
             <hr />

@@ -1,0 +1,9 @@
+{
+  "monsters": {
+    "Bullfango": "monsters/em05.glb",
+    "Fatalis": "monsters/em02.glb",
+    "Kelbi": "monsters/em03.glb",
+    "Mosswine": "monsters/em04.glb",
+    "Rathian": "monsters/em01.glb"
+  }
+}

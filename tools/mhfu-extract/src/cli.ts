@@ -6,9 +6,11 @@
  *   tsx src/cli.ts extract --unpacked <dir> --out <dir>
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
+ *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>]
  */
 import { fileURLToPath } from "node:url";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
+import { runExportSite } from "./cli/export-site.js";
 import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
 import { runUnpack } from "./cli/unpack.js";
@@ -47,7 +49,8 @@ const USAGE = `Usage:
   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
   tsx src/cli.ts extract --unpacked <dir> --out <dir>
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
-  tsx src/cli.ts models  --in <file.pac|dir> --out <dir>`;
+  tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
+  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -86,6 +89,15 @@ export async function main(argv: string[]): Promise<void> {
       const results = await runModels({ in: requireFlag(flags, "in"), out: requireFlag(flags, "out") });
       const converted = results.filter((result) => !result.error).length;
       console.log(`\nDone. Converted ${converted} of ${results.length} packages.`);
+      return;
+    }
+    case "export-site": {
+      const manifest = await runExportSite({
+        unpacked: requireFlag(flags, "unpacked"),
+        data: flags.data ?? "../../data",
+        out: flags.out ?? "../../public/models",
+      });
+      console.log(`\nDone. ${Object.keys(manifest.monsters).length} monster models in the manifest.`);
       return;
     }
     default:

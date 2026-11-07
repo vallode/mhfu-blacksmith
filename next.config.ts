@@ -115,6 +115,23 @@ export default withPWA({
         },
       },
       {
+        // 3D models (public/models, see tools/mhfu-extract export-site): too
+        // big to precache, so keep the ones a visitor has viewed.
+        urlPattern: /\/models\/.+\.glb$/,
+        handler: "CacheFirst",
+        options: {
+          cacheName: "models",
+          expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
+        },
+      },
+      {
+        urlPattern: /\/models\/manifest\.json$/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "models",
+        },
+      },
+      {
         // Cache images (pixel art sprites)
         urlPattern: /\/images\/.+\.(png|jpg|webp|gif)$/,
         handler: "CacheFirst",

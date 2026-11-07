@@ -97,50 +97,69 @@ export function buildGlb(pmo: Pmo, textures: TmhImage[], name: string): { glb: B
     };
   });
 
+  // PMO meshes are already in model space, so every vertex group sharing a
+  // material (and attribute layout) can be merged into one glTF primitive.
+  // Large monsters have 100+ groups; merging keeps the JSON and draw calls small.
+  interface Group {
+    material: number;
+    hasNormals: boolean;
+    hasUvs: boolean;
+    positions: number[];
+    normals: number[];
+    uvs: number[];
+    indices: number[];
+  }
+  const groups = new Map<string, Group>();
+  for (const mesh of pmo.meshes) {
+    for (const primitive of mesh.primitives) {
+      const { vertices, triangles } = primitive.geometry;
+      if (triangles.length === 0) continue;
+      const hasNormals = vertices.every((v) => v.normal);
+      const hasUvs = vertices.every((v) => v.uv);
+      const key = `${primitive.materialIndex}:${hasNormals}:${hasUvs}`;
+      let group = groups.get(key);
+      if (!group) {
+        group = { material: primitive.materialIndex, hasNormals, hasUvs, positions: [], normals: [], uvs: [], indices: [] };
+        groups.set(key, group);
+      }
+      const base = group.positions.length / 3;
+      for (const v of vertices) {
+        for (let k = 0; k < 3; k++) group.positions.push(v.position[k]! * pmo.scale[k]!);
+        if (hasNormals) {
+          const [x, y, z] = v.normal!;
+          const length = Math.hypot(x, y, z) || 1;
+          group.normals.push(x / length, y / length, z / length);
+        }
+        if (hasUvs) group.uvs.push(v.uv![0] * mesh.uvScale[0], v.uv![1] * mesh.uvScale[1]);
+      }
+      for (const triangle of triangles) group.indices.push(triangle[0] + base, triangle[1] + base, triangle[2] + base);
+    }
+  }
+
   const stats: GlbStats = { primitives: 0, vertices: 0, triangles: 0 };
-  const meshes = pmo.meshes.map((mesh, m) => ({
-    name: `mesh${m}`,
-    primitives: mesh.primitives
-      .filter((primitive) => primitive.geometry.triangles.length > 0)
-      .map((primitive) => {
-        const { vertices, triangles } = primitive.geometry;
-        const positions = new Float32Array(vertices.length * 3);
-        const hasNormals = vertices.every((v) => v.normal);
-        const hasUvs = vertices.every((v) => v.uv);
-        const normals = hasNormals ? new Float32Array(vertices.length * 3) : null;
-        const uvs = hasUvs ? new Float32Array(vertices.length * 2) : null;
-        vertices.forEach((v, i) => {
-          for (let k = 0; k < 3; k++) positions[i * 3 + k] = v.position[k]! * pmo.scale[k]!;
-          if (normals) {
-            const [x, y, z] = v.normal!;
-            const length = Math.hypot(x, y, z) || 1;
-            normals.set([x / length, y / length, z / length], i * 3);
-          }
-          if (uvs) uvs.set([v.uv![0] * mesh.uvScale[0], v.uv![1] * mesh.uvScale[1]], i * 2);
-        });
-        const flat = triangles.flat();
-        const indices = vertices.length > 0xffff ? new Uint32Array(flat) : new Uint16Array(flat);
-        stats.primitives++;
-        stats.vertices += vertices.length;
-        stats.triangles += triangles.length;
-        return {
-          attributes: {
-            POSITION: addAccessor(positions, "VEC3", FLOAT, ARRAY_BUFFER, true),
-            ...(normals ? { NORMAL: addAccessor(normals, "VEC3", FLOAT, ARRAY_BUFFER) } : {}),
-            ...(uvs ? { TEXCOORD_0: addAccessor(uvs, "VEC2", FLOAT, ARRAY_BUFFER) } : {}),
-          },
-          indices: addAccessor(indices, "SCALAR", indices instanceof Uint32Array ? UNSIGNED_INT : UNSIGNED_SHORT, ELEMENT_ARRAY_BUFFER),
-          material: primitive.materialIndex,
-        };
-      }),
-  }));
+  const primitives = [...groups.values()].map((group) => {
+    const vertexCount = group.positions.length / 3;
+    const indices = vertexCount > 0xffff ? new Uint32Array(group.indices) : new Uint16Array(group.indices);
+    stats.primitives++;
+    stats.vertices += vertexCount;
+    stats.triangles += group.indices.length / 3;
+    return {
+      attributes: {
+        POSITION: addAccessor(new Float32Array(group.positions), "VEC3", FLOAT, ARRAY_BUFFER, true),
+        ...(group.hasNormals ? { NORMAL: addAccessor(new Float32Array(group.normals), "VEC3", FLOAT, ARRAY_BUFFER) } : {}),
+        ...(group.hasUvs ? { TEXCOORD_0: addAccessor(new Float32Array(group.uvs), "VEC2", FLOAT, ARRAY_BUFFER) } : {}),
+      },
+      indices: addAccessor(indices, "SCALAR", indices instanceof Uint32Array ? UNSIGNED_INT : UNSIGNED_SHORT, ELEMENT_ARRAY_BUFFER),
+      material: group.material,
+    };
+  });
 
   const json = {
     asset: { version: "2.0", generator: "mhfu-extract" },
     scene: 0,
-    scenes: [{ nodes: meshes.map((_, i) => i) }],
-    nodes: meshes.map((mesh, i) => ({ name: mesh.name, mesh: i })),
-    meshes,
+    scenes: [{ nodes: [0] }],
+    nodes: [{ name, mesh: 0 }],
+    meshes: [{ name, primitives }],
     materials,
     ...(images.length ? { images, textures: gltfTextures, samplers: [{ magFilter: 9729, minFilter: 9729, wrapS: 10497, wrapT: 10497 }] } : {}),
     accessors,
