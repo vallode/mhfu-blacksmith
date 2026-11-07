@@ -9,9 +9,9 @@
  * `type`/`color` lookup (`overlay/materials.ts`), which matches by exact
  * name and silently falls back to `UNKNOWN_MATERIAL_STYLE` on a mismatch.
  *
- * Built by a one-off analysis (not shipped as a script, since — unlike
- * `generate-armor-corrections.ts` — it needed several rounds of hand review;
- * see vallode/mhfu-blacksmith#34 for the full methodology) that diffed extracted
+ * Built by a one-off analysis (not shipped as a script, since it needed
+ * several rounds of hand review; see vallode/mhfu-blacksmith#34 for the
+ * full methodology) that diffed extracted
  * vs. committed `create_mats` entries at matching array position + quantity
  * to find name-only mismatches, scored candidates by normalized edit-
  * distance/token-set similarity, then hand-reviewed borderline cases to drop
