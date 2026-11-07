@@ -32,6 +32,20 @@ test("readPac splits entries and identifies magics", () => {
   assert.equal(entries[1]!.data.toString("latin1"), ".TMH0.14");
 });
 
+test("readPac accepts unused (0, 0) slots, as in small monsters' packages", () => {
+  const mesh = Buffer.from("pmo\x001.0\x00", "latin1");
+  const buf = Buffer.alloc(4 + 2 * 8 + mesh.length);
+  buf.writeUInt32LE(2, 0);
+  buf.writeUInt32LE(20, 4); // entry 0 right after the header
+  buf.writeUInt32LE(mesh.length, 8);
+  // entry 1 left as (0, 0)
+  mesh.copy(buf, 20);
+  assert.ok(isPac(buf));
+  const entries = readPac(buf);
+  assert.equal(entries[0]!.magic, "pmo");
+  assert.equal(entries[1]!.data.length, 0);
+});
+
 test("isPac rejects non-package data such as motion tables", () => {
   // First bytes of a real EU motion table (misnamed weapon/we009.pac): count 100 at offset 0x38 overruns.
   const buf = Buffer.alloc(64);

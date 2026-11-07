@@ -1,7 +1,8 @@
 /**
  * Build a binary glTF 2.0 (`.glb`) from a decoded PMO mesh and its TMH
  * textures. One glTF primitive per PMO vertex group; textures embedded as PNG.
- * Skinning weights are dropped for now (static bind pose only).
+ * Skinning weights are dropped for now (static bind pose only); mesh pieces
+ * are already in model space, so they assemble without the skeleton.
  */
 import type { Pmo } from "./pmo.js";
 import { encodePng } from "./png.js";

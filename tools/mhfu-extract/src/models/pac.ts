@@ -5,7 +5,9 @@
  * Layout (see svanheulen/mhff `psp/package.py`): u32 entry count, then
  * `count` pairs of (u32 offset, u32 size), offsets relative to the start of
  * the file. Entries are not named; their type is identified by magic
- * (`pmo\0` mesh, `.TMH` texture set, others not yet identified).
+ * (`pmo\0` mesh, `.TMH` texture set, others not yet identified). Unused
+ * slots are (0, 0): small monsters' `emmodel/em03.pac` declares 7 entries
+ * but fills 4.
  */
 import { BinaryReader } from "../binary/reader.js";
 
@@ -27,6 +29,7 @@ export function isPac(buf: Buffer): boolean {
   for (let i = 0; i < count; i++) {
     const offset = reader.u32(4 + i * 8);
     const size = reader.u32(8 + i * 8);
+    if (offset === 0 && size === 0) continue; // unused slot
     if (offset < 4 + count * 8 || offset + size > buf.length) return false;
   }
   return true;

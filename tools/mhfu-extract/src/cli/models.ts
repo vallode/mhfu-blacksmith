@@ -2,9 +2,9 @@
  * `models` subcommand — converts `.pac` model packages from an `unpack`
  * output (`data-bin/weapon/*.pac`, ...) into `.glb` files.
  *
- * Experimental: weapons only render correctly so far. Monster packages hold
- * one mesh per bone with positions in bone space, so without the skeleton
- * (not yet decoded) their pieces pile up around the origin.
+ * Experimental: output is the static bind pose only (no skeleton or
+ * animation). Verified by rendering weapons, armor and monsters from an EU
+ * disc; see README "3D models".
  */
 import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
