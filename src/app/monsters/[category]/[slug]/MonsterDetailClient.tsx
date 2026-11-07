@@ -5,10 +5,11 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
 import cardStyles from "@/styles/weapon-card.module.scss";
-import iconStyles from "@/components/Icon.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
+import { monsterPortrait } from "@/lib/icon-style";
+import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   category: MonsterCategory;
@@ -41,7 +42,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Loading…</p>
       </>
     );
@@ -56,7 +57,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
+        <BorderRule />
         <p style={{ padding: "2rem" }}>Not found.</p>
       </>
     );
@@ -75,7 +76,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           </Link>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         {/* Monster list sidebar */}
@@ -105,7 +106,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               monster
               imgSrc={`/images/monsters/${slug}.png`}
               alt={monster.name}
-              className={iconStyles.monsterIcon}
+              className={monsterPortrait}
             />
           </div>
 
@@ -117,7 +118,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             <hr />
 
             {hitzoneEntries.length > 0 && (
-              <table className={tableStyles["monster-hz"]}>
+              <table className={hitzoneTable}>
                 <thead>
                   <tr>
                     <th>Part</th>

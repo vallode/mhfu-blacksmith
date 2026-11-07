@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WEAPON_TYPES } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import BorderRule from "@/components/BorderRule";
 
 function formatWeaponName(type: string): string {
   return type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -26,7 +27,7 @@ export default function BlacksmithListContent() {
         </div>
       </nav>
 
-      <hr className="border" />
+      <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
         <Card className="overflow-auto py-7">

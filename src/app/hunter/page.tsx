@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import SaveUpload from "@/components/SaveUpload";
-import styles from "@/styles/hunter.module.scss";
+import BorderRule from "@/components/BorderRule";
 
 export const metadata: Metadata = {
   title: "Hunter Profile — MHFU Blacksmith",
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function HunterPage() {
   return (
-    <div className={styles["hunter-page"]}>
+    <div className="flex flex-col items-center px-[1.3rem] pb-[4rem]">
       <Link className="blacksmith__title" href="/">
         <img src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
 
-      <hr className="border" />
+      <BorderRule />
 
       <SaveUpload />
     </div>

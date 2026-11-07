@@ -8,6 +8,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import { useDecoration } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   slug: string;
@@ -16,7 +17,9 @@ interface Props {
 export default function DecorationDetailClient({ slug }: Props) {
   const { item: deco, tree, loading } = useDecoration(slug);
 
-  if (loading) {
+  if (loading || !deco) {
+    // Keep the split layout (and the tree card frame) in place while the data
+    // bundle loads so the sidebar doesn't flash in once it resolves.
     return (
       <>
         <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
@@ -26,23 +29,17 @@ export default function DecorationDetailClient({ slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
-        <p style={{ padding: "2rem" }}>Loading…</p>
-      </>
-    );
-  }
-  if (!deco) {
-    return (
-      <>
-        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-          <div>
-            <Link href="/decorations/" aria-label="Back">
-              <Icon type="arrow" nav alt="Back" />
-            </Link>
-          </div>
-        </nav>
-        <hr className="border" />
-        <p style={{ padding: "2rem" }}>Not found.</p>
+        <BorderRule />
+        <div className="split-page">
+          <Card variant="weapon-tree">
+            <TreeScroll treeKey={"decorations"} activeSlug={slug}>
+              {null}
+            </TreeScroll>
+          </Card>
+          <Card>
+            <p>{loading ? "Loading…" : "Not found."}</p>
+          </Card>
+        </div>
       </>
     );
   }
@@ -56,7 +53,7 @@ export default function DecorationDetailClient({ slug }: Props) {
           </Link>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         <Card variant="weapon-tree">

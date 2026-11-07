@@ -9,6 +9,7 @@ import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   slot: ArmorSlot;
@@ -21,7 +22,9 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
   const basePath = `/armorsmith/${slot}/${rank}/`;
 
-  if (loading) {
+  if (loading || !piece) {
+    // Keep the split layout (and the tree card frame) in place while the data
+    // bundle loads so the sidebar doesn't flash in once it resolves.
     return (
       <>
         <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
@@ -31,23 +34,17 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
             </Link>
           </div>
         </nav>
-        <hr className="border" />
-        <p style={{ padding: "2rem" }}>Loading…</p>
-      </>
-    );
-  }
-  if (!piece) {
-    return (
-      <>
-        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-          <div>
-            <Link href="/armorsmith/" aria-label="Back">
-              <Icon type="arrow" nav alt="Back" />
-            </Link>
-          </div>
-        </nav>
-        <hr className="border" />
-        <p style={{ padding: "2rem" }}>Not found.</p>
+        <BorderRule />
+        <div className="split-page">
+          <Card variant="weapon-tree">
+            <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>
+              {null}
+            </TreeScroll>
+          </Card>
+          <Card>
+            <p>{loading ? "Loading…" : "Not found."}</p>
+          </Card>
+        </div>
       </>
     );
   }
@@ -61,7 +58,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           </Link>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         {tree && (

@@ -7,6 +7,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorTree } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   slot: ArmorSlot;
@@ -34,7 +35,7 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
           </button>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         <Card variant="weapon-tree">
