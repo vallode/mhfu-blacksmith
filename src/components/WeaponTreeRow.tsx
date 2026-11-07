@@ -5,9 +5,11 @@ import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
-import { WEAPON_TYPES } from "@/lib/constants";
 import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
+import { useTreeFilterResult } from "@/context/TreeFilterContext";
+import type { MaterialCheck } from "@/lib/hunter-progress";
+import { rowStatus } from "@/lib/tree-filter";
 import styles from "./WeaponTreeRow.module.scss";
 import type { WeaponTreeNode } from "@/lib/types";
 
@@ -34,6 +36,29 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
   return null;
 }
 
+/** One square per improve material, filled when the item box has enough of it. */
+function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
+  const have = materials.filter((m) => m.have >= m.need).length;
+  const all = have === materials.length;
+  return (
+    <span
+      className={styles.pips}
+      role="img"
+      aria-label={`${have} of ${materials.length} materials owned`}
+      title={materials
+        .map((m) => `${m.name}: ${Number.isFinite(m.have) ? m.have : "∞"}/${m.need}`)
+        .join("\n")}
+    >
+      {materials.map((m, i) => (
+        <span key={i} className={cn(styles.pip, m.have >= m.need && styles["pip--have"])} />
+      ))}
+      <span className={cn(styles.pipCount, !all && styles["pipCount--short"])}>
+        {have}/{materials.length}
+      </span>
+    </span>
+  );
+}
+
 export default function WeaponTreeRow({
   node,
   sectionType,
@@ -46,24 +71,16 @@ export default function WeaponTreeRow({
     isNodeCollapsed(treeKey, node.slug),
   );
 
-  const isExternal =
-    node.type !== sectionType &&
-    (WEAPON_TYPES as readonly string[]).includes(node.type);
-  const href = node.rarity
-    ? isExternal
-      ? `/blacksmith/${node.type}/${node.slug}/`
-      : `${basePath}${node.slug}/`
-    : undefined;
   const isActive = activeSlug === node.slug;
 
   // Markers for the loaded hunter: owned pieces, and weapons they can make
-  // from an owned parent with what's in their item box right now.
+  // from an owned parent with what's in their item box right now. In a
+  // filtered weapon tree the panel has already worked this out for every row.
   const progress = useHunterProgress();
-  const owned = href ? progress.isOwned(href) : false;
-  const upgrade =
-    progress.active && href?.startsWith("/blacksmith/") && !owned && parentHref && progress.isOwned(parentHref)
-      ? progress.upgradeCheck(node.type, node.slug)
-      : null;
+  const filtered = useTreeFilterResult()?.rows.get(node.slug);
+  const { href, external: isExternal, owned, upgrade } =
+    filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const dimmed = filtered ? !filtered.match : false;
   const canUpgrade = upgrade?.status === "ready";
 
   const onToggleClick = (event: {
@@ -96,6 +113,7 @@ export default function WeaponTreeRow({
     [styles["row--active"]]: isActive,
     [styles["row--owned"]]: owned,
     [styles["row--upgrade"]]: canUpgrade,
+    [styles["row--dimmed"]]: dimmed,
   });
 
   const inner = (
@@ -128,6 +146,7 @@ export default function WeaponTreeRow({
           {collapsed ? "[+]" : "[-]"}
         </p>
       )}
+      {upgrade && upgrade.status !== "unknown" && <MaterialPips materials={upgrade.materials} />}
     </>
   );
 

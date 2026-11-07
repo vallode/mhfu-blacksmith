@@ -1,0 +1,128 @@
+// Weapon tree sidebar with the hunter filter bar (see WeaponTreePanel.tsx).
+
+// The game's green selector arrows; no design token matches these.
+$arrow-fill: #3f9b2f;
+$arrow-fill-hover: #5fcf47;
+$arrow-stroke: #163a10;
+
+// How far the arrows stick out past the card frame. The tree card sits at
+// the page's left edge with only the body's 1.4rem gutter beside it, so this
+// stays inside that gutter: no clipped arrow, no horizontal page scroll.
+$arrow-out: 1.2rem;
+$arrow-size: 44px;
+$bar-inset: 4px;
+$bar-height: 56px;
+
+// Takes the tree card's place in .split-page.
+.panel {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  // Above the card (z-1) so the bar and its arrows draw over the frame.
+  z-index: 2;
+}
+
+// .split-page clips its children; let the arrows out past the tree card.
+// `min-*: 0` keeps the flex sizing that overflow: hidden gave it.
+:global(.split-page):has(> .panel .bar) {
+  min-height: 0;
+  min-width: 0;
+  overflow: visible;
+}
+
+.spacer {
+  height: $bar-height;
+}
+
+.bar {
+  align-items: center;
+  background: rgba(96, 102, 94, 0.78);
+  bottom: $bar-inset;
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+    0 0 0 2px rgba(30, 40, 26, 0.6);
+  display: flex;
+  gap: 1.6rem;
+  height: $bar-height;
+  left: $bar-inset;
+  // Clear the arrows, which overlap the bar's ends.
+  padding: 0 calc(#{$arrow-size} - #{$arrow-out} - #{$bar-inset} + 0.8rem);
+  position: absolute;
+  right: $bar-inset;
+  z-index: 2;
+}
+
+.label,
+.count {
+  font-size: 25px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+}
+
+.label {
+  color: var(--color-stat);
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.count {
+  color: white;
+  flex: 0 0 auto;
+}
+
+.arrow {
+  align-items: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  height: $arrow-size;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: calc(50% - #{$arrow-size} / 2);
+  width: $arrow-size;
+
+  &:first-child {
+    left: calc(-1 * (#{$arrow-out} + #{$bar-inset}));
+  }
+
+  &:last-child {
+    right: calc(-1 * (#{$arrow-out} + #{$bar-inset}));
+  }
+
+  svg {
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.6));
+    overflow: visible;
+  }
+
+  polygon {
+    fill: $arrow-fill;
+    stroke: $arrow-stroke;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transition: fill 0.1s;
+  }
+
+  &:hover polygon,
+  &:focus-visible polygon {
+    fill: $arrow-fill-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 0;
+  }
+}
