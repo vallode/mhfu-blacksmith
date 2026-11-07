@@ -1,8 +1,7 @@
 "use client";
 
 import WeaponNav from "@/components/WeaponNav";
-import WeaponTreeRow from "@/components/WeaponTreeRow";
-import TreeScroll from "@/components/TreeScroll";
+import WeaponTreePanel from "@/components/WeaponTreePanel";
 import Card from "@/components/Card";
 import type { WeaponType } from "@/lib/constants";
 import { useWeaponTree } from "@/lib/client-data";
@@ -13,7 +12,6 @@ interface Props {
 
 export default function WeaponTreeListClient({ type }: Props) {
   const { tree, loading } = useWeaponTree(type);
-  const basePath = `/blacksmith/${type}/`;
 
   return (
     <>
@@ -21,21 +19,7 @@ export default function WeaponTreeListClient({ type }: Props) {
       <hr className="border" />
 
       <div className="split-page">
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`weapon-${type}`}>
-            {!loading &&
-              tree?.map((node) => (
-                <ul key={node.slug}>
-                  <WeaponTreeRow
-                    node={node}
-                    sectionType={type}
-                    basePath={basePath}
-                    treeKey={`weapon-${type}`}
-                  />
-                </ul>
-              ))}
-          </TreeScroll>
-        </Card>
+        <WeaponTreePanel type={type} tree={loading ? null : tree} />
 
         <Card>
           <p>{loading ? "Loading…" : "Select a weapon from the tree."}</p>

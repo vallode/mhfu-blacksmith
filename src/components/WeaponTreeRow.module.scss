@@ -128,3 +128,54 @@
 .row--upgrade:not(:hover):not(:focus):not(.row--active)::before {
   background: linear-gradient(0.25turn, rgba(0, 0, 0, 0), rgba(110, 200, 110, 0.35), rgba(0, 0, 0, 0));
 }
+
+// Weapon tree filter (WeaponTreePanel): rows that don't match stay in place,
+// faded, so the connector lines and indentation never move.
+.row {
+  transition: opacity 0.15s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.row--dimmed {
+  opacity: 0.3;
+}
+
+// Improve materials for an upgrade the hunter could make from an owned
+// parent: filled when the item box has enough, hollow when short. Pushed to
+// the row's right edge; rows already stretch to the tree's full width.
+.pips {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin-left: auto;
+  padding-left: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.pip {
+  border: 2px solid var(--color-rarity-9);
+  height: 10px;
+  width: 10px;
+
+  &--have {
+    background: var(--color-positive);
+    border-color: var(--color-positive);
+  }
+}
+
+.pipCount {
+  color: white;
+  font-size: 15px;
+  line-height: 1;
+  margin-left: 2px;
+  white-space: nowrap;
+
+  &--short {
+    color: var(--color-rarity-9);
+  }
+}
