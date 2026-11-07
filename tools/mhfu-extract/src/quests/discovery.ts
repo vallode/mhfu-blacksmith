@@ -25,9 +25,9 @@ export interface QuestFileRef {
 const REAL_QUEST_FILE = /^mission_jpn\/m\d+\.mib$/;
 
 /** Every real `mission_jpn/m#####.mib` file's DATA.BIN TOC index + vendored path, excluding the 13 non-quest `level*.mib` files. */
-export function listQuestFiles(): QuestFileRef[] {
-  const fileList = loadFileList();
-  return questFileIndices()
+export function listQuestFiles(region: Region = "jp"): QuestFileRef[] {
+  const fileList = loadFileList(region);
+  return questFileIndices(region)
     .map((index) => ({ index, path: fileList.get(index)! }))
     .filter((ref) => REAL_QUEST_FILE.test(ref.path));
 }
@@ -53,7 +53,7 @@ export function readAllQuests(dataBinFiles: DataBinFile[], region: Region): Ques
   const quests: ParsedQuest[] = [];
   const skipped: SkippedQuestFile[] = [];
 
-  for (const ref of listQuestFiles()) {
+  for (const ref of listQuestFiles(region)) {
     const file = dataBinFiles[ref.index];
     if (!file) {
       skipped.push({ path: ref.path, reason: "missing from DATA.BIN TOC" });
