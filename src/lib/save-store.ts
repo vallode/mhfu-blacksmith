@@ -26,6 +26,8 @@ export interface SaveData {
   sex?: string;
   /** Total play time in seconds. */
   playTime?: number;
+  /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
+  slot?: number;
   savedAt: number;
 }
 
@@ -40,7 +42,8 @@ export function saveFromCharacter(
     itemPouch: ItemSlot[];
     equipBox: EquipSlot[];
   },
-  region: string
+  region: string,
+  slot?: number
 ): Omit<SaveData, "savedAt"> {
   return {
     name: character.name,
@@ -50,6 +53,7 @@ export function saveFromCharacter(
     equipment: character.equipBox,
     sex: character.sex,
     playTime: character.playTime,
+    slot,
   };
 }
 

@@ -125,13 +125,14 @@ test("the only unnamed IDs are the known placeholders", async () => {
   assert.deepEqual([...placeholders].sort((x, y) => x - y), [128, 465, 875]);
 });
 
-test("wrong region gives an error naming the right one, not garbage", async () => {
-  const r = await parse("jp");
-  assert.equal(r.ok, false, "JP keys must not 'succeed' on a US/EU save");
-  assert.match((r as { error: string }).error, /from the US or EU release, but JP is selected/);
+test("the region is detected from the keys, whatever the hint", async () => {
+  assert.equal(ok(await parse("us")).region, "us");
+  const r = ok(await parse("jp"));
+  assert.equal(r.region, "us", "JP keys fail on a US/EU save, so the other keyset is tried");
+  assert.deepEqual(r.characters.map((h) => h?.name ?? null), ["Gideon", "MEARO", null]);
 });
 
-test("wrong region is also caught when only the game layer is left", async () => {
+test("the region is also detected when only the game layer is left", async () => {
   // Strip the PSP hardware layer first (as PPSSPP's default export does).
   const { decryptPSPLayer } = await import("../public/javascript/save-cipher.js");
   const buf = fs.readFileSync(SAVE);
@@ -150,8 +151,7 @@ test("wrong region is also caught when only the game layer is left", async () =>
 
   lastMessage = null;
   await onmessage({ data: { buffer: gameOnly.slice(0), region: "jp" } });
-  assert.equal(message().ok, false);
-  assert.match((message() as { error: string }).error, /US or EU release/);
+  assert.equal(ok(message()).region, "us");
 });
 
 test("a file no region can decrypt says so", async () => {
