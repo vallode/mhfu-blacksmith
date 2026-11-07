@@ -24,12 +24,9 @@ interface Props {
   activeSlug?: string;
 }
 
-function Arrow({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg viewBox="0 0 32 40" width="34" height="42" aria-hidden="true" focusable="false">
-      <polygon points={direction === "left" ? "27,4 27,36 4,20" : "5,4 5,36 28,20"} />
-    </svg>
-  );
+/** The game's green arrow sprite; the stylesheet mirrors it for "next". */
+function Arrow() {
+  return <img src="/images/arrow.png" alt="" aria-hidden="true" decoding="sync" />;
 }
 
 export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
@@ -88,7 +85,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
           }}
         >
           <button type="button" className={styles.arrow} aria-label="Previous filter" onClick={() => step(-1)}>
-            <Arrow direction="left" />
+            <Arrow />
           </button>
           <span className={styles.label} aria-live="polite">
             {label}
@@ -102,7 +99,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
             </span>
           </span>
           <button type="button" className={styles.arrow} aria-label="Next filter" onClick={() => step(1)}>
-            <Arrow direction="right" />
+            <Arrow />
           </button>
         </div>
       )}
