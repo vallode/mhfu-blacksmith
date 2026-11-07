@@ -1,33 +1,23 @@
 "use client";
 
+/**
+ * The hunter page: pick a save file, then pick a character, in the style of
+ * the game's Character Select screen. One card per hunter slot, the chosen
+ * hunter lit green, and a message box that says what to do next. Nothing
+ * about the hunter's items lives here; the recipes show those.
+ */
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
 import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
+import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
-import HunterInventory from "@/components/HunterInventory";
 import type { SaveData } from "@/lib/save-store";
 import styles from "@/styles/hunter.module.scss";
 
-function formatZenny(n: number): string {
-  return n.toLocaleString();
-}
-
-function formatTimeAgo(ts: number): string {
-  const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
-  if (seconds < 60) return "just now";
-  const minutes = Math.round(seconds / 60);
-  if (minutes < 60) return `${minutes} min ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.round(hours / 24)}d ago`;
-}
-
-const REGION_LABELS: Record<string, string> = { us: "US", eu: "EU", jp: "JP" };
-
-/** The stored hunter's items, in the order "Use hunter" saved them (box, then pouch). */
+/** The stored hunter's items, in the order selection saved them (box, then pouch). */
 const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
 
 /** Whether `character` is the hunter currently stored as active. */
@@ -40,97 +30,39 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
   );
 }
 
-/** The hunter whose items the site currently uses, shown even after a reload. */
-function ActiveHunterCard({ save, onClear }: { save: SaveData; onClear: () => void }) {
-  return (
-    <Card>
-      <div className={styles["hunter-profile"]}>
-        <span className={styles["hunter-profile__label"]}>Active hunter</span>
-        <div className={styles["hunter-profile__header"]}>
-          <span className={styles["hunter-profile__name"]}>{save.name}</span>
-          <span className={styles["hunter-profile__sex"]}>
-            {REGION_LABELS[save.region] ?? save.region} · selected {formatTimeAgo(save.savedAt)}
-          </span>
-        </div>
-        <p className={styles["save-upload__note"]}>
-          Weapon and armor recipes show how many of each material this hunter owns.
-        </p>
-        <HunterInventory
-          sections={[{ title: "Items (box + pouch)", slots: save.items, open: false }]}
-        />
-        <button className={styles["hunter-profile__use-btn"]} onClick={onClear}>
-          Stop using this hunter
-        </button>
-      </div>
-    </Card>
-  );
-}
-
-interface CharacterCardProps {
-  character: CharacterResult;
-  index: number;
-  showUseButton: boolean;
-  decrypted: boolean;
-  onUse: (index: number) => void;
-  /** Expand the item box by default (only when a single hunter is shown). */
-  boxOpen: boolean;
-  /** This hunter is the one currently stored as active. */
+interface SlotCardProps {
+  /** 1-based slot number, as the game shows it; omitted for a stored hunter whose save isn't open. */
+  slot?: number;
+  name: string;
+  sex?: string;
+  zenny?: number;
   active: boolean;
+  onSelect?: () => void;
 }
 
-function CharacterCard({ character, index, showUseButton, decrypted, onUse, boxOpen, active }: CharacterCardProps) {
+function SlotCard({ slot, name, sex, zenny, active, onSelect }: SlotCardProps) {
   return (
-    <Card>
-      <div className={styles["hunter-profile"]}>
-        <div className={styles["hunter-profile__header"]}>
-          <span className={styles["hunter-profile__name"]}>{character.name}</span>
-          <span className={styles["hunter-profile__sex"]}>{character.sex}</span>
-        </div>
-
-        <div className={styles["hunter-profile__stats"]}>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Zenny</span>
-            <span className={styles["hunter-profile__value"]}>
-              {formatZenny(character.zenny)}
-            </span>
-          </div>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Equipment</span>
-            <span className={styles["hunter-profile__value"]}>
-              {character.equipBox.length}
-            </span>
-          </div>
-          <div className={styles["hunter-profile__stat"]}>
-            <span className={styles["hunter-profile__label"]}>Items (chest)</span>
-            <span className={styles["hunter-profile__value"]}>
-              {character.itemChest.length}
-            </span>
-          </div>
-        </div>
-
-        <HunterInventory
-          sections={[
-            { title: "Item Pouch", slots: character.itemPouch, max: 24, open: true },
-            { title: "Item Box", slots: character.itemChest, max: 1000, open: boxOpen },
-          ]}
-        />
-
-        {decrypted && (
-          <p className={styles["save-upload__source"]}>
-            Game-layer decryption applied.
-          </p>
+    <Card className={cn(styles.slot, "p-0")}>
+      <button
+        type="button"
+        className={cn(styles["slot__button"], active && styles["slot__button--active"])}
+        onClick={onSelect}
+        disabled={active || !onSelect}
+        aria-pressed={active}
+      >
+        <span className={styles["slot__name"]}>
+          {slot !== undefined && <span className={styles["slot__number"]}>{slot}</span>}
+          {name}
+        </span>
+        {sex && <span className={cn(styles["slot__row"], styles["slot__sex"])}>{sex}</span>}
+        {zenny !== undefined && (
+          <span className={styles["slot__row"]}>
+            <span className={styles["slot__label"]}>Money</span>
+            {zenny.toLocaleString()}z
+          </span>
         )}
-
-        {showUseButton && (
-          <button
-            className={`${styles["hunter-profile__use-btn"]}${active ? ` ${styles["is-active"]}` : ""}`}
-            onClick={() => onUse(index)}
-            disabled={active}
-          >
-            {active ? "Active hunter" : `Use hunter ${index + 1}`}
-          </button>
-        )}
-      </div>
+        {active && <span className="sr-only"> (selected)</span>}
+      </button>
     </Card>
   );
 }
@@ -142,7 +74,6 @@ export default function SaveUpload() {
   const fileSync = useFileSync();
   const [isDragOver, setIsDragOver] = useState(false);
   const regionRef = useRef<HTMLSelectElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   // Whether the parsed result came from the file picker (i.e. the stored
   // handle). Dropped or uploaded files must not overwrite the handle's slot.
   const fromPickerRef = useRef(false);
@@ -182,9 +113,6 @@ export default function SaveUpload() {
     if (file) processFile(file, false);
   };
 
-  const occupied = result?.characters.filter(Boolean) as CharacterResult[] | undefined;
-  const showUseButton = (occupied?.length ?? 0) > 1;
-
   const selectCharacter = useCallback(
     (index: number) => {
       const character = result?.characters[index];
@@ -194,7 +122,7 @@ export default function SaveUpload() {
       toast({
         id: "hunter-selected",
         title: "Hunter selected",
-        message: `${character.name} is now your active hunter. Weapon and armor recipes show how many of each material you own.`,
+        message: `${character.name} is now your hunter.`,
       });
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
@@ -203,154 +131,90 @@ export default function SaveUpload() {
     [result, load, fileSync, toast]
   );
 
-  const singleActive = occupied?.length === 1 && isActiveHunter(save, occupied[0]);
-
   const handleClear = () => {
     clear();
-    toast({
-      id: "hunter-selected",
-      message: "No active hunter. Recipes show required amounts only.",
-    });
+    toast({ id: "hunter-selected", message: "No hunter selected." });
   };
 
-  const handleUseSingle = () => {
-    if (!occupied || occupied.length !== 1) return;
-    selectCharacter(result!.characters.indexOf(occupied[0]));
-  };
+  const characters = result?.characters ?? [];
+  const occupied = characters.filter((c): c is CharacterResult => c !== null);
+  // The stored hunter, when the save it came from isn't open on this page.
+  const storedOnly = save && !occupied.some((c) => isActiveHunter(save, c));
+
+  const message = loading
+    ? "Reading save file…"
+    : save
+      ? `${save.name} is your hunter.`
+      : result
+        ? occupied.length === 0
+          ? "No hunters found in this save."
+          : "Select a character."
+        : "Load your save to select a character.";
 
   return (
-    <div className={styles["hunter-page__upload"]}>
-      <Card
-        className={`${styles["save-upload"]}${isDragOver ? ` ${styles["is-drag-over"]}` : ""}`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <p>Hunter Profile</p>
+    <div className={styles.select}>
+      <div className={styles.slots}>
+        {storedOnly && <SlotCard name={save.name} zenny={save.zenny} active />}
 
-        {fileSync.isSupported ? (
-          <button
-            type="button"
-            className={styles["save-upload__label"]}
-            onClick={handlePick}
-          >
-            <span className={styles["save-upload__cta"]}>
-              Drop MHP2NDG.BIN here or click to browse
-            </span>
-          </button>
-        ) : (
-          <label className={styles["save-upload__label"]}>
-            <input
-              ref={inputRef}
-              type="file"
-              accept=".bin,.BIN"
-              className={styles["save-upload__input"]}
-              onChange={handleFileChange}
+        {characters.map((c, index) =>
+          c ? (
+            <SlotCard
+              key={index}
+              slot={index + 1}
+              name={c.name}
+              sex={c.sex}
+              zenny={c.zenny}
+              active={isActiveHunter(save, c)}
+              onSelect={() => selectCharacter(index)}
             />
-            <span className={styles["save-upload__cta"]}>
+          ) : null
+        )}
+
+        {error && <p className={cn(styles.notice, styles["notice--error"])}>{error}</p>}
+      </div>
+
+      <div className={styles.side}>
+        <Card
+          className={cn(styles.loader, isDragOver && styles["loader--drag-over"])}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          {fileSync.isSupported ? (
+            <button type="button" className={styles["loader__cta"]} onClick={handlePick}>
               Drop MHP2NDG.BIN here or click to browse
-            </span>
-          </label>
-        )}
-
-        <select ref={regionRef} className={styles["save-upload__region"]}>
-          <option value="us">US (ULUS-10391)</option>
-          <option value="eu">EU (ULES-01213)</option>
-          <option value="jp">JP (ULJM-05500)</option>
-        </select>
-
-        <p className={styles["save-upload__note"]}>
-          Supports PPSSPP saves (both default and decrypted exports).{" "}
-          <em>The file never leaves your device.</em>
-        </p>
-
-        {fileSync.isSupported && fileSync.hasHandle && (
-          <div className={styles["save-upload__sync"]}>
-            <span className={styles["save-upload__sync-status"]}>
-              {fileSync.syncing
-                ? "Syncing…"
-                : fileSync.permission !== "granted"
-                  ? "Reconnect needed to keep syncing"
-                  : fileSync.lastSynced
-                    ? `Synced with ${fileSync.fileName} · ${formatTimeAgo(fileSync.lastSynced)}`
-                    : `Connected to ${fileSync.fileName}`}
-            </span>
-            {fileSync.permission === "granted" ? (
-              <button
-                type="button"
-                className={styles["save-upload__sync-btn"]}
-                onClick={() => fileSync.syncNow()}
-                disabled={fileSync.syncing}
-              >
-                Sync now
-              </button>
-            ) : (
-              <button
-                type="button"
-                className={styles["save-upload__sync-btn"]}
-                onClick={() => fileSync.requestReconnect()}
-              >
-                Reconnect
-              </button>
-            )}
-          </div>
-        )}
-      </Card>
-
-      <div className={styles["hunter-page__results"]}>
-        {save && <ActiveHunterCard save={save} onClear={handleClear} />}
-
-        {loading && (
-          <p className={styles["save-upload__notice"]}>Reading save file…</p>
-        )}
-
-        {error && (
-          <p className={`${styles["save-upload__notice"]} ${styles["save-upload__notice--error"]}`}>
-            {error}
-          </p>
-        )}
-
-        {occupied && occupied.length === 0 && (
-          <p className={styles["save-upload__notice"]}>No hunters found in this save.</p>
-        )}
-
-        {occupied && occupied.length === 1 && (
-          <>
-            <CharacterCard
-              character={occupied[0]}
-              index={result!.characters.indexOf(occupied[0])}
-              showUseButton={false}
-              decrypted={result!.decrypted}
-              onUse={selectCharacter}
-              boxOpen
-              active={singleActive}
-            />
-            <button
-              className={`${styles["hunter-profile__use-btn"]}${singleActive ? ` ${styles["is-active"]}` : ""}`}
-              onClick={handleUseSingle}
-              disabled={singleActive}
-            >
-              {singleActive ? "Active hunter" : "Use this hunter"}
             </button>
-          </>
-        )}
-
-        {occupied && occupied.length > 1 &&
-          occupied.map((c) => {
-            const index = result!.characters.indexOf(c);
-            return (
-              <CharacterCard
-                key={index}
-                character={c}
-                index={index}
-                showUseButton={showUseButton}
-                decrypted={result!.decrypted}
-                onUse={selectCharacter}
-                boxOpen={false}
-                active={isActiveHunter(save, c)}
+          ) : (
+            <label className={styles["loader__cta"]}>
+              <input
+                type="file"
+                accept=".bin,.BIN"
+                className={styles["loader__input"]}
+                onChange={handleFileChange}
               />
-            );
-          })}
+              Drop MHP2NDG.BIN here or click to browse
+            </label>
+          )}
+
+          <select ref={regionRef} className={styles["loader__region"]} aria-label="Game region">
+            <option value="us">US (ULUS-10391)</option>
+            <option value="eu">EU (ULES-01213)</option>
+            <option value="jp">JP (ULJM-05500)</option>
+          </select>
+
+          <p className={styles["loader__note"]}>The file never leaves your device.</p>
+        </Card>
+
+        <Card className={styles.message}>
+          <p className={styles["message__text"]} aria-live="polite">
+            {message}
+          </p>
+          {save && (
+            <button type="button" className={styles["message__clear"]} onClick={handleClear}>
+              Deselect
+            </button>
+          )}
+        </Card>
       </div>
     </div>
   );
