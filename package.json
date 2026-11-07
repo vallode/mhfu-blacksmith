@@ -27,6 +27,7 @@
     "react-dom": "^19.0.0",
     "sass": "^1.100.0",
     "tailwind-merge": "^3.7.0",
+    "three": "^0.169.0",
     "tsx": "^4.22.4"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.169.0",
     "eslint": "^9",
     "eslint-config-next": "^15.3.3",
     "postcss": "^8.5.25",
