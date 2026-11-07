@@ -16,8 +16,10 @@ export default function ArmorModelViewer({ models, label }: Props) {
   const src = models[sex] ?? models.male ?? models.female!;
 
   return (
-    <div className="flex w-full flex-col items-center gap-2">
-      <ModelViewer key={src} src={src} label={`${label} (${sex})`} />
+    <div className="flex h-full w-full flex-col items-center gap-2">
+      <div className="min-h-0 w-full flex-1">
+        <ModelViewer key={src} src={src} label={`${label} (${sex})`} />
+      </div>
       {both && (
         <div className="flex gap-4" role="group" aria-label="Model">
           {(["male", "female"] as const).map((option) => (

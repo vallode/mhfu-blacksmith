@@ -5,6 +5,8 @@ import styles from "./Card.module.scss";
 interface CardProps {
   children: React.ReactNode;
   variant?: "weapon-tree";
+  /** Alternative in-game border; the default is the standard card frame. */
+  frame?: "teal" | "green" | "blue";
   className?: string;
   href?: string;
   onDragOver?: React.DragEventHandler;
@@ -19,6 +21,7 @@ const linkGlow =
 export default function Card({
   children,
   variant,
+  frame,
   className,
   href,
   onDragOver,
@@ -29,7 +32,8 @@ export default function Card({
   // override earlier ones (e.g. <Card className="overflow-auto py-7">).
   const classes = cn(
     styles.card,
-    "card-frame relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
+    frame === "teal" ? "card-frame-teal" : frame === "green" ? "card-frame-green" : frame === "blue" ? "card-frame-blue" : "card-frame",
+    "relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
     variant === "weapon-tree" && "h-full overflow-auto px-[0.9rem] py-[0.8rem]",
     href && linkGlow,
     className

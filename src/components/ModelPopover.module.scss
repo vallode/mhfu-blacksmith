@@ -1,0 +1,28 @@
+// Sits inside the side card of a .split-page (which is position: relative):
+// the left half on desktop (minus half the 1.3rem gap between the cards),
+// inset on every side so the side card's own frame shows around it.
+$inset: 14px;
+
+.popover {
+  bottom: $inset;
+  display: flex;
+  left: $inset;
+  position: absolute;
+  top: $inset;
+  width: calc((100% - 1.3rem) / 2 - #{2 * $inset});
+  z-index: 30;
+
+  // Stacked layout: the cards stack and the page scrolls, so there's no
+  // fixed-height side card to sit in. Float over the viewport instead.
+  @media screen and (max-width: 600px) {
+    bottom: auto;
+    height: min(75vh, 36rem);
+    left: 16px;
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    z-index: 50;
+  }
+}
