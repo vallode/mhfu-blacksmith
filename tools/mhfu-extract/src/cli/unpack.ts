@@ -69,7 +69,7 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
     console.log("Reading + decrypting DATA.BIN (this reads the whole file into memory)...");
     const rawDataBin = iso.readFile("/PSP_GAME/USRDIR/DATA.BIN");
     const files = unpackDataBin(rawDataBin, region);
-    const fileList = loadFileList();
+    const fileList = loadFileList(region);
 
     const dataBinDir = path.join(options.out, "data-bin");
     console.log(`Writing ${files.length} DATA.BIN entries to ${dataBinDir}...`);

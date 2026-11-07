@@ -154,8 +154,12 @@ Open:
 - **US**: `resolverForRegion("us")` is `null` — no US disc to derive
   signatures from ([#37](https://github.com/vallode/mhfu-blacksmith/issues/37), which also covers other games such as
   MH1/MHF1).
-- **EU quests**: 519 of 551 parse; 32 are skipped because EU's `DATA.BIN`
-  layout differs from JP's ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
+- **EU quests**: previously 519 of 551 parsed, with 32 skipped
+  ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)). The cause was
+  `DATA.BIN` indexing: EU has extra entries ahead of `mission_jpn/`, so JP
+  indices pointed 32 entries early. With the EU file list (see "`DATA.BIN`")
+  all 551 quest files are found at their real indices; not yet re-run
+  against a real EU EBOOT.
 - `diff` compares stats, not text: names come from the English
   `mhp2g-patterns` enums for every region.
 
@@ -184,6 +188,16 @@ EBOOT.BIN` produces a valid ELF.
 `DATA.BIN` uses a documented substitution+XOR cipher (`src/container/databin.ts`,
 ported from `mhef`) and is decrypted fully in-process; no external tool
 needed.
+
+`unpack` names each entry from `vendor/fuctool/filelist.csv`, which indexes
+the **JP** disc's 6,602 entries. The EU disc has 6,657: 57 EU-only entries
+(mostly localized text and UI) and two JP modules it lacks, which shift
+everything after them by up to 55. `src/container/filelist-eu.json` maps EU
+indices back to JP ones. It was derived by aligning a real EU dump against
+`filelist.csv` by file type (model/texture/container magics and the
+`.phd`/`.bd` sound-bank pairing), with every mapped entry's type matching.
+EU-only entries keep the `_unindexed/<index>.bin` name. US has no alignment
+yet and falls back to JP indices.
 
 ### Quests (`.mib`)
 
@@ -244,11 +258,9 @@ Status:
   static bind pose; skinning weights are dropped.
 - Monster packages hold one mesh per bone, positioned in bone space; the
   skeleton isn't decoded yet, so they don't assemble.
-- **The EU disc's `DATA.BIN` has 6,657 entries but `filelist.csv` names the
-  JP disc's 6,602**, so `unpack` gives EU files the wrong names from some
-  point on (e.g. EU `weapon/we000.pac` is really male waist armor, about 20
-  entries off). Don't trust EU names for model work until an EU file list
-  exists.
+- Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
+  dump unpacked before that existed has wrong names (e.g. its
+  `weapon/we000.pac` is male waist armor); unpack it again.
 
 
 
