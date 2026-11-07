@@ -63,7 +63,7 @@
         line-height: 1.25;
       }
 
-      // The monster portrait icon is styled in Icon.module.scss (.monsterIcon)
+      // The monster portrait icon is styled by monsterPortrait (src/lib/icon-style.ts)
       // and applied directly to the <Icon> in MonsterDetailClient.
 
       @media screen and (max-width: 600px) {
