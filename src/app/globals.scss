@@ -124,6 +124,45 @@
   image-rendering: pixelated;
 }
 
+// Alternative in-game frame: red and teal bands, copper corner squares. 6px slices drawn at 3x.
+@utility card-frame-teal {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 6 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYBAMAAABO02PvAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABtQTFRFAAAAFEdHsXZDG11fl1FMCwsLcj88AAAAFhogn1sfEAAAAAl0Uk5T/////////wDQRrhXtAAAAHlJREFUeJxjZGBgEGRAB+8ZGBiZFP4JY0icV/jHyPRPQYT/Ixrc/08Bj4TCPxUMo/YBjWJg9RbDkJjvvYGxYEYDhjgDw492xvK+ZiwSJ9QZyzs7sEhUlDMWvDDAIvG3acjZgcsoIJmGIT4LEoPYg52sGMSeGBhwJB8AxXBfDTqvDF4AAAAASUVORK5CYII=");
+  border-image-width: 18px;
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+// Alternative in-game frame: rows of green squares. 8px slices drawn at 3x.
+@utility card-frame-green {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 8 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYBAMAAABpfeIHAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABJQTFRFAAAAf7diM1UgCwsLAAAAFhog+usr8gAAAAZ0Uk5T/////wDQpkiLGQAAAGJJREFUeJxjZEADjIwCDP8/ImFGRkWGdx+RMCOjwsd/H5EwFgEMLeiGMjAwG8Dt/HuBgdHlz9EAuMDvLQ6MLgz7g+ACt0WAKhj2hMIFVruAtHxVgAv82+hAnhloWgYsPFABABN7gPlwdAzGAAAAAElFTkSuQmCC");
+  border-image-width: 24px;
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+// Alternative in-game frame: blue chain-link bands, patterned fill. 6px slices drawn at 3x.
+@utility card-frame-blue {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 6 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYBAMAAABO02PvAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAABJQTFRFAAAAAAAAQ3yvHh0oCwsLFhogLa1kKgAAAAZ0Uk5T/wD/0P/QzBmwOgAAAMRJREFUeJyNUksKwjAQfRPcSlPdS+gFFHoBjyB4YfdSpBeouUErXaqpk/5MGgMOzEuYR+bNJwQg7RpQ4risARLKPLoN7onj8qEMCaM0MlSec9ASAkvTllBmGxA3ToXV66wXcXE9Xki2p2WcmWdJabvv7wp6RmDNRM2ZsoqlIEa0uVKSeQNbotjpGbm9YtBw81h0NXwbNQSMr+9rQEz41eir0hP+00fQudVoDyqYlXmXxGcevCiGDf4ee3xR0dXGPgMi3+cD3RqAhcJte2EAAAAASUVORK5CYII=");
+  border-image-width: 18px;
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
 // ─── Typography ───────────────────────────────────────────────────────────────
 
 @font-face {
@@ -256,6 +295,7 @@ hr {
 // Two-panel layout: tree sidebar + detail panel split the space equally.
 .split-page {
   display: flex;
+  position: relative; // anchors the 3D model popover over the side card
   gap: 1.3rem;
   height: 100%;
   justify-content: center;

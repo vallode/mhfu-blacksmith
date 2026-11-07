@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
@@ -13,6 +14,7 @@ import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
+import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 
 interface Props {
@@ -40,6 +42,9 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, tree, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
   const modelUrl = useWeaponModel(type, weapon?.name);
+  // Open state is tied to the model, so navigating to another weapon closes it.
+  const [openModel, setOpenModel] = useState<string | null>(null);
+  const modelOpen = modelUrl !== null && openModel === modelUrl;
 
   if (loading || !weapon) {
     // Keep the split layout (and the tree card frame) in place while the data
@@ -210,14 +215,9 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               )}
             </div>
 
-            <hr />
+            {modelUrl && <ModelButton open={modelOpen} onClick={() => setOpenModel(modelOpen ? null : modelUrl)} />}
 
-            {modelUrl && (
-              <>
-                <ModelViewer src={modelUrl} label={weapon.name} />
-                <hr />
-              </>
-            )}
+            <hr />
 
             {/* Requirements section */}
             <div className="requirements">
@@ -420,6 +420,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             </div>
           </div>
         </Card>
+        {modelOpen && (
+          <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
+            <ModelViewer src={modelUrl} label={weapon.name} />
+          </ModelPopover>
+        )}
       </div>
     </>
   );

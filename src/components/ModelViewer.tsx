@@ -55,7 +55,13 @@ export default function ModelViewer({ src, label }: Props) {
       // Stop spinning once the visitor takes over.
       controls.addEventListener("start", () => {
         controls.autoRotate = false;
+        interacted = true;
       });
+
+      // Set once the model loads; re-run on resize so the fit uses the
+      // viewer's real aspect ratio (it can still be laying out at load time).
+      let fit: (() => void) | null = null;
+      let interacted = false;
 
       const resize = () => {
         const { clientWidth, clientHeight } = container;
@@ -63,6 +69,7 @@ export default function ModelViewer({ src, label }: Props) {
         renderer.setSize(clientWidth, clientHeight, false);
         camera.aspect = clientWidth / clientHeight;
         camera.updateProjectionMatrix();
+        if (fit && !interacted) fit();
       };
       const observer = new ResizeObserver(resize);
       observer.observe(container);
@@ -108,18 +115,26 @@ export default function ModelViewer({ src, label }: Props) {
         const center = box.getCenter(new THREE.Vector3());
         const reach = Math.hypot(size.x, size.z) / 2;
         const radius = size.length() / 2;
-        const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-        const horizontal = vertical * camera.aspect;
-        const distance = 1.1 * Math.max(reach / horizontal, size.y / 2 / vertical) + reach * 0.3;
-        const direction = new THREE.Vector3(1, 0.35, 1).normalize();
-        camera.position.copy(center).addScaledVector(direction, distance);
-        camera.near = distance / 100;
-        camera.far = distance * 10;
-        camera.updateProjectionMatrix();
-        controls.target.copy(center);
-        controls.minDistance = radius * 0.5;
-        controls.maxDistance = distance * 3;
-        controls.update();
+        fit = () => {
+          const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+          const horizontal = vertical * camera.aspect;
+          const distance = 1.1 * Math.max(reach / horizontal, size.y / 2 / vertical) + reach * 0.3;
+          // Keep the current (auto-rotated) viewing angle, change only the distance.
+          const direction = camera.position.clone().sub(controls.target);
+          if (direction.lengthSq() === 0) direction.set(1, 0.35, 1);
+          direction.normalize();
+          controls.target.copy(center);
+          camera.position.copy(center).addScaledVector(direction, distance);
+          camera.near = distance / 100;
+          camera.far = distance * 10;
+          camera.updateProjectionMatrix();
+          controls.minDistance = radius * 0.5;
+          controls.maxDistance = distance * 3;
+          controls.update();
+        };
+        camera.position.set(1, 0.35, 1);
+        controls.target.set(0, 0, 0);
+        fit();
 
         setStatus("ready");
         animate();
@@ -137,7 +152,7 @@ export default function ModelViewer({ src, label }: Props) {
   }, [src]);
 
   return (
-    <div className="relative w-full" style={{ aspectRatio: "4 / 3", maxHeight: "24rem" }}>
+    <div className="relative h-full min-h-48 w-full">
       <div ref={containerRef} className="absolute inset-0" role="img" aria-label={`3D model of ${label}`} />
       {status !== "ready" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">
