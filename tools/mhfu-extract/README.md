@@ -169,6 +169,11 @@ Open:
 3. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
    PPSSPP's `Debug → Dump Decrypted EBOOT.BIN`).
 
+If you only need `DATA.BIN`'s files (models, textures, quests), pass
+`--skip-eboot` to skip this step entirely. The manifest then records
+`"eboot": false`, and `extract` refuses to run on that output since it reads
+equipment tables from the EBOOT.
+
 Native in-process KIRK decryption is not implemented. Path 2 (external
 `pspdecrypt`, GPL-3.0, built from https://github.com/John-K/pspdecrypt) has
 been validated against both real JP and EU EBOOTs: `pspdecrypt -o out.elf
