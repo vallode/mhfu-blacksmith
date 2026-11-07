@@ -5,7 +5,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
 import cardStyles from "@/styles/weapon-card.module.scss";
-import iconStyles from "@/components/Icon.module.scss";
+import { monsterPortrait } from "@/lib/icon-style";
 import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
@@ -106,7 +106,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               monster
               imgSrc={`/images/monsters/${slug}.png`}
               alt={monster.name}
-              className={iconStyles.monsterIcon}
+              className={monsterPortrait}
             />
           </div>
 

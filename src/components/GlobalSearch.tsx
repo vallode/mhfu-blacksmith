@@ -5,7 +5,7 @@ import Fuse from "fuse.js";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { iconStyle } from "@/lib/icon-style";
+import { iconImgClass, iconStyle } from "@/lib/icon-style";
 
 interface SearchEntry {
   name: string;
@@ -224,6 +224,10 @@ export default function GlobalSearch() {
                 >
                   <div {...iconStyleFor(item)}>
                     <img
+                      className={iconImgClass({
+                        size: item.category === "weapon" ? "mini" : undefined,
+                        monster: item.category === "monster",
+                      })}
                       src={iconSrcFor(item)}
                       alt=""
                       onError={(e) => {

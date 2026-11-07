@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
-import styles from "@/components/Icon.module.scss";
 
 // Which icon types have a tintable mask / badge image under public/images.
 // The colours themselves live in the @theme block in src/app/globals.scss
@@ -80,7 +79,7 @@ function maskFor({ type, size }: IconStyleOptions): string | undefined {
  * with the rarity/gem/note colour) and an optional corner badge.
  */
 export function iconStyle(opts: IconStyleOptions): { className: string; style: CSSProperties } {
-  const { element, rank, size, nav, monster } = opts;
+  const { element, rank, size, nav } = opts;
   const mask = maskFor(opts);
   const tint = tintFor(opts);
   // Only one corner badge fits; rank wins over element.
@@ -94,15 +93,37 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
 
   return {
     className: cn(
-      styles.icon,
-      size === "large" && styles["icon--large"],
-      size === "mini" && styles["icon--mini"],
-      nav && styles["icon--nav"],
-      monster && styles["icon--monster"],
-      mask && styles.masked,
-      badge === "element" && styles.elementBadge,
-      badge === "rank" && styles.rankBadge
+      "relative mr-[6px] flex h-[32px] w-[32px] flex-[0_0_3.2rem]",
+      // flex-basis must grow with the box or the row squashes it horizontally
+      size === "large" && "h-[52px] w-[52px] flex-[0_0_52px]",
+      mask && "before:icon-mask",
+      // Tint fill. Nav icons are grey until hovered, unless tinted (active).
+      mask && !nav && "before:[background:var(--icon-tint)]",
+      mask && nav && "before:bg-[var(--icon-tint,#bdbdbd)] hover:before:bg-white",
+      badge && "after:icon-badge",
+      badge === "element" && "after:[background-position:bottom_-1px_right_-1px]",
+      badge === "rank" && "after:[background-position:bottom_0px_right_0px] after:[background-size:37.5px_39px]",
     ),
     style: style as CSSProperties,
   };
 }
+
+/** Classes for the sprite <img> inside an icon wrapper. */
+export function iconImgClass({ size, monster }: Pick<IconStyleOptions, "size" | "monster">): string {
+  return cn(
+    "pixelated relative h-[32px] w-[32px]",
+    size === "large" && "h-[52px] w-[52px]",
+    monster && "p-[4px]",
+  );
+}
+
+/**
+ * Large monster portrait in the monster detail header, on a parchment
+ * scroll backdrop. Pass as the Icon's className.
+ */
+export const monsterPortrait = [
+  "mt-[1.2rem] mr-[calc((16.8rem-9rem)/2)] mb-0 ml-auto h-[9rem] w-[9rem] [&_img]:h-[9rem] [&_img]:w-[9rem]",
+  "mobile:mx-auto mobile:mt-0 mobile:mb-[1.6rem]",
+  "after:absolute after:top-1/2 after:bottom-0 after:left-1/2 after:-z-1 after:h-[11.2rem] after:w-[16.8rem] after:-translate-x-1/2 after:-translate-y-1/2",
+  "after:bg-[url(/images/scroll.png)] after:bg-contain after:bg-no-repeat after:bg-[position:0px_0px] after:pixelated",
+].join(" ");

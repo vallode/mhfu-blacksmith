@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import { iconStyle } from "@/lib/icon-style";
+import { iconImgClass, iconStyle } from "@/lib/icon-style";
 
 interface IconProps {
   type: string;
@@ -60,7 +60,7 @@ export default function Icon({
 
   return (
     <div className={cn(iconClassName, className)} style={style}>
-      <img src={src} alt={alt} decoding="sync" />
+      <img className={iconImgClass({ size, monster })} src={src} alt={alt} decoding="sync" />
     </div>
   );
 }
