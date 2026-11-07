@@ -1,17 +1,14 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
-import { ARMOR_SLOT_TABLE_NAMES, ARMOR_SLOTS, readArmorValues } from "../src/tables/armor.js";
+import { ARMOR_POINTER_INDEX, ARMOR_SLOT_COUNTS, ARMOR_SLOT_TABLE_NAMES, ARMOR_SLOTS, readArmorValues } from "../src/tables/armor.js";
 import { SignatureResolver } from "../src/tables/resolver.js";
 import { fixtureReader } from "./helpers.js";
 
 test("readArmorValues dereferences each slot's single base pointer, not per-entry pointers", () => {
   const ptrTableBase = tableOffset("armorValuePointers");
-  // Put the actual armor structs well past every pointer table so nothing
-  // overlaps, sized for the largest slot (head, 436 entries) since every
-  // slot's pointer is set to the same region below (only head's content
-  // matters for this test; the other four slots reading the same bytes is
-  // harmless — we only assert on head's decoded content).
+  // One shared array for every pointer: only head's decoded content is
+  // asserted on here. Sized for the largest slot (head, 436 entries).
   const armStructsBase = ptrTableBase + 0x10000;
   const { buf, reader } = fixtureReader(armStructsBase + 436 * 40);
   for (let slot = 0; slot < 5; slot++) {
@@ -50,6 +47,29 @@ test("readArmorValues dereferences each slot's single base pointer, not per-entr
   assert.deepEqual(head1.resistances, { fire: 1, water: -1, thunder: 0, dragon: 0, ice: 0 });
   assert.equal(head1.slots, 1);
   assert.deepEqual(head1.skills[0], { skill: 10, amount: 3 });
+});
+
+test("readArmorValues follows ArmorValuePTR's real pointer order (leg, head, chest, arm, waist) with per-slot counts", () => {
+  const ptrTableBase = tableOffset("armorValuePointers");
+  const arrayBase = (pointer: number) => ptrTableBase + 0x10000 + pointer * 0x5000;
+  const { buf, reader } = fixtureReader(arrayBase(5));
+  for (let pointer = 0; pointer < 5; pointer++) {
+    buf.writeUInt32LE(arrayBase(pointer) + JP_BASE_ADDRESS, ptrTableBase + pointer * 4);
+    // Mark entry 1 of each array with its pointer position via `price`.
+    buf.writeUInt32LE(1000 + pointer, arrayBase(pointer) + 1 * 40 + 8);
+  }
+
+  const armor = readArmorValues(reader);
+  for (const slot of ARMOR_SLOTS) {
+    assert.equal(armor[slot][1]!.price, 1000 + ARMOR_POINTER_INDEX[slot], `${slot} read the wrong pointer`);
+    assert.equal(armor[slot].length, ARMOR_SLOT_COUNTS[slot]);
+  }
+  assert.equal(armor.leg[1]!.price, 1000); // first pointer
+  assert.equal(armor.head[1]!.price, 1001); // second pointer
+  assert.deepEqual(
+    Object.fromEntries(ARMOR_SLOTS.map((slot) => [slot, armor[slot].length])),
+    { head: 436, chest: 420, arm: 411, waist: 409, leg: 420 }
+  );
 });
 
 test("readArmorValues(reader, resolver) resolves each slot's array directly via ARMOR_SLOT_TABLE_NAMES, bypassing the pointer table entirely", () => {
