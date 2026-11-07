@@ -4,14 +4,31 @@
  *
  * An upgrade is "ready" when every improve material is owned in the needed
  * amount and the hunter has the zenny. It is "unknown" (and never shown as
- * ready) when a material doesn't link to an in-game item, an amount isn't a
- * plain number, or the save was stored before zenny was kept.
+ * ready) when a material doesn't link to an in-game item or an amount isn't a
+ * plain number. A save stored before zenny was kept still gets a material
+ * check; only the cost goes unchecked.
  */
 import { resolveEquip } from "./equipment";
 import type { CompactWeapon, Dictionaries, EquipmentIds } from "./schema";
 import type { SaveData } from "./save-store";
 
-export type UpgradeCheck = { status: "ready"; cost: number } | { status: "short" } | { status: "unknown" };
+/** One improve material: how many the upgrade needs and how many the hunter has. */
+export interface MaterialCheck {
+  name: string;
+  need: number;
+  /** Item box and pouch together; Infinity for the infinite-stack item. */
+  have: number;
+}
+
+/**
+ * `materials` lists every improve material in recipe order. `missing` counts
+ * the things standing in the way: one per material owned in too small an
+ * amount, plus one if the hunter can't pay the zenny.
+ */
+export type UpgradeCheck =
+  | { status: "ready"; cost: number; materials: MaterialCheck[]; missing: 0 }
+  | { status: "short"; cost: number; materials: MaterialCheck[]; missing: number }
+  | { status: "unknown" };
 
 /** The game stores 255 for the one infinite-stack item (Normal S Lv1). */
 const INFINITE_STACK = 255;
@@ -44,13 +61,20 @@ export function checkUpgrade(
   counts: Map<number, number> | null,
   zenny: number | undefined
 ): UpgradeCheck {
-  if (!counts || zenny === undefined || !weapon.im?.length) return { status: "unknown" };
-  let short = false;
+  if (!counts || !weapon.im?.length) return { status: "unknown" };
+  const checks: MaterialCheck[] = [];
+  let missing = 0;
   for (const [materialId, amount] of weapon.im) {
-    const itemId = materials[dict.material_ids[materialId]];
+    const name = dict.material_ids[materialId];
+    const itemId = materials[name];
     if (itemId === undefined || typeof amount !== "number") return { status: "unknown" };
-    if ((counts.get(itemId) ?? 0) < amount) short = true;
+    const have = counts.get(itemId) ?? 0;
+    if (have < amount) missing++;
+    checks.push({ name, need: amount, have });
   }
   const cost = weapon.ic ?? 0;
-  return short || cost > zenny ? { status: "short" } : { status: "ready", cost };
+  if (zenny !== undefined && cost > zenny) missing++;
+  return missing === 0
+    ? { status: "ready", cost, materials: checks, missing: 0 }
+    : { status: "short", cost, materials: checks, missing };
 }

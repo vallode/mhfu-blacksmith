@@ -1,88 +1,40 @@
 "use client";
 
+/**
+ * The hunter page: pick a save file, then pick a character, in the style of
+ * the game's Character Select screen. Always three slot cards, "NO DATA" for
+ * an empty one, the chosen hunter lit green. Nothing about the hunter's items
+ * lives here; the recipes show those.
+ */
 import { useCallback, useRef, useState } from "react";
-import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
+import { useSaveWorker, type CharacterResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
-import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
-import Card from "@/components/Card";
-import type { EquipSlot, SaveData } from "@/lib/save-store";
 import { cn } from "@/lib/cn";
+import Card from "@/components/Card";
+import type { SaveData } from "@/lib/save-store";
 
-// Small grey caption (stat labels, "Active hunter").
-const label = "text-[1.4rem] leading-none text-white/50";
+const SLOTS = [0, 1, 2];
 
-// Explanatory text inside the upload/active-hunter cards; wraps, unlike the
-// one-line card paragraph default.
-const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/40";
+// One hunter slot. The card is the frame; this fills it so the whole slot is
+// the target, top-aligned so an empty slot's NO DATA sits where a name does.
+const slotBase =
+  "box-border flex min-h-[16rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2.6rem] py-[2.4rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
 
-// Status line under the cards (reading, errors, no hunters found).
-const notice = "m-0 py-[1.3rem] text-center text-[1.8rem] text-white/60";
+// The chosen hunter, lit like the game's selected slot. Hover keeps the fill
+// so clicking again (to deselect) reads as acting on this card.
+const slotActive = "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
 
-/** "Use hunter" / "Stop using this hunter". Once a hunter is the active one
- * the button is disabled and shows yellow text, like the game's lists. */
-const hunterButton = (active = false) =>
-  cn(
-    "mt-[0.75rem] w-full cursor-pointer border border-current bg-transparent px-[0.8rem] py-[0.4rem] font-[inherit] text-[1.6rem] text-white/70",
-    active ? "cursor-default border-white/70 text-stat" : "hover:text-white",
-  );
+const slotName = "flex min-w-0 gap-[1.4rem] text-[2.8rem] [&>:last-child]:truncate";
+const slotRow = "flex gap-[1.6rem] text-[2.2rem]";
+const slotLabel = "flex-[0_0_7rem] uppercase";
 
-const syncButton = [
-  "cursor-pointer border border-white/35 bg-transparent px-[0.9rem] py-[0.3rem] font-[inherit] text-[1.3rem] text-white/70",
-  "enabled:hover:border-white/60 enabled:hover:text-white disabled:cursor-default disabled:opacity-60",
-].join(" ");
+// Status line under the slots (reading, errors). A div, not a p, so Card's
+// paragraph reset doesn't take the colour (see Card.module.scss).
+const notice = "py-[1.3rem] text-center text-[1.8rem] text-white/60";
 
-const uploadLabel =
-  "flex w-full cursor-pointer flex-col items-center gap-[0.8rem] border-none bg-transparent p-0 font-[inherit]";
-
-const uploadCta =
-  "block w-full border border-dashed border-white/35 px-[2.4rem] py-[1.6rem] text-center text-[1.8rem] text-white/70 hover:border-white/60 hover:text-white";
-
-function formatNumber(n: number): string {
-  return n.toLocaleString();
-}
-
-function formatTimeAgo(ts: number): string {
-  const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
-  if (seconds < 60) return "just now";
-  const minutes = Math.round(seconds / 60);
-  if (minutes < 60) return `${minutes} min ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.round(hours / 24)}d ago`;
-}
-
-/** Equip type codes 5 (melee) and 6 (ranged) are weapons; 0–4 are armor pieces. */
-const isWeapon = (slot: EquipSlot) => slot.type >= 5;
-
-/** Zenny, weapon/armor counts and item stack count for a hunter. */
-function HunterStats({ zenny, equipment, itemCount }: { zenny?: number; equipment?: EquipSlot[]; itemCount: number }) {
-  const weapons = equipment?.filter(isWeapon).length;
-  const armor = equipment && equipment.length - (weapons ?? 0);
-  const stats: [string, number | undefined][] = [
-    ["Zenny", zenny],
-    ["Weapons", weapons],
-    ["Armor", armor],
-    ["Items", itemCount],
-  ];
-  return (
-    <div className="mt-[0.6rem] flex flex-row flex-wrap gap-x-[2.6rem] gap-y-[1.3rem]">
-      {stats.map(([name, value]) => (
-        <div key={name} className="flex flex-col gap-[0.3rem]">
-          <span className={label}>{name}</span>
-          <span className="flex items-center gap-[0.6rem] text-[2.2rem] leading-none text-white">
-            {value === undefined ? "—" : formatNumber(value)}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const REGION_LABELS: Record<string, string> = { us: "US", eu: "EU", jp: "JP" };
-
-/** The stored hunter's items, in the order "Use hunter" saved them (box, then pouch). */
+/** The stored hunter's items, in the order selection saved them (box, then pouch). */
 const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
 
 /** Whether `character` is the hunter currently stored as active. */
@@ -95,64 +47,78 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
   );
 }
 
-/** The hunter whose items the site currently uses, shown even after a reload. */
-function ActiveHunterCard({ save, onClear }: { save: SaveData; onClear: () => void }) {
-  return (
-    <Card>
-      <div>
-        <span className={label}>Active hunter</span>
-        <div className="flex items-baseline gap-[1.3rem]">
-          <span className="text-[2.6rem] leading-none text-gold">{save.name}</span>
-          <span className="text-[1.6rem] leading-none text-white/50">
-            {REGION_LABELS[save.region] ?? save.region} · selected {formatTimeAgo(save.savedAt)}
+/** Play time as the game shows it: hours and zero-padded minutes. */
+function formatPlayTime(seconds: number): string {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return `${hours}:${String(minutes).padStart(2, "0")}`;
+}
+
+interface Hunter {
+  name: string;
+  sex?: string;
+  zenny?: number;
+  playTime?: number;
+}
+
+interface SlotCardProps {
+  /** 0-based slot; shown 1-based like the game. */
+  slot: number;
+  hunter: Hunter | null;
+  active: boolean;
+  /** Select this hunter, or deselect it when it is the active one. */
+  onToggle?: () => void;
+}
+
+function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
+  if (!hunter) {
+    return (
+      <Card className="flex-none p-0">
+        <div className={slotBase}>
+          <span className={slotName}>
+            <span>{slot + 1}</span>
+            <span className="uppercase">No data</span>
           </span>
         </div>
-        <p className={note}>
-          Weapon and armor recipes show how many of each material this hunter owns.
-        </p>
-        <HunterStats zenny={save.zenny} equipment={save.equipment} itemCount={save.items.length} />
-        <button className={hunterButton()} onClick={onClear}>
-          Stop using this hunter
-        </button>
-      </div>
-    </Card>
-  );
-}
-
-interface CharacterCardProps {
-  character: CharacterResult;
-  index: number;
-  showUseButton: boolean;
-  onUse: (index: number) => void;
-  /** This hunter is the one currently stored as active. */
-  active: boolean;
-}
-
-function CharacterCard({ character, index, showUseButton, onUse, active }: CharacterCardProps) {
+      </Card>
+    );
+  }
   return (
-    <Card>
-      <div>
-        <div className="flex items-baseline gap-[1.3rem]">
-          <span className="text-[2.6rem] leading-none text-gold">{character.name}</span>
-          <span className="text-[1.6rem] leading-none text-white/50">{character.sex}</span>
-        </div>
-
-        <HunterStats
-          zenny={character.zenny}
-          equipment={character.equipBox}
-          itemCount={character.itemChest.length + character.itemPouch.length}
-        />
-
-        {showUseButton && (
-          <button
-            className={hunterButton(active)}
-            onClick={() => onUse(index)}
-            disabled={active}
-          >
-            {active ? "Active hunter" : `Use hunter ${index + 1}`}
-          </button>
+    <Card className="flex-none p-0">
+      <button
+        type="button"
+        className={cn(
+          slotBase,
+          "cursor-pointer focus-visible:outline-2 focus-visible:outline-white focus-visible:-outline-offset-6",
+          active ? slotActive : "hover:hover-glow",
         )}
-      </div>
+        onClick={onToggle}
+        aria-pressed={active}
+        title={active ? "Deselect this hunter" : undefined}
+      >
+        <span className={slotName}>
+          <span>{slot + 1}</span>
+          {hunter.name}
+        </span>
+        {(hunter.playTime !== undefined || hunter.sex) && (
+          <span className={slotRow}>
+            {hunter.playTime !== undefined && (
+              <>
+                <span className={slotLabel}>Time</span>
+                <span>{formatPlayTime(hunter.playTime)}</span>
+              </>
+            )}
+            {hunter.sex && <span className="uppercase">{hunter.sex}</span>}
+          </span>
+        )}
+        {hunter.zenny !== undefined && (
+          <span className={slotRow}>
+            <span className={slotLabel}>Money</span>
+            <span>{hunter.zenny.toLocaleString()}z</span>
+          </span>
+        )}
+        {active && <span className="sr-only"> (selected)</span>}
+      </button>
     </Card>
   );
 }
@@ -160,11 +126,8 @@ function CharacterCard({ character, index, showUseButton, onUse, active }: Chara
 export default function SaveUpload() {
   const { parse, result, error, loading } = useSaveWorker();
   const { save, load, clear } = useSave();
-  const { toast } = useToast();
   const fileSync = useFileSync();
   const [isDragOver, setIsDragOver] = useState(false);
-  const regionRef = useRef<HTMLSelectElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   // Whether the parsed result came from the file picker (i.e. the stored
   // handle). Dropped or uploaded files must not overwrite the handle's slot.
   const fromPickerRef = useRef(false);
@@ -172,9 +135,9 @@ export default function SaveUpload() {
   const processFile = useCallback(
     async (file: File, fromPicker: boolean) => {
       fromPickerRef.current = fromPicker;
-      const region = (regionRef.current?.value ?? "us") as Region;
       const buffer = await file.arrayBuffer();
-      parse(buffer, region);
+      // The worker detects the region from the keys that decrypt the file.
+      parse(buffer, "us");
     },
     [parse]
   );
@@ -185,8 +148,7 @@ export default function SaveUpload() {
   };
 
   const handlePick = useCallback(async () => {
-    const region = (regionRef.current?.value ?? "us") as Region;
-    const picked = await fileSync.pickFile(region);
+    const picked = await fileSync.pickFile("us");
     if (picked) processFile(picked.file, true);
   }, [fileSync, processFile]);
 
@@ -204,178 +166,75 @@ export default function SaveUpload() {
     if (file) processFile(file, false);
   };
 
-  const occupied = result?.characters.filter(Boolean) as CharacterResult[] | undefined;
-  const showUseButton = (occupied?.length ?? 0) > 1;
-
   const selectCharacter = useCallback(
     (index: number) => {
       const character = result?.characters[index];
       if (!character) return;
-      const region = (regionRef.current?.value ?? "us") as Region;
-      load(saveFromCharacter(character, region));
-      toast({
-        id: "hunter-selected",
-        title: "Hunter selected",
-        message: `${character.name} is now your active hunter. Weapon and armor recipes show how many of each material you own.`,
-      });
+      load(saveFromCharacter(character, result.region, index));
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
-      if (fromPickerRef.current) fileSync.confirmSelection(index, region);
+      if (fromPickerRef.current) fileSync.confirmSelection(index, result.region);
     },
-    [result, load, fileSync, toast]
+    [result, load, fileSync]
   );
 
-  const singleActive = occupied?.length === 1 && isActiveHunter(save, occupied[0]);
+  // With no save open, the stored hunter still shows in its slot.
+  const storedSlot = save && !result ? (save.slot ?? 0) : null;
 
-  const handleClear = () => {
-    clear();
-    toast({
-      id: "hunter-selected",
-      message: "No active hunter. Recipes show required amounts only.",
-    });
-  };
-
-  const handleUseSingle = () => {
-    if (!occupied || occupied.length !== 1) return;
-    selectCharacter(result!.characters.indexOf(occupied[0]));
-  };
+  const loaderCta =
+    "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-[1.8rem] text-white/70 hover:border-white/60 hover:text-white";
 
   return (
-    <div className="w-full max-w-[72rem]">
+    // Slots take the game's third of the width; the loader has the rest. On a
+    // phone it's one column with the loader first, above the three slots.
+    <div className="grid w-full max-w-[130rem] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-[1.3rem] mobile:grid-cols-1">
+      <div className="flex min-w-0 flex-col gap-[1.3rem]">
+        {SLOTS.map((slot) => {
+          if (storedSlot === slot && save) {
+            return <SlotCard key={slot} slot={slot} hunter={save} active onToggle={clear} />;
+          }
+          const c = result?.characters[slot] ?? null;
+          const active = c ? isActiveHunter(save, c) : false;
+          return (
+            <SlotCard
+              key={slot}
+              slot={slot}
+              hunter={c}
+              active={active}
+              onToggle={() => (active ? clear() : selectCharacter(slot))}
+            />
+          );
+        })}
+
+        {loading && <div className={notice}>Reading save file…</div>}
+        {error && <div className={cn(notice, "text-negative")}>{error}</div>}
+      </div>
+
       <Card
         className={cn(
-          "flex cursor-default flex-col gap-[1.3rem]",
-          isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
+          "min-w-0 flex-none self-start mobile:-order-1",
+          isDragOver && "outline-2 outline-dashed outline-white/40 -outline-offset-4",
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <p>Hunter Profile</p>
-
         {fileSync.isSupported ? (
-          <button
-            type="button"
-            className={uploadLabel}
-            onClick={handlePick}
-          >
-            <span className={uploadCta}>
-              Drop MHP2NDG.BIN here or click to browse
-            </span>
+          <button type="button" className={loaderCta} onClick={handlePick}>
+            Drop MHP2NDG.BIN here or click to browse
           </button>
         ) : (
-          <label className={uploadLabel}>
+          <label className={loaderCta}>
             <input
-              ref={inputRef}
               type="file"
               accept=".bin,.BIN"
               className="absolute h-0 w-0 opacity-0"
               onChange={handleFileChange}
             />
-            <span className={uploadCta}>
-              Drop MHP2NDG.BIN here or click to browse
-            </span>
+            Drop MHP2NDG.BIN here or click to browse
           </label>
         )}
-
-        <select
-          ref={regionRef}
-          className="w-full cursor-pointer border border-hr/60 bg-transparent px-[0.8rem] py-[0.4rem] font-[inherit] text-[1.8rem] text-white [&_option]:bg-[#22281c]"
-        >
-          <option value="us">US (ULUS-10391)</option>
-          <option value="eu">EU (ULES-01213)</option>
-          <option value="jp">JP (ULJM-05500)</option>
-        </select>
-
-        <p className={note}>
-          Supports PPSSPP saves (both default and decrypted exports).{" "}
-          <em className="text-white/60 not-italic">The file never leaves your device.</em>
-        </p>
-
-        {fileSync.isSupported && fileSync.hasHandle && (
-          <div className="flex flex-wrap items-center justify-between gap-x-[1.3rem] gap-y-[0.8rem]">
-            <span className="text-[1.3rem] text-white/50">
-              {fileSync.syncing
-                ? "Syncing…"
-                : fileSync.permission !== "granted"
-                  ? "Reconnect needed to keep syncing"
-                  : fileSync.lastSynced
-                    ? `Synced with ${fileSync.fileName} · ${formatTimeAgo(fileSync.lastSynced)}`
-                    : `Connected to ${fileSync.fileName}`}
-            </span>
-            {fileSync.permission === "granted" ? (
-              <button
-                type="button"
-                className={syncButton}
-                onClick={() => fileSync.syncNow()}
-                disabled={fileSync.syncing}
-              >
-                Sync now
-              </button>
-            ) : (
-              <button
-                type="button"
-                className={syncButton}
-                onClick={() => fileSync.requestReconnect()}
-              >
-                Reconnect
-              </button>
-            )}
-          </div>
-        )}
       </Card>
-
-      <div className="mt-[1.3rem] flex flex-col gap-[1.3rem]">
-        {save && <ActiveHunterCard save={save} onClear={handleClear} />}
-
-        {loading && (
-          <p className={notice}>Reading save file…</p>
-        )}
-
-        {error && (
-          <p className={cn(notice, "text-negative")}>
-            {error}
-          </p>
-        )}
-
-        {occupied && occupied.length === 0 && (
-          <p className={notice}>No hunters found in this save.</p>
-        )}
-
-        {occupied && occupied.length === 1 && (
-          <>
-            <CharacterCard
-              character={occupied[0]}
-              index={result!.characters.indexOf(occupied[0])}
-              showUseButton={false}
-              onUse={selectCharacter}
-              active={singleActive}
-            />
-            <button
-              className={hunterButton(singleActive)}
-              onClick={handleUseSingle}
-              disabled={singleActive}
-            >
-              {singleActive ? "Active hunter" : "Use this hunter"}
-            </button>
-          </>
-        )}
-
-        {occupied && occupied.length > 1 &&
-          occupied.map((c) => {
-            const index = result!.characters.indexOf(c);
-            return (
-              <CharacterCard
-                key={index}
-                character={c}
-                index={index}
-                showUseButton={showUseButton}
-                onUse={selectCharacter}
-                active={isActiveHunter(save, c)}
-              />
-            );
-          })}
-      </div>
     </div>
   );
 }
