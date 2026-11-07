@@ -5,9 +5,11 @@ import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
-import { WEAPON_TYPES } from "@/lib/constants";
 import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
+import { useTreeFilterResult } from "@/context/TreeFilterContext";
+import type { MaterialCheck } from "@/lib/hunter-progress";
+import { rowStatus } from "@/lib/tree-filter";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -29,8 +31,11 @@ interface WeaponTreeRowProps {
 // On desktop the strip spans the whole tree card regardless of indentation:
 // it is anchored to the row's right edge and is as wide as the card
 // (half the viewport, minus the page gutter and the gap between cards).
+// Rows a tree filter (WeaponTreePanel) rules out fade in place, so the
+// connector lines and indentation never move.
 const rowBase = [
   "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
+  "transition-opacity duration-150 ease-out motion-reduce:transition-none",
   "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
   "mobile:before:left-0 mobile:before:w-full",
   "hover:before:hover-glow focus:before:hover-glow",
@@ -56,6 +61,39 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
   return null;
 }
 
+/**
+ * Improve materials for an upgrade the hunter could make from an owned
+ * parent: one square each, filled when the item box has enough and hollow
+ * when short, then a have/total count. Pushed to the row's right edge.
+ */
+function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
+  const have = materials.filter((m) => m.have >= m.need).length;
+  const all = have === materials.length;
+  return (
+    <span
+      className="relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-1 pl-4"
+      role="img"
+      aria-label={`${have} of ${materials.length} materials owned`}
+      title={materials
+        .map((m) => `${m.name}: ${Number.isFinite(m.have) ? m.have : "∞"}/${m.need}`)
+        .join("\n")}
+    >
+      {materials.map((m, i) => (
+        <span
+          key={i}
+          className={cn(
+            "size-[10px] border-2 border-rarity-9",
+            m.have >= m.need && "border-positive bg-positive",
+          )}
+        />
+      ))}
+      <span className={cn("ml-[2px] text-[15px] leading-none whitespace-nowrap", all ? "text-white" : "text-rarity-9")}>
+        {have}/{materials.length}
+      </span>
+    </span>
+  );
+}
+
 export default function WeaponTreeRow({
   node,
   sectionType,
@@ -70,24 +108,16 @@ export default function WeaponTreeRow({
     isNodeCollapsed(treeKey, node.slug),
   );
 
-  const isExternal =
-    node.type !== sectionType &&
-    (WEAPON_TYPES as readonly string[]).includes(node.type);
-  const href = node.rarity
-    ? isExternal
-      ? `/blacksmith/${node.type}/${node.slug}/`
-      : `${basePath}${node.slug}/`
-    : undefined;
   const isActive = activeSlug === node.slug;
 
   // Markers for the loaded hunter: owned pieces, and weapons they can make
-  // from an owned parent with what's in their item box right now.
+  // from an owned parent with what's in their item box right now. In a
+  // filtered weapon tree the panel has already worked this out for every row.
   const progress = useHunterProgress();
-  const owned = href ? progress.isOwned(href) : false;
-  const upgrade =
-    progress.active && href?.startsWith("/blacksmith/") && !owned && parentHref && progress.isOwned(parentHref)
-      ? progress.upgradeCheck(node.type, node.slug)
-      : null;
+  const filtered = useTreeFilterResult()?.rows.get(node.slug);
+  const { href, external: isExternal, owned, upgrade } =
+    filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const dimmed = filtered ? !filtered.match : false;
   const canUpgrade = upgrade?.status === "ready";
 
   const onToggleClick = (event: {
@@ -125,6 +155,8 @@ export default function WeaponTreeRow({
     canUpgrade &&
       !isActive &&
       "[&:not(:hover):not(:focus)]:before:[background:var(--gradient-upgrade-glow)]",
+    // Ruled out by the tree filter.
+    dimmed && "opacity-30",
   );
 
   const inner = (
@@ -159,6 +191,7 @@ export default function WeaponTreeRow({
           {collapsed ? "[+]" : "[-]"}
         </p>
       )}
+      {upgrade && upgrade.status !== "unknown" && <MaterialPips materials={upgrade.materials} />}
     </>
   );
 
