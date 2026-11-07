@@ -64,10 +64,10 @@ test("decrypts both layers and finds the two hunters", async () => {
   const [a, b, c] = r.characters;
   assert.equal(c, null, "slot 3 is empty");
   assert.deepEqual(
-    [a, b].map((h) => h && [h.name, h.sex, h.zenny, h.equipBox.length, h.itemChest.length, h.itemPouch.length]),
+    [a, b].map((h) => h && [h.name, h.sex, h.zenny, h.playTime, h.equipBox.length, h.itemChest.length, h.itemPouch.length]),
     [
-      ["Gideon", "Female", 1223209, 79, 914, 15],
-      ["MEARO", "Female", 9999999, 16, 999, 14],
+      ["Gideon", "Female", 1223209, 19087, 79, 914, 15],
+      ["MEARO", "Female", 9999999, 2840, 16, 999, 14],
     ]
   );
 });

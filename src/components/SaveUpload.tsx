@@ -3,14 +3,13 @@
 /**
  * The hunter page: pick a save file, then pick a character, in the style of
  * the game's Character Select screen. One card per hunter slot, the chosen
- * hunter lit green, and a message box that says what to do next. Nothing
- * about the hunter's items lives here; the recipes show those.
+ * hunter lit green. Nothing about the hunter's items lives here; the recipes
+ * show those.
  */
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult, type Region } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
-import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
@@ -30,35 +29,54 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
   );
 }
 
+/** Play time as the game shows it: hours and zero-padded minutes. */
+function formatPlayTime(seconds: number): string {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return `${hours}:${String(minutes).padStart(2, "0")}`;
+}
+
 interface SlotCardProps {
   /** 1-based slot number, as the game shows it; omitted for a stored hunter whose save isn't open. */
   slot?: number;
   name: string;
   sex?: string;
   zenny?: number;
+  playTime?: number;
   active: boolean;
-  onSelect?: () => void;
+  /** Select this hunter, or deselect it when it is the active one. */
+  onToggle: () => void;
 }
 
-function SlotCard({ slot, name, sex, zenny, active, onSelect }: SlotCardProps) {
+function SlotCard({ slot, name, sex, zenny, playTime, active, onToggle }: SlotCardProps) {
   return (
     <Card className={cn(styles.slot, "p-0")}>
       <button
         type="button"
         className={cn(styles["slot__button"], active && styles["slot__button--active"])}
-        onClick={onSelect}
-        disabled={active || !onSelect}
+        onClick={onToggle}
         aria-pressed={active}
+        title={active ? "Deselect this hunter" : undefined}
       >
         <span className={styles["slot__name"]}>
-          {slot !== undefined && <span className={styles["slot__number"]}>{slot}</span>}
+          {slot !== undefined && <span>{slot}</span>}
           {name}
         </span>
-        {sex && <span className={cn(styles["slot__row"], styles["slot__sex"])}>{sex}</span>}
+        {(playTime !== undefined || sex) && (
+          <span className={styles["slot__row"]}>
+            {playTime !== undefined && (
+              <>
+                <span className={styles["slot__label"]}>Time</span>
+                <span>{formatPlayTime(playTime)}</span>
+              </>
+            )}
+            {sex && <span className={styles["slot__sex"]}>{sex}</span>}
+          </span>
+        )}
         {zenny !== undefined && (
           <span className={styles["slot__row"]}>
             <span className={styles["slot__label"]}>Money</span>
-            {zenny.toLocaleString()}z
+            <span>{zenny.toLocaleString()}z</span>
           </span>
         )}
         {active && <span className="sr-only"> (selected)</span>}
@@ -70,7 +88,6 @@ function SlotCard({ slot, name, sex, zenny, active, onSelect }: SlotCardProps) {
 export default function SaveUpload() {
   const { parse, result, error, loading } = useSaveWorker();
   const { save, load, clear } = useSave();
-  const { toast } = useToast();
   const fileSync = useFileSync();
   const [isDragOver, setIsDragOver] = useState(false);
   const regionRef = useRef<HTMLSelectElement>(null);
@@ -119,103 +136,84 @@ export default function SaveUpload() {
       if (!character) return;
       const region = (regionRef.current?.value ?? "us") as Region;
       load(saveFromCharacter(character, region));
-      toast({
-        id: "hunter-selected",
-        title: "Hunter selected",
-        message: `${character.name} is now your hunter.`,
-      });
       // Only remember the slot against the stored handle when this result is
       // that handle's file; a dropped/uploaded file may be a different save.
       if (fromPickerRef.current) fileSync.confirmSelection(index, region);
     },
-    [result, load, fileSync, toast]
+    [result, load, fileSync]
   );
-
-  const handleClear = () => {
-    clear();
-    toast({ id: "hunter-selected", message: "No hunter selected." });
-  };
 
   const characters = result?.characters ?? [];
   const occupied = characters.filter((c): c is CharacterResult => c !== null);
   // The stored hunter, when the save it came from isn't open on this page.
   const storedOnly = save && !occupied.some((c) => isActiveHunter(save, c));
 
-  const message = loading
-    ? "Reading save file…"
-    : save
-      ? `${save.name} is your hunter.`
-      : result
-        ? occupied.length === 0
-          ? "No hunters found in this save."
-          : "Select a character."
-        : "Load your save to select a character.";
-
   return (
     <div className={styles.select}>
       <div className={styles.slots}>
-        {storedOnly && <SlotCard name={save.name} zenny={save.zenny} active />}
+        {storedOnly && (
+          <SlotCard
+            name={save.name}
+            sex={save.sex}
+            zenny={save.zenny}
+            playTime={save.playTime}
+            active
+            onToggle={clear}
+          />
+        )}
 
-        {characters.map((c, index) =>
-          c ? (
+        {characters.map((c, index) => {
+          if (!c) return null;
+          const active = isActiveHunter(save, c);
+          return (
             <SlotCard
               key={index}
               slot={index + 1}
               name={c.name}
               sex={c.sex}
               zenny={c.zenny}
-              active={isActiveHunter(save, c)}
-              onSelect={() => selectCharacter(index)}
+              playTime={c.playTime}
+              active={active}
+              onToggle={() => (active ? clear() : selectCharacter(index))}
             />
-          ) : null
-        )}
+          );
+        })}
 
+        {loading && <p className={styles.notice}>Reading save file…</p>}
+        {result && occupied.length === 0 && <p className={styles.notice}>No hunters found in this save.</p>}
         {error && <p className={cn(styles.notice, styles["notice--error"])}>{error}</p>}
       </div>
 
-      <div className={styles.side}>
-        <Card
-          className={cn(styles.loader, isDragOver && styles["loader--drag-over"])}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          {fileSync.isSupported ? (
-            <button type="button" className={styles["loader__cta"]} onClick={handlePick}>
-              Drop MHP2NDG.BIN here or click to browse
-            </button>
-          ) : (
-            <label className={styles["loader__cta"]}>
-              <input
-                type="file"
-                accept=".bin,.BIN"
-                className={styles["loader__input"]}
-                onChange={handleFileChange}
-              />
-              Drop MHP2NDG.BIN here or click to browse
-            </label>
-          )}
+      <Card
+        className={cn(styles.loader, isDragOver && styles["loader--drag-over"])}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
+        {fileSync.isSupported ? (
+          <button type="button" className={styles["loader__cta"]} onClick={handlePick}>
+            Drop MHP2NDG.BIN here or click to browse
+          </button>
+        ) : (
+          <label className={styles["loader__cta"]}>
+            <input
+              type="file"
+              accept=".bin,.BIN"
+              className={styles["loader__input"]}
+              onChange={handleFileChange}
+            />
+            Drop MHP2NDG.BIN here or click to browse
+          </label>
+        )}
 
-          <select ref={regionRef} className={styles["loader__region"]} aria-label="Game region">
-            <option value="us">US (ULUS-10391)</option>
-            <option value="eu">EU (ULES-01213)</option>
-            <option value="jp">JP (ULJM-05500)</option>
-          </select>
+        <select ref={regionRef} className={styles["loader__region"]} aria-label="Game region">
+          <option value="us">US (ULUS-10391)</option>
+          <option value="eu">EU (ULES-01213)</option>
+          <option value="jp">JP (ULJM-05500)</option>
+        </select>
 
-          <p className={styles["loader__note"]}>The file never leaves your device.</p>
-        </Card>
-
-        <Card className={styles.message}>
-          <p className={styles["message__text"]} aria-live="polite">
-            {message}
-          </p>
-          {save && (
-            <button type="button" className={styles["message__clear"]} onClick={handleClear}>
-              Deselect
-            </button>
-          )}
-        </Card>
-      </div>
+        <p className={styles["loader__note"]}>The file never leaves your device.</p>
+      </Card>
     </div>
   );
 }

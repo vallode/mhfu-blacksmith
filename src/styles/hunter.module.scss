@@ -1,6 +1,5 @@
 // The hunter page, after the game's Character Select screen: a column of
-// slot cards (the chosen one lit green), with the save loader and a message
-// box beside them.
+// slot cards (the chosen one lit green) with the save loader beside them.
 
 .hunter-page {
   display: flex;
@@ -26,14 +25,6 @@
   min-width: 0;
 }
 
-.side {
-  display: flex;
-  flex: 999 1 40rem;
-  flex-direction: column;
-  gap: 1.3rem;
-  min-width: 0;
-}
-
 // One hunter slot. The card is the frame; the button fills it so the whole
 // slot is the target, and the chosen hunter's fill goes green like the game.
 .slot {
@@ -53,20 +44,18 @@
   line-height: 1;
   padding: 2rem 2.2rem;
   text-align: left;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
   width: 100%;
 
-  &:hover:not(:disabled) {
+  &:hover {
     animation: var(--animate-hover-glow);
     background: var(--gradient-hover-glow);
   }
 
-  &:disabled {
-    cursor: default;
-  }
-
+  // The chosen hunter, lit like the game's selected slot. Hover keeps the
+  // fill so clicking again (to deselect) reads as acting on this card.
   &--active,
-  &--active:disabled {
+  &--active:hover {
+    animation: none;
     background: linear-gradient(0.25turn, rgb(3 119 3 / 0.95), rgb(3 119 3 / 0.55));
   }
 
@@ -101,13 +90,16 @@
   flex: 0 0 7rem;
 }
 
-// Save loader: the one control the game doesn't have.
+// Save loader: the one control the game doesn't have. Content-sized, so a
+// short slot column doesn't stretch it.
 .loader {
+  align-self: flex-start;
   display: flex;
-  // Cards grow by default; in this column they stay content-sized.
-  flex: 0 0 auto;
+  flex: 999 1 40rem;
+  max-width: 100%;
   flex-direction: column;
   gap: 1.3rem;
+  min-width: 0;
 
   &--drag-over {
     outline: 2px dashed rgba(255, 255, 255, 0.4);
@@ -159,35 +151,6 @@
   color: rgba(255, 255, 255, 0.5);
   font-size: 1.4rem;
   margin: 0;
-}
-
-// The game's bottom message box ("Select a character.").
-.message {
-  align-items: baseline;
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: 1.3rem 2.6rem;
-}
-
-.message__text {
-  flex: 1 1 auto;
-  letter-spacing: 0.06em;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
-}
-
-.message__clear {
-  background: none;
-  border: 0;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1.8rem;
-  padding: 0.4rem 0;
-
-  &:hover {
-    color: white;
-  }
 }
 
 .notice {
