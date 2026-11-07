@@ -44,7 +44,7 @@
   flex-direction: column;
   font-family: inherit;
   gap: 0.8rem;
-  justify-content: center;
+  justify-content: flex-start;
   letter-spacing: 0.06em;
   line-height: 1;
   min-height: 16rem;
@@ -93,7 +93,6 @@
 }
 
 .slot__nodata {
-  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
 }
 
