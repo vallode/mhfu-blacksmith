@@ -58,11 +58,18 @@ describe("checkUpgrade", () => {
     assert.equal(checkUpgrade(dict, materials, weapon([[0, 99]]), counts, 1000).status, "ready");
   });
 
-  test("unknown: no save, no zenny, no improve recipe, unlinked material or odd amount", () => {
+  test("a save stored before zenny was kept still checks materials, not the cost", () => {
+    const counts = new Map([[10, 3]]);
+    const result = checkUpgrade(dict, materials, weapon([[0, 3]], 99999), counts, undefined);
+    assert.equal(result.status, "ready");
+    assert.ok(result.status === "ready");
+    assert.deepEqual(result.materials, [{ name: "Iron Ore", need: 3, have: 3 }]);
+  });
+
+  test("unknown: no save, no improve recipe, unlinked material or odd amount", () => {
     const counts = new Map([[10, 5]]);
     const unknown = { status: "unknown" };
     assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, 1]]), null, 1000), unknown);
-    assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, 1]]), counts, undefined), unknown);
     assert.deepEqual(checkUpgrade(dict, materials, weapon(undefined), counts, 1000), unknown);
     assert.deepEqual(checkUpgrade(dict, { "Iron Ore": 10 }, weapon([[0, 1], [1, 1]]), counts, 1000), unknown);
     assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, "1-2"]]), counts, 1000), unknown);

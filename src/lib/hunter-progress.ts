@@ -4,8 +4,9 @@
  *
  * An upgrade is "ready" when every improve material is owned in the needed
  * amount and the hunter has the zenny. It is "unknown" (and never shown as
- * ready) when a material doesn't link to an in-game item, an amount isn't a
- * plain number, or the save was stored before zenny was kept.
+ * ready) when a material doesn't link to an in-game item or an amount isn't a
+ * plain number. A save stored before zenny was kept still gets a material
+ * check; only the cost goes unchecked.
  */
 import { resolveEquip } from "./equipment";
 import type { CompactWeapon, Dictionaries, EquipmentIds } from "./schema";
@@ -60,7 +61,7 @@ export function checkUpgrade(
   counts: Map<number, number> | null,
   zenny: number | undefined
 ): UpgradeCheck {
-  if (!counts || zenny === undefined || !weapon.im?.length) return { status: "unknown" };
+  if (!counts || !weapon.im?.length) return { status: "unknown" };
   const checks: MaterialCheck[] = [];
   let missing = 0;
   for (const [materialId, amount] of weapon.im) {
@@ -72,7 +73,7 @@ export function checkUpgrade(
     checks.push({ name, need: amount, have });
   }
   const cost = weapon.ic ?? 0;
-  if (cost > zenny) missing++;
+  if (zenny !== undefined && cost > zenny) missing++;
   return missing === 0
     ? { status: "ready", cost, materials: checks, missing: 0 }
     : { status: "short", cost, materials: checks, missing };
