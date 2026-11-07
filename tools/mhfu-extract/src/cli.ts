@@ -2,7 +2,7 @@
 /**
  * mhfu-extract CLI entrypoint. See README's "Usage" section.
  *
- *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path>] [--pspdecrypt-bin <name>]
+ *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
  *   tsx src/cli.ts extract --unpacked <dir> --out <dir>
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  */
@@ -11,13 +11,20 @@ import { printDiffSummary, runDiff } from "./cli/diff.js";
 import { runExtract } from "./cli/extract.js";
 import { runUnpack } from "./cli/unpack.js";
 
-/** Minimal `--flag value` parser — every flag here takes exactly one value, no `=` form or boolean flags needed yet. */
+/** Flags that take no value; present means `"true"`. */
+const BOOLEAN_FLAGS = new Set(["skip-eboot"]);
+
+/** Minimal `--flag value` parser — no `=` form; flags in BOOLEAN_FLAGS take no value. */
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (!arg?.startsWith("--")) continue;
     const key = arg.slice(2);
+    if (BOOLEAN_FLAGS.has(key)) {
+      flags[key] = "true";
+      continue;
+    }
     const value = argv[i + 1];
     if (value === undefined || value.startsWith("--")) {
       throw new Error(`Missing value for --${key}`);
@@ -35,7 +42,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 }
 
 const USAGE = `Usage:
-  tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path>] [--pspdecrypt-bin <name>]
+  tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
   tsx src/cli.ts extract --unpacked <dir> --out <dir>
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]`;
 
@@ -49,6 +56,7 @@ export async function main(argv: string[]): Promise<void> {
         iso: requireFlag(flags, "iso"),
         out: requireFlag(flags, "out"),
         eboot: flags.eboot,
+        skipEboot: flags["skip-eboot"] === "true",
         pspdecryptBin: flags["pspdecrypt-bin"],
       });
       console.log(`\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`);

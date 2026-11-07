@@ -72,6 +72,11 @@ async function readQuestsFromUnpackedDir(unpackedDir: string, region: Region): P
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
+  if (manifest.eboot === false) {
+    throw new Error(
+      `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`
+    );
+  }
 
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));

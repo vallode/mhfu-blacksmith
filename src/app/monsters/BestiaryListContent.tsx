@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MONSTER_CATEGORIES } from "@/lib/constants";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import BorderRule from "@/components/BorderRule";
 
 function formatLabel(s: string): string {
   return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -25,7 +26,7 @@ export default function BestiaryListContent() {
           </button>
         </div>
       </nav>
-      <hr className="border" />
+      <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
         <Card className="overflow-auto py-7">

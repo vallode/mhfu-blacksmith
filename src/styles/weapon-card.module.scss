@@ -1,6 +1,5 @@
 .weapon-card {
-  // The detail panel's width is governed by the .weapon-details-page flex
-  // container (both cards get flex: 1 1 0% for an equal split).
+  // Detail panel: shares the row equally with the tree card.
   flex: 1 1 0%;
   min-width: 0;
 
@@ -64,7 +63,7 @@
         line-height: 1.25;
       }
 
-      // The monster portrait icon is styled in Icon.module.scss (.monsterIcon)
+      // The monster portrait icon is styled by monsterPortrait (src/lib/icon-style.ts)
       // and applied directly to the <Icon> in MonsterDetailClient.
 
       @media screen and (max-width: 600px) {

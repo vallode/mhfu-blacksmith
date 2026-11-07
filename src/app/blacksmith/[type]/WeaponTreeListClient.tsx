@@ -5,6 +5,7 @@ import WeaponTreePanel from "@/components/WeaponTreePanel";
 import Card from "@/components/Card";
 import type { WeaponType } from "@/lib/constants";
 import { useWeaponTree } from "@/lib/client-data";
+import BorderRule from "@/components/BorderRule";
 
 interface Props {
   type: WeaponType;
@@ -16,7 +17,7 @@ export default function WeaponTreeListClient({ type }: Props) {
   return (
     <>
       <WeaponNav activeType={type} />
-      <hr className="border" />
+      <BorderRule />
 
       <div className="split-page">
         <WeaponTreePanel type={type} tree={loading ? null : tree} />

@@ -14,9 +14,25 @@ import { useFileSync } from "@/context/FileSyncContext";
 import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
 import type { SaveData } from "@/lib/save-store";
-import styles from "@/styles/hunter.module.scss";
 
 const SLOTS = [0, 1, 2];
+
+// One hunter slot. The card is the frame; this fills it so the whole slot is
+// the target, top-aligned so an empty slot's NO DATA sits where a name does.
+const slotBase =
+  "box-border flex min-h-[16rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2.6rem] py-[2.4rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
+
+// The chosen hunter, lit like the game's selected slot. Hover keeps the fill
+// so clicking again (to deselect) reads as acting on this card.
+const slotActive = "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
+
+const slotName = "flex min-w-0 gap-[1.4rem] text-[2.8rem] [&>:last-child]:truncate";
+const slotRow = "flex gap-[1.6rem] text-[2.2rem]";
+const slotLabel = "flex-[0_0_7rem] uppercase";
+
+// Status line under the slots (reading, errors). A div, not a p, so Card's
+// paragraph reset doesn't take the colour (see Card.module.scss).
+const notice = "py-[1.3rem] text-center text-[1.8rem] text-white/60";
 
 /** The stored hunter's items, in the order selection saved them (box, then pouch). */
 const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
@@ -57,43 +73,47 @@ interface SlotCardProps {
 function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
   if (!hunter) {
     return (
-      <Card className={cn(styles.slot, "p-0")}>
-        <div className={cn(styles["slot__button"], styles["slot__button--empty"])}>
-          <span className={styles["slot__name"]}>
+      <Card className="flex-none p-0">
+        <div className={slotBase}>
+          <span className={slotName}>
             <span>{slot + 1}</span>
-            <span className={styles["slot__nodata"]}>No data</span>
+            <span className="uppercase">No data</span>
           </span>
         </div>
       </Card>
     );
   }
   return (
-    <Card className={cn(styles.slot, "p-0")}>
+    <Card className="flex-none p-0">
       <button
         type="button"
-        className={cn(styles["slot__button"], active && styles["slot__button--active"])}
+        className={cn(
+          slotBase,
+          "cursor-pointer focus-visible:outline-2 focus-visible:outline-white focus-visible:-outline-offset-6",
+          active ? slotActive : "hover:hover-glow",
+        )}
         onClick={onToggle}
         aria-pressed={active}
         title={active ? "Deselect this hunter" : undefined}
       >
-        <span className={styles["slot__name"]}>
+        <span className={slotName}>
           <span>{slot + 1}</span>
           {hunter.name}
         </span>
         {(hunter.playTime !== undefined || hunter.sex) && (
-          <span className={styles["slot__row"]}>
+          <span className={slotRow}>
             {hunter.playTime !== undefined && (
               <>
-                <span className={styles["slot__label"]}>Time</span>
+                <span className={slotLabel}>Time</span>
                 <span>{formatPlayTime(hunter.playTime)}</span>
               </>
             )}
-            {hunter.sex && <span className={styles["slot__sex"]}>{hunter.sex}</span>}
+            {hunter.sex && <span className="uppercase">{hunter.sex}</span>}
           </span>
         )}
         {hunter.zenny !== undefined && (
-          <span className={styles["slot__row"]}>
-            <span className={styles["slot__label"]}>Money</span>
+          <span className={slotRow}>
+            <span className={slotLabel}>Money</span>
             <span>{hunter.zenny.toLocaleString()}z</span>
           </span>
         )}
@@ -161,9 +181,14 @@ export default function SaveUpload() {
   // With no save open, the stored hunter still shows in its slot.
   const storedSlot = save && !result ? (save.slot ?? 0) : null;
 
+  const loaderCta =
+    "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-[1.8rem] text-white/70 hover:border-white/60 hover:text-white";
+
   return (
-    <div className={styles.select}>
-      <div className={styles.slots}>
+    // Slots take the game's third of the width; the loader has the rest. On a
+    // phone it's one column with the loader first, above the three slots.
+    <div className="grid w-full max-w-[130rem] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-[1.3rem] mobile:grid-cols-1">
+      <div className="flex min-w-0 flex-col gap-[1.3rem]">
         {SLOTS.map((slot) => {
           if (storedSlot === slot && save) {
             return <SlotCard key={slot} slot={slot} hunter={save} active onToggle={clear} />;
@@ -181,26 +206,29 @@ export default function SaveUpload() {
           );
         })}
 
-        {loading && <p className={styles.notice}>Reading save file…</p>}
-        {error && <p className={cn(styles.notice, styles["notice--error"])}>{error}</p>}
+        {loading && <div className={notice}>Reading save file…</div>}
+        {error && <div className={cn(notice, "text-negative")}>{error}</div>}
       </div>
 
       <Card
-        className={cn(styles.loader, isDragOver && styles["loader--drag-over"])}
+        className={cn(
+          "min-w-0 flex-none self-start mobile:-order-1",
+          isDragOver && "outline-2 outline-dashed outline-white/40 -outline-offset-4",
+        )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         {fileSync.isSupported ? (
-          <button type="button" className={styles["loader__cta"]} onClick={handlePick}>
+          <button type="button" className={loaderCta} onClick={handlePick}>
             Drop MHP2NDG.BIN here or click to browse
           </button>
         ) : (
-          <label className={styles["loader__cta"]}>
+          <label className={loaderCta}>
             <input
               type="file"
               accept=".bin,.BIN"
-              className={styles["loader__input"]}
+              className="absolute h-0 w-0 opacity-0"
               onChange={handleFileChange}
             />
             Drop MHP2NDG.BIN here or click to browse

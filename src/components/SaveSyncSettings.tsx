@@ -2,7 +2,7 @@
 
 import Card from "@/components/Card";
 import { useFileSync } from "@/context/FileSyncContext";
-import styles from "@/styles/options.module.scss";
+import * as ui from "@/styles/settings";
 
 function formatTimeAgo(ts: number): string {
   const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
@@ -19,9 +19,9 @@ export default function SaveSyncSettings() {
 
   if (!fileSync.isSupported) {
     return (
-      <Card className={styles.section}>
-        <h2 className={styles.heading}>Save Sync</h2>
-        <p className={styles.note}>
+      <Card className={ui.section}>
+        <h2 className={ui.heading}>Save Sync</h2>
+        <p className={ui.note}>
           Automatic save syncing isn&apos;t supported in this browser. You can
           still upload your save file manually from the Hunter page.
         </p>
@@ -31,9 +31,9 @@ export default function SaveSyncSettings() {
 
   if (!fileSync.hasHandle) {
     return (
-      <Card className={styles.section}>
-        <h2 className={styles.heading}>Save Sync</h2>
-        <p className={styles.note}>
+      <Card className={ui.section}>
+        <h2 className={ui.heading}>Save Sync</h2>
+        <p className={ui.note}>
           Connect your save file from the Hunter page to have your hunter
           profile refresh automatically whenever you return, no re-uploading
           needed.
@@ -45,16 +45,16 @@ export default function SaveSyncSettings() {
   const connected = fileSync.permission === "granted";
 
   return (
-    <Card className={styles.section}>
-      <h2 className={styles.heading}>Save Sync</h2>
-      <p className={styles.note}>
+    <Card className={ui.section}>
+      <h2 className={ui.heading}>Save Sync</h2>
+      <p className={ui.note}>
         Your hunter profile refreshes automatically from{" "}
         {fileSync.fileName ?? "your save file"} whenever you return to this
         site — no re-uploading needed.
       </p>
 
-      <div className={styles.status}>
-        <span className={styles.statusLabel}>
+      <div className={ui.status}>
+        <span className={ui.statusLabel}>
           {fileSync.syncing
             ? "Syncing…"
             : connected
@@ -65,13 +65,13 @@ export default function SaveSyncSettings() {
         </span>
       </div>
 
-      {fileSync.error && <p className={styles.error}>{fileSync.error}</p>}
+      {fileSync.error && <p className={ui.error}>{fileSync.error}</p>}
 
-      <div className={styles.actions}>
+      <div className={ui.actions}>
         {connected ? (
           <button
             type="button"
-            className={styles.button}
+            className={ui.button}
             disabled={fileSync.syncing}
             onClick={() => fileSync.syncNow()}
           >
@@ -80,7 +80,7 @@ export default function SaveSyncSettings() {
         ) : (
           <button
             type="button"
-            className={styles.button}
+            className={ui.button}
             onClick={() => fileSync.requestReconnect()}
           >
             Reconnect
@@ -89,7 +89,7 @@ export default function SaveSyncSettings() {
 
         <button
           type="button"
-          className={styles.buttonSecondary}
+          className={ui.buttonSecondary}
           onClick={() => fileSync.forget()}
         >
           Forget save file
