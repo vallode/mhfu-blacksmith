@@ -9,6 +9,7 @@
     "unpack": "tsx src/cli.ts unpack",
     "extract": "tsx src/cli.ts extract",
     "diff": "tsx src/cli.ts diff",
+    "models": "tsx src/cli.ts models",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {

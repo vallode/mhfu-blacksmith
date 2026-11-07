@@ -224,7 +224,33 @@ and pinned as fixtures in `test/ovl.test.ts`, but no static monster ID →
 data mapping exists, so nothing is emitted for monsters yet. Investigation
 notes and options: [#35](https://github.com/vallode/mhfu-blacksmith/issues/35).
 
-## Emit layer
+## 3D models (experimental)
+
+```bash
+pnpm --filter mhfu-extract models --in .cache/mhfu/data-bin --out .cache/mhfu/glb
+```
+
+`models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
+texture set) into `.glb` files with embedded PNG textures. The source lives
+in `src/models/`: `pac.ts` is the container, `pmo.ts` the mesh tables,
+`ge.ts` the PSP GE display lists that hold the geometry, `tmh.ts` the
+textures and `gltf.ts` the output. Two corrections to mhff's description of
+PMO 1.0, both confirmed on real files: mesh records are 0x18 bytes, and
+materials go through a per-slot byte map at header offset 0x28.
+
+Status:
+
+- Armor pieces convert and render correctly (textured, correct UVs). Only
+  static bind pose; skinning weights are dropped.
+- Monster packages hold one mesh per bone, positioned in bone space; the
+  skeleton isn't decoded yet, so they don't assemble.
+- **The EU disc's `DATA.BIN` has 6,657 entries but `filelist.csv` names the
+  JP disc's 6,602**, so `unpack` gives EU files the wrong names from some
+  point on (e.g. EU `weapon/we000.pac` is really male waist armor, about 20
+  entries off). Don't trust EU names for model work until an EU file list
+  exists.
+
+
 
 `src/emit/*.ts` maps the raw structs from `src/tables/` onto the exact
 `data/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s
