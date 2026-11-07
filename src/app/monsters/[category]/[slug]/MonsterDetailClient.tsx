@@ -6,7 +6,7 @@ import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
 import cardStyles from "@/styles/weapon-card.module.scss";
 import iconStyles from "@/components/Icon.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
+import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -118,7 +118,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             <hr />
 
             {hitzoneEntries.length > 0 && (
-              <table className={tableStyles["monster-hz"]}>
+              <table className={hitzoneTable}>
                 <thead>
                   <tr>
                     <th>Part</th>

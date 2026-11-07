@@ -8,7 +8,7 @@ import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import cardStyles from "@/styles/weapon-card.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
+import { statTable } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -272,7 +272,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.ammo && (
                 <div className="page">
-                  <table className={tableStyles.min}>
+                  <table className={statTable}>
                     <thead>
                       <tr>
                         <th>Cap.:</th><th>LV</th><th>1</th><th>2</th><th>3</th><th></th>
@@ -280,11 +280,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     </thead>
                     <tbody>
                       {weapon.ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                        <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                               {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
@@ -294,7 +294,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.status_ammo && (
-                    <table className={tableStyles.min}>
+                    <table className={statTable}>
                       <thead>
                         <tr>
                           <th></th><th>LV</th><th>1</th><th>2</th><th></th>
@@ -302,11 +302,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </thead>
                       <tbody>
                         {weapon.status_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                          <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                                 {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
@@ -320,17 +320,17 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.element_ammo && (
                 <div className="page">
-                  <table className={tableStyles.min}>
+                  <table className={statTable}>
                     <thead>
                       <tr><th>Cap.:</th><th></th><th></th></tr>
                     </thead>
                     <tbody>
                       {weapon.element_ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                        <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                               {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
@@ -340,17 +340,17 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.misc_ammo && (
-                    <table className={tableStyles.min}>
+                    <table className={statTable}>
                       <thead>
                         <tr><th></th><th></th><th></th></tr>
                       </thead>
                       <tbody>
                         {weapon.misc_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                          <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                                 {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
@@ -383,7 +383,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {melodies && (
                 <div className="page">
-                  <table className={tableStyles.min}>
+                  <table className={statTable}>
                     <thead>
                       <tr>
                         <th>Combo</th>
