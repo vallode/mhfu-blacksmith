@@ -8,7 +8,36 @@ import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
 import Card from "@/components/Card";
 import type { EquipSlot, SaveData } from "@/lib/save-store";
-import styles from "@/styles/hunter.module.scss";
+import { cn } from "@/lib/cn";
+
+// Small grey caption (stat labels, "Active hunter").
+const label = "text-[1.4rem] leading-none text-white/50";
+
+// Explanatory text inside the upload/active-hunter cards. Card's paragraph
+// reset still overrides the colour and line height (see Card.module.scss).
+const note = "m-0 text-[1.4rem] leading-[1.4] text-white/40";
+
+// Status line under the cards (reading, errors, no hunters found).
+const notice = "m-0 py-[1.3rem] text-center text-[1.8rem] text-white/60";
+
+/** "Use hunter" / "Stop using this hunter". Once a hunter is the active one
+ * the button is disabled and shows yellow text, like the game's lists. */
+const hunterButton = (active = false) =>
+  cn(
+    "mt-[0.75rem] w-full cursor-pointer border border-current bg-transparent px-[0.8rem] py-[0.4rem] font-[inherit] text-[1.6rem] text-white/70",
+    active ? "cursor-default border-white/70 text-stat" : "hover:text-white",
+  );
+
+const syncButton = [
+  "cursor-pointer border border-white/35 bg-transparent px-[0.9rem] py-[0.3rem] font-[inherit] text-[1.3rem] text-white/70",
+  "enabled:hover:border-white/60 enabled:hover:text-white disabled:cursor-default disabled:opacity-60",
+].join(" ");
+
+const uploadLabel =
+  "flex w-full cursor-pointer flex-col items-center gap-[0.8rem] border-none bg-transparent p-0 font-[inherit]";
+
+const uploadCta =
+  "block w-full border border-dashed border-white/35 px-[2.4rem] py-[1.6rem] text-center text-[1.8rem] text-white/70 hover:border-white/60 hover:text-white";
 
 function formatNumber(n: number): string {
   return n.toLocaleString();
@@ -38,11 +67,11 @@ function HunterStats({ zenny, equipment, itemCount }: { zenny?: number; equipmen
     ["Items", itemCount],
   ];
   return (
-    <div className={styles["hunter-profile__stats"]}>
-      {stats.map(([label, value]) => (
-        <div key={label} className={styles["hunter-profile__stat"]}>
-          <span className={styles["hunter-profile__label"]}>{label}</span>
-          <span className={styles["hunter-profile__value"]}>
+    <div className="mt-[0.6rem] flex flex-row flex-wrap gap-x-[2.6rem] gap-y-[1.3rem]">
+      {stats.map(([name, value]) => (
+        <div key={name} className="flex flex-col gap-[0.3rem]">
+          <span className={label}>{name}</span>
+          <span className="flex items-center gap-[0.6rem] text-[2.2rem] leading-none text-white">
             {value === undefined ? "—" : formatNumber(value)}
           </span>
         </div>
@@ -70,19 +99,19 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
 function ActiveHunterCard({ save, onClear }: { save: SaveData; onClear: () => void }) {
   return (
     <Card>
-      <div className={styles["hunter-profile"]}>
-        <span className={styles["hunter-profile__label"]}>Active hunter</span>
-        <div className={styles["hunter-profile__header"]}>
-          <span className={styles["hunter-profile__name"]}>{save.name}</span>
-          <span className={styles["hunter-profile__sex"]}>
+      <div>
+        <span className={label}>Active hunter</span>
+        <div className="flex items-baseline gap-[1.3rem]">
+          <span className="text-[2.6rem] leading-none text-gold">{save.name}</span>
+          <span className="text-[1.6rem] leading-none text-white/50">
             {REGION_LABELS[save.region] ?? save.region} · selected {formatTimeAgo(save.savedAt)}
           </span>
         </div>
-        <p className={styles["save-upload__note"]}>
+        <p className={note}>
           Weapon and armor recipes show how many of each material this hunter owns.
         </p>
         <HunterStats zenny={save.zenny} equipment={save.equipment} itemCount={save.items.length} />
-        <button className={styles["hunter-profile__use-btn"]} onClick={onClear}>
+        <button className={hunterButton()} onClick={onClear}>
           Stop using this hunter
         </button>
       </div>
@@ -102,10 +131,10 @@ interface CharacterCardProps {
 function CharacterCard({ character, index, showUseButton, onUse, active }: CharacterCardProps) {
   return (
     <Card>
-      <div className={styles["hunter-profile"]}>
-        <div className={styles["hunter-profile__header"]}>
-          <span className={styles["hunter-profile__name"]}>{character.name}</span>
-          <span className={styles["hunter-profile__sex"]}>{character.sex}</span>
+      <div>
+        <div className="flex items-baseline gap-[1.3rem]">
+          <span className="text-[2.6rem] leading-none text-gold">{character.name}</span>
+          <span className="text-[1.6rem] leading-none text-white/50">{character.sex}</span>
         </div>
 
         <HunterStats
@@ -116,7 +145,7 @@ function CharacterCard({ character, index, showUseButton, onUse, active }: Chara
 
         {showUseButton && (
           <button
-            className={`${styles["hunter-profile__use-btn"]}${active ? ` ${styles["is-active"]}` : ""}`}
+            className={hunterButton(active)}
             onClick={() => onUse(index)}
             disabled={active}
           >
@@ -212,9 +241,12 @@ export default function SaveUpload() {
   };
 
   return (
-    <div className={styles["hunter-page__upload"]}>
+    <div className="w-full max-w-[72rem]">
       <Card
-        className={`${styles["save-upload"]}${isDragOver ? ` ${styles["is-drag-over"]}` : ""}`}
+        className={cn(
+          "flex cursor-default flex-col gap-[1.3rem]",
+          isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
+        )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -224,42 +256,45 @@ export default function SaveUpload() {
         {fileSync.isSupported ? (
           <button
             type="button"
-            className={styles["save-upload__label"]}
+            className={uploadLabel}
             onClick={handlePick}
           >
-            <span className={styles["save-upload__cta"]}>
+            <span className={uploadCta}>
               Drop MHP2NDG.BIN here or click to browse
             </span>
           </button>
         ) : (
-          <label className={styles["save-upload__label"]}>
+          <label className={uploadLabel}>
             <input
               ref={inputRef}
               type="file"
               accept=".bin,.BIN"
-              className={styles["save-upload__input"]}
+              className="absolute h-0 w-0 opacity-0"
               onChange={handleFileChange}
             />
-            <span className={styles["save-upload__cta"]}>
+            <span className={uploadCta}>
               Drop MHP2NDG.BIN here or click to browse
             </span>
           </label>
         )}
 
-        <select ref={regionRef} className={styles["save-upload__region"]}>
+        <select
+          ref={regionRef}
+          className="w-full cursor-pointer border border-hr/60 bg-transparent px-[0.8rem] py-[0.4rem] font-[inherit] text-[1.8rem] text-white [&_option]:bg-[#22281c]"
+        >
           <option value="us">US (ULUS-10391)</option>
           <option value="eu">EU (ULES-01213)</option>
           <option value="jp">JP (ULJM-05500)</option>
         </select>
 
-        <p className={styles["save-upload__note"]}>
+        <p className={note}>
           Supports PPSSPP saves (both default and decrypted exports).{" "}
-          <em>The file never leaves your device.</em>
+          <em className="text-white/60 not-italic">The file never leaves your device.</em>
         </p>
 
         {fileSync.isSupported && fileSync.hasHandle && (
-          <div className={styles["save-upload__sync"]}>
-            <span className={styles["save-upload__sync-status"]}>
+          <div className="flex flex-wrap items-center justify-between gap-x-[1.3rem] gap-y-[0.8rem]">
+            <span className="text-[1.3rem] text-white/50">
               {fileSync.syncing
                 ? "Syncing…"
                 : fileSync.permission !== "granted"
@@ -271,7 +306,7 @@ export default function SaveUpload() {
             {fileSync.permission === "granted" ? (
               <button
                 type="button"
-                className={styles["save-upload__sync-btn"]}
+                className={syncButton}
                 onClick={() => fileSync.syncNow()}
                 disabled={fileSync.syncing}
               >
@@ -280,7 +315,7 @@ export default function SaveUpload() {
             ) : (
               <button
                 type="button"
-                className={styles["save-upload__sync-btn"]}
+                className={syncButton}
                 onClick={() => fileSync.requestReconnect()}
               >
                 Reconnect
@@ -290,21 +325,21 @@ export default function SaveUpload() {
         )}
       </Card>
 
-      <div className={styles["hunter-page__results"]}>
+      <div className="mt-[1.3rem] flex flex-col gap-[1.3rem]">
         {save && <ActiveHunterCard save={save} onClear={handleClear} />}
 
         {loading && (
-          <p className={styles["save-upload__notice"]}>Reading save file…</p>
+          <p className={notice}>Reading save file…</p>
         )}
 
         {error && (
-          <p className={`${styles["save-upload__notice"]} ${styles["save-upload__notice--error"]}`}>
+          <p className={cn(notice, "text-negative")}>
             {error}
           </p>
         )}
 
         {occupied && occupied.length === 0 && (
-          <p className={styles["save-upload__notice"]}>No hunters found in this save.</p>
+          <p className={notice}>No hunters found in this save.</p>
         )}
 
         {occupied && occupied.length === 1 && (
@@ -317,7 +352,7 @@ export default function SaveUpload() {
               active={singleActive}
             />
             <button
-              className={`${styles["hunter-profile__use-btn"]}${singleActive ? ` ${styles["is-active"]}` : ""}`}
+              className={hunterButton(singleActive)}
               onClick={handleUseSingle}
               disabled={singleActive}
             >
