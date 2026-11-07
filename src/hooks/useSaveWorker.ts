@@ -7,6 +7,8 @@ export interface CharacterResult {
   name: string;
   sex: "Male" | "Female";
   zenny: number;
+  /** Total play time in seconds. */
+  playTime: number;
   /** Used equipment box slots, in box order. */
   equipBox: EquipSlot[];
   itemChest: { id: number; qty: number }[];

@@ -6,6 +6,7 @@ const CHAR_BASES = [0x001000, 0x06c100, 0x0d7200];
 const OFFSETS = {
   HUNTER_NAME: 0x000000, // 24 bytes, UTF-16LE, null-padded (max 12 chars)
   SEX:         0x000012, // uint8: 0 = Male, 1 = Female
+  PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
   ZENNY:       0x069250, // uint32 LE
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
@@ -60,6 +61,7 @@ function parseCharacter(view, charIndex) {
   const name  = readName(view, base);
   const sex   = view.getUint8(base + OFFSETS.SEX) === 0 ? "Male" : "Female";
   const zenny = view.getUint32(base + OFFSETS.ZENNY, true);
+  const playTime = view.getUint32(base + OFFSETS.PLAY_TIME, true);
 
   // Kept in box order (slot index), skipping empty slots.
   const equipBox = [];
@@ -80,7 +82,7 @@ function parseCharacter(view, charIndex) {
     if (slot) itemPouch.push(slot);
   }
 
-  return { name, sex, zenny, equipBox, itemChest, itemPouch };
+  return { name, sex, zenny, playTime, equipBox, itemChest, itemPouch };
 }
 
 const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)
