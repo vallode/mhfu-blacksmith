@@ -81,8 +81,9 @@ function emitSlot(
     if (!name) continue;
     // The schema caps slots at 3. The absurd slot counts (10-65) once seen
     // at the end of "headArmor" were the leggings array read 16 entries past
-    // its end, before the pointer-order fix. Kept as a guard so a bad read
-    // is dropped rather than emitted.
+    // its end, before the pointer-order fix; no entry on a real EU EBOOT
+    // trips this now. Kept as a guard so a bad read is dropped rather than
+    // emitted.
     if (armor.slots > 3) continue;
 
     const skills = armor.skills
