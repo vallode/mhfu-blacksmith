@@ -1,15 +1,13 @@
-// Sits inside the side card of a .split-page (which is position: relative):
-// the left half on desktop (minus half the 1.3rem gap between the cards),
-// inset on every side so the side card's own frame shows around it.
-$inset: 14px;
-
+// Inset inside the side card of a .split-page (position: relative). The exact
+// box is set from the side card's measured size (see ModelPopover.tsx); these
+// are only the defaults before that runs.
 .popover {
-  bottom: $inset;
+  bottom: 0;
   display: flex;
-  left: $inset;
+  left: 0;
   position: absolute;
-  top: $inset;
-  width: calc((100% - 1.3rem) / 2 - #{2 * $inset});
+  top: 0;
+  width: 50%;
   z-index: 30;
 
   // Stacked layout: the cards stack and the page scrolls, so there's no
