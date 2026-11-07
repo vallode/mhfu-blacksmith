@@ -12,6 +12,8 @@ import tableStyles from "@/styles/tables.module.scss";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ModelViewer from "@/components/ModelViewer";
+import { useWeaponModel } from "@/lib/models";
 
 interface Props {
   type: WeaponType;
@@ -37,6 +39,7 @@ const COATINGS = [
 export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, tree, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
+  const modelUrl = useWeaponModel(type, weapon?.name);
 
   if (loading || !weapon) {
     // Keep the split layout (and the tree card frame) in place while the data
@@ -208,6 +211,13 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             </div>
 
             <hr />
+
+            {modelUrl && (
+              <>
+                <ModelViewer src={modelUrl} label={weapon.name} />
+                <hr />
+              </>
+            )}
 
             {/* Requirements section */}
             <div className="requirements">

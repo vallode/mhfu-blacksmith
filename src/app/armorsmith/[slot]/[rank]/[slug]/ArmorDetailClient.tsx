@@ -10,6 +10,8 @@ import cardStyles from "@/styles/weapon-card.module.scss";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ArmorModelViewer from "@/components/ArmorModelViewer";
+import { useArmorModel } from "@/lib/models";
 
 interface Props {
   slot: ArmorSlot;
@@ -19,6 +21,7 @@ interface Props {
 
 export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   const { item: piece, tree, loading } = useArmorPiece(slot, rank, slug);
+  const models = useArmorModel(slot, piece?.name, piece?.sex);
 
   const basePath = `/armorsmith/${slot}/${rank}/`;
 
@@ -136,6 +139,13 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
             </div>
 
             <hr />
+
+            {models && (
+              <>
+                <ArmorModelViewer models={models} label={piece.name} />
+                <hr />
+              </>
+            )}
 
             {piece.skills && piece.skills.length > 0 && (
               <div className="skills">

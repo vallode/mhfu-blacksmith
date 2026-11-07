@@ -97,7 +97,7 @@ export async function main(argv: string[]): Promise<void> {
         data: flags.data ?? "../../data",
         out: flags.out ?? "../../public/models",
       });
-      console.log(`\nDone. ${Object.keys(manifest.monsters).length} monster models in the manifest.`);
+      console.log(`\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${Object.keys(manifest.weapons).length} weapons, ${Object.keys(manifest.armor).length} armor pieces.`);
       return;
     }
     default:
