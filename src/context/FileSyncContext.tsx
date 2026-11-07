@@ -107,7 +107,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
         }));
         return;
       }
-      load(saveFromCharacter(character, record.region));
+      load(saveFromCharacter(character, record.region, record.characterIndex));
     },
     [load]
   );
