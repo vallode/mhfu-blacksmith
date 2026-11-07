@@ -1,8 +1,7 @@
 "use client";
 
 import WeaponNav from "@/components/WeaponNav";
-import WeaponTreeRow from "@/components/WeaponTreeRow";
-import TreeScroll from "@/components/TreeScroll";
+import WeaponTreePanel from "@/components/WeaponTreePanel";
 import SharpnessBar from "@/components/SharpnessBar";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
@@ -58,11 +57,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         <WeaponNav activeType={type} />
         <BorderRule />
         <div className="split-page">
-          <Card variant="weapon-tree">
-            <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
-              {null}
-            </TreeScroll>
-          </Card>
+          <WeaponTreePanel type={type} tree={null} activeSlug={slug} />
           <Card>
             <p>{loading ? "Loading…" : "Not found."}</p>
           </Card>
@@ -71,8 +66,6 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     );
   }
 
-  const basePath = `/blacksmith/${type}/`;
-
   return (
     <>
       <WeaponNav activeType={type} />
@@ -80,21 +73,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
       <div className="split-page">
         {/* Weapon tree sidebar */}
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
-            {tree?.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType={type}
-                  basePath={basePath}
-                  treeKey={`weapon-${type}`}
-                  activeSlug={slug}
-                />
-              </ul>
-            ))}
-          </TreeScroll>
-        </Card>
+        <WeaponTreePanel type={type} tree={tree} activeSlug={slug} />
 
         {/* Detail panel */}
         <DetailCard>

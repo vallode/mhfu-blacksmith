@@ -6,6 +6,7 @@ const CHAR_BASES = [0x001000, 0x06c100, 0x0d7200];
 const OFFSETS = {
   HUNTER_NAME: 0x000000, // 24 bytes, UTF-16LE, null-padded (max 12 chars)
   SEX:         0x000012, // uint8: 0 = Male, 1 = Female
+  PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
   ZENNY:       0x069250, // uint32 LE
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
@@ -60,6 +61,7 @@ function parseCharacter(view, charIndex) {
   const name  = readName(view, base);
   const sex   = view.getUint8(base + OFFSETS.SEX) === 0 ? "Male" : "Female";
   const zenny = view.getUint32(base + OFFSETS.ZENNY, true);
+  const playTime = view.getUint32(base + OFFSETS.PLAY_TIME, true);
 
   // Kept in box order (slot index), skipping empty slots.
   const equipBox = [];
@@ -80,7 +82,7 @@ function parseCharacter(view, charIndex) {
     if (slot) itemPouch.push(slot);
   }
 
-  return { name, sex, zenny, equipBox, itemChest, itemPouch };
+  return { name, sex, zenny, playTime, equipBox, itemChest, itemPouch };
 }
 
 const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)
@@ -88,11 +90,9 @@ const DECRYPTED_SIZE   = 0x16A0E8; // plaintext (pre-decrypted export)
 const PSP_HARDWARE_SIZE = 0x16A110; // PSP hardware layer still present
 
 // US and EU share every key; JP has its own PSP key and SHA-1 salt. So there
-// are only two key sets to try, and a mismatch with one usually means the save
-// is from the other release.
-const REGION_NAMES = { us: "US", eu: "EU", jp: "JP" };
+// are only two key sets to try: the region is detected by trying the hinted
+// one first and the other on a mismatch.
 const OTHER_KEYSET = { us: "jp", eu: "jp", jp: "us" };
-const KEYSET_LABEL = { us: "US or EU", eu: "US or EU", jp: "JP" };
 
 /**
  * Decrypt an encrypted save (PSP layer optional, game layer required) with one
@@ -116,8 +116,9 @@ self.onmessage = async ({ data: { buffer, region } }) => {
     const size = buffer.byteLength;
 
     if (size === DECRYPTED_SIZE) {
-      // Already-decrypted export: parse as-is.
-      postCharacters(buffer, false);
+      // Already-decrypted export: parse as-is. No keys were needed, so the
+      // region is only the hint.
+      postCharacters(buffer, false, region);
       return;
     }
 
@@ -129,20 +130,18 @@ self.onmessage = async ({ data: { buffer, region } }) => {
     }
 
     // An encrypted save always carries the game layer, so a SHA-1 mismatch
-    // means the selected region's keys are wrong; never parse the bytes anyway.
+    // means these keys are the other release's: try those before giving up,
+    // and report which region's keys worked.
     const plaintext = await decryptWith(buffer, region);
     if (plaintext) {
-      postCharacters(plaintext, true);
+      postCharacters(plaintext, true, region);
       return;
     }
-
     const other = OTHER_KEYSET[region] ?? "jp";
-    const selected = REGION_NAMES[region] ?? region;
-    if (await decryptWith(buffer, other)) {
-      throw new Error(
-        `This save is from the ${KEYSET_LABEL[other]} release, but ${selected} is selected. ` +
-        `Pick ${KEYSET_LABEL[other]} in the region list and load the file again.`
-      );
+    const otherPlaintext = await decryptWith(buffer, other);
+    if (otherPlaintext) {
+      postCharacters(otherPlaintext, true, other);
+      return;
     }
     throw new Error(
       "This save couldn't be decrypted with any region's keys. " +
@@ -153,8 +152,8 @@ self.onmessage = async ({ data: { buffer, region } }) => {
   }
 };
 
-function postCharacters(plaintext, decrypted) {
+function postCharacters(plaintext, decrypted, region) {
   const view = new DataView(plaintext);
   const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
-  self.postMessage({ ok: true, characters, decrypted });
+  self.postMessage({ ok: true, characters, decrypted, region });
 }
