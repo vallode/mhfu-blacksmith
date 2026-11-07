@@ -254,10 +254,16 @@ materials go through a per-slot byte map at header offset 0x28.
 
 Status:
 
-- Armor pieces convert and render correctly (textured, correct UVs). Only
-  static bind pose; skinning weights are dropped.
-- Monster packages hold one mesh per bone, positioned in bone space; the
-  skeleton isn't decoded yet, so they don't assemble.
+- On an EU disc, all 553 `weapon/*.pac` and every `emmodel/*.pac` tried so
+  far (em01-em05: Rathian, Fatalis, Kelbi, Mosswine, Bullfango) convert, and
+  renders of a spread of them are correct: textured, assembled, right UVs.
+  Armor pieces (`player/**`) convert the same way.
+- Output is the static bind pose: mesh pieces are already in model space, so
+  no skeleton is needed to assemble them, but skinning weights are dropped
+  and there's no animation (`motion/*.bin` isn't decoded).
+- Large monsters' bounding boxes are much bigger than the visible model, so
+  framing a viewer on the box leaves them small; not yet investigated.
+- A package's second PMO (large monsters have one) isn't converted yet.
 - Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
   dump unpacked before that existed has wrong names (e.g. its
   `weapon/we000.pac` is male waist armor); unpack it again.
