@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
 import styles from "./ModelPopover.module.scss";
 
@@ -29,12 +29,50 @@ interface PopoverProps {
   children: React.ReactNode;
 }
 
+/** Gap between the popover and the side card's edges, on every side. */
+const INSET = 14;
+/** Matches the stacked .split-page layout, where the popover floats instead (see the SCSS). */
+const STACKED = "(max-width: 600px)";
+
 /**
  * The 3D model, in the alternative blue frame, laid over the side card of
  * the surrounding .split-page. Closes with Escape or its close button.
  */
 export default function ModelPopover({ title, onClose, children }: PopoverProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  // Center the popover inside the side card (the .split-page's first child),
+  // measured rather than derived from the layout's CSS so it stays exact.
+  useLayoutEffect(() => {
+    const popover = popoverRef.current;
+    const page = popover?.parentElement;
+    const side = page?.firstElementChild as HTMLElement | null | undefined;
+    if (!popover || !page || !side || side === popover) return;
+    const stacked = window.matchMedia(STACKED);
+    const place = () => {
+      if (stacked.matches) {
+        popover.style.cssText = "";
+        return;
+      }
+      const pageBox = page.getBoundingClientRect();
+      const sideBox = side.getBoundingClientRect();
+      popover.style.top = `${sideBox.top - pageBox.top + INSET}px`;
+      popover.style.left = `${sideBox.left - pageBox.left + INSET}px`;
+      popover.style.width = `${sideBox.width - 2 * INSET}px`;
+      popover.style.height = `${sideBox.height - 2 * INSET}px`;
+      popover.style.bottom = "auto";
+    };
+    place();
+    const observer = new ResizeObserver(place);
+    observer.observe(page);
+    observer.observe(side);
+    stacked.addEventListener("change", place);
+    return () => {
+      observer.disconnect();
+      stacked.removeEventListener("change", place);
+    };
+  }, []);
   // Callers pass a fresh onClose each render; read it through a ref so the
   // effect below runs once (it moves focus, which must not repeat).
   const onCloseRef = useRef(onClose);
@@ -52,7 +90,7 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
   }, []);
 
   return (
-    <div className={styles.popover} role="dialog" aria-label={`3D model of ${title}`}>
+    <div ref={popoverRef} className={styles.popover} role="dialog" aria-label={`3D model of ${title}`}>
       <Card frame="blue" className="gap-4">
         <div className="flex items-center justify-between gap-4">
           <p className="overflow-hidden text-ellipsis">{title}</p>
