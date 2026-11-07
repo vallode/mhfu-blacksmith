@@ -16,6 +16,12 @@ export interface UnpackOptions {
   out: string;
   /** Pre-decrypted EBOOT dump, bypassing KIRK decryption entirely (see decryptEboot). */
   eboot?: string;
+  /**
+   * Don't decrypt or write EBOOT.BIN at all — only DATA.BIN. For work that
+   * only needs DATA.BIN's files (models, textures, quests) on a machine
+   * without pspdecrypt. `extract` needs eboot.bin, so it won't run on the result.
+   */
+  skipEboot?: boolean;
   pspdecryptBin?: string;
 }
 
@@ -24,6 +30,8 @@ export interface UnpackManifest {
   discId: string;
   isoPath: string;
   fileCount: number;
+  /** False when unpacked with `--skip-eboot`: no eboot.bin was written. Absent in manifests from before the flag existed (always true then). */
+  eboot?: boolean;
   unpackedAt: string;
 }
 
@@ -44,12 +52,19 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
     }
     console.log(`Detected region: ${region} (${discId})`);
 
-    console.log("Decrypting EBOOT.BIN...");
-    const rawEboot = iso.readFile("/PSP_GAME/SYSDIR/EBOOT.BIN");
-    const eboot = await decryptEboot(rawEboot, { overridePath: options.eboot, pspdecryptBin: options.pspdecryptBin });
+    if (options.skipEboot && options.eboot) {
+      throw new Error("--skip-eboot and --eboot are mutually exclusive.");
+    }
     await mkdir(options.out, { recursive: true });
-    await writeFile(path.join(options.out, "eboot.bin"), eboot);
-    console.log(`Wrote ${path.join(options.out, "eboot.bin")} (${eboot.length} bytes)`);
+    if (options.skipEboot) {
+      console.log("Skipping EBOOT.BIN (--skip-eboot); `extract` will not run on this output.");
+    } else {
+      console.log("Decrypting EBOOT.BIN...");
+      const rawEboot = iso.readFile("/PSP_GAME/SYSDIR/EBOOT.BIN");
+      const eboot = await decryptEboot(rawEboot, { overridePath: options.eboot, pspdecryptBin: options.pspdecryptBin });
+      await writeFile(path.join(options.out, "eboot.bin"), eboot);
+      console.log(`Wrote ${path.join(options.out, "eboot.bin")} (${eboot.length} bytes)`);
+    }
 
     console.log("Reading + decrypting DATA.BIN (this reads the whole file into memory)...");
     const rawDataBin = iso.readFile("/PSP_GAME/USRDIR/DATA.BIN");
@@ -69,6 +84,7 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
       discId,
       isoPath: path.resolve(options.iso),
       fileCount: files.length,
+      eboot: !options.skipEboot,
       unpackedAt: new Date().toISOString(),
     };
     const manifestPath = path.join(options.out, "manifest.json");
