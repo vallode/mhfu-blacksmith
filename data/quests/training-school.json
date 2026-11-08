@@ -1,6 +1,1761 @@
 {
   "quests": [
     {
+      "id": 20001,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Black Diablos",
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Basic Training - Basics",
+      "goal": "Deliver 2 pcs Raw Meat ",
+      "details": "I am your esteemed\ninstructor. First, I shall\nhave you deliver some Raw\nMeat. Slay a Popo in the\nwild, and deliver the meat\nto the Delivery Box in camp.\nGood luck.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20002,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Daimyo Hermitaur",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Basic Training - BBQ",
+      "goal": "Deliver 1 Well-Done Steak",
+      "details": "Your esteemed instructor\nonce again. Now we will\ncover BBQ training. Carve\nRaw Meat from a Popo and\nthen use the BBQ Spit to\ncook a tasty steak. It's my\ndinner, so don't burn it!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20003,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Old Pickaxe",
+          "amount": 2
+        },
+        {
+          "item": "Old Bugnet",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Basic Training - Gathering",
+      "goal": "Deliver 2 Honeys",
+      "details": "Another lesson from your\nesteemed instructor. Today\nyou will train in gathering\nHoney. Snowy mountain Honey\nis less sweet but more\nfragrant than regular honey.\nA real treat with manly men!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20004,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Lao-Shan Lung",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Basic Training - Combining",
+      "goal": "Deliver 1 Potion",
+      "details": "Take some advice from your\nesteemed instructor, if\nthere is one thing a hunter\ncannot go without, it is\na Potion. Drink it when\ninjured and all will be\nwell. Never forget this!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20005,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Worm",
+          "amount": 5
+        },
+        {
+          "item": "Worm",
+          "amount": 5
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Basic Training - Fishing",
+      "goal": "Deliver 1 Sushifish",
+      "details": "Once again you come before\nyour esteemed instructor.\nYour next quest is to\ndeliver a Sushifish. Use\nbait near the waterside and\ncatch a big one. Just\ndeliver it before dinner!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20006,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Basic Training - Transport",
+      "goal": "Deliver 1 Carnivore Egg",
+      "details": "I am truly esteemed,\nespecially as an instructor.\nToday's quest is to snatch a\nCarnivore Egg and return it\nto camp. This may be\ntraining, but it is no\nopportunity to slack!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20007,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giadrome",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 6
+        },
+        {
+          "item": "Ration",
+          "amount": 6
+        },
+        {
+          "item": "Paintball",
+          "amount": 2
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 5
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Sply Lg Brrl Bmb",
+          "amount": 2
+        },
+        {
+          "item": "Stone",
+          "amount": 5
+        },
+        {
+          "item": "Supply Flash Bmb",
+          "amount": 2
+        },
+        {
+          "item": "Smoke Bomb",
+          "amount": 5
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        },
+        {
+          "item": "Sleeping Thr Knf",
+          "amount": 5
+        },
+        {
+          "item": "Flute",
+          "amount": 1
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 5
+        },
+        {
+          "item": "Thawing Agent",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Giadrome",
+          "quantity": 1,
+          "power": 1
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Basic Training - Hunting",
+      "goal": "Hunt the Giadrome",
+      "details": "You will hold me in great\nesteem as I say this is the\nlast basic training quest.\nYou must hunt down the\nfierce Giadrome. Stare death\nin the face and show your\ntrue hunting spirit.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20008,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Sword Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Sword mastery is the\njumping attack. Gauge the\ndistance of the jump and\nthen unleash a string of\ndeadly attacks!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20009,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Dual Blade Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Dual Blade mastery is\nthe timing of Demonization.\nDon't wait for a chance to\nDemonize, Demonize and\ncreate your own chances.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20010,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Great Sword Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Great Sword mastery\nis using ready attacks and\ncharge slices. View your\nenemy and decide if a quick\ncut or strong slice is best.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20011,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Long Sword Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Long Sword mastery\nlies in the Spirit gauge. If\nyou can fill the gauge, your\nattack power will increase\ngreatly! Fill it up!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20012,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Hammer Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Hammer mastery is the\ncharge attack. An attack\nshould be charged to the\nright level then released.\nTime the hit with your soul!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20013,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Hunting Horn Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "I, your instructor, must\ninform you that the key to\nHorn mastery is in the\nRecital. String together 2\nwhite notes to make yourself\nstrong, then claim victory\nbefore the effect wears off.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20014,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Lance Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Lance mastery is\nguarding. Use the Lance to\nblock an approaching\nmonster's attack then\ncounter fiercely!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20015,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Gunlance Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "As your esteemed instructor,\nI must inform you that the \nkey to Gunlance mastery is\nbombardment. Blast armored\nmonsters into submission,\nthen take that chance to\nunleash Wyvern's Fire!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20016,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 30
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Light Bowgun Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "Esteemed instructor here,\nremember the key to the\nLight Bowgun is ammo\nselection. Select your ammo\ndepending on the monster and\nsituation. Master the\nqualities of each shot!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20017,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 30
+        },
+        {
+          "item": "Flaming S",
+          "amount": 20
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Heavy Bowgun Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "Your esteemed instructor\nreminds you that the key to\nthe Heavy Bowgun is judging\nthe proper distance. A\nBowgun's advantages aren't\nlimited to long distances,\nso pick the right distance!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 20018,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 150,
+      "penalty": 50,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giaprey",
+        "amount": 5
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Power Coating",
+          "amount": 10
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Whetstone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Potion",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Paintball",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Well-Done Steak",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Bow Mastery",
+      "goal": "Slay 5 Giaprey",
+      "details": "Your esteemed instructor\nreminds you that the key to\nBow mastery is charging.\nCharge the power of the Bow\nand then release it at the\nperfect moment. Charged\narrows are a unique beast!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
       "id": 21001,
       "hub": "training-school",
       "rank": null,

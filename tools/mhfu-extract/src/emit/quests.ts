@@ -23,24 +23,51 @@ import type { Rank } from "./common.js";
 export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
 
 /**
- * `questHeader.Rank` -> (hub, rank tier). Confirmed against real quest data
- * across all 551 real on-disc quests:
- *  - rank 3's `client` string is always "トレジィ" ("Treshi", the Treasure
- *    Hunting NPC per community guides) — 7 quests, all Treasure Hunting.
- *  - rank 4's `client` is always "教官" ("Instructor", the Training School
- *    NPC) and every title ends in "討伐訓練" ("... Subjugation Training")
- *    — 29 quests, all Training School.
- *  - rank 0/1/2/5's star ranges (1-5,8,10 / 1-6 / mostly 6-9 / 9-11) line up
- *    with community-documented Village / Guild-Low-Rank / Guild-High-Rank /
- *    Guild-G-Rank star bands.
+ * The quest board, from the quest ID (`m#####.mib`). The disc numbers its
+ * quests in blocks, one block per board and star level (`1001`-`1022` is
+ * Guild Low Rank's first star, `10101`-`10118` the Village's ★2, ...):
+ *  - `1xxx`/`2xxx`/`3xxx`: Guild Low / High / G Rank.
+ *  - `4xxx`: Treasure Hunting (client always "Treshi").
+ *  - `10xxx`/`11xxx`: Village, ★1-★6 then ★7-★9 (many from the "Pokke
+ *    Village Chief"; `10004`/`10108` are the Village's two Tigrex quests).
+ *  - `20xxx`-`22xxx`: Training School (client always "Instructor"):
+ *    Basic Training and the weapon Mastery quests, then the Subjugation
+ *    Training quests.
+ *  - `30001`-`30090`: 90 identical "Gathering - Snowy Mountains" copies
+ *    with Guild Low Rank's header rank; kept there (the site hides them).
+ *
+ * `1`-`10` and `101`-`109` fit no board, so they aren't emitted. Most
+ * repeat the title and client of a Village quest (`Reckless Bulldrome
+ * Hunter` is both `2` and `10105`, from the same "Troubled Father") or a
+ * Guild High Rank one (`Eliminate the Rathalos!` is `108` and `2116`).
+ * Filed as Village, they put a ★2 Rathalos and Rathian on the Village
+ * board, which the Village's own ★2 block (`10101`-`10118`) doesn't have.
+ *
+ * The header's `rank` byte is not the board: the Village's `10xxx` quests
+ * carry the same values as Guild Low Rank. It is the quest's rank tier
+ * (`RANK_TIER`).
  */
-const RANK_TO_HUB: Record<number, { hub: QuestHub; rank: Rank | null }> = {
-  0: { hub: "village", rank: null },
-  1: { hub: "guild", rank: "low-rank" },
-  2: { hub: "guild", rank: "high-rank" },
-  3: { hub: "treasure-hunting", rank: null },
-  4: { hub: "training-school", rank: null },
-  5: { hub: "guild", rank: "g-rank" },
+export function questHub(questId: number): QuestHub | null {
+  if (questId >= 1000 && questId < 4000) return "guild";
+  if (questId >= 4000 && questId < 5000) return "treasure-hunting";
+  if (questId >= 10000 && questId < 12000) return "village";
+  if (questId >= 20000 && questId < 23000) return "training-school";
+  if (questId >= 30001 && questId <= 30090) return "guild";
+  return null;
+}
+
+/**
+ * `questHeader.Rank` -> rank tier, which also picks the quest's monster
+ * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
+ * quest ID block on every Guild quest. Village quests use them too: `10xxx`
+ * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
+ * Basic/Mastery quests, the Village's two Tigrex quests), 3 (Treasure
+ * Hunting) and 4 (Subjugation Training) have no tier.
+ */
+const RANK_TIER: Record<number, Rank> = {
+  1: "low-rank",
+  2: "high-rank",
+  5: "g-rank",
 };
 
 /**
@@ -225,16 +252,20 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
   return monster ? { monster, amount: targetNum } : null;
 }
 
-/** Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for an unused/disabled quest slot. */
+/**
+ * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
+ * an unused/disabled quest slot or a quest on no board (see `questHub`).
+ */
 export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
   if (isPlaceholderQuest(parsed)) return null;
   const { header } = parsed;
-  const { hub, rank } = RANK_TO_HUB[header.rank] ?? { hub: "guild" as QuestHub, rank: null };
+  const hub = questHub(header.questId);
+  if (!hub) return null;
 
   return {
     id: header.questId,
     hub,
-    rank,
+    rank: RANK_TIER[header.rank] ?? null,
     stars: header.questStars,
     map: resolveMapName(header.map),
     fee: header.fee,
