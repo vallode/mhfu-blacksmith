@@ -3,7 +3,7 @@
 Next.js (App Router, static export) site for Monster Hunter Freedom Unite data,
 styled to look like the game's UI.
 
-Checks: `pnpm lint`, `npx tsc --noEmit -p .`, `pnpm test`.
+Checks: `pnpm lint`, `npx tsc --noEmit -p .`, `pnpm test`, `pnpm format:check`.
 
 ## Styling
 
@@ -50,12 +50,12 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
 Effects that are awkward as class strings are `@utility` rules in
 `globals.css`. They work with variants (`hover:before:hover-glow`).
 
-| Utility | What it does |
-|---|---|
-| `pixelated` | Crisp pixel-art image rendering |
-| `hover-glow` | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`) |
-| `card-frame` | The in-game 9-slice frame (`Card`, toasts) |
-| `divider-tile` | Tiled page-header divider (`BorderRule`) |
+| Utility                   | What it does                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `pixelated`               | Crisp pixel-art image rendering                                                                        |
+| `hover-glow`              | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`)                          |
+| `card-frame`              | The in-game 9-slice frame (`Card`, toasts)                                                             |
+| `divider-tile`            | Tiled page-header divider (`BorderRule`)                                                               |
 | `icon-mask`, `icon-badge` | Icon tint mask and corner badge, driven by CSS variables from `iconStyle()` in `src/lib/icon-style.ts` |
 
 Animations: `animate-hover-glow`, `animate-toast-in`.
@@ -90,11 +90,9 @@ pass both, e.g. `text-[1.6rem] mobile:text-[1.6rem]`.
   stick after a tap on phones.
 - **Alpha colours** such as `text-white/60` compile to `oklab(…)` colours.
   They may differ from the old `rgba(…)` values by 1–2/255 in screenshots.
-- **Prettier sorts classes:** `pnpm format` / `pnpm format:check`, with
-  `prettier-plugin-tailwindcss`. It also sorts classes in `cn()` calls.
-  - The codebase hasn't been formatted wholesale yet, so running it reformats
-    whole files.
-  - Until that's done, don't reformat files you aren't otherwise changing.
+- **Prettier sorts classes:** the codebase is formatted with Prettier and
+  `prettier-plugin-tailwindcss`, which also sorts classes in `cn()` calls.
+  Run `pnpm format` before committing.
 
 ### Checking styling changes
 
