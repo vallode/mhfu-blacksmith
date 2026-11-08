@@ -1,34 +1,20 @@
 /**
  * Maps raw `ArmorValue` structs onto the `data/armor/*.json` schema shape.
  *
- * Direct array-index naming (ArmorValues[i] <-> e.g. HeadArmorID[i]) is the
- * design eboot.hexpat documents, and it holds exactly for the first ~10
- * entries per slot we spot-checked (defense/price/rarity/slots all agree
- * with the committed data). Beyond that it drifts — the committed EN data
- * and this direct indexing disagree on roughly 60-90% of entries per slot.
- * Confirmed (see vallode/mhfu-blacksmith#30 and its "resolved" update):
- * `ArmorValue`'s three unmapped fields (`unkn1`/`unkn2`/`unkn3`) are NOT a
- * hidden name-table index — tested directly against real disc bytes,
- * `unkn3` (the only one with per-entry-unique values) does not correlate
- * with committed stats when used as a name index. There is no known
- * in-binary field linking the two independently-sourced lists (stat array
- * position vs. `.enum`-file name order). A structural root cause (a real
- * permutation table, or a derivable sort-order rule) was searched for and
- * not found — see vallode/mhfu-blacksmith#30. The fix applied here is
- * `overlay/armor-index-corrections.ts`'s empirically-derived per-slot
- * correction table (fingerprint-matched raw stats <-> committed data),
- * which now resolves a solid majority (~68-73%) of entries per slot with
- * high confidence; the remainder still falls back to raw-position naming
- * and may be wrong. See that module's doc comment for full methodology and
- * known coverage limits.
- *
- * `slots` additionally goes through `overlay/armor-slots-corrections.ts`:
- * a small, separate bug where raw `slots` is transposed between certain
- * male/female armor pairs (e.g. "X Helm"/"X Cap") even though every other
- * field is already correctly identified via the name-index correction
- * above. Only 8 pairs (16 items) across all 5 slots are confirmed-clean
- * transpositions and corrected; see that module's doc comment for the
- * pairing/verification methodology and why the fix is deliberately narrow.
+ * Naming is direct array-index: `ArmorValues.head[i]` is `HeadArmorID[i]`,
+ * and its recipe is the `EquipmentCreateTable.head` entry with
+ * `equipId === i`. This only holds once `tables/armor.ts` reads each slot
+ * from the right `ArmorValuePTR` pointer (`ARMOR_POINTER_INDEX`). Before
+ * that fix every slot read the next slot's array, so index-naming looked
+ * like it "drifted" (vallode/mhfu-blacksmith#30): a helmet name sat on a
+ * leggings stat block, and set pieces share defense, resistances, rarity
+ * and price, which made the mismatch look like a reordering. The
+ * fingerprint-derived `armor-index-corrections.json` and
+ * `armor-slots-corrections.json` overlays that papered over it were removed
+ * with the fix: 1285 of their 1291 index remaps and all 16 "male/female
+ * slots transpositions" are exactly the rotated slot's piece at the same
+ * index (e.g. the Vespoid Helm "remap" was Vespoid Greaves, which has the
+ * Helm's stats).
  *
  * `sex`/`hunter_type`/`hr`/`elder` are skipped entirely: none of the fields
  * on `ArmorValueEntry` (`hunterType`, `maleId`/`femaleId` equality) were
@@ -41,8 +27,6 @@ import { readEquipmentCreate, type EquipCreateEntry } from "../tables/recipes.js
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
-import { correctedArmorNameIndex } from "../overlay/armor-index-corrections.js";
-import { correctedArmorSlots } from "../overlay/armor-slots-corrections.js";
 import { displayRarity, groupEquipCreateByEquipId, halveCost, materialsOrNull, rankFromRarity, resolveMaterials, type Rank } from "./common.js";
 
 const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, "helmet" | "plate" | "gauntlets" | "waist" | "leggings"> = {
@@ -93,23 +77,20 @@ function emitSlot(
 
   const out: EmittedArmor[] = [];
   for (const armor of armorValues) {
-    const nameIndex = correctedArmorNameIndex(slot, armor.index);
-    if (nameIndex === null) continue;
-    const name = names.resolve(nameTable, nameIndex);
+    const name = names.resolve(nameTable, armor.index);
     if (!name) continue;
-    const slots = correctedArmorSlots(slot, armor.index, armor.slots);
-    // The schema caps slots at 3 (no real armor piece has more); a handful
-    // of tail entries in headArmor specifically (5 of 436, all in the last
-    // ~15 slots) read absurd slot counts (seen: 10-65), which looks like
-    // reused/repurposed bytes rather than a real armor piece — skip rather
-    // than emit obviously-corrupt data.
-    if (slots > 3) continue;
+    // The schema caps slots at 3. The absurd slot counts (10-65) once seen
+    // at the end of "headArmor" were the leggings array read 16 entries past
+    // its end, before the pointer-order fix; no entry on a real EU EBOOT
+    // trips this now. Kept as a guard so a bad read is dropped rather than
+    // emitted.
+    if (armor.slots > 3) continue;
 
     const skills = armor.skills
       .filter((s) => s.skill !== 0)
       .map((s) => ({ name: names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`, amount: s.amount }));
 
-    const [primaryRecipe] = createByEquipId.get(nameIndex) ?? [];
+    const [primaryRecipe] = createByEquipId.get(armor.index) ?? [];
     const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "armor") : [];
 
     out.push({
@@ -117,7 +98,7 @@ function emitSlot(
       type: SLOT_TO_ARMOR_TYPE[slot],
       rank: rankFromRarity(displayRarity(armor.rarity)),
       rarity: displayRarity(armor.rarity),
-      slots,
+      slots: armor.slots,
       defence: armor.defense,
       fire_res: armor.resistances.fire,
       thunder_res: armor.resistances.thunder,
