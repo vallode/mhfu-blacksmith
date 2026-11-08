@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
-import { SITE_DESCRIPTION, SITE_NAME, THEME_COLOR } from "@/lib/seo";
+import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, THEME_COLOR } from "@/lib/seo";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
 // import OfflineDownload from "@/components/OfflineDownload"; // banner hidden for now
@@ -24,8 +24,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: [DEFAULT_IMAGE],
   },
-  twitter: { card: "summary_large_image", title: SITE_NAME, description: SITE_DESCRIPTION },
+  twitter: {
+    card: "summary",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_IMAGE],
+  },
   ...faviconMetadata(),
   manifest: "/manifest.json",
   appleWebApp: {

@@ -3,8 +3,7 @@ import { getWeapons, getWeapon } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import type { Metadata, Viewport } from "next";
 import { faviconMetadata } from "@/lib/favicon";
-import { accentViewport, pageMetadata, weaponDescription } from "@/lib/seo";
-import { tintFor } from "@/lib/og";
+import { accentViewport, tintFor, pageMetadata, typeIcon, weaponDescription } from "@/lib/seo";
 import WeaponDetailClient from "./WeaponDetailClient";
 
 interface Props {
@@ -33,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: weapon.name,
       description: weaponDescription(weapon),
       path: `/blacksmith/${type}/${slug}/`,
-      image: `/blacksmith/${type}/opengraph-image`,
+      image: typeIcon(type),
     }),
   };
 }

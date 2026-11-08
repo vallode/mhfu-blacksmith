@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { getDecorations, getDecoration } from "@/lib/decorations";
 import type { Metadata, Viewport } from "next";
-import { accentViewport, decorationDescription, pageMetadata } from "@/lib/seo";
-import { tintFor } from "@/lib/og";
+import { accentViewport, tintFor, decorationDescription, pageMetadata } from "@/lib/seo";
 import DecorationDetailClient from "./DecorationDetailClient";
 
 interface Props {

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getMonsterCategories, getMonsters } from "@/lib/monsters";
-import { pageMetadata, titleCase } from "@/lib/seo";
+import { pageMetadata, titleCase, typeIcon } from "@/lib/seo";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
 import { faviconMetadata } from "@/lib/favicon";
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: name,
       description: `${names.length} ${name} monsters in Monster Hunter Freedom Unite: ${names.slice(0, 6).join(", ")}${names.length > 6 ? "…" : ""}. Hitzones, drops and habitats.`,
       path: `/monsters/${category}/`,
+      image: typeIcon(category),
     }),
   };
 }

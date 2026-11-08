@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import { getArmorParams, getArmorPiece, getArmorPieces } from "@/lib/armor";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "@/lib/constants";
 import type { Metadata, Viewport } from "next";
-import { accentViewport, armorDescription, pageMetadata } from "@/lib/seo";
-import { tintFor } from "@/lib/og";
+import { accentViewport, tintFor, armorDescription, pageMetadata } from "@/lib/seo";
 import ArmorDetailClient from "./ArmorDetailClient";
 
 interface Props {
@@ -28,7 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: piece.name,
     description: armorDescription(piece),
     path: `/armorsmith/${slot}/${rank}/${slug}/`,
-    image: `/armorsmith/${slot}/${rank}/opengraph-image`,
   });
 }
 
