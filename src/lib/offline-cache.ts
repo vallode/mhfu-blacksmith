@@ -33,7 +33,7 @@ export async function collectOfflineUrls(): Promise<string[]> {
   } catch {
     // image manifest missing; data-only offline is still useful
   }
-  urls.push("/search-data.json", "/weapon-data.json");
+  urls.push("/search-data.json");
   return urls;
 }
 
