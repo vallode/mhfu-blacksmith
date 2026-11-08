@@ -4,6 +4,7 @@
  * filter's initial value) can read them too; components use
  * PreferencesContext.
  */
+import { STAGES, type Tier } from "./min-rank";
 import { isTreeFilterId, type TreeFilterId } from "./tree-filter";
 
 export interface Preferences {
@@ -21,6 +22,8 @@ export interface Preferences {
   checkZenny: boolean;
   /** The weapon tree filter a new visit starts on. */
   defaultTreeFilter: TreeFilterId;
+  /** The highest guild quest the hunter can take (one of `STAGES`), or null to show all gear. */
+  questProgress: Tier | null;
 }
 
 export const DEFAULT_PREFERENCES: Preferences = {
@@ -31,6 +34,7 @@ export const DEFAULT_PREFERENCES: Preferences = {
   showMaterialCounts: true,
   checkZenny: true,
   defaultTreeFilter: "all",
+  questProgress: null,
 };
 
 export const PREFERENCES_KEY = "mhfu_prefs";
@@ -51,6 +55,10 @@ export function parsePreferences(raw: string | null): Preferences {
     const value = record[key];
     if (key === "defaultTreeFilter") {
       if (isTreeFilterId(value)) prefs.defaultTreeFilter = value;
+    } else if (key === "questProgress") {
+      // The stage itself, not the parsed copy, so it compares equal to the choices.
+      const t = value as Partial<Tier> | null;
+      prefs.questProgress = STAGES.find((s) => s.rank === t?.rank && s.stars === t?.stars) ?? null;
     } else if (typeof value === "boolean") {
       prefs[key] = value;
     }
