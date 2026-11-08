@@ -54,6 +54,8 @@ export interface Weapon {
   sharpness_plus?: (string | number)[];
   elements?: WeaponElement[] | null;
   notes?: string[] | null;
+  /** Hunting horn songs its notes can play. */
+  melodies?: Melody[];
   shelling?: ShellingInfo | null;
   rapid_fire?: string | null;
   recoil?: string | null;

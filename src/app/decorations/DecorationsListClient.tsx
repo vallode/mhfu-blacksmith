@@ -7,6 +7,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { useDecorationTree } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import Loading from "@/components/Loading";
 
 export default function DecorationsListClient() {
   const { tree, loading } = useDecorationTree();
@@ -47,9 +48,11 @@ export default function DecorationsListClient() {
           </TreeScroll>
         </Card>
         <Card>
-          <p className="leading-[1.2] whitespace-normal">
-            {loading ? "Loading…" : "Select a decoration from the tree."}
-          </p>
+          {loading ? (
+            <Loading>Loading…</Loading>
+          ) : (
+            <p className="leading-[1.2] whitespace-normal">Select a decoration from the tree.</p>
+          )}
         </Card>
       </div>
     </>

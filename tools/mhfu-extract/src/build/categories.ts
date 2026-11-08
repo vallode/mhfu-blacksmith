@@ -9,7 +9,7 @@
  * `tools/mhfu-extract/README.md`'s "Building data/ from the disc" for the
  * numbers each decision was based on. Every other field, including ones
  * the disc doesn't have at all (armor `hr`/`elder`,
- * decoration `category`, weapon `bonus`/`shelling`/`notes`), is kept
+ * decoration `category`), is kept
  * from the committed file.
  */
 import type { MaterialContext } from "../overlay/item-name-corrections.js";
@@ -193,6 +193,10 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "alternative_create_mats", kind: "materials" },
       { field: "improve_from", kind: "weapon-refs" },
       { field: "improve_to", kind: "weapon-refs" },
+      { field: "bonus", kind: "signed-number" },
+      { field: "notes", kind: "scalar" },
+      { field: "shelling", kind: "scalar" },
+      { field: "melodies", kind: "melodies" },
     ],
     // `sharpness`/`sharpness_plus` are read through each class's
     // `SharpnessTable.PTR` (vallode/mhfu-blacksmith#31). The disagreements
@@ -209,6 +213,11 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // (one ammo capacity, a "Normal " with a trailing space, "Posion S")
     // and a few whole site entries the disc contradicts (Black Belt
     // Bowgun's ammo, Dragonhead Harp's and Blue Blade Bow's coatings).
+    // `bonus` is the struct's `Defense` byte, `notes` an index into the
+    // EBOOT's note-set table and `shelling` a type/level code, the last two
+    // both from `NoteGLType`; `melodies` come from `game_task.ovl`'s melody
+    // table (tables/horn.ts). On the EU disc only 3 bonuses (missing on
+    // the site) and 2 gunlance shelling levels disagree.
     // Not taken: `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
@@ -235,6 +244,10 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "status_ammo",
       "element_ammo",
       "misc_ammo",
+      "bonus",
+      "notes",
+      "shelling",
+      "melodies",
     ],
   },
   decorations: {

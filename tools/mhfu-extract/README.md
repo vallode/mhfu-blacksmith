@@ -49,7 +49,11 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
   numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
   `quests.json`: each quest's header words, raw `RewardTBL` entries and
-  script packets).
+  script packets). It also writes `melodies.json`: candidate hunting horn
+  note-set tables, found by searching the EBOOT and both overlays for a
+  table whose entry `NoteGLType` holds each horn's committed notes, plus
+  the blocks densest in the committed melody note sequences and the bytes
+  around both (`src/emit/melody-raw.ts`).
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 - `compare` reports per-file, per-field agreement between the two, pairing
@@ -509,8 +513,26 @@ Known gaps and approximations, tracked in
     a gun can load.
   - `extract --raw` writes these tables and every `WepGunValue` field to
     `raw/gunner.json`.
-- **Hunting Horn/Gunlance bonus** isn't emitted
+- **`bonus`** on every weapon is the struct's `Defense` byte (the defense it
+  adds), written `"+N"`, or `"N"` for bowguns as the committed files do
   ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
+- **Gunlance `shelling`** is `NoteGLType`: type `n % 3` (Normal, Spread,
+  Long) and level `n / 3 + 1`.
+- **Hunting horn `notes`** are `NoteGLType` as an index into a 20-entry
+  table of three-note sets in the EBOOT. Each byte is a note colour:
+  1 `w`, 2 `p`, 3 `b`, 4 `y`, 5 `r`, 6 `g`, 7 `a`. The table isn't in the
+  hexpats. It was found with `extract --raw`'s `raw/melodies.json` (EU file
+  offset `0x1b63cc`) and is located by its shape (`src/tables/horn.ts`).
+- **Hunting horn `melodies`** come from a song table in `game_task.ovl` (EU
+  file offset `0x1aca38`, also located by shape): 4 bytes per song, notes
+  last-played first and zero-padded, then one effect ID byte per song. A
+  horn's melodies are the songs that use only its three colours, in table
+  order. Three songs (w-w, p-p, y-y-y) store one extra note flagged `0x80`.
+  It is dropped, which gives the site's combo for all three. **Effect
+  names, descriptions and durations are not read from the disc.** They are
+  a hand-made overlay keyed by effect ID (`src/overlay/melody-effects.json`),
+  carried over from the old site's melody file, whose source wasn't
+  recorded. Each of the 42 effect IDs matched exactly one site effect name.
 - **Affinity** for blademaster weapons is `WepBMValues.Affinity` plus a
   bonus for sharpness: +5 when `sharpnessAmount` is 4 and +10 when it is 5
   or 6, on positive affinity only (`blademasterAffinity()` in
@@ -653,12 +675,12 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                                                                                              |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                                                                                               |
-| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, `notes`) |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                                                                                         |
-| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field)                                                                        |
+| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                       |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                        |
+| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing)     |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                  |
+| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field) |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
@@ -710,6 +732,17 @@ emitter added the coating bonuses, bow `elements` was taken too. It adds
 Poison Add to Wolf Bow and Crow Bow, which have the same bonus bit as
 Queen Blaster. It also fixes Abominable Bow II (Ice 140 → 200) and Kut-Ku
 Stave G (`fire` → `Fire`).
+
+`bonus`, `notes`, `shelling` and `melodies` were taken last (#32, #14).
+Agreement before the build: `notes` 100% (95 horns); `bonus` 99.8% of
+1,500 weapons, all 3 disagreements weapons the site lists without one
+(Crater Maker +14, Sanctioned Gunlance and Sanctioned Gunlance G +20);
+`shelling` 97.7% of 87 gunlances, with Scissor Gunlance (site Normal 3,
+disc Normal 2) and Scissor Cannon G (Normal 4, disc Normal 3) the 2 left.
+`melodies` had no committed field. Against the old site melody file, the
+lists of all 20 note sets agree except one song each in two sets: Attack Up
+[Hi] on p-b-r (site p-p-r, disc p-r-r, as on every other purple/red horn)
+and Hear Protect [Hi] on p-g-a (site a-a-g-a, disc a-a-g-p).
 
 Sharpness was taken later (#31), after reading it per weapon class.
 `sharpness` agreement with the site was then: great sword 97.7%, long sword

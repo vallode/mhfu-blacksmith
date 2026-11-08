@@ -27,6 +27,7 @@ import BorderRule from "@/components/BorderRule";
 import ArmorModelViewer from "@/components/ArmorModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useArmorModel } from "@/lib/models";
+import Loading from "@/components/Loading";
 
 interface Props {
   slot: ArmorSlot;
@@ -58,9 +59,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               {null}
             </TreeScroll>
           </ArmorTreePanel>
-          <Card>
-            <p>{loading ? "Loading…" : "Not found."}</p>
-          </Card>
+          <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>
         </div>
       </>
     );

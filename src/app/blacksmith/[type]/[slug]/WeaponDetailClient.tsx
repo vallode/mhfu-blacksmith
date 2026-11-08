@@ -13,6 +13,7 @@ import {
   DetailRule,
   MaterialList,
   Requirements,
+  RequirementTabs,
   RequirementsPage,
   Slots,
   Stat,
@@ -20,7 +21,7 @@ import {
   StatValue,
 } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
-import { statTable } from "@/styles/tables";
+import { melodyNote, melodyTable, statTable } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -28,6 +29,7 @@ import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
+import Loading from "@/components/Loading";
 
 interface Props {
   type: WeaponType;
@@ -68,9 +70,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         <BorderRule />
         <div className="split-page">
           <WeaponTreePanel type={type} tree={null} activeSlug={slug} />
-          <Card>
-            <p>{loading ? "Loading…" : "Not found."}</p>
-          </Card>
+          <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>
         </div>
       </>
     );
@@ -196,243 +196,289 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             <DetailRule />
 
-            {/* Requirements: only the first page is shown for now */}
+            {/* Requirements: one tab per page (materials, ammo, melodies, …) */}
             <Requirements>
-              <RequirementsPage active>
-                {weapon.improve_mats && (
-                  <MaterialList
-                    label="Improve cost"
-                    cost={weapon.improve_cost}
-                    materials={weapon.improve_mats}
-                  />
-                )}
+              <RequirementTabs
+                key={slug}
+                label={`${weapon.name} requirements`}
+                tabs={[
+                  {
+                    id: "materials",
+                    label: "Materials",
+                    content: (
+                      <RequirementsPage>
+                        {weapon.improve_mats && (
+                          <MaterialList
+                            label="Improve cost"
+                            cost={weapon.improve_cost}
+                            materials={weapon.improve_mats}
+                          />
+                        )}
 
-                {weapon.create_mats && (
-                  <MaterialList
-                    label="Create cost"
-                    cost={weapon.create_cost}
-                    materials={weapon.create_mats}
-                  />
-                )}
-              </RequirementsPage>
-
-              {weapon.alternative_create_mats && (
-                <RequirementsPage>
-                  <MaterialList
-                    label="Create cost"
-                    cost={weapon.create_cost}
-                    materials={weapon.alternative_create_mats}
-                  />
-                </RequirementsPage>
-              )}
-
-              {weapon.shots && (
-                <RequirementsPage>
-                  <div className="flex flex-1 flex-col gap-[13px]">
-                    <p>
-                      <span className="text-stat">[Charge Attack]</span>
-                    </p>
-                    {weapon.shots.map((shot, i) => {
-                      // The last (strongest) level is highlighted green.
-                      const last = i === weapon.shots!.length - 1;
-                      return (
-                        <p key={i} className={last ? "text-positive" : undefined}>
-                          <span className={last ? "text-positive" : "text-warm"}>
-                            <span
-                              className="text-warm"
-                              style={{ visibility: i === 0 ? "visible" : "hidden" }}
-                            >
-                              Lvl
-                            </span>{" "}
-                            {i + 1}:
-                          </span>{" "}
-                          {shot.name}Lv{shot.level}
-                        </p>
-                      );
-                    })}
-                  </div>
-                </RequirementsPage>
-              )}
-
-              {weapon.ammo && (
-                <RequirementsPage>
-                  <table className={statTable}>
-                    <thead>
-                      <tr>
-                        <th>Cap.:</th>
-                        <th>LV</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {weapon.ammo.map((ammo, i) => (
-                        <tr
-                          key={i}
-                          className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}
-                        >
-                          <td>{ammo.name}</td>
-                          <td>:</td>
-                          {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                              {cap}
-                              {j < ammo.capacity.length - 1 ? "/" : ""}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-
-                  {weapon.status_ammo && (
-                    <table className={statTable}>
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>LV</th>
-                          <th>1</th>
-                          <th>2</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {weapon.status_ammo.map((ammo, i) => (
-                          <tr
-                            key={i}
-                            className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}
-                          >
-                            <td>{ammo.name}</td>
-                            <td>:</td>
-                            {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                                {cap}
-                                {j < ammo.capacity.length - 1 ? "/" : ""}
-                              </td>
+                        {weapon.create_mats && (
+                          <MaterialList
+                            label="Create cost"
+                            cost={weapon.create_cost}
+                            materials={weapon.create_mats}
+                          />
+                        )}
+                      </RequirementsPage>
+                    ),
+                  },
+                  weapon.alternative_create_mats && {
+                    id: "alt-recipe",
+                    label: "Alt. Recipe",
+                    content: (
+                      <RequirementsPage>
+                        <MaterialList
+                          label="Create cost"
+                          cost={weapon.create_cost}
+                          materials={weapon.alternative_create_mats}
+                        />
+                      </RequirementsPage>
+                    ),
+                  },
+                  weapon.shots && {
+                    id: "charge",
+                    label: "Charge",
+                    content: (
+                      <RequirementsPage>
+                        <div className="flex flex-1 flex-col gap-[13px]">
+                          <p>
+                            <span className="text-stat">[Charge Attack]</span>
+                          </p>
+                          {weapon.shots.map((shot, i) => {
+                            // The last (strongest) level is highlighted green.
+                            const last = i === weapon.shots!.length - 1;
+                            return (
+                              <p key={i} className={last ? "text-positive" : undefined}>
+                                <span className={last ? "text-positive" : "text-warm"}>
+                                  <span
+                                    className="text-warm"
+                                    style={{ visibility: i === 0 ? "visible" : "hidden" }}
+                                  >
+                                    Lvl
+                                  </span>{" "}
+                                  {i + 1}:
+                                </span>{" "}
+                                {shot.name}Lv{shot.level}
+                              </p>
+                            );
+                          })}
+                        </div>
+                      </RequirementsPage>
+                    ),
+                  },
+                  weapon.ammo && {
+                    id: "ammo",
+                    label: "Ammo",
+                    content: (
+                      <RequirementsPage>
+                        <table className={statTable}>
+                          <thead>
+                            <tr>
+                              <th>Cap.:</th>
+                              <th>LV</th>
+                              <th>1</th>
+                              <th>2</th>
+                              <th>3</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {weapon.ammo.map((ammo, i) => (
+                              <tr
+                                key={i}
+                                className={
+                                  ammo.capacity.join("") === "000" ? "text-unavailable" : ""
+                                }
+                              >
+                                <td>{ammo.name}</td>
+                                <td>:</td>
+                                {ammo.capacity.map((cap, j) => (
+                                  <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
+                                    {cap}
+                                    {j < ammo.capacity.length - 1 ? "/" : ""}
+                                  </td>
+                                ))}
+                              </tr>
                             ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </RequirementsPage>
-              )}
+                          </tbody>
+                        </table>
 
-              {weapon.element_ammo && (
-                <RequirementsPage>
-                  <table className={statTable}>
-                    <thead>
-                      <tr>
-                        <th>Cap.:</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {weapon.element_ammo.map((ammo, i) => (
-                        <tr
-                          key={i}
-                          className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
-                        >
-                          <td>{ammo.name}</td>
-                          <td>:</td>
-                          {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                              {cap}
-                              {j < ammo.capacity.length - 1 ? "/" : ""}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-
-                  {weapon.misc_ammo && (
-                    <table className={statTable}>
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {weapon.misc_ammo.map((ammo, i) => (
-                          <tr
-                            key={i}
-                            className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
-                          >
-                            <td>{ammo.name}</td>
-                            <td>:</td>
-                            {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                                {cap}
-                                {j < ammo.capacity.length - 1 ? "/" : ""}
-                              </td>
+                        {weapon.status_ammo && (
+                          <table className={statTable}>
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>LV</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {weapon.status_ammo.map((ammo, i) => (
+                                <tr
+                                  key={i}
+                                  className={
+                                    ammo.capacity.join("") === "000" ? "text-unavailable" : ""
+                                  }
+                                >
+                                  <td>{ammo.name}</td>
+                                  <td>:</td>
+                                  {ammo.capacity.map((cap, j) => (
+                                    <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
+                                      {cap}
+                                      {j < ammo.capacity.length - 1 ? "/" : ""}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        )}
+                      </RequirementsPage>
+                    ),
+                  },
+                  weapon.element_ammo && {
+                    id: "special-ammo",
+                    label: "Special Ammo",
+                    content: (
+                      <RequirementsPage>
+                        <table className={statTable}>
+                          <thead>
+                            <tr>
+                              <th>Cap.:</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {weapon.element_ammo.map((ammo, i) => (
+                              <tr
+                                key={i}
+                                className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
+                              >
+                                <td>{ammo.name}</td>
+                                <td>:</td>
+                                {ammo.capacity.map((cap, j) => (
+                                  <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
+                                    {cap}
+                                    {j < ammo.capacity.length - 1 ? "/" : ""}
+                                  </td>
+                                ))}
+                              </tr>
                             ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </RequirementsPage>
-              )}
+                          </tbody>
+                        </table>
 
-              {weapon.coatings && (
-                <RequirementsPage>
-                  <div className="flex flex-1 flex-row flex-wrap content-start gap-[13px]">
-                    <p className="w-full">
-                      <span className="text-stat">[Usable Coating]</span>
-                    </p>
-                    {COATINGS.map((coating) => {
-                      const key = coating.toLowerCase().replace(" coating", "").trim();
-                      const usable = weapon.coatings!.some((c) => c.toLowerCase().includes(key));
-                      return (
-                        <p
-                          key={coating}
-                          className={cn("w-[calc(50%-13px)]", !usable && "text-unavailable")}
-                        >
-                          {coating}
-                        </p>
-                      );
-                    })}
-                  </div>
-                </RequirementsPage>
-              )}
-
-              {melodies && (
-                <RequirementsPage>
-                  <table className={statTable}>
-                    <thead>
-                      <tr>
-                        <th>Combo</th>
-                        <th>Effect</th>
-                        <th>Duration</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {melodies.map((melody, i) => (
-                        <tr key={i}>
-                          <td>
-                            {melody.combo.map((note, j) => (
-                              <Icon key={j} type="note" color={`note-${note}`} alt={note} />
+                        {weapon.misc_ammo && (
+                          <table className={statTable}>
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {weapon.misc_ammo.map((ammo, i) => (
+                                <tr
+                                  key={i}
+                                  className={
+                                    ammo.capacity.join("") === "0" ? "text-unavailable" : ""
+                                  }
+                                >
+                                  <td>{ammo.name}</td>
+                                  <td>:</td>
+                                  {ammo.capacity.map((cap, j) => (
+                                    <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
+                                      {cap}
+                                      {j < ammo.capacity.length - 1 ? "/" : ""}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        )}
+                      </RequirementsPage>
+                    ),
+                  },
+                  weapon.coatings && {
+                    id: "coatings",
+                    label: "Coatings",
+                    content: (
+                      <RequirementsPage>
+                        <div className="flex flex-1 flex-row flex-wrap content-start gap-[13px]">
+                          <p className="w-full">
+                            <span className="text-stat">[Usable Coating]</span>
+                          </p>
+                          {COATINGS.map((coating) => {
+                            const key = coating.toLowerCase().replace(" coating", "").trim();
+                            const usable = weapon.coatings!.some((c) =>
+                              c.toLowerCase().includes(key),
+                            );
+                            return (
+                              <p
+                                key={coating}
+                                className={cn("w-[calc(50%-13px)]", !usable && "text-unavailable")}
+                              >
+                                {coating}
+                              </p>
+                            );
+                          })}
+                        </div>
+                      </RequirementsPage>
+                    ),
+                  },
+                  melodies && {
+                    id: "melodies",
+                    label: "Melodies",
+                    content: (
+                      <RequirementsPage>
+                        <table className={melodyTable}>
+                          <thead>
+                            <tr>
+                              <th>Combo</th>
+                              <th>Effect</th>
+                              <th>Duration</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {melodies.map((melody, i) => (
+                              <tr key={i}>
+                                <td>
+                                  <span className="flex">
+                                    {melody.combo.map((note, j) => (
+                                      <Icon
+                                        key={j}
+                                        type="note"
+                                        color={`note-${note}`}
+                                        alt={note}
+                                        className={melodyNote}
+                                      />
+                                    ))}
+                                  </span>
+                                </td>
+                                <td>{melody.effect}</td>
+                                <td>{melody.duration}</td>
+                              </tr>
                             ))}
-                          </td>
-                          <td>{melody.effect}</td>
-                          <td>{melody.duration}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </RequirementsPage>
-              )}
+                          </tbody>
+                        </table>
+                      </RequirementsPage>
+                    ),
+                  },
+                ]}
+              />
             </Requirements>
           </DetailBody>
         </DetailCard>
         {modelOpen && (
           <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
-            <ModelViewer src={modelUrl} label={weapon.name} />
+            <ModelViewer src={modelUrl} label={weapon.name} pair={type === "dual-blades"} />
           </ModelPopover>
         )}
       </div>

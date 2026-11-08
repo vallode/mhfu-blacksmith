@@ -34,6 +34,10 @@ export type FieldKind =
   | "ammo"
   /** A `|`-joined list (`rapid_fire`), compared as a set of trimmed entries; null is empty. */
   | "joined-set"
+  /** A number written as a string, with or without a sign (weapon `bonus`: `"+10"`, bowguns `"10"`), compared by its number. */
+  | "signed-number"
+  /** Hunting horn `{ combo, effect, … }[]` melody lists, compared as a set of whole melodies (combo in order). */
+  | "melodies"
   /** Monster `{ part: { cut, bash, … } }`, compared by number per part. */
   | "hitzones"
   /** Monster `{ rank: { group: [{ name, chance }] } }`, each group compared as a multiset of (item ID, chance, amount). */
@@ -233,6 +237,31 @@ function joinedKeys(value: unknown): string[] {
     .sort();
 }
 
+/** `"+10"`, `"10"` or `10` as 10; null, `""` and anything else non-numeric as null. */
+function signedNumber(value: unknown): number | null {
+  if (typeof value === "number") return value;
+  if (typeof value !== "string" || !/^[+-]?\d+$/.test(value.trim())) return null;
+  return Number(value.trim());
+}
+
+const MELODY_FIELDS = [
+  "combo",
+  "effect",
+  "description",
+  "duration",
+  "extended_effect",
+  "extended_duration",
+] as const;
+
+function melodyKeys(value: unknown): string[] {
+  return list(value)
+    .map((m) => {
+      const melody = (m ?? {}) as Record<string, unknown>;
+      return JSON.stringify(MELODY_FIELDS.map((f) => melody[f] ?? null));
+    })
+    .sort();
+}
+
 /** The value reduced to a string that's equal on both sides exactly when they agree. */
 export function canonical(
   spec: FieldSpec,
@@ -265,6 +294,10 @@ export function canonical(
       return JSON.stringify(ammoKeys(value));
     case "joined-set":
       return JSON.stringify(joinedKeys(value));
+    case "signed-number":
+      return JSON.stringify(signedNumber(value));
+    case "melodies":
+      return JSON.stringify(melodyKeys(value));
     case "hitzones":
       return JSON.stringify(hitzoneKeys(value));
     case "drops":
@@ -443,7 +476,7 @@ export function toSite(
 ): unknown {
   const committed = siteItem[spec.field];
   if (
-    (spec.kind === "scalar" || spec.kind === "percent") &&
+    (spec.kind === "scalar" || spec.kind === "percent" || spec.kind === "signed-number") &&
     spec.field in siteItem &&
     canonical(spec, committed, "site", ctx) === canonical(spec, disc, "disc", ctx)
   )
@@ -453,6 +486,8 @@ export function toSite(
     case "set":
     case "ammo":
     case "joined-set":
+    case "signed-number":
+    case "melodies":
       return disc;
     case "armor-skills":
       return armorSkillsToSite(disc, committed, ctx);

@@ -339,9 +339,19 @@ const weaponRefs = new Map<string, EquipRef>(); // "<type>|<name>"
 const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<slot>|<name>"
 
 // Weapons
-const melodies = readJson<Record<string, Melody[]>>(
-  path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json"),
-);
+// Horn melodies, shared per note set: every horn with the same notes has
+// the same list (data/weapons/hunting-horn.json, from the disc).
+const melodies: Record<string, Melody[]> = {};
+for (const horn of readJson<{ weapons: Weapon[] }>(
+  path.join(dataDir, "weapons", "hunting-horn.json"),
+).weapons) {
+  if (!horn.notes || !horn.melodies) continue;
+  const key = horn.notes.join("-");
+  if (key in melodies && JSON.stringify(melodies[key]) !== JSON.stringify(horn.melodies)) {
+    throw new Error(`Horns with notes ${key} have different melodies (${horn.name}).`);
+  }
+  melodies[key] = horn.melodies;
+}
 
 // A weapon's tree rows can include weapons of other types, so every type's
 // minimum rank is known before any tree is written.
