@@ -479,7 +479,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -523,7 +523,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -1325,10 +1325,23 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": 1,
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": 1,
+          "type": "ore",
+          "color": "green"
+        }
+      ],
       "rank": "low-rank"
     },
     {
@@ -2290,7 +2303,7 @@
       "fire_res": 0,
       "thunder_res": -5,
       "dragon_res": 0,
-      "water_res": 5,
+      "water_res": 6,
       "ice_res": 3,
       "sex": "Male/Female",
       "hunter_type": "Gunner",
@@ -3023,7 +3036,7 @@
       "sex": "Male/Female",
       "hunter_type": "Gunner",
       "rarity": 4,
-      "slots": 1,
+      "slots": 2,
       "create_cost": 4900,
       "skills": [
         {
@@ -4966,7 +4979,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -5915,16 +5928,16 @@
           "amount": -2
         },
         {
-          "name": "Guard",
-          "amount": 2
-        },
-        {
           "name": "Recoil",
           "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 3
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -8204,7 +8217,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -8254,7 +8267,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -8387,9 +8400,9 @@
           "color": "yellow"
         },
         {
-          "name": "Vespoid Wing",
-          "amount": 4,
-          "type": "webbing",
+          "name": "Vespoid Shell",
+          "amount": 3,
+          "type": "insect",
           "color": "yellow"
         },
         {
@@ -12778,7 +12791,7 @@
       "create_mats": [
         {
           "name": "Pur GypcerosWng",
-          "amount": 2,
+          "amount": 3,
           "type": "bone",
           "color": "white"
         },
@@ -12836,7 +12849,7 @@
       "create_mats": [
         {
           "name": "Pur GypcerosWng",
-          "amount": 2,
+          "amount": 3,
           "type": "bone",
           "color": "white"
         },
@@ -16682,7 +16695,7 @@
         },
         {
           "name": "Small Goldenfish",
-          "amount": 5,
+          "amount": 4,
           "type": "fish",
           "color": "yellow"
         },
@@ -16740,7 +16753,7 @@
         },
         {
           "name": "Small Goldenfish",
-          "amount": 5,
+          "amount": 4,
           "type": "fish",
           "color": "yellow"
         },
@@ -18029,7 +18042,7 @@
           "amount": -2
         },
         {
-          "name": "Attack",
+          "name": "PowerCAdd",
           "amount": 4
         }
       ],
@@ -20418,7 +20431,7 @@
         },
         {
           "name": "Hunger",
-          "amount": -3
+          "amount": -2
         },
         {
           "name": "Stamina",

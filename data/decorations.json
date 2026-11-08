@@ -47,10 +47,10 @@
           "color": "white"
         },
         {
-          "name": "Sharp Claw",
+          "name": "FireWyvern Claw",
           "amount": 1,
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         },
         {
           "name": "Demondrug",
@@ -102,7 +102,7 @@
       "color": "red",
       "slots": 3,
       "rarity": 5,
-      "create_cost": 375,
+      "create_cost": 450,
       "type": "decoration",
       "alternative_create_mats": null,
       "category": "Attack up"
@@ -517,7 +517,7 @@
           "color": "slate"
         },
         {
-          "name": "Chameleos Horn",
+          "name": "Chameleos Claw",
           "amount": 1,
           "type": "claw",
           "color": "slate"
@@ -1066,7 +1066,7 @@
     {
       "name": "Glacier Jewel",
       "skills": [
-        "Ice Skill +2"
+        "Ice Res +2"
       ],
       "create_mats": [
         {
@@ -1227,15 +1227,15 @@
         },
         {
           "name": "HornetaurInnrWng",
-          "amount": 1,
+          "amount": 2,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
-          "amount": 1,
-          "type": "part",
-          "color": "red"
+          "name": "Dragon S",
+          "amount": 3,
+          "type": "ukwn",
+          "color": "white"
         }
       ],
       "color": "slate",
@@ -1422,9 +1422,9 @@
           "color": "white"
         },
         {
-          "name": "Gaoren Spine",
+          "name": "Gaoren Claw",
           "amount": 1,
-          "type": "shell",
+          "type": "claw",
           "color": "gray"
         }
       ],
@@ -1639,26 +1639,6 @@
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
-          "amount": 1,
-          "type": "deco",
-          "color": "yellow"
-        },
-        {
-          "name": "Pale Khezu Steak",
-          "amount": 1,
-          "type": "part",
-          "color": "white"
-        },
-        {
-          "name": "Lifepowder",
-          "amount": 2,
-          "type": "sac",
-          "color": "white"
-        }
-      ],
-      "alternative_create_mats": [
-        {
           "name": "BattlefieldJewel",
           "amount": 1,
           "type": "deco",
@@ -1679,6 +1659,26 @@
         {
           "name": "Lifecrystals",
           "amount": 10,
+          "type": "sac",
+          "color": "white"
+        }
+      ],
+      "alternative_create_mats": [
+        {
+          "name": "LapisLazuliJewel",
+          "amount": 1,
+          "type": "deco",
+          "color": "yellow"
+        },
+        {
+          "name": "Pale Khezu Steak",
+          "amount": 1,
+          "type": "part",
+          "color": "white"
+        },
+        {
+          "name": "Lifepowder",
+          "amount": 2,
           "type": "sac",
           "color": "white"
         }
@@ -1711,7 +1711,7 @@
         },
         {
           "name": "Kelbi Horn",
-          "amount": 1,
+          "amount": 2,
           "type": "claw",
           "color": "blue"
         }
@@ -2391,7 +2391,7 @@
           "color": "orange"
         },
         {
-          "name": "Plesioth Fin",
+          "name": "Plesioth Fin+",
           "amount": 1,
           "type": "part",
           "color": "blue"
@@ -2408,7 +2408,26 @@
       "rarity": 5,
       "create_cost": 450,
       "type": "decoration",
-      "alternative_create_mats": null,
+      "alternative_create_mats": [
+        {
+          "name": "LapisLazuliJewel",
+          "amount": 1,
+          "type": "deco",
+          "color": "yellow"
+        },
+        {
+          "name": "SpecPlesiothFin+",
+          "amount": 1,
+          "type": "part",
+          "color": "blue"
+        },
+        {
+          "name": "HardGypcerosHead",
+          "amount": 1,
+          "type": "part",
+          "color": "blue"
+        }
+      ],
       "category": "Runner"
     },
     {
@@ -2486,6 +2505,37 @@
       ],
       "create_mats": [
         {
+          "name": "BattlefieldJewel",
+          "amount": 1,
+          "type": "deco",
+          "color": "slate"
+        },
+        {
+          "name": "Kirin Hide",
+          "amount": 1,
+          "type": "pelt",
+          "color": "white"
+        },
+        {
+          "name": "Lao-Shan's Horn",
+          "amount": 1,
+          "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "TwstBlkBlosHorn",
+          "amount": 2,
+          "type": "claw",
+          "color": "gray"
+        }
+      ],
+      "color": "cyan",
+      "slots": 2,
+      "rarity": 5,
+      "create_cost": 375,
+      "type": "decoration",
+      "alternative_create_mats": [
+        {
           "name": "LapisLazuliJewel",
           "amount": 1,
           "type": "deco",
@@ -2498,18 +2548,12 @@
           "color": "blue"
         },
         {
-          "name": "Blk Blos Thracic",
+          "name": "Black Blos Cpc",
           "amount": 1,
           "type": "part",
           "color": "gray"
         }
       ],
-      "color": "cyan",
-      "slots": 2,
-      "rarity": 5,
-      "create_cost": 375,
-      "type": "decoration",
-      "alternative_create_mats": null,
       "category": "Reload Speed up"
     },
     {
@@ -3161,7 +3205,7 @@
         },
         {
           "name": "Thunderbug Juice",
-          "amount": 1,
+          "amount": 5,
           "type": "fluid",
           "color": "yellow"
         }
@@ -3353,7 +3397,7 @@
         },
         {
           "name": "ParalysisCoating",
-          "amount": 1,
+          "amount": 20,
           "type": "bone",
           "color": "white"
         }
@@ -3488,7 +3532,7 @@
     {
       "name": "Combo Coat Jewel",
       "skills": [
-        "SleepCAdd +2"
+        "RazorCtAdd +2"
       ],
       "create_mats": [
         {
@@ -3637,7 +3681,7 @@
         },
         {
           "name": "Basarios Wing",
-          "amount": 2,
+          "amount": 1,
           "type": "part",
           "color": "gray"
         }
@@ -3998,9 +4042,9 @@
         }
       ],
       "color": "red",
-      "slots": 3,
+      "slots": 2,
       "rarity": 5,
-      "create_cost": 450,
+      "create_cost": 375,
       "type": "decoration",
       "alternative_create_mats": null,
       "category": "Adrenaline up"
@@ -4191,7 +4235,7 @@
           "color": "green"
         },
         {
-          "name": "Vespoid Wing",
+          "name": "Vespoid InnrWng",
           "amount": 1,
           "type": "webbing",
           "color": "yellow"
@@ -4505,7 +4549,7 @@
         }
       ],
       "color": "blue",
-      "slots": 0,
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration",
@@ -4677,7 +4721,7 @@
         },
         {
           "name": "Ioprey Fang",
-          "amount": 1,
+          "amount": 2,
           "type": "claw",
           "color": "red"
         }
@@ -5053,8 +5097,8 @@
           "color": "yellow"
         },
         {
-          "name": "Lightcrystal",
-          "amount": 1,
+          "name": "Iron Ore",
+          "amount": 2,
           "type": "ore",
           "color": "gray"
         }
@@ -5335,7 +5379,7 @@
       "name": "Melt-Proof Jewel",
       "skills": [
         "Terrain +1",
-        "Fate -1"
+        "Faint -1"
       ],
       "create_mats": [
         {
@@ -5369,7 +5413,7 @@
       "name": "Anti-Thaw Jewel",
       "skills": [
         "Terrain +3",
-        "Fate -1"
+        "Faint -1"
       ],
       "create_mats": [
         {
@@ -5379,20 +5423,20 @@
           "color": "slate"
         },
         {
-          "name": "Fire Dragon Scl",
-          "amount": 2,
+          "name": "DaoraDragonScale",
+          "amount": 3,
           "type": "scale",
-          "color": "red"
+          "color": "gray"
         },
         {
-          "name": "Teostra Tail",
+          "name": "Daora Tail",
           "amount": 1,
           "type": "part",
-          "color": "red"
+          "color": "gray"
         },
         {
           "name": "Gourmet Fish+",
-          "amount": 3,
+          "amount": 2,
           "type": "fish",
           "color": "orange"
         }
@@ -5947,7 +5991,7 @@
         }
       ],
       "color": "cyan",
-      "slots": 2,
+      "slots": 1,
       "rarity": 4,
       "create_cost": 200,
       "type": "decoration",

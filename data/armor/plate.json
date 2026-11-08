@@ -235,7 +235,7 @@
         },
         {
           "name": "PsychicVis",
-          "amount": 2
+          "amount": 3
         },
         {
           "name": "Carving",
@@ -630,7 +630,7 @@
       "thunder_res": 1,
       "dragon_res": -1,
       "water_res": 1,
-      "ice_res": 1,
+      "ice_res": 0,
       "sex": "Male/Female",
       "hunter_type": "Blademaster",
       "rarity": 2,
@@ -7284,16 +7284,16 @@
           "amount": 2
         },
         {
-          "name": "Guard",
-          "amount": 1
-        },
-        {
           "name": "Anti-Theft",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
+        },
+        {
+          "name": "Guard Up",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -8293,7 +8293,7 @@
       "skills": [
         {
           "name": "Faint",
-          "amount": -1
+          "amount": -2
         },
         {
           "name": "Rec Speed",

@@ -234,7 +234,7 @@
       "affinity": "0%",
       "slots": 1,
       "bonus": null,
-      "rarity": 2,
+      "rarity": 3,
       "type": "sword-and-shield",
       "create_cost": 3360,
       "improve_cost": 3360,
@@ -612,7 +612,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "sword-and-shield",
-      "create_cost": 7500,
+      "create_cost": 75000,
       "improve_cost": 75000,
       "improve_from": "Odyssey Blade",
       "create_mats": [
@@ -1002,10 +1002,7 @@
       "type": "sword-and-shield",
       "create_cost": 10000,
       "improve_cost": 10000,
-      "improve_from": [
-        "Velocidrome Bite",
-        "Twin Kut-Ku"
-      ],
+      "improve_from": "Velocidrome Bite",
       "create_mats": [
         {
           "name": "Garuga Tail",
@@ -1188,7 +1185,7 @@
         4
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 3,
       "type": "sword-and-shield",
@@ -1642,7 +1639,7 @@
       "affinity": "15%",
       "slots": 0,
       "bonus": null,
-      "rarity": 4,
+      "rarity": 6,
       "type": "sword-and-shield",
       "create_cost": null,
       "improve_cost": 45000,
@@ -1770,7 +1767,7 @@
         9
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 4,
       "type": "sword-and-shield",
@@ -1781,7 +1778,7 @@
       "improve_mats": [
         {
           "name": "Ice Crystal",
-          "amount": 20,
+          "amount": 15,
           "type": "ore",
           "color": "cyan"
         },
@@ -2073,7 +2070,7 @@
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
-      "rarity": 1,
+      "rarity": 2,
       "type": "sword-and-shield",
       "create_cost": 660,
       "improve_cost": 660,
@@ -2629,7 +2626,7 @@
         1
       ],
       "affinity": "15%",
-      "slots": 2,
+      "slots": 1,
       "bonus": null,
       "rarity": 9,
       "type": "sword-and-shield",
@@ -2829,7 +2826,7 @@
       ],
       "improve_to": [
         "Chief Kris",
-        "Bone Scythe"
+        "Bone Scythe+"
       ],
       "sharpness_plus": [
         5,
@@ -3263,7 +3260,7 @@
       "bonus": null,
       "rarity": 6,
       "type": "sword-and-shield",
-      "create_cost": 2500,
+      "create_cost": 25000,
       "improve_cost": 25000,
       "improve_from": "Studded Club",
       "create_mats": [
@@ -5071,7 +5068,7 @@
         },
         {
           "name": "Gravios BrainStm",
-          "amount": 1,
+          "amount": 4,
           "type": "part",
           "color": "red"
         }
@@ -5668,7 +5665,7 @@
         2
       ],
       "affinity": "-20%",
-      "slots": 1,
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "type": "sword-and-shield",
@@ -5757,6 +5754,7 @@
         }
       ],
       "improve_to": [
+        "Ultimus Heaven&Earth",
         "Indigo Ogre Sword"
       ],
       "sharpness_plus": [
@@ -5988,20 +5986,20 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Pawprint Stamp",
+          "name": "Barrel Lid",
           "amount": 3,
-          "type": "ticket",
+          "type": "bone",
           "color": "white"
         },
         {
-          "name": "Felvine",
-          "amount": 10,
-          "type": "herb",
-          "color": "yellow"
+          "name": "ShakalakaTreasre",
+          "amount": 3,
+          "type": "sac",
+          "color": "orange"
         },
         {
           "name": "FlynMealPassReg",
-          "amount": 1,
+          "amount": 5,
           "type": "ticket",
           "color": "pink"
         }
@@ -6139,7 +6137,7 @@
         6
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "type": "sword-and-shield",
@@ -6704,7 +6702,7 @@
         4
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "sword-and-shield",
@@ -7137,7 +7135,7 @@
         },
         {
           "name": "Narga Tail Spike",
-          "amount": 8,
+          "amount": 4,
           "type": "part",
           "color": "gray"
         },
@@ -8176,7 +8174,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8240,7 +8238,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8299,7 +8297,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8358,7 +8356,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8421,7 +8419,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"

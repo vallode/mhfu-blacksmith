@@ -13,13 +13,13 @@
       "bonus": null,
       "rarity": 1,
       "type": "lance",
-      "create_cost": 650,
+      "create_cost": 500,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
         {
           "name": "Iron Ore",
-          "amount": 4,
+          "amount": 3,
           "type": "ore",
           "color": "gray"
         }
@@ -356,6 +356,12 @@
           "amount": 10,
           "type": "ore",
           "color": "pink"
+        },
+        {
+          "name": "Blk Gravios Cpc",
+          "amount": 10,
+          "type": "part",
+          "color": "gray"
         }
       ],
       "improve_to": [
@@ -3908,10 +3914,35 @@
       "bonus": null,
       "rarity": 9,
       "type": "lance",
-      "create_cost": null,
+      "create_cost": 75000,
       "improve_cost": 75000,
       "improve_from": "Barbarian Tusk",
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Hvy Monster Bone",
+          "amount": 5,
+          "type": "bone",
+          "color": "gray"
+        },
+        {
+          "name": "Massive Bone",
+          "amount": 5,
+          "type": "bone",
+          "color": "white"
+        },
+        {
+          "name": "RobustWyvernBone",
+          "amount": 8,
+          "type": "bone",
+          "color": "cyan"
+        },
+        {
+          "name": "ThkBullfangoPelt",
+          "amount": 5,
+          "type": "pelt",
+          "color": "orange"
+        }
+      ],
       "improve_mats": [
         {
           "name": "Hvy Monster Bone",
@@ -5978,7 +6009,7 @@
         11
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 2,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -6450,7 +6481,7 @@
         5
       ],
       "affinity": "-20%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "type": "lance",
@@ -7847,7 +7878,7 @@
         },
         {
           "name": "Nargacuga Fang+",
-          "amount": 1,
+          "amount": 10,
           "type": "claw",
           "color": "gray"
         },
@@ -8286,7 +8317,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-ShanCarapace",
+          "name": "Lao-Shan'sHvyShl",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -8825,7 +8856,7 @@
         },
         {
           "name": "AncientDrgnmoss",
-          "amount": 5,
+          "amount": 3,
           "type": "part",
           "color": "green"
         }
@@ -10111,7 +10142,7 @@
           "color": "green"
         },
         {
-          "name": "Grn Plsioth Fin+",
+          "name": "Grn Plesioth Fin",
           "amount": 15,
           "type": "part",
           "color": "green"

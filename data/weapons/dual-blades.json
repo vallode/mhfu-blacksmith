@@ -129,7 +129,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "dual-blades",
-      "create_cost": 7500,
+      "create_cost": 75000,
       "improve_cost": 75000,
       "improve_from": "Cyclone",
       "create_mats": [
@@ -1253,7 +1253,7 @@
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
-      "rarity": 2,
+      "rarity": 3,
       "type": "dual-blades",
       "create_cost": null,
       "improve_cost": 1720,
@@ -1886,7 +1886,7 @@
         4
       ],
       "affinity": "0%",
-      "slots": 2,
+      "slots": 3,
       "bonus": null,
       "rarity": 9,
       "type": "dual-blades",
@@ -2857,7 +2857,7 @@
     },
     {
       "name": "Dual Diablo+",
-      "attack": 330,
+      "attack": 336,
       "sharpness": [
         8,
         13,
@@ -4554,9 +4554,9 @@
           "color": "pink"
         },
         {
-          "name": "Blue Kut-Ku Shl",
+          "name": "Blue Kut-Ku Scl",
           "amount": 4,
-          "type": "part",
+          "type": "scale",
           "color": "blue"
         },
         {
@@ -5000,10 +5000,10 @@
       "improve_from": "Funky Maracas",
       "create_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 8,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Lg Pelagus Fang",
@@ -5026,10 +5026,10 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 6,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "HrdE.CongaClaw",
@@ -5080,10 +5080,10 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 8,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Lg Pelagus Fang",
@@ -5182,7 +5182,7 @@
         8
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 7,
       "type": "dual-blades",
@@ -5244,7 +5244,10 @@
       "type": "dual-blades",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Dual Dragon Ultimus",
+      "improve_from": [
+        "Dual Dragon Ultimus",
+        "Azure Ogre Sword"
+      ],
       "create_mats": null,
       "improve_mats": [
         {
@@ -5464,7 +5467,7 @@
     },
     {
       "name": "Fatalis Dual Sky",
-      "attack": 350,
+      "attack": 364,
       "sharpness": [
         9,
         8,
@@ -5719,7 +5722,7 @@
     },
     {
       "name": "Crimson Lotus Blades",
-      "attack": 294,
+      "attack": 308,
       "sharpness": [
         7,
         3,
@@ -7207,6 +7210,12 @@
           "amount": 8,
           "type": "claw",
           "color": "gray"
+        },
+        {
+          "name": "Tigrex Claw+",
+          "amount": 5,
+          "type": "claw",
+          "color": "yellow"
         }
       ],
       "improve_mats": null,
@@ -7654,7 +7663,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -7969,7 +7978,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8095,7 +8104,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8155,7 +8164,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8220,7 +8229,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8285,7 +8294,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8350,7 +8359,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8415,7 +8424,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8480,13 +8489,13 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Commendation S",
+          "name": "Commendation G",
           "amount": 5,
           "type": "ticket",
           "color": "white"

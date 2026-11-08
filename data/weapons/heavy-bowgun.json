@@ -1200,7 +1200,7 @@
         },
         {
           "name": "Kut-Ku Scale",
-          "amount": 8,
+          "amount": 6,
           "type": "scale",
           "color": "pink"
         },
@@ -3968,7 +3968,7 @@
         },
         {
           "name": "Fire Dragon Scl",
-          "amount": 2,
+          "amount": 6,
           "type": "scale",
           "color": "red"
         },
@@ -5019,7 +5019,7 @@
         },
         {
           "name": "King Scarab",
-          "amount": 6,
+          "amount": 8,
           "type": "insect",
           "color": "slate"
         }
@@ -10190,7 +10190,7 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Kut-Ku Carapace",
+          "name": "Hvy Kut-Ku Shell",
           "amount": 6,
           "type": "part",
           "color": "pink"
@@ -15207,7 +15207,7 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"

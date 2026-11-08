@@ -331,7 +331,7 @@
         },
         {
           "name": "Map",
-          "amount": -2
+          "amount": -1
         },
         {
           "name": "PsychicVis",
@@ -668,7 +668,7 @@
       "defence": 20,
       "fire_res": 1,
       "thunder_res": 1,
-      "dragon_res": 1,
+      "dragon_res": -1,
       "water_res": 1,
       "ice_res": 0,
       "sex": "Male/Female",
@@ -902,7 +902,7 @@
       "thunder_res": 3,
       "dragon_res": 0,
       "water_res": -2,
-      "ice_res": 1,
+      "ice_res": -1,
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": 3,
@@ -1076,7 +1076,7 @@
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": 3,
-      "slots": 1,
+      "slots": 2,
       "create_cost": 1350,
       "skills": [
         {
@@ -1692,16 +1692,16 @@
           "amount": 2
         },
         {
-          "name": "BombStrUp",
-          "amount": 2
-        },
-        {
           "name": "Hunger",
           "amount": -2
         },
         {
           "name": "Gluttony",
           "amount": 3
+        },
+        {
+          "name": "NormalS Up",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -2871,7 +2871,7 @@
         },
         {
           "name": "Faint",
-          "amount": -2
+          "amount": -1
         },
         {
           "name": "Defence",
@@ -2966,10 +2966,10 @@
           "color": "blue"
         },
         {
-          "name": "Kut-Ku Scale",
+          "name": "Blue Kut-Ku Scl",
           "amount": 2,
           "type": "scale",
-          "color": "pink"
+          "color": "blue"
         },
         {
           "name": "Knife Mackerel",
@@ -3773,7 +3773,7 @@
         },
         {
           "name": "Dragonite Ore",
-          "amount": 3,
+          "amount": 2,
           "type": "ore",
           "color": "green"
         }
@@ -3829,7 +3829,7 @@
         },
         {
           "name": "Dragonite Ore",
-          "amount": 3,
+          "amount": 2,
           "type": "ore",
           "color": "green"
         }
@@ -4090,7 +4090,7 @@
       "thunder_res": 1,
       "dragon_res": 0,
       "water_res": -1,
-      "ice_res": -1,
+      "ice_res": -2,
       "sex": "Male/Female",
       "hunter_type": "Blademaster/Gunner",
       "rarity": 4,
@@ -5163,7 +5163,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -5930,10 +5930,10 @@
           "color": "cyan"
         },
         {
-          "name": "Lifecrystals",
+          "name": "Lightcrystal",
           "amount": 2,
-          "type": "bone",
-          "color": "white"
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "rank": "low-rank"
@@ -7657,7 +7657,7 @@
         },
         {
           "name": "ElderDragonBlood",
-          "amount": 2,
+          "amount": 1,
           "type": "part",
           "color": "red"
         },
@@ -8441,7 +8441,7 @@
       "type": "helmet",
       "hr": "6",
       "elder": "6",
-      "defence": 0,
+      "defence": 20,
       "fire_res": 0,
       "thunder_res": 0,
       "dragon_res": 0,
@@ -8466,7 +8466,7 @@
       "type": "helmet",
       "hr": "5",
       "elder": "5",
-      "defence": 0,
+      "defence": 10,
       "fire_res": 0,
       "thunder_res": 0,
       "dragon_res": 0,
@@ -11518,10 +11518,6 @@
           "amount": -2
         },
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 1
         },
@@ -11586,10 +11582,6 @@
         {
           "name": "HearProtct",
           "amount": 3
-        },
-        {
-          "name": "PsychicVis",
-          "amount": 1
         },
         {
           "name": "PsychicVis",
@@ -13784,6 +13776,10 @@
         {
           "name": "ThunderRes",
           "amount": -2
+        },
+        {
+          "name": "Guard Up",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -14091,7 +14087,7 @@
         },
         {
           "name": "Brute Bone",
-          "amount": 2,
+          "amount": 4,
           "type": "bone",
           "color": "white"
         },
@@ -14149,7 +14145,7 @@
         },
         {
           "name": "Brute Bone",
-          "amount": 2,
+          "amount": 4,
           "type": "bone",
           "color": "white"
         },
@@ -14587,7 +14583,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -18463,7 +18459,7 @@
         },
         {
           "name": "Protection",
-          "amount": 3
+          "amount": -3
         },
         {
           "name": "Stamina",
@@ -22356,7 +22352,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -22683,10 +22679,10 @@
           "color": "slate"
         },
         {
-          "name": "Ancient Potion",
+          "name": "Ancient DrgnBone",
           "amount": 1,
-          "type": "sac",
-          "color": "red"
+          "type": "bone",
+          "color": "slate"
         },
         {
           "name": "Elder Dragon Jwl",
@@ -22968,7 +22964,7 @@
         },
         {
           "name": "Protection",
-          "amount": -2
+          "amount": 2
         },
         {
           "name": "All Resist",
@@ -24928,7 +24924,7 @@
       "type": "helmet",
       "hr": "9",
       "elder": "10",
-      "defence": 0,
+      "defence": 30,
       "fire_res": 0,
       "thunder_res": 0,
       "dragon_res": 0,
@@ -24953,7 +24949,7 @@
       "type": "helmet",
       "hr": "1",
       "elder": "9!",
-      "defence": 0,
+      "defence": 30,
       "fire_res": 0,
       "thunder_res": 0,
       "dragon_res": 0,

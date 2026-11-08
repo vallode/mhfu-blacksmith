@@ -354,7 +354,7 @@
           "amount": 1
         },
         {
-          "name": "Horn",
+          "name": "BBQ",
           "amount": 2
         }
       ],
@@ -410,7 +410,7 @@
           "amount": -2
         },
         {
-          "name": "Quake Res",
+          "name": "PsychicVis",
           "amount": 2
         }
       ],
@@ -650,7 +650,20 @@
           "amount": 5
         }
       ],
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": 1,
+          "type": "ticket",
+          "color": "white"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": 1,
+          "type": "insect",
+          "color": "red"
+        }
+      ],
       "rank": "low-rank"
     },
     {
@@ -679,7 +692,20 @@
           "amount": 5
         }
       ],
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Normal Ticket",
+          "amount": 1,
+          "type": "ticket",
+          "color": "white"
+        },
+        {
+          "name": "Hercudrome",
+          "amount": 1,
+          "type": "insect",
+          "color": "red"
+        }
+      ],
       "rank": "low-rank"
     },
     {
@@ -730,9 +756,9 @@
           "color": "blue"
         },
         {
-          "name": "Velociprey Scale",
+          "name": "Velociprey Hide",
           "amount": 1,
-          "type": "scale",
+          "type": "pelt",
           "color": "blue"
         }
       ],
@@ -786,9 +812,9 @@
           "color": "blue"
         },
         {
-          "name": "Velociprey Scale",
+          "name": "Velociprey Hide",
           "amount": 1,
-          "type": "scale",
+          "type": "pelt",
           "color": "blue"
         }
       ],
@@ -1161,7 +1187,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -1211,7 +1237,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -1261,10 +1287,23 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Hard Ticket",
+          "amount": 1,
+          "type": "ticket",
+          "color": "green"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": 1,
+          "type": "ore",
+          "color": "green"
+        }
+      ],
       "rank": "low-rank"
     },
     {
@@ -2318,7 +2357,7 @@
       "fire_res": 0,
       "thunder_res": -5,
       "dragon_res": 0,
-      "water_res": 5,
+      "water_res": 6,
       "ice_res": 3,
       "sex": "Male/Female",
       "hunter_type": "Gunner",
@@ -3002,7 +3041,7 @@
       "hunter_type": "Blademaster",
       "rarity": 4,
       "slots": 1,
-      "create_cost": 3350,
+      "create_cost": 4900,
       "skills": [
         {
           "name": "Health",
@@ -3130,7 +3169,7 @@
       "skills": [
         {
           "name": "Sharpness",
-          "amount": 2
+          "amount": 3
         },
         {
           "name": "Expert",
@@ -5882,7 +5921,7 @@
       "ice_res": -4,
       "sex": "Male",
       "hunter_type": "Blademaster",
-      "rarity": 2,
+      "rarity": 5,
       "slots": 1,
       "create_cost": 3350,
       "skills": [
@@ -5944,7 +5983,7 @@
       "ice_res": -3,
       "sex": "Male",
       "hunter_type": "Gunner",
-      "rarity": 2,
+      "rarity": 5,
       "slots": 1,
       "create_cost": 3350,
       "skills": [
@@ -6006,7 +6045,7 @@
       "ice_res": -4,
       "sex": "Female",
       "hunter_type": "Blademaster",
-      "rarity": 2,
+      "rarity": 5,
       "slots": 1,
       "create_cost": 3350,
       "skills": [
@@ -6068,7 +6107,7 @@
       "ice_res": -3,
       "sex": "Female",
       "hunter_type": "Gunner",
-      "rarity": 2,
+      "rarity": 5,
       "slots": 1,
       "create_cost": 3350,
       "skills": [
@@ -6246,7 +6285,7 @@
         },
         {
           "name": "Striped Skin",
-          "amount": 3,
+          "amount": 2,
           "type": "pelt",
           "color": "gray"
         },
@@ -6304,7 +6343,7 @@
         },
         {
           "name": "Striped Skin",
-          "amount": 3,
+          "amount": 2,
           "type": "pelt",
           "color": "gray"
         },
@@ -6407,16 +6446,16 @@
           "amount": -2
         },
         {
-          "name": "Guard",
-          "amount": 2
-        },
-        {
           "name": "Recoil",
           "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 3
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -7968,11 +8007,11 @@
       "skills": [
         {
           "name": "Antiseptic",
-          "amount": 2
+          "amount": 1
         },
         {
           "name": "Sneak",
-          "amount": -2
+          "amount": -1
         },
         {
           "name": "Whim",
@@ -8893,9 +8932,9 @@
           "color": "yellow"
         },
         {
-          "name": "Vespoid Wing",
-          "amount": 4,
-          "type": "webbing",
+          "name": "Vespoid Shell",
+          "amount": 3,
+          "type": "insect",
           "color": "yellow"
         },
         {
@@ -9282,7 +9321,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -9332,7 +9371,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -9988,7 +10027,7 @@
       "create_mats": [
         {
           "name": "Hermitaur Claw+",
-          "amount": 3,
+          "amount": 2,
           "type": "claw",
           "color": "red"
         },
@@ -10050,7 +10089,7 @@
       "create_mats": [
         {
           "name": "Hermitaur Claw+",
-          "amount": 3,
+          "amount": 2,
           "type": "claw",
           "color": "red"
         },
@@ -14560,7 +14599,7 @@
       "create_mats": [
         {
           "name": "Firecell Stone",
-          "amount": 2,
+          "amount": 1,
           "type": "ore",
           "color": "orange"
         },
@@ -14800,7 +14839,7 @@
       "create_mats": [
         {
           "name": "Firecell Stone",
-          "amount": 2,
+          "amount": 1,
           "type": "ore",
           "color": "orange"
         },
@@ -15696,7 +15735,7 @@
         },
         {
           "name": "Khezu Hide - Tan",
-          "amount": 5,
+          "amount": 2,
           "type": "pelt",
           "color": "white"
         },
@@ -15753,10 +15792,10 @@
           "color": "slate"
         },
         {
-          "name": "Khezu Hide - Tan",
-          "amount": 5,
-          "type": "pelt",
-          "color": "white"
+          "name": "Alluring Webbing",
+          "amount": 2,
+          "type": "webbing",
+          "color": "pink"
         },
         {
           "name": "Union Ore",
@@ -18410,7 +18449,7 @@
         },
         {
           "name": "Defence",
-          "amount": -2
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -18583,7 +18622,7 @@
           "amount": -2
         },
         {
-          "name": "Attack",
+          "name": "PowerCAdd",
           "amount": 4
         }
       ],
@@ -20194,7 +20233,7 @@
         },
         {
           "name": "Tigrex Thck Scl",
-          "amount": 4,
+          "amount": 3,
           "type": "bone",
           "color": "white"
         },
@@ -20256,7 +20295,7 @@
         },
         {
           "name": "Tigrex Thck Scl",
-          "amount": 4,
+          "amount": 3,
           "type": "bone",
           "color": "white"
         },
@@ -20588,7 +20627,7 @@
       "skills": [
         {
           "name": "Health",
-          "amount": -3
+          "amount": 3
         },
         {
           "name": "Guard Up",
@@ -20708,7 +20747,7 @@
       "skills": [
         {
           "name": "Health",
-          "amount": -2
+          "amount": -3
         },
         {
           "name": "Expert",
@@ -21881,7 +21920,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -21931,7 +21970,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -21981,7 +22020,7 @@
       "skills": [
         {
           "name": "Sneak",
-          "amount": -2
+          "amount": -3
         },
         {
           "name": "Artisan",
@@ -22097,7 +22136,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [

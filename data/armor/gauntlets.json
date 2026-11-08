@@ -2105,7 +2105,7 @@
         },
         {
           "name": "Throw",
-          "amount": 2
+          "amount": 3
         },
         {
           "name": "Defence",
@@ -3224,10 +3224,6 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": 3
-        },
-        {
           "name": "PierceSAdd",
           "amount": 3
         },
@@ -3238,6 +3234,10 @@
         {
           "name": "Gathering",
           "amount": -2
+        },
+        {
+          "name": "Expert",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -4597,7 +4597,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -6395,7 +6395,7 @@
       "elder": "5",
       "defence": 20,
       "fire_res": -3,
-      "thunder_res": 2,
+      "thunder_res": 1,
       "dragon_res": 0,
       "water_res": 4,
       "ice_res": 5,
@@ -7225,7 +7225,7 @@
         },
         {
           "name": "Gaoren Pincer",
-          "amount": 2,
+          "amount": 1,
           "type": "shell",
           "color": "gray"
         },
@@ -7291,7 +7291,7 @@
         },
         {
           "name": "Gaoren Pincer",
-          "amount": 2,
+          "amount": 1,
           "type": "shell",
           "color": "gray"
         },
@@ -13851,7 +13851,7 @@
         },
         {
           "name": "Defence",
-          "amount": -3
+          "amount": -2
         },
         {
           "name": "WindPress",
@@ -14025,7 +14025,7 @@
         },
         {
           "name": "Hunger",
-          "amount": -2
+          "amount": -3
         },
         {
           "name": "Defence",
@@ -14079,7 +14079,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -15054,7 +15054,7 @@
           "color": "yellow"
         },
         {
-          "name": "DaoraDragonScale",
+          "name": "DaoraDragonScal+",
           "amount": 2,
           "type": "scale",
           "color": "gray"
@@ -15101,7 +15101,7 @@
       "create_mats": [
         {
           "name": "Rare Scarab",
-          "amount": 1,
+          "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
@@ -15159,7 +15159,7 @@
       "create_mats": [
         {
           "name": "Rare Scarab",
-          "amount": 1,
+          "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
@@ -15217,7 +15217,7 @@
       "create_mats": [
         {
           "name": "Rare Scarab",
-          "amount": 1,
+          "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
@@ -15275,7 +15275,7 @@
       "create_mats": [
         {
           "name": "Rare Scarab",
-          "amount": 1,
+          "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
@@ -19069,7 +19069,7 @@
         },
         {
           "name": "Technique",
-          "amount": 3
+          "amount": -3
         },
         {
           "name": "Trapper",
@@ -21101,7 +21101,7 @@
         },
         {
           "name": "Technique",
-          "amount": 3
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -21534,7 +21534,7 @@
           "color": "white"
         },
         {
-          "name": "Blk Gravios Shl",
+          "name": "Blk Gravios Cpc",
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -21581,7 +21581,7 @@
         },
         {
           "name": "Stamina",
-          "amount": 3
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -21592,7 +21592,7 @@
           "color": "white"
         },
         {
-          "name": "Blk Gravios Shl",
+          "name": "Blk Gravios Cpc",
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -21786,7 +21786,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -21836,7 +21836,7 @@
       "skills": [
         {
           "name": "Torso Inc",
-          "amount": 0
+          "amount": 1
         }
       ],
       "create_mats": [
