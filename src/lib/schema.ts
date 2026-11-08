@@ -60,6 +60,7 @@ export interface CompactTreeNode {
   r?: number | null; // rarity
   c?: string; // color
   e?: string; // element
+  m?: MinRankTuple; // earliest quest progress needed to make it
   k?: CompactTreeNode[]; // children
 }
 
@@ -262,6 +263,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     rarity: node.r ?? undefined,
     color: node.c,
     element: node.e,
+    min_rank: decodeMinRank(node.m),
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }

@@ -140,19 +140,31 @@ function matTuples(mats: Material[] | null | undefined): MatTuple[] | undefined 
 // ---------------------------------------------------------------------------
 // Tree compaction
 // ---------------------------------------------------------------------------
-function compactTreeNode(node: WeaponTreeNode, bundleType: string): CompactTreeNode {
+/** The minimum rank of a tree node, found by the node's type and slug. */
+type MinRankLookup = (type: string, slug: string) => MinRankTuple | undefined;
+
+function compactTreeNode(
+  node: WeaponTreeNode,
+  bundleType: string,
+  minRankOf?: MinRankLookup,
+): CompactTreeNode {
   const out: CompactTreeNode = { s: node.slug, n: node.name };
   if (node.type && node.type !== bundleType) out.t = node.type;
   if (node.rarity !== undefined) out.r = node.rarity === null ? null : (toNum(node.rarity) ?? null);
   if (node.color) out.c = node.color;
   if (node.element) out.e = node.element;
+  const mr = minRankOf?.(node.type || bundleType, node.slug);
+  if (mr) out.m = mr;
   if (node.children && node.children.length > 0) {
-    out.k = node.children.map((c) => compactTreeNode(c, bundleType));
+    out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf));
   }
   return out;
 }
-const compactTree = (nodes: WeaponTreeNode[], bundleType: string): CompactTreeNode[] =>
-  nodes.map((n) => compactTreeNode(n, bundleType));
+const compactTree = (
+  nodes: WeaponTreeNode[],
+  bundleType: string,
+  minRankOf?: MinRankLookup,
+): CompactTreeNode[] => nodes.map((n) => compactTreeNode(n, bundleType, minRankOf));
 
 // ---------------------------------------------------------------------------
 // Item encoders
@@ -326,6 +338,18 @@ const melodies = readJson<Record<string, Melody[]>>(
   path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json"),
 );
 
+// A weapon's tree rows can include weapons of other types, so every type's
+// minimum rank is known before any tree is written.
+const weaponMinRanks = new Map<string, MinRankTuple | undefined>();
+for (const type of WEAPON_TYPES) {
+  const { weapons } = readJson<{ weapons: Weapon[] }>(
+    path.join(dataDir, "weapons", `${type}.json`),
+  );
+  for (const w of weapons)
+    weaponMinRanks.set(`${type}|${slugify(w.name)}`, encodeMinRank(minRanks.weapon(type, w.name)));
+}
+const weaponMinRank: MinRankLookup = (type, slug) => weaponMinRanks.get(`${type}|${slug}`);
+
 for (const type of WEAPON_TYPES) {
   const crafting = readJson<{ weapons: Weapon[] }>(path.join(dataDir, "weapons", `${type}.json`));
   const tree = readJson<{ map: WeaponTreeNode[] }>(
@@ -346,7 +370,7 @@ for (const type of WEAPON_TYPES) {
   push(`weapon-${type}.json`, {
     kind: "weapon",
     type,
-    tree: compactTree(tree.map, type),
+    tree: compactTree(tree.map, type, weaponMinRank),
     items,
   });
 }
@@ -376,12 +400,13 @@ for (const slot of ARMOR_SLOTS) {
       armorRefs.set(`${slot}|${p.name}|${p.sex ?? ""}`, ref);
       armorRefs.set(`${slot}|${p.name}`, ref);
     });
+    const minRankBySlug = new Map(items.map((i) => [i.s, i.mr]));
     totalItems += items.length;
     push(`armor-${slot}-${rank}.json`, {
       kind: "armor",
       slot,
       rank,
-      tree: compactTree(tree.map, slot),
+      tree: compactTree(tree.map, slot, (_type, slug) => minRankBySlug.get(slug)),
       items,
     });
   }

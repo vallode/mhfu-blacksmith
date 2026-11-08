@@ -1,3 +1,5 @@
+import type { Tier } from "./min-rank";
+
 export interface Material {
   name: string;
   amount: string | number;
@@ -35,10 +37,7 @@ export interface Melody {
 }
 
 /** Earliest quest progress at which gear can be made (see min-rank.ts). */
-export interface MinRank {
-  rank: string;
-  stars: number;
-}
+export type MinRank = Tier;
 
 export interface Weapon {
   name: string;
@@ -89,6 +88,13 @@ export interface WeaponTreeNode {
   rarity?: number;
   color?: string;
   element?: string;
+  /** Earliest quest progress needed to make it; absent when no route is known. */
+  min_rank?: MinRank;
+  /**
+   * The page of the weapon this one is upgraded from, when the tree row isn't
+   * nested under it any more (its parent was pruned out of the tree).
+   */
+  parentHref?: string;
   children?: WeaponTreeNode[];
 }
 
