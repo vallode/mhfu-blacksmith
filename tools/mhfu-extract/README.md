@@ -35,6 +35,8 @@ come from hand-authored files under `src/overlay/` — see "Overlay data".
 pnpm --filter mhfu-extract unpack  --iso /path/to/mhfu.iso --out .cache/mhfu
 pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extracted
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
+pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
+pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -44,6 +46,11 @@ pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../.
   output plus `EXTRACTION.json` provenance manifest.
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
+- `compare` reports per-file, per-field agreement between the two, pairing
+  items by game ID and ignoring order and spelling. See "Building `data/`
+  from the disc".
+- `build-data` rewrites committed `data/` from the extracted output. See
+  "Building `data/` from the disc".
 
 ### Region support: JP and EU equipment both fully wired into `extract`
 
@@ -393,9 +400,12 @@ Guild-G-Rank star bands. `map` is resolved through a small hand-transcribed
 table (`src/tables/quest-maps.ts`) sourced from `quest.hexpat`'s own inline
 comments — the only place any vendored source names these IDs.
 
-**Known gap: quest board text is Japanese-only.** The JP disc points every
-language slot at the Japanese text, so `title`/`goal`/`fail`/`details`/
-`client` are Japanese. Every other quest field is in English, resolved through
+**Quest board text follows the disc.** The JP disc points every language
+slot at the Japanese text, so a JP run gives Japanese `title`/`goal`/
+`fail`/`details`/`client`. The committed `data/quests/` comes from the EU
+disc, whose text is English (519 quests: village 39, guild 444, training
+school 29, treasure hunting 7). It is missing the 32 EU quests that don't
+parse yet. Every other quest field is in English, resolved through
 the same enums as equipment. See [#36](https://github.com/vallode/mhfu-blacksmith/issues/36).
 
 **Other derivations:** `time_limit_minutes = timeLimit / 1800` (confirmed
@@ -414,6 +424,72 @@ Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
 and arena sets.
 
+## Building `data/` from the disc
+
+`data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json` and
+`data/quests/*.json` are generated from an EU (ULES01213) disc with
+`build-data`. The disc is the source of truth for every field it holds.
+Every field it doesn't hold is kept from the committed files.
+
+**Matching (`src/build/ids.ts`).** Items are paired by game ID, not by
+name: an extracted item's ID is its position in the enum table its name
+came from, and a site item's ID comes from `data/equipment-ids.json`
+(armor, weapons) or `data/items.json` (decorations, materials). Renames
+like "Hornet Helm" vs "Hornetaur Helm" therefore still pair. On the EU
+disc every committed armor piece, weapon and decoration pairs.
+
+**Comparing (`src/build/fields.ts`).** Each field has a kind. Skills are
+compared as sets after `overlay/skill-name-aliases.json`; materials as
+multisets of (item ID, amount); upgrade-tree references as sets of game
+IDs. Run `compare` to see the agreement tables; `--out` writes every
+disagreement as JSON.
+
+**Merging (`src/build/merge.ts`).** For each paired item, `build-data`
+writes the disc value of each field in that category's `take` list
+(`src/build/categories.ts`), in the site's vocabulary: site item names,
+the site's skill spelling (`Defence`, `Load`), and the site's spelling and
+icon style for each material. A field that already agrees is left
+byte-identical. Item order, key order and file layout don't change, and a
+second run is a no-op. Disc items the site doesn't list (the 10 unused
+Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
+`overlay/keep-site-values.json` lists reviewed disagreements where the site
+is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
+recipe on the disc. Quests are copied through.
+
+**Material icon styles (`src/build/material-styles.ts`).** `type`/`color`
+aren't on the disc's recipes, and the committed files gave the same item
+different styles, mostly a placeholder `bone`/`white` (in armor recipes for
+210 items that weapon/decoration recipes style properly). `build-data`
+writes one style per item ID to every material: a hand-picked style from
+`overlay/material-styles.json` if there is one, else the most common style
+in weapon/decoration recipes, then armor recipes, ignoring `bone`/`white`
+whenever the item has any other style. The overlay covers the items whose
+only committed style was the placeholder (tickets, potions, herbs; `ukwn`
+for tools, ammo and books, which have no icon mask) and the Lobstershells.
+
+**Taken fields**, decided from `compare` against the committed data
+(agreement before the first build):
+
+| category    | taken                                                                                   | agreement  | not taken                                                                                                                                                                                                                                                                                                                             |
+| ----------- | --------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats             | 97.5–100%  | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                                                                                        |
+| weapons     | attack, slots, rarity, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% | `affinity` (86.8%, #33), `sharpness`/`sharpness_plus` (25%, #31), `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                | 91.7–100%  | `color`, `category` (overlays)                                                                                                                                                                                                                                                                                                        |
+
+The disagreements behind each decision were isolated, single-value
+differences on items that otherwise matched exactly (a duplicated skill
+row, `-2` vs `-3`, a recipe amount, `Commendation G` vs `S`), which is what
+site transcription errors look like, rather than a pattern that points at
+a wrong offset or derivation. Two exceptions were fixed elsewhere instead:
+skill spellings missing from the alias overlay, and the Guild Knight
+Coat/Kilt waist IDs, which the MHP2G enum swaps
+(`scripts/equipment-id-aliases.json`).
+
+To refresh after an extractor fix: rerun `extract`, `compare`, then
+`build-data`, and review its `--markdown` change list. Add a field to
+`take` only after reviewing its disagreements. Rerun
+`pnpm generate-equipment-ids` if item names change.
+
 ## Overlay data
 
 `src/overlay/*.json` holds fields that cannot be derived from the disc at
@@ -424,12 +500,19 @@ e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.
 
 `skill-name-aliases.json` is the one overlay that goes the other way: it
-maps the committed site's legacy skill spellings (`"Defence"`, `"Load"`,
-`"Fast Chrge"`, ...) to the extractor's `SkillID` names. Only `diff` uses
-it, so the same skill under a different spelling isn't reported as a
-mismatch. `extract` output is unchanged, because the extractor's names are
-the canonical ones and `data/` is meant to be rebuilt from the disc. See
-the module doc comment for how each entry was chosen.
+maps the committed site's skill spellings (`"Defence"`, `"Load"`,
+`"Fast Chrge"`, ...) to the extractor's `SkillID` names. `diff` and
+`compare` use it so the same skill under a different spelling isn't
+reported as a mismatch, and `build-data` uses it to write disc skills back
+in the site's spelling. `extract` output is unchanged. See the module doc
+comment for how each entry was chosen.
+
+`material-styles.json` holds hand-picked material icon styles by item ID
+(see "Building `data/` from the disc").
+
+`keep-site-values.json` lists reviewed disagreements where the committed
+value is right and the disc reading is wrong; `build-data` keeps those
+values (see "Building `data/` from the disc").
 
 Monster HP/attack/defense multipliers, flavor text and category grouping
 will need the same treatment once monster output exists ([#35](https://github.com/vallode/mhfu-blacksmith/issues/35)).

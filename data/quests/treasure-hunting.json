@@ -1,0 +1,2421 @@
+{
+  "quests": [
+    {
+      "id": 4001,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Psychoserum",
+          "amount": 1
+        },
+        {
+          "item": "Flash Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Iron Pickaxe",
+          "amount": 1
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 3
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Clust S Lv2",
+          "amount": 3
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Huskberry",
+          "amount": 50
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 95,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 90,
+              "item": "Armor Sphere",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Armor Sphere",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 40,
+              "item": "Giadrome Hide",
+              "amount": 3
+            },
+            {
+              "chance": 60,
+              "item": "Giadrome Claw",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Health Flute",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Tranquilizer",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Shock Trap",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Bounce Bomb",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Thawing Agent",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Energy Drink",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Giadrome",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Treasure in the Mountains!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4002,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 2,
+      "map": "Jungle (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Psychoserum",
+          "amount": 1
+        },
+        {
+          "item": "Flash Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Iron Pickaxe",
+          "amount": 1
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 3
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Clust S Lv2",
+          "amount": 3
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Huskberry",
+          "amount": 50
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 95,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armor Sphere",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Armor Sphere",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 10,
+              "item": "Kut-Ku Webbing",
+              "amount": 3
+            },
+            {
+              "chance": 90,
+              "item": "Kut-Ku Shell",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Suiko Jewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Max Potion",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Lightning Rod",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Poison Smoke Bmb",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Sm Bone Husk",
+              "amount": 30
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Honey",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Spicy Mushroom",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Yian Kut-Ku",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Treasure in the Jungle!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4003,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 2,
+      "map": "Desert (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Psychoserum",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Mega Pickaxe",
+          "amount": 1
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 3
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Clust S Lv2",
+          "amount": 3
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Huskberry",
+          "amount": 50
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 95,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armor Sphere",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Armor Sphere",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 10,
+              "item": "Sharp Claw",
+              "amount": 3
+            },
+            {
+              "chance": 90,
+              "item": "Hermitaur Shell",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Suiko Jewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Demon Flute",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Sonic Bomb",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Scatterfish",
+              "amount": 5
+            },
+            {
+              "chance": 25,
+              "item": "Wyvern Claw",
+              "amount": 30
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Power Juice",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Immunizer",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Daimyo Hermitaur",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Treasure in the Desert!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4004,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 3,
+      "map": "Swamp (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Potion",
+          "amount": 6
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 3
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Deodorant",
+          "amount": 2
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 2",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 2",
+          "amount": 1
+        },
+        {
+          "item": "Bone",
+          "amount": 2
+        },
+        {
+          "item": "Iron Ore",
+          "amount": 1
+        },
+        {
+          "item": "Net",
+          "amount": 2
+        },
+        {
+          "item": "Sm Monster Bone",
+          "amount": 1
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 1
+        },
+        {
+          "item": "Gunpowder",
+          "amount": 2
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Huskberry",
+          "amount": 50
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Silver Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 95,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armor Sphere",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Armor Stone",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 10,
+              "item": "Congalala Claw",
+              "amount": 3
+            },
+            {
+              "chance": 90,
+              "item": "Congalala Pelt",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Akito Jewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Lifepowder",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Flash Bomb",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Nutrients",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Mega Nutrients",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armorskin",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Deodorant",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Congalala",
+          "quantity": 1,
+          "power": 8
+        },
+        {
+          "monster": "Bulldrome",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Ioprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Treasure in the Swamp!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4005,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 3,
+      "map": "Forest and Hills (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Flash Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 2
+        },
+        {
+          "item": "Psychoserum",
+          "amount": 1
+        },
+        {
+          "item": "Iron Pickaxe",
+          "amount": 1
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 3
+        },
+        {
+          "item": "Health Flute",
+          "amount": 1
+        },
+        {
+          "item": "Antidote Flute",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Clust S Lv2",
+          "amount": 3
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "ParalysisCoating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Silver Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 95,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armor Sphere",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Armor Stone",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 50,
+              "item": "Rathalos Shell",
+              "amount": 3
+            },
+            {
+              "chance": 50,
+              "item": "Rathian Shell",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Akito Jewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Ancient Potion",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Nitroshroom",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Lg Barrel-Bomb",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Sm Barrel-Bomb",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Mega Potion",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Gourmet Steak",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rathalos",
+          "quantity": 1,
+          "power": 8
+        },
+        {
+          "monster": "Rathian",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Shakalaka",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Treasure in the Hills!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4006,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 4,
+      "map": "Volcano (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 3
+        },
+        {
+          "item": "Flash Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 2
+        },
+        {
+          "item": "Iron Pickaxe",
+          "amount": 2
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Large Barrel",
+          "amount": 3
+        },
+        {
+          "item": "Sleeping Thr Knf",
+          "amount": 5
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Poison S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Sleep S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Water S",
+          "amount": 60
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 20
+        },
+        {
+          "item": "Sleep Coating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Golden Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Armor Sphere",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Armor Sphere+",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 10,
+              "item": "Gravios Skl Shl",
+              "amount": 1
+            },
+            {
+              "chance": 90,
+              "item": "Flame Sac",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "BattlefieldJewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Flute",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Lg Barrel-Bomb+",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Sm Barrel-Bomb+",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Gunpowder",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Demondrug",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Lifepowder",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Gravios",
+          "quantity": 1,
+          "power": 8
+        },
+        {
+          "monster": "Iodrome",
+          "quantity": 1,
+          "power": 8
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Ioprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Remobra",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Ceanataur",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Treasure in the Lava!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    },
+    {
+      "id": 4007,
+      "hub": "treasure-hunting",
+      "rank": null,
+      "stars": 8,
+      "map": "Great Forest (Day)",
+      "fee": 500,
+      "reward": 1000,
+      "penalty": 340,
+      "time_limit_minutes": 20,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mega Potion",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 4
+        },
+        {
+          "item": "Portable Spit",
+          "amount": 1
+        },
+        {
+          "item": "Power Juice",
+          "amount": 1
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 2
+        },
+        {
+          "item": "Flash Bomb",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 1",
+          "amount": 1
+        },
+        {
+          "item": "Book of Combos 2",
+          "amount": 1
+        },
+        {
+          "item": "Iron Pickaxe",
+          "amount": 1
+        },
+        {
+          "item": "Bugnet",
+          "amount": 1
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "amount": 10
+        },
+        {
+          "item": "Lg Barrel-Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Poison Smoke Bmb",
+          "amount": 3
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Farcaster",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv2",
+          "amount": 99
+        },
+        {
+          "item": "Pierce S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pierce S Lv2",
+          "amount": 50
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 60
+        },
+        {
+          "item": "Pellet S Lv2",
+          "amount": 60
+        },
+        {
+          "item": "Clust S Lv2",
+          "amount": 3
+        },
+        {
+          "item": "Sleep S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 12
+        },
+        {
+          "item": "Power Coating",
+          "amount": 50
+        },
+        {
+          "item": "Sleep Coating",
+          "amount": 20
+        },
+        {
+          "item": "ParalysisCoating",
+          "amount": 20
+        },
+        {
+          "item": "Limited Paw Pass",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 80,
+              "item": "Golden Egg",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Silver Egg",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 90,
+              "item": "Expand Pickaxe",
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": "Expand Pickaxe",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 50,
+              "item": "Ryl Armor Sphere",
+              "amount": 1
+            },
+            {
+              "chance": 50,
+              "item": "Hvy Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 30,
+              "item": "Garuga Carapace",
+              "amount": 1
+            },
+            {
+              "chance": 70,
+              "item": "Garuga Scale+",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Steel Egg",
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "LapisLazuliJewel",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Mega Juice",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Ancient Potion",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 100,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Lg Barrel-Bomb+",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Sm Barrel-Bomb+",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 75,
+              "item": "Power Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Armor Seed",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Yian Garuga",
+          "quantity": 1,
+          "power": 9
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Treasure in the Grt Forest!",
+      "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
+      "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
+      "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
+      "client": "Treshi"
+    }
+  ]
+}

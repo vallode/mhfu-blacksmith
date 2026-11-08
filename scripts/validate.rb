@@ -29,6 +29,7 @@ decoration_schema = load_schema("decoration")
 monster_schema    = load_schema("monster")
 item_schema       = load_schema("item")
 equipment_ids_schema = load_schema("equipment-ids")
+quest_schema      = load_schema("quest")
 
 puts "Validating weapons..."
 Dir.glob("data/weapons/*.json").sort.each do |path|
@@ -46,6 +47,11 @@ errors_found |= validate_file("data/decorations.json", decoration_schema, "decor
 puts "Validating monsters..."
 Dir.glob("data/monsters/*.json").sort.each do |path|
   errors_found |= validate_file(path, monster_schema, "monster")
+end
+
+puts "Validating quests..."
+Dir.glob("data/quests/*.json").sort.each do |path|
+  errors_found |= validate_file(path, quest_schema, "quest")
 end
 
 puts "Validating items..."

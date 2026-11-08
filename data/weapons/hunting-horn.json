@@ -602,9 +602,9 @@
           "color": "pink"
         },
         {
-          "name": "ThckRathianScl",
+          "name": "HvyRathianShell",
           "amount": 4,
-          "type": "scale",
+          "type": "part",
           "color": "green"
         },
         {
@@ -726,26 +726,6 @@
       "create_mats": [
         {
           "name": "Black Pearl",
-          "amount": 2,
-          "type": "scale",
-          "color": "gray"
-        },
-        {
-          "name": "Machalite Ore",
-          "amount": 12,
-          "type": "ore",
-          "color": "blue"
-        },
-        {
-          "name": "Screamer",
-          "amount": 3,
-          "type": "sac",
-          "color": "gray"
-        }
-      ],
-      "improve_mats": [
-        {
-          "name": "Black Pearl",
           "amount": 5,
           "type": "scale",
           "color": "gray"
@@ -767,6 +747,26 @@
           "amount": 1,
           "type": "part",
           "color": "blue"
+        }
+      ],
+      "improve_mats": [
+        {
+          "name": "Black Pearl",
+          "amount": 2,
+          "type": "scale",
+          "color": "gray"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": 12,
+          "type": "ore",
+          "color": "blue"
+        },
+        {
+          "name": "Screamer",
+          "amount": 3,
+          "type": "sac",
+          "color": "gray"
         }
       ],
       "improve_to": [
@@ -855,10 +855,35 @@
         "r"
       ],
       "type": "hunting-horn",
-      "create_cost": null,
+      "create_cost": 40000,
       "improve_cost": 40000,
       "improve_from": "Great Bagpipe",
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Carbalite Ore",
+          "amount": 15,
+          "type": "ore",
+          "color": "slate"
+        },
+        {
+          "name": "Dragonite Ore",
+          "amount": 20,
+          "type": "ore",
+          "color": "green"
+        },
+        {
+          "name": "Machalite Ore",
+          "amount": 40,
+          "type": "ore",
+          "color": "blue"
+        },
+        {
+          "name": "Basarios Wing",
+          "amount": 2,
+          "type": "part",
+          "color": "gray"
+        }
+      ],
       "improve_mats": [
         {
           "name": "Carbalite Ore",
@@ -1462,7 +1487,7 @@
         },
         {
           "name": "Hypno Claw+",
-          "amount": 16,
+          "amount": 6,
           "type": "claw",
           "color": "orange"
         },
@@ -2494,7 +2519,7 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": 1,
-          "type": "shell",
+          "type": "claw",
           "color": "slate"
         }
       ],
@@ -2822,7 +2847,7 @@
         },
         {
           "name": "VespoidQn'sCrown",
-          "amount": 2,
+          "amount": 3,
           "type": "insect",
           "color": "yellow"
         }
@@ -3173,10 +3198,35 @@
         "y"
       ],
       "type": "hunting-horn",
-      "create_cost": null,
+      "create_cost": 30000,
       "improve_cost": 30000,
       "improve_from": "Giaprey Balloon+",
-      "create_mats": null,
+      "create_mats": [
+        {
+          "name": "Velociprey Scle+",
+          "amount": 8,
+          "type": "scale",
+          "color": "blue"
+        },
+        {
+          "name": "Velociprey Hide",
+          "amount": 15,
+          "type": "pelt",
+          "color": "blue"
+        },
+        {
+          "name": "Screamer",
+          "amount": 3,
+          "type": "sac",
+          "color": "gray"
+        },
+        {
+          "name": "Hrd Monster Bone",
+          "amount": 3,
+          "type": "bone",
+          "color": "red"
+        }
+      ],
       "improve_mats": [
         {
           "name": "Velociprey Scle+",
@@ -4372,10 +4422,10 @@
       "improve_from": "War Conga",
       "create_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 8,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Vibrant Comb",
@@ -4398,10 +4448,10 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
-          "amount": 8,
+          "name": "E.CongalalaPelt+",
+          "amount": 4,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Lg Pelagus Fang",
@@ -4463,10 +4513,10 @@
           "color": "white"
         },
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 8,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "HrdE.CongaClaw",
@@ -4955,7 +5005,7 @@
     },
     {
       "name": "AncientDrgnwoodFlute",
-      "attack": 936,
+      "attack": 988,
       "sharpness": [
         19,
         2,
@@ -4979,13 +5029,13 @@
       "improve_from": "Spirit Dragonwd Horn",
       "create_mats": [
         {
-          "name": "AncientDrgnmoss",
+          "name": "AncientDrgnwood",
           "amount": 6,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "AncientDrgnwood",
+          "name": "AncientDrgnmoss",
           "amount": 2,
           "type": "part",
           "color": "green"
@@ -5219,7 +5269,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         }
       ],
@@ -5542,7 +5592,7 @@
       "improve_from": "Hidden Tone",
       "create_mats": [
         {
-          "name": "Black Narga Pelt",
+          "name": "BlackNargaPelt+",
           "amount": 10,
           "type": "pelt",
           "color": "gray"

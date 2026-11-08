@@ -14,7 +14,7 @@
       "bonus": null,
       "rarity": 7,
       "type": "long-sword",
-      "create_cost": 80,
+      "create_cost": 80000,
       "improve_cost": 80000,
       "improve_from": "Carbalite Sword+",
       "create_mats": [
@@ -220,10 +220,7 @@
       "type": "long-sword",
       "create_cost": 100000,
       "improve_cost": 100000,
-      "improve_from": [
-        "Igneous Blade",
-        "Decider"
-      ],
+      "improve_from": "Decider",
       "create_mats": [
         {
           "name": "ThckLavasiothScl",
@@ -323,10 +320,10 @@
           "color": "gray"
         },
         {
-          "name": "Carbalite Ore",
+          "name": "Eltalite Ore",
           "amount": 12,
           "type": "ore",
-          "color": "slate"
+          "color": "red"
         },
         {
           "name": "HvnlyGraviosShl",
@@ -1027,10 +1024,10 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Blangonga Pelt+",
+          "name": "C.BlangongaPelt+",
           "amount": 5,
           "type": "pelt",
-          "color": "white"
+          "color": "orange"
         },
         {
           "name": "HvyC.BlangoFang",
@@ -1834,7 +1831,10 @@
       "type": "long-sword",
       "create_cost": 1750,
       "improve_cost": 1750,
-      "improve_from": "Large Bone",
+      "improve_from": [
+        "Bone Blade+",
+        "Large Bone"
+      ],
       "create_mats": [
         {
           "name": "Velocidrome Hide",
@@ -1843,7 +1843,7 @@
           "color": "blue"
         },
         {
-          "name": "Med Monster Bone",
+          "name": "Sm Monster Bone",
           "amount": 4,
           "type": "bone",
           "color": "yellow"
@@ -2697,7 +2697,7 @@
       "improve_mats": [
         {
           "name": "Lunastra Spike",
-          "amount": 4,
+          "amount": 2,
           "type": "claw",
           "color": "blue"
         },
@@ -3107,7 +3107,7 @@
         },
         {
           "name": "Black Blos Spine",
-          "amount": 4,
+          "amount": 3,
           "type": "part",
           "color": "gray"
         }
@@ -3500,7 +3500,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -4560,20 +4560,26 @@
       "create_mats": [
         {
           "name": "Rathian Scale",
-          "amount": 2,
+          "amount": 3,
           "type": "scale",
           "color": "green"
         },
         {
           "name": "Rathian Shell",
-          "amount": 5,
+          "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
           "name": "Firewyvern Fluid",
-          "amount": 20,
+          "amount": 5,
           "type": "part",
+          "color": "red"
+        },
+        {
+          "name": "Ioprey Fang",
+          "amount": 20,
+          "type": "claw",
           "color": "red"
         }
       ],
@@ -5376,7 +5382,7 @@
       "bonus": null,
       "rarity": 5,
       "type": "long-sword",
-      "create_cost": 20,
+      "create_cost": 20000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6398,7 +6404,7 @@
         1
       ],
       "affinity": "-30%",
-      "slots": 1,
+      "slots": 0,
       "bonus": "+10",
       "rarity": 10,
       "type": "long-sword",
@@ -6541,8 +6547,8 @@
         {
           "name": "Whetstone",
           "amount": 20,
-          "type": "bone",
-          "color": "white"
+          "type": "stone",
+          "color": "yellow"
         },
         {
           "name": "Eltalite Ore",
@@ -6640,7 +6646,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "long-sword",
-      "create_cost": 10000,
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -6890,7 +6896,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -6974,7 +6980,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         }
       ],
@@ -7136,7 +7142,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "name": "Commendation G",
           "amount": 1,
           "type": "ticket",
           "color": "white"

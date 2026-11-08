@@ -337,7 +337,7 @@
       "affinity": "20%",
       "slots": 2,
       "bonus": null,
-      "rarity": 3,
+      "rarity": 2,
       "type": "light-bowgun",
       "reload": "Fast",
       "recoil": "Moderate",
@@ -2060,7 +2060,7 @@
         {
           "name": "Sm Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -2578,7 +2578,7 @@
         },
         {
           "name": "Blue Kut-Ku Shl",
-          "amount": 4,
+          "amount": 5,
           "type": "part",
           "color": "blue"
         },
@@ -6013,6 +6013,12 @@
           "color": "blue"
         },
         {
+          "name": "Azure Rthlos Scl",
+          "amount": 3,
+          "type": "scale",
+          "color": "blue"
+        },
+        {
           "name": "Dragonite Ore",
           "amount": 2,
           "type": "ore",
@@ -7387,7 +7393,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -8455,7 +8461,7 @@
         },
         {
           "name": "Rare Scarab",
-          "amount": 5,
+          "amount": 6,
           "type": "insect",
           "color": "yellow"
         }
@@ -10317,7 +10323,7 @@
           ]
         }
       ],
-      "create_cost": 3025,
+      "create_cost": 3275,
       "improve_mats": null,
       "create_mats": [
         {
@@ -11377,7 +11383,7 @@
           "color": "red"
         },
         {
-          "name": "Rathian Spike",
+          "name": "Rathian Spike+",
           "amount": 2,
           "type": "part",
           "color": "green"
@@ -12761,7 +12767,7 @@
           "color": "gray"
         },
         {
-          "name": "Commendation",
+          "name": "Commendation G",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -13264,7 +13270,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -19869,7 +19875,7 @@
       "max_attack": 372,
       "rapid_fire": null,
       "affinity": "0%",
-      "slots": 3,
+      "slots": 2,
       "bonus": null,
       "rarity": 9,
       "type": "light-bowgun",
@@ -20709,7 +20715,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 3,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -22620,7 +22626,7 @@
         {
           "name": "Old Pickaxe",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -22787,7 +22793,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 10,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {

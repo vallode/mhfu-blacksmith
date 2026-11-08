@@ -1,0 +1,2190 @@
+{
+  "quests": [
+    {
+      "id": 21001,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 1000,
+      "penalty": 1000,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": "Yian Kut-Ku",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Kut-Ku Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Kut-Ku Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Yian Kut-Ku",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Yian Kut-Ku Training",
+      "goal": "Slay the Yian Kut-Ku",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Yian Kut-Ku. Its\nweakness is its sensitivity\nto loud noises. Try a Sonic\nBomb or even a Barrel-Bomb!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21002,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 1000,
+      "penalty": 1000,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": "Congalala",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Congalala Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Congalala Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Congalala",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Congalala Training",
+      "goal": "Slay the Congalala",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Congalala. If you\nare hit by something it has\nthrown, the smell will spoil\nyour items and you won't be\nable to use them!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21003,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 1000,
+      "penalty": 1000,
+      "time_limit_minutes": 30,
+      "target": {
+        "monster": "Khezu",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Khezu Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Khezu Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Khezu",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Khezu Training",
+      "goal": "Slay the Khezu",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Khezu. You must\nfear not only its electric\nattacks but also its roar.\nThus, equip a weapon guard\nand be ready to use it.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21004,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 30,
+      "target": {
+        "monster": "Daimyo Hermitaur",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Daimyo Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Daimyo Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Daimyo Hermitaur",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Daimyo Hermitaur Training",
+      "goal": "Slay the Daimyo Hermitaur",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Daimyo Hermitaur.\nSupposedly you can only\ncrack its shell with a\nHammer or Hunting Horn, but\na Lance works as well!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21005,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 30,
+      "target": {
+        "monster": "Blangonga",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Blangonga Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Blangonga Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Blangonga",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Blangonga Training",
+      "goal": "Slay the Blangonga",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Blangonga. You may\neven become a Snowman!\nThe best escape is using a\nThawing Agent... Or hitting\nthe beast on its arms!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21006,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Yian Garuga",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Yian Garuga Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Yian Garuga Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Yian Garuga",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Yian Garuga Training",
+      "goal": "Slay the Yian Garuga",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Yian Garuga. After\nthreatening you, Garuga\nlikes to let off a roar or\ntwo. When you sense a\nthreat, prepare yourself!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21007,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Tigrex",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Tigrex Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Tigrex Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Tigrex",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Tigrex Training",
+      "goal": "Slay the Tigrex",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Tigrex. Tigrex will\ncome after you with all its\ngot, so don't just wait\naround. Jump into the fight!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21008,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Diablos",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Diablos Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Diablos Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Diablos",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Diablos Training",
+      "goal": "Slay the Diablos",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Diablos. When it's\non the defensive, a Sonic\nBomb is useful, but once\nit's mad, that won't do a\nthing, so use a Flash Bomb!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21009,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Gravios",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Gravios Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Gravios Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Gravios",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Gravios Training",
+      "goal": "Slay the Gravios",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Gravios. When\nfighting underneath it,\nbeware of being crushed!\nWhen it's airborne, choose\nyour spots! Don't mess up!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21010,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Kirin",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Kirin Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Kirin Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Kirin",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Kirin Training",
+      "goal": "Slay the Kirin",
+      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Kirin. The key to\nthis battle is lightning. If\nyou can detect its patterns,\nyou can increase your\nchances of victory!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21011,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Desert (Day)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Cephadrome",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Cephadrome Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Cephadrome Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Cephadrome",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Cephadrome Training",
+      "goal": "Slay the Cephadrome",
+      "details": "It is I, your esteemed\ninstructor. Time to face a\nCephadrome! Aim to use Small\nBarrel-Bombs when it is\nhiding. Set the bomb where\nit will resurface! That's\nthe secret!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21012,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Jungle (Night)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Plesioth",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Plesioth Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Plesioth Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Plesioth",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Plesioth Training",
+      "goal": "Slay the Plesioth",
+      "details": "It is I, your esteemed\ninstructor. Time to face a\nPlesioth! Chasing it when it\nchanges areas is easy, but\nyou'll have to figure out a\nway to fish it out of the\nground.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21013,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Swamp (Day)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Shogun Ceanataur",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Shogun Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Shogun Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Shogun Ceanataur",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Great Thunderbug",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Ioprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Shogun Ceanataur Training",
+      "goal": "Slay the Shogun Ceanataur",
+      "details": "It is I, your esteemed\ninstructor. Time to face a\nShogun Ceanataur! If it\nextends its claws, that's\nyour cue to pay attention\nbecause its reach has\ndoubled! Get out of the way!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21014,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Forest and Hills (Day)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Rathalos",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Fire Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Fire Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rathalos",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Mosswine",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Shakalaka",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Rathalos Training",
+      "goal": "Slay the Rathalos",
+      "details": "It is I, your esteemed\ninstructor. Time to face a\nRathalos! You'll need a\nPaintball to keep track of\nit when it takes to flight,\nso make sure you hit it\nbefore it gets away!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21015,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Rajang",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 20,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 55,
+              "item": "Rajang Coin",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Rajang Coin",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rajang",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Rajang Training",
+      "goal": "Slay the Rajang",
+      "details": "It is I, your esteemed\ninstructor. So you've made\nit this far, huh!? I'm\nspeechless! Let's see what\nyou've got! Show me your\ntrue strength on this \nmountain!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21016,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 1,
+      "map": "Great Forest (Day)",
+      "fee": 0,
+      "reward": 2000,
+      "penalty": 2000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Hypnocatrice",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "BlackBeltCoinG",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "BlackBeltCoinG",
+              "amount": 2
+            },
+            {
+              "chance": 30,
+              "item": "Small Goldenfish",
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Hypnocatrice",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Shakalaka",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Hypnocatrice Training",
+      "goal": "Slay the Hypnocatrice",
+      "details": " ▲▼Instructor's Note▲▼\nPaintball ........... Area 6\nMega Potion ......... Area 2\nFarcaster ........... Area 4\nFlash Bomb ... Egg (1 only!)",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21017,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Old Jungle",
+      "fee": 0,
+      "reward": 2500,
+      "penalty": 2500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Emerald Congalala",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "BlackBeltCoinG",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "BlackBeltCoinG",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Small Goldenfish",
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Emerald Congalala",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Conga",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Remobra",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Emerald Congalala Training",
+      "goal": "Slay the Emerald Congalala",
+      "details": " ▲▼Instructor's Note▲▼\nTrap Tool ........... Area 3\nMega Potion ..... Usual spot\nDeodorant ........... Area 9\nMax Potion ..... Furthest in",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21018,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Old Desert",
+      "fee": 0,
+      "reward": 2500,
+      "penalty": 2500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Plum Daimyo Hermitaur",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "BlackBeltCoinG",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "BlackBeltCoinG",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Small Goldenfish",
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Plum Daimyo Hermitaur",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Genprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Remobra",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Great Thunderbug",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Cephalos",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Plum D.Hermitaur Training",
+      "goal": "Slay the Plum D.Hermitaur",
+      "details": " ▲▼Instructor's Note▲▼\nBook of Combos 1 .... Area 2\nMega Potion ......... Area 8\nIron Pickaxe ........ Area 8\nTrap Tool + Genprey Fang = !",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21019,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Great Forest (Night)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Nargacuga",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "Expert Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Expert Coin G",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Steel Egg",
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Nargacuga",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Ioprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Shakalaka",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Nargacuga Training",
+      "goal": "Slay the Nargacuga",
+      "details": " ▲▼Instructor's Note▲▼\nSonic Bomb .......... Area 4\nMega Potion ......... Area 8\nPitfall Trap ........ Area 3\nMax Potion .......... Bugnet",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21020,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Old Desert",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Copper Blangonga",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "Expert Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Expert Coin G",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Steel Egg",
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Copper Blangonga",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Genprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Remobra",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Great Thunderbug",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Cephalos",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Copper Blangonga Training",
+      "goal": "Slay the Copper Blangonga",
+      "details": " ▲▼Instructor's Note▲▼\nArmorskin .......... Remobra\nMega Potion ......... Area 9\nDemondrug .... A cool desert\nMax Potion ..... Underground",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21021,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Volcano (Night)",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Lavasioth",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "Warrior Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Warrior Coin G",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Lavasioth",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Ioprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Remobra",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 20
+        },
+        {
+          "monster": "Ceanataur",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Lavasioth Training",
+      "goal": "Slay the Lavasioth",
+      "details": " ▲▼Instructor's Note▲▼\nLg Barrel-Bomb ...... Area 2\nMega Potion ......... Area 6\nIron Pickaxe ........ Area 3\nMax Potion .... A cool place",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21022,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Old Swamp",
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Terra Shogun Ceanatur",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "Warrior Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Warrior Coin G",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Terra Shogun Ceanatur",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Velociprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Ceanataur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Terra S.Ceanataur Training",
+      "goal": "Slay the Terra S.Ceanataur",
+      "details": " ▲▼Instructor's Note▲▼\nThr Knife ..... Veggie Elder\nMega Potion ........ Area 10\nIron Pickaxe ........ Area 5\nMax Potion .... Grassy field\n         (bugnet) under tree",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 21023,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Old Volcano",
+      "fee": 0,
+      "reward": 4000,
+      "penalty": 4000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Furious Rajang",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 55,
+              "item": "Legend Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Legend Coin G",
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": "Silver Egg",
+              "amount": 1
+            },
+            {
+              "chance": 35,
+              "item": "Expand Pickaxe",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Furious Rajang",
+          "quantity": 1,
+          "power": 5
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Vespoid",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Rajang Training",
+      "goal": "Slay the Rajang",
+      "details": " ▲▼Instructor's Note▲▼\nNet .... Area 4 (South East)\nMega Potion .... Furthest in\nDemondrug ........... Area 7\nMax Potion .. Near base camp",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22001,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 10,
+      "target": {
+        "monster": "Blue Yian Kut-Ku",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 40,
+              "item": "Raw Meat",
+              "amount": 2
+            },
+            {
+              "chance": 45,
+              "item": "Well-Done Steak",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Gourmet Steak",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 90,
+              "item": "Gourmet Steak",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Blue Yian Kut-Ku",
+          "quantity": 1,
+          "power": 15
+        }
+      ],
+      "small_monsters": [],
+      "title": "Blue Yian Kut-Ku Exercises",
+      "goal": "Slay the Blue Yian Kut-Ku",
+      "details": "It is I, your esteemed\ninstructor. If you can clear\nthis Group Training in time,\nyour reward will explode!\nFaster! Smarter! Set a new\nrecord!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22002,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 3,
+      "map": "Desert (Day)",
+      "fee": 0,
+      "reward": 2100,
+      "penalty": 700,
+      "time_limit_minutes": 30,
+      "target": {
+        "monster": "Cephadrome",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 25,
+              "item": "Cephadrome Coin",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 35,
+              "item": "Small Goldenfish",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Frozen Berry",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 60,
+              "item": "Cephadrome Coin",
+              "amount": 2
+            },
+            {
+              "chance": 40,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Cephadrome",
+          "quantity": 1,
+          "power": 11
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Cephadrome Exercises",
+      "goal": "Slay the Cephadrome",
+      "details": "It is I, your esteemed\ninstructor. An all out\nassault will only lower your\ntime marginally. Victory\nrests on what you have and\nwhat you can combine it with\nin the southern desert.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22003,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Jungle (Day)",
+      "fee": 0,
+      "reward": 4200,
+      "penalty": 1400,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Rathian",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 25,
+              "item": "Fire Coin",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Blackbelt Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 60,
+              "item": "Fire Coin",
+              "amount": 1
+            },
+            {
+              "chance": 40,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rathian",
+          "quantity": 1,
+          "power": 12
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 6
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Rathian Exercises",
+      "goal": "Slay the Rathian",
+      "details": "It is I, your esteemed\ninstructor. No time for\ntricks, just use your skills\nand finish this beast off!\nUse everything you've\nlearned about \"cooperation\"\nand obliterate your foe!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22004,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 2,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 10,
+      "target": {
+        "monster": "Congalala",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 40,
+              "item": "Raw Meat",
+              "amount": 2
+            },
+            {
+              "chance": 45,
+              "item": "Well-Done Steak",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Gourmet Steak",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Small Goldenfish",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 90,
+              "item": "Gourmet Steak",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Congalala",
+          "quantity": 1,
+          "power": 6
+        }
+      ],
+      "small_monsters": [],
+      "title": "Congalala Exercises",
+      "goal": "Slay the Congalala",
+      "details": "It is I, your esteemed\ninstructor. I want to see\nyour true power on this one!\nGive it all you've got, you\nhear!? But don't leave your\nfriends in the dust. Be as\none! Fight as one!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22005,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 4,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 6000,
+      "penalty": 2000,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Shogun Ceanataur",
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 25,
+              "item": "Shogun Coin",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Expert Ticket",
+              "amount": 1
+            },
+            {
+              "chance": 35,
+              "item": "Steel Egg",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Gourmet Steak",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 60,
+              "item": "Shogun Coin",
+              "amount": 2
+            },
+            {
+              "chance": 40,
+              "item": "VeggieElderTcket",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Shogun Ceanataur",
+          "quantity": 1,
+          "power": 11
+        }
+      ],
+      "small_monsters": [],
+      "title": "Shogun Ceanataur Exercises",
+      "goal": "Slay 1 Shogun Ceanataur",
+      "details": "It is I, your esteemed\ninstructor. Your opponent\nthis time is a pair of\nShogun Ceanataurs. You only\nhave to beat one to clear\nthe quest, so remember which\none you're going after!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    },
+    {
+      "id": 22006,
+      "hub": "training-school",
+      "rank": null,
+      "stars": 5,
+      "map": "Arena (Large)",
+      "fee": 0,
+      "reward": 8000,
+      "penalty": 2700,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": "Tigrex",
+        "amount": 2
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "items": [
+            {
+              "chance": 25,
+              "item": "Expert Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Warrior Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Small Goldenfish",
+              "amount": 3
+            },
+            {
+              "chance": 20,
+              "item": "Steel Egg",
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": "VeggieElderTckt+",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "chance": 60,
+              "item": "Warrior Coin G",
+              "amount": 1
+            },
+            {
+              "chance": 40,
+              "item": "VeggieElderTckt+",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Tigrex",
+          "quantity": 2,
+          "power": 18
+        }
+      ],
+      "small_monsters": [],
+      "title": "Tigrex Exercises",
+      "goal": "Slay 2 Tigrex",
+      "details": "It is I, your esteemed\ninstructor. You'll be going\nafter 2 Tigrex back to\nback today. Try not to\nattack when it's infuriated,\nand use whatever you've got\nto create an opening!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Instructor"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "$comment": "Reviewed disc/site disagreements where the committed data/ value is right and the disc reading is wrong. build-data keeps these as committed. Each entry is { file, name (site name), field, reason }. See build/merge.ts.",
+  "entries": [
+    {
+      "file": "weapons/great-sword.json",
+      "name": "Rusted Great Sword",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/great-sword.json",
+      "name": "Rusted Great Sword",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/great-sword.json",
+      "name": "Worn Great Sword",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/great-sword.json",
+      "name": "Worn Great Sword",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/sword-and-shield.json",
+      "name": "Rusted Sword",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/sword-and-shield.json",
+      "name": "Rusted Sword",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/dual-blades.json",
+      "name": "Worn Blades",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/dual-blades.json",
+      "name": "Worn Blades",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/hammer.json",
+      "name": "Rusted Hammer",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/hammer.json",
+      "name": "Rusted Hammer",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/hammer.json",
+      "name": "Worn Hammer",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/hammer.json",
+      "name": "Worn Hammer",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/lance.json",
+      "name": "Rusted Lance",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/lance.json",
+      "name": "Rusted Lance",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/lance.json",
+      "name": "Worn Spear",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/lance.json",
+      "name": "Worn Spear",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/light-bowgun.json",
+      "name": "Demonlock",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/light-bowgun.json",
+      "name": "Demonlock",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/light-bowgun.json",
+      "name": "Island of the Gods",
+      "field": "create_cost",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    },
+    {
+      "file": "weapons/light-bowgun.json",
+      "name": "Island of the Gods",
+      "field": "create_mats",
+      "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
+    }
+  ]
+}

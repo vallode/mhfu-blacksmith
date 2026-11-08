@@ -52,7 +52,7 @@
         },
         {
           "name": "Anteka Pelt",
-          "amount": 5,
+          "amount": 2,
           "type": "pelt",
           "color": "orange"
         }
@@ -1228,10 +1228,10 @@
       "improve_from": "Wild Power Bow II",
       "create_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 6,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Vibrant Comb",
@@ -1254,10 +1254,10 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
+          "name": "E.CongalalaPelt+",
           "amount": 4,
           "type": "pelt",
-          "color": "pink"
+          "color": "green"
         },
         {
           "name": "Lg Pelagus Fang",
@@ -1329,10 +1329,10 @@
           "color": "orange"
         },
         {
-          "name": "Blangonga Pelt+",
+          "name": "C.BlangongaPelt+",
           "amount": 6,
           "type": "pelt",
-          "color": "white"
+          "color": "orange"
         },
         {
           "name": "Massive Bone",
@@ -1465,7 +1465,7 @@
         },
         {
           "name": "Giadrome Hide",
-          "amount": 5,
+          "amount": 4,
           "type": "pelt",
           "color": "white"
         },
@@ -1928,7 +1928,7 @@
       "name": "Kut-Ku Stave III",
       "attack": 180,
       "affinity": "0%",
-      "slots": 1,
+      "slots": 2,
       "bonus": null,
       "rarity": 4,
       "coatings": [
@@ -2093,7 +2093,7 @@
       "affinity": "0%",
       "slots": 2,
       "bonus": null,
-      "rarity": 8,
+      "rarity": 9,
       "coatings": [
         "closerng",
         "paralysis",
@@ -2279,7 +2279,7 @@
         },
         {
           "name": "SilverGarugaPelt",
-          "amount": 3,
+          "amount": 4,
           "type": "part",
           "color": "white"
         },
@@ -4298,10 +4298,10 @@
           "color": "green"
         },
         {
-          "name": "Sharp Claw",
+          "name": "Fire Wyvern Claw",
           "amount": 3,
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         },
         {
           "name": "Dragonite Ore",
@@ -5013,9 +5013,9 @@
           "color": "red"
         },
         {
-          "name": "ThckLavasiothScl",
+          "name": "HvyLavasiothShl",
           "amount": 4,
-          "type": "scale",
+          "type": "part",
           "color": "gray"
         }
       ],
@@ -5841,7 +5841,7 @@
         },
         {
           "name": "Tigrex Scale+",
-          "amount": 3,
+          "amount": 8,
           "type": "scale",
           "color": "yellow"
         },
@@ -5853,7 +5853,7 @@
         },
         {
           "name": "Wyvern Stone",
-          "amount": 2,
+          "amount": 4,
           "type": "stone",
           "color": "cyan"
         }
@@ -5953,7 +5953,7 @@
       "name": "Hidden Bow",
       "attack": 252,
       "affinity": "50%",
-      "slots": 1,
+      "slots": 0,
       "bonus": null,
       "rarity": 7,
       "coatings": [
@@ -6106,7 +6106,7 @@
         },
         {
           "name": "StrNargaCttngWng",
-          "amount": 6,
+          "amount": 3,
           "type": "part",
           "color": "gray"
         },
@@ -6449,7 +6449,7 @@
       "improve_mats": [
         {
           "name": "Pokke Ticket+",
-          "amount": 2,
+          "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
@@ -6582,7 +6582,7 @@
       "name": "Dragon Bow Earth",
       "attack": 192,
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": null,
       "rarity": 5,
       "coatings": [
@@ -7952,7 +7952,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "name": "Commendation S",
           "amount": 1,
           "type": "ticket",
           "color": "white"

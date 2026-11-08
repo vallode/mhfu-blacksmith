@@ -3024,7 +3024,10 @@
       "type": "gunlance",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": "Bone Gunlance",
+      "improve_from": [
+        "Longhorn+",
+        "Bone Gunlance"
+      ],
       "create_mats": null,
       "improve_mats": [
         {
@@ -3065,7 +3068,7 @@
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
-      "rarity": 1,
+      "rarity": 2,
       "shelling": {
         "type": "Normal",
         "level": "3"
@@ -3409,10 +3412,10 @@
           "color": "orange"
         },
         {
-          "name": "Blangonga Pelt+",
+          "name": "C.BlangongaPelt+",
           "amount": 4,
           "type": "pelt",
-          "color": "white"
+          "color": "orange"
         },
         {
           "name": "HvyNargacugaFang",
@@ -4557,8 +4560,8 @@
         {
           "name": "Giant Corn",
           "amount": 2,
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "yellow"
         },
         {
           "name": "Inferno Sac",
@@ -4620,8 +4623,8 @@
         {
           "name": "Giant Corn",
           "amount": 5,
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "yellow"
         },
         {
           "name": "Blazing Fire Sac",
@@ -4674,7 +4677,7 @@
         "level": "5"
       },
       "type": "gunlance",
-      "create_cost": 250,
+      "create_cost": 350,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -5141,7 +5144,7 @@
         8
       ],
       "affinity": "40%",
-      "slots": 1,
+      "slots": 0,
       "bonus": null,
       "rarity": 10,
       "shelling": {

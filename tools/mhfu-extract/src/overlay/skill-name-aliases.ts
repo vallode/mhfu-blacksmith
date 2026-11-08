@@ -21,10 +21,14 @@
  *   pointer-order fix (vallode/mhfu-blacksmith#61), pairing skills that
  *   appear on only one side of the same name-matched armor piece with an
  *   equal amount, keeping pairs seen at least twice (the smallest count
- *   was 11), then hand-checking each one as the same skill tree. Pairs
- *   involving the site's `Rage` were left out. They didn't pair 1:1 with
- *   a single `SkillID`, so they may be real MHP2G/MHFU differences or
- *   leftover armor misidentification rather than spellings.
+ *   was 11), then hand-checking each one as the same skill tree. A
+ *   second pass (`compare`, which pairs armor by game ID) added the
+ *   remaining 14 (`Survival` -> `Guts`, `Set Trap` -> `SpeedSetup`,
+ *   `Rage` -> `Fury`, the `*CtAdd` coatings, ...): for each, every armor
+ *   piece that uses the site spelling has the `SkillID` name at the same
+ *   amount on the disc, and nowhere else. `Rage` was left out of the
+ *   first pass because it didn't pair 1:1; with armor matched by ID it
+ *   does (10 of 10).
  * - `decorations`: typos and spelling variants in the committed
  *   `data/decorations.json` that each have exactly one obvious `SkillID`
  *   counterpart (`"Everlasting"` -> `"Everlastng"`, `"NormalS up"` ->
@@ -41,7 +45,8 @@
  * bucket collides with a `SkillID` name, so applying them everywhere is
  * safe.
  *
- * Drop this table once committed `data/` is regenerated from the disc.
+ * `build-data` (`build/fields.ts`) uses the same table the other way: a
+ * disc skill is written back with the site's spelling.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";

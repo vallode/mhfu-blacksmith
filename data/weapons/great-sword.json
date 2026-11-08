@@ -19,12 +19,6 @@
       "create_mats": [
         {
           "name": "Iron Ore",
-          "amount": 1,
-          "type": "ore",
-          "color": "gray"
-        },
-        {
-          "name": "Disk Stone",
           "amount": 3,
           "type": "ore",
           "color": "gray"
@@ -72,7 +66,7 @@
       "improve_mats": [
         {
           "name": "Iron Ore",
-          "amount": 4,
+          "amount": 3,
           "type": "ore",
           "color": "gray"
         },
@@ -328,10 +322,10 @@
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "name": "Fire Wyvern Claw",
           "amount": 5,
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         },
         {
           "name": "Daora Claw",
@@ -989,8 +983,7 @@
         }
       ],
       "improve_to": [
-        "Igneous Sword",
-        "Liquid Fire Blade"
+        "Igneous Sword"
       ],
       "sharpness_plus": [
         18,
@@ -9034,7 +9027,7 @@
         4
       ],
       "affinity": "0%",
-      "slots": 0,
+      "slots": 1,
       "bonus": "+20",
       "rarity": 9,
       "type": "great-sword",
@@ -9275,7 +9268,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "great-sword",
-      "create_cost": 100,
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -9575,7 +9568,7 @@
       "bonus": "+16",
       "rarity": 9,
       "type": "great-sword",
-      "create_cost": 2150,
+      "create_cost": 100000,
       "improve_cost": null,
       "improve_from": null,
       "create_mats": [
@@ -10335,10 +10328,10 @@
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "name": "Fire Wyvern Claw",
           "amount": 25,
           "type": "claw",
-          "color": "gray"
+          "color": "red"
         }
       ],
       "improve_mats": null,
