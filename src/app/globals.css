@@ -1,39 +1,35 @@
-@use "sass:meta";
-
-// ─── Tailwind ─────────────────────────────────────────────────────────────────
-// Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
-// here. Next.js's webpack CSS pipeline has a longstanding bug where any
-// `@import <url> layer(name);` gets mis-rewritten as `@media layer(name) {}`
-// in the compiled output, which is invalid CSS and silently drops the entire
-// block (every Tailwind utility class, including `.flex`, stopped applying
-// site-wide because of this). See vercel/next.js#55763 and #66321.
+/* ─── Tailwind ─────────────────────────────────────────────────────────────────
+   Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
+   here. Next.js's webpack CSS pipeline has a longstanding bug where any
+   `@import <url> layer(name);` gets mis-rewritten as `@media layer(name) {}`
+   in the compiled output, which is invalid CSS and silently drops the entire
+   block (every Tailwind utility class, including `.flex`, stopped applying
+   site-wide because of this). See vercel/next.js#55763 and #66321. */
 @import "tailwindcss";
 
-// modern-normalize, inlined by Sass into Tailwind's `base` layer (after
-// Tailwind's own preflight, so it still wins over preflight as before).
-// Being layered lets utilities override it: unlayered, its button/input
-// font-size, line-height and margin beat every Tailwind class. Inlined via
-// meta.load-css rather than `@import … layer(base)` because of the Next.js
-// bug described above.
-@layer base {
-  @include meta.load-css("modern-normalize/modern-normalize");
-}
+/* modern-normalize, in Tailwind's `base` layer after Tailwind's own preflight,
+   so it still wins over preflight. Being layered lets utilities override it:
+   unlayered, its button/input font-size, line-height and margin beat every
+   Tailwind class. This `layer(base)` import is safe, unlike the one warned
+   about above: Tailwind's PostCSS plugin inlines it, so Next.js's CSS loader
+   never sees the `layer()`. */
+@import "modern-normalize/modern-normalize.css" layer(base);
 
-// ─── Design tokens ────────────────────────────────────────────────────────────
-// This is the single source of truth for colours, spacing, breakpoints and
-// animations. Each token becomes a Tailwind utility (bg-accent, text-rarity-7,
-// animate-hover-glow, …) and a CSS variable (var(--color-accent)) that CSS
-// modules and inline styles can use. Don't hardcode these values elsewhere.
-//
-// `static` makes Tailwind emit every variable even when no utility class uses
-// it, because some are only referenced from TS (Icon, SharpnessBar) via var().
+/* ─── Design tokens ────────────────────────────────────────────────────────────
+   This is the single source of truth for colours, spacing, breakpoints and
+   animations. Each token becomes a Tailwind utility (bg-accent, text-rarity-7,
+   animate-hover-glow, …) and a CSS variable (var(--color-accent)) that CSS
+   modules and inline styles can use. Don't hardcode these values elsewhere.
+
+   `static` makes Tailwind emit every variable even when no utility class uses
+   it, because some are only referenced from TS (Icon, SharpnessBar) via var(). */
 @theme static {
-  // The root font-size is 62.5% (1rem = 10px), so Tailwind's default spacing
-  // unit of 0.25rem would be 2.5px. 0.4rem restores the usual 4px scale:
-  // p-4 = 16px, gap-2 = 8px, and so on.
+  /* The root font-size is 62.5% (1rem = 10px), so Tailwind's default spacing
+     unit of 0.25rem would be 2.5px. 0.4rem restores the usual 4px scale:
+     p-4 = 16px, gap-2 = 8px, and so on. */
   --spacing: 0.4rem;
 
-  // UI palette
+  /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
   --color-line: #2a3423;
@@ -44,10 +40,10 @@
   --color-negative: #f9455c;
   --color-element: #56fbfa;
   --color-warm: #ff9661;
-  --color-unavailable: #808080; // greyed-out entries: ammo you cannot load, etc.
-  --color-parchment: #c3be9f; // menu labels and toast titles
+  --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
+  --color-parchment: #c3be9f; /* menu labels and toast titles */
 
-  // Item rarity tints (rarities 1–3 are untinted)
+  /* Item rarity tints (rarities 1–3 are untinted) */
   --color-rarity-4: #52f152;
   --color-rarity-5: #fd9dc8;
   --color-rarity-6: #83c3fc;
@@ -56,7 +52,7 @@
   --color-rarity-9: #ffc762;
   --color-rarity-10: #bb84fb;
 
-  // Decoration / material colours (the `color` field in the game data)
+  /* Decoration / material colours (the `color` field in the game data) */
   --color-gem-blue: #80c2fc;
   --color-gem-cyan: #97e0ef;
   --color-gem-gray: #a0a0a0;
@@ -68,7 +64,7 @@
   --color-gem-white: #ffffff;
   --color-gem-yellow: #ffc762;
 
-  // Hunting horn notes
+  /* Hunting horn notes */
   --color-note-a: #6cc8fe;
   --color-note-b: #7175fd;
   --color-note-g: #7be61f;
@@ -77,7 +73,7 @@
   --color-note-w: #ffffff;
   --color-note-y: #ffeb2b;
 
-  // Sharpness levels, red (1) through purple (7)
+  /* Sharpness levels, red (1) through purple (7) */
   --color-sharpness-1: #c3333c;
   --color-sharpness-2: #ef5a26;
   --color-sharpness-3: #ffc03c;
@@ -86,12 +82,12 @@
   --color-sharpness-6: #f7f7f7;
   --color-sharpness-7: #df78f6;
 
-  // Pulsing green highlight behind hovered rows, cards and search results.
-  // Use the `hover-glow` utility, or in a CSS module:
-  //   animation: var(--animate-hover-glow); background: var(--gradient-hover-glow);
+  /* Pulsing green highlight behind hovered rows, cards and search results.
+     Use the `hover-glow` utility, or in a CSS module:
+       animation: var(--animate-hover-glow); background: var(--gradient-hover-glow); */
   --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
   --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
-  // Resting highlight on tree rows the loaded hunter can upgrade into now
+  /* Resting highlight on tree rows the loaded hunter can upgrade into now */
   --gradient-upgrade-glow: linear-gradient(0.25turn, transparent, rgb(110 200 110 / 0.35), transparent);
 
   @keyframes opacity-alternate {
@@ -103,7 +99,7 @@
     }
   }
 
-  // Toasts slide up into place
+  /* Toasts slide up into place */
   --animate-toast-in: toast-in 180ms ease-out;
 
   @keyframes toast-in {
@@ -118,32 +114,32 @@
   }
 }
 
-// ─── Custom variants ──────────────────────────────────────────────────────────
+/* ─── Custom variants ────────────────────────────────────────────────────────── */
 
-// Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
-// the `@media screen and (max-width: 600px)` queries in the CSS modules.
+/* Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
+   the `@media screen and (max-width: 600px)` queries in the CSS modules. */
 @custom-variant mobile (@media screen and (max-width: 600px));
 
-// ─── Custom utilities ─────────────────────────────────────────────────────────
-// Effects that are awkward as utility class strings. They work with variants
-// like any other utility (hover:hover-glow, mobile:pixelated).
+/* ─── Custom utilities ─────────────────────────────────────────────────────────
+   Effects that are awkward as utility class strings. They work with variants
+   like any other utility (hover:hover-glow, mobile:pixelated). */
 
-// Crisp rendering for pixel-art game sprites
+/* Crisp rendering for pixel-art game sprites */
 @utility pixelated {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
 }
 
-// Pulsing green highlight (see --animate-hover-glow above)
+/* Pulsing green highlight (see --animate-hover-glow above) */
 @utility hover-glow {
   animation: var(--animate-hover-glow);
   background: var(--gradient-hover-glow);
 }
 
-// Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
-// multiplied over it. iconStyle() (src/lib/icon-style.ts) sets --icon-mask and
-// the fill (--icon-tint) as inline variables.
+/* Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
+   multiplied over it. iconStyle() (src/lib/icon-style.ts) sets --icon-mask and
+   the fill (--icon-tint) as inline variables. */
 @utility icon-mask {
   content: "";
   display: block;
@@ -161,7 +157,7 @@
   z-index: 100;
 }
 
-// Icon corner badge (on an Icon's ::after): element or rank image from --icon-badge.
+/* Icon corner badge (on an Icon's ::after): element or rank image from --icon-badge. */
 @utility icon-badge {
   background-image: var(--icon-badge);
   background-repeat: no-repeat;
@@ -176,7 +172,7 @@
   z-index: 1000;
 }
 
-// Tiled in-game divider pattern, centred so both ends crop evenly (BorderRule)
+/* Tiled in-game divider pattern, centred so both ends crop evenly (BorderRule) */
 @utility divider-tile {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
   background-position: center;
@@ -187,7 +183,7 @@
   image-rendering: pixelated;
 }
 
-// Decorative in-game 9-slice frame used by cards and toasts
+/* Decorative in-game 9-slice frame used by cards and toasts */
 @utility card-frame {
   border-image-outset: 0;
   border-image-repeat: round round;
@@ -200,7 +196,7 @@
   image-rendering: pixelated;
 }
 
-// ─── Typography ───────────────────────────────────────────────────────────────
+/* ─── Typography ─────────────────────────────────────────────────────────────── */
 
 @font-face {
   font-family: "Roboto Condensed";
@@ -216,8 +212,8 @@ html {
   font-size: 62.5%;
   height: 100%;
   line-height: 1.5;
-  // Full-bleed elements (BorderRule) are 100vw wide, which includes the
-  // scrollbar; clip rather than let that scroll sideways.
+  /* Full-bleed elements (BorderRule) are 100vw wide, which includes the
+     scrollbar; clip rather than let that scroll sideways. */
   overflow-x: clip;
 }
 
@@ -231,7 +227,7 @@ body {
   margin: 0;
   padding: 1.4rem 1.4rem 2.5rem;
 
-  // Fixed full-viewport background image
+  /* Fixed full-viewport background image */
   &::before {
     background: center / cover no-repeat url("/images/bg.png");
     background-attachment: fixed;
@@ -263,9 +259,9 @@ body {
   }
 }
 
-// ─── Base element resets ──────────────────────────────────────────────────────
+/* ─── Base element resets ────────────────────────────────────────────────────── */
 
-// In the base layer so a colour utility on a link (text-gold) can win.
+/* In the base layer so a colour utility on a link (text-gold) can win. */
 @layer base {
   a {
     color: inherit;
@@ -273,14 +269,14 @@ body {
   }
 }
 
-// Game sprites look best with crisp pixel rendering
+/* Game sprites look best with crisp pixel rendering */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   color: transparent;
 
-  // Broken images replaced with the in-game unknown item icon
+  /* Broken images replaced with the in-game unknown item icon */
   &::before {
     background-image: url("/images/ukwn.png");
     background-position: center;
@@ -296,9 +292,9 @@ img {
   }
 }
 
-// Default divider. In the base layer so utilities can adjust it (e.g. the
-// search overlay's tighter margins). The tiled page-header divider is the
-// BorderRule component.
+/* Default divider. In the base layer so utilities can adjust it (e.g. the
+   search overlay's tighter margins). The tiled page-header divider is the
+   BorderRule component. */
 @layer base {
   hr {
     background-color: var(--color-hr);
@@ -310,10 +306,10 @@ img {
   }
 }
 
-// ─── Card paragraphs ──────────────────────────────────────────────────────────
-// Default for paragraphs inside a Card: one line, tight leading, colour from
-// the card, above its frame. In Tailwind's components layer, so any utility
-// on a paragraph overrides it (e.g. a note that wraps, a red error).
+/* ─── Card paragraphs ──────────────────────────────────────────────────────────
+   Default for paragraphs inside a Card: one line, tight leading, colour from
+   the card, above its frame. In Tailwind's components layer, so any utility
+   on a paragraph overrides it (e.g. a note that wraps, a red error). */
 @layer components {
   .card-copy p {
     color: inherit;
@@ -325,19 +321,19 @@ img {
   }
 }
 
-// ─── Reusable components ──────────────────────────────────────────────────────
-// Shared building blocks used as plain class strings across pages. Layout
-// (flex/spacing) is done with Tailwind utilities directly in the markup.
-//
-// Deliberately left unlayered (not wrapped in `@layer components`): Tailwind
-// itself declares an internal layer named "components" as part of `@layer
-// theme, base, components, utilities;`, which ranks below its own "utilities"
-// layer. Reusing that same layer name here would merge our rules into
-// Tailwind's lower-priority layer instead of overriding it. Unlayered rules
-// always win over any layered rule regardless of order, which is what we want
-// (component classes like .split-page should beat conflicting utilities).
+/* ─── Reusable components ──────────────────────────────────────────────────────
+   Shared building blocks used as plain class strings across pages. Layout
+   (flex/spacing) is done with Tailwind utilities directly in the markup.
 
-// A full-width row in a linked list table (weapon-type lists, armor lists).
+   Deliberately left unlayered (not wrapped in `@layer components`): Tailwind
+   itself declares an internal layer named "components" as part of `@layer
+   theme, base, components, utilities;`, which ranks below its own "utilities"
+   layer. Reusing that same layer name here would merge our rules into
+   Tailwind's lower-priority layer instead of overriding it. Unlayered rules
+   always win over any layered rule regardless of order, which is what we want
+   (component classes like .split-page should beat conflicting utilities). */
+
+/* A full-width row in a linked list table (weapon-type lists, armor lists). */
 .list-row {
   align-items: center;
   display: flex;
@@ -352,7 +348,7 @@ img {
   }
 }
 
-// Two-panel layout: tree sidebar + detail panel split the space equally.
+/* Two-panel layout: tree sidebar + detail panel split the space equally. */
 .split-page {
   display: flex;
   gap: 1.3rem;
@@ -371,15 +367,15 @@ img {
   }
 }
 
-// With the hunter filter bar showing (WeaponTreePanel), let its arrows out
-// past the tree card; `min-*: 0` keeps the flex sizing overflow: hidden gave.
+/* With the hunter filter bar showing (WeaponTreePanel), let its arrows out
+   past the tree card; `min-*: 0` keeps the flex sizing overflow: hidden gave. */
 .split-page:has(> [data-tree-panel] [data-filter-bar]) {
   min-height: 0;
   min-width: 0;
   overflow: visible;
 }
 
-// ─── View Transitions ─────────────────────────────────────────────────────────
+/* ─── View Transitions ───────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root),

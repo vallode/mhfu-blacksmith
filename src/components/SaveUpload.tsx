@@ -30,8 +30,8 @@ const slotName = "flex min-w-0 gap-[1.4rem] text-[2.8rem] [&>:last-child]:trunca
 const slotRow = "flex gap-[1.6rem] text-[2.2rem]";
 const slotLabel = "flex-[0_0_7rem] uppercase";
 
-// Status line under the slots (reading, errors). A div, not a p, so Card's
-// paragraph reset doesn't take the colour (see Card.module.scss).
+// Status line under the slots (reading, errors). A div, not a p, so it
+// skips Card's one-line paragraph default (.card-copy p in globals.css).
 const notice = "py-[1.3rem] text-center text-[1.8rem] text-white/60";
 
 /** The stored hunter's items, in the order selection saved them (box, then pouch). */

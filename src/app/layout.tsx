@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.scss";
+import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
