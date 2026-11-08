@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
+import ArmorNav from "@/components/ArmorNav";
+import ArmorTreePanel from "@/components/ArmorTreePanel";
 import Icon from "@/components/Icon";
 import {
   DetailBody,
@@ -49,20 +50,14 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
     // bundle loads so the sidebar doesn't flash in once it resolves.
     return (
       <>
-        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-          <div>
-            <Link href="/armorsmith/" aria-label="Back">
-              <Icon type="arrow" nav alt="Back" />
-            </Link>
-          </div>
-        </nav>
+        <ArmorNav activeSlot={slot} rank={rank} />
         <BorderRule />
         <div className="split-page">
-          <Card variant="weapon-tree">
+          <ArmorTreePanel slot={slot} rank={rank}>
             <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>
               {null}
             </TreeScroll>
-          </Card>
+          </ArmorTreePanel>
           <Card>
             <p>{loading ? "Loading…" : "Not found."}</p>
           </Card>
@@ -73,18 +68,12 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href="/armorsmith/" aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-      </nav>
+      <ArmorNav activeSlot={slot} rank={rank} />
       <BorderRule />
 
       <div className="split-page">
         {visibleTree && (
-          <Card variant="weapon-tree">
+          <ArmorTreePanel slot={slot} rank={rank}>
             <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>
               {visibleTree.map((node) => (
                 <ul key={node.slug}>
@@ -98,7 +87,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 </ul>
               ))}
             </TreeScroll>
-          </Card>
+          </ArmorTreePanel>
         )}
 
         <DetailCard>
