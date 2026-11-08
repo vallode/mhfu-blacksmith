@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getMonsterCategories } from "@/lib/monsters";
+import { getMonsterCategories, getMonsters } from "@/lib/monsters";
+import { pageMetadata, titleCase, typeIcon } from "@/lib/seo";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
 import { faviconMetadata } from "@/lib/favicon";
@@ -15,8 +16,17 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
-  const name = category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  return { ...faviconMetadata(category), title: `${name} — MHFU Blacksmith` };
+  const name = titleCase(category);
+  const names = getMonsters(category as MonsterCategory).map((m) => m.name);
+  return {
+    ...faviconMetadata(category),
+    ...pageMetadata({
+      title: name,
+      description: `${names.length} ${name} monsters in Monster Hunter Freedom Unite: ${names.slice(0, 6).join(", ")}${names.length > 6 ? "…" : ""}. Hitzones, drops and habitats.`,
+      path: `/monsters/${category}/`,
+      image: typeIcon(category),
+    }),
+  };
 }
 
 export default async function MonsterListPage({ params }: Props) {
