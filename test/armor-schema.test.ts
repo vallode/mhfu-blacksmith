@@ -11,7 +11,7 @@ const dict = { strings: ["Male/Female"], material_ids: [] } as unknown as Dictio
 test("decodeArmor reads both max defences", () => {
   const piece = decodeArmor(
     dict,
-    { n: "Hunter's Helm S", s: "h", d: 38, md: 108, mp: 52 },
+    { n: "Hunter's Helm S", s: "h", rk: 1, d: 38, md: 108, mp: 52 },
     "helmet",
   );
   assert.equal(piece.defence, 38);
@@ -20,7 +20,7 @@ test("decodeArmor reads both max defences", () => {
 });
 
 test("decodeArmor leaves max defence unset when the bundle has none", () => {
-  const piece = decodeArmor(dict, { n: "Old", s: "o", d: 5 }, "helmet");
+  const piece = decodeArmor(dict, { n: "Old", s: "o", rk: 0, d: 5 }, "helmet");
   assert.equal(piece.max_defence, undefined);
   assert.equal(piece.max_defence_pre_ukanlos, undefined);
 });
