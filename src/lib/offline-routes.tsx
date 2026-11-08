@@ -10,8 +10,8 @@ import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
 import HomeContent from "@/app/HomeContent";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
-import ArmorsmithListContent from "@/app/armorsmith/ArmorsmithListContent";
-import BestiaryListContent from "@/app/monsters/BestiaryListContent";
+import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
+import MonsterRedirect from "@/app/monsters/MonsterRedirect";
 import {
   WEAPON_TYPES,
   ARMOR_SLOTS,
@@ -105,13 +105,13 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "weapon-detail":
       return <WeaponDetailClient type={match.type} slug={match.slug} />;
     case "armor-list":
-      return <ArmorsmithListContent />;
+      return <ArmorRedirect />;
     case "armor-tree":
       return <ArmorTreeListClient slot={match.slot} rank={match.rank} />;
     case "armor-detail":
       return <ArmorDetailClient slot={match.slot} rank={match.rank} slug={match.slug} />;
     case "monster-list":
-      return <BestiaryListContent />;
+      return <MonsterRedirect />;
     case "monster-tree":
       return <MonsterListClient category={match.category} />;
     case "monster-detail":

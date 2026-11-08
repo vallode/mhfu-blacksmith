@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import BestiaryListContent from "./BestiaryListContent";
+import MonsterRedirect from "./MonsterRedirect";
 
 export const metadata: Metadata = pageMetadata({
   title: "Bestiary",
@@ -9,5 +9,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function BestiaryPage() {
-  return <BestiaryListContent />;
+  return <MonsterRedirect />;
 }

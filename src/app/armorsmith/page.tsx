@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import ArmorsmithListContent from "./ArmorsmithListContent";
+import ArmorRedirect from "./ArmorRedirect";
 
 export const metadata: Metadata = pageMetadata({
   title: "Armor",
@@ -10,5 +10,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ArmorsmithPage() {
-  return <ArmorsmithListContent />;
+  return <ArmorRedirect />;
 }

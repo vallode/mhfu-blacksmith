@@ -1,13 +1,14 @@
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
-import WeaponsMenuLink from "./WeaponsMenuLink";
+import MenuLink, { type MenuSection } from "./MenuLink";
 
-const MENU = [
-  { href: "/blacksmith/", label: "Weapons" },
-  { href: "/armorsmith/", label: "Armor" },
+// Entries with a `section` open the page last viewed there (see MenuLink).
+const MENU: { href: string; label: string; section?: MenuSection }[] = [
+  { href: "/blacksmith/", label: "Weapons", section: "weapons" },
+  { href: "/armorsmith/", label: "Armor", section: "armor" },
   { href: "/decorations/", label: "Decorations" },
   { href: "/set-builder/", label: "Set Builder" },
-  { href: "/monsters/", label: "Monsters" },
+  { href: "/monsters/", label: "Monsters", section: "monsters" },
   { href: "/hunter/", label: "Hunter Profile" },
   { href: "/options/", label: "Options" },
 ];
@@ -33,10 +34,10 @@ export default function HomeContent() {
       <div className="flex h-full w-full">
         <div className="mx-auto flex h-full w-full max-w-[66vw] flex-1 flex-col justify-center gap-[1.3rem] self-start">
           <ul className="m-0 list-none p-0">
-            {MENU.map(({ href, label }) => (
+            {MENU.map(({ href, label, section }) => (
               <li key={href} className={menuItem}>
-                {href === "/blacksmith/" ? (
-                  <WeaponsMenuLink className="block" />
+                {section ? (
+                  <MenuLink section={section} className="block" />
                 ) : (
                   <Link className="block" href={href}>
                     {label}
