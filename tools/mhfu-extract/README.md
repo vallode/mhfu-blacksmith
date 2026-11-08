@@ -379,7 +379,12 @@ Known gaps and approximations, tracked in
   the weapon's name and type) to `raw/weapons.json`.
 - **Gunner ammo/coating details** and **Hunting Horn/Gunlance bonus** aren't
   emitted ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
-- **Affinity** disagrees by exactly +5/+10 on 108 weapons ([#33](https://github.com/vallode/mhfu-blacksmith/issues/33)).
+- **Affinity** for blademaster weapons is `WepBMValues.Affinity` plus a
+  bonus for sharpness: +5 when `sharpnessAmount` is 4 and +10 when it is 5
+  or 6, on positive affinity only (`blademasterAffinity()` in
+  `src/emit/weapons.ts`, [#33](https://github.com/vallode/mhfu-blacksmith/issues/33)).
+  The rule comes from correlating every raw struct with the committed
+  values, not from the game's code. Gunner affinity is the raw value.
 
 ## Quests
 
@@ -478,11 +483,19 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                              | agreement                                 | not taken                                                                                                                                                                                                                                                                                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                        | 97.5–100%                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                                               |
-| weapons     | attack, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, see below) | `affinity` (86.8%, #33), `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                           | 91.7–100%                                 | `color`, `category` (overlays)                                                                                                                                                                                                                                                               |
+| category    | taken                                                                                                                        | agreement                                                 | not taken                                                                                                                                                                                                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                  | 97.5–100%                                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                      |
+| weapons     | attack, affinity, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, see below) | `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                     | 91.7–100%                                                 | `color`, `category` (overlays)                                                                                                                                                                                                                                      |
+
+Affinity was taken later (#33). Before, it agreed on 86.8% (198
+disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
+number and written `"0%"` like every other file), 114 blademaster
+weapons (108 of them positive-affinity weapons showing the sharpness bonus
+the emitter didn't add) and 2 bows. With both fixed it agrees on 99.5%;
+the 8 left are single values in both directions (e.g. Bone Axe `0%` vs the
+disc's `5%`), taken from the disc.
 
 Sharpness was taken later (#31), after reading it per weapon class.
 `sharpness` agreement with the site was then: great sword 97.7%, long sword

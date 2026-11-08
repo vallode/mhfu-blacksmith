@@ -138,14 +138,17 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // `sharpness`/`sharpness_plus` are read through each class's
     // `SharpnessTable.PTR` (vallode/mhfu-blacksmith#31). The disagreements
     // left are site errors: almost all are bars no table entry can produce.
-    // Not taken: `affinity` (known extractor gap,
-    // vallode/mhfu-blacksmith#33), `elements` (no
+    // `affinity` is the struct's base value plus a bonus for
+    // `sharpnessAmount` (`blademasterAffinity()`, vallode/mhfu-blacksmith#33).
+    // It compares by number, so heavy bowgun's old bare `"0"` matched `"0%"`.
+    // Not taken: `elements` (no
     // dual-element weapons on the disc side yet), `coatings` (bow bit
     // layout only partly derived), `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
     take: [
       "attack",
+      "affinity",
       "slots",
       "rarity",
       "sharpness",
