@@ -147,8 +147,14 @@ export interface HitzoneValues {
 }
 
 export interface MonsterDrop {
+  /** Item name without the quantity suffix ("Plesioth Scale", not "Plesioth Scale x2") */
   name: string;
   chance: string;
+  /** How many you get, when the source says so ("x2") */
+  quantity?: number;
+  /** Icon type and colour of the matching material, when it has one */
+  type?: string;
+  color?: string;
 }
 
 export interface Monster {
@@ -159,6 +165,8 @@ export interface Monster {
   habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
+  /** Smallest and largest size, in cm */
+  sizes?: { min: number; max: number };
 }
 
 export interface Decoration {
