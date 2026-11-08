@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { armorSlugs } from "../src/lib/slug";
+import { questHubSlug, type QuestHubSlug } from "../src/lib/quests";
 
 const root = process.cwd();
 const dataDir = path.join(root, "data");
@@ -17,7 +18,7 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest";
   type: string;
   rank: string | null;
   rarity: number;
@@ -174,6 +175,38 @@ for (const file of fs.readdirSync(monsterDir)) {
       category: "monster",
       type: (m.type as string) || category,
       rank: null,
+      rarity: 0,
+      elements: "",
+      skills: "",
+    });
+  }
+}
+
+// Quests: by title. Many titles repeat (21 "Gathering - Snowy Mountains"), so
+// the rank label carries a short board name and the stars to tell them apart.
+const QUEST_BOARD_SHORT: Record<QuestHubSlug, string> = {
+  village: "Village",
+  "low-rank": "Low",
+  "high-rank": "High",
+  "g-rank": "G",
+  "training-school": "Training",
+  "treasure-hunting": "Treasure",
+};
+const questDir = path.join(dataDir, "quests");
+for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
+  const data = JSON.parse(fs.readFileSync(path.join(questDir, file), "utf-8")) as {
+    quests: { id: number; hub: string; rank: string | null; stars: number; title: string | null }[];
+  };
+  for (const q of data.quests) {
+    const hub = questHubSlug(q.hub, q.rank);
+    if (!hub || !q.title) continue;
+    entries.push({
+      name: q.title,
+      slug: String(q.id),
+      url: `/quests/${hub}/${q.id}`,
+      category: "quest",
+      type: hub,
+      rank: `${QUEST_BOARD_SHORT[hub]} ${q.stars}★`,
       rarity: 0,
       elements: "",
       skills: "",
