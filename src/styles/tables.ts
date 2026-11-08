@@ -3,7 +3,7 @@
 // `[&_th]:text-warm` styles every <th> inside the table.
 
 /**
- * Compact stat tables on weapon pages: ammo capacities, melody combos.
+ * Compact stat tables on weapon pages: ammo capacities.
  * First header is gold, the rest orange; the last column takes the slack.
  */
 export const statTable = [
@@ -14,6 +14,21 @@ export const statTable = [
   // The ":" separator column
   "[&_td:nth-of-type(2)]:text-center",
 ].join(" ");
+
+/**
+ * Hunting horn melodies: note icons, effect, duration. The effect column
+ * takes the slack and wraps on a phone; the notes stay on one line, and so
+ * does the duration except on a phone, where four notes leave no room.
+ */
+export const melodyTable = [
+  "h-min w-full border-collapse text-[2.6rem] leading-[1.25] font-medium mobile:text-[1.6rem]",
+  "[&_th]:pr-[1rem] [&_th]:pb-[0.4rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm [&_th:first-of-type]:text-gold",
+  "[&_td]:py-[0.2rem] [&_td]:pr-[1rem] [&_td]:text-left [&_td]:align-middle [&_td:last-of-type]:whitespace-nowrap mobile:[&_td:last-of-type]:whitespace-normal",
+  "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0 [&_th:nth-of-type(2)]:w-full",
+].join(" ");
+
+/** A melody's note icon: no gap between notes on a phone, where four would not fit. */
+export const melodyNote = "mobile:mr-0";
 
 /**
  * Monster hitzone table: part names left-aligned, values right-aligned in

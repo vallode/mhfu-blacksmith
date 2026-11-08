@@ -1,10 +1,16 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  attachHornMelodies,
   blademasterAffinity,
+  defenseBonus,
   emitBlademasterWeapons,
   emitGunnerWeapons,
+  emitMelodies,
+  gunlanceShelling,
 } from "../src/emit/weapons.js";
+import { BinaryReader } from "../src/binary/reader.js";
+import { readMelodyTable } from "../src/tables/horn.js";
 import { SHARPNESS_POINTER_COUNT, SHARPNESS_POINTERS_OFFSET } from "../src/tables/sharpness.js";
 import {
   EQUIP_CREATE_ENTRY_SIZE,
@@ -14,7 +20,7 @@ import {
   WEAPON_GUN_ENTRY_SIZE,
   tableOffset,
 } from "../src/tables/offsets.js";
-import { fixtureReader } from "./helpers.js";
+import { NOTE_SET_BYTES, fixtureReader, melodyTableBytes } from "./helpers.js";
 
 // head(437) + chest(435) + arm(426) + waist(424) + leg(434) entries, plus the
 // hidden `TERM` u16 and one hidden `NullCreate1` entry that precede the
@@ -226,5 +232,95 @@ test("emitBlademasterWeapons rejects an unknown dual-attribute flag", () => {
   assert.throws(
     () => emitBlademasterWeapons(reader),
     /Unknown dual-attribute flag 0x8 on WepBMID 867/,
+  );
+});
+
+test("defenseBonus writes the Defense byte, signed except on bowguns", () => {
+  assert.equal(defenseBonus(0, "hunting-horn"), null);
+  assert.equal(defenseBonus(10, "hunting-horn"), "+10");
+  assert.equal(defenseBonus(20, "lance"), "+20");
+  assert.equal(defenseBonus(15, "bow"), "+15");
+  assert.equal(defenseBonus(10, "heavy-bowgun"), "10");
+  assert.equal(defenseBonus(6, "light-bowgun"), "6");
+});
+
+test("gunlanceShelling decodes type and level from NoteGLType", () => {
+  assert.deepEqual(gunlanceShelling(0), { type: "Normal", level: "1" });
+  assert.deepEqual(gunlanceShelling(4), { type: "Spread", level: "2" });
+  assert.deepEqual(gunlanceShelling(8), { type: "Long", level: "3" });
+  assert.deepEqual(gunlanceShelling(14), { type: "Long", level: "5" });
+});
+
+/** The Carbalite Sword fixture turned into a hunting horn (index 1) and a gunlance (index 2). */
+function buildHornAndGunlanceFixture() {
+  const reader = buildCarbaliteSwordFixture();
+  const buf = reader.buf;
+  Buffer.from([...NOTE_SET_BYTES, 0xff, 0xff, 0xff, 0xff]).copy(buf, 0x1f0000);
+  const horn = tableOffset("weaponsBlademaster") + 1 * WEAPON_BM_ENTRY_SIZE;
+  buf.writeUInt16LE(30, horn + 0); // ModelID
+  buf.writeUInt8(10, horn + 12); // Defense
+  buf.writeUInt8(2, horn + 19); // NoteGLType: w-g-r
+  buf.writeUInt8(8, tableOffset("modelToWeaponType") + 30); // hunting horn
+  const gunlance = tableOffset("weaponsBlademaster") + 2 * WEAPON_BM_ENTRY_SIZE;
+  buf.writeUInt16LE(31, gunlance + 0);
+  buf.writeUInt8(7, gunlance + 19); // NoteGLType: Spread 3
+  buf.writeUInt8(9, tableOffset("modelToWeaponType") + 31); // gunlance
+  return reader;
+}
+
+test("emitBlademasterWeapons emits horn notes, gunlance shelling and bonus", () => {
+  const weapons = emitBlademasterWeapons(buildHornAndGunlanceFixture());
+  const horn = weapons.find((w) => w.type === "hunting-horn")!;
+  assert.deepEqual(horn.notes, ["w", "g", "r"]);
+  assert.equal(horn.bonus, "+10");
+  assert.equal(horn.shelling, undefined);
+  const gunlance = weapons.find((w) => w.type === "gunlance")!;
+  assert.deepEqual(gunlance.shelling, { type: "Spread", level: "3" });
+  assert.equal(gunlance.bonus, null);
+  assert.equal(gunlance.notes, undefined);
+});
+
+test("attachHornMelodies gives each horn the songs its notes can play, with effect text", () => {
+  const weapons = emitBlademasterWeapons(buildHornAndGunlanceFixture());
+  const ovl = Buffer.alloc(0x400);
+  melodyTableBytes().copy(ovl, 0x80);
+  attachHornMelodies(weapons, new BinaryReader(ovl));
+  const horn = weapons.find((w) => w.type === "hunting-horn")!;
+  assert.deepEqual(horn.melodies, [
+    {
+      combo: ["w", "w"],
+      effect: "Movement Speed Up",
+      description: null,
+      duration: "3 mins",
+      extended_effect: "Attacks Harder To Break",
+      extended_duration: "1 min 30 s",
+    },
+    {
+      combo: ["w", "r"],
+      effect: "Attack Up [Lo]",
+      description: "Attack +10%",
+      duration: "2 mins",
+      extended_effect: "Attack +15%",
+      extended_duration: "1 min",
+    },
+    {
+      combo: ["r", "g", "r"],
+      effect: "Defense Up [Lo]",
+      description: "Defense +15%",
+      duration: "2 mins",
+      extended_effect: "Defense +20%",
+      extended_duration: "1 min 30 s",
+    },
+  ]);
+  assert.equal(weapons.find((w) => w.type === "gunlance")!.melodies, undefined);
+});
+
+test("emitMelodies leaves out songs needing a colour the horn lacks", () => {
+  const ovl = Buffer.alloc(0x400);
+  melodyTableBytes().copy(ovl, 0x80);
+  const songs = readMelodyTable(new BinaryReader(ovl));
+  assert.deepEqual(
+    emitMelodies(songs, ["p", "a", "r"]).map((m) => m.combo.join("")),
+    ["prr", "raap", ...Array.from({ length: 27 }, () => "aaa")],
   );
 });
