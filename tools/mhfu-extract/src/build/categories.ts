@@ -120,7 +120,7 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     fields: [
       { field: "type", kind: "scalar" },
       { field: "attack", kind: "scalar" },
-      { field: "affinity", kind: "scalar" },
+      { field: "affinity", kind: "percent" },
       { field: "slots", kind: "scalar" },
       { field: "rarity", kind: "scalar" },
       { field: "elements", kind: "set" },
