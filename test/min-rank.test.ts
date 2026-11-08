@@ -3,6 +3,10 @@ import { describe, it } from "node:test";
 import {
   dropRank,
   GATHER_TIERS,
+  isAvailable,
+  isStage,
+  STAGES,
+  tierLabel,
   earliestSources,
   weaponKey,
   weaponProgress,
@@ -151,5 +155,30 @@ describe("weaponProgress", () => {
     );
     assert.equal(p.get(weaponKey("t", "Orphan")), null);
     assert.deepEqual(p.get(weaponKey("t", "Free")), { rank: "low-rank", stars: 0 });
+  });
+});
+
+describe("stages and availability", () => {
+  it("lists every stage earliest first, with the shared stars on both ranks", () => {
+    assert.equal(STAGES.length, 6 + 4 + 3);
+    assert.deepEqual(STAGES[0], { rank: "low-rank", stars: 1 });
+    assert.deepEqual(STAGES.at(-1), { rank: "g-rank", stars: 11 });
+    assert.ok(isStage({ rank: "low-rank", stars: 6 }));
+    assert.ok(isStage({ rank: "high-rank", stars: 6 }));
+    assert.ok(!isStage({ rank: "low-rank", stars: 7 }));
+    assert.ok(!isStage(null) && !isStage("g-rank") && !isStage({}));
+    assert.equal(tierLabel({ rank: "high-rank", stars: 7 }), "High Rank ★7");
+  });
+
+  it("hides gear that needs a later tier and never hides unknowns", () => {
+    const high7 = { rank: "high-rank", stars: 7 } as const;
+    assert.equal(isAvailable(high7, null), true);
+    assert.equal(isAvailable(undefined, STAGES[0]), true);
+    assert.equal(isAvailable(high7, { rank: "low-rank", stars: 6 }), false);
+    assert.equal(isAvailable(high7, { rank: "high-rank", stars: 6 }), false);
+    assert.equal(isAvailable(high7, high7), true);
+    assert.equal(isAvailable(high7, { rank: "g-rank", stars: 9 }), true);
+    // Ungated gear is available to everyone.
+    assert.equal(isAvailable({ rank: "low-rank", stars: 0 }, STAGES[0]), true);
   });
 });

@@ -111,6 +111,49 @@ export function compareTiers(a: Tier, b: Tier): number {
   return GUILD_RANKS.indexOf(a.rank) - GUILD_RANKS.indexOf(b.rank) || a.stars - b.stars;
 }
 
+/**
+ * The guild stars each rank's quests span, from the quest data. The ranks
+ * overlap at their ends: ★6 has both low and high rank quests, ★9 both high and
+ * G-rank.
+ */
+const STAR_SPANS: Record<GuildRank, [number, number]> = {
+  "low-rank": [1, 6],
+  "high-rank": [6, 9],
+  "g-rank": [9, 11],
+};
+
+/** Every tier a hunter can be at, earliest first: what a rank selector offers. */
+export const STAGES: readonly Tier[] = GUILD_RANKS.flatMap((rank) => {
+  const [first, last] = STAR_SPANS[rank];
+  return Array.from({ length: last - first + 1 }, (_, i) => ({ rank, stars: first + i }));
+});
+
+const RANK_NAMES: Record<GuildRank, string> = {
+  "low-rank": "Low Rank",
+  "high-rank": "High Rank",
+  "g-rank": "G-Rank",
+};
+
+export const rankName = (rank: GuildRank): string => RANK_NAMES[rank];
+
+export const tierLabel = (t: Tier): string => `${RANK_NAMES[t.rank]} ★${t.stars}`;
+
+/** Is this one of the offered stages? Guards values read back from storage. */
+export function isStage(value: unknown): value is Tier {
+  const t = value as Partial<Tier> | null;
+  return !!t && STAGES.some((s) => s.rank === t.rank && s.stars === t.stars);
+}
+
+/**
+ * Can a hunter who has reached `progress` make gear needing `needs`? No
+ * progress (null) means no filter: everything is available. Gear with no known
+ * route (undefined) is never hidden, since we can't say it's out of reach.
+ */
+export function isAvailable(needs: Tier | undefined, progress: Tier | null): boolean {
+  if (!progress || !needs) return true;
+  return compareTiers(needs, progress) <= 0;
+}
+
 /** Nothing is needed: the starting point. */
 export const START: Tier = { rank: "low-rank", stars: 0 };
 

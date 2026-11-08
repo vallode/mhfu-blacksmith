@@ -1,10 +1,11 @@
 // Class strings for the settings cards on the Options page
-// (SaveSyncSettings, OfflineSettings).
+// (SaveSyncSettings, OfflineSettings, RankSettings).
 
 /** Passed to <Card className>. Repeats the size under `mobile:` because Card
  * sets its own `mobile:` size, which cn() only replaces with another
- * `mobile:` class. */
-export const section = "flex flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
+ * `mobile:` class. `flex-none` stops Card's `flex-1` from squeezing the cards
+ * to equal heights and clipping their content. */
+export const section = "flex-none flex flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
 
 export const heading =
   "m-0 text-[1.8rem] tracking-[0.1ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]";
@@ -38,4 +39,10 @@ export const buttonSecondary = [
   buttonBase,
   "border-white/30 text-white/50",
   "hover:border-negative hover:text-negative focus-visible:border-negative focus-visible:text-negative",
+].join(" ");
+
+/** Native dropdown, drawn to match the buttons. */
+export const select = [
+  "cursor-pointer border border-hr bg-black/40 px-[1.4rem] py-[0.6rem] font-[inherit] text-[1.5rem] text-white/85",
+  "hover:text-white focus-visible:text-white",
 ].join(" ");
