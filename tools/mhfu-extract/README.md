@@ -377,8 +377,34 @@ Known gaps and approximations, tracked in
   `raw/sharpness.json` (numbers only).
   It also writes every weapon value struct (bytes and decoded fields, with
   the weapon's name and type) to `raw/weapons.json`.
-- **Gunner ammo/coating details** and **Hunting Horn/Gunlance bonus** aren't
-  emitted ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
+- **Gunner details** ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32),
+  `src/emit/gunner.ts`, `src/tables/gunner.ts`):
+  - Bowgun ammo: `BulletCharge` picks the `BGShotTable` row, whose 32
+    capacities follow `ShotCoat` bit order. An ammo type whose
+    `ShotCoatings` bit is clear shows 0.
+  - `Reload` 0–4 is VerySlow, Slow, Normal, Fast, VeryFast. On bowguns
+    `RecoilCharge` 2–5 is Moderate, Light, Weak, VeryWeak (only these
+    occur).
+  - `max_attack` adds the gun's last power barrel level
+    (`BGModLevel.Attack_Inc` of mod type `RangedPhysxTbl`, 50 for all four
+    types) before the class modifier. `BGModTable` is four pointers to
+    five levels each, not the 4 × 5 pointers the vendored pattern declares.
+  - Rapid fire is a table the vendored pattern doesn't have:
+    `{ u32 WepGunID, u32 flags }` pairs ending at 999, 0x40 bytes after
+    `BGModTable`. Its 22 flag bits have their own layout
+    (`RAPID_FIRE_BITS`). Four pairs of bits are variants of the same ammo
+    that the site doesn't distinguish.
+  - Bows: `BulletCharge` picks the `BowChargeTable` row and
+    `RecoilCharge + 1` (at most 4) is the number of charges shown.
+    `ShotCoatings` bits 1–6 are the coatings and bits 7–9 the poison,
+    paralysis and sleep coating bonuses, which the site writes as
+    `elements` (`{ "name": "Poison", "attack": "Add" }`).
+  - Bowguns get no `coatings` field. The ammo lists already show which ammo
+    a gun can load.
+  - `extract --raw` writes these tables and every `WepGunValue` field to
+    `raw/gunner.json`.
+- **Hunting Horn/Gunlance bonus** isn't emitted
+  ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
 - **Affinity** for blademaster weapons is `WepBMValues.Affinity` plus a
   bonus for sharpness: +5 when `sharpnessAmount` is 4 and +10 when it is 5
   or 6, on positive affinity only (`blademasterAffinity()` in
@@ -483,11 +509,11 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                                        | agreement                                                 | not taken                                                                                                                                                                                                                                                           |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                  | 97.5–100%                                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                      |
-| weapons     | attack, affinity, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, see below) | `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                     | 91.7–100%                                                 | `color`, `category` (overlays)                                                                                                                                                                                                                                      |
+| category    | taken                                                                                                                        | agreement                                                 | not taken                                                                                                                                                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                  | 97.5–100%                                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                           |
+| weapons     | attack, affinity, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, see below) | `elements` outside `bow.json` (dual-element weapons not emitted), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, `notes`) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                     | 91.7–100%                                                 | `color`, `category` (overlays)                                                                                                                                                                                                           |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
@@ -496,6 +522,31 @@ weapons (108 of them positive-affinity weapons showing the sharpness bonus
 the emitter didn't add) and 2 bows. With both fixed it agrees on 99.5%;
 the 8 left are single values in both directions (e.g. Bone Axe `0%` vs the
 disc's `5%`), taken from the disc.
+
+Gunner fields were taken later (#32). Agreement before the build:
+
+| field                                                     | light bowgun | heavy bowgun | bow       |
+| --------------------------------------------------------- | ------------ | ------------ | --------- |
+| `ammo`                                                    | 99.2% (1)    | 98.1% (2)    | –         |
+| `status_ammo`                                             | 98.5% (2)    | 100%         | –         |
+| `element_ammo`                                            | 97.0% (4)    | 100%         | –         |
+| `misc_ammo`                                               | 94.0% (8)    | 98.1% (2)    | –         |
+| `reload`                                                  | 97.0% (4)    | 100%         | –         |
+| `recoil`, `max_attack`                                    | 100%         | 100%         | –         |
+| `rapid_fire`                                              | 94.7% (7)    | 100%         | –         |
+| `shots`                                                   | –            | –            | 98.3% (2) |
+| `coatings`                                                | –            | –            | 92.2% (9) |
+| `elements` (with coating bonuses, taken in bow.json only) | –            | –            | 96.6% (4) |
+
+The ammo disagreements are single capacities (Felyne Ragdoll `Flame S` 5 vs
+the disc's 6) except Black Belt Bowgun, whose whole site list differs from
+the disc. `reload` is trailing spaces (`"Normal "`). `rapid_fire` is
+spelling (`Posion S`, `Flaming`, `Flame S`) and Maelstrom/Maelstrom+, which
+the site lists without rapid fire. The coatings are whole bow families
+(Blue Blade Bow, Dragonhead Harp) with one raw value each. Bow `elements`
+adds Poison Add to Wolf Bow and Crow Bow, which have the same bonus bit as
+Queen Blaster. It also fixes Abominable Bow II (Ice 140 → 200) and Kut-Ku
+Stave G (`fire` → `Fire`).
 
 Sharpness was taken later (#31), after reading it per weapon class.
 `sharpness` agreement with the site was then: great sword 97.7%, long sword

@@ -372,3 +372,88 @@ test("percent fields compare by number and keep the committed spelling when they
   assert.equal(toSite(spec, "-5%", { affinity: "0" }, ctx), "-5%");
   assert.equal(toSite(spec, 20, { affinity: "10%" }, ctx), "20%");
 });
+
+test("ammo lists compare by ammo name and rapid fire as a trimmed set", () => {
+  const ctx = {} as FieldContext;
+  const ammo = { field: "ammo", kind: "ammo" as const };
+  const site = [
+    { name: "Normal S", capacity: [6, 6, 0] },
+    { name: "Pierce S ", capacity: [3, 0, 0] },
+  ];
+  const disc = [
+    { name: "Pierce S", capacity: [3, 0, 0] },
+    { name: "Normal S", capacity: [6, 6, 0] },
+  ];
+  assert.equal(canonical(ammo, site, "site", ctx), canonical(ammo, disc, "disc", ctx));
+  assert.notEqual(
+    canonical(ammo, site, "site", ctx),
+    canonical(ammo, [{ name: "Normal S", capacity: [6, 6, 9] }, disc[0]], "disc", ctx),
+  );
+
+  const rapid = { field: "rapid_fire", kind: "joined-set" as const };
+  assert.equal(
+    canonical(rapid, "Pellet S Lv1|Pierce S Lv2 ", "site", ctx),
+    canonical(rapid, "Pierce S Lv2|Pellet S Lv1", "disc", ctx),
+  );
+  assert.equal(canonical(rapid, null, "site", ctx), canonical(rapid, "", "disc", ctx));
+  assert.equal(
+    toSite(rapid, "Normal S Lv1|Flaming S", { rapid_fire: "Normal S Lv1|Flaming" }, ctx),
+    "Normal S Lv1|Flaming S",
+  );
+  assert.equal(
+    toSite(rapid, "Pierce S Lv1|Flaming S", { rapid_fire: "Pierce S Lv1|Flaming S " }, ctx),
+    "Pierce S Lv1|Flaming S ",
+  );
+});
+
+test("mergeCategory takes elements in bow.json only (takeOnlyIn)", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-take-only-"));
+  try {
+    const data = path.join(root, "data");
+    const extracted = path.join(root, "extracted");
+    for (const dir of [data, extracted])
+      await mkdir(path.join(dir, "weapons"), { recursive: true });
+    // Real enum IDs: WepBMID 1 "Carbalite Sword", WepGunID 1 "Shooter's Barrel".
+    await writeFile(
+      path.join(data, "equipment-ids.json"),
+      JSON.stringify({
+        ...equipmentIds,
+        melee: [null, { name: "Carbalite Sword", type: "great-sword" }],
+        ranged: [null, { name: "Shooter's Barrel", type: "bow" }],
+      }),
+    );
+    await writeFile(path.join(data, "items.json"), JSON.stringify(items));
+    const write = (dir: string, file: string, item: object) =>
+      writeFile(path.join(dir, "weapons", file), JSON.stringify({ weapons: [item] }));
+    await write(data, "bow.json", { name: "Shooter's Barrel", type: "bow", elements: null });
+    await write(data, "great-sword.json", { name: "Carbalite Sword", elements: null });
+    const poisonAdd = [{ name: "Poison", attack: "Add" }];
+    await write(extracted, "bow.json", {
+      name: "Shooter's Barrel",
+      type: "bow",
+      elements: poisonAdd,
+    });
+    await write(extracted, "great-sword.json", {
+      name: "Carbalite Sword",
+      elements: [{ name: "Fire", attack: 100 }],
+    });
+
+    const inputs = await loadInputs(extracted, data, ["weapons"]);
+    const result = mergeCategory(
+      CATEGORIES.weapons,
+      inputs.extracted.get("weapons")!,
+      inputs.committed.get("weapons")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
+    assert.deepEqual(result.files.get("weapons/bow.json")![0]!.elements, poisonAdd);
+    assert.equal(result.files.get("weapons/great-sword.json")![0]!.elements, null);
+    assert.deepEqual(
+      result.changes.map((c) => `${c.file} ${c.field}`),
+      ["weapons/bow.json elements"],
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

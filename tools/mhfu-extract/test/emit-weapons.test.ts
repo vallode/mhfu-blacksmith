@@ -165,3 +165,21 @@ test("emitBlademasterWeapons reads a hammer's sharpness through its class pointe
   assert.deepEqual(weapon!.sharpness, [5, 4, 6]); // entry 9, not entry 1's [9, 4, 2]
   assert.deepEqual(weapon!.sharpness_plus, [5, 4, 11]);
 });
+
+test("emitGunnerWeapons adds bow coating bonuses to elements and no bowgun coatings", () => {
+  const reader = buildBowCoatingsFixture();
+  const wOff = tableOffset("weaponsGunner") + 1 * WEAPON_GUN_ENTRY_SIZE;
+  // Queen Blaster's real ShotCoatings: poison, power, paint + the poison bonus (bit 7).
+  reader.buf.writeUInt32LE(198, wOff + 24);
+  const bow = emitGunnerWeapons(reader).find((w) => w.name === "Shooter's Barrel")!;
+  assert.deepEqual(bow.coatings, ["poison", "power", "paint"]);
+  assert.deepEqual(bow.elements, [{ name: "Poison", attack: "Add" }]);
+
+  // The same weapon as a light bowgun: ammo lists, no coatings.
+  reader.buf.writeUInt8(5, tableOffset("modelToWeaponType") + 20);
+  const gun = emitGunnerWeapons(reader).find((w) => w.name === "Shooter's Barrel")!;
+  assert.equal(gun.type, "light-bowgun");
+  assert.ok(!("coatings" in gun));
+  assert.equal((gun.ammo as unknown[]).length, 5);
+  assert.equal(gun.elements, null);
+});

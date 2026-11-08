@@ -96,6 +96,8 @@ export function mergeCategory(
     const name = String(pair.site.name);
     const merged: Item = { ...pair.site };
     for (const spec of take) {
+      const only = category.takeOnlyIn?.[spec.field];
+      if (only && !only.includes(pair.file)) continue;
       if (!(spec.field in pair.disc)) continue;
       const discValue = pair.disc[spec.field];
       if (!(spec.field in pair.site) && (discValue === null || discValue === undefined)) continue;

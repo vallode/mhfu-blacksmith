@@ -1777,7 +1777,7 @@
       "elements": [
         {
           "name": "Ice",
-          "attack": 140
+          "attack": 200
         }
       ],
       "alternative_create_mats": null
@@ -2325,7 +2325,12 @@
       "improve_to": [
         "Crow Bow"
       ],
-      "elements": null,
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": "Add"
+        }
+      ],
       "alternative_create_mats": null
     },
     {
@@ -2391,7 +2396,12 @@
         }
       ],
       "improve_to": null,
-      "elements": null,
+      "elements": [
+        {
+          "name": "Poison",
+          "attack": "Add"
+        }
+      ],
       "alternative_create_mats": null
     },
     {
@@ -3400,7 +3410,7 @@
       "rarity": 4,
       "coatings": [
         "closerng",
-        "paralysis",
+        "poison",
         "sleep",
         "power",
         "paint"
@@ -3469,7 +3479,7 @@
       "rarity": 6,
       "coatings": [
         "closerng",
-        "paralysis",
+        "poison",
         "sleep",
         "power",
         "paint"
@@ -3532,7 +3542,7 @@
       "rarity": 9,
       "coatings": [
         "closerng",
-        "paralysis",
+        "poison",
         "sleep",
         "power",
         "paint"
@@ -3621,7 +3631,7 @@
       "rarity": 9,
       "coatings": [
         "closerng",
-        "paralysis",
+        "poison",
         "sleep",
         "power",
         "paint"
@@ -4576,7 +4586,7 @@
         },
         {
           "name": "Sctr",
-          "level": "4"
+          "level": "3"
         }
       ],
       "type": "bow",
@@ -6065,6 +6075,10 @@
         {
           "name": "Prce",
           "level": "5"
+        },
+        {
+          "name": "Rapd",
+          "level": "5"
         }
       ],
       "type": "bow",
@@ -6135,9 +6149,12 @@
       "bonus": "+10",
       "rarity": 8,
       "coatings": [
+        "closerng",
+        "paralysis",
         "poison",
-        "paint",
-        "power"
+        "sleep",
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -6207,9 +6224,12 @@
       "bonus": "+15",
       "rarity": 9,
       "coatings": [
+        "closerng",
+        "paralysis",
         "poison",
-        "paint",
-        "power"
+        "sleep",
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -6273,9 +6293,12 @@
       "bonus": "+20",
       "rarity": 10,
       "coatings": [
+        "closerng",
+        "paralysis",
         "poison",
-        "paint",
-        "power"
+        "sleep",
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -6485,6 +6508,7 @@
       "bonus": null,
       "rarity": 10,
       "coatings": [
+        "closerng",
         "paralysis",
         "poison",
         "sleep",
@@ -7650,7 +7674,7 @@
       "bonus": "+10",
       "rarity": 10,
       "coatings": [
-        "closerng",
+        "sleep",
         "power",
         "paint"
       ],
@@ -8052,7 +8076,7 @@
       "improve_to": null,
       "elements": [
         {
-          "name": "fire",
+          "name": "Fire",
           "attack": 220
         }
       ],

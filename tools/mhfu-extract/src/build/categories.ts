@@ -9,7 +9,7 @@
  * `tools/mhfu-extract/README.md`'s "Building data/ from the disc" for the
  * numbers each decision was based on. Every other field, including ones
  * the disc doesn't have at all (armor `hr`/`elder`/`sex`/`hunter_type`,
- * decoration `category`, weapon `bonus`/`shelling`/`notes`/ammo), is kept
+ * decoration `category`, weapon `bonus`/`shelling`/`notes`), is kept
  * from the committed file.
  */
 import type { MaterialContext } from "../overlay/item-name-corrections.js";
@@ -40,6 +40,8 @@ export interface Category {
   fields: FieldSpec[];
   /** Fields `build-data` writes from the disc. */
   take: string[];
+  /** Fields in `take` that are only taken in these files; kept from the committed file elsewhere. */
+  takeOnlyIn?: Record<string, string[]>;
 }
 
 const ARMOR_FILES: CategoryFile[] = [
@@ -127,6 +129,15 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "sharpness", kind: "scalar" },
       { field: "sharpness_plus", kind: "scalar" },
       { field: "coatings", kind: "set" },
+      { field: "shots", kind: "scalar" },
+      { field: "max_attack", kind: "scalar" },
+      { field: "rapid_fire", kind: "joined-set" },
+      { field: "reload", kind: "scalar" },
+      { field: "recoil", kind: "scalar" },
+      { field: "ammo", kind: "ammo" },
+      { field: "status_ammo", kind: "ammo" },
+      { field: "element_ammo", kind: "ammo" },
+      { field: "misc_ammo", kind: "ammo" },
       { field: "create_cost", kind: "scalar" },
       { field: "improve_cost", kind: "scalar" },
       { field: "create_mats", kind: "materials" },
@@ -141,9 +152,16 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // `affinity` is the struct's base value plus a bonus for
     // `sharpnessAmount` (`blademasterAffinity()`, vallode/mhfu-blacksmith#33).
     // It compares by number, so heavy bowgun's old bare `"0"` matched `"0%"`.
-    // Not taken: `elements` (no
-    // dual-element weapons on the disc side yet), `coatings` (bow bit
-    // layout only partly derived), `improve_cost` (derived as half the
+    // Gunner fields (vallode/mhfu-blacksmith#32, emit/gunner.ts): ammo
+    // lists, `reload`, `recoil`, `rapid_fire`, `max_attack`, bow `shots`
+    // and `coatings` are taken; what still disagrees is single site cells
+    // (one ammo capacity, a "Normal " with a trailing space, "Posion S")
+    // and a few whole site entries the disc contradicts (Black Belt
+    // Bowgun's ammo, Dragonhead Harp's and Blue Blade Bow's coatings).
+    // `elements` is taken for bows only, where it adds the coating bonuses
+    // ("Poison Add") the site stores there; melee `elements` lacks the
+    // dual-element weapons on the disc side.
+    // Not taken: `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
     take: [
@@ -158,7 +176,19 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "improve_mats",
       "improve_from",
       "improve_to",
+      "elements",
+      "coatings",
+      "shots",
+      "max_attack",
+      "rapid_fire",
+      "reload",
+      "recoil",
+      "ammo",
+      "status_ammo",
+      "element_ammo",
+      "misc_ammo",
     ],
+    takeOnlyIn: { elements: ["weapons/bow.json"] },
   },
   decorations: {
     name: "decorations",

@@ -2653,7 +2653,7 @@
           "name": "Clust S",
           "capacity": [
             0,
-            0,
+            1,
             0
           ]
         }
@@ -4569,7 +4569,7 @@
           "name": "Clust S",
           "capacity": [
             1,
-            0,
+            1,
             0
           ]
         }
@@ -12598,7 +12598,7 @@
         {
           "name": "Demon S",
           "capacity": [
-            0
+            1
           ]
         },
         {
@@ -15026,7 +15026,7 @@
         {
           "name": "Armor S",
           "capacity": [
-            1
+            0
           ]
         }
       ],
