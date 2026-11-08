@@ -15,6 +15,11 @@ import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
+import {
+  committedMelodyCombos,
+  dumpMelodyRaw,
+  hornNotesFromCommitted,
+} from "../emit/melody-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { loadMonsterOverlays } from "../monsters/overlays.js";
 import { readMonsterTables } from "../monsters/read.js";
@@ -133,6 +138,9 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   // for exactly which tables that covers per region. A region the profile
   // has no resolver for at all (e.g. "us" — no disc to derive one from)
   // fails fast here rather than emitting partial/garbage equipment data.
+  // Loaded first: hunting horn melodies are in game_task.ovl.
+  const overlays = await loadMonsterOverlays(options.unpacked);
+
   let offsetResult: OffsetVerificationResult | ResolverCoverageResult;
   let output: EmitOutput;
   if (manifest.region === "jp") {
@@ -147,7 +155,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     }
     console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
     if (options.raw) await writeRawDumps(options.out, reader);
-    output = emitAll(reader);
+    output = emitAll(reader, undefined, overlays.gameTask.reader);
   } else {
     const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
     if (!resolver) {
@@ -168,7 +176,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       `Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`,
     );
     if (options.raw) await writeRawDumps(options.out, reader, resolver);
-    output = emitAll(reader, resolver);
+    output = emitAll(reader, resolver, overlays.gameTask.reader);
   }
 
   console.log("Reading and parsing quest files...");
@@ -186,7 +194,6 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   Object.assign(output, emitQuestsFile(quests));
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
-  const overlays = await loadMonsterOverlays(options.unpacked);
   const monsters = readMonsterTables(overlays);
   console.log(
     `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
@@ -214,6 +221,27 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     const questPath = path.join(options.out, "raw", "quest-monsters.json");
     await writeFile(questPath, `${JSON.stringify(questMonsters)}\n`, "utf-8");
     console.log(`Wrote ${questPath}`);
+
+    // Hunting horn note-set/melody table candidates (#14): searched in the
+    // EBOOT and both overlays against the committed horn notes.
+    console.log("Searching for hunting horn note-set tables...");
+    const melodyRaw = dumpMelodyRaw(
+      [
+        { name: "eboot.bin", reader },
+        { name: "game_task.ovl", reader: overlays.gameTask.reader },
+        { name: "game_sub.ovl", reader: overlays.gameSub.reader },
+      ],
+      hornNotesFromCommitted(
+        reader,
+        manifest.region === "jp"
+          ? undefined
+          : (MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined),
+      ),
+      committedMelodyCombos(),
+    );
+    const melodyPath = path.join(options.out, "raw", "melodies.json");
+    await writeFile(melodyPath, `${JSON.stringify(melodyRaw)}\n`, "utf-8");
+    console.log(`Wrote ${melodyPath} (${melodyRaw.hits.length} candidate table(s)).`);
   }
   Object.assign(output, emitMonsters(monsters));
 

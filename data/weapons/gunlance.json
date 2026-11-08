@@ -1170,7 +1170,7 @@
       "rarity": 6,
       "shelling": {
         "type": "Normal",
-        "level": "3"
+        "level": "2"
       },
       "type": "gunlance",
       "create_cost": 40000,
@@ -5520,7 +5520,7 @@
       "rarity": 9,
       "shelling": {
         "type": "Normal",
-        "level": "4"
+        "level": "3"
       },
       "type": "gunlance",
       "create_cost": 100000,

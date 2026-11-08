@@ -12,7 +12,7 @@
  *   - items.json                 (in-game item ID -> name, linked to materials)
  *   - data-manifest.json         ({ files, version })
  *
- * Reuses the transform logic from src/lib (slugify, computeRank, raw_attack
+ * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
  * Budget: asserts total public/data raw size < 1.6 MB and logs a gzip estimate
@@ -72,17 +72,6 @@ const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
 const BUDGET_BYTES = 1.6 * 1024 * 1024;
-
-// ---------------------------------------------------------------------------
-// Shared logic (ported from src/lib/weapons.ts / armor.ts)
-// ---------------------------------------------------------------------------
-function computeRank(hr: string | number | undefined, elder: string | number | undefined): string {
-  const hrNum = Number(hr ?? 0);
-  if (hrNum <= 5) return "low-rank";
-  if (hrNum <= 8) return "high-rank";
-  if (hrNum > 8 && Number(elder)) return "g-rank";
-  return "high-rank";
-}
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -214,7 +203,6 @@ function encodeWeapon(w: Weapon, minRank: Progress): CompactWeapon {
   if (cc !== undefined) out.cc = cc;
   const ic = toNum(w.improve_cost);
   if (ic !== undefined) out.ic = ic;
-  out.rk = RANKS.indexOf(w.rank ?? computeRank(w.hr, w.elder));
   const mr = encodeMinRank(minRank);
   if (mr) out.mr = mr;
   if (w.color) out.c = w.color;
@@ -249,7 +237,7 @@ function encodeAmmo(
 }
 
 function encodeArmor(a: ArmorPiece, minRank: Progress): CompactArmor {
-  const out: CompactArmor = { n: a.name, s: a.slug };
+  const out: CompactArmor = { n: a.name, s: a.slug, rk: RANKS.indexOf(a.rank) };
   const d = toNum(a.defence);
   if (d !== undefined) out.d = d;
   const res = [a.fire_res, a.water_res, a.thunder_res, a.ice_res, a.dragon_res].map(toNum);
@@ -257,7 +245,6 @@ function encodeArmor(a: ArmorPiece, minRank: Progress): CompactArmor {
   if (a.slots !== undefined) out.sl = Number(a.slots);
   const rarity = toNum(a.rarity);
   if (rarity !== undefined) out.r = rarity;
-  out.rk = RANKS.indexOf(a.rank ?? computeRank(a.hr, a.elder));
   const mr = encodeMinRank(minRank);
   if (mr) out.mr = mr;
   const cc = toNum(a.create_cost);
@@ -354,9 +341,19 @@ const weaponRefs = new Map<string, EquipRef>(); // "<type>|<name>"
 const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<slot>|<name>"
 
 // Weapons
-const melodies = readJson<Record<string, Melody[]>>(
-  path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json"),
-);
+// Horn melodies, shared per note set: every horn with the same notes has
+// the same list (data/weapons/hunting-horn.json, from the disc).
+const melodies: Record<string, Melody[]> = {};
+for (const horn of readJson<{ weapons: Weapon[] }>(
+  path.join(dataDir, "weapons", "hunting-horn.json"),
+).weapons) {
+  if (!horn.notes || !horn.melodies) continue;
+  const key = horn.notes.join("-");
+  if (key in melodies && JSON.stringify(melodies[key]) !== JSON.stringify(horn.melodies)) {
+    throw new Error(`Horns with notes ${key} have different melodies (${horn.name}).`);
+  }
+  melodies[key] = horn.melodies;
+}
 
 // A weapon's tree rows can include weapons of other types, so every type's
 // minimum rank is known before any tree is written.
@@ -375,14 +372,9 @@ for (const type of WEAPON_TYPES) {
   const tree = readJson<{ map: WeaponTreeNode[] }>(
     path.join(contentDir, "blacksmith", type, "map.json"),
   );
-  const items = crafting.weapons
-    .filter((w) => !("donotrender" in w))
-    .map((w) =>
-      encodeWeapon(
-        { ...w, slug: slugify(w.name), rank: computeRank(w.hr, w.elder) },
-        minRanks.weapon(type, w.name),
-      ),
-    );
+  const items = crafting.weapons.map((w) =>
+    encodeWeapon({ ...w, slug: slugify(w.name) }, minRanks.weapon(type, w.name)),
+  );
   for (const w of items) {
     weaponRefs.set(`${type}|${w.n}`, [WEAPON_TYPES.indexOf(type), w.n, w.r ?? null]);
   }
@@ -403,18 +395,17 @@ for (const slot of ARMOR_SLOTS) {
     path.join(dataDir, "armor", `${slot}.json`),
   ).armor;
   for (const rank of ARMOR_RANKS) {
-    const pieces = allPieces.filter((p) => (p.rank ?? computeRank(p.hr, p.elder)) === rank);
+    const pieces = allPieces.filter((p) => p.rank === rank);
     if (pieces.length === 0) continue;
     const treePath = path.join(contentDir, "armorsmith", slot, rank, "map.json");
     const tree = fs.existsSync(treePath)
       ? readJson<{ map: WeaponTreeNode[] }>(treePath)
       : { map: [] };
-    const rendered = pieces.filter((p) => !("donotrender" in p));
-    const slugs = armorSlugs(rendered);
-    const items = rendered.map((p, i) =>
+    const slugs = armorSlugs(pieces);
+    const items = pieces.map((p, i) =>
       encodeArmor({ ...p, slug: slugs[i], rank }, minRanks.armor(p)),
     );
-    rendered.forEach((p, i) => {
+    pieces.forEach((p, i) => {
       const ref: EquipRef = [ARMOR_RANKS.indexOf(rank), p.name, items[i].r ?? null];
       if (slugs[i] !== slugify(p.name)) ref.push(slugs[i], p.sex ?? "");
       armorRefs.set(`${slot}|${p.name}|${p.sex ?? ""}`, ref);
@@ -484,15 +475,16 @@ for (const category of MONSTER_CATEGORIES) {
   const { index: itemIndex } = buildItemNameIndex(
     readJson<{ items: ItemRecord[] }>(path.join(dataDir, "items.json")).items,
   );
-  const rendered = crafting.decorations.filter((d) => !("donotrender" in d));
-  const unmatched = rendered.filter((d) => decorationItemId(d.name, itemIndex) === undefined);
+  const unmatched = crafting.decorations.filter(
+    (d) => decorationItemId(d.name, itemIndex) === undefined,
+  );
   if (unmatched.length > 0) {
     console.error(
       `generate-data: FAIL — decorations with no item in items.json: ${unmatched.map((d) => d.name).join(", ")}`,
     );
     process.exit(1);
   }
-  const items = rendered.map((d) =>
+  const items = crafting.decorations.map((d) =>
     encodeDecoration(
       { ...d, slug: slugify(d.name) },
       minRanks.decoration(d),

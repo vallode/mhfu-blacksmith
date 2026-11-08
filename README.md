@@ -53,7 +53,7 @@ pnpm install
 
 # Generate the client data bundles in public/ (needed once before `pnpm dev`,
 # and again whenever data/ or content/ changes)
-pnpm generate-data && pnpm generate-search && pnpm generate-weapons
+pnpm generate-data && pnpm generate-search
 
 pnpm dev       # local dev server on http://localhost:3000
 pnpm build     # regenerate data + static export to out/

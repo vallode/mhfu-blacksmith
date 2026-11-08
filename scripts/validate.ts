@@ -51,7 +51,7 @@ for (const type of weaponTypes) {
   };
   const slugs = new Set<string>();
   for (const w of data.weapons) {
-    if ("donotrender" in w || !w.name) continue;
+    if (!w.name) continue;
     slugs.add(slugify(w.name as string));
   }
   allWeaponSlugs.set(type, slugs);
@@ -81,8 +81,6 @@ for (const type of weaponTypes) {
   let count = 0;
 
   for (const w of data.weapons) {
-    if ("donotrender" in w) continue;
-
     const name = w.name as string | undefined;
     if (!name) {
       error(`${type}: weapon missing name: ${JSON.stringify(w)}`);
@@ -171,7 +169,6 @@ for (const file of fs
   const piecesByRank = new Map<string, { name: string; sex?: string }[]>();
 
   for (const a of data.armor) {
-    if ("donotrender" in a) continue;
     const name = a.name as string | undefined;
     const rank = (a.rank as string) || "low-rank";
     if (!name) {
@@ -226,7 +223,6 @@ if (!fs.existsSync(decoFile)) {
   let count = 0;
 
   for (const d of data.decorations) {
-    if ("donotrender" in d) continue;
     const name = d.name as string | undefined;
     if (!name) {
       error("decoration missing name");
@@ -346,9 +342,7 @@ if (!fs.existsSync(equipmentIdsFile)) {
           string,
           unknown
         >[]
-      )
-        .filter((i) => !("donotrender" in i))
-        .map((i) => i.name as string),
+      ).map((i) => i.name as string),
     );
   const weaponNames = new Map(
     weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]),

@@ -6,6 +6,7 @@ import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { useQuests } from "@/lib/client-data";
 import { questHubLabel, questsOnHub, type QuestHubSlug, type QuestMonster } from "@/lib/quests";
+import Loading from "@/components/Loading";
 
 interface Props {
   hub: QuestHubSlug;
@@ -41,7 +42,13 @@ export default function QuestDetailClient({ hub, id }: Props) {
   if (!quest) {
     return (
       <DetailCard>
-        <p>{error ? "Couldn't load quests." : quests ? "Not found." : "Loading…"}</p>
+        {error ? (
+          <p>Couldn&apos;t load quests.</p>
+        ) : quests ? (
+          <p>Not found.</p>
+        ) : (
+          <Loading>Loading…</Loading>
+        )}
       </DetailCard>
     );
   }

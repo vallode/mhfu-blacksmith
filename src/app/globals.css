@@ -124,6 +124,19 @@
       transform: translateY(0);
     }
   }
+
+  /* Loading animation (Loading): hidden for a moment, so quick loads never
+     show it, then fades in */
+  --animate-loading-in: loading-in 150ms ease-out 250ms both;
+
+  @keyframes loading-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 /* "Pulsing highlights" off on the Options page (PreferencesContext sets the

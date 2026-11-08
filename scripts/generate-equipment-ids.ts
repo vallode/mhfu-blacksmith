@@ -104,7 +104,7 @@ function fail(msg: string) {
 
 function readItems(file: string, key: "weapons" | "armor"): Record<string, unknown>[] {
   const data = JSON.parse(fs.readFileSync(path.join(root, "data", file), "utf-8"));
-  return (data[key] as Record<string, unknown>[]).filter((i) => !("donotrender" in i) && i.name);
+  return (data[key] as Record<string, unknown>[]).filter((i) => i.name);
 }
 
 function candidatesFor(slot: Slot): Candidate[] {

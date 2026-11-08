@@ -54,6 +54,8 @@ export interface Weapon {
   sharpness_plus?: (string | number)[];
   elements?: WeaponElement[] | null;
   notes?: string[] | null;
+  /** Hunting horn songs its notes can play. */
+  melodies?: Melody[];
   shelling?: ShellingInfo | null;
   rapid_fire?: string | null;
   recoil?: string | null;
@@ -74,12 +76,8 @@ export interface Weapon {
   shots?: ShotEntry[] | null;
   skills?: string[] | null;
   color?: string | null;
-  // derived from hr/elder by computeRank() in src/lib/weapons.ts
-  rank?: string;
   /** Derived from quest drops and recipes; absent when no route is known. */
   min_rank?: MinRank;
-  hr?: string | number;
-  elder?: string | number;
 }
 
 export interface WeaponTreeNode {
@@ -114,7 +112,7 @@ export interface ArmorPiece {
   type: string;
   hr?: string | number;
   elder?: string | number;
-  rank?: string;
+  rank: string;
   /** Derived from quest drops and recipes; absent when no route is known. */
   min_rank?: MinRank;
   defence?: string | number;

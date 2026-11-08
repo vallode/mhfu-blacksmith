@@ -19,6 +19,7 @@ import {
 } from "@/components/DetailPanel";
 import { useDecoration } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import Loading from "@/components/Loading";
 
 interface Props {
   slug: string;
@@ -46,9 +47,7 @@ export default function DecorationDetailClient({ slug }: Props) {
               {null}
             </TreeScroll>
           </Card>
-          <Card>
-            <p>{loading ? "Loading…" : "Not found."}</p>
-          </Card>
+          <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>
         </div>
       </>
     );

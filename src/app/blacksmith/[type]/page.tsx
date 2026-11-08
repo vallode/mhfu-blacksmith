@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getWeaponTypes, getWeapons } from "@/lib/weapons";
-import { pageMetadata, titleCase, typeIcon } from "@/lib/seo";
+import { embedIcon, pageMetadata, titleCase } from "@/lib/seo";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import type { Metadata } from "next";
 import { faviconMetadata } from "@/lib/favicon";
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         (first ? `, from the ${first} up through every upgrade path` : "") +
         ". Attack, sharpness, elements and recipes.",
       path: `/blacksmith/${type}/`,
-      image: typeIcon(type),
+      image: embedIcon(type),
     }),
   };
 }

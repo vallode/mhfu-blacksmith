@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import MaterialRow from "@/components/MaterialRow";
+import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
 import type { Material } from "@/lib/types";
 
@@ -130,26 +131,33 @@ export function MaterialList({
   );
 }
 
-/**
- * One page of the requirements section. Only the first (active) page is
- * shown; the others are kept in the markup for a future page switcher.
- */
-export function RequirementsPage({
-  children,
-  active,
-}: {
-  children: React.ReactNode;
-  active?: boolean;
-}) {
+/** One page of the requirements section, shown as a tab in `RequirementTabs`. */
+export function RequirementsPage({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      data-tab
-      className={cn(
-        "flex-1 flex-row flex-wrap gap-x-[3.2rem] gap-y-[1.6rem] mobile:gap-x-[1.6rem]",
-        active ? "flex" : "hidden",
-      )}
-    >
+    <div className="flex flex-1 flex-row flex-wrap gap-x-[3.2rem] gap-y-[1.6rem] mobile:gap-x-[1.6rem]">
       {children}
+    </div>
+  );
+}
+
+/**
+ * The requirements pages (materials, ammo, melodies, …) as tabs, like the
+ * monster pages. Pages that don't apply are passed as `false` and dropped;
+ * a single page is shown without a tab row.
+ */
+export function RequirementTabs({
+  tabs,
+  label,
+}: {
+  tabs: (Tab | false | null | undefined)[];
+  label: string;
+}) {
+  const pages = tabs.filter((t): t is Tab => !!t);
+  if (pages.length === 0) return null;
+  if (pages.length === 1) return <>{pages[0]!.content}</>;
+  return (
+    <div className="min-w-0 flex-1">
+      <Tabs tabs={pages} label={label} />
     </div>
   );
 }

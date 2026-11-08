@@ -7,22 +7,6 @@ import type { ArmorPiece, WeaponTree } from "./types";
 const contentDir = path.join(process.cwd(), "content");
 const dataDir = path.join(process.cwd(), "data");
 
-function computeRank(hr: string | number | undefined, elder: string | number | undefined): string {
-  const hrNum = Number(hr ?? 0);
-  if (hrNum <= 5) return "low-rank";
-  if (hrNum <= 8) return "high-rank";
-  if (hrNum > 8 && Number(elder)) return "g-rank";
-  return "high-rank";
-}
-
-export function getArmorSlots(): ArmorSlot[] {
-  return [...ARMOR_SLOTS];
-}
-
-export function getArmorRanks(): ArmorRank[] {
-  return [...ARMOR_RANKS];
-}
-
 // data/armor/<slot>.json holds every rank in one file; each piece carries
 // its own "rank" field.
 function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
@@ -31,9 +15,7 @@ function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
 
   const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { armor: ArmorPiece[] };
 
-  return raw.armor
-    .filter((p) => !("donotrender" in p))
-    .map((p) => ({ ...p, rank: p.rank ?? computeRank(p.hr, p.elder) }));
+  return raw.armor;
 }
 
 export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {

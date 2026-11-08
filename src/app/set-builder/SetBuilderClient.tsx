@@ -48,6 +48,7 @@ import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
 import MySets from "./MySets";
 import SetEditor from "./SetEditor";
 import SkillPicker from "./SkillPicker";
+import Loading from "@/components/Loading";
 
 interface Form {
   skills: string[];
@@ -393,9 +394,9 @@ export default function SetBuilderClient() {
 
   let message: React.ReactNode = null;
   if (loadError) message = <p className={ui.error}>Couldn&apos;t load the armor data.</p>;
-  else if (!data) message = <p className={ui.note}>Loading armor…</p>;
+  else if (!data) message = <Loading className={ui.note}>Loading armor…</Loading>;
   else if (error) message = <p className={ui.error}>{error}</p>;
-  else if (searching) message = <p className={ui.note}>Searching… {found || ""}</p>;
+  else if (searching) message = <Loading className={ui.note}>Searching… {found || ""}</Loading>;
   else if (!result)
     message = (
       <p className={ui.note}>

@@ -525,3 +525,26 @@ test("set fields that agree are still written in the disc's order", () => {
   assert.equal(canonical(spec, site.elements, "site", ctx), canonical(spec, disc, "disc", ctx));
   assert.deepEqual(toSite(spec, disc, site, ctx), disc);
 });
+
+test("signed-number compares bonus by number and keeps the committed spelling", () => {
+  const spec = { field: "bonus", kind: "signed-number" as const };
+  const ctx = {} as FieldContext;
+  assert.equal(canonical(spec, "10", "site", ctx), canonical(spec, "+10", "disc", ctx));
+  assert.equal(canonical(spec, null, "site", ctx), canonical(spec, null, "disc", ctx));
+  assert.notEqual(canonical(spec, null, "site", ctx), canonical(spec, "+14", "disc", ctx));
+  assert.notEqual(canonical(spec, "+8", "site", ctx), canonical(spec, "+10", "disc", ctx));
+  assert.equal(toSite(spec, "+10", { bonus: "10" }, ctx), "10");
+  assert.equal(toSite(spec, "+14", { bonus: null }, ctx), "+14");
+});
+
+test("melodies compare as a set of whole melodies, combo order included", () => {
+  const spec = { field: "melodies", kind: "melodies" as const };
+  const ctx = {} as FieldContext;
+  const ww = { combo: ["w", "w"], effect: "Movement Speed Up", duration: "3 mins" };
+  const wr = { combo: ["w", "r"], effect: "Attack Up [Lo]", duration: "2 mins" };
+  assert.equal(canonical(spec, [ww, wr], "site", ctx), canonical(spec, [wr, ww], "disc", ctx));
+  const rw = { ...wr, combo: ["r", "w"] };
+  assert.notEqual(canonical(spec, [ww, wr], "site", ctx), canonical(spec, [ww, rw], "disc", ctx));
+  const longer = { ...wr, duration: "3 mins" };
+  assert.notEqual(canonical(spec, [wr], "site", ctx), canonical(spec, [longer], "disc", ctx));
+});

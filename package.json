@@ -4,18 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-weapon-data.ts && next build",
+    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-embeds.ts && next build",
     "start": "next start",
     "lint": "eslint src",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
-    "generate-weapons": "tsx scripts/generate-weapon-data.ts",
     "validate": "tsx scripts/validate.ts",
     "test": "tsx --test test/**/*.test.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
     "generate-maps": "tsx scripts/generate-maps.ts",
+    "generate-embeds": "tsx scripts/generate-embeds.ts",
     "generate-equipment-ids": "tsx scripts/generate-equipment-ids.ts",
     "release-json": "mkdir -p mhfu_weapon_information && cp data/weapons/*.json mhfu_weapon_information/ && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information"
   },
@@ -44,6 +44,7 @@
     "postcss": "^8.5.25",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "0.34.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^5"
   },

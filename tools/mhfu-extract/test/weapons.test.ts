@@ -15,7 +15,15 @@ import {
   readWeaponClassModifiers,
   WEAPON_TYPE_NAMES,
 } from "../src/tables/weapons.js";
-import { fixtureReader } from "./helpers.js";
+import {
+  HornTableError,
+  findNoteSetTable,
+  readHornNoteSets,
+  readMelodyTable,
+  songsForNotes,
+} from "../src/tables/horn.js";
+import { BinaryReader } from "../src/binary/reader.js";
+import { NOTE_SET_BYTES, fixtureReader, melodyTableBytes } from "./helpers.js";
 
 test("readWeaponClassModifiers reads eleven u32s in declared order", () => {
   const base = tableOffset("weaponClassModifiers");
@@ -180,4 +188,55 @@ test("readModelToWeaponType maps raw bytes to WEAPON_TYPE_NAMES", () => {
   assert.equal(types[1], WEAPON_TYPE_NAMES[10]);
   assert.equal(types[2], null);
   assert.equal(types.length, TABLE_COUNTS.modelToWeaponType);
+});
+
+test("readHornNoteSets finds the note-set table by shape and maps its colours", () => {
+  const buf = Buffer.alloc(0x400);
+  // A near miss first: right shape but a white note in slot 2.
+  Buffer.from([...NOTE_SET_BYTES.slice(0, 57), 1, 1, 7, 0xff, 0xff, 0xff, 0xff]).copy(buf, 0x40);
+  Buffer.from([...NOTE_SET_BYTES, 0xff, 0xff, 0xff, 0xff]).copy(buf, 0x200);
+  assert.equal(findNoteSetTable(buf), 0x200);
+  const sets = readHornNoteSets(new BinaryReader(buf));
+  assert.equal(sets.length, 20);
+  assert.deepEqual(sets.slice(0, 4), [
+    ["w", "b", "r"],
+    ["w", "y", "r"],
+    ["w", "g", "r"],
+    ["p", "g", "a"],
+  ]);
+});
+
+test("findNoteSetTable rejects a buffer with no table or two", () => {
+  assert.throws(() => findNoteSetTable(Buffer.alloc(0x100)), HornTableError);
+  const buf = Buffer.alloc(0x400);
+  const table = Buffer.from([...NOTE_SET_BYTES, 0xff, 0xff, 0xff, 0xff]);
+  table.copy(buf, 0x10);
+  table.copy(buf, 0x200);
+  assert.throws(() => findNoteSetTable(buf), /found 2/);
+});
+
+test("readMelodyTable reads songs in playing order with their effect IDs", () => {
+  const buf = Buffer.alloc(0x400, 0x5a);
+  melodyTableBytes().copy(buf, 0x100);
+  const songs = readMelodyTable(new BinaryReader(buf));
+  assert.equal(songs.length, 32);
+  assert.deepEqual(songs.slice(0, 5), [
+    { index: 0, notes: ["w", "w"], optional: "w", effectId: 0 },
+    { index: 1, notes: ["w", "r"], optional: null, effectId: 1 },
+    { index: 2, notes: ["p", "r", "r"], optional: null, effectId: 2 },
+    { index: 3, notes: ["r", "g", "r"], optional: null, effectId: 3 },
+    { index: 4, notes: ["r", "a", "a", "p"], optional: null, effectId: 3 },
+  ]);
+  assert.deepEqual(
+    songsForNotes(songs, ["w", "g", "r"]).map((s) => s.notes.join("")),
+    ["ww", "wr", "rgr"],
+  );
+});
+
+test("readMelodyTable rejects a run whose effect IDs aren't a 0-based non-decreasing run", () => {
+  const bytes = melodyTableBytes();
+  bytes[bytes.length - 1] = 0x40; // last effect ID jumps
+  const buf = Buffer.alloc(0x400);
+  bytes.copy(buf, 0x100);
+  assert.throws(() => readMelodyTable(new BinaryReader(buf)), /found 0/);
 });
