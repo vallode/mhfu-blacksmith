@@ -87,7 +87,7 @@
           "ko": "100"
         }
       },
-      "base_hp": 5111886
+      "base_hp": 78
     },
     {
       "name": "Popo",
@@ -167,7 +167,7 @@
           "ko": "0"
         }
       },
-      "base_hp": 8388704
+      "base_hp": 96
     },
     {
       "name": "Kelbi",
@@ -256,7 +256,7 @@
           "ko": "100"
         }
       },
-      "base_hp": 3932220
+      "base_hp": 60
     },
     {
       "name": "Mosswine",
@@ -402,7 +402,7 @@
           "ko": "0"
         }
       },
-      "base_hp": 7209040
+      "base_hp": 80
     },
     {
       "name": "Apceros",
