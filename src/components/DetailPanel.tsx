@@ -136,7 +136,10 @@ export function RequirementsPage({
   return (
     <div
       data-tab
-      className={cn("flex-1 flex-row flex-wrap mobile:gap-[16px]", active ? "flex" : "hidden")}
+      className={cn(
+        "flex-1 flex-row flex-wrap gap-x-[3.2rem] gap-y-[1.6rem] mobile:gap-x-[1.6rem]",
+        active ? "flex" : "hidden",
+      )}
     >
       {children}
     </div>
