@@ -154,8 +154,12 @@ Open:
 - **US**: `resolverForRegion("us")` is `null` — no US disc to derive
   signatures from ([#37](https://github.com/vallode/mhfu-blacksmith/issues/37), which also covers other games such as
   MH1/MHF1).
-- **EU quests**: 519 of 551 parse; 32 are skipped because EU's `DATA.BIN`
-  layout differs from JP's ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
+- **EU quests**: previously 519 of 551 parsed, with 32 skipped
+  ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)). The cause was
+  `DATA.BIN` indexing: EU has extra entries ahead of `mission_jpn/`, so JP
+  indices pointed 32 entries early. With the EU file list (see "`DATA.BIN`")
+  all 551 quest files are found at their real indices; not yet re-run
+  against a real EU EBOOT.
 - `diff` compares stats, not text: names come from the English
   `mhp2g-patterns` enums for every region. Committed skill names are
   rewritten to the extractor's spelling before comparing (see "Overlay
@@ -186,6 +190,16 @@ EBOOT.BIN` produces a valid ELF.
 `DATA.BIN` uses a documented substitution+XOR cipher (`src/container/databin.ts`,
 ported from `mhef`) and is decrypted fully in-process; no external tool
 needed.
+
+`unpack` names each entry from `vendor/fuctool/filelist.csv`, which indexes
+the **JP** disc's 6,602 entries. The EU disc has 6,657: 57 EU-only entries
+(mostly localized text and UI) and two JP modules it lacks, which shift
+everything after them by up to 55. `src/container/filelist-eu.json` maps EU
+indices back to JP ones. It was derived by aligning a real EU dump against
+`filelist.csv` by file type (model/texture/container magics and the
+`.phd`/`.bd` sound-bank pairing), with every mapped entry's type matching.
+EU-only entries keep the `_unindexed/<index>.bin` name. US has no alignment
+yet and falls back to JP indices.
 
 ### Quests (`.mib`)
 
@@ -225,6 +239,93 @@ translates pointers). Real hitzone and reward bytes are confirmed inside them
 and pinned as fixtures in `test/ovl.test.ts`, but no static monster ID →
 data mapping exists, so nothing is emitted for monsters yet. Investigation
 notes and options: [#35](https://github.com/vallode/mhfu-blacksmith/issues/35).
+
+## 3D models (experimental)
+
+```bash
+# any .pac file or directory of them -> .glb files, for inspection
+pnpm --filter mhfu-extract models --in .cache/mhfu/data-bin --out .cache/mhfu/glb
+
+# the models the website shows -> ../../public/models/ + manifest.json
+pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
+```
+
+`models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
+texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
+is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
+that hold the geometry, `tmh.ts` the textures, `gltf.ts`/`texture.ts`/
+`png.ts` the output. Two corrections to mhff's description of PMO 1.0, both
+confirmed on real files: mesh records are 0x18 bytes, and materials go
+through a per-slot byte map at header offset 0x28.
+
+### Output size
+
+`gltf.ts` makes the files as small as it can (measured on the 567 weapon,
+monster and armor models converted so far: 15.56 MB as plain float glTF
+with RGBA PNGs):
+
+| Step                                                                                                                  | Total    | Kind                      |
+| --------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------- |
+| Source integers instead of floats (`KHR_mesh_quantization`, `KHR_texture_transform` for the UV scale)                 | 10.35 MB | lossless                  |
+| One interleaved vertex buffer and one index buffer per model, duplicate vertices merged, primitives merged by texture | 9.26 MB  | lossless                  |
+| meshopt compression (`EXT_meshopt_compression`) after reordering for the vertex cache                                 | 7.21 MB  | lossless                  |
+| Lossless WebP (`EXT_texture_webp`) or palette PNG, whichever is smaller                                               | 6.80 MB  | lossless (visible pixels) |
+| `export-site` defaults: textures re-quantized to libimagequant quality 80, 12-bit positions, 11-bit UVs               | 6.56 MB  | lossy, visually identical |
+
+Notes:
+
+- The model's per-axis scale moves onto the glTF node, so normals are
+  stored pre-multiplied by it (renderers undo it with the inverse-transpose).
+  That re-rounds them to 8 bits, within 0.8 degrees of the source.
+- Lossless WebP via sharp doesn't keep the colour under fully transparent
+  pixels. That removes the purple fringe the source palettes put around
+  alpha cut-outs under texture filtering.
+- Re-quantizing at quality 80 stays above 40 dB PSNR on every texture;
+  12-bit positions move a vertex by at most 1/4096 of the model's extent;
+  11-bit UVs move texture coordinates by at most 1/32 of a 64px texel.
+- `export-site --lossless` skips the lossy step; `models` is lossless.
+- Loaders need the meshopt decoder: three.js's `GLTFLoader` with
+  `setMeshoptDecoder(MeshoptDecoder)` (`three/examples/jsm/libs/`), as
+  `src/components/ModelViewer.tsx` does.
+
+Status:
+
+- On an EU disc, all 553 `weapon/*.pac` and every `emmodel/*.pac` tried so
+  far (em01-em05: Rathian, Fatalis, Kelbi, Mosswine, Bullfango) convert, and
+  renders of a spread of them are correct: textured, assembled, right UVs.
+  Armor pieces (`player/**`) convert the same way.
+- Output is the static bind pose: mesh pieces are already in model space, so
+  no skeleton is needed to assemble them, but skinning weights are dropped
+  and there's no animation (`motion/*.bin` isn't decoded).
+- A package's second PMO isn't converted. On large monsters it's a few
+  small flat quads (probably shadow or effect planes).
+- Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
+  dump unpacked before that existed has wrong names (e.g. its
+  `weapon/we000.pac` is male waist armor); unpack it again.
+
+`export-site` writes the models the site shows into `public/models/` and
+lists them in a manifest split by category, so a page fetches only its own
+list (at most ~4 KB): `public/models/manifest/monsters.json`,
+`.../weapons/<type>.json` and `.../armor/<slot>.json`. Keys are the site's
+own names; values are model IDs, from which `src/lib/models.ts` rebuilds the
+file paths:
+
+- **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
+  vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
+  aliases for the two names that differ). IDs without a monster page
+  (Veggie Elder, Poogie, ...) are skipped.
+- **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
+  by the equipment ID that `data/equipment-ids.json` names, holds the model
+  ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
+  with a page get a model whose `modelToWeaponType` matches the page's type,
+  and renders match the site's weapon images.
+- **Armor** needs `eboot.bin` too: each armor entry holds a male and a female
+  model ID into `player/{m,f}/<folder>/`, read from the same per-slot
+  arrays as `src/tables/armor.ts` (see `src/tables/armor-models.ts`). Each
+  slot's highest model IDs are exactly the last files in its folder.
+
+Each run replaces the categories it could export and keeps the rest of the
+previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 
 ## Emit layer
 

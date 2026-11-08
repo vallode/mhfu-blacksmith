@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreePanel from "@/components/WeaponTreePanel";
 import SharpnessBar from "@/components/SharpnessBar";
@@ -23,6 +24,9 @@ import { statTable } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ModelViewer from "@/components/ModelViewer";
+import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import { useWeaponModel } from "@/lib/models";
 
 interface Props {
   type: WeaponType;
@@ -48,6 +52,10 @@ const COATINGS = [
 export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, tree, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
+  const modelUrl = useWeaponModel(type, weapon?.name);
+  // Open state is tied to the model, so navigating to another weapon closes it.
+  const [openModel, setOpenModel] = useState<string | null>(null);
+  const modelOpen = modelUrl !== null && openModel === modelUrl;
 
   if (loading || !weapon) {
     // Keep the split layout (and the tree card frame) in place while the data
@@ -175,6 +183,13 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.bonus && <p className="inline-block text-element">Defense {weapon.bonus}</p>}
             </StatList>
+
+            {modelUrl && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+              />
+            )}
 
             <DetailRule />
 
@@ -412,6 +427,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             </Requirements>
           </DetailBody>
         </DetailCard>
+        {modelOpen && (
+          <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
+            <ModelViewer src={modelUrl} label={weapon.name} />
+          </ModelPopover>
+        )}
       </div>
     </>
   );

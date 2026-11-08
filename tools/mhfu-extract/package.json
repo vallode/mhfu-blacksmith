@@ -9,9 +9,13 @@
     "unpack": "tsx src/cli.ts unpack",
     "extract": "tsx src/cli.ts extract",
     "diff": "tsx src/cli.ts diff",
+    "models": "tsx src/cli.ts models",
+    "export-site": "tsx src/cli.ts export-site",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {
+    "meshoptimizer": "0.21.0",
+    "sharp": "0.34.5",
     "tsx": "^4.22.4"
   },
   "devDependencies": {

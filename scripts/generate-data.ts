@@ -506,16 +506,26 @@ const version = hash.digest("hex").slice(0, 16);
 const manifest = { version, files: manifestFiles };
 fs.writeFileSync(path.join(outDir, "data-manifest.json"), JSON.stringify(manifest));
 
-// Image manifest for the offline-download UI (and SW parity): every image URL.
+// Image manifest for the offline-download UI (and SW parity): every image the
+// site uses, i.e. all of public/images minus scripts/lib/precache-exclude.json.
 const imagesDir = path.join(process.cwd(), "public", "images");
+const excludedImages = (
+  JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8"),
+  ) as { exclude: string[] }
+).exclude;
+const isExcludedImage = (relative: string) =>
+  excludedImages.some((e) => (e.endsWith("/") ? relative.startsWith(e) : relative === e));
 const imageUrls: string[] = [];
 const walkImages = (dir: string) => {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) walkImages(full);
-    else if (/\.(png|jpe?g|webp|gif)$/i.test(entry.name)) {
-      imageUrls.push(`/images/${path.relative(imagesDir, full).split(path.sep).join("/")}`);
+    const relative = path.relative(imagesDir, full).split(path.sep).join("/");
+    if (entry.isDirectory()) {
+      if (!isExcludedImage(`${relative}/`)) walkImages(full);
+    } else if (/\.(png|jpe?g|webp|gif)$/i.test(entry.name) && !isExcludedImage(relative)) {
+      imageUrls.push(`/images/${relative}`);
     }
   }
 };

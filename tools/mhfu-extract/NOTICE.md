@@ -28,6 +28,10 @@ below.
   retail quest under `mission_jpn/*.mib` is wrapped in it too, on top of the
   disc-wide `DataCipher` — confirmed against a real JP disc quest (SHA1
   header match + correct `quest.hexpat` magic after both cipher layers).
+- **`src/models/`** — the `.pac`, PMO 1.0 and `.TMH` layouts follow
+  [svanheulen/mhff](https://github.com/svanheulen/mhff) (`psp/package.py`,
+  `psp/pmo.py`, `psp/tmh.py`, GPL-3.0), reimplemented in TypeScript with
+  corrections for multi-mesh files (see README, "3D models").
 - **Region rebase constants** (`US = JP + 0x2C24`, `EU = JP + 0x2B04`) were
   cross-derived against [GReinoso96/MHEdit](https://github.com/GReinoso96/MHEdit)
   and independently verified against the structural invariants in

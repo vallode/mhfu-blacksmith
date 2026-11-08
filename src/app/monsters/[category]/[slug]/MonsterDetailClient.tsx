@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
@@ -9,6 +10,9 @@ import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ModelViewer from "@/components/ModelViewer";
+import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import { useMonsterModel } from "@/lib/models";
 
 interface Props {
   category: MonsterCategory;
@@ -30,6 +34,10 @@ const HITZONE_LABELS: Record<string, string> = {
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
+  const modelUrl = useMonsterModel(monster?.name);
+  // Open state is tied to the model, so navigating to another monster closes it.
+  const [openModel, setOpenModel] = useState<string | null>(null);
+  const modelOpen = modelUrl !== null && openModel === modelUrl;
 
   if (loading) {
     return (
@@ -109,6 +117,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
             )}
 
+            {modelUrl && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+              />
+            )}
+
             <DetailRule />
 
             {hitzoneEntries.length > 0 && (
@@ -160,6 +175,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             )}
           </DetailBody>
         </DetailCard>
+        {modelOpen && (
+          <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
+            <ModelViewer src={modelUrl} label={monster.name} />
+          </ModelPopover>
+        )}
       </div>
     </>
   );

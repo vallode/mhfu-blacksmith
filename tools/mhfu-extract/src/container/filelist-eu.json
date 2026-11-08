@@ -1,0 +1,66 @@
+{
+  "_comment": [
+    "EU (ULES01213) DATA.BIN index -> JP filelist.csv index, for the 6657-entry EU TOC.",
+    "Derived by aligning a real EU dump against vendor/fuctool/filelist.csv by file type",
+    "(PMO/TMH/.pac/.ovl/PSMF/RIFF magics, .phd 'Head' vs .bd zero-filled headers); every",
+    "mapped entry's type matches. Entries in no segment exist only on the EU disc and keep",
+    "the _unindexed/<index>.bin name. JP module/libfont.prx and module/libbase64.prx have",
+    "no EU counterpart.",
+    "Confidence: the segments from EU 44 on (player, weapon, sound, quest, stage, emmodel",
+    "groups) have unambiguous boundaries. Placement of EU-only entries among EU 0-43",
+    "(system/icon/message files) is a best fit, not verified."
+  ],
+  "totalEntries": 6657,
+  "segments": [
+    {
+      "eu": 0,
+      "jp": 0,
+      "count": 12
+    },
+    {
+      "eu": 16,
+      "jp": 12,
+      "count": 3
+    },
+    {
+      "eu": 23,
+      "jp": 15,
+      "count": 1
+    },
+    {
+      "eu": 33,
+      "jp": 16,
+      "count": 5
+    },
+    {
+      "eu": 41,
+      "jp": 21,
+      "count": 1
+    },
+    {
+      "eu": 44,
+      "jp": 24,
+      "count": 4732
+    },
+    {
+      "eu": 4788,
+      "jp": 4756,
+      "count": 567
+    },
+    {
+      "eu": 5359,
+      "jp": 5323,
+      "count": 28
+    },
+    {
+      "eu": 5403,
+      "jp": 5351,
+      "count": 974
+    },
+    {
+      "eu": 6380,
+      "jp": 6325,
+      "count": 277
+    }
+  ]
+}

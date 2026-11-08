@@ -16,7 +16,7 @@ import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
 import { verifyOffsets, type OffsetVerificationResult } from "../tables/offsets.js";
 import { verifyResolverCoverage, type ResolverCoverageResult } from "../tables/resolver.js";
-import type { UnpackManifest } from "./unpack.js";
+import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 
 export interface ExtractOptions {
   unpacked: string;
@@ -75,6 +75,7 @@ async function readQuestsFromUnpackedDir(
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
+  assertCurrentFileNames(manifest, options.unpacked);
   if (manifest.eboot === false) {
     throw new Error(
       `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,

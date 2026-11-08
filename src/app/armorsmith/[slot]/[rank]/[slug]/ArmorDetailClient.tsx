@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
@@ -21,6 +22,9 @@ import { cn } from "@/lib/cn";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import ArmorModelViewer from "@/components/ArmorModelViewer";
+import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import { useArmorModel } from "@/lib/models";
 
 interface Props {
   slot: ArmorSlot;
@@ -30,6 +34,11 @@ interface Props {
 
 export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   const { item: piece, tree, loading } = useArmorPiece(slot, rank, slug);
+  const models = useArmorModel(slot, piece?.name, piece?.sex);
+  // Open state is tied to the piece, so navigating to another piece closes it.
+  const [openModel, setOpenModel] = useState<string | null>(null);
+  const modelKey = models ? `${slot}/${piece?.name}` : null;
+  const modelOpen = modelKey !== null && openModel === modelKey;
 
   const basePath = `/armorsmith/${slot}/${rank}/`;
 
@@ -133,6 +142,13 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               )}
             </StatList>
 
+            {modelKey && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelKey)}
+              />
+            )}
+
             <DetailRule />
 
             {piece.skills && piece.skills.length > 0 && (
@@ -175,6 +191,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
             )}
           </DetailBody>
         </DetailCard>
+        {modelOpen && models && (
+          <ModelPopover title={piece.name} onClose={() => setOpenModel(null)}>
+            <ArmorModelViewer models={models} label={piece.name} />
+          </ModelPopover>
+        )}
       </div>
     </>
   );
