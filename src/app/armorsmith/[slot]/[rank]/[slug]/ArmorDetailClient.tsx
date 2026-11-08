@@ -115,15 +115,17 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               </Stat>
               {piece.max_defence !== undefined && (
                 <Stat armor label="Max defence:">
-                  <StatValue>{piece.max_defence}</StatValue>
+                  {piece.max_defence_pre_ukanlos !== undefined &&
+                  piece.max_defence_pre_ukanlos !== piece.max_defence ? (
+                    <>
+                      <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
+                      <StatValue className="opacity-20">[ {piece.max_defence} ]</StatValue>
+                    </>
+                  ) : (
+                    <StatValue>{piece.max_defence}</StatValue>
+                  )}
                 </Stat>
               )}
-              {piece.max_defence_pre_ukanlos !== undefined &&
-                piece.max_defence_pre_ukanlos !== piece.max_defence && (
-                  <Stat armor label="Pre-Ukanlos:">
-                    <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
-                  </Stat>
-                )}
               <Stat armor label="Slots:">
                 <Slots count={piece.slots} />
               </Stat>
