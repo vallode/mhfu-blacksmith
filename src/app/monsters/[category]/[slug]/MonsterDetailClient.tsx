@@ -19,6 +19,7 @@ import Tabs, { type Tab } from "@/components/Tabs";
 import { formatRank } from "@/lib/monster-drops";
 import { questsWithMonster } from "@/lib/quests";
 import { useMonsterModel } from "@/lib/models";
+import Loading from "@/components/Loading";
 
 interface Props {
   category: MonsterCategory;
@@ -62,7 +63,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       <>
         <MonsterNav activeCategory={category} />
         <BorderRule />
-        <p style={{ padding: "2rem" }}>Loading…</p>
+        <Loading className="p-[2rem]">Loading…</Loading>
       </>
     );
   }

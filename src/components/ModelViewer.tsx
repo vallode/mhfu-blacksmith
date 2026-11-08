@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Loading from "@/components/Loading";
 
 interface Props {
   /** URL of a .glb file. */
@@ -207,9 +208,12 @@ export default function ModelViewer({ src, label }: Props) {
         role="img"
         aria-label={`3D model of ${label}`}
       />
-      {status !== "ready" && (
+      {status === "loading" && (
+        <Loading className="absolute inset-0 justify-center opacity-70">Loading model…</Loading>
+      )}
+      {status === "error" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">
-          {status === "loading" ? "Loading model…" : "Model unavailable."}
+          Model unavailable.
         </p>
       )}
     </div>
