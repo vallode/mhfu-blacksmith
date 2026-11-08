@@ -1,63 +1,24 @@
-"use client";
-
-import { useState } from "react";
 import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
-import { formatRank, parseDropSource } from "@/lib/monster-drops";
+import { parseDropSource } from "@/lib/monster-drops";
 import type { MonsterDrop } from "@/lib/types";
 
 interface MonsterDropsProps {
-  /** rank -> source -> items, as on the Monster type */
-  drops: Record<string, Record<string, MonsterDrop[]>>;
+  /** source -> items for one rank, as on the Monster type */
+  sources: Record<string, MonsterDrop[]>;
 }
 
-const tab = [
-  "cursor-pointer border-0 border-b-[3px] border-transparent bg-transparent px-[1.2rem] py-[0.4rem]",
-  "font-[inherit] text-[1.6rem] tracking-game text-parchment",
-  "hover:text-white focus-visible:text-white focus-visible:outline-none",
-  "aria-selected:border-stat aria-selected:bg-selector aria-selected:text-stat",
-].join(" ");
-
 /**
- * Drop tables: one page per rank, chosen with a tab row like the game's menu
- * headers, then one list per source (carves, breaks, shiny drops, capture)
- * laid out two across. Each row is icon, item, quantity and chance.
+ * One rank's drop tables: a titled list per source (carves, breaks, shiny
+ * drops, capture) laid out two across. Each row is icon, item, quantity and
+ * chance.
  */
-export default function MonsterDrops({ drops }: MonsterDropsProps) {
-  const ranks = Object.keys(drops);
-  const [rank, setRank] = useState(ranks[0]);
-  const current = drops[rank] ?? drops[ranks[0]];
-  if (!current) return null;
-
+export default function MonsterDrops({ sources }: MonsterDropsProps) {
   return (
-    <div className="flex flex-col gap-[1.6rem] text-[1.6rem]">
-      <div
-        role="tablist"
-        aria-label="Rank"
-        className="flex flex-wrap gap-[0.4rem] border-b border-hr/50"
-      >
-        {ranks.map((r) => (
-          <button
-            key={r}
-            type="button"
-            role="tab"
-            aria-selected={r === rank}
-            className={tab}
-            onClick={() => setRank(r)}
-          >
-            {formatRank(r)}
-          </button>
-        ))}
-      </div>
-
-      <div
-        role="tabpanel"
-        className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] mobile:grid-cols-1"
-      >
-        {Object.entries(current).map(([source, items]) => (
-          <DropSource key={source} source={source} items={items} />
-        ))}
-      </div>
+    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-[1.6rem] mobile:grid-cols-1">
+      {Object.entries(sources).map(([source, items]) => (
+        <DropSource key={source} source={source} items={items} />
+      ))}
     </div>
   );
 }

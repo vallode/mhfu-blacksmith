@@ -21,7 +21,7 @@ export const statTable = [
  * nine columns are too tight for the game tracking on a phone.
  */
 export const hitzoneTable = [
-  "h-min w-full table-fixed border-collapse text-[1.4rem] tracking-normal tabular-nums",
+  "h-min w-full table-fixed border-collapse text-[1.6rem] tracking-normal tabular-nums mobile:text-[1.4rem]",
   "[&_th]:pr-[0.8rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:font-normal [&_th]:text-warm",
   // Part names ("Chest-Broken") fit on one line; on a phone the column is
   // narrower and they wrap instead.

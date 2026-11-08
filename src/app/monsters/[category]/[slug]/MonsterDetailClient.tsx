@@ -14,6 +14,8 @@ import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
+import Tabs, { type Tab } from "@/components/Tabs";
+import { formatRank } from "@/lib/monster-drops";
 import { useMonsterModel } from "@/lib/models";
 
 interface Props {
@@ -75,6 +77,60 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     const values = hitzoneEntries.map(([, v]) => Number(v[col])).filter((n) => n > 0);
     if (values.length > 1) bestHitzone[col] = Math.max(...values);
   }
+
+  const hitzoneTab: Tab[] =
+    hitzoneEntries.length > 0
+      ? [
+          {
+            id: "hitzones",
+            label: "Hitzones",
+            content: (
+              <table className={hitzoneTable}>
+                <thead>
+                  <tr>
+                    <th>Part</th>
+                    {HITZONE_COLS.map((col) => (
+                      <th key={col}>
+                        <span className="mobile:hidden">{HITZONE_LABELS[col][0]}</span>
+                        <span className="hidden mobile:inline">{HITZONE_LABELS[col][1]}</span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {hitzoneEntries.map(([part, values]) => (
+                    <tr key={part}>
+                      <td>{part}</td>
+                      {HITZONE_COLS.map((col) => {
+                        const value = values[col];
+                        const n = Number(value);
+                        return (
+                          <td
+                            key={col}
+                            className={cn(
+                              value !== undefined && n === 0 && hitzoneZero,
+                              value !== undefined && n === bestHitzone[col] && hitzoneBest,
+                            )}
+                          >
+                            {value ?? "—"}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ),
+          },
+        ]
+      : [];
+  // One tab per rank's drop tables
+  const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
+    id: rank,
+    label: formatRank(rank),
+    content: <MonsterDrops sources={sources} />,
+  }));
+  const tabs = [...hitzoneTab, ...dropTabs];
 
   return (
     <>
@@ -139,52 +195,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
           <DetailBody>
             <DetailRule />
-
-            {hitzoneEntries.length > 0 && (
-              <table className={hitzoneTable}>
-                <thead>
-                  <tr>
-                    <th>Part</th>
-                    {HITZONE_COLS.map((col) => (
-                      <th key={col}>
-                        <span className="mobile:hidden">{HITZONE_LABELS[col][0]}</span>
-                        <span className="hidden mobile:inline">{HITZONE_LABELS[col][1]}</span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {hitzoneEntries.map(([part, values]) => (
-                    <tr key={part}>
-                      <td>{part}</td>
-                      {HITZONE_COLS.map((col) => {
-                        const value = values[col];
-                        const n = Number(value);
-                        return (
-                          <td
-                            key={col}
-                            className={cn(
-                              value !== undefined && n === 0 && hitzoneZero,
-                              value !== undefined && n === bestHitzone[col] && hitzoneBest,
-                            )}
-                          >
-                            {value ?? "—"}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-
-            {monster.drops && Object.keys(monster.drops).length > 0 && (
-              <>
-                <DetailRule />
-                {/* Keyed on the monster so the rank tab resets when navigating */}
-                <MonsterDrops key={slug} drops={monster.drops} />
-              </>
-            )}
+            {/* Keyed on the monster so the selected tab resets when navigating */}
+            {tabs.length > 0 && <Tabs key={slug} label={`${monster.name} data`} tabs={tabs} />}
           </DetailBody>
         </DetailCard>
         {modelOpen && (
