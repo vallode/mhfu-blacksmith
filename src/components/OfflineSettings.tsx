@@ -2,7 +2,7 @@
 
 import Card from "@/components/Card";
 import { useOffline, type OfflineDownloadStatus } from "@/context/OfflineContext";
-import styles from "@/styles/options.module.scss";
+import * as ui from "@/styles/settings";
 
 function primaryLabel(
   status: OfflineDownloadStatus,
@@ -28,9 +28,9 @@ export default function OfflineSettings() {
 
   if (offline.status === "unsupported") {
     return (
-      <Card className={styles.section}>
-        <h2 className={styles.heading}>Offline Data</h2>
-        <p className={styles.note}>
+      <Card className={ui.section}>
+        <h2 className={ui.heading}>Offline Data</h2>
+        <p className={ui.note}>
           Offline downloads aren&apos;t supported in this browser.
         </p>
       </Card>
@@ -46,34 +46,34 @@ export default function OfflineSettings() {
         : 0;
 
   return (
-    <Card className={styles.section}>
-      <h2 className={styles.heading}>Offline Data</h2>
-      <p className={styles.note}>
+    <Card className={ui.section}>
+      <h2 className={ui.heading}>Offline Data</h2>
+      <p className={ui.note}>
         Save weapon, armor, monster, and decoration data to this device so
         search and browsing work without a connection. This
         stays here whenever you want to (re)download or clear it — unlike the
         one-time popup.
       </p>
 
-      <div className={styles.status}>
-        <span className={styles.statusLabel}>
+      <div className={ui.status}>
+        <span className={ui.statusLabel}>
           {offline.status === "checking"
             ? "Checking cached files…"
             : `${offline.cached} / ${offline.total} files cached`}
         </span>
-        <progress className={styles.progress} value={pct} max={100} />
+        <progress className={ui.progress} value={pct} max={100} />
       </div>
 
       {offline.status === "error" && (
-        <p className={styles.error}>
+        <p className={ui.error}>
           Something went wrong. Check your connection and try again.
         </p>
       )}
 
-      <div className={styles.actions}>
+      <div className={ui.actions}>
         <button
           type="button"
-          className={styles.button}
+          className={ui.button}
           disabled={busy}
           onClick={() => offline.download()}
         >
@@ -83,7 +83,7 @@ export default function OfflineSettings() {
         {offline.cached > 0 && !busy && (
           <button
             type="button"
-            className={styles.buttonSecondary}
+            className={ui.buttonSecondary}
             onClick={() => offline.clear()}
           >
             Clear offline data

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
 import { faviconMetadata } from "@/lib/favicon";
 import GlobalSearch from "@/components/GlobalSearch";

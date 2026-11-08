@@ -2,14 +2,25 @@
 
 import { useState } from "react";
 import WeaponNav from "@/components/WeaponNav";
-import WeaponTreeRow from "@/components/WeaponTreeRow";
-import TreeScroll from "@/components/TreeScroll";
+import WeaponTreePanel from "@/components/WeaponTreePanel";
 import SharpnessBar from "@/components/SharpnessBar";
-import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import cardStyles from "@/styles/weapon-card.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
+import {
+  DetailBody,
+  DetailCard,
+  DetailHeader,
+  DetailRule,
+  MaterialList,
+  Requirements,
+  RequirementsPage,
+  Slots,
+  Stat,
+  StatList,
+  StatValue,
+} from "@/components/DetailPanel";
+import { cn } from "@/lib/cn";
+import { statTable } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -24,8 +35,8 @@ interface Props {
 
 function affinityClass(affinity: string | undefined): string {
   if (!affinity) return "";
-  if (affinity.startsWith("-")) return "negative";
-  if (!affinity.startsWith("0")) return "positive";
+  if (affinity.startsWith("-")) return "text-negative";
+  if (!affinity.startsWith("0")) return "text-positive";
   return "";
 }
 
@@ -54,11 +65,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         <WeaponNav activeType={type} />
         <BorderRule />
         <div className="split-page">
-          <Card variant="weapon-tree">
-            <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
-              {null}
-            </TreeScroll>
-          </Card>
+          <WeaponTreePanel type={type} tree={null} activeSlug={slug} />
           <Card>
             <p>{loading ? "Loading…" : "Not found."}</p>
           </Card>
@@ -67,8 +74,6 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     );
   }
 
-  const basePath = `/blacksmith/${type}/`;
-
   return (
     <>
       <WeaponNav activeType={type} />
@@ -76,26 +81,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
       <div className="split-page">
         {/* Weapon tree sidebar */}
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`weapon-${type}`} activeSlug={slug}>
-            {tree?.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType={type}
-                  basePath={basePath}
-                  treeKey={`weapon-${type}`}
-                  activeSlug={slug}
-                />
-              </ul>
-            ))}
-          </TreeScroll>
-        </Card>
+        <WeaponTreePanel type={type} tree={tree} activeSlug={slug} />
 
         {/* Detail panel */}
-        <Card className={cardStyles["weapon-card"]}>
+        <DetailCard>
           {/* Header: icon + name + sharpness */}
-          <div className={cardStyles["weapon-card__header"]}>
+          <DetailHeader>
             <Icon
               type={weapon.type}
               size="large"
@@ -116,173 +107,135 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 )}
               </div>
             )}
-          </div>
+          </DetailHeader>
 
           {/* Stats + requirements */}
-          <div className={cardStyles["weapon-card__details"]}>
-            <div className="stats">
+          <DetailBody>
+            <StatList>
               {weapon.attack && (
-                <div>
-                  <h3>Attack:</h3>
-                  <p>
-                    <span>{weapon.attack}</span>
-                    {weapon.raw_attack && (
-                      <span className="raw">[ {weapon.raw_attack} ]</span>
-                    )}
-                    {weapon.shelling && (
-                      <span>[{weapon.shelling.type} Type]</span>
-                    )}
-                  </p>
-                </div>
+                <Stat label="Attack:">
+                  <StatValue>{weapon.attack}</StatValue>
+                  {weapon.raw_attack && (
+                    <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
+                  )}
+                  {weapon.shelling && (
+                    <StatValue>[{weapon.shelling.type} Type]</StatValue>
+                  )}
+                </Stat>
               )}
 
               {weapon.max_attack && (
-                <div>
-                  <h3>Max attack:</h3>
-                  <p><span>{weapon.max_attack}</span></p>
-                </div>
+                <Stat label="Max attack:"><StatValue>{weapon.max_attack}</StatValue></Stat>
               )}
 
               {weapon.recoil && (
-                <div>
-                  <h3>Recoil:</h3>
-                  <p><span>{weapon.recoil}</span></p>
-                </div>
+                <Stat label="Recoil:"><StatValue>{weapon.recoil}</StatValue></Stat>
               )}
 
               {weapon.reload && (
-                <div>
-                  <h3>Reload:</h3>
-                  <p><span>{weapon.reload}</span></p>
-                </div>
+                <Stat label="Reload:"><StatValue>{weapon.reload}</StatValue></Stat>
               )}
 
               {weapon.affinity && (
-                <div>
-                  <h3>Affinity:</h3>
-                  <p>
-                    <span className={affinityClass(weapon.affinity)}>
-                      {weapon.affinity}
-                    </span>
-                  </p>
-                </div>
+                <Stat label="Affinity:">
+                  <StatValue className={affinityClass(weapon.affinity)}>
+                    {weapon.affinity}
+                  </StatValue>
+                </Stat>
               )}
 
-              <div>
-                <h3>Slots:</h3>
-                <p>
-                  <span id="weaponSlots">
-                    {Array.from({ length: 3 }, (_, i) =>
-                      i < (weapon.slots ?? 0) ? "O" : "-"
-                    ).join("")}
-                  </span>
-                </p>
-              </div>
+              <Stat label="Slots:">
+                <Slots count={weapon.slots} />
+              </Stat>
 
               {weapon.shelling && (
-                <p>
-                  <span className="positive">
+                <p className="inline-block">
+                  <StatValue className="text-positive">
                     Shelling Lv{weapon.shelling.level}
-                  </span>
+                  </StatValue>
                 </p>
               )}
 
               {weapon.notes && (
-                <div className="notes">
+                <div className="text-white">
                   [Note:
                   {weapon.notes.map((note, i) => (
-                    <Icon key={i} type="note" color={`note-${note}`} alt={note} className={cardStyles["note-icon"]} />
+                    <Icon key={i} type="note" color={`note-${note}`} alt={note} />
                   ))}
                   ]
                 </div>
               )}
 
               {weapon.elements?.map((el, i) => (
-                <p key={i} className="element">
+                <p key={i} className="inline-block text-element">
                   {el.name} Attrib: {el.attack}
                   {typeof el.attack === "number" && (
-                    <span className="raw"> [ {el.attack / 10} ]</span>
+                    <StatValue className="opacity-20"> [ {el.attack / 10} ]</StatValue>
                   )}
                 </p>
               ))}
 
               {weapon.skills?.map((skill, i) => (
-                <p key={i} className="element">{skill}</p>
+                <p key={i} className="inline-block text-element">{skill}</p>
               ))}
 
               {weapon.bonus && (
-                <p className="element">Defense {weapon.bonus}</p>
+                <p className="inline-block text-element">Defense {weapon.bonus}</p>
               )}
-            </div>
+            </StatList>
 
             {modelUrl && <ModelButton open={modelOpen} onClick={() => setOpenModel(modelOpen ? null : modelUrl)} />}
 
-            <hr />
+            <DetailRule />
 
-            {/* Requirements section */}
-            <div className="requirements">
-              <div className="page active">
+            {/* Requirements: only the first page is shown for now */}
+            <Requirements>
+              <RequirementsPage active>
                 {weapon.improve_mats && (
-                  <div className="improve_mats">
-                    <p>
-                      <span>Improve cost: </span>
-                      {weapon.improve_cost}z
-                    </p>
-                    {weapon.improve_mats.map((m, i) => (
-                      <MaterialRow key={i} material={m} />
-                    ))}
-                  </div>
+                  <MaterialList label="Improve cost" cost={weapon.improve_cost} materials={weapon.improve_mats} />
                 )}
 
                 {weapon.create_mats && (
-                  <div className="create_mats">
-                    <p>
-                      <span>Create cost: </span>
-                      {weapon.create_cost}z
-                    </p>
-                    {weapon.create_mats.map((m, i) => (
-                      <MaterialRow key={i} material={m} />
-                    ))}
-                  </div>
+                  <MaterialList label="Create cost" cost={weapon.create_cost} materials={weapon.create_mats} />
                 )}
-              </div>
+              </RequirementsPage>
 
               {weapon.alternative_create_mats && (
-                <div className="page">
-                  <div className="create_mats">
-                    <p>
-                      <span>Create cost: </span>
-                      {weapon.create_cost}z
-                    </p>
-                    {weapon.alternative_create_mats.map((m, i) => (
-                      <MaterialRow key={i} material={m} />
-                    ))}
-                  </div>
-                </div>
+                <RequirementsPage>
+                  <MaterialList
+                    label="Create cost"
+                    cost={weapon.create_cost}
+                    materials={weapon.alternative_create_mats}
+                  />
+                </RequirementsPage>
               )}
 
               {weapon.shots && (
-                <div className="page">
-                  <div className="shots">
-                    <p><span>[Charge Attack]</span></p>
-                    {weapon.shots.map((shot, i) => (
-                      <p key={i} className={i === weapon.shots!.length - 1 ? "green" : ""}>
-                        <span className="orange">
-                          <span style={{ visibility: i === 0 ? "visible" : "hidden" }}>
-                            Lvl
+                <RequirementsPage>
+                  <div className="flex flex-1 flex-col gap-[13px]">
+                    <p><span className="text-stat">[Charge Attack]</span></p>
+                    {weapon.shots.map((shot, i) => {
+                      // The last (strongest) level is highlighted green.
+                      const last = i === weapon.shots!.length - 1;
+                      return (
+                        <p key={i} className={last ? "text-positive" : undefined}>
+                          <span className={last ? "text-positive" : "text-warm"}>
+                            <span className="text-warm" style={{ visibility: i === 0 ? "visible" : "hidden" }}>
+                              Lvl
+                            </span>{" "}
+                            {i + 1}:
                           </span>{" "}
-                          {i + 1}:
-                        </span>{" "}
-                        {shot.name}Lv{shot.level}
-                      </p>
-                    ))}
+                          {shot.name}Lv{shot.level}
+                        </p>
+                      );
+                    })}
                   </div>
-                </div>
+                </RequirementsPage>
               )}
 
               {weapon.ammo && (
-                <div className="page">
-                  <table className={tableStyles.min}>
+                <RequirementsPage>
+                  <table className={statTable}>
                     <thead>
                       <tr>
                         <th>Cap.:</th><th>LV</th><th>1</th><th>2</th><th>3</th><th></th>
@@ -290,11 +243,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     </thead>
                     <tbody>
                       {weapon.ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                        <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                               {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
@@ -304,7 +257,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.status_ammo && (
-                    <table className={tableStyles.min}>
+                    <table className={statTable}>
                       <thead>
                         <tr>
                           <th></th><th>LV</th><th>1</th><th>2</th><th></th>
@@ -312,11 +265,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </thead>
                       <tbody>
                         {weapon.status_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "000" ? "gray" : ""}>
+                          <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                                 {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
@@ -325,22 +278,22 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </tbody>
                     </table>
                   )}
-                </div>
+                </RequirementsPage>
               )}
 
               {weapon.element_ammo && (
-                <div className="page">
-                  <table className={tableStyles.min}>
+                <RequirementsPage>
+                  <table className={statTable}>
                     <thead>
                       <tr><th>Cap.:</th><th></th><th></th></tr>
                     </thead>
                     <tbody>
                       {weapon.element_ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                        <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
-                            <td key={j} className={cap === 0 ? "gray" : ""}>
+                            <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                               {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
@@ -350,17 +303,17 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   </table>
 
                   {weapon.misc_ammo && (
-                    <table className={tableStyles.min}>
+                    <table className={statTable}>
                       <thead>
                         <tr><th></th><th></th><th></th></tr>
                       </thead>
                       <tbody>
                         {weapon.misc_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "0" ? "gray" : ""}>
+                          <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
-                              <td key={j} className={cap === 0 ? "gray" : ""}>
+                              <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
                                 {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
@@ -369,31 +322,34 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </tbody>
                     </table>
                   )}
-                </div>
+                </RequirementsPage>
               )}
 
               {weapon.coatings && (
-                <div className="page">
-                  <div className="coatings">
-                    <p><span>[Usable Coating]</span></p>
+                <RequirementsPage>
+                  <div className="flex flex-1 flex-row flex-wrap content-start gap-[13px]">
+                    <p className="w-full"><span className="text-stat">[Usable Coating]</span></p>
                     {COATINGS.map((coating) => {
                       const key = coating.toLowerCase().replace(" coating", "").trim();
                       const usable = weapon.coatings!.some((c) =>
                         c.toLowerCase().includes(key)
                       );
                       return (
-                        <p key={coating} className={usable ? "" : "gray"}>
+                        <p
+                          key={coating}
+                          className={cn("w-[calc(50%-13px)]", !usable && "text-unavailable")}
+                        >
                           {coating}
                         </p>
                       );
                     })}
                   </div>
-                </div>
+                </RequirementsPage>
               )}
 
               {melodies && (
-                <div className="page">
-                  <table className={tableStyles.min}>
+                <RequirementsPage>
+                  <table className={statTable}>
                     <thead>
                       <tr>
                         <th>Combo</th>
@@ -404,7 +360,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     <tbody>
                       {melodies.map((melody, i) => (
                         <tr key={i}>
-                          <td className="notes">
+                          <td>
                             {melody.combo.map((note, j) => (
                               <Icon key={j} type="note" color={`note-${note}`} alt={note} />
                             ))}
@@ -415,11 +371,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       ))}
                     </tbody>
                   </table>
-                </div>
+                </RequirementsPage>
               )}
-            </div>
-          </div>
-        </Card>
+            </Requirements>
+          </DetailBody>
+        </DetailCard>
         {modelOpen && (
           <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
             <ModelViewer src={modelUrl} label={weapon.name} />
