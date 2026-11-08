@@ -99,6 +99,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             <p id="weapon_name">{weapon.name}</p>
 
+            {modelUrl && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                className="ml-[0.4rem]"
+              />
+            )}
+
             {(weapon.sharpness || weapon.sharpness_plus) && (
               <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
                 {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
@@ -185,13 +193,6 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.bonus && <p className="inline-block text-element">Defense {weapon.bonus}</p>}
             </StatList>
-
-            {modelUrl && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-              />
-            )}
 
             <DetailRule />
 
