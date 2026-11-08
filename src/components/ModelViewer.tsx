@@ -16,7 +16,7 @@ interface Props {
 }
 
 /** Angle of each blade of a pair from the centre line. */
-const PAIR_OFFSET = (34.5 * Math.PI) / 180;
+const PAIR_OFFSET = (32 * Math.PI) / 180;
 
 type Status = "loading" | "ready" | "error";
 
