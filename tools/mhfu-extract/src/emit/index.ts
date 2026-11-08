@@ -13,7 +13,12 @@ import type { TableAddressResolver } from "../tables/resolver.js";
 import { WEAPON_TYPE_NAMES, type WeaponTypeName } from "../tables/weapons.js";
 import { emitArmor } from "./armor.js";
 import { emitDecorations } from "./decorations.js";
-import { emitBlademasterWeapons, emitGunnerWeapons, type EmittedWeapon } from "./weapons.js";
+import {
+  attachHornMelodies,
+  emitBlademasterWeapons,
+  emitGunnerWeapons,
+  type EmittedWeapon,
+} from "./weapons.js";
 
 const ARMOR_SLOT_TO_FILE: Record<ArmorSlot, string> = {
   head: "armor/helmet.json",
@@ -61,7 +66,15 @@ function groupWeaponsByType(weapons: EmittedWeapon[]): Map<WeaponTypeName, Emitt
  * `MHP2G_PROFILE.resolverForRegion("eu")` (games/mhp2g.ts) to read the same
  * struct layouts from a different region's EBOOT instead.
  */
-export function emitAll(reader: BinaryReader, resolver?: TableAddressResolver): EmitOutput {
+/**
+ * `gameTask` is the decrypted `game_task.ovl`; when given, hunting horns
+ * get their `melodies` from it (emit/weapons.ts `attachHornMelodies()`).
+ */
+export function emitAll(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+  gameTask?: BinaryReader,
+): EmitOutput {
   const output: EmitOutput = {};
 
   output["decorations.json"] = { decorations: emitDecorations(reader, resolver) };
@@ -71,8 +84,10 @@ export function emitAll(reader: BinaryReader, resolver?: TableAddressResolver): 
     output[ARMOR_SLOT_TO_FILE[slot]] = { armor: armor[slot] };
   }
 
+  const blademaster = emitBlademasterWeapons(reader, resolver);
+  if (gameTask) attachHornMelodies(blademaster, gameTask);
   const weaponsByType = groupWeaponsByType([
-    ...emitBlademasterWeapons(reader, resolver),
+    ...blademaster,
     ...emitGunnerWeapons(reader, resolver),
   ]);
   for (const type of WEAPON_TYPE_NAMES) {

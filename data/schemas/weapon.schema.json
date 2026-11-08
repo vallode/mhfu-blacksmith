@@ -99,6 +99,28 @@
           }
         },
         "notes":    { "type": ["string", "array", "null"] },
+        "melodies": {
+          "description": "Hunting horn songs the horn's notes can play, from the disc's melody table (game_task.ovl). Effect text is hand-made (tools/mhfu-extract/src/overlay/melody-effects.json).",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["combo", "effect"],
+            "additionalProperties": false,
+            "properties": {
+              "combo": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "items": { "enum": ["a", "b", "g", "p", "r", "w", "y"] }
+              },
+              "effect":            { "type": "string" },
+              "description":       { "type": ["string", "null"] },
+              "duration":          { "type": ["string", "null"] },
+              "extended_effect":   { "type": ["string", "null"] },
+              "extended_duration": { "type": ["string", "null"] }
+            }
+          }
+        },
         "coatings": { "type": ["array", "null"] },
         "shots":    { "type": ["object", "array", "null"] },
         "reload":   { "type": ["string", "null"] },

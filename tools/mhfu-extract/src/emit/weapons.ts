@@ -10,14 +10,12 @@
  * abbreviation/typo differences, not extraction bugs) — see this module's
  * derivation comments and `README.md`'s "Derived values" section.
  *
- * Deliberately **not** emitted this pass (out of scope — no confirmed
- * derivation yet): Hunting Horn's hidden `bonus` attack stat and Gunlance's
- * `shelling` type/level (both packed into the shared `NoteGLType` byte, but
- * its exact decode isn't nailed down). Gunner ammo, shots, coatings,
- * reload, recoil and rapid fire are in emit/gunner.ts. `notes` is
- * also not emitted (its committed content looks hand-written, not
- * disc-derived). These all come through as `null`/omitted, which the
- * loosely-typed weapon schema (`additionalProperties: true`) allows.
+ * Hunting horn `notes` and gunlance `shelling` are both decoded from the
+ * struct's `NoteGLType` byte (`hornNotes()`, `gunlanceShelling()`), and
+ * every weapon's `bonus` is its `Defense` byte (`defenseBonus()`). Horn
+ * `melodies` need `game_task.ovl` and are added by `attachHornMelodies()`.
+ * Gunner ammo, shots, coatings, reload, recoil and rapid fire are in
+ * emit/gunner.ts.
  */
 import {
   readBlademasterWeapons,
@@ -36,6 +34,8 @@ import {
   type EquipUpgradeEntry,
 } from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
+import { readHornNoteSets, readMelodyTable, songsForNotes, type Song } from "../tables/horn.js";
+import { melodyEffect } from "../overlay/melody-effects.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
 import { emitBowCoatingBonuses, emitGunnerDetails, readGunnerTables } from "./gunner.js";
@@ -207,7 +207,7 @@ export interface EmittedWeapon {
   sharpness_plus: number[] | undefined;
   affinity: string;
   slots: number;
-  bonus: null;
+  bonus: string | null;
   rarity: number;
   type: WeaponTypeName | null;
   create_cost: number | null;
@@ -244,6 +244,66 @@ export function blademasterAffinity(affinity: number, sharpnessAmount: number): 
   return affinity + (SHARPNESS_AFFINITY_BONUS[sharpnessAmount] ?? 0);
 }
 
+/**
+ * A weapon's `bonus`: its `Defense` byte, the defense it adds when equipped
+ * (vallode/mhfu-blacksmith#32). On the EU disc it equals the committed
+ * bonus of 1524 of 1527 weapons in every type; the other 3 (Crater Maker,
+ * Sanctioned Gunlance and Sanctioned Gunlance G) have none on the site.
+ * Bowguns are written without the sign (`"10"`), everything else with it
+ * (`"+10"`), as the committed files do.
+ */
+export function defenseBonus(defense: number, type: WeaponTypeName | null): string | null {
+  if (defense === 0) return null;
+  return type === "light-bowgun" || type === "heavy-bowgun" ? String(defense) : `+${defense}`;
+}
+
+/** Gunlance shell types in `NoteGLType` order. */
+const SHELL_TYPES = ["Normal", "Spread", "Long"] as const;
+
+/**
+ * A gunlance's shelling from `NoteGLType`: type `n % 3` (Normal, Spread,
+ * Long), level `n / 3 + 1`. 85 of the 87 EU gunlances match the committed
+ * shelling; Scissor Gunlance and Scissor Cannon G are one level higher on
+ * the site than in their family's progression.
+ */
+export function gunlanceShelling(noteGlType: number): { type: string; level: string } {
+  return { type: SHELL_TYPES[noteGlType % 3]!, level: String(Math.floor(noteGlType / 3) + 1) };
+}
+
+/** A horn's notes from `NoteGLType`, an index into the note-set table (tables/horn.ts). */
+export function hornNotes(noteSets: string[][], noteGlType: number): string[] {
+  const notes = noteSets[noteGlType];
+  if (!notes) throw new Error(`NoteGLType ${noteGlType} is past the note-set table.`);
+  return notes;
+}
+
+export interface EmittedMelody {
+  combo: string[];
+  effect: string;
+  description: string | null;
+  duration: string | null;
+  extended_effect: string | null;
+  extended_duration: string | null;
+}
+
+/** A horn's melody list: the songs its notes can play, with the effect text from the overlay. */
+export function emitMelodies(songs: Song[], notes: string[]): EmittedMelody[] {
+  return songsForNotes(songs, notes).map((song) => {
+    const { id: _id, ...effect } = melodyEffect(song.effectId);
+    return { combo: song.notes, ...effect };
+  });
+}
+
+/** Adds `melodies` to every emitted horn, from `game_task.ovl`'s melody table. */
+export function attachHornMelodies(weapons: EmittedWeapon[], gameTask: BinaryReader): void {
+  const songs = readMelodyTable(gameTask);
+  for (const w of weapons) {
+    if (w.type === "hunting-horn" && Array.isArray(w.notes)) {
+      w.melodies = emitMelodies(songs, w.notes as string[]);
+    }
+  }
+}
+
 export function emitBlademasterWeapons(
   reader: BinaryReader,
   resolver?: TableAddressResolver,
@@ -256,6 +316,8 @@ export function emitBlademasterWeapons(
   const upgrade = readEquipmentUpgrade(reader, resolver);
   const dualAttributes = dualAttributesByWeaponId(reader, resolver);
   const names = getNameResolver();
+  const hasHorns = weapons.some((w) => modelToType[w.modelId] === "hunting-horn");
+  const noteSets = hasHorns ? readHornNoteSets(reader) : [];
 
   const createByEquipId = groupEquipCreateByEquipId([
     ...create.greatSwordLongSword,
@@ -303,9 +365,11 @@ export function emitBlademasterWeapons(
       sharpness_plus: sharp.sharpnessPlus,
       affinity: `${blademasterAffinity(w.affinity, w.sharpnessAmount)}%`,
       slots: w.slots,
-      bonus: null,
+      bonus: defenseBonus(w.defense, type),
       rarity: displayRarity(w.rarity),
       type,
+      ...(type === "hunting-horn" ? { notes: hornNotes(noteSets, w.noteGlType) } : {}),
+      ...(type === "gunlance" ? { shelling: gunlanceShelling(w.noteGlType) } : {}),
       create_cost: primaryRecipe ? halveCost(w.price) : null,
       improve_cost:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
@@ -379,7 +443,7 @@ export function emitGunnerWeapons(
       sharpness_plus: undefined,
       affinity: `${w.affinity}%`,
       slots: w.slots,
-      bonus: null,
+      bonus: defenseBonus(w.defense, type),
       rarity: displayRarity(w.rarity),
       type,
       create_cost: primaryRecipe ? halveCost(w.price) : null,

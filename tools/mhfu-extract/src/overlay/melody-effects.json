@@ -1,0 +1,341 @@
+{
+  "_comment": "Hunting horn melody effects by the disc's effect ID (game_task.ovl melody table, src/tables/horn.ts). The disc gives each song's notes and effect ID only. The names, descriptions and durations here are not from the disc: they were carried over from the old site's hand-made content/blacksmith/hunting-horn/hunting-horn-melodies.json (source not recorded; removed when melodies moved into data/weapons/hunting-horn.json), matched to effect IDs by note sequence. Every effect ID matched exactly one site effect name.",
+  "effects": [
+    {
+      "id": 0,
+      "effect": "Movement Speed Up",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": "Attacks Harder To Break",
+      "extended_duration": "1 min 30 s"
+    },
+    {
+      "id": 1,
+      "effect": "Attack Up [Lo]",
+      "description": "Attack +10%",
+      "duration": "2 mins",
+      "extended_effect": "Attack +15%",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 2,
+      "effect": "Attack Up [Hi]",
+      "description": "Attack +15%",
+      "duration": "1 min 30 s",
+      "extended_effect": "Attack +20%",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 3,
+      "effect": "Defense Up [Lo]",
+      "description": "Defense +15%",
+      "duration": "2 mins",
+      "extended_effect": "Defense +20%",
+      "extended_duration": "1 min 30 s"
+    },
+    {
+      "id": 4,
+      "effect": "Defense Up [Hi]",
+      "description": "Defense +20%",
+      "duration": "1 min 30 s",
+      "extended_effect": "Defense +30%",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 5,
+      "effect": "Health Inc [Lo]",
+      "description": "Health +20",
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 6,
+      "effect": "Health Inc [Mid]",
+      "description": "Health +30",
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 7,
+      "effect": "Health Inc [Hi]",
+      "description": "Health +50",
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 8,
+      "effect": "Wind Reduce",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": "Wind Cancel",
+      "extended_duration": "2 mins"
+    },
+    {
+      "id": 9,
+      "effect": "Wind Cancel",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": "Wind All Cancel",
+      "extended_duration": "2 mins"
+    },
+    {
+      "id": 10,
+      "effect": "Wind All Cancel",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": "Wind All Cancel",
+      "extended_duration": "3 mins"
+    },
+    {
+      "id": 11,
+      "effect": "No Stamina Loss [Lo]",
+      "description": null,
+      "duration": "1 min 30 s",
+      "extended_effect": "No Stamina Loss Extnd",
+      "extended_duration": "1 min 30 s"
+    },
+    {
+      "id": 12,
+      "effect": "No Stamina Loss [Hi]",
+      "description": null,
+      "duration": "2 mins 30 s",
+      "extended_effect": "No Stamina Loss Extnd",
+      "extended_duration": "2 mins 30 s"
+    },
+    {
+      "id": 13,
+      "effect": "Clairvoyance",
+      "description": null,
+      "duration": "30 s",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 14,
+      "effect": "Health Rec [Lo]",
+      "description": "20 hp",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 15,
+      "effect": "Health Rec [Mid]",
+      "description": "30 hp",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 16,
+      "effect": "Health Rec [High]",
+      "description": "40 hp",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 17,
+      "effect": "HealthRec[Mid]&Deodorant",
+      "description": "30 hp + Deodorant effect",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 18,
+      "effect": "HealthRec[Lo]&Antidote",
+      "description": "20 hp + Antidote effect",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 19,
+      "effect": "HealthRec[Mid]&Antidote",
+      "description": "30 hp + Antidote effect",
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 20,
+      "effect": "Recover Spd Up [Lo]",
+      "description": null,
+      "duration": "2 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 21,
+      "effect": "Recover Spd Up [Hi]",
+      "description": null,
+      "duration": "2 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 22,
+      "effect": "Heavenly Protection",
+      "description": "50% chance of negating 30% damage",
+      "duration": "2 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 23,
+      "effect": "No Cold & Snow Res",
+      "description": null,
+      "duration": "4 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 24,
+      "effect": "No Heat",
+      "description": null,
+      "duration": "4 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 25,
+      "effect": "Hear Protect [Lo]",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": "Hear Protect [Hi]",
+      "extended_duration": "2 mins"
+    },
+    {
+      "id": 26,
+      "effect": "Hear Protect [Hi]",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 27,
+      "effect": "No Faint",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 28,
+      "effect": "No Paralysis",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 29,
+      "effect": "No Quakes",
+      "description": null,
+      "duration": "3 mins",
+      "extended_effect": null,
+      "extended_duration": null
+    },
+    {
+      "id": 30,
+      "effect": "Element Attack Up",
+      "description": "Adds 15% to element",
+      "duration": "1 min 30 s",
+      "extended_effect": "Adds 20% to element",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 31,
+      "effect": "Fire Res Up [Lo]",
+      "description": "Fire Resistance +10",
+      "duration": "1 min",
+      "extended_effect": "Fire Resistance +15",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 32,
+      "effect": "Fire Res Up [Hi]",
+      "description": "Fire Resistance +15",
+      "duration": "1 min",
+      "extended_effect": "Fire Resistance +20",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 33,
+      "effect": "Water Res Up [Lo]",
+      "description": "Water Resistance +10",
+      "duration": "1 min",
+      "extended_effect": "Water Resistance +15",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 34,
+      "effect": "Water Res Up [Hi]",
+      "description": "Water Resistance +15",
+      "duration": "1 min",
+      "extended_effect": "Water Resistance +20",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 35,
+      "effect": "Thunder Res Up [Lo]",
+      "description": "Thunder Resistance +10",
+      "duration": "1 min",
+      "extended_effect": "Thunder Resistance +15",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 36,
+      "effect": "Thunder Res Up [Hi]",
+      "description": "Thunder Resistance +15",
+      "duration": "1 min",
+      "extended_effect": "Thunder Resistance +20",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 37,
+      "effect": "Ice Res Up [Lo]",
+      "description": "Ice Resistance +10",
+      "duration": "1 min",
+      "extended_effect": "Ice Resistance +15",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 38,
+      "effect": "Ice Res Up [Hi]",
+      "description": "Ice Resistance +15",
+      "duration": "1 min",
+      "extended_effect": "Ice Resistance +20",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 39,
+      "effect": "Dragon Res Up [Lo]",
+      "description": "Dragon Resistance +10",
+      "duration": "1 min",
+      "extended_effect": "Dragon Resistance +15",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 40,
+      "effect": "Dragon Res Up [Hi]",
+      "description": "Dragon Resistance +15",
+      "duration": "1 min",
+      "extended_effect": "Dragon Resistance +20",
+      "extended_duration": "1 min"
+    },
+    {
+      "id": 41,
+      "effect": "High-Frequency",
+      "description": null,
+      "duration": null,
+      "extended_effect": null,
+      "extended_duration": null
+    }
+  ]
+}
