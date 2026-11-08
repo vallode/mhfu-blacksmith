@@ -179,9 +179,19 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
   );
 }
 
+/**
+ * Quests left off the site for now: the 90 identical "Gathering - Snowy
+ * Mountains" copies (IDs 30001-30090) on the Guild Low Rank board.
+ */
+export function isHiddenQuest(id: number): boolean {
+  return id >= 30001 && id <= 30090;
+}
+
 /** Quests on a hub, by stars and then ID. */
 export function questsOnHub(quests: Quest[], hub: string): Quest[] {
-  return quests.filter((q) => q.hub === hub).sort((a, b) => a.stars - b.stars || a.id - b.id);
+  return quests
+    .filter((q) => q.hub === hub && !isHiddenQuest(q.id))
+    .sort((a, b) => a.stars - b.stars || a.id - b.id);
 }
 
 /** Quests a monster appears in as a large monster or the target, by hub order, stars and ID. */
