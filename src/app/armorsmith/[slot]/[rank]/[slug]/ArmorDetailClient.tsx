@@ -113,7 +113,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               />
             )}
             {(piece.sex || piece.hunter_type) && (
-              <div className="ml-[1.6rem] flex gap-[1.6rem] mobile:ml-0">
+              <div className="ml-[1.6rem] flex flex-wrap gap-x-[1.6rem] mobile:ml-0">
                 {piece.sex && <span>{piece.sex}</span>}
                 {piece.hunter_type && <span>{piece.hunter_type}</span>}
               </div>
@@ -162,10 +162,10 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 <h2 className="m-0 w-full leading-none font-normal">Skills</h2>
                 {piece.skills.map((skill, i) => (
                   <div key={i} className="flex">
-                    <h3 className="m-0 flex w-[10ch] leading-none font-normal">{skill.name}</h3>
+                    <h3 className="m-0 flex w-cells-10 leading-none font-normal">{skill.name}</h3>
                     <p
                       className={cn(
-                        "w-[4ch] text-right",
+                        "w-cells-4 text-right",
                         Number(skill.amount) < 0 ? "text-negative" : "text-positive",
                       )}
                     >

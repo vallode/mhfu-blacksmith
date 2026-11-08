@@ -30,6 +30,10 @@ export type FieldKind =
   | "set"
   /** A percentage (`"10%"`, `"-5%"`, or a bare `"0"`), compared by its number. */
   | "percent"
+  /** Bowgun `{ name, capacity }[]` ammo lists, compared by ammo name (trimmed). */
+  | "ammo"
+  /** A `|`-joined list (`rapid_fire`), compared as a set of trimmed entries; null is empty. */
+  | "joined-set"
   /** Monster `{ part: { cut, bash, … } }`, compared by number per part. */
   | "hitzones"
   /** Monster `{ rank: { group: [{ name, chance }] } }`, each group compared as a multiset of (item ID, chance, amount). */
@@ -213,6 +217,22 @@ function weaponRefKeys(value: unknown, side: "site" | "disc", ctx: FieldContext)
     .sort();
 }
 
+function ammoKeys(value: unknown): string[] {
+  return list(value)
+    .map((a) => a as { name: string; capacity: number[] })
+    .map((a) => `${a.name.trim()}=${JSON.stringify(a.capacity)}`)
+    .sort();
+}
+
+function joinedKeys(value: unknown): string[] {
+  if (typeof value !== "string") return [];
+  return value
+    .split("|")
+    .map((v) => v.trim())
+    .filter((v) => v !== "")
+    .sort();
+}
+
 /** The value reduced to a string that's equal on both sides exactly when they agree. */
 export function canonical(
   spec: FieldSpec,
@@ -241,6 +261,10 @@ export function canonical(
       const n = percentValue(value);
       return n === null ? JSON.stringify(value ?? null) : String(n);
     }
+    case "ammo":
+      return JSON.stringify(ammoKeys(value));
+    case "joined-set":
+      return JSON.stringify(joinedKeys(value));
     case "hitzones":
       return JSON.stringify(hitzoneKeys(value));
     case "drops":
@@ -427,6 +451,8 @@ export function toSite(
   switch (spec.kind) {
     case "scalar":
     case "set":
+    case "ammo":
+    case "joined-set":
       return disc;
     case "armor-skills":
       return armorSkillsToSite(disc, committed, ctx);

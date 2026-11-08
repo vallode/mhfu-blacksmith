@@ -284,6 +284,9 @@ function encodeMonster(m: Monster): CompactMonster {
       }),
     ]);
   }
+  if (typeof m.sizes?.min === "number" && typeof m.sizes?.max === "number") {
+    out.sz = [m.sizes.min, m.sizes.max];
+  }
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
       intern(stringIndex, rankName),

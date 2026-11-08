@@ -218,6 +218,12 @@ export function formatValue(value: unknown): string {
         }
         if (v && typeof v === "object" && "name" in v && "attack" in v)
           return `${(v as { name: string }).name} ${(v as { attack: number }).attack}`;
+        if (v && typeof v === "object" && "name" in v && "capacity" in v) {
+          const { name, capacity } = v as { name: string; capacity: number[] };
+          return `${name} ${capacity.join("/")}`;
+        }
+        if (v && typeof v === "object" && "name" in v && "level" in v)
+          return `${(v as { name: string }).name} ${(v as { level: string }).level}`;
         return String(v);
       })
       .join(", ");

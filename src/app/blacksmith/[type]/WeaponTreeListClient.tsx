@@ -23,7 +23,9 @@ export default function WeaponTreeListClient({ type }: Props) {
         <WeaponTreePanel type={type} tree={loading ? null : tree} />
 
         <Card>
-          <p>{loading ? "Loading…" : "Select a weapon from the tree."}</p>
+          <p className="leading-[1.2] whitespace-normal">
+            {loading ? "Loading…" : "Select a weapon from the tree."}
+          </p>
         </Card>
       </div>
     </>

@@ -651,49 +651,49 @@
   {
     "slug": "redguildguard-gloves-male",
     "type": "gauntlets",
-    "name": "RedGuildGuard Gloves (Male)",
+    "name": "RedGuildGuard Gloves",
     "rarity": 8
   },
   {
     "slug": "redguildguardsleeves-male",
     "type": "gauntlets",
-    "name": "RedGuildGuardSleeves (Male)",
+    "name": "RedGuildGuardSleeves",
     "rarity": 8
   },
   {
     "slug": "blueguildguardgloves-male",
     "type": "gauntlets",
-    "name": "BlueGuildGuardGloves (Male)",
+    "name": "BlueGuildGuardGloves",
     "rarity": 8
   },
   {
     "slug": "bluguildguardsleeves-male",
     "type": "gauntlets",
-    "name": "BluGuildGuardSleeves (Male)",
+    "name": "BluGuildGuardSleeves",
     "rarity": 8
   },
   {
     "slug": "redguildguard-gloves-female",
     "type": "gauntlets",
-    "name": "RedGuildGuard Gloves (Female)",
+    "name": "RedGuildGuard Gloves",
     "rarity": 8
   },
   {
     "slug": "redguildguardsleeves-female",
     "type": "gauntlets",
-    "name": "RedGuildGuardSleeves (Female)",
+    "name": "RedGuildGuardSleeves",
     "rarity": 8
   },
   {
     "slug": "blueguildguardgloves-female",
     "type": "gauntlets",
-    "name": "BlueGuildGuardGloves (Female)",
+    "name": "BlueGuildGuardGloves",
     "rarity": 8
   },
   {
     "slug": "bluguildguardsleeves-female",
     "type": "gauntlets",
-    "name": "BluGuildGuardSleeves (Female)",
+    "name": "BluGuildGuardSleeves",
     "rarity": 8
   },
   {
