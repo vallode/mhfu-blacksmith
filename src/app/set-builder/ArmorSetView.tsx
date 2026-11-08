@@ -206,7 +206,16 @@ export function SetHeader({
   );
 }
 
-function PieceName({ piece, slot, edit }: { piece?: Piece; slot: string; edit?: SetEditing }) {
+function PieceName({
+  piece,
+  slot,
+  edit,
+}: {
+  piece?: Piece;
+  slot: (typeof ARMOR_SLOTS)[number];
+  edit?: SetEditing;
+}) {
+  const label = BIN_LABELS[slot];
   if (!edit) {
     return piece ? (
       <Link href={piece.href} className="hover:text-gold">
@@ -220,8 +229,8 @@ function PieceName({ piece, slot, edit }: { piece?: Piece; slot: string; edit?: 
     <button
       type="button"
       className="w-full cursor-pointer truncate border-none bg-transparent p-0 text-left font-[inherit] text-[inherit] text-white hover:text-gold focus-visible:text-gold mobile:whitespace-normal"
-      aria-label={piece ? `${slot}: ${piece.name}. Change` : `${slot}: empty. Choose a piece`}
-      onClick={() => edit.onPickPiece(piece?.slot ?? (slot as Piece["slot"]))}
+      aria-label={piece ? `${label}: ${piece.name}. Change` : `${label}: empty. Choose a piece`}
+      onClick={() => edit.onPickPiece(slot)}
     >
       {piece ? piece.name : <span className="text-white/40">- Choose -</span>}
       {piece && edit.isOwned?.(piece) && (
@@ -278,7 +287,7 @@ export default function ArmorSetView({
               key={slot}
               bin={slot}
               icon={<Icon type={slot} size="mini" rarity={p?.rarity} alt={slot} />}
-              name={<PieceName piece={p} slot={BIN_LABELS[slot]} edit={edit} />}
+              name={<PieceName piece={p} slot={slot} edit={edit} />}
               slots={<Slots count={p?.slots ?? 0} />}
               decos={decosIn(slot)}
               edit={edit}
