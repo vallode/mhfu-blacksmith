@@ -11,6 +11,7 @@ import Card from "./Card";
 import TreeScroll from "./TreeScroll";
 import WeaponTreeRow from "./WeaponTreeRow";
 import SelectorArrow from "./SelectorArrow";
+import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { TreeFilterContext } from "@/context/TreeFilterContext";
 import { cycleTreeFilter, filterTree, TREE_FILTERS, type TreeFilterId } from "@/lib/tree-filter";
@@ -45,10 +46,15 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   // is never the case on the first (hydrating) render.
   const [filter, setFilter] = useState<TreeFilterId>(readTreeFilter);
 
+  // The rows the hunter's quest progress (a preference) leaves in.
+  const visibleTree = useVisibleTree(tree, type, basePath, activeSlug);
+
   // Recomputed every render: craftCheck answers null until a bundle has
   // loaded, and the provider re-renders us when it arrives.
   const result =
-    progress.active && tree ? filterTree(tree, type, basePath, progress, filter) : null;
+    progress.active && visibleTree
+      ? filterTree(visibleTree, type, basePath, progress, filter)
+      : null;
 
   const step = (by: 1 | -1) => {
     setFilter((current) => {
@@ -67,7 +73,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
       <Card variant="weapon-tree">
         <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
           <TreeFilterContext.Provider value={result}>
-            {tree?.map((node) => (
+            {visibleTree?.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
                   node={node}
