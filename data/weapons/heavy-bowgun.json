@@ -701,7 +701,7 @@
         {
           "name": "Rubbery Hide",
           "amount": 1,
-          "type": "pelt",
+          "type": "hide",
           "color": "blue"
         }
       ],
@@ -16426,7 +16426,7 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": 6,
-          "type": "shell",
+          "type": "claw",
           "color": "slate"
         },
         {

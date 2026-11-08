@@ -4221,7 +4221,7 @@
         {
           "name": "Sm Lobstershell",
           "amount": 4,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -4278,7 +4278,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -4337,7 +4337,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -8238,7 +8238,7 @@
         {
           "name": "Barrel Lid",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],

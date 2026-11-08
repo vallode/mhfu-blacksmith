@@ -4560,8 +4560,8 @@
         {
           "name": "Giant Corn",
           "amount": 2,
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "yellow"
         },
         {
           "name": "Inferno Sac",
@@ -4623,8 +4623,8 @@
         {
           "name": "Giant Corn",
           "amount": 5,
-          "type": "bone",
-          "color": "white"
+          "type": "seed",
+          "color": "yellow"
         },
         {
           "name": "Blazing Fire Sac",

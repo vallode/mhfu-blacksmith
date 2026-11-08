@@ -2060,7 +2060,7 @@
         {
           "name": "Sm Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -7393,7 +7393,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -13270,7 +13270,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -20715,7 +20715,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 3,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -22626,7 +22626,7 @@
         {
           "name": "Old Pickaxe",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -22793,7 +22793,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 10,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {

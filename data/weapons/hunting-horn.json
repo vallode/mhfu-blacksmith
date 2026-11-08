@@ -2519,7 +2519,7 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": 1,
-          "type": "shell",
+          "type": "claw",
           "color": "slate"
         }
       ],
@@ -5269,7 +5269,7 @@
         {
           "name": "Gt Lobstershell",
           "amount": 2,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         }
       ],

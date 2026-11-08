@@ -1519,7 +1519,7 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": 2,
-          "type": "shell",
+          "type": "claw",
           "color": "slate"
         },
         {
@@ -2679,7 +2679,7 @@
         {
           "name": "PlumD.HermitrClw",
           "amount": 1,
-          "type": "shell",
+          "type": "claw",
           "color": "slate"
         },
         {
@@ -2981,7 +2981,7 @@
         {
           "name": "Normal S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3014,7 +3014,7 @@
         {
           "name": "Pierce S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3047,7 +3047,7 @@
         {
           "name": "Pellet S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3080,7 +3080,7 @@
         {
           "name": "Crag S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3113,7 +3113,7 @@
         {
           "name": "Clust S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3318,8 +3318,8 @@
         {
           "name": "Poison Coating",
           "amount": 1,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "slate"
         }
       ],
       "color": "slate",
@@ -3358,8 +3358,8 @@
         {
           "name": "ParalysisCoating",
           "amount": 1,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -3398,8 +3398,8 @@
         {
           "name": "ParalysisCoating",
           "amount": 20,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "color": "yellow",
@@ -3437,8 +3437,8 @@
         {
           "name": "Sleep Coating",
           "amount": 1,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "cyan"
         }
       ],
       "color": "cyan",
@@ -3477,8 +3477,8 @@
         {
           "name": "Power Coating",
           "amount": 1,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         }
       ],
       "color": "red",
@@ -3517,8 +3517,8 @@
         {
           "name": "Power Coating",
           "amount": 50,
-          "type": "bone",
-          "color": "white"
+          "type": "fluid",
+          "color": "red"
         }
       ],
       "color": "red",
@@ -3556,7 +3556,7 @@
         {
           "name": "CloseRngCoating",
           "amount": 1,
-          "type": "bone",
+          "type": "fluid",
           "color": "white"
         }
       ],
@@ -3583,19 +3583,19 @@
         {
           "name": "Normal S Lv3",
           "amount": 3,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
           "name": "Pellet S Lv3",
           "amount": 2,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
           "name": "Clust S Lv3",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -3771,7 +3771,7 @@
         {
           "name": "Sm Lobstershell",
           "amount": 1,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -3824,7 +3824,7 @@
         {
           "name": "Lg Lobstershell",
           "amount": 1,
-          "type": "claw",
+          "type": "shell",
           "color": "pink"
         },
         {
@@ -4169,7 +4169,7 @@
         {
           "name": "Binoculars",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -4304,7 +4304,7 @@
         {
           "name": "Book of Combos 1",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
@@ -4337,7 +4337,7 @@
         {
           "name": "Health Flute",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
@@ -4449,7 +4449,7 @@
         {
           "name": "Flute",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -5759,13 +5759,13 @@
         {
           "name": "Boomerang",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
           "name": "Flute",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -5798,13 +5798,13 @@
         {
           "name": "Mega Pickaxe",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
           "name": "Mega Bugnet",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -5986,7 +5986,7 @@
         {
           "name": "Shock Trap",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -6026,7 +6026,7 @@
         {
           "name": "Net",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -6066,7 +6066,7 @@
         {
           "name": "Trap Tool",
           "amount": 2,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],

@@ -10,7 +10,10 @@
  * This strongly suggests `type`/`color` here are a hand-curated icon/CSS
  * styling choice from whoever originally built the site's dataset (likely
  * matching a specific icon sprite sheet), not a property the game itself
- * stores per-item.
+ * stores per-item. Part of that spread is the committed data's placeholder
+ * "bone"/"white" style, which `build-data` has since replaced
+ * (`build/material-styles.ts`), so the correlation may be worth rechecking
+ * against the regenerated `data/`.
  *
  * `materials.json` is a one-time snapshot of every `{name, type, color}`
  * combination already present in the committed `data/` directory (armor,

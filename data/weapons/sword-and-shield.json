@@ -5944,7 +5944,7 @@
         {
           "name": "Barrel Lid",
           "amount": 1,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         }
       ],
@@ -5988,7 +5988,7 @@
         {
           "name": "Barrel Lid",
           "amount": 3,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {
@@ -8439,7 +8439,7 @@
         {
           "name": "Rubbery Hide",
           "amount": 20,
-          "type": "pelt",
+          "type": "hide",
           "color": "blue"
         }
       ],
@@ -8623,7 +8623,7 @@
         {
           "name": "Barrel Lid",
           "amount": 5,
-          "type": "bone",
+          "type": "ukwn",
           "color": "white"
         },
         {

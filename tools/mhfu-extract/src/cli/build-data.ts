@@ -11,6 +11,7 @@ import path from "node:path";
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import { loadInputs, type Unpaired } from "../build/compare.js";
 import { loadKeepSiteValues, mergeCategory, serializeDataFile, type Change, type KeptDisagreement } from "../build/merge.js";
+import { buildStyleIndex, loadStyleOverrides, restyleItem, type Style } from "../build/material-styles.js";
 
 export type BuildTarget = CategoryName | "quests";
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "quests"];
@@ -27,9 +28,19 @@ export interface BuildDataOptions {
   dryRun?: boolean;
 }
 
+/** One material spelling restyled, with how many recipe rows it touched. */
+export interface Restyle {
+  name: string;
+  before: Style;
+  after: Style;
+  count: number;
+}
+
 export interface CategoryBuildReport {
   category: CategoryName;
   changes: Change[];
+  /** Material icon styles normalized per item (`build/material-styles.ts`). */
+  restyled: Restyle[];
   kept: KeptDisagreement[];
   siteOnly: Unpaired[];
   discOnly: Unpaired[];
@@ -79,8 +90,9 @@ async function copyQuests(options: BuildDataOptions): Promise<string[]> {
 export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
   const targets = options.only ?? BUILD_TARGETS;
   const categoryNames = targets.filter((t): t is CategoryName => t !== "quests");
-  const { site, committed, extracted, spellings } = await loadInputs(options.extracted, options.data, categoryNames);
+  const { site, committed, extracted, spellings, byContext } = await loadInputs(options.extracted, options.data, categoryNames);
   const keep = loadKeepSiteValues();
+  const styleOf = buildStyleIndex(byContext, site, loadStyleOverrides());
 
   const categories: CategoryBuildReport[] = [];
   for (const name of categoryNames) {
@@ -90,6 +102,20 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
       continue;
     }
     const result = mergeCategory(category, extracted.get(name)!, committed.get(name)!, site, spellings, keep);
+    const restyles = new Map<string, Restyle>();
+    for (const [file, items] of result.files) {
+      result.files.set(
+        file,
+        items.map((item) =>
+          restyleItem(item, site, styleOf, (m, after) => {
+            const key = JSON.stringify([m.name, m.type, m.color, after]);
+            const entry = restyles.get(key) ?? { name: m.name, before: { type: m.type, color: m.color }, after, count: 0 };
+            entry.count++;
+            restyles.set(key, entry);
+          })
+        )
+      );
+    }
     const filesWritten: string[] = [];
     for (const [file, items] of result.files) {
       const absPath = path.join(options.data, file);
@@ -104,6 +130,7 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
     categories.push({
       category: name,
       changes: result.changes,
+      restyled: [...restyles.values()].sort((a, b) => a.name.localeCompare(b.name)),
       kept: result.kept,
       siteOnly: result.pairing.siteOnly,
       discOnly: result.pairing.discOnly,
@@ -124,7 +151,8 @@ export function printBuildSummary(report: BuildDataReport, dryRun = false): void
     const byField = new Map<string, number>();
     for (const change of c.changes) byField.set(change.field, (byField.get(change.field) ?? 0) + 1);
     const fields = [...byField].map(([f, n]) => `${f} ${n}`).join(", ") || "none";
-    console.log(`${c.category}: ${c.changes.length} value(s) changed (${fields}); ${c.kept.length} kept as committed; ${verb} ${c.filesWritten.length} file(s).`);
+    const restyledRows = c.restyled.reduce((n, r) => n + r.count, 0);
+    console.log(`${c.category}: ${c.changes.length} value(s) changed (${fields}); ${restyledRows} material style(s) normalized; ${c.kept.length} kept as committed; ${verb} ${c.filesWritten.length} file(s).`);
     if (c.siteOnly.length > 0) console.log(`  ${c.siteOnly.length} committed item(s) with no disc match, left as-is: ${c.siteOnly.slice(0, 8).map((u) => u.name).join(", ")}${c.siteOnly.length > 8 ? ", ..." : ""}`);
     if (c.discOnly.length > 0) console.log(`  ${c.discOnly.length} disc item(s) the site doesn't list, not added: ${c.discOnly.slice(0, 8).map((u) => u.name).join(", ")}${c.discOnly.length > 8 ? ", ..." : ""}`);
   }
@@ -165,6 +193,12 @@ export function formatBuildReport(report: BuildDataReport): string {
       for (const ch of changes) {
         out.push(`| ${ch.file} | ${cell(ch.name)} | ${cell(formatValue(ch.before))} | ${cell(formatValue(ch.after))} |`);
       }
+      out.push("");
+    }
+    if (c.restyled.length > 0) {
+      const rows = c.restyled.reduce((n, r) => n + r.count, 0);
+      out.push(`### Material styles normalized (${rows} rows, ${c.restyled.length} spellings)`, "", "| material | before | after | rows |", "|---|---|---|---|");
+      for (const r of c.restyled) out.push(`| ${cell(r.name)} | ${r.before.type}/${r.before.color} | ${r.after.type}/${r.after.color} | ${r.count} |`);
       out.push("");
     }
     if (c.kept.length > 0) {

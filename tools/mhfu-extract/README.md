@@ -456,6 +456,17 @@ Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
 recipe on the disc. Quests are copied through.
 
+**Material icon styles (`src/build/material-styles.ts`).** `type`/`color`
+aren't on the disc's recipes, and the committed files gave the same item
+different styles, mostly a placeholder `bone`/`white` (in armor recipes for
+210 items that weapon/decoration recipes style properly). `build-data`
+writes one style per item ID to every material: a hand-picked style from
+`overlay/material-styles.json` if there is one, else the most common style
+in weapon/decoration recipes, then armor recipes, ignoring `bone`/`white`
+whenever the item has any other style. The overlay covers the items whose
+only committed style was the placeholder (tickets, potions, herbs; `ukwn`
+for tools, ammo and books, which have no icon mask) and the Lobstershells.
+
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
@@ -495,6 +506,9 @@ maps the committed site's skill spellings (`"Defence"`, `"Load"`,
 reported as a mismatch, and `build-data` uses it to write disc skills back
 in the site's spelling. `extract` output is unchanged. See the module doc
 comment for how each entry was chosen.
+
+`material-styles.json` holds hand-picked material icon styles by item ID
+(see "Building `data/` from the disc").
 
 `keep-site-values.json` lists reviewed disagreements where the committed
 value is right and the disc reading is wrong; `build-data` keeps those

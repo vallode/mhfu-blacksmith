@@ -234,7 +234,7 @@ export async function loadInputs(extractedDir: string, dataDir: string, names: C
   }
   for (const name of names) extracted.set(name, await readCategoryItems(extractedDir, CATEGORIES[name]));
   const spellings = buildSpellingIndex(byContext, site);
-  return { site, committed, extracted, spellings };
+  return { site, committed, extracted, spellings, byContext };
 }
 
 function pct(agree: number, disagree: number): string {
