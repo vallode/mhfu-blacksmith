@@ -12,6 +12,10 @@ import HomeContent from "@/app/HomeContent";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorsmithListContent from "@/app/armorsmith/ArmorsmithListContent";
 import BestiaryListContent from "@/app/monsters/BestiaryListContent";
+import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
+import QuestListClient from "@/app/quests/[hub]/QuestListClient";
+import QuestDetailClient from "@/app/quests/[hub]/[id]/QuestDetailClient";
+import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
 import {
   WEAPON_TYPES,
   ARMOR_SLOTS,
@@ -36,6 +40,9 @@ export type RouteMatch =
   | { kind: "monster-detail"; category: MonsterCategory; slug: string }
   | { kind: "decoration-list" }
   | { kind: "decoration-detail"; slug: string }
+  | { kind: "quest-list" }
+  | { kind: "quest-hub"; hub: QuestHubSlug }
+  | { kind: "quest-detail"; hub: QuestHubSlug; id: number }
   | { kind: "unknown" };
 
 /**
@@ -90,6 +97,15 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     if (parts.length === 2) return { kind: "decoration-detail", slug: parts[1] };
   }
 
+  if (parts[0] === "quests") {
+    if (parts.length === 1) return { kind: "quest-list" };
+    const hub = parts[1] as QuestHubSlug;
+    if (!QUEST_HUB_SLUGS.includes(hub)) return { kind: "unknown" };
+    if (parts.length === 2) return { kind: "quest-hub", hub };
+    const id = Number(parts[2]);
+    if (parts.length === 3 && Number.isInteger(id)) return { kind: "quest-detail", hub, id };
+  }
+
   return { kind: "unknown" };
 }
 
@@ -120,6 +136,12 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
       return <DecorationsListClient />;
     case "decoration-detail":
       return <DecorationDetailClient slug={match.slug} />;
+    case "quest-list":
+      return <QuestBoardsContent />;
+    case "quest-hub":
+      return <QuestListClient hub={match.hub} />;
+    case "quest-detail":
+      return <QuestDetailClient hub={match.hub} id={match.id} />;
     case "unknown":
       return null;
   }

@@ -27,6 +27,7 @@ import {
   decodeTree,
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import {
   prepareSearchData,
   type ArmorInput,
@@ -348,6 +349,46 @@ export function useItems(): { items: ItemLookup | null; error: boolean } {
     };
   }, []);
   return { items, error };
+}
+
+// ---------------------------------------------------------------------------
+// Quests (quests.json, see src/lib/quests.ts)
+// ---------------------------------------------------------------------------
+let questsPromise: Promise<Quest[]> | null = null;
+let questsCache: Quest[] | null = null;
+
+export function getQuests(): Promise<Quest[]> {
+  if (questsCache) return Promise.resolve(questsCache);
+  if (!questsPromise) {
+    questsPromise = fetchJson<QuestsBundle>("/data/quests.json")
+      .then((b) => {
+        questsCache = decodeQuests(b);
+        return questsCache;
+      })
+      .catch((e) => {
+        questsPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return questsPromise;
+}
+
+/** Every quest, decoded. `quests` is null while loading or if quests.json could not be fetched (`error` set). */
+export function useQuests(): { quests: Quest[] | null; error: boolean } {
+  const [quests, setQuests] = useState<Quest[] | null>(questsCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (questsCache) return;
+    let cancelled = false;
+    getQuests().then(
+      (q) => !cancelled && setQuests(q),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { quests, error };
 }
 
 // ---------------------------------------------------------------------------

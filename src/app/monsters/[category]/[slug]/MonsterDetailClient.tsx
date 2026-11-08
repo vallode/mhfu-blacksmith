@@ -8,14 +8,16 @@ import TreeScroll from "@/components/TreeScroll";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
-import { useMonster, useMonsterList } from "@/lib/client-data";
+import { useMonster, useMonsterList, useQuests } from "@/lib/client-data";
 import MonsterNav from "@/components/MonsterNav";
 import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
+import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { formatRank } from "@/lib/monster-drops";
+import { questsWithMonster } from "@/lib/quests";
 import { useMonsterModel } from "@/lib/models";
 
 interface Props {
@@ -50,6 +52,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
   const { items: siblings } = useMonsterList(category);
   const modelUrl = useMonsterModel(monster?.name);
+  const { quests } = useQuests();
   // Open state is tied to the model, so navigating to another monster closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
@@ -133,7 +136,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: formatRank(rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  const tabs = [...hitzoneTab, ...dropTabs];
+  const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
+  const questTab: Tab[] =
+    monsterQuests.length > 0
+      ? [{ id: "quests", label: "Quests", content: <MonsterQuests quests={monsterQuests} /> }]
+      : [];
+  const tabs = [...hitzoneTab, ...dropTabs, ...questTab];
 
   return (
     <>

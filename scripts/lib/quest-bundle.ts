@@ -1,0 +1,179 @@
+/**
+ * Encodes data/quests/*.json into the compact public/data/quests.json bundle
+ * (shape and decoder: src/lib/quests.ts). Item names become in-game item IDs
+ * (names and icons then come from items.json); monster names link to monster
+ * pages; strings and identical reward tables are stored once.
+ */
+import {
+  QUEST_HUBS,
+  QUEST_MONSTER_ALIASES,
+  QUEST_NON_MONSTERS,
+  REWARD_KINDS,
+  questHubSlug,
+  type CompactQuest,
+  type CompactRewardTable,
+  type CompactSupplies,
+  type QuestsBundle,
+} from "../../src/lib/quests";
+
+/** One data/quests/*.json quest, as far as the bundle reads it. */
+export interface QuestRecord {
+  id: number;
+  hub: string;
+  rank: string | null;
+  stars: number;
+  map: string | null;
+  fee: number;
+  reward: number;
+  time_limit_minutes: number;
+  target: { monster: string; amount: number } | null;
+  supplies: { item: string; amount: number }[];
+  reward_tables: {
+    kind?: string;
+    draws?: number | null;
+    condition?: number | null;
+    items: { chance: number; item: string; amount: number }[];
+  }[];
+  large_monsters: { monster: string }[];
+  small_monsters: { monster: string }[];
+  title: string | null;
+  goal: string | null;
+  details: string | null;
+  fail: string | null;
+  client: string | null;
+}
+
+export interface QuestBundleInputs {
+  quests: QuestRecord[];
+  /** item name -> in-game item ID */
+  itemId: (name: string) => number | undefined;
+  /** site monster name -> its page */
+  monsterPage: (name: string) => { category: string; slug: string } | undefined;
+}
+
+export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleInputs): {
+  bundle: QuestsBundle;
+  unresolvedItems: string[];
+} {
+  const strings: string[] = [];
+  const stringIndex = new Map<string, number>();
+  const str = (s: string | null | undefined): number | null => {
+    if (!s) return null;
+    let i = stringIndex.get(s);
+    if (i === undefined) {
+      i = strings.length;
+      strings.push(s);
+      stringIndex.set(s, i);
+    }
+    return i;
+  };
+
+  const monsters: QuestsBundle["monsters"] = [];
+  const monsterIndex = new Map<string, number>();
+  const monster = (discName: string): number => {
+    const name = QUEST_MONSTER_ALIASES[discName] ?? discName;
+    let i = monsterIndex.get(name);
+    if (i === undefined) {
+      const page = monsterPage(name);
+      i = monsters.length;
+      monsters.push([name, page?.category ?? null, page?.slug ?? null]);
+      monsterIndex.set(name, i);
+    }
+    return i;
+  };
+
+  const unresolved = new Set<string>();
+  const item = (name: string): number | undefined => {
+    const id = itemId(name);
+    if (id === undefined) unresolved.add(name);
+    return id;
+  };
+
+  const tables: CompactRewardTable[] = [];
+  const tableIndex = new Map<string, number>();
+  const table = (t: QuestRecord["reward_tables"][number]): number => {
+    const kind = REWARD_KINDS.indexOf((t.kind ?? "conditional") as (typeof REWARD_KINDS)[number]);
+    const compact: CompactRewardTable = [
+      kind === -1 ? REWARD_KINDS.indexOf("conditional") : kind,
+      t.draws ?? null,
+      t.condition ?? null,
+      t.items.flatMap((r) => {
+        const id = item(r.item);
+        if (id === undefined) return [];
+        return [
+          r.amount === 1 ? [r.chance, id] : [r.chance, id, r.amount],
+        ] as CompactRewardTable[3];
+      }),
+    ];
+    const key = JSON.stringify(compact);
+    let i = tableIndex.get(key);
+    if (i === undefined) {
+      i = tables.length;
+      tables.push(compact);
+      tableIndex.set(key, i);
+    }
+    return i;
+  };
+
+  const supplies: CompactSupplies[] = [];
+  const suppliesIndex = new Map<string, number>();
+  const supplyList = (list: QuestRecord["supplies"]): number | null => {
+    // The disc repeats rows (quest 1 has four "Map x1" rows); keep each
+    // distinct row once, with how many times it appears.
+    const rows = new Map<string, [number, number] | [number, number, number]>();
+    for (const s of list) {
+      const id = item(s.item);
+      if (id === undefined) continue;
+      const key = `${id}:${s.amount}`;
+      const row = rows.get(key);
+      if (row) row[2] = (row[2] ?? 1) + 1;
+      else rows.set(key, [id, s.amount]);
+    }
+    if (rows.size === 0) return null;
+    const compact = [...rows.values()];
+    const key = JSON.stringify(compact);
+    let i = suppliesIndex.get(key);
+    if (i === undefined) {
+      i = supplies.length;
+      supplies.push(compact);
+      suppliesIndex.set(key, i);
+    }
+    return i;
+  };
+
+  const items: CompactQuest[] = [];
+  for (const q of quests) {
+    const hub = questHubSlug(q.hub, q.rank);
+    if (!hub) continue;
+    items.push([
+      q.id,
+      QUEST_HUBS.findIndex((h) => h.slug === hub),
+      q.stars,
+      str(q.map),
+      q.fee,
+      q.reward,
+      q.time_limit_minutes,
+      q.target ? [monster(q.target.monster), q.target.amount] : null,
+      [...new Set(q.large_monsters.map((x) => monster(x.monster)))],
+      [
+        ...new Set(
+          q.small_monsters
+            .filter((x) => !QUEST_NON_MONSTERS.has(x.monster))
+            .map((x) => monster(x.monster)),
+        ),
+      ],
+      supplyList(q.supplies),
+      q.reward_tables.map(table),
+      str(q.title),
+      str(q.goal),
+      str(q.fail),
+      str(q.details),
+      str(q.client),
+    ]);
+  }
+
+  return {
+    bundle: { kind: "quests", strings, monsters, tables, supplies, items },
+    unresolvedItems: [...unresolved].sort(),
+  };
+}

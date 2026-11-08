@@ -8,6 +8,15 @@ interface MonsterDropsProps {
   sources: Record<string, MonsterDrop[]>;
 }
 
+/** Two-across grid of DropLists (one per column on phones). */
+export function DropGrid({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-[1.6rem] mobile:grid-cols-1">
+      {children}
+    </div>
+  );
+}
+
 /**
  * One rank's drop tables: a titled list per source (carves, breaks, shiny
  * drops, capture) laid out two across. Each row is icon, item, quantity and
@@ -15,16 +24,26 @@ interface MonsterDropsProps {
  */
 export default function MonsterDrops({ sources }: MonsterDropsProps) {
   return (
-    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-[1.6rem] mobile:grid-cols-1">
+    <DropGrid>
       {Object.entries(sources).map(([source, items]) => (
-        <DropSource key={source} source={source} items={items} />
+        <DropList key={source} {...parseDropSource(source)} items={items} />
       ))}
-    </div>
+    </DropGrid>
   );
 }
 
-function DropSource({ source, items }: { source: string; items: MonsterDrop[] }) {
-  const { title, count, note } = parseDropSource(source);
+interface DropListProps {
+  /** How the items are obtained: "Body carves", "Main reward" */
+  title: string;
+  /** How many attempts, shown as "×N" */
+  count?: number;
+  /** Condition or detail, in small text */
+  note?: string;
+  items: MonsterDrop[];
+}
+
+/** A titled list of drops: icon, item, quantity and chance per row. Shared by monster drops and quest rewards. */
+export function DropList({ title, count, note, items }: DropListProps) {
   return (
     <section className="flex min-w-0 flex-col gap-[0.6rem]">
       <h3 className="m-0 flex flex-wrap items-baseline gap-x-[0.8rem] text-[1.6rem] leading-[1.25] font-normal text-gold">
