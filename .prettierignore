@@ -1,9 +1,10 @@
-# Generated or vendored; only src/ is formatted (see the format scripts)
+# Data, generated output and vendored code aren't formatted.
 .next
 out
 public
 data
 sources
 content
-tools
+next-env.d.ts
 pnpm-lock.yaml
+tools/mhfu-extract/vendor
