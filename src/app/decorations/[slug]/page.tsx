@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { getDecorations, getDecoration } from "@/lib/decorations";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { accentViewport, decorationDescription, pageMetadata } from "@/lib/seo";
+import { tintFor } from "@/lib/og";
 import DecorationDetailClient from "./DecorationDetailClient";
 
 interface Props {
@@ -14,7 +16,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const deco = getDecoration(slug);
-  return { title: deco ? `${deco.name} — MHFU Blacksmith` : "Decoration" };
+  if (!deco) return {};
+  return pageMetadata({
+    title: deco.name,
+    description: decorationDescription(deco),
+    path: `/decorations/${slug}/`,
+  });
+}
+
+export async function generateViewport({ params }: Props): Promise<Viewport> {
+  const { slug } = await params;
+  const deco = getDecoration(slug);
+  return accentViewport(tintFor(deco?.rarity, deco?.color));
 }
 
 export default async function DecorationDetailPage({ params }: Props) {

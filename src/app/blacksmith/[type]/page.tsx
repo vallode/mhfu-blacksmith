@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getWeaponTypes } from "@/lib/weapons";
+import { getWeaponTypes, getWeapons } from "@/lib/weapons";
+import { pageMetadata, titleCase } from "@/lib/seo";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import type { Metadata } from "next";
 import { faviconMetadata } from "@/lib/favicon";
@@ -15,10 +16,19 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { type } = await params;
-  const name = type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const name = titleCase(type);
+  const weapons = getWeapons(type as WeaponType);
+  const first = weapons[0]?.name;
   return {
     ...faviconMetadata(type),
-    title: `${name} tree — MHFU Blacksmith`,
+    ...pageMetadata({
+      title: `${name} tree`,
+      description:
+        `All ${weapons.length} ${name} weapons in Monster Hunter Freedom Unite` +
+        (first ? `, from the ${first} up through every upgrade path` : "") +
+        ". Attack, sharpness, elements and recipes.",
+      path: `/blacksmith/${type}/`,
+    }),
   };
 }
 
