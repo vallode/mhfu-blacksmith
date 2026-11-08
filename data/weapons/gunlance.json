@@ -1468,9 +1468,7 @@
       "type": "gunlance",
       "create_cost": 1100,
       "improve_cost": 1100,
-      "improve_from": [
-        "Iron Lance"
-      ],
+      "improve_from": "Iron Lance",
       "create_mats": [
         {
           "name": "Machalite Ore",
@@ -2054,9 +2052,7 @@
       "type": "gunlance",
       "create_cost": 5600,
       "improve_cost": 5600,
-      "improve_from": [
-        "Steel Gunlance"
-      ],
+      "improve_from": "Steel Gunlance",
       "create_mats": [
         {
           "name": "Lunastra Tail",
@@ -2142,9 +2138,7 @@
       "type": "gunlance",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Luna's Howl"
-      ],
+      "improve_from": "Luna's Howl",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2614,9 +2608,7 @@
       "type": "gunlance",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": [
-        "Barbarian Tusk"
-      ],
+      "improve_from": "Barbarian Tusk",
       "create_mats": [
         {
           "name": "Hvy Monster Bone",
@@ -2705,9 +2697,7 @@
       "type": "gunlance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Heavy Bone Gunlance"
-      ],
+      "improve_from": "Heavy Bone Gunlance",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2762,9 +2752,7 @@
       "type": "gunlance",
       "create_cost": 50000,
       "improve_cost": 50000,
-      "improve_from": [
-        "Hard Bone Lance+"
-      ],
+      "improve_from": "Hard Bone Lance+",
       "create_mats": [
         {
           "name": "Khezu Hide - Tan",

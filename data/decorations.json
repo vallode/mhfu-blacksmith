@@ -168,16 +168,16 @@
           "color": "yellow"
         },
         {
-          "name": "Slvr Rthlos Wing",
-          "amount": 1,
-          "type": "part",
-          "color": "white"
-        },
-        {
           "name": "Fatalis Eye",
           "amount": 1,
           "type": "part",
           "color": "yellow"
+        },
+        {
+          "name": "Slvr Rthlos Wing",
+          "amount": 1,
+          "type": "part",
+          "color": "white"
         },
         {
           "name": "Majestic Horn",
@@ -2739,8 +2739,8 @@
     {
       "name": "StrongShot Jewel",
       "skills": [
-        "NormalS Up+1",
-        "Load-1"
+        "NormalS Up +1",
+        "Load -1"
       ],
       "create_mats": [
         {
@@ -2813,7 +2813,7 @@
     {
       "name": "Pierce Jewel",
       "skills": [
-        "PierceS Up+1",
+        "PierceS Up +1",
         "Load -1"
       ],
       "create_mats": [

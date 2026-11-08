@@ -33,8 +33,8 @@
       "improve_mats": null,
       "improve_to": [
         "Hunter's Dagger+",
-        "Snake Bite",
-        "Giaprey Claws"
+        "Giaprey Claws",
+        "Snake Bite"
       ],
       "sharpness_plus": [
         8,
@@ -2111,16 +2111,16 @@
       ],
       "improve_mats": [
         {
-          "name": "Sharp Claw",
-          "amount": 1,
-          "type": "claw",
-          "color": "gray"
-        },
-        {
           "name": "Giaprey Hide",
           "amount": 3,
           "type": "pelt",
           "color": "white"
+        },
+        {
+          "name": "Sharp Claw",
+          "amount": 1,
+          "type": "claw",
+          "color": "gray"
         },
         {
           "name": "Sm Monster Bone",
@@ -5465,9 +5465,9 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Double Dragon",
         "Black Dragon Sword",
-        "Black Ruiner Sword"
+        "Black Ruiner Sword",
+        "Double Dragon"
       ],
       "sharpness_plus": [
         10,
@@ -6172,10 +6172,10 @@
       ],
       "improve_mats": [
         {
-          "name": "Iron Ore",
-          "amount": 10,
-          "type": "ore",
-          "color": "gray"
+          "name": "ShakalakaTreasre",
+          "amount": 4,
+          "type": "sac",
+          "color": "orange"
         },
         {
           "name": "Poison Sac",
@@ -6184,10 +6184,10 @@
           "color": "slate"
         },
         {
-          "name": "ShakalakaTreasre",
-          "amount": 4,
-          "type": "sac",
-          "color": "orange"
+          "name": "Iron Ore",
+          "amount": 10,
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve_to": [
@@ -7148,12 +7148,6 @@
       ],
       "improve_mats": [
         {
-          "name": "Black Narga Pelt",
-          "amount": 6,
-          "type": "pelt",
-          "color": "gray"
-        },
-        {
           "name": "Narga Scale+",
           "amount": 4,
           "type": "scale",
@@ -7163,6 +7157,12 @@
           "name": "Narga Tail Spike",
           "amount": 4,
           "type": "part",
+          "color": "gray"
+        },
+        {
+          "name": "Black Narga Pelt",
+          "amount": 6,
+          "type": "pelt",
           "color": "gray"
         }
       ],

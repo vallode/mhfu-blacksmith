@@ -167,8 +167,8 @@ test("MHP2G_EU_RESOLVER resolves decorationValues at its real EU file offset (0x
   assert.equal(MHP2G_EU_RESOLVER.resolve("decorationValues", buf), realOffset);
 });
 
-// The next three tables (bowgunShotTable, bowChargeTable, dualAttributeWeapons)
-// have no reader/consumer in tables/*.ts today (see games/mhp2g.ts's
+// The next two tables (bowgunShotTable, bowChargeTable) have no
+// reader/consumer in tables/*.ts today (see games/mhp2g.ts's
 // MHP2G_EMIT_TABLES doc comment) — validated as reference examples only.
 
 test("MHP2G_EU_RESOLVER resolves bowgunShotTable at its real EU file offset (0x176cac)", () => {

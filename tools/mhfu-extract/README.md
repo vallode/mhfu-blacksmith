@@ -355,6 +355,14 @@ derivation notes for specifics):
   for the same `equipId` is an alternative recipe.
 - Weapon attack = raw attack × that weapon class's modifier ÷ 100; element/
   status values are raw × 10.
+- The 15 dual-element dual blades (Twin Nails, Ultimus Celestials, …) have
+  no element in their own struct. Both elements come from `WepDualAttr`
+  (`src/tables/dual-attributes.ts`), keyed by `WepBMID`. Its element type
+  is the `EleBitFlag` bit flag (Fire `0x10`, Ice `0x80`, Poison `0x02`, …),
+  not the struct's single-element enum. Elements are emitted in stored
+  order. All 15 match the site's values; the site listed 5 of them the
+  other way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire
+  and Ice), and `build-data` now writes the disc's order.
 - Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
   aren't derivable from the disc at all — they're presentation metadata,
   supplied by the `src/overlay/materials.json` and
@@ -461,9 +469,10 @@ disagreement as JSON.
 writes the disc value of each field in that category's `take` list
 (`src/build/categories.ts`), in the site's vocabulary: site item names,
 the site's skill spelling (`Defence`, `Load`), and the site's spelling and
-icon style for each material. A field that already agrees is left
-byte-identical. Item order, key order and file layout don't change, and a
-second run is a no-op. Disc items the site doesn't list (the 10 unused
+icon style for each material. Lists (skills, materials, elements,
+upgrade-tree references) are written in the disc's order, even when they
+already agree as a set; a scalar that agrees is left byte-identical. Item
+order, key order and file layout don't change, and a second run is a no-op. Disc items the site doesn't list (the 10 unused
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
@@ -483,11 +492,11 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                                        | agreement                                                 | not taken                                                                                                                                                                                                                                                           |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                  | 97.5–100%                                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                      |
-| weapons     | attack, affinity, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, see below) | `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                     | 91.7–100%                                                 | `color`, `category` (overlays)                                                                                                                                                                                                                                      |
+| category    | taken                                                                                                                                            | agreement                                                                             | not taken                                                                                                                                                                                                                                                         |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                                      | 97.5–100%                                                                             | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                    |
+| weapons     | attack, affinity, slots, rarity, elements (not bow), sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | bow `elements` (coating bonuses, see below), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                                         | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                                                                                                                                                                                    |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
@@ -496,6 +505,25 @@ weapons (108 of them positive-affinity weapons showing the sharpness bonus
 the emitter didn't add) and 2 bows. With both fixed it agrees on 99.5%;
 the 8 left are single values in both directions (e.g. Bone Axe `0%` vs the
 disc's `5%`), taken from the disc.
+
+Elements were taken later, once the dual-element dual blades were read
+from `WepDualAttr`. Before, those 15 had no elements on the disc side. Now
+`elements` agrees on 100% of every melee and bowgun file, and on 101 of 116
+bows (87.1%). It is taken for every weapon file except `bow.json`
+(`keepFields` in `categories.ts`). The 15 bow disagreements are mostly
+coating bonuses the site lists as elements ("Sleep/Poison/Paralysis Add"),
+plus Abominable Bow II (site Ice 140, disc 200) and the `fire` spelling on
+Kut-Ku Stave G. Taking it changed no values, only the order of the 5
+dual-element weapons above.
+
+Lists were later written in the disc's order rather than the site's. That
+reordered 1,911 lists that already agreed as sets: armor skills 1,879,
+weapon `improve_mats` 10, `improve_to` 9, `improve_from` 7, `elements` 5
+and decoration `create_mats` 1. Rewriting agreeing lists also put them in
+the site's own conventions: 172 single-source `improve_from` lists became
+bare strings, like the other 750, and 4 malformed decoration skill strings
+were fixed (`NormalS Up+1` → `NormalS Up +1`, and an empty `""` entry on
+StrongShot Jewel+ and Pierce Jewel+).
 
 Sharpness was taken later (#31), after reading it per weapon class.
 `sharpness` agreement with the site was then: great sword 97.7%, long sword

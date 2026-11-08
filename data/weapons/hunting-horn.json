@@ -1669,12 +1669,6 @@
       ],
       "improve_mats": [
         {
-          "name": "Garuga Scale+",
-          "amount": 4,
-          "type": "scale",
-          "color": "slate"
-        },
-        {
           "name": "Garuga Tail",
           "amount": 1,
           "type": "part",
@@ -1690,6 +1684,12 @@
           "name": "Garuga Mane",
           "amount": 4,
           "type": "part",
+          "color": "slate"
+        },
+        {
+          "name": "Garuga Scale+",
+          "amount": 4,
+          "type": "scale",
           "color": "slate"
         }
       ],
@@ -3526,8 +3526,8 @@
       "create_cost": 1575,
       "improve_cost": 1575,
       "improve_from": [
-        "Ivory Horn",
-        "Cyclo-Hammer"
+        "Cyclo-Hammer",
+        "Ivory Horn"
       ],
       "create_mats": [
         {
