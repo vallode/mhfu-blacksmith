@@ -51,6 +51,20 @@ export const typeIcon = (name: string) => ({
   height: 180,
 });
 
+/**
+ * A page's generated link-preview image (scripts/generate-og-images.ts), if
+ * one has been made: public/og/<route>.{webp,jpg,png}, 1200×600.
+ */
+export function previewImage(route: string) {
+  for (const ext of ["webp", "jpg", "png"]) {
+    const url = `/og/${route}.${ext}`;
+    if (fs.existsSync(path.join(process.cwd(), "public", url))) {
+      return { url, width: 1200, height: 600 };
+    }
+  }
+  return undefined;
+}
+
 /** A monster's own 80px icon, else its category's. */
 export function monsterIcon(slug: string, category: string) {
   const own = `/images/monsters/${slug}-favicon.png`;
@@ -111,6 +125,8 @@ export function pageMetadata({
   image?: { url: string; width?: number; height?: number };
 }): Metadata {
   const images = [image ?? DEFAULT_IMAGE];
+  // A wide preview image is shown full width under the text; icons sit beside it.
+  const large = (image?.width ?? 0) > (image?.height ?? 0);
   return {
     title: `${title} — ${SITE_NAME}`,
     description,
@@ -126,7 +142,7 @@ export function pageMetadata({
       images,
     },
     // "summary" shows the small icon beside the text, which suits these icon-sized images.
-    twitter: { card: "summary", title, description, images },
+    twitter: { card: large ? "summary_large_image" : "summary", title, description, images },
   };
 }
 
