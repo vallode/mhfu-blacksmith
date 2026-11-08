@@ -64,11 +64,10 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
 /**
  * Materials for the hunter's best way to make a weapon (its create recipe, or
  * its improve recipe from an owned parent): one square each, filled when the item box has enough and hollow
- * when short, then a have/total count. Pushed to the row's right edge.
+ * when short. Pushed to the row's right edge.
  */
 function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
   const have = materials.filter((m) => m.have >= m.need).length;
-  const all = have === materials.length;
   return (
     <span
       className="relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-[3px] pl-4 opacity-60"
@@ -87,14 +86,6 @@ function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
           )}
         />
       ))}
-      <span
-        className={cn(
-          "ml-[2px] text-[13px] leading-none whitespace-nowrap",
-          all ? "text-white" : "text-rarity-9",
-        )}
-      >
-        {have}/{materials.length}
-      </span>
     </span>
   );
 }
