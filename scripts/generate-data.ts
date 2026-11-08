@@ -55,7 +55,12 @@ import type {
   ItemsBundle,
 } from "../src/lib/schema";
 import { EQUIP_TYPE_SLOTS } from "../src/lib/schema";
-import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
+import {
+  buildItemNameIndex,
+  decorationItemId,
+  normalizeItemName,
+  type ItemRecord,
+} from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
 
 const root = process.cwd();
@@ -307,8 +312,13 @@ function encodeMonster(m: Monster): CompactMonster {
   return out;
 }
 
-function encodeDecoration(x: Decoration, minRank: Progress): CompactDecoration {
+function encodeDecoration(
+  x: Decoration,
+  minRank: Progress,
+  itemId: number | undefined,
+): CompactDecoration {
   const out: CompactDecoration = { n: x.name, s: x.slug };
+  if (itemId !== undefined) out.i = itemId;
   if (x.color) out.c = x.color;
   const rarity = toNum(x.rarity);
   if (rarity !== undefined) out.r = rarity;
@@ -470,9 +480,25 @@ for (const category of MONSTER_CATEGORIES) {
   const tree = readJson<{ map: WeaponTreeNode[] }>(
     path.join(contentDir, "decorations", "map.json"),
   );
-  const items = crafting.decorations
-    .filter((d) => !("donotrender" in d))
-    .map((d) => encodeDecoration({ ...d, slug: slugify(d.name) }, minRanks.decoration(d)));
+  // The game's item IDs, for set share links (src/lib/set-codec.ts).
+  const { index: itemIndex } = buildItemNameIndex(
+    readJson<{ items: ItemRecord[] }>(path.join(dataDir, "items.json")).items,
+  );
+  const rendered = crafting.decorations.filter((d) => !("donotrender" in d));
+  const unmatched = rendered.filter((d) => decorationItemId(d.name, itemIndex) === undefined);
+  if (unmatched.length > 0) {
+    console.error(
+      `generate-data: FAIL — decorations with no item in items.json: ${unmatched.map((d) => d.name).join(", ")}`,
+    );
+    process.exit(1);
+  }
+  const items = rendered.map((d) =>
+    encodeDecoration(
+      { ...d, slug: slugify(d.name) },
+      minRanks.decoration(d),
+      decorationItemId(d.name, itemIndex),
+    ),
+  );
   totalItems += items.length;
   push("decorations.json", {
     kind: "decoration",

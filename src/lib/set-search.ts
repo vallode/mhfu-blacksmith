@@ -75,6 +75,8 @@ export interface DecorationInput {
   skills?: string[];
   /** Earliest quest progress the decoration can be made at (see min-rank.ts). */
   minRank?: Tier;
+  /** The game's item ID (data/items.json), for share links. */
+  itemId?: number;
 }
 
 export interface Piece {
@@ -112,6 +114,8 @@ export interface Deco {
   points: Record<string, number>;
   /** Earliest quest progress the decoration can be made at. */
   minRank?: Tier;
+  /** The game's item ID (data/items.json), for share links. */
+  itemId?: number;
 }
 
 export interface SearchData {
@@ -197,6 +201,7 @@ export function prepareSearchData(
       color: d.color,
       rarity: d.rarity,
       minRank: d.minRank,
+      itemId: d.itemId,
       points,
     };
   });
