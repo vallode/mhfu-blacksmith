@@ -43,7 +43,10 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   and writes plain files to `--out` (an EBOOT dump, `data-bin/<index>` files
   named via `vendor/fuctool/filelist.csv`, and detected region info).
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
-  output plus `EXTRACTION.json` provenance manifest.
+  output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
+  numbers-only dumps to `raw/` (sharpness, weapons, gunner, and
+  `quests.json`: each quest's header words, raw `RewardTBL` entries and
+  script packets).
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 - `compare` reports per-file, per-field agreement between the two, pairing
@@ -161,12 +164,12 @@ Open:
 - **US**: `resolverForRegion("us")` is `null` — no US disc to derive
   signatures from ([#37](https://github.com/vallode/mhfu-blacksmith/issues/37), which also covers other games such as
   MH1/MHF1).
-- **EU quests**: previously 519 of 551 parsed, with 32 skipped
-  ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)). The cause was
-  `DATA.BIN` indexing: EU has extra entries ahead of `mission_jpn/`, so JP
-  indices pointed 32 entries early. With the EU file list (see "`DATA.BIN`")
-  all 551 quest files are found at their real indices; not yet re-run
-  against a real EU EBOOT.
+- **EU quests**: all 551 parse
+  ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)). An earlier run
+  skipped 32 because its unpack named EU files with JP indices: EU quest
+  files sit 32 entries later, so 32 non-quest entries were named
+  `m00001`-`m01013` and the last 32 real quests (`m30070` onwards) got
+  non-quest names. A region-aware unpack (see "`DATA.BIN`") fixes it.
 - `diff` compares stats, not text: names come from the English
   `mhp2g-patterns` enums for every region. Committed skill names are
   rewritten to the extractor's spelling before comparing (see "Overlay
@@ -430,11 +433,13 @@ format). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
 them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
 (schema: `data/schemas/quest.schema.json`) — the first `data/` category this
 pipeline designed from scratch, since (unlike weapons/armor/monsters/
-decorations) no such schema existed before this. Verified end-to-end against
-every real quest on the JP disc: 551 parse cleanly, 3 are unused/disabled
-slots (`m50001`-`m50003`: 0 zenny fee, 1 zenny reward, every text field the
-literal string `"**********"`) and are dropped, leaving 548 emitted across
-village (39) / guild (473) / training-school (29) / treasure-hunting (7).
+decorations) no such schema existed before this. All 551 real quests parse
+on both the JP and EU discs. Unused slots, whose every text field is one
+placeholder literal, are dropped: `"**********"` on JP (`m50001`-`m50003`,
+0 zenny fee, 1 zenny reward) and `"none"` on EU (those 3, plus
+`m40001`-`m40008`: 0 zenny fee with real monsters and rewards, but no text
+in any language). The EU disc leaves 540 emitted: village 39, guild 465,
+training-school 29, treasure-hunting 7.
 
 **The `hub`/`rank` split** comes from `questHeader.Rank` (0-5), confirmed
 against real data rather than assumed: rank 3's `client` string is always
@@ -450,10 +455,45 @@ comments — the only place any vendored source names these IDs.
 **Quest board text follows the disc.** The JP disc points every language
 slot at the Japanese text, so a JP run gives Japanese `title`/`goal`/
 `fail`/`details`/`client`. The committed `data/quests/` comes from the EU
-disc, whose text is English (519 quests: village 39, guild 444, training
-school 29, treasure hunting 7). It is missing the 32 EU quests that don't
-parse yet. Every other quest field is in English, resolved through
-the same enums as equipment. See [#36](https://github.com/vallode/mhfu-blacksmith/issues/36).
+disc, whose text is English. Every other quest field is in English,
+resolved through the same enums as equipment.
+
+### Reward tables
+
+Each quest has a `RewardTBL[]`: 8-byte entries of `Unkn1` (u16), `Unkn2`
+(u16) and a pointer to that table's items. Every table's chances sum to
+100%. `emit/quests.ts`'s `classifyRewardTable()` turns the two raw fields
+into `kind`, `draws` and `condition`. The evidence is all 837 tables of the
+551 EU quests, from `extract --raw`'s `raw/quests.json`:
+
+| `Unkn1`         | Tables | Where                                                                                                                                                 | Emitted as                                |
+| --------------- | -----: | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `0x8000`        |    544 | Once per quest and always first, on every quest except Treasure Hunting                                                                               | `kind: "main"`, `draws: Unkn2 >> 8`       |
+| `0x8001`        |    101 | After the main table: one per large monster on multi-monster hunts, holding that monster's material ×2-3; Commendations on Fortress and Rajang quests | `kind: "extra"`, `draws: 1`               |
+| `1`             |     38 | Elder dragon "Slay" quests (Kushala Daora, Teostra, Chameleos, Fatalis, …)                                                                            | `kind: "conditional"`, `condition: 1`     |
+| `0x28`-`0x32`   |      6 | Training School "Exercises" quests (40/43/45/50, rising with stars)                                                                                   | `kind: "conditional"`, `condition: <raw>` |
+| `0xf9`-`0x101`  |     50 | "Survive until Time Over or Deliver the Paw Pass Ticket" quests, 5 tables each (`0x101`, `0xff`, `0xfd`, `0xfb`, `0xf9`)                              | `kind: "conditional"`, `condition: <raw>` |
+| `0x10c`-`0x119` |     98 | Treasure Hunting, 14 tables each (`0x119` down to `0x10c`), in place of a main table                                                                  | `kind: "conditional"`, `condition: <raw>` |
+
+What's known and what isn't:
+
+- `Unkn2` is 0 on every table except main tables, where it is `N << 8` with
+  N = 4 (187 tables), 5 (253), 6 (89), 7 (3), or 0 (one, Hypnocatrice
+  Training). N tends to rise with the quest's stars. It's emitted as the
+  main pool's `draws`, read as the base number of draws before Luck skills
+  add more. That reading comes from the data, not from an in-game check or a
+  community source.
+- `draws: 1` for extra tables follows from each one being a single
+  100% pool tied to one monster (or one Commendation reward).
+- What triggers a conditional table isn't in the quest file: these quests'
+  scripts are the same generic packets as everywhere else. Plausible guesses,
+  unconfirmed: slaying rather than repelling the elder dragon, a Training
+  School clear time, how many monsters a Paw Pass quest's hunter killed, and
+  Treasure Hunting point tiers. The value is kept raw in `condition` and
+  `draws` is null.
+- MHFU has no subquests, and the header has no subquest fields. No
+  community documentation of this layout was found (`quest.hexpat` names
+  the fields `Unkn1`/`Unkn2`).
 
 **Other derivations:** `time_limit_minutes = timeLimit / 1800` (confirmed
 exact — no remainder — against every real sample checked, e.g. quest ID 1's
@@ -624,7 +664,6 @@ values (see "Building `data/` from the disc").
 
 Monster HP/attack/defense multipliers, flavor text and category grouping
 will need the same treatment once monster output exists ([#35](https://github.com/vallode/mhfu-blacksmith/issues/35)).
-English quest board text is another candidate ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
 
 ## Tests
 

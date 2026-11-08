@@ -47,6 +47,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -151,6 +154,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -255,6 +261,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -442,6 +451,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -664,6 +676,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -868,6 +883,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -1041,6 +1059,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -1224,6 +1245,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -1438,6 +1462,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -1633,6 +1660,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 21,
@@ -1834,6 +1864,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -2015,6 +2048,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -2200,6 +2236,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -2399,6 +2438,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -2612,6 +2654,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -2831,6 +2876,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 45,
@@ -3036,6 +3084,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -3249,6 +3300,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -3447,6 +3501,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -3634,6 +3691,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 13,
@@ -3849,6 +3909,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -4053,6 +4116,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 26,
@@ -4195,6 +4261,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -4315,6 +4384,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -4427,6 +4499,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -4618,6 +4693,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 35,
@@ -4819,6 +4897,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -5046,6 +5127,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -5265,6 +5349,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -5464,6 +5551,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -5675,6 +5765,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -5894,6 +5987,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -6096,6 +6192,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -6306,6 +6405,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -6521,6 +6623,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -6733,6 +6838,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -6960,6 +7068,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -7169,6 +7280,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -7380,6 +7494,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -7564,6 +7681,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -7781,6 +7901,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -7991,6 +8114,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -8204,6 +8330,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -8419,6 +8548,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -8627,6 +8759,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -8841,6 +8976,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -8905,6 +9043,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -9061,6 +9202,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -9105,6 +9249,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 50,
@@ -9124,6 +9271,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 75,
@@ -9138,6 +9288,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 70,
@@ -9152,6 +9305,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 70,
@@ -9166,6 +9322,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -9325,6 +9484,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -9530,6 +9692,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -9755,6 +9920,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -9988,6 +10156,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -10211,6 +10382,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -10419,6 +10593,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -10654,6 +10831,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -10861,6 +11041,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -11082,6 +11265,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -11303,6 +11489,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -11516,6 +11705,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -11761,6 +11953,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -11957,6 +12152,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -12170,6 +12368,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -12204,6 +12405,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 16,
@@ -12410,6 +12614,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -12449,6 +12656,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -12655,6 +12865,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -12694,6 +12907,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -12875,6 +13091,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -12909,6 +13128,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 30,
@@ -13089,6 +13311,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -13123,6 +13348,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 30,
@@ -13299,6 +13527,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -13353,6 +13584,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -13508,6 +13742,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -13699,6 +13936,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -13748,6 +13988,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 50,
@@ -13762,6 +14005,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -13776,6 +14022,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 70,
@@ -13790,6 +14039,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 40,
@@ -13804,6 +14056,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -13915,6 +14170,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -14030,6 +14288,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -14173,6 +14434,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -14383,6 +14647,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -14602,6 +14869,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -14791,6 +15061,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 6,
@@ -14999,6 +15272,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 43,
@@ -15236,6 +15512,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 6,
@@ -15468,6 +15747,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -15680,6 +15962,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -15871,6 +16156,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -16072,6 +16360,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -16254,6 +16545,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -16419,6 +16713,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -16562,6 +16859,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -16685,6 +16985,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -16891,6 +17194,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -17103,6 +17409,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -17305,6 +17614,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -17523,6 +17835,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -17764,6 +18079,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 9,
@@ -17960,6 +18278,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -18173,6 +18494,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -18400,6 +18724,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -18632,6 +18959,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -18833,6 +19163,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -19041,6 +19374,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -19249,6 +19585,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -19452,6 +19791,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -19686,6 +20028,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -19907,6 +20252,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -20125,6 +20473,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -20348,6 +20699,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -20417,6 +20771,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -20589,6 +20946,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -20638,6 +20998,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 100,
@@ -20647,6 +21010,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 75,
@@ -20661,6 +21027,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 70,
@@ -20675,6 +21044,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 70,
@@ -20689,6 +21061,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -20863,6 +21238,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -21049,6 +21427,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -21256,6 +21637,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -21457,6 +21841,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -21541,6 +21928,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -21555,6 +21945,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -21774,6 +22167,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -21848,6 +22244,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -21857,6 +22256,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -22036,6 +22438,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -22110,6 +22515,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -22119,6 +22527,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -22314,6 +22725,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -22536,6 +22950,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -22580,6 +22997,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -22746,6 +23166,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 7,
@@ -22962,6 +23385,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -23201,6 +23627,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -23418,6 +23847,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -23660,6 +24092,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -23887,6 +24322,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -23931,6 +24369,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -24101,6 +24542,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -24316,6 +24760,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -24567,6 +25014,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -24778,6 +25228,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -24989,6 +25442,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -25215,6 +25671,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -25433,6 +25892,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -25558,6 +26020,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -25774,6 +26239,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -25808,6 +26276,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -26008,6 +26479,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -26042,6 +26516,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -26237,6 +26714,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -26276,6 +26756,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 21,
@@ -26487,6 +26970,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -26526,6 +27012,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 21,
@@ -26717,6 +27206,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -26761,6 +27253,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -26955,6 +27450,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -26999,6 +27497,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -27193,6 +27694,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -27242,6 +27746,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -27327,6 +27834,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -27376,6 +27886,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -27562,6 +28075,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -27657,6 +28173,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 13,
@@ -27848,6 +28367,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -27897,6 +28419,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -28072,6 +28597,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -28285,6 +28813,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -28526,6 +29057,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 2,
@@ -28730,6 +29264,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -28852,6 +29389,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -29037,6 +29577,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -29126,6 +29669,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -29135,6 +29681,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 70,
@@ -29149,6 +29698,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -29309,6 +29861,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -29398,6 +29953,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -29412,6 +29970,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 70,
@@ -29426,6 +29987,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -29614,6 +30178,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -29698,6 +30265,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -29707,6 +30277,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 70,
@@ -29721,6 +30294,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -29913,6 +30489,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -30002,6 +30581,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -30011,6 +30593,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -30025,6 +30610,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -30134,6 +30722,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -30273,6 +30864,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -30401,6 +30995,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -30516,6 +31113,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -30655,6 +31255,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -30825,6 +31428,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -31056,6 +31662,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -31281,6 +31890,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -31487,6 +32099,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -31675,6 +32290,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -31906,6 +32524,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 43,
@@ -32128,6 +32749,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 43,
@@ -32360,6 +32984,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 2,
@@ -32583,6 +33210,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 17,
@@ -32816,6 +33446,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 17,
@@ -33045,6 +33678,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -33254,6 +33890,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -33462,6 +34101,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -33694,6 +34336,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -33903,6 +34548,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -34122,6 +34770,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -34345,6 +34996,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -34570,6 +35224,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -34764,6 +35421,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -34863,6 +35523,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -34877,6 +35540,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -34891,6 +35557,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -35075,6 +35744,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -35164,6 +35836,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -35173,6 +35848,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -35182,6 +35860,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -35315,6 +35996,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -35447,6 +36131,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -35633,6 +36320,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -35862,6 +36552,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -36099,6 +36792,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -36315,6 +37011,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -36535,6 +37234,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -36733,6 +37435,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -36933,6 +37638,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -37145,6 +37853,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -37377,6 +38088,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 6,
@@ -37574,6 +38288,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -37623,6 +38340,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -37797,6 +38517,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -38023,6 +38746,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -38258,6 +38984,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -38480,6 +39209,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -38698,6 +39430,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -38897,6 +39632,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -39123,6 +39861,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -39325,6 +40066,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -39544,6 +40288,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -39780,6 +40527,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -39854,6 +40604,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 60,
@@ -39868,6 +40621,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -39882,6 +40638,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 100,
@@ -39891,6 +40650,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 40,
@@ -39905,6 +40667,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -40039,6 +40804,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -40133,6 +40901,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40142,6 +40913,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40151,6 +40925,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40319,6 +41096,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -40408,6 +41188,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40417,6 +41200,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40426,6 +41212,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -40615,6 +41404,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -40714,6 +41506,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -40728,6 +41523,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -40742,6 +41540,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -40910,6 +41711,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -40999,6 +41803,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -41008,6 +41815,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -41017,6 +41827,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -41173,6 +41986,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -41232,6 +42048,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -41387,6 +42206,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -41617,6 +42439,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -41839,6 +42664,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 17,
@@ -42076,6 +42904,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 17,
@@ -42322,6 +43153,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -42520,6 +43354,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -42759,6 +43596,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -43002,6 +43842,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 7,
@@ -43071,6 +43914,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -43116,6 +43962,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -43211,6 +44060,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -43407,6 +44259,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -43621,6 +44476,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -43675,6 +44533,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -43813,6 +44674,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 6,
@@ -43872,6 +44736,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -43917,6 +44784,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -43966,6 +44836,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44099,6 +44972,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -44148,6 +45024,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44326,6 +45205,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -44420,6 +45302,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44429,6 +45314,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44438,6 +45326,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -44631,6 +45522,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -44725,6 +45619,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44734,6 +45631,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44743,6 +45643,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -44947,6 +45850,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -45031,6 +45937,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -45045,6 +45954,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45054,6 +45966,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45238,6 +46153,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -45317,6 +46235,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -45331,6 +46252,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45490,6 +46414,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -45584,6 +46511,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45593,6 +46523,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45602,6 +46535,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -45616,6 +46552,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -45761,6 +46700,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -45860,6 +46802,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45869,6 +46814,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -45878,6 +46826,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -46054,6 +47005,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -46088,6 +47042,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -46297,6 +47254,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -46331,6 +47291,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -46539,6 +47502,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -46583,6 +47549,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -46808,6 +47777,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -46847,6 +47819,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -47043,6 +48018,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -47087,6 +48065,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 20,
@@ -47273,6 +48254,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -47317,6 +48301,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 20,
@@ -47504,6 +48491,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -47553,6 +48543,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -47694,6 +48687,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -47895,6 +48891,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -47949,6 +48948,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -48034,6 +49036,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -48088,6 +49093,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -48269,6 +49277,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -48323,6 +49334,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 10,
@@ -48408,6 +49422,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 9,
@@ -48472,6 +49489,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 70,
@@ -48539,6 +49559,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -48639,6 +49662,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -48765,6 +49791,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -48891,6 +49920,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -48995,6 +50027,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -49071,6 +50106,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -49167,6 +50205,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -49306,6 +50347,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -49459,6 +50503,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -49591,6 +50638,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -49723,6 +50773,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -49875,6 +50928,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -50048,6 +51104,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -50222,6 +51281,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -50366,6 +51428,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -50511,6 +51576,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -50618,6 +51686,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -50785,6 +51856,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -50945,6 +52019,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -51104,6 +52181,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -51234,6 +52314,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -51334,6 +52417,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -51430,6 +52516,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -51553,6 +52642,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -51685,6 +52777,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -51836,6 +52931,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -51982,6 +53080,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 45,
@@ -52130,6 +53231,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -52289,6 +53393,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -52440,6 +53547,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -52602,6 +53712,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 45,
@@ -52746,6 +53859,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -52901,6 +54017,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -53041,6 +54160,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -53203,6 +54325,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -53369,6 +54494,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -53521,6 +54649,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -53678,6 +54809,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -53805,6 +54939,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -53910,6 +55047,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -54037,6 +55177,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 30,
@@ -54177,6 +55320,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -54339,6 +55485,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -54497,6 +55646,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -54636,6 +55788,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 26,
@@ -54781,6 +55936,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -54936,6 +56094,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -55095,6 +56256,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -55252,6 +56416,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 9,
@@ -55405,6 +56572,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -55558,6 +56728,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -55712,6 +56885,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -55849,6 +57025,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -55990,6 +57169,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -56129,6 +57311,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -56285,6 +57470,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -56319,6 +57507,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 20,
@@ -56448,6 +57639,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -56482,6 +57676,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 20,
@@ -56603,6 +57800,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -56732,6 +57932,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -56896,6 +58099,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -57035,6 +58241,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -57161,6 +58370,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -57310,6 +58522,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -57474,6 +58689,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -57633,6 +58851,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -57793,6 +59014,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -57918,6 +59142,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -58081,6 +59308,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -58234,6 +59464,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -58385,6 +59618,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -58533,6 +59769,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 26,
@@ -58567,6 +59806,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -58696,6 +59938,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 26,
@@ -58730,6 +59975,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -58880,6 +60128,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -58914,6 +60165,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -59042,6 +60296,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -59076,6 +60333,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -59192,6 +60452,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -59358,6 +60621,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -59492,6 +60758,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -59645,6 +60914,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -59709,6 +60981,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -59800,6 +61075,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 13,
@@ -59965,6 +61243,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -60019,6 +61300,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -60126,6 +61410,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -60165,6 +61452,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -60303,6 +61593,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -60342,6 +61635,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 12,
@@ -60467,6 +61763,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -60531,6 +61830,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -60621,6 +61923,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 13,
@@ -60790,6 +62095,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -60844,6 +62152,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 90,
@@ -60930,6 +62241,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 3,
@@ -60989,6 +62303,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 50,
@@ -61079,6 +62396,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -61143,6 +62463,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 90,
@@ -61230,6 +62553,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -61376,6 +62702,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -61504,6 +62833,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -61656,6 +62988,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 4,
@@ -61829,6 +63164,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 18,
@@ -61994,6 +63332,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -62155,6 +63496,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -62305,6 +63649,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 17,
@@ -62448,6 +63795,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -62625,6 +63975,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -62790,6 +64143,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -62945,6 +64301,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -62999,6 +64358,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 80,
@@ -63013,6 +64375,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 70,
@@ -63027,6 +64392,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 50,
@@ -63041,6 +64409,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 40,
@@ -63055,6 +64426,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -63178,6 +64552,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -63227,6 +64604,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 72,
@@ -63246,6 +64626,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -63260,6 +64643,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 70,
@@ -63274,6 +64660,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 70,
@@ -63288,6 +64677,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -63394,6 +64786,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -63473,6 +64868,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -63487,6 +64885,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -63598,6 +64999,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -63725,6 +65129,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 4,
@@ -63869,6 +65276,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -64025,6 +65435,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -64166,6 +65579,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -64342,6 +65758,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 12,
@@ -64515,6 +65934,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -64671,6 +66093,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -64730,6 +66155,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 50,
@@ -64744,6 +66172,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 60,
@@ -64758,6 +66189,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 50,
@@ -64772,6 +66206,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 50,
@@ -64786,6 +66223,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 50,
@@ -64895,6 +66335,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -64969,6 +66412,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 60,
@@ -64983,6 +66429,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -64997,6 +66446,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 100,
@@ -65006,6 +66458,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 40,
@@ -65020,6 +66475,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -65111,6 +66569,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -65170,6 +66631,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 50,
@@ -65184,6 +66648,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -65198,6 +66665,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 50,
@@ -65212,6 +66682,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 70,
@@ -65226,6 +66699,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -65341,6 +66817,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -65390,6 +66869,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
           "items": [
             {
               "chance": 100,
@@ -65399,6 +66881,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
           "items": [
             {
               "chance": 50,
@@ -65413,6 +66898,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
           "items": [
             {
               "chance": 50,
@@ -65427,6 +66915,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
           "items": [
             {
               "chance": 50,
@@ -65441,6 +66932,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
           "items": [
             {
               "chance": 100,
@@ -65547,6 +67041,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -65621,6 +67118,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -65630,6 +67130,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -65753,6 +67256,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -65832,6 +67338,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -65841,6 +67350,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -65968,6 +67480,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -66047,6 +67562,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -66056,6 +67574,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -66179,6 +67700,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -66258,6 +67782,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -66267,6 +67794,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -66402,6 +67932,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 28,
@@ -66436,6 +67969,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -66584,6 +68120,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -66623,6 +68162,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -66771,6 +68313,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -66810,6 +68355,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -66959,6 +68507,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -67028,6 +68579,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 80,
@@ -67115,6 +68669,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -67294,6 +68851,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -67485,6 +69045,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 5,
@@ -67635,6 +69198,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -67813,6 +69379,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 10,
@@ -67979,6 +69548,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 3,
@@ -68138,6 +69710,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -68302,6 +69877,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 8,
@@ -68456,6 +70034,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 15,
@@ -68628,6 +70209,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -68697,6 +70281,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -68737,6 +70324,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -68837,6 +70427,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 16,
@@ -68982,6 +70575,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -69142,6 +70738,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 24,
@@ -69191,6 +70790,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69289,6 +70891,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 14,
@@ -69452,6 +71057,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -69531,6 +71139,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69540,6 +71151,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69651,6 +71265,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -69725,6 +71342,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69734,6 +71354,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69845,6 +71468,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -69934,6 +71560,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -69948,6 +71577,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -69957,6 +71589,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -70098,6 +71733,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -70187,6 +71825,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -70196,6 +71837,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -70205,6 +71849,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -70342,6 +71989,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 7,
@@ -70386,6 +72036,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -70529,6 +72182,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 7,
@@ -70573,6 +72229,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 32,
@@ -70707,6 +72366,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -70746,6 +72408,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -70890,6 +72555,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -70929,6 +72597,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 1,
           "items": [
             {
               "chance": 18,
@@ -71078,6 +72749,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -71173,6 +72847,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
           "items": [
             {
               "chance": 13,
@@ -71290,6 +72967,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
           "items": [
             {
               "chance": 1,
@@ -71414,6 +73094,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -71428,6 +73111,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -71442,6 +73128,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 60,
@@ -71456,6 +73145,9 @@
           ]
         },
         {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
           "items": [
             {
               "chance": 100,
@@ -71541,6 +73233,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -71645,6 +73340,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -71749,6 +73447,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -71853,6 +73554,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -71957,6 +73661,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72061,6 +73768,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72165,6 +73875,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72269,6 +73982,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72373,6 +74089,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72477,6 +74196,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72581,6 +74303,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72685,6 +74410,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72789,6 +74517,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72893,6 +74624,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -72997,6 +74731,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73101,6 +74838,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73205,6 +74945,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73309,6 +75052,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73413,6 +75159,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73517,6 +75266,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73621,6 +75373,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73725,6 +75480,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73829,6 +75587,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -73933,6 +75694,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74037,6 +75801,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74141,6 +75908,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74245,6 +76015,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74349,6 +76122,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74453,6 +76229,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74557,6 +76336,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74661,6 +76443,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74765,6 +76550,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74869,6 +76657,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -74973,6 +76764,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75077,6 +76871,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75181,6 +76978,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75285,6 +77085,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75389,6 +77192,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75493,6 +77299,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75597,6 +77406,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75701,6 +77513,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75805,6 +77620,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -75909,6 +77727,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76013,6 +77834,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76117,6 +77941,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76221,6 +78048,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76325,6 +78155,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76429,6 +78262,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76533,6 +78369,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76637,6 +78476,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76741,6 +78583,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76845,6 +78690,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -76949,6 +78797,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77053,6 +78904,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77157,6 +79011,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77261,6 +79118,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77365,6 +79225,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77469,6 +79332,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77573,6 +79439,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77677,6 +79546,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77781,6 +79653,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77885,6 +79760,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -77989,6 +79867,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78093,6 +79974,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78197,6 +80081,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78301,6 +80188,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78405,6 +80295,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78509,6 +80402,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -78613,6 +80509,2256 @@
       ],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30070,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30071,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30072,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30073,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30074,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30075,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30076,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30077,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30078,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30079,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30080,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30081,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30082,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30083,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30084,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30085,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30086,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30087,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30088,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30089,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Mystery Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Cricket",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Red Seed",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Green Seed",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gathering - Snowy Mountains",
+      "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
+      "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
+      "fail": "Reward Zero",
+      "client": "Pokke Village Chief"
+    },
+    {
+      "id": 30090,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": "Snowy Mountains (Day)",
+      "fee": 0,
+      "reward": 12,
+      "penalty": 4,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        },
+        {
+          "item": "Paw Pass Ticket",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,

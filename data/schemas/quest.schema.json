@@ -34,7 +34,23 @@
       "type": "object",
       "required": ["items"],
       "additionalProperties": false,
+      "$comment": "kind/draws/condition decode RewardTBL.Unkn1/Unkn2; see mhfu-extract's README, 'Reward tables'.",
       "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["main", "extra", "conditional"],
+          "$comment": "main: the main reward pool (Unkn1 0x8000). extra: a fixed extra reward, one draw (0x8001). conditional: awarded on a condition kept raw in 'condition'."
+        },
+        "draws": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "$comment": "Times the table is drawn. For main tables this is the base count before Luck skills, inferred from Unkn2's high byte. Null where unknown (conditional tables)."
+        },
+        "condition": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "$comment": "Raw RewardTBL.Unkn1 of a conditional table, undecoded. Null for main and extra tables."
+        },
         "items": { "type": "array", "items": { "$ref": "#/definitions/reward_item" } }
       }
     },
@@ -93,11 +109,11 @@
         "reward_tables":  { "type": "array", "items": { "$ref": "#/definitions/reward_table" } },
         "large_monsters": { "type": "array", "items": { "$ref": "#/definitions/monster_spawn" } },
         "small_monsters": { "type": "array", "items": { "$ref": "#/definitions/small_monster_spawn" } },
-        "title":   { "type": ["string", "null"], "$comment": "Japanese-only, extracted verbatim from the JP disc — see mhfu-extract's README." },
-        "goal":    { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
-        "details": { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
-        "fail":    { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." },
-        "client":  { "type": ["string", "null"], "$comment": "Japanese-only, see 'title'." }
+        "title":   { "type": ["string", "null"], "$comment": "Extracted verbatim from the disc: English on the EU disc. See mhfu-extract's README." },
+        "goal":    { "type": ["string", "null"], "$comment": "See 'title'." },
+        "details": { "type": ["string", "null"], "$comment": "See 'title'." },
+        "fail":    { "type": ["string", "null"], "$comment": "See 'title'." },
+        "client":  { "type": ["string", "null"], "$comment": "See 'title'." }
       }
     }
   }
