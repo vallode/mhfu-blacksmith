@@ -33,7 +33,11 @@ export type FieldKind =
   /** Bowgun `{ name, capacity }[]` ammo lists, compared by ammo name (trimmed). */
   | "ammo"
   /** A `|`-joined list (`rapid_fire`), compared as a set of trimmed entries; null is empty. */
-  | "joined-set";
+  | "joined-set"
+  /** Monster `{ part: { cut, bash, … } }`, compared by number per part. */
+  | "hitzones"
+  /** Monster `{ rank: { group: [{ name, chance }] } }`, each group compared as a multiset of (item ID, chance, amount). */
+  | "drops";
 
 export interface FieldSpec {
   field: string;
@@ -261,7 +265,86 @@ export function canonical(
       return JSON.stringify(ammoKeys(value));
     case "joined-set":
       return JSON.stringify(joinedKeys(value));
+    case "hitzones":
+      return JSON.stringify(hitzoneKeys(value));
+    case "drops":
+      return JSON.stringify(dropKeys(value, side, ctx));
   }
+}
+
+/**
+ * Whether the site and disc values of a field agree. Monster `hitzones` and
+ * `drops` compare only the parts and groups the disc emitted (those
+ * `overlay/monsters.json` maps); the rest have no disc counterpart and stay
+ * as committed. Every other kind compares the whole value.
+ */
+export function fieldsAgree(
+  spec: FieldSpec,
+  siteValue: unknown,
+  discValue: unknown,
+  ctx: FieldContext,
+): boolean {
+  const site =
+    spec.kind === "hitzones" || spec.kind === "drops"
+      ? restrictTo(siteValue, discValue, spec.kind === "drops" ? 2 : 1)
+      : siteValue;
+  return canonical(spec, site, "site", ctx) === canonical(spec, discValue, "disc", ctx);
+}
+
+type Nested = Record<string, unknown>;
+const isObject = (v: unknown): v is Nested => !!v && typeof v === "object" && !Array.isArray(v);
+
+/** `value` cut down to the keys `shape` has, `depth` levels deep. */
+function restrictTo(value: unknown, shape: unknown, depth: number): unknown {
+  if (!isObject(value) || !isObject(shape)) return value;
+  const out: Nested = {};
+  for (const key of Object.keys(shape)) {
+    if (!(key in value)) continue;
+    out[key] = depth > 1 ? restrictTo(value[key], shape[key], depth - 1) : value[key];
+  }
+  return out;
+}
+
+const sortedEntries = (value: unknown): [string, unknown][] =>
+  isObject(value) ? Object.entries(value).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)) : [];
+
+/** Part -> its values as numbers, in key order. */
+function hitzoneKeys(value: unknown): [string, [string, number | string][]][] {
+  return sortedEntries(value).map(([part, row]) => [
+    part,
+    sortedEntries(row).map(([key, v]) => {
+      const n = Number(v);
+      return [key, Number.isFinite(n) && v !== "" ? n : String(v)];
+    }),
+  ]);
+}
+
+/** A drop entry's amount: the disc's `amount`, or the site name's `x2` suffix (1 when it has none). */
+function siteAmount(name: string): number {
+  return Number(/\sx(\d+)$/i.exec(name.trim())?.[1] ?? 1);
+}
+
+type DropKey = [number | string, number, number];
+
+function dropEntryKey(entry: unknown, side: "site" | "disc", ctx: FieldContext): DropKey {
+  const e = (entry ?? {}) as { name?: string; chance?: unknown; itemId?: number; amount?: number };
+  if (side === "disc") return [e.itemId ?? String(e.name), Number(e.chance), e.amount ?? 1];
+  const name = String(e.name ?? "");
+  const chance = Number.parseFloat(String(e.chance ?? ""));
+  return [ctx.site.itemIdOf(name) ?? name, chance, siteAmount(name)];
+}
+
+/** Rank -> group -> sorted entries. */
+function dropKeys(value: unknown, side: "site" | "disc", ctx: FieldContext) {
+  return sortedEntries(value).map(([rank, groups]) => [
+    rank,
+    sortedEntries(groups).map(([group, entries]) => [
+      group,
+      list(entries)
+        .map((e) => dropEntryKey(e, side, ctx))
+        .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))),
+    ]),
+  ]);
 }
 
 // ---------------------------------------------------------------------------
@@ -383,5 +466,104 @@ export function toSite(
       const n = percentValue(disc);
       return n === null ? disc : `${n}%`;
     }
+    case "hitzones":
+      return hitzonesToSite(disc, committed);
+    case "drops":
+      return dropsToSite(disc, committed, ctx);
   }
+}
+
+/**
+ * The committed hitzones with each part the disc has rewritten from it, as
+ * strings, in the committed key order. Parts the disc lacks stay as they
+ * are, and no part is added.
+ */
+function hitzonesToSite(disc: unknown, committed: unknown): unknown {
+  if (!isObject(committed) || !isObject(disc)) return committed;
+  const out: Nested = {};
+  for (const [part, row] of Object.entries(committed)) {
+    const discRow = disc[part];
+    if (!isObject(row) || !isObject(discRow)) {
+      out[part] = row;
+      continue;
+    }
+    const same =
+      JSON.stringify(hitzoneKeys({ p: row })) === JSON.stringify(hitzoneKeys({ p: discRow }));
+    out[part] = same
+      ? row
+      : Object.fromEntries(
+          Object.keys(row).map((key) => [key, key in discRow ? String(discRow[key]) : row[key]]),
+        );
+  }
+  return out;
+}
+
+/**
+ * The committed drops with each group the disc has rewritten from it when it
+ * differs, keeping the committed entry order. An item keeps its committed spelling when the
+ * group already listed it, else takes its `data/items.json` name; amounts are
+ * written as an ` xN` suffix in groups whose committed entries have one.
+ * Groups the disc lacks stay as they are, and no group is added.
+ */
+function dropsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unknown {
+  if (!isObject(committed) || !isObject(disc)) return committed;
+  const out: Nested = {};
+  for (const [rank, groups] of Object.entries(committed)) {
+    const discGroups = disc[rank];
+    if (!isObject(groups) || !isObject(discGroups)) {
+      out[rank] = groups;
+      continue;
+    }
+    const nextGroups: Nested = {};
+    for (const [label, entries] of Object.entries(groups)) {
+      const discEntries = discGroups[label];
+      const same =
+        discEntries === undefined ||
+        JSON.stringify(dropKeys({ r: { g: entries } }, "site", ctx)) ===
+          JSON.stringify(dropKeys({ r: { g: discEntries } }, "disc", ctx));
+      if (same) {
+        nextGroups[label] = entries;
+        continue;
+      }
+      const committedEntries = list(entries) as { name: string; chance: string }[];
+      const discList = list(discEntries) as {
+        itemId: number;
+        name: string;
+        chance: number;
+        amount?: number;
+      }[];
+      // Amounts the site's convention can't show (no suffix) still need one.
+      const withAmount =
+        committedEntries.some((e) => /\sx\d+$/i.test(e.name.trim())) ||
+        discList.some((e) => (e.amount ?? 1) !== 1);
+      const spelling = new Map<number, string>();
+      for (const e of committedEntries) {
+        const id = ctx.site.itemIdOf(e.name);
+        if (id !== null && !spelling.has(id))
+          spelling.set(id, e.name.trim().replace(/\s+x\d+$/i, ""));
+      }
+      const format = (e: (typeof discList)[number]) => {
+        const base = spelling.get(e.itemId) ?? ctx.site.items.get(e.itemId)?.name ?? e.name;
+        return { name: withAmount ? `${base} x${e.amount ?? 1}` : base, chance: `${e.chance}%` };
+      };
+      // Committed order: each committed entry takes the first unused disc
+      // entry for its item (same amount first), entries the disc lacks are
+      // dropped, and new disc entries follow in the disc's order.
+      const unused = discList.map((_, i) => i);
+      const take = (id: number | null, amount: number) => {
+        const at =
+          unused.find((i) => discList[i]!.itemId === id && (discList[i]!.amount ?? 1) === amount) ??
+          unused.find((i) => discList[i]!.itemId === id);
+        if (at === undefined) return undefined;
+        unused.splice(unused.indexOf(at), 1);
+        return discList[at]!;
+      };
+      const ordered = committedEntries
+        .map((e) => take(ctx.site.itemIdOf(e.name), siteAmount(e.name)))
+        .filter((e): e is (typeof discList)[number] => e !== undefined);
+      nextGroups[label] = [...ordered, ...unused.map((i) => discList[i]!)].map(format);
+    }
+    out[rank] = nextGroups;
+  }
+  return out;
 }

@@ -55,8 +55,8 @@ const USAGE = `Usage:
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
-  tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations] [--out <path>] [--markdown <path>]
-  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,quests] [--report <path>] [--markdown <path>] [--dry-run]`;
+  tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
+  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests] [--report <path>] [--markdown <path>] [--dry-run]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;

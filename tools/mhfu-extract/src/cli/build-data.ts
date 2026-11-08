@@ -216,6 +216,8 @@ export function formatValue(value: unknown): string {
           const { name, amount } = v as { name: string; amount: number };
           return "type" in v ? `${name} ×${amount}` : `${name} ${amount >= 0 ? "+" : ""}${amount}`;
         }
+        if (v && typeof v === "object" && "name" in v && "chance" in v)
+          return `${(v as { name: string }).name} ${(v as { chance: string }).chance}`;
         if (v && typeof v === "object" && "name" in v && "attack" in v)
           return `${(v as { name: string }).name} ${(v as { attack: number }).attack}`;
         if (v && typeof v === "object" && "name" in v && "capacity" in v) {
@@ -232,6 +234,26 @@ export function formatValue(value: unknown): string {
 }
 
 const cell = (s: string) => s.replace(/\|/g, "\\|");
+
+const isRecord = (v: unknown): v is Record<string, unknown> =>
+  !!v && typeof v === "object" && !Array.isArray(v);
+
+/**
+ * For nested object fields (monster `hitzones`, `drops`): the paths whose
+ * values differ, as `[path, before, after]`, so the report lists only what
+ * changed (`chest.cut: 30 → 10`) instead of the whole object.
+ */
+export function changedLeaves(
+  before: unknown,
+  after: unknown,
+  prefix = "",
+): [string, unknown, unknown][] {
+  if (!isRecord(before) || !isRecord(after)) {
+    return JSON.stringify(before) === JSON.stringify(after) ? [] : [[prefix, before, after]];
+  }
+  const keys = [...new Set([...Object.keys(before), ...Object.keys(after)])];
+  return keys.flatMap((k) => changedLeaves(before[k], after[k], prefix ? `${prefix}.${k}` : k));
+}
 
 /** Markdown listing of every change, kept disagreement and unpaired item. */
 export function formatBuildReport(report: BuildDataReport): string {
@@ -250,9 +272,16 @@ export function formatBuildReport(report: BuildDataReport): string {
         "|---|---|---|---|",
       );
       for (const ch of changes) {
-        out.push(
-          `| ${ch.file} | ${cell(ch.name)} | ${cell(formatValue(ch.before))} | ${cell(formatValue(ch.after))} |`,
-        );
+        const leaves =
+          isRecord(ch.before) && isRecord(ch.after)
+            ? changedLeaves(ch.before, ch.after)
+            : [["", ch.before, ch.after] as [string, unknown, unknown]];
+        for (const [leaf, before, after] of leaves) {
+          const item = leaf ? `${ch.name} — ${leaf}` : ch.name;
+          out.push(
+            `| ${ch.file} | ${cell(item)} | ${cell(formatValue(before))} | ${cell(formatValue(after))} |`,
+          );
+        }
       }
       out.push("");
     }

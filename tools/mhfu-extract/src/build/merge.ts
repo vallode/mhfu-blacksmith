@@ -21,7 +21,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import type { Category } from "./categories.js";
-import { canonical, toSite, type SpellingIndex } from "./fields.js";
+import { fieldsAgree, toSite, type SpellingIndex } from "./fields.js";
 import {
   fieldContext,
   pairCategory,
@@ -106,9 +106,7 @@ export function mergeCategory(
       if (!(spec.field in pair.site) && (discValue === null || discValue === undefined)) continue;
 
       const agrees =
-        spec.field in pair.site &&
-        canonical(spec, pair.site[spec.field], "site", ctx) ===
-          canonical(spec, discValue, "disc", ctx);
+        spec.field in pair.site && fieldsAgree(spec, pair.site[spec.field], discValue, ctx);
       const override = keepByKey.get(keepKey(pair.file, name, spec.field));
       if (override) {
         usedKeep.add(keepKey(pair.file, name, spec.field));

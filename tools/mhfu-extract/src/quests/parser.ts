@@ -30,9 +30,13 @@ export interface QuestHeader {
   smallMonPtr: number;
   gatheringLocTblPtr: number;
   gatheringItemsPtr: number;
+  /** `MonSizeModifier` (u32 @ 56). */
+  monSizeModifier: number;
   rank: number;
   spawn: number;
   supplyCond: number;
+  /** The hexpat's Unkn4..Unkn7 (u8 @ 71..74); raw, for #35's multiplier-table selection. */
+  unknownFlags: number[];
   attackRoll: number;
   questType: number;
   fee: number;
@@ -61,9 +65,11 @@ export function readQuestHeader(reader: BinaryReader): QuestHeader {
     smallMonPtr: reader.u32(24),
     gatheringLocTblPtr: reader.u32(28),
     gatheringItemsPtr: reader.u32(36),
+    monSizeModifier: reader.u32(56),
     rank: reader.u8(68),
     spawn: reader.u8(69),
     supplyCond: reader.u8(70),
+    unknownFlags: [reader.u8(71), reader.u8(72), reader.u8(73), reader.u8(74)],
     attackRoll: reader.u8(75),
     questType: reader.u32(76),
     fee: reader.u32(80),
@@ -141,6 +147,9 @@ export interface MonsterSpawn {
   monsterId: number;
   quantity: number;
   power: number;
+  /** The hexpat's Attr1/Attr2 (u8 after `power`); raw, for #35's multiplier-table selection. */
+  attr1?: number;
+  attr2?: number;
 }
 
 const LARGE_MON_DATA_ENTRY_SIZE = 60;
@@ -156,6 +165,8 @@ function readLargeMonsterData(
       monsterId: reader.u16(off),
       quantity: reader.u8(off + 4),
       power: reader.u8(off + 5),
+      attr1: reader.u8(off + 6),
+      attr2: reader.u8(off + 7),
       stage: reader.u16(off + 8),
     });
     off += LARGE_MON_DATA_ENTRY_SIZE;

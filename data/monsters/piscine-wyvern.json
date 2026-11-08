@@ -152,7 +152,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 300
     },
     {
       "name": "Cephadrome",
@@ -264,10 +265,6 @@
           "body carves (x3)": [
             {
               "name": "Coral Cphlos Scl",
-              "chance": "50%"
-            },
-            {
-              "name": "Cephalos Scale",
               "chance": "20%"
             },
             {
@@ -281,16 +278,20 @@
             {
               "name": "Piscine Liver",
               "chance": "3%"
+            },
+            {
+              "name": "Cephalos Scale+",
+              "chance": "50%"
             }
           ],
           "break back fin": [
             {
               "name": "Cephalos Fin+ x1",
-              "chance": "85%"
+              "chance": "75%"
             },
             {
               "name": "Coral Cphlos Fin x1",
-              "chance": "15%"
+              "chance": "25%"
             }
           ],
           "shiny drop": [
@@ -304,25 +305,25 @@
             },
             {
               "name": "Coral Cphlos Scl",
-              "chance": "15%"
+              "chance": "5%"
             },
             {
               "name": "Piscine Liver",
               "chance": "10%"
             },
             {
-              "name": "Cephalos Scale",
-              "chance": "5%"
+              "name": "Cephalos Scale+",
+              "chance": "15%"
             }
           ],
           "capture": [
             {
               "name": "Cephalos Fin+ x1",
-              "chance": "55%"
+              "chance": "45%"
             },
             {
               "name": "Coral Cphlos Fin x1",
-              "chance": "15%"
+              "chance": "25%"
             },
             {
               "name": "Monster Bone+ x1",
@@ -341,7 +342,7 @@
       },
       "sizes": {
         "min": 889.13,
-        "max": 2097.0
+        "max": 2097
       },
       "hitzones": {
         "head": {
@@ -421,7 +422,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 1600
     },
     {
       "name": "Plesioth",
@@ -580,14 +582,14 @@
             },
             {
               "name": "Wyvern Sobs",
-              "chance": "27%"
+              "chance": "32%"
             },
             {
               "name": "Plesioth Scale+",
               "chance": "25%"
             },
             {
-              "name": "Plesioth Fin",
+              "name": "Plesioth Fin+",
               "chance": "10%"
             }
           ],
@@ -783,7 +785,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Green Plesioth",
@@ -1096,7 +1099,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4400
     },
     {
       "name": "Lavasioth",
@@ -1274,7 +1278,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     }
   ]
 }

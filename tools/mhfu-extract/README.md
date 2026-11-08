@@ -22,10 +22,13 @@ arrays inside the game's main executable (`EBOOT.BIN`). Quests are
 individual `.mib` files inside `DATA.BIN`. See `NOTICE.md` for the
 reverse-engineering sources this is built on.
 
-**Not extractable this way:** monster hitzones, carve/capture/break rewards
-and HP/attack/defense multipliers (the data exists in the `.ovl` overlays but
-isn't statically linked to monster IDs — see "Monster overlays" below),
-flavor text, and a few cosmetic groupings. Equipment-side gaps of this kind
+Monster hitzones, status tolerances and carve/capture/break rewards live in
+the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
+"Monster overlays" below).
+
+**Not extractable this way:** flavor text and a few cosmetic groupings.
+Which of three quest stat multiplier tables a quest uses isn't settled yet
+(see "Monster overlays"). Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
@@ -237,15 +240,90 @@ Not implemented (out of scope for now): `QuestScript` (opcodes are marked
 "TBD" even in the upstream pattern), gathering node locations/items, and
 arena sets.
 
-### Monster overlays: hitzones and rewards (parked)
+### Monster overlays: hitzones, tolerances and rewards
 
-`game_task.ovl`, `game_sub.ovl` and the per-monster `emXX.ovl` files share
-the `MWo3` container format parsed by `src/container/ovl.ts` (header with
-`loadBase`/`loadEnd` vaddrs, then the mapped image; `vaddrToOffset`
-translates pointers). Real hitzone and reward bytes are confirmed inside them
-and pinned as fixtures in `test/ovl.test.ts`, but no static monster ID →
-data mapping exists, so nothing is emitted for monsters yet. Investigation
-notes and options: [#35](https://github.com/vallode/mhfu-blacksmith/issues/35).
+`game_task.ovl` and `game_sub.ovl` use the `MWo3` container
+(`src/container/ovl.ts`): a 0x80-byte header (magic, `loadBase`/`loadEnd`,
+name), then the image. The header is loaded too, so `loadBase` is the vaddr
+of file offset 0. (An earlier version mapped it to offset 0x80, which put
+every pointer 0x80 bytes past its target; that is why the first
+investigation, [#35](https://github.com/vallode/mhfu-blacksmith/issues/35),
+found no pointer to the rows it located.) With that fixed, the vendored
+`game_task.hexpat`/`game_sub.hexpat` layouts hold, with the corrections in
+the module comments:
+
+- **Chunks** (`src/monsters/hitzones.ts`): `MonChunk[90]`, 0x1D0 bytes each,
+  indexed by emID. `+0x10C` is one pointer to a `HitzoneTbl` list (u32
+  pointers up to the first non-pointer), each to 10-byte rows ending in a
+  zero u16: a lead byte (100, 90, 80, …; meaning unknown), then cut, bash,
+  shot, fire, water, **ice, thunder**, dragon, KO. Every table has 7 rows;
+  small monsters use row 0. Gravios, Basarios, Congalala, the elder dragons
+  and others have a second table for a broken or enraged state, the
+  Hermitaurs a third. `+0x110` holds the tolerances: paralysis, KO, sleep,
+  an unknown status (5 u16: initial, recovery time, recovery, duration,
+  increase) and poison (7 u16).
+- **Rewards** (`src/monsters/rewards.ts`): `bodytailshiny[89]` (entry `i`
+  is emID `i + 1`) and `capbreakindex[]` (carrying its own emID and a type,
+  128 = capture, else a break part number). Each holds a u16 index per rank
+  slot (unranked, low, high, treasure, training, G, misc) into a pointer
+  table directly before it, leading to `{chance, item}` (carves) or
+  `{chance, item, amount}` (captures, breaks) lists ending in `0xFFFF`.
+  `locateRewardTables` finds the pointer tables as runs of exactly 1088 and
+  924 pointers (the JP counts).
+- **EU** (ULES01213): the overlays load at other bases
+  (`0x09a5f200`/`0x09c19000`), the chunk array sits 0x110 bytes past its JP
+  file offset and both reward table pairs 0x310 past theirs. The chunk
+  array is found by scoring shifts (`locateMonsterChunks`), the reward
+  tables by their pointer runs.
+
+- **Base HP and quest multipliers** (`src/monsters/multipliers.ts`): the
+  chunk's `+0x100` is the base HP (Felyne 40, Yian Kut-Ku 1600, Rathian
+  4000, Lao-Shan Lung 26666). A quest's large-monster `power` byte (0-31)
+  picks a row of four floats (HP, attack, defense, and a fourth that rises
+  to 2.3-2.5 in G rank, probably status) in a 32-row table. The tables
+  follow the hitzone pool in sets of three, reached from a master list of
+  four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
+  HP 0.35 / attack 1.02, matches a published figure for the first Village
+  Elder quest. A quest's header `rank` byte picks the set (0 village → set
+  0, 1/2/5 guild low/high/G → set 1, 3 treasure → set 2, 4 training school
+  → set 3): sets 2 and 3 hold real values exactly on the rows those hubs
+  use, and set 1 is the harder set. Which of the set's three tables
+  applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
+  are almost always 0), so it is probably chosen at run time; set 1's
+  three differ mostly in HP. `extract --raw` writes the tables to
+  `raw/monsters.json` and each quest's selector bytes to
+  `raw/quest-monsters.json`; nothing is written to `data/` until the table
+  choice is known.
+
+The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
+in `game_task.ovl`.
+
+`extract` emits `monsters/<type>.json` from these (`src/emit/monsters.ts`)
+and, with `--raw`, the decoded tables as `raw/monsters.json`. The disc has
+part and break numbers, not names, and no drop-group labels, so
+`src/overlay/monsters.json` maps each committed hitzone part to a (table,
+row) and each committed drop group to a slot (`"body/low"`,
+`"break:2/high"`), plus the site name and file. It was generated by
+matching the committed data against the EU disc, then reviewed:
+
+- **Hitzone parts:** by value, one row per part within each monster. 389
+  of 400 parts match a row exactly; the other 11 take the one row left over
+  (1–4 values off, listed in the PR) and are site errors.
+- **Drop groups:** by label. A "1-2 star…" rank is the unranked slot,
+  "low"/"high"/"g" ranks their slots, and the group's first word its kind.
+  Break part numbers come from votes of exact list matches across ranks.
+  695 of 730 groups are mapped. The other 35 stay as committed: 6 "live
+  carving" groups (no disc kind), 10 with no disc slot (the elder dragons'
+  and Lao-Shan Lung's "body carves (x9)", Nargacuga's high-rank body
+  carves, two Yama Tsukami G-rank groups), 13 Congalala shiny drops the
+  site splits into several groups for one disc slot, and the 6 groups of 5
+  break parts whose number only elimination would give (Terra Shogun
+  Ceanataur "shell", Lao-Shan Lung "right shoulder", Fatalis "2nd horn",
+  Akantor "chest", Ukanlos "claws").
+
+Monsters pair with the site by emID through the same overlay (the enum
+spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
+`base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
 
 ## 3D models (experimental)
 
@@ -473,9 +551,9 @@ and arena sets.
 
 ## Building `data/` from the disc
 
-`data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json` and
-`data/quests/*.json` are generated from an EU (ULES01213) disc with
-`build-data`. The disc is the source of truth for every field it holds.
+`data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
+`data/quests/*.json` and the hitzones and drops in `data/monsters/*.json`
+are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
 **Matching (`src/build/ids.ts`).** Items are paired by game ID, not by
@@ -523,6 +601,7 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 | armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                            | 97.5–100%                                                                             | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                         |
 | weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, `notes`) |
 | decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                                                                                         |
+| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field)                                                                        |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
@@ -593,6 +672,20 @@ skill spellings missing from the alias overlay, and the Guild Knight
 Coat/Kilt waist IDs, which the MHP2G enum swaps
 (`scripts/equipment-id-aliases.json`).
 
+Monsters were added later (#35). `compare` counts them per monster: of
+83, hitzones agreed on 73 and drops on 30 of the 75 with mapped drops.
+Per part, 389 of 400 mapped hitzone parts agreed. The 11 that didn't (10
+monsters, 18 values) are one-to-one row matches 1–4 values off, e.g.
+Fatalis chest cut 30 vs 10; the site's Bullfango row is the disc's
+Bulldrome row. Per group, 601 of 695 mapped drop groups agreed. Of the 94
+that didn't, 7 differ only in an amount, 24 only in chances and 63 in
+items. On the disc every mapped list sums to 100; 26 of the 94 site lists
+don't, others miss an entry (Hypnocatrice's high-rank capture lacks its 6%
+Hypno Bezoar) or carry 0% placeholders (Hermitaur G-rank carves), and 10
+are another rank's disc list pasted in (Black Diablos's high-rank groups
+are its low-rank ones). All 94 are taken. A changed group keeps its
+committed entry order and spellings; new items are appended.
+
 To refresh after an extractor fix: rerun `extract`, `compare`, then
 `build-data`, and review its `--markdown` change list. Add a field to
 `take` only after reviewing its disagreements. Rerun
@@ -622,8 +715,10 @@ comment for how each entry was chosen.
 value is right and the disc reading is wrong; `build-data` keeps those
 values (see "Building `data/` from the disc").
 
-Monster HP/attack/defense multipliers, flavor text and category grouping
-will need the same treatment once monster output exists ([#35](https://github.com/vallode/mhfu-blacksmith/issues/35)).
+`monsters.json` holds the presentation for disc monsters: site name, file,
+and the disc slot behind each committed hitzone part and drop group (see
+"Monster overlays"). Flavor text and category grouping stay as
+committed.
 English quest board text is another candidate ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
 
 ## Tests

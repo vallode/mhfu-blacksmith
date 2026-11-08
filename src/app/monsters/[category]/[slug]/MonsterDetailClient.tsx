@@ -192,6 +192,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                   </span>
                 </p>
               )}
+              {monster.base_hp !== undefined && (
+                <p className="text-[1.6rem] text-stat">
+                  Base HP:{" "}
+                  <span className="text-white tabular-nums">
+                    {monster.base_hp.toLocaleString("en-US")}
+                  </span>
+                </p>
+              )}
             </div>
             <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
               <img

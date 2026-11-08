@@ -10,9 +10,10 @@
  *
  *   offset 0x00  magic[4]      "MWo3"
  *   offset 0x04  u32 unk1
- *   offset 0x08  u32 loadBase  — the vaddr the byte at fileOffset 0x80 is
- *                                mapped to; matches the hexpat's declared
- *                                #pragma base_address for this file.
+ *   offset 0x08  u32 loadBase  — the vaddr of file offset 0: the header is
+ *                                loaded with the image, as the hexpats'
+ *                                #pragma base_address (ImHex's address of
+ *                                file byte 0) says.
  *   offset 0x0C  u32 unk2
  *   offset 0x10  u32 unk3
  *   offset 0x14  u32 unk4
@@ -22,13 +23,14 @@
  *                                loadBase; there's a little slack/padding).
  *   offset 0x20  char name[0x60], NUL-padded, e.g. "game_task.ovl" (also
  *                serves as this format's #pragma magic anchor).
- *   offset 0x80  data[] — the mapped image; vaddr `loadBase` corresponds to
- *                this exact byte.
+ *   offset 0x80  data[] — vaddr `loadBase + 0x80`.
  *
- * Validated against real JP DATA.BIN bytes by resolving pointers in
- * self-contained fixed-layout tables (game_task.ovl's VeggieTradeTable @
- * 0x09BD2E58, game_sub.ovl's FishCasterTable @ 0x09CCC220) to real,
- * sensible item names via the ItemID enum — see test/ovl.test.ts.
+ * An earlier version mapped `loadBase` to file offset 0x80, which put every
+ * pointer 0x80 bytes past its target. That is why the first monster
+ * investigation found no pointer to the hitzone and carve rows it located
+ * (vallode/mhfu-blacksmith#35): with this mapping, the EU disc's carve and
+ * cap/break pointers lead to their own monster's committed lists, and the
+ * hitzone pointers to `HitzoneTbl` lists, as the hexpats describe.
  */
 import { BinaryReader, vaddrToOffset } from "../binary/reader.js";
 
@@ -47,9 +49,6 @@ export class OvlFile {
   readonly loadEnd: number;
   readonly name: string;
 
-  /** Effective base address for reader.ts's vaddrToOffset(), folding in the header size. */
-  private readonly effectiveBaseAddress: number;
-
   constructor(buf: Buffer) {
     const reader = new BinaryReader(buf);
     const magic = reader.magic(0, 4);
@@ -62,15 +61,14 @@ export class OvlFile {
     this.loadBase = reader.u32(0x08);
     this.loadEnd = reader.u32(0x1c);
     this.name = reader.fixedString(HEADER_FIELDS_SIZE, NAME_FIELD_SIZE);
-    this.effectiveBaseAddress = this.loadBase - OVL_HEADER_SIZE;
   }
 
   /** Resolves a vaddr (as stored in this overlay's pointer/`@`-addressed fields) to a byte offset in `this.reader`. */
   vaddrToOffset(vaddr: number): number {
-    return vaddrToOffset(vaddr, this.effectiveBaseAddress);
+    return vaddrToOffset(vaddr, this.loadBase);
   }
 
-  /** True if `vaddr` falls within this overlay's own mapped image (as opposed to e.g. a sibling per-monster emXX.ovl). */
+  /** True if `vaddr` falls within this overlay's data image (past the header; not e.g. a sibling per-monster emXX.ovl). */
   isOwnVaddr(vaddr: number): boolean {
     const offset = this.vaddrToOffset(vaddr);
     return offset >= OVL_HEADER_SIZE && offset < this.reader.length;
