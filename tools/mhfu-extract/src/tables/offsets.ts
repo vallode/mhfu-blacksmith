@@ -105,7 +105,11 @@ export function jpVaddrToOffset(vaddr: number): number {
  * (e.g. `MHP2G_EU_RESOLVER`) reads the same struct layout from wherever that
  * resolver locates the table instead.
  */
-export function resolveTableOffset(table: TableName, reader: BinaryReader, resolver?: TableAddressResolver): number {
+export function resolveTableOffset(
+  table: TableName,
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): number {
   return resolver ? resolver.resolve(table, reader.buf) : tableOffset(table);
 }
 
@@ -131,7 +135,7 @@ export function verifyOffsets(ebootReader: BinaryReader): OffsetVerificationResu
   check(
     "decorationValues == itemTable + 948 * 24",
     decoBase === expectedDecoBase,
-    `decorationValues=0x${decoBase.toString(16)} expected=0x${expectedDecoBase.toString(16)}`
+    `decorationValues=0x${decoBase.toString(16)} expected=0x${expectedDecoBase.toString(16)}`,
   );
 
   // 2. weaponsGunner and decorationSkills are independently-declared output
@@ -145,7 +149,7 @@ export function verifyOffsets(ebootReader: BinaryReader): OffsetVerificationResu
   check(
     "weaponsGunner end <= decorationSkills start",
     gunEnd <= decoSkillsBase,
-    `gunEnd=0x${gunEnd.toString(16)} decorationSkills=0x${decoSkillsBase.toString(16)}`
+    `gunEnd=0x${gunEnd.toString(16)} decorationSkills=0x${decoSkillsBase.toString(16)}`,
   );
 
   // 3. Sharpness IDs referenced by every blademaster weapon must fall
@@ -165,7 +169,7 @@ export function verifyOffsets(ebootReader: BinaryReader): OffsetVerificationResu
   check(
     "all blademaster SharpnessID values < 40",
     sharpnessOk,
-    sharpnessOk ? "ok" : `weapon index ${firstBadIndex} has out-of-range SharpnessID`
+    sharpnessOk ? "ok" : `weapon index ${firstBadIndex} has out-of-range SharpnessID`,
   );
 
   // 4. The weapon class modifier table (11 u32s) must contain plausible,
@@ -180,7 +184,11 @@ export function verifyOffsets(ebootReader: BinaryReader): OffsetVerificationResu
       break;
     }
   }
-  check("weapon class modifiers are plausible", classModsOk, classModsOk ? "ok" : "found a zero or absurd value");
+  check(
+    "weapon class modifiers are plausible",
+    classModsOk,
+    classModsOk ? "ok" : "found a zero or absurd value",
+  );
 
   return { ok: checks.every((c) => c.ok), checks };
 }

@@ -7,7 +7,11 @@
  * only in enum-vs-legacy-site abbreviation spelling — e.g. our "Reload"
  * vs. the site's "Load" for the same SkillID — not value, cost 164/166).
  */
-import { readDecorationSkills, readDecorationValues, resolveDecorationSkill } from "../tables/decorations.js";
+import {
+  readDecorationSkills,
+  readDecorationValues,
+  resolveDecorationSkill,
+} from "../tables/decorations.js";
 import { readEquipmentCreate } from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver } from "../strings/names.js";
@@ -39,7 +43,10 @@ export interface EmittedDecoration {
 /** DecorationValues -> ItemID index offset (see tables/decorations.ts). */
 const DECORATION_ITEM_ID_OFFSET = 948;
 
-export function emitDecorations(reader: BinaryReader, resolver?: TableAddressResolver): EmittedDecoration[] {
+export function emitDecorations(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): EmittedDecoration[] {
   const decoValues = readDecorationValues(reader, resolver);
   const decoSkillTable = readDecorationSkills(reader, resolver);
   const create = readEquipmentCreate(reader, resolver);
@@ -60,10 +67,15 @@ export function emitDecorations(reader: BinaryReader, resolver?: TableAddressRes
     if (!skillEntry) continue;
     const skills = skillEntry.skills
       .filter((s) => s.skill !== 0)
-      .map((s) => `${names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`} ${formatSignedAmount(s.amount)}`);
+      .map(
+        (s) =>
+          `${names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`} ${formatSignedAmount(s.amount)}`,
+      );
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(itemId) ?? [];
-    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "decoration") : [];
+    const createMats = primaryRecipe
+      ? resolveMaterials(primaryRecipe.craft, names, "decoration")
+      : [];
     const altMats = altRecipe ? resolveMaterials(altRecipe.craft, names, "decoration") : [];
 
     out.push({

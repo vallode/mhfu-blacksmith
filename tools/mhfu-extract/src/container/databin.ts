@@ -24,8 +24,12 @@ const KEY_MODIFIER: readonly [number, number] = [0xffd9, 0xfff1];
 
 // game == MHP2G_JP uses one exception list; MHP2G_NA / MHP2G_EU share the
 // other. Values are indices into the file's TOC, not byte offsets.
-const JP_EXCEPTIONS = new Set([22, 23, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]);
-const NA_EXCEPTIONS = new Set([42, 43, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]);
+const JP_EXCEPTIONS = new Set([
+  22, 23, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+]);
+const NA_EXCEPTIONS = new Set([
+  42, 43, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,
+]);
 
 function exceptionsFor(region: Region): Set<number> {
   return region === "jp" ? JP_EXCEPTIONS : NA_EXCEPTIONS;
@@ -51,7 +55,8 @@ class LcgKeyStream {
 
 /** Decrypts a contiguous run of sectors starting at LBA `lba`. */
 export function decryptDataBinBlock(buf: Buffer, lba: number): Buffer {
-  if (buf.length % 4 !== 0) throw new Error(`decryptDataBinBlock: length ${buf.length} is not a multiple of 4`);
+  if (buf.length % 4 !== 0)
+    throw new Error(`decryptDataBinBlock: length ${buf.length} is not a multiple of 4`);
   const substituted = Buffer.alloc(buf.length);
   for (let i = 0; i < buf.length; i++) substituted[i] = DATA_CIPHER_DECODE_TABLE[buf[i]!]!;
 
@@ -66,7 +71,8 @@ export function decryptDataBinBlock(buf: Buffer, lba: number): Buffer {
 
 /** Inverse of decryptDataBinBlock — kept for completeness/round-trip tests. */
 export function encryptDataBinBlock(buf: Buffer, lba: number): Buffer {
-  if (buf.length % 4 !== 0) throw new Error(`encryptDataBinBlock: length ${buf.length} is not a multiple of 4`);
+  if (buf.length % 4 !== 0)
+    throw new Error(`encryptDataBinBlock: length ${buf.length} is not a multiple of 4`);
   const keystream = new LcgKeyStream(lba);
   const xored = Buffer.alloc(buf.length);
   for (let i = 0; i < buf.length; i += 4) {
@@ -106,7 +112,7 @@ export function unpackDataBin(raw: Buffer, region: Region): DataBinFile[] {
   const fileCount = toc.indexOf(totalSectors);
   if (fileCount === -1) {
     throw new Error(
-      "unpackDataBin: could not find TOC sentinel matching file size — is this really a decrypted-container-shaped DATA.BIN?"
+      "unpackDataBin: could not find TOC sentinel matching file size — is this really a decrypted-container-shaped DATA.BIN?",
     );
   }
 

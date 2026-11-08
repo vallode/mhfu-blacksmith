@@ -22,7 +22,7 @@ export function useOwnedMaterials(): (materialName: string) => number | null {
     let cancelled = false;
     getItems().then(
       (l) => !cancelled && setItems(l),
-      () => {} // leave counts hidden if the bundle can't be fetched
+      () => {}, // leave counts hidden if the bundle can't be fetched
     );
     return () => {
       cancelled = true;

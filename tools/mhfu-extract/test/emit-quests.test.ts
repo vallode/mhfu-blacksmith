@@ -182,7 +182,10 @@ test("emitQuestsFile groups quests by hub and drops unused slots", () => {
     header: { ...GIADROME_HUNT.header, rank: 0, questId: 50001 },
     strings: { ...GIADROME_HUNT.strings!, title: "**********" },
   };
-  const training: ParsedQuest = { ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 } };
+  const training: ParsedQuest = {
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 },
+  };
 
   const output = emitQuestsFile([GIADROME_HUNT, disabled, training]);
   assert.deepEqual(Object.keys(output).sort(), Object.values(QUEST_HUB_TO_FILE).sort());

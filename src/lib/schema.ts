@@ -99,7 +99,7 @@ export interface CompactWeapon {
   amo?: [number, number[]][]; // ammo
   sa?: [number, number[]][]; // status_ammo
   ea?: [number, number[]][]; // element_ammo
- mia?: [number, number[]][]; // misc_ammo
+  mia?: [number, number[]][]; // misc_ammo
   co?: number[]; // coatings stringIdx[]
   so?: [number, number][]; // shots [nameStringIdx, level]
 }
@@ -177,7 +177,13 @@ export type Bundle = WeaponBundle | ArmorBundle | MonsterBundle | DecorationBund
  * `slug` and `sex` are only present for armor sold as separate Male and
  * Female pieces under one name, whose slugs carry the sex.
  */
-export type EquipRef = [group: number, name: string, rarity: number | null, slug?: string, sex?: string];
+export type EquipRef = [
+  group: number,
+  name: string,
+  rarity: number | null,
+  slug?: string,
+  sex?: string,
+];
 
 /**
  * equipment-ids.json: indexed by equip type code (0 leggings, 1 helmet,
@@ -186,7 +192,15 @@ export type EquipRef = [group: number, name: string, rarity: number | null, slug
  */
 export type EquipmentIds = (EquipRef | null)[][];
 
-export const EQUIP_TYPE_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"] as const;
+export const EQUIP_TYPE_SLOTS = [
+  "leggings",
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "melee",
+  "ranged",
+] as const;
 
 /** One in-game item. Icon type/colour come from the linked recipe material. */
 export interface CompactItem {
@@ -216,7 +230,7 @@ export interface ItemsBundle {
 // ---------------------------------------------------------------------------
 
 const str = (d: Dictionaries, i: number | undefined): string =>
-  i === undefined ? "" : d.strings[i] ?? "";
+  i === undefined ? "" : (d.strings[i] ?? "");
 
 // material id -> name via the dict's material_ids array.
 function decodeMaterialById(d: Dictionaries, id: number, amount: number | string): Material {
@@ -235,10 +249,7 @@ function decodeMats(d: Dictionaries, tuples: MatTuple[] | undefined): Material[]
   return tuples.map(([id, amount]) => decodeMaterialById(d, id, amount));
 }
 
-export function decodeTreeNode(
-  node: CompactTreeNode,
-  bundleType: string
-): WeaponTreeNode {
+export function decodeTreeNode(node: CompactTreeNode, bundleType: string): WeaponTreeNode {
   return {
     slug: node.s,
     name: node.n,
@@ -257,8 +268,7 @@ export function decodeTree(nodes: CompactTreeNode[], bundleType: string): Weapon
 export function decodeWeapon(d: Dictionaries, w: CompactWeapon, type: string): Weapon {
   const affinity = w.af === undefined ? undefined : `${w.af}%`;
   const multiplier = d.multipliers[type];
-  const raw_attack =
-    multiplier && w.a !== undefined ? Math.floor(w.a / multiplier) : undefined;
+  const raw_attack = multiplier && w.a !== undefined ? Math.floor(w.a / multiplier) : undefined;
 
   return {
     name: w.n,

@@ -55,7 +55,16 @@ const OUT_FILE = path.join(root, "data/equipment-ids.json");
 const WEAPON_SLOTS = {
   melee: {
     table: "WepBMID",
-    types: ["great-sword", "long-sword", "sword-and-shield", "dual-blades", "hammer", "hunting-horn", "lance", "gunlance"],
+    types: [
+      "great-sword",
+      "long-sword",
+      "sword-and-shield",
+      "dual-blades",
+      "hammer",
+      "hunting-horn",
+      "lance",
+      "gunlance",
+    ],
   },
   ranged: { table: "WepGunID", types: ["light-bowgun", "heavy-bowgun", "bow"] },
 } as const;
@@ -101,10 +110,13 @@ function readItems(file: string, key: "weapons" | "armor"): Record<string, unkno
 function candidatesFor(slot: Slot): Candidate[] {
   if (slot === "melee" || slot === "ranged") {
     return WEAPON_SLOTS[slot].types.flatMap((type) =>
-      readItems(`weapons/${type}.json`, "weapons").map((w) => ({ name: w.name as string, type }))
+      readItems(`weapons/${type}.json`, "weapons").map((w) => ({ name: w.name as string, type })),
     );
   }
-  return readItems(`armor/${slot}.json`, "armor").map((a) => ({ name: a.name as string, sex: a.sex as string | undefined }));
+  return readItems(`armor/${slot}.json`, "armor").map((a) => ({
+    name: a.name as string,
+    sex: a.sex as string | undefined,
+  }));
 }
 
 function resolveSlot(slot: Slot, enumNames: string[], aliases: Record<string, Alias>): Entry[] {
@@ -118,9 +130,11 @@ function resolveSlot(slot: Slot, enumNames: string[], aliases: Record<string, Al
 
   for (const [id, alias] of Object.entries(aliases)) {
     const enumName = enumNames[Number(id)];
-    if (enumName !== alias.enum) fail(`${slot} alias ${id}: expected enum name "${alias.enum}", found "${enumName}"`);
+    if (enumName !== alias.enum)
+      fail(`${slot} alias ${id}: expected enum name "${alias.enum}", found "${enumName}"`);
     if (!byName.has(alias.name)) fail(`${slot} alias ${id}: "${alias.name}" is not in data/`);
-    if (alias.name === enumName) fail(`${slot} alias ${id}: "${alias.name}" already matches exactly, drop the alias`);
+    if (alias.name === enumName)
+      fail(`${slot} alias ${id}: "${alias.name}" already matches exactly, drop the alias`);
   }
 
   const claimed = new Map<Candidate, number>();
@@ -137,7 +151,9 @@ function resolveSlot(slot: Slot, enumNames: string[], aliases: Record<string, Al
     taken.set(key, nth + 1);
     const match = pool[nth];
     if (!match) {
-      fail(`${slot} ${id} ("${enumName}"): "${key}" is already claimed by ID ${claimed.get(pool[0])}`);
+      fail(
+        `${slot} ${id} ("${enumName}"): "${key}" is already claimed by ID ${claimed.get(pool[0])}`,
+      );
       return null;
     }
     claimed.set(match, id);
@@ -149,12 +165,15 @@ function resolveSlot(slot: Slot, enumNames: string[], aliases: Record<string, Al
   });
 
   const unmapped = candidates.filter((c) => !claimed.has(c));
-  for (const c of unmapped) fail(`${slot}: "${c.name}"${c.type ? ` (${c.type})` : ""} has no equipment ID`);
+  for (const c of unmapped)
+    fail(`${slot}: "${c.name}"${c.type ? ` (${c.type})` : ""} has no equipment ID`);
 
-  const missing = enumNames.flatMap((n, id) => (entries[id] === null && !isPlaceholder(n) ? [`${id} ${n}`] : []));
+  const missing = enumNames.flatMap((n, id) =>
+    entries[id] === null && !isPlaceholder(n) ? [`${id} ${n}`] : [],
+  );
   console.log(
     `  ${slot}: ${entries.filter(Boolean).length}/${candidates.length} items mapped` +
-      (missing.length ? `; IDs with no item in data/: ${missing.join(", ")}` : "")
+      (missing.length ? `; IDs with no item in data/: ${missing.join(", ")}` : ""),
   );
   return entries;
 }
@@ -169,12 +188,16 @@ function serialize(slots: Record<Slot, Entry[]>): string {
 }
 
 const tables = readEnumFile("equip.enum");
-const aliases = JSON.parse(fs.readFileSync(ALIAS_FILE, "utf-8")) as Record<Slot, Record<string, Alias>>;
+const aliases = JSON.parse(fs.readFileSync(ALIAS_FILE, "utf-8")) as Record<
+  Slot,
+  Record<string, Alias>
+>;
 
 console.log("Mapping equipment IDs…");
 const result = {} as Record<Slot, Entry[]>;
 for (const slot of SLOT_ORDER) {
-  const table = slot === "melee" || slot === "ranged" ? WEAPON_SLOTS[slot].table : ARMOR_SLOTS[slot];
+  const table =
+    slot === "melee" || slot === "ranged" ? WEAPON_SLOTS[slot].table : ARMOR_SLOTS[slot];
   const names = tables.get(table);
   if (!names) {
     fail(`equip.enum has no ${table} table`);

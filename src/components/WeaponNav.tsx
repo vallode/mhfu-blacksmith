@@ -24,13 +24,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
         return (
           <div key={type}>
             <Link href={`/blacksmith/${type}/`} title={name}>
-              <Icon
-                type={type}
-                size="large"
-                nav
-                active={activeType === type}
-                alt={name}
-              />
+              <Icon type={type} size="large" nav active={activeType === type} alt={name} />
             </Link>
           </div>
         );

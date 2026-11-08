@@ -123,7 +123,11 @@ export function readRewards(reader: BinaryReader, header: QuestHeader): RewardTa
     const items: RewardItem[] = [];
     let itemOff = itemsPtr;
     while (reader.u16(itemOff) !== 0xffff) {
-      items.push({ chance: reader.u16(itemOff), itemId: reader.u16(itemOff + 2), amount: reader.u16(itemOff + 4) });
+      items.push({
+        chance: reader.u16(itemOff),
+        itemId: reader.u16(itemOff + 2),
+        amount: reader.u16(itemOff + 4),
+      });
       itemOff += 6;
     }
     tables.push({ items });
@@ -141,7 +145,10 @@ export interface MonsterSpawn {
 
 const LARGE_MON_DATA_ENTRY_SIZE = 60;
 
-function readLargeMonsterData(reader: BinaryReader, ptr: number): (MonsterSpawn & { stage: number })[] {
+function readLargeMonsterData(
+  reader: BinaryReader,
+  ptr: number,
+): (MonsterSpawn & { stage: number })[] {
   const out: (MonsterSpawn & { stage: number })[] = [];
   let off = ptr;
   while (reader.s16(off) !== -1) {
@@ -163,7 +170,10 @@ function readLargeMonsterData(reader: BinaryReader, ptr: number): (MonsterSpawn 
  * monster data across every table (the separately-declared "monster list"
  * pointer duplicates the same IDs for asset preloading and isn't exposed).
  */
-export function readLargeMonsters(reader: BinaryReader, header: QuestHeader): (MonsterSpawn & { stage: number })[] {
+export function readLargeMonsters(
+  reader: BinaryReader,
+  header: QuestHeader,
+): (MonsterSpawn & { stage: number })[] {
   const out: (MonsterSpawn & { stage: number })[] = [];
   if (header.largeMonPtr === 0) return out;
   let off = header.largeMonPtr;
@@ -181,7 +191,11 @@ function readSmallMonsterData(reader: BinaryReader, ptr: number): MonsterSpawn[]
   const out: MonsterSpawn[] = [];
   let off = ptr;
   while (reader.u16(off) !== 0xffff) {
-    out.push({ monsterId: reader.u16(off), quantity: reader.u8(off + 4), power: reader.u8(off + 5) });
+    out.push({
+      monsterId: reader.u16(off),
+      quantity: reader.u8(off + 4),
+      power: reader.u8(off + 5),
+    });
     off += SMALL_MON_DATA_ENTRY_SIZE;
   }
   return out;
@@ -261,7 +275,10 @@ function readQuestStringsAt(reader: BinaryReader, ptr: number): QuestStrings {
  * quest sample checked, every slot aliased the same pointer (Japanese
  * text) — this disc apparently never populated distinct EU-locale text.
  */
-export function readQuestStrings(reader: BinaryReader, header: QuestHeader): Partial<Record<LangSlot, QuestStrings>> {
+export function readQuestStrings(
+  reader: BinaryReader,
+  header: QuestHeader,
+): Partial<Record<LangSlot, QuestStrings>> {
   const out: Partial<Record<LangSlot, QuestStrings>> = {};
   if (header.stringPtrTbl === 0) return out;
   const base = header.stringPtrTbl;
@@ -273,7 +290,10 @@ export function readQuestStrings(reader: BinaryReader, header: QuestHeader): Par
 }
 
 /** The first populated language slot's strings, or null if none are set. */
-export function readPrimaryQuestStrings(reader: BinaryReader, header: QuestHeader): QuestStrings | null {
+export function readPrimaryQuestStrings(
+  reader: BinaryReader,
+  header: QuestHeader,
+): QuestStrings | null {
   const all = readQuestStrings(reader, header);
   for (const slot of LANG_SLOTS) {
     const strings = all[slot];

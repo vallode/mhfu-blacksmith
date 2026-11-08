@@ -68,7 +68,7 @@ const additionalManifestEntries = collectPrecacheEntries();
 let cacheId = "mhfu-blacksmith";
 try {
   const manifest = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), "public", "data", "data-manifest.json"), "utf-8")
+    fs.readFileSync(path.join(process.cwd(), "public", "data", "data-manifest.json"), "utf-8"),
   ) as { version?: string };
   if (manifest.version) cacheId = `mhfu-${manifest.version}`;
 } catch {
@@ -148,9 +148,7 @@ export default withPWA({
       },
       {
         urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
-          request.headers.get("RSC") === "1" &&
-          sameOrigin &&
-          !pathname.startsWith("/api/"),
+          request.headers.get("RSC") === "1" && sameOrigin && !pathname.startsWith("/api/"),
         handler: "NetworkFirst",
         options: {
           cacheName: "pages-rsc",

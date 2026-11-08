@@ -47,7 +47,10 @@ export interface ExtractionManifest {
  * files individually from disk instead of requiring the full in-memory
  * `DataBinFile[]` (extract doesn't need the other ~6000 non-quest entries).
  */
-async function readQuestsFromUnpackedDir(unpackedDir: string, region: Region): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[] }> {
+async function readQuestsFromUnpackedDir(
+  unpackedDir: string,
+  region: Region,
+): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[] }> {
   const quests: ParsedQuest[] = [];
   const skipped: SkippedQuest[] = [];
 
@@ -74,7 +77,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
   if (manifest.eboot === false) {
     throw new Error(
-      `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`
+      `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,
     );
   }
 
@@ -94,8 +97,12 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   if (manifest.region === "jp") {
     offsetResult = verifyOffsets(reader);
     if (!offsetResult.ok) {
-      const failed = offsetResult.checks.filter((c) => !c.ok).map((c) => `  - ${c.name}: ${c.detail}`);
-      throw new Error(`EBOOT offset verification failed — this EBOOT doesn't look like a real JP MHP2G dump:\n${failed.join("\n")}`);
+      const failed = offsetResult.checks
+        .filter((c) => !c.ok)
+        .map((c) => `  - ${c.name}: ${c.detail}`);
+      throw new Error(
+        `EBOOT offset verification failed — this EBOOT doesn't look like a real JP MHP2G dump:\n${failed.join("\n")}`,
+      );
     }
     console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
     output = emitAll(reader);
@@ -103,17 +110,21 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
     if (!resolver) {
       throw new Error(
-        `extract has no table address resolver for region "${manifest.region}" yet — see README's "Region support" section.`
+        `extract has no table address resolver for region "${manifest.region}" yet — see README's "Region support" section.`,
       );
     }
     offsetResult = verifyResolverCoverage(resolver, MHP2G_EMIT_TABLES, ebootBuf);
     if (!offsetResult.ok) {
-      const failed = offsetResult.checks.filter((c) => !c.ok).map((c) => `  - ${c.name}: ${c.detail}`);
+      const failed = offsetResult.checks
+        .filter((c) => !c.ok)
+        .map((c) => `  - ${c.name}: ${c.detail}`);
       throw new Error(
-        `Table resolution failed for region "${manifest.region}" — this EBOOT doesn't look like a real "${manifest.region}" MHP2G/MHFU dump, or that region's resolver coverage has a gap:\n${failed.join("\n")}`
+        `Table resolution failed for region "${manifest.region}" — this EBOOT doesn't look like a real "${manifest.region}" MHP2G/MHFU dump, or that region's resolver coverage has a gap:\n${failed.join("\n")}`,
       );
     }
-    console.log(`Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`);
+    console.log(
+      `Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`,
+    );
     output = emitAll(reader, resolver);
   }
 
@@ -124,7 +135,12 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
 
   await writeEmitOutput(options.out, output);
 
-  const pkgPath = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "package.json");
+  const pkgPath = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "..",
+    "package.json",
+  );
   const pkg: { version: string } = JSON.parse(await readFile(pkgPath, "utf-8"));
 
   const extractionManifest: ExtractionManifest = {
@@ -138,7 +154,11 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     questsSkipped: skipped,
   };
   const extractionManifestPath = path.join(options.out, "EXTRACTION.json");
-  await writeFile(extractionManifestPath, `${JSON.stringify(extractionManifest, null, 2)}\n`, "utf-8");
+  await writeFile(
+    extractionManifestPath,
+    `${JSON.stringify(extractionManifest, null, 2)}\n`,
+    "utf-8",
+  );
 
   console.log(`Wrote ${Object.keys(output).length} data file(s) + ${extractionManifestPath}`);
   return extractionManifest;

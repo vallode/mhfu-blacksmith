@@ -66,7 +66,11 @@ export interface EmittedMaterial {
  * applied to weapon/decoration recipes sharing the same `ItemID` — see that
  * module's doc comment for why a single global rename isn't safe here.
  */
-export function resolveMaterial(material: CraftMaterial, names: NameResolver, context: MaterialContext): EmittedMaterial | null {
+export function resolveMaterial(
+  material: CraftMaterial,
+  names: NameResolver,
+  context: MaterialContext,
+): EmittedMaterial | null {
   if (material.itemId === 0 || material.quantity === 0) return null;
   const rawName = names.resolve("ItemID", material.itemId);
   if (!rawName) return null;
@@ -76,7 +80,11 @@ export function resolveMaterial(material: CraftMaterial, names: NameResolver, co
 }
 
 /** Resolves a fixed-size `CraftMaterial[]` (from readCraftItems), dropping unused slots. */
-export function resolveMaterials(materials: CraftMaterial[], names: NameResolver, context: MaterialContext): EmittedMaterial[] {
+export function resolveMaterials(
+  materials: CraftMaterial[],
+  names: NameResolver,
+  context: MaterialContext,
+): EmittedMaterial[] {
   const out: EmittedMaterial[] = [];
   for (const m of materials) {
     const resolved = resolveMaterial(m, names, context);
@@ -112,7 +120,9 @@ export function formatSignedAmount(amount: number): string {
  * Callers should treat entries[0] as the primary recipe and entries[1] (if
  * present) as the alternative.
  */
-export function groupEquipCreateByEquipId(entries: EquipCreateEntry[]): Map<number, EquipCreateEntry[]> {
+export function groupEquipCreateByEquipId(
+  entries: EquipCreateEntry[],
+): Map<number, EquipCreateEntry[]> {
   const byEquipId = new Map<number, EquipCreateEntry[]>();
   for (const entry of entries) {
     const group = byEquipId.get(entry.equipId);

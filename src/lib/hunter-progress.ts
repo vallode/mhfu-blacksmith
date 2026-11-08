@@ -59,7 +59,7 @@ export function checkUpgrade(
   materials: Record<string, number>,
   weapon: CompactWeapon,
   counts: Map<number, number> | null,
-  zenny: number | undefined
+  zenny: number | undefined,
 ): UpgradeCheck {
   if (!counts || !weapon.im?.length) return { status: "unknown" };
   const checks: MaterialCheck[] = [];

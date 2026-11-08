@@ -26,7 +26,7 @@ const VENDOR_DIR = path.join(
   "..",
   "vendor",
   "mhp2g-patterns",
-  "includes"
+  "includes",
 );
 
 /** A run of dashes/hyphens (full-width or ASCII) — the game's "empty slot" placeholder name. */
@@ -58,7 +58,7 @@ function parseEnumBlocks(source: string): Map<string, string[]> {
     // changed), not against this known, harmless header/body mismatch.
     if (entries.length < declaredCount / 2) {
       throw new Error(
-        `enums: ${name} declared ${declaredCount} entries but parsed only ${entries.length} — .enum format may have changed`
+        `enums: ${name} declared ${declaredCount} entries but parsed only ${entries.length} — .enum format may have changed`,
       );
     }
     blocks.set(name!, entries);
@@ -94,7 +94,11 @@ export function isPlaceholderName(name: string): boolean {
  * zero-risk since no real equipment name is intentionally
  * leading/trailing-whitespace-padded.
  */
-export function lookupName(enums: Map<string, string[]>, table: string, index: number): string | null {
+export function lookupName(
+  enums: Map<string, string[]>,
+  table: string,
+  index: number,
+): string | null {
   const entries = enums.get(table);
   if (!entries) throw new Error(`enums: unknown table "${table}"`);
   const name = entries[index];

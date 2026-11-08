@@ -81,7 +81,9 @@ export class CsoSource implements RandomAccessSource {
 
   read(offset: number, length: number): Buffer {
     if (offset < 0 || offset + length > this.totalBytes) {
-      throw new RangeError(`CsoSource: out of bounds read at 0x${offset.toString(16)}, length=${length}`);
+      throw new RangeError(
+        `CsoSource: out of bounds read at 0x${offset.toString(16)}, length=${length}`,
+      );
     }
     const out = Buffer.alloc(length);
     let written = 0;

@@ -51,9 +51,15 @@ export function isExternalRow(node: WeaponTreeNode, sectionType: string): boolea
   return node.type !== sectionType && (WEAPON_TYPES as readonly string[]).includes(node.type);
 }
 
-export function treeRowHref(node: WeaponTreeNode, sectionType: string, basePath: string): string | undefined {
+export function treeRowHref(
+  node: WeaponTreeNode,
+  sectionType: string,
+  basePath: string,
+): string | undefined {
   if (!node.rarity) return undefined;
-  return isExternalRow(node, sectionType) ? `/blacksmith/${node.type}/${node.slug}/` : `${basePath}${node.slug}/`;
+  return isExternalRow(node, sectionType)
+    ? `/blacksmith/${node.type}/${node.slug}/`
+    : `${basePath}${node.slug}/`;
 }
 
 /** A row's status for the loaded hunter; `parentHref` is the enclosing row's page. */
@@ -62,14 +68,18 @@ export function rowStatus(
   sectionType: string,
   basePath: string,
   parentHref: string | undefined,
-  progress: ProgressLookups
+  progress: ProgressLookups,
 ): RowStatus {
   const href = treeRowHref(node, sectionType, basePath);
   const owned = href ? progress.isOwned(href) : false;
   // Only weapons are upgraded from a tree parent, and only an owned parent
   // can be upgraded.
   const upgrade =
-    progress.active && href?.startsWith("/blacksmith/") && !owned && parentHref && progress.isOwned(parentHref)
+    progress.active &&
+    href?.startsWith("/blacksmith/") &&
+    !owned &&
+    parentHref &&
+    progress.isOwned(parentHref)
       ? progress.upgradeCheck(node.type, node.slug)
       : null;
   return { href, external: isExternalRow(node, sectionType), owned, upgrade };
@@ -112,7 +122,7 @@ export function filterTree(
   sectionType: string,
   basePath: string,
   progress: ProgressLookups,
-  filter: TreeFilterId
+  filter: TreeFilterId,
 ): FilteredTree {
   const rows = new Map<string, FilteredRow>();
   let matched = 0;
