@@ -128,7 +128,7 @@
         2,
         7,
         7,
-        3,
+        4,
         2
       ],
       "elements": [
@@ -417,10 +417,10 @@
       "name": "Imperial Sword",
       "attack": 1008,
       "sharpness": [
-        4,
+        5,
         3,
         9,
-        14
+        13
       ],
       "affinity": "10%",
       "slots": 3,
@@ -455,11 +455,11 @@
         "Aqua Guardian"
       ],
       "sharpness_plus": [
-        4,
+        5,
         3,
         9,
         14,
-        5
+        4
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -468,11 +468,11 @@
       "name": "Aqua Guardian",
       "attack": 1104,
       "sharpness": [
-        4,
+        5,
         3,
         9,
         14,
-        5
+        4
       ],
       "affinity": "0%",
       "slots": 2,
@@ -539,11 +539,11 @@
         "Edelweiss Ice Blade"
       ],
       "sharpness_plus": [
-        4,
+        5,
         3,
         9,
         14,
-        5,
+        6,
         3
       ],
       "elements": [
@@ -558,12 +558,12 @@
       "name": "Atlantica",
       "attack": 1296,
       "sharpness": [
-        4,
+        5,
         3,
         9,
         14,
-        5,
-        4
+        6,
+        3
       ],
       "affinity": "0%",
       "slots": 2,
@@ -602,12 +602,12 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        4,
+        5,
         3,
         9,
         14,
+        6,
         5,
-        4,
         3
       ],
       "elements": [
@@ -622,11 +622,11 @@
       "name": "Edelweiss Ice Blade",
       "attack": 1104,
       "sharpness": [
-        4,
+        5,
         3,
         9,
         14,
-        5
+        4
       ],
       "affinity": "0%",
       "slots": 1,
@@ -667,11 +667,11 @@
         "Edelweiss Ice Blade+"
       ],
       "sharpness_plus": [
-        4,
+        5,
         3,
         9,
         14,
-        5,
+        6,
         3
       ],
       "elements": [
@@ -948,10 +948,10 @@
       "name": "Blango Destructor",
       "attack": 864,
       "sharpness": [
-        7,
+        8,
         3,
         11,
-        11,
+        10,
         3
       ],
       "affinity": "15%",
@@ -987,10 +987,10 @@
         "C.Blango Decimator"
       ],
       "sharpness_plus": [
-        7,
+        8,
         3,
         11,
-        11,
+        10,
         6,
         2
       ],
@@ -1964,7 +1964,7 @@
         3,
         2,
         9,
-        6,
+        7,
         3
       ],
       "elements": [
@@ -2236,7 +2236,7 @@
         5,
         3,
         9,
-        9
+        8
       ],
       "affinity": "0%",
       "slots": 0,
@@ -2545,8 +2545,8 @@
       "sharpness": [
         8,
         3,
-        10,
-        4
+        11,
+        3
       ],
       "affinity": "0%",
       "slots": 0,
@@ -4682,9 +4682,9 @@
       "sharpness": [
         13,
         1,
-        5,
+        6,
         13,
-        3
+        2
       ],
       "affinity": "0%",
       "slots": 1,
@@ -4721,7 +4721,7 @@
       "sharpness_plus": [
         13,
         1,
-        5,
+        6,
         13,
         4,
         3

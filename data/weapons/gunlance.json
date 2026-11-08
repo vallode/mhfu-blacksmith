@@ -4,10 +4,10 @@
       "name": "Ancient Destroyer",
       "attack": 552,
       "sharpness": [
-        7,
-        4,
-        7,
         9,
+        5,
+        9,
+        10,
         2
       ],
       "affinity": "0%",
@@ -72,11 +72,11 @@
         "Genesis"
       ],
       "sharpness_plus": [
-        7,
-        4,
-        7,
         9,
-        4,
+        5,
+        9,
+        10,
+        5,
         2
       ],
       "elements": null,
@@ -86,11 +86,11 @@
       "name": "Genesis",
       "attack": 621,
       "sharpness": [
-        18,
+        16,
+        5,
         4,
-        3,
-        10,
-        3,
+        9,
+        4,
         2
       ],
       "affinity": "0%",
@@ -134,11 +134,11 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        18,
+        16,
+        5,
         4,
-        3,
-        10,
-        3,
+        9,
+        4,
         5,
         2
       ],
@@ -149,10 +149,10 @@
       "name": "Feather Gunlance",
       "attack": 368,
       "sharpness": [
-        7,
-        4,
-        8,
-        6
+        9,
+        5,
+        9,
+        7
       ],
       "affinity": "0%",
       "slots": 0,
@@ -216,10 +216,10 @@
         "Feather Gunlance+"
       ],
       "sharpness_plus": [
-        7,
-        4,
-        8,
         9,
+        5,
+        9,
+        10,
         2
       ],
       "elements": [
@@ -234,9 +234,9 @@
       "name": "Feather Gunlance+",
       "attack": 460,
       "sharpness": [
-        6,
-        4,
-        8,
+        9,
+        5,
+        9,
         10,
         2
       ],
@@ -308,11 +308,11 @@
         "Hypno Cannon"
       ],
       "sharpness_plus": [
-        6,
-        4,
-        8,
+        9,
+        5,
+        9,
         10,
-        4,
+        5,
         2
       ],
       "elements": [
@@ -390,8 +390,8 @@
       "attack": 207,
       "sharpness": [
         7,
-        3,
-        3
+        4,
+        4
       ],
       "affinity": "0%",
       "slots": 0,
@@ -470,7 +470,7 @@
       ],
       "sharpness_plus": [
         7,
-        3,
+        4,
         9
       ],
       "elements": [
@@ -486,7 +486,7 @@
       "sharpness": [
         5,
         5,
-        8,
+        9,
         1
       ],
       "affinity": "0%",
@@ -530,7 +530,7 @@
       "sharpness_plus": [
         5,
         5,
-        8,
+        9,
         6
       ],
       "elements": [
@@ -548,7 +548,7 @@
         5,
         5,
         9,
-        12,
+        13,
         3
       ],
       "affinity": "0%",
@@ -589,8 +589,8 @@
         5,
         5,
         9,
-        12,
-        4,
+        13,
+        5,
         3
       ],
       "elements": [
@@ -607,7 +607,7 @@
       "sharpness": [
         5,
         5,
-        8,
+        9,
         6
       ],
       "affinity": "0%",
@@ -674,7 +674,7 @@
       "sharpness_plus": [
         5,
         5,
-        8,
+        9,
         11
       ],
       "elements": [
@@ -691,7 +691,7 @@
       "sharpness": [
         5,
         5,
-        8,
+        9,
         11
       ],
       "affinity": "0%",
@@ -733,7 +733,7 @@
       "sharpness_plus": [
         5,
         5,
-        8,
+        9,
         13,
         3
       ],
@@ -794,7 +794,7 @@
         5,
         7,
         5,
-        13,
+        16,
         2
       ],
       "elements": [
@@ -857,7 +857,7 @@
         5,
         9,
         13,
-        4,
+        5,
         3
       ],
       "elements": [
@@ -876,7 +876,7 @@
         5,
         9,
         10,
-        4,
+        5,
         2
       ],
       "affinity": "0%",
@@ -920,8 +920,8 @@
         5,
         9,
         10,
-        4,
-        6,
+        5,
+        5,
         2
       ],
       "elements": [
@@ -1162,7 +1162,7 @@
         5,
         7,
         5,
-        12
+        13
       ],
       "affinity": "0%",
       "slots": 2,
@@ -1258,7 +1258,7 @@
         5,
         7,
         5,
-        15,
+        16,
         2
       ],
       "affinity": "0%",
@@ -1302,7 +1302,7 @@
         5,
         7,
         5,
-        15,
+        16,
         5,
         2
       ],
@@ -1384,7 +1384,7 @@
         3,
         7,
         4,
-        15,
+        16,
         7,
         3
       ],
@@ -1546,10 +1546,10 @@
       "name": "Iron Gunlance+",
       "attack": 253,
       "sharpness": [
-        3,
+        5,
         7,
-        4,
-        1
+        5,
+        3
       ],
       "affinity": "0%",
       "slots": 1,
@@ -1588,10 +1588,10 @@
         "Steel Gunlance"
       ],
       "sharpness_plus": [
-        3,
+        5,
         7,
-        4,
-        6
+        5,
+        8
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -1603,7 +1603,7 @@
         5,
         7,
         5,
-        3
+        8
       ],
       "affinity": "0%",
       "slots": 1,
@@ -1647,7 +1647,7 @@
         5,
         7,
         5,
-        8
+        13
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -1656,10 +1656,10 @@
       "name": "Special Ops Gunlance",
       "attack": 322,
       "sharpness": [
-        5,
+        3,
         7,
-        5,
-        8
+        4,
+        11
       ],
       "affinity": "0%",
       "slots": 2,
@@ -1711,10 +1711,10 @@
         "Imperial Gunlance"
       ],
       "sharpness_plus": [
-        5,
+        3,
         7,
-        5,
-        13
+        4,
+        16
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -2038,10 +2038,10 @@
       "name": "Luna's Howl",
       "attack": 345,
       "sharpness": [
-        8,
-        3,
-        8,
-        6
+        9,
+        5,
+        9,
+        7
       ],
       "affinity": "0%",
       "slots": 0,
@@ -2107,10 +2107,10 @@
         "Luna's Roar"
       ],
       "sharpness_plus": [
-        8,
-        3,
-        8,
         9,
+        5,
+        9,
+        10,
         2
       ],
       "elements": [
@@ -2189,9 +2189,9 @@
       "name": "Luna's Flare",
       "attack": 414,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         4
       ],
@@ -2232,9 +2232,9 @@
         "Luna's Sun"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
         4
@@ -2251,9 +2251,9 @@
       "name": "Luna's Sun",
       "attack": 575,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
         4
@@ -2299,13 +2299,13 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
-        6,
-        5
+        5,
+        4
       ],
       "elements": [
         {
@@ -2375,7 +2375,7 @@
       "sharpness": [
         5,
         5,
-        8,
+        9,
         11
       ],
       "affinity": "0%",
@@ -2417,9 +2417,9 @@
       "sharpness_plus": [
         5,
         5,
-        8,
-        12,
-        2
+        9,
+        13,
+        3
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -2430,7 +2430,7 @@
       "sharpness": [
         9,
         5,
-        8,
+        9,
         7
       ],
       "affinity": "-5%",
@@ -2472,8 +2472,8 @@
       "sharpness_plus": [
         9,
         5,
-        8,
-        8,
+        9,
+        10,
         2
       ],
       "elements": null,
@@ -2544,7 +2544,7 @@
         5,
         9,
         10,
-        4,
+        5,
         2
       ],
       "affinity": "0%",
@@ -2586,8 +2586,8 @@
         5,
         9,
         10,
-        4,
-        6,
+        5,
+        5,
         2
       ],
       "elements": null,
@@ -2598,9 +2598,9 @@
       "attack": 506,
       "sharpness": [
         11,
-        9,
-        4,
-        9,
+        8,
+        5,
+        8,
         3
       ],
       "affinity": "0%",
@@ -2674,10 +2674,10 @@
       ],
       "sharpness_plus": [
         11,
-        9,
-        4,
-        9,
-        4,
+        8,
+        5,
+        8,
+        5,
         3
       ],
       "elements": null,
@@ -2688,10 +2688,10 @@
       "attack": 598,
       "sharpness": [
         11,
-        9,
-        4,
-        9,
-        4,
+        8,
+        5,
+        8,
+        5,
         3
       ],
       "affinity": "0%",
@@ -2732,10 +2732,10 @@
       "improve_to": null,
       "sharpness_plus": [
         11,
-        9,
-        4,
-        9,
-        4,
+        8,
+        5,
+        8,
+        5,
         4,
         4
       ],
@@ -2747,8 +2747,8 @@
       "attack": 460,
       "sharpness": [
         11,
-        9,
-        4,
+        8,
+        5,
         6
       ],
       "affinity": "0%",
@@ -2816,10 +2816,10 @@
       ],
       "sharpness_plus": [
         11,
-        9,
-        4,
-        9,
-        2
+        8,
+        5,
+        8,
+        3
       ],
       "elements": [
         {
@@ -2834,10 +2834,10 @@
       "attack": 529,
       "sharpness": [
         11,
-        9,
-        4,
-        9,
-        2
+        8,
+        5,
+        8,
+        3
       ],
       "affinity": "0%",
       "slots": 1,
@@ -2877,10 +2877,10 @@
       ],
       "sharpness_plus": [
         11,
-        9,
-        4,
-        9,
-        4,
+        8,
+        5,
+        8,
+        5,
         3
       ],
       "elements": [
@@ -2896,11 +2896,11 @@
       "attack": 644,
       "sharpness": [
         11,
-        9,
-        4,
-        9,
-        4,
-        2
+        8,
+        5,
+        8,
+        5,
+        3
       ],
       "affinity": "0%",
       "slots": 1,
@@ -2944,10 +2944,10 @@
       "improve_to": null,
       "sharpness_plus": [
         11,
-        9,
-        4,
-        9,
-        4,
+        8,
+        5,
+        8,
+        5,
         4,
         4
       ],
@@ -2963,9 +2963,9 @@
       "name": "Bone Gunlance",
       "attack": 161,
       "sharpness": [
-        2,
+        3,
         4,
-        7
+        8
       ],
       "affinity": "0%",
       "slots": 0,
@@ -2998,9 +2998,9 @@
         "Great Bone Gunlance"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        10
+        13
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -3009,9 +3009,9 @@
       "name": "Great Bone Gunlance",
       "attack": 230,
       "sharpness": [
-        2,
+        3,
         4,
-        12
+        13
       ],
       "affinity": "0%",
       "slots": 0,
@@ -3048,9 +3048,9 @@
         "Average Hitter"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         1
       ],
       "elements": null,
@@ -3060,9 +3060,9 @@
       "name": "Wyvern Bone Gunlance",
       "attack": 299,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
+        17,
         1
       ],
       "affinity": "0%",
@@ -3102,9 +3102,9 @@
         "Hellsting"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         6
       ],
       "elements": null,
@@ -3114,9 +3114,9 @@
       "name": "Hellsting",
       "attack": 322,
       "sharpness": [
-        15,
+        16,
+        5,
         4,
-        3,
         5
       ],
       "affinity": "10%",
@@ -3181,9 +3181,9 @@
         "Hellsting+"
       ],
       "sharpness_plus": [
-        15,
+        16,
+        5,
         4,
-        3,
         9,
         1
       ],
@@ -3199,10 +3199,10 @@
       "name": "Hellsting+",
       "attack": 345,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
-        5
+        17,
+        6
       ],
       "affinity": "10%",
       "slots": 2,
@@ -3241,11 +3241,11 @@
         "Hellstinger"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
-        3
+        4
       ],
       "elements": [
         {
@@ -3259,11 +3259,11 @@
       "name": "Hellstinger",
       "attack": 414,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
-        5
+        4
       ],
       "affinity": "20%",
       "slots": 2,
@@ -3303,12 +3303,12 @@
         "Desert Slingshot"
       ],
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
-        5
+        4
       ],
       "elements": [
         {
@@ -3322,12 +3322,12 @@
       "name": "Demonic Blizzard",
       "attack": 575,
       "sharpness": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
-        5
+        4
       ],
       "affinity": "25%",
       "slots": 2,
@@ -3364,13 +3364,13 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        2,
+        3,
         4,
-        16,
+        17,
         7,
         5,
-        6,
-        5
+        5,
+        4
       ],
       "elements": [
         {
@@ -3508,7 +3508,7 @@
       "sharpness": [
         7,
         4,
-        8
+        9
       ],
       "affinity": "0%",
       "slots": 1,
@@ -3574,7 +3574,7 @@
       "sharpness_plus": [
         7,
         4,
-        13
+        14
       ],
       "elements": [
         {
@@ -3588,9 +3588,9 @@
       "name": "Grand Slam",
       "attack": 391,
       "sharpness": [
-        7,
-        4,
-        8,
+        9,
+        5,
+        9,
         2
       ],
       "affinity": "0%",
@@ -3630,10 +3630,10 @@
         "Hard Hitter"
       ],
       "sharpness_plus": [
-        7,
-        4,
-        8,
-        6
+        9,
+        5,
+        9,
+        7
       ],
       "elements": [
         {
@@ -3647,10 +3647,10 @@
       "name": "Hard Hitter",
       "attack": 437,
       "sharpness": [
-        6,
-        3,
+        7,
+        4,
         15,
-        3
+        4
       ],
       "affinity": "0%",
       "slots": 1,
@@ -3689,10 +3689,10 @@
         "Big Slugger"
       ],
       "sharpness_plus": [
-        6,
-        3,
+        7,
+        4,
         15,
-        5,
+        6,
         3
       ],
       "elements": [
@@ -3707,8 +3707,8 @@
       "name": "Big Slugger",
       "attack": 460,
       "sharpness": [
-        4,
-        4,
+        5,
+        5,
         9,
         11
       ],
@@ -3750,11 +3750,11 @@
         "Venomous Cologne"
       ],
       "sharpness_plus": [
-        4,
-        4,
+        5,
+        5,
         9,
-        12,
-        2
+        13,
+        3
       ],
       "elements": [
         {
@@ -3768,10 +3768,10 @@
       "name": "Triple Crown",
       "attack": 506,
       "sharpness": [
-        4,
-        4,
+        5,
+        5,
         9,
-        12,
+        13,
         3
       ],
       "affinity": "0%",
@@ -3815,12 +3815,12 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        4,
-        4,
+        5,
+        5,
         9,
-        12,
-        4,
-        2
+        13,
+        5,
+        3
       ],
       "elements": [
         {
@@ -3834,9 +3834,9 @@
       "name": "Venomous Cologne",
       "attack": 483,
       "sharpness": [
-        8,
-        4,
-        7,
+        9,
+        5,
+        9,
         10,
         2
       ],
@@ -3902,11 +3902,11 @@
         "Venomous Attar"
       ],
       "sharpness_plus": [
-        8,
-        4,
-        7,
+        9,
+        5,
+        9,
         10,
-        3,
+        5,
         2
       ],
       "elements": [
@@ -3921,11 +3921,11 @@
       "name": "Venomous Attar",
       "attack": 575,
       "sharpness": [
-        18,
+        16,
         5,
-        3,
+        4,
         9,
-        3,
+        4,
         2
       ],
       "affinity": "0%",
@@ -3971,11 +3971,11 @@
         "Venomous Perfume"
       ],
       "sharpness_plus": [
-        18,
+        16,
         5,
-        3,
+        4,
         9,
-        3,
+        4,
         5,
         2
       ],
@@ -4062,7 +4062,7 @@
         5,
         5,
         9,
-        7
+        6
       ],
       "affinity": "0%",
       "slots": 0,
@@ -4104,7 +4104,7 @@
         5,
         5,
         9,
-        10
+        11
       ],
       "elements": [
         {
@@ -4119,9 +4119,9 @@
       "attack": 460,
       "sharpness": [
         11,
-        7,
-        4,
-        7,
+        8,
+        5,
+        8,
         3
       ],
       "affinity": "-20%",
@@ -4168,11 +4168,11 @@
       ],
       "sharpness_plus": [
         11,
-        7,
-        4,
-        7,
+        8,
         5,
-        2
+        8,
+        5,
+        3
       ],
       "elements": [
         {
@@ -4186,11 +4186,11 @@
       "name": "TrueBlkDrgnGunlance",
       "attack": 621,
       "sharpness": [
-        18,
+        16,
         5,
-        3,
+        4,
         9,
-        3,
+        4,
         2
       ],
       "affinity": "-20%",
@@ -4234,11 +4234,11 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        18,
+        16,
         5,
-        3,
+        4,
         9,
-        3,
+        4,
         5,
         2
       ],
@@ -4254,10 +4254,10 @@
       "name": "Dragonwood Gunlance",
       "attack": 299,
       "sharpness": [
-        6,
-        3,
-        13,
-        5
+        7,
+        4,
+        15,
+        4
       ],
       "affinity": "0%",
       "slots": 1,
@@ -4302,9 +4302,9 @@
         "Gld Dragonwd GLance"
       ],
       "sharpness_plus": [
-        6,
-        3,
-        13,
+        7,
+        4,
+        15,
         6,
         3
       ],
@@ -4320,10 +4320,10 @@
       "name": "Gld Dragonwd GLance",
       "attack": 368,
       "sharpness": [
+        7,
+        4,
+        15,
         6,
-        3,
-        13,
-        5,
         3
       ],
       "affinity": "0%",
@@ -4363,11 +4363,11 @@
         "AncientDrgnwoodLance"
       ],
       "sharpness_plus": [
+        7,
+        4,
+        15,
         6,
-        3,
-        13,
-        5,
-        3,
+        4,
         4
       ],
       "elements": [
@@ -4382,11 +4382,11 @@
       "name": "AncientDrgnwoodLance",
       "attack": 460,
       "sharpness": [
-        15,
+        16,
         5,
         4,
         9,
-        3,
+        4,
         2
       ],
       "affinity": "0%",
@@ -4451,13 +4451,13 @@
         "AncientDrgnwoodLanc+"
       ],
       "sharpness_plus": [
-        15,
+        16,
         5,
         4,
         9,
-        3,
-        6,
-        3
+        4,
+        5,
+        2
       ],
       "elements": [
         {
@@ -4661,8 +4661,8 @@
       "name": "dummy (EldrDrgGLance\"Emblem\")",
       "attack": 598,
       "sharpness": [
-        7,
         5,
+        7,
         5,
         16,
         5,
@@ -4709,8 +4709,8 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        7,
         5,
+        7,
         5,
         16,
         5,
@@ -4724,9 +4724,9 @@
       "name": "Rex Blast",
       "attack": 391,
       "sharpness": [
-        13,
+        16,
+        5,
         4,
-        3,
         9,
         1
       ],
@@ -4774,11 +4774,11 @@
         "Hidden Gunlance"
       ],
       "sharpness_plus": [
-        13,
+        16,
+        5,
         4,
-        3,
         9,
-        3,
+        4,
         2
       ],
       "elements": null,
@@ -4792,7 +4792,7 @@
         5,
         9,
         10,
-        4,
+        5,
         2
       ],
       "affinity": "-30%",
@@ -4836,8 +4836,8 @@
         5,
         9,
         10,
-        4,
-        6,
+        5,
+        5,
         2
       ],
       "elements": null,
@@ -4851,8 +4851,8 @@
         5,
         9,
         10,
-        4,
-        6,
+        5,
+        5,
         2
       ],
       "affinity": "-30%",
@@ -4894,8 +4894,8 @@
         5,
         9,
         10,
-        4,
-        6,
+        5,
+        5,
         2
       ],
       "elements": null,
@@ -5078,10 +5078,10 @@
       "name": "Akantor Gunlance",
       "attack": 575,
       "sharpness": [
-        4,
+        5,
         7,
-        4,
-        2
+        5,
+        3
       ],
       "affinity": "40%",
       "slots": 0,
@@ -5126,10 +5126,10 @@
         "AkantorNoirGunlance"
       ],
       "sharpness_plus": [
-        4,
+        5,
         7,
-        4,
-        7
+        5,
+        8
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -5138,9 +5138,9 @@
       "name": "AkantorNoirGunlance",
       "attack": 759,
       "sharpness": [
-        4,
+        5,
         7,
-        4,
+        5,
         8
       ],
       "affinity": "40%",
@@ -5184,10 +5184,10 @@
       ],
       "improve_to": null,
       "sharpness_plus": [
-        4,
+        5,
         7,
-        4,
-        14
+        5,
+        13
       ],
       "elements": null,
       "alternative_create_mats": null

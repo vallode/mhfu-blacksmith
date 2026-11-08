@@ -149,10 +149,10 @@
       "name": "Velocidrome Bite",
       "attack": 168,
       "sharpness": [
-        12,
+        13,
         1,
         3,
-        7
+        8
       ],
       "affinity": "0%",
       "slots": 1,
@@ -214,10 +214,10 @@
         "Velociprey Claws"
       ],
       "sharpness_plus": [
-        12,
+        13,
         1,
         3,
-        12
+        13
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -226,10 +226,10 @@
       "name": "Velocidrome Bite+",
       "attack": 252,
       "sharpness": [
-        12,
+        13,
         1,
         3,
-        12
+        13
       ],
       "affinity": "0%",
       "slots": 1,
@@ -278,10 +278,10 @@
         "Odyssey"
       ],
       "sharpness_plus": [
-        12,
+        13,
         1,
         3,
-        15,
+        16,
         2
       ],
       "elements": null,
@@ -429,7 +429,7 @@
       "sharpness": [
         2,
         5,
-        17,
+        18,
         5
       ],
       "affinity": "0%",
@@ -467,7 +467,7 @@
       "sharpness_plus": [
         2,
         5,
-        17,
+        18,
         5,
         5
       ],
@@ -486,8 +486,8 @@
         8,
         2,
         9,
-        13,
-        3
+        12,
+        4
       ],
       "affinity": "0%",
       "slots": 1,
@@ -527,8 +527,8 @@
         8,
         2,
         9,
-        13,
-        6,
+        12,
+        7,
         2
       ],
       "elements": [
@@ -546,8 +546,8 @@
         8,
         2,
         9,
-        13,
-        6,
+        12,
+        7,
         2
       ],
       "affinity": "0%",
@@ -584,8 +584,8 @@
         8,
         2,
         9,
-        13,
-        6,
+        12,
+        7,
         4,
         3
       ],
@@ -740,8 +740,8 @@
       "sharpness": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         3
       ],
       "affinity": "0%",
@@ -810,8 +810,8 @@
       "sharpness_plus": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         6,
         2
       ],
@@ -829,8 +829,8 @@
       "sharpness": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         6,
         2
       ],
@@ -873,8 +873,8 @@
       "sharpness_plus": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         6,
         4,
         3
@@ -1181,7 +1181,7 @@
       "sharpness": [
         7,
         5,
-        8,
+        9,
         4
       ],
       "affinity": "0%",
@@ -1219,7 +1219,7 @@
       "sharpness_plus": [
         7,
         5,
-        8,
+        9,
         9
       ],
       "elements": [
@@ -1236,7 +1236,7 @@
       "sharpness": [
         7,
         5,
-        8,
+        9,
         9
       ],
       "affinity": "0%",
@@ -1280,7 +1280,7 @@
       "sharpness_plus": [
         7,
         5,
-        8,
+        9,
         11,
         3
       ],
@@ -1352,7 +1352,7 @@
       "sharpness": [
         5,
         3,
-        12,
+        13,
         4
       ],
       "affinity": "0%",
@@ -1390,8 +1390,8 @@
       "sharpness_plus": [
         5,
         3,
-        12,
-        8
+        13,
+        9
       ],
       "elements": [
         {
@@ -1407,8 +1407,8 @@
       "sharpness": [
         5,
         3,
-        12,
-        8
+        13,
+        9
       ],
       "affinity": "0%",
       "slots": 0,
@@ -1446,8 +1446,8 @@
       "sharpness_plus": [
         5,
         3,
+        13,
         12,
-        11,
         2
       ],
       "elements": [
@@ -1464,8 +1464,8 @@
       "sharpness": [
         5,
         3,
+        13,
         12,
-        11,
         2
       ],
       "affinity": "0%",
@@ -1501,8 +1501,8 @@
       "sharpness_plus": [
         5,
         3,
+        13,
         12,
-        11,
         6,
         1
       ],
@@ -1632,9 +1632,9 @@
       "sharpness": [
         8,
         2,
-        8,
+        9,
         12,
-        5
+        4
       ],
       "affinity": "15%",
       "slots": 0,
@@ -1669,7 +1669,7 @@
       "sharpness_plus": [
         8,
         2,
-        8,
+        9,
         12,
         7,
         2
@@ -2135,7 +2135,7 @@
       "sharpness_plus": [
         5,
         3,
-        12,
+        13,
         4
       ],
       "elements": null
@@ -2562,9 +2562,9 @@
       "sharpness": [
         8,
         2,
-        8,
+        9,
         12,
-        5
+        4
       ],
       "affinity": "10%",
       "slots": 2,
@@ -2601,7 +2601,7 @@
       "sharpness_plus": [
         8,
         2,
-        8,
+        9,
         12,
         7,
         2
@@ -2618,10 +2618,10 @@
       "name": "Queen's Rose",
       "attack": 322,
       "sharpness": [
-        19,
+        20,
         1,
         3,
-        11,
+        10,
         5,
         1
       ],
@@ -2683,10 +2683,10 @@
         "Royal Rose"
       ],
       "sharpness_plus": [
-        19,
+        20,
         1,
         3,
-        11,
+        10,
         5,
         4,
         2
@@ -5247,8 +5247,8 @@
       "sharpness": [
         8,
         2,
-        8,
-        13,
+        9,
+        12,
         7,
         2
       ],
@@ -5291,11 +5291,11 @@
       "sharpness_plus": [
         8,
         2,
-        8,
-        13,
+        9,
+        12,
         7,
-        3,
-        2
+        4,
+        3
       ],
       "elements": [
         {
@@ -5373,8 +5373,8 @@
       "sharpness": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         6,
         4,
         3
@@ -5418,8 +5418,8 @@
       "sharpness_plus": [
         7,
         5,
-        8,
-        12,
+        9,
+        11,
         6,
         4,
         3
@@ -7273,7 +7273,7 @@
         13,
         1,
         3,
-        13
+        8
       ],
       "affinity": "0%",
       "slots": 2,
@@ -8093,12 +8093,12 @@
       "name": "Thunderbane G",
       "attack": 364,
       "sharpness": [
+        7,
         5,
-        3,
-        13,
-        12,
+        9,
+        11,
         6,
-        1
+        2
       ],
       "affinity": "0%",
       "slots": 1,
@@ -8137,13 +8137,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
+        7,
         5,
-        3,
-        13,
-        12,
+        9,
+        11,
         6,
         4,
-        2
+        3
       ],
       "elements": [
         {
@@ -8157,12 +8157,12 @@
       "name": "Sandman Finsword G",
       "attack": 294,
       "sharpness": [
-        7,
-        5,
-        9,
-        11,
+        13,
+        1,
+        3,
+        16,
         6,
-        2
+        1
       ],
       "affinity": "0%",
       "slots": 1,
@@ -8201,13 +8201,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        7,
-        5,
-        9,
-        11,
+        13,
+        1,
+        3,
+        16,
         6,
         4,
-        3
+        2
       ],
       "elements": [
         {
@@ -8221,12 +8221,12 @@
       "name": "Monoblos Club G",
       "attack": 378,
       "sharpness": [
-        13,
-        1,
-        3,
-        16,
-        6,
-        1
+        8,
+        2,
+        9,
+        12,
+        7,
+        2
       ],
       "affinity": "20%",
       "slots": 0,
@@ -8265,13 +8265,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        13,
-        1,
-        3,
-        16,
-        6,
+        8,
+        2,
+        9,
+        12,
+        7,
         4,
-        2
+        3
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -8280,12 +8280,12 @@
       "name": "Spiked Bat G",
       "attack": 378,
       "sharpness": [
-        8,
         2,
-        9,
-        12,
+        5,
+        18,
+        5,
         7,
-        2
+        3
       ],
       "affinity": "20%",
       "slots": 1,
@@ -8324,13 +8324,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        8,
         2,
-        9,
-        12,
+        5,
+        18,
+        5,
         7,
         4,
-        3
+        4
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -8339,12 +8339,11 @@
       "name": "Kirin Bolt G",
       "attack": 364,
       "sharpness": [
-        2,
         5,
-        18,
-        5,
-        7,
-        3
+        3,
+        13,
+        12,
+        2
       ],
       "affinity": "0%",
       "slots": 0,
@@ -8383,13 +8382,12 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        2,
         5,
-        18,
-        5,
-        7,
-        4,
-        4
+        3,
+        13,
+        12,
+        6,
+        1
       ],
       "elements": [
         {
@@ -8407,7 +8405,8 @@
         3,
         13,
         12,
-        2
+        6,
+        1
       ],
       "affinity": "0%",
       "slots": 0,
@@ -8451,7 +8450,8 @@
         13,
         12,
         6,
-        1
+        4,
+        2
       ],
       "elements": [
         {
@@ -8465,12 +8465,12 @@
       "name": "Kirin Bolt Indora G",
       "attack": 350,
       "sharpness": [
-        5,
-        3,
-        13,
+        8,
+        2,
+        9,
         12,
-        6,
-        1
+        7,
+        2
       ],
       "affinity": "0%",
       "slots": 2,
@@ -8509,13 +8509,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        5,
-        3,
-        13,
+        8,
+        2,
+        9,
         12,
-        6,
+        7,
         4,
-        2
+        3
       ],
       "elements": [
         {
@@ -8533,8 +8533,7 @@
         2,
         9,
         12,
-        7,
-        2
+        4
       ],
       "affinity": "0%",
       "slots": 0,
@@ -8578,8 +8577,7 @@
         9,
         12,
         7,
-        4,
-        3
+        2
       ],
       "elements": [
         {
@@ -8593,11 +8591,11 @@
       "name": "Catburglar G",
       "attack": 294,
       "sharpness": [
-        8,
-        2,
-        9,
+        5,
+        3,
+        13,
         12,
-        4
+        2
       ],
       "affinity": "0%",
       "slots": 0,
@@ -8636,12 +8634,12 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        8,
-        2,
-        9,
+        5,
+        3,
+        13,
         12,
-        7,
-        2
+        6,
+        1
       ],
       "elements": [
         {
@@ -8655,11 +8653,12 @@
       "name": "Eternal Strife G",
       "attack": 196,
       "sharpness": [
-        5,
+        20,
+        1,
         3,
-        13,
-        12,
-        2
+        10,
+        5,
+        1
       ],
       "affinity": "0%",
       "slots": 0,
@@ -8698,12 +8697,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        5,
+        20,
+        1,
         3,
-        13,
-        12,
-        6,
-        1
+        10,
+        5,
+        4,
+        2
       ],
       "elements": [
         {
@@ -8717,12 +8717,12 @@
       "name": "Odyssey G",
       "attack": 336,
       "sharpness": [
-        20,
-        1,
-        3,
-        10,
+        2,
         5,
-        1
+        18,
+        5,
+        7,
+        3
       ],
       "affinity": "0%",
       "slots": 1,
@@ -8761,13 +8761,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        20,
-        1,
-        3,
-        10,
+        2,
         5,
+        18,
+        5,
+        7,
         4,
-        2
+        4
       ],
       "elements": [
         {
@@ -8781,12 +8781,12 @@
       "name": "Osteon Pick G",
       "attack": 378,
       "sharpness": [
-        2,
         5,
-        18,
-        5,
-        7,
-        3
+        3,
+        13,
+        12,
+        6,
+        1
       ],
       "affinity": "0%",
       "slots": 2,
@@ -8825,13 +8825,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        2,
         5,
-        18,
-        5,
-        7,
+        3,
+        13,
+        12,
+        6,
         4,
-        4
+        2
       ],
       "elements": null,
       "alternative_create_mats": null
@@ -8840,10 +8840,10 @@
       "name": "Serpent Bite G",
       "attack": 364,
       "sharpness": [
-        5,
-        3,
         13,
-        12,
+        1,
+        3,
+        16,
         6,
         1
       ],
@@ -8884,10 +8884,10 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        5,
-        3,
         13,
-        12,
+        1,
+        3,
+        16,
         6,
         4,
         2
@@ -8899,12 +8899,13 @@
       "name": "Millennium Knife G",
       "attack": 308,
       "sharpness": [
-        13,
-        1,
+        5,
         3,
-        16,
+        13,
+        12,
         6,
-        1
+        4,
+        2
       ],
       "affinity": "20%",
       "slots": 0,
@@ -8943,10 +8944,10 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
-        13,
-        1,
+        5,
         3,
-        16,
+        13,
+        12,
         6,
         4,
         2
@@ -8958,12 +8959,11 @@
       "name": "Hi Frost Edge G",
       "attack": 322,
       "sharpness": [
+        7,
         5,
-        3,
-        13,
-        12,
+        9,
+        11,
         6,
-        4,
         2
       ],
       "affinity": "0%",
@@ -9003,13 +9003,13 @@
       "improve_mats": null,
       "improve_to": null,
       "sharpness_plus": [
+        7,
         5,
-        3,
-        13,
-        12,
+        9,
+        11,
         6,
         4,
-        2
+        3
       ],
       "elements": [
         {

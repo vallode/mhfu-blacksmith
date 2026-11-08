@@ -1,44 +1,22 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { isStage, type Tier } from "@/lib/min-rank";
+/**
+ * The user's site preferences (see lib/preferences.ts), changed on the
+ * Options page. Defaults render first (static export, no storage on the
+ * server) and the stored choices apply right after mount. Changes made in
+ * another tab apply here too.
+ */
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {
+  DEFAULT_PREFERENCES,
+  PREFERENCES_KEY,
+  parsePreferences,
+  readPreferences,
+  writePreferences,
+  type Preferences,
+} from "@/lib/preferences";
 
-export interface Preferences {
-  /** Show raw (true) or inflated (false) weapon attack values */
-  showRawAttack: boolean;
-  /** Default save region for the hunter upload page */
-  defaultRegion: "us" | "eu" | "jp";
-  /** Highest guild quest the hunter can take, or null to show all gear */
-  questProgress: Tier | null;
-}
-
-const DEFAULTS: Preferences = {
-  showRawAttack: true,
-  defaultRegion: "us",
-  questProgress: null,
-};
-
-const KEY = "mhfu_prefs";
-
-function loadPrefs(): Preferences {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return DEFAULTS;
-    const stored = JSON.parse(raw) as Partial<Preferences>;
-    return {
-      ...DEFAULTS,
-      ...stored,
-      // Stored values can be stale or hand-edited; only keep a known stage.
-      questProgress: isStage(stored.questProgress) ? stored.questProgress : null,
-    };
-  } catch {
-    return DEFAULTS;
-  }
-}
-
-function savePrefs(prefs: Preferences): void {
-  localStorage.setItem(KEY, JSON.stringify(prefs));
-}
+export type { Preferences } from "@/lib/preferences";
 
 interface PreferencesContextValue {
   prefs: Preferences;
@@ -47,36 +25,48 @@ interface PreferencesContextValue {
 }
 
 const PreferencesContext = createContext<PreferencesContextValue>({
-  prefs: DEFAULTS,
+  prefs: DEFAULT_PREFERENCES,
   set: () => {},
   reset: () => {},
 });
 
 export function PreferencesProvider({ children }: { children: React.ReactNode }) {
-  const [prefs, setPrefs] = useState<Preferences>(DEFAULTS);
+  const [prefs, setPrefs] = useState<Preferences>(DEFAULT_PREFERENCES);
 
   useEffect(() => {
-    setPrefs(loadPrefs());
+    setPrefs(readPreferences());
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === PREFERENCES_KEY || event.key === null) {
+        setPrefs(parsePreferences(event.newValue));
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
+
+  // Read by the --animate-hover-glow override in globals.css.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (prefs.animateHighlights) delete root.dataset.steadyHighlights;
+    else root.dataset.steadyHighlights = "";
+  }, [prefs.animateHighlights]);
 
   const set = useCallback(<K extends keyof Preferences>(key: K, value: Preferences[K]) => {
     setPrefs((prev) => {
       const next = { ...prev, [key]: value };
-      savePrefs(next);
+      writePreferences(next);
       return next;
     });
   }, []);
 
   const reset = useCallback(() => {
-    savePrefs(DEFAULTS);
-    setPrefs(DEFAULTS);
+    writePreferences(DEFAULT_PREFERENCES);
+    setPrefs(DEFAULT_PREFERENCES);
   }, []);
 
-  return (
-    <PreferencesContext.Provider value={{ prefs, set, reset }}>
-      {children}
-    </PreferencesContext.Provider>
-  );
+  const value = useMemo(() => ({ prefs, set, reset }), [prefs, set, reset]);
+
+  return <PreferencesContext.Provider value={value}>{children}</PreferencesContext.Provider>;
 }
 
 export function usePreferences() {

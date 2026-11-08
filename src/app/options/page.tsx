@@ -2,7 +2,7 @@ import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
 import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
-import RankSettings from "@/components/RankSettings";
+import PreferencesSettings from "@/components/PreferencesSettings";
 import SaveSyncSettings from "@/components/SaveSyncSettings";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function OptionsPage() {
       <BorderRule />
 
       <div className="flex w-full max-w-[72rem] flex-col gap-[1.3rem]">
-        <RankSettings />
+        <PreferencesSettings />
         <SaveSyncSettings />
         <OfflineSettings />
       </div>
