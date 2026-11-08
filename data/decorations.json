@@ -2774,7 +2774,6 @@
       "name": "StrongShot Jewel+",
       "skills": [
         "NormalS up +4",
-        "",
         "Reload -2"
       ],
       "create_mats": [
@@ -2849,7 +2848,6 @@
       "name": "Pierce Jewel+",
       "skills": [
         "PierceS up +4",
-        "",
         "Reload -2"
       ],
       "create_mats": [
