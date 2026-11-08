@@ -1,0 +1,9 @@
+# Generated or vendored; only src/ is formatted (see the format scripts)
+.next
+out
+public
+data
+sources
+content
+tools
+pnpm-lock.yaml
