@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { decryptDataBinBlock, encryptDataBinBlock, unpackDataBin } from "../src/container/databin.js";
+import {
+  decryptDataBinBlock,
+  encryptDataBinBlock,
+  unpackDataBin,
+} from "../src/container/databin.js";
 
 test("encryptDataBinBlock / decryptDataBinBlock round-trip", () => {
   const original = Buffer.from(Array.from({ length: 64 }, (_, i) => i * 7 + 3));
@@ -36,8 +40,14 @@ test("unpackDataBin walks a synthetic TOC and decrypts each file", () => {
   for (let i = 0; i < toc.length; i++) tocBuf.writeUInt32LE(toc[i]!, i * 4);
   const encryptedToc = encryptDataBinBlock(tocBuf, 0);
 
-  const fileContents = [Buffer.alloc(SECTOR, 0x11), Buffer.alloc(SECTOR, 0x22), Buffer.alloc(SECTOR, 0x33)];
-  const encryptedFiles = fileContents.map((content, i) => encryptDataBinBlock(content, tocSectors + i));
+  const fileContents = [
+    Buffer.alloc(SECTOR, 0x11),
+    Buffer.alloc(SECTOR, 0x22),
+    Buffer.alloc(SECTOR, 0x33),
+  ];
+  const encryptedFiles = fileContents.map((content, i) =>
+    encryptDataBinBlock(content, tocSectors + i),
+  );
 
   const raw = Buffer.concat([encryptedToc, ...encryptedFiles]);
   const files = unpackDataBin(raw, "jp");

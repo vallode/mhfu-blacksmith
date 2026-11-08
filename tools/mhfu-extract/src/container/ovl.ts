@@ -54,7 +54,9 @@ export class OvlFile {
     const reader = new BinaryReader(buf);
     const magic = reader.magic(0, 4);
     if (!magic.equals(MAGIC)) {
-      throw new OvlFormatError(`Not an MWo3 overlay (expected magic "MWo3", got ${magic.toString("hex")})`);
+      throw new OvlFormatError(
+        `Not an MWo3 overlay (expected magic "MWo3", got ${magic.toString("hex")})`,
+      );
     }
     this.reader = reader;
     this.loadBase = reader.u32(0x08);

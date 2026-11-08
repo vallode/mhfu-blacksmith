@@ -51,7 +51,7 @@ export function useEquipmentIds(enabled = true): { ids: EquipmentIds | null; err
     let cancelled = false;
     getEquipmentIds().then(
       (v) => !cancelled && setIds(v),
-      () => !cancelled && setError(true)
+      () => !cancelled && setError(true),
     );
     return () => {
       cancelled = true;

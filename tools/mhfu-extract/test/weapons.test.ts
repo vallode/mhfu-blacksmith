@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { tableOffset, TABLE_COUNTS, WEAPON_BM_ENTRY_SIZE, WEAPON_GUN_ENTRY_SIZE } from "../src/tables/offsets.js";
+import {
+  tableOffset,
+  TABLE_COUNTS,
+  WEAPON_BM_ENTRY_SIZE,
+  WEAPON_GUN_ENTRY_SIZE,
+} from "../src/tables/offsets.js";
 import {
   decodeBowCoatings,
   decodeShotCoat,
@@ -36,7 +41,9 @@ test("readWeaponClassModifiers reads eleven u32s in declared order", () => {
 
 test("readBlademasterWeapons decodes fields at the documented byte offsets", () => {
   const base = tableOffset("weaponsBlademaster");
-  const { buf, reader } = fixtureReader(base + TABLE_COUNTS.weaponsBlademaster * WEAPON_BM_ENTRY_SIZE);
+  const { buf, reader } = fixtureReader(
+    base + TABLE_COUNTS.weaponsBlademaster * WEAPON_BM_ENTRY_SIZE,
+  );
 
   const off = base + 1 * WEAPON_BM_ENTRY_SIZE;
   buf.writeUInt16LE(10, off + 0); // modelId

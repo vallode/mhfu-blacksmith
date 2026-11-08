@@ -73,7 +73,11 @@ export function readPmo(buf: Buffer): Pmo {
   const materials: PmoMaterial[] = [];
   for (let i = 0; i < materialCount; i++) {
     const at = materialTable + i * MATERIAL_STRIDE;
-    materials.push({ diffuse: reader.u32(at), ambient: reader.u32(at + 4), textureIndex: reader.u32(at + 8) });
+    materials.push({
+      diffuse: reader.u32(at),
+      ambient: reader.u32(at + 4),
+      textureIndex: reader.u32(at + 8),
+    });
   }
 
   const meshes: PmoMesh[] = [];
@@ -90,9 +94,14 @@ export function readPmo(buf: Buffer): Pmo {
       const materialIndex = reader.u8(materialMap + slot);
       const listOffset = reader.u32(groupAt + 4);
       if (materialIndex >= materials.length) {
-        throw new Error(`Mesh ${m} group ${g}: material slot ${slot} maps to material ${materialIndex} of ${materials.length}`);
+        throw new Error(
+          `Mesh ${m} group ${g}: material slot ${slot} maps to material ${materialIndex} of ${materials.length}`,
+        );
       }
-      primitives.push({ materialIndex, geometry: runDisplayList(reader, displayListBase + listOffset) });
+      primitives.push({
+        materialIndex,
+        geometry: runDisplayList(reader, displayListBase + listOffset),
+      });
     }
     meshes.push({ uvScale, primitives });
   }

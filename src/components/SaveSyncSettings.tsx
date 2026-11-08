@@ -22,8 +22,8 @@ export default function SaveSyncSettings() {
       <Card className={ui.section}>
         <h2 className={ui.heading}>Save Sync</h2>
         <p className={ui.note}>
-          Automatic save syncing isn&apos;t supported in this browser. You can
-          still upload your save file manually from the Hunter page.
+          Automatic save syncing isn&apos;t supported in this browser. You can still upload your
+          save file manually from the Hunter page.
         </p>
       </Card>
     );
@@ -34,9 +34,8 @@ export default function SaveSyncSettings() {
       <Card className={ui.section}>
         <h2 className={ui.heading}>Save Sync</h2>
         <p className={ui.note}>
-          Connect your save file from the Hunter page to have your hunter
-          profile refresh automatically whenever you return, no re-uploading
-          needed.
+          Connect your save file from the Hunter page to have your hunter profile refresh
+          automatically whenever you return, no re-uploading needed.
         </p>
       </Card>
     );
@@ -48,9 +47,8 @@ export default function SaveSyncSettings() {
     <Card className={ui.section}>
       <h2 className={ui.heading}>Save Sync</h2>
       <p className={ui.note}>
-        Your hunter profile refreshes automatically from{" "}
-        {fileSync.fileName ?? "your save file"} whenever you return to this
-        site — no re-uploading needed.
+        Your hunter profile refreshes automatically from {fileSync.fileName ?? "your save file"}{" "}
+        whenever you return to this site — no re-uploading needed.
       </p>
 
       <div className={ui.status}>
@@ -78,20 +76,12 @@ export default function SaveSyncSettings() {
             {fileSync.syncing ? "Syncing…" : "Sync now"}
           </button>
         ) : (
-          <button
-            type="button"
-            className={ui.button}
-            onClick={() => fileSync.requestReconnect()}
-          >
+          <button type="button" className={ui.button} onClick={() => fileSync.requestReconnect()}>
             Reconnect
           </button>
         )}
 
-        <button
-          type="button"
-          className={ui.buttonSecondary}
-          onClick={() => fileSync.forget()}
-        >
+        <button type="button" className={ui.buttonSecondary} onClick={() => fileSync.forget()}>
           Forget save file
         </button>
       </div>

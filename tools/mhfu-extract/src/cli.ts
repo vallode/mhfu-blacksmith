@@ -65,7 +65,9 @@ export async function main(argv: string[]): Promise<void> {
         skipEboot: flags["skip-eboot"] === "true",
         pspdecryptBin: flags["pspdecrypt-bin"],
       });
-      console.log(`\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`);
+      console.log(
+        `\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`,
+      );
       return;
     }
     case "extract": {
@@ -73,7 +75,9 @@ export async function main(argv: string[]): Promise<void> {
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),
       });
-      console.log(`\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`);
+      console.log(
+        `\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`,
+      );
       return;
     }
     case "diff": {
@@ -86,7 +90,10 @@ export async function main(argv: string[]): Promise<void> {
       return;
     }
     case "models": {
-      const results = await runModels({ in: requireFlag(flags, "in"), out: requireFlag(flags, "out") });
+      const results = await runModels({
+        in: requireFlag(flags, "in"),
+        out: requireFlag(flags, "out"),
+      });
       const converted = results.filter((result) => !result.error).length;
       console.log(`\nDone. Converted ${converted} of ${results.length} packages.`);
       return;
@@ -98,8 +105,11 @@ export async function main(argv: string[]): Promise<void> {
         out: flags.out ?? "../../public/models",
         lossless: flags.lossless === "true",
       });
-      const count = (record: Record<string, Record<string, unknown>>) => Object.values(record).reduce((sum, r) => sum + Object.keys(r).length, 0);
-      console.log(`\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${count(manifest.weapons)} weapons, ${count(manifest.armor)} armor pieces.`);
+      const count = (record: Record<string, Record<string, unknown>>) =>
+        Object.values(record).reduce((sum, r) => sum + Object.keys(r).length, 0);
+      console.log(
+        `\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${count(manifest.weapons)} weapons, ${count(manifest.armor)} armor pieces.`,
+      );
       return;
     }
     default:

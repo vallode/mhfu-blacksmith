@@ -30,13 +30,26 @@ export function isTmh(buf: Buffer): boolean {
 }
 
 /** Decode one direct-color GE pixel (formats 0-3) to RGBA8. */
-function directColor(reader: BinaryReader, offset: number, format: number): [number, number, number, number] {
-  if (format === 3) return [reader.u8(offset), reader.u8(offset + 1), reader.u8(offset + 2), reader.u8(offset + 3)];
+function directColor(
+  reader: BinaryReader,
+  offset: number,
+  format: number,
+): [number, number, number, number] {
+  if (format === 3)
+    return [reader.u8(offset), reader.u8(offset + 1), reader.u8(offset + 2), reader.u8(offset + 3)];
   const v = reader.u16(offset);
   const scale = (value: number, bits: number) => Math.round((value * 255) / ((1 << bits) - 1));
-  if (format === 0) return [scale(v & 31, 5), scale((v >> 5) & 63, 6), scale((v >> 11) & 31, 5), 255];
-  if (format === 1) return [scale(v & 31, 5), scale((v >> 5) & 31, 5), scale((v >> 10) & 31, 5), (v >> 15) * 255];
-  if (format === 2) return [scale(v & 15, 4), scale((v >> 4) & 15, 4), scale((v >> 8) & 15, 4), scale((v >> 12) & 15, 4)];
+  if (format === 0)
+    return [scale(v & 31, 5), scale((v >> 5) & 63, 6), scale((v >> 11) & 31, 5), 255];
+  if (format === 1)
+    return [scale(v & 31, 5), scale((v >> 5) & 31, 5), scale((v >> 10) & 31, 5), (v >> 15) * 255];
+  if (format === 2)
+    return [
+      scale(v & 15, 4),
+      scale((v >> 4) & 15, 4),
+      scale((v >> 8) & 15, 4),
+      scale((v >> 12) & 15, 4),
+    ];
   throw new Error(`Not a direct-color format: ${format}`);
 }
 
@@ -61,14 +74,18 @@ export function unswizzle(data: Buffer, rowBytes: number, height: number): Buffe
   return out;
 }
 
-function decodePalette(reader: BinaryReader, offset: number): { colors: [number, number, number, number][]; size: number } {
+function decodePalette(
+  reader: BinaryReader,
+  offset: number,
+): { colors: [number, number, number, number][]; size: number } {
   const size = reader.u32(offset);
   const format = reader.u32(offset + 8);
   const count = reader.u32(offset + 12);
   if (format > 3) throw new Error(`Unsupported palette format ${format}`);
   const entryBytes = format === 3 ? 4 : 2;
   const colors: [number, number, number, number][] = [];
-  for (let i = 0; i < count; i++) colors.push(directColor(reader, offset + 16 + i * entryBytes, format));
+  for (let i = 0; i < count; i++)
+    colors.push(directColor(reader, offset + 16 + i * entryBytes, format));
   return { colors, size };
 }
 
@@ -95,13 +112,28 @@ function decodeDxt1(data: Buffer, width: number, height: number): Buffer {
           ? [
               [...c0, 255],
               [...c1, 255],
-              [0, 1, 2].map((k) => Math.round((2 * c0[k]! + c1[k]!) / 3)).concat(255) as [number, number, number, number],
-              [0, 1, 2].map((k) => Math.round((c0[k]! + 2 * c1[k]!) / 3)).concat(255) as [number, number, number, number],
+              [0, 1, 2].map((k) => Math.round((2 * c0[k]! + c1[k]!) / 3)).concat(255) as [
+                number,
+                number,
+                number,
+                number,
+              ],
+              [0, 1, 2].map((k) => Math.round((c0[k]! + 2 * c1[k]!) / 3)).concat(255) as [
+                number,
+                number,
+                number,
+                number,
+              ],
             ]
           : [
               [...c0, 255],
               [...c1, 255],
-              [0, 1, 2].map((k) => Math.round((c0[k]! + c1[k]!) / 2)).concat(255) as [number, number, number, number],
+              [0, 1, 2].map((k) => Math.round((c0[k]! + c1[k]!) / 2)).concat(255) as [
+                number,
+                number,
+                number,
+                number,
+              ],
               [0, 0, 0, 0],
             ];
       for (let p = 0; p < 16; p++) {
@@ -135,7 +167,8 @@ function decodeImage(reader: BinaryReader, offset: number): { image: TmhImage; s
     const pixels = new BinaryReader(data);
     rgba = Buffer.alloc(width * height * 4);
     if (format <= 3) {
-      for (let i = 0; i < width * height; i++) rgba.set(directColor(pixels, (i * bpp) / 8, format), i * 4);
+      for (let i = 0; i < width * height; i++)
+        rgba.set(directColor(pixels, (i * bpp) / 8, format), i * 4);
     } else {
       if (!hasPalette) throw new Error(`Indexed texture format ${format} without a palette`);
       const { colors } = decodePalette(reader, pixelAt + pixelSize);

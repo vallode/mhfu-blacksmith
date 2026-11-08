@@ -46,7 +46,8 @@ function filterRows(rows: Buffer[], bpp: number, adaptive: boolean): Buffer {
           const a = i >= bpp ? row[i - bpp]! : 0;
           const b = prev[i]!;
           const c = i >= bpp ? prev[i - bpp]! : 0;
-          const predictor = type === 1 ? a : type === 2 ? b : type === 3 ? (a + b) >> 1 : paeth(a, b, c);
+          const predictor =
+            type === 1 ? a : type === 2 ? b : type === 3 ? (a + b) >> 1 : paeth(a, b, c);
           filtered[i] = (row[i]! - predictor) & 0xff;
         }
         candidates.push(filtered);
@@ -81,7 +82,13 @@ function assemble(ihdr: Buffer, extra: Buffer[], rows: Buffer[], bpp: number): B
   let best: Buffer | null = null;
   for (const adaptive of [false, true]) {
     const idat = smallestDeflate(filterRows(rows, bpp, adaptive));
-    const png = Buffer.concat([SIGNATURE, chunk("IHDR", ihdr), ...extra, chunk("IDAT", idat), chunk("IEND", Buffer.alloc(0))]);
+    const png = Buffer.concat([
+      SIGNATURE,
+      chunk("IHDR", ihdr),
+      ...extra,
+      chunk("IDAT", idat),
+      chunk("IEND", Buffer.alloc(0)),
+    ]);
     if (!best || png.length < best.length) best = png;
   }
   return best!;
@@ -114,7 +121,10 @@ function encodePalette(width: number, height: number, rgba: Buffer): Buffer | nu
       seen.set(color, seen.size);
     }
   }
-  const colors = [...seen.keys()].sort((a, b) => Number((a & 0xff) === 0xff) - Number((b & 0xff) === 0xff) || seen.get(a)! - seen.get(b)!);
+  const colors = [...seen.keys()].sort(
+    (a, b) =>
+      Number((a & 0xff) === 0xff) - Number((b & 0xff) === 0xff) || seen.get(a)! - seen.get(b)!,
+  );
   const index = new Map(colors.map((color, i) => [color, i]));
   const bitDepth = colors.length <= 2 ? 1 : colors.length <= 4 ? 2 : colors.length <= 16 ? 4 : 8;
 
@@ -146,7 +156,8 @@ function encodePalette(width: number, height: number, rgba: Buffer): Buffer | nu
 }
 
 export function encodePng(width: number, height: number, rgba: Buffer): Buffer {
-  if (rgba.length !== width * height * 4) throw new Error("RGBA buffer size does not match dimensions");
+  if (rgba.length !== width * height * 4)
+    throw new Error("RGBA buffer size does not match dimensions");
   const palette = encodePalette(width, height, rgba);
   const direct = palette && palette.length < 1024 ? null : encodeRgba(width, height, rgba);
   return !palette ? direct! : !direct || palette.length <= direct.length ? palette : direct;

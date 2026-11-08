@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import {
   cachesSupported,
   clearOffline,
@@ -17,12 +10,7 @@ import {
 } from "@/lib/offline-cache";
 
 export type OfflineDownloadStatus =
-  | "unsupported"
-  | "checking"
-  | "idle"
-  | "downloading"
-  | "complete"
-  | "error";
+  "unsupported" | "checking" | "idle" | "downloading" | "complete" | "error";
 
 export interface OfflineState {
   status: OfflineDownloadStatus;
@@ -64,7 +52,12 @@ const OfflineContext = createContext<OfflineContextValue>({
 export function OfflineProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<OfflineState>(DEFAULT_STATE);
   const mounted = useRef(true);
-  useEffect(() => () => { mounted.current = false; }, []);
+  useEffect(
+    () => () => {
+      mounted.current = false;
+    },
+    [],
+  );
 
   const refresh = useCallback(async () => {
     if (!cachesSupported()) {

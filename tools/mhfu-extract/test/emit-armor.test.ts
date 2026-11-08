@@ -34,7 +34,7 @@ const TABLE_NAME: Record<ArmorSlot, string> = {
  * the starter piece below.
  */
 const REAL_BYTES: Record<ArmorSlot, Buffer> = Object.fromEntries(
-  ARMOR_SLOTS.map((slot) => [slot, ARMOR_SLOT_TABLE_NAMES_EU[TABLE_NAME[slot]]!.signature])
+  ARMOR_SLOTS.map((slot) => [slot, ARMOR_SLOT_TABLE_NAMES_EU[TABLE_NAME[slot]]!.signature]),
 ) as Record<ArmorSlot, Buffer>;
 
 const INDEX_1_NAME: Record<ArmorSlot, string> = {
@@ -109,7 +109,10 @@ function buildJpFixture() {
   const ptrBase = tableOffset("armorValuePointers");
   for (const slot of ARMOR_SLOTS) {
     REAL_BYTES[slot].copy(buf, JP_ARRAY_OFFSET[slot]);
-    buf.writeUInt32LE(JP_BASE_ADDRESS + JP_ARRAY_OFFSET[slot], ptrBase + ARMOR_POINTER_INDEX[slot] * 4);
+    buf.writeUInt32LE(
+      JP_BASE_ADDRESS + JP_ARRAY_OFFSET[slot],
+      ptrBase + ARMOR_POINTER_INDEX[slot] * 4,
+    );
   }
   writeLeatherHelmRecipe(buf, tableOffset("equipmentCreate"));
   return reader;
@@ -136,7 +139,9 @@ test("emitArmor (EU signature path) gives every slot its own armor, matching the
   for (const slot of ARMOR_SLOTS) assertMatchesSite(armor, slot);
   const helm = armor.head.find((a) => a.name === "Leather Helm")!;
   assert.equal(helm.create_cost, 150);
-  assert.deepEqual(helm.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
+  assert.deepEqual(helm.create_mats, [
+    { name: "Disk Stone", amount: 1, type: "ore", color: "gray" },
+  ]);
 });
 
 test("emitArmor reproduces the real Leather Helm entry end-to-end", () => {
@@ -158,7 +163,9 @@ test("emitArmor reproduces the real Leather Helm entry end-to-end", () => {
     { name: "Shot Mix", amount: 2 },
     { name: "Cooking", amount: -2 },
   ]);
-  assert.deepEqual(helm!.create_mats, [{ name: "Disk Stone", amount: 1, type: "ore", color: "gray" }]);
+  assert.deepEqual(helm!.create_mats, [
+    { name: "Disk Stone", amount: 1, type: "ore", color: "gray" },
+  ]);
 });
 
 test("emitArmor looks up each piece's recipe by its array index", () => {
@@ -166,7 +173,10 @@ test("emitArmor looks up each piece's recipe by its array index", () => {
   const ptrBase = tableOffset("armorValuePointers");
   for (const slot of ARMOR_SLOTS) {
     REAL_BYTES[slot].copy(buf, JP_ARRAY_OFFSET[slot]);
-    buf.writeUInt32LE(JP_BASE_ADDRESS + JP_ARRAY_OFFSET[slot], ptrBase + ARMOR_POINTER_INDEX[slot] * 4);
+    buf.writeUInt32LE(
+      JP_BASE_ADDRESS + JP_ARRAY_OFFSET[slot],
+      ptrBase + ARMOR_POINTER_INDEX[slot] * 4,
+    );
   }
   // A recipe for equipId 2 only: Leather Helm (index 1) must not pick it up.
   const off = tableOffset("equipmentCreate") + 1 * EQUIP_CREATE_ENTRY_SIZE;

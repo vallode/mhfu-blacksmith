@@ -47,8 +47,13 @@ function collectPrecacheEntries(): PrecacheEntry[] {
   // Images the site uses (pixel-art sprites / icons), minus the ones it never
   // loads (scripts/lib/precache-exclude.json: unused weapon renders, README art).
   const imagesDir = path.join(publicDir, "images");
-  const excluded = (JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8")) as { exclude: string[] }).exclude;
-  const isExcluded = (relative: string) => excluded.some((e) => (e.endsWith("/") ? relative.startsWith(e) : relative === e));
+  const excluded = (
+    JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8"),
+    ) as { exclude: string[] }
+  ).exclude;
+  const isExcluded = (relative: string) =>
+    excluded.some((e) => (e.endsWith("/") ? relative.startsWith(e) : relative === e));
   const walk = (dir: string) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
@@ -70,7 +75,7 @@ const additionalManifestEntries = collectPrecacheEntries();
 let cacheId = "mhfu-blacksmith";
 try {
   const manifest = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), "public", "data", "data-manifest.json"), "utf-8")
+    fs.readFileSync(path.join(process.cwd(), "public", "data", "data-manifest.json"), "utf-8"),
   ) as { version?: string };
   if (manifest.version) cacheId = `mhfu-${manifest.version}`;
 } catch {
@@ -167,9 +172,7 @@ export default withPWA({
       },
       {
         urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
-          request.headers.get("RSC") === "1" &&
-          sameOrigin &&
-          !pathname.startsWith("/api/"),
+          request.headers.get("RSC") === "1" && sameOrigin && !pathname.startsWith("/api/"),
         handler: "NetworkFirst",
         options: {
           cacheName: "pages-rsc",

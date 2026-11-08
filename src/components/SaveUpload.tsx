@@ -24,14 +24,15 @@ const slotBase =
 
 // The chosen hunter, lit like the game's selected slot. Hover keeps the fill
 // so clicking again (to deselect) reads as acting on this card.
-const slotActive = "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
+const slotActive =
+  "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
 
 const slotName = "flex min-w-0 gap-[1.4rem] text-[2.8rem] [&>:last-child]:truncate";
 const slotRow = "flex gap-[1.6rem] text-[2.2rem]";
 const slotLabel = "flex-[0_0_7rem] uppercase";
 
-// Status line under the slots (reading, errors). A div, not a p, so Card's
-// paragraph reset doesn't take the colour (see Card.module.scss).
+// Status line under the slots (reading, errors). A div, not a p, so it
+// skips Card's one-line paragraph default (.card-copy p in globals.css).
 const notice = "py-[1.3rem] text-center text-[1.8rem] text-white/60";
 
 /** The stored hunter's items, in the order selection saved them (box, then pouch). */
@@ -89,7 +90,7 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
         type="button"
         className={cn(
           slotBase,
-          "cursor-pointer focus-visible:outline-2 focus-visible:outline-white focus-visible:-outline-offset-6",
+          "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-6 focus-visible:outline-white",
           active ? slotActive : "hover:hover-glow",
         )}
         onClick={onToggle}
@@ -139,7 +140,7 @@ export default function SaveUpload() {
       // The worker detects the region from the keys that decrypt the file.
       parse(buffer, "us");
     },
-    [parse]
+    [parse],
   );
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +176,7 @@ export default function SaveUpload() {
       // that handle's file; a dropped/uploaded file may be a different save.
       if (fromPickerRef.current) fileSync.confirmSelection(index, result.region);
     },
-    [result, load, fileSync]
+    [result, load, fileSync],
   );
 
   // With no save open, the stored hunter still shows in its slot.
@@ -213,7 +214,7 @@ export default function SaveUpload() {
       <Card
         className={cn(
           "min-w-0 flex-none self-start mobile:-order-1",
-          isDragOver && "outline-2 outline-dashed outline-white/40 -outline-offset-4",
+          isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}

@@ -19,7 +19,11 @@ export default function ArmorModelViewer({ models, label }: Props) {
     <div className="relative h-full w-full">
       <ModelViewer key={src} src={src} label={`${label} (${sex})`} />
       {both && (
-        <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-4" role="group" aria-label="Model">
+        <div
+          className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-4"
+          role="group"
+          aria-label="Model"
+        >
           {(["male", "female"] as const).map((option) => (
             <button
               key={option}

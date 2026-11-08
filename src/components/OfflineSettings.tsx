@@ -4,11 +4,7 @@ import Card from "@/components/Card";
 import { useOffline, type OfflineDownloadStatus } from "@/context/OfflineContext";
 import * as ui from "@/styles/settings";
 
-function primaryLabel(
-  status: OfflineDownloadStatus,
-  cached: number,
-  progress: number
-): string {
+function primaryLabel(status: OfflineDownloadStatus, cached: number, progress: number): string {
   switch (status) {
     case "checking":
       return "Checking…";
@@ -30,9 +26,7 @@ export default function OfflineSettings() {
     return (
       <Card className={ui.section}>
         <h2 className={ui.heading}>Offline Data</h2>
-        <p className={ui.note}>
-          Offline downloads aren&apos;t supported in this browser.
-        </p>
+        <p className={ui.note}>Offline downloads aren&apos;t supported in this browser.</p>
       </Card>
     );
   }
@@ -49,10 +43,9 @@ export default function OfflineSettings() {
     <Card className={ui.section}>
       <h2 className={ui.heading}>Offline Data</h2>
       <p className={ui.note}>
-        Save weapon, armor, monster, and decoration data to this device so
-        search and browsing work without a connection. This
-        stays here whenever you want to (re)download or clear it — unlike the
-        one-time popup.
+        Save weapon, armor, monster, and decoration data to this device so search and browsing work
+        without a connection. This stays here whenever you want to (re)download or clear it — unlike
+        the one-time popup.
       </p>
 
       <div className={ui.status}>
@@ -65,9 +58,7 @@ export default function OfflineSettings() {
       </div>
 
       {offline.status === "error" && (
-        <p className={ui.error}>
-          Something went wrong. Check your connection and try again.
-        </p>
+        <p className={ui.error}>Something went wrong. Check your connection and try again.</p>
       )}
 
       <div className={ui.actions}>
@@ -81,11 +72,7 @@ export default function OfflineSettings() {
         </button>
 
         {offline.cached > 0 && !busy && (
-          <button
-            type="button"
-            className={ui.buttonSecondary}
-            onClick={() => offline.clear()}
-          >
+          <button type="button" className={ui.buttonSecondary} onClick={() => offline.clear()}>
             Clear offline data
           </button>
         )}

@@ -42,7 +42,11 @@ export async function convertPac(file: string, outDir: string, root: string): Pr
     if (!isPac(buf)) return { source, error: "not a .pac package" };
     const entries = readPac(buf);
     const pmoEntry = entries.find((entry) => isPmo(entry.data));
-    if (!pmoEntry) return { source, error: `no PMO mesh (entries: ${entries.map((e) => e.magic ?? "?").join(", ")})` };
+    if (!pmoEntry)
+      return {
+        source,
+        error: `no PMO mesh (entries: ${entries.map((e) => e.magic ?? "?").join(", ")})`,
+      };
     const tmhEntry = entries.find((entry) => isTmh(entry.data));
     const pmo = readPmo(pmoEntry.data);
     const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
@@ -64,7 +68,10 @@ export async function runModels(options: ModelsOptions): Promise<ModelResult[]> 
     const result = await convertPac(file, options.out, root);
     results.push(result);
     if (result.error) console.log(`skip ${result.source}: ${result.error}`);
-    else console.log(`ok   ${result.source}: ${result.stats!.primitives} primitives, ${result.stats!.vertices} vertices, ${result.stats!.triangles} triangles`);
+    else
+      console.log(
+        `ok   ${result.source}: ${result.stats!.primitives} primitives, ${result.stats!.vertices} vertices, ${result.stats!.triangles} triangles`,
+      );
   }
   return results;
 }

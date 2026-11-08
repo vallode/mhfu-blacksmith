@@ -12,7 +12,15 @@ import { BinaryReader } from "../binary/reader.js";
 import { SHARPNESS_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
-export const SHARPNESS_COLORS = ["red", "orange", "yellow", "green", "blue", "white", "purple"] as const;
+export const SHARPNESS_COLORS = [
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "white",
+  "purple",
+] as const;
 export type SharpnessColor = (typeof SHARPNESS_COLORS)[number];
 
 export interface SharpnessEntry {
@@ -27,7 +35,10 @@ export interface SharpnessEntry {
  * `resolver` defaults to JP's static table — pass e.g. `MHP2G_EU_RESOLVER`
  * (games/mhp2g.ts) to read from a different region.
  */
-export function readSharpnessTable(reader: BinaryReader, resolver?: TableAddressResolver): SharpnessEntry[] {
+export function readSharpnessTable(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): SharpnessEntry[] {
   const base = resolveTableOffset("sharpnessTable", reader, resolver);
   const out: SharpnessEntry[] = [];
   for (let i = 0; i < TABLE_COUNTS.sharpnessEntries; i++) {

@@ -32,10 +32,20 @@ function loadManifest(name: string): Promise<Manifest | null> {
 const pad = (id: number, digits: number) => String(id).padStart(digits, "0");
 
 /** Model folder per armor slot, as in the game's player/<m|f>/<folder>/ files. */
-const ARMOR_FOLDER: Record<string, string> = { helmet: "hair", plate: "body", gauntlets: "arm", waist: "wst", leggings: "reg" };
+const ARMOR_FOLDER: Record<string, string> = {
+  helmet: "hair",
+  plate: "body",
+  gauntlets: "arm",
+  waist: "wst",
+  leggings: "reg",
+};
 
 /** Resolve a value from one manifest once it's loaded; null while loading, when absent, or offline without it. */
-function useManifestValue<T>(manifest: string | null, item: string, pick: (m: Manifest) => T | null): T | null {
+function useManifestValue<T>(
+  manifest: string | null,
+  item: string,
+  pick: (m: Manifest) => T | null,
+): T | null {
   const [value, setValue] = useState<T | null>(null);
   useEffect(() => {
     let cancelled = false;
@@ -76,19 +86,28 @@ export interface ArmorModelUrls {
 }
 
 /** URLs of an armor piece's male and/or female models. `sex` is the piece's data value ("Male", "Female" or "Male/Female"). */
-export function useArmorModel(slot: string, name: string | undefined, sex: string | undefined): ArmorModelUrls | null {
+export function useArmorModel(
+  slot: string,
+  name: string | undefined,
+  sex: string | undefined,
+): ArmorModelUrls | null {
   const single = sex === "Male" || sex === "Female" ? sex : null;
   const folder = ARMOR_FOLDER[slot];
-  const result = useManifestValue(name && folder ? `armor/${slot}` : null, `${name}|${single}`, (m) => {
-    if (!name) return null;
-    // Same-named male/female pieces are keyed "<name>|<Sex>".
-    const ids = (single ? m[`${name}|${single}`] : undefined) ?? m[name];
-    if (!Array.isArray(ids)) return null;
-    const url = (sexPrefix: "m" | "f", id: number) => (id ? `/models/armor/${sexPrefix}_${folder}${pad(id, 3)}.glb` : undefined);
-    // A single-sex piece only shows that sex's model.
-    const male = single === "Female" ? undefined : url("m", ids[0]);
-    const female = single === "Male" ? undefined : url("f", ids[1]);
-    return male || female ? { male, female } : null;
-  });
+  const result = useManifestValue(
+    name && folder ? `armor/${slot}` : null,
+    `${name}|${single}`,
+    (m) => {
+      if (!name) return null;
+      // Same-named male/female pieces are keyed "<name>|<Sex>".
+      const ids = (single ? m[`${name}|${single}`] : undefined) ?? m[name];
+      if (!Array.isArray(ids)) return null;
+      const url = (sexPrefix: "m" | "f", id: number) =>
+        id ? `/models/armor/${sexPrefix}_${folder}${pad(id, 3)}.glb` : undefined;
+      // A single-sex piece only shows that sex's model.
+      const male = single === "Female" ? undefined : url("m", ids[0]);
+      const female = single === "Male" ? undefined : url("f", ids[1]);
+      return male || female ? { male, female } : null;
+    },
+  );
   return result;
 }

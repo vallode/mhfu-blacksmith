@@ -1,0 +1,10 @@
+# Data, generated output and vendored code aren't formatted.
+.next
+out
+public
+data
+sources
+content
+next-env.d.ts
+pnpm-lock.yaml
+tools/mhfu-extract/vendor

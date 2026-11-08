@@ -12,11 +12,7 @@ export interface FileHandleRecord {
 }
 
 export function fileHandleSupported(): boolean {
-  return (
-    typeof window !== "undefined" &&
-    "showOpenFilePicker" in window &&
-    "indexedDB" in window
-  );
+  return typeof window !== "undefined" && "showOpenFilePicker" in window && "indexedDB" in window;
 }
 
 function openDb(): Promise<IDBDatabase> {
@@ -34,7 +30,7 @@ function openDb(): Promise<IDBDatabase> {
 
 async function withStore<T>(
   mode: IDBTransactionMode,
-  fn: (store: IDBObjectStore) => IDBRequest<T>
+  fn: (store: IDBObjectStore) => IDBRequest<T>,
 ): Promise<T> {
   const db = await openDb();
   try {
@@ -51,9 +47,7 @@ async function withStore<T>(
 
 export async function getHandleRecord(): Promise<FileHandleRecord | null> {
   try {
-    const rec = await withStore<FileHandleRecord | undefined>("readonly", (s) =>
-      s.get(RECORD_KEY)
-    );
+    const rec = await withStore<FileHandleRecord | undefined>("readonly", (s) => s.get(RECORD_KEY));
     return rec ?? null;
   } catch {
     return null;
@@ -65,7 +59,7 @@ export async function setHandleRecord(record: FileHandleRecord): Promise<void> {
 }
 
 export async function patchHandleRecord(
-  patch: Partial<Omit<FileHandleRecord, "handle">>
+  patch: Partial<Omit<FileHandleRecord, "handle">>,
 ): Promise<FileHandleRecord | null> {
   const rec = await getHandleRecord();
   if (!rec) return null;

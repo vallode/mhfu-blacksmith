@@ -30,12 +30,18 @@ export default function Card({
   // Defaults first, caller's className last: cn() lets later utilities
   // override earlier ones (e.g. <Card className="overflow-auto py-7">).
   const classes = cn(
-    frame === "teal" ? "card-frame-teal" : frame === "green" ? "card-frame-green" : frame === "blue" ? "card-frame-blue" : "card-frame",
-    // card-copy: paragraph defaults (globals.scss, components layer)
+    frame === "teal"
+      ? "card-frame-teal"
+      : frame === "green"
+        ? "card-frame-green"
+        : frame === "blue"
+          ? "card-frame-blue"
+          : "card-frame",
+    // card-copy: paragraph defaults (globals.css, components layer)
     "card-copy relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
     variant === "weapon-tree" && "h-full overflow-auto px-[0.9rem] py-[0.8rem]",
     href && linkGlow,
-    className
+    className,
   );
 
   if (href) {
@@ -47,12 +53,7 @@ export default function Card({
   }
 
   return (
-    <div
-      className={classes}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-    >
+    <div className={classes} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
       {children}
     </div>
   );
