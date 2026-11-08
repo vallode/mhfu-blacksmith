@@ -8,8 +8,9 @@
  */
 import Link from "next/link";
 import SettingsCard from "@/components/SettingsCard";
-import { SelectorRow, ToggleRow } from "@/components/SettingRows";
+import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { usePreferences, type Preferences } from "@/context/PreferencesContext";
+import { STAGES, tierLabel, type Tier } from "@/lib/min-rank";
 import { DEFAULT_PREFERENCES } from "@/lib/preferences";
 import { TREE_FILTERS } from "@/lib/tree-filter";
 import { writeTreeFilter } from "@/lib/tree-filter-store";
@@ -19,6 +20,11 @@ import * as ui from "@/styles/settings";
 type ToggleKey = {
   [K in keyof Preferences]: Preferences[K] extends boolean ? K : never;
 }[keyof Preferences];
+
+const PROGRESS_CHOICES: Choice<Tier | null>[] = [
+  { value: null, label: "Show all" },
+  ...STAGES.map((stage) => ({ value: stage, label: tierLabel(stage) })),
+];
 
 const TREE_FILTER_CHOICES = TREE_FILTERS.map((f) => ({ value: f.id, label: f.label }));
 
@@ -47,6 +53,17 @@ export default function PreferencesSettings() {
         "Pulsing highlights",
         "Pulse the green highlight on hovered and selected rows. Off keeps it steady.",
       )}
+
+      <hr className="my-[0.4rem] h-[3px]" />
+
+      <h3 className={ui.subheading}>Progress</h3>
+      <SelectorRow
+        label="Quest progress"
+        note="The highest guild quest you can take. Weapons and armor that need materials from later quests are hidden. Village quests count as Low Rank."
+        choices={PROGRESS_CHOICES}
+        value={prefs.questProgress}
+        onChange={(value) => set("questProgress", value)}
+      />
 
       <hr className="my-[0.4rem] h-[3px]" />
 

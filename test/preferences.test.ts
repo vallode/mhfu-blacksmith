@@ -4,6 +4,7 @@
  */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
+import { STAGES } from "../src/lib/min-rank";
 import { DEFAULT_PREFERENCES, parsePreferences } from "../src/lib/preferences";
 
 describe("parsePreferences", () => {
@@ -38,5 +39,23 @@ describe("parsePreferences", () => {
       }),
     );
     assert.deepEqual(prefs, DEFAULT_PREFERENCES);
+  });
+
+  test("quest progress is one of the offered stages", () => {
+    const prefs = parsePreferences(
+      JSON.stringify({ questProgress: { rank: "high-rank", stars: 7 } }),
+    );
+    // The stage itself, so the selector finds it among its choices.
+    assert.equal(
+      prefs.questProgress,
+      STAGES.find((s) => s.rank === "high-rank" && s.stars === 7),
+    );
+    assert.equal(parsePreferences("{}").questProgress, null);
+  });
+
+  test("an unknown quest progress falls back to showing everything", () => {
+    for (const bad of [{ rank: "low-rank", stars: 99 }, { rank: "x", stars: 1 }, "g-rank", 3, []]) {
+      assert.equal(parsePreferences(JSON.stringify({ questProgress: bad })).questProgress, null);
+    }
   });
 });

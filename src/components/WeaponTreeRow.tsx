@@ -112,7 +112,8 @@ export default function WeaponTreeRow({
   const progress = useHunterProgress();
   const { markOwned, showCraftProgress } = usePreferences().prefs;
   const filtered = useTreeFilterResult()?.rows.get(node.slug);
-  const status = filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const status =
+    filtered ?? rowStatus(node, sectionType, basePath, node.parentHref ?? parentHref, progress);
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;

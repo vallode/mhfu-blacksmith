@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useVisibleTree } from "@/hooks/useVisibleTree";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
 import Card from "@/components/Card";
@@ -41,6 +42,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   const modelOpen = modelKey !== null && openModel === modelKey;
 
   const basePath = `/armorsmith/${slot}/${rank}/`;
+  const visibleTree = useVisibleTree(tree, slot, basePath, slug);
 
   if (loading || !piece) {
     // Keep the split layout (and the tree card frame) in place while the data
@@ -81,10 +83,10 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
       <BorderRule />
 
       <div className="split-page">
-        {tree && (
+        {visibleTree && (
           <Card variant="weapon-tree">
             <TreeScroll treeKey={`armor-${slot}-${rank}`} activeSlug={slug}>
-              {tree.map((node) => (
+              {visibleTree.map((node) => (
                 <ul key={node.slug}>
                   <WeaponTreeRow
                     node={node}

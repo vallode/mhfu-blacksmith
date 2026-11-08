@@ -132,7 +132,13 @@ export function filterTree(
   let total = 0;
   const walk = (nodes: WeaponTreeNode[], parentHref: string | undefined) => {
     for (const node of nodes) {
-      const status = rowStatus(node, sectionType, basePath, parentHref, progress);
+      const status = rowStatus(
+        node,
+        sectionType,
+        basePath,
+        node.parentHref ?? parentHref,
+        progress,
+      );
       const match = matchesTreeFilter(filter, status);
       total++;
       if (match) matched++;
