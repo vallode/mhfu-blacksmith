@@ -182,8 +182,8 @@ export default function GlobalSearch() {
     >
       <div className="absolute inset-0 bg-black/70" onClick={close} />
 
-      <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 flex-[0_1_62rem] mobile:mx-0 mobile:max-h-none mobile:flex-auto">
-        <Card className="min-h-0 gap-0 px-[1.6rem] py-[1.6rem] text-[1.8rem] mobile:text-[1.8rem]">
+      <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
+        <Card className="min-h-0 min-w-0 gap-0 px-[1.6rem] py-[1.6rem] text-[1.8rem] mobile:text-[1.8rem]">
           <div className="flex shrink-0 items-center gap-[1rem]">
             <svg
               width="22"
