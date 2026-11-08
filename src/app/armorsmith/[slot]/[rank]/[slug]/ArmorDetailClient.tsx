@@ -110,8 +110,12 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 className="ml-[0.4rem]"
               />
             )}
-            {piece.sex && <span>{piece.sex}</span>}
-            {piece.hunter_type && <span>{piece.hunter_type}</span>}
+            {(piece.sex || piece.hunter_type) && (
+              <div className="ml-[1.6rem] flex gap-[1.6rem] mobile:ml-0">
+                {piece.sex && <span>{piece.sex}</span>}
+                {piece.hunter_type && <span>{piece.hunter_type}</span>}
+              </div>
+            )}
           </DetailHeader>
 
           <DetailBody>
