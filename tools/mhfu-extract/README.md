@@ -47,7 +47,7 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   named via `vendor/fuctool/filelist.csv`, and detected region info).
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
-  numbers-only dumps to `raw/` (sharpness, weapons, gunner, and
+  numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
   `quests.json`: each quest's header words, raw `RewardTBL` entries and
   script packets).
 - `diff` compares extracted output against the repo's committed `data/`

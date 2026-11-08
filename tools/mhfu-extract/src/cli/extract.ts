@@ -15,6 +15,7 @@ import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
+import { dumpArmorRaw } from "../emit/armor-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { loadMonsterOverlays } from "../monsters/overlays.js";
 import { readMonsterTables } from "../monsters/read.js";
@@ -32,7 +33,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/quests-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
   raw?: boolean;
 }
 
@@ -104,6 +105,7 @@ async function writeRawDumps(
     "sharpness.json": dumpSharpnessRaw(reader, resolver),
     "weapons.json": dumpWeaponsRaw(reader, resolver),
     "gunner.json": dumpGunnerRaw(reader, resolver),
+    "armor.json": dumpArmorRaw(reader, resolver),
   };
   for (const [file, dump] of Object.entries(dumps)) {
     const rawPath = path.join(rawDir, file);
