@@ -48,6 +48,8 @@ export interface FieldContext {
  * Most common committed spelling (and, for materials, type/color) for each
  * canonical skill name and item ID. Used to spell a value the committed
  * item didn't have before, the way the rest of the site already spells it.
+ * A skill no committed item of the same category spells is written with
+ * its `SkillID` name.
  *
  * Material names are taken from the same recipe context first (armor
  * files spell some items differently from weapon files, e.g.
@@ -57,7 +59,7 @@ export interface FieldContext {
  * style in the committed armor files.
  */
 export interface SpellingIndex {
-  skill(canonical: string): string | undefined;
+  skill(canonical: string, context: MaterialContext): string | undefined;
   material(itemId: number, context: MaterialContext): { name: string; type: string; color: string } | undefined;
 }
 
@@ -89,18 +91,20 @@ const MATERIAL_FIELDS = ["create_mats", "improve_mats", "alternative_create_mats
 
 /** Builds a SpellingIndex from committed items, grouped by recipe context. */
 export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string, unknown>[]>, site: SiteIndex): SpellingIndex {
-  const skills: Counts<string> = new Map();
+  const skills = new Map<MaterialContext, Counts<string>>();
   const names = new Map<MaterialContext | "any", Counts<string>>();
   const styles = { armor: new Map() as Counts<{ type: string; color: string }>, other: new Map() as Counts<{ type: string; color: string }> };
   for (const [context, items] of byContext) {
+    if (!skills.has(context)) skills.set(context, new Map());
+    const skillCounts = skills.get(context)!;
     for (const item of items) {
       for (const skill of (item.skills as unknown[] | null | undefined) ?? []) {
         if (typeof skill === "string") {
           const match = /^(.*?)\s*[+-]\d+$/.exec(skill.trim());
-          if (match?.[1]) bump(skills, canonicalSkillName(match[1]), match[1]);
+          if (match?.[1]) bump(skillCounts, canonicalSkillName(match[1]), match[1]);
         } else if (skill && typeof skill === "object" && typeof (skill as { name?: unknown }).name === "string") {
           const name = (skill as { name: string }).name;
-          bump(skills, canonicalSkillName(name), name);
+          bump(skillCounts, canonicalSkillName(name), name);
         }
       }
       for (const field of MATERIAL_FIELDS) {
@@ -117,7 +121,9 @@ export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string
     }
   }
   return {
-    skill: (canonical) => mostCommon(skills, canonical),
+    // Skill spelling is per category only: decorations use the SkillID
+    // spelling for trees armor spells differently ("SleepCAdd" vs "SleepCtAdd").
+    skill: (canonical, context) => mostCommon(skills.get(context) ?? new Map(), canonical),
     material: (itemId, context) => {
       const key = String(itemId);
       const empty: Counts<string> = new Map();
@@ -195,7 +201,7 @@ export function canonical(spec: FieldSpec, value: unknown, side: "site" | "disc"
 // ---------------------------------------------------------------------------
 
 function skillSpelling(canonicalName: string, committedSpellings: Map<string, string>, ctx: FieldContext): string {
-  return committedSpellings.get(canonicalName) ?? ctx.spellings.skill(canonicalName) ?? canonicalName;
+  return committedSpellings.get(canonicalName) ?? ctx.spellings.skill(canonicalName, ctx.materialContext) ?? canonicalName;
 }
 
 function armorSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unknown {

@@ -183,6 +183,6 @@ export function formatBuildReport(report: BuildDataReport): string {
       out.push("");
     }
   }
-  if (report.questFiles.length > 0) out.push("## quests", "", ...report.questFiles.map((f) => `- ${f}`), "");
+  if (report.questFiles.length > 0) out.push("## quests", "", `${report.questFiles.length} file(s) copied from the disc.`, "", ...report.questFiles.map((f) => `- ${f}`), "");
   return out.join("\n");
 }

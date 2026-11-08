@@ -3532,7 +3532,7 @@
     {
       "name": "Combo Coat Jewel",
       "skills": [
-        "RazorCtAdd +2"
+        "ClsRngCAdd +2"
       ],
       "create_mats": [
         {
