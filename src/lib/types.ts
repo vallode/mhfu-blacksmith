@@ -167,6 +167,8 @@ export interface Monster {
   drops?: Record<string, Record<string, MonsterDrop[]>>;
   /** Smallest and largest size, in cm */
   sizes?: { min: number; max: number };
+  /** HP before a quest's multiplier, from the disc */
+  base_hp?: number;
 }
 
 export interface Decoration {

@@ -86,7 +86,8 @@
           "drg": "10",
           "ko": "150"
         }
-      }
+      },
+      "base_hp": 19661000
     },
     {
       "name": "Bulldrome",
@@ -267,7 +268,8 @@
           "drg": "10",
           "ko": "150"
         }
-      }
+      },
+      "base_hp": 1200
     },
     {
       "name": "Conga",
@@ -354,7 +356,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 120
     },
     {
       "name": "Congalala",
@@ -822,7 +825,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Emerald Congalala",
@@ -998,7 +1002,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3000
     },
     {
       "name": "Blango",
@@ -1085,7 +1090,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 100
     },
     {
       "name": "Blangonga",
@@ -1453,7 +1459,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Copper Blangonga",
@@ -1601,7 +1608,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3400
     },
     {
       "name": "Rajang",
@@ -1859,7 +1867,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     },
     {
       "name": "Furious Rajang",
@@ -1927,7 +1936,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     }
   ]
 }

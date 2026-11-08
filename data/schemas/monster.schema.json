@@ -22,6 +22,7 @@
         "icon":        { "type": "string" },
         "habitats":    { "type": "array" },
         "sizes":       { "type": "object" },
+        "base_hp":     { "type": "integer", "minimum": 0 },
         "drops":       { "type": "object" },
         "hitzones":    { "type": "object" }
       }

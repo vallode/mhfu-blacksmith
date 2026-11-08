@@ -69,7 +69,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 70
     },
     {
       "name": "Giadrome",
@@ -195,7 +196,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 800
     },
     {
       "name": "Velociprey",
@@ -271,7 +273,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 70
     },
     {
       "name": "Velocidrome",
@@ -397,7 +400,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 800
     },
     {
       "name": "Genprey",
@@ -469,7 +473,8 @@
           "drg": "0",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 100
     },
     {
       "name": "Gendrome",
@@ -599,7 +604,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 1200
     },
     {
       "name": "Ioprey",
@@ -671,7 +677,8 @@
           "drg": "0",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 150
     },
     {
       "name": "Iodrome",
@@ -767,7 +774,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 1600
     },
     {
       "name": "Yian Kut-Ku",
@@ -1137,7 +1145,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 1600
     },
     {
       "name": "Blue Yian Kut-Ku",
@@ -1449,7 +1458,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Yian Garuga",
@@ -1845,7 +1855,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Scarred Yian Garuga",
@@ -1930,7 +1941,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3800
     },
     {
       "name": "Gypceros",
@@ -2316,7 +2328,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2400
     },
     {
       "name": "Purple Gypceros",
@@ -2649,7 +2662,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Hypnocatrice",
@@ -2903,7 +2917,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2600
     }
   ]
 }

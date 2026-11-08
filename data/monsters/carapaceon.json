@@ -86,7 +86,8 @@
           "drg": "0",
           "ko": "200"
         }
-      }
+      },
+      "base_hp": 120
     },
     {
       "name": "Daimyo Hermitaur",
@@ -510,7 +511,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2400
     },
     {
       "name": "Plum Daimyo Hermitaur",
@@ -678,7 +680,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3150
     },
     {
       "name": "Ceanataur",
@@ -770,7 +773,8 @@
           "drg": "0",
           "ko": "200"
         }
-      }
+      },
+      "base_hp": 150
     },
     {
       "name": "Shogun Ceanataur",
@@ -1246,7 +1250,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3200
     },
     {
       "name": "Terra Shogun Ceanataur",
@@ -1410,7 +1415,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3700
     },
     {
       "name": "Shen Gaoren",
@@ -1495,7 +1501,8 @@
           "drg": "70",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 20000
     }
   ]
 }

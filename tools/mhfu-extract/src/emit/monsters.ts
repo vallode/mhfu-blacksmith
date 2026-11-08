@@ -8,8 +8,8 @@
  * names and group labels, in the committed order. Only parts and groups the
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
  * the site's column keys, drops as `{ itemId, name, chance, amount }` with
- * the `ItemID` enum name. `baseHp` and `tolerances` have no committed
- * counterpart yet.
+ * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
+ * has no committed counterpart yet.
  *
  * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
  * same way it does for equipment.
@@ -42,8 +42,8 @@ export interface EmittedDrop {
 
 export interface EmittedMonster {
   name: string;
-  /** Base HP before the quest's multiplier; no committed counterpart yet. */
-  baseHp: number;
+  /** Base HP before the quest's multiplier (`base_hp` on the site). */
+  base_hp: number;
   hitzones?: Record<string, Record<string, number>>;
   drops?: Record<string, Record<string, EmittedDrop[]>>;
   tolerances: MonsterChunk["tolerances"];
@@ -76,7 +76,7 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
     if (!chunk) continue;
     const monster: EmittedMonster = {
       name: enumName(entry.id),
-      baseHp: chunk.baseHp,
+      base_hp: chunk.baseHp,
       tolerances: chunk.tolerances,
     };
 

@@ -323,7 +323,7 @@ matching the committed data against the EU disc, then reviewed:
 
 Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
-`baseHp` and `tolerances` are extracted but have no committed field yet.
+`base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
 
 ## 3D models (experimental)
 
@@ -601,7 +601,7 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 | armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                            | 97.5–100%                                                                             | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                         |
 | weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, `notes`) |
 | decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                                                                                         |
-| monsters    | hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                                    | per part 97.3%, per drop group 86.5% (see below)                                      | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field)                                                                        |
+| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field)                                                                        |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by

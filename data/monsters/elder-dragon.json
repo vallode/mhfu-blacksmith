@@ -128,7 +128,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3200
     },
     {
       "name": "Kushala Daora",
@@ -217,7 +218,8 @@
           "drg": "30",
           "ko": "10"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Rusted Kushala Daora",
@@ -307,7 +309,8 @@
           "drg": "25",
           "ko": "10"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Chameleos",
@@ -619,7 +622,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 5600
     },
     {
       "name": "Lunastra",
@@ -881,7 +885,8 @@
           "drg": "35",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Teostra",
@@ -1259,7 +1264,8 @@
           "drg": "35",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Lao-Shan Lung",
@@ -1468,7 +1474,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1565,7 +1572,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Yama Tsukami",
@@ -1733,7 +1741,8 @@
           "drg": "30",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Fatalis",
@@ -1939,7 +1948,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Crimson Fatalis",
@@ -2161,7 +2171,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 20000
     },
     {
       "name": "White Fatalis",
@@ -2383,7 +2394,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 20000
     }
   ]
 }

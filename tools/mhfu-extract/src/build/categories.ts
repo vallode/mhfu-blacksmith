@@ -105,6 +105,7 @@ const MONSTERS: Category = {
   // Monsters have no materials or skills; any context works.
   materialContext: "decoration",
   fields: [
+    { field: "base_hp", kind: "scalar" },
     { field: "hitzones", kind: "hitzones" },
     { field: "drops", kind: "drops" },
   ],
@@ -113,7 +114,9 @@ const MONSTERS: Category = {
   // of 695 mapped drop groups 601 agree, and the 94 that don't are site
   // errors (lists not summing to 100, missing or 0% entries, another
   // rank's list pasted in).
-  take: ["hitzones", "drops"],
+  // `base_hp` (chunk +0x100) is new to the site: it has no committed value
+  // to disagree with, and is the HP before a quest's multiplier.
+  take: ["base_hp", "hitzones", "drops"],
 };
 
 export const CATEGORIES: Record<CategoryName, Category> = {
