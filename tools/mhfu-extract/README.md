@@ -517,10 +517,12 @@ Kut-Ku Stave G. Taking it changed no values, only the order of the 5
 dual-element weapons above.
 
 Lists were later written in the disc's order rather than the site's. That
-reordered 2,083 lists that already agreed as sets: armor skills 1,879,
-weapon `improve_from` 179, `improve_to` 9, `improve_mats` 10, decoration
-`create_mats` 1 and `elements` 5. It also rewrote 4 malformed decoration
-skill strings (`NormalS Up+1` → `NormalS Up +1`, and an empty `""` entry on
+reordered 1,911 lists that already agreed as sets: armor skills 1,879,
+weapon `improve_mats` 10, `improve_to` 9, `improve_from` 7, `elements` 5
+and decoration `create_mats` 1. Rewriting agreeing lists also put them in
+the site's own conventions: 172 single-source `improve_from` lists became
+bare strings, like the other 750, and 4 malformed decoration skill strings
+were fixed (`NormalS Up+1` → `NormalS Up +1`, and an empty `""` entry on
 StrongShot Jewel+ and Pierce Jewel+).
 
 Sharpness was taken later (#31), after reading it per weapon class.
