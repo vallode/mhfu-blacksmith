@@ -29,6 +29,14 @@
      p-4 = 16px, gap-2 = 8px, and so on. */
   --spacing: 0.4rem;
 
+  /* The game sets its text on a wide fixed pitch: about 0.64em per character
+     with BIZ UDGothic's glyphs. 10% tracking (0.6em pitch) keeps that look
+     while every layout still fits. A percentage is of each element's own
+     font size and inherits as a percentage, so it scales with every text
+     size (0.1em would inherit as body's pixel value). Set on body; use
+     tracking-game to restore it under an element that overrides it. */
+  --tracking-game: 10%;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -260,6 +268,11 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "BIZ UDGothic", ui-monospace, monospace;
+  /* Browsers without percentage letter-spacing get the em value. */
+  letter-spacing: 0.1em;
+  @supports (letter-spacing: 1%) {
+    letter-spacing: var(--tracking-game);
+  }
   font-size: 16px;
   height: 100%;
   align-items: stretch;
@@ -305,6 +318,15 @@ body {
   a {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  /* The UA stylesheet resets letter-spacing on form controls; inherit the
+     game tracking like the rest of the text. */
+  button,
+  input,
+  select,
+  textarea {
+    letter-spacing: inherit;
   }
 }
 

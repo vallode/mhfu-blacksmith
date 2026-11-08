@@ -17,10 +17,11 @@ export const statTable = [
 
 /**
  * Monster hitzone table: part names left-aligned, values right-aligned in
- * fixed-width columns with thin separators between them.
+ * fixed-width columns with thin separators between them. Normal tracking:
+ * nine columns are too tight for the game tracking on a phone.
  */
 export const hitzoneTable = [
-  "h-min w-full table-fixed border-collapse text-[1.4rem]",
+  "h-min w-full table-fixed border-collapse text-[1.4rem] tracking-normal",
   "[&_tr_th]:text-center",
   "[&_th:first-of-type]:w-auto [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold",
   "[&_td]:relative [&_td]:pr-[0.8rem] [&_td]:text-right [&_td:first-of-type]:text-left",

@@ -42,6 +42,11 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px. Much of the
   existing code uses exact rem values (`text-[1.6rem]` = 16px); keep the sizes
   the game UI uses.
+- **Type is BIZ UDGothic with game tracking.** Its Latin glyphs are fixed
+  width, and `body` adds `letter-spacing: var(--tracking-game)` (10% of each
+  element's own font size) to match the game's wide, even character pitch.
+  Leave text on it unless a style needs its own spacing (uppercase headings,
+  the dense hitzone table); `tracking-game` restores it.
 - **Phone layout uses the `mobile:` variant** (600px wide and below), which
   matches the original media queries. Use it rather than `sm:`/`md:`.
 
