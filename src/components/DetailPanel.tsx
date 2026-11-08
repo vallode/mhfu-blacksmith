@@ -88,7 +88,7 @@ export function StatValue({
 /** Decoration slots as "OO-": filled for each slot, dashes for the rest. */
 export function Slots({ count }: { count?: number }) {
   return (
-    <span id="weaponSlots" className="font-[monospace] text-white opacity-50">
+    <span id="weaponSlots" className="text-white opacity-50">
       {Array.from({ length: 3 }, (_, i) => (i < (count ?? 0) ? "O" : "-")).join("")}
     </span>
   );

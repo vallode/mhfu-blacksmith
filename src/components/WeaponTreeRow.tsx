@@ -170,7 +170,7 @@ export default function WeaponTreeRow({
       )}
       {node.children && (
         <p
-          className="cursor-pointer px-[3px] font-[monospace] opacity-20"
+          className="cursor-pointer px-[3px] opacity-20"
           role="button"
           tabIndex={0}
           aria-label={collapsed ? "Expand" : "Collapse"}
