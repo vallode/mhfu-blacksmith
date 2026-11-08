@@ -304,9 +304,11 @@ Status:
   `weapon/we000.pac` is male waist armor); unpack it again.
 
 `export-site` writes the models the site shows into `public/models/` and
-lists them in `public/models/manifest.json`, which the site's `ModelViewer`
-reads. The manifest is keyed by the site's own names (monster name,
-`<type>/<weapon name>`, `<slot>/<armor name>`):
+lists them in a manifest split by category, so a page fetches only its own
+list (at most ~4 KB): `public/models/manifest/monsters.json`,
+`.../weapons/<type>.json` and `.../armor/<slot>.json`. Keys are the site's
+own names; values are model IDs, from which `src/lib/models.ts` rebuilds the
+file paths:
 
 - **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
   vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
