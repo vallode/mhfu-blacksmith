@@ -95,6 +95,15 @@ const extractedHelmets = {
   ],
 };
 
+/** Chain Helm after a merge: the disc's skill order, in the site's spelling. */
+const mergedChainHelm = {
+  ...committedHelmets.armor[0],
+  skills: [
+    { name: "Load", amount: 1 },
+    { name: "Defence", amount: 2 },
+  ],
+};
+
 async function fixture(): Promise<{ root: string; data: string; extracted: string }> {
   const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-build-"));
   const data = path.join(root, "data");
@@ -192,7 +201,7 @@ test("compareCategory pairs renamed items by ID and ignores skill order and spel
   }
 });
 
-test("mergeCategory takes disc values, keeps site-only fields, order and agreeing values", async () => {
+test("mergeCategory takes disc values in disc order, keeps site-only fields and item order", async () => {
   const { root, data, extracted } = await fixture();
   try {
     const inputs = await loadInputs(extracted, data, ["armor"]);
@@ -210,11 +219,20 @@ test("mergeCategory takes disc values, keeps site-only fields, order and agreein
       merged.map((i) => i.name),
       ["Chain Helm (site name)", "Leather Helm", "Site Only Helm"],
     );
-    assert.deepEqual(merged[0], committedHelmets.armor[0]);
+    // Skills that agree as a set are still rewritten in the disc's order.
+    assert.deepEqual(merged[0], mergedChainHelm);
     assert.deepEqual(merged[1], { ...committedHelmets.armor[1], slots: 1 });
     assert.deepEqual(merged[2], committedHelmets.armor[2]);
     assert.deepEqual(Object.keys(merged[1]!), Object.keys(committedHelmets.armor[1]!));
     assert.deepEqual(result.changes, [
+      {
+        file: "armor/helmet.json",
+        name: "Chain Helm (site name)",
+        id: CHAIN_HELM,
+        field: "skills",
+        before: committedHelmets.armor[0]!.skills,
+        after: mergedChainHelm.skills,
+      },
       {
         file: "armor/helmet.json",
         name: "Leather Helm",
@@ -227,6 +245,37 @@ test("mergeCategory takes disc values, keeps site-only fields, order and agreein
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("mergeCategory keeps a file's keepFields as committed", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const inputs = await loadInputs(extracted, data, ["armor"]);
+    const category = {
+      ...CATEGORIES.armor,
+      files: CATEGORIES.armor.files.map((f) =>
+        f.file === "armor/helmet.json" ? { ...f, keepFields: ["slots", "skills"] } : f,
+      ),
+    };
+    const result = mergeCategory(
+      category,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
+    // Leather Helm's disc slots (1) disagree with the site (0) but aren't taken.
+    assert.deepEqual(result.files.get("armor/helmet.json")![1], committedHelmets.armor[1]);
+    assert.deepEqual(result.changes, []);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("every weapon file takes elements", () => {
+  assert.ok(CATEGORIES.weapons.take.includes("elements"));
+  assert.ok(CATEGORIES.weapons.files.every((f) => !f.keepFields?.includes("elements")));
 });
 
 test("mergeCategory writes new skills and materials in the site's spelling", async () => {
@@ -253,8 +302,8 @@ test("mergeCategory writes new skills and materials in the site's spelling", asy
       [],
     );
     const [chain, leather] = result.files.get("armor/helmet.json")!;
-    // Committed spellings and order first; a skill new to the item gets the
-    // MHP2G name when no committed item spells it otherwise.
+    // Disc order in the committed spellings; a skill new to the item gets
+    // the MHP2G name when no committed item spells it otherwise.
     assert.deepEqual(chain!.skills, [
       { name: "Defence", amount: 3 },
       { name: "Load", amount: 1 },
@@ -289,7 +338,10 @@ test("mergeCategory keeps reviewed site values and rejects stale overrides", asy
     };
     const result = mergeCategory(...args, [keep]);
     assert.equal(result.files.get("armor/helmet.json")![1]!.slots, 0);
-    assert.deepEqual(result.changes, []);
+    assert.deepEqual(
+      result.changes.filter((c) => c.name === "Leather Helm"),
+      [],
+    );
     assert.deepEqual(result.kept, [{ ...keep, disc: 1 }]);
 
     assert.throws(() => mergeCategory(...args, [{ ...keep, field: "defence" }]), /no longer match/);
@@ -308,7 +360,7 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     const written = await readFile(path.join(data, "armor", "helmet.json"), "utf-8");
     const expected = {
       armor: [
-        committedHelmets.armor[0],
+        mergedChainHelm,
         { ...committedHelmets.armor[1], slots: 1 },
         committedHelmets.armor[2],
       ],
@@ -351,8 +403,8 @@ test("mergeCategory writes a skill the committed list repeats once", async () =>
       [],
     );
     assert.deepEqual(result.files.get("armor/helmet.json")![0]!.skills, [
-      { name: "Defence", amount: 2 },
       { name: "Load", amount: 1 },
+      { name: "Defence", amount: 2 },
     ]);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -400,14 +452,15 @@ test("ammo lists compare by ammo name and rapid fire as a trimmed set", () => {
     toSite(rapid, "Normal S Lv1|Flaming S", { rapid_fire: "Normal S Lv1|Flaming" }, ctx),
     "Normal S Lv1|Flaming S",
   );
+  // An agreeing list is still written in the disc's order and spelling.
   assert.equal(
-    toSite(rapid, "Pierce S Lv1|Flaming S", { rapid_fire: "Pierce S Lv1|Flaming S " }, ctx),
-    "Pierce S Lv1|Flaming S ",
+    toSite(rapid, "Pierce S Lv2|Pellet S Lv1", { rapid_fire: "Pellet S Lv1|Pierce S Lv2 " }, ctx),
+    "Pierce S Lv2|Pellet S Lv1",
   );
 });
 
-test("mergeCategory takes elements in bow.json only (takeOnlyIn)", async () => {
-  const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-take-only-"));
+test("mergeCategory takes elements in bow and melee files alike", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-elements-"));
   try {
     const data = path.join(root, "data");
     const extracted = path.join(root, "extracted");
@@ -448,12 +501,27 @@ test("mergeCategory takes elements in bow.json only (takeOnlyIn)", async () => {
       [],
     );
     assert.deepEqual(result.files.get("weapons/bow.json")![0]!.elements, poisonAdd);
-    assert.equal(result.files.get("weapons/great-sword.json")![0]!.elements, null);
-    assert.deepEqual(
-      result.changes.map((c) => `${c.file} ${c.field}`),
-      ["weapons/bow.json elements"],
-    );
+    assert.deepEqual(result.files.get("weapons/great-sword.json")![0]!.elements, [
+      { name: "Fire", attack: 100 },
+    ]);
+    assert.deepEqual(result.changes.map((c) => `${c.file} ${c.field}`).sort(), [
+      "weapons/bow.json elements",
+      "weapons/great-sword.json elements",
+    ]);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("set fields that agree are still written in the disc's order", () => {
+  const spec = { field: "elements", kind: "set" as const };
+  const ctx = {} as FieldContext;
+  // Twin Nails: the disc stores Fire first, the site listed Ice first.
+  const disc = [
+    { name: "Fire", attack: 300 },
+    { name: "Ice", attack: 300 },
+  ];
+  const site = { elements: [disc[1], disc[0]] };
+  assert.equal(canonical(spec, site.elements, "site", ctx), canonical(spec, disc, "disc", ctx));
+  assert.deepEqual(toSite(spec, disc, site, ctx), disc);
 });

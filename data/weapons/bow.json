@@ -5688,8 +5688,8 @@
       "rarity": 4,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -5755,8 +5755,8 @@
       "rarity": 4,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -5817,8 +5817,8 @@
       "rarity": 6,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -5903,8 +5903,8 @@
       "rarity": 10,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -6056,12 +6056,12 @@
       "bonus": null,
       "rarity": 10,
       "coatings": [
-        "power",
-        "poison",
         "closerng",
         "paralysis",
-        "paint",
-        "sleep"
+        "poison",
+        "sleep",
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -7114,8 +7114,8 @@
       "rarity": 8,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -7182,8 +7182,8 @@
       "rarity": 10,
       "coatings": [
         "poison",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -7748,8 +7748,8 @@
         "paralysis",
         "poison",
         "sleep",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -7949,8 +7949,8 @@
         "paralysis",
         "poison",
         "sleep",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -8021,8 +8021,8 @@
         "paralysis",
         "poison",
         "sleep",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -8093,8 +8093,8 @@
         "paralysis",
         "poison",
         "sleep",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -8164,8 +8164,8 @@
       "coatings": [
         "closerng",
         "paralysis",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -8233,8 +8233,8 @@
       "bonus": "+20",
       "rarity": 9,
       "coatings": [
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {
@@ -8300,8 +8300,8 @@
         "paralysis",
         "poison",
         "sleep",
-        "paint",
-        "power"
+        "power",
+        "paint"
       ],
       "shots": [
         {

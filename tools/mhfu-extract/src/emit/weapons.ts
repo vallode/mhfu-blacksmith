@@ -27,6 +27,7 @@ import {
   WEAPON_TYPE_NAMES,
   type WeaponTypeName,
 } from "../tables/weapons.js";
+import { readDualAttributeWeapons, type DualAttributeWeapon } from "../tables/dual-attributes.js";
 import { readSharpnessTables, SHARPNESS_COLORS, type SharpnessEntry } from "../tables/sharpness.js";
 import {
   readEquipmentCreate,
@@ -76,6 +77,35 @@ function emitElements(
   const statusName = STATUS_NAMES[statusType];
   if (statusName) elements.push({ name: statusName, attack: statusValue * ELEMENT_VALUE_SCALE });
   return elements.length > 0 ? elements : null;
+}
+
+/**
+ * Both elements of a dual-element weapon (`WepDualAttr`), in stored order,
+ * which is also the site's order. These weapons have no element in their
+ * own struct.
+ */
+export function emitDualElements(entry: DualAttributeWeapon): EmittedElement[] {
+  return entry.attributes.map((a) => {
+    if (!a.name) {
+      throw new Error(
+        `Unknown dual-attribute flag 0x${a.flag.toString(16)} on WepBMID ${entry.weaponId}.`,
+      );
+    }
+    return { name: a.name, attack: a.value * ELEMENT_VALUE_SCALE };
+  });
+}
+
+/** `WepDualAttr` keyed by `WepBMID`, skipping all-zero entries (synthetic fixtures). */
+function dualAttributesByWeaponId(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Map<number, DualAttributeWeapon> {
+  const byId = new Map<number, DualAttributeWeapon>();
+  for (const entry of readDualAttributeWeapons(reader, resolver)) {
+    if (entry.attributes.every((a) => a.flag === 0)) continue;
+    byId.set(entry.weaponId, entry);
+  }
+  return byId;
 }
 
 /**
@@ -224,6 +254,7 @@ export function emitBlademasterWeapons(
   const sharpnessTables = readSharpnessTables(reader, resolver);
   const create = readEquipmentCreate(reader, resolver);
   const upgrade = readEquipmentUpgrade(reader, resolver);
+  const dualAttributes = dualAttributesByWeaponId(reader, resolver);
   const names = getNameResolver();
 
   const createByEquipId = groupEquipCreateByEquipId([
@@ -263,6 +294,7 @@ export function emitBlademasterWeapons(
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(w.index) ?? [];
     const upgradeEntry = upgradeGraph.entries[w.index];
+    const dual = dualAttributes.get(w.index);
 
     out.push({
       name,
@@ -286,7 +318,9 @@ export function emitBlademasterWeapons(
           ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepBMID", names),
-      elements: emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
+      elements: dual
+        ? emitDualElements(dual)
+        : emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
       alternative_create_mats: altRecipe
         ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
         : null,

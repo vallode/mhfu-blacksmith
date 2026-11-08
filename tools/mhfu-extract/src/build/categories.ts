@@ -28,6 +28,8 @@ export interface CategoryFile {
   slot?: EquipmentSlot;
   /** Weapon type of every item in this file (weapons share one ID space across types). */
   weaponType?: string;
+  /** Category `take` fields kept from the committed file for this file only. */
+  keepFields?: string[];
 }
 
 export interface Category {
@@ -40,8 +42,6 @@ export interface Category {
   fields: FieldSpec[];
   /** Fields `build-data` writes from the disc. */
   take: string[];
-  /** Fields in `take` that are only taken in these files; kept from the committed file elsewhere. */
-  takeOnlyIn?: Record<string, string[]>;
 }
 
 const ARMOR_FILES: CategoryFile[] = [
@@ -152,15 +152,15 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // `affinity` is the struct's base value plus a bonus for
     // `sharpnessAmount` (`blademasterAffinity()`, vallode/mhfu-blacksmith#33).
     // It compares by number, so heavy bowgun's old bare `"0"` matched `"0%"`.
+    // `elements` is taken in every file: melee includes the 15
+    // dual-element dual blades (`WepDualAttr`), bows the coating bonuses
+    // ("Poison Add", `ShotCoatings` bits 7-9).
     // Gunner fields (vallode/mhfu-blacksmith#32, emit/gunner.ts): ammo
     // lists, `reload`, `recoil`, `rapid_fire`, `max_attack`, bow `shots`
     // and `coatings` are taken; what still disagrees is single site cells
     // (one ammo capacity, a "Normal " with a trailing space, "Posion S")
     // and a few whole site entries the disc contradicts (Black Belt
     // Bowgun's ammo, Dragonhead Harp's and Blue Blade Bow's coatings).
-    // `elements` is taken for bows only, where it adds the coating bonuses
-    // ("Poison Add") the site stores there; melee `elements` lacks the
-    // dual-element weapons on the disc side.
     // Not taken: `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
@@ -169,6 +169,7 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "affinity",
       "slots",
       "rarity",
+      "elements",
       "sharpness",
       "sharpness_plus",
       "create_cost",
@@ -176,7 +177,6 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "improve_mats",
       "improve_from",
       "improve_to",
-      "elements",
       "coatings",
       "shots",
       "max_attack",
@@ -188,7 +188,6 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "element_ammo",
       "misc_ammo",
     ],
-    takeOnlyIn: { elements: ["weapons/bow.json"] },
   },
   decorations: {
     name: "decorations",

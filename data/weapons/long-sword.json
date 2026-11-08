@@ -1571,8 +1571,8 @@
       ],
       "improve_to": [
         "Hermitaur Slicer",
-        "Shogun Cutter",
-        "Violet Pincer"
+        "Violet Pincer",
+        "Shogun Cutter"
       ],
       "sharpness_plus": [
         9,
@@ -3556,14 +3556,14 @@
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Cpc",
-          "amount": 3,
+          "name": "WhtMonoblosThora",
+          "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "WhtMonoblosThora",
-          "amount": 5,
+          "name": "Wht Monoblos Cpc",
+          "amount": 3,
           "type": "part",
           "color": "white"
         }
@@ -4036,15 +4036,15 @@
           "color": "red"
         },
         {
-          "name": "Firestone",
-          "amount": 8,
-          "type": "ore",
-          "color": "red"
-        },
-        {
           "name": "Teostra Horn",
           "amount": 3,
           "type": "claw",
+          "color": "red"
+        },
+        {
+          "name": "Firestone",
+          "amount": 8,
+          "type": "ore",
           "color": "red"
         }
       ],

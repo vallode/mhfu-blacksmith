@@ -57,9 +57,7 @@
       "type": "hammer",
       "create_cost": 650,
       "improve_cost": 650,
-      "improve_from": [
-        "War Hammer"
-      ],
+      "improve_from": "War Hammer",
       "create_mats": [
         {
           "name": "Normal Ticket",
@@ -110,9 +108,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 1100,
-      "improve_from": [
-        "War Hammer+"
-      ],
+      "improve_from": "War Hammer+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -159,9 +155,7 @@
       "type": "hammer",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "War Mace"
-      ],
+      "improve_from": "War Mace",
       "create_mats": [
         {
           "name": "Earth Crystal",
@@ -231,9 +225,7 @@
       "type": "hammer",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": [
-        "Iron Striker"
-      ],
+      "improve_from": "Iron Striker",
       "create_mats": [
         {
           "name": "Hard Ticket",
@@ -296,9 +288,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": [
-        "Iron Striker+"
-      ],
+      "improve_from": "Iron Striker+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -354,9 +344,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": [
-        "Anvil Hammer"
-      ],
+      "improve_from": "Anvil Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -410,9 +398,7 @@
       "type": "hammer",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": [
-        "Onslaught Hammer"
-      ],
+      "improve_from": "Onslaught Hammer",
       "create_mats": [
         {
           "name": "Eltalite Ore",
@@ -493,9 +479,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Blacksmith"
-      ],
+      "improve_from": "Blacksmith",
       "create_mats": null,
       "improve_mats": [
         {
@@ -546,9 +530,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": [
-        "Anvil Hammer"
-      ],
+      "improve_from": "Anvil Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -650,9 +632,7 @@
       "type": "hammer",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": [
-        "Anvil Hammer"
-      ],
+      "improve_from": "Anvil Hammer",
       "create_mats": [
         {
           "name": "Carbalite Ore",
@@ -695,16 +675,16 @@
           "color": "slate"
         },
         {
-          "name": "Iron Ore",
-          "amount": 30,
-          "type": "ore",
-          "color": "gray"
-        },
-        {
           "name": "Dragonite Ore",
           "amount": 5,
           "type": "ore",
           "color": "green"
+        },
+        {
+          "name": "Iron Ore",
+          "amount": 30,
+          "type": "ore",
+          "color": "gray"
         }
       ],
       "improve_to": [
@@ -735,9 +715,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Iron Devil"
-      ],
+      "improve_from": "Iron Devil",
       "create_mats": null,
       "improve_mats": [
         {
@@ -788,16 +766,14 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Great Demon Hammer"
-      ],
+      "improve_from": "Great Demon Hammer",
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gendrome Skull",
+          "name": "Gld Rathian Cpc",
           "amount": 3,
           "type": "part",
-          "color": "green"
+          "color": "yellow"
         },
         {
           "name": "Vespoid Abdomen",
@@ -806,10 +782,10 @@
           "color": "yellow"
         },
         {
-          "name": "Gld Rathian Cpc",
+          "name": "Gendrome Skull",
           "amount": 3,
           "type": "part",
-          "color": "yellow"
+          "color": "green"
         }
       ],
       "improve_to": [
@@ -847,9 +823,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": [
-        "Devil Masher"
-      ],
+      "improve_from": "Devil Masher",
       "create_mats": null,
       "improve_mats": [
         {
@@ -964,9 +938,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Great Demon Hammer"
-      ],
+      "improve_from": "Great Demon Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1019,9 +991,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": [
-        "Iron Impact"
-      ],
+      "improve_from": "Iron Impact",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1078,9 +1048,7 @@
       "type": "hammer",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": [
-        "Iron Impact"
-      ],
+      "improve_from": "Iron Impact",
       "create_mats": [
         {
           "name": "Eltalite Ore",
@@ -1170,9 +1138,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Icy Impact"
-      ],
+      "improve_from": "Icy Impact",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1234,9 +1200,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Iron Devil"
-      ],
+      "improve_from": "Iron Devil",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1286,9 +1250,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": [
-        "Fist of Fury"
-      ],
+      "improve_from": "Fist of Fury",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2570,9 +2532,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": [
-        "War Hammer+"
-      ],
+      "improve_from": "War Hammer+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2622,9 +2582,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 1750,
-      "improve_from": [
-        "Spiked Hammer"
-      ],
+      "improve_from": "Spiked Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2676,9 +2634,7 @@
       "type": "hammer",
       "create_cost": 2600,
       "improve_cost": 2600,
-      "improve_from": [
-        "Spiked Hammer+"
-      ],
+      "improve_from": "Spiked Hammer+",
       "create_mats": [
         {
           "name": "Lightcrystal",
@@ -3645,9 +3601,7 @@
       "type": "hammer",
       "create_cost": 1100,
       "improve_cost": 1750,
-      "improve_from": [
-        "Bone Club"
-      ],
+      "improve_from": "Bone Club",
       "create_mats": [
         {
           "name": "Hard Ticket",
@@ -3705,9 +3659,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 1750,
-      "improve_from": [
-        "Cyclo-Hammer"
-      ],
+      "improve_from": "Cyclo-Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3831,9 +3783,7 @@
       "type": "hammer",
       "create_cost": 5600,
       "improve_cost": 5600,
-      "improve_from": [
-        "Kut-Ku Jaw"
-      ],
+      "improve_from": "Kut-Ku Jaw",
       "create_mats": [
         {
           "name": "Plus Class Tcket",
@@ -3904,9 +3854,7 @@
       "type": "hammer",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": [
-        "Kut-Ku Pick"
-      ],
+      "improve_from": "Kut-Ku Pick",
       "create_mats": [
         {
           "name": "Stout Bone",
@@ -3995,9 +3943,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Hard Bone Hammer"
-      ],
+      "improve_from": "Hard Bone Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4048,9 +3994,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": [
-        "Hard Bone Hammer+"
-      ],
+      "improve_from": "Hard Bone Hammer+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4213,9 +4157,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": [
-        "Hard Bone Hammer"
-      ],
+      "improve_from": "Hard Bone Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4270,9 +4212,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Lobster Hammer"
-      ],
+      "improve_from": "Lobster Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4329,9 +4269,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "King Lobster Hammer"
-      ],
+      "improve_from": "King Lobster Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4463,9 +4401,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": [
-        "Raven Torrent"
-      ],
+      "improve_from": "Raven Torrent",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4520,9 +4456,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": [
-        "Wolf Torrent"
-      ],
+      "improve_from": "Wolf Torrent",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4856,9 +4790,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": [
-        "Death Venom Hammer"
-      ],
+      "improve_from": "Death Venom Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5349,9 +5281,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": [
-        "Skullcrusher"
-      ],
+      "improve_from": "Skullcrusher",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5403,9 +5333,7 @@
       "type": "hammer",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": [
-        "Skullcrusher+"
-      ],
+      "improve_from": "Skullcrusher+",
       "create_mats": [
         {
           "name": "Diablos Tail",
@@ -5480,9 +5408,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": [
-        "Diablos Maul"
-      ],
+      "improve_from": "Diablos Maul",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5608,9 +5534,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 7150,
-      "improve_from": [
-        "Dragonhead Hammer"
-      ],
+      "improve_from": "Dragonhead Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6285,9 +6209,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 2500,
-      "improve_from": [
-        "Rusted Hammer"
-      ],
+      "improve_from": "Rusted Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6326,9 +6248,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Tarnished Hammer"
-      ],
+      "improve_from": "Tarnished Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6371,9 +6291,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Tarnished Hammer"
-      ],
+      "improve_from": "Tarnished Hammer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6428,9 +6346,7 @@
       "type": "hammer",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": [
-        "Jadite Mace"
-      ],
+      "improve_from": "Jadite Mace",
       "create_mats": null,
       "improve_mats": [
         {

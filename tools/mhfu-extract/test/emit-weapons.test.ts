@@ -183,3 +183,48 @@ test("emitGunnerWeapons adds bow coating bonuses to elements and no bowgun coati
   assert.equal((gun.ammo as unknown[]).length, 5);
   assert.equal(gun.elements, null);
 });
+
+/**
+ * Snow Venom (WepBMID 867), a dual-element dual blade: its own struct has no
+ * element, and `WepDualAttr` holds both (the real first table entry).
+ */
+function buildSnowVenomFixture() {
+  const reader = buildCarbaliteSwordFixture();
+  const buf = reader.buf;
+  buf.writeUInt32LE(140, tableOffset("weaponClassModifiers") + 24); // WepClassMod.DualBlades
+  const wOff = tableOffset("weaponsBlademaster") + 867 * WEAPON_BM_ENTRY_SIZE;
+  buf.writeUInt16LE(20, wOff + 0); // ModelID
+  buf.writeUInt16LE(200, wOff + 10); // Attack (raw)
+  buf.writeUInt8(6, tableOffset("modelToWeaponType") + 20); // WepTypeID 6 = dual-blades
+  Buffer.from("630380000c000200080064038000100002001400", "hex").copy(
+    buf,
+    tableOffset("dualAttributeWeapons"),
+  );
+  return reader;
+}
+
+test("emitBlademasterWeapons emits both elements of a dual-element weapon, in stored order", () => {
+  const weapons = emitBlademasterWeapons(buildSnowVenomFixture());
+  const snowVenom = weapons.find((w) => w.name === "Snow Venom");
+  assert.equal(snowVenom!.type, "dual-blades");
+  assert.deepEqual(snowVenom!.elements, [
+    { name: "Ice", attack: 120 },
+    { name: "Poison", attack: 80 },
+  ]);
+  // Snow Venom+ is the table's second entry.
+  assert.deepEqual(weapons.find((w) => w.name === "Snow Venom+")!.elements, [
+    { name: "Ice", attack: 160 },
+    { name: "Poison", attack: 200 },
+  ]);
+  // Weapons without an entry keep their single element (none here).
+  assert.equal(weapons.find((w) => w.name === "Carbalite Sword")!.elements, null);
+});
+
+test("emitBlademasterWeapons rejects an unknown dual-attribute flag", () => {
+  const reader = buildSnowVenomFixture();
+  reader.buf.writeUInt16LE(0x08, tableOffset("dualAttributeWeapons") + 2); // EleBitFlag.Unused
+  assert.throws(
+    () => emitBlademasterWeapons(reader),
+    /Unknown dual-attribute flag 0x8 on WepBMID 867/,
+  );
+});

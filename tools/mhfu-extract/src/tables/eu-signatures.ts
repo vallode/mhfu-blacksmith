@@ -159,8 +159,8 @@ const BOW_CHARGE_TABLE_EU: TableSignature = {
 };
 
 const DUAL_ATTRIBUTE_WEAPONS_EU: TableSignature = {
-  // dualAttributeWeapons (eboot.hexpat's WepValueDualAttr, 10 bytes/entry —
-  // no reader/consumer in tables/*.ts today) — first 2 entries (20 bytes).
+  // dualAttributeWeapons (tables/dual-attributes.ts, eboot.hexpat's
+  // WepValueDualAttr, 10 bytes/entry) — first 2 entries (20 bytes).
   // Real EU offset 0x177d0c, JP static offset 0x175208 (+0x2b04).
   signature: Buffer.from("630380000c000200080064038000100002001400", "hex"),
   signatureOffset: 0,
