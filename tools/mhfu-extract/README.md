@@ -26,8 +26,9 @@ Monster hitzones, status tolerances and carve/capture/break rewards live in
 the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
 "Monster overlays" below).
 
-**Not extractable this way:** monster HP/attack/defense multipliers (not
-located yet), flavor text, and a few cosmetic groupings. Equipment-side gaps of this kind
+**Not extractable this way:** flavor text and a few cosmetic groupings.
+Which quest stat multiplier table a quest uses isn't settled yet (see
+"Monster overlays"). Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
@@ -275,6 +276,20 @@ the module comments:
   array is found by scoring shifts (`locateMonsterChunks`), the reward
   tables by their pointer runs.
 
+- **Base HP and quest multipliers** (`src/monsters/multipliers.ts`): the
+  chunk's `+0x100` is the base HP (Felyne 40, Yian Kut-Ku 1600, Rathian
+  4000, Lao-Shan Lung 26666). A quest's large-monster `power` byte (0-31)
+  picks a row of four floats (HP, attack, defense, and a fourth that rises
+  to 2.3-2.5 in G rank, probably status) in a 32-row table. The tables
+  follow the hitzone pool in sets of three, reached from a master list of
+  four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
+  HP 0.35 / attack 1.02, matches a published figure for the first Village
+  Elder quest. How a quest picks its set and table isn't known yet: nothing
+  in the chunks points at them. `extract --raw` writes the tables to
+  `raw/monsters.json`, and each quest's candidate selector bytes (header
+  rank and flags, each large monster's `attr1`/`attr2`) to
+  `raw/quest-monsters.json` to settle it.
+
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.
 
@@ -303,7 +318,7 @@ matching the committed data against the EU disc, then reviewed:
 
 Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
-`tolerances` is extracted but has no committed field yet.
+`baseHp` and `tolerances` are extracted but have no committed field yet.
 
 ## 3D models (experimental)
 
@@ -697,8 +712,8 @@ values (see "Building `data/` from the disc").
 
 `monsters.json` holds the presentation for disc monsters: site name, file,
 and the disc slot behind each committed hitzone part and drop group (see
-"Monster overlays"). Monster HP/attack/defense multipliers aren't
-extracted yet; flavor text and category grouping stay as committed.
+"Monster overlays"). Flavor text and category grouping stay as
+committed.
 English quest board text is another candidate ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
 
 ## Tests

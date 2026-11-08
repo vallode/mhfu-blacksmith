@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { OVL_HEADER_SIZE, OvlFormatError, parseOvl, type OvlFile } from "../src/container/ovl.js";
 import { emitMonsters } from "../src/emit/monsters.js";
 import {
+  BASE_HP_OFFSET,
   HITZONE_POINTER_OFFSET,
   locateMonsterChunks,
   MONSTER_CHUNK_COUNT,
@@ -11,6 +12,7 @@ import {
   readMonsterChunks,
   TOLERANCE_OFFSET,
 } from "../src/monsters/hitzones.js";
+import { locateMultiplierTables } from "../src/monsters/multipliers.js";
 import {
   CAP_BREAK_POINTER_COUNT,
   CAPTURE_TYPE,
@@ -138,6 +140,7 @@ function buildGameTask(): OvlFile {
     );
   }
   put(buf, EU_CHUNKS + MONSTER_CHUNK_SIZE + TOLERANCE_OFFSET, RATHIAN.tolerances);
+  buf.writeUInt32LE(4000, EU_CHUNKS + MONSTER_CHUNK_SIZE + BASE_HP_OFFSET); // Rathian's real base HP
   return parseOvl(buf);
 }
 
@@ -183,6 +186,7 @@ test("monster chunks are found on EU and lead to HitzoneTbl lists and rows", () 
     duration: 300,
     increase: 75,
   });
+  assert.equal(rathian.baseHp, 4000);
   assert.equal(rathian.tolerances.ko.initial, 120);
   assert.equal(rathian.tolerances.sleep.initial, 150);
   assert.deepEqual(rathian.tolerances.poison, {
@@ -331,4 +335,34 @@ test("emitMonsters names parts and groups through overlay/monsters.json", () => 
     giapreyDrops["low-rank"]!["body carves (x1)"]!.map((e) => e.chance),
     [52, 30, 18],
   );
+});
+
+test("quest stat multipliers: master list -> sets of 3 tables of 32 rows", () => {
+  // EU layout: tables, then each set's pointer list, then the master list.
+  const buf = buildOvl({ loadBase: EU_TASK_LOAD, dataSize: 0x1000 });
+  const vaddr = (offset: number) => EU_TASK_LOAD + offset;
+  const table = (offset: number, first: [number, number, number, number]) => {
+    for (let i = 0; i < 32; i++) {
+      const row = i === 0 ? first : [1, 1, 1, 1];
+      row.forEach((v, f) => buf.writeFloatLE(v, offset + i * 16 + f * 4));
+    }
+  };
+  // Real first rows: set 0 table 0, set 1 table 0 (0.35 HP, 1.02 attack).
+  table(0x100, [0.6, 1, 1, 1]);
+  table(0x300, [0.35, 1.02, 1, 1]);
+  [0x100, 0x100, 0x100].forEach((t, i) => buf.writeUInt32LE(vaddr(t), 0x500 + i * 4));
+  [0x300, 0x300, 0x300].forEach((t, i) => buf.writeUInt32LE(vaddr(t), 0x510 + i * 4));
+  buf.writeUInt32LE(vaddr(0x500), 0x600);
+  buf.writeUInt32LE(vaddr(0x510), 0x604);
+  const found = locateMultiplierTables(parseOvl(buf));
+  assert.ok(found);
+  assert.equal(found.offset, 0x600);
+  assert.equal(found.sets.length, 2);
+  assert.deepEqual(found.sets[1]!.tables[0]!.rows[0], {
+    hp: 0.35,
+    attack: 1.02,
+    defense: 1,
+    status: 1,
+  });
+  assert.equal(found.sets[0]!.tables[2]!.rows.length, 32);
 });

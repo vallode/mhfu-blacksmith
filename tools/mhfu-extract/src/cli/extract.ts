@@ -169,7 +169,8 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   Object.assign(output, emitQuestsFile(quests));
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
-  const monsters = readMonsterTables(await loadMonsterOverlays(options.unpacked));
+  const overlays = await loadMonsterOverlays(options.unpacked);
+  const monsters = readMonsterTables(overlays);
   console.log(
     `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
   );
@@ -178,6 +179,24 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     await mkdir(path.dirname(rawPath), { recursive: true });
     await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
+    // How a quest picks its multiplier set and table is still open (#35):
+    // each quest's candidate selector bytes, by quest ID.
+    const questMonsters = quests.map((q) => ({
+      questId: q.header.questId,
+      stars: q.header.questStars,
+      questType: q.header.questType,
+      rank: q.header.rank,
+      spawn: q.header.spawn,
+      supplyCond: q.header.supplyCond,
+      unknownFlags: q.header.unknownFlags,
+      attackRoll: q.header.attackRoll,
+      specialCond: q.header.specialCond,
+      monSizeModifier: q.header.monSizeModifier,
+      large: q.largeMonsters,
+    }));
+    const questPath = path.join(options.out, "raw", "quest-monsters.json");
+    await writeFile(questPath, `${JSON.stringify(questMonsters)}\n`, "utf-8");
+    console.log(`Wrote ${questPath}`);
   }
   Object.assign(output, emitMonsters(monsters));
 

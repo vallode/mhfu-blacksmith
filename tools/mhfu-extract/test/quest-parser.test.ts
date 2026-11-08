@@ -124,7 +124,9 @@ test("readLargeMonsters flattens every LargeMonTable's monster data", () => {
   buf.writeInt16LE(-1, 64 + 60);
 
   const monsters = readLargeMonsters(reader, header);
-  assert.deepEqual(monsters, [{ monsterId: 77, quantity: 1, power: 4, stage: 97 }]);
+  assert.deepEqual(monsters, [
+    { monsterId: 77, quantity: 1, power: 4, attr1: 0, attr2: 0, stage: 97 },
+  ]);
 });
 
 test("readSmallMonsters walks the index -> table -> data pointer chain", () => {

@@ -6,6 +6,8 @@
  *
  *   chunk (0x1D0 bytes, the `tclamb/mhp2g-decomp` `EnemyData` stride)
  *   +0x040  f32 BaseScale
+ *   +0x100  u32 base HP (Felyne 40, Yian Kut-Ku 1600, Rathian 4000, Lao-Shan
+ *           Lung 26666); quests scale it by their `power` row
  *   +0x10C  u32 `HitzonePTR`: one pointer (not a list) to a `HitzoneTbl`
  *           list, u32 pointers ending at the first non-pointer
  *   +0x110  Tolerance: Paralysis, KO, Sleep, unknown (5 u16 each: initial,
@@ -32,6 +34,7 @@ export const GAME_TASK_JP = {
 export const MONSTER_CHUNK_COUNT = 90;
 export const MONSTER_CHUNK_SIZE = 0x1d0;
 export const HITZONE_POINTER_OFFSET = 0x10c;
+export const BASE_HP_OFFSET = 0x100;
 export const TOLERANCE_OFFSET = 0x110;
 export const HITZONE_ROW_SIZE = 10;
 /** Sanity limits: no real monster has more than 3 tables of 7 rows. */
@@ -86,6 +89,8 @@ export interface Tolerances {
 export interface MonsterChunk {
   emId: number;
   baseScale: number;
+  /** Base HP before the quest's multiplier. */
+  baseHp: number;
   hitzonePointer: number;
   /** Hitzone tables, or null if the pointer doesn't lead to well-formed ones. */
   hitzones: HitzoneRow[][] | null;
@@ -167,6 +172,7 @@ export function readMonsterChunks(ovl: OvlFile, chunksOffset: number): MonsterCh
     chunks.push({
       emId,
       baseScale: ovl.reader.f32(base + 0x40),
+      baseHp: ovl.reader.u32(base + BASE_HP_OFFSET),
       hitzonePointer: pointer,
       hitzones: readHitzoneTables(ovl, pointer),
       tolerances: readTolerances(ovl, base),
