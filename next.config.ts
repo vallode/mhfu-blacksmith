@@ -38,10 +38,10 @@ function collectPrecacheEntries(): PrecacheEntry[] {
     }
   }
 
-  // Search + calculator payloads (kept for those features).
-  for (const extra of ["search-data.json", "weapon-data.json"]) {
-    const p = path.join(publicDir, extra);
-    if (fs.existsSync(p)) entries.push({ url: `/${extra}`, revision: hashFile(p) });
+  // Search index.
+  const searchData = path.join(publicDir, "search-data.json");
+  if (fs.existsSync(searchData)) {
+    entries.push({ url: "/search-data.json", revision: hashFile(searchData) });
   }
 
   // Images the site uses (pixel-art sprites / icons), minus the ones it never
@@ -114,8 +114,8 @@ export default withPWA({
         },
       },
       {
-        // Cache data JSON files
-        urlPattern: /\/(search-data|weapon-data)\.json$/,
+        // Search index
+        urlPattern: /\/search-data\.json$/,
         handler: "CacheFirst",
         options: {
           cacheName: "mhfu-offline-v1",

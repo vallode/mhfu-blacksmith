@@ -34,6 +34,7 @@ export const GAME_TASK_JP = {
 export const MONSTER_CHUNK_COUNT = 90;
 export const MONSTER_CHUNK_SIZE = 0x1d0;
 export const HITZONE_POINTER_OFFSET = 0x10c;
+/** u16; the following u16 is a second value (not HP) that small monsters fill in. */
 export const BASE_HP_OFFSET = 0x100;
 export const TOLERANCE_OFFSET = 0x110;
 export const HITZONE_ROW_SIZE = 10;
@@ -172,7 +173,7 @@ export function readMonsterChunks(ovl: OvlFile, chunksOffset: number): MonsterCh
     chunks.push({
       emId,
       baseScale: ovl.reader.f32(base + 0x40),
-      baseHp: ovl.reader.u32(base + BASE_HP_OFFSET),
+      baseHp: ovl.reader.u16(base + BASE_HP_OFFSET),
       hitzonePointer: pointer,
       hitzones: readHitzoneTables(ovl, pointer),
       tolerances: readTolerances(ovl, base),

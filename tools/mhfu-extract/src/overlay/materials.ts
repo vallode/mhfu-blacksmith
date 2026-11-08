@@ -54,8 +54,3 @@ export const UNKNOWN_MATERIAL_STYLE: MaterialStyle = { type: "ukwn", color: "whi
 export function resolveMaterialStyle(name: string): MaterialStyle {
   return load()[name] ?? UNKNOWN_MATERIAL_STYLE;
 }
-
-/** True if `name` has no curated styling and fell back to the placeholder. */
-export function isUnknownMaterial(name: string): boolean {
-  return !(name in load());
-}

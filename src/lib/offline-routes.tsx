@@ -13,6 +13,7 @@ import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import MonsterRedirect from "@/app/monsters/MonsterRedirect";
 import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
+import QuestHubShell from "@/app/quests/[hub]/QuestHubShell";
 import QuestListClient from "@/app/quests/[hub]/QuestListClient";
 import QuestDetailClient from "@/app/quests/[hub]/[id]/QuestDetailClient";
 import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
@@ -139,9 +140,17 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "quest-list":
       return <QuestBoardsContent />;
     case "quest-hub":
-      return <QuestListClient hub={match.hub} />;
+      return (
+        <QuestHubShell hub={match.hub}>
+          <QuestListClient hub={match.hub} />
+        </QuestHubShell>
+      );
     case "quest-detail":
-      return <QuestDetailClient hub={match.hub} id={match.id} />;
+      return (
+        <QuestHubShell hub={match.hub}>
+          <QuestDetailClient hub={match.hub} id={match.id} />
+        </QuestHubShell>
+      );
     case "unknown":
       return null;
   }

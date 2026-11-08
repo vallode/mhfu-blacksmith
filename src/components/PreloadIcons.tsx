@@ -12,11 +12,8 @@ const NOT_ICONS = new Set([
   "blacksmith.png",
   "blacksmith-scaled.png",
   "loading.gif",
-  "mhfu__card.png",
-  "not-found.png",
   "screenshot.png",
   "scroll.png",
-  "scroll-short.png",
 ]);
 
 function iconUrls(): string[] {

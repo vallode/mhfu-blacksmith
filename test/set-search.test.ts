@@ -41,11 +41,8 @@ function realData(): SearchData {
       sex?: string;
       hunter_type?: string;
       skills?: { name: string; amount: number }[];
-      donotrender?: unknown;
     };
-    const all = readJson<{ armor: Raw[] }>(`armor/${slot}.json`).armor.filter(
-      (p) => !("donotrender" in p),
-    );
+    const all = readJson<{ armor: Raw[] }>(`armor/${slot}.json`).armor;
     for (const rank of ARMOR_RANKS) {
       const pieces = all.filter((p) => p.rank === rank);
       const slugs = armorSlugs(pieces);

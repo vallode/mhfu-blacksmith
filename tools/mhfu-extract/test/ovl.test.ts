@@ -140,7 +140,7 @@ function buildGameTask(): OvlFile {
     );
   }
   put(buf, EU_CHUNKS + MONSTER_CHUNK_SIZE + TOLERANCE_OFFSET, RATHIAN.tolerances);
-  buf.writeUInt32LE(4000, EU_CHUNKS + MONSTER_CHUNK_SIZE + BASE_HP_OFFSET); // Rathian's real base HP
+  buf.writeUInt16LE(4000, EU_CHUNKS + MONSTER_CHUNK_SIZE + BASE_HP_OFFSET); // Rathian's real base HP
   return parseOvl(buf);
 }
 
