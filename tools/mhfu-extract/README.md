@@ -249,12 +249,42 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 ```
 
 `models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
-texture set) into `.glb` files with embedded PNG textures. The source lives
-in `src/models/`: `pac.ts` is the container, `pmo.ts` the mesh tables,
-`ge.ts` the PSP GE display lists that hold the geometry, `tmh.ts` the
-textures and `gltf.ts` the output. Two corrections to mhff's description of
-PMO 1.0, both confirmed on real files: mesh records are 0x18 bytes, and
-materials go through a per-slot byte map at header offset 0x28.
+texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
+is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
+that hold the geometry, `tmh.ts` the textures, `gltf.ts`/`texture.ts`/
+`png.ts` the output. Two corrections to mhff's description of PMO 1.0, both
+confirmed on real files: mesh records are 0x18 bytes, and materials go
+through a per-slot byte map at header offset 0x28.
+
+### Output size
+
+`gltf.ts` makes the files as small as it can (measured on the 567 weapon,
+monster and armor models converted so far: 15.56 MB as plain float glTF
+with RGBA PNGs):
+
+| Step | Total | Kind |
+|---|---|---|
+| Source integers instead of floats (`KHR_mesh_quantization`, `KHR_texture_transform` for the UV scale) | 10.35 MB | lossless |
+| One interleaved vertex buffer and one index buffer per model, duplicate vertices merged, primitives merged by texture | 9.26 MB | lossless |
+| meshopt compression (`EXT_meshopt_compression`) after reordering for the vertex cache | 7.21 MB | lossless |
+| Lossless WebP (`EXT_texture_webp`) or palette PNG, whichever is smaller | 6.80 MB | lossless (visible pixels) |
+| `export-site` defaults: textures re-quantized to libimagequant quality 80, 12-bit positions, 11-bit UVs | 6.56 MB | lossy, visually identical |
+
+Notes:
+
+- The model's per-axis scale moves onto the glTF node, so normals are
+  stored pre-multiplied by it (renderers undo it with the inverse-transpose).
+  That re-rounds them to 8 bits, within 0.8 degrees of the source.
+- Lossless WebP via sharp doesn't keep the colour under fully transparent
+  pixels. That removes the purple fringe the source palettes put around
+  alpha cut-outs under texture filtering.
+- Re-quantizing at quality 80 stays above 40 dB PSNR on every texture;
+  12-bit positions move a vertex by at most 1/4096 of the model's extent;
+  11-bit UVs move texture coordinates by at most 1/32 of a 64px texel.
+- `export-site --lossless` skips the lossy step; `models` is lossless.
+- Loaders need the meshopt decoder: three.js's `GLTFLoader` with
+  `setMeshoptDecoder(MeshoptDecoder)` (`three/examples/jsm/libs/`), as
+  `src/components/ModelViewer.tsx` does.
 
 Status:
 

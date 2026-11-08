@@ -29,7 +29,7 @@ import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
-import { buildGlb } from "../models/gltf.js";
+import { buildGlb, type GlbOptions } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo, readPmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
@@ -45,7 +45,18 @@ export interface ExportSiteOptions {
   data: string;
   /** Output directory, normally the repository's `public/models/`. */
   out: string;
+  /** Skip the lossy size reductions in SITE_GLB_OPTIONS. */
+  lossless?: boolean;
 }
+
+/**
+ * Lossy settings for the site, chosen to be visually indistinguishable while
+ * saving ~3.5% over lossless on top of everything gltf.ts does losslessly:
+ * textures re-quantized to libimagequant quality 80 (>= 40 dB PSNR on every
+ * texture tested), positions rounded to 12 bits (<= 1/4096 of a model's
+ * extent) and UVs to 11 bits per repeat (<= 1/32 texel on a 64px texture).
+ */
+export const SITE_GLB_OPTIONS: GlbOptions = { textureQuality: 80, positionBits: 12, uvBits: 11 };
 
 export interface ArmorModelFiles {
   male?: string;
@@ -67,13 +78,13 @@ const MONSTER_NAME_ALIASES: Record<string, string> = {
 type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string } | null)[]>;
 
 /** Convert the first PMO + TMH in a package to GLB bytes, or null when it has no mesh. */
-function packageToGlb(buf: Buffer, name: string): Buffer | null {
+async function packageToGlb(buf: Buffer, name: string, options: GlbOptions): Promise<Buffer | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  return buildGlb(readPmo(pmoEntry.data), tmhEntry ? readTmh(tmhEntry.data) : [], name).glb;
+  return (await buildGlb(readPmo(pmoEntry.data), tmhEntry ? readTmh(tmhEntry.data) : [], name, options)).glb;
 }
 
 async function exists(file: string): Promise<boolean> {
@@ -92,7 +103,8 @@ class Converter {
   missing = 0;
   constructor(
     private readonly dataBin: string,
-    private readonly out: string
+    private readonly out: string,
+    private readonly options: GlbOptions
   ) {}
 
   async convert(source: string, relativeOut: string): Promise<string | null> {
@@ -105,7 +117,7 @@ class Converter {
       return null;
     }
     try {
-      const glb = packageToGlb(await readFile(path.join(this.dataBin, source)), source);
+      const glb = await packageToGlb(await readFile(path.join(this.dataBin, source)), source, this.options);
       if (glb) {
         await mkdir(path.dirname(path.join(this.out, relativeOut)), { recursive: true });
         await writeFile(path.join(this.out, relativeOut), glb);
@@ -209,7 +221,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
     // no previous manifest
   }
 
-  const converter = new Converter(path.join(options.unpacked, "data-bin"), options.out);
+  const converter = new Converter(path.join(options.unpacked, "data-bin"), options.out, options.lossless ? {} : SITE_GLB_OPTIONS);
   const manifest: SiteModelManifest = {
     monsters: previous.monsters ?? {},
     weapons: previous.weapons ?? {},

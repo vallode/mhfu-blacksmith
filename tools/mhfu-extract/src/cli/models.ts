@@ -46,7 +46,7 @@ export async function convertPac(file: string, outDir: string, root: string): Pr
     const tmhEntry = entries.find((entry) => isTmh(entry.data));
     const pmo = readPmo(pmoEntry.data);
     const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
-    const { glb, stats } = buildGlb(pmo, textures, source);
+    const { glb, stats } = await buildGlb(pmo, textures, source);
     const output = path.join(outDir, source.replace(/\.pac$/, ".glb"));
     await mkdir(path.dirname(output), { recursive: true });
     await writeFile(output, glb);

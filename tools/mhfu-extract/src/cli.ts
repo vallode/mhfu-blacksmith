@@ -6,7 +6,7 @@
  *   tsx src/cli.ts extract --unpacked <dir> --out <dir>
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
- *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>]
+ *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
  */
 import { fileURLToPath } from "node:url";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
@@ -16,7 +16,7 @@ import { runModels } from "./cli/models.js";
 import { runUnpack } from "./cli/unpack.js";
 
 /** Flags that take no value; present means `"true"`. */
-const BOOLEAN_FLAGS = new Set(["skip-eboot"]);
+const BOOLEAN_FLAGS = new Set(["skip-eboot", "lossless"]);
 
 /** Minimal `--flag value` parser — no `=` form; flags in BOOLEAN_FLAGS take no value. */
 export function parseFlags(argv: string[]): Record<string, string> {
@@ -50,7 +50,7 @@ const USAGE = `Usage:
   tsx src/cli.ts extract --unpacked <dir> --out <dir>
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
-  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>]`;
+  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -96,6 +96,7 @@ export async function main(argv: string[]): Promise<void> {
         unpacked: requireFlag(flags, "unpacked"),
         data: flags.data ?? "../../data",
         out: flags.out ?? "../../public/models",
+        lossless: flags.lossless === "true",
       });
       console.log(`\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${Object.keys(manifest.weapons).length} weapons, ${Object.keys(manifest.armor).length} armor pieces.`);
       return;
