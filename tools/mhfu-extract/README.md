@@ -27,8 +27,8 @@ the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
 "Monster overlays" below).
 
 **Not extractable this way:** flavor text and a few cosmetic groupings.
-Which quest stat multiplier table a quest uses isn't settled yet (see
-"Monster overlays"). Equipment-side gaps of this kind
+Which of three quest stat multiplier tables a quest uses isn't settled yet
+(see "Monster overlays"). Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
@@ -284,11 +284,16 @@ the module comments:
   follow the hitzone pool in sets of three, reached from a master list of
   four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
   HP 0.35 / attack 1.02, matches a published figure for the first Village
-  Elder quest. How a quest picks its set and table isn't known yet: nothing
-  in the chunks points at them. `extract --raw` writes the tables to
-  `raw/monsters.json`, and each quest's candidate selector bytes (header
-  rank and flags, each large monster's `attr1`/`attr2`) to
-  `raw/quest-monsters.json` to settle it.
+  Elder quest. A quest's header `rank` byte picks the set (0 village → set
+  0, 1/2/5 guild low/high/G → set 1, 3 treasure → set 2, 4 training school
+  → set 3): sets 2 and 3 hold real values exactly on the rows those hubs
+  use, and set 1 is the harder set. Which of the set's three tables
+  applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
+  are almost always 0), so it is probably chosen at run time; set 1's
+  three differ mostly in HP. `extract --raw` writes the tables to
+  `raw/monsters.json` and each quest's selector bytes to
+  `raw/quest-monsters.json`; nothing is written to `data/` until the table
+  choice is known.
 
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.

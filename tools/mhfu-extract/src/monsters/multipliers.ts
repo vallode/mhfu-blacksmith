@@ -17,10 +17,18 @@
  * its tables. On the EU disc the master list is at 0x168c80 and the first
  * set's first table at 0x167c40. Set 1's first row is HP 0.35 / attack
  * 1.02, which matches a published figure for the first Village Elder quest.
- * Which set and table a quest uses isn't decided yet: it isn't stored in the
- * chunks, so the game probably picks it by hub and rank (four sets, three
- * tables) or from the quest's other monster bytes. `extract --raw` dumps the
- * tables with those quest bytes to settle it.
+ * Which set a quest uses follows its header `rank` byte (0 village, 1/2/5
+ * guild low/high/G, 3 treasure, 4 training school; one value per hub and
+ * rank across all 519 committed quests): set 0 village, set 1 guild, set 2
+ * treasure, set 3 training school. Sets 2 and 3 hold real values exactly
+ * on the rows those hubs use (0-11 and 0-18; filler 1.0 after), and set 1
+ * is the harder one (G rows: HP 1.75-2.1, attack 3.5-3.8, status 2.3-2.4,
+ * against set 0's 1.5-1.6, 2.0-2.7, 1.0). Which of a set's three tables
+ * applies isn't stored in the quest: `attr1`/`attr2` are almost always 0
+ * and no header field varies with them. Set 0's first two tables are
+ * identical; set 1's differ mostly in HP, which looks like a mode chosen at
+ * run time. So the tables are dumped (`extract --raw`) but not attached to
+ * quests or written to `data/`.
  */
 import type { OvlFile } from "../container/ovl.js";
 
