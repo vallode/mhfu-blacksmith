@@ -7,7 +7,7 @@
  * activates them, highest defence first, shown like the game's equipment
  * set screen.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
@@ -17,13 +17,35 @@ import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
+import { useToast } from "@/context/ToastContext";
 import { useSetSearch } from "@/hooks/useSetSearch";
 import type { ArmorRank } from "@/lib/constants";
+import { useEquipmentIds } from "@/lib/equipment";
 import { tierLabel } from "@/lib/min-rank";
+import {
+  addSet,
+  deleteSet,
+  duplicateSet,
+  nextSetName,
+  readDraft,
+  readSavedSets,
+  updateSet,
+  writeDraft,
+  writeSavedSets,
+  type SavedSet,
+} from "@/lib/saved-sets-store";
 import { buildFromResult, emptyBuild, type BuildSet } from "@/lib/set-build";
+import {
+  buildCodecTables,
+  decodeSet,
+  describeDecodeError,
+  describeDropped,
+  encodeSet,
+} from "@/lib/set-codec";
 import { resolveWanted, selectableSkills, type Piece, type SearchQuery } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
+import MySets from "./MySets";
 import SetEditor from "./SetEditor";
 import SkillPicker from "./SkillPicker";
 
@@ -52,7 +74,17 @@ const DEFAULT_FORM: Form = {
 
 const STORAGE_KEY = "set-builder";
 
-type View = "results" | "editor";
+type View = "results" | "editor" | "sets";
+
+type Origin = "new" | "result" | "link";
+const ORIGIN_TITLES: Record<Origin, string> = {
+  new: "New set",
+  result: "Search result",
+  link: "Shared set",
+};
+
+/** The share link's query parameter: /set-builder/?s=<code>. */
+const SHARE_PARAM = "s";
 
 const HUNTER_TYPES: Choice<Form["hunterType"]>[] = [
   { value: "Blademaster", label: "Blademaster" },
@@ -163,18 +195,6 @@ export default function SetBuilderClient() {
     );
   }, [form.hunterType, form.sex]);
 
-  const openInEditor = useCallback((next: BuildSet, warnings: string[] = []) => {
-    setBuild(next);
-    setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
-    setOpenWarnings(warnings);
-    setView("editor");
-  }, []);
-
-  const editBuild = (next: BuildSet) => {
-    setBuild(next);
-    setOpenWarnings([]);
-  };
-
   const wanted = useMemo(
     () => (data ? [...resolveWanted(data.trees, form.skills).wanted.keys()] : []),
     [data, form.skills],
@@ -184,6 +204,192 @@ export default function SetBuilderClient() {
     [progress],
   );
   const editorWeaponIcon = build.hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
+
+  /** The saved set the editor holds, if it was opened from (or saved to) "My sets". */
+  const [savedId, setSavedId] = useState<string | null>(null);
+  /** Where the editor's set came from, for its title. */
+  const [origin, setOrigin] = useState<Origin>("new");
+  const [savedSets, setSavedSets] = useState<SavedSet[]>([]);
+  const { toast } = useToast();
+  const { ids, error: idsError } = useEquipmentIds();
+  const tables = useMemo(() => (data && ids ? buildCodecTables(data, ids) : null), [data, ids]);
+
+  const openInEditor = useCallback(
+    (next: BuildSet, from: { savedId?: string; origin?: Origin; warnings?: string[] } = {}) => {
+      setBuild(next);
+      setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
+      setSavedId(from.savedId ?? null);
+      setOrigin(from.origin ?? "new");
+      setOpenWarnings(from.warnings ?? []);
+      setView("editor");
+    },
+    [],
+  );
+
+  const editBuild = (next: BuildSet) => {
+    setBuild(next);
+    setOpenWarnings([]);
+  };
+
+  /** Open a share code (a link or a saved set) in the editor. */
+  const openCode = useCallback(
+    (code: string, from: { savedId?: string; origin?: Origin } = {}) => {
+      if (!tables) return;
+      const r = decodeSet(code, tables);
+      if (!r.ok) {
+        setOpenWarnings([describeDecodeError(r.error)]);
+        setView("editor");
+        return;
+      }
+      const warnings =
+        r.dropped.length > 0
+          ? [
+              `Left out ${r.dropped.map(describeDropped).join(", ")}: not in this version of the site.`,
+            ]
+          : [];
+      openInEditor(r.set, { ...from, warnings });
+    },
+    [tables, openInEditor],
+  );
+
+  // On load: a shared link (?s=) wins over everything stored; otherwise the
+  // set left in the editor this session. Saved sets are only read here.
+  const opened = useRef(false);
+  useEffect(() => {
+    setSavedSets(readSavedSets());
+  }, []);
+  useEffect(() => {
+    if (opened.current || !restored) return;
+    const code = new URLSearchParams(window.location.search).get(SHARE_PARAM);
+    if (code !== null && idsError) {
+      opened.current = true;
+      setOpenWarnings(["Couldn't load the equipment IDs to open this link. Try again online."]);
+      setView("editor");
+      return;
+    }
+    if (!tables) return;
+    opened.current = true;
+    if (code !== null) {
+      openCode(code, { origin: "link" });
+      // From here the editor's set is kept as the draft, so a reload doesn't
+      // bring the link's set back over the player's edits.
+      const url = new URL(window.location.href);
+      url.searchParams.delete(SHARE_PARAM);
+      window.history.replaceState(window.history.state, "", url);
+      return;
+    }
+    const draft = readDraft();
+    const r = draft ? decodeSet(draft.code, tables) : null;
+    if (draft && r?.ok) {
+      setBuild(r.set);
+      setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
+      setSavedId(draft.savedId ?? null);
+      setOrigin(draft.origin ?? "new");
+      if (r.set.pieces.some(Boolean) || r.set.decorations.length > 0) setView("editor");
+    }
+  }, [tables, idsError, restored, openCode]);
+
+  // Keep the editor's set for reloads and client-side navigation.
+  const code = useMemo(() => (tables ? encodeSet(build, tables) : null), [build, tables]);
+  useEffect(() => {
+    if (opened.current && code) writeDraft({ code, savedId: savedId ?? undefined, origin });
+  }, [code, savedId, origin]);
+
+  const storeSets = (next: SavedSet[], done?: string) => {
+    setSavedSets(next);
+    if (writeSavedSets(next)) {
+      if (done) toast({ id: "set-builder-saved", message: done, duration: 3000 });
+    } else {
+      toast({
+        id: "set-builder-saved",
+        title: "Couldn't save",
+        message:
+          "Your browser's storage is full or blocked. Sets are kept until you leave the page.",
+        duration: null,
+      });
+    }
+  };
+
+  const savedSet = savedSets.find((s) => s.id === savedId) ?? null;
+  const saveBuild = (asNew: boolean) => {
+    if (!code) return;
+    if (savedSet && !asNew) {
+      storeSets(updateSet(savedSets, savedSet.id, { code }), `Saved ${savedSet.name}.`);
+      return;
+    }
+    const [next, added] = addSet(savedSets, nextSetName(savedSets), code);
+    setSavedId(added.id);
+    storeSets(next, `Saved as ${added.name}. Rename it in My sets.`);
+  };
+
+  const share = async () => {
+    if (!code) return;
+    const url = new URL("/set-builder/", window.location.origin);
+    url.searchParams.set(SHARE_PARAM, code);
+    try {
+      await navigator.clipboard.writeText(url.href);
+      toast({ id: "set-builder-share", title: "Link copied", message: url.href });
+    } catch {
+      toast({
+        id: "set-builder-share",
+        title: "Copy this link",
+        message: url.href,
+        duration: null,
+      });
+    }
+  };
+
+  const deleteSaved = (id: string) => {
+    const gone = savedSets.find((s) => s.id === id);
+    const before = savedSets;
+    storeSets(deleteSet(savedSets, id));
+    if (id === savedId) setSavedId(null);
+    if (gone) {
+      toast({
+        id: "set-builder-deleted",
+        message: `Deleted ${gone.name}.`,
+        actions: [{ label: "Undo", onClick: () => storeSets(before) }],
+      });
+    }
+  };
+
+  const editorTitle = (
+    <div className="flex flex-wrap items-center gap-[0.8rem]">
+      <span className="min-w-0 flex-[1_1_20rem] truncate">
+        <PanelTitle>{savedSet ? savedSet.name : ORIGIN_TITLES[origin]}</PanelTitle>
+      </span>
+      <div className={ui.actions}>
+        <button
+          type="button"
+          className={ui.button}
+          disabled={!code}
+          onClick={() => saveBuild(false)}
+        >
+          Save
+        </button>
+        {savedSet && (
+          <button
+            type="button"
+            className={ui.button}
+            disabled={!code}
+            onClick={() => saveBuild(true)}
+          >
+            Save as new
+          </button>
+        )}
+        <button type="button" className={ui.button} disabled={!code} onClick={share}>
+          Share
+        </button>
+        <button
+          type="button"
+          className={ui.buttonSecondary}
+          onClick={() => openInEditor(emptyBuild(form.hunterType, form.sex, build.weaponSlots))}
+        >
+          New
+        </button>
+      </div>
+    </div>
+  );
 
   let message: React.ReactNode = null;
   if (loadError) message = <p className={ui.error}>Couldn&apos;t load the armor data.</p>;
@@ -338,7 +544,10 @@ export default function SetBuilderClient() {
                           <button
                             type="button"
                             className={ui.button}
-                            onClick={() => searched && openInEditor(buildFromResult(set, searched))}
+                            onClick={() =>
+                              searched &&
+                              openInEditor(buildFromResult(set, searched), { origin: "result" })
+                            }
                           >
                             Edit this set
                           </button>
@@ -382,27 +591,28 @@ export default function SetBuilderClient() {
                         isOwned={isOwned}
                         weaponIcon={editorWeaponIcon}
                         extraWarnings={openWarnings}
-                        title={
-                          <div className="flex flex-wrap items-center gap-[0.8rem]">
-                            <span className="flex-1">
-                              <PanelTitle>Edit set</PanelTitle>
-                            </span>
-                            <button
-                              type="button"
-                              className={ui.buttonSecondary}
-                              onClick={() =>
-                                editBuild(emptyBuild(form.hunterType, form.sex, build.weaponSlots))
-                              }
-                            >
-                              Clear
-                            </button>
-                          </div>
-                        }
+                        title={editorTitle}
                       />
                     ) : (
                       message
                     )}
                   </>
+                ),
+              },
+              {
+                id: "sets",
+                label: "My sets",
+                content: (
+                  <MySets
+                    sets={savedSets}
+                    data={data}
+                    tables={tables}
+                    openId={savedId}
+                    onOpen={(set) => openCode(set.code, { savedId: set.id })}
+                    onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
+                    onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
+                    onDelete={deleteSaved}
+                  />
                 ),
               },
             ]}
