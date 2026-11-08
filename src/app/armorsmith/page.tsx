@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import ArmorsmithListContent from "./ArmorsmithListContent";
+import ArmorRedirect from "./ArmorRedirect";
 
 export const metadata: Metadata = {
   title: "Armor — MHFU Blacksmith",
 };
 
 export default function ArmorsmithPage() {
-  return <ArmorsmithListContent />;
+  return <ArmorRedirect />;
 }

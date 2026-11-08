@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import Icon from "./Icon";
+import { writeLastArmor } from "@/lib/armor-last-store";
 
 interface ArmorNavProps {
   activeSlot?: ArmorSlot;
@@ -13,10 +17,15 @@ function formatSlotName(slot: string): string {
 }
 
 export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProps) {
+  // Remember this page for the main menu's Armor entry.
+  useEffect(() => {
+    if (activeSlot) writeLastArmor({ slot: activeSlot, rank });
+  }, [activeSlot, rank]);
+
   return (
     <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
       <div>
-        <Link href="/armorsmith/" aria-label="Back">
+        <Link href="/" aria-label="Back">
           <Icon type="arrow" nav alt="Back" />
         </Link>
       </div>
