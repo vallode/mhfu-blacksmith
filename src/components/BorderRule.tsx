@@ -16,7 +16,7 @@ export default function BorderRule({ className }: BorderRuleProps) {
   return (
     <hr
       className={cn(
-        "divider-tile mx-[calc(50%-50vw)] h-[1.6rem] w-screen flex-[0_0_auto] border-0 bg-transparent",
+        "mx-[calc(50%-50vw)] h-[1.6rem] w-screen flex-[0_0_auto] border-0 bg-transparent divider-tile",
         className,
       )}
     />

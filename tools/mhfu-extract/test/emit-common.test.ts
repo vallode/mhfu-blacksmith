@@ -57,13 +57,19 @@ test("resolveMaterial returns null when the item name can't be resolved", () => 
 });
 
 test("resolveMaterial applies a global item-name correction regardless of context", () => {
-  const names: NameResolver = { source: "mhp2g-patterns-enum", resolve: (t, i) => (t === "ItemID" && i === 1 ? "High Qualty Pelt" : null) };
+  const names: NameResolver = {
+    source: "mhp2g-patterns-enum",
+    resolve: (t, i) => (t === "ItemID" && i === 1 ? "High Qualty Pelt" : null),
+  };
   const material = resolveMaterial({ itemId: 1, quantity: 1 }, names, "weapon");
   assert.equal(material?.name, "High Quality Pelt");
 });
 
 test("resolveMaterial applies an armor-scoped item-name correction only for armor context", () => {
-  const names: NameResolver = { source: "mhp2g-patterns-enum", resolve: (t, i) => (t === "ItemID" && i === 2 ? "Firestone" : null) };
+  const names: NameResolver = {
+    source: "mhp2g-patterns-enum",
+    resolve: (t, i) => (t === "ItemID" && i === 2 ? "Firestone" : null),
+  };
   const armorMaterial = resolveMaterial({ itemId: 2, quantity: 1 }, names, "armor");
   assert.equal(armorMaterial?.name, "Fire Stone");
   const weaponMaterial = resolveMaterial({ itemId: 2, quantity: 1 }, names, "weapon");
@@ -81,7 +87,7 @@ test("resolveMaterials drops unused slots and resolves the rest", () => {
       { itemId: 0, quantity: 0 },
     ],
     fakeNames,
-    "weapon"
+    "weapon",
   );
   assert.equal(materials.length, 1);
   assert.equal(materials[0]!.name, "Disk Stone");
@@ -102,10 +108,10 @@ test("groupEquipCreateByEquipId groups by equipId, preserving encounter order fo
   const grouped = groupEquipCreateByEquipId(entries);
   assert.deepEqual(
     grouped.get(948)!.map((e) => e.index),
-    [0, 40]
+    [0, 40],
   );
   assert.deepEqual(
     grouped.get(953)!.map((e) => e.index),
-    [5]
+    [5],
   );
 });

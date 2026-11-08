@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readDecorationSkills, readDecorationValues } from "../src/tables/decorations.js";
-import { DECO_SKILL_ENTRY_SIZE, ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "../src/tables/offsets.js";
+import {
+  DECO_SKILL_ENTRY_SIZE,
+  ITEM_ENTRY_SIZE,
+  TABLE_COUNTS,
+  tableOffset,
+} from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
 test("readDecorationValues decodes fields at the documented byte offsets", () => {
@@ -33,7 +38,9 @@ test("readDecorationValues decodes fields at the documented byte offsets", () =>
 test("readDecorationSkills skips the hidden dummy slot and reads 168 real entries", () => {
   const dummyBase = tableOffset("decorationSkills");
   const base = dummyBase + DECO_SKILL_ENTRY_SIZE;
-  const { buf, reader } = fixtureReader(base + (TABLE_COUNTS.decorations - 1) * DECO_SKILL_ENTRY_SIZE);
+  const { buf, reader } = fixtureReader(
+    base + (TABLE_COUNTS.decorations - 1) * DECO_SKILL_ENTRY_SIZE,
+  );
 
   const off = base + 0;
   buf.writeUInt8(1, off + 0); // reqSlots

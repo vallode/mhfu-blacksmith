@@ -31,7 +31,12 @@ import {
   type WeaponTypeName,
 } from "../tables/weapons.js";
 import { readSharpnessTable, SHARPNESS_COLORS } from "../tables/sharpness.js";
-import { readEquipmentCreate, readEquipmentUpgrade, invertUpgradeTree, type EquipUpgradeEntry } from "../tables/recipes.js";
+import {
+  readEquipmentCreate,
+  readEquipmentUpgrade,
+  invertUpgradeTree,
+  type EquipUpgradeEntry,
+} from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
@@ -43,7 +48,13 @@ import {
   resolveMaterials,
 } from "./common.js";
 
-const ELEMENT_NAMES: Record<number, string> = { 1: "Fire", 2: "Water", 3: "Thunder", 4: "Dragon", 5: "Ice" };
+const ELEMENT_NAMES: Record<number, string> = {
+  1: "Fire",
+  2: "Water",
+  3: "Thunder",
+  4: "Dragon",
+  5: "Ice",
+};
 const STATUS_NAMES: Record<number, string> = { 1: "Poison", 2: "Paralysis", 3: "Sleep" };
 
 /** Raw element/status values are stored as true-value/10 (confirmed against ~170 real elemental weapons, zero exceptions). */
@@ -54,7 +65,12 @@ export interface EmittedElement {
   attack: number;
 }
 
-function emitElements(eleType: number, eleValue: number, statusType: number, statusValue: number): EmittedElement[] | null {
+function emitElements(
+  eleType: number,
+  eleValue: number,
+  statusType: number,
+  statusValue: number,
+): EmittedElement[] | null {
   const elements: EmittedElement[] = [];
   const eleName = ELEMENT_NAMES[eleType];
   if (eleName) elements.push({ name: eleName, attack: eleValue * ELEMENT_VALUE_SCALE });
@@ -98,7 +114,10 @@ function emitElements(eleType: number, eleValue: number, statusType: number, sta
  * exactly, which argues against a code-level formula error). Flagged here
  * for follow-up rather than blocking on it.
  */
-function emitSharpness(entry: ReturnType<typeof readSharpnessTable>[number], sharpnessAmount: number): { sharpness: number[]; sharpnessPlus: number[] } {
+function emitSharpness(
+  entry: ReturnType<typeof readSharpnessTable>[number],
+  sharpnessAmount: number,
+): { sharpness: number[]; sharpnessPlus: number[] } {
   const reach = (steps: number) => ELEMENT_VALUE_SCALE * 5 * steps;
   const widthsToReach = (threshold: number): number[] => {
     const out: number[] = [];
@@ -135,16 +154,22 @@ function resolveImproveFrom(
   graph: UpgradeGraph,
   index: number,
   idTable: NameTable,
-  names: ReturnType<typeof getNameResolver>
+  names: ReturnType<typeof getNameResolver>,
 ): string | string[] | null {
   const sources = graph.inverted.get(index);
   if (!sources || sources.length === 0) return null;
-  const resolved = sources.map((i) => names.resolve(idTable, i)).filter((n): n is string => n !== null);
+  const resolved = sources
+    .map((i) => names.resolve(idTable, i))
+    .filter((n): n is string => n !== null);
   if (resolved.length === 0) return null;
   return resolved.length === 1 ? resolved[0]! : resolved;
 }
 
-function resolveImproveTo(entry: EquipUpgradeEntry | undefined, idTable: NameTable, names: ReturnType<typeof getNameResolver>): string[] | null {
+function resolveImproveTo(
+  entry: EquipUpgradeEntry | undefined,
+  idTable: NameTable,
+  names: ReturnType<typeof getNameResolver>,
+): string[] | null {
   if (!entry) return null;
   const targets = entry.upgradeTargets.filter((t) => t !== 0).map((t) => names.resolve(idTable, t));
   const resolved = targets.filter((n): n is string => n !== null);
@@ -172,7 +197,10 @@ export interface EmittedWeapon {
   coatings?: string[];
 }
 
-export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAddressResolver): EmittedWeapon[] {
+export function emitBlademasterWeapons(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): EmittedWeapon[] {
   const weapons = readBlademasterWeapons(reader, resolver);
   const modelToType = readModelToWeaponType(reader, resolver);
   const classMods = readWeaponClassModifiers(reader, resolver);
@@ -188,7 +216,10 @@ export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAdd
     ...create.hammerHuntingHorn,
     ...create.ancientRustBlademaster,
   ]);
-  const upgradeGraph: UpgradeGraph = { entries: upgrade.blademaster, inverted: invertUpgradeTree(upgrade.blademaster) };
+  const upgradeGraph: UpgradeGraph = {
+    entries: upgrade.blademaster,
+    inverted: invertUpgradeTree(upgrade.blademaster),
+  };
 
   const classModByType: Record<WeaponTypeName, number> = {
     "great-sword": classMods.greatSword,
@@ -226,16 +257,21 @@ export function emitBlademasterWeapons(reader: BinaryReader, resolver?: TableAdd
       rarity: displayRarity(w.rarity),
       type,
       create_cost: primaryRecipe ? halveCost(w.price) : null,
-      improve_cost: upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
+      improve_cost:
+        upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepBMID", names),
-      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon")) : null,
+      create_mats: primaryRecipe
+        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon"))
+        : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
           ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepBMID", names),
       elements: emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
-      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon")) : null,
+      alternative_create_mats: altRecipe
+        ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
+        : null,
     });
   }
   return out;
@@ -271,7 +307,10 @@ function coatingsForType(type: WeaponTypeName | null, shotCoatings: number): str
   return undefined;
 }
 
-export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressResolver): EmittedWeapon[] {
+export function emitGunnerWeapons(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): EmittedWeapon[] {
   const weapons = readGunnerWeapons(reader, resolver);
   const modelToType = readModelToWeaponType(reader, resolver);
   const classMods = readWeaponClassModifiers(reader, resolver);
@@ -285,7 +324,10 @@ export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressR
     ...create.bow,
     ...create.ancientRustGunner,
   ]);
-  const upgradeGraph: UpgradeGraph = { entries: upgrade.gunner, inverted: invertUpgradeTree(upgrade.gunner) };
+  const upgradeGraph: UpgradeGraph = {
+    entries: upgrade.gunner,
+    inverted: invertUpgradeTree(upgrade.gunner),
+  };
 
   const classModByType: Partial<Record<WeaponTypeName, number>> = {
     "light-bowgun": classMods.lightBowgun,
@@ -324,16 +366,21 @@ export function emitGunnerWeapons(reader: BinaryReader, resolver?: TableAddressR
       rarity: displayRarity(w.rarity),
       type,
       create_cost: primaryRecipe ? halveCost(w.price) : null,
-      improve_cost: upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
+      improve_cost:
+        upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepGunID", names),
-      create_mats: primaryRecipe ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon")) : null,
+      create_mats: primaryRecipe
+        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon"))
+        : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
           ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepGunID", names),
       elements: emitElements(w.eleType, w.eleValue, 0, 0),
-      alternative_create_mats: altRecipe ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon")) : null,
+      alternative_create_mats: altRecipe
+        ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
+        : null,
       coatings,
     });
   }

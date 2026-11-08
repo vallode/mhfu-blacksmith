@@ -8,7 +8,12 @@
  * step, not done here.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { TABLE_COUNTS, WEAPON_BM_ENTRY_SIZE, WEAPON_GUN_ENTRY_SIZE, resolveTableOffset } from "./offsets.js";
+import {
+  TABLE_COUNTS,
+  WEAPON_BM_ENTRY_SIZE,
+  WEAPON_GUN_ENTRY_SIZE,
+  resolveTableOffset,
+} from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
 export interface WeaponClassModifiers {
@@ -30,7 +35,10 @@ export interface WeaponClassModifiers {
  * `resolver` defaults to JP's static table (`tableOffset()`) — pass e.g.
  * `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to read from a different region.
  */
-export function readWeaponClassModifiers(reader: BinaryReader, resolver?: TableAddressResolver): WeaponClassModifiers {
+export function readWeaponClassModifiers(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): WeaponClassModifiers {
   const base = resolveTableOffset("weaponClassModifiers", reader, resolver);
   return {
     greatSword: reader.u32(base + 0),
@@ -71,7 +79,10 @@ export interface BlademasterWeapon {
 }
 
 /** WepBMValues[1150] @ 0x089574C8 — 24 bytes/entry. See readWeaponClassModifiers() for `resolver`. */
-export function readBlademasterWeapons(reader: BinaryReader, resolver?: TableAddressResolver): BlademasterWeapon[] {
+export function readBlademasterWeapons(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): BlademasterWeapon[] {
   const base = resolveTableOffset("weaponsBlademaster", reader, resolver);
   const out: BlademasterWeapon[] = [];
   for (let i = 0; i < TABLE_COUNTS.weaponsBlademaster; i++) {
@@ -221,7 +232,10 @@ export interface GunnerWeapon {
 }
 
 /** WepGunValues[354] @ 0x0895E098 — 28 bytes/entry. See readWeaponClassModifiers() for `resolver`. */
-export function readGunnerWeapons(reader: BinaryReader, resolver?: TableAddressResolver): GunnerWeapon[] {
+export function readGunnerWeapons(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): GunnerWeapon[] {
   const base = resolveTableOffset("weaponsGunner", reader, resolver);
   const out: GunnerWeapon[] = [];
   for (let i = 0; i < TABLE_COUNTS.weaponsGunner; i++) {
@@ -267,7 +281,10 @@ export const WEAPON_TYPE_NAMES = [
 export type WeaponTypeName = (typeof WEAPON_TYPE_NAMES)[number];
 
 /** Mod2WepType[553] @ 0x08975984 — one u8 WepTypeID per weapon model ID. See readWeaponClassModifiers() for `resolver`. */
-export function readModelToWeaponType(reader: BinaryReader, resolver?: TableAddressResolver): (WeaponTypeName | null)[] {
+export function readModelToWeaponType(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): (WeaponTypeName | null)[] {
   const base = resolveTableOffset("modelToWeaponType", reader, resolver);
   const out: (WeaponTypeName | null)[] = [];
   for (let i = 0; i < TABLE_COUNTS.modelToWeaponType; i++) {

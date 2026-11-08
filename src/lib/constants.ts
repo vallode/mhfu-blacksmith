@@ -12,13 +12,7 @@ export const WEAPON_TYPES = [
   "bow",
 ] as const;
 
-export const ARMOR_SLOTS = [
-  "helmet",
-  "plate",
-  "gauntlets",
-  "waist",
-  "leggings",
-] as const;
+export const ARMOR_SLOTS = ["helmet", "plate", "gauntlets", "waist", "leggings"] as const;
 
 export const ARMOR_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
 

@@ -63,15 +63,17 @@ const rows = lines.slice(1).map((l) => {
 });
 
 // --- enum ------------------------------------------------------------------
-const enumNames = [...fs.readFileSync(enumPath, "utf-8").matchAll(/^\s*"(.*)",?\s*(?:\};)?\s*$/gm)].map(
-  (m) => m[1]
-);
+const enumNames = [
+  ...fs.readFileSync(enumPath, "utf-8").matchAll(/^\s*"(.*)",?\s*(?:\};)?\s*$/gm),
+].map((m) => m[1]);
 
 // --- kolyn -----------------------------------------------------------------
 const kolyn = JSON.parse(fs.readFileSync(kolynPath, "utf-8")) as { name: string; rare: number }[];
 const kolynCount = new Map<string, number>();
 for (const k of kolyn) kolynCount.set(k.name, (kolynCount.get(k.name) ?? 0) + 1);
-const kolynRare = new Map(kolyn.filter((k) => kolynCount.get(k.name) === 1).map((k) => [k.name, k.rare]));
+const kolynRare = new Map(
+  kolyn.filter((k) => kolynCount.get(k.name) === 1).map((k) => [k.name, k.rare]),
+);
 
 const isDummy = (s: string) => !s || s.trim().toLowerCase() === "dummy";
 const problems: string[] = [];

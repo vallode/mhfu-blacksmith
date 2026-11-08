@@ -13,7 +13,13 @@
  * swap). See README's "Quests" section for the full writeup — this is a
  * known, documented gap, not silently dropped.
  */
-import type { MonsterSpawn, ParsedQuest, RewardTable, SmallMonsterTable, SupplyItem } from "../quests/parser.js";
+import type {
+  MonsterSpawn,
+  ParsedQuest,
+  RewardTable,
+  SmallMonsterTable,
+  SupplyItem,
+} from "../quests/parser.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import type { Rank } from "./common.js";
@@ -215,7 +221,9 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
 };
 
 /** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
-export function emitQuestsFile(parsedQuests: ParsedQuest[]): Record<string, { quests: EmittedQuest[] }> {
+export function emitQuestsFile(
+  parsedQuests: ParsedQuest[],
+): Record<string, { quests: EmittedQuest[] }> {
   const byHub: Record<QuestHub, EmittedQuest[]> = {
     village: [],
     guild: [],

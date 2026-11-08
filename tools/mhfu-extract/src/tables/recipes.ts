@@ -15,7 +15,12 @@
  * right.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { EQUIP_CREATE_ENTRY_SIZE, EQUIP_UPGRADE_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
+import {
+  EQUIP_CREATE_ENTRY_SIZE,
+  EQUIP_UPGRADE_ENTRY_SIZE,
+  TABLE_COUNTS,
+  resolveTableOffset,
+} from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
 export interface CraftMaterial {
@@ -55,7 +60,7 @@ function readEquipCreateEntry(reader: BinaryReader, off: number, index: number):
 function readEquipCreateSection(
   reader: BinaryReader,
   offset: number,
-  count: number
+  count: number,
 ): { entries: EquipCreateEntry[]; nextOffset: number } {
   const entries: EquipCreateEntry[] = [];
   for (let i = 0; i < count; i++) {
@@ -88,7 +93,10 @@ export interface EquipmentCreateTables {
  * read from a different region (only the starting address changes; every
  * section's count is the same game data regardless of region).
  */
-export function readEquipmentCreate(reader: BinaryReader, resolver?: TableAddressResolver): EquipmentCreateTables {
+export function readEquipmentCreate(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): EquipmentCreateTables {
   let offset = resolveTableOffset("equipmentCreate", reader, resolver);
   const next = (count: number): EquipCreateEntry[] => {
     const { entries, nextOffset } = readEquipCreateSection(reader, offset, count);
@@ -147,7 +155,11 @@ export interface EquipUpgradeEntry {
   upgradeTargets: number[];
 }
 
-function readEquipUpgradeEntry(reader: BinaryReader, off: number, index: number): EquipUpgradeEntry {
+function readEquipUpgradeEntry(
+  reader: BinaryReader,
+  off: number,
+  index: number,
+): EquipUpgradeEntry {
   const craft = readCraftItems(reader, off);
   const upgradeTargets = [0, 1, 2, 3, 4].map((i) => reader.u16(off + 16 + i * 2));
   return { index, craft, upgradeTargets };
@@ -160,7 +172,10 @@ export interface EquipmentUpgradeTables {
 }
 
 /** EquipmentUpgrade (EquipUpgradeTable) @ 0x0894CEA4. See readEquipmentCreate() for `resolver`. */
-export function readEquipmentUpgrade(reader: BinaryReader, resolver?: TableAddressResolver): EquipmentUpgradeTables {
+export function readEquipmentUpgrade(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): EquipmentUpgradeTables {
   let offset = resolveTableOffset("equipmentUpgrade", reader, resolver);
   offset += EQUIP_UPGRADE_ENTRY_SIZE; // hidden EquipUpgrade<1> NullUpgrade[1]
 

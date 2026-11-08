@@ -15,7 +15,10 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const CATEGORIES_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "decoration-categories.json");
+const CATEGORIES_PATH = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "decoration-categories.json",
+);
 
 let cache: Record<string, string> | null = null;
 

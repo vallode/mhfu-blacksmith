@@ -62,9 +62,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     );
   }
 
-  const hitzoneEntries = monster.hitzones
-    ? Object.entries(monster.hitzones)
-    : [];
+  const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
 
   return (
     <>
@@ -95,11 +93,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           <div className="relative flex h-auto flex-[0_0_11rem] flex-row items-start text-[2.2rem] text-gold no-underline mobile:flex-col-reverse mobile:flex-wrap">
             <div className="flex flex-col">
               <p className="leading-[1.25]">{monster.name}</p>
-              {monster.habitats && (
-                <p className="leading-[1.25]">
-                  {monster.habitats.join(", ")}
-                </p>
-              )}
+              {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
             </div>
             <Icon
               type={category}
@@ -146,12 +140,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 {Object.entries(monster.drops).map(([rankName, rankDrops]) => (
                   <div key={rankName}>
                     <Card>
-                      <p><span>{rankName}</span></p>
+                      <p>
+                        <span>{rankName}</span>
+                      </p>
                       {Object.entries(rankDrops).map(([source, items]) => (
                         <div key={source}>
                           <p>{source}</p>
                           {items.map((drop, i) => (
-                            <p key={i}>{drop.name}: {drop.chance}</p>
+                            <p key={i}>
+                              {drop.name}: {drop.chance}
+                            </p>
                           ))}
                         </div>
                       ))}

@@ -91,12 +91,8 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             {(weapon.sharpness || weapon.sharpness_plus) && (
               <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
-                {weapon.sharpness && (
-                  <SharpnessBar values={weapon.sharpness} />
-                )}
-                {weapon.sharpness_plus && (
-                  <SharpnessBar values={weapon.sharpness_plus} plus />
-                )}
+                {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
+                {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
               </div>
             )}
           </DetailHeader>
@@ -110,22 +106,26 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   {weapon.raw_attack && (
                     <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
                   )}
-                  {weapon.shelling && (
-                    <StatValue>[{weapon.shelling.type} Type]</StatValue>
-                  )}
+                  {weapon.shelling && <StatValue>[{weapon.shelling.type} Type]</StatValue>}
                 </Stat>
               )}
 
               {weapon.max_attack && (
-                <Stat label="Max attack:"><StatValue>{weapon.max_attack}</StatValue></Stat>
+                <Stat label="Max attack:">
+                  <StatValue>{weapon.max_attack}</StatValue>
+                </Stat>
               )}
 
               {weapon.recoil && (
-                <Stat label="Recoil:"><StatValue>{weapon.recoil}</StatValue></Stat>
+                <Stat label="Recoil:">
+                  <StatValue>{weapon.recoil}</StatValue>
+                </Stat>
               )}
 
               {weapon.reload && (
-                <Stat label="Reload:"><StatValue>{weapon.reload}</StatValue></Stat>
+                <Stat label="Reload:">
+                  <StatValue>{weapon.reload}</StatValue>
+                </Stat>
               )}
 
               {weapon.affinity && (
@@ -168,12 +168,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               ))}
 
               {weapon.skills?.map((skill, i) => (
-                <p key={i} className="inline-block text-element">{skill}</p>
+                <p key={i} className="inline-block text-element">
+                  {skill}
+                </p>
               ))}
 
-              {weapon.bonus && (
-                <p className="inline-block text-element">Defense {weapon.bonus}</p>
-              )}
+              {weapon.bonus && <p className="inline-block text-element">Defense {weapon.bonus}</p>}
             </StatList>
 
             <DetailRule />
@@ -182,11 +182,19 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             <Requirements>
               <RequirementsPage active>
                 {weapon.improve_mats && (
-                  <MaterialList label="Improve cost" cost={weapon.improve_cost} materials={weapon.improve_mats} />
+                  <MaterialList
+                    label="Improve cost"
+                    cost={weapon.improve_cost}
+                    materials={weapon.improve_mats}
+                  />
                 )}
 
                 {weapon.create_mats && (
-                  <MaterialList label="Create cost" cost={weapon.create_cost} materials={weapon.create_mats} />
+                  <MaterialList
+                    label="Create cost"
+                    cost={weapon.create_cost}
+                    materials={weapon.create_mats}
+                  />
                 )}
               </RequirementsPage>
 
@@ -203,14 +211,19 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               {weapon.shots && (
                 <RequirementsPage>
                   <div className="flex flex-1 flex-col gap-[13px]">
-                    <p><span className="text-stat">[Charge Attack]</span></p>
+                    <p>
+                      <span className="text-stat">[Charge Attack]</span>
+                    </p>
                     {weapon.shots.map((shot, i) => {
                       // The last (strongest) level is highlighted green.
                       const last = i === weapon.shots!.length - 1;
                       return (
                         <p key={i} className={last ? "text-positive" : undefined}>
                           <span className={last ? "text-positive" : "text-warm"}>
-                            <span className="text-warm" style={{ visibility: i === 0 ? "visible" : "hidden" }}>
+                            <span
+                              className="text-warm"
+                              style={{ visibility: i === 0 ? "visible" : "hidden" }}
+                            >
                               Lvl
                             </span>{" "}
                             {i + 1}:
@@ -228,17 +241,26 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   <table className={statTable}>
                     <thead>
                       <tr>
-                        <th>Cap.:</th><th>LV</th><th>1</th><th>2</th><th>3</th><th></th>
+                        <th>Cap.:</th>
+                        <th>LV</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       {weapon.ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
+                        <tr
+                          key={i}
+                          className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}
+                        >
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
                             <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                              {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                              {cap}
+                              {j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
                         </tr>
@@ -250,17 +272,25 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     <table className={statTable}>
                       <thead>
                         <tr>
-                          <th></th><th>LV</th><th>1</th><th>2</th><th></th>
+                          <th></th>
+                          <th>LV</th>
+                          <th>1</th>
+                          <th>2</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
                         {weapon.status_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}>
+                          <tr
+                            key={i}
+                            className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}
+                          >
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
                               <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                                {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                                {cap}
+                                {j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
                           </tr>
@@ -275,16 +305,24 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 <RequirementsPage>
                   <table className={statTable}>
                     <thead>
-                      <tr><th>Cap.:</th><th></th><th></th></tr>
+                      <tr>
+                        <th>Cap.:</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                       {weapon.element_ammo.map((ammo, i) => (
-                        <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
+                        <tr
+                          key={i}
+                          className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
+                        >
                           <td>{ammo.name}</td>
                           <td>:</td>
                           {ammo.capacity.map((cap, j) => (
                             <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                              {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                              {cap}
+                              {j < ammo.capacity.length - 1 ? "/" : ""}
                             </td>
                           ))}
                         </tr>
@@ -295,16 +333,24 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   {weapon.misc_ammo && (
                     <table className={statTable}>
                       <thead>
-                        <tr><th></th><th></th><th></th></tr>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
                       </thead>
                       <tbody>
                         {weapon.misc_ammo.map((ammo, i) => (
-                          <tr key={i} className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}>
+                          <tr
+                            key={i}
+                            className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
+                          >
                             <td>{ammo.name}</td>
                             <td>:</td>
                             {ammo.capacity.map((cap, j) => (
                               <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
-                                {cap}{j < ammo.capacity.length - 1 ? "/" : ""}
+                                {cap}
+                                {j < ammo.capacity.length - 1 ? "/" : ""}
                               </td>
                             ))}
                           </tr>
@@ -318,12 +364,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               {weapon.coatings && (
                 <RequirementsPage>
                   <div className="flex flex-1 flex-row flex-wrap content-start gap-[13px]">
-                    <p className="w-full"><span className="text-stat">[Usable Coating]</span></p>
+                    <p className="w-full">
+                      <span className="text-stat">[Usable Coating]</span>
+                    </p>
                     {COATINGS.map((coating) => {
                       const key = coating.toLowerCase().replace(" coating", "").trim();
-                      const usable = weapon.coatings!.some((c) =>
-                        c.toLowerCase().includes(key)
-                      );
+                      const usable = weapon.coatings!.some((c) => c.toLowerCase().includes(key));
                       return (
                         <p
                           key={coating}

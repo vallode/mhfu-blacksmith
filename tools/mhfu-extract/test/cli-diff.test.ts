@@ -12,7 +12,9 @@ test("itemKeyOf prefers name, falls back to a numeric id, then a JSON snippet", 
 });
 
 test("diffFile reports field mismatches only for keys present on both sides", () => {
-  const extracted = { weapons: [{ name: "Carbalite Sword", attack: 100, rarity: 3, notes: "extra field" }] };
+  const extracted = {
+    weapons: [{ name: "Carbalite Sword", attack: 100, rarity: 3, notes: "extra field" }],
+  };
   const committed = { weapons: [{ name: "Carbalite Sword", attack: 90, rarity: 3 }] };
 
   const result = diffFile("weapons/great-sword.json", extracted, committed);
@@ -35,7 +37,12 @@ test("diffFile reports items present on only one side", () => {
 
 test("diffFile returns an empty diff when either side isn't array-shaped", () => {
   const result = diffFile("weird.json", { notAnArray: 1 }, { alsoNot: 2 });
-  assert.deepEqual(result, { file: "weird.json", itemsOnlyInExtracted: [], itemsOnlyInCommitted: [], fieldMismatches: [] });
+  assert.deepEqual(result, {
+    file: "weird.json",
+    itemsOnlyInExtracted: [],
+    itemsOnlyInCommitted: [],
+    fieldMismatches: [],
+  });
 });
 
 test("runDiff walks both directory trees and diffs shared files, reporting files unique to each side", async () => {
@@ -48,11 +55,11 @@ test("runDiff walks both directory trees and diffs shared files, reporting files
 
     await writeFile(
       path.join(extractedDir, "weapons", "great-sword.json"),
-      JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 100 }] })
+      JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 100 }] }),
     );
     await writeFile(
       path.join(dataDir, "weapons", "great-sword.json"),
-      JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 90 }] })
+      JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 90 }] }),
     );
     // Only in extracted (e.g. the new quests category, not yet reviewed into data/).
     await writeFile(path.join(extractedDir, "quests.json"), JSON.stringify({ quests: [] }));

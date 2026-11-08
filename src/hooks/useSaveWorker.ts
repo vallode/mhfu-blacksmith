@@ -85,10 +85,7 @@ export function useSaveWorker(): UseSaveWorkerReturn {
  * (e.g. a background sync running from a context on tab focus) and don't
  * need the persistent worker + streaming state that useSaveWorker provides.
  */
-export function parseSaveBuffer(
-  buffer: ArrayBuffer,
-  region: Region
-): Promise<WorkerResult> {
+export function parseSaveBuffer(buffer: ArrayBuffer, region: Region): Promise<WorkerResult> {
   return new Promise((resolve, reject) => {
     const worker = new Worker("/javascript/save-worker.js", { type: "module" });
     worker.onmessage = (e: MessageEvent<WorkerMessage>) => {

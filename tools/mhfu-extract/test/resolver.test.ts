@@ -46,7 +46,7 @@ test("SignatureResolver throws for a table with no registered signature", () => 
       assert.ok(err instanceof TableResolutionError);
       assert.match(err.message, /no signature registered/);
       return true;
-    }
+    },
   );
 });
 
@@ -59,7 +59,7 @@ test("SignatureResolver throws if called without a buffer", () => {
       assert.ok(err instanceof TableResolutionError);
       assert.match(err.message, /requires a buffer/);
       return true;
-    }
+    },
   );
 });
 
@@ -72,7 +72,7 @@ test("SignatureResolver throws when the signature isn't found (0 matches)", () =
       assert.ok(err instanceof TableResolutionError);
       assert.match(err.message, /0 matches/);
       return true;
-    }
+    },
   );
 });
 
@@ -86,12 +86,16 @@ test("SignatureResolver throws when the signature is ambiguous (2+ matches)", ()
       assert.ok(err instanceof TableResolutionError);
       assert.match(err.message, /ambiguous \(2 matches/);
       return true;
-    }
+    },
   );
 });
 
 test("extractSignature derives a signature from a known-good buffer via an existing resolver", () => {
-  const knownGoodBuf = Buffer.concat([Buffer.alloc(16, 0), Buffer.from("cafef00dbaadf00d", "hex"), Buffer.alloc(8, 0)]);
+  const knownGoodBuf = Buffer.concat([
+    Buffer.alloc(16, 0),
+    Buffer.from("cafef00dbaadf00d", "hex"),
+    Buffer.alloc(8, 0),
+  ]);
   const knownGoodResolver = new StaticOffsetResolver(0, { myTable: 16 });
 
   const sig = extractSignature(knownGoodBuf, knownGoodResolver, "myTable", 4, 0);
@@ -111,7 +115,7 @@ test("verifyResolverCoverage reports ok:true with per-table offsets when every t
   assert.equal(result.ok, true);
   assert.deepEqual(
     result.checks.map((c) => c.ok),
-    [true, true]
+    [true, true],
   );
   assert.match(result.checks[0]!.detail, /^0x40$/);
 });

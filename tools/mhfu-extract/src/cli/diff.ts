@@ -85,7 +85,11 @@ export function normalizeCommittedItem(item: Record<string, unknown>): Record<st
   if (!Array.isArray(item.skills)) return item;
   const skills = item.skills.map((skill: unknown) => {
     if (typeof skill === "string") return canonicalDecorationSkill(skill);
-    if (typeof skill === "object" && skill !== null && typeof (skill as { name?: unknown }).name === "string") {
+    if (
+      typeof skill === "object" &&
+      skill !== null &&
+      typeof (skill as { name?: unknown }).name === "string"
+    ) {
       const s = skill as { name: string };
       return { ...s, name: canonicalSkillName(s.name) };
     }
@@ -103,8 +107,18 @@ function findArrayKey(obj: Record<string, unknown>): string | null {
 
 /** Diffs one file's `{ <arrayKey>: [...] }` shape, matching items by itemKeyOf(). Returns an empty-result diff if either side isn't array-shaped. */
 export function diffFile(file: string, extracted: unknown, committed: unknown): FileDiff {
-  const result: FileDiff = { file, itemsOnlyInExtracted: [], itemsOnlyInCommitted: [], fieldMismatches: [] };
-  if (typeof extracted !== "object" || extracted === null || typeof committed !== "object" || committed === null) {
+  const result: FileDiff = {
+    file,
+    itemsOnlyInExtracted: [],
+    itemsOnlyInCommitted: [],
+    fieldMismatches: [],
+  };
+  if (
+    typeof extracted !== "object" ||
+    extracted === null ||
+    typeof committed !== "object" ||
+    committed === null
+  ) {
     return result;
   }
 
@@ -112,10 +126,13 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
   const committedArrayKey = findArrayKey(committed as Record<string, unknown>);
   if (!extractedArrayKey || !committedArrayKey) return result;
 
-  const extractedItems = (extracted as Record<string, unknown>)[extractedArrayKey] as Record<string, unknown>[];
-  const committedItems = ((committed as Record<string, unknown>)[committedArrayKey] as Record<string, unknown>[]).map(
-    normalizeCommittedItem
-  );
+  const extractedItems = (extracted as Record<string, unknown>)[extractedArrayKey] as Record<
+    string,
+    unknown
+  >[];
+  const committedItems = (
+    (committed as Record<string, unknown>)[committedArrayKey] as Record<string, unknown>[]
+  ).map(normalizeCommittedItem);
 
   const committedByKey = new Map(committedItems.map((item) => [itemKeyOf(item), item]));
   const matchedCommittedKeys = new Set<string>();
@@ -133,7 +150,12 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
       const extractedValue = extractedItem[field];
       const committedValue = committedItem[field];
       if (JSON.stringify(extractedValue) !== JSON.stringify(committedValue)) {
-        result.fieldMismatches.push({ itemKey: key, field, extracted: extractedValue, committed: committedValue });
+        result.fieldMismatches.push({
+          itemKey: key,
+          field,
+          extracted: extractedValue,
+          committed: committedValue,
+        });
       }
     }
   }
@@ -146,12 +168,16 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
 
 export async function runDiff(options: DiffOptions): Promise<DiffReport> {
   const extractedFiles = await listJsonFiles(options.extracted);
-  const committedFiles = (await listJsonFiles(options.data)).filter((f) => !f.startsWith(`schemas${path.sep}`));
+  const committedFiles = (await listJsonFiles(options.data)).filter(
+    (f) => !f.startsWith(`schemas${path.sep}`),
+  );
 
   const extractedSet = new Set(extractedFiles);
   const committedSet = new Set(committedFiles);
 
-  const filesOnlyInExtracted = extractedFiles.filter((f) => !committedSet.has(f) && f !== "EXTRACTION.json");
+  const filesOnlyInExtracted = extractedFiles.filter(
+    (f) => !committedSet.has(f) && f !== "EXTRACTION.json",
+  );
   const filesOnlyInCommitted = committedFiles.filter((f) => !extractedSet.has(f));
 
   const shared = extractedFiles.filter((f) => committedSet.has(f));
@@ -181,25 +207,38 @@ export function printDiffSummary(report: DiffReport): void {
 
   let anyFileDiffs = false;
   for (const file of report.files) {
-    const total = file.itemsOnlyInExtracted.length + file.itemsOnlyInCommitted.length + file.fieldMismatches.length;
+    const total =
+      file.itemsOnlyInExtracted.length +
+      file.itemsOnlyInCommitted.length +
+      file.fieldMismatches.length;
     if (total === 0) continue;
     anyFileDiffs = true;
     console.log(`\n${file.file}:`);
     if (file.itemsOnlyInExtracted.length > 0) {
-      console.log(`  ${file.itemsOnlyInExtracted.length} item(s) only in extracted output: ${file.itemsOnlyInExtracted.slice(0, 5).join(", ")}${file.itemsOnlyInExtracted.length > 5 ? ", ..." : ""}`);
+      console.log(
+        `  ${file.itemsOnlyInExtracted.length} item(s) only in extracted output: ${file.itemsOnlyInExtracted.slice(0, 5).join(", ")}${file.itemsOnlyInExtracted.length > 5 ? ", ..." : ""}`,
+      );
     }
     if (file.itemsOnlyInCommitted.length > 0) {
-      console.log(`  ${file.itemsOnlyInCommitted.length} item(s) only in committed data: ${file.itemsOnlyInCommitted.slice(0, 5).join(", ")}${file.itemsOnlyInCommitted.length > 5 ? ", ..." : ""}`);
+      console.log(
+        `  ${file.itemsOnlyInCommitted.length} item(s) only in committed data: ${file.itemsOnlyInCommitted.slice(0, 5).join(", ")}${file.itemsOnlyInCommitted.length > 5 ? ", ..." : ""}`,
+      );
     }
     if (file.fieldMismatches.length > 0) {
       console.log(`  ${file.fieldMismatches.length} field mismatch(es), e.g.:`);
       for (const m of file.fieldMismatches.slice(0, 5)) {
-        console.log(`    ${m.itemKey}.${m.field}: extracted=${JSON.stringify(m.extracted)} committed=${JSON.stringify(m.committed)}`);
+        console.log(
+          `    ${m.itemKey}.${m.field}: extracted=${JSON.stringify(m.extracted)} committed=${JSON.stringify(m.committed)}`,
+        );
       }
     }
   }
 
-  if (!anyFileDiffs && report.filesOnlyInExtracted.length === 0 && report.filesOnlyInCommitted.length === 0) {
+  if (
+    !anyFileDiffs &&
+    report.filesOnlyInExtracted.length === 0 &&
+    report.filesOnlyInCommitted.length === 0
+  ) {
     console.log("No differences found.");
   }
 }

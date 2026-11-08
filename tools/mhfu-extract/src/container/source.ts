@@ -30,7 +30,7 @@ export class FileSource implements RandomAccessSource {
     }
     if (readTotal < length) {
       throw new RangeError(
-        `FileSource: short read at offset=0x${offset.toString(16)}, wanted ${length}, got ${readTotal}`
+        `FileSource: short read at offset=0x${offset.toString(16)}, wanted ${length}, got ${readTotal}`,
       );
     }
     return buf;
@@ -50,7 +50,9 @@ export class BufferSource implements RandomAccessSource {
 
   read(offset: number, length: number): Buffer {
     if (offset < 0 || offset + length > this.buf.length) {
-      throw new RangeError(`BufferSource: out of bounds read at 0x${offset.toString(16)}, length=${length}`);
+      throw new RangeError(
+        `BufferSource: out of bounds read at 0x${offset.toString(16)}, length=${length}`,
+      );
     }
     return this.buf.subarray(offset, offset + length);
   }

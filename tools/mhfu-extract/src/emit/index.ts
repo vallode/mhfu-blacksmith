@@ -71,7 +71,10 @@ export function emitAll(reader: BinaryReader, resolver?: TableAddressResolver): 
     output[ARMOR_SLOT_TO_FILE[slot]] = { armor: armor[slot] };
   }
 
-  const weaponsByType = groupWeaponsByType([...emitBlademasterWeapons(reader, resolver), ...emitGunnerWeapons(reader, resolver)]);
+  const weaponsByType = groupWeaponsByType([
+    ...emitBlademasterWeapons(reader, resolver),
+    ...emitGunnerWeapons(reader, resolver),
+  ]);
   for (const type of WEAPON_TYPE_NAMES) {
     output[WEAPON_TYPE_TO_FILE[type]] = { weapons: weaponsByType.get(type) ?? [] };
   }
