@@ -1,34 +1,13 @@
-"use client";
+import { DetailCard } from "@/components/DetailPanel";
 
-import Link from "next/link";
-import Card from "@/components/Card";
-import Icon from "@/components/Icon";
-import type { MonsterCategory } from "@/lib/constants";
-import { useMonsterList } from "@/lib/client-data";
-
-interface Props {
-  category: MonsterCategory;
-}
-
-/** The monsters of one type. The nav above it comes from the monsters layout (MonsterShell). */
-export default function MonsterListClient({ category }: Props) {
-  const { items, loading } = useMonsterList(category);
-
+/**
+ * /monsters/<type>/: the type's monsters are listed down the left by the
+ * monsters layout (MonsterShell); with none selected, the detail card is empty.
+ */
+export default function MonsterListClient() {
   return (
-    <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-      <Card className="overflow-auto py-7">
-        {!loading &&
-          items?.map((monster) => (
-            <Link
-              key={monster.slug}
-              href={`/monsters/${category}/${monster.slug}/`}
-              className="list-row"
-            >
-              <Icon type={category} monster alt={monster.name} />
-              <p>{monster.name}</p>
-            </Link>
-          ))}
-      </Card>
-    </div>
+    <DetailCard>
+      <p className="text-[2.2rem] leading-[1.25] uppercase">No data</p>
+    </DetailCard>
   );
 }

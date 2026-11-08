@@ -137,7 +137,7 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "monster-tree":
       return (
         <MonsterShell category={match.category}>
-          <MonsterListClient category={match.category} />
+          <MonsterListClient />
         </MonsterShell>
       );
     case "monster-detail":

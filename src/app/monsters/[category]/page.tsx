@@ -34,5 +34,5 @@ export default async function MonsterListPage({ params }: Props) {
 
   if (!MONSTER_CATEGORIES.includes(category as MonsterCategory)) notFound();
 
-  return <MonsterListClient category={category as MonsterCategory} />;
+  return <MonsterListClient />;
 }
