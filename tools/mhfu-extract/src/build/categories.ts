@@ -17,7 +17,7 @@ import type { NameTable } from "../strings/names.js";
 import type { FieldSpec } from "./fields.js";
 import type { EquipmentSlot } from "./ids.js";
 
-export type CategoryName = "armor" | "weapons" | "decorations";
+export type CategoryName = "armor" | "weapons" | "decorations" | "monsters";
 
 export interface CategoryFile {
   /** Path relative to `data/` (and to the extract output directory). */
@@ -35,7 +35,7 @@ export interface CategoryFile {
 export interface Category {
   name: CategoryName;
   /** The array key inside each file (`{ "armor": [...] }`). */
-  arrayKey: "armor" | "weapons" | "decorations";
+  arrayKey: "armor" | "weapons" | "decorations" | "monsters";
   files: CategoryFile[];
   materialContext: MaterialContext;
   /** Fields the disc provides, in the order reports list them. */
@@ -86,6 +86,43 @@ const WEAPON_FILES: CategoryFile[] = [
     ...(RANGED_KEEP_FIELDS[t] ? { keepFields: RANGED_KEEP_FIELDS[t] } : {}),
   })),
 ];
+
+const MONSTER_TYPES = [
+  "bird-wyvern",
+  "carapaceon",
+  "elder-dragon",
+  "flying-wyvern",
+  "herbivore",
+  "lynian",
+  "neopteron",
+  "pelagus",
+  "piscine-wyvern",
+];
+
+/**
+ * Monsters come from `game_task.ovl`/`game_sub.ovl` (`monsters/*.ts`) with
+ * part names and drop-group labels from `overlay/monsters.json`, so only
+ * the parts and groups that overlay maps are compared; the rest, and every
+ * other field (`description`, `habitats`, `sizes`, `icon`), stay as
+ * committed. Monsters pair by emID through the same overlay.
+ */
+const MONSTERS: Category = {
+  name: "monsters",
+  arrayKey: "monsters",
+  files: MONSTER_TYPES.map((t) => ({ file: `monsters/${t}.json`, table: "emID" as const })),
+  // Monsters have no materials or skills; any context works.
+  materialContext: "decoration",
+  fields: [
+    { field: "hitzones", kind: "hitzones" },
+    { field: "drops", kind: "drops" },
+  ],
+  // Reviewed against the EU disc (README "Monster overlays"): of 400
+  // mapped hitzone parts 389 agree and the 11 that don't are site errors;
+  // of 695 mapped drop groups 601 agree, and the 94 that don't are site
+  // errors (lists not summing to 100, missing or 0% entries, another
+  // rank's list pasted in).
+  take: ["hitzones", "drops"],
+};
 
 export const CATEGORIES: Record<CategoryName, Category> = {
   armor: {
@@ -187,6 +224,7 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     ],
     take: ["rarity", "slots", "create_cost", "skills", "create_mats", "alternative_create_mats"],
   },
+  monsters: MONSTERS,
 };
 
 export const CATEGORY_NAMES = Object.keys(CATEGORIES) as CategoryName[];

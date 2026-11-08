@@ -128,7 +128,7 @@
           "capture": [
             {
               "name": "Giadrome Hide x1",
-              "chance": "56%"
+              "chance": "51%"
             },
             {
               "name": "Screamer x2",
@@ -136,7 +136,7 @@
             },
             {
               "name": "Giadrome Skull x1",
-              "chance": "5%"
+              "chance": "10%"
             }
           ]
         },
@@ -173,7 +173,7 @@
               "chance": "36%"
             },
             {
-              "name": "Giaprey Scale+",
+              "name": "Giaprey Scale+ x2",
               "chance": "24%"
             }
           ]
@@ -226,15 +226,15 @@
           "body carves (x1)": [
             {
               "name": "Velociprey Fang",
-              "chance": "35%"
+              "chance": "25%"
             },
             {
               "name": "Velociprey Scle+",
-              "chance": "35%"
+              "chance": "40%"
             },
             {
               "name": "Velociprey Hide+",
-              "chance": "30%"
+              "chance": "35%"
             }
           ]
         },
@@ -424,15 +424,15 @@
           "body carves (x1)": [
             {
               "name": "Genprey Fang",
-              "chance": "35%"
+              "chance": "25%"
             },
             {
               "name": "Genprey Scale+",
-              "chance": "35%"
+              "chance": "40%"
             },
             {
-              "name": "Genprey Hide",
-              "chance": "30%"
+              "name": "Genprey Hide+",
+              "chance": "35%"
             }
           ]
         },
@@ -584,7 +584,7 @@
         }
       },
       "sizes": {
-        "min": 615.0,
+        "min": 615,
         "max": 1037.4
       },
       "hitzones": {
@@ -634,7 +634,7 @@
             },
             {
               "name": "Ioprey Hide+",
-              "chance": "35%"
+              "chance": "30%"
             }
           ]
         },
@@ -797,6 +797,10 @@
             {
               "name": "Kut-Ku Scale x1",
               "chance": "75%"
+            },
+            {
+              "name": "Kut-Ku Scale x3",
+              "chance": "25%"
             }
           ],
           "shiny drop : sonic, doesn't work when rage": [
@@ -877,7 +881,7 @@
               "chance": "33%"
             },
             {
-              "name": "Screamer",
+              "name": "Screamer x2",
               "chance": "24%"
             },
             {
@@ -951,8 +955,8 @@
           ],
           "capture": [
             {
-              "name": "Kut-Ku Carapace",
-              "chance": "43%"
+              "name": "Kut-Ku Carapace x1",
+              "chance": "38%"
             },
             {
               "name": "Monster Bone+ x1",
@@ -963,12 +967,16 @@
               "chance": "17%"
             },
             {
-              "name": "Flame Sac x1",
-              "chance": "10%"
-            },
-            {
               "name": "Splendid Beak x1",
               "chance": "3%"
+            },
+            {
+              "name": "Giant Beak x1",
+              "chance": "5%"
+            },
+            {
+              "name": "Inferno Sac x1",
+              "chance": "10%"
             }
           ]
         },
@@ -1140,7 +1148,7 @@
           "body carves (x3)": [
             {
               "name": "Blue Kut-Ku Scl",
-              "chance": "47%"
+              "chance": "45%"
             },
             {
               "name": "Blue Kut-Ku Shl",
@@ -1235,7 +1243,7 @@
               "chance": "25%"
             },
             {
-              "name": "Blue Kut-Ku Scl+",
+              "name": "Blue Kut-Ku Scl+ x3",
               "chance": "25%"
             }
           ],
@@ -1259,8 +1267,8 @@
           ],
           "capture": [
             {
-              "name": "Blue Kut-Ku Cpc",
-              "chance": "43%"
+              "name": "Blue Kut-Ku Cpc x1",
+              "chance": "38%"
             },
             {
               "name": "Monster Bone+ x1",
@@ -1271,12 +1279,16 @@
               "chance": "17%"
             },
             {
-              "name": "Flame Sac x1",
-              "chance": "10%"
-            },
-            {
               "name": "Splendid Beak x1",
               "chance": "3%"
+            },
+            {
+              "name": "Giant Beak x1",
+              "chance": "5%"
+            },
+            {
+              "name": "Inferno Sac x1",
+              "chance": "10%"
             }
           ]
         },
@@ -1505,11 +1517,11 @@
           ],
           "break back": [
             {
-              "name": "Garuga Mane x1",
+              "name": "Garuga Mane x2",
               "chance": "80%"
             },
             {
-              "name": "Garuga Shell x2",
+              "name": "Garuga Shell x4",
               "chance": "20%"
             }
           ],
@@ -1886,8 +1898,8 @@
           "ko": "0"
         },
         "tail": {
-          "cut": "45",
-          "bash": "25",
+          "cut": "40",
+          "bash": "20",
           "shot": "10",
           "fir": "5",
           "wtr": "30",
@@ -1897,8 +1909,8 @@
           "ko": "0"
         },
         "wing": {
-          "cut": "25",
-          "bash": "45",
+          "cut": "20",
+          "bash": "40",
           "shot": "10",
           "fir": "0",
           "wtr": "20",
@@ -2018,7 +2030,7 @@
           ],
           "break head": [
             {
-              "name": "Iron Ore x1",
+              "name": "Iron Ore x2",
               "chance": "66%"
             },
             {
@@ -2223,7 +2235,7 @@
         }
       },
       "sizes": {
-        "min": 811.0,
+        "min": 811,
         "max": 1348.2
       },
       "hitzones": {
@@ -2706,6 +2718,10 @@
             },
             {
               "name": "Sleepyfish x2",
+              "chance": "6%"
+            },
+            {
+              "name": "Hypno Bezoar x1",
               "chance": "6%"
             }
           ]

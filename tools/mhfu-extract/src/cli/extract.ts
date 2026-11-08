@@ -9,12 +9,13 @@ import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
+import { emitMonsters } from "../emit/monsters.js";
 import { emitQuestsFile } from "../emit/quests.js";
-import { dumpMonstersRaw } from "../emit/monsters-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { loadMonsterOverlays } from "../monsters/overlays.js";
+import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
@@ -29,10 +30,8 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/monsters-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
   raw?: boolean;
-  /** Committed `data/` directory, for the monster probe in the raw dump. Defaults to the repo's. */
-  data?: string;
 }
 
 export interface SkippedQuest {
@@ -87,8 +86,6 @@ async function readQuestsFromUnpackedDir(
 /** Written before emitting, so the dump survives an emit error. */
 async function writeRawDumps(
   outDir: string,
-  unpackedDir: string,
-  dataDir: string,
   reader: BinaryReader,
   resolver?: TableAddressResolver,
 ): Promise<void> {
@@ -103,17 +100,6 @@ async function writeRawDumps(
     await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
   }
-  // The monster tables are still being mapped (#35): record a failure in
-  // the dump instead of stopping extract.
-  let monsters: unknown;
-  try {
-    monsters = dumpMonstersRaw(await loadMonsterOverlays(unpackedDir), dataDir);
-  } catch (error) {
-    monsters = { error: error instanceof Error ? (error.stack ?? error.message) : String(error) };
-  }
-  const monstersPath = path.join(rawDir, "monsters.json");
-  await writeFile(monstersPath, `${JSON.stringify(monsters)}\n`, "utf-8");
-  console.log(`Wrote ${monstersPath}`);
 }
 
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
@@ -125,10 +111,6 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,
     );
   }
-
-  const dataDir =
-    options.data ??
-    path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..", "data");
 
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));
@@ -154,7 +136,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       );
     }
     console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
-    if (options.raw) await writeRawDumps(options.out, options.unpacked, dataDir, reader);
+    if (options.raw) await writeRawDumps(options.out, reader);
     output = emitAll(reader);
   } else {
     const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
@@ -175,7 +157,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.log(
       `Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`,
     );
-    if (options.raw) await writeRawDumps(options.out, options.unpacked, dataDir, reader, resolver);
+    if (options.raw) await writeRawDumps(options.out, reader, resolver);
     output = emitAll(reader, resolver);
   }
 
@@ -183,6 +165,19 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   const { quests, skipped } = await readQuestsFromUnpackedDir(options.unpacked, manifest.region);
   console.log(`Parsed ${quests.length} quests, skipped ${skipped.length}.`);
   Object.assign(output, emitQuestsFile(quests));
+
+  console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
+  const monsters = readMonsterTables(await loadMonsterOverlays(options.unpacked));
+  console.log(
+    `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
+  );
+  if (options.raw) {
+    const rawPath = path.join(options.out, "raw", "monsters.json");
+    await mkdir(path.dirname(rawPath), { recursive: true });
+    await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
+    console.log(`Wrote ${rawPath}`);
+  }
+  Object.assign(output, emitMonsters(monsters));
 
   await writeEmitOutput(options.out, output);
 

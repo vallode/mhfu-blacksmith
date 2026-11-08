@@ -1,25 +1,26 @@
 /**
  * Per-monster `emChunk` records in `game_task.ovl` (`MonChunk[90]`, indexed
- * by emID), following the vendored `game_task.hexpat` and the 464-byte
- * stride from the `tclamb/mhp2g-decomp` `EnemyData` struct.
+ * by emID) and their hitzone tables, as the vendored `game_task.hexpat`
+ * describes them, with corrections confirmed on the EU disc against the
+ * committed `data/monsters` hitzones (vallode/mhfu-blacksmith#35):
  *
- * Layout used here (offsets within one chunk):
- *
+ *   chunk (0x1D0 bytes, the `tclamb/mhp2g-decomp` `EnemyData` stride)
  *   +0x040  f32 BaseScale
- *   +0x10C  u32 HitzonePTR[2] — pointers to a `HitzoneTbl` (itself a pointer
- *           to `HitZoneVal` rows), possibly in an `emXX.ovl`
- *   +0x114  Tolerance: Paralysis, KO, Sleep, unknown (5 u16 each: initial,
+ *   +0x10C  u32 `HitzonePTR`: one pointer (not a list) to a `HitzoneTbl`
+ *           list, u32 pointers ending at the first non-pointer
+ *   +0x110  Tolerance: Paralysis, KO, Sleep, unknown (5 u16 each: initial,
  *           recovery time, recovery, duration, increase), then Poison (7
  *           u16: initial, recovery time, recovery, damage, total time,
  *           damage per second, increase)
- *   +0x15C  u32 emPTRTable[27] (PartDurabilityPTR is [22])
  *
- * `HitZoneVal` rows are 10 bytes: part, cut, bash, shot, fire, water, ice,
- * thunder, dragon, KO. That order matches Felyne's row at `0x09bc0418`
- * (JP), whose bytes from cut on are the long-standing fixture.
- *
- * As with the reward tables, EU can sit at another file offset, so
- * `locateMonsterChunks` scores candidate shifts.
+ * Each `HitzoneTbl` pointer leads to 10-byte `HitZoneVal` rows ending in a
+ * zero u16: a lead byte (100, 90, 80, … on big monsters; meaning unknown),
+ * then cut, bash, shot, fire, water, ice, thunder, dragon, KO. Every table
+ * on the EU disc has 7 rows; small monsters use row 0 and fill the rest.
+ * Monsters with breakable states (Gravios, Congalala, …) have a second
+ * table, Hermitaurs a third. Variants can share their base monster's list
+ * (Blue Yian Kut-Ku and Yian Kut-Ku do). The chunks that aren't monsters
+ * (None, Veggie Elder, Cat Cart, Poogie) share a list of filler rows.
  */
 import type { OvlFile } from "../container/ovl.js";
 
@@ -30,11 +31,12 @@ export const GAME_TASK_JP = {
 
 export const MONSTER_CHUNK_COUNT = 90;
 export const MONSTER_CHUNK_SIZE = 0x1d0;
-export const HITZONE_POINTERS_OFFSET = 0x10c;
-export const HITZONE_POINTER_COUNT = 2;
-export const TOLERANCE_OFFSET = 0x114;
+export const HITZONE_POINTER_OFFSET = 0x10c;
+export const TOLERANCE_OFFSET = 0x110;
 export const HITZONE_ROW_SIZE = 10;
-const MAX_HITZONE_ROWS = 32;
+/** Sanity limits: no real monster has more than 3 tables of 7 rows. */
+const MAX_TABLES = 8;
+const MAX_ROWS = 32;
 
 export const HITZONE_COLUMNS = [
   "cut",
@@ -50,7 +52,8 @@ export const HITZONE_COLUMNS = [
 export type HitzoneColumn = (typeof HITZONE_COLUMNS)[number];
 
 export interface HitzoneRow {
-  part: number;
+  /** The row's first byte; 100, 90, 80, … on big monsters, meaning unknown. */
+  lead: number;
   values: Record<HitzoneColumn, number>;
 }
 
@@ -80,28 +83,12 @@ export interface Tolerances {
   poison: PoisonTolerance;
 }
 
-/** Where a pointer leads: the overlay holding it, its file offset there. */
-export interface ResolvedAddress {
-  file: string;
-  offset: number;
-}
-
-/** Maps a vaddr to bytes, across `game_task.ovl` and any `emXX.ovl` that could hold it. */
-export type AddressSpace = (vaddr: number, emId: number) => { ovl: OvlFile; file: string } | null;
-
-export interface HitzoneTable {
-  /** The `HitzonePTR` value. */
-  pointer: number;
-  /** The `HitzoneTbl.PTR` value read at `pointer`, if `pointer` resolved. */
-  rowsPointer: number | null;
-  resolved: ResolvedAddress | null;
-  rows: HitzoneRow[] | null;
-}
-
 export interface MonsterChunk {
   emId: number;
   baseScale: number;
-  hitzones: HitzoneTable[];
+  hitzonePointer: number;
+  /** Hitzone tables, or null if the pointer doesn't lead to well-formed ones. */
+  hitzones: HitzoneRow[][] | null;
   tolerances: Tolerances;
 }
 
@@ -137,76 +124,64 @@ export function readTolerances(ovl: OvlFile, chunkOffset: number): Tolerances {
   };
 }
 
-/**
- * Reads `HitZoneVal` rows at a file offset until a row whose first two bytes
- * are zero (the hexpat's terminator). Null if no terminator comes in time or
- * a value is out of range.
- */
+function readRow(ovl: OvlFile, offset: number): HitzoneRow {
+  const values = {} as Record<HitzoneColumn, number>;
+  HITZONE_COLUMNS.forEach((column, c) => {
+    values[column] = ovl.reader.u8(offset + 1 + c);
+  });
+  return { lead: ovl.reader.u8(offset), values };
+}
+
+/** Reads `HitZoneVal` rows at a file offset up to the zero u16 ending them. Null if malformed. */
 export function readHitzoneRows(ovl: OvlFile, offset: number): HitzoneRow[] | null {
-  const rows: HitzoneRow[] = [];
   const r = ovl.reader;
-  for (let i = 0; i <= MAX_HITZONE_ROWS; i++) {
-    const at = offset + i * HITZONE_ROW_SIZE;
+  const rows: HitzoneRow[] = [];
+  for (let at = offset; ; at += HITZONE_ROW_SIZE) {
     if (at + 2 > r.length) return null;
-    if (r.u16(at) === 0) return rows;
-    if (at + HITZONE_ROW_SIZE > r.length) return null;
-    const values = {} as Record<HitzoneColumn, number>;
-    HITZONE_COLUMNS.forEach((column, c) => {
-      values[column] = r.u8(at + 1 + c);
-    });
-    if (Object.values(values).some((v) => v > 250)) return null;
-    rows.push({ part: r.u8(at), values });
+    if (r.u16(at) === 0) return rows.length > 0 ? rows : null;
+    if (at + HITZONE_ROW_SIZE > r.length || rows.length >= MAX_ROWS) return null;
+    rows.push(readRow(ovl, at));
   }
-  return null;
 }
 
-function readHitzoneTable(space: AddressSpace, pointer: number, emId: number): HitzoneTable {
-  const table: HitzoneTable = { pointer, rowsPointer: null, resolved: null, rows: null };
-  const tbl = space(pointer, emId);
-  if (!tbl) return table;
-  const tblOffset = tbl.ovl.vaddrToOffset(pointer);
-  if (tblOffset + 4 > tbl.ovl.reader.length) return table;
-  table.rowsPointer = tbl.ovl.reader.u32(tblOffset);
-  const rows = space(table.rowsPointer, emId);
-  if (!rows) return table;
-  const rowsOffset = rows.ovl.vaddrToOffset(table.rowsPointer);
-  table.resolved = { file: rows.file, offset: rowsOffset };
-  table.rows = readHitzoneRows(rows.ovl, rowsOffset);
-  return table;
+/** Follows a `HitzonePTR` to its `HitzoneTbl` list and each table's rows. */
+export function readHitzoneTables(ovl: OvlFile, pointer: number): HitzoneRow[][] | null {
+  if (!ovl.isOwnVaddr(pointer)) return null;
+  const tables: HitzoneRow[][] = [];
+  for (let at = ovl.vaddrToOffset(pointer); at + 4 <= ovl.reader.length; at += 4) {
+    const table = ovl.reader.u32(at);
+    if (!ovl.isOwnVaddr(table)) break;
+    const rows = readHitzoneRows(ovl, ovl.vaddrToOffset(table));
+    if (!rows || tables.length >= MAX_TABLES) return null;
+    tables.push(rows);
+  }
+  return tables.length > 0 ? tables : null;
 }
 
-/** Reads all 90 chunks at a file offset. `space` resolves hitzone pointers. */
-export function readMonsterChunks(
-  ovl: OvlFile,
-  chunksOffset: number,
-  space: AddressSpace,
-): MonsterChunk[] {
+/** Reads all 90 chunks at a file offset, with each one's hitzone tables. */
+export function readMonsterChunks(ovl: OvlFile, chunksOffset: number): MonsterChunk[] {
   const chunks: MonsterChunk[] = [];
   for (let emId = 0; emId < MONSTER_CHUNK_COUNT; emId++) {
     const base = chunksOffset + emId * MONSTER_CHUNK_SIZE;
-    const hitzones: HitzoneTable[] = [];
-    for (let p = 0; p < HITZONE_POINTER_COUNT; p++) {
-      const pointer = ovl.reader.u32(base + HITZONE_POINTERS_OFFSET + p * 4);
-      if (pointer === 0) continue;
-      hitzones.push(readHitzoneTable(space, pointer, emId));
-    }
+    const pointer = ovl.reader.u32(base + HITZONE_POINTER_OFFSET);
     chunks.push({
       emId,
       baseScale: ovl.reader.f32(base + 0x40),
-      hitzones,
+      hitzonePointer: pointer,
+      hitzones: readHitzoneTables(ovl, pointer),
       tolerances: readTolerances(ovl, base),
     });
   }
   return chunks;
 }
 
-/** PSP user-memory vaddrs: anything a hitzone pointer could reasonably hold. */
+/** PSP user-memory vaddrs: anything a chunk pointer could reasonably hold. */
 const isUserAddress = (v: number) => v >= 0x08800000 && v < 0x0a000000;
 
 function chunkLooksValid(ovl: OvlFile, base: number): boolean {
   const scale = ovl.reader.f32(base + 0x40);
   if (!(scale > 0.01 && scale < 50)) return false;
-  return isUserAddress(ovl.reader.u32(base + HITZONE_POINTERS_OFFSET));
+  return isUserAddress(ovl.reader.u32(base + HITZONE_POINTER_OFFSET));
 }
 
 /**
@@ -215,14 +190,15 @@ function chunkLooksValid(ovl: OvlFile, base: number): boolean {
  * hitzone pointer into user memory; the best score wins, nearest to the JP
  * offset on a tie. Scoring (rather than taking the first shift that passes)
  * matters because a shift of a few whole chunks also passes when the bytes
- * next to the array look like chunks. Returns the file offset and the shift,
- * or null if no shift has more than 77 plausible chunks.
+ * next to the array look like chunks. On the EU disc the array is 0x110
+ * bytes past the JP file offset. Returns the file offset and the shift, or null if
+ * no shift has more than 77 plausible chunks.
  */
 export function locateMonsterChunks(
   ovl: OvlFile,
   range = ovl.reader.length,
 ): { offset: number; shift: number } | null {
-  const jp = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase + 0x80;
+  const jp = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
   const size = MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
   // emID 0 ("None") and non-monsters (Rocks, Cat Cart) may be empty.
   const maxBad = 12;

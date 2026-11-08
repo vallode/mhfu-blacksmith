@@ -48,16 +48,28 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Sm Hermitaur Shl",
-              "chance": "0%"
-            },
-            {
-              "name": "Sharp Claw",
-              "chance": "0%"
-            },
-            {
               "name": "CarapaceonBrains",
-              "chance": "0%"
+              "chance": "24%"
+            },
+            {
+              "name": "Hermitaur Shell",
+              "chance": "10%"
+            },
+            {
+              "name": "Black Pearl",
+              "chance": "5%"
+            },
+            {
+              "name": "Giant Blk Pearl",
+              "chance": "1%"
+            },
+            {
+              "name": "Piercing Claw",
+              "chance": "40%"
+            },
+            {
+              "name": "CarapaceonBrain+",
+              "chance": "20%"
             }
           ]
         }
@@ -278,11 +290,19 @@
           "break claw": [
             {
               "name": "Hermitaur Claw+ x1",
-              "chance": "78%"
+              "chance": "58%"
             },
             {
               "name": "Hermitaur Carpce x1",
-              "chance": "22%"
+              "chance": "10%"
+            },
+            {
+              "name": "Hermitaur Claw+ x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Hermitaur Claw x2",
+              "chance": "12%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
@@ -373,7 +393,7 @@
               "chance": "20%"
             },
             {
-              "name": "Hermitaur Claw+ x1",
+              "name": "Hermitaur Claw+ x2",
               "chance": "15%"
             },
             {
@@ -680,7 +700,7 @@
               "chance": "25%"
             },
             {
-              "name": "Brute Bone",
+              "name": "Giant Bone",
               "chance": "8%"
             }
           ]
@@ -700,11 +720,11 @@
               "chance": "20%"
             },
             {
-              "name": "Brute Bone",
+              "name": "CarapaceonBrain+",
               "chance": "10%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "name": "Giant Bone",
               "chance": "10%"
             }
           ]
@@ -730,6 +750,10 @@
             {
               "name": "Stout Bone",
               "chance": "10%"
+            },
+            {
+              "name": "Giant Blk Pearl",
+              "chance": "1%"
             }
           ]
         }
@@ -994,15 +1018,19 @@
           "break claw": [
             {
               "name": "Ceanataur Claw+ x1",
-              "chance": "70%"
+              "chance": "55%"
             },
             {
               "name": "Ceanataur Pincer x1",
               "chance": "20%"
             },
             {
-              "name": "Ceanataur Claw x1",
+              "name": "Ceanataur Claw x2",
               "chance": "10%"
+            },
+            {
+              "name": "Ceanataur Claw+ x2",
+              "chance": "15%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
