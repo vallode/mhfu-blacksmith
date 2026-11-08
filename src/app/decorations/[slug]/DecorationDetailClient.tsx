@@ -84,20 +84,19 @@ export default function DecorationDetailClient({ slug }: Props) {
 
         <DetailCard>
           <DetailHeader>
-            <Icon
-              type="decoration"
-              size="large"
-              color={deco.color}
-              alt={deco.name}
-            />
+            <Icon type="decoration" size="large" color={deco.color} alt={deco.name} />
             <p>{deco.name}</p>
           </DetailHeader>
 
           <DetailBody>
             <StatList>
-              <Stat label="Slots:"><Slots count={deco.slots} /></Stat>
+              <Stat label="Slots:">
+                <Slots count={deco.slots} />
+              </Stat>
               {deco.category && (
-                <Stat label="Category:"><StatValue>{deco.category}</StatValue></Stat>
+                <Stat label="Category:">
+                  <StatValue>{deco.category}</StatValue>
+                </Stat>
               )}
             </StatList>
 
@@ -106,7 +105,9 @@ export default function DecorationDetailClient({ slug }: Props) {
                 <DetailRule />
                 <div className="flex flex-1 flex-col gap-[13px]">
                   {deco.skills.map((skill, i) => (
-                    <p key={i} className={i === 0 ? "w-full font-normal" : undefined}>{skill}</p>
+                    <p key={i} className={i === 0 ? "w-full font-normal" : undefined}>
+                      {skill}
+                    </p>
                   ))}
                 </div>
               </>
@@ -114,7 +115,11 @@ export default function DecorationDetailClient({ slug }: Props) {
 
             {deco.create_mats && deco.create_mats.length > 0 && (
               <Requirements>
-                <MaterialList label="Create cost" cost={deco.create_cost} materials={deco.create_mats} />
+                <MaterialList
+                  label="Create cost"
+                  cost={deco.create_cost}
+                  materials={deco.create_mats}
+                />
               </Requirements>
             )}
           </DetailBody>

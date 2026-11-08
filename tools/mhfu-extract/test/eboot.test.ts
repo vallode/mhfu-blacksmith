@@ -30,7 +30,10 @@ test("decryptEboot rejects an override path that isn't a decrypted ELF", async (
   try {
     const path = join(dir, "not-an-elf.bin");
     await writeFile(path, Buffer.from("not an elf"));
-    await assert.rejects(() => decryptEboot(PSP_HEADER, { overridePath: path }), EbootDecryptionError);
+    await assert.rejects(
+      () => decryptEboot(PSP_HEADER, { overridePath: path }),
+      EbootDecryptionError,
+    );
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
@@ -47,6 +50,6 @@ test("decryptEboot surfaces a clear error when pspdecrypt isn't found", async ()
       assert.ok(err instanceof EbootDecryptionError);
       assert.match(err.message, /not found on PATH/);
       return true;
-    }
+    },
   );
 });

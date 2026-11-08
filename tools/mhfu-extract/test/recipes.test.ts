@@ -6,15 +6,23 @@ import {
   TABLE_COUNTS,
   tableOffset,
 } from "../src/tables/offsets.js";
-import { invertUpgradeTree, readEquipmentCreate, readEquipmentUpgrade } from "../src/tables/recipes.js";
+import {
+  invertUpgradeTree,
+  readEquipmentCreate,
+  readEquipmentUpgrade,
+} from "../src/tables/recipes.js";
 import { fixtureReader } from "./helpers.js";
 
 // Total EquipCreate entries across every EquipmentCreateTable section, plus
 // the two hidden u16 TERM fields and two hidden NullCreate<0>[1] entries —
 // this must match the real gap to the next table exactly (see recipes.ts).
-const CREATE_SECTION_COUNTS = [437, 435, 426, 424, 434, 131, 117, 131, 124, 8, 135, 107, 61, 2, 192];
+const CREATE_SECTION_COUNTS = [
+  437, 435, 426, 424, 434, 131, 117, 131, 124, 8, 135, 107, 61, 2, 192,
+];
 const CREATE_TOTAL_BYTES =
-  CREATE_SECTION_COUNTS.reduce((a, b) => a + b, 0) * EQUIP_CREATE_ENTRY_SIZE + 2 * 2 + 2 * EQUIP_CREATE_ENTRY_SIZE;
+  CREATE_SECTION_COUNTS.reduce((a, b) => a + b, 0) * EQUIP_CREATE_ENTRY_SIZE +
+  2 * 2 +
+  2 * EQUIP_CREATE_ENTRY_SIZE;
 
 test("readEquipmentCreate lays out every section with the documented counts", () => {
   const { reader } = fixtureReader(tableOffset("equipmentCreate") + CREATE_TOTAL_BYTES);
@@ -66,7 +74,9 @@ test("readEquipmentCreate decodes an entry's crafting materials and equipId", ()
 });
 
 const UPGRADE_TOTAL_BYTES =
-  (1 + TABLE_COUNTS.weaponsBlademaster + TABLE_COUNTS.weaponsGunner + 7) * EQUIP_UPGRADE_ENTRY_SIZE + 49 * 4;
+  (1 + TABLE_COUNTS.weaponsBlademaster + TABLE_COUNTS.weaponsGunner + 7) *
+    EQUIP_UPGRADE_ENTRY_SIZE +
+  49 * 4;
 
 test("readEquipmentUpgrade lays out every section with the documented counts", () => {
   const { reader } = fixtureReader(tableOffset("equipmentUpgrade") + UPGRADE_TOTAL_BYTES);

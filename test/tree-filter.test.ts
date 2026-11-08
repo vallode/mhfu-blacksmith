@@ -5,14 +5,27 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import { checkUpgrade, type UpgradeCheck } from "../src/lib/hunter-progress";
-import { cycleTreeFilter, filterTree, matchesTreeFilter, type ProgressLookups, type TreeFilterId } from "../src/lib/tree-filter";
+import {
+  cycleTreeFilter,
+  filterTree,
+  matchesTreeFilter,
+  type ProgressLookups,
+  type TreeFilterId,
+} from "../src/lib/tree-filter";
 import type { CompactWeapon, Dictionaries } from "../src/lib/schema";
 import type { WeaponTreeNode } from "../src/lib/types";
 
-const dict = { material_ids: ["Iron Ore", "Machalite Ore", "Monster Bone S"] } as unknown as Dictionaries;
+const dict = {
+  material_ids: ["Iron Ore", "Machalite Ore", "Monster Bone S"],
+} as unknown as Dictionaries;
 /** recipe material name -> in-game item ID */
 const materials = { "Iron Ore": 10, "Machalite Ore": 11, "Monster Bone S": 12 };
-const weapon = (im: CompactWeapon["im"], ic = 1000): CompactWeapon => ({ n: "Test", s: "test", im, ic });
+const weapon = (im: CompactWeapon["im"], ic = 1000): CompactWeapon => ({
+  n: "Test",
+  s: "test",
+  im,
+  ic,
+});
 
 describe("checkUpgrade", () => {
   test("ready: every material and the zenny in hand", () => {
@@ -20,20 +33,45 @@ describe("checkUpgrade", () => {
       [10, 5],
       [11, 2],
     ]);
-    assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, 3], [1, 2]]), counts, 1000), {
-      status: "ready",
-      cost: 1000,
-      missing: 0,
-      materials: [
-        { name: "Iron Ore", need: 3, have: 5 },
-        { name: "Machalite Ore", need: 2, have: 2 },
-      ],
-    });
+    assert.deepEqual(
+      checkUpgrade(
+        dict,
+        materials,
+        weapon([
+          [0, 3],
+          [1, 2],
+        ]),
+        counts,
+        1000,
+      ),
+      {
+        status: "ready",
+        cost: 1000,
+        missing: 0,
+        materials: [
+          { name: "Iron Ore", need: 3, have: 5 },
+          { name: "Machalite Ore", need: 2, have: 2 },
+        ],
+      },
+    );
   });
 
   test("short: counts each short material once, and the zenny as one more", () => {
     const counts = new Map([[10, 1]]);
-    const result = checkUpgrade(dict, materials, weapon([[0, 3], [1, 2], [2, 1]], 5000), counts, 4000);
+    const result = checkUpgrade(
+      dict,
+      materials,
+      weapon(
+        [
+          [0, 3],
+          [1, 2],
+          [2, 1],
+        ],
+        5000,
+      ),
+      counts,
+      4000,
+    );
     assert.equal(result.status, "short");
     assert.ok(result.status === "short");
     assert.equal(result.missing, 4);
@@ -71,7 +109,19 @@ describe("checkUpgrade", () => {
     const unknown = { status: "unknown" };
     assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, 1]]), null, 1000), unknown);
     assert.deepEqual(checkUpgrade(dict, materials, weapon(undefined), counts, 1000), unknown);
-    assert.deepEqual(checkUpgrade(dict, { "Iron Ore": 10 }, weapon([[0, 1], [1, 1]]), counts, 1000), unknown);
+    assert.deepEqual(
+      checkUpgrade(
+        dict,
+        { "Iron Ore": 10 },
+        weapon([
+          [0, 1],
+          [1, 1],
+        ]),
+        counts,
+        1000,
+      ),
+      unknown,
+    );
     assert.deepEqual(checkUpgrade(dict, materials, weapon([[0, "1-2"]]), counts, 1000), unknown);
   });
 });
@@ -91,7 +141,13 @@ describe("tree filter", () => {
       rarity: 1,
       children: [
         { slug: "a", name: "A", type: "great-sword", rarity: 2 },
-        { slug: "b", name: "B", type: "great-sword", rarity: 2, children: [{ slug: "d", name: "D", type: "great-sword", rarity: 3 }] },
+        {
+          slug: "b",
+          name: "B",
+          type: "great-sword",
+          rarity: 2,
+          children: [{ slug: "d", name: "D", type: "great-sword", rarity: 3 }],
+        },
         { slug: "c", name: "C", type: "great-sword", rarity: 2 },
         { slug: "e", name: "E", type: "great-sword", rarity: 2 },
         { slug: "x", name: "X", type: "lance", rarity: 2 },
@@ -99,7 +155,14 @@ describe("tree filter", () => {
     },
   ];
   const owned = new Set(["/blacksmith/great-sword/root/", "/blacksmith/great-sword/e/"]);
-  const checks: Record<string, UpgradeCheck> = { a: ready, b: shortOne, c: shortTwo, d: ready, e: ready, x: ready };
+  const checks: Record<string, UpgradeCheck> = {
+    a: ready,
+    b: shortOne,
+    c: shortTwo,
+    d: ready,
+    e: ready,
+    x: ready,
+  };
   const asked: string[] = [];
   const progress: ProgressLookups = {
     active: true,
@@ -109,7 +172,8 @@ describe("tree filter", () => {
       return checks[slug] ?? null;
     },
   };
-  const run = (filter: TreeFilterId) => filterTree(tree, "great-sword", "/blacksmith/great-sword/", progress, filter);
+  const run = (filter: TreeFilterId) =>
+    filterTree(tree, "great-sword", "/blacksmith/great-sword/", progress, filter);
   const matching = (filter: TreeFilterId) =>
     [...run(filter).rows].filter(([, row]) => row.match).map(([slug]) => slug);
 

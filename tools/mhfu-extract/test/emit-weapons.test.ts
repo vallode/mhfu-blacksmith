@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { emitBlademasterWeapons, emitGunnerWeapons } from "../src/emit/weapons.js";
-import { EQUIP_CREATE_ENTRY_SIZE, WEAPON_BM_ENTRY_SIZE, WEAPON_GUN_ENTRY_SIZE, tableOffset } from "../src/tables/offsets.js";
+import {
+  EQUIP_CREATE_ENTRY_SIZE,
+  WEAPON_BM_ENTRY_SIZE,
+  WEAPON_GUN_ENTRY_SIZE,
+  tableOffset,
+} from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
 // head(437) + chest(435) + arm(426) + waist(424) + leg(434) entries, plus the
@@ -9,7 +14,10 @@ import { fixtureReader } from "./helpers.js";
 // weapon sections — see readEquipmentCreate() in tables/recipes.ts.
 const ARMOR_SECTION_ENTRY_COUNT = 437 + 435 + 426 + 424 + 434;
 const greatSwordLongSwordBase =
-  tableOffset("equipmentCreate") + ARMOR_SECTION_ENTRY_COUNT * EQUIP_CREATE_ENTRY_SIZE + 2 + EQUIP_CREATE_ENTRY_SIZE;
+  tableOffset("equipmentCreate") +
+  ARMOR_SECTION_ENTRY_COUNT * EQUIP_CREATE_ENTRY_SIZE +
+  2 +
+  EQUIP_CREATE_ENTRY_SIZE;
 
 /**
  * Reproduces the real byte layout for blademaster weapon index 1
@@ -61,7 +69,9 @@ test("emitBlademasterWeapons reproduces the real Carbalite Sword entry end-to-en
   assert.equal(sword!.affinity, "0%");
   assert.equal(sword!.elements, null);
   assert.equal(sword!.create_cost, 25000); // 50000 / 2
-  assert.deepEqual(sword!.create_mats, [{ name: "Carbalite Ore", amount: 5, type: "ore", color: "slate" }]);
+  assert.deepEqual(sword!.create_mats, [
+    { name: "Carbalite Ore", amount: 5, type: "ore", color: "slate" },
+  ]);
 });
 
 /**

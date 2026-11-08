@@ -110,7 +110,8 @@ export default function GlobalSearch() {
 
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
-        if (isOpen) close(); else open();
+        if (isOpen) close();
+        else open();
         return;
       }
 
@@ -138,10 +139,10 @@ export default function GlobalSearch() {
   const handleInputKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setSelectedIndex((i) => ((i + 1) % results.length + results.length) % results.length);
+      setSelectedIndex((i) => (((i + 1) % results.length) + results.length) % results.length);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setSelectedIndex((i) => ((i - 1) % results.length + results.length) % results.length);
+      setSelectedIndex((i) => (((i - 1) % results.length) + results.length) % results.length);
     } else if (e.key === "Enter") {
       e.preventDefault();
       const hit = results[selectedIndex];
@@ -167,91 +168,107 @@ export default function GlobalSearch() {
 
   return (
     <div
-        className={cn(
-          "fixed inset-0 z-1000 hidden h-full",
-          isOpen && "flex items-start justify-center pt-[8vh] mobile:items-stretch mobile:pt-0",
-        )}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Search"
-        aria-hidden={isOpen ? undefined : "true"}
-      >
-        <div className="absolute inset-0 bg-black/70" onClick={close} />
+      className={cn(
+        "fixed inset-0 z-1000 hidden h-full",
+        isOpen && "flex items-start justify-center pt-[8vh] mobile:items-stretch mobile:pt-0",
+      )}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+      aria-hidden={isOpen ? undefined : "true"}
+    >
+      <div className="absolute inset-0 bg-black/70" onClick={close} />
 
-        <div className="relative z-1 mx-[1.4rem] h-[80%] flex-[0_1_62rem] overflow-visible mobile:mx-0 mobile:flex-auto">
-          <div className="flex items-center gap-[1rem] pt-[1.3rem]">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0 opacity-60">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <input
-              ref={inputRef}
-              className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-[2.2rem] text-white outline-none placeholder:text-white/35"
-              type="search"
-              placeholder="Search weapons, armor, monsters…"
-              value={query}
-              onChange={handleQueryChange}
-              onKeyDown={handleInputKeydown}
-              autoComplete="off"
-              spellCheck={false}
-            />
-            <button
-              className="shrink-0 cursor-pointer border border-hr bg-transparent px-[0.7rem] py-[0.4rem] font-[inherit] text-[1.6rem] leading-none text-white/70 hover:text-white"
-              onClick={close}
-            >
-              esc
-            </button>
-          </div>
+      <div className="relative z-1 mx-[1.4rem] h-[80%] flex-[0_1_62rem] overflow-visible mobile:mx-0 mobile:flex-auto">
+        <div className="flex items-center gap-[1rem] pt-[1.3rem]">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className="shrink-0 opacity-60"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            ref={inputRef}
+            className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-[2.2rem] text-white outline-none placeholder:text-white/35"
+            type="search"
+            placeholder="Search weapons, armor, monsters…"
+            value={query}
+            onChange={handleQueryChange}
+            onKeyDown={handleInputKeydown}
+            autoComplete="off"
+            spellCheck={false}
+          />
+          <button
+            className="shrink-0 cursor-pointer border border-hr bg-transparent px-[0.7rem] py-[0.4rem] font-[inherit] text-[1.6rem] leading-none text-white/70 hover:text-white"
+            onClick={close}
+          >
+            esc
+          </button>
+        </div>
 
-          <hr className="mt-[1.3rem] mb-0" />
+        <hr className="mt-[1.3rem] mb-0" />
 
-          <div className="h-full overflow-y-auto px-[1.6rem] mobile:max-h-[calc(100dvh-9rem)]" role="listbox">
-            {results.length === 0 && query.trim().length >= 2 && (
-              <p className="px-[1.6rem] py-[2rem] text-center text-[1.8rem] text-white/40">No results found</p>
-            )}
+        <div
+          className="h-full overflow-y-auto px-[1.6rem] mobile:max-h-[calc(100dvh-9rem)]"
+          role="listbox"
+        >
+          {results.length === 0 && query.trim().length >= 2 && (
+            <p className="px-[1.6rem] py-[2rem] text-center text-[1.8rem] text-white/40">
+              No results found
+            </p>
+          )}
 
-            {results.map((result, index) => {
-              const item = result.item;
-              const selected = index === selectedIndex;
-              return (
-                <Link
-                  key={`${item.category}-${item.slug}-${index}`}
-                  href={item.url}
-                  className={cn(resultRow, selected && "before:hover-glow")}
-                  role="option"
-                  aria-selected={selected}
-                  onClick={close}
-                >
-                  <div {...iconStyleFor(item)}>
-                    <img
-                      className={iconImgClass({
-                        size: item.category === "weapon" ? "mini" : undefined,
-                        monster: item.category === "monster",
-                      })}
-                      src={iconSrcFor(item)}
-                      alt=""
-                      onError={(e) => {
-                        (e.currentTarget.parentElement as HTMLElement).style.opacity = "0";
-                      }}
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="m-0 truncate">{item.name}</p>
-                    {item.rank && (
-                      <p className="m-0 text-[1.4rem] text-white/50 capitalize">{item.rank}</p>
-                    )}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          {results.map((result, index) => {
+            const item = result.item;
+            const selected = index === selectedIndex;
+            return (
+              <Link
+                key={`${item.category}-${item.slug}-${index}`}
+                href={item.url}
+                className={cn(resultRow, selected && "before:hover-glow")}
+                role="option"
+                aria-selected={selected}
+                onClick={close}
+              >
+                <div {...iconStyleFor(item)}>
+                  <img
+                    className={iconImgClass({
+                      size: item.category === "weapon" ? "mini" : undefined,
+                      monster: item.category === "monster",
+                    })}
+                    src={iconSrcFor(item)}
+                    alt=""
+                    onError={(e) => {
+                      (e.currentTarget.parentElement as HTMLElement).style.opacity = "0";
+                    }}
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="m-0 truncate">{item.name}</p>
+                  {item.rank && (
+                    <p className="m-0 text-[1.4rem] text-white/50 capitalize">{item.rank}</p>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
 
-          <div className="flex gap-[1.6rem] border-t-2 border-hr/40 px-[1.6rem] py-[0.8rem] text-[1.3rem] text-white/40 mobile:hidden">
-            <span>↑↓ navigate</span>
-            <span>↵ open</span>
-            <span>esc close</span>
-          </div>
+        <div className="flex gap-[1.6rem] border-t-2 border-hr/40 px-[1.6rem] py-[0.8rem] text-[1.3rem] text-white/40 mobile:hidden">
+          <span>↑↓ navigate</span>
+          <span>↵ open</span>
+          <span>esc close</span>
         </div>
       </div>
+    </div>
   );
 }

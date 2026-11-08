@@ -63,7 +63,7 @@ export function Stat({
     <div>
       <h3
         className={cn(
-          "m-0 font-normal leading-none",
+          "m-0 leading-none font-normal",
           armor ? "inline-flex w-[10ch] text-stat" : "inline-block",
         )}
       >
@@ -75,7 +75,13 @@ export function Stat({
 }
 
 /** A stat value: white unless coloured (positive/negative/raw). */
-export function StatValue({ children, className }: { children: React.ReactNode; className?: string }) {
+export function StatValue({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return <span className={cn("text-white", className)}>{children}</span>;
 }
 
@@ -120,9 +126,18 @@ export function MaterialList({
  * One page of the requirements section. Only the first (active) page is
  * shown; the others are kept in the markup for a future page switcher.
  */
-export function RequirementsPage({ children, active }: { children: React.ReactNode; active?: boolean }) {
+export function RequirementsPage({
+  children,
+  active,
+}: {
+  children: React.ReactNode;
+  active?: boolean;
+}) {
   return (
-    <div data-tab className={cn("flex-1 flex-row flex-wrap mobile:gap-[16px]", active ? "flex" : "hidden")}>
+    <div
+      data-tab
+      className={cn("flex-1 flex-row flex-wrap mobile:gap-[16px]", active ? "flex" : "hidden")}
+    >
       {children}
     </div>
   );

@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
-import { ARMOR_POINTER_INDEX, ARMOR_SLOT_COUNTS, ARMOR_SLOT_TABLE_NAMES, ARMOR_SLOTS, readArmorValues } from "../src/tables/armor.js";
+import {
+  ARMOR_POINTER_INDEX,
+  ARMOR_SLOT_COUNTS,
+  ARMOR_SLOT_TABLE_NAMES,
+  ARMOR_SLOTS,
+  readArmorValues,
+} from "../src/tables/armor.js";
 import { SignatureResolver } from "../src/tables/resolver.js";
 import { fixtureReader } from "./helpers.js";
 
@@ -61,15 +67,22 @@ test("readArmorValues follows ArmorValuePTR's real pointer order (leg, head, che
 
   const armor = readArmorValues(reader);
   for (const slot of ARMOR_SLOTS) {
-    assert.equal(armor[slot][1]!.price, 1000 + ARMOR_POINTER_INDEX[slot], `${slot} read the wrong pointer`);
+    assert.equal(
+      armor[slot][1]!.price,
+      1000 + ARMOR_POINTER_INDEX[slot],
+      `${slot} read the wrong pointer`,
+    );
     assert.equal(armor[slot].length, ARMOR_SLOT_COUNTS[slot]);
   }
   assert.equal(armor.leg[1]!.price, 1000); // first pointer
   assert.equal(armor.head[1]!.price, 1001); // second pointer
-  assert.deepEqual(
-    Object.fromEntries(ARMOR_SLOTS.map((slot) => [slot, armor[slot].length])),
-    { head: 436, chest: 420, arm: 411, waist: 409, leg: 420 }
-  );
+  assert.deepEqual(Object.fromEntries(ARMOR_SLOTS.map((slot) => [slot, armor[slot].length])), {
+    head: 436,
+    chest: 420,
+    arm: 411,
+    waist: 409,
+    leg: 420,
+  });
 });
 
 test("readArmorValues(reader, resolver) resolves each slot's array directly via ARMOR_SLOT_TABLE_NAMES, bypassing the pointer table entirely", () => {
@@ -88,7 +101,13 @@ test("readArmorValues(reader, resolver) resolves each slot's array directly via 
     leg: 0x50000,
   };
   const { buf, reader } = fixtureReader(0x60000);
-  const markers: Record<string, number> = { head: 0xaaaa0001, chest: 0xbbbb0002, arm: 0xcccc0003, waist: 0xdddd0004, leg: 0xeeee0005 };
+  const markers: Record<string, number> = {
+    head: 0xaaaa0001,
+    chest: 0xbbbb0002,
+    arm: 0xcccc0003,
+    waist: 0xdddd0004,
+    leg: 0xeeee0005,
+  };
   for (const [slot, base] of Object.entries(slotBases)) buf.writeUInt32LE(markers[slot]!, base);
 
   const off = slotBases.chest! + 1 * 40; // second chest armor piece
@@ -102,8 +121,8 @@ test("readArmorValues(reader, resolver) resolves each slot's array directly via 
       Object.entries(slotBases).map(([slot, base]) => [
         ARMOR_SLOT_TABLE_NAMES[slot as keyof typeof ARMOR_SLOT_TABLE_NAMES],
         { signature: buf.subarray(base, base + 4), signatureOffset: 0 },
-      ])
-    )
+      ]),
+    ),
   );
 
   const armor = readArmorValues(reader, resolver);

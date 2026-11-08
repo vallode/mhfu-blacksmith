@@ -1,17 +1,7 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import ToastViewport, {
-  type ToastAction,
-  type ToastItem,
-} from "@/components/Toast";
+import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
+import ToastViewport, { type ToastAction, type ToastItem } from "@/components/Toast";
 
 export type { ToastAction };
 
@@ -129,10 +119,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     [schedule],
   );
 
-  const value = useMemo(
-    () => ({ toast, update, dismiss }),
-    [toast, update, dismiss],
-  );
+  const value = useMemo(() => ({ toast, update, dismiss }), [toast, update, dismiss]);
 
   return (
     <ToastContext.Provider value={value}>

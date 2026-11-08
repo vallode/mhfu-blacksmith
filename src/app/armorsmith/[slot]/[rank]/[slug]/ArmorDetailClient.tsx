@@ -100,22 +100,36 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
           <DetailBody>
             <StatList armor>
-              <Stat armor label="Defence:"><StatValue>{piece.defence}</StatValue></Stat>
-              <Stat armor label="Slots:"><Slots count={piece.slots} /></Stat>
+              <Stat armor label="Defence:">
+                <StatValue>{piece.defence}</StatValue>
+              </Stat>
+              <Stat armor label="Slots:">
+                <Slots count={piece.slots} />
+              </Stat>
               {piece.fire_res !== undefined && (
-                <Stat armor label="Fire res:"><StatValue>{piece.fire_res}</StatValue></Stat>
+                <Stat armor label="Fire res:">
+                  <StatValue>{piece.fire_res}</StatValue>
+                </Stat>
               )}
               {piece.water_res !== undefined && (
-                <Stat armor label="Water res:"><StatValue>{piece.water_res}</StatValue></Stat>
+                <Stat armor label="Water res:">
+                  <StatValue>{piece.water_res}</StatValue>
+                </Stat>
               )}
               {piece.thunder_res !== undefined && (
-                <Stat armor label="Thunder res:"><StatValue>{piece.thunder_res}</StatValue></Stat>
+                <Stat armor label="Thunder res:">
+                  <StatValue>{piece.thunder_res}</StatValue>
+                </Stat>
               )}
               {piece.ice_res !== undefined && (
-                <Stat armor label="Ice res:"><StatValue>{piece.ice_res}</StatValue></Stat>
+                <Stat armor label="Ice res:">
+                  <StatValue>{piece.ice_res}</StatValue>
+                </Stat>
               )}
               {piece.dragon_res !== undefined && (
-                <Stat armor label="Dragon res:"><StatValue>{piece.dragon_res}</StatValue></Stat>
+                <Stat armor label="Dragon res:">
+                  <StatValue>{piece.dragon_res}</StatValue>
+                </Stat>
               )}
             </StatList>
 
@@ -123,10 +137,10 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
             {piece.skills && piece.skills.length > 0 && (
               <div className="flex flex-1 flex-col gap-[13px]">
-                <h2 className="m-0 w-full font-normal leading-none">Skills</h2>
+                <h2 className="m-0 w-full leading-none font-normal">Skills</h2>
                 {piece.skills.map((skill, i) => (
                   <div key={i} className="flex">
-                    <h3 className="m-0 flex w-[10ch] font-normal leading-none">{skill.name}</h3>
+                    <h3 className="m-0 flex w-[10ch] leading-none font-normal">{skill.name}</h3>
                     <p
                       className={cn(
                         "w-[4ch] text-right",
@@ -142,7 +156,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
             {piece.create_mats && piece.create_mats.length > 0 && (
               <Requirements>
-                <MaterialList label="Create cost" cost={piece.create_cost} materials={piece.create_mats} />
+                <MaterialList
+                  label="Create cost"
+                  cost={piece.create_cost}
+                  materials={piece.create_mats}
+                />
               </Requirements>
             )}
 

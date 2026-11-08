@@ -52,9 +52,9 @@ function ok(m: Message): WorkerResult {
 }
 
 const items = new Map(
-  (JSON.parse(fs.readFileSync(path.join(root, "data/items.json"), "utf-8")).items as ItemRecord[]).map(
-    (i) => [i.id, i]
-  )
+  (
+    JSON.parse(fs.readFileSync(path.join(root, "data/items.json"), "utf-8")).items as ItemRecord[]
+  ).map((i) => [i.id, i]),
 );
 const name = (id: number) => items.get(id)?.name;
 
@@ -64,11 +64,22 @@ test("decrypts both layers and finds the two hunters", async () => {
   const [a, b, c] = r.characters;
   assert.equal(c, null, "slot 3 is empty");
   assert.deepEqual(
-    [a, b].map((h) => h && [h.name, h.sex, h.zenny, h.playTime, h.equipBox.length, h.itemChest.length, h.itemPouch.length]),
+    [a, b].map(
+      (h) =>
+        h && [
+          h.name,
+          h.sex,
+          h.zenny,
+          h.playTime,
+          h.equipBox.length,
+          h.itemChest.length,
+          h.itemPouch.length,
+        ],
+    ),
     [
       ["Gideon", "Female", 1223209, 19087, 79, 914, 15],
       ["MEARO", "Female", 9999999, 2840, 16, 999, 14],
-    ]
+    ],
   );
 });
 
@@ -98,7 +109,7 @@ test("pouch items resolve to the expected names", async () => {
       ["Farcaster", 1],
       ["Whetstone", 20],
       ["Map", 1],
-    ]
+    ],
   );
 });
 
@@ -122,14 +133,20 @@ test("the only unnamed IDs are the known placeholders", async () => {
     }
   }
   // This save has every item at x99, so the three padding IDs are in it too.
-  assert.deepEqual([...placeholders].sort((x, y) => x - y), [128, 465, 875]);
+  assert.deepEqual(
+    [...placeholders].sort((x, y) => x - y),
+    [128, 465, 875],
+  );
 });
 
 test("the region is detected from the keys, whatever the hint", async () => {
   assert.equal(ok(await parse("us")).region, "us");
   const r = ok(await parse("jp"));
   assert.equal(r.region, "us", "JP keys fail on a US/EU save, so the other keyset is tried");
-  assert.deepEqual(r.characters.map((h) => h?.name ?? null), ["Gideon", "MEARO", null]);
+  assert.deepEqual(
+    r.characters.map((h) => h?.name ?? null),
+    ["Gideon", "MEARO", null],
+  );
 });
 
 test("the region is also detected when only the game layer is left", async () => {
@@ -138,7 +155,7 @@ test("the region is also detected when only the game layer is left", async () =>
   const buf = fs.readFileSync(SAVE);
   const gameOnly: ArrayBuffer = await decryptPSPLayer(
     buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength),
-    "na"
+    "na",
   );
   assert.equal(gameOnly.byteLength, 0x16a100);
 
@@ -146,7 +163,7 @@ test("the region is also detected when only the game layer is left", async () =>
   await onmessage({ data: { buffer: gameOnly.slice(0), region: "us" } });
   assert.deepEqual(
     ok(message()).characters.map((h) => h?.name ?? null),
-    ["Gideon", "MEARO", null]
+    ["Gideon", "MEARO", null],
   );
 
   lastMessage = null;
@@ -160,16 +177,19 @@ test("a file no region can decrypt says so", async () => {
   lastMessage = null;
   await onmessage({ data: { buffer: junk.buffer, region: "us" } });
   assert.equal(message().ok, false);
-  assert.match((message() as { error: string }).error, /couldn't be decrypted with any region's keys/);
+  assert.match(
+    (message() as { error: string }).error,
+    /couldn't be decrypted with any region's keys/,
+  );
 });
 
 // Equipment box slots resolve through data/equipment-ids.json (by equip type code).
-const equipmentIds = JSON.parse(fs.readFileSync(path.join(root, "data/equipment-ids.json"), "utf-8")) as Record<
-  string,
-  ({ name: string; type?: string } | null)[]
->;
+const equipmentIds = JSON.parse(
+  fs.readFileSync(path.join(root, "data/equipment-ids.json"), "utf-8"),
+) as Record<string, ({ name: string; type?: string } | null)[]>;
 const EQUIP_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"];
-const equipName = (s: { type: number; id: number }) => equipmentIds[EQUIP_SLOTS[s.type]]?.[s.id]?.name;
+const equipName = (s: { type: number; id: number }) =>
+  equipmentIds[EQUIP_SLOTS[s.type]]?.[s.id]?.name;
 
 test("every equipment box slot resolves to an item", async () => {
   for (const h of ok(await parse("us")).characters) {
@@ -183,27 +203,61 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
   const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
   // A fresh hunter's box: one bone weapon per class plus the Mafumofu set.
   assert.deepEqual(mearo.equipBox.map(equipName), [
-    "Bone Blade", "Large Bone", "Bone Club", "Ivory Horn", "Longhorn", "Bone Gunlance", "Bone Kris",
-    "Bone Scythe", "Shooter's Barrel", "Bone Shooter", "Hunter's Bow I",
-    "Mafumofu Hood", "Mafumofu Jacket", "Mafumofu Mittens", "Mafumofu Coat", "Mafumofu Boots",
+    "Bone Blade",
+    "Large Bone",
+    "Bone Club",
+    "Ivory Horn",
+    "Longhorn",
+    "Bone Gunlance",
+    "Bone Kris",
+    "Bone Scythe",
+    "Shooter's Barrel",
+    "Bone Shooter",
+    "Hunter's Bow I",
+    "Mafumofu Hood",
+    "Mafumofu Jacket",
+    "Mafumofu Mittens",
+    "Mafumofu Coat",
+    "Mafumofu Boots",
   ]);
   // Each slot's ID table is separate, so a misaligned table would break these sets up.
   const armor = gideon.equipBox.filter((s) => s.type <= 4).map(equipName);
   for (const set of [
-    ["Ucamulbas Mask", "Ucamulbas Aegis", "Ucamulbas Claw", "Ucamulbas Cincture", "Ucamulbas Hessian"],
-    ["Empress Crown X", "Empress Mail X", "Empress Vambraces X", "Empress Tasset X", "Empress Greaves X"],
-    ["Dark Akantor Mask", "Dark Akantor Aegis", "Dark Akantor Claw", "DarkAkantor Cincture", "Dark Akantor Hessian"],
+    [
+      "Ucamulbas Mask",
+      "Ucamulbas Aegis",
+      "Ucamulbas Claw",
+      "Ucamulbas Cincture",
+      "Ucamulbas Hessian",
+    ],
+    [
+      "Empress Crown X",
+      "Empress Mail X",
+      "Empress Vambraces X",
+      "Empress Tasset X",
+      "Empress Greaves X",
+    ],
+    [
+      "Dark Akantor Mask",
+      "Dark Akantor Aegis",
+      "Dark Akantor Claw",
+      "DarkAkantor Cincture",
+      "Dark Akantor Hessian",
+    ],
   ]) {
-    for (const piece of set) assert.ok(armor.includes(piece), `Gideon's box should include ${piece}`);
+    for (const piece of set)
+      assert.ok(armor.includes(piece), `Gideon's box should include ${piece}`);
   }
 });
 
 // Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
 const decorationSlots = new Map(
-  (JSON.parse(fs.readFileSync(path.join(root, "data/decorations.json"), "utf-8")).decorations as {
-    name: string;
-    slots: number;
-  }[]).map((d) => [d.name, Number(d.slots)])
+  (
+    JSON.parse(fs.readFileSync(path.join(root, "data/decorations.json"), "utf-8")).decorations as {
+      name: string;
+      slots: number;
+    }[]
+  ).map((d) => [d.name, Number(d.slots)]),
 );
 /** Slot count of an equipment box piece, from data/weapons or data/armor. */
 const pieceSlots = (() => {
@@ -214,12 +268,17 @@ const pieceSlots = (() => {
     bySlot.set(key, m);
   };
   for (const f of fs.readdirSync(path.join(root, "data/weapons"))) {
-    const weapons = JSON.parse(fs.readFileSync(path.join(root, "data/weapons", f), "utf-8")).weapons;
+    const weapons = JSON.parse(
+      fs.readFileSync(path.join(root, "data/weapons", f), "utf-8"),
+    ).weapons;
     add("melee", weapons);
     add("ranged", weapons);
   }
   for (const slot of ["leggings", "helmet", "plate", "gauntlets", "waist"]) {
-    add(slot, JSON.parse(fs.readFileSync(path.join(root, "data/armor", `${slot}.json`), "utf-8")).armor);
+    add(
+      slot,
+      JSON.parse(fs.readFileSync(path.join(root, "data/armor", `${slot}.json`), "utf-8")).armor,
+    );
   }
   return (s: { type: number; id: number }) => bySlot.get(EQUIP_SLOTS[s.type])?.get(equipName(s)!);
 })();
@@ -239,7 +298,10 @@ test("decorations decode as jewel item IDs", async () => {
     ["Ucamulbas Hessian", ["Grinder Jewel", "Grinder Jewel"]],
     ["Master's Blade G", ["Grinder Jewel", "Grinder Jewel"]],
   ]);
-  assert.ok(mearo.equipBox.every((s) => s.decorations?.length === 0), "MEARO's gear has no decorations");
+  assert.ok(
+    mearo.equipBox.every((s) => s.decorations?.length === 0),
+    "MEARO's gear has no decorations",
+  );
 });
 
 test("every decoration is a known jewel and the jewels fit the piece's slots", async () => {
@@ -248,12 +310,18 @@ test("every decoration is a known jewel and the jewels fit the piece's slots", a
       let used = 0;
       for (const id of s.decorations ?? []) {
         const jewel = name(id);
-        assert.ok(jewel && decorationSlots.has(jewel), `${h!.name}: ${equipName(s)} holds item ${id} (${jewel}), not a decoration`);
+        assert.ok(
+          jewel && decorationSlots.has(jewel),
+          `${h!.name}: ${equipName(s)} holds item ${id} (${jewel}), not a decoration`,
+        );
         used += decorationSlots.get(jewel)!;
       }
       const slots = pieceSlots(s);
       assert.ok(slots !== undefined, `${equipName(s)}: slot count not found`);
-      assert.ok(used <= slots, `${h!.name}: ${equipName(s)} has ${slots} slots but ${used} slots of jewels`);
+      assert.ok(
+        used <= slots,
+        `${h!.name}: ${equipName(s)} has ${slots} slots but ${used} slots of jewels`,
+      );
     }
   }
 });

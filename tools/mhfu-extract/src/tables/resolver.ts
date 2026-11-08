@@ -44,7 +44,7 @@ export interface TableAddressResolver {
 export class StaticOffsetResolver implements TableAddressResolver {
   constructor(
     private readonly baseAddress: number,
-    private readonly tableAddresses: Readonly<Record<string, number>>
+    private readonly tableAddresses: Readonly<Record<string, number>>,
   ) {}
 
   resolve(table: string): number {
@@ -67,7 +67,9 @@ export interface TableSignature {
 /** Every occurrence of `needle` in `buf`, in ascending order (may be empty). */
 export function findAllOccurrences(buf: Buffer, needle: Buffer): number[] {
   if (needle.length === 0) {
-    throw new TableResolutionError("findAllOccurrences: needle must not be empty (every offset would trivially match)");
+    throw new TableResolutionError(
+      "findAllOccurrences: needle must not be empty (every offset would trivially match)",
+    );
   }
   const matches: number[] = [];
   let from = 0;
@@ -98,16 +100,18 @@ export class SignatureResolver implements TableAddressResolver {
     const spec = this.signatures[table];
     if (!spec) {
       throw new TableResolutionError(
-        `SignatureResolver: no signature registered for table "${table}" — this table hasn't been validated for this region yet`
+        `SignatureResolver: no signature registered for table "${table}" — this table hasn't been validated for this region yet`,
       );
     }
     if (!buf) {
-      throw new TableResolutionError(`SignatureResolver: resolving table "${table}" requires a buffer to search`);
+      throw new TableResolutionError(
+        `SignatureResolver: resolving table "${table}" requires a buffer to search`,
+      );
     }
     const matches = findAllOccurrences(buf, spec.signature);
     if (matches.length === 0) {
       throw new TableResolutionError(
-        `SignatureResolver: signature for table "${table}" not found in buffer (0 matches) — wrong region/game, or the EBOOT doesn't look like expected`
+        `SignatureResolver: signature for table "${table}" not found in buffer (0 matches) — wrong region/game, or the EBOOT doesn't look like expected`,
       );
     }
     if (matches.length > 1) {
@@ -116,7 +120,9 @@ export class SignatureResolver implements TableAddressResolver {
           `${matches
             .slice(0, 5)
             .map((m) => `0x${m.toString(16)}`)
-            .join(", ")}${matches.length > 5 ? ", ..." : ""}) — signature needs to be longer/more specific`
+            .join(
+              ", ",
+            )}${matches.length > 5 ? ", ..." : ""}) — signature needs to be longer/more specific`,
       );
     }
     return matches[0]! - spec.signatureOffset;
@@ -140,13 +146,21 @@ export interface ResolverCoverageResult {
  * genuine, expected EBOOT for the tables that matter, not proof by itself
  * that every individual struct field is being decoded correctly.
  */
-export function verifyResolverCoverage(resolver: TableAddressResolver, tables: readonly string[], buf: Buffer): ResolverCoverageResult {
+export function verifyResolverCoverage(
+  resolver: TableAddressResolver,
+  tables: readonly string[],
+  buf: Buffer,
+): ResolverCoverageResult {
   const checks = tables.map((table) => {
     try {
       const offset = resolver.resolve(table, buf);
       return { name: `resolve("${table}")`, ok: true, detail: `0x${offset.toString(16)}` };
     } catch (error) {
-      return { name: `resolve("${table}")`, ok: false, detail: error instanceof Error ? error.message : String(error) };
+      return {
+        name: `resolve("${table}")`,
+        ok: false,
+        detail: error instanceof Error ? error.message : String(error),
+      };
     }
   });
   return { ok: checks.every((c) => c.ok), checks };
@@ -167,7 +181,7 @@ export function extractSignature(
   knownGoodResolver: TableAddressResolver,
   table: string,
   length: number,
-  signatureOffset = 0
+  signatureOffset = 0,
 ): TableSignature {
   const base = knownGoodResolver.resolve(table, knownGoodBuf);
   const start = base + signatureOffset;

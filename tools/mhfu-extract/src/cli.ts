@@ -59,7 +59,9 @@ export async function main(argv: string[]): Promise<void> {
         skipEboot: flags["skip-eboot"] === "true",
         pspdecryptBin: flags["pspdecrypt-bin"],
       });
-      console.log(`\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`);
+      console.log(
+        `\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`,
+      );
       return;
     }
     case "extract": {
@@ -67,7 +69,9 @@ export async function main(argv: string[]): Promise<void> {
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),
       });
-      console.log(`\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`);
+      console.log(
+        `\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`,
+      );
       return;
     }
     case "diff": {

@@ -65,7 +65,7 @@ We validated the JP and EU EBOOTs against real disc dumps and found that a
 single constant "region rebase" (the originally planned design — one fixed
 offset shift applied to every table for a given region) does not hold:
 localized string data inserted at different points in the EU binary shifts
-different tables by *different* amounts (confirmed by locating the same
+different tables by _different_ amounts (confirmed by locating the same
 region-independent weapon-stat bytes at different real shifts per table:
 `0x2ab8` for `weaponClassModifiers` vs. `0x2b04` for `weaponsBlademaster`/
 `weaponsGunner`/`decorationSkills`/`sharpnessTable`/`bowgunShotTable`/
@@ -79,7 +79,7 @@ coverage for a region doesn't block English output either way.
 
 - **`TableAddressResolver`** (`src/tables/resolver.ts`) is the abstraction a
   table reader ultimately resolves an address through: `resolve(table, buf?)
-  -> fileOffset`. Two implementations exist:
+-> fileOffset`. Two implementations exist:
   - **`StaticOffsetResolver`** — the pre-existing JP mechanism, generalized:
     a fixed `baseAddress` plus a `table -> virtual address` map, computed
     without needing the buffer at all. `offsets.ts`'s `JP_BASE_ADDRESS`/
@@ -90,12 +90,12 @@ coverage for a region doesn't block English output either way.
     (pinned in `test/game-profile.test.ts`).
   - **`SignatureResolver`** — the new mechanism, for regions where addresses
     shift unpredictably per table. Given a `table -> { signature bytes,
-    signatureOffset }` map, it searches the target buffer for each table's
-    signature and requires *exactly one* match (zero or multiple matches
+signatureOffset }` map, it searches the target buffer for each table's
+    signature and requires _exactly one_ match (zero or multiple matches
     both fail loudly, naming the table, rather than silently resolving to a
     wrong address). A signature's bytes must be region-independent — i.e.
     raw gameplay values (stats, prices, item IDs), never pointers or
-    localized strings, since those are exactly the things that *do* change
+    localized strings, since those are exactly the things that _do_ change
     between regions/localizations.
   - **`extractSignature()`** is a small dev-tool helper for deriving a new
     `TableSignature` from a known-good buffer via an existing resolver
@@ -106,7 +106,7 @@ coverage for a region doesn't block English output either way.
 - **`GameProfile`** (`src/tables/profile.ts`) bundles one game's table
   knowledge — a declarative `tables: TableDescriptor[]` list (entry
   size/count, where known) plus `resolverForRegion(region) ->
-  TableAddressResolver | null`. `null` means "no support at all for this
+TableAddressResolver | null`. `null` means "no support at all for this
   region yet" (e.g. MHP2G + `us`, since no US disc is available to derive
   anything from); a non-null resolver that throws per-table (like
   `SignatureResolver` does for anything outside `EU_ALL_SIGNATURES`) means
@@ -352,7 +352,7 @@ the same output. Every table reader's byte offsets have additionally been
 validated by hand against a real decrypted JP EBOOT (not part of this repo,
 not automated in CI) — see git history for the specific findings, notably:
 
-- `ArmorValuePTR` is five *single* pointers to per-slot arrays, not one
+- `ArmorValuePTR` is five _single_ pointers to per-slot arrays, not one
   pointer per armor piece as the ImHex syntax might suggest at a glance.
 - Those five pointers are in leg, head, chest, arm, waist order, not the
   head, chest, arm, waist, leg that `eboot.hexpat` declares: each one holds
@@ -368,11 +368,10 @@ not automated in CI) — see git history for the specific findings, notably:
   from `eboot.hexpat`) are correct: the computed end-of-table byte offset for
   each matches the real gap to the next declared table's address exactly.
 - The vendored `.enum` files' declared `str Name[N]` header counts are
-  unreliable (off from the actual parsed string count for *every* table, not
+  unreliable (off from the actual parsed string count for _every_ table, not
   just an isolated one-off) — `src/strings/enums.ts` trusts the parsed count,
   which matches real stat-table lengths exactly, including `ChestArmorID`
-  (420 names, 420 stat entries) once you stop trusting its header's claimed
-  435.
+  (420 names, 420 stat entries) once you stop trusting its header's claimed 435.
 
 `test/resolver.test.ts` and `test/game-profile.test.ts` cover the table
 address resolution architecture (see "Region support" above):

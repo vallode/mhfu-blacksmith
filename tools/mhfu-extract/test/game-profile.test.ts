@@ -19,7 +19,8 @@ test("MHP2G_PROFILE.resolverForRegion('us') is null — no US disc available to 
 
 test("MHP2G_PROFILE declares every JP table in its tables list, with entry shape for the ones we know", () => {
   const names = MHP2G_PROFILE.tables.map((t) => t.name);
-  for (const table of Object.keys(JP_TABLE_ADDRESSES)) assert.ok(names.includes(table), `missing ${table}`);
+  for (const table of Object.keys(JP_TABLE_ADDRESSES))
+    assert.ok(names.includes(table), `missing ${table}`);
 
   const wepBm = MHP2G_PROFILE.tables.find((t) => t.name === "weaponsBlademaster");
   assert.deepEqual(wepBm, { name: "weaponsBlademaster", entrySize: 24, count: 1150 });
@@ -50,7 +51,7 @@ test("MHP2G_EU_RESOLVER resolves the real weaponClassModifiers signature at its 
   const realOffset = 0x139170;
   const signatureBytes = Buffer.from(
     "e00100007800000008020000e60000008c000000780000008c000000e001000008020000e600000078000000",
-    "hex"
+    "hex",
   );
   const buf = Buffer.alloc(realOffset + signatureBytes.length);
   signatureBytes.copy(buf, realOffset);
@@ -82,7 +83,7 @@ test("MHP2G_EU_RESOLVER throws a clear 'not validated yet' error for an unsuppor
       assert.ok(err instanceof TableResolutionError);
       assert.match(err.message, /no signature registered/);
       return true;
-    }
+    },
   );
 });
 
@@ -97,7 +98,7 @@ test("MHP2G_EU_RESOLVER resolves weaponsBlademaster at its real EU file offset (
   const realOffset = 0x158580;
   const signatureBytes = Buffer.from(
     "0000000000000000000000000000000000000000000000000a00050050c300000002be00000000000000000000410000",
-    "hex"
+    "hex",
   );
   const buf = Buffer.alloc(realOffset + signatureBytes.length);
   signatureBytes.copy(buf, realOffset);
@@ -106,7 +107,10 @@ test("MHP2G_EU_RESOLVER resolves weaponsBlademaster at its real EU file offset (
 
 test("MHP2G_EU_RESOLVER resolves weaponsGunner at its real EU file offset (0x15f150)", () => {
   const realOffset = 0x15f150;
-  const signatureBytes = Buffer.from("0b0000000000000000000000000000000000000200000000ffffffff", "hex");
+  const signatureBytes = Buffer.from(
+    "0b0000000000000000000000000000000000000200000000ffffffff",
+    "hex",
+  );
   const buf = Buffer.alloc(realOffset + signatureBytes.length);
   signatureBytes.copy(buf, realOffset);
   assert.equal(MHP2G_EU_RESOLVER.resolve("weaponsGunner", buf), realOffset);
@@ -148,7 +152,7 @@ test("MHP2G_EU_RESOLVER resolves equipmentUpgrade at its real EU file offset (0x
   const realOffset = 0x14df5c;
   const signatureBytes = Buffer.from(
     "ff0000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000",
-    "hex"
+    "hex",
   );
   const buf = Buffer.alloc(realOffset + signatureBytes.length);
   signatureBytes.copy(buf, realOffset);
@@ -169,7 +173,10 @@ test("MHP2G_EU_RESOLVER resolves decorationValues at its real EU file offset (0x
 
 test("MHP2G_EU_RESOLVER resolves bowgunShotTable at its real EU file offset (0x176cac)", () => {
   const realOffset = 0x176cac;
-  const signatureBytes = Buffer.from("0606090303030404040101010101010303030301030303010301030102020101", "hex");
+  const signatureBytes = Buffer.from(
+    "0606090303030404040101010101010303030301030303010301030102020101",
+    "hex",
+  );
   const buf = Buffer.alloc(realOffset + signatureBytes.length);
   signatureBytes.copy(buf, realOffset);
   assert.equal(MHP2G_EU_RESOLVER.resolve("bowgunShotTable", buf), realOffset);
@@ -205,11 +212,31 @@ test("MHP2G_EU_RESOLVER resolves bowgunModTable to its BGModLevel data pool, not
 
 test("MHP2G_EU_RESOLVER resolves every armorValues<Slot> directly, bypassing armorValuePointers' pointer indirection", () => {
   const slots: [string, number, string][] = [
-    ["armorValuesHead", 0x161808, "000000000f00000000000000000000000000000000000000000000000000000000000000000000000f0011000f0000002c0100000202000000000100060b0e0e13131c0002003402130229013c0244fe"],
-    ["armorValuesChest", 0x165c28, "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060024000f0000002c0100000202000000000000060b0e0e13131c0002003402130229023b0244ff"],
-    ["armorValuesArm", 0x169dc8, "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060023000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000"],
-    ["armorValuesWaist", 0x16de00, "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060019000f0000002c0100000202000000000000060b0e0e13131c0003003403130229013b0344fe"],
-    ["armorValuesLeg", 0x171de8, "000000000f000000000000000000000000000000000000000000000000000000000000000000000006001a000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000"],
+    [
+      "armorValuesHead",
+      0x161808,
+      "000000000f00000000000000000000000000000000000000000000000000000000000000000000000f0011000f0000002c0100000202000000000100060b0e0e13131c0002003402130229013c0244fe",
+    ],
+    [
+      "armorValuesChest",
+      0x165c28,
+      "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060024000f0000002c0100000202000000000000060b0e0e13131c0002003402130229023b0244ff",
+    ],
+    [
+      "armorValuesArm",
+      0x169dc8,
+      "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060023000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
+    ],
+    [
+      "armorValuesWaist",
+      0x16de00,
+      "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060019000f0000002c0100000202000000000000060b0e0e13131c0003003403130229013b0344fe",
+    ],
+    [
+      "armorValuesLeg",
+      0x171de8,
+      "000000000f000000000000000000000000000000000000000000000000000000000000000000000006001a000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
+    ],
   ];
   for (const [table, realOffset, hex] of slots) {
     const signatureBytes = Buffer.from(hex, "hex");

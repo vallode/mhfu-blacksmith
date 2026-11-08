@@ -9,23 +9,74 @@ import { cn } from "@/lib/cn";
 
 /** Item, weapon and armor types with a mask at /images/<type>.png (and <type>-mini.png). */
 const ITEM_MASKS = new Set([
-  "great-sword", "long-sword", "sword-and-shield", "dual-blades", "hammer",
-  "hunting-horn", "lance", "gunlance", "light-bowgun", "heavy-bowgun", "bow",
-  "decoration", "deco", "herb", "seed", "meat", "note", "bone", "ore", "fish",
-  "hide", "sac", "claw", "scale", "pelt", "insect", "fluid", "part", "egg",
-  "ticket", "bait", "webbing", "mushroom", "shell", "heavenly", "stone", "coin",
-  "ukwn", "helmet", "plate", "gauntlets", "waist", "leggings",
+  "great-sword",
+  "long-sword",
+  "sword-and-shield",
+  "dual-blades",
+  "hammer",
+  "hunting-horn",
+  "lance",
+  "gunlance",
+  "light-bowgun",
+  "heavy-bowgun",
+  "bow",
+  "decoration",
+  "deco",
+  "herb",
+  "seed",
+  "meat",
+  "note",
+  "bone",
+  "ore",
+  "fish",
+  "hide",
+  "sac",
+  "claw",
+  "scale",
+  "pelt",
+  "insect",
+  "fluid",
+  "part",
+  "egg",
+  "ticket",
+  "bait",
+  "webbing",
+  "mushroom",
+  "shell",
+  "heavenly",
+  "stone",
+  "coin",
+  "ukwn",
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "leggings",
 ]);
 
 /** Monster categories with a mask at /images/monsters/<type>.png. */
 const MONSTER_MASKS = new Set([
-  "bird-wyvern", "carapaceon", "elder-dragon", "flying-wyvern", "herbivore",
-  "lynian", "neopteron", "pelagus", "piscine-wyvern",
+  "bird-wyvern",
+  "carapaceon",
+  "elder-dragon",
+  "flying-wyvern",
+  "herbivore",
+  "lynian",
+  "neopteron",
+  "pelagus",
+  "piscine-wyvern",
 ]);
 
 /** Element badges drawn in the bottom-right corner, from /images/<element>.png. */
 const ELEMENT_BADGES = new Set([
-  "fire", "thunder", "poison", "water", "ice", "sleep", "dragon", "paralysis",
+  "fire",
+  "thunder",
+  "poison",
+  "water",
+  "ice",
+  "sleep",
+  "dragon",
+  "paralysis",
 ]);
 
 /** Rank badges drawn in the bottom-right corner, from /images/<rank>.png. */
@@ -33,7 +84,16 @@ const RANK_BADGES = new Set(["high-rank", "g-rank"]);
 
 /** Names that have a --color-gem-* token. */
 const GEM_COLORS = new Set([
-  "blue", "cyan", "gray", "green", "orange", "pink", "red", "slate", "white", "yellow",
+  "blue",
+  "cyan",
+  "gray",
+  "green",
+  "orange",
+  "pink",
+  "red",
+  "slate",
+  "white",
+  "yellow",
 ]);
 
 /** Names that have a --color-note-* token (passed as color="note-a" etc.). */
@@ -84,7 +144,11 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
   const tint = tintFor(opts);
   // Only one corner badge fits; rank wins over element.
   const badge =
-    rank && RANK_BADGES.has(rank) ? "rank" : element && ELEMENT_BADGES.has(element) ? "element" : null;
+    rank && RANK_BADGES.has(rank)
+      ? "rank"
+      : element && ELEMENT_BADGES.has(element)
+        ? "element"
+        : null;
 
   const style: Record<string, string> = {};
   if (mask) style["--icon-mask"] = mask;
@@ -102,16 +166,20 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
       mask && nav && "before:bg-[var(--icon-tint,#bdbdbd)] hover:before:bg-white",
       badge && "after:icon-badge",
       badge === "element" && "after:[background-position:bottom_-1px_right_-1px]",
-      badge === "rank" && "after:[background-position:bottom_0px_right_0px] after:[background-size:37.5px_39px]",
+      badge === "rank" &&
+        "after:[background-size:37.5px_39px] after:[background-position:bottom_0px_right_0px]",
     ),
     style: style as CSSProperties,
   };
 }
 
 /** Classes for the sprite <img> inside an icon wrapper. */
-export function iconImgClass({ size, monster }: Pick<IconStyleOptions, "size" | "monster">): string {
+export function iconImgClass({
+  size,
+  monster,
+}: Pick<IconStyleOptions, "size" | "monster">): string {
   return cn(
-    "pixelated relative h-[32px] w-[32px]",
+    "relative h-[32px] w-[32px] pixelated",
     size === "large" && "h-[52px] w-[52px]",
     monster && "p-[4px]",
   );

@@ -43,7 +43,7 @@ export function saveFromCharacter(
     equipBox: EquipSlot[];
   },
   region: string,
-  slot?: number
+  slot?: number,
 ): Omit<SaveData, "savedAt"> {
   return {
     name: character.name,

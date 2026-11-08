@@ -26,7 +26,11 @@ import {
   WEAPON_GUN_ENTRY_SIZE,
 } from "../tables/offsets.js";
 import type { GameProfile, TableDescriptor } from "../tables/profile.js";
-import { SignatureResolver, StaticOffsetResolver, type TableAddressResolver } from "../tables/resolver.js";
+import {
+  SignatureResolver,
+  StaticOffsetResolver,
+  type TableAddressResolver,
+} from "../tables/resolver.js";
 
 /**
  * Per-table entry size/count, for tables that are a single flat fixed-stride
@@ -38,7 +42,9 @@ import { SignatureResolver, StaticOffsetResolver, type TableAddressResolver } fr
  * `JP_TABLE_ADDRESSES` for completeness, but no reader/consumer exists in
  * tables/*.ts today).
  */
-const FIXED_STRIDE_TABLES: Readonly<Partial<Record<keyof typeof JP_TABLE_ADDRESSES, { entrySize: number; count: number }>>> = {
+const FIXED_STRIDE_TABLES: Readonly<
+  Partial<Record<keyof typeof JP_TABLE_ADDRESSES, { entrySize: number; count: number }>>
+> = {
   weaponClassModifiers: { entrySize: 4, count: 11 },
   armorValuePointers: { entrySize: 4, count: 5 },
   weaponsBlademaster: { entrySize: WEAPON_BM_ENTRY_SIZE, count: TABLE_COUNTS.weaponsBlademaster },
@@ -51,10 +57,11 @@ const FIXED_STRIDE_TABLES: Readonly<Partial<Record<keyof typeof JP_TABLE_ADDRESS
 };
 
 /** Entry size only, for tables whose overall count isn't a single fixed number (see recipes.ts). */
-const VARIABLE_SECTION_TABLES: Readonly<Partial<Record<keyof typeof JP_TABLE_ADDRESSES, number>>> = {
-  equipmentCreate: EQUIP_CREATE_ENTRY_SIZE,
-  equipmentUpgrade: EQUIP_UPGRADE_ENTRY_SIZE,
-};
+const VARIABLE_SECTION_TABLES: Readonly<Partial<Record<keyof typeof JP_TABLE_ADDRESSES, number>>> =
+  {
+    equipmentCreate: EQUIP_CREATE_ENTRY_SIZE,
+    equipmentUpgrade: EQUIP_UPGRADE_ENTRY_SIZE,
+  };
 
 const MHP2G_TABLES: readonly TableDescriptor[] = Object.keys(JP_TABLE_ADDRESSES).map((name) => {
   const key = name as keyof typeof JP_TABLE_ADDRESSES;
@@ -66,7 +73,10 @@ const MHP2G_TABLES: readonly TableDescriptor[] = Object.keys(JP_TABLE_ADDRESSES)
 });
 
 /** JP's exact pre-existing static-offset behavior, now expressed as a `TableAddressResolver`. */
-export const MHP2G_JP_RESOLVER: TableAddressResolver = new StaticOffsetResolver(JP_BASE_ADDRESS, JP_TABLE_ADDRESSES);
+export const MHP2G_JP_RESOLVER: TableAddressResolver = new StaticOffsetResolver(
+  JP_BASE_ADDRESS,
+  JP_TABLE_ADDRESSES,
+);
 
 /**
  * EU's signature-based resolver. Covers every equipment table `emit/*.ts`

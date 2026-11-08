@@ -45,7 +45,9 @@ const allWeaponSlugs = new Map<string, Set<string>>(); // type → slugs
 for (const type of weaponTypes) {
   const craftingFile = path.join(weaponDataDir, `${type}.json`);
   if (!fs.existsSync(craftingFile)) continue;
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as { weapons: Record<string, unknown>[] };
+  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+    weapons: Record<string, unknown>[];
+  };
   const slugs = new Set<string>();
   for (const w of data.weapons) {
     if ("donotrender" in w || !w.name) continue;
@@ -118,15 +120,22 @@ for (const type of weaponTypes) {
       map: { slug: string; name: string; type?: string; children?: unknown[] }[];
     };
 
-    function validateNode(node: { slug: string; name: string; type?: string; children?: unknown[] }) {
+    function validateNode(node: {
+      slug: string;
+      name: string;
+      type?: string;
+      children?: unknown[];
+    }) {
       const nodeType = node.type || type;
       const nodeTypeSlugs = allWeaponSlugs.get(nodeType) ?? slugs;
       if (!nodeTypeSlugs.has(node.slug)) {
         // Data inconsistency in source content — warn rather than error
-        warn(`${type}/map.json: node "${node.name}" (slug: ${node.slug}, type: ${nodeType}) not found in crafting data`);
+        warn(
+          `${type}/map.json: node "${node.name}" (slug: ${node.slug}, type: ${nodeType}) not found in crafting data`,
+        );
       }
       if (Array.isArray(node.children)) {
-        for (const child of node.children as typeof node[]) {
+        for (const child of node.children as (typeof node)[]) {
           validateNode(child);
         }
       }
@@ -147,7 +156,10 @@ for (const type of weaponTypes) {
 section("Validating armor…");
 
 const armorDataDir = path.join(dataDir, "armor");
-for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(".json"))) {
+for (const file of fs
+  .readdirSync(armorDataDir)
+  .sort()
+  .filter((e) => e.endsWith(".json"))) {
   const slot = file.replace(/\.json$/, "");
   const craftingFile = path.join(armorDataDir, file);
 
@@ -161,7 +173,10 @@ for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(
     if ("donotrender" in a) continue;
     const name = a.name as string | undefined;
     const rank = (a.rank as string) || "low-rank";
-    if (!name) { error(`${slot}/${rank}: armor missing name`); continue; }
+    if (!name) {
+      error(`${slot}/${rank}: armor missing name`);
+      continue;
+    }
 
     const pieces = piecesByRank.get(rank) ?? [];
     pieces.push({ name, sex: a.sex as string | undefined });
@@ -182,7 +197,9 @@ for (const file of fs.readdirSync(armorDataDir).sort().filter((e) => e.endsWith(
       type Node = { slug: string; name: string; rarity?: unknown; children?: Node[] };
       const visit = (node: Node) => {
         if (node.rarity && !slugs.has(node.slug)) {
-          error(`${slot}/${rank}/map.json: node "${node.name}" (slug: ${node.slug}) not found in armor data`);
+          error(
+            `${slot}/${rank}/map.json: node "${node.name}" (slug: ${node.slug}) not found in armor data`,
+          );
         }
         node.children?.forEach(visit);
       };
@@ -210,7 +227,10 @@ if (!fs.existsSync(decoFile)) {
   for (const d of data.decorations) {
     if ("donotrender" in d) continue;
     const name = d.name as string | undefined;
-    if (!name) { error("decoration missing name"); continue; }
+    if (!name) {
+      error("decoration missing name");
+      continue;
+    }
 
     const slug = slugify(name);
     if (slugs.has(slug)) error(`decoration: duplicate slug "${slug}"`);
@@ -226,7 +246,10 @@ if (!fs.existsSync(decoFile)) {
 section("Validating monsters…");
 
 const monsterDataDir = path.join(dataDir, "monsters");
-for (const file of fs.readdirSync(monsterDataDir).sort().filter((e) => e.endsWith(".json"))) {
+for (const file of fs
+  .readdirSync(monsterDataDir)
+  .sort()
+  .filter((e) => e.endsWith(".json"))) {
   const category = file.replace(/\.json$/, "");
   const jsonFile = path.join(monsterDataDir, file);
 
@@ -236,9 +259,12 @@ for (const file of fs.readdirSync(monsterDataDir).sort().filter((e) => e.endsWit
   const slugs = new Set<string>();
   let count = 0;
 
-  for (const m of (data.monsters ?? [])) {
+  for (const m of data.monsters ?? []) {
     const name = m.name as string | undefined;
-    if (!name) { error(`monsters/${category}: monster missing name`); continue; }
+    if (!name) {
+      error(`monsters/${category}: monster missing name`);
+      continue;
+    }
 
     const slug = slugify(name);
     if (slugs.has(slug)) error(`monsters/${category}: duplicate slug "${slug}"`);
@@ -262,21 +288,31 @@ if (!fs.existsSync(equipmentIdsFile)) {
 
   const readNames = (file: string, key: string) =>
     new Set(
-      (JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"))[key] as Record<string, unknown>[])
+      (
+        JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"))[key] as Record<
+          string,
+          unknown
+        >[]
+      )
         .filter((i) => !("donotrender" in i))
-        .map((i) => i.name as string)
+        .map((i) => i.name as string),
     );
-  const weaponNames = new Map(weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]));
+  const weaponNames = new Map(
+    weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]),
+  );
 
   for (const [slot, entries] of Object.entries(ids)) {
-    const armorNames = slot === "melee" || slot === "ranged" ? null : readNames(`armor/${slot}.json`, "armor");
+    const armorNames =
+      slot === "melee" || slot === "ranged" ? null : readNames(`armor/${slot}.json`, "armor");
     let mapped = 0;
     entries.forEach((entry, id) => {
       if (!entry) return;
       mapped++;
       const names = armorNames ?? weaponNames.get(entry.type ?? "");
       if (!names?.has(entry.name)) {
-        error(`equipment-ids ${slot}[${id}]: "${entry.name}"${entry.type ? ` (${entry.type})` : ""} not found in data/ (rerun \`pnpm generate-equipment-ids\`)`);
+        error(
+          `equipment-ids ${slot}[${id}]: "${entry.name}"${entry.type ? ` (${entry.type})` : ""} not found in data/ (rerun \`pnpm generate-equipment-ids\`)`,
+        );
       }
     });
     console.log(`  ${slot}: ${mapped} IDs mapped`);
@@ -292,7 +328,15 @@ if (!fs.existsSync(itemsFile)) {
   error("Missing data/items.json");
 } else {
   const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as { items: ItemRecord[] };
-  const ITEM_KEYS = new Set(["id", "name", "name_jp", "aliases", "rarity", "regions", "placeholder"]);
+  const ITEM_KEYS = new Set([
+    "id",
+    "name",
+    "name_jp",
+    "aliases",
+    "rarity",
+    "regions",
+    "placeholder",
+  ]);
   const REGIONS = new Set(["jp", "us", "eu"]);
   const ids = new Set<number>();
 
@@ -305,26 +349,37 @@ if (!fs.existsSync(itemsFile)) {
   for (const it of data.items) {
     const label = `items/${it.id ?? "?"}`;
     for (const k of Object.keys(it)) if (!ITEM_KEYS.has(k)) error(`${label}: unknown key "${k}"`);
-    if (!Number.isInteger(it.id) || it.id < 1 || it.id > 65534) error(`${label}: id must be an integer 1–65534`);
+    if (!Number.isInteger(it.id) || it.id < 1 || it.id > 65534)
+      error(`${label}: id must be an integer 1–65534`);
     else if (ids.has(it.id)) error(`${label}: duplicate id`);
     ids.add(it.id);
     if (typeof it.name !== "string" || !it.name.trim()) error(`${label}: missing name`);
     else if (it.name !== it.name.trim()) error(`${label}: name has surrounding whitespace`);
     if (typeof it.name_jp !== "string" || !it.name_jp) error(`${label}: missing name_jp`);
     if (it.aliases !== undefined) {
-      if (!Array.isArray(it.aliases) || it.aliases.some((a) => typeof a !== "string" || !a.trim())) {
+      if (
+        !Array.isArray(it.aliases) ||
+        it.aliases.some((a) => typeof a !== "string" || !a.trim())
+      ) {
         error(`${label}: aliases must be non-empty strings`);
       } else if (new Set(it.aliases).size !== it.aliases.length) {
         error(`${label}: duplicate alias`);
       }
     }
-    if (it.rarity !== undefined && (!Number.isInteger(it.rarity) || it.rarity < 1 || it.rarity > 10)) {
+    if (
+      it.rarity !== undefined &&
+      (!Number.isInteger(it.rarity) || it.rarity < 1 || it.rarity > 10)
+    ) {
       error(`${label}: rarity must be an integer 1–10`);
     }
-    if (it.regions !== undefined && (!Array.isArray(it.regions) || it.regions.some((r) => !REGIONS.has(r)))) {
+    if (
+      it.regions !== undefined &&
+      (!Array.isArray(it.regions) || it.regions.some((r) => !REGIONS.has(r)))
+    ) {
       error(`${label}: regions must be a subset of jp/us/eu`);
     }
-    if (it.placeholder !== undefined && it.placeholder !== true) error(`${label}: placeholder must be true`);
+    if (it.placeholder !== undefined && it.placeholder !== true)
+      error(`${label}: placeholder must be true`);
   }
 
   // Every name/alias must identify exactly one item.
@@ -355,7 +410,8 @@ if (!fs.existsSync(itemsFile)) {
             for (const m of val as { name?: unknown }[]) note(m?.name, `${rel} ${entry.name}`);
           }
         }
-        const drops = entry.drops as Record<string, Record<string, { name?: unknown }[]>> | undefined;
+        const drops = entry.drops as
+          Record<string, Record<string, { name?: unknown }[]>> | undefined;
         if (drops && typeof drops === "object") {
           for (const sources of Object.values(drops)) {
             for (const list2 of Object.values(sources ?? {})) {
@@ -368,20 +424,30 @@ if (!fs.existsSync(itemsFile)) {
   };
   for (const sub of ["weapons", "armor", "monsters"]) {
     const dir = path.join(dataDir, sub);
-    for (const f of fs.readdirSync(dir).filter((e) => e.endsWith(".json")).sort()) walk(path.join(dir, f));
+    for (const f of fs
+      .readdirSync(dir)
+      .filter((e) => e.endsWith(".json"))
+      .sort())
+      walk(path.join(dir, f));
   }
   walk(path.join(dataDir, "decorations.json"));
 
   for (const [name, where] of unresolved) {
-    error(`items: material "${name}" matches no item name or alias (used in ${[...where].slice(0, 2).join("; ")})`);
+    error(
+      `items: material "${name}" matches no item name or alias (used in ${[...where].slice(0, 2).join("; ")})`,
+    );
   }
 
-  console.log(`  items: ${data.items.length} ids, ${index.size} names/aliases, ${unresolved.size} unlinked materials`);
+  console.log(
+    `  items: ${data.items.length} ids, ${index.size} names/aliases, ${unresolved.size} unlinked materials`,
+  );
 }
 
 // ─── Summary ──────────────────────────────────────────────────────────────────
 
-console.log(`\n${errors === 0 ? "✓" : "✗"} Validation complete — ${errors} error(s), ${warnings} warning(s)`);
+console.log(
+  `\n${errors === 0 ? "✓" : "✗"} Validation complete — ${errors} error(s), ${warnings} warning(s)`,
+);
 
 if (errors > 0) {
   process.exit(1);
