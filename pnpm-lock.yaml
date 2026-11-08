@@ -29,9 +29,6 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.7(react@19.2.7)
-      sass:
-        specifier: ^1.100.0
-        version: 1.100.0
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0
@@ -5019,6 +5016,7 @@ snapshots:
   chokidar@5.0.0:
     dependencies:
       readdirp: 5.0.0
+    optional: true
 
   chrome-trace-event@1.0.4: {}
 
@@ -5649,7 +5647,8 @@ snapshots:
 
   ignore@7.0.5: {}
 
-  immutable@5.1.6: {}
+  immutable@5.1.6:
+    optional: true
 
   import-fresh@3.3.1:
     dependencies:
@@ -6156,7 +6155,8 @@ snapshots:
 
   react@19.2.7: {}
 
-  readdirp@5.0.0: {}
+  readdirp@5.0.0:
+    optional: true
 
   reflect.getprototypeof@1.0.10:
     dependencies:
@@ -6259,6 +6259,7 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.6
+    optional: true
 
   scheduler@0.27.0: {}
 

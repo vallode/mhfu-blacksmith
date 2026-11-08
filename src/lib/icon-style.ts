@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 // Which icon types have a tintable mask / badge image under public/images.
-// The colours themselves live in the @theme block in src/app/globals.scss
+// The colours themselves live in the @theme block in src/app/globals.css
 // (--color-rarity-*, --color-gem-*, --color-note-*); this file only says
 // which names exist. To add a type, drop the PNG(s) in public/images and add
 // the name here.
