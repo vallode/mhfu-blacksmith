@@ -360,9 +360,9 @@ derivation notes for specifics):
   (`src/tables/dual-attributes.ts`), keyed by `WepBMID`. Its element type
   is the `EleBitFlag` bit flag (Fire `0x10`, Ice `0x80`, Poison `0x02`, …),
   not the struct's single-element enum. Elements are emitted in stored
-  order. All 15 match the site's values; 5 list the two elements the other
-  way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire and
-  Ice), which `elements` ignores as it compares sets.
+  order. All 15 match the site's values; the site listed 5 of them the
+  other way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire
+  and Ice), and `build-data` now writes the disc's order.
 - Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
   aren't derivable from the disc at all — they're presentation metadata,
   supplied by the `src/overlay/materials.json` and
@@ -469,9 +469,10 @@ disagreement as JSON.
 writes the disc value of each field in that category's `take` list
 (`src/build/categories.ts`), in the site's vocabulary: site item names,
 the site's skill spelling (`Defence`, `Load`), and the site's spelling and
-icon style for each material. A field that already agrees is left
-byte-identical. Item order, key order and file layout don't change, and a
-second run is a no-op. Disc items the site doesn't list (the 10 unused
+icon style for each material. Lists (skills, materials, elements,
+upgrade-tree references) are written in the disc's order, even when they
+already agree as a set; a scalar that agrees is left byte-identical. Item
+order, key order and file layout don't change, and a second run is a no-op. Disc items the site doesn't list (the 10 unused
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
@@ -512,7 +513,15 @@ bows (87.1%). It is taken for every weapon file except `bow.json`
 (`keepFields` in `categories.ts`). The 15 bow disagreements are mostly
 coating bonuses the site lists as elements ("Sleep/Poison/Paralysis Add"),
 plus Abominable Bow II (site Ice 140, disc 200) and the `fire` spelling on
-Kut-Ku Stave G. Taking it changed no committed values.
+Kut-Ku Stave G. Taking it changed no values, only the order of the 5
+dual-element weapons above.
+
+Lists were later written in the disc's order rather than the site's. That
+reordered 2,083 lists that already agreed as sets: armor skills 1,879,
+weapon `improve_from` 179, `improve_to` 9, `improve_mats` 10, decoration
+`create_mats` 1 and `elements` 5. It also rewrote 4 malformed decoration
+skill strings (`NormalS Up+1` → `NormalS Up +1`, and an empty `""` entry on
+StrongShot Jewel+ and Pierce Jewel+).
 
 Sharpness was taken later (#31), after reading it per weapon class.
 `sharpness` agreement with the site was then: great sword 97.7%, long sword

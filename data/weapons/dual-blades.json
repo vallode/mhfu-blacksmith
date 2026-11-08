@@ -330,11 +330,11 @@
       ],
       "elements": [
         {
-          "name": "Fire",
+          "name": "Water",
           "attack": 300
         },
         {
-          "name": "Water",
+          "name": "Fire",
           "attack": 300
         }
       ],
@@ -398,11 +398,11 @@
       ],
       "elements": [
         {
-          "name": "Fire",
+          "name": "Water",
           "attack": 350
         },
         {
-          "name": "Water",
+          "name": "Fire",
           "attack": 350
         }
       ],
@@ -680,8 +680,8 @@
       "create_cost": null,
       "improve_cost": 2480,
       "improve_from": [
-        "Giaprey Claws+",
-        "Velocidrome Bite"
+        "Velocidrome Bite",
+        "Giaprey Claws+"
       ],
       "create_mats": null,
       "improve_mats": [
@@ -1227,9 +1227,9 @@
         }
       ],
       "improve_to": [
-        "Glutton's Set",
+        "Dual Tomahawk",
         "Insector",
-        "Dual Tomahawk"
+        "Glutton's Set"
       ],
       "sharpness_plus": [
         7,
@@ -1279,8 +1279,8 @@
         }
       ],
       "improve_to": [
-        "Order Rapier",
-        "Dual Tomahawk+"
+        "Dual Tomahawk+",
+        "Order Rapier"
       ],
       "sharpness_plus": [
         15,
@@ -1990,8 +1990,8 @@
         }
       ],
       "improve_to": [
-        "Spatula Set",
-        "Chereau's Tool"
+        "Chereau's Tool",
+        "Spatula Set"
       ],
       "sharpness_plus": [
         9,
@@ -3719,8 +3719,8 @@
       "create_cost": null,
       "improve_cost": 880,
       "improve_from": [
-        "Bone Scythe",
-        "Bone Kris+"
+        "Bone Kris+",
+        "Bone Scythe"
       ],
       "create_mats": null,
       "improve_mats": [
@@ -4511,9 +4511,9 @@
         }
       ],
       "improve_to": [
-        "Pink Maracas",
         "Twin Kut-Ku+",
-        "Raven Tessen"
+        "Raven Tessen",
+        "Pink Maracas"
       ],
       "sharpness_plus": [
         3,
@@ -5269,8 +5269,8 @@
         }
       ],
       "improve_to": [
-        "Dual Dragon Ultimus+",
-        "Azure Ogre Sword"
+        "Azure Ogre Sword",
+        "Dual Dragon Ultimus+"
       ],
       "sharpness_plus": [
         7,
@@ -6022,11 +6022,11 @@
       ],
       "elements": [
         {
-          "name": "Ice",
+          "name": "Fire",
           "attack": 300
         },
         {
-          "name": "Fire",
+          "name": "Ice",
           "attack": 300
         }
       ],
@@ -6090,11 +6090,11 @@
       ],
       "elements": [
         {
-          "name": "Ice",
+          "name": "Fire",
           "attack": 400
         },
         {
-          "name": "Fire",
+          "name": "Ice",
           "attack": 400
         }
       ],
@@ -6158,11 +6158,11 @@
       ],
       "elements": [
         {
-          "name": "Ice",
+          "name": "Fire",
           "attack": 450
         },
         {
-          "name": "Fire",
+          "name": "Ice",
           "attack": 450
         }
       ],

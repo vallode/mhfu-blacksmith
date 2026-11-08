@@ -7,8 +7,9 @@
  *   Everything else is copied through.
  * - A taken field is written in the site's vocabulary (`fields.ts`
  *   `toSite`): site names for the item's materials and upgrade-tree
- *   references, site skill spellings, and the committed value untouched
- *   when it already agrees with the disc.
+ *   references, site skill spellings. Lists are written in the disc's
+ *   order, even when they agree with the committed list as a set; a
+ *   scalar that agrees is left as committed.
  * - Disc items the site doesn't list are not added. They'd need fields the
  *   disc doesn't have (`hr`, `sex`, ...); they're reported instead.
  * - `overlay/keep-site-values.json` lists reviewed disagreements where the
