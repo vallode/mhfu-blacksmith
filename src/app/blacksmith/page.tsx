@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BlacksmithListContent from "./BlacksmithListContent";
+import LastWeaponRedirect from "./LastWeaponRedirect";
 
 export const metadata: Metadata = {
   title: "Weapon Trees — MHFU Blacksmith",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function BlacksmithPage() {
-  return <BlacksmithListContent />;
+  return <LastWeaponRedirect />;
 }

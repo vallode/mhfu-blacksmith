@@ -11,7 +11,7 @@ export interface LastArmor {
   rank: ArmorRank;
 }
 
-const DEFAULT: LastArmor = { slot: ARMOR_SLOTS[0], rank: ARMOR_RANKS[0] };
+export const DEFAULT_ARMOR: LastArmor = { slot: ARMOR_SLOTS[0], rank: ARMOR_RANKS[0] };
 
 export function readLastArmor(): LastArmor {
   try {
@@ -25,7 +25,7 @@ export function readLastArmor(): LastArmor {
   } catch {
     // Storage unavailable: fall through to the default.
   }
-  return DEFAULT;
+  return DEFAULT_ARMOR;
 }
 
 export function writeLastArmor({ slot, rank }: LastArmor): void {

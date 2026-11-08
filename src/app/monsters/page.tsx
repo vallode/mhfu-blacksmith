@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import BestiaryListContent from "./BestiaryListContent";
+import MonsterRedirect from "./MonsterRedirect";
 
 export const metadata: Metadata = {
   title: "Bestiary — MHFU Blacksmith",
 };
 
 export default function BestiaryPage() {
-  return <BestiaryListContent />;
+  return <MonsterRedirect />;
 }
