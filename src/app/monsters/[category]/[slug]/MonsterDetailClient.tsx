@@ -38,6 +38,9 @@ const HITZONE_LABELS: Record<string, [full: string, short: string]> = {
   ko: ["KO", "KO"],
 };
 
+/** Sizes are stored to two decimals; whole centimetres are enough here. */
+const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
+
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
@@ -180,6 +183,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
               {monster.description && (
                 <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
+              )}
+              {monster.sizes && (
+                <p className="text-[1.6rem] text-stat">
+                  Size:{" "}
+                  <span className="text-white tabular-nums">
+                    {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
+                  </span>
+                </p>
               )}
             </div>
             <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">

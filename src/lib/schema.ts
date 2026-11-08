@@ -137,6 +137,8 @@ export interface CompactMonster {
   hz?: [number, (number | null)[]][];
   /** drops: [rankStringIdx, [sourceStringIdx, [materialId, chanceStringIdx][]][]][] */
   dr?: [number, [number, [number, number][]][]][];
+  /** sizes: [min, max] in cm */
+  sz?: [number, number];
 }
 
 export interface CompactDecoration {
@@ -391,6 +393,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     habitats: m.hb ? m.hb.map((hi) => str(d, hi)) : undefined,
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
+    sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
   };
 }
 

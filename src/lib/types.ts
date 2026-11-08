@@ -165,6 +165,8 @@ export interface Monster {
   habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
+  /** Smallest and largest size, in cm */
+  sizes?: { min: number; max: number };
 }
 
 export interface Decoration {
