@@ -44,17 +44,19 @@ function collectPrecacheEntries(): PrecacheEntry[] {
     if (fs.existsSync(p)) entries.push({ url: `/${extra}`, revision: hashFile(p) });
   }
 
-  // All images (pixel-art sprites / icons).
+  // Images the site uses (pixel-art sprites / icons), minus the ones it never
+  // loads (scripts/lib/precache-exclude.json: unused weapon renders, README art).
   const imagesDir = path.join(publicDir, "images");
+  const excluded = (JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8")) as { exclude: string[] }).exclude;
+  const isExcluded = (relative: string) => excluded.some((e) => (e.endsWith("/") ? relative.startsWith(e) : relative === e));
   const walk = (dir: string) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(full);
-      else if (/\.(png|jpg|jpeg|webp|gif)$/.test(entry.name)) {
-        entries.push({
-          url: `/images/${path.relative(imagesDir, full).split(path.sep).join("/")}`,
-          revision: hashFile(full),
-        });
+      const relative = path.relative(imagesDir, full).split(path.sep).join("/");
+      if (entry.isDirectory()) {
+        if (!isExcluded(`${relative}/`)) walk(full);
+      } else if (/\.(png|jpg|jpeg|webp|gif)$/.test(entry.name) && !isExcluded(relative)) {
+        entries.push({ url: `/images/${relative}`, revision: hashFile(full) });
       }
     }
   };
