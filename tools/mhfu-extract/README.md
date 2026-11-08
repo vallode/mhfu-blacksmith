@@ -375,6 +375,8 @@ Known gaps and approximations, tracked in
   ([#31](https://github.com/vallode/mhfu-blacksmith/issues/31)). `extract
 --raw` writes the table, pointers and per-weapon sharpness fields to
   `raw/sharpness.json` (numbers only).
+  It also writes every weapon value struct (bytes and decoded fields, with
+  the weapon's name and type) to `raw/weapons.json`.
 - **Gunner ammo/coating details** and **Hunting Horn/Gunlance bonus** aren't
   emitted ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
 - **Affinity** disagrees by exactly +5/+10 on 108 weapons ([#33](https://github.com/vallode/mhfu-blacksmith/issues/33)).

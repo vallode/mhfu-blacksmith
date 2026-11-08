@@ -11,6 +11,7 @@ import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitQuestsFile } from "../emit/quests.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
+import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
@@ -26,7 +27,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts). */
   raw?: boolean;
 }
 
@@ -87,9 +88,15 @@ async function writeRawDumps(
 ): Promise<void> {
   const rawDir = path.join(outDir, "raw");
   await mkdir(rawDir, { recursive: true });
-  const rawPath = path.join(rawDir, "sharpness.json");
-  await writeFile(rawPath, `${JSON.stringify(dumpSharpnessRaw(reader, resolver))}\n`, "utf-8");
-  console.log(`Wrote ${rawPath}`);
+  const dumps = {
+    "sharpness.json": dumpSharpnessRaw(reader, resolver),
+    "weapons.json": dumpWeaponsRaw(reader, resolver),
+  };
+  for (const [file, dump] of Object.entries(dumps)) {
+    const rawPath = path.join(rawDir, file);
+    await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
+    console.log(`Wrote ${rawPath}`);
+  }
 }
 
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
