@@ -168,7 +168,7 @@ export default function PreferencesSettings() {
   );
 
   return (
-    <Card className={ui.section}>
+    <Card frame="teal" className={ui.section}>
       <div className={ui.menuHeader}>
         <h2 className={ui.menuTitle}>Preferences</h2>
       </div>

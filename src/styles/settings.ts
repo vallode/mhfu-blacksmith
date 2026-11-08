@@ -44,11 +44,12 @@ export const buttonSecondary = [
 
 /**
  * Card header in the style of the game's Options menu: yellow title on the
- * flat grey selector bar, with a light rule under it. The negative margins
- * pull it out to the edge of the card's padding.
+ * flat grey selector bar, with a light rule under it. Made for the teal
+ * frame (`<Card frame="teal">`, as on the game's menus): the negative margins
+ * pull it out to sit just inside the frame's 18px bands.
  */
 export const menuHeader =
-  "-mx-[0.8rem] -mt-[1.4rem] mb-[0.4rem] border-b-[3px] border-white/45 bg-selector px-[1.6rem] py-[0.8rem]";
+  "-mx-[0.8rem] -mt-[1.1rem] mb-[0.4rem] border-b-[3px] border-white/45 bg-selector px-[1.6rem] py-[0.8rem]";
 
 export const menuTitle =
   "m-0 text-[2.2rem] font-normal tracking-[0.2em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
