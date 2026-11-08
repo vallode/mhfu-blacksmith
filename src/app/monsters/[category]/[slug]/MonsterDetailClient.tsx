@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import { cn } from "@/lib/cn";
-import cardStyles from "@/styles/weapon-card.module.scss";
-import iconStyles from "@/components/Icon.module.scss";
-import tableStyles from "@/styles/tables.module.scss";
+import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
+import { monsterPortrait } from "@/lib/icon-style";
+import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -99,12 +98,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         </Card>
 
         {/* Detail panel */}
-        <Card className={cardStyles["weapon-card"]}>
-          <div className={cn(cardStyles["weapon-card__header"], cardStyles["weapon-card__header--monster"])}>
-            <div className="details">
-              <p>{monster.name}</p>
+        <DetailCard>
+          {/* Name and habitats beside the portrait (stacked under it on phones) */}
+          <div className="relative flex h-auto flex-[0_0_11rem] flex-row items-start text-[2.2rem] text-gold no-underline mobile:flex-col-reverse mobile:flex-wrap">
+            <div className="flex flex-col">
+              <p className="leading-[1.25]">{monster.name}</p>
               {monster.habitats && (
-                <p>
+                <p className="leading-[1.25]">
                   {monster.habitats.join(", ")}
                 </p>
               )}
@@ -114,21 +114,21 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               monster
               imgSrc={`/images/monsters/${slug}.png`}
               alt={monster.name}
-              className={iconStyles.monsterIcon}
+              className={monsterPortrait}
             />
           </div>
 
-          <div className={cardStyles["weapon-card__details"]}>
+          <DetailBody>
             {monster.description && (
-              <p className="description">{monster.description}</p>
+              <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
             )}
 
             {modelUrl && <ModelButton open={modelOpen} onClick={() => setOpenModel(modelOpen ? null : modelUrl)} />}
 
-            <hr />
+            <DetailRule />
 
             {hitzoneEntries.length > 0 && (
-              <table className={tableStyles["monster-hz"]}>
+              <table className={hitzoneTable}>
                 <thead>
                   <tr>
                     <th>Part</th>
@@ -152,9 +152,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
             {monster.drops && (
               <>
-                <hr />
+                <DetailRule />
                 {Object.entries(monster.drops).map(([rankName, rankDrops]) => (
-                  <div key={rankName} className="requirements--monster">
+                  <div key={rankName}>
                     <Card>
                       <p><span>{rankName}</span></p>
                       {Object.entries(rankDrops).map(([source, items]) => (
@@ -170,8 +170,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 ))}
               </>
             )}
-          </div>
-        </Card>
+          </DetailBody>
+        </DetailCard>
         {modelOpen && (
           <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
             <ModelViewer src={modelUrl} label={monster.name} />

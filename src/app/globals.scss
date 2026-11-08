@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 // ─── Tailwind ─────────────────────────────────────────────────────────────────
 // Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
 // here. Next.js's webpack CSS pipeline has a longstanding bug where any
@@ -6,6 +8,16 @@
 // block (every Tailwind utility class, including `.flex`, stopped applying
 // site-wide because of this). See vercel/next.js#55763 and #66321.
 @import "tailwindcss";
+
+// modern-normalize, inlined by Sass into Tailwind's `base` layer (after
+// Tailwind's own preflight, so it still wins over preflight as before).
+// Being layered lets utilities override it: unlayered, its button/input
+// font-size, line-height and margin beat every Tailwind class. Inlined via
+// meta.load-css rather than `@import … layer(base)` because of the Next.js
+// bug described above.
+@layer base {
+  @include meta.load-css("modern-normalize/modern-normalize");
+}
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 // This is the single source of truth for colours, spacing, breakpoints and
@@ -32,6 +44,8 @@
   --color-negative: #f9455c;
   --color-element: #56fbfa;
   --color-warm: #ff9661;
+  --color-unavailable: #808080; // greyed-out entries: ammo you cannot load, etc.
+  --color-parchment: #c3be9f; // menu labels and toast titles
 
   // Item rarity tints (rarities 1–3 are untinted)
   --color-rarity-4: #52f152;
@@ -77,6 +91,8 @@
   //   animation: var(--animate-hover-glow); background: var(--gradient-hover-glow);
   --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
   --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
+  // Resting highlight on tree rows the loaded hunter can upgrade into now
+  --gradient-upgrade-glow: linear-gradient(0.25turn, transparent, rgb(110 200 110 / 0.35), transparent);
 
   @keyframes opacity-alternate {
     from {
@@ -84,6 +100,20 @@
     }
     to {
       opacity: 0.6;
+    }
+  }
+
+  // Toasts slide up into place
+  --animate-toast-in: toast-in 180ms ease-out;
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
@@ -109,6 +139,52 @@
 @utility hover-glow {
   animation: var(--animate-hover-glow);
   background: var(--gradient-hover-glow);
+}
+
+// Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
+// multiplied over it. iconStyle() (src/lib/icon-style.ts) sets --icon-mask and
+// the fill (--icon-tint) as inline variables.
+@utility icon-mask {
+  content: "";
+  display: block;
+  height: 100%;
+  -webkit-mask-image: var(--icon-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-image: var(--icon-mask);
+  mask-size: 100% 100%;
+  mix-blend-mode: multiply;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
+
+// Icon corner badge (on an Icon's ::after): element or rank image from --icon-badge.
+@utility icon-badge {
+  background-image: var(--icon-badge);
+  background-repeat: no-repeat;
+  bottom: 0;
+  content: "";
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+// Tiled in-game divider pattern, centred so both ends crop evenly (BorderRule)
+@utility divider-tile {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABVSURBVHgBxZE9DkAREIR5eQfQa3WcSOEYSoXSMRRORKfVuwGdIAqJiK/an2SzMwOtogVsIHSAq/kHDvn7xrg0LCXHrWYElSsfvD8weNBrnvEx30mhAm9sC/9lPZScAAAAAElFTkSuQmCC");
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: 3.2rem 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 // Decorative in-game 9-slice frame used by cards and toasts
@@ -228,9 +304,12 @@ body {
 
 // ─── Base element resets ──────────────────────────────────────────────────────
 
-a {
-  color: inherit;
-  text-decoration: inherit;
+// In the base layer so a colour utility on a link (text-gold) can win.
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
 
 // Game sprites look best with crisp pixel rendering
@@ -256,13 +335,33 @@ img {
   }
 }
 
-hr {
-  background-color: #6e905f;
-  border: none;
-  flex: 0 0 auto;
-  height: 6px;
-  margin: 1.3rem 0 2.2rem 0;
-  width: 100%;
+// Default divider. In the base layer so utilities can adjust it (e.g. the
+// search overlay's tighter margins). The tiled page-header divider is the
+// BorderRule component.
+@layer base {
+  hr {
+    background-color: var(--color-hr);
+    border: none;
+    flex: 0 0 auto;
+    height: 6px;
+    margin: 1.3rem 0 2.2rem 0;
+    width: 100%;
+  }
+}
+
+// ─── Card paragraphs ──────────────────────────────────────────────────────────
+// Default for paragraphs inside a Card: one line, tight leading, colour from
+// the card, above its frame. In Tailwind's components layer, so any utility
+// on a paragraph overrides it (e.g. a note that wraps, a red error).
+@layer components {
+  .card-copy p {
+    color: inherit;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+    white-space: nowrap;
+    z-index: 10;
+  }
 }
 
 // ─── Reusable components ──────────────────────────────────────────────────────
@@ -310,6 +409,14 @@ hr {
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
+}
+
+// With the hunter filter bar showing (WeaponTreePanel), let its arrows out
+// past the tree card; `min-*: 0` keeps the flex sizing overflow: hidden gave.
+.split-page:has(> [data-tree-panel] [data-filter-bar]) {
+  min-height: 0;
+  min-width: 0;
+  overflow: visible;
 }
 
 // ─── View Transitions ─────────────────────────────────────────────────────────

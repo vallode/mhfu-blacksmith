@@ -1,0 +1,27 @@
+{
+  "armor": {
+    "Defence": "Defense",
+    "Load": "Reload",
+    "Fast Chrge": "ShortCharg",
+    "Loading": "Capacity",
+    "Technique": "Constitutn",
+    "Speed Fire": "AutoReload",
+    "ChmleosRes": "AntiChamel",
+    "Trapper": "Tranquilzr",
+    "Evade Inc": "Evade Dist",
+    "CragS Add": "Crag S Add",
+    "Observance": "Perceive",
+    "Drawn Crit": "Sword Draw"
+  },
+  "decorations": {
+    "Autoreload": "AutoReload",
+    "ShortCharge": "ShortCharg",
+    "Everlasting": "Everlastng",
+    "Backpacking": "Backpackng",
+    "HearProtect": "HearProtct",
+    "ClustSAdd": "ClustS Add",
+    "SwrShrpner": "SwdShrpner",
+    "NormalS up": "NormalS Up",
+    "PierceS up": "PierceS Up"
+  }
+}

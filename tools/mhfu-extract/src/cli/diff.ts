@@ -11,9 +11,16 @@
  * incompleteness. This tool surfaces value *disagreements* on fields both
  * sides actually populate, which is what's actually useful for catching a
  * wrong offset/derivation.
+ *
+ * Committed `skills` are rewritten to the extractor's skill spelling before
+ * comparing (`normalizeCommittedItem`, via `overlay/skill-name-aliases.ts`).
+ * The extractor's names are canonical. The site's legacy spellings (e.g.
+ * `"Defence"` for `"Defense"`) are not, and a spelling difference alone is
+ * not a value disagreement.
  */
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { canonicalDecorationSkill, canonicalSkillName } from "../overlay/skill-name-aliases.js";
 
 export interface DiffOptions {
   extracted: string;
@@ -68,6 +75,25 @@ export function itemKeyOf(item: Record<string, unknown>): string {
   return JSON.stringify(item).slice(0, 60);
 }
 
+/**
+ * Returns a copy of a committed item with its `skills` rewritten to the
+ * extractor's spelling. Handles both committed shapes: armor's
+ * `{ name, amount }[]` and decorations' `"Name +N"` strings. Items without
+ * a `skills` array are returned as-is.
+ */
+export function normalizeCommittedItem(item: Record<string, unknown>): Record<string, unknown> {
+  if (!Array.isArray(item.skills)) return item;
+  const skills = item.skills.map((skill: unknown) => {
+    if (typeof skill === "string") return canonicalDecorationSkill(skill);
+    if (typeof skill === "object" && skill !== null && typeof (skill as { name?: unknown }).name === "string") {
+      const s = skill as { name: string };
+      return { ...s, name: canonicalSkillName(s.name) };
+    }
+    return skill;
+  });
+  return { ...item, skills };
+}
+
 function findArrayKey(obj: Record<string, unknown>): string | null {
   for (const [key, value] of Object.entries(obj)) {
     if (Array.isArray(value)) return key;
@@ -87,7 +113,9 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
   if (!extractedArrayKey || !committedArrayKey) return result;
 
   const extractedItems = (extracted as Record<string, unknown>)[extractedArrayKey] as Record<string, unknown>[];
-  const committedItems = (committed as Record<string, unknown>)[committedArrayKey] as Record<string, unknown>[];
+  const committedItems = ((committed as Record<string, unknown>)[committedArrayKey] as Record<string, unknown>[]).map(
+    normalizeCommittedItem
+  );
 
   const committedByKey = new Map(committedItems.map((item) => [itemKeyOf(item), item]));
   const matchedCommittedKeys = new Set<string>();

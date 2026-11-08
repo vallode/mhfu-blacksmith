@@ -19,10 +19,10 @@ export default function MaterialRow({ material }: MaterialRowProps) {
 
   if (owned === null || !Number.isFinite(required)) {
     return (
-      <div className="material">
+      <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
-        <p className="material-name">{material.name}:</p>
-        <p className="material-amount">{material.amount}</p>
+        <p className="flex-auto">{material.name}:</p>
+        <p className="min-w-[2.5ch] flex-none text-right tabular-nums">{material.amount}</p>
       </div>
     );
   }
@@ -31,11 +31,11 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   const shown = owned === Infinity ? "∞" : owned;
 
   return (
-    <div className="material" title={`You have ${shown} in your item box and pouch`}>
+    <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
       <Icon type={material.type} color={material.color} />
-      <p className="material-name">{material.name}:</p>
-      <p className="material-amount">
-        {short ? <span className="negative">{shown}</span> : shown}/{required}
+      <p className="flex-auto">{material.name}:</p>
+      <p className="min-w-[2.5ch] flex-none text-right tabular-nums">
+        {short ? <span className="text-negative">{shown}</span> : shown}/{required}
       </p>
     </div>
   );
