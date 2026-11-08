@@ -35,7 +35,7 @@
         "category": { "type": "string", "minLength": 1 },
         "skills": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": { "type": "string", "minLength": 1 },
           "minItems": 1
         },
         "create_cost": { "type": "integer", "minimum": 0 },
