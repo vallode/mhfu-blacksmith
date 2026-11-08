@@ -229,6 +229,39 @@ test("mergeCategory takes disc values, keeps site-only fields, order and agreein
   }
 });
 
+test("mergeCategory keeps a file's keepFields as committed", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const inputs = await loadInputs(extracted, data, ["armor"]);
+    const category = {
+      ...CATEGORIES.armor,
+      files: CATEGORIES.armor.files.map((f) =>
+        f.file === "armor/helmet.json" ? { ...f, keepFields: ["slots"] } : f,
+      ),
+    };
+    const result = mergeCategory(
+      category,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
+    // Leather Helm's disc slots (1) disagree with the site (0) but aren't taken.
+    assert.deepEqual(result.files.get("armor/helmet.json")![1], committedHelmets.armor[1]);
+    assert.deepEqual(result.changes, []);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("bow elements are kept as committed; other weapon files take them", () => {
+  const files = CATEGORIES.weapons.files;
+  assert.ok(CATEGORIES.weapons.take.includes("elements"));
+  assert.deepEqual(files.find((f) => f.file === "weapons/bow.json")!.keepFields, ["elements"]);
+  assert.ok(files.filter((f) => f.file !== "weapons/bow.json").every((f) => !f.keepFields?.length));
+});
+
 test("mergeCategory writes new skills and materials in the site's spelling", async () => {
   const { root, data, extracted } = await fixture();
   try {

@@ -28,6 +28,8 @@ export interface CategoryFile {
   slot?: EquipmentSlot;
   /** Weapon type of every item in this file (weapons share one ID space across types). */
   weaponType?: string;
+  /** Category `take` fields kept from the committed file for this file only. */
+  keepFields?: string[];
 }
 
 export interface Category {
@@ -62,6 +64,13 @@ const MELEE_TYPES = [
 ];
 const RANGED_TYPES = ["light-bowgun", "heavy-bowgun", "bow"];
 
+/**
+ * Bow `elements` is not taken: 15 disagreements remain, mostly the site's
+ * "Sleep/Poison/Paralysis Add" coating bonuses, which aren't in the disc's
+ * element fields. See the README's "Taken fields".
+ */
+const RANGED_KEEP_FIELDS: Record<string, string[]> = { bow: ["elements"] };
+
 const WEAPON_FILES: CategoryFile[] = [
   ...MELEE_TYPES.map((t) => ({
     file: `weapons/${t}.json`,
@@ -74,6 +83,7 @@ const WEAPON_FILES: CategoryFile[] = [
     table: "WepGunID" as const,
     slot: "ranged" as const,
     weaponType: t,
+    ...(RANGED_KEEP_FIELDS[t] ? { keepFields: RANGED_KEEP_FIELDS[t] } : {}),
   })),
 ];
 
@@ -141,8 +151,9 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // `affinity` is the struct's base value plus a bonus for
     // `sharpnessAmount` (`blademasterAffinity()`, vallode/mhfu-blacksmith#33).
     // It compares by number, so heavy bowgun's old bare `"0"` matched `"0%"`.
-    // Not taken: `elements` (no
-    // dual-element weapons on the disc side yet), `coatings` (bow bit
+    // `elements` includes the 15 dual-element dual blades (`WepDualAttr`)
+    // and is taken for every file but `bow.json` (see `RANGED_KEEP_FIELDS`).
+    // Not taken: `coatings` (bow bit
     // layout only partly derived), `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
@@ -151,6 +162,7 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "affinity",
       "slots",
       "rarity",
+      "elements",
       "sharpness",
       "sharpness_plus",
       "create_cost",

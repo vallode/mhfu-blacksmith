@@ -6,10 +6,7 @@ import { DUAL_ATTRIBUTE_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "../src/tab
 import { fixtureReader } from "./helpers.js";
 
 /** The first two real `WepDualAttr` entries (Snow Venom, Snow Venom+), as in eu-signatures.ts. */
-const REAL_DUAL_ATTRIBUTE_BYTES = Buffer.from(
-  "630380000c000200080064038000100002001400",
-  "hex",
-);
+const REAL_DUAL_ATTRIBUTE_BYTES = Buffer.from("630380000c000200080064038000100002001400", "hex");
 
 test("readDualAttributeWeapons decodes the real Snow Venom entries (JP static)", () => {
   const base = tableOffset("dualAttributeWeapons");
