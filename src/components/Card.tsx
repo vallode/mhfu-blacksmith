@@ -39,7 +39,9 @@ export default function Card({
           : "card-frame",
     // card-copy: paragraph defaults (globals.css, components layer)
     "card-copy relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
-    variant === "weapon-tree" && "h-full overflow-auto px-[0.9rem] py-[0.8rem]",
+    // Border widths match the frame's border-image-width, so the scroll area
+    // is clipped exactly where the frame art ends instead of under it.
+    variant === "weapon-tree" && "h-full overflow-auto border-x-[22px] border-y-[20px] p-0",
     href && linkGlow,
     className,
   );
