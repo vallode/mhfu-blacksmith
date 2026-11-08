@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { getWeapons, getWeapon } from "@/lib/weapons";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { faviconMetadata } from "@/lib/favicon";
+import { accentViewport, tintFor, pageMetadata, typeIcon, weaponDescription } from "@/lib/seo";
 import WeaponDetailClient from "./WeaponDetailClient";
 
 interface Props {
@@ -25,18 +26,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const weapon = getWeapon(type as WeaponType, slug);
   if (!weapon) return {};
 
-  const matList = (weapon.create_mats ?? weapon.improve_mats ?? [])
-    .map((m) => `${m.name}: ${m.amount}`)
-    .join(" | ");
-
   return {
     ...faviconMetadata(type),
-    title: `${weapon.name} — MHFU Blacksmith`,
-    description: matList || undefined,
-    openGraph: {
-      images: [`/images/${type}.png`],
-    },
+    ...pageMetadata({
+      title: weapon.name,
+      description: weaponDescription(weapon),
+      path: `/blacksmith/${type}/${slug}/`,
+      image: typeIcon(type),
+    }),
   };
+}
+
+export async function generateViewport({ params }: Props): Promise<Viewport> {
+  const { type, slug } = await params;
+  return accentViewport(tintFor(getWeapon(type as WeaponType, slug)?.rarity));
 }
 
 export default async function WeaponDetailPage({ params }: Props) {

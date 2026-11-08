@@ -4,10 +4,13 @@ import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
 import PreferencesSettings from "@/components/PreferencesSettings";
 import SaveSyncSettings from "@/components/SaveSyncSettings";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Options — MHFU Blacksmith",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Options",
+  description: "Display, offline and save-sync settings for MHFU Blacksmith.",
+  path: "/options/",
+});
 
 export default function OptionsPage() {
   return (
