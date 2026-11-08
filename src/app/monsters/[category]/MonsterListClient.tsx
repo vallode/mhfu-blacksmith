@@ -5,6 +5,7 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonsterList } from "@/lib/client-data";
+import MonsterNav from "@/components/MonsterNav";
 import BorderRule from "@/components/BorderRule";
 
 interface Props {
@@ -21,21 +22,7 @@ export default function MonsterListClient({ category }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href="/monsters/" aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-        <div className="ml-auto">
-          <button
-            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-            aria-label="Search"
-          >
-            <img src="/images/binoculars.png" alt="Search" decoding="sync" />
-          </button>
-        </div>
-      </nav>
+      <MonsterNav activeCategory={category} />
       <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
