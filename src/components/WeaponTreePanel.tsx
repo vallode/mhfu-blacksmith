@@ -123,7 +123,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
           data-filter-bar
           // A flat grey rectangle, as in the game's selector: no border or frame.
           // Side padding clears the arrows, which overlap the bar's ends.
-          className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-[rgb(96_102_94/0.78)] px-[calc(44px-1.2rem-4px+0.8rem)] py-0"
+          className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-1.2rem-4px+0.8rem)] py-0"
           role="group"
           aria-label="Weapon tree filter"
           onKeyDown={(event) => {

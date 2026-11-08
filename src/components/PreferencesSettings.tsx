@@ -2,8 +2,9 @@
 
 /**
  * The preferences card on the Options page: how values are shown, and which
- * markers a loaded hunter adds to the trees and recipes. Each preference is a
- * row of choices, the chosen one lit like a selected row in the game.
+ * markers a loaded hunter adds to the trees and recipes. Styled after the
+ * game's Options menu: a yellow title on a grey bar, and a yellow box for each
+ * On/Off preference (filled when on).
  */
 import { useId, useRef } from "react";
 import Link from "next/link";
@@ -20,16 +21,74 @@ interface Choice<T> {
   label: string;
 }
 
-const ON_OFF: Choice<boolean>[] = [
-  { value: true, label: "On" },
-  { value: false, label: "Off" },
-];
+/** Label and note for a preference row. `labelFor` makes the label click the control. */
+function RowText({
+  id,
+  label,
+  note,
+  labelFor,
+}: {
+  id: string;
+  label: string;
+  note: React.ReactNode;
+  labelFor?: string;
+}) {
+  return (
+    <div className="flex min-w-0 flex-[1_1_24rem] flex-col gap-[0.4rem]">
+      {labelFor ? (
+        <label
+          id={`${id}-label`}
+          htmlFor={labelFor}
+          className={cn(ui.statusLabel, "cursor-pointer")}
+        >
+          {label}
+        </label>
+      ) : (
+        <span id={`${id}-label`} className={ui.statusLabel}>
+          {label}
+        </span>
+      )}
+      <p id={`${id}-note`} className={ui.note}>
+        {note}
+      </p>
+    </div>
+  );
+}
+
+/** An On/Off preference: a switch drawn as a yellow box, filled when on. */
+function ToggleRow({
+  label,
+  note,
+  value,
+  onChange,
+}: {
+  label: string;
+  note: React.ReactNode;
+  value: boolean;
+  onChange: (value: boolean) => void;
+}) {
+  const id = useId();
+  return (
+    <div className="flex items-center justify-between gap-[2.4rem]">
+      <RowText id={id} label={label} note={note} labelFor={`${id}-switch`} />
+      <button
+        id={`${id}-switch`}
+        type="button"
+        role="switch"
+        aria-checked={value}
+        aria-describedby={`${id}-note`}
+        className={cn(ui.toggle, value ? ui.toggleOn : ui.toggleOff)}
+        onClick={() => onChange(!value)}
+      />
+    </div>
+  );
+}
 
 /**
- * A labelled radio group. Arrow keys move the choice, as in a native radio
+ * A preference with several choices, as a labelled radio group. Arrow keys move the choice, as in a native radio
  * group; only the chosen option is in the tab order.
  */
-function PreferenceRow<T>({
+function ChoiceRow<T>({
   label,
   note,
   choices,
@@ -60,14 +119,7 @@ function PreferenceRow<T>({
 
   return (
     <div className={ui.preferenceRow}>
-      <div className="flex min-w-[24rem] flex-[1_1_24rem] flex-col gap-[0.4rem]">
-        <span id={`${id}-label`} className={ui.statusLabel}>
-          {label}
-        </span>
-        <p id={`${id}-note`} className={ui.note}>
-          {note}
-        </p>
-      </div>
+      <RowText id={id} label={label} note={note} />
       <div
         role="radiogroup"
         aria-labelledby={`${id}-label`}
@@ -108,13 +160,7 @@ export default function PreferencesSettings() {
 
   /** An On/Off row for a boolean preference. */
   const toggle = (key: ToggleKey, label: string, note: React.ReactNode) => (
-    <PreferenceRow
-      label={label}
-      note={note}
-      choices={ON_OFF}
-      value={prefs[key]}
-      onChange={(value) => set(key, value)}
-    />
+    <ToggleRow label={label} note={note} value={prefs[key]} onChange={(value) => set(key, value)} />
   );
 
   const isDefault = (Object.keys(DEFAULT_PREFERENCES) as (keyof Preferences)[]).every(
@@ -123,7 +169,9 @@ export default function PreferencesSettings() {
 
   return (
     <Card className={ui.section}>
-      <h2 className={ui.heading}>Preferences</h2>
+      <div className={ui.menuHeader}>
+        <h2 className={ui.menuTitle}>Preferences</h2>
+      </div>
 
       <h3 className={ui.subheading}>Display</h3>
       {toggle(
@@ -167,7 +215,7 @@ export default function PreferencesSettings() {
         "Count zenny",
         "Only count a weapon as craftable when you can also afford it.",
       )}
-      <PreferenceRow
+      <ChoiceRow
         label="Starting tree filter"
         note="The weapon tree filter each visit starts on."
         choices={TREE_FILTER_CHOICES}

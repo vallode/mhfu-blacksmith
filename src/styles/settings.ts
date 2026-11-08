@@ -42,6 +42,25 @@ export const buttonSecondary = [
   "disabled:cursor-default disabled:opacity-60",
 ].join(" ");
 
+/**
+ * Card header in the style of the game's Options menu: yellow title on the
+ * flat grey selector bar, with a light rule under it. The negative margins
+ * pull it out to the edge of the card's padding.
+ */
+export const menuHeader =
+  "-mx-[0.8rem] -mt-[1.4rem] mb-[0.4rem] border-b-[3px] border-white/45 bg-selector px-[1.6rem] py-[0.8rem]";
+
+export const menuTitle =
+  "m-0 text-[2.2rem] font-normal tracking-[0.2em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
+
+/** An On/Off preference: a yellow box, outlined when off and filled when on. */
+export const toggle =
+  "size-[2.6rem] flex-none cursor-pointer border-[3px] border-stat p-0 shadow-[0.2rem_0.2rem_0_black] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white";
+
+export const toggleOn = "bg-stat";
+
+export const toggleOff = "bg-transparent hover:bg-stat/25";
+
 /** A preference row: label and note on the left, its choices on the right (below on a phone or when they don't fit). */
 export const preferenceRow =
   "flex flex-wrap items-center justify-between gap-x-[2.4rem] gap-y-[0.8rem]";
