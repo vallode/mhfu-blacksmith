@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
+import { writeLastWeapon } from "@/lib/last-weapon";
 import Icon from "./Icon";
 
 interface WeaponNavProps {
@@ -11,10 +15,15 @@ function formatWeaponName(type: string): string {
 }
 
 export default function WeaponNav({ activeType }: WeaponNavProps) {
+  // Remember the weapon type so the main menu's "Weapons" entry reopens it.
+  useEffect(() => {
+    if (activeType) writeLastWeapon(activeType);
+  }, [activeType]);
+
   return (
     <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
       <div>
-        <Link href="/blacksmith/" aria-label="Back">
+        <Link href="/" aria-label="Back">
           <Icon type="arrow" nav alt="Back" />
         </Link>
       </div>
