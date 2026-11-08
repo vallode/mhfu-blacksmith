@@ -95,6 +95,11 @@ export interface DecodedVertex {
   /** RGBA in [0, 1]. */
   color?: [number, number, number, number];
   weights?: number[];
+  /**
+   * Bytes per component of the source position/normal/UV (1, 2 or 4 = float).
+   * Lets the writer store the exact source integers instead of floats.
+   */
+  sizes: { position: number; normal: number; uv: number };
 }
 
 export interface DecodedGeometry {
@@ -132,6 +137,7 @@ function readVertex(reader: BinaryReader, base: number, fmt: VertexFormat): Deco
   const ps = fmt.positionSize;
   const vertex: DecodedVertex = {
     position: [readSigned(reader, p, ps), readSigned(reader, p + ps, ps), readSigned(reader, p + 2 * ps, ps)],
+    sizes: { position: ps, normal: fmt.normalSize, uv: fmt.uvSize },
   };
   if (fmt.normalSize) {
     const n = base + fmt.normalOffset;

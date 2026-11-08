@@ -29,6 +29,8 @@ export default function ModelViewer({ src, label }: Props) {
     (async () => {
       const THREE = await import("three");
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+      // Models are meshopt-compressed (EXT_meshopt_compression; see tools/mhfu-extract).
+      const { MeshoptDecoder } = await import("three/examples/jsm/libs/meshopt_decoder.module.js");
       const { OrbitControls } = await import("three/examples/jsm/controls/OrbitControls.js");
       if (disposed) return;
 
@@ -101,7 +103,7 @@ export default function ModelViewer({ src, label }: Props) {
       };
 
       try {
-        const gltf = await new GLTFLoader().loadAsync(src);
+        const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(src);
         if (disposed) return;
         model = gltf.scene;
         scene.add(model);
