@@ -206,7 +206,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     id: "materials",
                     label: "Materials",
                     content: (
-                      <RequirementsPage>
+                      <RequirementsPage stacked>
                         {weapon.improve_mats && (
                           <MaterialList
                             label="Improve cost"
