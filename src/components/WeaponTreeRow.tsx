@@ -170,15 +170,13 @@ export default function WeaponTreeRow({
           element={node.element}
         />
       )}
-      {/* Owned pieces get gold names, as in the game's lists. Needs `!`
-          to beat Card's `.card p { color: inherit }` reset (Card.module.scss);
-          drop it once that reset becomes a utility. */}
-      <p className={cn("truncate", owned && "text-gold!")}>{node.name}</p>
+      {/* Owned pieces get gold names, as in the game's lists. */}
+      <p className={cn("truncate", owned && "text-gold")}>{node.name}</p>
       {owned && <span className="sr-only"> (owned)</span>}
       {canUpgrade && <span className="sr-only"> (you can make this upgrade now)</span>}
       {node.children && (
         <p
-          className="z-[10000] ml-[1.6rem] cursor-pointer px-[3px] font-[monospace] text-white opacity-20"
+          className="cursor-pointer px-[3px] font-[monospace] opacity-20"
           role="button"
           tabIndex={0}
           aria-label={collapsed ? "Expand" : "Collapse"}
