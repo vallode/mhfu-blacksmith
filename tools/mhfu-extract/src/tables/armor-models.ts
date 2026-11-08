@@ -9,7 +9,12 @@
  * waist's 296/295 are `m_wst296`/`f_wst295`), and no ID falls outside it.
  */
 import { BinaryReader, readPointer } from "../binary/reader.js";
-import { ARMOR_POINTER_INDEX, ARMOR_SLOT_COUNTS, ARMOR_SLOT_TABLE_NAMES, type ArmorSlot } from "./armor.js";
+import {
+  ARMOR_POINTER_INDEX,
+  ARMOR_SLOT_COUNTS,
+  ARMOR_SLOT_TABLE_NAMES,
+  type ArmorSlot,
+} from "./armor.js";
 import { ARMOR_ENTRY_SIZE, JP_BASE_ADDRESS, tableOffset } from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
@@ -39,10 +44,16 @@ export interface ArmorModelIds {
   femaleId: number;
 }
 
-export function readArmorModelIds(reader: BinaryReader, resolver?: TableAddressResolver): Record<SiteArmorSlot, ArmorModelIds[]> {
+export function readArmorModelIds(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<SiteArmorSlot, ArmorModelIds[]> {
   const ptrTable = resolver ? undefined : tableOffset("armorValuePointers");
   const result = {} as Record<SiteArmorSlot, ArmorModelIds[]>;
-  for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT) as [SiteArmorSlot, SlotLayout][]) {
+  for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT) as [
+    SiteArmorSlot,
+    SlotLayout,
+  ][]) {
     const base = resolver
       ? resolver.resolve(ARMOR_SLOT_TABLE_NAMES[layout.array], reader.buf)
       : readPointer(reader, ptrTable! + ARMOR_POINTER_INDEX[layout.array] * 4, JP_BASE_ADDRESS);

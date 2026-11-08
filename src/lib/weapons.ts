@@ -50,7 +50,7 @@ export function getHornMelodies(notes: string[]): Melody[] | null {
     contentDir,
     "blacksmith",
     "hunting-horn",
-    "hunting-horn-melodies.json"
+    "hunting-horn-melodies.json",
   );
   const data = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Record<string, Melody[]>;
   return data[notes.join("-")] ?? null;

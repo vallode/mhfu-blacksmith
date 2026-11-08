@@ -49,7 +49,10 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const CORRECTIONS_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "item-name-corrections.json");
+const CORRECTIONS_PATH = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "item-name-corrections.json",
+);
 
 export type MaterialContext = "armor" | "weapon" | "decoration";
 

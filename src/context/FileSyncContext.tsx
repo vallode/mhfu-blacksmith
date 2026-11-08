@@ -92,7 +92,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     setState((s) =>
       (Object.keys(patch) as (keyof FileSyncState)[]).every((k) => s[k] === patch[k])
         ? s
-        : { ...s, ...patch }
+        : { ...s, ...patch },
     );
   }, []);
 
@@ -109,7 +109,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
       }
       load(saveFromCharacter(character, record.region, record.characterIndex));
     },
-    [load]
+    [load],
   );
 
   const syncOnce = useCallback(async () => {
@@ -182,55 +182,52 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     return run;
   }, [syncOnce]);
 
-  const pickFile = useCallback(
-    async (region: Region): Promise<FilePickResult | null> => {
-      if (typeof window === "undefined" || !window.showOpenFilePicker) return null;
-      setState((s) => ({ ...s, error: null }));
-      pickingRef.current = true;
-      try {
-        // Call the picker first, while the click's user activation is fresh.
-        const [handle] = await window.showOpenFilePicker({
-          types: [
-            {
-              description: "MHFU save file",
-              accept: { "application/octet-stream": [".bin", ".BIN"] },
-            },
-          ],
-          excludeAcceptAllOption: false,
-          multiple: false,
-        });
-        const file = await handle.getFile();
-        // A sync that started before the click is still working on the old
-        // record; let it finish before the record is replaced.
-        await inFlightRef.current;
-        await setHandleRecord({
-          handle,
-          region,
-          lastModified: file.lastModified,
-          characterIndex: null,
-        });
-        setState((s) => ({
-          ...s,
-          hasHandle: true,
-          permission: "granted",
-          fileName: handle.name,
-          lastSynced: Date.now(),
-          error: null,
-        }));
-        return { file, handle };
-      } catch (err) {
-        if (err instanceof DOMException && err.name === "AbortError") return null;
-        setState((s) => ({
-          ...s,
-          error: err instanceof Error ? err.message : "Could not open file",
-        }));
-        return null;
-      } finally {
-        pickingRef.current = false;
-      }
-    },
-    []
-  );
+  const pickFile = useCallback(async (region: Region): Promise<FilePickResult | null> => {
+    if (typeof window === "undefined" || !window.showOpenFilePicker) return null;
+    setState((s) => ({ ...s, error: null }));
+    pickingRef.current = true;
+    try {
+      // Call the picker first, while the click's user activation is fresh.
+      const [handle] = await window.showOpenFilePicker({
+        types: [
+          {
+            description: "MHFU save file",
+            accept: { "application/octet-stream": [".bin", ".BIN"] },
+          },
+        ],
+        excludeAcceptAllOption: false,
+        multiple: false,
+      });
+      const file = await handle.getFile();
+      // A sync that started before the click is still working on the old
+      // record; let it finish before the record is replaced.
+      await inFlightRef.current;
+      await setHandleRecord({
+        handle,
+        region,
+        lastModified: file.lastModified,
+        characterIndex: null,
+      });
+      setState((s) => ({
+        ...s,
+        hasHandle: true,
+        permission: "granted",
+        fileName: handle.name,
+        lastSynced: Date.now(),
+        error: null,
+      }));
+      return { file, handle };
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return null;
+      setState((s) => ({
+        ...s,
+        error: err instanceof Error ? err.message : "Could not open file",
+      }));
+      return null;
+    } finally {
+      pickingRef.current = false;
+    }
+  }, []);
 
   const confirmSelection = useCallback(async (characterIndex: number, region: Region) => {
     // Store the region the hunter was actually loaded with: the select may
@@ -291,7 +288,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
       requestReconnect,
       forget,
     }),
-    [state, pickFile, confirmSelection, runSync, requestReconnect, forget]
+    [state, pickFile, confirmSelection, runSync, requestReconnect, forget],
   );
 
   return <FileSyncContext.Provider value={value}>{children}</FileSyncContext.Provider>;

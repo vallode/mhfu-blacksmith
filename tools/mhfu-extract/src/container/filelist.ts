@@ -18,7 +18,7 @@ const FILELIST_PATH = path.join(
   "..",
   "vendor",
   "fuctool",
-  "filelist.csv"
+  "filelist.csv",
 );
 
 let cache: Map<number, string> | null = null;

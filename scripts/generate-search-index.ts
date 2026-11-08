@@ -85,7 +85,10 @@ for (const file of fs.readdirSync(armorDir)) {
     armor: Record<string, unknown>[];
   };
 
-  const pieces = data.armor.filter((a) => !("donotrender" in a) && a.name) as (Record<string, unknown> & {
+  const pieces = data.armor.filter((a) => !("donotrender" in a) && a.name) as (Record<
+    string,
+    unknown
+  > & {
     name: string;
     sex?: string;
   })[];
@@ -132,9 +135,7 @@ if (fs.existsSync(decoFile)) {
 
     const name = d.name as string;
     const slug = slugify(name);
-    const skillNames = Array.isArray(d.skills)
-      ? (d.skills as string[]).join(" ")
-      : "";
+    const skillNames = Array.isArray(d.skills) ? (d.skills as string[]).join(" ") : "";
 
     entries.push({
       name,
@@ -160,7 +161,7 @@ for (const file of fs.readdirSync(monsterDir)) {
     monsters: Record<string, unknown>[];
   };
 
-  for (const m of (data.monsters ?? [])) {
+  for (const m of data.monsters ?? []) {
     if (!m.name) continue;
 
     const name = m.name as string;

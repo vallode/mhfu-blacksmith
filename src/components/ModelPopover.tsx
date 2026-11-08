@@ -2,7 +2,15 @@
 
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
-import styles from "./ModelPopover.module.scss";
+
+/**
+ * Desktop: absolutely positioned in the .split-page (position: relative); the
+ * exact box over the side card is set from measurement in a layout effect.
+ * Phone (stacked layout): the cards stack and the page scrolls, so there's no
+ * fixed-height side card to sit in; float over the viewport instead.
+ */
+const POPOVER_CLASSES =
+  "absolute top-0 bottom-0 left-0 z-30 flex w-1/2 mobile:fixed mobile:top-1/2 mobile:right-4 mobile:bottom-auto mobile:left-4 mobile:z-50 mobile:h-[min(75vh,36rem)] mobile:w-auto mobile:-translate-y-1/2";
 
 interface ButtonProps {
   open: boolean;
@@ -90,7 +98,12 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
   }, []);
 
   return (
-    <div ref={popoverRef} className={styles.popover} role="dialog" aria-label={`3D model of ${title}`}>
+    <div
+      ref={popoverRef}
+      className={POPOVER_CLASSES}
+      role="dialog"
+      aria-label={`3D model of ${title}`}
+    >
       {/* No padding, and a layout border exactly as thick as the blue frame's
           visible band (4 source px at 3x), so the render ends at the frame. */}
       <Card frame="blue" className="border-[12px] p-0">

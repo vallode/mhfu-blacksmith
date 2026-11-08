@@ -24,12 +24,16 @@ function pac(entries: Buffer[]): Buffer {
 }
 
 test("readPac splits entries and identifies magics", () => {
-  const buf = pac([Buffer.from("pmo\x001.0\x00", "latin1"), Buffer.from(".TMH0.14", "latin1"), Buffer.from([0, 0, 0, 0xc0])]);
+  const buf = pac([
+    Buffer.from("pmo\x001.0\x00", "latin1"),
+    Buffer.from(".TMH0.14", "latin1"),
+    Buffer.from([0, 0, 0, 0xc0]),
+  ]);
   assert.ok(isPac(buf));
   const entries = readPac(buf);
   assert.deepEqual(
     entries.map((e) => e.magic),
-    ["pmo", ".TMH", null]
+    ["pmo", ".TMH", null],
   );
   assert.equal(entries[1]!.data.toString("latin1"), ".TMH0.14");
 });
@@ -65,12 +69,22 @@ test("decodeVertexType matches the layout real weapon/armor meshes use (VTYPE 0x
   assert.equal(fmt.normalSize, 1);
   assert.equal(fmt.positionSize, 2);
   assert.equal(fmt.indexSize, 2);
-  assert.deepEqual([fmt.weightOffset, fmt.uvOffset, fmt.normalOffset, fmt.positionOffset, fmt.stride], [0, 2, 6, 10, 16]);
+  assert.deepEqual(
+    [fmt.weightOffset, fmt.uvOffset, fmt.normalOffset, fmt.positionOffset, fmt.stride],
+    [0, 2, 6, 10, 16],
+  );
 });
 
 /** Build a display list drawing one indexed 4-vertex strip with VTYPE 0x000900 (s16 positions, u8 indices). */
 function stripDisplayList(clockwise: boolean): Buffer {
-  const commands = [0x12000000 | (2 << 7) | (1 << 11), 0x01000000 | 0x20, 0x02000000 | 0x38, 0x9b000000 | (clockwise ? 1 : 0), 0x04040004, 0x0b000000];
+  const commands = [
+    0x12000000 | (2 << 7) | (1 << 11),
+    0x01000000 | 0x20,
+    0x02000000 | 0x38,
+    0x9b000000 | (clockwise ? 1 : 0),
+    0x04040004,
+    0x0b000000,
+  ];
   const list = Buffer.alloc(0x40);
   commands.forEach((c, i) => list.writeUInt32LE(c >>> 0, i * 4));
   const positions = [
@@ -141,22 +155,32 @@ test("readPmo resolves materials through the material map and keeps per-axis sca
   assert.equal(model.meshes.length, 1);
   assert.deepEqual(
     model.meshes[0]!.primitives.map((p) => p.materialIndex),
-    [1, 0]
+    [1, 0],
   );
   assert.deepEqual(
     model.materials.map((m) => m.textureIndex),
-    [3, 5]
+    [3, 5],
   );
 });
 
 /** Read a glTF bufferView, decoding EXT_meshopt_compression when present. */
-function readView(glb: Buffer, json: { bufferViews: Record<string, any>[] }, index: number): Uint8Array {
+function readView(
+  glb: Buffer,
+  json: { bufferViews: Record<string, any>[] },
+  index: number,
+): Uint8Array {
   const bin = glb.subarray(20 + glb.readUInt32LE(12) + 8);
   const view = json.bufferViews[index]!;
   const meshopt = view.extensions?.EXT_meshopt_compression;
   if (!meshopt) return bin.subarray(view.byteOffset ?? 0, (view.byteOffset ?? 0) + view.byteLength);
   const out = new Uint8Array(meshopt.count * meshopt.byteStride);
-  MeshoptDecoder.decodeGltfBuffer(out, meshopt.count, meshopt.byteStride, bin.subarray(meshopt.byteOffset, meshopt.byteOffset + meshopt.byteLength), meshopt.mode);
+  MeshoptDecoder.decodeGltfBuffer(
+    out,
+    meshopt.count,
+    meshopt.byteStride,
+    bin.subarray(meshopt.byteOffset, meshopt.byteOffset + meshopt.byteLength),
+    meshopt.mode,
+  );
   return out;
 }
 
@@ -187,7 +211,14 @@ function exactTriangles(glb: Buffer): string[] {
 /** PMO 1.0 with one indexed strip in the exact MHFU vertex layout: u16 UV, s8 normal, s16 position. */
 function exactPmo(): Buffer {
   const vtype = 2 | (1 << 5) | (2 << 7) | (1 << 11); // stride: uv 4 + normal 3 (+1 pad) + position 6 = 14
-  const commands = [0x12000000 | vtype, 0x01000000 | 0x20, 0x02000000 | 0x60, 0x9b000000, 0x04040004, 0x0b000000];
+  const commands = [
+    0x12000000 | vtype,
+    0x01000000 | 0x20,
+    0x02000000 | 0x60,
+    0x9b000000,
+    0x04040004,
+    0x0b000000,
+  ];
   const list = Buffer.alloc(0x70);
   commands.forEach((c, i) => list.writeUInt32LE(c >>> 0, i * 4));
   const verts = [
@@ -222,7 +253,11 @@ test("buildGlb stores the source integers exactly (KHR_mesh_quantization) with t
   assert.equal(position.componentType, 5122);
   assert.equal(position.normalized, true);
   assert.deepEqual(position.max, [32767, 32767, 0]);
-  assert.ok(exactTriangles(glb).includes("-32767,-32767,0|0,0 -32767,32767,0|0,32768 32767,-32767,0|32768,0"));
+  assert.ok(
+    exactTriangles(glb).includes(
+      "-32767,-32767,0|0,0 -32767,32767,0|0,32768 32767,-32767,0|32768,0",
+    ),
+  );
 });
 
 test("buildGlb meshopt compression is lossless", async () => {
@@ -234,11 +269,15 @@ test("buildGlb meshopt compression is lossless", async () => {
 });
 
 test("buildGlb lossy positionBits rounds positions to the requested precision", async () => {
-  const { glb } = await buildGlb(readPmo(exactPmo()), [], "test", { compress: false, positionBits: 4 });
+  const { glb } = await buildGlb(readPmo(exactPmo()), [], "test", {
+    compress: false,
+    positionBits: 4,
+  });
   // 4 bits keep multiples of 2^12; +-32767 rounds to +-32768 and clamps to +-32767.
   for (const triangle of exactTriangles(glb)) {
     for (const vertex of triangle.split(" ")) {
-      for (const c of vertex.split("|")[0]!.split(",").map(Number)) assert.ok(c === 0 || Math.abs(c) === 32767 || c % 4096 === 0, String(c));
+      for (const c of vertex.split("|")[0]!.split(",").map(Number))
+        assert.ok(c === 0 || Math.abs(c) === 32767 || c % 4096 === 0, String(c));
     }
   }
 });
@@ -257,7 +296,8 @@ test("unswizzle reorders 16-byte x 8-row blocks into rows", () => {
   const rowBytes = 32;
   const swizzled = Buffer.alloc(rowBytes * 8);
   // Block 0 holds the left 16 bytes of rows 0-7, block 1 the right 16 bytes.
-  for (let i = 0; i < swizzled.length; i++) swizzled[i] = i < 128 ? Math.floor(i / 16) : 100 + Math.floor((i - 128) / 16);
+  for (let i = 0; i < swizzled.length; i++)
+    swizzled[i] = i < 128 ? Math.floor(i / 16) : 100 + Math.floor((i - 128) / 16);
   const out = unswizzle(swizzled, rowBytes, 8);
   assert.equal(out[0], 0);
   assert.equal(out[16], 100);
@@ -265,7 +305,7 @@ test("unswizzle reorders 16-byte x 8-row blocks into rows", () => {
 });
 
 test("readTmh decodes a 4-bit paletted image", () => {
-  const pixels = Buffer.alloc(16 * 8 / 2, 0x10); // every byte: pixel0 = index 0, pixel1 = index 1
+  const pixels = Buffer.alloc((16 * 8) / 2, 0x10); // every byte: pixel0 = index 0, pixel1 = index 1
   const palette = Buffer.alloc(16 * 4);
   palette.set([255, 0, 0, 255], 0);
   palette.set([0, 0, 255, 128], 4);
@@ -285,7 +325,9 @@ test("readTmh decodes a 4-bit paletted image", () => {
   const header = Buffer.alloc(16);
   header.write(".TMH0.14", 0, "latin1");
   header.writeUInt32LE(1, 8);
-  const [image] = readTmh(Buffer.concat([header, imageHeader, pixelHeader, pixels, paletteHeader, palette]));
+  const [image] = readTmh(
+    Buffer.concat([header, imageHeader, pixelHeader, pixels, paletteHeader, palette]),
+  );
   assert.equal(image!.width, 16);
   assert.deepEqual([...image!.rgba.subarray(0, 8)], [255, 0, 0, 255, 0, 0, 255, 128]);
   assert.equal(image!.hasAlpha, true);
@@ -295,7 +337,11 @@ test("encodePng writes a palette PNG for <= 256 colours that decodes to the same
   const width = 8;
   const height = 4;
   const rgba = Buffer.alloc(width * height * 4);
-  for (let i = 0; i < width * height; i++) rgba.set(i % 3 === 0 ? [0, 0, 0, 0] : i % 3 === 1 ? [200, 10, 10, 255] : [10, 200, 10, 128], i * 4);
+  for (let i = 0; i < width * height; i++)
+    rgba.set(
+      i % 3 === 0 ? [0, 0, 0, 0] : i % 3 === 1 ? [200, 10, 10, 255] : [10, 200, 10, 128],
+      i * 4,
+    );
   const png = encodePng(width, height, rgba);
   assert.equal(png.subarray(1, 4).toString("latin1"), "PNG");
   assert.equal(png[25], 3); // IHDR colour type: palette
@@ -307,11 +353,16 @@ test("encodeTexture is lossless for every visible pixel", async () => {
   const width = 16;
   const height = 16;
   const rgba = Buffer.alloc(width * height * 4);
-  for (let i = 0; i < width * height; i++) rgba.set([(i * 7) % 256, (i * 13) % 256, (i * 29) % 256, i % 5 === 0 ? 0 : 255], i * 4);
+  for (let i = 0; i < width * height; i++)
+    rgba.set([(i * 7) % 256, (i * 13) % 256, (i * 29) % 256, i % 5 === 0 ? 0 : 255], i * 4);
   const texture = await encodeTexture({ width, height, rgba, hasAlpha: true });
   const decoded = await sharp(texture.data).ensureAlpha().raw().toBuffer();
   for (let i = 0; i < width * height; i++) {
     if (rgba[i * 4 + 3] === 0) assert.equal(decoded[i * 4 + 3], 0);
-    else assert.deepEqual([...decoded.subarray(i * 4, i * 4 + 4)], [...rgba.subarray(i * 4, i * 4 + 4)]);
+    else
+      assert.deepEqual(
+        [...decoded.subarray(i * 4, i * 4 + 4)],
+        [...rgba.subarray(i * 4, i * 4 + 4)],
+      );
   }
 });

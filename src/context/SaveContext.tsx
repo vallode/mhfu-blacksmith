@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { getSave, setSave, clearSave, type SaveData } from "@/lib/save-store";
 
 interface SaveContextValue {
@@ -40,11 +34,7 @@ export function SaveProvider({ children }: { children: React.ReactNode }) {
     window.dispatchEvent(new CustomEvent("mhfu:save-loaded"));
   }, []);
 
-  return (
-    <SaveContext.Provider value={{ save, load, clear }}>
-      {children}
-    </SaveContext.Provider>
-  );
+  return <SaveContext.Provider value={{ save, load, clear }}>{children}</SaveContext.Provider>;
 }
 
 export function useSave() {

@@ -19,7 +19,10 @@ export interface DirEntry {
   size: number;
 }
 
-function parseDirectoryRecord(buf: Buffer, offset: number): { entry: DirEntry; recordLength: number } | null {
+function parseDirectoryRecord(
+  buf: Buffer,
+  offset: number,
+): { entry: DirEntry; recordLength: number } | null {
   const recordLength = buf.readUInt8(offset);
   if (recordLength === 0) return null;
 
@@ -91,7 +94,8 @@ export class Iso9660Reader {
       if (!match) throw new Error(`Path not found in ISO: ${path} (missing segment "${part}")`);
       current = match;
       if (i < parts.length - 1) {
-        if (!current.isDirectory) throw new Error(`Path segment "${part}" in ${path} is not a directory`);
+        if (!current.isDirectory)
+          throw new Error(`Path segment "${part}" in ${path} is not a directory`);
         entries = this.readDirectory(current);
       }
     }

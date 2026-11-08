@@ -1,14 +1,20 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { ARMOR_MODEL_LAYOUT, armorModelPath, readArmorModelIds } from "../src/tables/armor-models.js";
+import {
+  ARMOR_MODEL_LAYOUT,
+  armorModelPath,
+  readArmorModelIds,
+} from "../src/tables/armor-models.js";
 import { BinaryReader } from "../src/binary/reader.js";
 import { MHP2G_EU_RESOLVER } from "../src/games/mhp2g.js";
 import { ARMOR_SLOT_TABLE_NAMES_EU } from "../src/tables/eu-signatures.js";
 import { loadFileList } from "../src/container/filelist.js";
 
 test("armor model layout counts match the site's equipment ID lists", () => {
-  const ids = JSON.parse(readFileSync(new URL("../../../data/equipment-ids.json", import.meta.url), "utf-8")) as Record<string, unknown[]>;
+  const ids = JSON.parse(
+    readFileSync(new URL("../../../data/equipment-ids.json", import.meta.url), "utf-8"),
+  ) as Record<string, unknown[]>;
   for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT)) {
     assert.equal(layout.count, ids[slot]!.length, slot);
   }
@@ -34,12 +40,15 @@ test("readArmorModelIds reads each site slot from its own array (EU signature pa
     armorValuesLeg: 0x171de8,
   };
   const buf = Buffer.alloc(0x180000);
-  for (const [name, off] of Object.entries(offsets)) ARMOR_SLOT_TABLE_NAMES_EU[name]!.signature.copy(buf, off);
+  for (const [name, off] of Object.entries(offsets))
+    ARMOR_SLOT_TABLE_NAMES_EU[name]!.signature.copy(buf, off);
   const ids = readArmorModelIds(new BinaryReader(buf), MHP2G_EU_RESOLVER);
   // Entry 1 of each slot (Leather Helm, ..., Green Pants), from real bytes.
   assert.deepEqual(
-    Object.fromEntries(Object.entries(ids).map(([slot, e]) => [slot, [e[1]!.maleId, e[1]!.femaleId]])),
-    { helmet: [15, 17], plate: [6, 36], gauntlets: [6, 35], waist: [6, 25], leggings: [6, 26] }
+    Object.fromEntries(
+      Object.entries(ids).map(([slot, e]) => [slot, [e[1]!.maleId, e[1]!.femaleId]]),
+    ),
+    { helmet: [15, 17], plate: [6, 36], gauntlets: [6, 35], waist: [6, 25], leggings: [6, 26] },
   );
   assert.equal(ids.helmet.length, 436);
   assert.equal(ids.leggings.length, 420);

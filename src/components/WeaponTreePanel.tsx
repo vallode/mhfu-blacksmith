@@ -37,7 +37,15 @@ const barText =
  * Previous/next button with the game's green arrow sprite (the nav's back
  * arrow); "next" is the same image mirrored.
  */
-function ArrowButton({ next, label, onClick }: { next?: boolean; label: string; onClick: () => void }) {
+function ArrowButton({
+  next,
+  label,
+  onClick,
+}: {
+  next?: boolean;
+  label: string;
+  onClick: () => void;
+}) {
   return (
     <button
       type="button"
@@ -51,7 +59,7 @@ function ArrowButton({ next, label, onClick }: { next?: boolean; label: string; 
     >
       <img
         className={cn(
-          "pixelated h-[42px] w-auto transition-[filter] duration-100 ease-[ease] group-hover:brightness-125 group-focus-visible:brightness-125",
+          "h-[42px] w-auto transition-[filter] duration-100 ease-[ease] pixelated group-hover:brightness-125 group-focus-visible:brightness-125",
           next && "-scale-x-100",
         )}
         src="/images/arrow.png"
@@ -73,7 +81,8 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
 
   // Recomputed every render: upgradeCheck answers null until a bundle has
   // loaded, and the provider re-renders us when it arrives.
-  const result = progress.active && tree ? filterTree(tree, type, basePath, progress, filter) : null;
+  const result =
+    progress.active && tree ? filterTree(tree, type, basePath, progress, filter) : null;
 
   const step = (by: 1 | -1) => {
     setFilter((current) => {

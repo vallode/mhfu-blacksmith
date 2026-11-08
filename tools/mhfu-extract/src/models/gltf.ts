@@ -90,13 +90,20 @@ interface Primitive {
   indices: number[];
 }
 
-export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, options: GlbOptions = {}): Promise<{ glb: Buffer; stats: GlbStats }> {
+export async function buildGlb(
+  pmo: Pmo,
+  textures: TmhImage[],
+  name: string,
+  options: GlbOptions = {},
+): Promise<{ glb: Buffer; stats: GlbStats }> {
   const compress = options.compress ?? true;
   const positionStep = 2 ** (16 - (options.positionBits ?? 16));
   const uvStep = 2 ** (15 - (options.uvBits ?? 15));
   if (compress) await MeshoptEncoder.ready;
 
-  const exact = pmo.meshes.every((mesh) => mesh.primitives.every((p) => p.geometry.vertices.every(isExactVertex)));
+  const exact = pmo.meshes.every((mesh) =>
+    mesh.primitives.every((p) => p.geometry.vertices.every(isExactVertex)),
+  );
   const layout = exact ? EXACT : FLOATS;
 
   // ---- vertex table and primitives ------------------------------------------
@@ -121,7 +128,12 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
       const remap = vertices.map((v) => {
         const record = Buffer.alloc(layout.stride);
         if (exact) {
-          v.position.forEach((c, k) => record.writeInt16LE(roundTo(Math.round(c * 0x7fff), positionStep, -0x7fff, 0x7fff), EXACT.position + k * 2));
+          v.position.forEach((c, k) =>
+            record.writeInt16LE(
+              roundTo(Math.round(c * 0x7fff), positionStep, -0x7fff, 0x7fff),
+              EXACT.position + k * 2,
+            ),
+          );
           // The model's scale sits on the node, and renderers transform
           // normals by its inverse-transpose (1/scale per axis). The source
           // normals are in scaled model space, so pre-multiply by the scale
@@ -129,7 +141,12 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
           const n = v.normal!.map((c, k) => c * pmo.scale[k]!);
           const length = Math.hypot(...n) || 1;
           n.forEach((c, k) => record.writeInt8(Math.round((c / length) * 0x7f), EXACT.normal + k));
-          v.uv!.forEach((c, k) => record.writeUInt16LE(roundTo(Math.round(c * UV_ONE), uvStep, 0, 0xffff), EXACT.uv + k * 2));
+          v.uv!.forEach((c, k) =>
+            record.writeUInt16LE(
+              roundTo(Math.round(c * UV_ONE), uvStep, 0, 0xffff),
+              EXACT.uv + k * 2,
+            ),
+          );
         } else {
           v.position.forEach((c, k) => record.writeFloatLE(c, FLOATS.position + k * 4));
           const [x, y, z] = v.normal ?? [0, 1, 0];
@@ -204,7 +221,10 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
   const bufferViews: object[] = [];
   const pushBin = (data: Uint8Array): number => {
     const offset = binLength;
-    const padded = data.length % 4 ? Buffer.concat([data, Buffer.alloc(4 - (data.length % 4))]) : Buffer.from(data);
+    const padded =
+      data.length % 4
+        ? Buffer.concat([data, Buffer.alloc(4 - (data.length % 4))])
+        : Buffer.from(data);
     bin.push(padded);
     binLength += padded.length;
     return offset;
@@ -213,19 +233,47 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
     const isIndex = target === ELEMENT_ARRAY_BUFFER;
     const strideField = isIndex ? {} : { byteStride: stride };
     if (!compress) {
-      bufferViews.push({ buffer: 0, byteOffset: pushBin(data), byteLength: data.length, ...strideField });
+      bufferViews.push({
+        buffer: 0,
+        byteOffset: pushBin(data),
+        byteLength: data.length,
+        ...strideField,
+      });
     } else {
       const mode = isIndex ? "TRIANGLES" : "ATTRIBUTES";
       const encoded = MeshoptEncoder.encodeGltfBuffer(data, count, stride, mode);
-      const meshopt = { buffer: 0, byteOffset: pushBin(encoded), byteLength: encoded.length, byteStride: stride, count, mode };
-      bufferViews.push({ buffer: 1, byteOffset: fallbackLength, byteLength: data.length, ...strideField, extensions: { EXT_meshopt_compression: meshopt } });
+      const meshopt = {
+        buffer: 0,
+        byteOffset: pushBin(encoded),
+        byteLength: encoded.length,
+        byteStride: stride,
+        count,
+        mode,
+      };
+      bufferViews.push({
+        buffer: 1,
+        byteOffset: fallbackLength,
+        byteLength: data.length,
+        ...strideField,
+        extensions: { EXT_meshopt_compression: meshopt },
+      });
       fallbackLength += Math.ceil(data.length / 4) * 4;
     }
     return bufferViews.length - 1;
   };
 
-  const vertexView = addStream(new Uint8Array(vertexData.buffer, vertexData.byteOffset, vertexData.byteLength), vertexCount, layout.stride, ARRAY_BUFFER);
-  const indexView = addStream(new Uint8Array(indexData.buffer, indexData.byteOffset, indexData.byteLength), indexData.length, indexSize, ELEMENT_ARRAY_BUFFER);
+  const vertexView = addStream(
+    new Uint8Array(vertexData.buffer, vertexData.byteOffset, vertexData.byteLength),
+    vertexCount,
+    layout.stride,
+    ARRAY_BUFFER,
+  );
+  const indexView = addStream(
+    new Uint8Array(indexData.buffer, indexData.byteOffset, indexData.byteLength),
+    indexData.length,
+    indexSize,
+    ELEMENT_ARRAY_BUFFER,
+  );
 
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];
@@ -240,14 +288,54 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
   const accessors: object[] = exact
     ? [
         // Bounds of normalized accessors are in the stored (integer) units.
-        { bufferView: vertexView, componentType: SHORT, normalized: true, count: vertexCount, type: "VEC3", min, max },
-        { bufferView: vertexView, byteOffset: EXACT.normal, componentType: BYTE, normalized: true, count: vertexCount, type: "VEC3" },
-        { bufferView: vertexView, byteOffset: EXACT.uv, componentType: UNSIGNED_SHORT, count: vertexCount, type: "VEC2" },
+        {
+          bufferView: vertexView,
+          componentType: SHORT,
+          normalized: true,
+          count: vertexCount,
+          type: "VEC3",
+          min,
+          max,
+        },
+        {
+          bufferView: vertexView,
+          byteOffset: EXACT.normal,
+          componentType: BYTE,
+          normalized: true,
+          count: vertexCount,
+          type: "VEC3",
+        },
+        {
+          bufferView: vertexView,
+          byteOffset: EXACT.uv,
+          componentType: UNSIGNED_SHORT,
+          count: vertexCount,
+          type: "VEC2",
+        },
       ]
     : [
-        { bufferView: vertexView, componentType: FLOAT, count: vertexCount, type: "VEC3", min, max },
-        { bufferView: vertexView, byteOffset: FLOATS.normal, componentType: FLOAT, count: vertexCount, type: "VEC3" },
-        { bufferView: vertexView, byteOffset: FLOATS.uv, componentType: FLOAT, count: vertexCount, type: "VEC2" },
+        {
+          bufferView: vertexView,
+          componentType: FLOAT,
+          count: vertexCount,
+          type: "VEC3",
+          min,
+          max,
+        },
+        {
+          bufferView: vertexView,
+          byteOffset: FLOATS.normal,
+          componentType: FLOAT,
+          count: vertexCount,
+          type: "VEC3",
+        },
+        {
+          bufferView: vertexView,
+          byteOffset: FLOATS.uv,
+          componentType: FLOAT,
+          count: vertexCount,
+          type: "VEC2",
+        },
       ];
 
   // ---- textures and materials -------------------------------------------------
@@ -256,7 +344,11 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
   for (const primitive of ordered) {
     const tmhIndex = pmo.materials[primitive.material]!.textureIndex;
     const image = textures[tmhIndex];
-    if (image && !encoded.has(tmhIndex)) encoded.set(tmhIndex, await encodeTexture(image, { webp: options.webp, quality: options.textureQuality }));
+    if (image && !encoded.has(tmhIndex))
+      encoded.set(
+        tmhIndex,
+        await encodeTexture(image, { webp: options.webp, quality: options.textureQuality }),
+      );
   }
   let usesWebp = false;
   const images: object[] = [];
@@ -267,11 +359,19 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
     if (!texture) return undefined;
     let index = textureByTmh.get(tmhIndex);
     if (index === undefined) {
-      bufferViews.push({ buffer: 0, byteOffset: pushBin(texture.data), byteLength: texture.data.length });
+      bufferViews.push({
+        buffer: 0,
+        byteOffset: pushBin(texture.data),
+        byteLength: texture.data.length,
+      });
       images.push({ bufferView: bufferViews.length - 1, mimeType: texture.mimeType });
       const source = images.length - 1;
       if (texture.mimeType === "image/webp") usesWebp = true;
-      gltfTextures.push(texture.mimeType === "image/webp" ? { extensions: { EXT_texture_webp: { source } } } : { source });
+      gltfTextures.push(
+        texture.mimeType === "image/webp"
+          ? { extensions: { EXT_texture_webp: { source } } }
+          : { source },
+      );
       index = gltfTextures.length - 1;
       textureByTmh.set(tmhIndex, index);
     }
@@ -287,14 +387,23 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
     let index = materialIndex.get(key);
     if (index !== undefined) return index;
     const texture = textureFor(source.textureIndex);
-    const textureInfo: Record<string, unknown> | undefined = texture === undefined ? undefined : { index: texture };
+    const textureInfo: Record<string, unknown> | undefined =
+      texture === undefined ? undefined : { index: texture };
     if (textureInfo && exact) {
       usesTextureTransform = true;
-      textureInfo.extensions = { KHR_texture_transform: { scale: [f32(primitive.uvScale[0] / UV_ONE), f32(primitive.uvScale[1] / UV_ONE)] } };
+      textureInfo.extensions = {
+        KHR_texture_transform: {
+          scale: [f32(primitive.uvScale[0] / UV_ONE), f32(primitive.uvScale[1] / UV_ONE)],
+        },
+      };
     }
     const alpha = texture !== undefined && textures[source.textureIndex]!.hasAlpha;
     materials.push({
-      pbrMetallicRoughness: { ...(textureInfo ? { baseColorTexture: textureInfo } : {}), metallicFactor: 0, roughnessFactor: 1 },
+      pbrMetallicRoughness: {
+        ...(textureInfo ? { baseColorTexture: textureInfo } : {}),
+        metallicFactor: 0,
+        roughnessFactor: 1,
+      },
       ...(alpha ? { alphaMode: "MASK", alphaCutoff: 0.5 } : {}),
       doubleSided: true,
     });
@@ -305,9 +414,19 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
 
   let firstIndex = 0;
   const gltfPrimitives = ordered.map((primitive) => {
-    accessors.push({ bufferView: indexView, ...(firstIndex ? { byteOffset: firstIndex * indexSize } : {}), componentType: wide ? UNSIGNED_INT : UNSIGNED_SHORT, count: primitive.indices.length, type: "SCALAR" });
+    accessors.push({
+      bufferView: indexView,
+      ...(firstIndex ? { byteOffset: firstIndex * indexSize } : {}),
+      componentType: wide ? UNSIGNED_INT : UNSIGNED_SHORT,
+      count: primitive.indices.length,
+      type: "SCALAR",
+    });
     firstIndex += primitive.indices.length;
-    return { attributes: { POSITION: 0, NORMAL: 1, TEXCOORD_0: 2 }, indices: accessors.length - 1, material: materialFor(primitive) };
+    return {
+      attributes: { POSITION: 0, NORMAL: 1, TEXCOORD_0: 2 },
+      indices: accessors.length - 1,
+      material: materialFor(primitive),
+    };
   });
 
   const extensions = [
@@ -328,12 +447,27 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
     ...(images.length ? { images, textures: gltfTextures } : {}),
     accessors,
     bufferViews,
-    buffers: [{ byteLength: binLength }, ...(compress ? [{ byteLength: fallbackLength, extensions: { EXT_meshopt_compression: { fallback: true } } }] : [])],
+    buffers: [
+      { byteLength: binLength },
+      ...(compress
+        ? [
+            {
+              byteLength: fallbackLength,
+              extensions: { EXT_meshopt_compression: { fallback: true } },
+            },
+          ]
+        : []),
+    ],
   };
 
-  const stats: GlbStats = { primitives: gltfPrimitives.length, vertices: vertexCount, triangles: allIndices.length / 3 };
+  const stats: GlbStats = {
+    primitives: gltfPrimitives.length,
+    vertices: vertexCount,
+    triangles: allIndices.length / 3,
+  };
   let jsonChunk = Buffer.from(JSON.stringify(json), "utf-8");
-  if (jsonChunk.length % 4) jsonChunk = Buffer.concat([jsonChunk, Buffer.alloc(4 - (jsonChunk.length % 4), 0x20)]);
+  if (jsonChunk.length % 4)
+    jsonChunk = Buffer.concat([jsonChunk, Buffer.alloc(4 - (jsonChunk.length % 4), 0x20)]);
   const binChunk = Buffer.concat(bin);
   const header = Buffer.alloc(12);
   header.write("glTF", 0, "latin1");
@@ -345,5 +479,14 @@ export async function buildGlb(pmo: Pmo, textures: TmhImage[], name: string, opt
     b.writeUInt32LE(type, 4);
     return b;
   };
-  return { glb: Buffer.concat([header, chunkHeader(jsonChunk.length, 0x4e4f534a), jsonChunk, chunkHeader(binChunk.length, 0x004e4942), binChunk]), stats };
+  return {
+    glb: Buffer.concat([
+      header,
+      chunkHeader(jsonChunk.length, 0x4e4f534a),
+      jsonChunk,
+      chunkHeader(binChunk.length, 0x004e4942),
+      binChunk,
+    ]),
+    stats,
+  };
 }

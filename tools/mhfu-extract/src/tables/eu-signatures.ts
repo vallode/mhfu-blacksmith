@@ -55,7 +55,7 @@ const WEAPON_CLASS_MODIFIERS_EU: TableSignature = {
   // 0x139170, JP static offset 0x1366b8 (+0x2ab8).
   signature: Buffer.from(
     "e00100007800000008020000e60000008c000000780000008c000000e001000008020000e600000078000000",
-    "hex"
+    "hex",
   ),
   signatureOffset: 0,
 };
@@ -77,7 +77,7 @@ const WEAPONS_BLADEMASTER_EU: TableSignature = {
   // byte-for-byte identical between JP and this EU offset.
   signature: Buffer.from(
     "0000000000000000000000000000000000000000000000000a00050050c300000002be00000000000000000000410000",
-    "hex"
+    "hex",
   ),
   signatureOffset: 0,
 };
@@ -137,7 +137,7 @@ const EQUIPMENT_UPGRADE_EU: TableSignature = {
   // offset 0x14b458 (+0x2b04).
   signature: Buffer.from(
     "ff0000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000",
-    "hex"
+    "hex",
   ),
   signatureOffset: 0,
 };
@@ -249,7 +249,7 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     // Real EU offset 0x161808, JP array base 0x15ed04 (+0x2b04).
     signature: Buffer.from(
       "000000000f00000000000000000000000000000000000000000000000000000000000000000000000f0011000f0000002c0100000202000000000100060b0e0e13131c0002003402130229013c0244fe",
-      "hex"
+      "hex",
     ),
     signatureOffset: 0,
   },
@@ -258,7 +258,7 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     // Real EU offset 0x165c28, JP array base 0x163124 (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060024000f0000002c0100000202000000000000060b0e0e13131c0002003402130229023b0244ff",
-      "hex"
+      "hex",
     ),
     signatureOffset: 0,
   },
@@ -267,7 +267,7 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     // Real EU offset 0x169dc8, JP array base 0x1672c4 (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060023000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
-      "hex"
+      "hex",
     ),
     signatureOffset: 0,
   },
@@ -276,7 +276,7 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     // Real EU offset 0x16de00, JP array base 0x16b2fc (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060019000f0000002c0100000202000000000000060b0e0e13131c0003003403130229013b0344fe",
-      "hex"
+      "hex",
     ),
     signatureOffset: 0,
   },
@@ -285,7 +285,7 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     // Real EU offset 0x171de8, JP array base 0x16f2e4 (+0x2b04).
     signature: Buffer.from(
       "000000000f000000000000000000000000000000000000000000000000000000000000000000000006001a000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
-      "hex"
+      "hex",
     ),
     signatureOffset: 0,
   },

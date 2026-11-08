@@ -17,7 +17,7 @@ export class BinaryReader {
   private assertInBounds(offset: number, size: number, label: string): void {
     if (offset < 0 || offset + size > this.buf.length) {
       throw new RangeError(
-        `${label} out of bounds: offset=0x${offset.toString(16)} size=${size} bufLength=0x${this.buf.length.toString(16)}`
+        `${label} out of bounds: offset=0x${offset.toString(16)} size=${size} bufLength=0x${this.buf.length.toString(16)}`,
       );
     }
   }

@@ -23,7 +23,7 @@ export function assertCurrentFileNames(manifest: UnpackManifest, dir: string): v
   if (manifest.region !== "jp" && (manifest.fileList ?? 1) < FILE_LIST_VERSION) {
     throw new Error(
       `${dir} was unpacked before DATA.BIN files were named per region, so its ${manifest.region.toUpperCase()} file names are wrong ` +
-        `(e.g. weapon/we020.pac holds the real we000). Delete it and run unpack again.`
+        `(e.g. weapon/we020.pac holds the real we000). Delete it and run unpack again.`,
     );
   }
 }
@@ -71,7 +71,7 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
     const { region, discId } = detectRegion(sfo);
     if (!region || !discId) {
       throw new Error(
-        `Unrecognized disc (PARAM.SFO DISC_ID="${discId ?? "?"}") — expected one of ULJM05500 (JP), ULUS10391 (US), ULES01213 (EU).`
+        `Unrecognized disc (PARAM.SFO DISC_ID="${discId ?? "?"}") — expected one of ULJM05500 (JP), ULUS10391 (US), ULES01213 (EU).`,
       );
     }
     console.log(`Detected region: ${region} (${discId})`);
@@ -85,7 +85,10 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
     } else {
       console.log("Decrypting EBOOT.BIN...");
       const rawEboot = iso.readFile("/PSP_GAME/SYSDIR/EBOOT.BIN");
-      const eboot = await decryptEboot(rawEboot, { overridePath: options.eboot, pspdecryptBin: options.pspdecryptBin });
+      const eboot = await decryptEboot(rawEboot, {
+        overridePath: options.eboot,
+        pspdecryptBin: options.pspdecryptBin,
+      });
       await writeFile(path.join(options.out, "eboot.bin"), eboot);
       console.log(`Wrote ${path.join(options.out, "eboot.bin")} (${eboot.length} bytes)`);
     }

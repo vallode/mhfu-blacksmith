@@ -47,7 +47,8 @@ export function decodeVertexType(arg: number): VertexFormat {
   const weightCount = weightSize ? ((arg >> 14) & 7) + 1 : 0;
   const morphCount = ((arg >> 18) & 7) + 1;
   const throughMode = ((arg >> 23) & 1) === 1;
-  if (morphCount > 1) throw new Error(`Morph targets are not supported (VTYPE 0x${arg.toString(16)})`);
+  if (morphCount > 1)
+    throw new Error(`Morph targets are not supported (VTYPE 0x${arg.toString(16)})`);
   if (colorFormat !== 0 && !(colorFormat in COLOR_SIZE)) {
     throw new Error(`Unsupported vertex color format ${colorFormat} (VTYPE 0x${arg.toString(16)})`);
   }
@@ -120,9 +121,18 @@ function readUnsigned(reader: BinaryReader, offset: number, size: number): numbe
   return reader.f32(offset);
 }
 
-function readColor(reader: BinaryReader, offset: number, format: number): [number, number, number, number] {
+function readColor(
+  reader: BinaryReader,
+  offset: number,
+  format: number,
+): [number, number, number, number] {
   if (format === 7) {
-    return [reader.u8(offset) / 255, reader.u8(offset + 1) / 255, reader.u8(offset + 2) / 255, reader.u8(offset + 3) / 255];
+    return [
+      reader.u8(offset) / 255,
+      reader.u8(offset + 1) / 255,
+      reader.u8(offset + 2) / 255,
+      reader.u8(offset + 3) / 255,
+    ];
   }
   const v = reader.u16(offset);
   if (format === 4) return [(v & 31) / 31, ((v >> 5) & 63) / 63, ((v >> 11) & 31) / 31, 1];
@@ -136,23 +146,36 @@ function readVertex(reader: BinaryReader, base: number, fmt: VertexFormat): Deco
   const p = base + fmt.positionOffset;
   const ps = fmt.positionSize;
   const vertex: DecodedVertex = {
-    position: [readSigned(reader, p, ps), readSigned(reader, p + ps, ps), readSigned(reader, p + 2 * ps, ps)],
+    position: [
+      readSigned(reader, p, ps),
+      readSigned(reader, p + ps, ps),
+      readSigned(reader, p + 2 * ps, ps),
+    ],
     sizes: { position: ps, normal: fmt.normalSize, uv: fmt.uvSize },
   };
   if (fmt.normalSize) {
     const n = base + fmt.normalOffset;
     const ns = fmt.normalSize;
-    vertex.normal = [readSigned(reader, n, ns), readSigned(reader, n + ns, ns), readSigned(reader, n + 2 * ns, ns)];
+    vertex.normal = [
+      readSigned(reader, n, ns),
+      readSigned(reader, n + ns, ns),
+      readSigned(reader, n + 2 * ns, ns),
+    ];
   }
   if (fmt.uvSize) {
     const t = base + fmt.uvOffset;
-    vertex.uv = [readUnsigned(reader, t, fmt.uvSize), readUnsigned(reader, t + fmt.uvSize, fmt.uvSize)];
+    vertex.uv = [
+      readUnsigned(reader, t, fmt.uvSize),
+      readUnsigned(reader, t + fmt.uvSize, fmt.uvSize),
+    ];
   }
   if (fmt.colorFormat) vertex.color = readColor(reader, base + fmt.colorOffset, fmt.colorFormat);
   if (fmt.weightSize) {
     vertex.weights = [];
     for (let i = 0; i < fmt.weightCount; i++) {
-      vertex.weights.push(readUnsigned(reader, base + fmt.weightOffset + i * fmt.weightSize, fmt.weightSize));
+      vertex.weights.push(
+        readUnsigned(reader, base + fmt.weightOffset + i * fmt.weightSize, fmt.weightSize),
+      );
     }
   }
   return vertex;
@@ -223,7 +246,12 @@ export function runDisplayList(reader: BinaryReader, start: number): DecodedGeom
           if (indexAddress === null) throw new Error("Indexed PRIM before IADDR");
           for (let i = 0; i < count; i++) {
             const at = indexAddress + i * fmt.indexSize;
-            const index = fmt.indexSize === 1 ? reader.u8(at) : fmt.indexSize === 2 ? reader.u16(at) : reader.u32(at);
+            const index =
+              fmt.indexSize === 1
+                ? reader.u8(at)
+                : fmt.indexSize === 2
+                  ? reader.u16(at)
+                  : reader.u32(at);
             ids.push(vertexAt(vertexAddress + index * fmt.stride));
           }
           indexAddress += count * fmt.indexSize;
@@ -237,13 +265,20 @@ export function runDisplayList(reader: BinaryReader, start: number): DecodedGeom
       case 0x0b: // RET
         return { vertices, triangles };
       default:
-        throw new Error(`Unsupported GE command 0x${op.toString(16).padStart(2, "0")} at 0x${pc.toString(16)}`);
+        throw new Error(
+          `Unsupported GE command 0x${op.toString(16).padStart(2, "0")} at 0x${pc.toString(16)}`,
+        );
     }
   }
 }
 
 /** Append triangles in counter-clockwise (glTF) front-face order. */
-function emitTriangles(type: number, ids: number[], clockwise: boolean, out: [number, number, number][]): void {
+function emitTriangles(
+  type: number,
+  ids: number[],
+  clockwise: boolean,
+  out: [number, number, number][],
+): void {
   const push = (a: number, b: number, c: number) => {
     if (a === b || b === c || a === c) return; // degenerate strip joiners
     out.push(clockwise ? [a, c, b] : [a, b, c]);

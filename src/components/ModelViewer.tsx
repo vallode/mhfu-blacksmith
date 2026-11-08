@@ -118,7 +118,12 @@ export default function ModelViewer({ src, label }: Props) {
         // from all around the turntable, at the current viewing elevation.
         // Exact for any shape and aspect ratio, unlike a bounding sphere.
         const corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
-          (i) => new THREE.Vector3(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z)
+          (i) =>
+            new THREE.Vector3(
+              i & 1 ? box.max.x : box.min.x,
+              i & 2 ? box.max.y : box.min.y,
+              i & 4 ? box.max.z : box.min.z,
+            ),
         );
         const MARGIN = 0.92;
         const probe = camera.clone();
@@ -133,13 +138,18 @@ export default function ModelViewer({ src, label }: Props) {
             probe.position.set(
               center.x + distance * Math.cos(elevation) * Math.sin(azimuth),
               center.y + distance * Math.sin(elevation),
-              center.z + distance * Math.cos(elevation) * Math.cos(azimuth)
+              center.z + distance * Math.cos(elevation) * Math.cos(azimuth),
             );
             probe.lookAt(center);
             probe.updateMatrixWorld();
             for (const corner of corners) {
               projected.copy(corner).project(probe);
-              if (projected.z > 1 || Math.abs(projected.x) > MARGIN || Math.abs(projected.y) > MARGIN) return false;
+              if (
+                projected.z > 1 ||
+                Math.abs(projected.x) > MARGIN ||
+                Math.abs(projected.y) > MARGIN
+              )
+                return false;
             }
           }
           return true;
@@ -147,7 +157,9 @@ export default function ModelViewer({ src, label }: Props) {
         fit = () => {
           // Keep the current viewing elevation; change only the distance.
           const offset = camera.position.clone().sub(controls.target);
-          const elevation = offset.lengthSq() ? Math.asin(THREE.MathUtils.clamp(offset.y / offset.length(), -1, 1)) : 0.33;
+          const elevation = offset.lengthSq()
+            ? Math.asin(THREE.MathUtils.clamp(offset.y / offset.length(), -1, 1))
+            : 0.33;
           let near = radius * 0.5;
           let far = radius * 50;
           for (let i = 0; i < 30; i++) {
@@ -156,7 +168,9 @@ export default function ModelViewer({ src, label }: Props) {
             else near = mid;
           }
           const distance = far;
-          const direction = offset.lengthSq() ? offset.normalize() : new THREE.Vector3(1, 0.35, 1).normalize();
+          const direction = offset.lengthSq()
+            ? offset.normalize()
+            : new THREE.Vector3(1, 0.35, 1).normalize();
           controls.target.copy(center);
           camera.position.copy(center).addScaledVector(direction, distance);
           camera.near = distance / 100;
@@ -187,7 +201,12 @@ export default function ModelViewer({ src, label }: Props) {
 
   return (
     <div className="relative h-full min-h-48 w-full">
-      <div ref={containerRef} className="absolute inset-0" role="img" aria-label={`3D model of ${label}`} />
+      <div
+        ref={containerRef}
+        className="absolute inset-0"
+        role="img"
+        aria-label={`3D model of ${label}`}
+      />
       {status !== "ready" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">
           {status === "loading" ? "Loading model…" : "Model unavailable."}

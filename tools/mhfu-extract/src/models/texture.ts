@@ -29,16 +29,26 @@ export interface EncodedTexture {
 
 async function requantize(image: TmhImage, quality: number): Promise<Buffer> {
   const raw = { width: image.width, height: image.height, channels: 4 as const };
-  const png = await sharp(image.rgba, { raw }).png({ palette: true, quality, dither: 0, effort: 10 }).toBuffer();
+  const png = await sharp(image.rgba, { raw })
+    .png({ palette: true, quality, dither: 0, effort: 10 })
+    .toBuffer();
   return sharp(png).ensureAlpha().raw().toBuffer();
 }
 
-export async function encodeTexture(image: TmhImage, options: TextureOptions = {}): Promise<EncodedTexture> {
-  const rgba = options.quality !== undefined && options.quality < 100 ? await requantize(image, options.quality) : image.rgba;
+export async function encodeTexture(
+  image: TmhImage,
+  options: TextureOptions = {},
+): Promise<EncodedTexture> {
+  const rgba =
+    options.quality !== undefined && options.quality < 100
+      ? await requantize(image, options.quality)
+      : image.rgba;
   const png = encodePng(image.width, image.height, rgba);
   if (options.webp === false) return { data: png, mimeType: "image/png" };
   const webp = await sharp(rgba, { raw: { width: image.width, height: image.height, channels: 4 } })
     .webp({ lossless: true, effort: 6 })
     .toBuffer();
-  return webp.length < png.length ? { data: webp, mimeType: "image/webp" } : { data: png, mimeType: "image/png" };
+  return webp.length < png.length
+    ? { data: webp, mimeType: "image/webp" }
+    : { data: png, mimeType: "image/png" };
 }

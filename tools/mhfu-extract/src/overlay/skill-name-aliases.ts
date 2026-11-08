@@ -47,7 +47,10 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const ALIASES_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "skill-name-aliases.json");
+const ALIASES_PATH = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "skill-name-aliases.json",
+);
 
 interface AliasTable {
   armor: Record<string, string>;

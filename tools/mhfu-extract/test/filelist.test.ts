@@ -15,7 +15,10 @@ test("EU alignment segments are ordered, non-overlapping and inside both TOCs", 
   let euEnd = 0;
   let jpEnd = 0;
   for (const segment of euAlignment.segments) {
-    assert.ok(segment.eu >= euEnd && segment.jp >= jpEnd, `segment ${JSON.stringify(segment)} overlaps the previous one`);
+    assert.ok(
+      segment.eu >= euEnd && segment.jp >= jpEnd,
+      `segment ${JSON.stringify(segment)} overlaps the previous one`,
+    );
     euEnd = segment.eu + segment.count;
     jpEnd = segment.jp + segment.count;
   }
