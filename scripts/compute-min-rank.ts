@@ -1,94 +1,33 @@
 /**
- * Prototype: derives the earliest quest progress needed for each weapon and
- * armor piece from quest drops and recipes (see src/lib/min-rank.ts), and
- * writes a report. Usage: tsx scripts/compute-min-rank.ts [out.json]
+ * Reports the earliest quest progress needed for each weapon and armor piece
+ * (see src/lib/min-rank.ts), to audit the derivation.
+ * Usage: tsx scripts/compute-min-rank.ts [out.json]
  */
 import fs from "fs";
 import path from "path";
-import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
-import {
-  earliestSources,
-  either,
-  GATHER_TIERS,
-  GATHERED_TYPES,
-  recipeProgress,
-  weaponProgress,
-  type Progress,
-  type MonsterLike,
-  type QuestLike,
-  type RecipeLike,
-  type WeaponLike,
-} from "../src/lib/min-rank";
-
-type RecipeHolder = Record<
-  "create_mats" | "improve_mats" | "alternative_create_mats",
-  RecipeLike[] | undefined
->;
+import { loadMinRanks, type Recipes } from "./lib/min-rank-data";
+import type { Progress } from "../src/lib/min-rank";
 
 const dataDir = path.join(process.cwd(), "data");
-const readJson = <T>(...p: string[]): T =>
-  JSON.parse(fs.readFileSync(path.join(dataDir, ...p), "utf-8"));
+const ranks = loadMinRanks(dataDir);
 
-const { index } = buildItemNameIndex(readJson<{ items: ItemRecord[] }>("items.json").items);
-const key = (name: string): string | undefined => {
-  const id = index.get(normalizeItemName(name));
-  return id === undefined ? undefined : String(id);
-};
-
-const quests = fs
-  .readdirSync(path.join(dataDir, "quests"))
-  .flatMap((f) => readJson<{ quests: QuestLike[] }>("quests", f).quests);
-const monsters = fs
-  .readdirSync(path.join(dataDir, "monsters"))
-  .flatMap((f) => readJson<{ monsters: MonsterLike[] }>("monsters", f).monsters);
-
-// Item keys whose recipes call them a gathered category (ore, insect, ...).
-const gathered = new Set<string>();
-for (const dir of ["weapons", "armor"])
-  for (const file of fs.readdirSync(path.join(dataDir, dir)))
-    for (const piece of Object.values(readJson<Record<string, RecipeHolder[]>>(dir, file))[0])
-      for (const m of [
-        ...(piece.create_mats ?? []),
-        ...(piece.improve_mats ?? []),
-        ...(piece.alternative_create_mats ?? []),
-      ]) {
-        const k = key(m.name);
-        if (k !== undefined && m.type && GATHERED_TYPES.has(m.type)) gathered.add(k);
-      }
-for (const name of Object.keys(GATHER_TIERS)) {
-  const k = key(name);
-  if (k === undefined) console.warn("gather tier for unknown item:", name);
-  else gathered.add(k);
-}
-const sources = earliestSources(quests, monsters, key, gathered);
-
-const unsourced = new Set<string>();
-const unresolved = new Set<string>();
-
-const allWeapons = fs.readdirSync(path.join(dataDir, "weapons")).flatMap((file) => {
-  const type = file.replace(/\.json$/, "");
-  return readJson<{ weapons: WeaponLike[] }>("weapons", file).weapons.map((w) => ({ ...w, type }));
-});
 const weapons: Record<string, Record<string, Progress>> = {};
-for (const [id, p] of weaponProgress(allWeapons, sources, key, unsourced)) {
-  const [type, ...rest] = id.split("/");
-  (weapons[type] ??= {})[rest.join("/")] = p;
+for (const file of fs.readdirSync(path.join(dataDir, "weapons"))) {
+  const type = file.replace(/\.json$/, "");
+  const list = JSON.parse(fs.readFileSync(path.join(dataDir, "weapons", file), "utf-8")) as {
+    weapons: { name: string }[];
+  };
+  weapons[type] = Object.fromEntries(list.weapons.map((w) => [w.name, ranks.weapon(type, w.name)]));
 }
 
 const armor: Record<string, Record<string, Progress>> = {};
 for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
   const slot = file.replace(/\.json$/, "");
-  const list = readJson<{ armor: (WeaponLike & { hr?: string | number })[] }>("armor", file).armor;
-  armor[slot] = {};
-  for (const p of list) {
-    const mats = [...(p.create_mats ?? [])];
-    const prog = recipeProgress(mats, sources, key, unsourced);
-    armor[slot][p.name] = p.alternative_create_mats?.length
-      ? either(prog, recipeProgress(p.alternative_create_mats, sources, key, unsourced))
-      : prog;
-  }
+  const list = JSON.parse(fs.readFileSync(path.join(dataDir, "armor", file), "utf-8")) as {
+    armor: ({ name: string } & Recipes)[];
+  };
+  armor[slot] = Object.fromEntries(list.armor.map((p) => [p.name, ranks.armor(p)]));
 }
-for (const n of unsourced) if (key(n) === undefined) unresolved.add(n);
 
 const summarize = (group: Record<string, Record<string, Progress>>) => {
   const counts: Record<string, number> = {};
@@ -100,25 +39,16 @@ const summarize = (group: Record<string, Record<string, Progress>>) => {
   return counts;
 };
 
-console.log("sources:", sources.size, "items with a quest drop");
+console.log("sources:", ranks.sourceCount, "items with a known source");
 console.log("weapons by minRank:", summarize(weapons));
 console.log("armor by minRank:", summarize(armor));
-console.log(
-  "materials with no quest source:",
-  unsourced.size,
-  "(of which name doesn't resolve:",
-  unresolved.size + ")",
-);
+console.log("materials with no source:", ranks.unsourced.size);
 
 const out = process.argv[2];
 if (out) {
   fs.writeFileSync(
     out,
-    JSON.stringify(
-      { weapons, armor, unsourced: [...unsourced].sort(), unresolved: [...unresolved].sort() },
-      null,
-      1,
-    ),
+    JSON.stringify({ weapons, armor, unsourced: [...ranks.unsourced].sort() }, null, 1),
   );
   console.log("wrote", out);
 }

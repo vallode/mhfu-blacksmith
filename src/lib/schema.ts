@@ -19,6 +19,7 @@ import type {
   Material,
   WeaponTreeNode,
   Melody,
+  MinRank,
 } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -68,6 +69,8 @@ export interface CompactTreeNode {
 
 /** [materialId, amount] */
 export type MatTuple = [number, number | string];
+/** [rank index into RANKS, stars] */
+export type MinRankTuple = [number, number];
 /** [elementIdx, attack] */
 export type ElemTuple = [number, number];
 
@@ -91,6 +94,7 @@ export interface CompactWeapon {
   cc?: number; // create_cost
   ic?: number; // improve_cost
   rk?: number; // rank index into RANKS
+  mr?: MinRankTuple; // earliest quest progress needed to make it
   c?: string | null; // color (icon)
   cm?: MatTuple[]; // create_mats
   im?: MatTuple[]; // improve_mats
@@ -112,6 +116,7 @@ export interface CompactArmor {
   sl?: number;
   r?: number; // rarity
   rk?: number; // rank idx
+  mr?: MinRankTuple; // earliest quest progress needed to make it
   cc?: number; // create_cost
   sx?: number; // sex stringIdx
   ht?: number; // hunter_type stringIdx
@@ -305,7 +310,12 @@ export function decodeWeapon(d: Dictionaries, w: CompactWeapon, type: string): W
     skills: null,
     color: w.c ?? null,
     rank: w.rk !== undefined ? RANKS[w.rk] : undefined,
+    min_rank: decodeMinRank(w.mr),
   };
+}
+
+function decodeMinRank(mr: MinRankTuple | undefined): MinRank | undefined {
+  return mr ? { rank: RANKS[mr[0]], stars: mr[1] } : undefined;
 }
 
 export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): ArmorPiece {
@@ -328,6 +338,7 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
     create_mats: decodeMats(d, a.cm),
     alternative_create_mats: decodeMats(d, a.am),
     rank: a.rk !== undefined ? RANKS[a.rk] : undefined,
+    min_rank: decodeMinRank(a.mr),
   };
 }
 

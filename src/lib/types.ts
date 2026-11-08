@@ -34,6 +34,12 @@ export interface Melody {
   extended_duration: string | null;
 }
 
+/** Earliest quest progress at which gear can be made (see min-rank.ts). */
+export interface MinRank {
+  rank: string;
+  stars: number;
+}
+
 export interface Weapon {
   name: string;
   slug: string;
@@ -70,6 +76,8 @@ export interface Weapon {
   color?: string | null;
   // derived from hr/elder by computeRank() in src/lib/weapons.ts
   rank?: string;
+  /** Derived from quest drops and recipes; absent when no route is known. */
+  min_rank?: MinRank;
   hr?: string | number;
   elder?: string | number;
 }
@@ -100,6 +108,8 @@ export interface ArmorPiece {
   hr?: string | number;
   elder?: string | number;
   rank?: string;
+  /** Derived from quest drops and recipes; absent when no route is known. */
+  min_rank?: MinRank;
   defence?: string | number;
   fire_res?: string | number;
   thunder_res?: string | number;
