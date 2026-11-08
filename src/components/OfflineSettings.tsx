@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/Card";
+import SettingsCard from "@/components/SettingsCard";
 import { useOffline, type OfflineDownloadStatus } from "@/context/OfflineContext";
 import * as ui from "@/styles/settings";
 
@@ -24,10 +24,9 @@ export default function OfflineSettings() {
 
   if (offline.status === "unsupported") {
     return (
-      <Card className={ui.section}>
-        <h2 className={ui.heading}>Offline Data</h2>
+      <SettingsCard title="Offline Data">
         <p className={ui.note}>Offline downloads aren&apos;t supported in this browser.</p>
-      </Card>
+      </SettingsCard>
     );
   }
 
@@ -40,8 +39,7 @@ export default function OfflineSettings() {
         : 0;
 
   return (
-    <Card className={ui.section}>
-      <h2 className={ui.heading}>Offline Data</h2>
+    <SettingsCard title="Offline Data">
       <p className={ui.note}>
         Save weapon, armor, monster, and decoration data to this device so search and browsing work
         without a connection. This stays here whenever you want to (re)download or clear it — unlike
@@ -77,6 +75,6 @@ export default function OfflineSettings() {
           </button>
         )}
       </div>
-    </Card>
+    </SettingsCard>
   );
 }

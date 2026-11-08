@@ -8,6 +8,7 @@
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSave } from "@/context/SaveContext";
+import { usePreferences } from "@/context/PreferencesContext";
 import {
   getBundle,
   getDictionaries,
@@ -53,7 +54,9 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
     [ids, enabled, save],
   );
   const counts = useMemo(() => ownedItemCounts(save), [save]);
-  const zenny = save?.zenny;
+  // With the zenny check off (Options page), only materials decide.
+  const { checkZenny } = usePreferences().prefs;
+  const zenny = checkZenny ? save?.zenny : undefined;
   const [items, setItems] = useState<ItemLookup | null>(null);
 
   useEffect(() => {
