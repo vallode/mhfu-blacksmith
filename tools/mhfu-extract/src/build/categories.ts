@@ -135,8 +135,11 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "improve_from", kind: "weapon-refs" },
       { field: "improve_to", kind: "weapon-refs" },
     ],
-    // Not taken: `affinity` and `sharpness`/`sharpness_plus` (known
-    // extractor gaps, vallode/mhfu-blacksmith#33 and #31), `elements` (no
+    // `sharpness`/`sharpness_plus` are read through each class's
+    // `SharpnessTable.PTR` (vallode/mhfu-blacksmith#31). The disagreements
+    // left are site errors: almost all are bars no table entry can produce.
+    // Not taken: `affinity` (known extractor gap,
+    // vallode/mhfu-blacksmith#33), `elements` (no
     // dual-element weapons on the disc side yet), `coatings` (bow bit
     // layout only partly derived), `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
@@ -145,6 +148,8 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "attack",
       "slots",
       "rarity",
+      "sharpness",
+      "sharpness_plus",
       "create_cost",
       "create_mats",
       "improve_mats",

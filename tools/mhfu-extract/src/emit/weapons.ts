@@ -103,17 +103,12 @@ function emitElements(
  * threshold) reproduces every color's width exactly, including the partial
  * last one, on every cross-checked sample.
  *
- * Residual known approximation: a small minority of real weapons (~10%,
- * concentrated in `data/weapons/long-sword.json` in samples checked, e.g.
- * `Imperial Sword`/`Aqua Guardian`/`Atlantica`) show every committed width
- * shifted by exactly \u00b11 raw-scaled unit between the first and last
- * visible color (the *sum* of all widths still matches this model exactly —
- * only the internal split differs), which looks like either a secondary
- * rendering rule this derivation hasn't isolated yet, or committed-data
- * transcription noise local to those specific entries (same weapon+amount+
- * sharpnessId combination as *other* unaffected weapons that *do* match
- * exactly, which argues against a code-level formula error). Flagged here
- * for follow-up rather than blocking on it.
+ * `entry` is the weapon class's own curve, found through
+ * `SharpnessTable.PTR` (see `readSharpnessTables()`). The great sword and
+ * long sword weapons that still disagree by one unit between colours
+ * (`Imperial Sword`, `Aqua Guardian`, ...) have site bars that no table
+ * entry produces at any length, so they are site errors, not a missing
+ * rendering rule (vallode/mhfu-blacksmith#31).
  */
 export function emitSharpness(
   entry: SharpnessEntry,

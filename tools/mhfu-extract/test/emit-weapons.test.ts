@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { emitBlademasterWeapons, emitGunnerWeapons } from "../src/emit/weapons.js";
+import { SHARPNESS_POINTER_COUNT, SHARPNESS_POINTERS_OFFSET } from "../src/tables/sharpness.js";
 import {
   EQUIP_CREATE_ENTRY_SIZE,
+  JP_BASE_ADDRESS,
+  SHARPNESS_ENTRY_SIZE,
   WEAPON_BM_ENTRY_SIZE,
   WEAPON_GUN_ENTRY_SIZE,
   tableOffset,
@@ -108,4 +111,35 @@ test("emitGunnerWeapons decodes a real bow's coatings via decodeBowCoatings, not
   assert.ok(bow, "the fixture bow entry should be emitted");
   assert.equal(bow!.type, "bow");
   assert.deepEqual(bow!.coatings, ["power", "paint"]);
+});
+
+/**
+ * A hammer reads its curve from `SharpnessTable.PTR[2]`, not from entry
+ * `sharpnessId` of the whole table (vallode/mhfu-blacksmith#31). The two
+ * curves are real EU table entries 1 and 9 (hammer's run starts at 8).
+ */
+test("emitBlademasterWeapons reads a hammer's sharpness through its class pointer", () => {
+  const { buf, reader } = fixtureReader(0x200000);
+  const table = tableOffset("sharpnessTable");
+  const writeEntry = (index: number, values: number[]) =>
+    values.forEach((v, c) => buf.writeUInt16LE(v, table + index * SHARPNESS_ENTRY_SIZE + c * 2));
+  writeEntry(1, [90, 130, 240, 310, 370, 410, 450]);
+  writeEntry(9, [50, 90, 230, 330, 370, 430, 450]);
+  const pointers = table + SHARPNESS_POINTERS_OFFSET;
+  for (let type = 0; type < SHARPNESS_POINTER_COUNT; type++) {
+    const entry = type === 2 ? 8 : 0;
+    buf.writeUInt32LE(table + entry * SHARPNESS_ENTRY_SIZE + JP_BASE_ADDRESS, pointers + type * 4);
+  }
+
+  const wOff = tableOffset("weaponsBlademaster") + 1 * WEAPON_BM_ENTRY_SIZE;
+  buf.writeUInt16LE(30, wOff + 0); // ModelID
+  buf.writeUInt8(1, wOff + 8); // SharpnessID
+  buf.writeUInt8(0, wOff + 9); // SharpnessAmount -> 150 raw units
+  buf.writeUInt8(2, tableOffset("modelToWeaponType") + 30); // hammer
+
+  const weapon = emitBlademasterWeapons(reader).find((w) => w.name === "Carbalite Sword");
+  assert.ok(weapon);
+  assert.equal(weapon!.type, "hammer");
+  assert.deepEqual(weapon!.sharpness, [5, 4, 6]); // entry 9, not entry 1's [9, 4, 2]
+  assert.deepEqual(weapon!.sharpness_plus, [5, 4, 11]);
 });
