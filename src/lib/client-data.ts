@@ -383,6 +383,7 @@ export function loadSetSearchData(): Promise<SearchData> {
               res: ca.re,
               slots: a.slots,
               rarity: Number(a.rarity ?? 0) || undefined,
+              minRank: a.min_rank,
               sex: a.sex,
               hunterType: a.hunter_type,
               skills: a.skills?.map((s) => ({ name: s.name, amount: Number(s.amount) })),

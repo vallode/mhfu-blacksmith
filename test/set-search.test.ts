@@ -235,6 +235,31 @@ describe("searchSets (hand-made)", () => {
     );
   });
 
+  test("leaves out pieces beyond the quest progress", () => {
+    const armor = [
+      ...filler(0).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Early Helm", {
+        skills: [{ name: "Attack", amount: 10 }],
+        minRank: { rank: "low-rank", stars: 2 },
+      }),
+      piece("helmet", "Late Helm", {
+        defence: 50,
+        skills: [{ name: "Attack", amount: 10 }],
+        minRank: { rank: "high-rank", stars: 6 },
+      }),
+    ];
+    const data = prepareSearchData(tiny, armor, []);
+    const names = (progress: SearchQuery["progress"]) =>
+      searchSets(data, query(["Attack Up (Small)"], { progress })).sets.flatMap((s) => [
+        s.pieces[0].name,
+        ...s.alternatives[0].map((p) => p.name),
+      ]);
+    assert.deepEqual(names(null), ["Late Helm", "Early Helm"]);
+    assert.deepEqual(names({ rank: "high-rank", stars: 6 }), ["Late Helm", "Early Helm"]);
+    assert.deepEqual(names({ rank: "low-rank", stars: 3 }), ["Early Helm"]);
+    assert.deepEqual(names({ rank: "low-rank", stars: 1 }), []);
+  });
+
   test("decoration negatives count against other wanted skills", () => {
     const armor = [
       ...filler(0).filter((p) => p.slot !== "plate"),

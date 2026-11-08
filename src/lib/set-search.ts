@@ -23,6 +23,7 @@
  *    torso's decorations count once more per Torso Up piece.
  */
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import { isAvailable, type Tier } from "./min-rank";
 
 // ---------------------------------------------------------------------------
 // Data
@@ -60,6 +61,8 @@ export interface ArmorInput {
   sex?: string;
   hunterType?: string;
   skills?: { name: string; amount: number }[];
+  /** Earliest quest progress the piece can be made at (see min-rank.ts). */
+  minRank?: Tier;
 }
 
 export interface DecorationInput {
@@ -91,6 +94,8 @@ export interface Piece {
   /** Skill tree -> points, with tree names normalized. */
   points: Record<string, number>;
   torsoUp: boolean;
+  /** Earliest quest progress the piece can be made at. */
+  minRank?: Tier;
 }
 
 export interface Deco {
@@ -163,6 +168,7 @@ export function prepareSearchData(
       res: a.res ?? [0, 0, 0, 0, 0],
       slots: a.slots ?? 0,
       rarity: a.rarity,
+      minRank: a.minRank,
       sex: both(a.sex, "Male", "Female"),
       hunterType: both(a.hunterType, "Blademaster", "Gunner"),
       points,
@@ -227,6 +233,11 @@ export interface SearchQuery {
   allowBadSkills: boolean;
   /** Only use these pieces (e.g. the hunter's equipment box). */
   onlyPieces?: number[];
+  /**
+   * The hunter's quest progress: leave out pieces that need materials from
+   * later quests. Null or omitted uses every piece.
+   */
+  progress?: Tier | null;
   /** Never use these pieces. */
   excludePieces?: number[];
   /** Return at most this many sets (the highest defence ones). */
@@ -511,7 +522,8 @@ export function eligiblePieces(data: SearchData, query: SearchQuery): Piece[] {
       (p.sex === "Both" || p.sex === query.sex) &&
       (p.hunterType === "Both" || p.hunterType === query.hunterType) &&
       (!only || only.has(p.id)) &&
-      !excluded.has(p.id),
+      !excluded.has(p.id) &&
+      isAvailable(p.minRank, query.progress ?? null),
   );
 }
 

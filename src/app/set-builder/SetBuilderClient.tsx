@@ -14,10 +14,12 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
+import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useSetSearch } from "@/hooks/useSetSearch";
 import { cn } from "@/lib/cn";
 import type { ArmorRank } from "@/lib/constants";
+import { tierLabel } from "@/lib/min-rank";
 import { selectableSkills, type SearchQuery } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import ArmorSetView, { SetHeader, SetStatus, gameText } from "./ArmorSetView";
@@ -31,6 +33,8 @@ interface Form {
   weaponSlots: number;
   allowBadSkills: boolean;
   ownedOnly: boolean;
+  /** Search armor beyond the quest progress set on the Options page. */
+  ignoreQuestProgress: boolean;
 }
 
 const DEFAULT_FORM: Form = {
@@ -41,6 +45,7 @@ const DEFAULT_FORM: Form = {
   weaponSlots: 0,
   allowBadSkills: false,
   ownedOnly: false,
+  ignoreQuestProgress: false,
 };
 
 const STORAGE_KEY = "set-builder";
@@ -124,6 +129,8 @@ export default function SetBuilderClient() {
     setForm((f) => ({ ...f, [key]: value }));
 
   const ownedOnly = form.ownedOnly && progress.active;
+  const { questProgress } = usePreferences().prefs;
+  const questLimit = form.ignoreQuestProgress ? null : questProgress;
   const runSearch = () => {
     if (!data || form.skills.length === 0) return;
     const query: SearchQuery = {
@@ -133,6 +140,7 @@ export default function SetBuilderClient() {
       rank: form.rank,
       weaponSlots: form.weaponSlots,
       allowBadSkills: form.allowBadSkills,
+      progress: questLimit,
       onlyPieces: ownedOnly
         ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
         : undefined,
@@ -160,8 +168,8 @@ export default function SetBuilderClient() {
   else if (sets.length === 0)
     message = (
       <p className={ui.note}>
-        No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots, or
-        allowing bad skills.
+        No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots,
+        allowing bad skills{searched?.progress ? ", or ignoring your quest progress" : ""}.
       </p>
     );
 
@@ -230,6 +238,23 @@ export default function SetBuilderClient() {
               value={form.allowBadSkills}
               onChange={(v) => update("allowBadSkills", v)}
             />
+            {questProgress && (
+              <ToggleRow
+                label="Ignore quest progress"
+                note={
+                  <>
+                    Your quest progress ({tierLabel(questProgress)}, set on the{" "}
+                    <Link className="underline hover:text-white" href="/options/">
+                      Options
+                    </Link>{" "}
+                    page) leaves out armor that needs materials from later quests. Turn on to search
+                    all armor.
+                  </>
+                }
+                value={form.ignoreQuestProgress}
+                onChange={(v) => update("ignoreQuestProgress", v)}
+              />
+            )}
             {progress.active && (
               <ToggleRow
                 label="Owned armor only"
