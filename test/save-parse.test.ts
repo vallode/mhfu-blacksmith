@@ -71,14 +71,15 @@ test("decrypts both layers and finds the two hunters", async () => {
           h.sex,
           h.zenny,
           h.playTime,
+          h.hunterRank,
           h.equipBox.length,
           h.itemChest.length,
           h.itemPouch.length,
         ],
     ),
     [
-      ["Gideon", "Female", 1223209, 19087, 79, 914, 15],
-      ["MEARO", "Female", 9999999, 2840, 16, 999, 14],
+      ["Gideon", "Female", 1223209, 19087, 9, 79, 914, 15],
+      ["MEARO", "Female", 9999999, 2840, 2, 16, 999, 14],
     ],
   );
 });

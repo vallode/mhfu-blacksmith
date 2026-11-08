@@ -26,6 +26,8 @@ export interface SaveData {
   sex?: string;
   /** Total play time in seconds. */
   playTime?: number;
+  /** Missing on saves stored before it was read. */
+  hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
   slot?: number;
   savedAt: number;
@@ -38,6 +40,7 @@ export function saveFromCharacter(
     sex?: string;
     zenny: number;
     playTime?: number;
+    hunterRank?: number;
     itemChest: ItemSlot[];
     itemPouch: ItemSlot[];
     equipBox: EquipSlot[];
@@ -53,6 +56,7 @@ export function saveFromCharacter(
     equipment: character.equipBox,
     sex: character.sex,
     playTime: character.playTime,
+    hunterRank: character.hunterRank,
     slot,
   };
 }

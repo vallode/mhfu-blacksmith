@@ -60,6 +60,7 @@ interface Hunter {
   sex?: string;
   zenny?: number;
   playTime?: number;
+  hunterRank?: number;
 }
 
 interface SlotCardProps {
@@ -110,6 +111,12 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
               </>
             )}
             {hunter.sex && <span className="uppercase">{hunter.sex}</span>}
+          </span>
+        )}
+        {hunter.hunterRank !== undefined && (
+          <span className={slotRow}>
+            <span className={slotLabel}>HR</span>
+            <span>{hunter.hunterRank}</span>
           </span>
         )}
         {hunter.zenny !== undefined && (

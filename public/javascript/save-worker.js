@@ -8,6 +8,7 @@ const OFFSETS = {
   SEX:         0x000012, // uint8: 0 = Male, 1 = Female
   PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
   ZENNY:       0x069250, // uint32 LE
+  HUNTER_RANK: 0x0672d8, // uint16 LE, in the guild card block after the name copy
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
   ITEM_POUCH:  0x003f28, // 24 slots × 4 bytes
@@ -62,6 +63,7 @@ function parseCharacter(view, charIndex) {
   const sex   = view.getUint8(base + OFFSETS.SEX) === 0 ? "Male" : "Female";
   const zenny = view.getUint32(base + OFFSETS.ZENNY, true);
   const playTime = view.getUint32(base + OFFSETS.PLAY_TIME, true);
+  const hunterRank = view.getUint16(base + OFFSETS.HUNTER_RANK, true);
 
   // Kept in box order (slot index), skipping empty slots.
   const equipBox = [];
@@ -82,7 +84,7 @@ function parseCharacter(view, charIndex) {
     if (slot) itemPouch.push(slot);
   }
 
-  return { name, sex, zenny, playTime, equipBox, itemChest, itemPouch };
+  return { name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch };
 }
 
 const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)

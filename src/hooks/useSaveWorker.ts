@@ -9,6 +9,7 @@ export interface CharacterResult {
   zenny: number;
   /** Total play time in seconds. */
   playTime: number;
+  hunterRank: number;
   /** Used equipment box slots, in box order. */
   equipBox: EquipSlot[];
   itemChest: { id: number; qty: number }[];
