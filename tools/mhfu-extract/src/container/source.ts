@@ -40,24 +40,3 @@ export class FileSource implements RandomAccessSource {
     closeSync(this.fd);
   }
 }
-
-/** In-memory source, mainly useful for tests and already-decrypted buffers. */
-export class BufferSource implements RandomAccessSource {
-  readonly totalBytes: number;
-  constructor(private readonly buf: Buffer) {
-    this.totalBytes = buf.length;
-  }
-
-  read(offset: number, length: number): Buffer {
-    if (offset < 0 || offset + length > this.buf.length) {
-      throw new RangeError(
-        `BufferSource: out of bounds read at 0x${offset.toString(16)}, length=${length}`,
-      );
-    }
-    return this.buf.subarray(offset, offset + length);
-  }
-
-  close(): void {
-    // no-op
-  }
-}

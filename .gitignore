@@ -10,7 +10,6 @@ content/**/*.md
 # assets from the repo).
 /public/data
 /public/search-data.json
-/public/weapon-data.json
 /public/embed
 /public/sw.js
 /public/workbox-*.js

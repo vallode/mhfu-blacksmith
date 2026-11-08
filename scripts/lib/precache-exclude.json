@@ -1,11 +1,4 @@
 {
-  "_comment": "Images under public/images that the site never loads, kept out of the service worker precache (next.config.ts) and the offline download list (scripts/generate-data.ts image-manifest.json). Paths are relative to public/images; a trailing / excludes a whole directory. screenshot.png and blacksmith-scaled.png are only used by README.md; the rest aren't referenced anywhere.",
-  "exclude": [
-    "screenshot.png",
-    "blacksmith-scaled.png",
-    "loading.gif",
-    "not-found.png",
-    "scroll-short.png",
-    "mhfu__card.png"
-  ]
+  "_comment": "Images under public/images that the site never loads, kept out of the service worker precache (next.config.ts) and the offline download list (scripts/generate-data.ts image-manifest.json). Paths are relative to public/images; a trailing / excludes a whole directory. screenshot.png and blacksmith-scaled.png are only used by README.md.",
+  "exclude": ["screenshot.png", "blacksmith-scaled.png"]
 }

@@ -14,6 +14,7 @@ import { useFileSync } from "@/context/FileSyncContext";
 import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
 import type { SaveData } from "@/lib/save-store";
+import Loading from "@/components/Loading";
 
 const SLOTS = [0, 1, 2];
 
@@ -214,7 +215,7 @@ export default function SaveUpload() {
           );
         })}
 
-        {loading && <div className={notice}>Reading save file…</div>}
+        {loading && <Loading className={cn(notice, "justify-center")}>Reading save file…</Loading>}
         {error && <div className={cn(notice, "text-negative")}>{error}</div>}
       </div>
 

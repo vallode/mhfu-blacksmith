@@ -28,6 +28,7 @@ import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
+import Loading from "@/components/Loading";
 
 interface Props {
   type: WeaponType;
@@ -68,9 +69,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         <BorderRule />
         <div className="split-page">
           <WeaponTreePanel type={type} tree={null} activeSlug={slug} />
-          <Card>
-            <p>{loading ? "Loading…" : "Not found."}</p>
-          </Card>
+          <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>
         </div>
       </>
     );
@@ -432,7 +431,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         </DetailCard>
         {modelOpen && (
           <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
-            <ModelViewer src={modelUrl} label={weapon.name} />
+            <ModelViewer src={modelUrl} label={weapon.name} pair={type === "dual-blades"} />
           </ModelPopover>
         )}
       </div>

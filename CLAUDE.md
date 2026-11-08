@@ -68,7 +68,8 @@ Effects that are awkward as class strings are `@utility` rules in
 | `divider-tile`            | Tiled page-header divider (`BorderRule`)                                                               |
 | `icon-mask`, `icon-badge` | Icon tint mask and corner badge, driven by CSS variables from `iconStyle()` in `src/lib/icon-style.ts` |
 
-Animations: `animate-hover-glow`, `animate-toast-in`.
+Animations: `animate-hover-glow`, `animate-toast-in`, `animate-loading-in` (the
+delayed fade-in on `Loading`, the loading GIF next to a status message).
 
 ### Cascade rules (read before adding CSS)
 
