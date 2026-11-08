@@ -12,13 +12,8 @@ interface Props {
   category: MonsterCategory;
 }
 
-function formatName(category: string): string {
-  return category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 export default function MonsterListClient({ category }: Props) {
   const { items, loading } = useMonsterList(category);
-  const name = formatName(category);
 
   return (
     <>
@@ -27,7 +22,6 @@ export default function MonsterListClient({ category }: Props) {
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
         <Card className="overflow-auto py-7">
-          <p>{name}</p>
           {!loading &&
             items?.map((monster) => (
               <Link

@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
+import { writeLastMonster } from "@/lib/last-monster";
 import Icon from "./Icon";
 
 function formatName(category: string): string {
@@ -8,10 +12,15 @@ function formatName(category: string): string {
 
 /** Top bar for the bestiary: back arrow plus one icon per monster type. */
 export default function MonsterNav({ activeCategory }: { activeCategory?: MonsterCategory }) {
+  // Remember the monster type so the main menu's "Monsters" entry reopens it.
+  useEffect(() => {
+    if (activeCategory) writeLastMonster(activeCategory);
+  }, [activeCategory]);
+
   return (
     <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
       <div>
-        <Link href="/monsters/" aria-label="Back">
+        <Link href="/" aria-label="Back">
           <Icon type="arrow" nav alt="Back" />
         </Link>
       </div>

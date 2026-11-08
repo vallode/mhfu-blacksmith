@@ -8,9 +8,15 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { CATEGORIES, type Category, type CategoryName } from "./categories.js";
-import { buildSpellingIndex, canonical, type FieldContext, type SpellingIndex } from "./fields.js";
+import {
+  buildSpellingIndex,
+  fieldsAgree,
+  type FieldContext,
+  type SpellingIndex,
+} from "./fields.js";
 import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
 import type { MaterialContext } from "../overlay/item-name-corrections.js";
+import { monsterIdOf } from "../overlay/monsters.js";
 
 export type Item = Record<string, unknown>;
 
@@ -102,7 +108,9 @@ export function pairCategory(
             type: spec.weaponType,
             sex: item.sex as string | undefined,
           })
-        : site.itemIdOf(name);
+        : spec.table === "emID"
+          ? monsterIdOf(name)
+          : site.itemIdOf(name);
       const match = id === null ? undefined : disc.get(idKey(category, spec.file, id));
       if (id === null || !match) {
         siteOnly.push({ file: spec.file, name, id });
@@ -217,7 +225,7 @@ export function compareCategory(
       }
       const siteValue = pair.site[spec.field];
       const discValue = pair.disc[spec.field];
-      if (canonical(spec, siteValue, "site", ctx) === canonical(spec, discValue, "disc", ctx)) {
+      if (fieldsAgree(spec, siteValue, discValue, ctx)) {
         bump("agree");
       } else {
         bump("disagree");

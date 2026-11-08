@@ -16,12 +16,12 @@
               "chance": "26%"
             },
             {
-              "name": "Bone",
-              "chance": "10%"
-            },
-            {
               "name": "Bullfango Head",
               "chance": "5%"
+            },
+            {
+              "name": "Brute Bone",
+              "chance": "10%"
             }
           ]
         },
@@ -40,11 +40,11 @@
               "chance": "15%"
             },
             {
-              "name": "Bone",
+              "name": "Brute Bone",
               "chance": "15%"
             },
             {
-              "name": "Brute Bone",
+              "name": "Giant Bone",
               "chance": "10%"
             }
           ]
@@ -66,23 +66,28 @@
             {
               "name": "Giant Bone",
               "chance": "15%"
+            },
+            {
+              "name": "Stout Bone",
+              "chance": "10%"
             }
           ]
         }
       },
       "hitzones": {
         "all": {
-          "cut": "80",
-          "bash": "70",
-          "shot": "80",
+          "cut": "100",
+          "bash": "100",
+          "shot": "160",
           "fir": "50",
           "wtr": "50",
-          "thn": "120",
+          "thn": "100",
           "ice": "40",
           "drg": "10",
           "ko": "150"
         }
-      }
+      },
+      "base_hp": 19661000
     },
     {
       "name": "Bulldrome",
@@ -123,16 +128,16 @@
               "chance": "50%"
             },
             {
-              "name": "Brute Bone",
-              "chance": "30%"
-            },
-            {
               "name": "Bulldrome Tusk",
               "chance": "15%"
             },
             {
               "name": "Bullfango Head",
               "chance": "5%"
+            },
+            {
+              "name": "Giant Bone",
+              "chance": "30%"
             }
           ],
           "capture": [
@@ -141,16 +146,16 @@
               "chance": "60%"
             },
             {
-              "name": "Brute Bone x2",
-              "chance": "25%"
-            },
-            {
               "name": "Bullfango Head x1",
               "chance": "10%"
             },
             {
               "name": "Bulldrome Tusk x1",
               "chance": "5%"
+            },
+            {
+              "name": "Giant Bone x2",
+              "chance": "25%"
             }
           ]
         },
@@ -159,10 +164,6 @@
             {
               "name": "Bulldrome Hide+",
               "chance": "30%"
-            },
-            {
-              "name": "Giant Bone",
-              "chance": "25%"
             },
             {
               "name": "Bulldrome Hide",
@@ -175,6 +176,10 @@
             {
               "name": "Bullfango Head",
               "chance": "5%"
+            },
+            {
+              "name": "Stout Bone",
+              "chance": "25%"
             }
           ],
           "capture": [
@@ -187,16 +192,16 @@
               "chance": "20%"
             },
             {
-              "name": "Brute Bone x3",
+              "name": "Giant Bone x3",
               "chance": "20%"
-            },
-            {
-              "name": "Giant Bone x2",
-              "chance": "15%"
             },
             {
               "name": "Bulldrome Tusk x1",
               "chance": "5%"
+            },
+            {
+              "name": "Stout Bone x2",
+              "chance": "15%"
             }
           ]
         },
@@ -258,12 +263,13 @@
           "shot": "80",
           "fir": "50",
           "wtr": "50",
-          "thn": "80",
+          "thn": "120",
           "ice": "40",
           "drg": "10",
           "ko": "150"
         }
-      }
+      },
+      "base_hp": 1200
     },
     {
       "name": "Conga",
@@ -281,7 +287,7 @@
               "chance": "28%"
             },
             {
-              "name": "Bone",
+              "name": "Brute Bone",
               "chance": "22%"
             }
           ]
@@ -297,12 +303,12 @@
               "chance": "23%"
             },
             {
-              "name": "Bone",
-              "chance": "22%"
-            },
-            {
               "name": "Conga Pelt",
               "chance": "5%"
+            },
+            {
+              "name": "Brute Bone",
+              "chance": "22%"
             }
           ]
         },
@@ -350,7 +356,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 120
     },
     {
       "name": "Congalala",
@@ -569,11 +576,11 @@
           "break claw": [
             {
               "name": "Congalala Claw+ x1",
-              "chance": "50%"
+              "chance": "80%"
             },
             {
-              "name": "Congalala Claw x1",
-              "chance": "50%"
+              "name": "Congalala Claw x2",
+              "chance": "20%"
             }
           ],
           "shiny drop : stagger the tail [bone]": [
@@ -818,7 +825,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Emerald Congalala",
@@ -994,7 +1002,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3000
     },
     {
       "name": "Blango",
@@ -1012,7 +1021,7 @@
               "chance": "28%"
             },
             {
-              "name": "Bone",
+              "name": "Brute Bone",
               "chance": "22%"
             }
           ]
@@ -1028,12 +1037,12 @@
               "chance": "23%"
             },
             {
-              "name": "Bone",
-              "chance": "22%"
-            },
-            {
               "name": "Blango Pelt",
               "chance": "5%"
+            },
+            {
+              "name": "Brute Bone",
+              "chance": "22%"
             }
           ]
         },
@@ -1081,7 +1090,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 100
     },
     {
       "name": "Blangonga",
@@ -1242,10 +1252,14 @@
           "break fang": [
             {
               "name": "Blangonga Fang+ x1",
-              "chance": "80%"
+              "chance": "60%"
             },
             {
-              "name": "Blangonga Fang x1",
+              "name": "Blangonga Fang x2",
+              "chance": "20%"
+            },
+            {
+              "name": "Blangonga Fang+ x2",
               "chance": "20%"
             }
           ],
@@ -1255,7 +1269,7 @@
               "chance": "65%"
             },
             {
-              "name": "Blangonga Pelt x1",
+              "name": "Blangonga Pelt+ x1",
               "chance": "35%"
             }
           ],
@@ -1445,7 +1459,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2800
     },
     {
       "name": "Copper Blangonga",
@@ -1519,16 +1534,16 @@
               "chance": "40%"
             },
             {
-              "name": "HvyC.BlangoFang x2",
-              "chance": "30%"
-            },
-            {
-              "name": "Massive Bone x1",
+              "name": "Massive Bone x4",
               "chance": "25%"
             },
             {
               "name": "LthrC.BlangoTail x1",
               "chance": "5%"
+            },
+            {
+              "name": "Lthr Pelagus Plt x2",
+              "chance": "30%"
             }
           ]
         }
@@ -1593,7 +1608,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3400
     },
     {
       "name": "Rajang",
@@ -1615,7 +1631,7 @@
               "chance": "21%"
             },
             {
-              "name": "Gold Rajang Pelt",
+              "name": "Giant Bone",
               "chance": "6%"
             }
           ],
@@ -1851,7 +1867,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     },
     {
       "name": "Furious Rajang",
@@ -1919,7 +1936,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     }
   ]
 }

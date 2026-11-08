@@ -2,10 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import SaveUpload from "@/components/SaveUpload";
 import BorderRule from "@/components/BorderRule";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Hunter Profile — MHFU Blacksmith",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Hunter Profile",
+  description:
+    "Load a Monster Hunter Freedom Unite save file and pick a hunter to see their items and equipment next to the recipes.",
+  path: "/hunter/",
+});
 
 export default function HunterPage() {
   return (

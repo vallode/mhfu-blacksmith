@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
+import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, THEME_COLOR } from "@/lib/seo";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
 // import OfflineDownload from "@/components/OfflineDownload"; // banner hidden for now
@@ -15,8 +16,22 @@ import { FileSyncProvider } from "@/context/FileSyncContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mhfu-blacksmith.netlify.app"),
-  title: "MHFU Blacksmith",
-  description: "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_US",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_IMAGE],
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_IMAGE],
+  },
   ...faviconMetadata(),
   manifest: "/manifest.json",
   appleWebApp: {
@@ -25,6 +40,8 @@ export const metadata: Metadata = {
     title: "MHFU Blacksmith",
   },
 };
+
+export const viewport: Viewport = { themeColor: THEME_COLOR };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

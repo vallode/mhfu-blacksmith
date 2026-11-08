@@ -82,6 +82,10 @@
             {
               "name": "Kirin Hide+",
               "chance": "4%"
+            },
+            {
+              "name": "Kirin Azure Horn",
+              "chance": "10%"
             }
           ]
         }
@@ -124,7 +128,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3200
     },
     {
       "name": "Kushala Daora",
@@ -213,7 +218,8 @@
           "drg": "30",
           "ko": "10"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Rusted Kushala Daora",
@@ -223,7 +229,7 @@
       "drops": {},
       "sizes": {
         "min": 1261.6,
-        "max": 2129.0
+        "max": 2129
       },
       "hitzones": {
         "head": {
@@ -303,7 +309,8 @@
           "drg": "25",
           "ko": "10"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Chameleos",
@@ -343,7 +350,7 @@
               "chance": "22%"
             },
             {
-              "name": "ElderDragonBlood",
+              "name": "Eldr Dragon Bone",
               "chance": "18%"
             }
           ],
@@ -416,11 +423,11 @@
           "break horn": [
             {
               "name": "Chameleos Horn x1",
-              "chance": "50%"
+              "chance": "20%"
             },
             {
               "name": "Chameleos Spike x1",
-              "chance": "40%"
+              "chance": "70%"
             },
             {
               "name": "Union Ore x1",
@@ -615,7 +622,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 5600
     },
     {
       "name": "Lunastra",
@@ -701,10 +709,6 @@
               "chance": "28%"
             },
             {
-              "name": "Fire Dragon Scl",
-              "chance": "24%"
-            },
-            {
               "name": "Fire Dragon Claw",
               "chance": "21%"
             },
@@ -719,6 +723,10 @@
             {
               "name": "ElderDragonBlood",
               "chance": "5%"
+            },
+            {
+              "name": "Fire Drgn Scl+",
+              "chance": "24%"
             }
           ],
           "tail carves (x1)": [
@@ -877,7 +885,8 @@
           "drg": "35",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Teostra",
@@ -1012,25 +1021,29 @@
           "break horn": [
             {
               "name": "Teostra Horn+ x1",
-              "chance": "61%"
+              "chance": "80%"
             },
             {
               "name": "Teostra Horn x1",
-              "chance": "39%"
+              "chance": "20%"
             }
           ],
           "break wings": [
             {
               "name": "Fire Dragon Pwdr x1",
-              "chance": "40%"
+              "chance": "50%"
             },
             {
               "name": "Fire Drgn Webbng x1",
-              "chance": "37%"
+              "chance": "20%"
             },
             {
               "name": "Fire Dragon Claw x1",
-              "chance": "23%"
+              "chance": "20%"
+            },
+            {
+              "name": "Fire Drgn Webbng x2",
+              "chance": "10%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
@@ -1117,6 +1130,10 @@
             {
               "name": "HardTeostraHorn x1",
               "chance": "80%"
+            },
+            {
+              "name": "Teostra Horn+ x1",
+              "chance": "20%"
             }
           ],
           "break wings": [
@@ -1166,8 +1183,8 @@
         }
       },
       "sizes": {
-        "min": 1479.0,
-        "max": 2610.0
+        "min": 1479,
+        "max": 2610
       },
       "hitzones": {
         "head": {
@@ -1247,7 +1264,8 @@
           "drg": "35",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4800
     },
     {
       "name": "Lao-Shan Lung",
@@ -1456,7 +1474,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1553,7 +1572,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Yama Tsukami",
@@ -1645,7 +1665,7 @@
       },
       "hitzones": {
         "head": {
-          "cut": "55",
+          "cut": "50",
           "bash": "60",
           "shot": "35",
           "fir": "0",
@@ -1721,7 +1741,8 @@
           "drg": "30",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Fatalis",
@@ -1895,7 +1916,7 @@
           "ko": "0"
         },
         "chest": {
-          "cut": "30",
+          "cut": "10",
           "bash": "15",
           "shot": "20",
           "fir": "15",
@@ -1927,7 +1948,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 26666
     },
     {
       "name": "Crimson Fatalis",
@@ -2117,7 +2139,7 @@
           "ko": "0"
         },
         "chest": {
-          "cut": "30",
+          "cut": "10",
           "bash": "15",
           "shot": "20",
           "fir": "15",
@@ -2149,7 +2171,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 20000
     },
     {
       "name": "White Fatalis",
@@ -2339,7 +2362,7 @@
           "ko": "0"
         },
         "chest": {
-          "cut": "30",
+          "cut": "10",
           "bash": "15",
           "shot": "20",
           "fir": "15",
@@ -2371,7 +2394,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 20000
     }
   ]
 }

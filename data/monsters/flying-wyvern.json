@@ -96,7 +96,8 @@
           "drg": "35",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 160
     },
     {
       "name": "Rathian",
@@ -351,15 +352,19 @@
           "break head": [
             {
               "name": "Rathian Scale+ x1",
-              "chance": "65%"
+              "chance": "60%"
             },
             {
               "name": "Rathian Carapace x1",
-              "chance": "31%"
+              "chance": "30%"
             },
             {
               "name": "Rathian Ruby x1",
               "chance": "4%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -518,7 +523,7 @@
               "chance": "58%"
             },
             {
-              "name": "ThckRathianScl x1",
+              "name": "ThckRathianScl x2",
               "chance": "30%"
             },
             {
@@ -618,7 +623,8 @@
           "drg": "25",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Pink Rathian",
@@ -791,7 +797,7 @@
           "break head": [
             {
               "name": "Pnk Rathian Scl+ x1",
-              "chance": "66%"
+              "chance": "60%"
             },
             {
               "name": "Pnk Rathian Cpc x1",
@@ -800,6 +806,10 @@
             {
               "name": "Rathian Ruby x1",
               "chance": "2%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -909,23 +919,19 @@
           "break head": [
             {
               "name": "ThckPnkRathnScl x1",
-              "chance": "52%"
-            },
-            {
-              "name": "ThckPnkRathnScl x2",
-              "chance": "24%"
-            },
-            {
-              "name": "FireWyvrn BrnStm x1",
-              "chance": "18%"
-            },
-            {
-              "name": "Rathian Thorn x1",
-              "chance": "8%"
+              "chance": "56%"
             },
             {
               "name": "HvnlyRathianScl x1",
-              "chance": "1%"
+              "chance": "2%"
+            },
+            {
+              "name": "HvyPnkRathianShl x1",
+              "chance": "32%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "10%"
             }
           ],
           "break wing": [
@@ -1062,7 +1068,8 @@
           "drg": "25",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4400
     },
     {
       "name": "Gold Rathian",
@@ -1077,7 +1084,7 @@
             },
             {
               "name": "Gld Rathian Cpc",
-              "chance": "30%"
+              "chance": "29%"
             },
             {
               "name": "Rathian Spike",
@@ -1121,15 +1128,19 @@
           "break head": [
             {
               "name": "Gld Rathian Cpc x1",
-              "chance": "61%"
+              "chance": "30%"
             },
             {
               "name": "Gld Rathian Scl+ x1",
-              "chance": "35%"
+              "chance": "60%"
             },
             {
               "name": "Rathian Ruby x1",
               "chance": "4%"
+            },
+            {
+              "name": "Rathian Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -1388,7 +1399,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4400
     },
     {
       "name": "Rathalos",
@@ -1557,11 +1569,11 @@
             },
             {
               "name": "Rathalos Scale",
-              "chance": "21%"
+              "chance": "24%"
             },
             {
               "name": "Rathalos Plate",
-              "chance": "5%"
+              "chance": "2%"
             }
           ],
           "capture": [
@@ -1643,15 +1655,19 @@
           "break head": [
             {
               "name": "Rathalos Scale+ x1",
-              "chance": "65%"
+              "chance": "60%"
             },
             {
               "name": "Rathalos Carpace x1",
-              "chance": "31%"
+              "chance": "30%"
             },
             {
               "name": "Rathalos Ruby x1",
               "chance": "4%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -1675,11 +1691,11 @@
             },
             {
               "name": "Rathalos Scale+",
-              "chance": "21%"
+              "chance": "24%"
             },
             {
               "name": "Rathalos Ruby",
-              "chance": "5%"
+              "chance": "2%"
             }
           ],
           "capture": [
@@ -1722,10 +1738,6 @@
             {
               "name": "Blazing Fire Sac",
               "chance": "15%"
-            },
-            {
-              "name": "Rathalos Wing",
-              "chance": "5%"
             },
             {
               "name": "FireWyvrn BrnStm",
@@ -1910,7 +1922,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3200
     },
     {
       "name": "Azure Rathalos",
@@ -1998,11 +2011,11 @@
             },
             {
               "name": "Azure Rthlos Scl",
-              "chance": "21%"
+              "chance": "24%"
             },
             {
               "name": "Rathalos Plate",
-              "chance": "5%"
+              "chance": "2%"
             }
           ],
           "capture": [
@@ -2084,7 +2097,7 @@
           "break head": [
             {
               "name": "Azre Rthlos Scl+ x1",
-              "chance": "66%"
+              "chance": "60%"
             },
             {
               "name": "Azure Rthlos Cpc x1",
@@ -2093,6 +2106,10 @@
             {
               "name": "Rathalos Ruby x1",
               "chance": "2%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -2116,21 +2133,17 @@
             },
             {
               "name": "Azre Rthlos Scl+",
-              "chance": "21%"
+              "chance": "24%"
             },
             {
               "name": "Rathalos Ruby",
-              "chance": "5%"
+              "chance": "2%"
             }
           ],
           "capture": [
             {
               "name": "Azure Rthlos Cpc x1",
               "chance": "60%"
-            },
-            {
-              "name": "Azure Rthlos Scl x2",
-              "chance": "24%"
             },
             {
               "name": "Azur Rthlos Wing x2",
@@ -2143,6 +2156,10 @@
             {
               "name": "Rathalos Ruby x1",
               "chance": "2%"
+            },
+            {
+              "name": "Azre Rthlos Scl+ x2",
+              "chance": "24%"
             }
           ]
         },
@@ -2167,10 +2184,6 @@
             {
               "name": "FireWyvrn BrnStm",
               "chance": "8%"
-            },
-            {
-              "name": "Azur Rthlos Wing",
-              "chance": "5%"
             }
           ],
           "tail carves (x1)": [
@@ -2351,7 +2364,8 @@
           "drg": "20",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     },
     {
       "name": "Silver Rathalos",
@@ -2411,15 +2425,19 @@
           "break head": [
             {
               "name": "Slvr Rthlos Scl+ x1",
-              "chance": "61%"
+              "chance": "60%"
             },
             {
               "name": "Slvr Rthlos Cpc x1",
-              "chance": "35%"
+              "chance": "30%"
             },
             {
               "name": "Rathalos Ruby x1",
               "chance": "4%"
+            },
+            {
+              "name": "Rathalos Plate x1",
+              "chance": "6%"
             }
           ],
           "break wing": [
@@ -2443,11 +2461,11 @@
             },
             {
               "name": "Slvr Rthlos Scl+",
-              "chance": "25%"
+              "chance": "26%"
             },
             {
               "name": "Rathalos Ruby",
-              "chance": "4%"
+              "chance": "3%"
             }
           ],
           "capture": [
@@ -2490,10 +2508,6 @@
             {
               "name": "Blazing Fire Sac",
               "chance": "15%"
-            },
-            {
-              "name": "Slvr Rthlos Wing",
-              "chance": "10%"
             },
             {
               "name": "FireWyvrn BrnStm",
@@ -2678,7 +2692,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Khezu",
@@ -3044,7 +3059,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3200
     },
     {
       "name": "Red Khezu",
@@ -3277,7 +3293,7 @@
       },
       "sizes": {
         "min": 436.6,
-        "max": 1205.0
+        "max": 1205
       },
       "hitzones": {
         "head": {
@@ -3357,7 +3373,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     },
     {
       "name": "Basarios",
@@ -3553,6 +3570,10 @@
             {
               "name": "StrBasariosWing",
               "chance": "5%"
+            },
+            {
+              "name": "Big Wyvern Stone",
+              "chance": "3%"
             }
           ],
           "tail carves (x1)": [
@@ -3714,7 +3735,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 2400
     },
     {
       "name": "Gravios",
@@ -3927,11 +3949,11 @@
             },
             {
               "name": "Gravios BrainStm",
-              "chance": "8%"
+              "chance": "12%"
             },
             {
               "name": "Firecell Stone",
-              "chance": "6%"
+              "chance": "2%"
             }
           ],
           "capture rewards": [
@@ -3980,7 +4002,7 @@
               "chance": "15%"
             },
             {
-              "name": "HvyGraviosShell x1",
+              "name": "HvnlyGraviosShl x1",
               "chance": "10%"
             }
           ]
@@ -4079,7 +4101,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Black Gravios",
@@ -4342,11 +4365,11 @@
               "chance": "18%"
             },
             {
-              "name": "Coma Sac x2",
+              "name": "Firecell Stone x2",
               "chance": "15%"
             },
             {
-              "name": "HvyBlkGraviosShl x1",
+              "name": "HvnlyBlkGraviShl x1",
               "chance": "10%"
             }
           ]
@@ -4445,7 +4468,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4400
     },
     {
       "name": "Monoblos",
@@ -4671,7 +4695,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "White Monoblos",
@@ -4898,7 +4923,8 @@
           "drg": "0",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 6000
     },
     {
       "name": "Diablos",
@@ -4952,6 +4978,10 @@
             {
               "name": "Wyvern Tears",
               "chance": "95%"
+            },
+            {
+              "name": "Diablos Spine",
+              "chance": "5%"
             }
           ],
           "break horns": [
@@ -5103,7 +5133,7 @@
           "shiny drops": [
             {
               "name": "Wyvern Sobs",
-              "chance": "65%"
+              "chance": "60%"
             },
             {
               "name": "Wyvern Tears",
@@ -5128,7 +5158,7 @@
       },
       "sizes": {
         "min": 1796.26,
-        "max": 3030.0
+        "max": 3030
       },
       "hitzones": {
         "head": {
@@ -5219,7 +5249,8 @@
           "drg": "15",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Black Diablos",
@@ -5244,11 +5275,11 @@
           "tail carves (x1)": [
             {
               "name": "Black Blos Shell",
-              "chance": "60%"
+              "chance": "40%"
             },
             {
               "name": "Black Blos Tail",
-              "chance": "40%"
+              "chance": "60%"
             }
           ],
           "capture rewards": [
@@ -5275,7 +5306,7 @@
               "chance": "95%"
             },
             {
-              "name": "Diablos Spine",
+              "name": "Black Blos Spine",
               "chance": "5%"
             }
           ],
@@ -5298,67 +5329,83 @@
           "body carves (x3)": [
             {
               "name": "Black Blos Shell",
-              "chance": "63%"
+              "chance": "10%"
             },
             {
               "name": "Blos Fang",
-              "chance": "30%"
+              "chance": "20%"
             },
             {
-              "name": "Black Blos Spine",
+              "name": "Black Blos Cpc",
+              "chance": "56%"
+            },
+            {
+              "name": "Blk Blos Thracic",
+              "chance": "7%"
+            },
+            {
+              "name": "Wyvern Stone",
               "chance": "7%"
             }
           ],
           "tail carves (x1)": [
             {
               "name": "Black Blos Tail",
-              "chance": "60%"
+              "chance": "64%"
             },
             {
-              "name": "Black Blos Shell",
-              "chance": "40%"
+              "name": "Black Blos Cpc",
+              "chance": "30%"
+            },
+            {
+              "name": "Wyvern Stone",
+              "chance": "6%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Black Blos Shell x1",
-              "chance": "40%"
-            },
-            {
               "name": "Blos Fang x3",
-              "chance": "39%"
-            },
-            {
-              "name": "Black Blos Spine x1",
-              "chance": "11%"
+              "chance": "27%"
             },
             {
               "name": "Black Blos Tail x1",
-              "chance": "10%"
+              "chance": "5%"
+            },
+            {
+              "name": "Blk Blos Thracic x1",
+              "chance": "11%"
+            },
+            {
+              "name": "Black Blos Cpc x1",
+              "chance": "57%"
             }
           ],
           "shiny drops": [
             {
               "name": "Wyvern Tears",
-              "chance": "95%"
+              "chance": "48%"
             },
             {
-              "name": "Black Blos Spine",
+              "name": "Wyvern Sobs",
+              "chance": "47%"
+            },
+            {
+              "name": "Blk Blos Thracic",
               "chance": "5%"
             }
           ],
           "break horns": [
             {
               "name": "TwstBlkBlosHrn x1",
-              "chance": "69%"
-            },
-            {
-              "name": "Twisted Horn x2",
-              "chance": "16%"
+              "chance": "50%"
             },
             {
               "name": "Majestic Horn x1",
-              "chance": "15%"
+              "chance": "18%"
+            },
+            {
+              "name": "Majestic Horn x2",
+              "chance": "32%"
             }
           ]
         },
@@ -5424,7 +5471,7 @@
           "shiny drops": [
             {
               "name": "Wyvern Sobs",
-              "chance": "65%"
+              "chance": "60%"
             },
             {
               "name": "Wyvern Tears",
@@ -5441,12 +5488,12 @@
               "chance": "40%"
             },
             {
-              "name": "Twisted Horn x2",
-              "chance": "40%"
-            },
-            {
               "name": "Majestic Horn x1",
               "chance": "20%"
+            },
+            {
+              "name": "TwstBlkBlosHrn x2",
+              "chance": "40%"
             }
           ]
         }
@@ -5544,7 +5591,8 @@
           "drg": "15",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4400
     },
     {
       "name": "Tigrex",
@@ -5779,7 +5827,7 @@
             },
             {
               "name": "Tigrex Carapace x1",
-              "chance": "25%"
+              "chance": "28%"
             },
             {
               "name": "Tigrex Fang x3",
@@ -5854,6 +5902,10 @@
             {
               "name": "HvnlyTigrexScale x1",
               "chance": "5%"
+            },
+            {
+              "name": "Tigrex Carapace x1",
+              "chance": "10%"
             }
           ],
           "shiny drops": [
@@ -5867,11 +5919,11 @@
             },
             {
               "name": "ThickTigrexScale",
-              "chance": "15%"
+              "chance": "20%"
             },
             {
               "name": "Hard Tigrex Claw",
-              "chance": "10%"
+              "chance": "5%"
             }
           ],
           "break head": [
@@ -5994,7 +6046,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 4000
     },
     {
       "name": "Nargacuga",
@@ -6063,11 +6116,11 @@
           "shiny drops": [
             {
               "name": "Wyvern Sobs",
-              "chance": "38%"
+              "chance": "37%"
             },
             {
               "name": "Wyvern Tears",
-              "chance": "37%"
+              "chance": "38%"
             },
             {
               "name": "Narga Scale+",
@@ -6355,7 +6408,8 @@
           "drg": "5",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 3600
     },
     {
       "name": "Akantor",
@@ -6542,7 +6596,8 @@
           "drg": "30",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 12000
     },
     {
       "name": "Ukanlos",
@@ -6571,6 +6626,10 @@
             {
               "name": "Ukanlos Stone",
               "chance": "2%"
+            },
+            {
+              "name": "Hvy Ukanlos Tail",
+              "chance": "10%"
             }
           ],
           "tail carves (x2) - cut when hp < 25%": [
@@ -6719,7 +6778,8 @@
           "drg": "15",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 12000
     }
   ]
 }

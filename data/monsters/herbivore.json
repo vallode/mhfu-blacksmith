@@ -13,7 +13,7 @@
             },
             {
               "name": "Anteka Pelt",
-              "chance": "2%"
+              "chance": "30%"
             },
             {
               "name": "Raw Meat",
@@ -21,7 +21,7 @@
             },
             {
               "name": "White Liver",
-              "chance": "12%"
+              "chance": "7%"
             }
           ]
         },
@@ -29,19 +29,19 @@
           "body carves (x1)": [
             {
               "name": "Anteka Antlers",
-              "chance": "35%"
+              "chance": "20%"
             },
             {
               "name": "High Qualty Pelt",
-              "chance": "28%"
+              "chance": "40%"
             },
             {
               "name": "Anteka Pelt",
-              "chance": "15%"
+              "chance": "20%"
             },
             {
               "name": "White Liver",
-              "chance": "12%"
+              "chance": "10%"
             },
             {
               "name": "Raw Meat",
@@ -86,7 +86,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 5111886
     },
     {
       "name": "Popo",
@@ -107,7 +108,7 @@
               "chance": "38%"
             },
             {
-              "name": "Bone",
+              "name": "Brute Bone",
               "chance": "20%"
             }
           ]
@@ -123,11 +124,11 @@
               "chance": "30%"
             },
             {
-              "name": "Bone",
+              "name": "Brute Bone",
               "chance": "25%"
             },
             {
-              "name": "Brute Bone",
+              "name": "Giant Bone",
               "chance": "10%"
             }
           ]
@@ -165,7 +166,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 8388704
     },
     {
       "name": "Kelbi",
@@ -244,7 +246,7 @@
       "hitzones": {
         "all": {
           "cut": "140",
-          "bash": "150",
+          "bash": "140",
           "shot": "150",
           "fir": "100",
           "wtr": "100",
@@ -253,7 +255,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 3932220
     },
     {
       "name": "Mosswine",
@@ -341,7 +344,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 50
     },
     {
       "name": "Aptonoth",
@@ -394,10 +398,11 @@
           "wtr": "50",
           "thn": "50",
           "ice": "50",
-          "drg": "90",
-          "ko": "20"
+          "drg": "10",
+          "ko": "0"
         }
-      }
+      },
+      "base_hp": 7209040
     },
     {
       "name": "Apceros",
@@ -484,7 +489,8 @@
           "drg": "10",
           "ko": "0"
         }
-      }
+      },
+      "base_hp": 200
     }
   ]
 }

@@ -17,7 +17,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 40
     },
     {
       "name": "Melynx",
@@ -117,7 +118,8 @@
           "drg": "10",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 50
     },
     {
       "name": "Shakalaka",
@@ -355,6 +357,10 @@
             {
               "name": "Hvy Armor Sphere",
               "chance": "2%"
+            },
+            {
+              "name": "LapisLazuliJewel",
+              "chance": "5%"
             }
           ]
         }
@@ -371,7 +377,8 @@
           "drg": "20",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 120
     },
     {
       "name": "King Shakalaka",
@@ -442,6 +449,10 @@
             {
               "name": "Hvy Armor Sphere",
               "chance": "2%"
+            },
+            {
+              "name": "Commendation",
+              "chance": "4%"
             }
           ]
         },
@@ -524,6 +535,10 @@
             {
               "name": "Tru Armor Sphere",
               "chance": "2%"
+            },
+            {
+              "name": "Commendation G",
+              "chance": "4%"
             }
           ]
         }
@@ -533,14 +548,15 @@
           "cut": "40",
           "bash": "40",
           "shot": "35",
-          "fir": "35",
+          "fir": "5",
           "wtr": "10",
           "thn": "10",
           "ice": "20",
-          "drg": "10",
+          "drg": "0",
           "ko": "100"
         }
-      }
+      },
+      "base_hp": 800
     }
   ]
 }
