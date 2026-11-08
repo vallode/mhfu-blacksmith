@@ -367,8 +367,14 @@ Known gaps and approximations, tracked in
 - **`sex`/`hunter_type`/`hr`/`elder`** armor fields are omitted: no raw field
   correlates with the first two, and the last two aren't in `ArmorValue`.
   All four are optional in the schema.
-- **Sharpness** uses a reach-threshold model; about 10% of weapons are off by
-  one unit between colors ([#31](https://github.com/vallode/mhfu-blacksmith/issues/31)).
+- **Sharpness** uses a reach-threshold model over `SharpnessTable`. Each
+  weapon class has its own run of 8 entries, found through the table's
+  `PTR[11]` (one pointer per `WepTypeID`): great sword and long sword start
+  at entry 0, hammer and hunting horn at 8, lance and gunlance at 16, sword
+  and shield at 24, dual blades at 32. `sharpnessId` indexes from there
+  ([#31](https://github.com/vallode/mhfu-blacksmith/issues/31)). `extract
+--raw` writes the table, pointers and per-weapon sharpness fields to
+  `raw/sharpness.json` (numbers only).
 - **Gunner ammo/coating details** and **Hunting Horn/Gunlance bonus** aren't
   emitted ([#32](https://github.com/vallode/mhfu-blacksmith/issues/32)).
 - **Affinity** disagrees by exactly +5/+10 on 108 weapons ([#33](https://github.com/vallode/mhfu-blacksmith/issues/33)).
@@ -470,11 +476,20 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                   | agreement  | not taken                                                                                                                                                                                                                                                                                                                             |
-| ----------- | --------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats             | 97.5–100%  | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                                                                                        |
-| weapons     | attack, slots, rarity, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% | `affinity` (86.8%, #33), `sharpness`/`sharpness_plus` (25%, #31), `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                | 91.7–100%  | `color`, `category` (overlays)                                                                                                                                                                                                                                                                                                        |
+| category    | taken                                                                                                              | agreement                                 | not taken                                                                                                                                                                                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                        | 97.5–100%                                 | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                                                                                                                                               |
+| weapons     | attack, slots, rarity, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, see below) | `affinity` (86.8%, #33), `elements` (dual-element weapons not emitted), `coatings` (bow layout partly derived), `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, ammo, `notes`) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                           | 91.7–100%                                 | `color`, `category` (overlays)                                                                                                                                                                                                                                                               |
+
+Sharpness was taken later (#31), after reading it per weapon class.
+`sharpness` agreement with the site was then: great sword 97.7%, long sword
+93.4%, hammer 97.4%, hunting horn and lance 100%, sword and shield 79.5%,
+dual blades 77.9%, gunlance 40.2%. These are not offset errors. Lance shares
+gunlance's 8 entries and agrees 100%. Of the 133 site bars that disagree, 85
+can't be produced by any table entry at any length, and 23 are the disc's
+bar with a trailing `0`. Most of the remaining 25 are a block of G-rank
+sword-and-shield rows whose bars are shuffled between weapons on the site.
 
 The disagreements behind each decision were isolated, single-value
 differences on items that otherwise matched exactly (a duplicated skill
