@@ -11,6 +11,7 @@
  * them.
  */
 import type { OvlFile } from "../container/ovl.js";
+import { probeMonsters, type MonstersProbe } from "./monsters-probe.js";
 import {
   GAME_TASK_JP,
   HITZONE_POINTER_COUNT,
@@ -281,16 +282,30 @@ export interface MonstersRawDumpSections {
   chunks: Section<MonstersRawDump["chunks"]>;
   carves: Section<MonstersRawDump["carves"]>;
   capBreak: Section<MonstersRawDump["capBreak"]>;
+  probe: Section<MonstersProbe>;
 }
 
-export function dumpMonstersRaw(overlays: MonsterOverlays): MonstersRawDumpSections {
+export function dumpMonstersRaw(
+  overlays: MonsterOverlays,
+  dataDir: string,
+): MonstersRawDumpSections {
   const carves = section(() => dumpCarves(overlays.gameSub));
   const hint = "location" in carves ? carves.location?.shift : undefined;
+  const chunks = section(() => dumpChunks(overlays));
   return {
     overlays: allFiles(overlays).map(([file, ovl]) => header(file, ovl)),
     anchors: section(() => dumpAnchors(overlays)),
-    chunks: section(() => dumpChunks(overlays)),
+    chunks,
     carves,
     capBreak: section(() => dumpCapBreak(overlays.gameSub, hint)),
+    probe: section(() =>
+      probeMonsters(
+        overlays,
+        dataDir,
+        "offset" in chunks
+          ? chunks.offset
+          : GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase + 0x80,
+      ),
+    ),
   };
 }

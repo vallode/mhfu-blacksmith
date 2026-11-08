@@ -3,7 +3,7 @@
  * mhfu-extract CLI entrypoint. See README's "Usage" section.
  *
  *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
- *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
+ *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw [--data <dir>]]
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
@@ -51,7 +51,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 
 const USAGE = `Usage:
   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
-  tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
+  tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw [--data <dir>]]
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
@@ -81,6 +81,7 @@ export async function main(argv: string[]): Promise<void> {
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),
         raw: flags.raw === "true",
+        data: flags.data,
       });
       console.log(
         `\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`,

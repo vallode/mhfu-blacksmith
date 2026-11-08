@@ -31,6 +31,8 @@ export interface ExtractOptions {
   out: string;
   /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/monsters-raw.ts). */
   raw?: boolean;
+  /** Committed `data/` directory, for the monster probe in the raw dump. Defaults to the repo's. */
+  data?: string;
 }
 
 export interface SkippedQuest {
@@ -86,6 +88,7 @@ async function readQuestsFromUnpackedDir(
 async function writeRawDumps(
   outDir: string,
   unpackedDir: string,
+  dataDir: string,
   reader: BinaryReader,
   resolver?: TableAddressResolver,
 ): Promise<void> {
@@ -104,7 +107,7 @@ async function writeRawDumps(
   // the dump instead of stopping extract.
   let monsters: unknown;
   try {
-    monsters = dumpMonstersRaw(await loadMonsterOverlays(unpackedDir));
+    monsters = dumpMonstersRaw(await loadMonsterOverlays(unpackedDir), dataDir);
   } catch (error) {
     monsters = { error: error instanceof Error ? (error.stack ?? error.message) : String(error) };
   }
@@ -122,6 +125,10 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,
     );
   }
+
+  const dataDir =
+    options.data ??
+    path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..", "data");
 
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));
@@ -147,7 +154,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       );
     }
     console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
-    if (options.raw) await writeRawDumps(options.out, options.unpacked, reader);
+    if (options.raw) await writeRawDumps(options.out, options.unpacked, dataDir, reader);
     output = emitAll(reader);
   } else {
     const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
@@ -168,7 +175,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.log(
       `Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`,
     );
-    if (options.raw) await writeRawDumps(options.out, options.unpacked, reader, resolver);
+    if (options.raw) await writeRawDumps(options.out, options.unpacked, dataDir, reader, resolver);
     output = emitAll(reader, resolver);
   }
 

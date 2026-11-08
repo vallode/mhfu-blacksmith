@@ -196,6 +196,7 @@ export function readCapBreakTables(
 }
 
 interface Score {
+  /** Distinct pointers to complete lists: a wrong shift can reach the same few lists many times. */
   complete: number;
   broken: number;
 }
@@ -210,6 +211,7 @@ function scoreRankIndexes(
   maxBroken: number,
 ): Score {
   const score: Score = { complete: 0, broken: 0 };
+  const seen = new Set<number>();
   const length = ovl.reader.length;
   if (pointerTable < 0 || pointerTable + pointerCount * 4 > length)
     return { complete: 0, broken: 1 };
@@ -224,8 +226,11 @@ function scoreRankIndexes(
       // Pointers outside this overlay are the hexpat's "hard coded entries
       // handled outside gamesub": neither evidence for nor against.
       if (ovl.isOwnVaddr(pointer)) {
-        if (isCompleteList(readRewardList(ovl, pointer, withAmount))) score.complete++;
-        else score.broken++;
+        if (!isCompleteList(readRewardList(ovl, pointer, withAmount))) score.broken++;
+        else if (!seen.has(pointer)) {
+          seen.add(pointer);
+          score.complete++;
+        }
       }
     }
     if (score.broken > maxBroken) return score;
@@ -291,13 +296,16 @@ const jpOffset = (vaddr: number) => vaddr - GAME_SUB_JP.loadBase + 0x80;
 
 /**
  * Finds `bodytailshiny` and its pointer table in a `game_sub.ovl` of any
- * region: the JP file offsets, shifted by the smallest amount at which the
- * indexes resolve to well-formed drop tables. Null if no shift in range works.
+ * region: of the JP file offsets shifted by each amount in range, the one
+ * whose indexes reach the most distinct well-formed drop tables (nearest to
+ * JP on a tie). Every shift is scored, because a few bytes' misalignment can
+ * still reach real lists. Null if no shift passes.
  */
 export function locateCarveTables(
   ovl: OvlFile,
   options: LocateOptions = {},
 ): TablePairLocation | null {
+  let best: { location: TablePairLocation; complete: number } | null = null;
   for (const shift of shiftCandidates(options.range ?? ovl.reader.length, [0])) {
     const pointers = jpOffset(GAME_SUB_JP.carvePointers) + shift;
     const index = jpOffset(GAME_SUB_JP.carveIndex) + shift;
@@ -310,9 +318,11 @@ export function locateCarveTables(
       false,
       8,
     );
-    if (accept(score, 100)) return { pointers, index, shift };
+    if (accept(score, 40) && score.complete > (best?.complete ?? 0)) {
+      best = { location: { pointers, index, shift }, complete: score.complete };
+    }
   }
-  return null;
+  return best?.location ?? null;
 }
 
 /** As `locateCarveTables`, for `capbreakindex`. Tries `hint` (the carve shift) first. */
@@ -321,13 +331,16 @@ export function locateCapBreakTables(
   options: LocateOptions & { hint?: number } = {},
 ): TablePairLocation | null {
   const preferred = options.hint === undefined ? [0] : [options.hint, 0];
+  let best: { location: TablePairLocation; complete: number } | null = null;
   for (const shift of shiftCandidates(options.range ?? ovl.reader.length, preferred)) {
     const pointers = jpOffset(GAME_SUB_JP.capBreakPointers) + shift;
     const index = jpOffset(GAME_SUB_JP.capBreakIndex) + shift;
     const offsets = capBreakIndexOffsets(ovl, index);
     if (!offsets) continue;
     const score = scoreRankIndexes(ovl, offsets, pointers, CAP_BREAK_POINTER_COUNT, true, 8);
-    if (accept(score, 50)) return { pointers, index, shift };
+    if (accept(score, 20) && score.complete > (best?.complete ?? 0)) {
+      best = { location: { pointers, index, shift }, complete: score.complete };
+    }
   }
-  return null;
+  return best?.location ?? null;
 }

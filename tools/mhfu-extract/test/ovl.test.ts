@@ -177,40 +177,41 @@ function buildGameSub(shift = 0): Buffer {
     loadBase: GAME_SUB_LOAD,
     dataSize: subOffset(GAME_SUB_JP.capBreakIndex) + shift + 0x2000,
   });
-  const listOffset = subOffset(GIAPREY_VADDR) + shift;
-  GIAPREY_CARVE.copy(buf, listOffset);
-  const listVaddr = GIAPREY_VADDR + shift;
-  // Pointer 5 -> Giaprey's list. All other indexes are 0xFFFF (none).
+  // Each monster gets its own copy of Giaprey's list (a shift that only
+  // reaches a few lists doesn't count), monster i's at pointer index i.
+  // Giaprey's own (index 34) sits at the real address.
   const pointers = subOffset(GAME_SUB_JP.carvePointers) + shift;
-  buf.writeUInt32LE(listVaddr, pointers + 5 * 4);
   const index = subOffset(GAME_SUB_JP.carveIndex) + shift;
   buf.fill(0xff, index, index + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE);
   for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
-    buf.writeUInt16LE(5, index + i * CARVE_INDEX_SIZE + 2); // body, low
-    buf.writeUInt16LE(5, index + i * CARVE_INDEX_SIZE + 4); // body, high
+    const listVaddr = GIAPREY_VADDR + shift + (i - 34) * 16;
+    GIAPREY_CARVE.copy(buf, subOffset(listVaddr));
+    buf.writeUInt32LE(listVaddr, pointers + i * 4);
+    buf.writeUInt16LE(i, index + i * CARVE_INDEX_SIZE + 2); // body, low
+    buf.writeUInt16LE(i, index + i * CARVE_INDEX_SIZE + 4); // body, high
   }
-  // Cap/break: 60 capture entries whose low-rank index 3 -> one reward list.
-  const rewardOffset = subOffset(GAME_SUB_JP.capBreakPointers) + shift - 0x40;
+  // Cap/break: 60 capture entries, entry i's low-rank index i -> its own list.
   const rewards = [
     [45, 100, 1],
     [35, 200, 1],
     [20, 340, 2],
   ];
-  rewards.forEach(([chance, item, amount], i) => {
-    buf.writeUInt16LE(chance!, rewardOffset + i * 6);
-    buf.writeUInt16LE(item!, rewardOffset + i * 6 + 2);
-    buf.writeUInt16LE(amount!, rewardOffset + i * 6 + 4);
-  });
-  buf.writeUInt16LE(0xffff, rewardOffset + rewards.length * 6);
   const capPointers = subOffset(GAME_SUB_JP.capBreakPointers) + shift;
-  buf.writeUInt32LE(GAME_SUB_LOAD - 0x80 + rewardOffset, capPointers + 3 * 4);
   const capIndex = subOffset(GAME_SUB_JP.capBreakIndex) + shift;
   for (let i = 0; i < 60; i++) {
+    const listOffset = capPointers - 60 * 24 + i * 24;
+    rewards.forEach(([chance, item, amount], r) => {
+      buf.writeUInt16LE(chance!, listOffset + r * 6);
+      buf.writeUInt16LE(item!, listOffset + r * 6 + 2);
+      buf.writeUInt16LE(amount!, listOffset + r * 6 + 4);
+    });
+    buf.writeUInt16LE(0xffff, listOffset + rewards.length * 6);
+    buf.writeUInt32LE(GAME_SUB_LOAD - 0x80 + listOffset, capPointers + i * 4);
     const at = capIndex + i * CAP_BREAK_ENTRY_SIZE;
     buf.writeUInt8(77, at); // Giadrome
     buf.writeUInt8(CAPTURE_TYPE, at + 1);
     buf.fill(0xff, at + 2, at + CAP_BREAK_ENTRY_SIZE);
-    buf.writeUInt16LE(3, at + 4); // low rank
+    buf.writeUInt16LE(i, at + 4); // low rank
   }
   buf.writeUInt8(0xff, capIndex + 60 * CAP_BREAK_ENTRY_SIZE);
   return buf;
