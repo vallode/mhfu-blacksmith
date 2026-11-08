@@ -5,13 +5,9 @@
  * Every numeric/structured field below is either a raw disc value or
  * resolved through the same ItemID/emID enum bootstrap the equipment emit
  * modules use (src/strings/names.ts). Quest board text (title/goal/fail/
- * details/client) is extracted verbatim from the disc and is Japanese-only
- * — the JP disc never populated distinct English text for retail quests
- * (every `LangPTRs` slot aliases the same Japanese pointer; confirmed
- * against a real EU disc, whose `mission_jpn/*.mib` TOC indices/layout
- * don't line up with the JP one at all, so this isn't a simple region
- * swap). See README's "Quests" section for the full writeup — this is a
- * known, documented gap, not silently dropped.
+ * details/client) is the first populated `LangPTRs` slot, verbatim: English
+ * on the EU disc, Japanese on the JP disc (whose slots all alias the same
+ * Japanese text). See README's "Quests" section.
  */
 import type {
   MonsterSpawn,
@@ -48,13 +44,16 @@ const RANK_TO_HUB: Record<number, { hub: QuestHub; rank: Rank | null }> = {
 };
 
 /**
- * The disc has 3 unused/disabled quest slots (`m50001`-`m50003`: 0 zenny
- * fee, 1 zenny reward, every text field this exact literal) — real quest
- * IDs that were apparently never wired up. Skipped entirely rather than
- * emitted as garbage.
+ * Unused quest slots, skipped rather than emitted as garbage. Every text
+ * field is one placeholder literal: "**********" on the JP disc, "none" on
+ * the EU disc. On EU that is `m50001`-`m50003` (0 zenny fee, 1 zenny reward)
+ * and `m40001`-`m40008` (0 zenny fee, real monsters and rewards, but no
+ * text in any language, so never shown on a quest board).
  */
+const PLACEHOLDER_TITLES = new Set(["**********", "none"]);
+
 function isPlaceholderQuest(parsed: ParsedQuest): boolean {
-  return parsed.strings?.title === "**********";
+  return PLACEHOLDER_TITLES.has(parsed.strings?.title ?? "");
 }
 
 export interface EmittedSupply {
@@ -68,7 +67,21 @@ export interface EmittedRewardItem {
   amount: number;
 }
 
+/**
+ * What a reward table is, from `RewardTBL.Unkn1` (see `classifyRewardTable`):
+ *  - "main": the main reward pool (`0x8000`). Always the first table.
+ *  - "extra": a fixed extra reward (`0x8001`), one pick per table.
+ *  - "conditional": any other value, which the game checks against a
+ *    condition this extractor doesn't decode (kept raw in `condition`).
+ */
+export type RewardTableKind = "main" | "extra" | "conditional";
+
 export interface EmittedRewardTable {
+  kind: RewardTableKind;
+  /** How many times the table is drawn, or null where the disc data doesn't say. */
+  draws: number | null;
+  /** Raw `RewardTBL.Unkn1` of a "conditional" table; null for main and extra tables. */
+  condition: number | null;
   items: EmittedRewardItem[];
 }
 
@@ -120,6 +133,36 @@ function resolveSupplies(supplies: SupplyItem[]): EmittedSupply[] {
   return out;
 }
 
+const REWARD_MAIN = 0x8000;
+const REWARD_EXTRA = 0x8001;
+
+/**
+ * Decodes `RewardTBL.Unkn1`/`Unkn2`. Evidence, across all 837 tables of the
+ * 551 EU quests (README "Reward tables" has the full breakdown):
+ *  - `Unkn1 = 0x8000` heads every quest except the 7 Treasure Hunting ones,
+ *    exactly once and always first: the main reward pool. Its `Unkn2` is
+ *    `N << 8` with N = 4..7 (0 on one training quest), rising with the
+ *    quest's stars, and `Unkn2` is 0 on every other table. N is read as the
+ *    main pool's base number of draws (before Luck skills); that reading is
+ *    inferred from the data, not confirmed in game.
+ *  - `Unkn1 = 0x8001` tables follow the main table on multi-monster hunts
+ *    (one per large monster, holding that monster's material) and on
+ *    Fortress/Rajang quests (Commendations). Each sums to 100%, so each is
+ *    one draw.
+ *  - Every other value is a condition: 1 on elder dragon "Slay" quests,
+ *    0x28-0x32 on Training School quests, 0xf9-0x101 on "Survive or deliver
+ *    the Paw Pass Ticket" quests and 0x10c-0x119 on Treasure Hunting quests
+ *    (14 tiers). Draws aren't known for these.
+ */
+export function classifyRewardTable(
+  table: Pick<RewardTable, "unkn1" | "unkn2">,
+): Omit<EmittedRewardTable, "items"> {
+  if (table.unkn1 === REWARD_MAIN)
+    return { kind: "main", draws: table.unkn2 >> 8, condition: null };
+  if (table.unkn1 === REWARD_EXTRA) return { kind: "extra", draws: 1, condition: null };
+  return { kind: "conditional", draws: null, condition: table.unkn1 };
+}
+
 function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
   const names = getNameResolver();
   return tables.map((table) => {
@@ -128,7 +171,7 @@ function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
       const item = names.resolve("ItemID", i.itemId);
       if (item) items.push({ chance: i.chance, item, amount: i.amount });
     }
-    return { items };
+    return { ...classifyRewardTable(table), items };
   });
 }
 

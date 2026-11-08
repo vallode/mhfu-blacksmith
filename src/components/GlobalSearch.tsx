@@ -12,7 +12,7 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest";
   type: string;
   rank: string | null;
   rarity: number;
@@ -40,6 +40,8 @@ function iconStyleFor(item: SearchEntry) {
       return iconStyle({ type: item.type, rarity: item.rarity });
     case "decoration":
       return iconStyle({ type: "decoration", rarity: item.rarity });
+    case "quest":
+      return iconStyle({ type: "ticket" });
     default:
       return iconStyle({ type: item.type, monster: true });
   }
@@ -55,6 +57,8 @@ function iconSrcFor(item: SearchEntry): string {
       return `/images/decoration-mini.png`;
     case "monster":
       return `/images/monsters/${item.slug}.png`;
+    case "quest":
+      return "/images/ticket.png";
     default:
       return "/images/unknown.png";
   }

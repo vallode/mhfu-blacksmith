@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { emitQuest, emitQuestsFile, QUEST_HUB_TO_FILE } from "../src/emit/quests.js";
+import {
+  classifyRewardTable,
+  emitQuest,
+  emitQuestsFile,
+  QUEST_HUB_TO_FILE,
+} from "../src/emit/quests.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 
 /** Real quest ID 1 ("Hunt 1 Giadrome", the game's very first quest) — every field below is a real decrypted/parsed value from the JP disc. */
@@ -40,6 +45,10 @@ const GIADROME_HUNT: ParsedQuest = {
   ],
   rewards: [
     {
+      // Unkn1/Unkn2 as on the EU disc's quest 1; itemsPtr is illustrative.
+      unkn1: 0x8000,
+      unkn2: 0x0500,
+      itemsPtr: 2568,
       items: [
         { chance: 1, itemId: 345, amount: 1 },
         { chance: 25, itemId: 342, amount: 1 }, // Giaprey Hide
@@ -100,6 +109,9 @@ test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest (ID 1) end-to-end", 
     { item: "First-Aid Med", amount: 3 },
   ]);
   assert.equal(emitted.reward_tables.length, 1);
+  assert.equal(emitted.reward_tables[0]!.kind, "main");
+  assert.equal(emitted.reward_tables[0]!.draws, 5);
+  assert.equal(emitted.reward_tables[0]!.condition, null);
   assert.deepEqual(emitted.reward_tables[0]!.items, [
     { chance: 1, item: "Giadrome Claw", amount: 1 },
     { chance: 25, item: "Giaprey Hide", amount: 1 },
@@ -168,6 +180,68 @@ test("emitQuest returns null for the disc's unused/disabled quest slots (real 'm
     },
   };
   assert.equal(emitQuest(disabled), null);
+});
+
+test("emitQuest also drops the EU disc's unused slots, whose text is 'none'", () => {
+  const none = {
+    title: "none",
+    goal: "none",
+    fail: "none",
+    details: "none",
+    monsters: "none",
+    client: "none",
+  };
+  const unused: ParsedQuest = {
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, questId: 40001, fee: 0, reward: 3000 },
+    strings: none,
+  };
+  assert.equal(emitQuest(unused), null);
+});
+
+test("classifyRewardTable labels main, extra and conditional tables from Unkn1/Unkn2", () => {
+  // Real (Unkn1, Unkn2) pairs from the EU disc.
+  assert.deepEqual(classifyRewardTable({ unkn1: 0x8000, unkn2: 0x0600 }), {
+    kind: "main",
+    draws: 6,
+    condition: null,
+  });
+  assert.deepEqual(classifyRewardTable({ unkn1: 0x8001, unkn2: 0 }), {
+    kind: "extra",
+    draws: 1,
+    condition: null,
+  });
+  // Elder dragon "Slay" quests (1) and Treasure Hunting tiers (0x10c-0x119) stay raw.
+  for (const unkn1 of [1, 0x28, 0x101, 0x119]) {
+    assert.deepEqual(classifyRewardTable({ unkn1, unkn2: 0 }), {
+      kind: "conditional",
+      draws: null,
+      condition: unkn1,
+    });
+  }
+});
+
+test("emitQuest labels every table of a multi-table quest in disc order", () => {
+  const items = [{ chance: 100, itemId: 342, amount: 3 }];
+  const emitted = emitQuest({
+    ...GIADROME_HUNT,
+    rewards: [
+      { unkn1: 0x8000, unkn2: 0x0500, itemsPtr: 0, items },
+      { unkn1: 0x8001, unkn2: 0, itemsPtr: 0, items },
+      { unkn1: 1, unkn2: 0, itemsPtr: 0, items },
+    ],
+  });
+  assert.deepEqual(
+    emitted?.reward_tables.map((t) => [t.kind, t.draws, t.condition]),
+    [
+      ["main", 5, null],
+      ["extra", 1, null],
+      ["conditional", null, 1],
+    ],
+  );
+  assert.deepEqual(emitted?.reward_tables[2]!.items, [
+    { chance: 100, item: "Giaprey Hide", amount: 3 },
+  ]);
 });
 
 test("emitQuest returns a null target when targetNum is 0 (no single hunt/capture objective)", () => {

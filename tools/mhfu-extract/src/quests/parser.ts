@@ -112,13 +112,19 @@ export interface RewardItem {
 }
 
 export interface RewardTable {
+  /** `RewardTBL.Unkn1`, the entry's first u16, kept raw. See emit/quests.ts for what it's known to mean. */
+  unkn1: number;
+  /** `RewardTBL.Unkn2`, the entry's second u16, kept raw. */
+  unkn2: number;
+  /** File offset of this table's RewardItem[]. */
+  itemsPtr: number;
   items: RewardItem[];
 }
 
 /**
  * RewardTBL[] @ header.rewardsPtr, 8 bytes/entry (terminated when the next
- * entry's first u16 == 0xFFFF), each with its own RewardItem[] (6
- * bytes/entry, terminated by chance == 0xFFFF).
+ * entry's first u16 == 0xFFFF): Unkn1 (u16), Unkn2 (u16) and a pointer to
+ * its own RewardItem[] (6 bytes/entry, terminated by chance == 0xFFFF).
  */
 export function readRewards(reader: BinaryReader, header: QuestHeader): RewardTable[] {
   const tables: RewardTable[] = [];
@@ -136,7 +142,7 @@ export function readRewards(reader: BinaryReader, header: QuestHeader): RewardTa
       });
       itemOff += 6;
     }
-    tables.push({ items });
+    tables.push({ unkn1: reader.u16(off), unkn2: reader.u16(off + 2), itemsPtr, items });
     off += 8;
   }
   return tables;

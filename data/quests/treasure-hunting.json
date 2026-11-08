@@ -143,6 +143,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -152,6 +155,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 95,
@@ -166,6 +172,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -175,6 +184,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 90,
@@ -189,6 +201,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 40,
@@ -203,6 +218,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -217,6 +235,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -226,6 +247,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -235,6 +259,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -244,6 +271,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -253,6 +283,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -262,6 +295,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -271,6 +307,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -285,6 +324,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -477,6 +519,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -486,6 +531,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 95,
@@ -500,6 +548,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -509,6 +560,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 75,
@@ -523,6 +577,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 10,
@@ -537,6 +594,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -551,6 +611,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -560,6 +623,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -569,6 +635,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -578,6 +647,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -587,6 +659,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -596,6 +671,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -605,6 +683,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -619,6 +700,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -827,6 +911,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -836,6 +923,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 95,
@@ -850,6 +940,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -859,6 +952,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 75,
@@ -873,6 +969,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 10,
@@ -887,6 +986,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -901,6 +1003,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -910,6 +1015,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -919,6 +1027,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -928,6 +1039,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -937,6 +1051,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -946,6 +1063,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -955,6 +1075,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -969,6 +1092,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -1173,6 +1299,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -1182,6 +1311,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 95,
@@ -1196,6 +1328,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -1205,6 +1340,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 75,
@@ -1219,6 +1357,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 10,
@@ -1233,6 +1374,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -1247,6 +1391,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -1256,6 +1403,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -1265,6 +1415,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -1274,6 +1427,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -1283,6 +1439,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -1292,6 +1451,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -1301,6 +1463,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -1315,6 +1480,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -1520,6 +1688,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -1529,6 +1700,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 95,
@@ -1543,6 +1717,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -1552,6 +1729,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 75,
@@ -1566,6 +1746,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 50,
@@ -1580,6 +1763,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -1594,6 +1780,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -1603,6 +1792,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -1612,6 +1804,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -1621,6 +1816,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -1630,6 +1828,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -1639,6 +1840,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -1648,6 +1852,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -1662,6 +1869,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -1871,6 +2081,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 100,
@@ -1880,6 +2093,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 100,
@@ -1889,6 +2105,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -1898,6 +2117,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 75,
@@ -1912,6 +2134,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 10,
@@ -1926,6 +2151,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -1940,6 +2168,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -1949,6 +2180,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -1958,6 +2192,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -1967,6 +2204,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -1976,6 +2216,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -1985,6 +2228,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -1994,6 +2240,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -2008,6 +2257,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,
@@ -2209,6 +2461,9 @@
       ],
       "reward_tables": [
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 281,
           "items": [
             {
               "chance": 80,
@@ -2223,6 +2478,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 280,
           "items": [
             {
               "chance": 90,
@@ -2237,6 +2495,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 279,
           "items": [
             {
               "chance": 100,
@@ -2246,6 +2507,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 278,
           "items": [
             {
               "chance": 50,
@@ -2260,6 +2524,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 277,
           "items": [
             {
               "chance": 30,
@@ -2274,6 +2541,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 276,
           "items": [
             {
               "chance": 75,
@@ -2288,6 +2558,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 275,
           "items": [
             {
               "chance": 100,
@@ -2297,6 +2570,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 274,
           "items": [
             {
               "chance": 100,
@@ -2306,6 +2582,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 273,
           "items": [
             {
               "chance": 100,
@@ -2315,6 +2594,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 272,
           "items": [
             {
               "chance": 100,
@@ -2324,6 +2606,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 271,
           "items": [
             {
               "chance": 100,
@@ -2333,6 +2618,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 270,
           "items": [
             {
               "chance": 100,
@@ -2342,6 +2630,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 269,
           "items": [
             {
               "chance": 75,
@@ -2356,6 +2647,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 268,
           "items": [
             {
               "chance": 75,

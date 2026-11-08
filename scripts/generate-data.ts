@@ -5,6 +5,7 @@
  *   - weapon-<type>.json         (11)
  *   - armor-<slot>-<rank>.json
  *   - monster-<category>.json    (9)
+ *   - quests.json                (every quest, see scripts/lib/quest-bundle.ts)
  *   - decorations.json
  *   - skills.json                (skill trees and activations, for the set builder)
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
@@ -14,7 +15,8 @@
  * Reuses the transform logic from src/lib (slugify, computeRank, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 1.5 MB and logs a gzip estimate.
+ * Budget: asserts total public/data raw size < 1.6 MB and logs a gzip estimate
+ * (raised from 1.5 MB for quests.json, ~190 KB).
  */
 import fs from "fs";
 import path from "path";
@@ -54,6 +56,7 @@ import type {
 } from "../src/lib/schema";
 import { EQUIP_TYPE_SLOTS } from "../src/lib/schema";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
+import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -63,7 +66,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.5 * 1024 * 1024;
+const BUDGET_BYTES = 1.6 * 1024 * 1024;
 
 // ---------------------------------------------------------------------------
 // Shared logic (ported from src/lib/weapons.ts / armor.ts)
@@ -427,6 +430,38 @@ for (const category of MONSTER_CATEGORIES) {
   const items = data.monsters.map((m) => encodeMonster({ ...m, slug: slugify(m.name) }));
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
+}
+
+// Quests: one bundle for every hub. Items are in-game IDs (names and icons
+// come from items.json), monsters link to their pages.
+{
+  const monsterPages = new Map<string, { category: string; slug: string }>();
+  for (const category of MONSTER_CATEGORIES) {
+    const p = path.join(dataDir, "monsters", `${category}.json`);
+    if (!fs.existsSync(p)) continue;
+    for (const m of readJson<{ monsters: Monster[] }>(p).monsters) {
+      monsterPages.set(m.name, { category, slug: slugify(m.name) });
+    }
+  }
+  const { index } = buildItemNameIndex(
+    readJson<{ items: ItemRecord[] }>(path.join(dataDir, "items.json")).items,
+  );
+  const questDir = path.join(dataDir, "quests");
+  const quests = fs
+    .readdirSync(questDir)
+    .filter((f) => f.endsWith(".json"))
+    .sort()
+    .flatMap((f) => readJson<{ quests: QuestRecord[] }>(path.join(questDir, f)).quests);
+  const { bundle, unresolvedItems } = encodeQuestBundle({
+    quests,
+    itemId: (name) => index.get(normalizeItemName(name)),
+    monsterPage: (name) => monsterPages.get(name),
+  });
+  if (unresolvedItems.length > 0) {
+    console.warn(`generate-data: quest items not in items.json: ${unresolvedItems.join(", ")}`);
+  }
+  totalItems += bundle.items.length;
+  push("quests.json", bundle);
 }
 
 // Decorations

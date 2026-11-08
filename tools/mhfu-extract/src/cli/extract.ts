@@ -11,6 +11,7 @@ import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitMonsters } from "../emit/monsters.js";
 import { emitQuestsFile } from "../emit/quests.js";
+import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
@@ -31,7 +32,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/quests-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
   raw?: boolean;
 }
 
@@ -58,30 +59,37 @@ export interface ExtractionManifest {
  * the same logic as `quests/discovery.ts`'s `readAllQuests`, but reading
  * files individually from disk instead of requiring the full in-memory
  * `DataBinFile[]` (extract doesn't need the other ~6000 non-quest entries).
+ *
+ * The paths come from the region's own file list, the same names `unpack`
+ * wrote (an EU unpack made before region-aware naming is rejected by
+ * `assertCurrentFileNames` first: its `mission_jpn/` names were off by 32).
  */
-async function readQuestsFromUnpackedDir(
+export async function readQuestsFromUnpackedDir(
   unpackedDir: string,
   region: Region,
-): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[] }> {
+): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[]; raw: QuestRawEntry[] }> {
   const quests: ParsedQuest[] = [];
   const skipped: SkippedQuest[] = [];
+  const raw: QuestRawEntry[] = [];
 
-  for (const ref of listQuestFiles()) {
+  for (const ref of listQuestFiles(region)) {
     const filePath = path.join(unpackedDir, "data-bin", ref.path);
     try {
-      const raw = await readFile(filePath);
-      const payload = decryptQuest(raw, region);
+      const file = await readFile(filePath);
+      const payload = decryptQuest(file, region);
       if (!isQuestMagic(payload)) {
         skipped.push({ path: ref.path, reason: "decrypted payload is missing the quest magic" });
         continue;
       }
-      quests.push(parseQuest(payload));
+      const parsed = parseQuest(payload);
+      quests.push(parsed);
+      raw.push(dumpQuestRaw(ref.path, payload, parsed));
     } catch (error) {
       const reason = error instanceof QuestCipherError ? error.message : String(error);
       skipped.push({ path: ref.path, reason });
     }
   }
-  return { quests, skipped };
+  return { quests, skipped, raw };
 }
 
 /** Written before emitting, so the dump survives an emit error. */
@@ -164,8 +172,17 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   }
 
   console.log("Reading and parsing quest files...");
-  const { quests, skipped } = await readQuestsFromUnpackedDir(options.unpacked, manifest.region);
+  const { quests, skipped, raw } = await readQuestsFromUnpackedDir(
+    options.unpacked,
+    manifest.region,
+  );
   console.log(`Parsed ${quests.length} quests, skipped ${skipped.length}.`);
+  if (options.raw) {
+    const rawPath = path.join(options.out, "raw", "quests.json");
+    await mkdir(path.dirname(rawPath), { recursive: true });
+    await writeFile(rawPath, `${JSON.stringify(raw)}\n`, "utf-8");
+    console.log(`Wrote ${rawPath}`);
+  }
   Object.assign(output, emitQuestsFile(quests));
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");

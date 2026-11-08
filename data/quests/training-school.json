@@ -17,6 +17,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -77,6 +80,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -137,6 +143,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -197,6 +206,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -257,6 +269,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -317,6 +332,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -377,6 +395,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -437,6 +458,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -497,6 +521,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -557,6 +584,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -617,6 +647,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -701,6 +734,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -797,6 +833,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -889,6 +928,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -981,6 +1023,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 20,
@@ -1057,6 +1102,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 0,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1137,6 +1185,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1217,6 +1268,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1309,6 +1363,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1389,6 +1446,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1481,6 +1541,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1561,6 +1624,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1653,6 +1719,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 55,
@@ -1725,6 +1794,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 40,
@@ -1749,6 +1821,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 40,
           "items": [
             {
               "chance": 90,
@@ -1794,6 +1869,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -1818,6 +1896,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 43,
           "items": [
             {
               "chance": 60,
@@ -1888,6 +1969,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -1917,6 +2001,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 45,
           "items": [
             {
               "chance": 60,
@@ -1991,6 +2078,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 40,
@@ -2015,6 +2105,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 40,
           "items": [
             {
               "chance": 90,
@@ -2060,6 +2153,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -2084,6 +2180,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 45,
           "items": [
             {
               "chance": 60,
@@ -2129,6 +2228,9 @@
       "supplies": [],
       "reward_tables": [
         {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
           "items": [
             {
               "chance": 25,
@@ -2158,6 +2260,9 @@
           ]
         },
         {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 50,
           "items": [
             {
               "chance": 60,

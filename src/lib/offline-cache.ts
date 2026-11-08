@@ -1,4 +1,5 @@
 import { WEAPON_TYPES, ARMOR_SLOTS, ARMOR_RANKS, MONSTER_CATEGORIES } from "./constants";
+import { QUEST_HUB_SLUGS } from "./quests";
 
 const RUNTIME_CACHE = "mhfu-offline-v1";
 // Matches the `cacheName: "pages"` runtime-caching rule in next.config.ts —
@@ -50,6 +51,7 @@ export function collectStaticPageUrls(): string[] {
     "/armorsmith/",
     "/monsters/",
     "/decorations/",
+    "/quests/",
     "/hunter/",
     "/options/",
   ];
@@ -58,6 +60,7 @@ export function collectStaticPageUrls(): string[] {
     for (const rank of ARMOR_RANKS) urls.push(`/armorsmith/${slot}/${rank}/`);
   }
   for (const category of MONSTER_CATEGORIES) urls.push(`/monsters/${category}/`);
+  for (const hub of QUEST_HUB_SLUGS) urls.push(`/quests/${hub}/`);
   return urls;
 }
 
