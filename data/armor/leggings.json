@@ -42,7 +42,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Green Pants",
@@ -92,7 +94,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Blue Pants",
@@ -146,7 +150,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Greaves",
@@ -202,7 +208,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Leggings",
@@ -258,7 +266,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Bone Greaves",
@@ -318,7 +328,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Leggings",
@@ -378,7 +390,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Giaprey Greaves",
@@ -434,7 +448,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Giaprey Leggings",
@@ -490,7 +506,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Battle Greaves",
@@ -556,7 +574,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Leggings",
@@ -622,7 +642,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Silver Metal Boots",
@@ -664,7 +686,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Dark Metal Boots",
@@ -706,7 +730,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Velociprey Greaves",
@@ -762,7 +788,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Velociprey Leggings",
@@ -818,7 +846,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Vespoid Greaves",
@@ -874,7 +904,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Leggings",
@@ -930,7 +962,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hi-Metal Greaves",
@@ -986,7 +1020,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Leggings",
@@ -1042,7 +1078,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hornet Greaves",
@@ -1104,7 +1142,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Leggings",
@@ -1166,7 +1206,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Genprey Greaves",
@@ -1216,7 +1258,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Leggings",
@@ -1266,7 +1310,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Chrome Metal Boots",
@@ -1304,7 +1350,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Ioprey Greaves",
@@ -1366,7 +1414,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Leggings",
@@ -1428,7 +1478,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Kut-Ku Greaves",
@@ -1494,7 +1546,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Leggings",
@@ -1560,7 +1614,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Cephalos Greaves",
@@ -1618,7 +1674,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Leggings",
@@ -1676,7 +1734,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Conga Greaves",
@@ -1738,7 +1798,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Leggings",
@@ -1800,7 +1862,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Greaves",
@@ -1862,7 +1926,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Leggings",
@@ -1924,7 +1990,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Greaves",
@@ -1980,7 +2048,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Leggings",
@@ -2036,7 +2106,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hermitaur Greaves",
@@ -2098,7 +2170,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Leggings",
@@ -2160,7 +2234,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Greaves",
@@ -2222,7 +2298,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Leggings",
@@ -2284,7 +2362,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Lobster Greaves",
@@ -2346,7 +2426,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Lobster Leggings",
@@ -2408,7 +2490,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Kut-Ku Greaves D",
@@ -2474,7 +2558,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Kut-Ku Leggings D",
@@ -2540,7 +2626,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Greaves D",
@@ -2602,7 +2690,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Leggings D",
@@ -2664,7 +2754,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Greaves D",
@@ -2716,7 +2808,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Khezu Leggings D",
@@ -2768,7 +2862,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Greaves D",
@@ -2830,7 +2926,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Plesioth Leggings D",
@@ -2892,7 +2990,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Basarios Greaves",
@@ -2958,7 +3058,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Leggings",
@@ -3024,7 +3126,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Monoblos Greaves",
@@ -3086,7 +3190,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monoblos Leggings",
@@ -3148,7 +3254,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Garuga Greaves",
@@ -3210,7 +3318,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Garuga Leggings",
@@ -3272,7 +3382,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blango Greaves",
@@ -3334,7 +3446,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Leggings",
@@ -3396,7 +3510,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ceanataur Greaves",
@@ -3458,7 +3574,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 107,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Leggings",
@@ -3520,7 +3638,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Greaves",
@@ -3582,7 +3702,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Leggings",
@@ -3644,7 +3766,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Tigrex Greaves",
@@ -3706,7 +3830,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Tigrex Leggings",
@@ -3768,7 +3894,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Greaves",
@@ -3830,7 +3958,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Leggings",
@@ -3892,7 +4022,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Greaves",
@@ -3954,7 +4086,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Leggings",
@@ -4016,7 +4150,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Greaves",
@@ -4078,7 +4214,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Leggings",
@@ -4136,7 +4274,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Greaves D",
@@ -4198,7 +4338,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Diablo Leggings D",
@@ -4260,7 +4402,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Greaves D",
@@ -4318,7 +4462,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Gravios Leggings D",
@@ -4376,7 +4522,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mosswine Feet",
@@ -4438,7 +4586,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Giaprey Feet",
@@ -4496,7 +4646,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Velociprey Feet",
@@ -4554,7 +4706,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Famitsu Cloth Wrap",
@@ -4608,7 +4762,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Famitsu Pants",
@@ -4662,7 +4818,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Genprey Feet",
@@ -4720,7 +4878,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Black Belt Greaves",
@@ -4782,7 +4942,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Boots (Sun)",
@@ -4844,7 +5006,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Boots (Moon)",
@@ -4906,7 +5070,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Boots",
@@ -4968,7 +5134,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Tights",
@@ -5030,7 +5198,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Boots",
@@ -5092,7 +5262,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Pants",
@@ -5154,7 +5326,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Maiden's Stockings",
@@ -5216,7 +5390,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Personal Tights",
@@ -5278,7 +5454,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Socks",
@@ -5340,7 +5518,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Socks",
@@ -5402,7 +5582,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ioprey Feet",
@@ -5460,7 +5642,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Remobra Feet",
@@ -5526,7 +5710,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Melahoa Roots",
@@ -5592,7 +5778,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Melahoa Taproot",
@@ -5658,7 +5846,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Makluva Pants",
@@ -5720,7 +5910,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Makluva Leggings",
@@ -5782,7 +5974,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hypnoc Greaves",
@@ -5844,7 +6038,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hypnoc Leggings",
@@ -5906,7 +6102,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Obituary Gamba",
@@ -5968,7 +6166,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Obituary Femur",
@@ -6030,7 +6230,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Butterfly Gamba",
@@ -6092,7 +6294,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Butterfly Femur",
@@ -6154,7 +6358,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Black Feet",
@@ -6199,7 +6405,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Black Legs",
@@ -6244,7 +6452,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Heel",
@@ -6302,7 +6512,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Death Stench March",
@@ -6360,7 +6572,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Volganos Greaves",
@@ -6422,7 +6636,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Volganos Leggings",
@@ -6484,7 +6700,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mizuha Leg Wrap",
@@ -6542,7 +6760,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Extravagant Trousers",
@@ -6600,7 +6820,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kushala Crus",
@@ -6658,7 +6880,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Kushala Shank",
@@ -6716,7 +6940,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 43
     },
     {
       "name": "Kirin Leg Guards",
@@ -6778,7 +7004,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kirin Boots",
@@ -6840,7 +7068,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "GuardianSpirit Boots",
@@ -6902,7 +7132,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Carnage Boots",
@@ -6964,7 +7196,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Auroros Pants",
@@ -7026,7 +7260,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Pants",
@@ -7088,7 +7324,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Borealis Pants",
@@ -7150,7 +7388,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Pants",
@@ -7212,7 +7452,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Borealis Pants",
@@ -7266,7 +7508,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Red Glyph Pants",
@@ -7320,7 +7564,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Empress Greaves",
@@ -7382,7 +7628,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Empress Leggings",
@@ -7444,7 +7692,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Indra Leggings",
@@ -7506,7 +7756,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Steadfast Boots",
@@ -7572,7 +7824,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kaiser Greaves",
@@ -7630,7 +7884,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Kaiser Leggings",
@@ -7688,7 +7944,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Red Lobster Greaves",
@@ -7744,7 +8002,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "RedLobster Leggings",
@@ -7800,7 +8060,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Monodevil Greaves",
@@ -7862,7 +8124,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Monodevil Leggings",
@@ -7924,7 +8188,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian HeartGreaves",
@@ -7986,7 +8252,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "RathianHeartLeggings",
@@ -8048,7 +8316,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos SoulGreaves",
@@ -8110,7 +8380,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "RathalosSoulLeggings",
@@ -8172,7 +8444,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mafumofu Boots S",
@@ -8230,7 +8504,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Green Pants S",
@@ -8284,7 +8560,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Blue Pants S",
@@ -8340,7 +8618,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hunter Greaves S",
@@ -8402,7 +8682,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Hunter Leggings S",
@@ -8464,7 +8746,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Greaves S",
@@ -8526,7 +8810,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Bone Leggings S",
@@ -8588,7 +8874,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Greaves S",
@@ -8650,7 +8938,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Battle Leggings S",
@@ -8712,7 +9002,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Velociprey Greaves S",
@@ -8770,7 +9062,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Velociprey LeggingsS",
@@ -8828,7 +9122,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Greaves S",
@@ -8886,7 +9182,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Vespoid Leggings S",
@@ -8944,7 +9242,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Greaves S",
@@ -9002,7 +9302,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hi-Metal Leggings S",
@@ -9060,7 +9362,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hornet Greaves S",
@@ -9122,7 +9426,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornet Leggings S",
@@ -9184,7 +9490,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Greaves S",
@@ -9242,7 +9550,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Genprey Leggings S",
@@ -9300,7 +9610,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Greaves S",
@@ -9350,7 +9662,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Ioprey Leggings S",
@@ -9400,7 +9714,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Greaves S",
@@ -9458,7 +9774,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Kut-Ku Leggings S",
@@ -9516,7 +9834,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Greaves S",
@@ -9574,7 +9894,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Cephalos Leggings S",
@@ -9632,7 +9954,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Greaves S",
@@ -9694,7 +10018,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Conga Leggings S",
@@ -9756,7 +10082,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Greaves S",
@@ -9814,7 +10142,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Leggings S",
@@ -9872,7 +10202,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Greaves S",
@@ -9930,7 +10262,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Khezu Leggings S",
@@ -9988,7 +10322,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Greaves S",
@@ -10050,7 +10386,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hermitaur Leggings S",
@@ -10112,7 +10450,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hypnoc Greaves S",
@@ -10170,7 +10510,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hypnoc Leggings S",
@@ -10228,7 +10570,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Greaves S",
@@ -10290,7 +10634,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Basarios Leggings S",
@@ -10352,7 +10698,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Greaves S",
@@ -10414,7 +10762,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Plesioth Leggings S",
@@ -10476,7 +10826,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Monoblos Greaves S",
@@ -10534,7 +10886,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Monoblos Leggings S",
@@ -10592,7 +10946,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Garuga Greaves S",
@@ -10650,7 +11006,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Garuga Leggings S",
@@ -10708,7 +11066,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Greaves S",
@@ -10770,7 +11130,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Blango Leggings S",
@@ -10832,7 +11194,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Greaves S",
@@ -10894,7 +11258,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 81
     },
     {
       "name": "Ceanataur Leggings S",
@@ -10952,7 +11318,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Greaves S",
@@ -11010,7 +11378,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathian Leggings S",
@@ -11068,7 +11438,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Naruga Greaves S",
@@ -11126,7 +11498,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Naruga Leggings S",
@@ -11184,7 +11558,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Tigrex Greaves S",
@@ -11246,7 +11622,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Tigrex Leggings S",
@@ -11308,7 +11686,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Greaves S",
@@ -11366,7 +11746,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Rathalos Leggings S",
@@ -11424,7 +11806,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Greaves S",
@@ -11482,7 +11866,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Diablo Leggings S",
@@ -11540,7 +11926,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Greaves S",
@@ -11598,7 +11986,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Gravios Leggings S",
@@ -11656,7 +12046,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Cream Pants",
@@ -11714,7 +12106,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Coffee Pants",
@@ -11772,7 +12166,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Greaves U",
@@ -11830,7 +12226,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Leggings U",
@@ -11888,7 +12286,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Greaves U",
@@ -11950,7 +12350,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Leggings U",
@@ -12008,7 +12410,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Greaves U",
@@ -12066,7 +12470,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Leggings U",
@@ -12124,7 +12530,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Giaprey Greaves U",
@@ -12182,7 +12590,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Giaprey Leggings U",
@@ -12240,7 +12650,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Greaves U",
@@ -12298,7 +12710,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Leggings U",
@@ -12356,7 +12770,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Greaves U",
@@ -12414,7 +12830,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Leggings U",
@@ -12472,7 +12890,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hornet Greaves U",
@@ -12530,7 +12950,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Leggings U",
@@ -12588,7 +13010,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Greaves U",
@@ -12646,7 +13070,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Leggings U",
@@ -12704,7 +13130,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Greaves U",
@@ -12762,7 +13190,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Leggings U",
@@ -12820,7 +13250,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Greaves U",
@@ -12878,7 +13310,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Leggings U",
@@ -12936,7 +13370,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Greaves U",
@@ -12994,7 +13430,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Leggings U",
@@ -13052,7 +13490,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Greaves U",
@@ -13110,7 +13550,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Leggings U",
@@ -13168,7 +13610,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Greaves U",
@@ -13226,7 +13670,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Leggings U",
@@ -13284,7 +13730,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Greaves U",
@@ -13342,7 +13790,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Leggings U",
@@ -13400,7 +13850,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Greaves U",
@@ -13458,7 +13910,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Leggings U",
@@ -13516,7 +13970,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Greaves U",
@@ -13574,7 +14030,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Leggings U",
@@ -13632,7 +14090,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Greaves U",
@@ -13690,7 +14150,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Leggings U",
@@ -13748,7 +14210,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Greaves U",
@@ -13806,7 +14270,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Leggings U",
@@ -13864,7 +14330,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Greaves U",
@@ -13922,7 +14390,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Leggings U",
@@ -13980,7 +14450,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Greaves U",
@@ -14038,7 +14510,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Leggings U",
@@ -14096,7 +14570,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Greaves U",
@@ -14154,7 +14630,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Leggings U",
@@ -14212,7 +14690,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Famitsu Cloth Wrap S",
@@ -14266,7 +14746,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Famitsu Pants S",
@@ -14320,7 +14802,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Black Belt Greaves S",
@@ -14382,7 +14866,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "ShinobiBoots(Heaven)",
@@ -14440,7 +14926,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Boots(Earth)",
@@ -14498,7 +14986,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red GuildGuard Boots",
@@ -14560,7 +15050,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuard Tights",
@@ -14622,7 +15114,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuard Boots",
@@ -14680,7 +15174,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuardTights",
@@ -14738,7 +15234,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red GuildGuard Boots",
@@ -14800,7 +15298,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuard Tights",
@@ -14862,7 +15362,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuard Boots",
@@ -14920,7 +15422,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuardTights",
@@ -14978,7 +15482,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Devil Blos Greaves",
@@ -15040,7 +15546,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Devil Blos Leggings",
@@ -15098,7 +15606,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Jolly Roger Pants",
@@ -15160,7 +15670,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Jolly Roger Skirt",
@@ -15222,7 +15734,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Golden Hakama",
@@ -15278,7 +15792,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Puppet Master Socks",
@@ -15340,7 +15856,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Obituary Gamba S",
@@ -15398,7 +15916,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Obituary Femur S",
@@ -15456,7 +15976,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Butterfly Gamba S",
@@ -15514,7 +16036,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Butterfly Femur S",
@@ -15572,7 +16096,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Heel S",
@@ -15630,7 +16156,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Death Stench March S",
@@ -15688,7 +16216,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "SupremeMizuhaLegWrap",
@@ -15746,7 +16276,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "SprmExtrvgntTrousers",
@@ -15804,7 +16336,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Kushala Crus S",
@@ -15862,7 +16396,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kushala Shank S",
@@ -15920,7 +16456,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kirin Leg Guards S",
@@ -15978,7 +16516,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Kirin Boots S",
@@ -16036,7 +16576,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Pants Haku",
@@ -16098,7 +16640,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Genesis Pants Haku",
@@ -16156,7 +16700,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Pants Haku",
@@ -16218,7 +16764,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Glyph Pants Haku",
@@ -16276,7 +16824,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "UltimateIndraLggings",
@@ -16334,7 +16884,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "SupremSteadfastBoots",
@@ -16396,7 +16948,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Kaiser Greaves S",
@@ -16454,7 +17008,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Kaiser Leggings S",
@@ -16512,7 +17068,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dragonfeet S",
@@ -16574,7 +17132,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dragonlegs S",
@@ -16636,7 +17196,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dark Akantor Hessian",
@@ -16698,7 +17260,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dark Akantor Boots",
@@ -16760,7 +17324,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Shinobi Boots (Sky)",
@@ -16818,7 +17384,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Boots (Sea)",
@@ -16876,7 +17444,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Boots U",
@@ -16934,7 +17504,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Pants U",
@@ -16992,7 +17564,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Socks U",
@@ -17050,7 +17624,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Socks U",
@@ -17108,7 +17684,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Melahoa Roots U",
@@ -17170,7 +17748,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Taproot U",
@@ -17232,7 +17812,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Makluva Pants U",
@@ -17286,7 +17868,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Makluva Leggings U",
@@ -17340,7 +17924,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Monodevil Greaves U",
@@ -17402,7 +17988,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monodevil Leggings U",
@@ -17464,7 +18052,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RathianHeartGreavesU",
@@ -17526,7 +18116,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "RthianHeartLeggingsU",
@@ -17588,7 +18180,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RathalosSoulGreavesU",
@@ -17646,7 +18240,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "RthalosSoulLeggingsU",
@@ -17704,7 +18300,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Golden Moon Greaves",
@@ -17762,7 +18360,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Golden Moon Leggings",
@@ -17820,7 +18420,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 61,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Silver Sol Greaves",
@@ -17878,7 +18480,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Silver Sol Leggings",
@@ -17940,7 +18544,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Pants Ten",
@@ -17998,7 +18604,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Pants Ten",
@@ -18056,7 +18664,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Pants Ten",
@@ -18114,7 +18724,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Pants Ten",
@@ -18172,7 +18784,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Fatalis Feet",
@@ -18234,7 +18848,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Fatalis Legs",
@@ -18296,7 +18912,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "White Fatalis Feet",
@@ -18358,7 +18976,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 115,
+      "max_defence_pre_ukanlos": 93
     },
     {
       "name": "White Fatalis Legs",
@@ -18420,7 +19040,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 49
     },
     {
       "name": "Kut-Ku Greaves X",
@@ -18478,7 +19100,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Leggings X",
@@ -18536,7 +19160,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Greaves X",
@@ -18594,7 +19220,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Leggings X",
@@ -18652,7 +19280,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Greaves X",
@@ -18710,7 +19340,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Leggings X",
@@ -18768,7 +19400,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Greaves X",
@@ -18826,7 +19460,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Leggings X",
@@ -18884,7 +19520,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Greaves X",
@@ -18946,7 +19584,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Leggings X",
@@ -19008,7 +19648,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hypnoc Greaves X",
@@ -19066,7 +19708,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hypnoc Leggings X",
@@ -19128,7 +19772,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Basarios Greaves X",
@@ -19186,7 +19832,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Basarios Leggings X",
@@ -19244,7 +19892,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Greaves X",
@@ -19302,7 +19952,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Leggings X",
@@ -19360,7 +20012,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Monoblos Greaves X",
@@ -19422,7 +20076,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Monoblos Leggings X",
@@ -19484,7 +20140,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Garuga Greaves X",
@@ -19542,7 +20200,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Garuga Leggings X",
@@ -19600,7 +20260,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Greaves X",
@@ -19658,7 +20320,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Leggings X",
@@ -19716,7 +20380,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Greaves X",
@@ -19774,7 +20440,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Leggings X",
@@ -19832,7 +20500,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathian Greaves X",
@@ -19890,7 +20560,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Leggings X",
@@ -19948,7 +20620,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Naruga Greaves X",
@@ -20006,7 +20680,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Naruga Leggings X",
@@ -20068,7 +20744,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Volganos Greaves X",
@@ -20130,7 +20808,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Volganos Leggings X",
@@ -20192,7 +20872,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Tigrex Greaves X",
@@ -20250,7 +20932,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Tigrex Leggings X",
@@ -20312,7 +20996,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Rathalos Greaves X",
@@ -20370,7 +21056,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Leggings X",
@@ -20428,7 +21116,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Diablo Greaves X",
@@ -20486,7 +21176,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Leggings X",
@@ -20544,7 +21236,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Greaves X",
@@ -20606,7 +21300,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Leggings X",
@@ -20668,7 +21364,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kut-Ku Greaves Z",
@@ -20726,7 +21424,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Leggings Z",
@@ -20784,7 +21484,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Greaves Z",
@@ -20846,7 +21548,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Leggings Z",
@@ -20908,7 +21612,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Greaves Z",
@@ -20966,7 +21672,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Leggings Z",
@@ -21024,7 +21732,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Greaves Z",
@@ -21082,7 +21792,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Leggings Z",
@@ -21140,7 +21852,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Greaves Z",
@@ -21202,7 +21916,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Leggings Z",
@@ -21264,7 +21980,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Greaves Z",
@@ -21322,7 +22040,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Leggings Z",
@@ -21380,7 +22100,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Greaves Z",
@@ -21442,7 +22164,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Leggings Z",
@@ -21504,7 +22228,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Greaves Z",
@@ -21562,7 +22288,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Leggings Z",
@@ -21620,7 +22348,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Diablo Greaves Z",
@@ -21682,7 +22412,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Leggings Z",
@@ -21744,7 +22476,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Greaves Z",
@@ -21802,7 +22536,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Leggings Z",
@@ -21860,7 +22596,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Chakra Anklet",
@@ -21899,7 +22637,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Famitsu Cloth Wrap X",
@@ -21949,7 +22689,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Famitsu Pants X",
@@ -21999,7 +22741,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "True Golden Hakama",
@@ -22057,7 +22801,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 105
     },
     {
       "name": "TruePuppetMastrSocks",
@@ -22115,7 +22861,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Black Belt Greaves X",
@@ -22165,7 +22913,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "BlackBelt Leggings X",
@@ -22223,7 +22973,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Obituary Gamba X",
@@ -22281,7 +23033,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Obituary Femur X",
@@ -22339,7 +23093,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Butterfly Gamba X",
@@ -22397,7 +23153,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Butterfly Femur X",
@@ -22455,7 +23213,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "True Mizuha Leg Wrap",
@@ -22517,7 +23277,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "TrueExtrvgntTrousers",
@@ -22579,7 +23341,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kushala Crus X",
@@ -22641,7 +23405,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Kushala Shank X",
@@ -22703,7 +23469,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Kirin Leg Guards X",
@@ -22765,7 +23533,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Kirin Boots X",
@@ -22827,7 +23597,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Empress Greaves X",
@@ -22889,7 +23661,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 112
     },
     {
       "name": "Empress Leggings X",
@@ -22951,7 +23725,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 61
     },
     {
       "name": "True Indra Leggings",
@@ -23009,7 +23785,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Steadfast Boots",
@@ -23067,7 +23845,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Kaiser Greaves X",
@@ -23129,7 +23909,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Kaiser Leggings X",
@@ -23191,7 +23973,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "TrueGuardnSpritBoots",
@@ -23253,7 +24037,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Carnage Boots",
@@ -23315,7 +24101,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Dragonfeet X",
@@ -23377,7 +24165,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Dragonlegs X",
@@ -23439,7 +24229,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Ucamulbas Hessian",
@@ -23501,7 +24293,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Ucamulbas Boots",
@@ -23559,7 +24353,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Roots Z",
@@ -23621,7 +24417,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Melahoa Taproot Z",
@@ -23683,7 +24481,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Makluva Pants Z",
@@ -23737,7 +24537,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Makluva Leggings Z",
@@ -23791,7 +24593,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "RathianHeartGreavesZ",
@@ -23849,7 +24653,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "RthianHeartLeggingsZ",
@@ -23907,7 +24713,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "RathalosSoulGreavesZ",
@@ -23965,7 +24773,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "RthalosSoulLeggingsZ",
@@ -24023,7 +24833,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "GoldenMoon Greaves Z",
@@ -24081,7 +24893,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "GldenMoon Leggings Z",
@@ -24139,7 +24953,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Silver Sol Greaves Z",
@@ -24197,7 +25013,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "SilverSol Leggings Z",
@@ -24255,7 +25073,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Auroros Pants Kyoku",
@@ -24313,7 +25133,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Genesis Pants Kyoku",
@@ -24371,7 +25193,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Borealis Pants Kyoku",
@@ -24429,7 +25253,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Glyph Pants Kyoku",
@@ -24487,7 +25313,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Fatalis Feet Z",
@@ -24549,7 +25377,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 117,
+      "max_defence_pre_ukanlos": 115
     },
     {
       "name": "Fatalis Legs Z",
@@ -24611,7 +25441,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 65,
+      "max_defence_pre_ukanlos": 63
     },
     {
       "name": "Wht Fatalis Feet Z",
@@ -24669,7 +25501,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 118,
+      "max_defence_pre_ukanlos": 116
     },
     {
       "name": "Wht Fatalis Legs Z",
@@ -24727,7 +25561,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 66,
+      "max_defence_pre_ukanlos": 64
     }
   ]
 }

@@ -42,7 +42,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Light Belt",
@@ -78,7 +80,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Leather Belt",
@@ -132,7 +136,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Iron Belt",
@@ -184,7 +190,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Belt",
@@ -238,7 +246,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Tasset",
@@ -288,7 +298,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Coat",
@@ -338,7 +350,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Bone Tasset",
@@ -398,7 +412,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Coat",
@@ -458,7 +474,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Giaprey Tasset",
@@ -502,7 +520,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Giaprey Coat",
@@ -546,7 +566,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Battle Tasset",
@@ -608,7 +630,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Coat",
@@ -670,7 +694,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hide Belt",
@@ -708,7 +734,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Velociprey Tasset",
@@ -770,7 +798,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Velociprey Coat",
@@ -832,7 +862,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Vespoid Tasset",
@@ -888,7 +920,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Coat",
@@ -944,7 +978,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hi-Metal Tasset",
@@ -1000,7 +1036,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Coat",
@@ -1056,7 +1094,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hornet Tasset",
@@ -1118,7 +1158,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Coat",
@@ -1180,7 +1222,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Genprey Tasset",
@@ -1238,7 +1282,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Coat",
@@ -1304,7 +1350,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Chrome Metal Coat",
@@ -1342,7 +1390,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Steel Belt",
@@ -1398,7 +1448,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Tasset",
@@ -1460,7 +1512,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Coat",
@@ -1522,7 +1576,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Kut-Ku Tasset",
@@ -1582,7 +1638,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Coat",
@@ -1642,7 +1700,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Cephalos Tasset",
@@ -1700,7 +1760,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Coat",
@@ -1758,7 +1820,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Conga Tasset",
@@ -1820,7 +1884,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Coat",
@@ -1882,7 +1948,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Tasset",
@@ -1938,7 +2006,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Coat",
@@ -1994,7 +2064,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Tasset",
@@ -2050,7 +2122,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Coat",
@@ -2106,7 +2180,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hermitaur Tasset",
@@ -2168,7 +2244,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Coat",
@@ -2230,7 +2308,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Lobster Coil",
@@ -2292,7 +2372,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Lobster Coat",
@@ -2354,7 +2436,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Kut-Ku Tasset D",
@@ -2420,7 +2504,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Kut-Ku Coat D",
@@ -2486,7 +2572,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Tasset D",
@@ -2542,7 +2630,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Coat D",
@@ -2598,7 +2688,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Tasset D",
@@ -2650,7 +2742,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Khezu Coat D",
@@ -2702,7 +2796,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Basarios Tasset",
@@ -2768,7 +2864,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Coat",
@@ -2834,7 +2932,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Monoblos Coil",
@@ -2896,7 +2996,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monoblos Coat",
@@ -2958,7 +3060,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Garuga Tasset",
@@ -3020,7 +3124,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Garuga Coat",
@@ -3082,7 +3188,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blango Tasset",
@@ -3144,7 +3252,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Coat",
@@ -3206,7 +3316,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ceanataur Tasset",
@@ -3268,7 +3380,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 107,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Coat",
@@ -3330,7 +3444,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Tasset",
@@ -3392,7 +3508,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Coat",
@@ -3454,7 +3572,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Tigrex Tasset",
@@ -3516,7 +3636,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Tigrex Coat",
@@ -3578,7 +3700,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Tasset",
@@ -3640,7 +3764,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Coat",
@@ -3702,7 +3828,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Coil",
@@ -3758,7 +3886,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Coat",
@@ -3814,7 +3944,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Tasset",
@@ -3876,7 +4008,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Coat",
@@ -3934,7 +4068,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Coil D",
@@ -3990,7 +4126,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Diablo Coat D",
@@ -4046,7 +4184,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Tasset D",
@@ -4104,7 +4244,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Gravios Coat D",
@@ -4162,7 +4304,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mosswine Hip",
@@ -4224,7 +4368,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Bistro Apron",
@@ -4276,7 +4422,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Black Belt Tasset",
@@ -4338,7 +4486,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Belt (Sun)",
@@ -4400,7 +4550,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Belt (Moon)",
@@ -4462,7 +4614,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Kilt",
@@ -4524,7 +4678,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Coat",
@@ -4586,7 +4742,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Coil",
@@ -4648,7 +4806,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Coat",
@@ -4710,7 +4870,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Maiden's Skirt",
@@ -4772,7 +4934,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Personal Frills",
@@ -4834,7 +4998,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Skirt",
@@ -4896,7 +5062,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Frills",
@@ -4958,7 +5126,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Remobra Belt",
@@ -5008,7 +5178,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Melahoa Skirt",
@@ -5074,7 +5246,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Melahoa Trunk",
@@ -5140,7 +5314,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Makluva Coat",
@@ -5202,7 +5378,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Makluva Fin",
@@ -5264,7 +5442,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hypnoc Tasset",
@@ -5326,7 +5506,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hypnoc Coat",
@@ -5388,7 +5570,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Obituary Anka",
@@ -5450,7 +5634,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Obituary Cocusa",
@@ -5512,7 +5698,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Butterfly Anka",
@@ -5574,7 +5762,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Butterfly Cocusa",
@@ -5636,7 +5826,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Black Spine",
@@ -5681,7 +5873,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Black Scale",
@@ -5726,7 +5920,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Bowels",
@@ -5784,7 +5980,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Death Stench Belly",
@@ -5842,7 +6040,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Volganos Tasset",
@@ -5904,7 +6104,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Volganos Coat",
@@ -5966,7 +6168,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mizuha Sash",
@@ -6024,7 +6228,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Extravagant Coat",
@@ -6082,7 +6288,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kushala Cocoon",
@@ -6144,7 +6352,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Kushala Wind Wrap",
@@ -6206,7 +6416,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 43
     },
     {
       "name": "Kirin Hoop",
@@ -6268,7 +6480,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kirin Shorts",
@@ -6330,7 +6544,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Guardian Spirit Coil",
@@ -6392,7 +6608,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Carnage Wrap",
@@ -6454,7 +6672,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Auroros Tasset",
@@ -6516,7 +6736,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Tasset",
@@ -6578,7 +6800,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Borealis Tasset",
@@ -6640,7 +6864,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Tasset",
@@ -6702,7 +6928,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Borealis Tasset",
@@ -6756,7 +6984,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Red Glyph Tasset",
@@ -6810,7 +7040,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Empress Tasset",
@@ -6872,7 +7104,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Empress Coat",
@@ -6934,7 +7168,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Indra Wrap",
@@ -6996,7 +7232,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Steadfast Coat",
@@ -7062,7 +7300,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kaiser Tasset",
@@ -7120,7 +7360,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Kaiser Coat",
@@ -7178,7 +7420,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Red Lobster Tasset",
@@ -7234,7 +7478,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Red Lobster Coat",
@@ -7290,7 +7536,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Monodevil Coil",
@@ -7352,7 +7600,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Monodevil Coat",
@@ -7414,7 +7664,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Heart Coil",
@@ -7476,7 +7728,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Rathian Heart Coat",
@@ -7538,7 +7792,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Soul Coil",
@@ -7600,7 +7856,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathalos Soul Coat",
@@ -7662,7 +7920,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mafumofu Coat S",
@@ -7714,7 +7974,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Leather Belt S",
@@ -7768,7 +8030,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Chain Belt S",
@@ -7824,7 +8088,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hunter Tasset S",
@@ -7886,7 +8152,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Hunter Coat S",
@@ -7948,7 +8216,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Tasset S",
@@ -8010,7 +8280,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Bone Coat S",
@@ -8072,7 +8344,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Tasset S",
@@ -8134,7 +8408,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Battle Coat S",
@@ -8196,7 +8472,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Velociprey Tasset S",
@@ -8246,7 +8524,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Velociprey Coat S",
@@ -8296,7 +8576,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Tasset S",
@@ -8354,7 +8636,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Vespoid Coat S",
@@ -8412,7 +8696,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Tasset S",
@@ -8470,7 +8756,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hi-Metal Coat S",
@@ -8528,7 +8816,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Steel Belt S",
@@ -8586,7 +8876,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Hornet Tasset S",
@@ -8644,7 +8936,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornet Coat S",
@@ -8702,7 +8996,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Tasset S",
@@ -8760,7 +9056,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Genprey Coat S",
@@ -8818,7 +9116,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Tasset S",
@@ -8876,7 +9176,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Ioprey Coat S",
@@ -8934,7 +9236,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Tasset S",
@@ -8986,7 +9290,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Kut-Ku Coat S",
@@ -9038,7 +9344,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Tasset S",
@@ -9096,7 +9404,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Cephalos Coat S",
@@ -9154,7 +9464,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Tasset S",
@@ -9216,7 +9528,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Conga Coat S",
@@ -9278,7 +9592,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Tasset S",
@@ -9336,7 +9652,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Coat S",
@@ -9394,7 +9712,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Tasset S",
@@ -9452,7 +9772,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Khezu Coat S",
@@ -9510,7 +9832,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Tasset S",
@@ -9572,7 +9896,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hermitaur Coat S",
@@ -9634,7 +9960,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hypnoc Tasset S",
@@ -9692,7 +10020,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hypnoc Coat S",
@@ -9750,7 +10080,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Tasset S",
@@ -9812,7 +10144,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Basarios Coat S",
@@ -9874,7 +10208,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Tasset S",
@@ -9936,7 +10272,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Plesioth Coat S",
@@ -9998,7 +10336,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Monoblos Coil S",
@@ -10056,7 +10396,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Monoblos Coat S",
@@ -10114,7 +10456,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Garuga Tasset S",
@@ -10176,7 +10520,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Garuga Coat S",
@@ -10238,7 +10584,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Tasset S",
@@ -10300,7 +10648,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Blango Coat S",
@@ -10362,7 +10712,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Tasset S",
@@ -10424,7 +10776,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 81
     },
     {
       "name": "Ceanataur Coat S",
@@ -10482,7 +10836,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Tasset S",
@@ -10540,7 +10896,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathian Coat S",
@@ -10598,7 +10956,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Naruga Tasset S",
@@ -10656,7 +11016,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Naruga Coat S",
@@ -10714,7 +11076,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Tigrex Tasset S",
@@ -10776,7 +11140,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Tigrex Coat S",
@@ -10838,7 +11204,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Tasset S",
@@ -10896,7 +11264,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Rathalos Coat S",
@@ -10954,7 +11324,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Coil S",
@@ -11012,7 +11384,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Diablo Coat S",
@@ -11070,7 +11444,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Tasset S",
@@ -11128,7 +11504,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Gravios Coat S",
@@ -11186,7 +11564,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Leather Belt U",
@@ -11244,7 +11624,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Belt U",
@@ -11302,7 +11684,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Tasset U",
@@ -11360,7 +11744,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Coat U",
@@ -11418,7 +11804,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Tasset U",
@@ -11480,7 +11868,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Coat U",
@@ -11538,7 +11928,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Tasset U",
@@ -11596,7 +11988,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Coat U",
@@ -11654,7 +12048,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Giaprey Tasset U",
@@ -11712,7 +12108,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Giaprey Coat U",
@@ -11770,7 +12168,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Tasset U",
@@ -11828,7 +12228,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Coat U",
@@ -11886,7 +12288,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Tasset U",
@@ -11944,7 +12348,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Coat U",
@@ -12002,7 +12408,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Steel Belt U",
@@ -12060,7 +12468,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornet Tasset U",
@@ -12118,7 +12528,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Coat U",
@@ -12176,7 +12588,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Tasset U",
@@ -12234,7 +12648,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Coat U",
@@ -12292,7 +12708,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Tasset U",
@@ -12350,7 +12768,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Coat U",
@@ -12408,7 +12828,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Tasset U",
@@ -12466,7 +12888,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Coat U",
@@ -12524,7 +12948,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Tasset U",
@@ -12582,7 +13008,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Coat U",
@@ -12640,7 +13068,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Tasset U",
@@ -12698,7 +13128,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Coat U",
@@ -12756,7 +13188,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Tasset U",
@@ -12814,7 +13248,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Coat U",
@@ -12872,7 +13308,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Tasset U",
@@ -12930,7 +13368,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Coat U",
@@ -12988,7 +13428,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Tasset U",
@@ -13046,7 +13488,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Coat U",
@@ -13104,7 +13548,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Tasset U",
@@ -13162,7 +13608,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Coat U",
@@ -13220,7 +13668,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blango Tasset U",
@@ -13278,7 +13728,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Coat U",
@@ -13336,7 +13788,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Tasset U",
@@ -13394,7 +13848,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Coat U",
@@ -13452,7 +13908,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Coil U",
@@ -13510,7 +13968,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Coat U",
@@ -13568,7 +14028,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Tasset U",
@@ -13626,7 +14088,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Coat U",
@@ -13684,7 +14148,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Black Belt Tasset S",
@@ -13746,7 +14212,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Belt(Heaven)",
@@ -13804,7 +14272,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Belt (Earth)",
@@ -13862,7 +14332,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Coil",
@@ -13924,7 +14396,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Coat",
@@ -13986,7 +14460,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue GuildGuard Coil",
@@ -14044,7 +14520,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue GuildGuard Coat",
@@ -14102,7 +14580,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Coil",
@@ -14164,7 +14644,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Coat",
@@ -14226,7 +14708,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue GuildGuard Coil",
@@ -14284,7 +14768,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue GuildGuard Coat",
@@ -14342,7 +14828,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Devil Blos Coil",
@@ -14404,7 +14892,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Devil Blos Coat",
@@ -14466,7 +14956,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Jolly Roger Coil",
@@ -14528,7 +15020,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Jolly Roger Skirt",
@@ -14590,7 +15084,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Golden Obi",
@@ -14646,7 +15142,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Puppet Master Obi",
@@ -14708,7 +15206,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Obituary Anka S",
@@ -14766,7 +15266,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Obituary Cocusa S",
@@ -14824,7 +15326,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Butterfly Anka S",
@@ -14882,7 +15386,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Butterfly Cocusa S",
@@ -14940,7 +15446,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "DeathStench Bowels S",
@@ -14998,7 +15506,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Death Stench Belly S",
@@ -15056,7 +15566,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Supreme Mizuha Sash",
@@ -15114,7 +15626,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "SuprmExtravagantCoat",
@@ -15172,7 +15686,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Kushala Cocoon S",
@@ -15230,7 +15746,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kushala Wind Wrap S",
@@ -15288,7 +15806,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kirin Hoop S",
@@ -15346,7 +15866,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Kirin Shorts S",
@@ -15404,7 +15926,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Tasset Haku",
@@ -15466,7 +15990,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Genesis Tasset Haku",
@@ -15524,7 +16050,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Tasset Haku",
@@ -15586,7 +16114,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Glyph Tasset Haku",
@@ -15644,7 +16174,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Ultimate Indra Wrap",
@@ -15702,7 +16234,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "SupremeSteadfastCoat",
@@ -15764,7 +16298,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Kaiser Tasset S",
@@ -15822,7 +16358,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Kaiser Coat S",
@@ -15880,7 +16418,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dragon Spine S",
@@ -15942,7 +16482,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dragon Scale S",
@@ -16004,7 +16546,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "DarkAkantor Cincture",
@@ -16066,7 +16610,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dark Akantor Sash",
@@ -16128,7 +16674,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Bistro Apron U",
@@ -16176,7 +16724,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Belt (Sky)",
@@ -16234,7 +16784,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Belt (Sea)",
@@ -16292,7 +16844,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Coil U",
@@ -16350,7 +16904,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Coat U",
@@ -16408,7 +16964,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Skirt U",
@@ -16466,7 +17024,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Frills U",
@@ -16524,7 +17084,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Melahoa Skirt U",
@@ -16586,7 +17148,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Trunk U",
@@ -16648,7 +17212,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Makluva Coat U",
@@ -16706,7 +17272,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Makluva Fin U",
@@ -16764,7 +17332,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Monodevil Coil U",
@@ -16826,7 +17396,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monodevil Coat U",
@@ -16888,7 +17460,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Heart Coil U",
@@ -16950,7 +17524,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Heart Coat U",
@@ -17012,7 +17588,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Soul Coil U",
@@ -17070,7 +17648,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Soul Coat U",
@@ -17128,7 +17708,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Golden Moon Tasset",
@@ -17186,7 +17768,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Golden Moon Coat",
@@ -17244,7 +17828,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 61,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Silver Sol Tasset",
@@ -17302,7 +17888,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Silver Sol Coat",
@@ -17364,7 +17952,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Tasset Ten",
@@ -17422,7 +18012,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Tasset Ten",
@@ -17480,7 +18072,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Tasset Ten",
@@ -17538,7 +18132,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Tasset Ten",
@@ -17596,7 +18192,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Fatalis Spine",
@@ -17658,7 +18256,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Fatalis Scale",
@@ -17720,7 +18320,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "White Fatalis Spine",
@@ -17782,7 +18384,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 115,
+      "max_defence_pre_ukanlos": 93
     },
     {
       "name": "White Fatalis Scale",
@@ -17844,7 +18448,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 49
     },
     {
       "name": "Kut-Ku Tasset X",
@@ -17900,7 +18506,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Coat X",
@@ -17956,7 +18564,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Tasset X",
@@ -18014,7 +18624,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Coat X",
@@ -18072,7 +18684,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Tasset X",
@@ -18130,7 +18744,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Coat X",
@@ -18188,7 +18804,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Tasset X",
@@ -18246,7 +18864,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Coat X",
@@ -18304,7 +18924,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Tasset X",
@@ -18366,7 +18988,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Coat X",
@@ -18428,7 +19052,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hypnoc Tasset X",
@@ -18486,7 +19112,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hypnoc Coat X",
@@ -18544,7 +19172,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Basarios Tasset X",
@@ -18606,7 +19236,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Basarios Coat X",
@@ -18668,7 +19300,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Tasset X",
@@ -18730,7 +19364,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Coat X",
@@ -18792,7 +19428,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Monoblos Coil X",
@@ -18854,7 +19492,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Monoblos Coat X",
@@ -18916,7 +19556,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Garuga Tasset X",
@@ -18978,7 +19620,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Garuga Coat X",
@@ -19040,7 +19684,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Tasset X",
@@ -19098,7 +19744,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Coat X",
@@ -19156,7 +19804,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Tasset X",
@@ -19214,7 +19864,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Coat X",
@@ -19272,7 +19924,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathian Tasset X",
@@ -19330,7 +19984,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Coat X",
@@ -19388,7 +20044,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Naruga Tasset X",
@@ -19446,7 +20104,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Naruga Coat X",
@@ -19508,7 +20168,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Volganos Tasset X",
@@ -19570,7 +20232,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Volganos Coat X",
@@ -19632,7 +20296,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Tigrex Tasset X",
@@ -19694,7 +20360,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Tigrex Coat X",
@@ -19756,7 +20424,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Rathalos Tasset X",
@@ -19814,7 +20484,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Coat X",
@@ -19872,7 +20544,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Diablo Coil X",
@@ -19930,7 +20604,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Coat X",
@@ -19988,7 +20664,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Tasset X",
@@ -20050,7 +20728,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Coat X",
@@ -20112,7 +20792,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kut-Ku Tasset Z",
@@ -20168,7 +20850,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Coat Z",
@@ -20224,7 +20908,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Tasset Z",
@@ -20286,7 +20972,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Coat Z",
@@ -20348,7 +21036,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Tasset Z",
@@ -20406,7 +21096,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Coat Z",
@@ -20464,7 +21156,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Tasset Z",
@@ -20522,7 +21216,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Coat Z",
@@ -20580,7 +21276,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Tasset Z",
@@ -20638,7 +21336,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Coat Z",
@@ -20696,7 +21396,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Tasset Z",
@@ -20758,7 +21460,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Coat Z",
@@ -20820,7 +21524,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Tasset Z",
@@ -20882,7 +21588,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Coat Z",
@@ -20944,7 +21652,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Tasset Z",
@@ -21002,7 +21712,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Coat Z",
@@ -21060,7 +21772,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Diablo Coil Z",
@@ -21122,7 +21836,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Coat Z",
@@ -21184,7 +21900,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Tasset Z",
@@ -21242,7 +21960,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Coat Z",
@@ -21300,7 +22020,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Crystal Sash",
@@ -21339,7 +22061,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "True Golden Obi",
@@ -21401,7 +22125,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 105
     },
     {
       "name": "True PuppetMastr Obi",
@@ -21463,7 +22189,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Black Belt Tasset X",
@@ -21525,7 +22253,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Black Belt Coat X",
@@ -21587,7 +22317,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Obituary Anka X",
@@ -21645,7 +22377,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Obituary Cocusa X",
@@ -21703,7 +22437,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Butterfly Anka X",
@@ -21761,7 +22497,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Butterfly Cocusa X",
@@ -21819,7 +22557,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "True Mizuha Sash",
@@ -21881,7 +22621,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "True Extrvagant Coat",
@@ -21943,7 +22685,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kushala Cocoon X",
@@ -22005,7 +22749,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Kushala Wind Wrap X",
@@ -22067,7 +22813,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Kirin Hoop X",
@@ -22129,7 +22877,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Kirin Shorts X",
@@ -22191,7 +22941,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Empress Tasset X",
@@ -22253,7 +23005,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 112
     },
     {
       "name": "Empress Coat X",
@@ -22315,7 +23069,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 61
     },
     {
       "name": "True Indra Wrap",
@@ -22373,7 +23129,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Steadfast Coat",
@@ -22431,7 +23189,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Kaiser Tasset X",
@@ -22489,7 +23249,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Kaiser Coat X",
@@ -22547,7 +23309,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "True GuardnSpritCoil",
@@ -22609,7 +23373,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Carnage Wrap",
@@ -22671,7 +23437,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Dragon Spine X",
@@ -22733,7 +23501,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Dragon Scale X",
@@ -22795,7 +23565,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Ucamulbas Cincture",
@@ -22857,7 +23629,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Ucamulbas Sash",
@@ -22915,7 +23689,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Skirt Z",
@@ -22977,7 +23753,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Melahoa Trunk Z",
@@ -23035,7 +23813,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Makluva Coat Z",
@@ -23093,7 +23873,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Makluva Fin Z",
@@ -23151,7 +23933,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Rathian Heart Coil Z",
@@ -23209,7 +23993,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Heart Coat Z",
@@ -23267,7 +24053,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathalos Soul Coil Z",
@@ -23329,7 +24117,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Soul Coat Z",
@@ -23391,7 +24181,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Golden Moon Tasset Z",
@@ -23449,7 +24241,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Golden Moon Coat Z",
@@ -23507,7 +24301,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Silver Sol Tasset Z",
@@ -23565,7 +24361,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Silver Sol Coat Z",
@@ -23623,7 +24421,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Auroros Tasset Kyoku",
@@ -23681,7 +24481,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Genesis Tasset Kyoku",
@@ -23739,7 +24541,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "BorealisTasset Kyoku",
@@ -23797,7 +24601,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Glyph Tasset Kyoku",
@@ -23855,7 +24661,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Fatalis Spine Z",
@@ -23917,7 +24725,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 117,
+      "max_defence_pre_ukanlos": 115
     },
     {
       "name": "Fatalis Scale Z",
@@ -23979,7 +24789,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 65,
+      "max_defence_pre_ukanlos": 63
     },
     {
       "name": "Wht Fatalis Spine Z",
@@ -24037,7 +24849,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 118,
+      "max_defence_pre_ukanlos": 116
     },
     {
       "name": "Wht Fatalis Scale Z",
@@ -24095,7 +24909,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 66,
+      "max_defence_pre_ukanlos": 64
     }
   ]
 }

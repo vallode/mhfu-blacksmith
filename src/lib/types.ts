@@ -89,6 +89,8 @@ export interface WeaponTreeNode {
   element?: string;
   /** Earliest quest progress needed to make it; absent when no route is known. */
   min_rank?: MinRank;
+  /** Armor only: defence at the highest upgrade level. */
+  max_defence?: number;
   /**
    * The page of the weapon this one is upgraded from, when the tree row isn't
    * nested under it any more (its parent was pruned out of the tree).
@@ -116,6 +118,10 @@ export interface ArmorPiece {
   /** Derived from quest drops and recipes; absent when no route is known. */
   min_rank?: MinRank;
   defence?: string | number;
+  /** Defence at the highest upgrade level, after Ukanlos opens the last True Armor Sphere levels. */
+  max_defence?: number;
+  /** Defence at the highest upgrade level before Ukanlos. */
+  max_defence_pre_ukanlos?: number;
   fire_res?: string | number;
   thunder_res?: string | number;
   dragon_res?: string | number;

@@ -16,11 +16,37 @@
  * index (e.g. the Vespoid Helm "remap" was Vespoid Greaves, which has the
  * Helm's stats).
  *
- * `sex`/`hunter_type`/`hr`/`elder` are skipped entirely: none of the fields
- * on `ArmorValueEntry` (`hunterType`, `maleId`/`femaleId` equality) were
- * found to correlate with the committed data's `sex`/`hunter_type` values
- * (see git history), and `hr`/`elder` unlock requirements aren't present in
- * this struct at all. All four are optional in the schema.
+ * **`sex`/`hunter_type`** come from `HunterType`, a bit field: 1 male,
+ * 2 female, 4 Blademaster, 8 Gunner (`HUNTER_TYPE_BITS`). Its values on the
+ * EU disc are 15 (anyone), 7/11 (Blademaster/Gunner only), 13/14 (male/
+ * female only) and 5/6/9/10 (both restrictions). An earlier check found no
+ * correlation, but it ran before vallode/mhfu-blacksmith#61, when every slot
+ * read the next slot's array. Matched by game ID, the disc agrees with all
+ * 1820 committed `hunter_type` and all 1820 committed `sex` values. Male-
+ * or female-only pieces also have a 0 `femaleId`/`maleId` model.
+ *
+ * **Max defence.** `ArmorSphereCaps` holds seven cumulative max levels, one
+ * per upgrade tier: Armor Sphere, Armor Sphere+, Hard, Heavy, Royal, True,
+ * and a second True tier (`truMax`). The armor sphere `EquipUpgrade`
+ * entries (tables/recipes.ts) have seven tiers too, and the last two both
+ * take a True Armor Sphere (item 228): the seventh tier is the levels that
+ * open after Ukanlos is beaten. A piece starts at level 1 and every level
+ * adds `DEFENCE_PER_LEVEL` (2). No per-level table was found near the
+ * armor or upgrade tables, so the +2 is the community figure, checked
+ * against published level tables:
+ * - Hunter's S (Blademaster) set: 190 initial, 540 max (Monster Hunter
+ *   Wiki): 5 × 38 and 5 × (38 + 2 × 35), `truMax` = 36.
+ * - Ukanlos (Blademaster) series (MHP2G@Wiki): LV2 102 to LV9 116, Hard
+ *   at LV2, Heavy LV3, Royal LV4-7, True LV8-9; the disc's Dark Ukanlos
+ *   Mask is base 100, caps 1/1/2/3/7/8/9.
+ * - Kirin (Blade) set: Armor Sphere to LV4, Sphere+ LV5-11, Hard LV12 at
+ *   66 (Monster Hunter Wiki); the disc's Kirin Horn is base 44, caps
+ *   4/11/12/...
+ * `max_defence` uses `truMax`, `max_defence_pre_ukanlos` the sixth cap.
+ *
+ * `hr`/`elder` unlock requirements aren't in this struct and stay as
+ * committed. All four of `sex`/`hunter_type`/`hr`/`elder` are optional in
+ * the schema.
  */
 import {
   ARMOR_SLOTS,
@@ -61,6 +87,45 @@ const SLOT_TO_NAME_TABLE: Record<ArmorSlot, NameTable> = {
   leg: "LegArmorID",
 };
 
+/** `ArmorValue.HunterType` bits. */
+export const HUNTER_TYPE_BITS = { male: 1, female: 2, blademaster: 4, gunner: 8 } as const;
+
+/** Defence gained per upgrade level (see the module comment for the sources). */
+export const DEFENCE_PER_LEVEL = 2;
+
+export type ArmorSex = "Male/Female" | "Male" | "Female";
+export type ArmorHunterType = "Blademaster/Gunner" | "Blademaster" | "Gunner";
+
+function pair<T extends string>(a: boolean, b: boolean, both: T, onlyA: T, onlyB: T): T | null {
+  if (a && b) return both;
+  if (a) return onlyA;
+  if (b) return onlyB;
+  return null;
+}
+
+/** `sex` from `HunterType`, or null when neither sex bit is set (the dummy entries). */
+export function sexFromHunterType(bits: number): ArmorSex | null {
+  const { male, female } = HUNTER_TYPE_BITS;
+  return pair<ArmorSex>(!!(bits & male), !!(bits & female), "Male/Female", "Male", "Female");
+}
+
+/** `hunter_type` from `HunterType`, or null when neither class bit is set. */
+export function hunterTypeFromBits(bits: number): ArmorHunterType | null {
+  const { blademaster, gunner } = HUNTER_TYPE_BITS;
+  return pair<ArmorHunterType>(
+    !!(bits & blademaster),
+    !!(bits & gunner),
+    "Blademaster/Gunner",
+    "Blademaster",
+    "Gunner",
+  );
+}
+
+/** Defence at `maxLevel`, starting from `defense` at level 1. */
+export function defenceAtLevel(defense: number, maxLevel: number): number {
+  return defense + DEFENCE_PER_LEVEL * Math.max(0, maxLevel - 1);
+}
+
 export interface EmittedSkill {
   name: string;
   amount: number;
@@ -78,6 +143,12 @@ export interface EmittedArmor {
   dragon_res: number;
   water_res: number;
   ice_res: number;
+  sex: ArmorSex | null;
+  hunter_type: ArmorHunterType | null;
+  /** Defence at the highest level, after Ukanlos (`truMax`). */
+  max_defence: number;
+  /** Defence at the highest level before Ukanlos (the sixth sphere cap). */
+  max_defence_pre_ukanlos: number;
   create_cost: number | null;
   skills: EmittedSkill[] | null;
   create_mats: ReturnType<typeof resolveMaterials> | null;
@@ -124,6 +195,10 @@ function emitSlot(
       dragon_res: armor.resistances.dragon,
       water_res: armor.resistances.water,
       ice_res: armor.resistances.ice,
+      sex: sexFromHunterType(armor.hunterType),
+      hunter_type: hunterTypeFromBits(armor.hunterType),
+      max_defence: defenceAtLevel(armor.defense, armor.sphereCaps.truMax),
+      max_defence_pre_ukanlos: defenceAtLevel(armor.defense, armor.sphereCaps.truArmorSphere),
       create_cost: primaryRecipe ? halveCost(armor.price) : null,
       skills: skills.length > 0 ? skills : null,
       create_mats: materialsOrNull(createMats),
