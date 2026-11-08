@@ -28,7 +28,7 @@
                     "slug": "velocidrome-bite-plus",
                     "type": "sword-and-shield",
                     "name": "Velocidrome Bite+",
-                    "rarity": 2,
+                    "rarity": 3,
                     "children": [
                       {
                         "slug": "dos-fang-dagger",
@@ -235,7 +235,7 @@
                         "slug": "millennium-knife",
                         "type": "sword-and-shield",
                         "name": "Millennium Knife",
-                        "rarity": 4
+                        "rarity": 6
                       }
                     ]
                   }
@@ -295,10 +295,18 @@
         ]
       },
       {
+        "slug": "giaprey-claws",
+        "type": "dual-blades",
+        "name": "Giaprey Claws",
+        "rarity": 2,
+        "element": "ice",
+        "children": []
+      },
+      {
         "slug": "snake-bite",
         "type": "sword-and-shield",
         "name": "Snake Bite",
-        "rarity": 1,
+        "rarity": 2,
         "children": [
           {
             "slug": "snake-bite-plus",
@@ -394,14 +402,6 @@
             ]
           }
         ]
-      },
-      {
-        "slug": "giaprey-claws",
-        "type": "dual-blades",
-        "name": "Giaprey Claws",
-        "rarity": 2,
-        "element": "ice",
-        "children": []
       }
     ]
   },
@@ -743,10 +743,10 @@
             ]
           },
           {
-            "slug": "bone-scythe",
+            "slug": "bone-scythe-plus",
             "type": "dual-blades",
-            "name": "Bone Scythe",
-            "rarity": 1,
+            "name": "Bone Scythe+",
+            "rarity": 2,
             "children": []
           }
         ]
@@ -807,7 +807,7 @@
                     "type": "dual-blades",
                     "name": "Twin Nails",
                     "rarity": 5,
-                    "element": "ice",
+                    "element": "fire",
                     "children": []
                   }
                 ]
@@ -967,34 +967,85 @@
     ]
   },
   {
-    "slug": "flaming-pair",
-    "type": "dual-blades",
-    "name": "Flaming Pair",
+    "slug": "black-sword",
+    "type": "sword-and-shield",
+    "name": "Black Sword",
     "rarity": 5,
     "element": "dragon",
     "children": [
       {
-        "slug": "blue-ogre-sword",
+        "slug": "black-dragon-sword",
         "type": "sword-and-shield",
-        "name": "Blue Ogre Sword",
+        "name": "Black Dragon Sword",
         "rarity": 8,
         "element": "dragon",
         "children": [
           {
-            "slug": "azure-ogre-sword",
+            "slug": "true-blk-dragon-swd",
             "type": "sword-and-shield",
-            "name": "Azure Ogre Sword",
-            "rarity": 8,
-            "element": "dragon",
-            "children": [
-              {
-                "slug": "indigo-ogre-sword",
-                "type": "sword-and-shield",
-                "name": "Indigo Ogre Sword",
-                "rarity": 10,
-                "element": "dragon"
-              }
-            ]
+            "name": "True Blk Dragon Swd",
+            "rarity": 10,
+            "element": "dragon"
+          }
+        ]
+      },
+      {
+        "slug": "black-ruiner-sword",
+        "type": "sword-and-shield",
+        "name": "Black Ruiner Sword",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "true-blk-ruiner-swd",
+            "type": "sword-and-shield",
+            "name": "True Blk Ruiner Swd",
+            "rarity": 10,
+            "element": "dragon"
+          }
+        ]
+      },
+      {
+        "slug": "double-dragon",
+        "type": "dual-blades",
+        "name": "Double Dragon",
+        "rarity": 5,
+        "element": "dragon",
+        "children": []
+      }
+    ]
+  },
+  {
+    "slug": "rex-talon",
+    "type": "sword-and-shield",
+    "name": "Rex Talon",
+    "rarity": 5,
+    "children": [
+      {
+        "slug": "tigrex-sword",
+        "type": "sword-and-shield",
+        "name": "Tigrex Sword",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "tigrex-sword-plus",
+            "type": "sword-and-shield",
+            "name": "Tigrex Sword+",
+            "rarity": 10
+          }
+        ]
+      },
+      {
+        "slug": "hidden-edge",
+        "type": "sword-and-shield",
+        "name": "Hidden Edge",
+        "rarity": 7,
+        "children": [
+          {
+            "slug": "midnight-blades",
+            "type": "sword-and-shield",
+            "name": "Midnight Blades",
+            "rarity": 10
           }
         ]
       }
@@ -1048,85 +1099,42 @@
     ]
   },
   {
-    "slug": "black-sword",
-    "type": "sword-and-shield",
-    "name": "Black Sword",
+    "slug": "flaming-pair",
+    "type": "dual-blades",
+    "name": "Flaming Pair",
     "rarity": 5,
     "element": "dragon",
     "children": [
       {
-        "slug": "double-dragon",
-        "type": "dual-blades",
-        "name": "Double Dragon",
-        "rarity": 5,
-        "element": "dragon",
-        "children": []
-      },
-      {
-        "slug": "black-dragon-sword",
+        "slug": "blue-ogre-sword",
         "type": "sword-and-shield",
-        "name": "Black Dragon Sword",
+        "name": "Blue Ogre Sword",
         "rarity": 8,
         "element": "dragon",
         "children": [
           {
-            "slug": "true-blk-dragon-swd",
+            "slug": "azure-ogre-sword",
             "type": "sword-and-shield",
-            "name": "True Blk Dragon Swd",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      },
-      {
-        "slug": "black-ruiner-sword",
-        "type": "sword-and-shield",
-        "name": "Black Ruiner Sword",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "true-blk-ruiner-swd",
-            "type": "sword-and-shield",
-            "name": "True Blk Ruiner Swd",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "rex-talon",
-    "type": "sword-and-shield",
-    "name": "Rex Talon",
-    "rarity": 5,
-    "children": [
-      {
-        "slug": "tigrex-sword",
-        "type": "sword-and-shield",
-        "name": "Tigrex Sword",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "tigrex-sword-plus",
-            "type": "sword-and-shield",
-            "name": "Tigrex Sword+",
-            "rarity": 10
-          }
-        ]
-      },
-      {
-        "slug": "hidden-edge",
-        "type": "sword-and-shield",
-        "name": "Hidden Edge",
-        "rarity": 7,
-        "children": [
-          {
-            "slug": "midnight-blades",
-            "type": "sword-and-shield",
-            "name": "Midnight Blades",
-            "rarity": 10
+            "name": "Azure Ogre Sword",
+            "rarity": 8,
+            "element": "dragon",
+            "children": [
+              {
+                "slug": "ultimus-heaven-earth",
+                "type": "dual-blades",
+                "name": "Ultimus Heaven&Earth",
+                "rarity": 8,
+                "element": "dragon",
+                "children": []
+              },
+              {
+                "slug": "indigo-ogre-sword",
+                "type": "sword-and-shield",
+                "name": "Indigo Ogre Sword",
+                "rarity": 10,
+                "element": "dragon"
+              }
+            ]
           }
         ]
       }
@@ -1169,13 +1177,6 @@
     "name": "Ms. M.H. Puppet",
     "rarity": 9,
     "element": "paralysis"
-  },
-  {
-    "slug": "ukanlos-soul-hatchet",
-    "type": "sword-and-shield",
-    "name": "Ukanlos Soul Hatchet",
-    "rarity": 10,
-    "element": "ice"
   },
   {
     "slug": "hunter-s-dagger-g",
@@ -1341,6 +1342,13 @@
     "name": "High Sandman Spike G",
     "rarity": 9,
     "element": "sleep"
+  },
+  {
+    "slug": "ukanlos-soul-hatchet",
+    "type": "sword-and-shield",
+    "name": "Ukanlos Soul Hatchet",
+    "rarity": 10,
+    "element": "ice"
   },
   {
     "slug": "blazing-falchion-g",

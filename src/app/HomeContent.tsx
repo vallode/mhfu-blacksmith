@@ -1,10 +1,12 @@
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
+import WeaponsMenuLink from "./WeaponsMenuLink";
 
 const MENU = [
   { href: "/blacksmith/", label: "Weapons" },
   { href: "/armorsmith/", label: "Armor" },
   { href: "/decorations/", label: "Decorations" },
+  { href: "/set-builder/", label: "Set Builder" },
   { href: "/monsters/", label: "Monsters" },
   { href: "/hunter/", label: "Hunter Profile" },
   { href: "/options/", label: "Options" },
@@ -33,9 +35,13 @@ export default function HomeContent() {
           <ul className="m-0 list-none p-0">
             {MENU.map(({ href, label }) => (
               <li key={href} className={menuItem}>
-                <Link className="block" href={href}>
-                  {label}
-                </Link>
+                {href === "/blacksmith/" ? (
+                  <WeaponsMenuLink className="block" />
+                ) : (
+                  <Link className="block" href={href}>
+                    {label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

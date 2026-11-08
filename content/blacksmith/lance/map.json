@@ -79,6 +79,12 @@
                                     "rarity": 7,
                                     "children": [
                                       {
+                                        "slug": "lost-babel",
+                                        "type": "lance",
+                                        "name": "Lost Babel",
+                                        "rarity": 10
+                                      },
+                                      {
                                         "slug": "sadalsuud",
                                         "type": "lance",
                                         "name": "Sadalsuud",
@@ -102,12 +108,6 @@
                                             ]
                                           }
                                         ]
-                                      },
-                                      {
-                                        "slug": "lost-babel",
-                                        "type": "lance",
-                                        "name": "Lost Babel",
-                                        "rarity": 10
                                       },
                                       {
                                         "slug": "ancient-destroyer",
@@ -1253,13 +1253,6 @@
     ]
   },
   {
-    "slug": "ukanlos-calamity",
-    "type": "lance",
-    "name": "Ukanlos Calamity",
-    "rarity": 10,
-    "element": "ice"
-  },
-  {
     "slug": "iron-lance-g",
     "type": "lance",
     "name": "Iron Lance G",
@@ -1437,6 +1430,13 @@
     "name": "Emerald Spear G",
     "rarity": 9,
     "element": "water"
+  },
+  {
+    "slug": "ukanlos-calamity",
+    "type": "lance",
+    "name": "Ukanlos Calamity",
+    "rarity": 10,
+    "element": "ice"
   },
   {
     "slug": "grayburg-javelin-g",

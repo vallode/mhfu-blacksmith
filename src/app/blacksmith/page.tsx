@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import BlacksmithListContent from "./BlacksmithListContent";
+import LastWeaponRedirect from "./LastWeaponRedirect";
 
 export const metadata: Metadata = pageMetadata({
   title: "Weapon Trees",
@@ -10,5 +10,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function BlacksmithPage() {
-  return <BlacksmithListContent />;
+  return <LastWeaponRedirect />;
 }

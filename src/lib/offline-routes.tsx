@@ -9,7 +9,7 @@ import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailC
 import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
 import HomeContent from "@/app/HomeContent";
-import BlacksmithListContent from "@/app/blacksmith/BlacksmithListContent";
+import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorsmithListContent from "@/app/armorsmith/ArmorsmithListContent";
 import BestiaryListContent from "@/app/monsters/BestiaryListContent";
 import {
@@ -99,7 +99,7 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "home":
       return <HomeContent />;
     case "weapon-list":
-      return <BlacksmithListContent />;
+      return <LastWeaponRedirect />;
     case "weapon-tree":
       return <WeaponTreeListClient type={match.type} />;
     case "weapon-detail":

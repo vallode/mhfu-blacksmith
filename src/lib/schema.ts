@@ -20,7 +20,9 @@ import type {
   WeaponTreeNode,
   Melody,
   MinRank,
+  MonsterDrop,
 } from "./types";
+import { splitDropQuantity } from "./monster-drops";
 
 // ---------------------------------------------------------------------------
 // Dictionaries (shared across all bundles, emitted as dictionaries.json)
@@ -135,6 +137,8 @@ export interface CompactMonster {
   hz?: [number, (number | null)[]][];
   /** drops: [rankStringIdx, [sourceStringIdx, [materialId, chanceStringIdx][]][]][] */
   dr?: [number, [number, [number, number][]][]][];
+  /** sizes: [min, max] in cm */
+  sz?: [number, number];
 }
 
 export interface CompactDecoration {
@@ -146,6 +150,7 @@ export interface CompactDecoration {
   cc?: number; // create_cost
   sk?: number[]; // skills stringIdx[]
   cm?: MatTuple[];
+  mr?: MinRankTuple; // earliest quest progress needed to make it
 }
 
 // ---------------------------------------------------------------------------
@@ -364,10 +369,19 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
       const rankName = str(d, rankIdx);
       drops[rankName] = {};
       for (const [srcIdx, items] of sources) {
-        drops[rankName][str(d, srcIdx)] = items.map(([matId, chanceIdx]) => ({
-          name: d.material_ids[matId] ?? "",
-          chance: str(d, chanceIdx),
-        }));
+        drops[rankName][str(d, srcIdx)] = items.map(([matId, chanceIdx]) => {
+          // Drop names carry their quantity ("Plesioth Scale x2"); the icon
+          // comes from the plain material name used by recipes.
+          const [name, quantity] = splitDropQuantity(d.material_ids[matId] ?? "");
+          const [typeIdx, colorIdx] = d.materials[name] ?? [];
+          const type = typeIdx !== undefined ? d.types[typeIdx] : undefined;
+          const color = colorIdx !== undefined ? d.colors[colorIdx] : undefined;
+          const drop: MonsterDrop = { name, chance: str(d, chanceIdx) };
+          if (quantity !== undefined) drop.quantity = quantity;
+          if (type) drop.type = type;
+          if (color) drop.color = color;
+          return drop;
+        });
       }
     }
   }
@@ -380,6 +394,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     habitats: m.hb ? m.hb.map((hi) => str(d, hi)) : undefined,
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
+    sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
   };
 }
 
@@ -394,5 +409,6 @@ export function decodeDecoration(d: Dictionaries, x: CompactDecoration): Decorat
     create_cost: x.cc ?? null,
     skills: x.sk ? x.sk.map((si) => str(d, si)) : undefined,
     create_mats: decodeMats(d, x.cm),
+    min_rank: decodeMinRank(x.mr),
   };
 }

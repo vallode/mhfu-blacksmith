@@ -1,5 +1,5 @@
 /**
- * Reports the earliest quest progress needed for each weapon and armor piece
+ * Reports the earliest quest progress needed for each weapon, armor piece and decoration
  * (see src/lib/min-rank.ts), to audit the derivation.
  * Usage: tsx scripts/compute-min-rank.ts [out.json]
  */
@@ -29,6 +29,14 @@ for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
   armor[slot] = Object.fromEntries(list.armor.map((p) => [p.name, ranks.armor(p)]));
 }
 
+const decorations: Record<string, Progress> = Object.fromEntries(
+  (
+    JSON.parse(fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8")) as {
+      decorations: ({ name: string } & Recipes)[];
+    }
+  ).decorations.map((d) => [d.name, ranks.decoration(d)]),
+);
+
 const summarize = (group: Record<string, Record<string, Progress>>) => {
   const counts: Record<string, number> = {};
   for (const items of Object.values(group))
@@ -42,13 +50,18 @@ const summarize = (group: Record<string, Record<string, Progress>>) => {
 console.log("sources:", ranks.sourceCount, "items with a known source");
 console.log("weapons by minRank:", summarize(weapons));
 console.log("armor by minRank:", summarize(armor));
+console.log("decorations by minRank:", summarize({ decorations }));
 console.log("materials with no source:", ranks.unsourced.size);
 
 const out = process.argv[2];
 if (out) {
   fs.writeFileSync(
     out,
-    JSON.stringify({ weapons, armor, unsourced: [...ranks.unsourced].sort() }, null, 1),
+    JSON.stringify(
+      { weapons, armor, decorations, unsourced: [...ranks.unsourced].sort() },
+      null,
+      1,
+    ),
   );
   console.log("wrote", out);
 }

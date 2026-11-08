@@ -35,6 +35,31 @@ describe("min rank over the real data", () => {
         assert.ok(compareTiers(ranks.armor(p)!, last) <= 0, `${file}: ${p.name}`);
   });
 
+  it("finds a route for every decoration, within the last stage", () => {
+    const last = STAGES.at(-1)!;
+    const { decorations } = JSON.parse(
+      fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
+    ) as { decorations: ({ name: string } & Recipes)[] };
+    for (const d of decorations) {
+      const needs = ranks.decoration(d);
+      assert.ok(needs, d.name);
+      assert.ok(compareTiers(needs, last) <= 0, d.name);
+    }
+  });
+
+  it("treats materials only decorations use as gathered (Power Seed)", () => {
+    const deco = (name: string) =>
+      (
+        JSON.parse(fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8")) as {
+          decorations: ({ name: string } & Recipes)[];
+        }
+      ).decorations.find((d) => d.name === name)!;
+    // Suiko Jewel + Power Seed + Kut-Ku Scale; Power Seed is a quest reward
+    // only from High Rank, but it's gathered.
+    assert.equal(ranks.decoration(deco("Attack Jewel"))?.rank, "low-rank");
+    assert.equal(ranks.decoration(deco("Strongest Jewel"))?.rank, "g-rank");
+  });
+
   it("places starter, high-rank and G-rank gear", () => {
     assert.equal(ranks.weapon("great-sword", "Buster Sword")?.rank, "low-rank");
     assert.equal(ranks.weapon("great-sword", "Blushing Dame G")?.rank, "g-rank");
