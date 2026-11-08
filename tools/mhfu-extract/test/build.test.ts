@@ -245,3 +245,24 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("mergeCategory writes a skill the committed list repeats once", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const committed = structuredClone(committedHelmets);
+    committed.armor[0]!.skills = [
+      { name: "Defence", amount: 2 },
+      { name: "Defence", amount: 2 },
+      { name: "Load", amount: 1 },
+    ];
+    await writeFile(path.join(data, "armor", "helmet.json"), JSON.stringify(committed));
+    const inputs = await loadInputs(extracted, data, ["armor"]);
+    const result = mergeCategory(CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings, []);
+    assert.deepEqual(result.files.get("armor/helmet.json")![0]!.skills, [
+      { name: "Defence", amount: 2 },
+      { name: "Load", amount: 1 },
+    ]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

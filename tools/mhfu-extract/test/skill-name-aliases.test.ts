@@ -30,7 +30,12 @@ test("canonicalSkillName maps committed decoration typos to the SkillID spelling
 test("canonicalSkillName leaves names without an alias unchanged", () => {
   assert.equal(canonicalSkillName("Attack"), "Attack");
   assert.equal(canonicalSkillName("Defense"), "Defense");
-  assert.equal(canonicalSkillName("Rage"), "Rage");
+  assert.equal(canonicalSkillName("Ice Skill"), "Ice Skill");
+});
+
+test("canonicalSkillName maps the site's Rage to Fury (paired 1:1 once armor matches by game ID)", () => {
+  assert.equal(canonicalSkillName("Rage"), "Fury");
+  assert.equal(canonicalSkillName("Survival"), "Guts");
 });
 
 test("every alias targets a real SkillID name, and no alias key is one", () => {

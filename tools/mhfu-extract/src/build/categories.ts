@@ -116,7 +116,13 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "improve_from", kind: "weapon-refs" },
       { field: "improve_to", kind: "weapon-refs" },
     ],
-    take: [],
+    // Not taken: `affinity` and `sharpness`/`sharpness_plus` (known
+    // extractor gaps, vallode/mhfu-blacksmith#33 and #31), `elements` (no
+    // dual-element weapons on the disc side yet), `coatings` (bow bit
+    // layout only partly derived), `improve_cost` (derived as half the
+    // sell price, unconfirmed) and `alternative_create_mats` (the disc
+    // lacks the ticket alternatives the site lists).
+    take: ["attack", "slots", "rarity", "create_cost", "create_mats", "improve_mats", "improve_from", "improve_to"],
   },
   decorations: {
     name: "decorations",
@@ -131,7 +137,7 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "create_mats", kind: "materials" },
       { field: "alternative_create_mats", kind: "materials" },
     ],
-    take: [],
+    take: ["rarity", "slots", "create_cost", "skills", "create_mats", "alternative_create_mats"],
   },
 };
 

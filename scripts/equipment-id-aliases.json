@@ -766,6 +766,16 @@
       "enum": "Dragon Scales S",
       "name": "Dragon Scale S"
     },
+    "224": {
+      "enum": "Guild Knight Coat",
+      "name": "Guild Knight Kilt",
+      "note": "The enum swaps these two. In every other Guild Knight slot the first ID is the Whim/BBQ (blademaster) piece and the second the Pellet S Up/Precision (gunner) piece; the disc stats and recipes at 224 are the blademaster Kilt's (Whim, Fate, PsychicVis, BBQ; Plesioth Coin), and at 225 the gunner Coat's."
+    },
+    "225": {
+      "enum": "Guild Knight Kilt",
+      "name": "Guild Knight Coat",
+      "note": "The enum swaps these two. In every other Guild Knight slot the first ID is the Whim/BBQ (blademaster) piece and the second the Pellet S Up/Precision (gunner) piece; the disc stats and recipes at 224 are the blademaster Kilt's (Whim, Fate, PsychicVis, BBQ; Plesioth Coin), and at 225 the gunner Coat's."
+    },
     "234": {
       "enum": "Amezari Tasset",
       "name": "Red Lobster Tasset"

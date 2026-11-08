@@ -10,6 +10,7 @@ import path from "node:path";
 import { CATEGORIES, type Category, type CategoryName } from "./categories.js";
 import { buildSpellingIndex, canonical, type FieldContext, type SpellingIndex } from "./fields.js";
 import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
+import type { MaterialContext } from "../overlay/item-name-corrections.js";
 
 export type Item = Record<string, unknown>;
 
@@ -224,14 +225,15 @@ export async function loadInputs(extractedDir: string, dataDir: string, names: C
   const extracted = new Map<CategoryName, CategoryItems>();
   // Spellings come from every committed category, so a skill or material
   // new to armor is spelled the way weapons/decorations already spell it.
-  const allCommitted: Item[] = [];
+  const byContext = new Map<MaterialContext, Item[]>();
   for (const name of Object.keys(CATEGORIES) as CategoryName[]) {
     const items = await readCategoryItems(dataDir, CATEGORIES[name]);
     committed.set(name, items);
-    for (const list of items.values()) allCommitted.push(...list);
+    const context = CATEGORIES[name].materialContext;
+    byContext.set(context, [...(byContext.get(context) ?? []), ...[...items.values()].flat()]);
   }
   for (const name of names) extracted.set(name, await readCategoryItems(extractedDir, CATEGORIES[name]));
-  const spellings = buildSpellingIndex(allCommitted, site);
+  const spellings = buildSpellingIndex(byContext, site);
   return { site, committed, extracted, spellings };
 }
 

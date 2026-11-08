@@ -11,7 +11,21 @@
     "Evade Inc": "Evade Dist",
     "CragS Add": "Crag S Add",
     "Observance": "Perceive",
-    "Drawn Crit": "Sword Draw"
+    "Drawn Crit": "Sword Draw",
+    "Survival": "Guts",
+    "Set Trap": "SpeedSetup",
+    "Daora Res": "AntiDaora",
+    "FireDrgRes": "AntiFirDrg",
+    "Status Res": "ResistSts",
+    "Rage": "Fury",
+    "PoisnCtAdd": "PoisonCAdd",
+    "SleepCtAdd": "SleepCAdd",
+    "FlyneGuide": "ComrdGuide",
+    "SwdMastery": "Edgemaster",
+    "Marksman": "SteadyHand",
+    "RazorCtAdd": "ClsRngCAdd",
+    "Para CtAdd": "ParalyCAdd",
+    "PowerCtAdd": "PowerCAdd"
   },
   "decorations": {
     "Autoreload": "AutoReload",

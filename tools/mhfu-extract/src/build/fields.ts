@@ -46,13 +46,19 @@ export interface FieldContext {
 
 /**
  * Most common committed spelling (and, for materials, type/color) for each
- * canonical skill name and item ID, across every committed file. Used to
- * spell a value the committed item didn't have before, the way the rest of
- * the site already spells it.
+ * canonical skill name and item ID. Used to spell a value the committed
+ * item didn't have before, the way the rest of the site already spells it.
+ *
+ * Material names are taken from the same recipe context first (armor
+ * files spell some items differently from weapon files, e.g.
+ * "FireWyvern Claw" vs "Fire Wyvern Claw", and both resolve). The icon
+ * style is taken from weapon and decoration recipes first: about a third
+ * of the items armor shares with them carry a placeholder "bone"/"white"
+ * style in the committed armor files.
  */
 export interface SpellingIndex {
   skill(canonical: string): string | undefined;
-  material(itemId: number): { name: string; type: string; color: string } | undefined;
+  material(itemId: number, context: MaterialContext): { name: string; type: string; color: string } | undefined;
 }
 
 interface Material {
@@ -62,13 +68,15 @@ interface Material {
   color: string;
 }
 
-function mostCommon<T>(counts: Map<string, { value: T; n: number }[]>, key: string): T | undefined {
+type Counts<T> = Map<string, { value: T; n: number }[]>;
+
+function mostCommon<T>(counts: Counts<T>, key: string): T | undefined {
   const list = counts.get(key);
   if (!list) return undefined;
   return [...list].sort((a, b) => b.n - a.n)[0]!.value;
 }
 
-function bump<T>(counts: Map<string, { value: T; n: number }[]>, key: string, value: T): void {
+function bump<T>(counts: Counts<T>, key: string, value: T): void {
   const list = counts.get(key) ?? [];
   const json = JSON.stringify(value);
   const hit = list.find((e) => JSON.stringify(e.value) === json);
@@ -79,30 +87,44 @@ function bump<T>(counts: Map<string, { value: T; n: number }[]>, key: string, va
 
 const MATERIAL_FIELDS = ["create_mats", "improve_mats", "alternative_create_mats"];
 
-/** Builds a SpellingIndex from committed items (any category). */
-export function buildSpellingIndex(items: Record<string, unknown>[], site: SiteIndex): SpellingIndex {
-  const skills = new Map<string, { value: string; n: number }[]>();
-  const materials = new Map<string, { value: { name: string; type: string; color: string }; n: number }[]>();
-  for (const item of items) {
-    for (const skill of (item.skills as unknown[] | null | undefined) ?? []) {
-      if (typeof skill === "string") {
-        const match = /^(.*?)\s*[+-]\d+$/.exec(skill.trim());
-        if (match?.[1]) bump(skills, canonicalSkillName(match[1]), match[1]);
-      } else if (skill && typeof skill === "object" && typeof (skill as { name?: unknown }).name === "string") {
-        const name = (skill as { name: string }).name;
-        bump(skills, canonicalSkillName(name), name);
+/** Builds a SpellingIndex from committed items, grouped by recipe context. */
+export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string, unknown>[]>, site: SiteIndex): SpellingIndex {
+  const skills: Counts<string> = new Map();
+  const names = new Map<MaterialContext | "any", Counts<string>>();
+  const styles = { armor: new Map() as Counts<{ type: string; color: string }>, other: new Map() as Counts<{ type: string; color: string }> };
+  for (const [context, items] of byContext) {
+    for (const item of items) {
+      for (const skill of (item.skills as unknown[] | null | undefined) ?? []) {
+        if (typeof skill === "string") {
+          const match = /^(.*?)\s*[+-]\d+$/.exec(skill.trim());
+          if (match?.[1]) bump(skills, canonicalSkillName(match[1]), match[1]);
+        } else if (skill && typeof skill === "object" && typeof (skill as { name?: unknown }).name === "string") {
+          const name = (skill as { name: string }).name;
+          bump(skills, canonicalSkillName(name), name);
+        }
       }
-    }
-    for (const field of MATERIAL_FIELDS) {
-      for (const m of (item[field] as Material[] | null | undefined) ?? []) {
-        const id = site.itemIdOf(m.name);
-        if (id !== null) bump(materials, String(id), { name: m.name, type: m.type, color: m.color });
+      for (const field of MATERIAL_FIELDS) {
+        for (const m of (item[field] as Material[] | null | undefined) ?? []) {
+          const id = site.itemIdOf(m.name);
+          if (id === null) continue;
+          for (const key of [context, "any"] as const) {
+            if (!names.has(key)) names.set(key, new Map());
+            bump(names.get(key)!, String(id), m.name);
+          }
+          bump(context === "armor" ? styles.armor : styles.other, String(id), { type: m.type, color: m.color });
+        }
       }
     }
   }
   return {
     skill: (canonical) => mostCommon(skills, canonical),
-    material: (itemId) => mostCommon(materials, String(itemId)),
+    material: (itemId, context) => {
+      const key = String(itemId);
+      const empty: Counts<string> = new Map();
+      const name = mostCommon(names.get(context) ?? empty, key) ?? mostCommon(names.get("any") ?? empty, key);
+      const style = mostCommon(styles.other, key) ?? mostCommon(styles.armor, key);
+      return name && style ? { name, ...style } : undefined;
+    },
   };
 }
 
@@ -184,10 +206,14 @@ function armorSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext)
   const discByName = new Map(discSkills.map((s) => [canonicalSkillName(s.name), s.amount]));
   // Keep the committed order for skills both sides have, then add the
   // disc's new ones in disc order.
+  // A skill the committed list repeats is written once.
   const out: { name: string; amount: number }[] = [];
+  const written = new Set<string>();
   for (const s of committedSkills) {
-    const amount = discByName.get(canonicalSkillName(s.name));
-    if (amount !== undefined) out.push({ name: s.name, amount });
+    const canon = canonicalSkillName(s.name);
+    const amount = discByName.get(canon);
+    if (amount !== undefined && !written.has(canon)) out.push({ name: s.name, amount });
+    written.add(canon);
   }
   for (const s of discSkills) {
     if (!spellings.has(canonicalSkillName(s.name))) out.push({ name: skillSpelling(canonicalSkillName(s.name), spellings, ctx), amount: s.amount });
@@ -209,9 +235,12 @@ function decorationSkillsToSite(disc: unknown, committed: unknown, ctx: FieldCon
   const spellings = new Map(committedSkills.map((s) => [canonicalSkillName(s.name), s.name]));
   const discByName = new Map(discSkills.map((s) => [canonicalSkillName(s.name), s.amount]));
   const out: string[] = [];
+  const written = new Set<string>();
   for (const s of committedSkills) {
-    const amount = discByName.get(canonicalSkillName(s.name));
-    if (amount !== undefined) out.push(`${s.name} ${formatSignedAmount(amount)}`);
+    const canon = canonicalSkillName(s.name);
+    const amount = discByName.get(canon);
+    if (amount !== undefined && !written.has(canon)) out.push(`${s.name} ${formatSignedAmount(amount)}`);
+    written.add(canon);
   }
   for (const s of discSkills) {
     const canon = canonicalSkillName(s.name);
@@ -234,7 +263,7 @@ function materialsToSite(disc: unknown, siteItem: Record<string, unknown>, ctx: 
   return discMats.map((m) => {
     const id = discMaterialId(m.name, ctx.materialContext);
     if (id === null) return m;
-    const known = own.get(id) ?? ctx.spellings.material(id);
+    const known = own.get(id) ?? ctx.spellings.material(id, ctx.materialContext);
     if (known) return { name: known.name, amount: m.amount, type: known.type, color: known.color };
     const item = ctx.site.items.get(id);
     return { name: item?.name ?? m.name, amount: m.amount, type: m.type, color: m.color };
