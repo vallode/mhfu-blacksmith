@@ -66,8 +66,12 @@ export function tintFor(rarity?: number | null, gem?: string | null): string | u
   return undefined;
 }
 
+/** "sword-and-shield" → "Sword and Shield". */
 export const titleCase = (s: string): string =>
-  s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  s
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(/(?<=.) (And|Of|The) /g, (w) => w.toLowerCase());
 
 export const rankLabel = (rank: string | undefined): string =>
   rank ? rankName(rank as GuildRank) : "";
@@ -75,15 +79,14 @@ export const rankLabel = (rank: string | undefined): string =>
 const zenny = (n: number | string | null | undefined): string | null =>
   n === null || n === undefined || n === "" ? null : `${Number(n).toLocaleString("en-US")}z`;
 
-const matList = (mats: Material[] | null | undefined): string =>
-  (mats ?? []).map((m) => `${m.name} ×${m.amount}`).join(", ");
-
-/** "Create 1,150z: Dosbiscus ×1, …" — empty when there is no recipe. */
+/**
+ * A recipe as a heading and one material per line, like the game's recipe
+ * screen: "Create · 1,150z\nDosbiscus ×1\n…". Empty when there are no materials.
+ */
 function recipe(label: string, cost: unknown, mats: Material[] | null | undefined): string {
-  const list = matList(mats);
-  if (!list) return "";
+  if (!mats?.length) return "";
   const z = zenny(cost as number | null);
-  return `${label}${z ? ` ${z}` : ""}: ${list}`;
+  return lines(`${label}${z ? ` · ${z}` : ""}`, ...mats.map((m) => `${m.name} ×${m.amount}`));
 }
 
 const signed = (n: number | string): string => {
@@ -94,6 +97,54 @@ const signed = (n: number | string): string => {
 /** Newline-separated lines, skipping empty ones. */
 const lines = (...parts: (string | number | false | null | undefined)[]): string =>
   parts.filter((p) => p).join("\n");
+
+/** Blocks of lines with a blank line between them, skipping empty ones. */
+const blocks = (...parts: (string | false | null | undefined)[]): string =>
+  parts.filter((p) => p).join("\n\n");
+
+/** Element and status icons; embeds show plain text, so these stand in for the game's. */
+const ELEMENT_EMOJI: Record<string, string> = {
+  Fire: "🔥",
+  Water: "💧",
+  Thunder: "⚡",
+  Ice: "❄️",
+  Dragon: "🐉",
+  Poison: "☠️",
+  Paralysis: "💫",
+  Sleep: "💤",
+};
+
+const element = (name: string): string =>
+  ELEMENT_EMOJI[name] ? `${ELEMENT_EMOJI[name]} ${name}` : name;
+
+/** Slots as the game draws them: a circle per slot, dashes for the rest ("○○—"). */
+const slotGlyphs = (count = 0): string =>
+  Array.from({ length: 3 }, (_, i) => (i < count ? "○" : "—")).join("");
+
+/** Sharpness colours in order: red, orange, yellow, green, blue, white, purple. */
+const SHARPNESS_EMOJI = ["🟥", "🟧", "🟨", "🟩", "🟦", "⬜", "🟪"];
+/** The game's bar holds 45 points of sharpness; one emoji per 3 points fills 15. */
+const SHARPNESS_CELLS = 15;
+const SHARPNESS_PER_CELL = 3;
+
+/**
+ * Sharpness as a row of coloured squares, with ⬛ for the empty end of the
+ * bar. Every colour the weapon has gets at least one square.
+ */
+export function sharpnessEmoji(values: (string | number)[]): string {
+  let total = 0;
+  let drawn = 0;
+  let bar = "";
+  values.forEach((v, i) => {
+    const points = Number(v);
+    if (!(points > 0)) return;
+    total += points;
+    const upTo = Math.max(drawn + 1, Math.round(total / SHARPNESS_PER_CELL));
+    bar += SHARPNESS_EMOJI[i].repeat(upTo - drawn);
+    drawn = upTo;
+  });
+  return bar + "⬛".repeat(Math.max(0, SHARPNESS_CELLS - drawn));
+}
 
 /** Title, description and the Open Graph / Twitter tags that repeat them. */
 export function pageMetadata({
@@ -136,31 +187,40 @@ export function accentViewport(color?: string): Viewport {
 }
 
 export function weaponDescription(w: Weapon): string {
+  const affinity = w.affinity && w.affinity !== "0%" ? w.affinity.replace(/^(\d)/, "+$1") : "";
   const stats = [
-    titleCase(w.type),
-    w.rarity ? `Rarity ${w.rarity}` : "",
     w.attack ? `Attack ${w.attack}` : "",
-    ...(w.elements ?? []).map((e) => `${e.name} ${e.attack}`),
-    w.affinity && w.affinity !== "0%" ? `Affinity ${w.affinity}` : "",
-    w.slots ? `${w.slots} slot${w.slots > 1 ? "s" : ""}` : "",
+    ...(w.elements ?? []).map((e) => `${element(e.name)} ${e.attack}`),
+    affinity && `Affinity ${affinity.replace("-", "−")}`,
+    `Slots ${slotGlyphs(w.slots)}`,
   ].filter(Boolean);
 
   const from = Array.isArray(w.improve_from) ? w.improve_from.join(" / ") : w.improve_from;
-  return lines(
-    stats.join(" · "),
+  const upgrade = from ? `Upgrade from ${from}` : "Upgrade";
+
+  return blocks(
+    lines(
+      `${w.rarity ? `Rarity ${w.rarity} ` : ""}${titleCase(w.type)}`,
+      stats.join(" · "),
+      w.sharpness && `${sharpnessEmoji(w.sharpness)} Sharpness`,
+      w.sharpness_plus && `${sharpnessEmoji(w.sharpness_plus)} Sharpness +1`,
+    ),
+    // Weapons that can be both made and upgraded show the recipe and name the upgrade.
     w.create_mats?.length
-      ? recipe("Create", w.create_cost, w.create_mats)
-      : recipe(from ? `Upgrade from ${from}` : "Upgrade", w.improve_cost, w.improve_mats),
+      ? lines(recipe("Create", w.create_cost, w.create_mats), from && `Or upgrade from ${from}`)
+      : recipe(upgrade, w.improve_cost, w.improve_mats),
   );
 }
 
 export function armorDescription(p: ArmorPiece): string {
-  const stats = [
-    `${rankLabel(p.rank)} ${titleCase(p.type)}`.trim(),
-    p.rarity ? `Rarity ${p.rarity}` : "",
-    p.defence !== undefined ? `Defense ${p.defence}` : "",
-    p.slots ? `${p.slots} slot${p.slots > 1 ? "s" : ""}` : "",
+  const kind = [
+    `${p.rarity ? `Rarity ${p.rarity} ` : ""}${rankLabel(p.rank)} ${titleCase(p.type)}`.trim(),
     p.hunter_type && p.hunter_type !== "Blademaster/Gunner" ? p.hunter_type : "",
+  ].filter(Boolean);
+
+  const stats = [
+    p.defence !== undefined ? `Defense ${p.defence}` : "",
+    `Slots ${slotGlyphs(p.slots)}`,
   ].filter(Boolean);
 
   const res = (
@@ -173,14 +233,17 @@ export function armorDescription(p: ArmorPiece): string {
     ] as const
   )
     .filter(([, v]) => v !== undefined)
-    .map(([n, v]) => `${n} ${signed(v!)}`)
-    .join(" · ");
+    .map(([n, v]) => `${ELEMENT_EMOJI[n]}${signed(v!)}`)
+    .join(" ");
 
-  return lines(
-    stats.join(" · "),
-    p.skills?.length &&
-      `Skills: ${p.skills.map((s) => `${s.name} ${signed(s.amount)}`).join(", ")}`,
-    res && `Resist: ${res}`,
+  return blocks(
+    lines(
+      kind.join(" · "),
+      stats.join(" · "),
+      p.skills?.length &&
+        `Skills: ${p.skills.map((s) => `${s.name} ${signed(s.amount)}`).join(", ")}`,
+      res && `Resist ${res}`,
+    ),
     recipe("Create", p.create_cost, p.create_mats),
   );
 }
@@ -193,16 +256,17 @@ export function monsterDescription(m: Monster): string {
 }
 
 export function decorationDescription(d: Decoration): string {
-  const stats = [
-    "Decoration",
+  const kind = [
+    `${d.rarity ? `Rarity ${d.rarity} ` : ""}Decoration`,
     d.category ?? "",
-    d.rarity ? `Rarity ${d.rarity}` : "",
-    d.slots ? `${d.slots} slot${d.slots > 1 ? "s" : ""}` : "",
+    d.slots ? `Uses ${slotGlyphs(d.slots).replace(/—/g, "")}` : "",
   ].filter(Boolean);
 
-  return lines(
-    stats.join(" · "),
-    d.skills?.length && `Skills: ${d.skills.join(", ")}`,
+  return blocks(
+    lines(
+      kind.join(" · "),
+      d.skills?.length && `Skills: ${d.skills.map((s) => s.replace(/ -(\d)/, " −$1")).join(", ")}`,
+    ),
     recipe("Create", d.create_cost, d.create_mats),
   );
 }
