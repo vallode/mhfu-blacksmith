@@ -28,9 +28,10 @@ import {
   readGunnerWeapons,
   readModelToWeaponType,
   readWeaponClassModifiers,
+  WEAPON_TYPE_NAMES,
   type WeaponTypeName,
 } from "../tables/weapons.js";
-import { readSharpnessTable, SHARPNESS_COLORS } from "../tables/sharpness.js";
+import { readSharpnessTables, SHARPNESS_COLORS, type SharpnessEntry } from "../tables/sharpness.js";
 import {
   readEquipmentCreate,
   readEquipmentUpgrade,
@@ -114,8 +115,8 @@ function emitElements(
  * exactly, which argues against a code-level formula error). Flagged here
  * for follow-up rather than blocking on it.
  */
-function emitSharpness(
-  entry: ReturnType<typeof readSharpnessTable>[number],
+export function emitSharpness(
+  entry: SharpnessEntry,
   sharpnessAmount: number,
 ): { sharpness: number[]; sharpnessPlus: number[] } {
   const reach = (steps: number) => ELEMENT_VALUE_SCALE * 5 * steps;
@@ -204,7 +205,7 @@ export function emitBlademasterWeapons(
   const weapons = readBlademasterWeapons(reader, resolver);
   const modelToType = readModelToWeaponType(reader, resolver);
   const classMods = readWeaponClassModifiers(reader, resolver);
-  const sharpnessTable = readSharpnessTable(reader, resolver);
+  const sharpnessTables = readSharpnessTables(reader, resolver);
   const create = readEquipmentCreate(reader, resolver);
   const upgrade = readEquipmentUpgrade(reader, resolver);
   const names = getNameResolver();
@@ -241,7 +242,8 @@ export function emitBlademasterWeapons(
     if (!name) continue;
     const type = modelToType[w.modelId] ?? null;
     const classMod = type ? classModByType[type] : 100;
-    const sharp = emitSharpness(sharpnessTable[w.sharpnessId]!, w.sharpnessAmount);
+    const typeId = type ? WEAPON_TYPE_NAMES.indexOf(type) : null;
+    const sharp = emitSharpness(sharpnessTables.entryFor(typeId, w.sharpnessId), w.sharpnessAmount);
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(w.index) ?? [];
     const upgradeEntry = upgradeGraph.entries[w.index];

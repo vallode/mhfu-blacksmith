@@ -3,24 +3,31 @@
  * the full `data/*.json`-shaped output plus an `EXTRACTION.json` provenance
  * manifest. See README's "Usage" section.
  */
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitQuestsFile } from "../emit/quests.js";
+import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
 import { verifyOffsets, type OffsetVerificationResult } from "../tables/offsets.js";
-import { verifyResolverCoverage, type ResolverCoverageResult } from "../tables/resolver.js";
+import {
+  verifyResolverCoverage,
+  type ResolverCoverageResult,
+  type TableAddressResolver,
+} from "../tables/resolver.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 
 export interface ExtractOptions {
   unpacked: string;
   out: string;
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts). */
+  raw?: boolean;
 }
 
 export interface SkippedQuest {
@@ -72,6 +79,19 @@ async function readQuestsFromUnpackedDir(
   return { quests, skipped };
 }
 
+/** Written before emitting, so the dump survives an emit error. */
+async function writeRawDumps(
+  outDir: string,
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Promise<void> {
+  const rawDir = path.join(outDir, "raw");
+  await mkdir(rawDir, { recursive: true });
+  const rawPath = path.join(rawDir, "sharpness.json");
+  await writeFile(rawPath, `${JSON.stringify(dumpSharpnessRaw(reader, resolver))}\n`, "utf-8");
+  console.log(`Wrote ${rawPath}`);
+}
+
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
@@ -106,6 +126,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       );
     }
     console.log(`Offset verification passed (${offsetResult.checks.length} checks).`);
+    if (options.raw) await writeRawDumps(options.out, reader);
     output = emitAll(reader);
   } else {
     const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
@@ -126,6 +147,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.log(
       `Table resolution passed (${offsetResult.checks.length} checks) for region "${manifest.region}".`,
     );
+    if (options.raw) await writeRawDumps(options.out, reader, resolver);
     output = emitAll(reader, resolver);
   }
 
