@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
   dropRank,
+  GATHER_TIERS,
   earliestSources,
   weaponKey,
   weaponProgress,
@@ -69,6 +70,25 @@ describe("earliestSources", () => {
       new Set(["iron ore"]),
     );
     assert.equal(s.has("iron ore"), false);
+  });
+});
+
+describe("gather tiers", () => {
+  it("gate ore by where it can be mined, not by quest rewards", () => {
+    const s = earliestSources(
+      [quest("guild", "low-rank", 2, ["Carbalite Ore"])],
+      [],
+      key,
+      new Set(["carbalite ore"]),
+      { "Carbalite Ore": { rank: "high-rank", stars: 0 } },
+    );
+    assert.deepEqual(s.get("carbalite ore"), { rank: "high-rank", stars: 0 });
+  });
+
+  it("covers the ores with a known tier", () => {
+    assert.equal(GATHER_TIERS["Iron Ore"].rank, "low-rank");
+    assert.equal(GATHER_TIERS["Union Ore"].rank, "high-rank");
+    assert.equal(GATHER_TIERS["Pure Crystal"].rank, "g-rank");
   });
 });
 

@@ -50,10 +50,10 @@ export interface RecipeLike {
  * Categories that are gathered in the field rather than earned. Quest rewards and
  * monster drops list some of them, but they're available from the first quest, so
  * those aren't their gate. Gathering tiers aren't in the data, so these count as
- * ungated and show up as `unsourced`.
+ * ungated and show up as `unsourced`. Ores are the exception: they're gated by the
+ * rank they can be mined at, see `GATHER_TIERS`.
  */
 export const GATHERED_TYPES: ReadonlySet<string> = new Set([
-  "ore",
   "insect",
   "fish",
   "herb",
@@ -69,6 +69,41 @@ export interface WeaponLike {
   improve_mats?: RecipeLike[] | null;
   alternative_create_mats?: RecipeLike[] | null;
 }
+
+/**
+ * The rank an ore can first be mined at, by item name. Ore armor repeats its
+ * materials from low to high rank (Hi-Metal vs Chain), so without this the
+ * recipe graph can't tell the ranks apart. Hand-entered, not in the game data:
+ * checked against the armor ranks in data/armor, but worth confirming in game.
+ * Ores left out (Fire Stone, Antiseptic Stone, ...) are ungated, which hides
+ * too little rather than too much.
+ */
+export const GATHER_TIERS: Readonly<Record<string, Tier>> = (() => {
+  const at = (rank: GuildRank, names: string[]) =>
+    names.map((name) => [name, { rank, stars: 0 }] as const);
+  return Object.fromEntries([
+    ...at("low-rank", [
+      "Iron Ore",
+      "Machalite Ore",
+      "Dragonite Ore",
+      "Disk Stone",
+      "Earth Crystal",
+      "Lightcrystal",
+      "Ice Crystal",
+    ]),
+    ...at("high-rank", [
+      "Carbalite Ore",
+      "Union Ore",
+      "Nova Crystal",
+      "Novacrystal",
+      "Eltalite Ore",
+      "Etherlite Ore",
+      "Firecell Stone",
+      "Rainbow Ore",
+    ]),
+    ...at("g-rank", ["Pure Crystal", "Purecrystal", "PureCrystal", "Mellanje Ore", "Melange Ore"]),
+  ]);
+})();
 
 export type ItemKey = (name: string) => string | undefined;
 
@@ -116,6 +151,7 @@ export function earliestSources(
   monsters: MonsterLike[],
   key: ItemKey,
   gathered: ReadonlySet<string> = new Set(),
+  gatherTiers: Readonly<Record<string, Tier>> = GATHER_TIERS,
 ): Map<string, Tier> {
   const out = new Map<string, Tier>();
   const add = (name: string, tier: Tier) => {
@@ -143,6 +179,12 @@ export function earliestSources(
       if (!tier) continue;
       for (const drops of Object.values(tables)) for (const d of drops) add(d.name, tier);
     }
+
+  // Gathered items are gated by where they can be mined, not by quests.
+  for (const [name, tier] of Object.entries(gatherTiers)) {
+    const k = key(name);
+    if (k !== undefined) out.set(k, tier);
+  }
   return out;
 }
 

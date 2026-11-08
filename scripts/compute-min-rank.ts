@@ -9,6 +9,7 @@ import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/l
 import {
   earliestSources,
   either,
+  GATHER_TIERS,
   GATHERED_TYPES,
   recipeProgress,
   weaponProgress,
@@ -54,6 +55,11 @@ for (const dir of ["weapons", "armor"])
         const k = key(m.name);
         if (k !== undefined && m.type && GATHERED_TYPES.has(m.type)) gathered.add(k);
       }
+for (const name of Object.keys(GATHER_TIERS)) {
+  const k = key(name);
+  if (k === undefined) console.warn("gather tier for unknown item:", name);
+  else gathered.add(k);
+}
 const sources = earliestSources(quests, monsters, key, gathered);
 
 const unsourced = new Set<string>();
