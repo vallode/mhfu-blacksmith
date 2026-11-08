@@ -8,9 +8,21 @@
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSave } from "@/context/SaveContext";
-import { getBundle, getDictionaries, getItems, peekBundle, peekDictionaries, type ItemLookup } from "@/lib/client-data";
+import {
+  getBundle,
+  getDictionaries,
+  getItems,
+  peekBundle,
+  peekDictionaries,
+  type ItemLookup,
+} from "@/lib/client-data";
 import { useEquipmentIds } from "@/lib/equipment";
-import { checkUpgrade, ownedHrefs, ownedItemCounts, type UpgradeCheck } from "@/lib/hunter-progress";
+import {
+  checkUpgrade,
+  ownedHrefs,
+  ownedItemCounts,
+  type UpgradeCheck,
+} from "@/lib/hunter-progress";
 import type { WeaponBundle } from "@/lib/schema";
 
 interface HunterProgressValue {
@@ -38,7 +50,10 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
   const [loaded, setLoaded] = useState(0);
   const [wanted, setWanted] = useState<Set<string>>(() => new Set());
 
-  const owned = useMemo(() => (ids && enabled ? ownedHrefs(ids, save) : null), [ids, enabled, save]);
+  const owned = useMemo(
+    () => (ids && enabled ? ownedHrefs(ids, save) : null),
+    [ids, enabled, save],
+  );
   const counts = useMemo(() => ownedItemCounts(save), [save]);
   const zenny = save?.zenny;
   const [items, setItems] = useState<ItemLookup | null>(null);
@@ -48,7 +63,7 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
     let cancelled = false;
     getItems().then(
       (l) => !cancelled && setItems(l),
-      () => {} // without item links no upgrade is ever flagged
+      () => {}, // without item links no upgrade is ever flagged
     );
     return () => {
       cancelled = true;
@@ -60,7 +75,7 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
     let cancelled = false;
     Promise.all([getDictionaries(), ...[...wanted].map((f) => getBundle(f))]).then(
       () => !cancelled && setLoaded((n) => n + 1),
-      () => {}
+      () => {},
     );
     return () => {
       cancelled = true;
@@ -81,16 +96,18 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
         return null;
       }
       const weapon = bundle.items.find((w) => w.s === slug);
-      return weapon ? checkUpgrade(dict, items.materials, weapon, counts, zenny) : { status: "unknown" };
+      return weapon
+        ? checkUpgrade(dict, items.materials, weapon, counts, zenny)
+        : { status: "unknown" };
     },
     // `loaded` re-creates the callback so rows re-check once a bundle arrives.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items, counts, zenny, loaded]
+    [items, counts, zenny, loaded],
   );
 
   const value = useMemo<HunterProgressValue>(
     () => (owned ? { active: true, isOwned, upgradeCheck } : INACTIVE),
-    [owned, isOwned, upgradeCheck]
+    [owned, isOwned, upgradeCheck],
   );
 
   return <HunterProgressContext.Provider value={value}>{children}</HunterProgressContext.Provider>;

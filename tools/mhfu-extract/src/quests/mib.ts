@@ -66,7 +66,9 @@ class QuestKeyStream {
 /** Decrypts the seed-prefixed, u16-XOR-ciphered body. `buf` includes the 8-byte seed prefix. */
 export function decryptQuestBlock(buf: Buffer): Buffer {
   if (buf.length < 8 || buf.length % 2 !== 0) {
-    throw new QuestCipherError(`quest block must be an even length of at least 8 bytes, got ${buf.length}`);
+    throw new QuestCipherError(
+      `quest block must be an even length of at least 8 bytes, got ${buf.length}`,
+    );
   }
   const seeds: [number, number, number, number] = [
     buf.readUInt16LE(0),
@@ -83,7 +85,10 @@ export function decryptQuestBlock(buf: Buffer): Buffer {
 }
 
 /** Inverse of decryptQuestBlock — kept for completeness/round-trip tests. */
-export function encryptQuestBlock(body: Buffer, seeds: readonly [number, number, number, number]): Buffer {
+export function encryptQuestBlock(
+  body: Buffer,
+  seeds: readonly [number, number, number, number],
+): Buffer {
   if (body.length % 2 !== 0) {
     throw new QuestCipherError(`quest body must be an even length, got ${body.length}`);
   }
@@ -108,14 +113,16 @@ export function encryptQuestBlock(body: Buffer, seeds: readonly [number, number,
 export function decryptQuest(buf: Buffer, region: Region): Buffer {
   const decrypted = decryptQuestBlock(buf);
   if (decrypted.length < 24) {
-    throw new QuestCipherError(`decrypted quest block too short for its header (${decrypted.length} bytes)`);
+    throw new QuestCipherError(
+      `decrypted quest block too short for its header (${decrypted.length} bytes)`,
+    );
   }
   const size = decrypted.readUInt32LE(0);
   const hash = decrypted.subarray(4, 24);
   const rest = decrypted.subarray(24);
   if (size > rest.length) {
     throw new QuestCipherError(
-      `quest header declares size ${size}, but only ${rest.length} bytes follow — wrong region/offset or corrupt data`
+      `quest header declares size ${size}, but only ${rest.length} bytes follow — wrong region/offset or corrupt data`,
     );
   }
   const payload = rest.subarray(0, size);
@@ -124,7 +131,9 @@ export function decryptQuest(buf: Buffer, region: Region): Buffer {
     .update(Buffer.concat([payload, Buffer.from(HASH_SALT[region], "ascii")]))
     .digest();
   if (!expected.equals(hash)) {
-    throw new QuestCipherError(`quest SHA1 mismatch for region "${region}" — wrong region, or not QuestCipher-wrapped`);
+    throw new QuestCipherError(
+      `quest SHA1 mismatch for region "${region}" — wrong region, or not QuestCipher-wrapped`,
+    );
   }
 
   return Buffer.from(payload);
@@ -134,7 +143,7 @@ export function decryptQuest(buf: Buffer, region: Region): Buffer {
 export function encryptQuest(
   payload: Buffer,
   region: Region,
-  seeds: readonly [number, number, number, number] = [0, 0, 0, 0]
+  seeds: readonly [number, number, number, number] = [0, 0, 0, 0],
 ): Buffer {
   const hash = createHash("sha1")
     .update(Buffer.concat([payload, Buffer.from(HASH_SALT[region], "ascii")]))
@@ -147,5 +156,7 @@ export function encryptQuest(
 
 /** True if `buf` starts with the plaintext quest header magic. */
 export function isQuestMagic(buf: Buffer): boolean {
-  return buf.length >= QUEST_MAGIC.length && buf.subarray(0, QUEST_MAGIC.length).equals(QUEST_MAGIC);
+  return (
+    buf.length >= QUEST_MAGIC.length && buf.subarray(0, QUEST_MAGIC.length).equals(QUEST_MAGIC)
+  );
 }

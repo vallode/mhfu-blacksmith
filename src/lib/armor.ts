@@ -42,7 +42,11 @@ export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
   return pieces.map((p, i) => ({ ...p, slug: slugs[i] }));
 }
 
-export function getArmorPiece(slot: ArmorSlot, rank: ArmorRank, slug: string): ArmorPiece | undefined {
+export function getArmorPiece(
+  slot: ArmorSlot,
+  rank: ArmorRank,
+  slug: string,
+): ArmorPiece | undefined {
   return getArmorPieces(slot, rank).find((p) => p.slug === slug);
 }
 

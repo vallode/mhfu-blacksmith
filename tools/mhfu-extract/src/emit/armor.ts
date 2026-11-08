@@ -22,14 +22,30 @@
  * (see git history), and `hr`/`elder` unlock requirements aren't present in
  * this struct at all. All four are optional in the schema.
  */
-import { ARMOR_SLOTS, readArmorValues, type ArmorSlot, type ArmorValueEntry } from "../tables/armor.js";
+import {
+  ARMOR_SLOTS,
+  readArmorValues,
+  type ArmorSlot,
+  type ArmorValueEntry,
+} from "../tables/armor.js";
 import { readEquipmentCreate, type EquipCreateEntry } from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
-import { displayRarity, groupEquipCreateByEquipId, halveCost, materialsOrNull, rankFromRarity, resolveMaterials, type Rank } from "./common.js";
+import {
+  displayRarity,
+  groupEquipCreateByEquipId,
+  halveCost,
+  materialsOrNull,
+  rankFromRarity,
+  resolveMaterials,
+  type Rank,
+} from "./common.js";
 
-const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, "helmet" | "plate" | "gauntlets" | "waist" | "leggings"> = {
+const SLOT_TO_ARMOR_TYPE: Record<
+  ArmorSlot,
+  "helmet" | "plate" | "gauntlets" | "waist" | "leggings"
+> = {
   head: "helmet",
   chest: "plate",
   arm: "gauntlets",
@@ -70,7 +86,7 @@ export interface EmittedArmor {
 function emitSlot(
   armorValues: ArmorValueEntry[],
   slot: ArmorSlot,
-  createByEquipId: Map<number, EquipCreateEntry[]>
+  createByEquipId: Map<number, EquipCreateEntry[]>,
 ): EmittedArmor[] {
   const names = getNameResolver();
   const nameTable = SLOT_TO_NAME_TABLE[slot];
@@ -88,7 +104,10 @@ function emitSlot(
 
     const skills = armor.skills
       .filter((s) => s.skill !== 0)
-      .map((s) => ({ name: names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`, amount: s.amount }));
+      .map((s) => ({
+        name: names.resolve("SkillID", s.skill) ?? `Skill${s.skill}`,
+        amount: s.amount,
+      }));
 
     const [primaryRecipe] = createByEquipId.get(armor.index) ?? [];
     const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "armor") : [];
@@ -113,7 +132,10 @@ function emitSlot(
   return out;
 }
 
-export function emitArmor(reader: BinaryReader, resolver?: TableAddressResolver): Record<ArmorSlot, EmittedArmor[]> {
+export function emitArmor(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<ArmorSlot, EmittedArmor[]> {
   const armorValues = readArmorValues(reader, resolver);
   const create = readEquipmentCreate(reader, resolver);
   const createByEquipId: Record<ArmorSlot, Map<number, EquipCreateEntry[]>> = {

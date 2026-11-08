@@ -54,7 +54,10 @@ const DISC_ID_TO_REGION: Record<string, Region> = {
  * regions. Returns null (rather than throwing) for anything else, so
  * callers can give a clear "unsupported disc" error with the raw ID.
  */
-export function detectRegion(sfo: Map<string, SfoValue>): { region: Region | null; discId: string | null } {
+export function detectRegion(sfo: Map<string, SfoValue>): {
+  region: Region | null;
+  discId: string | null;
+} {
   const discId = sfo.get("DISC_ID");
   if (typeof discId !== "string") return { region: null, discId: null };
   return { region: DISC_ID_TO_REGION[discId] ?? null, discId };

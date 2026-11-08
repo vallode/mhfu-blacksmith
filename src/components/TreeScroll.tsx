@@ -49,8 +49,7 @@ export default function TreeScroll({
 
     // Only hide if there's a position to restore or an active item to reveal;
     // a plain first visit with neither needs no work and stays visible.
-    const needsRestore =
-      sessionStorage.getItem(`tree-scroll:${treeKey}`) !== null || !!activeSlug;
+    const needsRestore = sessionStorage.getItem(`tree-scroll:${treeKey}`) !== null || !!activeSlug;
     if (!needsRestore) {
       // Still track scrolling so later visits restore correctly.
       const onScrollPassive = () => {

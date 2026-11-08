@@ -18,6 +18,13 @@ test("parseFlags throws when a flag is missing its value", () => {
 });
 
 test("parseFlags reads --skip-eboot as a value-less boolean flag", () => {
-  const flags = parseFlags(["unpack", "--iso", "/path/to.iso", "--skip-eboot", "--out", ".cache/mhfu"]);
+  const flags = parseFlags([
+    "unpack",
+    "--iso",
+    "/path/to.iso",
+    "--skip-eboot",
+    "--out",
+    ".cache/mhfu",
+  ]);
   assert.deepEqual(flags, { iso: "/path/to.iso", "skip-eboot": "true", out: ".cache/mhfu" });
 });

@@ -5,7 +5,9 @@ import { ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "../src/tables/offset
 import { fixtureReader } from "./helpers.js";
 
 test("readItemTable reads exactly the regular (non-decoration) item count", () => {
-  const { reader } = fixtureReader(tableOffset("itemTable") + TABLE_COUNTS.regularItems * ITEM_ENTRY_SIZE);
+  const { reader } = fixtureReader(
+    tableOffset("itemTable") + TABLE_COUNTS.regularItems * ITEM_ENTRY_SIZE,
+  );
   const items = readItemTable(reader);
   assert.equal(items.length, 948);
 });

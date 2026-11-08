@@ -14,12 +14,9 @@ import { OfflineProvider } from "@/context/OfflineContext";
 import { FileSyncProvider } from "@/context/FileSyncContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mhfu-blacksmith.netlify.app",
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mhfu-blacksmith.netlify.app"),
   title: "MHFU Blacksmith",
-  description:
-    "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  description: "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
   ...faviconMetadata(),
   manifest: "/manifest.json",
   appleWebApp: {
@@ -29,11 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>

@@ -87,7 +87,12 @@ function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
           )}
         />
       ))}
-      <span className={cn("ml-[2px] text-[15px] leading-none whitespace-nowrap", all ? "text-white" : "text-rarity-9")}>
+      <span
+        className={cn(
+          "ml-[2px] text-[15px] leading-none whitespace-nowrap",
+          all ? "text-white" : "text-rarity-9",
+        )}
+      >
         {have}/{materials.length}
       </span>
     </span>
@@ -104,9 +109,7 @@ export default function WeaponTreeRow({
   nested = false,
   hasNextSibling = false,
 }: WeaponTreeRowProps) {
-  const [collapsed, setCollapsed] = useState(() =>
-    isNodeCollapsed(treeKey, node.slug),
-  );
+  const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
 
   const isActive = activeSlug === node.slug;
 
@@ -115,15 +118,16 @@ export default function WeaponTreeRow({
   // filtered weapon tree the panel has already worked this out for every row.
   const progress = useHunterProgress();
   const filtered = useTreeFilterResult()?.rows.get(node.slug);
-  const { href, external: isExternal, owned, upgrade } =
-    filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const {
+    href,
+    external: isExternal,
+    owned,
+    upgrade,
+  } = filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
   const dimmed = filtered ? !filtered.match : false;
   const canUpgrade = upgrade?.status === "ready";
 
-  const onToggleClick = (event: {
-    preventDefault(): void;
-    stopPropagation(): void;
-  }) => {
+  const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
     // Rows can be links (a parent weapon still has its own page), so stop
     // the click from also triggering navigation.
     event.preventDefault();
@@ -137,10 +141,7 @@ export default function WeaponTreeRow({
 
   const onPointerEnter = href
     ? () => {
-        const file = bundleForHref(
-          node,
-          isExternal ? `/blacksmith/${node.type}/` : basePath,
-        );
+        const file = bundleForHref(node, isExternal ? `/blacksmith/${node.type}/` : basePath);
         if (file) prefetchBundle(file);
       }
     : undefined;
@@ -182,8 +183,7 @@ export default function WeaponTreeRow({
           aria-label={collapsed ? "Expand" : "Collapse"}
           onClick={onToggleClick}
           onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ")
-              onToggleClick(event);
+            if (event.key === "Enter" || event.key === " ") onToggleClick(event);
           }}
         >
           {collapsed ? "[+]" : "[-]"}

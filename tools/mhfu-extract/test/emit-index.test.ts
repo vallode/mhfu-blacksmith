@@ -51,11 +51,23 @@ test("emitAll produces every data/*.json-shaped file with the right top-level ke
 
   assert.deepEqual(Object.keys(output).sort(), [...EXPECTED_FILES].sort());
   assert.ok(Array.isArray((output["decorations.json"] as { decorations: unknown }).decorations));
-  for (const armorFile of ["armor/helmet.json", "armor/plate.json", "armor/gauntlets.json", "armor/waist.json", "armor/leggings.json"]) {
-    assert.ok(Array.isArray((output[armorFile] as { armor: unknown }).armor), `${armorFile} should have an armor array`);
+  for (const armorFile of [
+    "armor/helmet.json",
+    "armor/plate.json",
+    "armor/gauntlets.json",
+    "armor/waist.json",
+    "armor/leggings.json",
+  ]) {
+    assert.ok(
+      Array.isArray((output[armorFile] as { armor: unknown }).armor),
+      `${armorFile} should have an armor array`,
+    );
   }
   for (const weaponFile of EXPECTED_FILES.filter((f) => f.startsWith("weapons/"))) {
-    assert.ok(Array.isArray((output[weaponFile] as { weapons: unknown }).weapons), `${weaponFile} should have a weapons array`);
+    assert.ok(
+      Array.isArray((output[weaponFile] as { weapons: unknown }).weapons),
+      `${weaponFile} should have a weapons array`,
+    );
   }
 });
 
@@ -63,12 +75,20 @@ test("emitAll routes every emitted weapon into its own type's file only", () => 
   const reader = buildOrchestratorFixture();
   const output = emitAll(reader);
   const gsNames = new Set(
-    (output["weapons/great-sword.json"] as { weapons: { name: string }[] }).weapons.map((w) => w.name)
+    (output["weapons/great-sword.json"] as { weapons: { name: string }[] }).weapons.map(
+      (w) => w.name,
+    ),
   );
   const lsNames = new Set(
-    (output["weapons/long-sword.json"] as { weapons: { name: string }[] }).weapons.map((w) => w.name)
+    (output["weapons/long-sword.json"] as { weapons: { name: string }[] }).weapons.map(
+      (w) => w.name,
+    ),
   );
-  for (const name of gsNames) assert.ok(!lsNames.has(name), `${name} should not appear in both great-sword and long-sword output`);
+  for (const name of gsNames)
+    assert.ok(
+      !lsNames.has(name),
+      `${name} should not appear in both great-sword and long-sword output`,
+    );
 });
 
 test("writeEmitOutput persists every file to disk under the given directory", async () => {

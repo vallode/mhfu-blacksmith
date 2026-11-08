@@ -12,7 +12,9 @@ import { fixtureReader } from "./helpers.js";
 
 // Same section layout recipes.test.ts uses — the decoration section is the
 // very last one in EquipmentCreateTable.
-const CREATE_SECTION_COUNTS_BEFORE_DECO = [437, 435, 426, 424, 434, 131, 117, 131, 124, 8, 135, 107, 61, 2];
+const CREATE_SECTION_COUNTS_BEFORE_DECO = [
+  437, 435, 426, 424, 434, 131, 117, 131, 124, 8, 135, 107, 61, 2,
+];
 const decorationCreateBase =
   tableOffset("equipmentCreate") +
   CREATE_SECTION_COUNTS_BEFORE_DECO.reduce((a, b) => a + b, 0) * EQUIP_CREATE_ENTRY_SIZE +
@@ -32,7 +34,7 @@ function buildParalysisJewelFixture() {
   const totalSize = Math.max(
     tableOffset("decorationValues") + TABLE_COUNTS.decorations * ITEM_ENTRY_SIZE,
     decorationCreateBase + 192 * EQUIP_CREATE_ENTRY_SIZE,
-    decoSkillsBase + (TABLE_COUNTS.decorations - 1) * DECO_SKILL_ENTRY_SIZE
+    decoSkillsBase + (TABLE_COUNTS.decorations - 1) * DECO_SKILL_ENTRY_SIZE,
   );
   const { buf, reader } = fixtureReader(totalSize);
 
@@ -71,7 +73,9 @@ test("emitDecorations reproduces the real Paralysis Jewel entry end-to-end", () 
   assert.equal(jewel!.slots, 1);
   assert.deepEqual(jewel!.skills, ["Paralysis +1", "Poison -1"]);
   assert.equal(jewel!.type, "decoration");
-  assert.deepEqual(jewel!.create_mats, [{ name: "Suiko Jewel", amount: 1, type: "deco", color: "cyan" }]);
+  assert.deepEqual(jewel!.create_mats, [
+    { name: "Suiko Jewel", amount: 1, type: "deco", color: "cyan" },
+  ]);
   assert.equal(jewel!.alternative_create_mats, null);
 });
 

@@ -11,13 +11,7 @@
  * - typed hooks return { item, tree, loading }
  */
 import { useEffect, useState } from "react";
-import type {
-  Weapon,
-  ArmorPiece,
-  Monster,
-  Decoration,
-  WeaponTreeNode,
-} from "./types";
+import type { Weapon, ArmorPiece, Monster, Decoration, WeaponTreeNode } from "./types";
 import {
   type Dictionaries,
   type Bundle,
@@ -106,7 +100,7 @@ interface DetailState<I> {
 /** Resolve synchronously from the module cache, or null if not yet loaded. */
 function resolveFromCache<I>(
   file: string,
-  pick: (bundle: Bundle, dict: Dictionaries) => { item: I | null; tree: WeaponTreeNode[] | null }
+  pick: (bundle: Bundle, dict: Dictionaries) => { item: I | null; tree: WeaponTreeNode[] | null },
 ): DetailState<I> | null {
   const bundle = bundleCache.get(file);
   const dict = dictionariesCache;
@@ -117,7 +111,7 @@ function resolveFromCache<I>(
 
 function useBundle<I>(
   file: string,
-  pick: (bundle: Bundle, dict: Dictionaries) => { item: I | null; tree: WeaponTreeNode[] | null }
+  pick: (bundle: Bundle, dict: Dictionaries) => { item: I | null; tree: WeaponTreeNode[] | null },
 ): DetailState<I> {
   // Force a re-render once a not-yet-cached bundle/dictionaries finish
   // loading; doesn't otherwise drive the returned state (see below).
@@ -200,7 +194,7 @@ interface ListState<I> {
 
 function useBundleList<I>(
   file: string,
-  pick: (bundle: Bundle) => { tree: WeaponTreeNode[] | null; items: I[] | null }
+  pick: (bundle: Bundle) => { tree: WeaponTreeNode[] | null; items: I[] | null },
 ): ListState<I> {
   const [, forceUpdate] = useState(0);
 
@@ -340,7 +334,7 @@ export function useItems(): { items: ItemLookup | null; error: boolean } {
     let cancelled = false;
     getItems().then(
       (l) => !cancelled && setItems(l),
-      () => !cancelled && setError(true)
+      () => !cancelled && setError(true),
     );
     return () => {
       cancelled = true;

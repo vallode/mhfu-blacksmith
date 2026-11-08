@@ -138,7 +138,7 @@ function matTuples(mats: Material[] | null | undefined): MatTuple[] | undefined 
 function compactTreeNode(node: WeaponTreeNode, bundleType: string): CompactTreeNode {
   const out: CompactTreeNode = { s: node.slug, n: node.name };
   if (node.type && node.type !== bundleType) out.t = node.type;
-  if (node.rarity !== undefined) out.r = node.rarity === null ? null : toNum(node.rarity) ?? null;
+  if (node.rarity !== undefined) out.r = node.rarity === null ? null : (toNum(node.rarity) ?? null);
   if (node.color) out.c = node.color;
   if (node.element) out.e = node.element;
   if (node.children && node.children.length > 0) {
@@ -174,20 +174,32 @@ function encodeWeapon(w: Weapon): CompactWeapon {
     out.nt = w.notes.map((n) => intern(noteIndex, n));
   }
   if (w.shelling) out.sg = [intern(stringIndex, w.shelling.type), Number(w.shelling.level)];
-  const rf = internString(w.rapid_fire); if (rf !== undefined) out.rf = rf;
-  const re = internString(w.recoil); if (re !== undefined) out.re = re;
-  const rl = internString(w.reload); if (rl !== undefined) out.rl = rl;
-  const cc = toNum(w.create_cost); if (cc !== undefined) out.cc = cc;
-  const ic = toNum(w.improve_cost); if (ic !== undefined) out.ic = ic;
+  const rf = internString(w.rapid_fire);
+  if (rf !== undefined) out.rf = rf;
+  const re = internString(w.recoil);
+  if (re !== undefined) out.re = re;
+  const rl = internString(w.reload);
+  if (rl !== undefined) out.rl = rl;
+  const cc = toNum(w.create_cost);
+  if (cc !== undefined) out.cc = cc;
+  const ic = toNum(w.improve_cost);
+  if (ic !== undefined) out.ic = ic;
   out.rk = RANKS.indexOf(w.rank ?? computeRank(w.hr, w.elder));
   if (w.color) out.c = w.color;
-  const cm = matTuples(w.create_mats); if (cm) out.cm = cm;
-  const im = matTuples(w.improve_mats); if (im) out.im = im;
-  const am = matTuples(w.alternative_create_mats); if (am) out.am = am;
-  const ammo = encodeAmmo(w.ammo); if (ammo) out.amo = ammo;
-  const sa = encodeAmmo(w.status_ammo); if (sa) out.sa = sa;
-  const ea = encodeAmmo(w.element_ammo); if (ea) out.ea = ea;
-  const mia = encodeAmmo(w.misc_ammo); if (mia) out.mia = mia;
+  const cm = matTuples(w.create_mats);
+  if (cm) out.cm = cm;
+  const im = matTuples(w.improve_mats);
+  if (im) out.im = im;
+  const am = matTuples(w.alternative_create_mats);
+  if (am) out.am = am;
+  const ammo = encodeAmmo(w.ammo);
+  if (ammo) out.amo = ammo;
+  const sa = encodeAmmo(w.status_ammo);
+  if (sa) out.sa = sa;
+  const ea = encodeAmmo(w.element_ammo);
+  if (ea) out.ea = ea;
+  const mia = encodeAmmo(w.misc_ammo);
+  if (mia) out.mia = mia;
   if (Array.isArray(w.coatings) && w.coatings.length > 0) {
     out.co = w.coatings.map((c) => intern(stringIndex, c));
   }
@@ -198,7 +210,7 @@ function encodeWeapon(w: Weapon): CompactWeapon {
 }
 
 function encodeAmmo(
-  arr: { name: string; capacity: number[] }[] | null | undefined
+  arr: { name: string; capacity: number[] }[] | null | undefined,
 ): [number, number[]][] | undefined {
   if (!arr || arr.length === 0) return undefined;
   return arr.map((a) => [intern(stringIndex, a.name), a.capacity.map(Number)]);
@@ -206,26 +218,34 @@ function encodeAmmo(
 
 function encodeArmor(a: ArmorPiece): CompactArmor {
   const out: CompactArmor = { n: a.name, s: a.slug };
-  const d = toNum(a.defence); if (d !== undefined) out.d = d;
+  const d = toNum(a.defence);
+  if (d !== undefined) out.d = d;
   const res = [a.fire_res, a.water_res, a.thunder_res, a.ice_res, a.dragon_res].map(toNum);
   if (res.some((v) => v !== undefined)) out.re = res.map((v) => v ?? 0);
   if (a.slots !== undefined) out.sl = Number(a.slots);
-  const rarity = toNum(a.rarity); if (rarity !== undefined) out.r = rarity;
+  const rarity = toNum(a.rarity);
+  if (rarity !== undefined) out.r = rarity;
   out.rk = RANKS.indexOf(a.rank ?? computeRank(a.hr, a.elder));
-  const cc = toNum(a.create_cost); if (cc !== undefined) out.cc = cc;
-  const sx = internString(a.sex); if (sx !== undefined) out.sx = sx;
-  const ht = internString(a.hunter_type); if (ht !== undefined) out.ht = ht;
+  const cc = toNum(a.create_cost);
+  if (cc !== undefined) out.cc = cc;
+  const sx = internString(a.sex);
+  if (sx !== undefined) out.sx = sx;
+  const ht = internString(a.hunter_type);
+  if (ht !== undefined) out.ht = ht;
   if (Array.isArray(a.skills) && a.skills.length > 0) {
     out.sk = a.skills.map((s) => [intern(stringIndex, s.name), toNum(s.amount) ?? 0]);
   }
-  const cm = matTuples(a.create_mats); if (cm) out.cm = cm;
-  const am = matTuples(a.alternative_create_mats); if (am) out.am = am;
+  const cm = matTuples(a.create_mats);
+  if (cm) out.cm = cm;
+  const am = matTuples(a.alternative_create_mats);
+  if (am) out.am = am;
   return out;
 }
 
 function encodeMonster(m: Monster): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
-  const d = internString(m.description); if (d !== undefined) out.d = d;
+  const d = internString(m.description);
+  if (d !== undefined) out.d = d;
   if (Array.isArray(m.habitats) && m.habitats.length > 0) {
     out.hb = m.habitats.map((h) => intern(stringIndex, h));
   }
@@ -257,13 +277,16 @@ function encodeMonster(m: Monster): CompactMonster {
 function encodeDecoration(x: Decoration): CompactDecoration {
   const out: CompactDecoration = { n: x.name, s: x.slug };
   if (x.color) out.c = x.color;
-  const rarity = toNum(x.rarity); if (rarity !== undefined) out.r = rarity;
+  const rarity = toNum(x.rarity);
+  if (rarity !== undefined) out.r = rarity;
   if (x.slots !== undefined) out.sl = Number(x.slots);
-  const cc = toNum(x.create_cost); if (cc !== undefined) out.cc = cc;
+  const cc = toNum(x.create_cost);
+  if (cc !== undefined) out.cc = cc;
   if (Array.isArray(x.skills) && x.skills.length > 0) {
     out.sk = x.skills.map((s) => intern(stringIndex, s));
   }
-  const cm = matTuples(x.create_mats); if (cm) out.cm = cm;
+  const cm = matTuples(x.create_mats);
+  if (cm) out.cm = cm;
   return out;
 }
 
@@ -287,21 +310,17 @@ const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<sl
 
 // Weapons
 const melodies = readJson<Record<string, Melody[]>>(
-  path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json")
+  path.join(contentDir, "blacksmith", "hunting-horn", "hunting-horn-melodies.json"),
 );
 
 for (const type of WEAPON_TYPES) {
-  const crafting = readJson<{ weapons: Weapon[] }>(
-    path.join(dataDir, "weapons", `${type}.json`)
-  );
+  const crafting = readJson<{ weapons: Weapon[] }>(path.join(dataDir, "weapons", `${type}.json`));
   const tree = readJson<{ map: WeaponTreeNode[] }>(
-    path.join(contentDir, "blacksmith", type, "map.json")
+    path.join(contentDir, "blacksmith", type, "map.json"),
   );
   const items = crafting.weapons
     .filter((w) => !("donotrender" in w))
-    .map((w) =>
-      encodeWeapon({ ...w, slug: slugify(w.name), rank: computeRank(w.hr, w.elder) })
-    );
+    .map((w) => encodeWeapon({ ...w, slug: slugify(w.name), rank: computeRank(w.hr, w.elder) }));
   for (const w of items) {
     weaponRefs.set(`${type}|${w.n}`, [WEAPON_TYPES.indexOf(type), w.n, w.r ?? null]);
   }
@@ -319,7 +338,7 @@ for (const type of WEAPON_TYPES) {
 // under content/armorsmith/<slot>/<rank>/map.json.
 for (const slot of ARMOR_SLOTS) {
   const allPieces = readJson<{ armor: ArmorPiece[] }>(
-    path.join(dataDir, "armor", `${slot}.json`)
+    path.join(dataDir, "armor", `${slot}.json`),
   ).armor;
   for (const rank of ARMOR_RANKS) {
     const pieces = allPieces.filter((p) => (p.rank ?? computeRank(p.hr, p.elder)) === rank);
@@ -360,11 +379,9 @@ for (const category of MONSTER_CATEGORIES) {
 
 // Decorations
 {
-  const crafting = readJson<{ decorations: Decoration[] }>(
-    path.join(dataDir, "decorations.json")
-  );
+  const crafting = readJson<{ decorations: Decoration[] }>(path.join(dataDir, "decorations.json"));
   const tree = readJson<{ map: WeaponTreeNode[] }>(
-    path.join(contentDir, "decorations", "map.json")
+    path.join(contentDir, "decorations", "map.json"),
   );
   const items = crafting.decorations
     .filter((d) => !("donotrender" in d))
@@ -389,7 +406,7 @@ for (const category of MONSTER_CATEGORIES) {
         ? weaponRefs.get(`${e.type}|${e.name}`)
         : armorRefs.get(e.sex ? `${slot}|${e.name}|${e.sex}` : `${slot}|${e.name}`);
       return ref ?? null;
-    })
+    }),
   );
   push("equipment-ids.json", out);
 }
@@ -510,10 +527,12 @@ const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;
 
 console.log(
-  `generate-data: ${files.length} bundles, ${totalItems} items → public/data  raw=${fmt(totalRaw)}  gzip≈${fmt(totalGzip)}  version=${version}`
+  `generate-data: ${files.length} bundles, ${totalItems} items → public/data  raw=${fmt(totalRaw)}  gzip≈${fmt(totalGzip)}  version=${version}`,
 );
 
 if (totalRaw > BUDGET_BYTES) {
-  console.error(`generate-data: FAIL — raw size ${fmt(totalRaw)} exceeds budget ${fmt(BUDGET_BYTES)}`);
+  console.error(
+    `generate-data: FAIL — raw size ${fmt(totalRaw)} exceeds budget ${fmt(BUDGET_BYTES)}`,
+  );
   process.exit(1);
 }

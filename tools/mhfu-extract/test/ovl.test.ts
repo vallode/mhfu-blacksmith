@@ -5,8 +5,15 @@ import { OVL_HEADER_SIZE, OvlFormatError, parseOvl } from "../src/container/ovl.
 const LOAD_BASE = 0x09a5a580;
 
 /** Builds a synthetic MWo3-framed buffer: header + `dataSize` bytes of mapped image. */
-function buildOvl(options: { name?: string; loadBase?: number; loadEnd?: number; dataSize?: number } = {}): Buffer {
-  const { name = "game_task.ovl", loadBase = LOAD_BASE, loadEnd = loadBase + 0x1000, dataSize = 0x200 } = options;
+function buildOvl(
+  options: { name?: string; loadBase?: number; loadEnd?: number; dataSize?: number } = {},
+): Buffer {
+  const {
+    name = "game_task.ovl",
+    loadBase = LOAD_BASE,
+    loadEnd = loadBase + 0x1000,
+    dataSize = 0x200,
+  } = options;
   const buf = Buffer.alloc(OVL_HEADER_SIZE + dataSize);
   buf.write("MWo3", 0, "latin1");
   buf.writeUInt32LE(0x0a, 0x04); // unk1, arbitrary
@@ -21,7 +28,9 @@ function buildOvl(options: { name?: string; loadBase?: number; loadEnd?: number;
 }
 
 test("parseOvl reads the MWo3 header fields", () => {
-  const ovl = parseOvl(buildOvl({ name: "game_task.ovl", loadBase: 0x09a5a580, loadEnd: 0x09c0c16c }));
+  const ovl = parseOvl(
+    buildOvl({ name: "game_task.ovl", loadBase: 0x09a5a580, loadEnd: 0x09c0c16c }),
+  );
   assert.equal(ovl.name, "game_task.ovl");
   assert.equal(ovl.loadBase, 0x09a5a580);
   assert.equal(ovl.loadEnd, 0x09c0c16c);
@@ -72,7 +81,9 @@ test("known real hitzone bytes: Felyne (monster ID 9) and Mosswine (monster ID 4
   // elsewhere entirely.
   const felyneOffset = 0x165f19;
   const mosswineOffset = 0x165d89;
-  const ovl = parseOvl(buildOvl({ loadBase: 0x09a5a580, dataSize: Math.max(felyneOffset, mosswineOffset) + 24 }));
+  const ovl = parseOvl(
+    buildOvl({ loadBase: 0x09a5a580, dataSize: Math.max(felyneOffset, mosswineOffset) + 24 }),
+  );
 
   const felyneBytes = Buffer.from("787878646464640a64646464640000640000006464646400", "hex");
   const mosswineBytes = Buffer.from("969678646464640a00646464640000640000006464646400", "hex");
@@ -81,8 +92,14 @@ test("known real hitzone bytes: Felyne (monster ID 9) and Mosswine (monster ID 4
 
   assert.equal(ovl.vaddrToOffset(0x09bc0419), felyneOffset);
   assert.equal(ovl.vaddrToOffset(0x09bc0289), mosswineOffset);
-  assert.ok(ovl.reader.buf.subarray(felyneOffset, felyneOffset + felyneBytes.length).equals(felyneBytes));
-  assert.ok(ovl.reader.buf.subarray(mosswineOffset, mosswineOffset + mosswineBytes.length).equals(mosswineBytes));
+  assert.ok(
+    ovl.reader.buf.subarray(felyneOffset, felyneOffset + felyneBytes.length).equals(felyneBytes),
+  );
+  assert.ok(
+    ovl.reader.buf
+      .subarray(mosswineOffset, mosswineOffset + mosswineBytes.length)
+      .equals(mosswineBytes),
+  );
 });
 
 test("known real reward bytes: Giaprey (monster ID 35) low-rank body carve table in game_sub.ovl", () => {
@@ -92,17 +109,26 @@ test("known real reward bytes: Giaprey (monster ID 35) low-rank body carve table
   // offset. No static pointer/index-table entry referencing this address
   // could be found anywhere in the file.
   const giapreyOffset = 0xbb458;
-  const ovl = parseOvl(buildOvl({ name: "game_sub.ovl", loadBase: 0x09c14280, dataSize: giapreyOffset + 24 }));
+  const ovl = parseOvl(
+    buildOvl({ name: "game_sub.ovl", loadBase: 0x09c14280, dataSize: giapreyOffset + 24 }),
+  );
 
   const giapreyBytes = Buffer.from("340054011e00560112001901ffff00000a00210231001402", "hex");
   giapreyBytes.copy(ovl.reader.buf, giapreyOffset);
 
   assert.equal(ovl.vaddrToOffset(0x09ccf658), giapreyOffset);
-  assert.ok(ovl.reader.buf.subarray(giapreyOffset, giapreyOffset + giapreyBytes.length).equals(giapreyBytes));
+  assert.ok(
+    ovl.reader.buf
+      .subarray(giapreyOffset, giapreyOffset + giapreyBytes.length)
+      .equals(giapreyBytes),
+  );
 
   const entries: Array<{ chance: number; itemId: number }> = [];
   for (let offset = giapreyOffset; ovl.reader.buf.readUInt16LE(offset) !== 0xffff; offset += 4) {
-    entries.push({ chance: ovl.reader.buf.readUInt16LE(offset), itemId: ovl.reader.buf.readUInt16LE(offset + 2) });
+    entries.push({
+      chance: ovl.reader.buf.readUInt16LE(offset),
+      itemId: ovl.reader.buf.readUInt16LE(offset + 2),
+    });
   }
   assert.deepEqual(entries, [
     { chance: 52, itemId: 340 }, // Giaprey Scale

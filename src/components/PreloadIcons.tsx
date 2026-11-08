@@ -24,9 +24,7 @@ function iconUrls(): string[] {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir, { withFileTypes: true })
-    .filter(
-      (e) => e.isFile() && e.name.endsWith(".png") && !NOT_ICONS.has(e.name),
-    )
+    .filter((e) => e.isFile() && e.name.endsWith(".png") && !NOT_ICONS.has(e.name))
     .map((e) => `/images/${e.name}`)
     .sort();
 }

@@ -39,7 +39,7 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
       {toasts.map((t) => (
         <div
           key={t.id}
-          className="card-frame pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] px-[2.4rem] pt-[2.2rem] pb-[1.8rem] motion-reduce:animate-none"
+          className="pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] card-frame px-[2.4rem] pt-[2.2rem] pb-[1.8rem] motion-reduce:animate-none"
           role="status"
         >
           <button
@@ -56,18 +56,11 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
             </p>
           )}
           <p className="m-0 text-[1.5rem] leading-[1.35] text-inherit">{t.message}</p>
-          {t.progress != null && (
-            <progress className={progressBar} value={t.progress} max={100} />
-          )}
+          {t.progress != null && <progress className={progressBar} value={t.progress} max={100} />}
           {t.actions && t.actions.length > 0 && (
             <div className="mt-[0.2rem] flex flex-wrap gap-[0.6rem]">
               {t.actions.map((a) => (
-                <button
-                  key={a.label}
-                  type="button"
-                  className={actionButton}
-                  onClick={a.onClick}
-                >
+                <button key={a.label} type="button" className={actionButton} onClick={a.onClick}>
                   {a.label}
                 </button>
               ))}

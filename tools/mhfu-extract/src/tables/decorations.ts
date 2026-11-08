@@ -3,7 +3,12 @@
  * in vendor/mhp2g-patterns/patterns/eboot.hexpat — MIT, see ../../NOTICE.md.
  */
 import { BinaryReader } from "../binary/reader.js";
-import { DECO_SKILL_ENTRY_SIZE, ITEM_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
+import {
+  DECO_SKILL_ENTRY_SIZE,
+  ITEM_ENTRY_SIZE,
+  TABLE_COUNTS,
+  resolveTableOffset,
+} from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
 export interface DecorationValue {
@@ -37,7 +42,10 @@ export interface DecorationValue {
  * to JP's static table — pass e.g. `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to
  * read from a different region.
  */
-export function readDecorationValues(reader: BinaryReader, resolver?: TableAddressResolver): DecorationValue[] {
+export function readDecorationValues(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): DecorationValue[] {
   const base = resolveTableOffset("decorationValues", reader, resolver);
   const out: DecorationValue[] = [];
   for (let i = 0; i < TABLE_COUNTS.decorations; i++) {
@@ -83,7 +91,10 @@ export interface DecorationSkill {
  * DecoSkills[168], 16 bytes/entry. Returns only the 168 real entries.
  * See readDecorationValues() for `resolver`.
  */
-export function readDecorationSkills(reader: BinaryReader, resolver?: TableAddressResolver): DecorationSkill[] {
+export function readDecorationSkills(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): DecorationSkill[] {
   const dummyBase = resolveTableOffset("decorationSkills", reader, resolver);
   const base = dummyBase + DECO_SKILL_ENTRY_SIZE; // skip the hidden dummy slot
   const count = TABLE_COUNTS.decorations - 1; // 169 total incl. dummy -> 168 real
@@ -121,7 +132,7 @@ export function readDecorationSkills(reader: BinaryReader, resolver?: TableAddre
  */
 export function resolveDecorationSkill(
   skills: DecorationSkill[],
-  skillTblId: number
+  skillTblId: number,
 ): DecorationSkill | undefined {
   return skills[skillTblId - 2];
 }

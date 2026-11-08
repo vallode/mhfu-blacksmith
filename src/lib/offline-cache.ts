@@ -1,9 +1,4 @@
-import {
-  WEAPON_TYPES,
-  ARMOR_SLOTS,
-  ARMOR_RANKS,
-  MONSTER_CATEGORIES,
-} from "./constants";
+import { WEAPON_TYPES, ARMOR_SLOTS, ARMOR_RANKS, MONSTER_CATEGORIES } from "./constants";
 
 const RUNTIME_CACHE = "mhfu-offline-v1";
 // Matches the `cacheName: "pages"` runtime-caching rule in next.config.ts —
@@ -29,14 +24,10 @@ interface Manifest {
  * up front so search and any page you do open work offline.
  */
 export async function collectOfflineUrls(): Promise<string[]> {
-  const manifest: Manifest = await fetch("/data/data-manifest.json").then((r) =>
-    r.json()
-  );
+  const manifest: Manifest = await fetch("/data/data-manifest.json").then((r) => r.json());
   const urls = (manifest.files ?? []).map((f) => `/data/${f}`);
   try {
-    const images: string[] = await fetch("/data/image-manifest.json").then((r) =>
-      r.json()
-    );
+    const images: string[] = await fetch("/data/image-manifest.json").then((r) => r.json());
     urls.push(...images);
   } catch {
     // image manifest missing; data-only offline is still useful
@@ -85,7 +76,7 @@ const FETCH_TIMEOUT_MS = 15000;
 
 export async function downloadOffline(
   urls: string[],
-  onProgress: (done: number, total: number) => void
+  onProgress: (done: number, total: number) => void,
 ): Promise<number> {
   const cache = await caches.open(RUNTIME_CACHE);
 
@@ -127,7 +118,7 @@ export async function downloadOffline(
         } finally {
           clearTimeout(timer);
         }
-      })
+      }),
     );
   } catch {
     // caches API hiccup; data/images above are the important part
@@ -141,9 +132,5 @@ export async function clearOffline(): Promise<void> {
 }
 
 export function cachesSupported(): boolean {
-  return (
-    typeof window !== "undefined" &&
-    "serviceWorker" in navigator &&
-    "caches" in window
-  );
+  return typeof window !== "undefined" && "serviceWorker" in navigator && "caches" in window;
 }

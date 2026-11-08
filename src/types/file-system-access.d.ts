@@ -11,12 +11,8 @@ declare global {
   }
 
   interface FileSystemHandle {
-    queryPermission(
-      descriptor?: FileSystemHandlePermissionDescriptor
-    ): Promise<PermissionState>;
-    requestPermission(
-      descriptor?: FileSystemHandlePermissionDescriptor
-    ): Promise<PermissionState>;
+    queryPermission(descriptor?: FileSystemHandlePermissionDescriptor): Promise<PermissionState>;
+    requestPermission(descriptor?: FileSystemHandlePermissionDescriptor): Promise<PermissionState>;
   }
 
   interface FileSystemFileHandleAcceptOption {
@@ -31,8 +27,6 @@ declare global {
   }
 
   interface Window {
-    showOpenFilePicker?(
-      options?: OpenFilePickerOptions
-    ): Promise<FileSystemFileHandle[]>;
+    showOpenFilePicker?(options?: OpenFilePickerOptions): Promise<FileSystemFileHandle[]>;
   }
 }

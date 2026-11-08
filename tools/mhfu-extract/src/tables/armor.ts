@@ -188,7 +188,10 @@ function readArmorValueEntry(reader: BinaryReader, off: number, index: number): 
  *   see module doc comment above for why armor needs this different
  *   strategy from every other table.
  */
-export function readArmorValues(reader: BinaryReader, resolver?: TableAddressResolver): Record<ArmorSlot, ArmorValueEntry[]> {
+export function readArmorValues(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<ArmorSlot, ArmorValueEntry[]> {
   const result = {} as Record<ArmorSlot, ArmorValueEntry[]>;
   const ptrTableOffset = resolver ? undefined : tableOffset("armorValuePointers");
   for (const slot of ARMOR_SLOTS) {

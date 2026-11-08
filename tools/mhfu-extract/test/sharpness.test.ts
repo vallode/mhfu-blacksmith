@@ -6,7 +6,9 @@ import { fixtureReader } from "./helpers.js";
 
 test("readSharpnessTable decodes cumulative thresholds in color order", () => {
   const base = tableOffset("sharpnessTable");
-  const { buf, reader } = fixtureReader(base + TABLE_COUNTS.sharpnessEntries * SHARPNESS_ENTRY_SIZE);
+  const { buf, reader } = fixtureReader(
+    base + TABLE_COUNTS.sharpnessEntries * SHARPNESS_ENTRY_SIZE,
+  );
 
   const cumulative = [90, 130, 240, 310, 370, 410, 450];
   cumulative.forEach((v, i) => buf.writeUInt16LE(v, base + i * 2));
@@ -27,7 +29,15 @@ test("readSharpnessTable decodes cumulative thresholds in color order", () => {
 test("sharpnessStepWidths converts cumulative thresholds into per-color widths", () => {
   const entry = {
     index: 0,
-    cumulative: { red: 90, orange: 130, yellow: 240, green: 310, blue: 370, white: 410, purple: 450 },
+    cumulative: {
+      red: 90,
+      orange: 130,
+      yellow: 240,
+      green: 310,
+      blue: 370,
+      white: 410,
+      purple: 450,
+    },
   };
   assert.deepEqual(sharpnessStepWidths(entry), {
     red: 90,

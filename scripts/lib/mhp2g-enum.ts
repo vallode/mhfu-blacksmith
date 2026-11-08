@@ -13,7 +13,9 @@ export function readEnumFile(file: string): Map<string, string[]> {
   const source = fs.readFileSync(path.join(INCLUDES, file), "utf-8");
   const tables = new Map<string, string[]>();
   for (const block of source.matchAll(/str\s+(\w+)\s*\[\s*\d+\s*\]\s*=\s*\{([\s\S]*?)\};/g)) {
-    const names = [...block[2].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((m) => m[1].replace(/\\(.)/g, "$1").trim());
+    const names = [...block[2].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((m) =>
+      m[1].replace(/\\(.)/g, "$1").trim(),
+    );
     tables.set(block[1], names);
   }
   return tables;
