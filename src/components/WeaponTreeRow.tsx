@@ -64,14 +64,13 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
 /**
  * Materials for the hunter's best way to make a weapon (its create recipe, or
  * its improve recipe from an owned parent): one square each, filled when the item box has enough and hollow
- * when short, then a have/total count. Pushed to the row's right edge.
+ * when short. Pushed to the row's right edge.
  */
 function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
   const have = materials.filter((m) => m.have >= m.need).length;
-  const all = have === materials.length;
   return (
     <span
-      className="relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-1 pl-4"
+      className="relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-[3px] pl-4 opacity-60"
       role="img"
       aria-label={`${have} of ${materials.length} materials owned`}
       title={materials
@@ -82,19 +81,11 @@ function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
         <span
           key={i}
           className={cn(
-            "size-[10px] border-2 border-rarity-9",
+            "size-[8px] border border-rarity-9",
             m.have >= m.need && "border-positive bg-positive",
           )}
         />
       ))}
-      <span
-        className={cn(
-          "ml-[2px] text-[15px] leading-none whitespace-nowrap",
-          all ? "text-white" : "text-rarity-9",
-        )}
-      >
-        {have}/{materials.length}
-      </span>
     </span>
   );
 }
@@ -152,10 +143,6 @@ export default function WeaponTreeRow({
     isExternal && "text-muted",
     // The current page's row keeps a steady (non-pulsing) highlight.
     isActive && "before:animate-none before:[background:var(--gradient-hover-glow)]",
-    // Weapons the hunter can make right now get a softer resting highlight.
-    ready &&
-      !isActive &&
-      "[&:not(:hover):not(:focus)]:before:[background:var(--gradient-upgrade-glow)]",
     // Ruled out by the tree filter.
     dimmed && "opacity-30",
   );
