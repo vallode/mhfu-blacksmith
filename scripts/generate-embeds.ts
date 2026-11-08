@@ -3,7 +3,8 @@
  * (git-ignored; runs in `pnpm build` before `next build`):
  *
  * - icons/<type>-<tint>.png: 180px thumbnails, the site's in-game icon sprite
- *   tinted the way the site tints it (multiply), in the site's card frame.
+ *   tinted the way the site tints it (multiply), in the site's blue card frame,
+ *   with a transparent background.
  *   See embedIcon() in src/lib/seo.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
@@ -34,20 +35,20 @@ const outDir = path.join(publicDir, "embed");
 const SIZE = 180;
 /** Sprites are 26px; 5× sits inside the frame with a margin. */
 const SCALE = 5;
-/** The favicon background colour (public/images/favicons/favicon-background.png). */
-const BACKGROUND = [34, 40, 28];
-
 const hexToRgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 
-/** Source-over: colour `top` at opacity `a` over `under`. */
-const over = (top: number[], a: number, under: number[]) =>
-  under.map((u, c) => Math.round(top[c] * a + u * (1 - a)));
+/** Source-over of a straight-alpha RGBA colour onto another. */
+function over(top: number[], under: number[]): number[] {
+  const a = top[3] + under[3] * (1 - top[3]);
+  if (a === 0) return [0, 0, 0, 0];
+  const rgb = [0, 1, 2].map((c) => (top[c] * top[3] + under[c] * under[3] * (1 - top[3])) / a);
+  return [...rgb, a];
+}
 
 async function writeIcons() {
-  // scripts/lib/embed-frame.png is the site's card frame (the card-frame
-  // utility in globals.css) drawn by the browser at 180px. Its fill is
-  // translucent, so it goes over the favicon background to make the icon
-  // solid; the gaps along its edge stay transparent.
+  // scripts/lib/embed-frame.png is the site's blue card frame (the
+  // card-frame-blue utility in globals.css, without its fill) drawn by the
+  // browser at 180px. Inside it the icon is transparent.
   const frame = await sharp(path.join(process.cwd(), "scripts/lib/embed-frame.png"))
     .ensureAlpha()
     .raw()
@@ -71,9 +72,7 @@ async function writeIcons() {
       for (let y = 0; y < SIZE; y++) {
         for (let x = 0; x < SIZE; x++) {
           const o = (y * SIZE + x) * 4;
-          const frameAlpha = frame[o + 3] / 255;
-          if (frameAlpha === 0) continue; // a gap in the frame's edge
-          let rgb = over([frame[o], frame[o + 1], frame[o + 2]], frameAlpha, BACKGROUND);
+          let px = [frame[o], frame[o + 1], frame[o + 2], frame[o + 3] / 255];
 
           const sx = Math.floor((x - left) / SCALE);
           const sy = Math.floor((y - top) / SCALE);
@@ -81,12 +80,12 @@ async function writeIcons() {
             const i = (sy * info.width + sx) * 4;
             // Sprite colour × tint (the site's mix-blend-mode: multiply).
             const tinted = [0, 1, 2].map((c) => (sprite[i + c] * tint[c]) / 255);
-            rgb = over(tinted, sprite[i + 3] / 255, rgb);
+            px = over([...tinted, sprite[i + 3] / 255], px);
           }
-          out[o] = rgb[0];
-          out[o + 1] = rgb[1];
-          out[o + 2] = rgb[2];
-          out[o + 3] = 255;
+          out[o] = Math.round(px[0]);
+          out[o + 1] = Math.round(px[1]);
+          out[o + 2] = Math.round(px[2]);
+          out[o + 3] = Math.round(px[3] * 255);
         }
       }
       await sharp(out, { raw: { width: SIZE, height: SIZE, channels: 4 } })
