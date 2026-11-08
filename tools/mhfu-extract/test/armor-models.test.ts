@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { ARMOR_MODEL_LAYOUT, armorModelPath } from "../src/tables/armor-models.js";
+import { ARMOR_MODEL_LAYOUT, armorModelPath, readArmorModelIds } from "../src/tables/armor-models.js";
+import { BinaryReader } from "../src/binary/reader.js";
+import { MHP2G_EU_RESOLVER } from "../src/games/mhp2g.js";
+import { ARMOR_SLOT_TABLE_NAMES_EU } from "../src/tables/eu-signatures.js";
 import { loadFileList } from "../src/container/filelist.js";
 
 test("armor model layout counts match the site's equipment ID lists", () => {
@@ -19,4 +22,25 @@ test("armorModelPath names real DATA.BIN files", () => {
     assert.ok(paths.has(armorModelPath(slot, "m", 1)), slot);
     assert.ok(paths.has(armorModelPath(slot, "f", 1)), slot);
   }
+});
+
+test("readArmorModelIds reads each site slot from its own array (EU signature path)", () => {
+  // Real EU offsets; each signature is that array's first two real entries.
+  const offsets: Record<string, number> = {
+    armorValuesHead: 0x161808,
+    armorValuesChest: 0x165c28,
+    armorValuesArm: 0x169dc8,
+    armorValuesWaist: 0x16de00,
+    armorValuesLeg: 0x171de8,
+  };
+  const buf = Buffer.alloc(0x180000);
+  for (const [name, off] of Object.entries(offsets)) ARMOR_SLOT_TABLE_NAMES_EU[name]!.signature.copy(buf, off);
+  const ids = readArmorModelIds(new BinaryReader(buf), MHP2G_EU_RESOLVER);
+  // Entry 1 of each slot (Leather Helm, ..., Green Pants), from real bytes.
+  assert.deepEqual(
+    Object.fromEntries(Object.entries(ids).map(([slot, e]) => [slot, [e[1]!.maleId, e[1]!.femaleId]])),
+    { helmet: [15, 17], plate: [6, 36], gauntlets: [6, 35], waist: [6, 25], leggings: [6, 26] }
+  );
+  assert.equal(ids.helmet.length, 436);
+  assert.equal(ids.leggings.length, 420);
 });

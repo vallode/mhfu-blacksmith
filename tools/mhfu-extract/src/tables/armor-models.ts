@@ -2,25 +2,14 @@
  * Per-slot armor model IDs (`ArmorValue.MaleID`/`FemaleID`) and the
  * `player/{m,f}/<folder>/` model files they index.
  *
- * `ArmorValuePTR`'s five arrays are NOT in the order `tables/armor.ts`
- * labels them (head, chest, arm, waist, leg). Each array actually holds the
- * *next* slot's armor: the one labeled "chest" is helmets, "arm" is chest
- * plates, "waist" is gauntlets, "leg" is waist and "head" is leggings. So
- * the per-array counts rotate too (helmets are 436 entries, not 420).
- * Confirmed two independent ways on an EU EBOOT:
- *
- * - Stats: each array's (defense, slots, skills) match ~240 entries of the
- *   site's data for the rotated slot and only a handful for its own label.
- * - Models: each array's highest male and female IDs are exactly the last
- *   file in the rotated slot's folder (e.g. the "leg" array's maxima 296/295
- *   are `m_wst296`/`f_wst295`, the last waist models), and with the rotated
- *   counts no ID falls outside its folder.
- *
- * `tables/armor.ts` (and so `emit/armor.ts`) still uses the unrotated
- * labels; this module reads only the model IDs, with the corrected order.
+ * Reads the same arrays as `tables/armor.ts`, through its
+ * `ARMOR_POINTER_INDEX` / `ARMOR_SLOT_TABLE_NAMES`, so each site slot gets
+ * its own array and count. Confirmed on an EU EBOOT: each array's highest
+ * male and female IDs are exactly the last file in that slot's folder (e.g.
+ * waist's 296/295 are `m_wst296`/`f_wst295`), and no ID falls outside it.
  */
 import { BinaryReader, readPointer } from "../binary/reader.js";
-import { ARMOR_SLOT_TABLE_NAMES, type ArmorSlot } from "./armor.js";
+import { ARMOR_POINTER_INDEX, ARMOR_SLOT_COUNTS, ARMOR_SLOT_TABLE_NAMES, type ArmorSlot } from "./armor.js";
 import { ARMOR_ENTRY_SIZE, JP_BASE_ADDRESS, tableOffset } from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
@@ -28,7 +17,7 @@ import type { TableAddressResolver } from "./resolver.js";
 export type SiteArmorSlot = "helmet" | "plate" | "gauntlets" | "waist" | "leggings";
 
 interface SlotLayout {
-  /** The `ArmorValuePTR` array (by tables/armor.ts' label) that holds this slot. */
+  /** This slot's name in tables/armor.ts. */
   array: ArmorSlot;
   count: number;
   /** Model folder under `player/m/` and `player/f/`. */
@@ -36,15 +25,12 @@ interface SlotLayout {
 }
 
 export const ARMOR_MODEL_LAYOUT: Record<SiteArmorSlot, SlotLayout> = {
-  helmet: { array: "chest", count: 436, folder: "hair" },
-  plate: { array: "arm", count: 420, folder: "body" },
-  gauntlets: { array: "waist", count: 411, folder: "arm" },
-  waist: { array: "leg", count: 409, folder: "wst" },
-  leggings: { array: "head", count: 420, folder: "reg" },
+  helmet: { array: "head", count: ARMOR_SLOT_COUNTS.head, folder: "hair" },
+  plate: { array: "chest", count: ARMOR_SLOT_COUNTS.chest, folder: "body" },
+  gauntlets: { array: "arm", count: ARMOR_SLOT_COUNTS.arm, folder: "arm" },
+  waist: { array: "waist", count: ARMOR_SLOT_COUNTS.waist, folder: "wst" },
+  leggings: { array: "leg", count: ARMOR_SLOT_COUNTS.leg, folder: "reg" },
 };
-
-/** Position of each labeled array within the JP `ArmorValuePTR` pointer table. */
-const POINTER_INDEX: Record<ArmorSlot, number> = { head: 0, chest: 1, arm: 2, waist: 3, leg: 4 };
 
 export interface ArmorModelIds {
   /** Equipment ID, i.e. the index into data/equipment-ids.json's slot list. */
@@ -59,7 +45,7 @@ export function readArmorModelIds(reader: BinaryReader, resolver?: TableAddressR
   for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT) as [SiteArmorSlot, SlotLayout][]) {
     const base = resolver
       ? resolver.resolve(ARMOR_SLOT_TABLE_NAMES[layout.array], reader.buf)
-      : readPointer(reader, ptrTable! + POINTER_INDEX[layout.array] * 4, JP_BASE_ADDRESS);
+      : readPointer(reader, ptrTable! + ARMOR_POINTER_INDEX[layout.array] * 4, JP_BASE_ADDRESS);
     const entries: ArmorModelIds[] = [];
     for (let i = 0; i < layout.count; i++) {
       const at = base + i * ARMOR_ENTRY_SIZE;
