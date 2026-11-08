@@ -146,6 +146,7 @@ export interface CompactDecoration {
   cc?: number; // create_cost
   sk?: number[]; // skills stringIdx[]
   cm?: MatTuple[];
+  mr?: MinRankTuple; // earliest quest progress needed to make it
 }
 
 // ---------------------------------------------------------------------------
@@ -394,5 +395,6 @@ export function decodeDecoration(d: Dictionaries, x: CompactDecoration): Decorat
     create_cost: x.cc ?? null,
     skills: x.sk ? x.sk.map((si) => str(d, si)) : undefined,
     create_mats: decodeMats(d, x.cm),
+    min_rank: decodeMinRank(x.mr),
   };
 }

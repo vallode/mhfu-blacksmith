@@ -392,7 +392,7 @@ export function loadSetSearchData(): Promise<SearchData> {
         );
         const decorations = (decoBundle as DecorationBundle).items.map((cd) => {
           const d = decodeDecoration(dict, cd);
-          return { ...d, skills: d.skills ?? [] };
+          return { ...d, skills: d.skills ?? [], minRank: d.min_rank };
         });
         return prepareSearchData(skills.skills, armor, decorations);
       })

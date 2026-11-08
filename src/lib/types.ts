@@ -171,4 +171,6 @@ export interface Decoration {
   create_cost?: number | null;
   skills?: string[];
   create_mats?: Material[];
+  /** Earliest quest progress it can be made at (generated, see min-rank.ts). */
+  min_rank?: MinRank;
 }

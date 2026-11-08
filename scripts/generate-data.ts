@@ -300,7 +300,7 @@ function encodeMonster(m: Monster): CompactMonster {
   return out;
 }
 
-function encodeDecoration(x: Decoration): CompactDecoration {
+function encodeDecoration(x: Decoration, minRank: Progress): CompactDecoration {
   const out: CompactDecoration = { n: x.name, s: x.slug };
   if (x.color) out.c = x.color;
   const rarity = toNum(x.rarity);
@@ -313,6 +313,8 @@ function encodeDecoration(x: Decoration): CompactDecoration {
   }
   const cm = matTuples(x.create_mats);
   if (cm) out.cm = cm;
+  const mr = encodeMinRank(minRank);
+  if (mr) out.mr = mr;
   return out;
 }
 
@@ -431,7 +433,7 @@ for (const category of MONSTER_CATEGORIES) {
   );
   const items = crafting.decorations
     .filter((d) => !("donotrender" in d))
-    .map((d) => encodeDecoration({ ...d, slug: slugify(d.name) }));
+    .map((d) => encodeDecoration({ ...d, slug: slugify(d.name) }, minRanks.decoration(d)));
   totalItems += items.length;
   push("decorations.json", {
     kind: "decoration",

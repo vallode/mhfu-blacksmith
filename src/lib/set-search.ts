@@ -73,6 +73,8 @@ export interface DecorationInput {
   rarity?: number;
   /** "Attack +1" style strings. */
   skills?: string[];
+  /** Earliest quest progress the decoration can be made at (see min-rank.ts). */
+  minRank?: Tier;
 }
 
 export interface Piece {
@@ -108,6 +110,8 @@ export interface Deco {
   color?: string;
   rarity?: number;
   points: Record<string, number>;
+  /** Earliest quest progress the decoration can be made at. */
+  minRank?: Tier;
 }
 
 export interface SearchData {
@@ -192,6 +196,7 @@ export function prepareSearchData(
       slots: d.slots ?? 1,
       color: d.color,
       rarity: d.rarity,
+      minRank: d.minRank,
       points,
     };
   });
@@ -234,8 +239,8 @@ export interface SearchQuery {
   /** Only use these pieces (e.g. the hunter's equipment box). */
   onlyPieces?: number[];
   /**
-   * The hunter's quest progress: leave out pieces that need materials from
-   * later quests. Null or omitted uses every piece.
+   * The hunter's quest progress: leave out pieces and decorations that need
+   * materials from later quests. Null or omitted uses all of them.
    */
   progress?: Tier | null;
   /** Never use these pieces. */
@@ -558,7 +563,10 @@ export function searchSets(
   );
   if (classes.some((c) => c.length === 0)) return done([]);
 
-  const options = decoOptions(data.decorations, trees);
+  const options = decoOptions(
+    data.decorations.filter((d) => isAvailable(d.minRank, query.progress ?? null)),
+    trees,
+  );
   // Best points per decoration slot, per wanted tree (for the bounds).
   const perSlot = trees.map((_, i) =>
     options[i].reduce((best, o) => Math.max(best, o.vec[i] / o.size), 0),

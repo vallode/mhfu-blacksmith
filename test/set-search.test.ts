@@ -260,6 +260,24 @@ describe("searchSets (hand-made)", () => {
     assert.deepEqual(names({ rank: "low-rank", stars: 1 }), []);
   });
 
+  test("leaves out decorations beyond the quest progress", () => {
+    const decos: DecorationInput[] = [
+      {
+        name: "Late Jewel",
+        slug: "late-jewel",
+        slots: 1,
+        skills: ["Attack +10"],
+        minRank: { rank: "g-rank", stars: 8 },
+      },
+    ];
+    const data = prepareSearchData(tiny, filler(1), decos);
+    const found = (progress: SearchQuery["progress"]) =>
+      searchSets(data, query(["Attack Up (Small)"], { progress })).sets.length;
+    assert.equal(found(null), 1);
+    assert.equal(found({ rank: "g-rank", stars: 8 }), 1);
+    assert.equal(found({ rank: "high-rank", stars: 9 }), 0);
+  });
+
   test("decoration negatives count against other wanted skills", () => {
     const armor = [
       ...filler(0).filter((p) => p.slot !== "plate"),

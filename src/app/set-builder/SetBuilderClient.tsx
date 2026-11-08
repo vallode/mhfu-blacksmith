@@ -247,8 +247,8 @@ export default function SetBuilderClient() {
                     <Link className="underline hover:text-white" href="/options/">
                       Options
                     </Link>{" "}
-                    page) leaves out armor that needs materials from later quests. Turn on to search
-                    all armor.
+                    page) leaves out armor and decorations that need materials from later quests.
+                    Turn on to search all of them.
                   </>
                 }
                 value={form.ignoreQuestProgress}
