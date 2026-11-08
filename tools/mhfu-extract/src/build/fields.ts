@@ -27,7 +27,9 @@ export type FieldKind =
   /** Weapon upgrade-tree names (`improve_from`/`improve_to`), compared as a set of game IDs. */
   | "weapon-refs"
   /** Unordered list of plain values (bow/bowgun `coatings`, `elements`). */
-  | "set";
+  | "set"
+  /** A percentage (`"10%"`, `"-5%"`, or a bare `"0"`), compared by its number. */
+  | "percent";
 
 export interface FieldSpec {
   field: string;
@@ -155,6 +157,14 @@ export function buildSpellingIndex(
 // Canonical forms
 // ---------------------------------------------------------------------------
 
+/** The number in a percentage string or number; `null` when there isn't one. */
+export function percentValue(value: unknown): number | null {
+  if (typeof value === "number") return value;
+  if (typeof value !== "string") return null;
+  const match = /^\s*([+-]?\d+(?:\.\d+)?)\s*%?\s*$/.exec(value);
+  return match ? Number(match[1]) : null;
+}
+
 function list(value: unknown): unknown[] {
   if (value === null || value === undefined) return [];
   return Array.isArray(value) ? value : [value];
@@ -223,6 +233,10 @@ export function canonical(
           .map((v) => JSON.stringify(v))
           .sort(),
       );
+    case "percent": {
+      const n = percentValue(value);
+      return n === null ? JSON.stringify(value ?? null) : String(n);
+    }
   }
 }
 
@@ -362,5 +376,9 @@ export function toSite(
       return materialsToSite(disc, siteItem, ctx);
     case "weapon-refs":
       return weaponRefsToSite(disc, spec.field, ctx);
+    case "percent": {
+      const n = percentValue(disc);
+      return n === null ? disc : `${n}%`;
+    }
   }
 }

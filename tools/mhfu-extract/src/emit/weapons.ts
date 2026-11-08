@@ -193,6 +193,28 @@ export interface EmittedWeapon {
   coatings?: string[];
 }
 
+/**
+ * Extra affinity a blademaster weapon shows for its sharpness, in points,
+ * indexed by `sharpnessAmount` (vallode/mhfu-blacksmith#33).
+ *
+ * `WepBMValues.Affinity` is the base value. The committed site values
+ * add 5 points to positive affinity when `sharpnessAmount` is 4, and 10
+ * when it is 5 or 6. Zero and negative affinity never change, and gunner
+ * weapons have no `sharpnessAmount`. Derived by correlating every raw
+ * struct on the EU disc against `data/weapons/*.json`: 106 of the 108
+ * positive-affinity weapons at amount 4–6 follow it, and 52 of the 53 at
+ * amount 0–3 show no bonus. No other struct field (rarity, the unknown bytes)
+ * separates the cases. This is a correlation, not a read of the game's
+ * code, so the table holds only the amounts seen.
+ */
+const SHARPNESS_AFFINITY_BONUS: readonly number[] = [0, 0, 0, 0, 5, 10, 10];
+
+/** The affinity a blademaster weapon shows: base affinity plus its sharpness bonus. */
+export function blademasterAffinity(affinity: number, sharpnessAmount: number): number {
+  if (affinity <= 0) return affinity;
+  return affinity + (SHARPNESS_AFFINITY_BONUS[sharpnessAmount] ?? 0);
+}
+
 export function emitBlademasterWeapons(
   reader: BinaryReader,
   resolver?: TableAddressResolver,
@@ -248,7 +270,7 @@ export function emitBlademasterWeapons(
       attack: Math.round((w.attack * classMod) / 100),
       sharpness: sharp.sharpness,
       sharpness_plus: sharp.sharpnessPlus,
-      affinity: `${w.affinity}%`,
+      affinity: `${blademasterAffinity(w.affinity, w.sharpnessAmount)}%`,
       slots: w.slots,
       bonus: null,
       rarity: displayRarity(w.rarity),

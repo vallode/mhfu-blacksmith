@@ -3986,7 +3986,7 @@
         10,
         8
       ],
-      "affinity": "15%",
+      "affinity": "20%",
       "slots": 2,
       "bonus": null,
       "rarity": 7,
@@ -4147,7 +4147,7 @@
         3,
         1
       ],
-      "affinity": "30%",
+      "affinity": "25%",
       "slots": 1,
       "bonus": "15",
       "rarity": 9,
