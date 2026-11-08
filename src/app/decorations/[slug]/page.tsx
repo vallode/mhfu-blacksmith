@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getDecorations, getDecoration } from "@/lib/decorations";
 import type { Metadata, Viewport } from "next";
-import { accentViewport, tintFor, decorationDescription, pageMetadata } from "@/lib/seo";
+import { accentViewport, decorationDescription, embedIcon, pageMetadata, tintFor } from "@/lib/seo";
 import DecorationDetailClient from "./DecorationDetailClient";
 
 interface Props {
@@ -20,6 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: deco.name,
     description: decorationDescription(deco),
     path: `/decorations/${slug}/`,
+    image: embedIcon("decoration", deco.rarity, deco.color),
+    oembed: true,
   });
 }
 

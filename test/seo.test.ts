@@ -1,10 +1,18 @@
 /**
- * Link-preview text (lib/seo.ts): the emoji sharpness bar, title casing and
- * the weapon description layout, on small hand-made inputs.
+ * Link-preview metadata (lib/seo.ts): the emoji sharpness bar, title casing,
+ * the weapon description and author line, and the embed file paths, on small
+ * hand-made inputs.
  */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { sharpnessEmoji, titleCase, weaponDescription } from "../src/lib/seo";
+import {
+  embedIcon,
+  oembedPath,
+  sharpnessEmoji,
+  titleCase,
+  weaponAuthor,
+  weaponDescription,
+} from "../src/lib/seo";
 import type { Weapon } from "../src/lib/types";
 
 /** Count emoji by code point, so ⬛ and 🟥 each count once. */
@@ -64,10 +72,31 @@ describe("weaponDescription", () => {
     assert.equal(
       weaponDescription(weapon),
       [
-        "Rarity 9 Sword and Shield",
         "Attack 308 · ⚡ Thunder 300 · Affinity −10% · Slots ○○—",
         "🟥🟥🟧🟧🟨🟨🟨🟩🟩🟩🟩🟦⬛⬛⬛ Sharpness",
       ].join("\n"),
+    );
+  });
+
+  test("puts the rarity and type in the author line, linking to the tree", () => {
+    assert.deepEqual(weaponAuthor(weapon), {
+      name: "Rarity 9 Sword and Shield",
+      path: "/blacksmith/sword-and-shield/",
+    });
+  });
+});
+
+describe("embed files", () => {
+  test("picks the icon tint like the site: gem colour, then rarity 4+, else plain", () => {
+    assert.equal(embedIcon("decoration", 5, "red").url, "/embed/icons/decoration-red.png");
+    assert.equal(embedIcon("long-sword", 10).url, "/embed/icons/long-sword-rarity-10.png");
+    assert.equal(embedIcon("great-sword", 2).url, "/embed/icons/great-sword-plain.png");
+  });
+
+  test("puts a page's oEmbed file under /embed/oembed/", () => {
+    assert.equal(
+      oembedPath("/blacksmith/long-sword/grtdemnhalberdraksha/"),
+      "/embed/oembed/blacksmith/long-sword/grtdemnhalberdraksha.json",
     );
   });
 });

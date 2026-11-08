@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: monsterDescription(monster),
       path: `/monsters/${category}/${slug}/`,
       image: monsterIcon(slug, category),
+      oembed: true,
     }),
   };
 }
