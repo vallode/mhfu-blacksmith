@@ -47,7 +47,9 @@ export default function DecorationsListClient() {
           </TreeScroll>
         </Card>
         <Card>
-          <p>{loading ? "Loading…" : "Select a decoration from the tree."}</p>
+          <p className="leading-[1.2] whitespace-normal">
+            {loading ? "Loading…" : "Select a decoration from the tree."}
+          </p>
         </Card>
       </div>
     </>

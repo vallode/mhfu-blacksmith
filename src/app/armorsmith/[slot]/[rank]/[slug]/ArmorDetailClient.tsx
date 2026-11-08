@@ -103,8 +103,8 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           <DetailHeader>
             <Icon type={slot} size="large" alt={piece.name} />
             <p>{piece.name}</p>
-            {piece.sex && <span>{piece.sex}</span>}
-            {piece.hunter_type && <span>{piece.hunter_type}</span>}
+            {piece.sex && <span className="ml-[1.2rem]">{piece.sex}</span>}
+            {piece.hunter_type && <span className="ml-[1.2rem]">{piece.hunter_type}</span>}
           </DetailHeader>
 
           <DetailBody>
@@ -156,10 +156,10 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 <h2 className="m-0 w-full leading-none font-normal">Skills</h2>
                 {piece.skills.map((skill, i) => (
                   <div key={i} className="flex">
-                    <h3 className="m-0 flex w-[10ch] leading-none font-normal">{skill.name}</h3>
+                    <h3 className="m-0 flex w-cells-10 leading-none font-normal">{skill.name}</h3>
                     <p
                       className={cn(
-                        "w-[4ch] text-right",
+                        "w-cells-4 text-right",
                         Number(skill.amount) < 0 ? "text-negative" : "text-positive",
                       )}
                     >

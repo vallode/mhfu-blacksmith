@@ -15,7 +15,7 @@ export function DetailCard({ children }: { children: React.ReactNode }) {
 /** Icon + name (+ sharpness) row at the top of the panel. */
 export function DetailHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex h-[38px] flex-[0_0_38px] flex-row items-center text-white no-underline mobile:h-auto mobile:flex-wrap">
+    <div className="relative flex min-h-[38px] flex-none flex-row flex-wrap items-center text-white no-underline">
       {children}
     </div>
   );
@@ -32,16 +32,17 @@ export function DetailRule() {
 }
 
 /**
- * Stat block: a column of rows that wraps into a second column after
- * 11rem on desktop. Armor rows are a fixed-width table: label, value.
+ * Stat block: one column of rows, like the game's stat panel. Armor rows are
+ * a fixed-width table (label, value) laid out in as many columns as fit.
  */
 export function StatList({ children, armor }: { children: React.ReactNode; armor?: boolean }) {
   return (
     <div
       className={cn(
-        "flex h-[11rem] flex-col flex-wrap gap-x-0 gap-y-[13px] mobile:h-auto",
+        "flex flex-col gap-y-[13px]",
         "[&>div]:flex [&>div]:gap-[0.5rem] [&>div]:leading-none",
-        armor && "[&>div]:pr-[1.6rem]",
+        armor &&
+          "grid grid-cols-[repeat(auto-fill,minmax(calc(17*var(--cell)),1fr))] gap-x-[1.6rem]",
       )}
     >
       {children}
@@ -63,13 +64,20 @@ export function Stat({
     <div>
       <h3
         className={cn(
-          "m-0 leading-none font-normal",
-          armor ? "inline-flex w-[10ch] text-stat" : "inline-block",
+          "m-0 shrink-0 leading-none font-normal",
+          armor ? "inline-flex w-cells-12 text-stat" : "inline-block",
         )}
       >
         {label}
       </h3>
-      <p className={cn("inline-block", armor && "w-[4ch] text-right text-white")}>{children}</p>
+      <p
+        className={cn(
+          "flex min-w-0 flex-wrap gap-y-[0.6rem]",
+          armor && "w-cells-4 justify-end text-white",
+        )}
+      >
+        {children}
+      </p>
     </div>
   );
 }
@@ -110,7 +118,7 @@ export function MaterialList({
   materials: Material[];
 }) {
   return (
-    <div className="flex flex-1 flex-col gap-x-0 gap-y-[13px]">
+    <div className="flex flex-auto flex-col gap-x-0 gap-y-[13px]">
       <p>
         <span className="text-stat">{label}: </span>
         {cost}z
@@ -136,7 +144,10 @@ export function RequirementsPage({
   return (
     <div
       data-tab
-      className={cn("flex-1 flex-row flex-wrap mobile:gap-[16px]", active ? "flex" : "hidden")}
+      className={cn(
+        "flex-1 flex-row flex-wrap gap-x-[3.2rem] gap-y-[1.3rem] mobile:gap-y-[16px]",
+        active ? "flex" : "hidden",
+      )}
     >
       {children}
     </div>

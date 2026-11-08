@@ -55,7 +55,9 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
         </Card>
 
         <Card>
-          <p>{loading ? "Loading…" : "Select a piece of armor from the tree."}</p>
+          <p className="leading-[1.2] whitespace-normal">
+            {loading ? "Loading…" : "Select a piece of armor from the tree."}
+          </p>
         </Card>
       </div>
     </>

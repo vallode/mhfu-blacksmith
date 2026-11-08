@@ -42,11 +42,15 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px. Much of the
   existing code uses exact rem values (`text-[1.6rem]` = 16px); keep the sizes
   the game UI uses.
-- **Type is BIZ UDGothic with game tracking.** Its Latin glyphs are fixed
-  width, and `body` adds `letter-spacing: var(--tracking-game)` (10% of each
-  element's own font size) to match the game's wide, even character pitch.
-  Leave text on it unless a style needs its own spacing (uppercase headings,
-  the dense hitzone table); `tracking-game` restores it.
+- **Type is BIZ UDGothic on the game's character pitch.** Its Latin glyphs
+  are fixed width (0.5em), and `body` adds `--tracking-game` letter-spacing
+  (14% of each element's own font size), so every character takes one
+  0.64em cell like the game's text. Leave text on it unless a style needs
+  its own spacing (uppercase headings, the dense hitzone table);
+  `tracking-game` restores it.
+- **Size text columns in character cells, not `ch`.** `1ch` is only the
+  glyph; a cell is the glyph plus tracking (`--cell`). `w-cells-10` fits ten
+  characters.
 - **Phone layout uses the `mobile:` variant** (600px wide and below), which
   matches the original media queries. Use it rather than `sm:`/`md:`.
 
@@ -57,6 +61,7 @@ Effects that are awkward as class strings are `@utility` rules in
 
 | Utility                   | What it does                                                                                           |
 | ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `w-cells-N`               | Width of N character cells (`--cell`), e.g. `w-cells-12` for a 12-character label                      |
 | `pixelated`               | Crisp pixel-art image rendering                                                                        |
 | `hover-glow`              | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`)                          |
 | `card-frame`              | The in-game 9-slice frame (`Card`, toasts)                                                             |

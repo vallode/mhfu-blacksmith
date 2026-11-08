@@ -30,12 +30,17 @@
   --spacing: 0.4rem;
 
   /* The game sets its text on a wide fixed pitch: about 0.64em per character
-     with BIZ UDGothic's glyphs. 10% tracking (0.6em pitch) keeps that look
-     while every layout still fits. A percentage is of each element's own
-     font size and inherits as a percentage, so it scales with every text
-     size (0.1em would inherit as body's pixel value). Set on body; use
-     tracking-game to restore it under an element that overrides it. */
-  --tracking-game: 10%;
+     with BIZ UDGothic's glyphs (0.5em each), so 14% tracking. A percentage is
+     of each element's own font size and inherits as a percentage, so it
+     scales with every text size (0.14em would inherit as body's pixel
+     value). Set on body; tracking-game restores it under an element that
+     overrides it. */
+  --tracking-game: 14%;
+
+  /* One character cell at that pitch: the glyph advance plus tracking.
+     Size text columns in cells with w-cells-N, not ch: 1ch is only the
+     glyph. Unregistered, so ch and em resolve on the element using it. */
+  --cell: calc(1ch + 0.14em);
 
   /* UI palette */
   --color-accent: #037703;
@@ -129,6 +134,11 @@
 /* ─── Custom utilities ─────────────────────────────────────────────────────────
    Effects that are awkward as utility class strings. They work with variants
    like any other utility (hover:hover-glow, mobile:pixelated). */
+
+/* Width of N character cells (see --cell): w-cells-10 fits ten characters */
+@utility w-cells-* {
+  width: calc(--value(number) * var(--cell));
+}
 
 /* Crisp rendering for pixel-art game sprites */
 @utility pixelated {
@@ -269,7 +279,7 @@ body {
   flex-direction: column;
   font-family: "BIZ UDGothic", ui-monospace, monospace;
   /* Browsers without percentage letter-spacing get the em value. */
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   @supports (letter-spacing: 1%) {
     letter-spacing: var(--tracking-game);
   }
