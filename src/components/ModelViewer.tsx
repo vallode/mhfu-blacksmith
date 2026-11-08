@@ -15,8 +15,8 @@ interface Props {
   pair?: boolean;
 }
 
-/** Angle between the two blades of a pair. */
-const PAIR_ANGLE = Math.PI / 4;
+/** Angle of each blade of a pair from the centre line. */
+const PAIR_OFFSET = (34.5 * Math.PI) / 180;
 
 type Status = "loading" | "ready" | "error";
 
@@ -117,11 +117,11 @@ export default function ModelViewer({ src, label, pair = false }: Props) {
         model = gltf.scene;
         if (pair) {
           // Weapon models hold the grip at the origin with the blade along +Z,
-          // flat in the XZ plane: turn each copy half the angle about Y, and
+          // flat in the XZ plane: turn each copy PAIR_OFFSET about Y, and
           // mirror the second across X so it's the left-hand blade.
           const second = model.clone();
-          model.rotation.y = PAIR_ANGLE / 2;
-          second.rotation.y = -PAIR_ANGLE / 2;
+          model.rotation.y = PAIR_OFFSET;
+          second.rotation.y = -PAIR_OFFSET;
           second.scale.x = -1;
           scene.add(model, second);
         } else {
