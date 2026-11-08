@@ -397,6 +397,102 @@
     "rarity": 9
   },
   {
+    "slug": "arbalest-g",
+    "type": "heavy-bowgun",
+    "name": "Arbalest G",
+    "rarity": 9
+  },
+  {
+    "slug": "rapidcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Rapidcaster G",
+    "rarity": 9
+  },
+  {
+    "slug": "injector-cannon-g",
+    "type": "heavy-bowgun",
+    "name": "Injector Cannon G",
+    "rarity": 9
+  },
+  {
+    "slug": "honeycomber-g",
+    "type": "heavy-bowgun",
+    "name": "Honeycomber G",
+    "rarity": 9
+  },
+  {
+    "slug": "tanksorcerer-g",
+    "type": "heavy-bowgun",
+    "name": "Tanksorcerer G",
+    "rarity": 9
+  },
+  {
+    "slug": "bastionwitch-g",
+    "type": "heavy-bowgun",
+    "name": "Bastionwitch G",
+    "rarity": 9
+  },
+  {
+    "slug": "desert-diver-g",
+    "type": "heavy-bowgun",
+    "name": "Desert Diver G",
+    "rarity": 9
+  },
+  {
+    "slug": "power-stinger-g",
+    "type": "heavy-bowgun",
+    "name": "Power Stinger G",
+    "rarity": 9
+  },
+  {
+    "slug": "crab-buster-g",
+    "type": "heavy-bowgun",
+    "name": "Crab Buster G",
+    "rarity": 9
+  },
+  {
+    "slug": "meteor-cannon-g",
+    "type": "heavy-bowgun",
+    "name": "Meteor Cannon G",
+    "rarity": 9
+  },
+  {
+    "slug": "pressurizedplesiothg",
+    "type": "heavy-bowgun",
+    "name": "PressurizedPlesiothG",
+    "rarity": 9
+  },
+  {
+    "slug": "violet-punisher-g",
+    "type": "heavy-bowgun",
+    "name": "Violet Punisher G",
+    "rarity": 9
+  },
+  {
+    "slug": "superkut-kucannon-g",
+    "type": "heavy-bowgun",
+    "name": "SuperKut-KuCannon G",
+    "rarity": 9
+  },
+  {
+    "slug": "ultrakut-kucannon-g",
+    "type": "heavy-bowgun",
+    "name": "UltraKut-KuCannon G",
+    "rarity": 9
+  },
+  {
+    "slug": "monodevilcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Monodevilcaster G",
+    "rarity": 9
+  },
+  {
+    "slug": "duelcaster-g",
+    "type": "heavy-bowgun",
+    "name": "Duelcaster G",
+    "rarity": 9
+  },
+  {
     "slug": "queen-needle",
     "type": "heavy-bowgun",
     "name": "Queen Needle",
@@ -497,102 +593,6 @@
     "type": "heavy-bowgun",
     "name": "Ukanlos Cannon",
     "rarity": 10
-  },
-  {
-    "slug": "arbalest-g",
-    "type": "heavy-bowgun",
-    "name": "Arbalest G",
-    "rarity": 9
-  },
-  {
-    "slug": "rapidcaster-g",
-    "type": "heavy-bowgun",
-    "name": "Rapidcaster G",
-    "rarity": 9
-  },
-  {
-    "slug": "injector-cannon-g",
-    "type": "heavy-bowgun",
-    "name": "Injector Cannon G",
-    "rarity": 9
-  },
-  {
-    "slug": "honeycomber-g",
-    "type": "heavy-bowgun",
-    "name": "Honeycomber G",
-    "rarity": 9
-  },
-  {
-    "slug": "tanksorcerer-g",
-    "type": "heavy-bowgun",
-    "name": "Tanksorcerer G",
-    "rarity": 9
-  },
-  {
-    "slug": "bastionwitch-g",
-    "type": "heavy-bowgun",
-    "name": "Bastionwitch G",
-    "rarity": 9
-  },
-  {
-    "slug": "desert-diver-g",
-    "type": "heavy-bowgun",
-    "name": "Desert Diver G",
-    "rarity": 9
-  },
-  {
-    "slug": "power-stinger-g",
-    "type": "heavy-bowgun",
-    "name": "Power Stinger G",
-    "rarity": 9
-  },
-  {
-    "slug": "crab-buster-g",
-    "type": "heavy-bowgun",
-    "name": "Crab Buster G",
-    "rarity": 9
-  },
-  {
-    "slug": "meteor-cannon-g",
-    "type": "heavy-bowgun",
-    "name": "Meteor Cannon G",
-    "rarity": 9
-  },
-  {
-    "slug": "pressurizedplesiothg",
-    "type": "heavy-bowgun",
-    "name": "PressurizedPlesiothG",
-    "rarity": 9
-  },
-  {
-    "slug": "violet-punisher-g",
-    "type": "heavy-bowgun",
-    "name": "Violet Punisher G",
-    "rarity": 9
-  },
-  {
-    "slug": "superkut-kucannon-g",
-    "type": "heavy-bowgun",
-    "name": "SuperKut-KuCannon G",
-    "rarity": 9
-  },
-  {
-    "slug": "ultrakut-kucannon-g",
-    "type": "heavy-bowgun",
-    "name": "UltraKut-KuCannon G",
-    "rarity": 9
-  },
-  {
-    "slug": "monodevilcaster-g",
-    "type": "heavy-bowgun",
-    "name": "Monodevilcaster G",
-    "rarity": 9
-  },
-  {
-    "slug": "duelcaster-g",
-    "type": "heavy-bowgun",
-    "name": "Duelcaster G",
-    "rarity": 9
   },
   {
     "slug": "queen-needle-g",

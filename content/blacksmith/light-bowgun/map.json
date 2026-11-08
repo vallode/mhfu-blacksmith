@@ -16,7 +16,7 @@
     "slug": "shotgun-azure",
     "type": "light-bowgun",
     "name": "Shotgun (Azure)",
-    "rarity": 3
+    "rarity": 2
   },
   {
     "slug": "shotgun-white",
@@ -553,108 +553,6 @@
     "rarity": 9
   },
   {
-    "slug": "hexed-shaka-bow",
-    "type": "light-bowgun",
-    "name": "Hexed Shaka Bow",
-    "rarity": 10
-  },
-  {
-    "slug": "owl-s-eye-darkbow",
-    "type": "light-bowgun",
-    "name": "Owl's Eye Darkbow",
-    "rarity": 10
-  },
-  {
-    "slug": "warrior-s-bowgun",
-    "type": "light-bowgun",
-    "name": "Warrior's Bowgun",
-    "rarity": 10
-  },
-  {
-    "slug": "promenade",
-    "type": "light-bowgun",
-    "name": "Promenade",
-    "rarity": 10
-  },
-  {
-    "slug": "pollination",
-    "type": "light-bowgun",
-    "name": "Pollination",
-    "rarity": 10
-  },
-  {
-    "slug": "mythical-three-horn",
-    "type": "light-bowgun",
-    "name": "Mythical Three-Horn",
-    "rarity": 10
-  },
-  {
-    "slug": "crow-do",
-    "type": "light-bowgun",
-    "name": "Crow Do",
-    "rarity": 10
-  },
-  {
-    "slug": "gold-semi-auto",
-    "type": "light-bowgun",
-    "name": "Gold Semi-Auto ",
-    "rarity": 10
-  },
-  {
-    "slug": "silver-semi-auto",
-    "type": "light-bowgun",
-    "name": "Silver Semi-Auto",
-    "rarity": 10
-  },
-  {
-    "slug": "prosperity",
-    "type": "light-bowgun",
-    "name": "Prosperity",
-    "rarity": 10
-  },
-  {
-    "slug": "genie-s-lamp",
-    "type": "light-bowgun",
-    "name": "Genie's Lamp",
-    "rarity": 10
-  },
-  {
-    "slug": "chronos-panzer",
-    "type": "light-bowgun",
-    "name": "Chronos Panzer",
-    "rarity": 10
-  },
-  {
-    "slug": "engravedfirewyvnbow",
-    "type": "light-bowgun",
-    "name": "EngravedFireWyvnBow",
-    "rarity": 10
-  },
-  {
-    "slug": "ten-thousand-volts",
-    "type": "light-bowgun",
-    "name": "Ten-Thousand Volts",
-    "rarity": 10
-  },
-  {
-    "slug": "absolute-bow",
-    "type": "light-bowgun",
-    "name": "Absolute Bow",
-    "rarity": 10
-  },
-  {
-    "slug": "tigrex-wargun-plus",
-    "type": "light-bowgun",
-    "name": "Tigrex Wargun+",
-    "rarity": 10
-  },
-  {
-    "slug": "ukanlos-flame-bow",
-    "type": "light-bowgun",
-    "name": "Ukanlos Flame Bow",
-    "rarity": 10
-  },
-  {
     "slug": "crossbow-gun-g",
     "type": "light-bowgun",
     "name": "Crossbow Gun G",
@@ -761,6 +659,108 @@
     "type": "light-bowgun",
     "name": "Kut-Ku Barrage G",
     "rarity": 9
+  },
+  {
+    "slug": "hexed-shaka-bow",
+    "type": "light-bowgun",
+    "name": "Hexed Shaka Bow",
+    "rarity": 10
+  },
+  {
+    "slug": "owl-s-eye-darkbow",
+    "type": "light-bowgun",
+    "name": "Owl's Eye Darkbow",
+    "rarity": 10
+  },
+  {
+    "slug": "warrior-s-bowgun",
+    "type": "light-bowgun",
+    "name": "Warrior's Bowgun",
+    "rarity": 10
+  },
+  {
+    "slug": "promenade",
+    "type": "light-bowgun",
+    "name": "Promenade",
+    "rarity": 10
+  },
+  {
+    "slug": "pollination",
+    "type": "light-bowgun",
+    "name": "Pollination",
+    "rarity": 10
+  },
+  {
+    "slug": "mythical-three-horn",
+    "type": "light-bowgun",
+    "name": "Mythical Three-Horn",
+    "rarity": 10
+  },
+  {
+    "slug": "crow-do",
+    "type": "light-bowgun",
+    "name": "Crow Do",
+    "rarity": 10
+  },
+  {
+    "slug": "gold-semi-auto",
+    "type": "light-bowgun",
+    "name": "Gold Semi-Auto ",
+    "rarity": 10
+  },
+  {
+    "slug": "silver-semi-auto",
+    "type": "light-bowgun",
+    "name": "Silver Semi-Auto",
+    "rarity": 10
+  },
+  {
+    "slug": "prosperity",
+    "type": "light-bowgun",
+    "name": "Prosperity",
+    "rarity": 10
+  },
+  {
+    "slug": "genie-s-lamp",
+    "type": "light-bowgun",
+    "name": "Genie's Lamp",
+    "rarity": 10
+  },
+  {
+    "slug": "chronos-panzer",
+    "type": "light-bowgun",
+    "name": "Chronos Panzer",
+    "rarity": 10
+  },
+  {
+    "slug": "engravedfirewyvnbow",
+    "type": "light-bowgun",
+    "name": "EngravedFireWyvnBow",
+    "rarity": 10
+  },
+  {
+    "slug": "ten-thousand-volts",
+    "type": "light-bowgun",
+    "name": "Ten-Thousand Volts",
+    "rarity": 10
+  },
+  {
+    "slug": "absolute-bow",
+    "type": "light-bowgun",
+    "name": "Absolute Bow",
+    "rarity": 10
+  },
+  {
+    "slug": "tigrex-wargun-plus",
+    "type": "light-bowgun",
+    "name": "Tigrex Wargun+",
+    "rarity": 10
+  },
+  {
+    "slug": "ukanlos-flame-bow",
+    "type": "light-bowgun",
+    "name": "Ukanlos Flame Bow",
+    "rarity": 10
   },
   {
     "slug": "island-of-the-gods-g",

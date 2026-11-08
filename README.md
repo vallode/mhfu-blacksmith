@@ -44,7 +44,6 @@ Dependencies:
 
 - [Node.js](https://nodejs.org/) 22+
 - [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
-- [Ruby](https://www.ruby-lang.org/) (version in `.ruby-version`, then `bundle install`; only for `pnpm generate-maps` and `pnpm validate-schema`)
 - [ImageMagick](https://imagemagick.org/) (optional, for `scripts/crop-images.sh`)
 
 ```sh
@@ -58,7 +57,7 @@ pnpm dev       # local dev server on http://localhost:3000
 pnpm build     # regenerate data + static export to out/
 pnpm lint      # ESLint
 pnpm validate  # sanity-check data/ and content/
-pnpm validate-schema  # check data/ against data/schemas/ (Ruby)
+pnpm validate-schema  # check data/ against data/schemas/
 ```
 
 Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
