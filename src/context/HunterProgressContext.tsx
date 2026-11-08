@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Shares the loaded hunter's owned items and upgrade checks with every tree
+ * Shares the loaded hunter's owned items and craft checks with every tree
  * row, so the weapon/armor/decoration trees can mark them without each call
  * site wiring props through. Inactive (and fetches nothing) until a save
  * with an equipment box is loaded.
@@ -17,26 +17,24 @@ import {
   type ItemLookup,
 } from "@/lib/client-data";
 import { useEquipmentIds } from "@/lib/equipment";
-import {
-  checkUpgrade,
-  ownedHrefs,
-  ownedItemCounts,
-  type UpgradeCheck,
-} from "@/lib/hunter-progress";
+import { checkCraft, ownedHrefs, ownedItemCounts, type CraftCheck } from "@/lib/hunter-progress";
 import type { WeaponBundle } from "@/lib/schema";
 
 interface HunterProgressValue {
   /** A save with an equipment box is loaded and its IDs are resolved. */
   active: boolean;
   isOwned: (href: string) => boolean;
-  /** Can the hunter make this weapon from its tree parent now? null while its data loads. */
-  upgradeCheck: (type: string, slug: string) => UpgradeCheck | null;
+  /**
+   * Can the hunter make this weapon now, forged from scratch or (when they own
+   * its tree parent) upgraded? null while its data loads.
+   */
+  craftCheck: (type: string, slug: string, parentOwned: boolean) => CraftCheck | null;
 }
 
 const INACTIVE: HunterProgressValue = {
   active: false,
   isOwned: () => false,
-  upgradeCheck: () => null,
+  craftCheck: () => null,
 };
 
 const HunterProgressContext = createContext<HunterProgressValue>(INACTIVE);
@@ -63,7 +61,7 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
     let cancelled = false;
     getItems().then(
       (l) => !cancelled && setItems(l),
-      () => {}, // without item links no upgrade is ever flagged
+      () => {}, // without item links no weapon is ever flagged
     );
     return () => {
       cancelled = true;
@@ -84,8 +82,8 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
 
   const isOwned = useCallback((href: string) => owned?.has(href) ?? false, [owned]);
 
-  const upgradeCheck = useCallback(
-    (type: string, slug: string): UpgradeCheck | null => {
+  const craftCheck = useCallback(
+    (type: string, slug: string, parentOwned: boolean): CraftCheck | null => {
       const file = `weapon-${type}`;
       const bundle = peekBundle(file) as WeaponBundle | null;
       const dict = peekDictionaries();
@@ -97,7 +95,7 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
       }
       const weapon = bundle.items.find((w) => w.s === slug);
       return weapon
-        ? checkUpgrade(dict, items.materials, weapon, counts, zenny)
+        ? checkCraft(dict, items.materials, weapon, counts, zenny, parentOwned)
         : { status: "unknown" };
     },
     // `loaded` re-creates the callback so rows re-check once a bundle arrives.
@@ -106,8 +104,8 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
   );
 
   const value = useMemo<HunterProgressValue>(
-    () => (owned ? { active: true, isOwned, upgradeCheck } : INACTIVE),
-    [owned, isOwned, upgradeCheck],
+    () => (owned ? { active: true, isOwned, craftCheck } : INACTIVE),
+    [owned, isOwned, craftCheck],
   );
 
   return <HunterProgressContext.Provider value={value}>{children}</HunterProgressContext.Provider>;

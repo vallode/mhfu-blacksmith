@@ -79,7 +79,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   // is never the case on the first (hydrating) render.
   const [filter, setFilter] = useState<TreeFilterId>(readTreeFilter);
 
-  // Recomputed every render: upgradeCheck answers null until a bundle has
+  // Recomputed every render: craftCheck answers null until a bundle has
   // loaded, and the provider re-renders us when it arrives.
   const result =
     progress.active && tree ? filterTree(tree, type, basePath, progress, filter) : null;
