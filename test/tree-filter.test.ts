@@ -1,10 +1,10 @@
 /**
- * The per-material upgrade check (lib/hunter-progress.ts) and the weapon tree
+ * The per-material craft checks (lib/hunter-progress.ts) and the weapon tree
  * filter built on it (lib/tree-filter.ts), on small hand-made inputs.
  */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { checkUpgrade, type UpgradeCheck } from "../src/lib/hunter-progress";
+import { checkCraft, checkCreate, checkUpgrade, type CraftCheck } from "../src/lib/hunter-progress";
 import {
   cycleTreeFilter,
   filterTree,
@@ -46,6 +46,7 @@ describe("checkUpgrade", () => {
       ),
       {
         status: "ready",
+        via: "upgrade",
         cost: 1000,
         missing: 0,
         materials: [
@@ -126,12 +127,87 @@ describe("checkUpgrade", () => {
   });
 });
 
-describe("tree filter", () => {
-  const ready: UpgradeCheck = { status: "ready", cost: 0, missing: 0, materials: [] };
-  const shortOne: UpgradeCheck = { status: "short", cost: 0, missing: 1, materials: [] };
-  const shortTwo: UpgradeCheck = { status: "short", cost: 0, missing: 2, materials: [] };
+describe("checkCreate and checkCraft", () => {
+  // Forged from 2 Iron Ore for 500z, or upgraded from its parent with
+  // 1 Machalite Ore for 1000z.
+  const both: CompactWeapon = {
+    n: "Test",
+    s: "test",
+    cm: [[0, 2]],
+    cc: 500,
+    im: [[1, 1]],
+    ic: 1000,
+  };
 
-  // root (owned) -> a (ready), b (short by one) -> d, c (short by two),
+  test("checkCreate uses the create recipe and cost", () => {
+    const counts = new Map([[10, 2]]);
+    assert.deepEqual(checkCreate(dict, materials, both, counts, 500), {
+      status: "ready",
+      via: "create",
+      cost: 500,
+      missing: 0,
+      materials: [{ name: "Iron Ore", need: 2, have: 2 }],
+    });
+    assert.equal(
+      checkCreate(dict, materials, weapon([[0, 1]]), counts, 1000).status,
+      "unknown",
+      "a weapon with no create recipe can't be forged",
+    );
+  });
+
+  test("without the parent, only forging counts", () => {
+    const counts = new Map([[11, 1]]);
+    const result = checkCraft(dict, materials, both, counts, 9999, false);
+    assert.ok(result.status === "short");
+    assert.equal(result.via, "create");
+    assert.equal(
+      checkCraft(dict, materials, weapon([[1, 1]]), counts, 9999, false).status,
+      "unknown",
+      "an upgrade-only weapon needs its parent",
+    );
+  });
+
+  test("with the parent, the closer route wins; a tie goes to the upgrade", () => {
+    const forge = checkCraft(dict, materials, both, new Map([[10, 2]]), 9999, true);
+    assert.ok(forge.status === "ready" && forge.via === "create");
+    const upgrade = checkCraft(dict, materials, both, new Map([[11, 1]]), 9999, true);
+    assert.ok(upgrade.status === "ready" && upgrade.via === "upgrade");
+    const tie = checkCraft(
+      dict,
+      materials,
+      both,
+      new Map([
+        [10, 2],
+        [11, 1],
+      ]),
+      9999,
+      true,
+    );
+    assert.ok(tie.status === "ready" && tie.via === "upgrade");
+    // Forging is one Iron Ore short; the upgrade lacks Machalite Ore and the zenny.
+    const closer = checkCraft(dict, materials, both, new Map([[10, 1]]), 700, true);
+    assert.ok(closer.status === "short" && closer.via === "create" && closer.missing === 1);
+  });
+});
+
+describe("tree filter", () => {
+  const ready: CraftCheck = { status: "ready", via: "upgrade", cost: 0, missing: 0, materials: [] };
+  const shortOne: CraftCheck = {
+    status: "short",
+    via: "upgrade",
+    cost: 0,
+    missing: 1,
+    materials: [],
+  };
+  const shortTwo: CraftCheck = {
+    status: "short",
+    via: "upgrade",
+    cost: 0,
+    missing: 2,
+    materials: [],
+  };
+
+  // root (owned) -> a (ready), b (short by one) -> d (forgeable), c (short by two),
   //                 e (owned), x (a lance this sword upgrades into, ready)
   const tree: WeaponTreeNode[] = [
     {
@@ -155,7 +231,7 @@ describe("tree filter", () => {
     },
   ];
   const owned = new Set(["/blacksmith/great-sword/root/", "/blacksmith/great-sword/e/"]);
-  const checks: Record<string, UpgradeCheck> = {
+  const checks: Record<string, CraftCheck> = {
     a: ready,
     b: shortOne,
     c: shortTwo,
@@ -167,8 +243,8 @@ describe("tree filter", () => {
   const progress: ProgressLookups = {
     active: true,
     isOwned: (href) => owned.has(href),
-    upgradeCheck: (type, slug) => {
-      asked.push(`${type}/${slug}`);
+    craftCheck: (type, slug, parentOwned) => {
+      asked.push(`${type}/${slug}${parentOwned ? " (parent owned)" : ""}`);
       return checks[slug] ?? null;
     },
   };
@@ -177,12 +253,19 @@ describe("tree filter", () => {
   const matching = (filter: TreeFilterId) =>
     [...run(filter).rows].filter(([, row]) => row.match).map(([slug]) => slug);
 
-  test("only checks unowned weapons whose parent is owned", () => {
+  test("checks every unowned weapon, saying whether its parent is owned", () => {
     asked.length = 0;
     const { rows } = run("all");
-    // d's parent b isn't owned, e is owned itself, root has no parent.
-    assert.deepEqual(asked.sort(), ["great-sword/a", "great-sword/b", "great-sword/c", "lance/x"]);
-    assert.equal(rows.get("d")?.upgrade, null);
+    // root and e are owned; d's parent b isn't.
+    assert.deepEqual(asked.sort(), [
+      "great-sword/a (parent owned)",
+      "great-sword/b (parent owned)",
+      "great-sword/c (parent owned)",
+      "great-sword/d",
+      "lance/x (parent owned)",
+    ]);
+    assert.equal(rows.get("d")?.craft, ready);
+    assert.equal(rows.get("e")?.craft, null);
     assert.equal(rows.get("x")?.href, "/blacksmith/lance/x/");
     assert.equal(rows.get("x")?.external, true);
   });
@@ -191,21 +274,40 @@ describe("tree filter", () => {
     assert.deepEqual(matching("all"), ["root", "a", "b", "d", "c", "e", "x"]);
     assert.deepEqual(matching("owned"), ["root", "e"]);
     assert.deepEqual(matching("not-owned"), ["a", "b", "d", "c"]);
-    assert.deepEqual(matching("craftable"), ["a"]);
-    assert.deepEqual(matching("within-one"), ["a", "b"]);
+    assert.deepEqual(matching("craftable"), ["a", "d"]);
+    assert.deepEqual(matching("within-one"), ["a", "b", "d"]);
   });
 
   test("counts every row, cross-type rows included in the total", () => {
     const { matched, total } = run("craftable");
-    assert.equal(matched, 1);
+    assert.equal(matched, 2);
     assert.equal(total, 7);
   });
 
   test("a row still loading its check matches neither Craftable nor Within 1", () => {
-    const row = { external: false, owned: false, upgrade: null };
+    const row = { external: false, owned: false, craft: null };
     assert.equal(matchesTreeFilter("craftable", row), false);
     assert.equal(matchesTreeFilter("within-one", row), false);
     assert.equal(matchesTreeFilter("not-owned", row), true);
+  });
+
+  test("weapons forged from scratch count without owning anything", () => {
+    const nothingOwned: ProgressLookups = {
+      active: true,
+      isOwned: () => false,
+      craftCheck: (_type, slug, parentOwned) =>
+        // Only the root has a create recipe; the rest are upgrades.
+        slug === "root" ? { ...ready, via: "create" } : parentOwned ? ready : { status: "unknown" },
+    };
+    const { rows, matched } = filterTree(
+      tree,
+      "great-sword",
+      "/blacksmith/great-sword/",
+      nothingOwned,
+      "craftable",
+    );
+    assert.equal(matched, 1);
+    assert.equal(rows.get("root")?.match, true);
   });
 
   test("cycles in order and wraps around", () => {

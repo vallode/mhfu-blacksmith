@@ -62,8 +62,8 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
 }
 
 /**
- * Improve materials for an upgrade the hunter could make from an owned
- * parent: one square each, filled when the item box has enough and hollow
+ * Materials for the hunter's best way to make a weapon (its create recipe, or
+ * its improve recipe from an owned parent): one square each, filled when the item box has enough and hollow
  * when short, then a have/total count. Pushed to the row's right edge.
  */
 function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
@@ -113,8 +113,8 @@ export default function WeaponTreeRow({
 
   const isActive = activeSlug === node.slug;
 
-  // Markers for the loaded hunter: owned pieces, and weapons they can make
-  // from an owned parent with what's in their item box right now. In a
+  // Markers for the loaded hunter: owned pieces, and weapons they can forge
+  // or upgrade with what's in their item box right now. In a
   // filtered weapon tree the panel has already worked this out for every row.
   const progress = useHunterProgress();
   const filtered = useTreeFilterResult()?.rows.get(node.slug);
@@ -122,10 +122,10 @@ export default function WeaponTreeRow({
     href,
     external: isExternal,
     owned,
-    upgrade,
+    craft,
   } = filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
   const dimmed = filtered ? !filtered.match : false;
-  const canUpgrade = upgrade?.status === "ready";
+  const ready = craft?.status === "ready" ? craft : null;
 
   const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
     // Rows can be links (a parent weapon still has its own page), so stop
@@ -153,7 +153,7 @@ export default function WeaponTreeRow({
     // The current page's row keeps a steady (non-pulsing) highlight.
     isActive && "before:animate-none before:[background:var(--gradient-hover-glow)]",
     // Weapons the hunter can make right now get a softer resting highlight.
-    canUpgrade &&
+    ready &&
       !isActive &&
       "[&:not(:hover):not(:focus)]:before:[background:var(--gradient-upgrade-glow)]",
     // Ruled out by the tree filter.
@@ -174,7 +174,13 @@ export default function WeaponTreeRow({
       {/* Owned pieces get gold names, as in the game's lists. */}
       <p className={cn("truncate", owned && "text-gold")}>{node.name}</p>
       {owned && <span className="sr-only"> (owned)</span>}
-      {canUpgrade && <span className="sr-only"> (you can make this upgrade now)</span>}
+      {ready && (
+        <span className="sr-only">
+          {ready.via === "upgrade"
+            ? " (you can make this upgrade now)"
+            : " (you can forge this now)"}
+        </span>
+      )}
       {node.children && (
         <p
           className="cursor-pointer px-[3px] font-[monospace] opacity-20"
@@ -189,7 +195,7 @@ export default function WeaponTreeRow({
           {collapsed ? "[+]" : "[-]"}
         </p>
       )}
-      {upgrade && upgrade.status !== "unknown" && <MaterialPips materials={upgrade.materials} />}
+      {craft && craft.status !== "unknown" && <MaterialPips materials={craft.materials} />}
     </>
   );
 
@@ -201,8 +207,8 @@ export default function WeaponTreeRow({
           className={rowClass}
           href={href}
           title={
-            canUpgrade && upgrade?.status === "ready"
-              ? `You can make this upgrade now (${upgrade.cost.toLocaleString()}z, materials in your item box)`
+            ready
+              ? `You can ${ready.via === "upgrade" ? "make this upgrade" : "forge this"} now (${ready.cost.toLocaleString()}z, materials in your item box)`
               : owned
                 ? "In your equipment box"
                 : undefined

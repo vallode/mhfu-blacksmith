@@ -1,13 +1,13 @@
 /**
  * The weapon tree's hunter filter (All / Owned / Not owned / Craftable /
- * Within 1 material): each row's owned and upgrade status for the loaded
+ * Within 1 material): each row's owned and craft status for the loaded
  * hunter, whether it matches the chosen filter, and the tree's match count.
  *
  * Pure functions over the tree data and the HunterProgress lookups, so the
  * list-level hook and the rows share one definition of a row's status.
  */
 import { WEAPON_TYPES } from "./constants";
-import type { UpgradeCheck } from "./hunter-progress";
+import type { CraftCheck } from "./hunter-progress";
 import type { WeaponTreeNode } from "./types";
 
 export const TREE_FILTERS = [
@@ -34,7 +34,7 @@ export function cycleTreeFilter(current: TreeFilterId, step: 1 | -1): TreeFilter
 export interface ProgressLookups {
   active: boolean;
   isOwned: (href: string) => boolean;
-  upgradeCheck: (type: string, slug: string) => UpgradeCheck | null;
+  craftCheck: (type: string, slug: string, parentOwned: boolean) => CraftCheck | null;
 }
 
 export interface RowStatus {
@@ -43,8 +43,12 @@ export interface RowStatus {
   /** A weapon of another type that this tree upgrades into (grey row). */
   external: boolean;
   owned: boolean;
-  /** Only for unowned weapons whose tree parent is owned; null otherwise or while data loads. */
-  upgrade: UpgradeCheck | null;
+  /**
+   * The best way to make an unowned weapon now: forged from scratch, or
+   * upgraded when its tree parent is owned. null for anything else, or while
+   * data loads.
+   */
+  craft: CraftCheck | null;
 }
 
 export function isExternalRow(node: WeaponTreeNode, sectionType: string): boolean {
@@ -72,33 +76,32 @@ export function rowStatus(
 ): RowStatus {
   const href = treeRowHref(node, sectionType, basePath);
   const owned = href ? progress.isOwned(href) : false;
-  // Only weapons are upgraded from a tree parent, and only an owned parent
-  // can be upgraded.
-  const upgrade =
-    progress.active &&
-    href?.startsWith("/blacksmith/") &&
-    !owned &&
-    parentHref &&
-    progress.isOwned(parentHref)
-      ? progress.upgradeCheck(node.type, node.slug)
+  // Only weapons have recipes, and only an owned tree parent can be upgraded.
+  const craft =
+    progress.active && href?.startsWith("/blacksmith/") && !owned
+      ? progress.craftCheck(
+          node.type,
+          node.slug,
+          parentHref !== undefined && progress.isOwned(parentHref),
+        )
       : null;
-  return { href, external: isExternalRow(node, sectionType), owned, upgrade };
+  return { href, external: isExternalRow(node, sectionType), owned, craft };
 }
 
 export function matchesTreeFilter(filter: TreeFilterId, status: RowStatus): boolean {
   if (filter === "all") return true;
   // Rows that leave this weapon type only ever show under All.
   if (status.external) return false;
-  const { owned, upgrade } = status;
+  const { owned, craft } = status;
   switch (filter) {
     case "owned":
       return owned;
     case "not-owned":
       return !owned;
     case "craftable":
-      return upgrade?.status === "ready";
+      return craft?.status === "ready";
     case "within-one":
-      return upgrade?.status === "ready" || (upgrade?.status === "short" && upgrade.missing <= 1);
+      return craft?.status === "ready" || (craft?.status === "short" && craft.missing <= 1);
   }
 }
 

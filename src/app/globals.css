@@ -87,7 +87,7 @@
        animation: var(--animate-hover-glow); background: var(--gradient-hover-glow); */
   --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
   --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
-  /* Resting highlight on tree rows the loaded hunter can upgrade into now */
+  /* Resting highlight on tree rows the loaded hunter can make now */
   --gradient-upgrade-glow: linear-gradient(
     0.25turn,
     transparent,

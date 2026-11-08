@@ -1,18 +1,20 @@
 /**
- * What the loaded hunter owns and which weapon upgrades they can make right
- * now, from the save's equipment box, items and zenny.
+ * What the loaded hunter owns and which weapons they can make right now, from
+ * the save's equipment box, items and zenny.
  *
- * An upgrade is "ready" when every improve material is owned in the needed
- * amount and the hunter has the zenny. It is "unknown" (and never shown as
- * ready) when a material doesn't link to an in-game item or an amount isn't a
- * plain number. A save stored before zenny was kept still gets a material
+ * A weapon can be made two ways: forged from scratch with its create recipe,
+ * or upgraded from its tree parent (which the hunter must own) with its
+ * improve recipe. A recipe is "ready" when every material is owned in the
+ * needed amount and the hunter has the zenny. It is "unknown" (and never shown
+ * as ready) when a material doesn't link to an in-game item or an amount isn't
+ * a plain number. A save stored before zenny was kept still gets a material
  * check; only the cost goes unchecked.
  */
 import { resolveEquip } from "./equipment";
-import type { CompactWeapon, Dictionaries, EquipmentIds } from "./schema";
+import type { CompactWeapon, Dictionaries, EquipmentIds, MatTuple } from "./schema";
 import type { SaveData } from "./save-store";
 
-/** One improve material: how many the upgrade needs and how many the hunter has. */
+/** One recipe material: how many the recipe needs and how many the hunter has. */
 export interface MaterialCheck {
   name: string;
   need: number;
@@ -20,14 +22,17 @@ export interface MaterialCheck {
   have: number;
 }
 
+/** Forged from scratch (create recipe) or upgraded from the tree parent (improve recipe). */
+export type CraftRoute = "create" | "upgrade";
+
 /**
- * `materials` lists every improve material in recipe order. `missing` counts
- * the things standing in the way: one per material owned in too small an
- * amount, plus one if the hunter can't pay the zenny.
+ * `materials` lists every material of the route's recipe in order. `missing`
+ * counts the things standing in the way: one per material owned in too small
+ * an amount, plus one if the hunter can't pay the zenny.
  */
-export type UpgradeCheck =
-  | { status: "ready"; cost: number; materials: MaterialCheck[]; missing: 0 }
-  | { status: "short"; cost: number; materials: MaterialCheck[]; missing: number }
+export type CraftCheck =
+  | { status: "ready"; via: CraftRoute; cost: number; materials: MaterialCheck[]; missing: 0 }
+  | { status: "short"; via: CraftRoute; cost: number; materials: MaterialCheck[]; missing: number }
   | { status: "unknown" };
 
 /** The game stores 255 for the one infinite-stack item (Normal S Lv1). */
@@ -53,18 +58,19 @@ export function ownedHrefs(ids: EquipmentIds, save: SaveData | null): Set<string
   return owned;
 }
 
-export function checkUpgrade(
+function checkRecipe(
   dict: Dictionaries,
-  /** recipe material name -> in-game item ID (ItemLookup.materials) */
   materials: Record<string, number>,
-  weapon: CompactWeapon,
+  via: CraftRoute,
+  recipe: MatTuple[] | undefined,
+  cost: number,
   counts: Map<number, number> | null,
   zenny: number | undefined,
-): UpgradeCheck {
-  if (!counts || !weapon.im?.length) return { status: "unknown" };
+): CraftCheck {
+  if (!counts || !recipe?.length) return { status: "unknown" };
   const checks: MaterialCheck[] = [];
   let missing = 0;
-  for (const [materialId, amount] of weapon.im) {
+  for (const [materialId, amount] of recipe) {
     const name = dict.material_ids[materialId];
     const itemId = materials[name];
     if (itemId === undefined || typeof amount !== "number") return { status: "unknown" };
@@ -72,9 +78,57 @@ export function checkUpgrade(
     if (have < amount) missing++;
     checks.push({ name, need: amount, have });
   }
-  const cost = weapon.ic ?? 0;
   if (zenny !== undefined && cost > zenny) missing++;
   return missing === 0
-    ? { status: "ready", cost, materials: checks, missing: 0 }
-    : { status: "short", cost, materials: checks, missing };
+    ? { status: "ready", via, cost, materials: checks, missing: 0 }
+    : { status: "short", via, cost, materials: checks, missing };
+}
+
+/** Can the hunter forge this weapon from scratch with its create recipe? */
+export function checkCreate(
+  dict: Dictionaries,
+  /** recipe material name -> in-game item ID (ItemLookup.materials) */
+  materials: Record<string, number>,
+  weapon: CompactWeapon,
+  counts: Map<number, number> | null,
+  zenny: number | undefined,
+): CraftCheck {
+  return checkRecipe(dict, materials, "create", weapon.cm, weapon.cc ?? 0, counts, zenny);
+}
+
+/** Can the hunter upgrade this weapon's tree parent into it with its improve recipe? */
+export function checkUpgrade(
+  dict: Dictionaries,
+  /** recipe material name -> in-game item ID (ItemLookup.materials) */
+  materials: Record<string, number>,
+  weapon: CompactWeapon,
+  counts: Map<number, number> | null,
+  zenny: number | undefined,
+): CraftCheck {
+  return checkRecipe(dict, materials, "upgrade", weapon.im, weapon.ic ?? 0, counts, zenny);
+}
+
+/** Ready first, then fewest missing; on a tie the first (the upgrade) wins. */
+function rank(check: CraftCheck): number {
+  if (check.status === "unknown") return Infinity;
+  return check.missing;
+}
+
+/**
+ * The hunter's best way to make this weapon now: its create recipe, or (only
+ * when they own the tree parent) its improve recipe, whichever is closer.
+ */
+export function checkCraft(
+  dict: Dictionaries,
+  /** recipe material name -> in-game item ID (ItemLookup.materials) */
+  materials: Record<string, number>,
+  weapon: CompactWeapon,
+  counts: Map<number, number> | null,
+  zenny: number | undefined,
+  parentOwned: boolean,
+): CraftCheck {
+  const create = checkCreate(dict, materials, weapon, counts, zenny);
+  if (!parentOwned) return create;
+  const upgrade = checkUpgrade(dict, materials, weapon, counts, zenny);
+  return rank(create) < rank(upgrade) ? create : upgrade;
 }
