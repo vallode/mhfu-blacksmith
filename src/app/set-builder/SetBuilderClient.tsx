@@ -7,22 +7,24 @@
  * activates them, highest defence first, shown like the game's equipment
  * set screen.
  */
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import Tabs from "@/components/Tabs";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useSetSearch } from "@/hooks/useSetSearch";
-import { cn } from "@/lib/cn";
 import type { ArmorRank } from "@/lib/constants";
 import { tierLabel } from "@/lib/min-rank";
-import { selectableSkills, type SearchQuery } from "@/lib/set-search";
+import { buildFromResult, emptyBuild, type BuildSet } from "@/lib/set-build";
+import { resolveWanted, selectableSkills, type Piece, type SearchQuery } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
-import ArmorSetView, { SetHeader, SetStatus } from "./ArmorSetView";
+import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
+import SetEditor from "./SetEditor";
 import SkillPicker from "./SkillPicker";
 
 interface Form {
@@ -50,6 +52,8 @@ const DEFAULT_FORM: Form = {
 
 const STORAGE_KEY = "set-builder";
 
+type View = "results" | "editor";
+
 const HUNTER_TYPES: Choice<Form["hunterType"]>[] = [
   { value: "Blademaster", label: "Blademaster" },
   { value: "Gunner", label: "Gunner" },
@@ -75,19 +79,6 @@ function readForm(): Form {
   } catch {
     return DEFAULT_FORM;
   }
-}
-
-/** The page's title bar card: yellow heading on the grey selector bar. */
-function PanelTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      className={cn(
-        "m-0 text-[2.2rem] font-normal text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-      )}
-    >
-      {children}
-    </h2>
-  );
 }
 
 export default function SetBuilderClient() {
@@ -158,6 +149,41 @@ export default function SetBuilderClient() {
   const set = sets[Math.min(index, sets.length - 1)] ?? null;
   const step = (by: 1 | -1) => setIndex((index + by + sets.length) % sets.length);
   const weaponIcon = searched?.hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
+
+  // The set in the editor. Its hunter type and sex are the form's: changing
+  // them in the form changes the set's, and opening a set sets the form's.
+  const [view, setView] = useState<View>("results");
+  const [build, setBuild] = useState<BuildSet>(() => emptyBuild());
+  const [openWarnings, setOpenWarnings] = useState<string[]>([]);
+  useEffect(() => {
+    setBuild((b) =>
+      b.hunterType === form.hunterType && b.sex === form.sex
+        ? b
+        : { ...b, hunterType: form.hunterType, sex: form.sex },
+    );
+  }, [form.hunterType, form.sex]);
+
+  const openInEditor = useCallback((next: BuildSet, warnings: string[] = []) => {
+    setBuild(next);
+    setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
+    setOpenWarnings(warnings);
+    setView("editor");
+  }, []);
+
+  const editBuild = (next: BuildSet) => {
+    setBuild(next);
+    setOpenWarnings([]);
+  };
+
+  const wanted = useMemo(
+    () => (data ? [...resolveWanted(data.trees, form.skills).wanted.keys()] : []),
+    [data, form.skills],
+  );
+  const isOwned = useMemo(
+    () => (progress.active ? (p: Piece) => progress.isOwned(p.href) : undefined),
+    [progress],
+  );
+  const editorWeaponIcon = build.hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
   let message: React.ReactNode = null;
   if (loadError) message = <p className={ui.error}>Couldn&apos;t load the armor data.</p>;
@@ -286,37 +312,101 @@ export default function SetBuilderClient() {
         </Card>
 
         <Card className="gap-[1.3rem] overflow-auto py-7 text-[1.6rem] mobile:text-[1.6rem]">
-          {set ? (
-            <>
-              <SetHeader index={index} count={sets.length} onStep={step} />
-              {result && result.total > sets.length && (
-                <p className={ui.note}>
-                  The {sets.length} highest-defence sets of {result.total}
-                  {result.truncated ? "+" : ""} found. Add skills to narrow the search.
-                </p>
-              )}
-              {result?.timedOut && (
-                <p className={ui.note}>The search took too long and stopped early.</p>
-              )}
-              <ArmorSetView
-                set={set}
-                weaponSlots={searched?.weaponSlots ?? 0}
-                weaponIcon={weaponIcon}
-                status={
+          <Tabs
+            label="Set builder"
+            active={view}
+            onChange={(id) => setView(id as View)}
+            tabs={[
+              {
+                id: "results",
+                label: "Results",
+                content: (
+                  <div className="flex flex-col gap-[1.3rem]">
+                    {set ? (
+                      <>
+                        <SetHeader index={index} count={sets.length} onStep={step} />
+                        {result && result.total > sets.length && (
+                          <p className={ui.note}>
+                            The {sets.length} highest-defence sets of {result.total}
+                            {result.truncated ? "+" : ""} found. Add skills to narrow the search.
+                          </p>
+                        )}
+                        {result?.timedOut && (
+                          <p className={ui.note}>The search took too long and stopped early.</p>
+                        )}
+                        <div className={ui.actions}>
+                          <button
+                            type="button"
+                            className={ui.button}
+                            onClick={() => searched && openInEditor(buildFromResult(set, searched))}
+                          >
+                            Edit this set
+                          </button>
+                        </div>
+                        <ArmorSetView
+                          set={set}
+                          weaponSlots={searched?.weaponSlots ?? 0}
+                          weaponIcon={weaponIcon}
+                          status={
+                            <>
+                              <PanelTitle>Status</PanelTitle>
+                              <SetStatus set={set} />
+                            </>
+                          }
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <PanelTitle>Set Builder</PanelTitle>
+                        {message}
+                      </>
+                    )}
+                    {set && searching && message}
+                  </div>
+                ),
+              },
+              {
+                id: "editor",
+                label: "Editor",
+                content: (
                   <>
-                    <PanelTitle>Status</PanelTitle>
-                    <SetStatus set={set} />
+                    {data ? (
+                      <SetEditor
+                        data={data}
+                        set={build}
+                        onChange={editBuild}
+                        wanted={wanted}
+                        rank={form.rank}
+                        questLimit={questLimit}
+                        ownedOnly={ownedOnly}
+                        isOwned={isOwned}
+                        weaponIcon={editorWeaponIcon}
+                        extraWarnings={openWarnings}
+                        title={
+                          <div className="flex flex-wrap items-center gap-[0.8rem]">
+                            <span className="flex-1">
+                              <PanelTitle>Edit set</PanelTitle>
+                            </span>
+                            <button
+                              type="button"
+                              className={ui.buttonSecondary}
+                              onClick={() =>
+                                editBuild(emptyBuild(form.hunterType, form.sex, build.weaponSlots))
+                              }
+                            >
+                              Clear
+                            </button>
+                          </div>
+                        }
+                      />
+                    ) : (
+                      message
+                    )}
                   </>
-                }
-              />
-            </>
-          ) : (
-            <>
-              <PanelTitle>Set Builder</PanelTitle>
-              {message}
-            </>
-          )}
-          {set && searching && message}
+                ),
+              },
+            ]}
+          />
         </Card>
       </div>
     </>
